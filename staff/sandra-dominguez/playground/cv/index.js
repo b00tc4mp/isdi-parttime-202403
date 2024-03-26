@@ -63,4 +63,3 @@ var projectDescription = document.createElement('p')
 projectDescription.innerText = 'Mejorar mis habilidades poco a poco.'
 
 document.body.appendChild(projectDescription)
-
