@@ -1,45 +1,43 @@
-var headTitle = document.querySelector("title")
-headTitle.innerText = "CV - Pepito Grillo"
+var studiesArr = ["xxx", "yyy", "zzz", "www", "ttt"];
+var experienceArr = [4242, 724678, 289857, 8997];
 
-var title = document.createElement("h1")
-title.innerText = headTitle.innerText
-document.body.appendChild(title)
+var title = document.querySelector("title");
+title.textContent = "CV - Jorge";
 
-var introTitle = document.createElement("h2")
-introTitle.innerText = "Intro"
-document.body.appendChild(introTitle)
+var principalTitle = document.createElement("h1");
+principalTitle.textContent = "CV - Jorge";
+document.body.appendChild(principalTitle);
 
-var introDescription = document.createElement("p")    
-introDescription.innerText = "Soy aficionado a la tecla desde que tengo uso de razón"
-document.body.appendChild(introDescription)
+var aboutMe = document.createElement("h2");
+aboutMe.textContent = "Acerca de mi";
+document.body.appendChild(aboutMe);
 
-var certificationsTitle = document.createElement("h2")
-certificationsTitle.innerText = "Certifications:"
-document.body.appendChild(certificationsTitle)
+var myDescription = document.createElement("p");
+myDescription.textContent = "Apasionado de los ordenadores";
+document.body.appendChild(myDescription);
 
-var certificationsList = document.createElement("ul")
-document.body.appendChild(certificationsList)
+var studiesTitle = document.createElement("h2");
+studiesTitle.textContent = "Titulos";
+document.body.appendChild(studiesTitle);
 
-var certificationsItem1 = document.createElement("li")
-certificationsItem1.innerText = "Scrum Master"
-certificationsList.appendChild(certificationsItem1)
+var studiesList = document.createElement("ul");
+document.body.appendChild(studiesList);
 
-var certificationsItem2 = document.createElement("li")
-certificationsItem2.innerText = "Full Stack Developer"
-certificationsList.appendChild(certificationsItem2)
+for (var i = 0; i < studiesArr.length; i++) {
+  var studiesItem = document.createElement("li");
+  studiesItem.textContent = studiesArr[i];
+  studiesList.appendChild(studiesItem);
+}
 
-var experienceTitle = document.createElement("h2")
-experienceTitle.innerText = "Experience:"
-document.body.appendChild(experienceTitle)
+var experience = document.createElement("h2");
+experience.textContent = "Experiencia";
+document.body.appendChild(experience);
 
-var experienceList = document.createElement("ul")
-document.body.appendChild(experienceList)
+var experienceList = document.createElement("ul");
+document.body.appendChild(experienceList);
 
-var experienceItem1 = document.createElement("li")
-experienceItem1.innerText = "2003 - 2014 Pullmantur Cruises"
-experienceList.appendChild(experienceItem1)
-
-var experienceItem2 = document.createElement("li")
-experienceItem2.innerText = "2014 -2021 Balearia"
-experienceList.appendChild(experienceItem2)
-
+for (var i = 0; i < experienceArr.length; i++) {
+  var experienceItem = document.createElement("li");
+  experienceItem.textContent = experienceArr[i];
+  experienceList.appendChild(experienceItem);
+}
