@@ -16,8 +16,6 @@ certificationsTitle.innerText = "Certifications";
 
 document.body.appendChild(certificationsTitle);
 
-// porque cuando pongo certifications title abajo de todas las certificaciones no me loga en la consola?
-
 var certificationsList = document.createElement("ul");
 
 var certificationTour = document.createElement("li");
