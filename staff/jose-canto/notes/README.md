@@ -116,6 +116,10 @@
 
  *Elimina una rama de forma permanente.*
 
+#### `git diff` [archivo]
+
+*Muestra los cambios en el archivo especificado.*
+
 ---
 
 ### Console Commands
