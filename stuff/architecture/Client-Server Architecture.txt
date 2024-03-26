@@ -1,0 +1,27 @@
+title Client-Server Architecture
+
+User->Client: .../cv/index.html
+Client->Server: .../cv/index.html
+Server->Drive: cv/index.html
+Drive->Server: bytes (html)
+Server->Client: bytes (html)
+Client->User: 00 (html)
+
+Client->Server2: https://b00tc4mp.com/favicon.ico
+Server2->Drive2: .../favicon.ico
+Drive2->Server2: bytes (ico)
+Server2->Client: bytes (ico)
+Client->User: 00 (ico)
+
+Client->Server: .../cv/index.css
+Server->Drive: .../cv/index.css
+Drive->Server: bytes (css)
+Server->Client: bytes (css)
+Client->User: 00 (css)
+
+Client->Server: .../cv/index.js
+Server->Drive: .../cv/index.js
+Drive->Server: bytes (js)
+Server->Client: bytes (js)
+Client->Client: render
+Client->User: 00 (js)
