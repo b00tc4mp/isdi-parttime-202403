@@ -13,5 +13,3 @@ document.body.appendChild(introTitle)
 
 var introDescription = document.createElement('p')
 introDescription.innerText = ''
-
-document.body.appendChild
