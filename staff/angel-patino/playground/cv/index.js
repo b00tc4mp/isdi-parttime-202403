@@ -67,10 +67,23 @@ document.body.appendChild(projectsTitle)
 document.body.appendChild(projectsList)
 
 
+var experienceTitle2 = document.createElement('h3')
+experienceTitle2.innerText = 'Más experiencia'
 
-var button = document.createElement('button')
+ var experienceList = document.createElement('ul')
+ var experienceItem1 = document.createElement('li')
+ experienceItem1.innerText = 'Sowtware Architect '
+ var experienceItem2 = document.createElement('li')
+experienceItem2.innerText = "Twitter"
+
+
+ experienceList.appendChild(experienceItem1)
+ experienceList.appendChild(experienceItem2)
+
+ document.body.appendChild(experienceTitle2)
+ document.body.appendChild(experienceList)
+
+
+ var button = document.createElement('button')
 button.innerText = 'BOTóN'
 document.body.appendChild(button)
-
-
-// TODO continue and end CV ( experience, Projects..)
