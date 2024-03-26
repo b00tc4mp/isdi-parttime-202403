@@ -19,19 +19,24 @@ var skillsitem1 = document.createElement('li')
 var skillsitem2 = document.createElement('li')
 var skillsitem3 = document.createElement('li')
 var skillsitem4 = document.createElement('li')
+var skillsitem5 = document.createElement('li')
 
 skillsitem1.innerText = 'Su cuerpo tiene la propiedad de la goma, se estira, rebota, dobla e infla cualquier parte de su cuerpo.'
 skillsList.appendChild(skillsitem1)
 document.body.appendChild(skillsList)
 
-skillsitem2.innerText = 'Maestro especialista de la lucha cuerpo a cuerpo y las artes marciales'
+skillsitem2.innerText = 'Maestro especialista de la lucha cuerpo a cuerpo y las artes marciales.'
 skillsList.appendChild(skillsitem2)
 document.body.appendChild(skillsList)
 
-skillsitem3.innerText = 'Posee una tremenda velocidad, agilidad y reflejos'
+skillsitem3.innerText = 'Posee una tremenda velocidad, agilidad y reflejos.'
 skillsList.appendChild(skillsitem3)
 document.body.appendChild(skillsList)
 
-skillsitem4.innerText = 'Mientras está completamente dormido, come como si estuviera despierto'
+skillsitem4.innerText = 'Mientras está completamente dormido, come como si estuviera despierto.'
 skillsList.appendChild(skillsitem4)
+document.body.appendChild(skillsList)
+
+skillsitem5.innerText = 'Determinación en ser el próximo «Rey de los piratas».'
+skillsList.appendChild(skillsitem5)
 document.body.appendChild(skillsList)
