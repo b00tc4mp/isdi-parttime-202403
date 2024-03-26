@@ -1,3 +1,5 @@
+
+
 var headTitle = document.querySelector("title")
 headTitle.innerText = 'CV - Pepito Grillo'
 
@@ -54,5 +56,11 @@ experienceList.appendChild(experienceItem1)
 
 document.body.appendChild(experienceList)
 
+var experienceItem2 = document.createElement('li')
 
-// to do continue and end CV (experience, Projects,...)
+experienceItem2.innerText = 'software Architech (microsorft, 2020)'
+
+experienceList.appendChild(experienceItem2)
+
+document.body.appendChild(experienceList)
+
