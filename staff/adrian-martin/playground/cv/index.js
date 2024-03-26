@@ -44,18 +44,16 @@ experienceTitle.innerText = 'Experience'
 
 document.body.appendChild(experienceTitle)
 
-var experienceList = document.createElement('ul')
+var experiencesList = document.createElement('ul')
 
-var experienceItem = document.createElement('li')
-experienceItem.innerText = 'ESO 2015-2020'
+var experienceItem1 = document.createElement('li')
+experienceItem1.innerText = 'Dosa 6 meses'
 
-experienceList.appendChild(experienceItem)
-
-document.body.appendChild(experienceItem)
+document.body.appendChild(experienceItem1)
 
 var experienceItem2 = document.createElement('li')
-experienceItem2.innerText = 'Preimpresion Digital 2020-2022'
-
-experienceList.appendChild(experienceItem2)
+experienceItem2.innerText = 'Camarero 6 meses'
 
 document.body.appendChild(experienceItem2)
+
+document.body.appendChild(experiencesList)
