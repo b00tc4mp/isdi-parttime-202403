@@ -88,3 +88,20 @@ var studiesItem4 = document.createElement("li")
 studiesItem4.innerText = "Grado en Ciencias Políticas 15/16"
 document.body.appendChild(studiesItem4)
 
+var experiencesList = document.createElement("ul")
+
+
+var experienceItem1 = document.createElement("li")
+experienceItem1.innerText = "Becario Marketing Digital (Comunicare, 2023)"
+
+experiencesList.appendChild(experienceItem1)
+
+var experienceItem2 = document.createElement("li")
+experienceItem2.innerText = "Repartidor de Publicidad (Punto a punto Logística, 2017-2023)"
+
+experiencesList.appendChild(experienceItem2)
+
+var experienceItem3 = document.createElement("li")
+experienceItem3.innerText = "Heladero (/'Heladería La IBENSE /', 2023)"
+
+experiencesList.appendChild(experienceItem3)
