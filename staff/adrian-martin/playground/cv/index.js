@@ -1,4 +1,10 @@
 document.title = 'CV - Adrian Martin Gonzalo';
+document.body.style.margin = '20px'
+
+var fontLink = document.createElement('link')
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Workbench&display=swap'
+fontLink.rel = 'stylesheet'
+document.head.appendChild(fontLink)
 
 var title = document.createElement('h1');
 title.innerText = 'CV - Adrian Martin Gonzalo';
@@ -14,32 +20,53 @@ document.body.appendChild(introDescription);
 
 var certificationTitle = document.createElement('h2');
 certificationTitle.innerText = 'Certificaciones';
+
+certificationTitle.style.textDecoration = 'underline'
+
 document.body.appendChild(certificationTitle);
 
 var certificationList = document.createElement('ul');
 
-var certificationItem1 = document.createElement('li');
-certificationItem1.innerText = 'Preimpresión Digital';
-certificationList.appendChild(certificationItem1);
+var certificationTitleArray = [
+    'Preimpresión Digital',
+    'Full Stack Develop ISDI Coders'
+]
 
-var certificationItem2 = document.createElement('li');
-certificationItem2.innerText = 'Full Stack Develop ISDI Coders';
-certificationList.appendChild(certificationItem2);
+for(var i = 0; i < certificationTitleArray.length; i++){
+    var certificationTitle = certificationTitleArray[i]
+
+    var certificationItem = document.createElement('li')
+    certificationItem.innerText = certificationTitle
+
+    certificationList.appendChild(certificationItem)
+}
 
 document.body.appendChild(certificationList);
 
 var experienceTitle = document.createElement('h2');
 experienceTitle.innerText = 'Experiencia';
+
+experienceTitle.style.textDecoration = 'underline'
+
 document.body.appendChild(experienceTitle);
 
 var experiencesList = document.createElement('ul');
 
-var experienceItem1 = document.createElement('li');
-experienceItem1.innerText = 'Dosa - 6 meses';
-experiencesList.appendChild(experienceItem1);
+var experienceTitlesArray = [
+    "Dosa - 6 meses",
+    "Camarero - 6 meses",
+    "entrenador de futbol - 1 año"
+]
 
-var experienceItem2 = document.createElement('li');
-experienceItem2.innerText = 'Camarero - 6 meses';
-experiencesList.appendChild(experienceItem2);
+for(var i = 0; i < experienceTitlesArray.length; i++){
+    experienceTitle = experienceTitlesArray[i]
+
+    var experienceItem = document.createElement('li')
+    experienceItem.innerText = experienceTitle
+
+    experiencesList. appendChild(experienceItem)
+
+}
 
 document.body.appendChild(experiencesList);
+
