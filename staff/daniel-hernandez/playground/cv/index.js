@@ -1,25 +1,42 @@
-document.body.style.fontFamily = "Comic Sans MS";
-document.body.style.margin = "5 0 0 0";
-document.body.style.padding = "0 0";
+//declarations
+var body = document.body;
+var head = document.head;
+
+
+//import font test 
+var fontLink = document.createElement('link');
+fontLink.rel = 'stylesheet';
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Workbench&display=swap';
+
+head.appendChild(fontLink);
+//
+
+//modify all styles
+var style = document.createElement('style');
+style.innerHTML = '* { font-family: Comic Sans MS; margin: 5 0 0 0; }';
+head.appendChild(style);
+//
+
+body.style.padding = "0 0";
 
 var title = document.createElement('h1');
 title.innerText = "epic button presentation: ";
-document.body.appendChild(title);
+body.appendChild(title);
 
 var epicButtonContainer = document.createElement('div');
 epicButtonContainer.style.display = "inline-block";
-document.body.appendChild(epicButtonContainer);
+body.appendChild(epicButtonContainer);
 
 var bP_kewlContainer = document.createElement('div');
 bP_kewlContainer.style.display = "inline-block";
-bP_kewlContainer.style.position = "absolute"
+bP_kewlContainer.style.position = "absolute";
 bP_kewlContainer.style.left = "500px";
-bP_kewlContainer.style.top = "45px"
-bP_kewlContainer.style.zIndex = '1000'
-document.body.appendChild(bP_kewlContainer);
+bP_kewlContainer.style.top = "45px";
+bP_kewlContainer.style.zIndex = '1000';
+body.appendChild(bP_kewlContainer);
 
 var bP_kewl = new Image();
-bP_kewl.src = './bP_kewl.webp'
+bP_kewl.src = './bP_kewl.webp';
 bP_kewl.style.width = "120px";
 bP_kewlContainer.appendChild(bP_kewl);
 
@@ -31,7 +48,7 @@ epicExplosion.style.left = '480px';
 epicExplosion.style.top = '15px'
 epicExplosion.style.zIndex = '999';
 epicExplosion.style.visibility = 'hidden';
-document.body.appendChild(epicExplosion);
+body.appendChild(epicExplosion);
 
 var epicButton = document.createElement('button');
 epicButton.textContent = "epic";
@@ -54,29 +71,29 @@ epicButton.addEventListener('click', function() {
     setTimeout(function() {
 
         epicText.style.visibility = "hidden";
-        bP_kewl.src = './bP_kewl.webp'
+        bP_kewl.src = './bP_kewl.webp';
         epicExplosion.style.visibility = 'hidden';
 
     }, 1000);
 });
 
 var firstParagraph = document.createElement('p');
-firstParagraph.innerText = " yo yo yo, this button is pretty epic isn't it? (click it) \n pretty cool huh ? no?? \n well, if that doesnt convince you then maybe these reasons will:"
-document.body.appendChild(firstParagraph);
+firstParagraph.innerText = " yo yo yo, this button is pretty epic isn't it? (click it) \n pretty cool huh ? no?? \n well, if that doesnt convince you then maybe these reasons will:";
+body.appendChild(firstParagraph);
 
 var secondTitle = document.createElement('h2');
 secondTitle.innerText = "here are a few reasons why I think this button is epic: ";
-document.body.appendChild(secondTitle);
+body.appendChild(secondTitle);
 
 var epicButtonListContent = [ 
     'this button says epic',
     'this button is gray',
     'this button says epic when you click it',
     'this button is in comic sans ! AND ITS BOLD !!!!'
-]
+];
 
 var epicButtonList = document.createElement('ul');
-document.body.appendChild(epicButtonList);
+body.appendChild(epicButtonList);
 
 for(var i = 0; i < epicButtonListContent.length; i++){ 
     var listItem = document.createElement('li');
@@ -88,4 +105,4 @@ for(var i = 0; i < epicButtonListContent.length; i++){
 //hoisting goes brrr
 var paragraph = document.createElement('p');
 paragraph.style.display = "inline-block";
-document.body.appendChild(paragraph);
+body.appendChild(paragraph);
