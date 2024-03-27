@@ -3,11 +3,68 @@
 * {
   font-family: 'Workbench', sans-serif;
   color: greenyellow;
+  box-sizing: border-box;
+
 }
 
 body {
-  background-color: black;
+  background-image: linear-gradient(to right, #f4d7b6, #c9b094, #a08b73, #796754, #544637, #55412c, #553b20, #553615, #7b4914, #a35d11, #ce700b, #fb8400);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+h1 {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid black;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #fcb0002f;
+}
+
+h2 {
+  width: 100%;
+  border: 2px solid black;
+  text-align: center;
+  width: auto;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #1c1a27;
+}
+
+ul {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: auto;
+}
+
+li {
+  margin-bottom: 10px;
+  list-style: none;
+
+}
+
+
+button {
+  color: black;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
 }
