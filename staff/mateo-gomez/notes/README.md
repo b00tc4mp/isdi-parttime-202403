@@ -26,6 +26,14 @@ $ cd ..
 ```
 
 
+### git log -  Show commit logs
+
+```sh
+"Para ver el historial de commits"
+```
+
+
+
 ### ls - list (files and folders)
 
 ```sh
@@ -147,3 +155,77 @@ Switched to a new branch 'new-topic'
 ### git commit -m " " - Record changes to the repository
 
 ```sh
+"Para crear una nueva conformación que contenga el contenido actual del índice y el mensaje de registro proporcionado que describe los cambios"
+
+$ edit hello.c
+$ git rm goodbye.c
+$ git add hello.c
+$ git commit
+```
+
+
+### git add - Add file contents to the index
+
+```sh
+"Este comando actualiza el índice utilizando el contenido actual que se encuentra en el árbol de trabajo, para preparar el contenido preparado para la próxima confirmación"
+
+$ git add Documentation/\*.txt
+```
+
+
+### git rm - Remove files from the working tree and from the index
+
+```sh
+"Elimine los archivos que coincidan con la especificación de ruta del índice o del árbol de trabajo y el índice. git rmno eliminará un archivo solo de su directorio de trabajo. (No existe ninguna opción para eliminar un archivo solo del árbol de trabajo y aún así mantenerlo en el índice; úsela /bin/rm si desea hacerlo). Los archivos que se eliminan deben ser idénticos a la punta de la rama y no deben actualizarse. su contenido se puede organizar en el índice, aunque ese comportamiento predeterminado se puede anular con la -f opción."
+
+git rm Documentation/\*.txt
+Elimina todos *.txtlos archivos del índice que se encuentran en el Documentationdirectorio y cualquiera de sus subdirectorios.
+```
+
+
+### git diff - Show changes between commits, commit and working tree, etc
+
+```sh 
+"Muestra cambios entre el árbol de trabajo y el índice o un árbol, cambios entre el índice y un árbol, cambios entre dos árboles, cambios resultantes de una combinación, cambios entre dos objetos blob o cambios entre dos archivos en el disco"
+
+$ git diff tema maestro     (1) 
+$ git diff tema..maestro    (2) 
+$ git diff tema...maestro   (3)
+
+(1) Cambios entre los consejos del tema y las ramas maestras.
+
+(2) Lo mismo que arriba.
+
+(3) Cambios que ocurrieron en la rama maestra desde que se inició la rama temática.
+```
+
+
+
+
+
+
+
+## Actions commands
+### Cómo renombrar una carpeta: 
+
+```sh
+1º git mv (+ ruta a carpeta ej: staff/Goteo-Mamez/) (+ nuevo nombre ej: staff/mateo-gomez)
+2º git status     ---> (mostrará los cambios)
+3º git add (carpeta nombre nuevo ej: staff/mateo-gomez)
+4º git status     ---> (mostrará si los cambios se han implementado)
+5º git commit --amend -m "(mensaje que queremos poner a la acción ej: change name) #(número de tarea)"
+6º git push       ---> Para subir los cambios 
+```
+
+
+
+
+### Cómo realizar cambios en ficheros específicos: 
+
+```sh
+1º Realizamos los camnios en VS
+2º git status   ----> nos informa de los cambios
+3º git add (+ ruta completa ej: staff/mateo-gomez/notes/READ.md)
+4º git status   ----> mostrará si los cambios están dentro del cajón (stage)
+5º git commit -m "rename file #3"
+6º git push
