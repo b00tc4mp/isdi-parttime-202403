@@ -2,4 +2,9 @@
 
 * {
     font-family: Teko;
+    color: rgb(127, 109, 207);
+}
+
+body {
+    background-color: rgb(132, 243, 5);
 }
