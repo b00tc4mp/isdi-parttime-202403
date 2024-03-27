@@ -1,3 +1,4 @@
+
 //Titulo
 var headTitle = document.querySelector('title')
 headTitle.innerText = 'CV - Pepito Grillo'
@@ -14,7 +15,7 @@ introTitle.innerText = "Title"
 document.body.appendChild(introTitle)
 
 var introDescription = document.createElement('p')
-introDescription.innerText = "Soy aficionado a la tecla desde que tengo uso de razón... blah bla bla"
+introDescription.innerText = "Soy aficionado a la tecla desde que tengo uso de razón... blah blah blah"
 
 document.body.appendChild(introDescription)
 
@@ -44,6 +45,36 @@ certificationItem3.innerText = "Certification Freecodecamp"
 certificationsList.appendChild(certificationItem3)
 
 document.body.appendChild(certificationsList)
+
+// Experiencia
+
+var experienceTitle = document.createElement('h2')
+experienceTitle.innerText = 'Experience'
+document.body.appendChild(experienceTitle)
+
+var experienceList = document.createElement('ul')
+
+var experienceOne = document.createElement('li')
+experienceOne.innerText = 'Software Engineer at Google (2010-2012)'
+
+experienceList.appendChild(experienceOne)
+
+
+var experienceTwo = document.createElement('li')
+experienceTwo.innerText = 'Software Engineer at Amazon (2013-2015)'
+
+experienceList.appendChild(experienceTwo)
+
+document.body.appendChild(experienceList)
+
+var experienceThree = document.createElement('li')
+experienceThree.innerText = 'Software Developr at Twitter (2015-2020)'
+
+experienceList.appendChild(experienceThree)
+
+document.body.appendChild(experienceList)
+
+
 
 // Botón
 var button = document.createElement("button")
