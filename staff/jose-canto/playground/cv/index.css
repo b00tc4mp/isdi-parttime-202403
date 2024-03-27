@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+
+* {
+  font-family: 'Workbench', sans-serif;
+  color: greenyellow;
+}
+
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
