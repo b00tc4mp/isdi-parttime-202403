@@ -43,3 +43,22 @@ var experienceTitle = document.createElement('h2');
 experienceTitle.innerText = 'Experience';
 
 document.body.appendChild(experienceTitle);
+
+var experiencesList = document.createElement('ul');
+
+var experienceItem1 = document.createElement('li');
+experienceItem1.innerText = 'Software Architect (Microsoft, 2020)';
+
+experiencesList.appendChild(experienceItem1);
+
+var experienceItem2 = document.createElement('li');
+experienceItem2.innerText = 'Software Engineer (Facebook, 2015)';
+
+experiencesList.appendChild(experienceItem2);
+
+var experienceItem3 = document.createElement('li');
+experienceItem3.innerText = 'Software Developer (Twitter, 2008)';
+
+experiencesList.appendChild(experienceItem3);
+
+document.body.appendChild(experiencesList);
