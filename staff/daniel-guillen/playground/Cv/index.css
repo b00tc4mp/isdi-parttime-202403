@@ -2,16 +2,17 @@
 
 * {
     font-family: Workbench;
-    color: yellow;
+    color: black;
 }
 h1{
     text-align: center;
     color:orange;
 }
 h2{
-    text-align: center;
     color:orange;
 }
 body{
-    background-color:black;
+    border: red 5px double;
+    margin: 20px;
+    padding-left: 20px;
 }

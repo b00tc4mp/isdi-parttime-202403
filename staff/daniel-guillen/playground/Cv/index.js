@@ -1,14 +1,45 @@
+document.body.style.backgroundColor = 'yellow'
+document.body.style.margin = '30px'
+
 var headTitle = document.querySelector('title')
 headTitle.innerText = 'CV - Monkey D. Luffy'
 var title = document.createElement('h1')
 title.innerText = headTitle.innerText
 document.body.appendChild(title)
+
+var imgCv = document.createElement('img')
+imgCv.src = 'https://pbs.twimg.com/profile_images/730085927217967104/scL_F782_400x400.jpg'
+document.body.appendChild(imgCv)
+
 var introTitle =document.createElement('h2')
 introTitle.innerText = 'Monkey D. Luffy, más conocido como Luffy «Sombrero de Paja»'
 document.body.appendChild(introTitle)
+introTitle.style.textDecoration = 'underline'
+
 var introParagraph = document.createElement('p')
 introParagraph.innerText = 'Es el capitán y fundador de los Piratas de Sombrero de Paja.'
 document.body.appendChild(introParagraph)
+
+var appearanceTitle = document.createElement('h2')
+appearanceTitle.innerText = 'Apariencia'
+document.body.appendChild(appearanceTitle)
+
+// agrupar apariencia en array
+
+var appearanceList = document.createElement('ul')
+
+var appearanceTitles = ['Siempre acompañado por su sombrero de paja.', 'Tiene una cicatriz bajo el ojo izquierdo.']
+
+for (var i = 0; i < appearanceTitles.length; i++) {
+    var appearanceTitless = appearanceTitles[i]
+    
+    var appearanceItem = document.createElement('li')
+    appearanceItem.innerText = appearanceTitless
+
+    appearanceList.appendChild(appearanceItem)
+}
+document.body.appendChild(appearanceList)
+
 
 var skillsTitle = document.createElement('h2')
 skillsTitle.innerText = 'Habilidades'
@@ -21,7 +52,7 @@ var skillsitem3 = document.createElement('li')
 var skillsitem4 = document.createElement('li')
 var skillsitem5 = document.createElement('li')
 
-skillsitem1.innerText = 'Su cuerpo tiene la propiedad de la goma, se estira, rebota, dobla e infla cualquier parte de su cuerpo.'
+skillsitem1.innerText = 'Su cuerpo tiene propiedad de goma, se estira, rebota, dobla e infla cualquier parte de su cuerpo.'
 skillsList.appendChild(skillsitem1)
 document.body.appendChild(skillsList)
 
