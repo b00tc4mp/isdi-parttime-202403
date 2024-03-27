@@ -40,3 +40,23 @@ document.body.appendChild(skillsList)
 skillsitem5.innerText = 'Determinación en ser el próximo «Rey de los piratas».'
 skillsList.appendChild(skillsitem5)
 document.body.appendChild(skillsList)
+
+var experienceTitle = document.createElement('h2')
+experienceTitle.innerText = 'Experiencias'
+document.body.appendChild(experienceTitle)
+
+var experienceList = document.createElement('ul')
+
+var experienceItem1 = document.createElement('li')
+experienceItem1.innerText = 'Ganar un enfrentamiento de sumo.'
+experienceList.appendChild(experienceItem1)
+
+var experienceItem2 = document.createElement('li')
+experienceItem2.innerText = 'Conocer una ballena muy simpática.'
+experienceList.appendChild(experienceItem2)
+
+var experienceItem3 = document.createElement('li')
+experienceItem3.innerText = 'Perder varias veces contra Kaido.'
+experienceList.appendChild(experienceItem3)
+
+document.body.appendChild(experienceList)

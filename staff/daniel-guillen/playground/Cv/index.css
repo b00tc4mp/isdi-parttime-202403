@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+
+* {
+    font-family: Workbench;
+    color: yellow;
+}
+h1{
+    text-align: center;
+    color:orange;
+}
+h2{
+    text-align: center;
+    color:orange;
+}
+body{
+    background-color:black;
+}
