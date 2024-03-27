@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Tauri&display=swap')
+
+* {
+    font-family: Tauri;
+    color: green;
+}
+
+body {
+    background-color: brown;
+}
