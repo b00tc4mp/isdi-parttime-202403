@@ -1,0 +1,63 @@
+.head-pig{
+    border: 1px solid rgb(207, 107, 124);
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+    border-radius: 50%;
+}
+
+.eyes-pig{
+    margin: 15px auto 10px;
+    height: 15px;
+    width: 80px;
+    display: flex;
+    justify-content: space-around;
+}
+.eye-pig{
+    height: 18px;
+    width: 15px;
+    border-radius: 45%;
+    background-color: black;
+    padding: 3px;
+}
+
+.pupiles-pig{
+    margin-left: 1px;
+    background-color: white;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+
+.nose-pig{
+    border: 2px solid rgb(207, 107, 124);
+    height: 24px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(222, 136, 151);
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.noseHoles-pig{
+    background-color: rgb(77, 30, 37);
+    height: 13px;
+    width: 9px;
+    border-radius: 45%;
+}
+
+.ears-pig{   
+position: absolute;
+width: 0; 
+height: 0; 
+border-top: 20px solid rgb(222, 136, 151);
+border-left: 8px solid transparent;
+border-right: 8px solid transparent;
+margin-bottom: -10px;
+border-top-left-radius: 30%;
+border-top-right-radius: 30%;
+}
+
+
+
