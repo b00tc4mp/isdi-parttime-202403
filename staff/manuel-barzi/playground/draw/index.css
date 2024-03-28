@@ -1,17 +1,51 @@
 .pig-head {
-    border: 1px solid black;
     width: 100px;
     height: 100px;
+}
+
+.pig-ears {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 10px;
+}
+
+.pig-ear {
+    background-color: pink;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pig-ear-in {
+    background-color: deeppink;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.pig-face {
     border-radius: 50%;
     background-color: pink;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .pig-eyes {
     display: flex;
+    justify-content: center;
 }
 
 .pig-eye {
-    border: 1px solid black;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -26,4 +60,86 @@
     height: 5px;
     border-radius: 50%;
     background-color: black;
+}
+
+.pig-nose {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pig-nose-hole {
+    width: 5px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.pig-mouth {
+    width: 40px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.matrix {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    width: 400px;
+    height: 400px;
+    gap: 2px;
+}
+
+.matrix-pixel {
+    background-color: gray;
+}
+
+.matrix-pixel-black {
+    background-color: black;
+}
+
+.blog {
+    display: grid;
+    grid-template-areas:
+        "a a b"
+        "c c b"
+        "d e e"
+        "d f f";
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    background-color: skyblue;
+    width: 50vw;
+    height: 60vw;
+}
+
+
+.blog-entry:nth-child(1) {
+    grid-area: a;
+    background-color: plum;
+}
+
+.blog-entry:nth-child(2) {
+    grid-area: b;
+    background-color: pink;
+}
+
+.blog-entry:nth-child(3) {
+    grid-area: c;
+    background-color: bisque;
+}
+
+.blog-entry:nth-child(4) {
+    grid-area: d;
+    background-color: greenyellow;
+}
+
+.blog-entry:nth-child(5) {
+    grid-area: e;
+    background-color: chocolate;
+}
+
+.blog-entry:nth-child(6) {
+    grid-area: f;
+    background-color: aqua;
 }
