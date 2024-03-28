@@ -2,15 +2,15 @@
 var title = document.querySelector("title");
 title.innerText = "C-3PO Cv";
 
-var head = document.querySelector("head");
-head.style = "fontLink";
+//Font
 
 var fontLink = document.createElement("link");
-fontLink.href =
-  "https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap";
+fontLink.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap";
 fontLink.rel = "stylesheet";
 
 document.head.appendChild(fontLink);
+
+document.body.style.fontFamily = "'Orbitron', sans-serif";
 
 //body
 //Header1
@@ -22,7 +22,7 @@ headerBody.style.textAlign = "center";
 
 document.body.appendChild(headerBody);
 // Imagen
-var imagen = new Image();
+var imagen = new Image;
 imagen.src =
   'https://th.bing.com/th/id/R.71fcc71e0e0a5815d9b5aee14513d150?rik=87r8OgKMjmba8Q&amp;riu=http%3a%2f%2fwww.theoldrobots.com%2fimages27%2fC-3PO-4.JPG&amp;ehk=Op%2fEcX6cDm6%2bSVrDA8XhRn2GP0tOB3JdYugEDtzwg4M%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="On the Set of Star Tours with C-3PO | Disney Parks Blog" class=" nofocus" tabindex="0" aria-label="On the Set of Star Tours with C-3PO | Disney Parks Blog" role="button';
 
@@ -50,7 +50,7 @@ inputSelector.style.marginRight = "auto";
 
 var lenguaje = document.createElement("h4");
 lenguaje.innerText =
-  "Dime en que lenguaje quieres que nos comuniquemos. Puedo hablar con fluidez en más de 6 millones de formas de comunicación, incluyendo Shyriiwook, Bocce y Huttese.";
+  "Dime en que lenguaje quieres que nos comuniquemos. Conozco más de 6 millones de formas de comunicación, incluyendo Shyriiwook, Bocce y Huttese.";
 
 lenguaje.style.textAlign = "center";
 
