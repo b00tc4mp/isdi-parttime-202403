@@ -1,0 +1,77 @@
+body {
+    background-color: #ffffb3;
+    margin: 0;
+    padding: 0;
+}
+
+.dog {
+    background-color: #fdb44e;
+    height: 75px;
+    width: 120px;
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    border-radius: 0 0 0 120px;
+}
+
+.body {
+    background-color: #fdb44e;
+    height: 100px;
+    width: 180px;
+    position: relative;
+    top: 55px;
+    left: 70px;
+    border-radius: 0 0 0 60px;
+}
+
+.leg1, .leg2, .leg3, .leg4 {
+    background-color: #fdb44e;
+    height: 50px;
+    width: 18px;
+    position: relative;
+}
+
+.leg1 {
+    left: 100px;
+    top: 48px;
+}
+
+.leg2 {
+    left: 130px;
+    bottom: 2px;
+}
+
+.leg3 {
+    left: 205px;
+    bottom: 50px;
+    background-color: #b19f8ddf;
+    z-index: -1;
+}
+
+.leg4 {
+    left: 232px;
+    bottom: 100px;
+}
+
+.tail {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 100px solid #fdb44e;
+    position: relative;
+    bottom: 320px;
+    left: 230px;
+    transform: rotate(30deg);
+    transform-origin: bottom;
+}
+
+.ear {
+    background-color: #b19f8ddf;
+    width: 45px;
+    height: 90px;
+    border-radius: 0 0 100px 100px;
+    position: relative;
+    left: 75px;
+    bottom: 400px;
+}
