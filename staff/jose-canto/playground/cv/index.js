@@ -91,7 +91,6 @@ certificationsTitle.style.borderBottomWidth = "15px";
 certificationsTitle.style.borderBottomStyle = "double";
 certificationsTitle.style.borderBottomColor = "black";
 
-
 // Certifications List
 var certificationsList = document.createElement('ul')
 var certificationTitles = ['Scrum Master', 'Full Stack Developer (ISDI Coders)', "Certification Freecodecamp"]
@@ -177,7 +176,6 @@ urlLink.addEventListener('mouseout', () => {
   urlLink.style.color = "green"
 })
 
-
 // Button
 var imageVisible = false
 var button = document.createElement("button")
@@ -195,8 +193,6 @@ button.addEventListener('click', () => {
 })
 document.body.appendChild(button)
 
-
-
 // Styles Button
 button.style.marginTop = "20px"
 button.style.marginBottom = "50px"
@@ -212,13 +208,10 @@ button.style.fontFamily = "Workbench", "sans-serif;"
 var img = document.createElement("img")
 img.src = "https://freepngimg.com/thumb/jiminy_cricket/31973-5-jiminy-cricket-file.png"
 
-
 // Styles Imagen
 img.style.maxWidth = "300px"
 img.style.marginBottom = "50px"
 img.style.padding = "10px"
-
-
 
 //Footer
 var footer = document.createElement('footer')
