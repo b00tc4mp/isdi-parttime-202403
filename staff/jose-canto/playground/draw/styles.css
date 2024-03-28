@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-draw {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 100%;
+  gap: 10px;
+  height: 100vh;
+  padding: 20px;
+}
+
+.pig {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blanchedalmond;
+  z-index: -1;
+}
+
+.pig-head {
+  width: 130px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: rgb(255, 160, 176);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.pig-ear {
+  position: absolute;
+  border: 7px solid #f7949a;
+  background-color: #ffb7bc;
+  width: 60px;
+  height: 60px;
+  top: -5px;
+  z-index: -1;
+}
+
+.ear-left {
+  border-radius: 15px 0 0 0;
+  left: 10px;
+  transform: rotate(-12deg) skewY(27deg);
+}
+
+.ear-right {
+  border-radius: 0 15px 0 0;
+  right: 10px;
+  transform: rotate(12deg) skewY(-27deg);
+}
+
+
+
+
+.pig-eyes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+  top: 8px;
+}
+
+.pig-eye {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pig-eye-dot {
+  border: 1px solid black;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.pig-noise {
+  width: 50px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(252, 210, 216);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+}
+
+.pig-noise-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(194, 120, 132);
+  position: relative;
+  bottom: 5px;
+}
+
+.pig-smooth {
+  border: 2px solid rgb(221, 73, 35);
+  width: 20px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: rgb(252, 210, 216);
+  transform: rotate(15deg) skew(-10deg)
+}
+
+.gameboy {
+  border: 1px solid black
+}
+
+.puppy {
+  border: 1px solid black
+}
+
+.car {
+  border: 1px solid black
+}
+
+.tree {
+  border: 1px solid black
+}
+
+.building {
+  border: 1px solid black
+}
