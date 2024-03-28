@@ -1,3 +1,17 @@
+var head = document.head
+
+var fontLink = document.createElement('link')
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap'
+fontLink.rel = 'stylesheet'
+document.head.appendChild(fontLink)
+
+var style = document.createElement('style')
+style.innerHTML = 'body { background-color: #D7DBDD; font-family: Caveat; color: #BB8FCE; margin: 50px; padding: 15px; border-style: groove; border-radius: 8px; word-spacing: 5px;font-size: 20px;box-shadow: 0px 4px 5px black;}'
+head.appendChild(style)
+
+var body = document.body
+
+
 var headTitle = document.querySelector('title')
 headTitle.innerText = 'CV - Sandra DS'
 
@@ -12,54 +26,59 @@ introTitle.innerText = 'Intro'
 document.body.appendChild(introTitle)
 
 var introDescription = document.createElement('p')
-introDescription.innerText = 'Soy aficionada a la montaña y estar desconectada unas horas de la rutina'
+introDescription.innerText = 'Soy aficionada a la montaña, me gusta hacer rutas y descubrir sitios nuevos en plena naturaleza ^^'
 
 document.body.appendChild(introDescription)
 
 var certificationsTitle = document.createElement('h2')
 certificationsTitle.innerText = 'Certifications'
+certificationsTitle.style.textDecoration = 'underline'
 
 document.body.appendChild(certificationsTitle)
 
 var certificationsList = document.createElement('ul')
 
-var certificationItem1 = document.createElement('li')
-certificationItem1.innerText = 'Scrum Master'
+var certificationsTitles = ['Scrum Master', 'Full Stack development (ISDI Coders)']
 
-certificationsList.appendChild(certificationItem1)
+for (var i = 0; i < certificationsTitles.length; i++) {
+    var certificationTitle = certificationsTitles[i]
 
-var certificationItem2 = document.createElement('li')
-certificationItem2.innerText = 'Full Stack development (ISDI Coders)'
+    var certificationItem = document.createElement('li')
+    certificationItem.innerText = certificationTitle
 
-certificationsList.appendChild(certificationItem2)
+    certificationsList.appendChild(certificationItem)
+}
 
 document.body.appendChild(certificationsList)
 
-var experienceTitle = document.createElement('h2')
-experienceTitle.innerText = 'Experience'
+var experiencesTitle = document.createElement('h2')
+experiencesTitle.innerText = 'Experience'
+experiencesTitle.style.textDecoration = 'underline'
 
-document.body.appendChild(experienceTitle)
+document.body.appendChild(experiencesTitle)
 
 var experienceList = document.createElement('ul')
 
-var experienceItem1 = document.createElement('li')
-experienceItem1.innerText = 'FreeCodeCamp'
+var experiencesTitles = ['FreeCodeCamp', 'ISDI Coders']
 
-experienceList.appendChild(experienceItem1)
+for (var i = 0; i < experiencesTitles.length; i++) {
+var experienceTitle = experiencesTitles[i]
 
-var experienceItem2 = document.createElement('li')
-experienceItem2.innerText = 'ISDI Coders'
+var experienceItem = document.createElement('li')
+experienceItem.innerText = experienceTitle
 
-experienceList.appendChild(experienceItem2)
+experienceList.appendChild(experienceItem)
+}
 
 document.body.appendChild(experienceList)
 
 var projectTitle = document.createElement('h2')
 projectTitle.innerText = 'Projecto'
+projectTitle.style.textDecoration = 'underline'
 
 document.body.appendChild(projectTitle)
 
 var projectDescription = document.createElement('p')
-projectDescription.innerText = 'Mejorar mis habilidades poco a poco.'
+projectDescription.innerText = 'Mejorar mis habilidades como desarrollador, aprender todo lo que pueda y sorprenderme con lo que pueda crear.'
 
 document.body.appendChild(projectDescription)
