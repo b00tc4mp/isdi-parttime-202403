@@ -11,6 +11,7 @@ fontLink.rel = "stylesheet";
 document.head.appendChild(fontLink);
 
 document.body.style.fontFamily = "'Orbitron', sans-serif";
+//head
 
 //body
 //Header1
@@ -21,6 +22,7 @@ headerBody.innerText =
 headerBody.style.textAlign = "center";
 
 document.body.appendChild(headerBody);
+//Header1
 // Imagen
 var imagen = new Image;
 imagen.src =
@@ -32,14 +34,28 @@ imagen.style.display = "block";
 imagen.style.margin = "auto";
 
 document.body.appendChild(imagen);
+//Imagen
 //Header2
 var androidInfo = document.createElement("h3");
 androidInfo.innerText = "My name is C-3PO ";
 
 androidInfo.style.textAlign = "center";
+androidInfo.style.marginBottom ="10px"
 
 document.body.appendChild(androidInfo);
-//Barra 
+//Hader2
+//comentario
+var lenguaje = document.createElement("h4");
+lenguaje.innerText =
+  "Dime en que lenguaje quieres que nos comuniquemos. Conozco más de 6 millones de formas de comunicación, incluyendo Shyriiwook, Bocce y Huttese.";
+
+lenguaje.style.textAlign = "center";
+lenguaje.style.marginRight = "100px"
+lenguaje.style.marginLeft = "100px"
+
+document.body.appendChild(lenguaje);
+
+//Barra
 var inputSelector = document.createElement("input");
 inputSelector.placeholder = "Define tu lenguaje";
 inputSelector.style.alignItems = "center";
@@ -48,19 +64,8 @@ inputSelector.style.display = "block";
 inputSelector.style.marginLeft = "auto";
 inputSelector.style.marginRight = "auto";
 
-var lenguaje = document.createElement("h4");
-lenguaje.innerText =
-  "Dime en que lenguaje quieres que nos comuniquemos. Conozco más de 6 millones de formas de comunicación, incluyendo Shyriiwook, Bocce y Huttese.";
-
-lenguaje.style.textAlign = "center";
-
-document.body.appendChild(lenguaje);
-
 document.body.appendChild(inputSelector);
-
 //Boton //Boton
-
-// Crear el botón
 var boton = document.createElement('button');
 boton.innerHTML = 'Enviar';
 
@@ -74,7 +79,7 @@ boton.onclick = function() {
   );
 };
 
-// Añadir el botón al cuerpo del documento
+
 document.body.appendChild(boton);
 
 //Header3
