@@ -6,5 +6,9 @@
 }
 
 body {
-    background-color: rgb(132, 243, 5);
+    background-color: rgb(195, 217, 243);
+}
+
+.underline{
+    text-decoration: underline;
 }

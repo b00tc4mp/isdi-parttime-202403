@@ -1,3 +1,5 @@
+// var body = document.querySelector("body") - se declarar a variable body se pode substituir "document.querySelector" por body
+
 var headTitle = document.querySelector(`title`)
 headTitle.innerText = `CV - Leide Vanessa Cardoso`
 
@@ -8,6 +10,7 @@ document.body.appendChild(title)
 
  var introTitle = document.createElement(`h2`)
  introTitle.innerText = `Profile`
+ introTitle.classList.add(`underline`)
 
  document.body.appendChild(introTitle)
 
@@ -18,6 +21,7 @@ document.body.appendChild(title)
 
 var certificationsTitles = document.createElement(`h2`)
 certificationsTitles.innerText = `Certifications`
+certificationsTitles.classList.add(`underline`)
 
 document.body.appendChild(certificationsTitles)
 
@@ -39,6 +43,7 @@ document.body.appendChild(certificationsList)
 
 var experienceTitle = document.createElement(`h2`)
 experienceTitle.innerText = `Experience`
+experienceTitle.classList.add(`underline`)
 
 document.body.appendChild(experienceTitle)
 
@@ -71,3 +76,21 @@ var experience2 = document.createElement(`experience2`)
 experience2.innerText = `Management of the commercial, secretarial and cleaning team, transmitting through reports or in person the facts that occurred in the work environment to the management.`
 
 document.body.appendChild(experience2)
+
+
+/*
+la maneira de se otmizar el codigo utilizando el bucle for:
+
+
+var experienceList = document.createElement(`ul`)
+var experienceTitle = ["Director (CNA - 2014)", "talent Manager (Incast 2021)"]
+
+for (varvi = 0; i < experienceTitle.length; i++) {
+    var experienceTitle = experienceTitle[i]
+
+    var experienceItem = document.createElement(`li`)
+    experienceItem.innerText = experienceTitle
+
+    experienceList.appendChild(experienceItem)
+}
+document.body.appendChild(experienceList)*/

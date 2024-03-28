@@ -1,0 +1,30 @@
+.pig-head {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: pink;
+}
+
+.pig-eye {
+    display: flex;
+
+}
+.pig-eye {
+    border: 1px solid;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pig-pupil {
+    border: 1px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: black;
+}
