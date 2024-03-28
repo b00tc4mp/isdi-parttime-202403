@@ -39,20 +39,44 @@ androidInfo.innerText = "My name is C-3PO ";
 androidInfo.style.textAlign = "center";
 
 document.body.appendChild(androidInfo);
-
+//Barra 
 var inputSelector = document.createElement("input");
 inputSelector.placeholder = "Define tu lenguaje";
 inputSelector.style.alignItems = "center";
+
+inputSelector.style.display = "block";
+inputSelector.style.marginLeft = "auto";
+inputSelector.style.marginRight = "auto";
 
 var lenguaje = document.createElement("h4");
 lenguaje.innerText =
   "Dime en que lenguaje quieres que nos comuniquemos. Puedo hablar con fluidez en más de 6 millones de formas de comunicación, incluyendo Shyriiwook, Bocce y Huttese.";
 
-lenguaje.style.textAlign = "center"
+lenguaje.style.textAlign = "center";
 
 document.body.appendChild(lenguaje);
 
 document.body.appendChild(inputSelector);
+
+//Boton //Boton
+
+// Crear el botón
+var boton = document.createElement('button');
+boton.innerHTML = 'Enviar';
+
+boton.style.display = "block";
+boton.style.marginLeft = "auto";
+boton.style.marginRight = "auto";
+
+boton.onclick = function() {
+  alert(
+    "-¿Sabes cuál es el idioma favorito de un droide? \n-¡El binario, porque siempre tienen algo que contar!"
+  );
+};
+
+// Añadir el botón al cuerpo del documento
+document.body.appendChild(boton);
+
 //Header3
 var androidInfoR = document.createElement("h4");
 androidInfoR.innerText =
