@@ -1,3 +1,10 @@
+### SUBIR TUS ARCHIVOS MODIFICADOS A GIT
+git status
+git add staff/ ...
+git commit -m '... #tarea'
+git push
+
+
 # pwd
 Muestra el directorio actual.
 
@@ -74,6 +81,9 @@ Fusiona dos ramas locales en una sola rama.
 
 # git branch -d
 Elimina una rama de forma permanente.
+
+# git branch -m
+Cambiar nombre a una carpeta
 
 # git diff  'codigo commit'
 Para ver los cambios.
