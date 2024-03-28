@@ -33,7 +33,12 @@ $ git status
 On branch feature/notes
 Your branch is up to date with 'origin/feature/notes'.
 
-nothing to commit, working tree clean
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   staff/carla-mateo/notes/README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 ### git branch
@@ -80,12 +85,19 @@ Date:   Tue Mar 19 19:18:09 2024 +0100
 
 ```sh
 - Add files
+
+$ git add staff/carla-mateo/notes/README.md
+
 ```
 
 ### commit -m
 
 ```sh
 - Create a new commit
+
+$ git commit -m " add git commands #14 "
+[feature/notes cd49117]  add git commands #14
+ 1 file changed, 111 insertions(+), 1 deletion(-)
 ```
 
 ### git commit --amend -m
@@ -98,6 +110,16 @@ Date:   Tue Mar 19 19:18:09 2024 +0100
 
 ```sh
 - Upload the commit to the repository
+
+$ git push
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 1.12 KiB | 575.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/carlamateo90/isdi-parttime-202403
+   8aeb788..cd49117  feature/notes -> feature/notes
 ```
 
 ### git push -f
