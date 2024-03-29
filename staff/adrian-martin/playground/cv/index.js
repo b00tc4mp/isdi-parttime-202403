@@ -6,6 +6,10 @@ fontLink.href = 'https://fonts.googleapis.com/css2?family=Workbench&display=swap
 fontLink.rel = 'stylesheet'
 document.head.appendChild(fontLink)
 
+var style = document.createElement('style')
+style.innerHTML = 'body { background-color: black; font-family: Workbench; color: greenyellow; margin: 5vw; }'
+document.body.appendChild(style)
+
 var title = document.createElement('h1');
 title.innerText = 'CV - Adrian Martin Gonzalo';
 document.body.appendChild(title);
@@ -55,7 +59,7 @@ var experiencesList = document.createElement('ul');
 var experienceTitlesArray = [
     "Dosa - 6 meses",
     "Camarero - 6 meses",
-    "entrenador de futbol - 1 año"
+    "Entrenador de futbol - 1 año"
 ]
 
 for(var i = 0; i < experienceTitlesArray.length; i++){
@@ -64,9 +68,33 @@ for(var i = 0; i < experienceTitlesArray.length; i++){
     var experienceItem = document.createElement('li')
     experienceItem.innerText = experienceTitle
 
-    experiencesList. appendChild(experienceItem)
+    experiencesList.appendChild(experienceItem)
 
 }
 
 document.body.appendChild(experiencesList);
 
+var lenguageTitle = document.createElement('h2');
+lenguageTitle.innerText = 'Idiomas';
+
+lenguageTitle.style.textDecoration = 'underline'
+
+document.body.appendChild(lenguageTitle);
+
+var languageList = document.createElement('ul')
+
+var languageArray = [
+    "Castellano",
+    "English A2",
+]
+
+for(var i = 0; i < languageArray.length; i++){
+    lenguageTitle = languageArray[i]
+
+    var lenguageItem = document.createElement('li')
+    lenguageItem.innerText = lenguageTitle
+
+    languageList.appendChild(lenguageItem)
+}
+
+document.body.appendChild(languageList)
