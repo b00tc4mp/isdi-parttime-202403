@@ -171,13 +171,12 @@
 .tree-branch-right-2 {
   position: absolute;
   height: 0;
-  border-left: 4vw solid transparent;
-  border-right: 4vw solid transparent;
-  border-bottom: 6vw solid green;
-  top: -0.9vw;
-  left: -2.8vw;
+  border-left: 3vw solid transparent;
+  border-right: 3vw solid transparent;
+  border-bottom: 5vw solid green;
+  top: -0.5vw;
+  left: -1.9vw;
   transform: rotate(122deg);
-
 }
 
 .tree-branch-rigth-3 {
