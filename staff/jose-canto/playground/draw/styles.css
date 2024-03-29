@@ -14,6 +14,7 @@
   padding: 20px;
 }
 
+/* PIG */
 .pig {
   border: 1px solid black;
   display: flex;
@@ -34,6 +35,7 @@
   flex-direction: column;
   gap: 10px;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.75) -10px 20px 20px 0px;
 }
 
 .pig-ear {
@@ -58,9 +60,6 @@
   transform: rotate(12deg) skewY(-27deg);
 }
 
-
-
-
 .pig-eyes {
   display: flex;
   justify-content: center;
@@ -72,8 +71,8 @@
 }
 
 .pig-eye {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 25px;
   border-radius: 50%;
   background-color: white;
   display: flex;
@@ -82,7 +81,7 @@
 }
 
 .pig-eye-dot {
-  border: 1px solid black;
+  border: 3px solid black;
   width: 3px;
   height: 3px;
   border-radius: 50%;
@@ -98,7 +97,6 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-
 }
 
 .pig-noise-dot {
@@ -113,12 +111,137 @@
 .pig-smooth {
   border: 2px solid rgb(221, 73, 35);
   width: 20px;
-  height: 25px;
+  height: 15px;
   border-radius: 25px;
   background-color: rgb(252, 210, 216);
-  transform: rotate(15deg) skew(-10deg)
+
 }
 
+/*Tree */
+.tree {
+  background-color: rgb(191, 201, 235);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.tree-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
+}
+
+
+.tree-branches {
+  position: relative;
+  height: 0;
+  border-left: 6vw solid transparent;
+  border-right: 7vw solid transparent;
+  border-bottom: 16vw solid green;
+  position: absolute;
+  bottom: 1.5vw;
+}
+
+.tree-branch {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 1vw solid transparent;
+  border-bottom: 5vw solid green;
+  top: 12vw;
+  left: 5.4vw;
+  transform: rotate(101deg);
+}
+
+.tree-branch-right-1 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 6vw;
+  left: 0vw;
+  transform: rotate(-1deg);
+}
+
+.tree-branch-right-2 {
+  position: absolute;
+  height: 0;
+  border-left: 4vw solid transparent;
+  border-right: 4vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: -0.9vw;
+  left: -2.8vw;
+  transform: rotate(122deg);
+
+}
+
+.tree-branch-rigth-3 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 2vw;
+  left: -2vw;
+  transform: rotate(0deg);
+}
+
+.tree-branch-left-1 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 1vw solid transparent;
+  border-bottom: 5vw solid green;
+  top: 13.03vw;
+  left: -7.8vw;
+  transform: rotate(239deg);
+}
+
+.tree-branch-left-2 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 8vw;
+  left: -7vw;
+  transform: rotate(130deg);
+}
+
+.tree-branch-left-3 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 4vw;
+  left: -5vw;
+  transform: rotate(130deg);
+}
+
+.tree-trunk {
+  border: 2px solid black;
+  width: 4vw;
+  height: 3vw;
+  background-color: saddlebrown;
+  border-bottom: none;
+}
+
+
+.tree-ground {
+  border: 1px solid black;
+  width: 100%;
+  height: 50px;
+  background-color: rgb(25, 95, 22);
+}
+
+
+/*GameBoy */
 .gameboy {
   border: 1px solid black
 }
@@ -131,10 +254,9 @@
   border: 1px solid black
 }
 
-.tree {
-  border: 1px solid black
-}
 
 .building {
-  border: 1px solid black
+  border: 1px solid black;
+
+
 }
