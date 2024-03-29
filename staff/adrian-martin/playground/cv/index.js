@@ -74,12 +74,12 @@ for(var i = 0; i < experienceTitlesArray.length; i++){
 
 document.body.appendChild(experiencesList);
 
-var lenguageTitle = document.createElement('h2');
-lenguageTitle.innerText = 'Idiomas';
+var languageTitle = document.createElement('h2');
+languageTitle.innerText = 'Idiomas';
 
-lenguageTitle.style.textDecoration = 'underline'
+languageTitle.style.textDecoration = 'underline'
 
-document.body.appendChild(lenguageTitle);
+document.body.appendChild(languageTitle);
 
 var languageList = document.createElement('ul')
 
@@ -89,12 +89,12 @@ var languageArray = [
 ]
 
 for(var i = 0; i < languageArray.length; i++){
-    lenguageTitle = languageArray[i]
+    languageTitle = languageArray[i]
 
-    var lenguageItem = document.createElement('li')
-    lenguageItem.innerText = lenguageTitle
+    var languageItem = document.createElement('li')
+    languageItem.innerText = languageTitle
 
-    languageList.appendChild(lenguageItem)
+    languageList.appendChild(languageItem)
 }
 
-document.body.appendChild(languageList)
+document.body.appendChild(languageTitle)
