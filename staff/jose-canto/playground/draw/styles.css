@@ -239,8 +239,98 @@
   background-color: rgb(25, 95, 22);
 }
 
+/* Building */
+.building {
+  border: 1px solid black;
+  background-color: #c1e0ec;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 
-/*GameBoy */
+}
+
+.container-building {
+  margin-bottom: 20px;
+  height: 20vw;
+  width: 8vw;
+}
+
+.building-part-front {
+  background-color: #7e5d3c;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.building-windows {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
+  padding: 10px;
+
+}
+
+.window {
+  background-image: linear-gradient(to right top, #f9feff, #f3fdff, #eefdff, #e8fcff, #e2fcff, #ddfcff, #d8fbff, #d3fbff, #cdfbff, #c7faff, #c1faff, #bbf9ff);
+  border: 2px solid burlywood;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+}
+
+#flower {
+  display: flex;
+  position: absolute;
+  width: 1.5vw;
+}
+
+#dog {
+  display: flex;
+  position: absolute;
+  width: 1.5vw;
+}
+
+.building-entrance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.window-entrance {
+  border: 1px solid gray;
+  position: relative;
+  bottom: 1vw;
+  height: 1.9vw;
+  width: 1.5vw;
+  background-image: linear-gradient(to right top, #f9feff, #f3fdff, #eefdff, #e8fcff, #e2fcff, #ddfcff, #d8fbff, #d3fbff, #cdfbff, #c7faff, #c1faff, #bbf9ff);
+}
+
+#cortina {
+  position: absolute;
+  width: 100%;
+  height: 1.9vw;
+
+}
+
+
+.building-door {
+  width: 3vw;
+  height: 4.7vw;
+  background-color: #e9d9ca;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+
+
+/* GameBoy */
 .gameboy {
   border: 1px solid black
 }
@@ -251,11 +341,4 @@
 
 .car {
   border: 1px solid black
-}
-
-
-.building {
-  border: 1px solid black;
-
-
 }
