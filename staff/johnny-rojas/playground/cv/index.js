@@ -5,12 +5,17 @@ title.innerText = "C-3PO Cv";
 //Font
 
 var fontLink = document.createElement("link");
-fontLink.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap";
+fontLink.href =
+  "https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap";
 fontLink.rel = "stylesheet";
 
 document.head.appendChild(fontLink);
 
 document.body.style.fontFamily = "'Orbitron', sans-serif";
+
+var body = document.querySelector("body");
+body.style.margin = "50px";
+
 //head
 
 //body
@@ -24,7 +29,7 @@ headerBody.style.textAlign = "center";
 document.body.appendChild(headerBody);
 //Header1
 // Imagen
-var imagen = new Image;
+var imagen = new Image();
 imagen.src =
   'https://th.bing.com/th/id/R.71fcc71e0e0a5815d9b5aee14513d150?rik=87r8OgKMjmba8Q&amp;riu=http%3a%2f%2fwww.theoldrobots.com%2fimages27%2fC-3PO-4.JPG&amp;ehk=Op%2fEcX6cDm6%2bSVrDA8XhRn2GP0tOB3JdYugEDtzwg4M%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="On the Set of Star Tours with C-3PO | Disney Parks Blog" class=" nofocus" tabindex="0" aria-label="On the Set of Star Tours with C-3PO | Disney Parks Blog" role="button';
 
@@ -40,7 +45,7 @@ var androidInfo = document.createElement("h3");
 androidInfo.innerText = "My name is C-3PO ";
 
 androidInfo.style.textAlign = "center";
-androidInfo.style.marginBottom ="10px"
+androidInfo.style.marginBottom = "10px";
 
 document.body.appendChild(androidInfo);
 //Hader2
@@ -50,14 +55,14 @@ lenguaje.innerText =
   "Dime en que lenguaje quieres que nos comuniquemos. Conozco más de 6 millones de formas de comunicación, incluyendo Shyriiwook, Bocce y Huttese.";
 
 lenguaje.style.textAlign = "center";
-lenguaje.style.marginRight = "100px"
-lenguaje.style.marginLeft = "100px"
+lenguaje.style.marginRight = "100px";
+lenguaje.style.marginLeft = "100px";
 
 document.body.appendChild(lenguaje);
 
 //Barra
 var inputSelector = document.createElement("input");
-inputSelector.placeholder = "Define tu lenguaje";
+inputSelector.placeholder = "Pon aquí tu lenguaje";
 inputSelector.style.alignItems = "center";
 
 inputSelector.style.display = "block";
@@ -66,19 +71,19 @@ inputSelector.style.marginRight = "auto";
 
 document.body.appendChild(inputSelector);
 //Boton //Boton
-var boton = document.createElement('button');
-boton.innerHTML = 'Enviar';
+var boton = document.createElement("button");
+boton.innerHTML = "Enviar";
 
 boton.style.display = "block";
 boton.style.marginLeft = "auto";
 boton.style.marginRight = "auto";
+boton.style.marginTop = "10px";
 
-boton.onclick = function() {
+boton.onclick = function () {
   alert(
     "-¿Sabes cuál es el idioma favorito de un droide? \n-¡El binario, porque siempre tienen algo que contar!"
   );
 };
-
 
 document.body.appendChild(boton);
 
@@ -215,7 +220,6 @@ for (var i = 0; i < experiencesTitles.length; i++) {
 }
 
 document.body.appendChild(experienceList);
-
 //Footer
 
 var footerBottom = document.createElement("footer");
@@ -223,5 +227,6 @@ footerBottom.innerText =
   "Si me necesitan, estaré en la galaxia vecina tomando un aceite de motor. ¡Hasta la próxima, humanos!🤖";
 
 footerBottom.style.textAlign = "center";
+footerBottom.style.marginTop = "35px";
 
 document.body.appendChild(footerBottom);
