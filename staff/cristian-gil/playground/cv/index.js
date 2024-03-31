@@ -1,11 +1,20 @@
-//Título
-var headTitle = document.querySelector('title');
-headTitle.innerText = 'CURRICULUM VITAE';
+var head = document.head;
 
-var title = document.createElement('h1');
-title.innerText = headTitle.innerText;
+var fontLink = document.createElement('link')
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Workbench&display=swap'
+fontLink.rel = 'stylesheet'
+head.appendChild(fontLink)
 
-document.body.appendChild(title);
+var style = document.createElement('style');
+style.innerHTML = 'body { background-color: black; margin: 5vw; font-family: Workbench; color: greenyellow; }';
+head.appendChild(style);
+
+// var body = document.querySelector('body')
+var body = document.body;
+// body.style.backgroundColor = 'black'
+// body.style.margin = '5vw'
+// body.style.fontFamily = 'Workbench'
+// body.style.color = 'greenyellow'
 
 
 //Nombre
@@ -141,3 +150,19 @@ var footer = document.createElement('footer')
 footer.innerText = 'Tlf: +34 000 00 00 - email: pinochoGD@ISDI.com'
 
 document.body.appendChild(footer)
+
+
+
+//Nuevo
+var experiencesList = document.createElement ('ul');
+var experiencesItem1 = document.createElement('li');
+experiencesItem1.innetText = 'Software Architect (Microsoft, 2020)';
+experiencesList.appendChild(experiencesItem1);
+
+var experiencesItem2 = document.createElement('li');
+experiencesItem2.innetText = 'Software Engeneer (Facebook, 2015)';
+experiencesList.appendChild(experiencesItem2);
+
+var experiencesItem3 = document.createElement('li');
+experiencesItem3.innetText = 'Software Developer (Twitter, 2008)';
+experiencesList.appendChild(experiencesItem3);

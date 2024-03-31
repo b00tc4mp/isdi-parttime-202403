@@ -1,0 +1,551 @@
+/* CERDO */
+
+.pig{height: 200px;
+    width:200px;
+    background-color: beige;
+    display:grid;
+  }
+  .face{width:100px;
+    height:100px;
+    background-color: pink;
+    border-radius:50%;
+    position: relative;
+    margin-top: 25%;
+    margin-left: 25%;
+    display: flex;
+  }
+  
+  .eye-l{width:15px;
+    height:25px;
+    background-color: black;
+    border-radius:50%;
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 25%;
+  }
+  
+  .eye-r{width:15px;
+    height:25px;
+    background-color: black;
+    border-radius:50%;
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 60%;
+  }
+  
+  .reflection{width:5px;
+    height:5px;
+    background-color: white;
+    border-radius:50%;
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+  
+  .ear-l{width:20px;
+    height:20px;
+    border-radius:30%;
+    background-color: pink;
+    transform: skew(20deg, 30deg);
+    margin-left:5px;
+  }
+  
+  .ear-l-cont{width:5px;
+    height:5px;
+    border-radius:50%;
+    background-color: lightcoral;
+    margin-top: 30%;
+    margin-left: 30%;
+  }
+  
+  .ear-r{width:20px;
+    height:20px;
+    border-radius:30%;
+    background-color: pink;
+    transform: skew(150deg, 160deg);
+    margin-left: 50px;
+  }
+  
+  .ear-r-cont{width:5px;
+    height:5px;
+    border-radius:50%;
+    background-color: lightcoral;
+    margin-top: 25%;
+    margin-left: 40%;
+  }
+  
+  .mouth{width:30px;
+    position:absolute;
+    height:30px;
+    border-radius:50%;
+    background-color: lavenderblush;
+    margin-top:50%;
+    margin-left:35%;
+  }
+  
+  .muzzle{width:50px;
+    position:absolute;
+    height:30px;
+    border-radius:40%;
+    background-color: lightcoral;
+    margin-top:40%;
+    margin-left:25%;
+  }
+  
+  .nose-l{width:7px;
+    height:15px;
+    position:absolute;
+    border-radius:50%;
+    background-color: brown;
+    margin-top:20%;
+    margin-left:25%;}
+  
+  .nose-r{width:7px;
+    height:15px;
+    position:absolute;
+    border-radius:50%;
+    background-color: brown;
+    margin-top:20%;
+    margin-left:60%;}
+  
+  
+  
+  /* ARBOL */
+  
+  .tree{height: 200px;
+    width:200px;
+    background-color: skyblue;
+    display:grid;
+  }
+  
+  .ground{width:200px;
+    height:50px;
+    background-color: green;
+    border-radius:0%;
+    margin-top: 150px;
+  }
+  
+  .trunk{width:20px;
+    height:100px;
+    position: absolute;
+    background-color: brown;
+    border-radius:0%;
+    margin-top: 75px;
+    margin-left: 90px;
+  }
+  
+  
+  .leaves{width:120px;
+    height:100px;
+    position: absolute;
+    background-color: green;
+    border-radius:50%;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
+  
+  .branch{width:20px;
+    height:5px;
+    position: absolute;
+    background-color: brown;
+    border-radius:0%;
+    margin-top: 140px;
+    margin-left: 100px;
+  }
+  
+  .fruit1{width:10px;
+    height:10px;
+    position: absolute;
+    background-color: red;
+    border-radius:50%;
+    margin-top: 90px;
+    margin-left: 100px;
+  }
+  
+  .fruit2{width:10px;
+    height:10px;
+    position: absolute;
+    background-color: red;
+    border-radius:50%;
+    margin-top: 60px;
+    margin-left: 60px;
+  }
+  
+  .fruit3{width:10px;
+    height:10px;
+    position: absolute;
+    background-color: red;
+    border-radius:50%;
+    margin-top: 50px;
+    margin-left: 140px;
+  }
+  
+  .fruit4{width:10px;
+    height:10px;
+    position: absolute;
+    background-color: red;
+    border-radius:50%;
+    margin-top: 110px;
+    margin-left: 70px;
+  }
+  
+  .fruit5{width:10px;
+    height:10px;
+    position: absolute;
+    background-color: red;
+    border-radius:50%;
+    margin-top: 40px;
+    margin-left: 100px;
+  }
+  
+
+  /* GAMEBOY */
+
+  .gameboy{width:150px;
+    height:230px;
+    border:1px solid white;
+    display: flex;
+  }
+  .structure1{border:1px solid lightgrey;
+    width:60px; 
+    height:60px;
+    border-radius:50%;
+    margin-top:169px;
+    margin-left:90px;
+    background-color:lightgrey;
+  }
+  .structure2{border:1px solid lightgrey;
+    width:120px; 
+    height:229px;
+    position:absolute;
+    background-color: lightgrey;
+  }
+  .structure3{
+    width:60px; 
+    height:200px;
+    position:absolute;
+    margin-left:90px;
+    background-color: lightgrey;
+  }
+  .joystick{display: flex;
+    position: absolute;
+  }
+  .horizontal{width:30px; 
+    height:10px;
+    position:absolute;
+    margin-left:20px;
+    margin-top: 150px;
+    background-color: black;
+  }
+  
+  .vertical{width:10px; 
+    height:30px;
+    position:absolute;
+    margin-left:30px;
+    margin-top:140px;
+    background-color: black;
+  }
+  
+  
+  .screen{display: flex;
+    position: absolute;
+  }
+  .back-screen{width:130px; 
+    height:90px;
+    position:absolute;
+    margin-left:10px;
+    margin-top: 20px;
+    background-color: grey;
+  }
+  
+  .front-screen{width:90px; 
+    height:80px;
+    position:absolute;
+    margin-left:30px;
+    margin-top:25px;
+    background-color: lightgreen;
+  }
+  
+  
+  .buttons{display: flex;
+    position: absolute;
+  }
+  .button-a{width:20px; 
+    height:20px;
+    border-radius:50%;
+    position:absolute;
+    margin-left:90px;
+    margin-top: 140px;
+    background-color: red;
+  }
+  
+  .button-b{width:20px; 
+    height:20px;
+    border-radius:50%;
+    position:absolute;
+    margin-left:115px;
+    margin-top: 130px;
+    background-color: red;
+  }
+  
+  .button-pause{width:20px; 
+    height:5px;
+    border-radius:20%;
+    position:absolute;
+    transform: rotate(-45deg);
+    margin-left:50px;
+    margin-top: 180px;
+    background-color: grey;
+  }
+  
+  .button-enter{width:20px; 
+    height:5px;
+    border-radius:20%;
+    position:absolute;
+    transform: rotate(-45deg);
+    margin-left:70px;
+    margin-top: 180px;
+    background-color: grey;
+  }
+
+/*BUILDING*/
+
+.building {
+  display: grid;
+  grid-template-areas:
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". b b c c . . d d e e ."
+      ". b b c c . . d d e e ."
+      ". b b c c . . d d e e ."
+      ". f f g g . . h h i i ."
+      ". f f g g . . h h i i ."
+      ". f f g g . . h h i i ."
+      ". j j j j . . k k k k ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". l l m m . . n n o o ."
+      ". l l m m . . n n o o ."
+      ". l l m m . . n n o o ."
+      ". p p q q . . r r s s ."
+      ". p p q q . . r r s s ."
+      ". p p q q . . r r s s ."
+      ". t t t t . . u u u u ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". v v w w . . x x y y ."
+      ". v v w w . . x x y y ."
+      ". v v w w . . x x y y ."
+      ". z z aa aa . . ab ab ac ac ."
+      ". z z aa aa . . ab ab ac ac ."
+      ". z z aa aa . . ab ab ac ac ."
+      ". ad ad ad ad . . ae ae ae ae ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . af af ag ag . . . ."
+      ". . . . af af ag ag . . . ."
+      ". . . . af af ag ag . . . ."
+      ". . . . af af ag ag . . . ."
+      ". . . . af af ag ag . . . .";
+  grid-template-rows: repeat(36, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  gap:2px;
+  background-color: rgb(196, 139, 53);
+  border: 3px solid black;
+  width: 200px;
+  height: 500px;
+}
+
+
+.building-entry:nth-child(1) {
+  grid-area: a;
+  background-color: rgb(196, 139, 53);
+}
+
+.building-entry:nth-child(2) {
+  grid-area: b;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(3) {
+  grid-area: c;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(4) {
+  grid-area: d;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(5) {
+  grid-area: e;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(6) {
+  grid-area: f;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(7) {
+  grid-area: g;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(8) {
+  grid-area: h;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(9) {
+  grid-area: i;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(10) {
+  grid-area: j;
+  background-color: white;
+}
+
+.building-entry:nth-child(11) {
+  grid-area: k;
+  background-color: white;
+}
+
+.building-entry:nth-child(12) {
+  grid-area: l;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(13) {
+  grid-area: m;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(14) {
+  grid-area: n;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(15) {
+  grid-area: o;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(16) {
+  grid-area: p;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(17) {
+  grid-area: q;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(18) {
+  grid-area: r;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(19) {
+  grid-area: s;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(20) {
+  grid-area: t;
+  background-color: white;
+}
+
+.building-entry:nth-child(21) {
+  grid-area: u;
+  background-color: white;
+}
+
+.building-entry:nth-child(22) {
+  grid-area: v;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(23) {
+  grid-area: w;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(24) {
+  grid-area: x;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(25) {
+  grid-area: y;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(26) {
+  grid-area: z;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(27) {
+  grid-area: aa;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(28) {
+  grid-area: ab;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(29) {
+  grid-area: ac;
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(30) {
+  grid-area: ad;
+  background-color: white;
+}
+
+.building-entry:nth-child(31) {
+  grid-area: ae;
+  background-color: white;
+}
+
+.building-entry:nth-child(32) {
+  grid-area: af;
+  background-color: brown;
+  border: 3px solid black;
+}
+
+.building-entry:nth-child(33) {
+  grid-area: ag;
+  background-color: brown;
+  border: 3px solid black;
+}
