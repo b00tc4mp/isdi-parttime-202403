@@ -18,23 +18,23 @@ var skillsArr = [
 ];
 
 var title = document.querySelector("title");
-title.textContent = "CV - Jorge Hernández";
+title.innerText = "CV - Jorge Hernández";
 
 var principalTitle = document.createElement("h1");
-principalTitle.textContent = "Jorge Hernández";
+principalTitle.innerText = "Jorge Hernández";
 document.body.appendChild(principalTitle);
 
 var aboutMe = document.createElement("h2");
-aboutMe.textContent = "Acerca de mi";
+aboutMe.innerText = "Acerca de mi";
 document.body.appendChild(aboutMe);
 
 var myDescription = document.createElement("p");
-myDescription.textContent =
+myDescription.innerText =
   "Pasión por la tecnología con una sólida experiencia en soporte técnico, gestión de CRM's y énfasis en programación full-stack";
 document.body.appendChild(myDescription);
 
 var studiesTitle = document.createElement("h2");
-studiesTitle.textContent = "Certificaciones";
+studiesTitle.innerText = "Certificaciones";
 document.body.appendChild(studiesTitle);
 
 var studiesList = document.createElement("ul");
@@ -42,12 +42,12 @@ document.body.appendChild(studiesList);
 
 for (var i = 0; i < studiesArr.length; i++) {
   var studiesItem = document.createElement("li");
-  studiesItem.textContent = studiesArr[i];
+  studiesItem.innerText = studiesArr[i];
   studiesList.appendChild(studiesItem);
 }
 
 var experience = document.createElement("h2");
-experience.textContent = "Experiencia";
+experience.innerText = "Experiencia";
 document.body.appendChild(experience);
 
 var experienceList = document.createElement("ul");
@@ -55,12 +55,12 @@ document.body.appendChild(experienceList);
 
 for (var i = 0; i < experienceArr.length; i++) {
   var experienceItem = document.createElement("li");
-  experienceItem.textContent = experienceArr[i];
+  experienceItem.innerText = experienceArr[i];
   experienceList.appendChild(experienceItem);
 }
 
 var skills = document.createElement("h2");
-skills.textContent = "Habilidades";
+skills.innerText = "Habilidades";
 document.body.appendChild(skills);
 
 var skillsList = document.createElement("ul");
@@ -68,10 +68,10 @@ document.body.appendChild(skillsList);
 
 for (var i = 0; i < skillsArr.length; i++) {
   var skillsItem = document.createElement("li");
-  skillsItem.textContent = skillsArr[i];
+  skillsItem.innerText = skillsArr[i];
   skillsList.appendChild(skillsItem);
 }
 
 var footer = document.createElement("footer");
-footer.textContent = "Made by Jorge Hernández";
+footer.innerText = "Made by Jorge Hernández";
 document.body.appendChild(footer);
