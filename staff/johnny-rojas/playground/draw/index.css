@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: Raleway;
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+h2 {
+  font-family: Raleway;
+  text-align: center;
+}
+
+footer {
+  font-family: Raleway;
+}
+
+.draw-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 50vh;
+  padding: 20px;
+}
+
+.pig-head {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  background-color: #FADBD8;
+  border-radius: 50%;
+}
+
+.pig-ears {
+  padding-top: initial;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 300px;
+  height: 70px;
+}
+
+.pig-ear-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #FADBD8;
+}
+
+.pig-ear-left {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #FADBD8;
+}
+
+.pig-ear-right-inside {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px 10px 0 10px;
+  background-color: #E6B0AA;
+}
+
+.pig-ear-left-inside {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px 10px 10px 0px;
+  background-color: #E6B0AA;
+}
+
+.pig-eyes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 60px;
+}
+
+.eye-right {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #fffaf9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.eye-left {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #fffaf9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.eye-right-inside {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.eye-left-inside {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.pig-nose {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 150px;
+}
+
+.nose {
+  width: 175px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #F5B7B1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nose-hole-right {
+  border: 3px solid #D98880;
+  width: 7px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #D98880;
+}
+
+.nose-hole-left {
+  border: 3px solid #D98880;
+  width: 7px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #D98880;
+}
+
+#tree {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: #fff;
+}
+
+.tree-trunk {
+  background-color: #fff;
+  width: 40px;
+  height: 290px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.top-tree {
+  width: 0;
+  height: 0;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 200px solid #1E8449;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+}
+
+
+.mid-tree {
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 120px solid #1E8449;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.bottom-tree {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 100px solid #1E8449;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+}
+
+.bottom-trunk {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 20px;
+  padding: 20px;
+  background-color: #7E5109;
+}
+
+.puppy-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #EDBB99;
+}
