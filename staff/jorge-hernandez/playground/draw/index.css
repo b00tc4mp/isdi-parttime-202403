@@ -1,16 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+
+body{
+    margin: 50px;
+}
+
 .pig {
     width: 100px;
     height: 100px;
     border: 2px solid black;
-    border-radius: 50%;
+    border-radius: 40%;
     background-color: pink;
 }
 .eyes{
     display: flex;
     position: absolute;
-    
-    top:30px;
-    left: 35px
+    top:70px;
+    left: 77px
 }
 .eye-r {
     position: relative;
@@ -178,4 +184,158 @@
 .windows-thirdbuild{
     display: flex;
     flex-direction: row;
+}
+
+.body-game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    width: 300px;
+    height: 500px;
+    background-color: rgb(193, 174, 174);
+    border-radius: 10px 10px 50px 10px
+}
+.screen-border{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    width: 250px;
+    height: 200px;
+    background-color: gray;
+    border-radius: 10px 10px 50px 10px
+}
+.screen{
+    font-family: VT323;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    width: 170px;
+    height: 170px;
+    background-color: green;
+    border-radius: 5px;
+}
+
+.text{
+    margin-right: auto;
+    padding-left: 25px;
+}
+
+.cross{
+    margin-top: 30px;
+    background-color: black;
+    width: 25px;
+    height: 70px;
+    margin-right: auto;
+    margin-left: 40px;
+
+}
+.horizontal-cross{
+    margin-top: 22px;
+    margin-left: -22px;
+    background-color: black;
+    height: 25px;
+    width: 70px;
+}
+
+.btn-a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 100px;
+    margin-top: -45px;
+    width: 35px;
+    height: 35px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.btn-b{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 60px;
+    margin-top: -50px;
+    width: 35px;
+    height: 35px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.btn-select1{
+
+    margin-right: auto;
+    margin-left: 100px;
+    margin-top: 40px;
+    width: 35px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 25%;
+    transform: rotate(330deg);
+    position: relative;
+    top: 20px;
+
+}
+
+.btn-select2{
+    position: relative;
+    top: 2px;
+    margin-right: auto;
+    margin-left: 140px;
+    margin-top: 0px;
+    width: 35px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 25%;
+    transform: rotate(330deg);
+}
+
+.speaker{
+    position: relative;
+    top: 15px;
+    left: 80px;
+    display: flex;
+    justify-content: space-around;
+    width: 70px;
+    transform: rotate(330deg);
+}
+.speaker1{
+    border-radius: 10px;
+    height: 60px;
+    width: 7px;
+    background-color: black;
+}
+.speaker2{
+    border-radius: 10px;
+    height: 60px;
+    width: 7px;
+    background-color: black;
+}
+.speaker3{
+    border-radius: 10px;
+    height: 60px;
+    width: 7px;
+    background-color: black;
+}
+.speaker4{
+    border-radius: 10px;
+    height: 60px;
+    width: 7px;
+    background-color: black;
+}
+.speaker5{
+    border-radius: 10px;
+    height: 60px;
+    width: 7px;
+    background-color: black;
+}
+.speaker6{
+    border-radius: 10px;
+    height: 60px;
+    width: 7px;
+    background-color: black;
 }
