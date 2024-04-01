@@ -232,10 +232,319 @@ footer {
 
 .puppy-head {
   display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  height: 350px;
+  background-color: #EDBB99;
+  border-radius: 50%;
+  position: relative;
+}
+
+.puppy-left-ear {
+  height: 250px;
+  width: 100px;
+  background-color: #7E5109;
+  position: absolute;
+  left: 35%;
+  border-radius: 55%;
+  z-index: 1;
+}
+
+.puppy-eyes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  height: 200px;
+  background-color: #EDBB99;
+  border-radius: 45%;
+}
+
+.puppy-eye-right {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fffaf9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20%;
+  margin-left: 20%;
+}
+
+.puppy-eye-left {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fffaf9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20%;
+  margin-right: 20%;
+}
+
+.puppy-eye-right-inside {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.puppy-eye-left-inside {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.puppy-nose {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #000;
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.puppy-tongue {
+  margin-top: 30px;
+  width: 50px;
+  height: 60px;
+  background-color: #F8BBD0;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.puppy-right-ear {
+  height: 250px;
+  width: 100px;
+  background-color: #7E5109;
+  position: absolute;
+  right: 35%;
+  border-radius: 55%;
+}
+
+#car {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+}
+
+.front-car {
+  width: 200px;
+  height: 80px;
+  background-color: #1976D2;
+  border-radius: 500% 0px 0px 100%;
+  position: absolute;
+}
+
+.front-light {
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 44px;
+  margin-left: 10px;
+  background-color: #e7dede;
+}
+
+.front-wheel {
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-top: 40px;
+  margin-left: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.front-wheel-inside {
+  background-color: #bababa;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.back-car {
+  width: 350px;
+  height: 130px;
+  background-color: #1976D2;
+  border-radius: 1500% 2000% 800% 0%;
+  margin-left: 180px;
+  margin-bottom: 50px;
+}
+
+.windows {
+  width: 150px;
+  height: 40px;
+  background-color: #9abbdc;
+  border-radius: 2000% 200% 0% 0%;
+  margin-left: 20px;
+  margin-top: 10px;
+  display: flex;
+  border: solid black;
+  align-items: flex-end;
+}
+
+.window-inside {
+  background-color: #000;
+  height: 40px;
+  width: 2px;
+  margin-left: 250px;
+}
+
+.back-wheel {
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-top: 35px;
+  margin-left: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 200px;
+}
+
+.back-wheel-inside {
+  background-color: #bababa;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+#building {
+  background-color: #c5c5c6;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 10px;
+  columns: gap 10px;
+  border: ridge 5px;
+}
+
+.structure {
+  grid-template-columns: 100px 100px 100px 100px;
+  background-color: #c5c5c6;
+  display: grid;
+  gap: 10px;
+  margin-left: 20px;
+  margin-bottom: 50px;
+}
+
+.building-window {
+  background-color: #9abbdc;
+  width: 50px;
+  height: 50px;
+  border: double 1px
+}
+
+.door {
+  background-color: #6D4C41;
+  width: 50px;
+  height: 70px;
+  margin-left: 75px;
+  margin-top: 349px;
+  border: inset
+}
+
+.gameboy-body {
+  display: flex;
+  background-color: #8E24AA;
+  width: 300px;
+  height: 400px;
+  border-radius: 0% 0% 0% 20%;
+  flex-direction: column;
+  position: relative;
+}
+
+.gameboy-screen {
+  width: 200px;
+  height: 150px;
+  background-color: #424242;
+  text-align: center;
+  align-content: center;
+  color: #c5c5c6;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  border: solid 20px black;
+  position: absolute;
+  top: 20px;
+  left: 30px
+}
+
+.cross {
+  width: 100px;
+  height: 100px;
+  background-color: #8E24AA;
+  position: relative;
+  top: 30px;
+}
+
+.cross::before,
+.cross::after {
+  content: "";
+  position: absolute;
+  background-color: black;
+}
+
+.cross::before {
+  width: 20px;
+  height: 50%;
+  left: 50px;
+}
+
+.cross::after {
+  width: 50%;
+  height: 20px;
+  top: 15px;
+  left: 35px;
+  bottom: 10px;
+}
+
+.controls {
   width: 300px;
   height: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.bottomA {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #424242;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: #EDBB99;
+  background-color: black;
+  margin-left: 120px;
+}
+
+.bottomB {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #424242;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+  margin-left: 80px;
+}
+
+.pixelart {
+
 }
