@@ -6,11 +6,10 @@ fontLink.rel = 'stylesheet'
 document.head.appendChild(fontLink)
 
 var style = document.createElement('style')
-style.innerHTML = 'body { background-color: #D7DBDD; font-family: Caveat; color: #BB8FCE; margin: 50px; padding: 15px; border-style: groove; border-radius: 8px; word-spacing: 5px;font-size: 20px;box-shadow: 0px 4px 5px black;}'
+style.innerHTML = 'body {position: fixet; font-family: Caveat; color: #BB8FCE; margin: 50px; padding: 15px; border-style: groove; border-radius: 8px; word-spacing: 5px; font-size: 20px;box-shadow: 0px 4px 5px black; background-image: url(https://img.freepik.com/vector-gratis/fondo-onda-blanca-suave_52683-55288.jpg?size=626&ext=jpg&ga=GA1.1.539837299.1711756800&semt=sph); background-repeat: no-repeat; background-size: cover; }'
 head.appendChild(style)
 
 var body = document.body
-
 
 var headTitle = document.querySelector('title')
 headTitle.innerText = 'CV - Sandra DS'
@@ -59,7 +58,7 @@ document.body.appendChild(experiencesTitle)
 
 var experienceList = document.createElement('ul')
 
-var experiencesTitles = ['FreeCodeCamp', 'ISDI Coders']
+var experiencesTitles = ['FreeCodeCamp', 'ISDI Coders', 'Udemy']
 
 for (var i = 0; i < experiencesTitles.length; i++) {
 var experienceTitle = experiencesTitles[i]
