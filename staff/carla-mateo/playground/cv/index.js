@@ -1,4 +1,21 @@
 
+//para acortar
+var body = document.body
+
+
+
+var fontLink = document.createElement("link")
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'
+fontLink.rel = "stylesheet"
+document.head.appendChild(fontLink)
+
+//cambiar color fondo, color letras y fuente de la letra  con js
+body.style.backgroundColor ="rgba(255, 255, 128, .5)"
+body.style.margin = "50px"
+body.style.fontFamily = 'Reddit mono'
+body.style.color = 'violet'
+
+
 //add titulo a la pagina
 var headTitle = document.querySelector('title')
 headTitle.innerText = "CV - Carla Mateo"
@@ -8,14 +25,15 @@ headTitle.innerText = "CV - Carla Mateo"
 var title = document.createElement("h1")
 title.innerText = headTitle.innerText
 
-document.body.appendChild(title)
+body.appendChild(title)
 
 //add h2
 
 var introTitle = document.createElement('h2')
 introTitle.innerText = 'About me'
+introTitle.style.textDecoration = "underline"
 
-document.body.appendChild(introTitle)
+body.appendChild(introTitle)
 
 //add boton sale por consola
 
@@ -28,7 +46,7 @@ function hello(){
 buttons.onclick = hello
 
 buttons.innerText = "Botón"
-document.body.appendChild(buttons)
+body.appendChild(buttons)
 
 //add texto descriptivo
 
@@ -41,8 +59,11 @@ document.body.appendChild(introDescription)
 
 var certificationsTitle = document.createElement("h2")
 certificationsTitle.innerText = "Certifications"
+//add underline 
+// certificationsTitle.classList.add('lineaCertifications)'
+certificationsTitle.style.textDecoration = 'underline'
 
-document.body.appendChild(certificationsTitle)
+body.appendChild(certificationsTitle)
 
 //add una lista con "ul" an "li"
 
@@ -63,25 +84,32 @@ certificationItem3.innerText = "Scrum Master"
 
 certificationsList.appendChild(certificationItem3)
 
-document.body.appendChild(certificationsList)
+body.appendChild(certificationsList)
+
 
 //add lista con arr y bucle for
 
-var experience = ["Web developed at Google", "Sofware engineer at Instagram" ]
+var experienceTitle = document.createElement('h2')
+experienceTitle.innerText = 'Experience'
+//add para subrallar
+experienceTitle.style.textDecoration = 'underline'
+// experienceTitle.classList.add('underline')
+body.appendChild(experienceTitle)
 
-var experienceTitle = document.createElement("h2")
-experienceTitle.innerText = "Experience"
+var experiencesList = document.createElement('ul')
 
-document.body.appendChild(experienceTitle)
+var experience = ['Software Architect (Microsoft, 2020)', 'Software Engineer (Facebook, 2015)', 'Software Developer (Twitter, 2008)']
 
-var experienceList = document.createElement("ul")
-document.body.appendChild(experienceList)
+for (var i = 0; i < experience.length; i++) {
+    var experienceTitle = experience[i]
 
-for (var i = 0; i < experience.length; i++){
-    var experienceItem = document.createElement("li");
-    experienceItem.innerText = experience[i];
-    experienceList.appendChild(experienceItem);
+    var experienceItem = document.createElement('li')
+    experienceItem.innerText = experienceTitle
+
+    experiencesList.appendChild(experienceItem)
 }
+
+body.appendChild(experiencesList)
 
 
 
