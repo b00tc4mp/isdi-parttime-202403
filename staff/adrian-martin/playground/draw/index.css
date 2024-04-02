@@ -127,11 +127,6 @@
     flex-direction: column;
 }
 
-.gameboy-up{
-    
-}
-
-
 .gameboy-screen{
     margin-top: 20px;
     width: 170px;
@@ -178,8 +173,6 @@
 
 .gameboy-button-settings{
 display: flex;
-
-
 }
 
 .gameboy-button-set{
