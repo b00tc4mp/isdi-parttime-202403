@@ -1,7 +1,195 @@
 .pig-head {
-    border: 1px solid black;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    
+}
+
+.pig-face{
     border-radius: 50%;
     background-color: pink;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.pig-eyes{
+    margin-top: 20px;
+    display: flex;
+    gap: 20px
+}
+
+.pig-eye {
+    display: flex;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pig-pupil{
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.pig-ears{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.pig-ear{
+    height: 40px;
+    width: 40px;
+    background-color: pink;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.pig-ear-into{
+    height: 30px;
+    width: 30px;
+    background-color: palevioletred;
+    border-radius: 50%;
+
+}
+
+.pig-noses{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nose-border{
+    display: flex;
+    height: 40px;
+    width: 60px;
+    border: 1px solid LightPink;
+    background-color: palevioletred;
+    border-radius: 40%;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.pig-nose{
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    border: 3px solid LightPink;
+}
+
+.pig-mouth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pig-lips{
+    height: 40px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: palevioletred;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pig-tooth{
+    height: 25px;
+    width: 65px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.gameboy{
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 10%;
+    display: flex;
+    background-color: ivory;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.gameboy-up{
+    
+}
+
+
+.gameboy-screen{
+    margin-top: 20px;
+    width: 170px;
+    height: 120px;
+    border: 0.5px solid rgb(0, 0,     0);
+    border-radius: 10%;
+    background-color: silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameboy-screen-game {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: greenyellow;
+    border: 0.5px solid black;
+    border-radius: 3%;
+}
+
+.gameboy-bottom{
+    position: relative;
+    margin-top: 300px;
+    
+}
+
+.gameboy-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.gameboy-button-X{
+    height: 25px;
+    width: 25px;
+    border: 1px solid black;
+    border-radius: 50%;
+    
+
+}
+
+.gameboy-button-settings{
+display: flex;
+
+
+}
+
+.gameboy-button-set{
+    margin-top: 100px;
+    width: 25px;
+    height: 5px;
+    border: 1px transparent ;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 40%;
+    background-color: grey;
+    transform: rotate(150deg)
 }
