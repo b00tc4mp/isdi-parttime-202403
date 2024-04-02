@@ -4,27 +4,183 @@
     height: 100px;
     border-radius: 50%;
     background-color: pink;
+   
 }
 
-.pig-eye {
+.pig-ears {
+    width: 0;
+    height: 0;
+    border-radius: ;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.pig-eyes {
     display: flex;
-
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    position: relative;
+    top: 25px;
+    
 }
+
 .pig-eye {
     border: 1px solid;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   
 }
 
-.pig-pupil {
-    border: 1px;
+.pig-pulpil {
+    display: flex;
+    border: 3px solid;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: black;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.pig-nose {
+    display: flex;
+    border: 1px solid;
+    width: 25px;
+    height: 25px;
+    border-radius: 45%;
+    position: relative;
+    top: 25px;
+    background-color: pink;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.staly-nose {
+    display: flex;
+    border: 3px solid;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+
+}
+
+ 
+
+/* build*/
+
+
+.build {
+    border: 1px solid black;
+    width: 250px;
+   height: 300px; 
+   background: #9684d6;
+   border-radius: 0%;
+   display: flex;
+   align-items: end;
+   justify-content: center;
+  
+}
+
+.door {
+    display: flex;
+    border: 1px ;
+    width: 50px;
+    height: 100px;
+    background: hsl(200, 3%, 22%);
+   
+
+}
+.windows{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+    
+}
+
+
+.windows{
+    border: 1px ;
+    width: 30px;
+    height: 60px;
+    background: #0d7dc7;
+    align-items: start;
+    justify-content: start;
+}
+
+.matrix {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    width: 300px;
+    height: 400px;
+    gap: 1px;
+    
+}
+.matrix-pixel {
+    background-color: rgb(112, 106, 106);
+  
+}
+
+.matrix-pixel-blue {
+    background-color: blue;
+    border: 5px solid black;
+}
+
+.matrix-pixel-yellow {
+    background-color: yellow;
+}
+
+.blog {
+    display: grid;
+    grid-template-areas:
+    "a a b"
+    "c c b"
+    "d e e"
+    "d f f"
+    ;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    background-color: rgb(92, 194, 134);
+    width: 50vw;
+    height: 60vw;
+}
+
+.blog-entry:nth-child(1) {
+    grid-area: a;
+    background-color: rgb(217, 219, 71);
+}
+
+.blog-entry:nth-child(2) {
+    grid-area: b;
+    background-color: burlywood;
+}
+
+.blog-entry:nth-child(3) {
+    grid-area: c;
+    background-color: rgb(221, 131, 78);
+}
+
+.blog-entry:nth-child(4) {
+    grid-area: d;
+    background-color: rgb(98, 155, 202);
+}
+
+.blog-entry:nth-child(5) {
+    grid-area: e;
+    background-color: rgb(156, 78, 175);
+}
+
+.blog-entry:nth-child(6) {
+    grid-area: f;
+    background-color: rgb(124, 60, 124);
 }
