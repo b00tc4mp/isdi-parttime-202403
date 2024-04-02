@@ -12,7 +12,7 @@ var link = document.createElement('link')
 link.href = urlFontFamily
 link.rel = 'stylesheet'
 document.head.appendChild(link)
-body.style.fontFamily = "Workbench", "sans-serif;"
+body.style.fontFamily = "Workbench", "sans-serif";
 
 // Title (head)
 var headTitle = document.querySelector('title')
@@ -89,7 +89,9 @@ certificationsTitle.style.borderTopStyle = "double";
 certificationsTitle.style.borderTopColor = "black";
 certificationsTitle.style.borderBottomWidth = "15px";
 certificationsTitle.style.borderBottomStyle = "double";
+
 certificationsTitle.style.borderBottomColor = "black";
+
 
 // Certifications List
 var certificationsList = document.createElement('ul')
