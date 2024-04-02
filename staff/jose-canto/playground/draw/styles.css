@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -231,7 +233,6 @@
   border-bottom: none;
 }
 
-
 .tree-ground {
   border: 1px solid black;
   width: 100%;
@@ -246,7 +247,6 @@
   display: flex;
   justify-content: center;
   align-items: end;
-
 }
 
 .container-building {
@@ -263,6 +263,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: -20px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 5px 5px 0 0;
 }
 
 .building-windows {
@@ -273,7 +275,6 @@
   grid-template-rows: repeat(4, 1fr);
   gap: 5px;
   padding: 10px;
-
 }
 
 .window {
@@ -282,6 +283,11 @@
   display: flex;
   justify-content: flex-end;
   align-items: end;
+}
+
+.window.shadow {
+  box-shadow: 5px -1px 12px 6px rgba(0, 0, 0, 0.75) inset;
+
 }
 
 #flower {
@@ -300,7 +306,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.5vw;
 }
 
 .window-entrance {
@@ -309,6 +315,7 @@
   bottom: 1vw;
   height: 1.9vw;
   width: 1.5vw;
+
   background-image: linear-gradient(to right top, #f9feff, #f3fdff, #eefdff, #e8fcff, #e2fcff, #ddfcff, #d8fbff, #d3fbff, #cdfbff, #c7faff, #c1faff, #bbf9ff);
 }
 
@@ -316,9 +323,7 @@
   position: absolute;
   width: 100%;
   height: 1.9vw;
-
 }
-
 
 .building-door {
   width: 3vw;
@@ -326,19 +331,292 @@
   background-color: #e9d9ca;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  box-shadow: 18px 0px 3px 0px rgba(0, 0, 0, 0.75) inset;
 }
-
 
 
 /* GameBoy */
 .gameboy {
-  border: 1px solid black
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
 }
 
+.container-gameboy {
+  border: 1px solid #D7D1D8;
+  width: 15vw;
+  height: 20vw;
+  border-radius: 10px 10px 30px 10px;
+  background-color: #F0F0F0;
+  box-shadow: -14px px 4vw 6px black;
+
+
+}
+
+.gameboy-top {
+  border: 3px solid #E6E6E6;
+  width: auto;
+  height: 1.3vw;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.gameboy-corners {
+  border: 3px solid #E6E6E6;
+  height: 100%;
+  width: 1.4vw;
+  border-bottom: 0;
+}
+
+.gameboy-corners.left {
+  border-left: 0;
+  border-top: 0;
+}
+
+.gameboy-corners.rigth {
+  border-right: 0;
+  border-top: 0;
+}
+
+
+.container-gameboy-screen {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gameboy-screen {
+  margin: 10px;
+  border: 1px solid black;
+  width: 80%;
+  height: 40%;
+  border-radius: 10px 10px 25px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #828282;
+  position: relative;
+}
+
+.dot-battery {
+  width: 0.5vw;
+  height: 0.5vw;
+  border-radius: 50%;
+  background-color: rgb(207, 101, 101);
+  position: absolute;
+  right: 10.6vw;
+}
+
+.text-battery {
+  position: absolute;
+  right: 10.6vw;
+  bottom: 2.4vw;
+  font-size: 0.4vw;
+  left: 0.3vw;
+  color: white;
+}
+
+.gameboy-text {
+  position: absolute;
+  top: 8.3vw;
+  font-size: 0.5vw;
+  left: 0.3vw;
+  color: rgb(50, 50, 255);
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -1px;
+}
+
+.gameboy-text span {
+  font-size: 0.4vw;
+}
+
+
+
+
+.gameboy-display {
+  border: 1px solid black;
+  width: 70%;
+  height: 80%;
+  background-color: #C5B863;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px 0px 0.3vw 0px rgb(0, 0, 0);
+
+}
+
+
+.gameboy-buttons {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  bottom: 12.5vw;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.gameboy-buttons-left {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameboy-button-arrow-vertical {
+  width: 1vw;
+  height: 3vw;
+  background-color: black;
+  position: absolute;
+  border-radius: 5px;
+
+}
+
+.gameboy-button-arrow-horizontal {
+  width: 3vw;
+  height: 1vw;
+  background-color: black;
+  border-radius: 5px;
+}
+
+
+.gameboy-buttons-right {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+  transform: rotate(-20deg);
+}
+
+.gameboy-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+}
+
+.gameboy-button-a {
+  width: 2vw;
+  height: 2vw;
+  background-color: #6F0219;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 1.5vw;
+  transform: rotate(20deg);
+
+}
+
+.gameboy-button-b {
+  width: 2vw;
+  height: 2vw;
+  background-color: #6F0219;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 1.5vw;
+  transform: rotate(20deg);
+
+}
+
+.gameboy-select-container {
+  width: auto;
+  height: 2vw;
+  position: relative;
+  bottom: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+  transform: rotate(-25deg);
+
+}
+
+.select {
+  border: 3px solid gray;
+  width: 1.5vw;
+  border-radius: 5px;
+  position: relative;
+  right: 1vw;
+  box-shadow: 0 0 0.1vw black;
+}
+
+.gameboy-select-container p {
+  font-size: 0.3vw;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  color: #3D3259;
+}
+
+.text-select {
+  position: relative;
+  right: 1vw;
+}
+
+.text-start {
+  position: relative;
+  left: 1vw;
+}
+
+.start {
+  border: 3px solid gray;
+  width: 1.5vw;
+  border-radius: 5px;
+  position: relative;
+  left: 1vw;
+  box-shadow: 0 0 0.1vw black;
+}
+
+
+.gameboy-speakers {
+  width: 10vw;
+  height: 5vw;
+  position: relative;
+  bottom: 18vw;
+  left: 8.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+  transform: rotate(-25deg);
+}
+
+.speaker {
+  border: 1px solid gray;
+  height: 2vw;
+  border-radius: 5px;
+  position: relative;
+  right: 1vw;
+  box-shadow: 0 0 0.2vw black;
+}
+
+
 .puppy {
-  border: 1px solid black
+  border: 1px solid transparent
 }
 
 .car {
-  border: 1px solid black
+  border: 1px solid transparent
 }
