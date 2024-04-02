@@ -1,0 +1,126 @@
+.pig-head {
+border: 1px solid violet;
+width: 100px;
+height: 100px;
+border-radius: 50%;
+background-color: palevioletred;
+}
+.pig-ears {
+    display: flex;
+    justify-content: space-around;
+}
+.pig-ear {
+   background-color: pink;
+   width: 20px;
+   height: 20px;
+   border: 1px solid violet;
+   border-radius: 50%;
+}
+.pig-inner-ear {
+    background-color: palevioletred;
+    width: 10px;
+    height: 10px;
+    border: 1px solid violet;
+    border-radius: 50%;
+}
+.pig-eyes {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.pig-eye {
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pig-pupil {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.pig-nose {
+    border: 1px solid violet;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: pink;
+    align-content: center;
+}
+.pig-blowholes {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.pig-blowhole {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.matrix {
+display: grid;
+grid-template-rows: repeat(8, 1fr);
+grid-template-columns: repeat(8, 1fr);
+width: 400px;
+height: 400px;
+gap: 2px;
+}
+.matrix-pixel {
+background-color: grey;
+}
+.matrix-pixel-black {
+    background-color: black;
+}
+
+.blog {
+    display: grid;
+    grid-template-areas: 
+    "a a b"
+    "c c b"
+    "d e e"
+    "d f f"
+    ;
+    background-color: skyblue;
+    width: 50vw;
+    height: 60vw;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+.blog-entry:nth-child(1) {
+    grid-area: a ;
+    background-color: pink;
+}
+
+.blog-entry:nth-child(2) {
+    grid-area: b ;
+    background-color: violet;
+}
+
+.blog-entry:nth-child(3) {
+    grid-area: c ;
+    background-color: cadetblue;
+}
+
+.blog-entry:nth-child(4) {
+    grid-area: d ;
+    background-color: burlywood;
+}
+
+.blog-entry:nth-child(5) {
+    grid-area: e ;
+    background-color: palevioletred;
+}
+
+.blog-entry:nth-child(6) {
+    grid-area: f ;
+    background-color: greenyellow;
+}
