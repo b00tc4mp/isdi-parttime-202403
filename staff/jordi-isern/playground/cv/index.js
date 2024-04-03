@@ -64,3 +64,12 @@ experienceList.appendChild(experienceItem2)
 
 document.body.appendChild(experienceList)
 
+var buttonGithub = document.createElement("button")
+
+buttonGithub.innerText = "visit my github"
+
+document.body.appendChild(buttonGithub)
+
+buttonGithub.onclick = function() {
+    window.open('https://github.com/jordi1094?tab=repositories', '_blank');
+};

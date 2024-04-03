@@ -5,5 +5,22 @@
     color:rgb(51, 183, 139)
 }
 body{
-    background-color: rgb(182, 243, 244);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
+h1{
+    margin: 70px;
+    border-bottom: 7px double rgb(51, 183, 139) ;
+}
+h2{
+    border-bottom: 3px solid rgb(51, 183, 139);
+}
+button{
+    margin-top: 40px;
+    border: 2px solid rgb(51, 183, 139);
+}
+
+
+
