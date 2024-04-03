@@ -100,7 +100,9 @@ console.log(multiplicarPor5(3)); // Imprimirá: 15
 console.log(multiplicarPor5(7)); // Imprimirá: 35
 ```
 
-> En este ejemplo, crearMultiplicador es una función de fábrica que toma un factor como argumento y devuelve una función interna multiplicar. Esta función interna es un closure que tiene acceso al factor pasado como argumento a crearMultiplicador. Cuando llamamos a multiplicarPor5 con un número, este número se multiplica por 5, que es el factor establecido, gracias al closure que mantiene la referencia al factor. Esto demuestra cómo los closures pueden usarse para encapsular datos y comportamientos dentro de funciones.
+> En este ejemplo, crearMultiplicador es una _función de fábrica$^1$ (factory function)_ que toma un factor como argumento y devuelve una función interna multiplicar. Esta función interna es un closure que tiene acceso al factor pasado como argumento a crearMultiplicador. Cuando llamamos a multiplicarPor5 con un número, este número se multiplica por 5, que es el factor establecido, gracias al closure que mantiene la referencia al factor. Esto demuestra cómo los closures pueden usarse para encapsular datos y comportamientos dentro de funciones.
+
+> _Función de fábrica$^1$ (factory function):_ En JavaScript, una función de fábrica es una función que devuelve un objeto. Se llama función de fábrica porque crea y devuelve un nuevo objeto cada vez que se llama, tal como una fábrica crea y produce nuevos productos.
 
 ### `👀 HOISTING`
 
