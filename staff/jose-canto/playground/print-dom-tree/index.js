@@ -62,7 +62,7 @@ HTML
 */
 
 function printDomTree(element, space) {
-  //var semanticTags = ['HEADER', 'BODY', 'FOOTER', 'NAV', 'MAIN', 'ARTICLE', 'SECTION', 'ASIDE', 'DETAILS', 'FIGURE', 'MARK', 'SUMMARY', 'TIME'];
+  var semanticTags = ['HEADER', 'BODY', 'FOOTER', 'NAV', 'MAIN', 'ARTICLE', 'SECTION', 'ASIDE', 'DETAILS', 'FIGURE', 'MARK', 'SUMMARY', 'TIME'];
   var tree = "";
 
   if (semanticTags.includes(element.tagName)) {
