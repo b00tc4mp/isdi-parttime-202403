@@ -229,3 +229,58 @@ $ git diff tema...maestro   (3)
 4º git status   ----> mostrará si los cambios están dentro del cajón (stage)
 5º git commit -m "rename file #3"
 6º git push
+```
+
+
+
+### Cómo borrar una rama (branch):
+
+```sh
+1º git branch -m (feature/playground) ---> Cambia de nombre la rama 
+2º git branch ---> Comprobar ramas
+3º git branch -D (Read.md) ---> Eliminar rama
+4º git push  ---> Sube los cambios 
+5º git push --set-upstream origin
+```
+
+
+
+
+
+## Console Commands: 
+
+### console.dir()
+
+```sh
+"Es un método para inspeccionar objetos mostrando una lista interactva de sus propiedades. El resultado se representa con una lista jerárqiuica"
+
+Sintaxis: 
+      console.dir(object)
+
+```
+
+
+### document.querySelector()
+
+```sh
+"Devuelve el primer elemento dentro del documento que coincide con el selector o grupo de selectores especificado. Si no se muestran coincidencias = null."
+
+Sintaxis: 
+      querySelector(selectors)
+
+Ejemplo: 
+      const el = document.querySelector(".myclass");
+```
+
+
+
+### document.querySelector().innerText
+
+```sh
+También puedes hacer cambios de esta manera: 
+
+document.querySelector(" "). innerText= " ";
+  
+    --> Ejemplo: 
+        document.querySelector("title").innerText = "Cv-Pepito Grillo"
+```
