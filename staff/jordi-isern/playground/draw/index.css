@@ -417,3 +417,39 @@
     left: 75px;
     z-index: 70;
 }
+
+
+.surface:nth-child(4){
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.bulding{
+    height: 130px;
+    width: 70px;
+    background-color: grey;
+}
+.grid-bulding{
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    padding-top: 3px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 6px;
+}
+
+.window{
+    background-color: rgb(247, 247, 103);
+    height: 80%;
+    width: 100%;
+}
+.door{
+    background-color: rgb(75, 74, 74);
+    height: 170%;
+    width: 100%;
+}
+
