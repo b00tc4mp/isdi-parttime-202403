@@ -1,48 +1,52 @@
 var head = document.head;
+var body = document.body;
 
 var fontLink = document.createElement('link')
-fontLink.href = 'https://fonts.googleapis.com/css2?family=Workbench&display=swap'
+fontLink.href = 'https://fonts.cdnfonts.com/css/new-walt-disney-font'
 fontLink.rel = 'stylesheet'
-head.appendChild(fontLink)
+document.head.appendChild(fontLink)
 
 var style = document.createElement('style');
-style.innerHTML = 'body { background-color: black; margin: 5vw; font-family: Workbench; color: greenyellow; }';
+style.innerHTML = 'body { background-color: blue; color:white}';
 head.appendChild(style);
-
-// var body = document.querySelector('body')
-var body = document.body;
-// body.style.backgroundColor = 'black'
-// body.style.margin = '5vw'
-// body.style.fontFamily = 'Workbench'
-// body.style.color = 'greenyellow'
-
 
 //Nombre
 var introName = document.createElement('h2');
 introName.innerText = 'Pinocho Grillo Disney';
+introName.style.textDecoration = 'underline overline double';
+introName.style.textAlign = 'center';
+introName.style.fontFamily = 'New Walt Disney Font', 'sans-serif';
+introName.style.display = 'inline-block';
+introName.style.fontSize = '30.88pt';
+body.appendChild(introName);
 
-document.body.appendChild(introName);
+//Foto
+var img = document.createElement('img');
+img.src = 'https://i.pinimg.com/236x/2e/96/a3/2e96a310764d4551e67f00635ba07bc4.jpg';
+document.body.appendChild(img);
 
 
 //Breve presentación
 var introIntroduction = document.createElement('h3');
 introIntroduction.innerText = 'Introduction';
+introIntroduction.style.textDecoration = 'underline double';
 
-document.body.appendChild(introIntroduction);
+body.appendChild(introIntroduction);
 
 
 
 var introDescription = document.createElement('p');
 introDescription.innerText = "Muñero de madera con aspiraciones de convertirme en un niño real busca empleo para afrontar nuevos retos";
 
-document.body.appendChild(introDescription);
+body.appendChild(introDescription);
 
 
 //Certificaciones académicas - lista
 var certificationsTitle = document.createElement('h3');
 certificationsTitle.innerText = 'Certifications';
+certificationsTitle.style.textDecoration = 'underline double';
 
-document.body.appendChild(certificationsTitle);
+body.appendChild(certificationsTitle);
 
 
 
@@ -54,7 +58,7 @@ certificationsItem1.innerText = 'Licenciado en Muñecos de Madera - Universidad 
 
 certificationsList.appendChild(certificationsItem1);
 
-document.body.appendChild(certificationsList);
+body.appendChild(certificationsList);
 
 
 var certificationsItem2 = document.createElement('li');
@@ -62,14 +66,15 @@ certificationsItem2.innerText = 'Master en Títeres - Escuela oficial de Entrete
 
 certificationsList.appendChild(certificationsItem2);
 
-document.body.appendChild(certificationsList);
+body.appendChild(certificationsList);
 
 
 //Experiencia
 var experienceTitle = document.createElement('h3');
 experienceTitle.innerText = 'Experience';
+experienceTitle.style.textDecoration = 'underline double';
 
-document.body.appendChild(experienceTitle);
+body.appendChild(experienceTitle);
 
 
 var experienceList = document.createElement('ul');
@@ -80,7 +85,7 @@ experienceItem1.innerText = 'Muñeco de madera';
 
 experienceList.appendChild(experienceItem1);
 
-document.body.appendChild(experienceList);
+body.appendChild(experienceList);
 
 
 
@@ -89,7 +94,7 @@ experienceItem2.innerText = 'Burro de circo';
 
 experienceList.appendChild(experienceItem2);
 
-document.body.appendChild(experienceList);
+body.appendChild(experienceList);
 
 
 
@@ -98,7 +103,7 @@ experienceItem3.innerText = 'Alimento de ballena';
 
 experienceList.appendChild(experienceItem3);
 
-document.body.appendChild(experienceList);
+body.appendChild(experienceList);
 
 
 
@@ -107,14 +112,15 @@ experienceItem4.innerText = 'Niño real';
 
 experienceList.appendChild(experienceItem4);
 
-document.body.appendChild(experienceList);
+body.appendChild(experienceList);
 
 
 //Idiomas
 var langTitle = document.createElement('h3');
 langTitle.innerText = 'Languajes';
+langTitle.style.textDecoration = 'underline double';
 
-document.body.appendChild(langTitle);
+body.appendChild(langTitle);
 
 
 var langList = document.createElement('ol');
@@ -125,7 +131,7 @@ langItem1.innerText = 'English - (Mother tongue)';
 
 langList.appendChild(langItem1);
 
-document.body.appendChild(langList);
+body.appendChild(langList);
 
 
 var langItem2 = document.createElement('li');
@@ -133,7 +139,7 @@ langItem2.innerText = 'Spanish';
 
 langList.appendChild(langItem2);
 
-document.body.appendChild(langList);
+body.appendChild(langList);
 
 
 var langItem3 = document.createElement('li');
@@ -141,15 +147,16 @@ langItem3.innerText = 'Italian';
 
 langList.appendChild(langItem3);
 
-document.body.appendChild(langList);
+body.appendChild(langList);
 
 
 
 // Datos de contacto - Footer
 var footer = document.createElement('footer')
 footer.innerText = 'Tlf: +34 000 00 00 - email: pinochoGD@ISDI.com'
+footer.style.textDecoration = 'underline overline'
 
-document.body.appendChild(footer)
+body.appendChild(footer)
 
 
 
