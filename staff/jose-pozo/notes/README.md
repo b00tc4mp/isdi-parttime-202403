@@ -41,6 +41,67 @@
 
 > Lo primero que tenemos que saber es que en Javascript, las funciones son objetos de primera clase. Como tales, podemos trabajar con ellos de la misma forma que trabajamos con otros objetos, como asignarlos a variables y pasarlos como argumentos a otras funciones.
 
+### `👀 CALL STACK`
+
+> El "call stack" (pila de llamadas) en JavaScript es una estructura de datos que se utiliza para gestionar la ejecución de funciones en el programa. Cuando se llama a una función en JavaScript, se coloca en la parte superior de la pila de llamadas. A medida que se ejecuta esa función, cualquier otra función que llame dentro de ella también se apila encima de la anterior, y así sucesivamente.
+
+> Cuando una función termina de ejecutarse, se elimina de la pila de llamadas, y el control vuelve a la función que la llamó. Esto se conoce como el principio de "último en entrar, primero en salir" (LIFO, por sus siglas en inglés).
+
+> La pila de llamadas es esencial para el funcionamiento del motor de JavaScript, ya que determina el orden en que se ejecutan las funciones y gestiona la ejecución asíncrona mediante el uso de mecanismos como callbacks, promesas y async/await.
+
+> Un ejemplo simple de cómo funciona la pila de llamadas sería:
+
+```js
+function funcionA() {
+  console.log("Inicio de funcionA");
+  funcionB();
+  console.log("Fin de funcionA");
+}
+
+function funcionB() {
+  console.log("Inicio de funcionB");
+  console.log("Fin de funcionB");
+}
+
+funcionA();
+
+/*
+Salida: "Inicio de funcionA"
+Salida: "Inicio de funcionB"
+Salida: "Fin de funcionB"
+Salida: "Fin de funcionA"
+*/"
+```
+
+> En este ejemplo, cuando se llama a funcionA(), se agrega a la pila de llamadas, y dentro de ella, funcionB() también se agrega a la pila. Cuando funcionB() termina de ejecutarse, se elimina de la pila, y luego funcionA() termina y se elimina de la pila.
+
+### `👀 CLOSURE`
+
+> En JavaScript, un "closure" (o cierre) es una función que "recuerda" el ámbito en el que fue creada y tiene acceso a las variables de ese ámbito incluso después de que la función haya terminado de ejecutarse. Esto se debe a que la función interna tiene acceso a las variables locales de la función externa, incluso después de que la función externa haya finalizado su ejecución.
+
+> Los closures son extremadamente útiles en JavaScript porque permiten crear funciones que actúan como "envolventes" para proteger datos sensibles o para mantener el estado entre llamadas de función. Se utilizan comúnmente en situaciones como manejo de eventos, programación asíncrona y para crear funciones de fábrica.
+
+> Aquí hay un ejemplo de cómo se ve un closure en JavaScript:
+
+```js
+function crearMultiplicador(factor) {
+  // Esta función interna es un closure
+  function multiplicar(numero) {
+    return numero * factor;
+  }
+
+  return multiplicar;
+}
+
+// Creamos un multiplicador que multiplica por 5
+var multiplicarPor5 = crearMultiplicador(5);
+
+console.log(multiplicarPor5(3)); // Imprimirá: 15
+console.log(multiplicarPor5(7)); // Imprimirá: 35
+```
+
+> En este ejemplo, crearMultiplicador es una función de fábrica que toma un factor como argumento y devuelve una función interna multiplicar. Esta función interna es un closure que tiene acceso al factor pasado como argumento a crearMultiplicador. Cuando llamamos a multiplicarPor5 con un número, este número se multiplica por 5, que es el factor establecido, gracias al closure que mantiene la referencia al factor. Esto demuestra cómo los closures pueden usarse para encapsular datos y comportamientos dentro de funciones.
+
 ### `👀 HOISTING`
 
 > El "hoisting" en JavaScript es un comportamiento que ocurre durante la fase de compilación del código, donde las declaraciones de variables y funciones son movidas hacia arriba, o "elevadas", al inicio del contexto de ejecución. Esto significa que las variables pueden ser utilizadas antes de ser declaradas explícitamente en el código.
@@ -69,7 +130,33 @@ function foo() {
 
 > Además, con la introducción de let y const en ECMAScript 6, se recomienda utilizar estas en lugar de var, ya que tienen un comportamiento de alcance más predecible y no se ven afectadas por el hoisting en la misma medida.
 
-### `➡️ RECURSION`
+### `👀 LEXICAL SCOPE`
+
+> El "lexical scope" (ámbito léxico) es un concepto fundamental en la programación que se refiere al conjunto de reglas que determinan el alcance de las variables y cómo se resuelven las referencias a esas variables en un programa. En términos simples, el alcance léxico se refiere al entorno léxico en el que se define una variable, es decir, dónde se encuentra físicamente en el código.
+
+> En JavaScript, el ámbito léxico se determina en tiempo de compilación, basándose en la estructura del código fuente, y no cambia en tiempo de ejecución. Esto significa que las funciones anidadas tienen acceso al alcance de las funciones que las contienen, y no al revés.
+
+> Veamos un ejemplo para ilustrar el concepto:
+
+```js
+function exterior() {
+  var mensaje = "Hola";
+
+  function interior() {
+    console.log(mensaje);
+  }
+
+  interior();
+}
+
+exterior(); // Salida: "Hola"
+```
+
+> En este ejemplo, la función interior() está definida dentro de la función exterior(), por lo que tiene acceso al alcance léxico de exterior(), incluyendo la variable mensaje. Esto es posible debido al ámbito léxico en JavaScript: las funciones internas tienen acceso al alcance de las funciones externas en las que están definidas.
+
+> El ámbito léxico es importante porque determina cómo se resuelven las referencias a variables en un programa. Cuando se hace referencia a una variable dentro de una función, el intérprete de JavaScript busca primero en el ámbito léxico más interno (el de la función actual) y luego en ámbitos léxicos más externos, hasta encontrar la variable o llegar al ámbito global. Si la variable no se encuentra en ningún ámbito léxico, se genera un error de referencia.
+
+### `👀 RECURSION`
 
 > La recursión en JavaScript es un concepto en programación donde una función se llama a sí misma para resolver un problema. En lugar de utilizar un bucle iterativo como un bucle for o while, la recursión implica la división de un problema en casos más pequeños y llamando a la misma función con estos casos más pequeños hasta que se alcance un caso base donde se puede resolver directamente.
 
