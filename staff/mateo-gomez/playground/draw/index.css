@@ -1,0 +1,112 @@
+.pig {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+.pig-head {
+    border: 2px solid black;
+    width: 130px;
+    height: 125px;
+    border-radius: 50%;
+    background-color: pink; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pig-ears {
+   display: flex;
+   justify-content: space-between;
+}
+
+.pig-ear {
+    background-color: rgb(204, 161, 168);
+    width: 20px;
+    height: 40px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 140%;
+    border-color:black;
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.pig-ear-in {
+    background-color: rgb(199, 63, 136);
+    width: 15px;
+    height: 15px;
+    border-radius: 33%;
+    border: 0.5px solid black;
+
+}
+
+
+.pig-eyes {
+    display: flex; 
+    justify-content: center;
+}
+.pig-eye {
+    border: 2px solid black;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.pig-pupil {
+    
+    border: 1px solid black;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    
+
+}
+
+.pig-nose {
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid rgb(231, 81, 106);
+    
+}
+
+.pig-nose-hole {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
+.pig-mouth {
+
+}
+
+
+.matrix {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    width: 400px;
+    height: 400px;
+    gap: 2px;
+}
+
+.matrix-pixel {
+    background-color: rgb(18, 139, 99);
+}
