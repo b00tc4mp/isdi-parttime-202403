@@ -4,7 +4,7 @@
 
 ## **CURIOSITIES**
 
-### `👀 Poner iconos en la terminal de bash`
+### `👀 PONER ICONOS EN LA TERMINAL DE BASH`
 
 ```js
 ➡️ vi ~/.bashrc
@@ -35,13 +35,13 @@
 
 ## **JS CONCEPTS**
 
-### `👀 Callback Function`
+### `👀 CALLBACK FUNCTION`
 
 > Una función callback es aquella que es pasada como argumento a otra función para que sea "llamada de nuevo" (call back) en un momento posterior. Una función que acepta otras funciones como argumentos es llamada función de orden-superior (High-Order), y contiene la lógica para determinar cuándo se ejecuta la función callback. Es la combinación de estas dos la que nos permite ampliar nuestra funcionalidad.
 
 > Lo primero que tenemos que saber es que en Javascript, las funciones son objetos de primera clase. Como tales, podemos trabajar con ellos de la misma forma que trabajamos con otros objetos, como asignarlos a variables y pasarlos como argumentos a otras funciones.
 
-### `👀 Hoisting`
+### `👀 HOISTING`
 
 > El "hoisting" en JavaScript es un comportamiento que ocurre durante la fase de compilación del código, donde las declaraciones de variables y funciones son movidas hacia arriba, o "elevadas", al inicio del contexto de ejecución. Esto significa que las variables pueden ser utilizadas antes de ser declaradas explícitamente en el código.
 
@@ -68,6 +68,31 @@ function foo() {
 > Sin embargo, es importante tener en cuenta que el hoisting solo mueve las declaraciones hacia arriba, no el código en sí. Por lo tanto, aunque JavaScript "eleva" las declaraciones, el orden de ejecución del código permanece igual. Esto puede llevar a comportamientos inesperados si no se entiende correctamente. Por esta razón, es una buena práctica declarar todas las variables y funciones al inicio del ámbito en el que son utilizadas, para evitar confusiones y errores potenciales.
 
 > Además, con la introducción de let y const en ECMAScript 6, se recomienda utilizar estas en lugar de var, ya que tienen un comportamiento de alcance más predecible y no se ven afectadas por el hoisting en la misma medida.
+
+### `➡️ RECURSION`
+
+> La recursión en JavaScript es un concepto en programación donde una función se llama a sí misma para resolver un problema. En lugar de utilizar un bucle iterativo como un bucle for o while, la recursión implica la división de un problema en casos más pequeños y llamando a la misma función con estos casos más pequeños hasta que se alcance un caso base donde se puede resolver directamente.
+
+> El 'caso base' en la recursión es la condición que detiene la recursión. Es la condición que, cuando se cumple, hace que la función recursiva deje de llamarse a sí misma y comience a devolver valores sin hacer más llamadas recursivas.
+>
+> En otras palabras, el caso base es una condición de terminación que evita que la función recursiva continúe ejecutándose indefinidamente. Cada función recursiva debe tener al menos un caso base para garantizar que eventualmente se alcance una solución.
+
+> En JavaScript, la recursión se puede utilizar para resolver una variedad de problemas; sin embargo, es importante tener en cuenta que la recursión debe manejarse cuidadosamente para evitar el desbordamiento de la pila de llamadas, especialmente en situaciones donde hay una gran profundidad recursiva.
+
+```js
+function sumaNaturales(n) {
+  // Caso base: si n es 0, la suma es 0
+  if (n === 0) {
+    return 0;
+  } else {
+    // Caso recursivo: sumar n con la suma de los primeros n-1 números naturales
+    return n + sumaNaturales(n - 1);
+  }
+}
+
+// Ejemplo de uso
+console.log(sumaNaturales(5)); // Resultado: 15 (5 + 4 + 3 + 2 + 1)
+```
 
 ## **NODE COMMANDS IN VS CODE**
 
