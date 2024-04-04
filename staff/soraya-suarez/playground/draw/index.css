@@ -1,0 +1,645 @@
+/* -----------Pig-----------*/
+.pig-head {
+    width: 220px;
+    height: 200px;
+    background-color: pink;
+    border-radius: 113px 113px 80px 80px;
+    position: relative;
+    border: 2px solid palevioletred;
+}
+
+.pig-ears {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+}
+
+.pig-ear {
+    background-color: pink;
+    width: 40px;
+    height: 40px;
+    border: 2px solid palevioletred;
+}
+
+.pig-ear:first-child {
+    border-radius: 0 30% 50% 0;
+    transform: rotate(36deg);
+}
+
+.pig-ear:last-child {
+    border-radius: 30% 0 0 50%;
+    transform: rotate(-36deg);
+}
+
+.pig-eyes {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 30%;
+    left: 60px;
+    right: 60px;
+}
+
+.pig-eye {
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.pig-eye-pupil {
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 4px;
+}
+
+.pig-cheeks {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: 80px;
+}
+
+.pig-cheek {
+    background-color: palevioletred;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+}
+
+.pig-cheek:first-child {
+    margin-left: 27px;
+}
+
+.pig-cheek:last-child {
+    margin-right: 27px;
+}
+
+.pig-nose {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    border: 2px solid palevioletred;
+    border-radius: 50%;
+    width: 58px;
+    height: 42px;
+    align-items: center;
+    top: 80px;
+    left: 80px;
+}
+
+.pig-nose-hole {
+    width: 10px;
+    height: 10px;
+    background-color: palevioletred;
+    border-radius: 50%;
+}
+
+.pig-mouth {
+    position: absolute;
+    border-bottom: 2px solid palevioletred;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 126px;
+    left: 100px;
+}
+
+
+/* -----------Dog-----------*/
+
+.dog {
+    width: 200px;
+    height: 180px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid black;
+    left: 305px;
+    bottom: 67px;
+}
+
+.dog-ears {
+    display: flex;
+    position: absolute;
+    width: 100%;
+}
+
+.dog-ear {
+    position: absolute;
+    width: 40px;
+    height: 63px;
+    border: 2px solid black;
+}
+
+.dog-ears div:nth-child(1) {
+    border-radius: 30% 0 30% 50%;
+    background-color: black;
+}
+
+.dog-ears div:nth-child(2){
+    border-radius: 0 30% 50% 30%;
+    left: 150px;
+    background-color: white;
+}
+
+.dog-eyes {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 30%;
+    left: 60px;
+    right: 60px;
+}
+
+.dog-eye {
+    width: 17px;
+    height: 24px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.dog-nose {
+    position: absolute;
+    background-color: black;
+    width: 20px;
+    height: 25px;
+    top: 93px;
+    left: 90px;
+    border-radius: 30% 30% 50% 50%;
+}
+
+.dog-mouth-left {
+    position: absolute;
+    border-bottom: 2px solid black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 106px;
+    left: 80px;
+}
+
+.dog-mouth-right {
+    position: absolute;
+    border-bottom: 2px solid black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 106px;
+    left: 101px;
+}
+
+.dog-spot-left {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    top: 116px;
+    left: 19px;
+    border-radius: 27% 50% 30% 50%;
+}
+
+.dog-spot-right {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    top: 93px;
+    left: 163px;
+    border-radius: 50% 35% 26% 50%;
+}
+
+.dog-tongue {
+    position: absolute;
+    width: 16px;
+    height: 32px;
+    background-color: palevioletred;
+    top: 125px;
+    left: 93px;
+    border-radius: 20% 20% 50% 50%;
+}
+
+
+
+/* -----------Tulip-----------*/
+.matrix {
+    display: grid;
+    grid-template-rows: repeat(13, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    width: 400px;
+    height: 400px;
+    gap: 1px;
+    margin-top: -30px;
+}
+
+.matrix-pixel{
+    background-color: rgb(229, 223, 223);
+}
+
+.matrix-pixel-stem {
+    background-color: green;
+}
+
+.matrix-pixel-flower {
+    background-color: red;
+}
+
+
+
+/* -----------Gameboy-----------*/
+.gameboy {
+    margin-top: 10px;
+    width: 300px;
+    height: 400px;
+    background-color: rgb(227, 227, 227);
+    border: 2px solid rgb(165, 164, 164);
+    border-radius: 10px 10px 50px 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.gameboy-screen {
+    position: absolute;
+    background-color: grey;
+    width: 80%;
+    height: 158px;
+    border-radius: 10px 10px 50px 10px;
+    display: flex;
+    align-items: center;
+    left: 30px;
+    top: 20px;
+    justify-content: center;
+}
+
+.gameboy-battery-indicator {
+    position: absolute;
+    background-color: rgb(214, 46, 70);
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    z-index: 1;
+    left: 16px;
+    top: 53px;
+    border: 0.5px solid black;
+}
+
+.gameboy-screen-green {
+    position: absolute;
+    background-color: rgb(66, 96, 35);
+    width: 60%;
+    height: 120px;
+}
+
+.gameboy-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameboy-button:first-child, .gameboy-button:nth-child(2) {
+    position: absolute;
+    background-color: rgb(32, 32, 32);
+    width: 48px;
+    height: 20px;
+    top: 232px;
+    left: 40px;
+}
+
+.gameboy-button:nth-child(2) {
+    transform: rotate(90deg);
+}
+
+.gameboy-button:nth-child(3), .gameboy-button:nth-child(4) {
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(147, 45, 92);
+}
+
+.gameboy-button:nth-child(3) {
+    top: 225px;
+    left: 230px;
+}
+
+.gameboy-button:nth-child(4) {
+    top: 245px;
+    left: 200px;
+}
+
+.gameboy-button:nth-child(5), .gameboy-button:last-child {
+    position: absolute;
+    border-radius: 30%;
+    width: 30px;
+    height: 5px;
+    background-color: rgb(145, 146, 145);
+    transform: rotate(-22deg);
+}
+
+.gameboy-button:nth-child(5) {
+    top: 297px;
+    left: 85px;
+}
+
+.gameboy-button:last-child {
+    top: 297px;
+    left: 128px;
+}
+
+
+
+/* -----------Building-----------*/
+.building {
+    margin-top: 10px;
+    width: 300px;
+    height: 400px;
+    background-color: rgb(247, 247, 247);
+    border: 2px solid black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 10% 10% 0 0;
+}
+
+.building-roof {
+    width: 100%;
+    height: 20px;
+    border-radius: 10%;
+    position: absolute;
+    top: 15px;
+    border-bottom: 2px solid black;
+}
+
+.building-houses {
+    display: flex;
+}
+
+.building-window {
+    border: 2px solid black;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-color: rgb(169, 198, 227);
+}
+
+.building-window:first-child, .building-window:nth-child(5), .building-window:nth-child(9) {
+    left: 35px;
+}
+
+.building-window:first-child, .building-window:nth-child(2), .building-window:nth-child(3), .building-window:nth-child(4) {
+    top: 72px;
+}
+
+.building-window:nth-child(2), .building-window:nth-child(6), .building-window:nth-child(10) {
+    left: 95px;
+}
+
+.building-window:nth-child(5), .building-window:nth-child(6), .building-window:nth-child(7), .building-window:nth-child(8) {
+    top: 153px;
+}
+
+.building-window:nth-child(3), .building-window:nth-child(7), .building-window:nth-child(11) {
+    left: 155px;
+}
+
+.building-window:nth-child(9), .building-window:nth-child(10), .building-window:nth-child(11), .building-window:nth-child(12) {
+    top: 234px;
+}
+
+.building-window:nth-child(4), .building-window:nth-child(8), .building-window:nth-child(12) {
+    left: 215px;
+}
+
+.building-entry {
+    display: flex;
+}
+
+.building-window-entry {
+    top: 310px;
+    border: 2px solid black;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-color: rgb(169, 198, 227);
+}
+
+.building-window-entry:first-child {
+    left: 21px;
+}
+
+.building-window-entry:last-child {
+    left: 229px;
+}
+
+.building-door {
+    top: 320px;
+    background-color: rgb(53, 52, 52);
+    width: 60px;
+    height: 80px;
+    position: absolute;
+    left: 117px;
+}
+
+
+
+/* -----------Tree-----------*/
+.tree {
+    position: relative;
+    margin-top: 10px;
+}
+
+.tree-branch {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: green;
+    clip-path: polygon(50% 5%, 100% 85%, 100% 100%, 0 100%, 0 85%);
+}
+
+.tree-shadow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: rgb(1, 57, 1);
+    clip-path: polygon(50% 0%, 0% 110%, 95% 100%);
+    top: 25px;
+    left: 10px;
+}
+
+.tree-branch:nth-child(3) {
+    top: 40px;
+}
+
+.tree div:nth-child(1) {
+    z-index: 4;
+}
+
+.tree div:nth-child(2) {
+    z-index: 3;
+}
+
+.tree div:nth-child(3) {
+    z-index: 2;
+}
+
+.tree div:nth-child(4) {
+    z-index: 1;
+    top: 65px;
+}
+
+.tree-trunk {
+    position: absolute;
+    background-color: rgb(98, 29, 29);
+    width: 30px;
+    height: 90px;
+    top: 225px;
+    left: 84px;
+}
+
+
+
+/* -----------Car-----------*/
+.car {
+    margin-top: 357px;
+    position: relative;
+}
+
+.car-roof {
+    position: absolute;
+    width: 242px;
+    border-right: 60px solid transparent;
+    border-left: 60px solid transparent;
+    border-bottom: 100px solid red;
+    left: 45px;
+}
+
+.car-windows {
+    position: absolute;
+    width: 170px;
+    height: 7px;
+    border-right: 60px solid transparent;
+    border-left: 60px solid transparent;
+    border-bottom: 100px solid ghostwhite;
+    left: 83px;
+}
+
+.car-body {
+    position: absolute;
+    width: 470px;
+    height: 80px;
+    background-color: red;
+    top: 100px;
+    left: 18px;
+}
+
+.car-bumper {
+    position: absolute;
+    width: 500px;
+    height: 23px;
+    background-color: red;
+    top: 180px;
+    left: 4px;
+}
+
+.car-handle {
+    position: absolute;
+    width: 24px;
+    height: 4px;
+    border: 2px solid black;
+    background-color: red;
+    top: 112px;
+}
+
+.car div:nth-child(5) {
+    left: 112px;
+}
+
+.car div:nth-child(6) {
+    left: 320px;
+}
+
+.car-wheel {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: black;
+    top: 166px;
+}
+
+.car div:nth-child(7) {
+    left: 60px;
+}
+
+.car div:nth-child(8) {
+    left: 370px;
+}
+
+.car-tire {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #80808099;
+    top: 176px;
+}
+
+.car div:nth-child(9) {
+    left: 70px;
+}
+
+.car div:nth-child(10) {
+    left: 380px;
+}
+
+
+
+/* -----------Blog-----------*/
+.blog {
+    display: grid;
+    grid-template-areas: 
+        'a a b'
+        'c c b'
+        'd e e'
+        'd f f'
+    ;
+    width: 50vw;
+    height: 60vw;
+    padding-top: 253px;
+}
+
+.blog-entry:nth-child(1) {
+    grid-area: a;
+    background-color: plum;
+}
+
+.blog-entry:nth-child(2) {
+    grid-area: b;
+    background-color: pink;
+}
+
+.blog-entry:nth-child(3) {
+    grid-area: c;
+    background-color: bisque;
+}
+
+.blog-entry:nth-child(4) {
+    grid-area: d;
+    background-color: greenyellow;
+}
+
+.blog-entry:nth-child(5) {
+    grid-area: e;
+    background-color: chocolate;
+}
+
+.blog-entry:nth-child(6) {
+    grid-area: f;
+    background-color: aqua;
+}
