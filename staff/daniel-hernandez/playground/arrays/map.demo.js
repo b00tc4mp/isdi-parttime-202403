@@ -1,12 +1,12 @@
 function map(array, callback) {
-    // TODO implement me (without using any Array.prototype method)
+    // TODO implement (without using any Array.prototype method)
 
     var mapped = []
 
     for (var i = 0; i < array.length; i++) {
         var element = array[i]
 
-        var mappedElement = callback(element)
+        var mappedElement = callback(element, i, array)
 
         mapped[i] = mappedElement
     }
@@ -36,3 +36,15 @@ console.log(names)
 // ['JaCk', 'pETer', 'jOHNnY']
 console.log(normalizedNames)
 // ['JACK', 'PETER', 'JOHNNY']
+
+// CASE map arguments into object
+var colors = ['red', 'green', 'blue', 'yellow'];
+
+var data = map(colors, function(color, index, colors) { 
+    var object = { color: color, index: index, colors: colors }
+
+    return object
+ });
+
+ console.log(data);
+ console.table(data);

@@ -20,3 +20,16 @@ console.log(names)
 // ['JaCk', 'pETer', 'jOHNnY']
 console.log(normalizedNames)
 // ['JACK', 'PETER', 'JOHNNY']
+
+// CASE map args into object
+
+var colors = ['red', 'green', 'blue', 'yellow']
+
+var data = colors.map(function (color, index, colors) {
+    var o = { color: color, index: index, colors: colors }
+
+    return o
+})
+
+console.debug(data)
+console.table(data)
