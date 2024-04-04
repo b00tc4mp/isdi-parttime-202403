@@ -10,6 +10,8 @@
 //     })(0)
 // }
 
+
+//igual q la funcion de arriba xo sin recursividad y hecho con un "for"
 function forEach(array, callback) {
     for (var i = 0; i < array.length; i++) {
         var element = array[i]
