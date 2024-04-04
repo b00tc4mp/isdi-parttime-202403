@@ -132,6 +132,80 @@ function foo() {
 
 > Además, con la introducción de let y const en ECMAScript 6, se recomienda utilizar estas en lugar de var, ya que tienen un comportamiento de alcance más predecible y no se ven afectadas por el hoisting en la misma medida.
 
+### `👀 IIFE (IMMEDIATELY INVOKED FUNCTION EXPRESSION)`
+
+> IIFE significa Expresión de Función Inmediatamente Invocada en JavaScript. Es un patrón comúnmente utilizado para crear una función y ejecutarla inmediatamente después de su definición. Este patrón se utiliza a menudo para crear un ámbito privado para las variables, evitando que contaminen el ámbito global.
+
+> Aquí tienes un ejemplo básico de un IIFE:
+
+```js
+(function () {
+  // Tu código aquí
+  var x = 10;
+  console.log(x); // Salida: 10
+})();
+```
+
+> En este ejemplo, la función se define dentro de paréntesis (function(){}), y está inmediatamente seguida por otro par de paréntesis (), que invoca la función inmediatamente después de su definición.
+
+> Un caso de uso común para IIFE es encapsular variables, evitando que sean accesibles fuera de la función:
+
+```js
+(function () {
+  var x = 10;
+  console.log(x); // Salida: 10
+})();
+
+console.log(x); // Salida: Uncaught ReferenceError: x no está definido
+```
+
+> En este ejemplo, x está dentro del ámbito del IIFE y no es accesible desde fuera de él.
+
+> IIFE también puede tomar parámetros:
+
+```js
+(function (mensaje) {
+  console.log(mensaje); // Salida: ¡Hola, Mundo!
+})("¡Hola, Mundo!");
+```
+
+> En este ejemplo, la cadena "¡Hola, Mundo!" se pasa como argumento al IIFE y se registra dentro de la función.
+
+> IIFE es una herramienta útil para modularizar código, gestionar ámbitos y evitar conflictos en los espacios de nombres globales.
+
+### `👀 IMPERATIVE VS DECLARATIVE PROGRAMMING`
+
+> En JavaScript, "imperative" y "declarative" son dos estilos de programación que describen cómo se escribe el código para lograr un objetivo específico.
+
+> Programación Imperativa: En la programación imperativa, se le dice a la computadora exactamente cómo realizar una tarea paso a paso. Esto implica dar instrucciones detalladas sobre cómo cambiar el estado de los datos y cómo realizar cada acción. El código imperativo se centra en el "cómo" se deben hacer las cosas.
+
+> Ejemplo de código imperativo en JavaScript:
+
+```js
+let numbers = [1, 2, 3, 4, 5];
+let sum = 0;
+for (let i = 0; i < numbers.length; i++) {
+  sum += numbers[i];
+}
+console.log(sum); // Output: 15
+```
+
+> En este ejemplo, se utiliza un bucle for para recorrer el array numbers y sumar sus elementos uno por uno.
+
+> Programación Declarativa: En la programación declarativa, en cambio, te concentras en describir qué quieres lograr, sin preocuparte por los detalles de cómo se realizará. El enfoque es más abstracto y se centra en las relaciones y transformaciones de los datos. En la programación declarativa, le dices al programa "qué" hacer, y el lenguaje o el entorno de programación se encargan de descubrir "cómo" hacerlo.
+
+> Ejemplo de código declarativo en JavaScript:
+
+```js
+let numbers = [1, 2, 3, 4, 5];
+let sum = numbers.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // Output: 15
+```
+
+> En este ejemplo, se utiliza el método reduce() para sumar todos los elementos del array numbers. No se especifica cómo se debe realizar la suma, solo se describe el resultado deseado.
+
+> En resumen, en la programación imperativa se describe explícitamente cómo se deben realizar las operaciones paso a paso, mientras que en la programación declarativa se define qué se quiere lograr sin preocuparse por los detalles de implementación. Ambos enfoques tienen sus ventajas y desventajas, y la elección entre ellos depende del problema específico que se esté resolviendo y de las preferencias del programador.
+
 ### `👀 LEXICAL SCOPE`
 
 > El "lexical scope" (ámbito léxico) es un concepto fundamental en la programación que se refiere al conjunto de reglas que determinan el alcance de las variables y cómo se resuelven las referencias a esas variables en un programa. En términos simples, el alcance léxico se refiere al entorno léxico en el que se define una variable, es decir, dónde se encuentra físicamente en el código.
