@@ -260,6 +260,48 @@ Sintaxis:
 ```
 
 
+### console.table():
+
+```sh
+"Muestra datos tabulares como una tabla. Esta función toma un argumento obligatorio: data, que debde ser un array o un objeto, y un parámetro adicional: colums. Cada elemento en el array (o propiedad enumerable si data es un objeto) será una fila en la tabla"
+
+
+Ejemplo: 
+
+var cars = ['lambo', 'bugatti', 'ferrari']
+
+var data = []
+
+cars.forEach(function (car, index. cars) {
+
+      var o = {car: car, index: index, cars: cars}
+
+      data[data.length] = o 
+})
+
+console.table(data)
+
+/*  { car: 'lambo', index: 0, cars: [ 'lambo', 'bugatti', 'ferrari' ] },
+  { car: 'bugatti', index: 1, cars: [ 'lambo', 'bugatti', 'ferrari' ] },
+  { car: 'ferrari', index: 2, cars: [ 'lambo', 'bugatti', 'ferrari' ] }
+]
+┌─────────┬───────────┬───────┬───────────────────────────────────┐
+│ (index) │ car       │ index │ cars                              │
+├─────────┼───────────┼───────┼───────────────────────────────────┤
+│ 0       │ 'lambo'   │ 0     │ [ 'lambo', 'bugatti', 'ferrari' ] │
+│ 1       │ 'bugatti' │ 1     │ [ 'lambo', 'bugatti', 'ferrari' ] │
+│ 2       │ 'ferrari' │ 2     │ [ 'lambo', 'bugatti', 'ferrari' ] │
+
+*/
+
+
+```
+
+
+
+
+
+
 ### document.querySelector()
 
 ```sh
