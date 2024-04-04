@@ -1,46 +1,47 @@
 function printDomTree() {
-    var children = document.children
-
     var tree = ''
 
-    for (var i = 0; i < children.length; i++) {
-        var child = children[0]
+    var nonSemanticTags = ['div', 'span', 'script', 'style', 'meta', 'link', 'noscript', 'path', 'rect', 'g', 'circle', 'polygon', 'iframe']
 
-        if (child.tagName !== 'DIV')
-            tree = tree + child.tagName
+        ; (function loop(elements, indent) {
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i]
 
-        var childChildren = child.children
+                var isSemantic = !nonSemanticTags.includes(element.tagName.toLowerCase())
 
-        for (var j = 0; j < childChildren.length; j++) {
-            var childChild = childChildren[j]
+                if (isSemantic)
+                    tree = tree + ' '.repeat(indent) + element.tagName + '\n'
 
-            if (childChild.tagName !== 'DIV')
-                tree = tree + '\n' + ' ' + childChild.tagName
-
-            var childChildChildren = childChild.children
-
-            for (var k = 0; k < childChildren.length; k++) {
-                var childChildChild = childChildChildren[k]
-
-                if (childChildChild.tagName !== 'DIV')
-                    tree = tree + '\n' + '  ' + childChildChild.tagName
+                loop(element.children, indent + (isSemantic ? 1 : 0))
             }
-        }
-    }
+        })(document.children, 0)
 
+    console.clear()
     console.log(tree)
 }
 
 printDomTree()
 
 /*
-HTML
- HEAD
-  META
-  META
- BODY
-  SCRIPT
-  ...
+
+hml
+ head
+  meta
+  meta
+  meta
+  title
+  link
+  script
+ body
+   header
+     h1
+     nav
+    main
+     section
+      article
+      article
+     section
+      ...
 */
 
 // HINT recursion (in js)
