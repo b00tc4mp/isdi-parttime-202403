@@ -1,3 +1,15 @@
+// function forEach(array, callback) {
+//     (function loop(i) { // IIFE & closure
+//         if (i < array.length) {
+//             var element = array[i]
+
+//             callback(element)
+
+//             loop(i + 1)
+//         }
+//     })(0)
+// }
+
 // Recrear metodo forEach
 
 function forEach(array, callback) {
