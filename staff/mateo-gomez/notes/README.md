@@ -202,6 +202,28 @@ $ git diff tema...maestro   (3)
 
 
 
+### git restore -restore working trees files
+
+```sh
+"Restaure rutas específicas en el árbol de trabajo con algunos contenidos de una fuente de restauración. Basicamente es restaurar ciertos cambios que se han realizado en un archivo, carpeta o rama hasta la versión del commit que indiques"
+
+Ejemplo: 
+$ git restore --stage staff/mateo-gomez/notes/README.md 
+
+/* Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)        
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   staff/mateo-gomez/notes/README.md */
+
+```
+
+
+
+
+
+
+
+
 
 
 
