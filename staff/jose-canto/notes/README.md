@@ -1,5 +1,10 @@
 # My Notes
 
+## Diario de Trabajo ISDICODERS [Diario LINK](https://www.notion.so/Diario-BOOTCAMP-ISDICODERS-c92377c6fcc64696bd6ff37508770e14)
+
+- *Aqui muestro mis notas en el diario de trabajo con ejemplos, comentarios, imagenes etc... todo mas detallado del día a día.*
+(¡Echa un vistazo para +INFO en el Link!)
+
 ### BASH Commands
 
 ---
