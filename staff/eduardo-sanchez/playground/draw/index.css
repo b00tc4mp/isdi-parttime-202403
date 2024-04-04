@@ -59,7 +59,6 @@
     justify-content: center;
     align-items: center;
 
-
 }
 
 .pig-pupil {
@@ -108,3 +107,23 @@
     align-items: center;
     margin-top: 10px;
     position: relative; */
+
+.matrix {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    width: 400px;
+    height: 400px;
+    gap: 2px;
+
+}
+
+.matrix-pixel {
+
+    background-color: gray;
+
+}
+
+.matrix-pixel-black {
+    background-color: black;
+}
