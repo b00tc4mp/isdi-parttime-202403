@@ -21,7 +21,7 @@ forEach(chars, function (char) { console.log(char.toUpperCase()) })
 // Expected output: "B"
 // Expected output: "C"
 
-console.log(" -- CASE print num multiply * 10 -- ")
+console.info(" -- CASE print num multiply * 10 -- ")
 
 var numbers = [10, 20, 30, 40,]
 forEach(numbers, function (num) { console.log(num * 10) })

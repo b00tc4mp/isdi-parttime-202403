@@ -1,7 +1,7 @@
 //Ejemplo Usando Metodo array forEach
 
 
-console.log(" -- CASE print chars to uppercase in console -- ")
+console.info(" -- CASE print chars to uppercase in console -- ")
 var chars = ['a', 'b', 'c'];
 
 chars.forEach(function (char) { console.log(char.toUpperCase()) });
@@ -10,7 +10,7 @@ chars.forEach(function (char) { console.log(char.toUpperCase()) });
 // Expected output: "C"
 
 
-console.log(" -- CASE print num multiply * 10 -- ")
+console.info(" -- CASE print num multiply * 10 -- ")
 var numbers = [10, 20, 30, 40]
 
 numbers.forEach(function (num) {
