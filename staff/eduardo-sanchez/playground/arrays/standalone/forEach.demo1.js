@@ -27,7 +27,7 @@ var chars = ['a', 'b', 'c']
 forEach(chars, function (element) { console.log(element.toUpperCase()) })
 
 
-/////////////////////////////
+/////////////////////////////J
 
 
 delete Array.prototype.forEach // Elminamos el metodo forEach para evitar usar el metodo.
@@ -47,11 +47,12 @@ function forEach(array, callback) {
 
 console.info(" -- CASE print chars to uppercase in console -- ")
 
-var chars = ['a', 'b', 'c'];
+var chars = ['a', 'b', 'c', 'd'];
 forEach(chars, function (char) { console.log(char.toUpperCase()) })
 // Expected output: "A"
 // Expected output: "B"
 // Expected output: "C"
+// Expected output: "D"
 
 console.info(" -- CASE print num multiply * 10 -- ")
 
