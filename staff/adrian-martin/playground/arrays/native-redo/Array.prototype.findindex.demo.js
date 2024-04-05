@@ -1,3 +1,14 @@
+delete Array.prototype.findIndex
+
+Array.prototype.findIndex = function findIndex(callback){
+
+    for(var i = 0; i < this.length; i++){
+        if(callback(this[i]))
+            return i
+    }
+    return -1
+}
+
 console.info('CASE return first element true')
 
 var num = [5, 12, 8, 130, 44];
