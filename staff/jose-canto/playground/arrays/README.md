@@ -1,6 +1,10 @@
 ## Arrays Methods
 
-En esta carpeta, vamos a recrear los principales métodos de arrays manualmente, sin utilizar los métodos integrados de JavaScript.
+- Primero haremos los metodos originales para ver su funcionamiento.
+
+- Segundo vamos a recrear los principales métodos de arrays manualmente, sin utilizar los métodos integrados de JavaScript. Tambien haremos test con console.assert()
+
+- Tercero haremos el metodo accediendo con `this.`
 
 El objetivo es comprender cómo funcionan cada uno de estos métodos por dentro, paso a paso.
 
