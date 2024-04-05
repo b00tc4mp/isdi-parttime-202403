@@ -61,23 +61,29 @@ HTML
 
 */
 
-function printDomTree(element, space) {
-  var semanticTags = ['HEADER', 'BODY', 'FOOTER', 'NAV', 'MAIN', 'ARTICLE', 'SECTION', 'ASIDE', 'DETAILS', 'FIGURE', 'MARK', 'SUMMARY', 'TIME'];
+function printDomTree() {
   var tree = "";
 
-  if (semanticTags.includes(element.tagName)) {
-    tree += element.tagName + "\n"; // Agregar etiqueta semántica al "tree" con salto de línea
-    // Agregar espacios en blanco a "tree"
-    for (var i = 0; i < space; i++) {
-      tree += " "; // Agregar espacio
+  var nonSemanticTags = ["div", "span", "script", "style", "meta", "link", "nonscript", "path", "rect"];
+
+  function loop(elements, indent) {
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+
+      // Si el elemento no está en la lista de etiquetas no semánticas, agregamos su etiqueta al árbol
+      if (!nonSemanticTags.includes(element.tagName.toLowerCase())) {
+        tree += " ".repeat(indent) + element.tagName + "\n";
+      }
+
+      // Llamamos recursivamente a la función loop para los hijos del elemento actual
+      loop(element.children, indent + 1);
     }
   }
 
-  for (var i = 0; i < element.children.length; i++) {
-    tree += printDomTree(element.children[i], space + 1); // Llamada recursiva para cada hijo
-  }
+  // Comenzamos el recorrido del árbol desde el elemento raíz del documento
+  loop(document.children, 0);
 
-  return tree;
+  console.log(tree);
 }
 
-console.log(printDomTree(document.documentElement, 0));
+printDomTree();
