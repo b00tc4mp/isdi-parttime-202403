@@ -22,10 +22,19 @@ function filter(array, callback) {
 console.info(" -- CASE filters words with length greater than 6 --");
 
 var words = ["spray", "elite", "exuberant", "destruction", "present"]
-var result = filter(words, function (word) { return word.length < 6 })
+var result = filter(words, function (word) { return word.length > 6 })
 
 console.debug(result)
+// output: [ 'exuberant', 'destruction', 'present' ]
 
+// TEST ASSERT
+
+console.assert(result[0] === "exuberant", "filter words length > 6  is exuberant")
+console.assert(result[1] === "destruction", "filter words length > 6 at index 1 is destruction")
+console.assert(result[2] === "present", "filter words length > 6 at index 2 is present")
+console.assert(result.length === 3, "result length is 3")
+
+// ----------------------------------------------------------------------
 
 console.info(" -- CASE filter products with price between min and max --")
 
@@ -78,4 +87,24 @@ var products = filter(shop, function (product) {
   return product.price >= 500 && product.price <= 1000 && product.kind === "computer";
 })
 
-console.debug(products)
+console.table(products)
+/*
+┌─────────┬─────────┬──────────────────┬────────────┬──────┬───────┐
+│ (index) │ brand   │ model            │ kind       │ year │ price │
+├─────────┼─────────┼──────────────────┼────────────┼──────┼───────┤
+│ 0       │ 'Apple' │ 'MacBook Air'    │ 'computer' │ 2023 │ 900   │
+│ 1       │ 'Asus'  │ 'Aspire'         │ 'computer' │ 2024 │ 600   │
+│ 2       │ 'Dell'  │ 'Cool Dellirius' │ 'computer' │ 2024 │ 550   │
+└─────────┴─────────┴──────────────────┴────────────┴──────┴───────┘
+*/
+
+// TEST ASSERT
+
+console.assert(products[0].brand === "Apple", "Brand is Apple")
+console.assert(products[0].model === "MacBook Air", "Model is MacBook Air")
+console.assert(products[0].kind === "computer", "Kind is computer")
+console.assert(products[0].year === 2023, "Year is 2023")
+console.assert(products[0].price === 900, "Price is 900")
+console.assert(products.length === 3, "Products length is not 3");
+
+
