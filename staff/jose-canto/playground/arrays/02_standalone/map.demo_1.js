@@ -28,3 +28,12 @@ var data = map(colors, function (color, index, colors) {
 
 console.debug(data)
 console.table(data)
+
+// TEST ASSERT
+console.assert(data[0].color === "red", "color is red")
+console.assert(data[0].index === 0, "index of color red is 0")
+console.assert(data[0].colors[0] === "red", "color of index 0 is red")
+console.assert(data[0].colors[1] === "green", "color of index 1 is green")
+console.assert(data[0].colors[2] === "blue", "color of index 2 is blue")
+console.assert(data[0].colors[3] === "yellow", "color of index 3 is yellow")
+console.assert(data.length === 4, "data length is 4")
