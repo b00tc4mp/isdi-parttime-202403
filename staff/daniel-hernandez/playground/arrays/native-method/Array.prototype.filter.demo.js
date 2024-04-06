@@ -1,4 +1,4 @@
-//CASE filter words with a lenght greater that 6
+//filter words with a length greater that 6
 var words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
 
 var result = words.filter(function(word) { return word.length > 6 });
@@ -64,3 +64,30 @@ var products = shop.filter(function (product) {
 })
 
 console.debug(products)
+
+/* total log
+[ 'exuberant', 'destruction', 'present' ]
+[
+  {
+    brand: 'Apple',
+    model: 'MacBook Air',
+    kind: 'computer',
+    year: 2023,
+    price: 950
+  },
+  {
+    brand: 'Asus',
+    model: 'Aspire',
+    kind: 'computer',
+    year: 2024,
+    price: 600
+  },
+  {
+    brand: 'Dell',
+    model: 'Cool Dellirius 2',
+    kind: 'computer',
+    year: 2024,
+    price: 550
+  }
+]
+*/

@@ -1,3 +1,4 @@
+/*
 const root = document.documentElement;
 
 const printTree = (root, range = 0) => {
@@ -22,3 +23,31 @@ const printTree = (root, range = 0) => {
 }
 
 printTree(root);
+*/
+
+//no es6 features
+function printDomTree() {
+    var tree = ''
+
+    var nonSemanticTags = ['div', 'span', 'script', 'style', 'meta', 'link', 'noscript', 'path', 'rect', 'g', 'circle']
+
+    function loop(elements, indent) {
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i]
+
+            var isSemantic = !nonSemanticTags.includes(element.tagName.toLowerCase())
+
+            if (isSemantic)
+                tree = tree + ' '.repeat(indent) + element.tagName + '\n'
+
+            loop(element.children, indent + (isSemantic ? 1 : 0))
+        }
+    }
+
+    loop(document.children, 0)
+
+    console.clear()
+    console.log(tree)
+}
+
+printDomTree()

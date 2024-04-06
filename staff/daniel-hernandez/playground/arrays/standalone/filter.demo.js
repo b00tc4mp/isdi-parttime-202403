@@ -1,4 +1,3 @@
-
 delete Array.prototype.filter
 
 function filter(array, callback){
@@ -24,7 +23,7 @@ var result = filter(words, function(word) { return word.length > 6 });
 console.log(result);
 // Expected output: Array ["exuberant", "destruction", "present"]
 
-console.info('CASE filter products with price between min and max')
+//CASE filter products with price between min and max')
 
 var shop = [
     {
@@ -110,34 +109,30 @@ console.debug(products)
 ]
 */
 
-//CASE filter animals with other arguments and group them in objects
-var animals = ['elephant', 'koala', 'kangoroo', 'chimpanzee', 'gorilla']
-var newArray = []
 
-var result = filter(animals, function (animal, index, animals) {
-    var matches = animal.includes('e')
-
-    if (matches){
-        newArray[newArray.length] = { animal: animal, index: index, animals: animals }
-    }
-
-    return matches
-})
-
-console.debug(result)
-// ['elephant', 'chimpanzee']
-console.debug(newArray)
-/*
+/* total log
+[ 'exuberant', 'destruction', 'present' ]
 [
-    {
-        animal: 'elephant',
-        index: 0,
-        animals: ['elephant', 'koala', 'kangoroo', 'chimpanzee', 'gorilla']
-    },
-    {
-        animal: 'chimpanzee',
-        index: 3,
-        animals: ['elephant', 'koala', 'kangoroo', 'chimpanzee', 'gorilla']
-    }
+  {
+    brand: 'Apple',
+    model: 'MacBook Air',
+    kind: 'computer',
+    year: 2023,
+    price: 950
+  },
+  {
+    brand: 'Asus',
+    model: 'Aspire',
+    kind: 'computer',
+    year: 2024,
+    price: 600
+  },
+  {
+    brand: 'Dell',
+    model: 'Cool Dellirius 2',
+    kind: 'computer',
+    year: 2024,
+    price: 550
+  }
 ]
 */
