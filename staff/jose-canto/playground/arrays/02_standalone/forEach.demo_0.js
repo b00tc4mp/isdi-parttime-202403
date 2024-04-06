@@ -10,7 +10,7 @@ function forEach(array, callback) {
   }
 }
 // Tenemos un array, llamamos a la función y le pasamos el array, y la función que queremos que se ejecute para cada elemento
-// ----------------------------------------------------------
+//? -------------------------------------------------------------
 
 console.info(" -- CASE print chars to uppercase in console -- ")
 
@@ -23,13 +23,13 @@ forEach(chars, function (char) {
 console.info(toUpperCase)
 // Expected output: [ 'A', 'B', 'C' ]
 
-//TEST ASSERT
+//! TEST ASSERT
 
 console.assert(toUpperCase[0] === "A", "toUpperCase a is A")
 console.assert(toUpperCase[1] === "B", "toUpperCase b is B")
 console.assert(toUpperCase[2] === "C", "toUpperCase c is C")
 
-// ----------------------------------------------------------
+//? ----------------------------------------------------------
 
 console.info(" -- CASE print num multiply * 10 -- ")
 
@@ -43,7 +43,7 @@ console.info(numBy10)
 // Expected output: [ 100, 200, 300, 400 ]
 
 
-//TEST ASSERT
+//! TEST ASSERT
 
 console.assert(numBy10[0] === 100, "(10 * 10) is 100")
 console.assert(numBy10[1] === 200, "(20 * 10) is 200")

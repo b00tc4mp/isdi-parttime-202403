@@ -23,7 +23,7 @@ var numsBy2 = map(nums, function (num) { return num * 2 })
 console.debug(nums) // [ 2, 4, 6, 8, 10 ]
 console.debug(numsBy2) // [ 4, 8, 12, 16, 20 ]
 
-// TEST ASSERT
+//! TEST ASSERT
 
 var expectedNumsBy2 = [4, 8, 12, 16, 20]
 // Verifica si los arrays convertidos en cadenas JSON son iguales y muestra un mensaje de error si no lo son.
@@ -34,7 +34,7 @@ console.assert(
   'El array devuelto no coincide con el array esperado.'
 );
 
-// ------------------------------------------------------------------------
+//? ------------------------------------------------------------------------
 
 console.info(" -- CASE names toUpperCase() --")
 var names = ["JaCk", "peTeR", "johNnY", "luNa"]
@@ -44,7 +44,7 @@ var nameToUpperCase = map(names, function (name) { return name.toUpperCase() })
 console.debug(names)
 console.debug(nameToUpperCase)
 
-// TEST ASSERT
+//! TEST ASSERT
 
 var expectedNamesToUpperCase = ['JACK', 'PETER', 'JOHNNY', 'LUNA']
 

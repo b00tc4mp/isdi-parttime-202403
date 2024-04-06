@@ -10,7 +10,7 @@ function map(array, callback) {
     var element = array[i];
     var mappedElement = callback(element, i, array)
 
-    //mapped[mapped.length] = mappedElement // almacena al final del array el elemento
+    // * mapped[mapped.length] = mappedElement // almacena al final del array el elemento
     mapped[i] = mappedElement // accede a un indice especifico, accede al indice que esta pasando en el for, lo almacena en el mismo lugar que en el indice del for.
   }
   return mapped
@@ -29,7 +29,7 @@ var data = map(colors, function (color, index, colors) {
 console.debug(data)
 console.table(data)
 
-// TEST ASSERT
+//! TEST ASSERT
 console.assert(data[0].color === "red", "color is red")
 console.assert(data[0].index === 0, "index of color red is 0")
 console.assert(data[0].colors[0] === "red", "color of index 0 is red")

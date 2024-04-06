@@ -42,7 +42,7 @@ console.table(data)
 └─────────┴───────────────┴───────┴─────────────────────────────────────────────────────────┘
 */
 
-// TEST ASSERT data[0]
+//! TEST ASSERT data[0]
 
 console.assert(data[0].car === "Lamborghini", "Car at index 0 is Lamborghini")
 console.assert(data[0].index === 0, "Index of car is 0")
