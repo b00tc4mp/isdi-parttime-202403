@@ -30,7 +30,7 @@ function printDomTree() {
 
     var nonSemanticTags = ['div', 'span', 'script', 'style', 'meta', 'link', 'noscript', 'path', 'rect', 'g', 'circle', 'polygon', 'iframe']
 
-        ; (function loop(elements, indent) {
+        ;(function loop(elements, indent) {
             for (var i = 0; i < elements.length; i++) {
                 var element = elements[i]
 
