@@ -2,7 +2,6 @@ delete Array.prototype.forEach // Elminamos el metodo forEach para evitar usar e
 
 // Recrear metodo forEach
 
-
 var cars = ["Lamborghini", "Ferrari", "Porche", "Maserati"]
 var data = []
 

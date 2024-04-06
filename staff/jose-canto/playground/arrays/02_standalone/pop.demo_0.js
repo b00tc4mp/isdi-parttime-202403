@@ -12,9 +12,10 @@ function pop(array) {
 }
 
 var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+console.log(plants)
 
 var elementDeleted = pop(plants);
-console.log(elementDeleted);
+console.debug(`Element deleted: ${elementDeleted}`);
 //* Expected output: "tomato"
 
 console.log(plants);
@@ -30,8 +31,10 @@ console.assert(plants[3] === "kale", "four element is kale")
 
 //? ----------------------------------------------------------------
 
+console.info(" --- CASE delete last element ---");
+
 var elementDeleted = pop(plants);
-console.log(elementDeleted)
+console.debug(`Element deleted: ${elementDeleted}`)
 
 console.log(plants);
 //* Expected output: Array ["broccoli", "cauliflower", "cabbage"]
