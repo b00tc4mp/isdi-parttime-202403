@@ -13,3 +13,8 @@ function printDomTree (element){
     console.log(tree)
 }
 printDomTree(children)
+
+
+
+// resultado en classe
+
