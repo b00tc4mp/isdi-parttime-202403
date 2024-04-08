@@ -2,7 +2,7 @@ console.info('CASE nums by 2')
 
 var nums = [1, 4, 9, 16];
 
-const numsBy2 = nums.map(function (num) { return num * 2} );
+var numsBy2 = nums.map(function (num) { return num * 2} );
 
 console.debug(nums) 
 

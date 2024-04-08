@@ -37,7 +37,8 @@ function indexOf(array, target, index){
 
     //si index es negativo, lo convertimos a un indice valido
     if(index < 0)
-        index = Math.max(0, array.length + index)//devuelve 0 
+        index = array.length + index;
+        if (index < 0) index = 0;
 
     for(var i = index; i < array.length; i++){ //iteramos sobre los elementos del array
         if(array[i] === target) //comparamos el elmento i del array con el target

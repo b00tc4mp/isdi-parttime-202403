@@ -5,7 +5,8 @@ Array.prototype.indexOf = function(target, index){
         index = index || 0;
     
         if(index < 0)
-            index = Math.max(0, this.length + index)
+            index = array.length + index;
+            if (index < 0) index = 0;
     
         for(var i = index; i < this.length; i++){
             if(this[i] === target)

@@ -1,3 +1,15 @@
+delete Array.prototype.every
+
+Array.prototype.every = function(callback){
+
+    for(var i = 0; i < this.length; i++){
+
+        if(!callback( this[i], i, this))
+            return false
+    }
+return true
+}
+
 console.info('CASE checking the numbers under the 40')
 
 var isBelowThreshold = function(currentValue) { return currentValue < 40;} 
