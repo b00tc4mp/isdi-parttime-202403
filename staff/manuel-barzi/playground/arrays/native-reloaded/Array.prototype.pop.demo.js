@@ -1,3 +1,11 @@
+Array.prototype.pop = function () {
+    var last = this[this.length - 1]
+
+    this.length--
+
+    return last
+}
+
 console.info('CASE extracts last plant')
 
 var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato']
