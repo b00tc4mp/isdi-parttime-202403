@@ -115,74 +115,128 @@
     background-color: white;
 }
 
-.gameboy{
+
+.game-boy {
+    position: relative;
     width: 200px;
-    height: 300px;
-    border: 1px solid black;
-    border-radius: 10%;
-    display: flex;
+    height: 350px;
     background-color: aliceblue;
-    align-items: center;
-    position: relative;
-    flex-direction: column;
+    border: 5px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.gameboy-screen{
-    margin-top: 20px;
-    width: 170px;
+.screen {
+    width: 160px;
     height: 120px;
-    border: 0.5px solid rgb(0, 0,     0);
-    border-radius: 10%;
-    background-color: silver;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.gameboy-screen-game {
-    display: flex;
-    width: 100px;
-    height: 100px;
-    background-color: greenyellow;
-    border: 0.5px solid black;
-    border-radius: 3%;
-}
-
-.gameboy-bottom{
-    position: relative;
-    margin-top: 300px;
-    
-}
-
-.gameboy-buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-
-}
-
-.gameboy-button-X{
-    height: 25px;
-    width: 25px;
+    background-color: #B0B0B0;
+    position: absolute;
+    top: 20px;
+    left: 20px;
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.screen-into{
+    width: 100px;
+    height: 120px;
+    background-color: dimgray;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    font-size: 12px;
+    color: aliceblue;
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    position: absolute;
+    margin-bottom: 100px;
+    bottom: 20px;
+    border: 2px solid #B0B0B0;
     border-radius: 50%;
-    
-
+    text-align: center; 
+    line-height: 20px;
 }
 
-.gameboy-button-settings{
-display: flex;
+.button-a {
+    right: 20px;
 }
 
-.gameboy-button-set{
-    margin-top: 100px;
-    width: 25px;
-    height: 5px;
-    border: 1px transparent ;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 40%;
-    background-color: grey;
-    transform: rotate(150deg)
+.button-b {
+    right: 50px;
+}
+
+.cross {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 130px;
+    left: 20px;
+}
+
+.cross div {
+    width: 20px;
+    height: 20px;
+    margin-top: 50px;
+    background-color: #333;
+    position: absolute;
+    border: 2px solid #B0B0B0;
+    border-radius: 50%;
+}
+
+.cross div:nth-child(1) {
+    top: 0;
+    left: 20px;
+}
+
+.cross div:nth-child(2) {
+    top: 20px;
+    left: 0;
+}
+
+.cross div:nth-child(3) {
+    top: 20px;
+    left: 40px;
+}
+
+.cross div:nth-child(4) {
+    top: 40px;
+    left: 20px;
+}
+
+.buttons-botton {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+}
+
+.button-L,
+.button-R {
+    font-size: 12px;
+    color: aliceblue;
+    width: 20px;
+    height: 10px;
+    background-color: #333;
+    border: 2px solid #B0B0B0;
+    border-radius: 50%;
+    margin: 20px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.button-L {
+    margin-right: 50px;
+}
+
+.button-R {
+    margin-left: 50px;
 }
