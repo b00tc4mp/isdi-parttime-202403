@@ -1,4 +1,4 @@
-// CASE print chars to uppercase in console
+console.info ('CASE print chars to uppercase in console')
 
 var chars = ["a", "b", "c"];
 

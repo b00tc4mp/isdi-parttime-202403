@@ -20,6 +20,7 @@ h2 {
 }
 
 footer {
+  margin-top: 70px;
   font-family: Raleway;
 }
 
@@ -445,7 +446,7 @@ footer {
   width: 50px;
   height: 70px;
   margin-left: 75px;
-  margin-top: 349px;
+  margin-top: 280px;
   border: inset
 }
 

@@ -1,3 +1,5 @@
+//delete Array.prototype.map;
+
 function map(array, callback) {
   // TODO implement me (without using any Array.prototype method)
 

@@ -1,3 +1,5 @@
+//delete Array.prototype.forEach;
+
 // function forEach(array, callback) {
 //     (function loop(i) { // IIFE & closure
 //         if (i < array.length) {
