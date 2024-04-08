@@ -1,6 +1,6 @@
 delete Array.prototype.join
 
-// Recrear metodo forEach
+// Recrear metodo join
 
 function join(array, separator) {
 
