@@ -155,7 +155,7 @@
     color: aliceblue;
     width: 20px;
     height: 20px;
-    background-color: #333;
+    background-color: dimgray;
     position: absolute;
     margin-bottom: 100px;
     bottom: 20px;
@@ -185,7 +185,7 @@
     width: 20px;
     height: 20px;
     margin-top: 50px;
-    background-color: #333;
+    background-color: Grey;
     position: absolute;
     border: 2px solid #B0B0B0;
     border-radius: 50%;
@@ -225,7 +225,7 @@
     color: aliceblue;
     width: 20px;
     height: 10px;
-    background-color: #333;
+    background-color: Grey;
     border: 2px solid #B0B0B0;
     border-radius: 50%;
     margin: 20px;
@@ -239,4 +239,91 @@
 
 .button-R {
     margin-left: 50px;
+}
+
+.dog-head {
+    width: 200px;
+    height: 200px;
+    
+}
+
+.dog-face{
+    margin-top: -25px;
+    border-radius: 50%;
+    background-color: tan;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.dog-ears{
+display: flex;
+justify-content: space-between; 
+}
+
+.dog-ear{
+    display: flex;
+    width: 0;
+    height: 0;
+    border: 30px solid transparent;
+    border-top: 0;
+    border-bottom: 50px solid sienna;
+    border-radius:30%;
+}
+
+.dog-ear-d {
+    transform: rotate(-30deg);
+}
+
+.dog-ear-i {
+    transform: rotate(30deg);
+}
+
+.dog-eyes{
+    display: flex;
+}
+
+.dog-eye{
+    margin-top: 20px;
+    border-radius: 50%;
+    width: 25px;
+    height: 35px;
+    background-color: black;
+    margin-right: 15px;
+    margin-left: 15px;
+    z-index: 2; 
+}
+
+.dog-stain{
+
+    width: 70px;
+    height: 90px;
+    background-color: sienna;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.dog-nose{
+    width: 0;
+    height: 0;
+    border: 25px solid transparent;
+    border-top: 0;
+    border-bottom: 30px solid black;
+    border-radius:50%;
+    transform: rotate(180deg);
+}
+
+.dog-mouth{
+    width: 90px;
+    height: 30%;
+    background-color: black;
+    border-radius:50%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
