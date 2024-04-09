@@ -26,7 +26,7 @@ var data = []
 
 var filteredAnimals = animals.filter(function (animal, index, animals) {
 
-    var choosenAnimal = (animal.startsWith("e") || animal.endsWith("e"))
+    var choosenAnimal = animal.startsWith("e") || animal.endsWith("e")
 
     if (choosenAnimal)
 
