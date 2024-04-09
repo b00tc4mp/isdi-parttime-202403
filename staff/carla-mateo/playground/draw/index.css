@@ -84,6 +84,15 @@ body{
     border-radius: 70%;
 } 
 
+.pig-noise {
+    background-color: rgb(200, 56, 133);
+    width: 30px;
+    height: 15px;
+    border-radius: 70%;
+    display: flex;
+
+}
+
 .puppy {
     border: 1px solid black;
 }
