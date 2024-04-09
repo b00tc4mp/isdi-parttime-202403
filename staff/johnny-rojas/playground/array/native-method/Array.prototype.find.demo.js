@@ -1,6 +1,7 @@
-const nums = [5, 12, 8, 130, 44]
+var nums = [5, 12, 8, 130, 44];
 
-const found = find((nums, funtcion(element[, index[, array]])[, thisArg]))
+var found = find(nums, function (element) {
+  return element > 10;
+});
 
-console.log(found)
-// Expected output: 12
+console.log(found);

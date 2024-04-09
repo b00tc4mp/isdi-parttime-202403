@@ -1,6 +1,6 @@
-const isBelowThreshold = (currentValue) => currentValue < 40;
+var numbers = [1, 30, 39, 29, 10, 13]
 
-const array1 = [1, 30, 39, 29, 10, 13];
+var isBelowThreshold = every(numbers, function(currentValue) { currentValue< 40})
 
-console.log(array1.every(isBelowThreshold));
+console.log(numbers.every(isBelowThreshold))
 // Expected output: true
