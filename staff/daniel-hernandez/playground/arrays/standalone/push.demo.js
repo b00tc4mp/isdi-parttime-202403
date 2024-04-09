@@ -4,42 +4,42 @@ delete Array.prototype.concat;
 // * node breaks if it doesnt have push
 
 //call push as a function VVV
-var push = function(arr) {
-    var args = [];
+var push = function (arr) {
+  var args = [];
 
-    for(var i = 1; i < arguments.length; i++){
-      args[args.length] = arguments[i];
-    }
-    
-    for(var k = 0; k < args.length; k++){
-      arr[arr.length] = args[k];
-    }
+  for (var i = 1; i < arguments.length; i++) {
+    args[args.length] = arguments[i];
+  }
 
-    return arr.length;
+  for (var k = 0; k < args.length; k++) {
+    arr[arr.length] = args[k];
+  }
+
+  return arr.length;
 }
 
 //case VV
-var animals = ['pigs', 'goats', 'sheep'];
+var animals = [ 'pigs', 'goats', 'sheep' ];
 var count = push(animals, 'cows');
 console.log(count);
 // Expected output: 4
 console.log(animals);
-// Expected output: ["pigs", "goats", "sheep", "cows"]
+// Expected output: ['pigs', 'goats', 'sheep', 'cows']
 
 push(animals, 'chickens', 'cats', 'dogs');
 console.log(animals);
-// Expected output: ["pigs", "goats", "sheep", "cows", "chickens", "cats", "dogs"]
+// Expected output: ['pigs', 'goats', 'sheep', 'cows', 'chickens', 'cats', 'dogs']
 
 
 //case V
 var arr = [ 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10 ];
-console.log(push(arr, 11, 12, [13, 14]));
+console.log(push(arr, 11, 12, [ 13, 14 ]));
 //expected output 13
 console.log(arr);
 //expected output [ 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10, 11, 12, [ 13, 14 ] ]
 
 //another case V
-var arr1 = ['pigs', 'goats', 'sheep'];
+var arr1 = [ 'pigs', 'goats', 'sheep' ];
 console.log(push(arr1, 'cows'));
 //expected output 4
 console.log(arr1);

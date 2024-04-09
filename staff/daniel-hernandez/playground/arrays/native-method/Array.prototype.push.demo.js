@@ -1,4 +1,4 @@
-var animals = ['pigs', 'goats', 'sheep'];
+var animals = [ 'pigs', 'goats', 'sheep' ];
 var count = animals.push('cows');
 console.log(count);
 // Expected output: 4
@@ -18,7 +18,7 @@ console.log(arr);
 //expected output [ 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10, 11, 12, [ 13, 14 ] ]
 
 //another case V
-var arr1 = ['pigs', 'goats', 'sheep'];
+var arr1 = [ 'pigs', 'goats', 'sheep' ];
 console.log(arr1.push('cows'));
 //expected output 4
 console.log(arr1);

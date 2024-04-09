@@ -4,21 +4,21 @@ delete Array.prototype.concat;
 // * node breaks if it doesnt have push
 
 // call flat as a function VVV
-var flat = function(arr, depth) {
-    var newArray = [];
+var flat = function (arr, depth) {
+  var newArray = [];
 
-    for(var i = 0; i < arr.length; i++){ 
-        if(Array.isArray(arr[i]) && depth > 0){
-            var nestedArray = flat(arr[i], depth -1 );
-            for(var j = 0; j < nestedArray.length; j++){
-                newArray[newArray.length] = nestedArray[j];
-            }
-        } else {
-            newArray[newArray.length] = arr[i];
-        }
+  for (var i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i]) && depth > 0) {
+      var nestedArray = flat(arr[i], depth - 1);
+      for (var j = 0; j < nestedArray.length; j++) {
+        newArray[newArray.length] = nestedArray[j];
+      }
+    } else {
+      newArray[newArray.length] = arr[i];
     }
+  }
 
-    return newArray;
+  return newArray;
 };
 
 // case V

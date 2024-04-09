@@ -1,13 +1,13 @@
 
 //tests
-var array1 = [1, 2, 3];
+var array1 = [ 1, 2, 3 ];
 var firstElement = array1.shift();
 console.log(array1);
 // Expected output: [ 2, 3 ]
 console.log(firstElement);
 // Expected output: 1
 
-var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+var plants = [ 'broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato' ];
 console.log(plants.shift());
 // Expected output: "broccoli"
 console.log(plants);

@@ -1,22 +1,22 @@
 delete Array.prototype.unshift;
 
-Array.prototype.unshift = function() {
-    var args = [];
-    for(let i = 0; i < arguments.length; i++){
-        args[args.length] = arguments[i];
-    }
-    for(j = this.length - 1; j >= 0; j--){
-        this[j + args.length] = this[j];
-    }
-    for(var k = 0; k < args.length; k++) {
-        this[k] = args[k];
-    }
+Array.prototype.unshift = function () {
+  var args = [];
+  for (let i = 0; i < arguments.length; i++) {
+    args[args.length] = arguments[i];
+  }
+  for (j = this.length - 1; j >= 0; j--) {
+    this[j + args.length] = this[j];
+  }
+  for (var k = 0; k < args.length; k++) {
+    this[k] = args[k];
+  }
 
-    return this.length;
+  return this.length;
 }
 
 //tests
-var animals = ['pigs', 'goats', 'sheep'];
+var animals = [ 'pigs', 'goats', 'sheep' ];
 var count = animals.unshift('cows');
 console.log(count);
 // Expected output: 4
@@ -25,7 +25,7 @@ console.log(animals);
 
 animals.unshift('chickens', 'cats', 'dogs');
 console.log(animals);
-// Expected output: [ "chickens", "cats", "dogs", "cows", "pigs", "goats", "sheep" ]
+// Expected output: [ 'chickens', 'cats', 'dogs', 'cows', 'pigs', 'goats', 'sheep' ]
 
 
 //case V
@@ -36,7 +36,7 @@ console.log(arr);
 //expected output [ 11, 12, [ 13, 14 ], 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10 ]
 
 //another case V
-var arr1 = ['pigs', 'goats', 'sheep'];
+var arr1 = [ 'pigs', 'goats', 'sheep' ];
 console.log(arr1.unshift('cows'));
 //expected output 4
 console.log(arr1);

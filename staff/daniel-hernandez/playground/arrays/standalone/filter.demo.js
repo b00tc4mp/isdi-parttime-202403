@@ -1,22 +1,22 @@
 delete Array.prototype.filter
 
-function filter(array, callback){
+function filter(array, callback) {
     var newArray = [];
 
-    for(var i = 0; i < array.length; i++){
+    for (var i = 0; i < array.length; i++) {
         var element = array[i];
 
-        var matches = callback(element, i , array);
+        var matches = callback(element, i, array);
 
-        if(matches){
-            newArray[newArray.length] = element
+        if (matches) {
+            newArray[newArray.length] = element;
         }
     }
     return newArray;
 }
 
 //CASE filter words with a lenght greater that 6
-var words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+var words = [ 'spray', 'elite', 'exuberant', 'destruction', 'present' ];
 
 var result = filter(words, function(word) { return word.length > 6 });
 
@@ -78,11 +78,11 @@ var shop = [
 ]
 
 var products = filter(shop, function (product) {
-    return product.price >= 500 && product.price <= 1000 && product.kind === 'computer'
+    return product.price >= 500 && product.price <= 1000 && product.kind === 'computer';
 })
 
 
-console.debug(products)
+console.debug(products);
 /*
 [
     {

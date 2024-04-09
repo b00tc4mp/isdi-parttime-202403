@@ -1,13 +1,13 @@
 //delete Array.prototype.pop;
 
-Array.prototype.pop = function() {
-    var popped = this[this.length -1];
-    this.length = this.length -1;
-    
+Array.prototype.pop = function () {
+    var popped = this[this.length - 1];
+    this.length--;
+
     return popped;
 }
 
-var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+var plants = [ 'broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato' ];
 console.log(plants.pop());
 // Expected output: "tomato"
 console.log(plants);
@@ -23,7 +23,7 @@ console.log(arr.pop());
 console.log(arr);
 // expected output [ 0, 1, 2, 3 ]
 arr.pop();
-console.log(arr)
+console.log(arr);
 // expected output [ 0, 1, 2 ]
 
 /* 

@@ -1,5 +1,5 @@
 //tests
-var animals = ['pigs', 'goats', 'sheep'];
+var animals = [ 'pigs', 'goats', 'sheep' ];
 var count = animals.unshift('cows');
 console.log(count);
 // Expected output: 4
@@ -13,7 +13,7 @@ console.log(animals);
 
 //case V
 var arr = [ 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10 ];
-console.log(arr.unshift(11, 12, [13, 14]));
+console.log(arr.unshift(11, 12, [ 13, 14 ]));
 //expected output 13
 console.log(arr);
 //expected output [ 11, 12, [ 13, 14 ], 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10 ]
@@ -37,8 +37,8 @@ console.log(arr2);
 //expected output [ 1, 2, 3 ]
 
 //another case V
-var arr3 = [ [ 1, 2, 3 ], [ 4 , 5, 6 ] ];
-console.log(arr3.unshift({ 1: 2, 3: 4, 5: 6, a: [ 7, 8, 9 ] } )); //unshift a object
+var arr3 = [ [ 1, 2, 3 ], [ 4, 5, 6 ] ];
+console.log(arr3.unshift({ 1: 2, 3: 4, 5: 6, a: [ 7, 8, 9 ] })); //unshift a object
 //expected output 3
 console.log(arr3);
 //expected output [ { '1': 2, '3': 4, '5': 6, a: [ 7, 8, 9 ] }, [ 1, 2, 3 ], [ 4, 5, 6 ] ]

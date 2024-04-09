@@ -1,7 +1,7 @@
 //filter words with a length greater that 6
-var words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+var words = [ 'spray', 'elite', 'exuberant', 'destruction', 'present' ];
 
-var result = words.filter(function(word) { return word.length > 6 });
+var result = words.filter(function (word) { return word.length > 6 });
 
 console.log(result);
 // Expected output: Array ["exuberant", "destruction", "present"]

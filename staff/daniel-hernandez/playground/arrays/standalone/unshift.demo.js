@@ -17,7 +17,7 @@ var unshift = function (arr) {
 }
 
 //tests
-var animals = ['pigs', 'goats', 'sheep'];
+var animals = [ 'pigs', 'goats', 'sheep' ];
 var count = unshift(animals, 'cows');
 console.log(count);
 // Expected output: 4
@@ -31,13 +31,13 @@ console.log(animals);
 
 //case V
 var arr = [ 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10 ];
-console.log(unshift(arr, 11, 12, [13, 14]));
+console.log(unshift(arr, 11, 12, [ 13, 14 ]));
 //expected output 13
 console.log(arr);
 //expected output [ 11, 12, [ 13, 14 ], 1, 2, 3, 4, 5, [ 6 ], 7, 8, 9, 10 ]
 
 //another case V
-var arr1 = ['pigs', 'goats', 'sheep'];
+var arr1 = [ 'pigs', 'goats', 'sheep' ];
 console.log(unshift(arr1, 'cows'));
 //expected output 4
 console.log(arr1);

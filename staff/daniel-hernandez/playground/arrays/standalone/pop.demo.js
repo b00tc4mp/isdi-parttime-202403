@@ -7,14 +7,14 @@ delete Array.prototype.slice;
 
 
 //call pop as a function VVV
-var pop = function(arr) {
+var pop = function (arr) {
     var popped = arr[arr.length - 1];
-    arr.length = arr.length - 1;
+    arr.length--;
 
     return popped;
 }
 
-var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+var plants = [ 'broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato' ];
 console.log(pop(plants));
 // Expected output: tomato
 console.log(plants);
@@ -30,7 +30,7 @@ console.log(pop(arr));
 console.log(arr);
 // expected output [ 0, 1, 2, 3 ]
 pop(arr);
-console.log(arr)
+console.log(arr);
 // expected output [ 0, 1, 2 ]
 
 /* 

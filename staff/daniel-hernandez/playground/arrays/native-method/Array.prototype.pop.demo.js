@@ -1,4 +1,4 @@
-var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+var plants = [ 'broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato' ];
 
 console.log(plants.pop());
 // Expected output: "tomato"

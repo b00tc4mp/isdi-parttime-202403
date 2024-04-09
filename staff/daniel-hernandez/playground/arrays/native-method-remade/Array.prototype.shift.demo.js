@@ -1,14 +1,14 @@
 delete Array.prototype.shift;
 
-Array.prototype.shift = function() {
+Array.prototype.shift = function () {
     var firstElem = this[0];
     var newArr = [];
 
-    for(var i = 1; i < this.length; i++){
+    for (var i = 1; i < this.length; i++) {
         newArr[newArr.length] = this[i];
     }
 
-    for(var k = 0; k < newArr.length; k++){
+    for (var k = 0; k < newArr.length; k++) {
         this[k] = newArr[k];
     }
     this.length = newArr.length;
@@ -19,14 +19,14 @@ Array.prototype.shift = function() {
 
 
 //tests
-var array1 = [1, 2, 3];
+var array1 = [ 1, 2, 3 ];
 var firstElement = array1.shift();
 console.log(array1);
 // Expected output: [ 2, 3 ]
 console.log(firstElement);
 // Expected output: 1
 
-var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+var plants = [ 'broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato' ];
 console.log(plants.shift());
 // Expected output: "broccoli"
 console.log(plants);
@@ -42,7 +42,7 @@ console.log(arr.shift());
 console.log(arr);
 // expected output [ 1, 2, 3, 4 ]
 arr.shift();
-console.log(arr)
+console.log(arr);
 // expected output [ 2, 3, 4 ]
 
 /* total expected output

@@ -1,30 +1,30 @@
 delete Array.prototype.forEach;
 
-Array.prototype.forEach = function(callback) {
-    for(var i = 0; i < this.length; i++){
+Array.prototype.forEach = function (callback) {
+    for (var i = 0; i < this.length; i++) {
         callback(this[i], i, this);
     }
-};
+}
 
 
 //print chars to uppercase in console
-var chars = ['a', 'b', 'c']
+var chars = [ 'a', 'b', 'c' ];
 chars.forEach(function (element) { console.log(element.toUpperCase()) })
 // A
 // B
 // C
 
 //create a object for each index
-var cars = ['lambo', 'bugatti', 'ferrari']
-var data = []
+var cars = [ 'lambo', 'bugatti', 'ferrari' ];
+var data = [];
 cars.forEach(function (car, index, cars) {
-    var o = { car: car, index: index, cars: cars }
+    var o = { car: car, index: index, cars: cars };
 
-    data[data.length] = o
+    data[data.length] = o;
 })
 
-console.debug(data)
-console.table(data)
+console.debug(data);
+console.table(data);
 
 /* total output
 A
