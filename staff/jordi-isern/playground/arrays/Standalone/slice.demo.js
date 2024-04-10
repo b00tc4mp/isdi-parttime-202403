@@ -4,6 +4,8 @@ function slice(array,start,end){
     var sliced = []
     if(start === undefined && end === undefined){
         sliced = array
+
+        //incorrecto
     }
     
     if(end === undefined){
