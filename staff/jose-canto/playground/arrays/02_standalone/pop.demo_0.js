@@ -4,11 +4,12 @@ console.info(" --- CASE delete last element ---");
 
 function pop(array) {
 
-  var lastElement = array[array.length - 1]
+  var extractlastElement = array[array.length - 1]
 
   array.length = array.length - 1
+  //array.length--
 
-  return lastElement
+  return extractlastElement
 }
 
 var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
