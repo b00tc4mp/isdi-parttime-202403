@@ -1,61 +1,15 @@
 delete Array.prototype.slice
 
 function slice(array, start, end) {
-    var sliced = []
+    var sliced = [], from, to
 
-    if (end === undefined) {
-        if (start > 0) {
-            for (var i = start; i < array.length; i++) {
-                var element = array[i]
+    from = start === undefined ? 0 : (start < 0 ? array.length + start : start)
+    to = end === undefined ? array.length : (end < 0 ? array.length + end : end)
 
-                sliced[sliced.length] = element
-            }
-        } else if (start < 0) {
-            var fromIndex = array.length + start
+    for (var i = from; i < to; i++) {
+        var element = array[i]
 
-            for (var i = fromIndex; i < array.length; i++) {
-                var element = array[i]
-
-                sliced[sliced.length] = element
-            }
-        }
-    } else {
-        if (start >= 0) {
-            if (end > 0) {
-                for (var i = start; i < end; i++) {
-                    var element = array[i]
-
-                    sliced[sliced.length] = element
-                }
-            } else if (end < 0) {
-                var toIndex = array.length + end
-
-                for (var i = start; i < toIndex; i++) {
-                    var element = array[i]
-
-                    sliced[sliced.length] = element
-                }
-            }
-        } else {
-            if (end < 0) {
-                var fromIndex = array.length + start
-                var toIndex = array.length + end
-
-                for (var i = fromIndex; i < toIndex; i++) {
-                    var element = array[i]
-
-                    sliced[sliced.length] = element
-                }
-            } else if (end > 0) {
-                var fromIndex = array.length + start
-
-                for (var i = fromIndex; i < end; i++) {
-                    var element = array[i]
-
-                    sliced[sliced.length] = element
-                }
-            }
-        }
+        sliced[sliced.length] = element
     }
 
     return sliced
@@ -277,3 +231,25 @@ console.assert(animals[1] === 'bison', 'animals at 1 is bison')
 console.assert(animals[2] === 'camel', 'animals at 2 is camel')
 console.assert(animals[3] === 'duck', 'animals at 3 is duck')
 console.assert(animals[4] === 'elephant', 'animals at 4 is elephant')
+
+console.info('CASE extract a copy of animals')
+
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+var result = slice(animals)
+
+console.assert(result.length === 5, 'result length is 5')
+console.assert(result[0] === 'ant', 'result at 0 is ant')
+console.assert(result[1] === 'bison', 'result at 1 is bison')
+console.assert(result[2] === 'camel', 'result at 2 is camel')
+console.assert(result[3] === 'duck', 'result at 3 is duck')
+console.assert(result[4] === 'elephant', 'result at 4 is elephant')
+
+console.assert(animals.length === 5, 'animals length is 5')
+console.assert(animals[0] === 'ant', 'animals at 0 is ant')
+console.assert(animals[1] === 'bison', 'animals at 1 is bison')
+console.assert(animals[2] === 'camel', 'animals at 2 is camel')
+console.assert(animals[3] === 'duck', 'animals at 3 is duck')
+console.assert(animals[4] === 'elephant', 'animals at 4 is elephant')
+
+console.assert(result !== animals, 'result is not the same instance as animals (different references)')

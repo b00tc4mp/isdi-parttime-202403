@@ -1,3 +1,18 @@
+Array.prototype.slice = function (start, end) {
+    var sliced = [], from, to
+
+    from = start === undefined ? 0 : (start < 0 ? this.length + start : start)
+    to = end === undefined ? this.length : (end < 0 ? this.length + end : end)
+
+    for (var i = from; i < to; i++) {
+        var element = this[i]
+
+        sliced[sliced.length] = element
+    }
+
+    return sliced
+}
+
 console.info('CASE extract 3 animals from index 2')
 
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
