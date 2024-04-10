@@ -242,13 +242,14 @@
 }
 
 .dog-head {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 190px;
+
     
 }
 
 .dog-face{
-    margin-top: -25px;
+    margin-top: -40px;
     border-radius: 50%;
     background-color: tan;
     width: 100%;
@@ -263,8 +264,13 @@
 }
 
 .dog-ears{
-display: flex;
-justify-content: space-between; 
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 20px;
+    gap: 20px;
+    margin-left: 20px;
+    
 }
 
 .dog-ear{
@@ -273,7 +279,7 @@ justify-content: space-between;
     height: 0;
     border: 30px solid transparent;
     border-top: 0;
-    border-bottom: 50px solid sienna;
+    border-bottom: 90px solid sienna;
     border-radius:30%;
 }
 
@@ -297,16 +303,15 @@ justify-content: space-between;
     background-color: black;
     margin-right: 15px;
     margin-left: 15px;
-    z-index: 2; 
+    z-index: 1; 
 }
 
 .dog-stain{
-
     width: 70px;
     height: 90px;
     background-color: sienna;
     border-radius: 50%;
-    z-index: 1;
+    z-index: 2;
 }
 
 .dog-nose{
