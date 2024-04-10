@@ -1,4 +1,4 @@
-//delete Array.prototype.push
+// //delete Array.prototype.push
 
 
 function push(array, element) {
@@ -54,4 +54,9 @@ var farmAnimals = ['pigs', 'goats', 'sheep', 'cows'];
 var allAnimals = push(animals, farmAnimals);
 
 console.debug(allAnimals);
+// 9
+
 console.debug(animals);
+
+// Expected output: Array ['lion', 'tiger','turtle', 'monkey','eagle', 'pigs', 'goats','sheep', 'cows']
+

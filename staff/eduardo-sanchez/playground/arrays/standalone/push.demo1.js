@@ -84,3 +84,25 @@ console.debug(count)
 
 console.debug(animals)
 // ['pigs', 'goats', 'sheep', 'cows']
+
+console.log('------------------\nMi Forma')
+
+function push(array) {
+    for (var i = 1; i < arguments.length; i++) {
+        var element = arguments[i];
+        array[array.length] = element;
+    }
+    return array.length;
+}
+
+var animals = ['lion', 'tiger', 'turtle', 'monkey', 'eagle'];
+var farmAnimals = ['pigs', 'goats', 'sheep', 'cows'];
+
+var allAnimals = push(animals, 'pigs', 'goats', 'sheep');
+
+console.debug(allAnimals);
+// 8
+console.debug(animals);
+// Expected output: Array ['lion', 'tiger', 'turtle', 'monkey', 'eagle', 'pigs', 'goats', 'sheep']
+
+
