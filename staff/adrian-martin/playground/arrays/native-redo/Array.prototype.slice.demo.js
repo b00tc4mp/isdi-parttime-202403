@@ -1,3 +1,54 @@
+delete Array.prototype.slice
+
+Array.prototype.slice = function(start, end){
+
+    var sliced = []
+
+    if(end === undefined){
+
+        if(start > 0){
+    
+            for(var i = start; i < this.length; i++){
+                var element = this[i]
+    
+                sliced[sliced.length] = element
+            }
+    
+        }else if(start < 0){
+    
+            var fromIndex = this.length + start
+    
+            for(var i = fromIndex; i < this.length; i++){
+                var element = this[i]
+    
+                sliced[sliced.length] = element
+            }
+        }
+        
+    }else{
+
+        if(end > 0){
+
+            for(var i = start; i < end; i++){
+                var element = this[i]
+    
+                sliced[sliced.length] = element
+            }
+
+        }else if(end < 0){
+
+            var toIndex = this.length + end
+
+            for(var i = start; i < toIndex; i++){
+                var element = this[i]
+
+                sliced[sliced.length] = element
+            }
+        }
+    }
+    return sliced      
+}
+
 console.info('CASE extract 3 animals from index 2')
 
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant', ];
@@ -139,6 +190,7 @@ console.assert(animals[1] === 'bison', ' animal at 1 is bison')
 console.assert(animals[2] === 'camel', ' animal at 2 is camel')
 console.assert(animals[3] === 'duck', ' animal at 3 is duck')
 console.assert(animals[4] === 'elephant', ' animal at 4 is elephant')
+
 
 
 
