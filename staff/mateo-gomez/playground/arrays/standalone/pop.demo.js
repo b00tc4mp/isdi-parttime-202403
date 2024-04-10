@@ -1,4 +1,4 @@
-delete Array.prototype.pop
+//delete Array.prototype.pop
 
 function pop(array) {
     var last = array[array.length -1 ]
