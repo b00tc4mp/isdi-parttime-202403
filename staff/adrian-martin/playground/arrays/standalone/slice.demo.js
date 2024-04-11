@@ -1,52 +1,17 @@
 delete Array.prototype.slice
 
-function slice(array, start, end){
+function slice(array, start, end) {
+    var sliced = [], from, to
 
-    var sliced = []
+    from = start === undefined? 0 : (start < 0 ? array.length + start : start)
+    to = end === undefined ? array.length : (end < 0 ? array.length + end: end)
 
-    if(end === undefined){
+    for (var i = from; i < to; i++) {
+        var element = array[i]
 
-        if(start > 0){
-    
-            for(var i = start; i < array.length; i++){
-                var element = array[i]
-    
-                sliced[sliced.length] = element
-            }
-    
-        }else if(start < 0){
-    
-            var fromIndex = array.length + start
-    
-            for(var i = fromIndex; i < array.length; i++){
-                var element = array[i]
-    
-                sliced[sliced.length] = element
-            }
-        }
-        
-    }else{
-
-        if(end > 0){
-
-            for(var i = start; i < end; i++){
-                var element = array[i]
-    
-                sliced[sliced.length] = element
-            }
-
-        }else if(end < 0){
-
-            var toIndex = array.length + end
-
-            for(var i = start; toIndex; i++){
-                var element = array[i]
-
-                sliced[slice.length] = element
-            }
-        }
+        sliced[sliced.length] = element
     }
-    return sliced      
+    return sliced
 }
 
 console.info('CASE extract 3 animals from index 2')
