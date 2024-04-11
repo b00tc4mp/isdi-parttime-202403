@@ -13,7 +13,7 @@ function splice(array, start, deletecount, item1) {
         for (var i = array.length; i>start; i--) {
                 array[i] = array[i-1]
         }
-
+        array[start] = item1
         return []
     }else if (deletecount === 1) {
         //array --> ['Jan', 'March', 'April', 'June']
@@ -21,7 +21,7 @@ function splice(array, start, deletecount, item1) {
         //deletecount --> 1
         //item --> 'May'
         var extracted = array[start]
-        
+
 
     }
 }   

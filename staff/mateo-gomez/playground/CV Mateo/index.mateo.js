@@ -85,6 +85,7 @@ document.body.appendChild(certificationPrograms2)
 var studiesTitle = document.createElement("h2")
 studiesTitle.innerText = "Estudios"
 document.body.appendChild(studiesTitle)
+studiesTitle.style.alignItems
 
 var studiesList = document.createElement("ol")
 document.body.appendChild(studiesList)
@@ -141,6 +142,6 @@ experiencesList.appendChild(experienceItem2)
 var experienceItem3 = document.createElement("li")
 experienceItem3.innerText = "Heladero (/'Heladería La IBENSE /', 2023)"
 
-ddocument.body.appendChild(experienceItem3)
+document.body.appendChild(experienceItem3)
 
 

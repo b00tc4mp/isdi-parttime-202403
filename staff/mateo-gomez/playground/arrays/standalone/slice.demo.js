@@ -100,7 +100,7 @@ console.info('CASE extract animals from index 2')
 
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant', 'cocodrile', 'snake']
 
-var result = animals.slice(3)
+//var result = animals.slice(3)
 console.log(result)
 
 console.assert(result.length === 4, 'result length is 4')
