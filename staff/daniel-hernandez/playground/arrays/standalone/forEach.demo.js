@@ -8,23 +8,33 @@ function forEach(array, callback) {
     }
 }
 
-// CASE print chars to uppercase in console
+//print chars to uppercase in console
 var chars = [ 'a', 'b', 'c' ];
+var expectedOutput = ['A', 'B', 'C'];
+forEach(chars, function (element, index) { 
+    //console.log(element.toUpperCase());
 
-forEach(chars, function (index) { console.log(index.toUpperCase()) })
+    console.assert(element.toUpperCase() === expectedOutput[index], "char should be uppercase");
+})
+// A
+// B
+// C
 
-// CASE create a object for each index with the iteration args
-var cars = [ 'lambo', 'bugatti', 'ferrari' ]
-var newArray = [];
+//create a object for each index
+var cars = [ 'lambo', 'bugatti', 'ferrari' ];
+var data = [];
+forEach(cars, function (car, index, cars) {
+    var o = { car: car, index: index, cars: cars };
 
-forEach(cars, function(car, index, cars) {
-    var obj = { car: car, index: index, cars: cars };
+    data[data.length] = o;
+})
 
-    newArray[newArray.length] = obj;
-});
+console.assert(data.length === 3, "data length should be 3");
+console.assert(data[0].car === 'lambo', "first car should be 'lambo'");
+console.assert(data[1].index === 1, "second index should be 1");
 
-console.debug(newArray);
-console.table(newArray);
+//console.debug(data);
+//console.table(data);
 
 /* total output
 A

@@ -1,25 +1,30 @@
-// CASE print chars to uppercase in console
+//print chars to uppercase in console
+var chars = [ 'a', 'b', 'c' ];
+var expectedOutput = ['A', 'B', 'C'];
+chars.forEach(function (element, index) { 
+    //console.log(element.toUpperCase());
 
-var chars = [ 'a', 'b', 'c' ]
-
-chars.forEach(function (element) { console.log(element.toUpperCase()) })
+    console.assert(element.toUpperCase() === expectedOutput[index], "char should be uppercase");
+})
 // A
 // B
 // C
 
-//CASE create a object for each index
-var cars = [ 'lambo', 'bugatti', 'ferrari' ]
-
-var data = []
-
+//create a object for each index
+var cars = [ 'lambo', 'bugatti', 'ferrari' ];
+var data = [];
 cars.forEach(function (car, index, cars) {
-  var o = { car: car, index: index, cars: cars }
+    var o = { car: car, index: index, cars: cars };
 
-  data[data.length] = o
+    data[data.length] = o;
 })
 
-console.debug(data)
-console.table(data)
+console.assert(data.length === 3, "data length should be 3");
+console.assert(data[0].car === 'lambo', "first car should be 'lambo'");
+console.assert(data[1].index === 1, "second index should be 1");
+
+//console.debug(data);
+//console.table(data);
 
 /* total output
 A

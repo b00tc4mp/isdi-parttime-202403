@@ -1,25 +1,12 @@
 delete Array.prototype.slice;
 
 Array.prototype.slice = function (start, end) {
-    var slicedArr = [];
+    var slicedArr = [], starty, endy;
 
-    if (start === undefined && end === undefined) {
-        return this;
-    }
+    starty = start === undefined ? 0 : (start < 0 ? Math.max(this.length + start, 0) : start);
+    endy = end === undefined ? this.length : (end < 0 ? this.length + end : end);
 
-    if (start < 0) {
-        start = Math.max(this.length + start);
-    }
-
-    if (!end) {
-        end = this.length;
-    }
-
-    if (end < 0) {
-        end = Math.max(this.length + end, 0);
-    }
-
-    for (var i = start; i < end; i++) {
+    for(var i = starty; i < endy; i++){
         slicedArr[slicedArr.length] = this[i];
     }
 
@@ -127,3 +114,8 @@ console.assert(animals[1] === 'bison', 'element at index 1 is incorrect');
 console.assert(animals[2] === 'camel', 'element at index 2 is incorrect');
 console.assert(animals[3] === 'duck', 'element at index 3 is incorrect');
 console.assert(animals[4] === 'elephant', 'element at index 4 is incorrect');
+
+console.assert(result !== animals, 'result is the same instance than animal');
+
+var result7 = animals.slice(9, 1);
+console.log(result7);

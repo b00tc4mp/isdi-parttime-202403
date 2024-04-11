@@ -99,3 +99,8 @@ console.assert(animals[1] === 'bison', 'element at index 1 is incorrect');
 console.assert(animals[2] === 'camel', 'element at index 2 is incorrect');
 console.assert(animals[3] === 'duck', 'element at index 3 is incorrect');
 console.assert(animals[4] === 'elephant', 'element at index 4 is incorrect');
+
+console.assert(result !== animals, 'result is the same instance than animal');
+
+var result7 = animals.slice(9, 1);
+console.log(result7);
