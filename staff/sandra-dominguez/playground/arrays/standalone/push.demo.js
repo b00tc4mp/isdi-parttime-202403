@@ -12,6 +12,11 @@ function push(array, element) {  // lo que esta entre parentesis se le llama arg
 console.debug(count)
 console.debug(animals)
 
+console.assert(animals.length === 4, 'animals length is 4')
+console.assert(animals[0] === 'pigs', 'animals at 0 is pigs')
+console.assert(animals[1] === 'goats', 'animals at 1 is goats')
+console.assert(animals[2] === 'sheep', 'animals at 2 is sheep')
+
 //CASO añadir varios animales con array
 
 var animals = ['pigs', 'goats', 'sheep', 'cows']
@@ -29,3 +34,8 @@ function push(array) {  // lo que esta entre parentesis se le llama argumentos.
 
 console.debug(count)
 console.debug(animals)
+
+console.assert(animals.length === 7, 'animals length is 7')
+console.assert(animals[0] === 'pigs', 'animals at 0 is pigs')
+console.assert(animals[1] === 'goats', 'animals at 1 is goats')
+console.assert(animals[2] === 'sheep', 'animals at 2 is sheep')

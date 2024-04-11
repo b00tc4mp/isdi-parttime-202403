@@ -24,7 +24,7 @@ console.assert(animals[3] === 'cows', 'animals 3 is cows')
 console.assert(animals.length === 4, 'animals length is 4')
 
 
-//CASO 2 añadir varios animales al array
+//CASO añadir varios animales al array
 
 var animals = ['pigs', 'goats', 'sheep', 'cows']
 
