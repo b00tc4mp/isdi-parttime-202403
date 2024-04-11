@@ -1,4 +1,4 @@
-//Ejemplo Usando Metodo array animals.slice
+//Ejemplo Usando Metodo slice
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 
 console.info("--- CASE copy camel, duck, elephant  --- ")
