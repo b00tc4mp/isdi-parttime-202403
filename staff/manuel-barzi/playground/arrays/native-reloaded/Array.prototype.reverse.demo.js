@@ -1,3 +1,17 @@
+Array.prototype.reverse = function () {
+    var left
+
+    for (var i = 0, j = this.length - 1; i < j; i++, j--) {
+        left = this[i]
+
+        this[i] = this[j]
+        this[j] = left
+    }
+
+    return this
+}
+
+
 console.info('CASE inverts order of 3 numbers')
 
 var nums = ['one', 'two', 'three']
