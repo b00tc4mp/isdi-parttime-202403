@@ -1,11 +1,10 @@
-var words = ['spray', 'elite', 'exuberant', 'destruction', 'present']
+console.log('CASO muestra palabras con mas de 6 letras')
 
+var words = ['spray', 'elite', 'exuberant', 'destruction', 'present']
 var result = words.filter(function (word) { return word.length > 6 })
 
-console.debug(result)
 
-
-//CASO filtrar productos con precio entre mínimo y máximo
+console.log('CASO filtrar productos con precio entre mínimo y máximo')
 
 var shop = [
     {
@@ -64,9 +63,7 @@ var products = shop.filter(function (product) {
 })
 
 
-console.debug(products)
-
-//CASO animales con otros argumentos y agruparlos en objetos
+console.info('CASO animales con otros argumentos y agruparlos en objetos')
 
 var animals = ['elephant', 'koala', 'kangoroo', 'chimpanzee', 'gorilla']
 var data = []
@@ -79,6 +76,3 @@ var result = animals.filter(function (animal, index, animals) {
 
     return matches
 })
-
-console.debug(result)
-console.debug(data)

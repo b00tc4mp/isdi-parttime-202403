@@ -43,7 +43,6 @@ console.info('CASE extract last 2 animals')
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
 
 var result = animals.slice(-2)
-// Expected output: Array ["duck", "elephant"]
 
 console.assert(result.length === 2, 'result length is 2')
 console.assert(result[0] === 'duck', 'result animal at 0 is duck')
