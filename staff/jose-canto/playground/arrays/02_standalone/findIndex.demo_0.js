@@ -27,5 +27,4 @@ var indexNumber = findIndex(numbers, function (num) {
 console.log(`Index number is: ${indexNumber}`)
 
 //! TEST ASSERT
-
 console.assert(indexNumber === 3, "index of indexNumber is 3")

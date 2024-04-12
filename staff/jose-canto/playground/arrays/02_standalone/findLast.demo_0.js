@@ -45,8 +45,6 @@ var foundFruta = findLast(fruits, function (fruit) { return fruit.quantity > 4 }
 
 console.log(foundFruta);
 
-
 //! TEST ASSERT
-
 console.assert(foundFruta.fruit === "platano", "fruit is platano")
 console.assert(foundFruta.quantity === 5, "fruit is platano")
