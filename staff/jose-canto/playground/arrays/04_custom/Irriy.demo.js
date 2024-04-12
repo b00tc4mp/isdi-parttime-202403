@@ -26,9 +26,9 @@ Irriy.prototype.push = function () {
 
 Irriy.prototype.pop = function () {
 
-  var lastIndex = this.length - 1;
+  var endIndex = this.length - 1;
 
-  var lastElement = this[lastIndex]
+  var lastElement = this[endIndex]
 
   this.length = this.length - 1
 
@@ -59,20 +59,36 @@ Irriy.prototype.unshift = function () {
   return this.length
 }
 
-console.info('CASE constructs an instance with 2 elements')
+Irriy.prototype.reverse = function () {
+
+  var left
+  var rigth
+  j = this.length - 1
+
+  for (var i = 0; i < j; i++, j--) {
+    left = this[i]
+    rigth = this[this.length - 1 - i]
+
+    this[i] = rigth
+    this[this.length - 1 - i] = left
+  }
+  return this
+}
+
+
+console.info('--- CASE constructs an instance with 2 elements ---')
 
 var fruits = new Irriy('Apple', 'Banana')
 
 //! TEST ASSERTS
 console.assert(fruits instanceof Irriy, 'fruits is instance of Irriy')
-console.assert(!(fruits instanceof Array), 'fruits is not an instance of Array')
 console.assert(fruits.length === 2, 'fruits length is 2')
 console.assert(fruits[0] === 'Apple', 'fruit at index 0 is Apple')
 console.assert(fruits[1] === 'Banana', 'fruit at index 1 is Banana')
 
 //?---------------------------------------------------------------------
 
-console.info('CASE constructs an instance with 3 elements')
+console.info('--- CASE constructs an instance with 3 elements ---')
 
 var fruits = new Irriy('Apple', 'Banana', 'Orange')
 
@@ -86,7 +102,7 @@ console.assert(fruits[2] === 'Orange', 'fruit at index 1 is Orange')
 
 //?---------------------------------------------------------------------
 
-console.info('CASE constructs an instance with length 3')
+console.info('--- CASE constructs an instance with length 3 ---')
 
 var fruits = new Irriy(3)
 
@@ -100,7 +116,7 @@ console.assert(fruits[2] === undefined, 'fruit at index 2 is undefined')
 
 //?---------------------------------------------------------------------
 
-console.info('CASE constructs an instance with 1 element')
+console.info('--- CASE constructs an instance with 1 element ---')
 
 var fruits = new Irriy('3')
 
@@ -111,7 +127,7 @@ console.assert(fruits[0] === '3', 'fruit at index 0 is "3"')
 
 //?---------------------------------------------------------------------
 
-console.info('CASE add animal to irriy')
+console.info('--- CASE add animal to irriy ---')
 
 var animals = new Irriy('pigs', 'goats', 'sheep')
 
@@ -128,7 +144,7 @@ console.assert(animals[3] === 'cows', 'animal at index 3 is cows')
 
 //?---------------------------------------------------------------------
 
-console.info('CASE add various animals to irriy')
+console.info('--- CASE add various animals to irriy ---')
 
 var animals = new Irriy('pigs', 'goats', 'sheep', 'cows')
 
@@ -148,7 +164,7 @@ console.assert(animals[6] === 'dogs', 'animal at index 6 is dogs')
 
 //?---------------------------------------------------------------------
 
-console.info(" --- CASE delete last element ---");
+console.info("--- CASE delete last element ---");
 
 var plants = new Irriy('broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato')
 var elementDeleted = plants.pop();
@@ -164,7 +180,7 @@ console.assert(plants[3] === "kale", "four element is kale")
 
 //? ----------------------------------------------------------------
 
-console.info(" --- CASE delete last element ---");
+console.info("--- CASE delete last element ---");
 
 var elementDeleted = plants.pop()
 
@@ -177,13 +193,13 @@ console.assert(plants[2] === "cabbage", "third element is cabbage")
 
 //? ----------------------------------------------------------------
 
-console.info(" --- CASE add element to the beginning of the array ---");
+console.info("--- CASE add element to the beginning of the Irriy ---");
 
 var carsF1 = new Irriy('Ferrari', 'Mercedes', 'Sauber', 'Aston Martin')
 
 var addElementEnd = carsF1.unshift('Red Bull', 'Williams')
 
-console.log(carsF1)
+//console.log(carsF1)
 
 //! TEST ASSERTS
 console.assert(carsF1 instanceof Irriy, 'carsF1 is instance of Irriy')
@@ -195,3 +211,63 @@ console.assert(carsF1[3] === 'Mercedes', 'carsF1 index 3 is Mercedes')
 console.assert(carsF1[4] === 'Sauber', 'carsF1 index 4 is Sauber')
 console.assert(carsF1[5] === 'Aston Martin', 'carsF1 index 5 is Aston Martin')
 
+//? ----------------------------------------------------------------
+
+console.info("--- CASE reverse Irriy ---")
+
+var numbers = new Irriy('one', 'two', 'three')
+//console.log('numbers:', numbers);
+// Expected output: "numbers:" ["one", "two", "three"]
+
+var resultReverse = numbers.reverse();
+//console.debug(resultReverse);
+// Expected output: [ 'three', 'two', 'one' ]
+
+//! TEST ASSERT
+console.assert(resultReverse instanceof Irriy, 'resultReverse is an Irriy');
+console.assert(resultReverse.length == 3, 'resultReverse length is 3');
+console.assert(resultReverse[0] === 'three', 'resultReverse at index 0 is three')
+console.assert(resultReverse[1] === 'two', 'resultReverse at index 1 is two')
+console.assert(resultReverse[2] === 'one', 'resultReverse at index 2 is one')
+
+//? -----------------------------------------------------------------------
+
+console.info("--- CASE reverse Irriy ---")
+
+var numbers = new Irriy('one', 'two', 'three', 'four')
+//console.log('numbers:', numbers);
+// Expected output: "numbers:" ["one", "two", "three"]
+
+var resultReverse = numbers.reverse();
+//console.debug(resultReverse);
+// Expected output: [ 'three', 'two', 'one' ]
+
+//! TEST ASSERT
+console.assert(resultReverse instanceof Irriy, 'resultReverse is an Irriy');
+console.assert(resultReverse.length == 4, 'resultReverse length is 3');
+console.assert(resultReverse[0] === 'four', 'resultReverse at index 0 is four')
+console.assert(resultReverse[1] === 'three', 'resultReverse at index 1 is three')
+console.assert(resultReverse[2] === 'two', 'resultReverse at index 2 is two')
+console.assert(resultReverse[3] === 'one', 'resultReverse at index 3 is one')
+
+//? -----------------------------------------------------------------------
+
+console.info("--- CASE reverse Irriy ---")
+
+var modelVehicle = new Irriy("Ferrari", "Porche", "Mazda", "Maserati", "Bugatti", "Lamborghini")
+//console.log(modelVehicle)
+// Expected output: [ 'Ferrari', 'Porche', 'Mazda', 'Maserati', 'Bugatti', 'Lamborghini' ]
+
+var resultReverse = modelVehicle.reverse()
+//console.debug(resultReverse)
+// Expected output: [ 'Lamborghini', 'Bugatti', 'Maserati', 'Mazda', 'Porche', 'Ferrari' ]
+
+//! TEST ASSERT
+console.assert(resultReverse instanceof Irriy, 'resultReverse is an Irriy');
+console.assert(resultReverse.length === 6, 'resultReverse length is 6')
+console.assert(resultReverse[0] === "Lamborghini", "first model is Lamborghini")
+console.assert(resultReverse[1] === "Bugatti", "second model is Bugatti")
+console.assert(resultReverse[2] === "Maserati", "third model is Maserati")
+console.assert(resultReverse[3] === "Mazda", "four model is Mazda")
+console.assert(resultReverse[4] === "Porche", "five model is Porche")
+console.assert(resultReverse[5] === "Ferrari", "six model is Ferrari")
