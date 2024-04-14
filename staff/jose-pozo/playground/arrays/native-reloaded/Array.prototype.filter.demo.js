@@ -1,48 +1,31 @@
 delete Array.prototype.filter;
 
-var vegetables = [
-  "lettuce",
-  "tomato",
-  "onion",
-  "pepper",
-  "carrot",
-  "garlic",
-  "beetroot",
-  "pumpkin",
-  "broccoli",
-];
-
-function itHasAnO() {
-  return "o";
-}
-
-Array.prototype.filter = function filter(callback) {
-  var filterResult = [];
+Array.prototype.filter = function (callback) {
+  var filterArr = [];
 
   for (var i = 0; i < this.length; i++) {
-    var thisElement = this[i];
-    var found = false;
+    var element = this[i];
 
-    if (typeof thisElement === "number") {
-      if (thisElement === callback()) {
-        filterResult[filterResult.length] = thisElement;
-      }
-      continue;
-    }
+    var matched = callback(element);
 
-    for (var j = 0; j < thisElement.length; j++) {
-      var thisElementParts = thisElement[j];
-
-      if (thisElementParts === callback()) {
-        found = true;
-        break;
-      }
-    }
-    if (found) {
-      filterResult[filterResult.length] = thisElement;
+    if (matched) {
+      filterArr[filterArr.length] = element;
     }
   }
-  return filterResult;
+
+  return filterArr;
 };
 
-console.log(vegetables.filter(itHasAnO));
+console.info('CASE create new array with length greater than 6');
+
+var words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+
+var filtered = words.filter(function (element) {
+  return element.length > 6;
+});
+
+console.assert(words.length === 5, 'words length is 5');
+console.assert(filtered.length === 3, 'filtered length is 3');
+console.assert(filtered[0] === 'exuberant', 'filtered at 0 is exuberant');
+console.assert(filtered[1] === 'destruction', 'filtered at 1 is destruction');
+console.assert(filtered[2] === 'present', 'filtered at 2 is present');

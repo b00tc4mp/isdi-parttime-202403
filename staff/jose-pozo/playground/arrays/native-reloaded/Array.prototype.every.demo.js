@@ -1,20 +1,35 @@
 delete Array.prototype.every;
 
-function isBelowThreshold(element) {
-  return element < 40;
-}
-
-var anyArray = [1, 30, 39, 29, 10, 13];
-
-Array.prototype.every = function every(callback) {
+Array.prototype.every = function (callback) {
   for (var i = 0; i < this.length; i++) {
     var element = this[i];
 
-    if (!callback(element)) {
+    var matched = callback(element);
+
+    if (!matched) {
       return false;
     }
   }
   return true;
 };
 
-console.log(anyArray.every(isBelowThreshold));
+console.info('CASE check if all numbers are less than 40');
+
+var numbers = [1, 30, 39, 29, 10, 13];
+
+var checkIf = numbers.every(function (element) {
+  return element < 40;
+});
+
+console.assert(checkIf === true, 'checkIf gives true');
+// Expected output: true
+
+console.info('CASE check if all numbers are greater than 40');
+
+var numbers = [1, 30, 39, 29, 10, 13];
+
+var checkIf = numbers.every(function (element) {
+  return element > 40;
+});
+
+console.assert(checkIf === false, 'checkif gives false');

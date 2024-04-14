@@ -1,19 +1,31 @@
 delete Array.prototype.find;
 
-var array1 = [5, 12, 8, 130, 44];
-
-function found(element) {
-  return element > 10;
-}
-
-Array.prototype.find = function find(callback) {
+Array.prototype.find = function (callback) {
   for (var i = 0; i < this.length; i++) {
     var element = this[i];
 
-    if (callback(element)) {
+    var matched = callback(element);
+
+    if (matched) {
       return element;
     }
   }
 };
 
-console.log(array1.find(found));
+console.info('CASE first element greater than 10');
+
+var numbers = [5, 12, 8, 130, 44];
+
+var firstNumber = numbers.find(function (element) {
+  return element > 10;
+});
+
+console.assert(firstNumber === 12, 'first number found is 12');
+
+console.info('CASE first element greater than 50');
+
+var firstNumber = numbers.find(function (element) {
+  return element > 50;
+});
+
+console.assert(firstNumber === 130, 'first number found is 130');
