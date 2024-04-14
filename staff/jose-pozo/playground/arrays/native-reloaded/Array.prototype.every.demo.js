@@ -22,7 +22,6 @@ var checkIf = numbers.every(function (element) {
 });
 
 console.assert(checkIf === true, 'checkIf gives true');
-// Expected output: true
 
 console.info('CASE check if all numbers are greater than 40');
 
