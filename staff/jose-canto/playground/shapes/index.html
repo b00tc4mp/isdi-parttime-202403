@@ -13,65 +13,152 @@
 
 <script>
 
-  function createCircle(diameter, color) {
-    var circle = document.createElement('div')
-    circle.style.borderRadius = "50%"
-    circle.style.width = diameter + "px"
-    circle.style.height = diameter + "px"
-    circle.style.backgroundColor = color
+  function Shape() {
 
-    return circle
+    this.container = document.createElement("div")
+    this.container.style.position = "absolute"
   }
 
-  function createSquare() {
-    var square = document.createElement('div')
-    square.style.width = "100px"
-    square.style.height = "100px"
-    square.style.backgroundColor = "blue"
-
-    return square
+  Shape.prototype.setHeight = function (value) {
+    this.container.style.height = value + "px"
+  }
+  Shape.prototype.setWidth = function (value) {
+    this.container.style.width = value + "px"
   }
 
-  function createTriangle() {
-    var triangle = document.createElement('div')
-    triangle.style.borderLeft = "50px solid transparent "
-    triangle.style.borderRight = "50px solid transparent"
-    triangle.style.borderBottom = "100px solid gold"
-    triangle.style.display = "inline-block"
-
-    return triangle
+  Shape.prototype.setRadius = function (value) {
+    this.container.style.borderRadius = value + "%"
   }
 
-  var eyeL = createCircle(50, "black")
-  eyeL.style.position = "absolute"
-  eyeL.style.left = "40px"
-  eyeL.style.top = "30px"
+  Shape.prototype.setColor = function (value) {
+    this.container.style.backgroundColor = value
+  }
 
-  var eyeR = createCircle(50, "white")
-  eyeR.style.position = "absolute"
-  eyeR.style.left = "120px"
-  eyeR.style.top = "30px"
+  Shape.prototype.setX = function (value) {
+    this.container.style.left = value + "px"
+  }
 
+  Shape.prototype.setY = function (value) {
+    this.container.style.top = value + "px"
+  }
 
-  var face = createCircle(200, "red")
-  face.appendChild(eyeL)
-  face.appendChild(eyeR)
-  document.body.appendChild(face)
-
-  var body = createSquare()
-  body.style.position = "absolute"
-  body.style.left = "50px"
-  body.style.top = "170px"
-  document.body.appendChild(body)
+  Shape.prototype.add = function (child) {
+    this.container.appendChild(child.container)
+  }
 
 
-  var foot = createTriangle()
-  foot.style.position = "absolute"
-  foot.style.left = "50px"
-  foot.style.top = "250px"
-  document.body.appendChild(foot)
+  // var eyeL = createCircle(50, "black")
+  // eyeL.style.position = "absolute"
+  // eyeL.style.left = "40px"
+  // eyeL.style.top = "30px"
+
+  var eyeL = new Shape()
+  eyeL.setHeight(50)
+  eyeL.setWidth(50)
+  eyeL.setRadius(50)
+  eyeL.setColor("black")
+  eyeL.setX(40)
+  eyeL.setY(30)
 
 
+  // var eyeR = createCircle(50, "white")
+  // eyeR.style.position = "absolute"
+  // eyeR.style.left = "120px"
+  // eyeR.style.top = "30px"
+
+  var eyeR = new Shape()
+  eyeR.setHeight(50)
+  eyeR.setWidth(50)
+  eyeR.setRadius(50)
+  eyeR.setColor("white")
+  eyeR.setX(110)
+  eyeR.setY(30)
+
+
+  // var face = createCircle(200, "red")
+  // face.appendChild(eyeL)
+  // face.appendChild(eyeR)
+  // document.body.appendChild(face)
+
+  var face = new Shape()
+  face.setColor("pink")
+  face.setHeight(200)
+  face.setWidth(200)
+  face.setRadius(50)
+  face.setX(-50)
+  face.setY(-150)
+
+  face.add(eyeL)
+  face.add(eyeR)
+
+
+  // var body = createSquare()
+  // body.style.position = "absolute"
+  // body.style.left = "50px"
+  // body.style.top = "170px"
+  // document.body.appendChild(body)
+
+  var body = new Shape()
+  body.setColor("pink")
+  body.setHeight(100)
+  body.setWidth(100)
+  body.setX(200)
+  body.setY(100)
+
+  body.add(face)
+
+
+  // var foot = createTriangle()
+  // foot.style.position = "absolute"
+  // foot.style.left = "50px"
+  // foot.style.top = "250px"
+  // document.body.appendChild(foot)
+
+  var footL = new Shape()
+  footL.setColor("pink")
+  footL.setHeight(100)
+  footL.setWidth(50)
+  footL.setX(-10)
+  footL.setY(90)
+
+  body.add(footL)
+
+  var footR = new Shape()
+  footR.setColor("pink")
+  footR.setHeight(100)
+  footR.setWidth(50)
+  footR.setX(60)
+  footR.setY(90)
+
+  body.add(footR)
+
+
+  var y = 100
+  var x = 100
+
+  body.setX(x)
+  body.setY(y)
+
+  document.onkeydown = function (event) {
+    if (event.key === "ArrowLeft") {
+      x -= 10
+    } else if (event.key === "ArrowRight") {
+      x += 10
+    } else if (event.key === "ArrowUp") {
+      y -= 10
+    } else if (event.key === "ArrowDown") {
+      y += 10
+    }
+
+    body.setX(x)
+    body.setY(y)
+  }
+
+
+
+
+
+  document.body.appendChild(body.container)
 </script>
 
 </html>
