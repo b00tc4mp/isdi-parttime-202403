@@ -3,6 +3,7 @@ console.info('CASE search the animals in array')
 var beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
 
 console.debug(beasts.indexOf('bison'));
+console.assert(beasts[1] === 'bison')
 // Expected output: 1
 
 console.debug(beasts.indexOf('bison', 2));
