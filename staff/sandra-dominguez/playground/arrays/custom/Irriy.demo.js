@@ -58,6 +58,16 @@ Irriy.prototype.reverse = function() {
     return this   
 }
 
+Irriy.prototype.shift = function() {
+    var removedElement = this[0]
+       for(var i = 0; i < this.length - 1; i++) {
+        this[i] = this[i + 1]
+  
+       }
+       this.length = this.length - 1
+      return removedElement
+  }
+
 
 //ARRAY
 console.info('CASO construye una instancia con 2 elementos')
@@ -191,3 +201,16 @@ console.assert(result[1] === 'three', 'el resultado del indice 1 es three')
 console.assert(result[2] === 'two', 'el resultado del indice 2 es two')
 console.assert(result[3] === 'one', 'el resultado del indice 3 es one')
 console.assert(result === nums, 'el resultado es nums')
+
+//SHIFT
+
+console.info('CASO eliminar el primer elemento')
+
+var number = new Irriy (1, 2, 3)
+var firstNum = number.shift()
+
+console.assert(firstNum === 1, "firstNum removed is 1")
+
+console.assert(number.length === 2, "number length is 2")
+console.assert(number[0] === 2, 'number 0 is 2')
+console.assert(number[1] === 3, 'number 1 is 3')

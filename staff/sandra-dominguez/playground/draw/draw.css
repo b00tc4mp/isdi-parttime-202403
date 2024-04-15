@@ -145,7 +145,7 @@ body {
     top: -20px;
     left: 0;
     z-index: -1; 
-    box-shadow: 130px 0;;
+    box-shadow: 130px 0;
 }
 
 .eyes {
@@ -227,4 +227,3 @@ body {
     left: 40px;
     box-shadow: 61px 0;
 }
-
