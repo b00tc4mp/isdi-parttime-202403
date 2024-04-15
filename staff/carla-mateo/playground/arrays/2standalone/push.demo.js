@@ -1,6 +1,6 @@
 delete Array.prototype.push
 
-console.info('CASE addvarious animals to array')
+console.info('CASE addva rious animals to array')
 
 function push(array, element) {
 

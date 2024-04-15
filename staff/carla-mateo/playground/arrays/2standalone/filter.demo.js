@@ -10,7 +10,7 @@ function filter(array, callback ) {
         var matches = callback(element, i, array)
 
         if (matches)
-         filtered[filtered.length] = element
+        filtered[filtered.length] = element
     }
 
 
