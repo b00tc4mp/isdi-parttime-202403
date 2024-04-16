@@ -14,6 +14,8 @@ function filter(array, callback) {
   return filtered;
 }
 
+//------------------------------------------------
+
 console.info("CASE filters words with length greater than 6");
 
 var words = ["spray", "elite", "exuberant", "destruction", "present"];
@@ -24,6 +26,8 @@ var result = filter(words, function (word) {
 
 console.debug(result);
 // Expected output: Array ["exuberant", "destruction", "present"]
+
+//------------------------------------------------
 
 console.info("CASE filter products with price between min and max");
 
@@ -111,7 +115,7 @@ console.debug(products);
     }
 ]
 */
-
+//------------------------------------------------
 console.info(
   "CASE filter animals with other arguments and group them in objects"
 );

@@ -16,22 +16,26 @@ function map(array, callback) {
   return mapped;
 }
 
-// CASE nums by 2
+//--------------------------------------------------
 
-var nums = [1, 4, 9, 16];
+console.info('CASE nums by 2')
+
+var nums = [1, 4, 9, 16]
 
 var numsBy2 = map(nums, function (num) {
-  return num * 2;
-});
+  return num * 2
+})
 
-console.log(nums);
+console.log(nums)
 // Array [1, 4, 9, 16]
 console.log(numsBy2);
 // Array [2, 8, 18, 32]
 
-// CASE names to uppercase
+//--------------------------------------------------
 
-var names = ["JaCk", "pETer", "jOHNnY"];
+console.info('CASE names to uppercase')
+
+var names = ["JaCk", "pETer", "jOHNnY"]
 
 var normalizedNames = map(names, function (name) {
   return name.toUpperCase();

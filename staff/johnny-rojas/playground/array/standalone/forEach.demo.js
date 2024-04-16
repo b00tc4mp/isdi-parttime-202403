@@ -1,4 +1,4 @@
-//delete Array.prototype.forEach;
+//delete Array.prototype.forEach
 
 // function forEach(array, callback) {
 //     (function loop(i) { // IIFE & closure
@@ -14,16 +14,16 @@
 
 function forEach(array, callback) {
   for (var i = 0; i < array.length; i++) {
-    var element = array[i];
+    var element = array[i]
 
-    callback(element);
+    callback(element)
   }
 }
 
-// CASE print chars to uppercase in console
+console.info('CASE print chars to uppercase in console')
 
-var chars = ["a", "b", "c"];
+var chars = ['a', 'b', 'c']
 
 forEach(chars, function (element) {
-  console.log(element.toUpperCase());
-});
+  console.log(element.toUpperCase())
+})

@@ -9,7 +9,10 @@ function findIndex(array, callback) {
   return undefined
 }
 
-console.info('Case inside array')
+//-----------------------------------------------------
+
+
+console.info('CASE inside array')
 var numbers = [1, 298, 333, 89]
 var findIndexNumber = findIndex(numbers, function (element) {
   return element > 300
@@ -18,7 +21,9 @@ var findIndexNumber = findIndex(numbers, function (element) {
 console.debug(findIndexNumber)
 //output: 2
 
-console.info("Case not find inside array");
+//-----------------------------------------------------
+
+console.info('CASE not find inside array');
 var count = [563, 789, 199, 856]
 var findCount = findIndex(count, function (element) {
   return element > 1000
