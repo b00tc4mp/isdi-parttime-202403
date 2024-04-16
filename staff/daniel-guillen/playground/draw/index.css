@@ -1,3 +1,6 @@
+.pig {
+    padding: 20px;
+}
 .pig-head {
 border: 1px solid violet;
 width: 100px;
@@ -68,6 +71,7 @@ background-color: palevioletred;
 
 .matrix {
 display: grid;
+padding: 20px;
 grid-template-rows: repeat(8, 1fr);
 grid-template-columns: repeat(8, 1fr);
 width: 400px;
@@ -79,48 +83,4 @@ background-color: grey;
 }
 .matrix-pixel-black {
     background-color: black;
-}
-
-.blog {
-    display: grid;
-    grid-template-areas: 
-    "a a b"
-    "c c b"
-    "d e e"
-    "d f f"
-    ;
-    background-color: skyblue;
-    width: 50vw;
-    height: 60vw;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-}
-.blog-entry:nth-child(1) {
-    grid-area: a ;
-    background-color: pink;
-}
-
-.blog-entry:nth-child(2) {
-    grid-area: b ;
-    background-color: violet;
-}
-
-.blog-entry:nth-child(3) {
-    grid-area: c ;
-    background-color: cadetblue;
-}
-
-.blog-entry:nth-child(4) {
-    grid-area: d ;
-    background-color: burlywood;
-}
-
-.blog-entry:nth-child(5) {
-    grid-area: e ;
-    background-color: palevioletred;
-}
-
-.blog-entry:nth-child(6) {
-    grid-area: f ;
-    background-color: greenyellow;
 }
