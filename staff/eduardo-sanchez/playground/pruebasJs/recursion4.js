@@ -1,40 +1,36 @@
-function forEach(array, callback) {
-    (function loop(i) { // IIFE & closure
-        if (i < array.length) {
-            var element = array[i]
+//debugger 
 
-            callback(element)
+function forEach(array, i) {
+    if (i < array.length) {
+        var element = array[i]
 
-            loop(i + 1)
-        }
-    })(0)
+        console.log(element)
+
+        forEach(array, i + 1)
+    }
 }
 
 var nums = [10, 20, 30, 40, 50]
-forEach(nums, function (num) { console.log(num * 10) })
+forEach(nums, 0)
+
 
 var chars = ['a', 'b', 'c', 'd', 'e', 'f']
-forEach(chars, function (char) { console.log(char.toUpperCase()) })
+forEach(chars, 0)
+
 
 var people = [{ name: 'Peter', age: 30 }, { name: 'Wendy', age: 29 }]
-forEach(people, function (person) { console.log(person.name.toUpperCase()) })
+forEach(people, 0)
 
-var cart = [{ title: 'socks', quantity: 3, price: 10 }, { title: 't-shirt', quantity: 2, price: 20 }, { title: 'shoes', quantity: 1, price: 50 }]
-var total = 0
-forEach(cart, function (item) { total += item.quantity * item.price })
-console.log(total)
-
-// VM1354:16 100
-// VM1354:16 200
-// VM1354:16 300
-// VM1354:16 400
-// VM1354:16 500
-// VM1354:19 A
-// VM1354:19 B
-// VM1354:19 C
-// VM1354:19 D
-// VM1354:19 E
-// VM1354:19 F
-// VM1354:22 PETER
-// VM1354:22 WENDY
-// VM1354:27 120
+// 10
+// 20
+// 30
+// 40
+// 50
+// a
+// b
+// c
+// d
+// e
+// f
+// { name: 'Peter', age: 30 }
+// { name: 'Wendy', age: 29 }
