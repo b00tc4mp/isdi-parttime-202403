@@ -1,0 +1,65 @@
+    function Face() {
+        Shape.call(this)
+
+        this.setColor('pink')
+        this.setHeight(130)
+        this.setWidth(200)
+        this.setRadius(50)
+
+        var earsL = new Shape()
+        earsL.setHeight(70)
+        earsL.setWidth(70)
+        earsL.setRadius(50)
+        earsL.setColor('black')
+        earsL.moveX(250)
+        earsL.moveY(80)
+        earsL.setzIndex(-1)
+
+        var earsR = new Shape()
+        earsR.setHeight(70)
+        earsR.setWidth(70)
+        earsR.setRadius(50)
+        earsR.setColor('black')
+        earsR.moveX(100)
+        earsR.moveY(80)
+        earsR.setzIndex(-1)
+
+        var eyesL = new Shape()
+        eyesL.setHeight(60)
+        eyesL.setWidth(60)
+        eyesL.setRadius(50)
+        eyesL.setColor('black')
+        eyesL.moveX(130)
+        eyesL.moveY(135)
+
+        var eyesR = new Shape()
+        eyesR.setHeight(60)
+        eyesR.setWidth(60)
+        eyesR.setRadius(50)
+        eyesR.setColor('black')
+        eyesR.moveX(230)
+        eyesR.moveY(135)
+
+        var nose = new Shape()
+        nose.setHeight(20)
+        nose.setWidth(30)
+        nose.setRadius(50)
+        nose.setColor('black')
+        nose.moveX(195)
+        nose.moveY(190)
+
+        var panda = new Shape()
+        panda.setColor('pink')
+        panda.setHeight(130)
+        panda.setWidth(200)
+        panda.setRadius(50)
+
+        this.add(earsL)
+        this.add(earsR)
+        this.add(eyesL)
+        this.add(eyesR)
+        this.add(nose)
+        }
+
+        Face.prototype = Object.create(Shape.prototype)
+        Face.prototype.constructor = Face
