@@ -1,11 +1,63 @@
-var array = ["one", "two", "three"]
-console.log("array:", array)
-// Expected output: "array:" Array ["one", "two", "three"]
+console.info('CASE inverts order of 3 numbers')
 
-var reversed = array.reverse()
-console.log("reversed:", reversed)
-// Expected output: "reversed:" Array ["three", "two", "one"]
+var nums = ['one', 'two', 'three']
 
-// Careful: reverse is destructive -- it changes the original array.
-console.log("array:", array)
-// Expected output: "array1:" Array ["three", "two", "one"]
+var result = nums.reverse()
+
+console.assert(result instanceof Array, 'result is an array')
+console.assert(result.length === 3, 'result length is 3')
+console.assert(result[0] === 'three', 'result value at index 0 is three')
+console.assert(result[1] === 'two', 'result value at index 1 is two')
+console.assert(result[2] === 'one', 'result value at index 2 is one')
+console.assert(result === nums, 'result is nums')
+
+//---------------------------------------------------------
+
+console.info('CASE inverts order of 4 numbers')
+
+var nums = ['one', 'two', 'three', 'four']
+
+var result = nums.reverse()
+
+console.assert(result instanceof Array, 'result is an array')
+console.assert(result.length === 4, 'result length is 4')
+console.assert(result[0] === 'four', 'result value at index 0 is four')
+console.assert(result[1] === 'three', 'result value at index 1 is three')
+console.assert(result[2] === 'two', 'result value at index 2 is two')
+console.assert(result[3] === 'one', 'result value at index 3 is one')
+console.assert(result === nums, 'result is nums')
+
+//---------------------------------------------------------
+
+console.info('CASE inverts order of 5 numbers')
+
+var nums = ['one', 'two', 'three', 'four', 'five']
+
+var result = nums.reverse()
+
+console.assert(result instanceof Array, 'result is an array')
+console.assert(result.length === 5, 'result length is 5')
+console.assert(result[0] === 'five', 'result value at index 0 is five')
+console.assert(result[1] === 'four', 'result value at index 1 is four')
+console.assert(result[2] === 'three', 'result value at index 2 is three')
+console.assert(result[3] === 'two', 'result value at index 3 is two')
+console.assert(result[4] === 'one', 'result value at index 4 is one')
+console.assert(result === nums, 'result is nums')
+
+//---------------------------------------------------------
+
+console.info('CASE inverts order of 6 numbers')
+
+var nums = ['one', 'two', 'three', 'four', 'five', 'six']
+
+var result = nums.reverse()
+
+console.assert(result instanceof Array, 'result is an array')
+console.assert(result.length === 6, 'result length is 6')
+console.assert(result[0] === 'six', 'result value at index 0 is six')
+console.assert(result[1] === 'five', 'result value at index 1 is five')
+console.assert(result[2] === 'four', 'result value at index 2 is four')
+console.assert(result[3] === 'three', 'result value at index 3 is three')
+console.assert(result[4] === 'two', 'result value at index 4 is two')
+console.assert(result[5] === 'one', 'result value at index 5 is one')
+console.assert(result === nums, 'result is nums')
