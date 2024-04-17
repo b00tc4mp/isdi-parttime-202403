@@ -21,8 +21,21 @@ Component.prototype.add = function (child) {
   this.container.appendChild(child.container)
 }
 
-// Agregamos otro método a los objetos Component:
+
 Component.prototype.setText = function (text) {
   // Este método establece el contenido textual del "container" con el texto proporcionado.
   this.container.innerText = text
+}
+
+Component.prototype.setId = function (id) {
+  this.container.id = id
+}
+
+// Este método agrega una clase CSS al "container" del componente.
+Component.prototype.addClass = function (clazz) {
+  this.container.classList.add(clazz)
+}
+
+Component.prototype.removeClass = function (clazz) {
+  this.container.classList.remove(clazz)
 }

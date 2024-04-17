@@ -9,3 +9,7 @@ Input.prototype = Object.create(Component.prototype)
 
 // Establecemos la propiedad constructor de Input.prototype para mantener la referencia correcta al constructor
 Input.prototype.constructor = Input
+
+Input.prototype.setType = function (type) {
+  this.container.type = type
+}
