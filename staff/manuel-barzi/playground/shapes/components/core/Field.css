@@ -1,5 +1,5 @@
-.Form {
+.Field {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin: .25rem 0;
 }
