@@ -1,4 +1,6 @@
 .Form {
     display: flex;
     flex-direction: column;
+    color: gray;
+    
 }

@@ -10,7 +10,7 @@ var pig3 = new Pig()
 pig3.config('i', 'k', 'j', 'l')
 pig3.move(600, 600, 0)
 
-var step = 10
+var step = 50
 
 var applyOnY = true
 

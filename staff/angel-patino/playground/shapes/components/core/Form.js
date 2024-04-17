@@ -1,5 +1,7 @@
 function Form() {
-    Componentt.call(this, 'form')
+    Component.call(this, 'form')
+
+    this.addClass('Form')
 }
 
 Form.prototype = Object.create(Component.prototype)

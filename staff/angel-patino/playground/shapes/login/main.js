@@ -1,5 +1,5 @@
 var view = new Component(document.body)
 
-var form = new Form()
+var LoginForm = new LoginForm
 
-view.add(form)
+view.add(LoginForm)
