@@ -1,10 +1,19 @@
+
 function Shape() {
-  this.container = document.createElement('div')
+  Component.call(this, 'div')
 
   this.container.style.position = 'absolute'
 
   this.move(0, 0, 0)
 }
+
+
+// Heredar prototype de Component.
+Shape.prototype = Object.create(Component.prototype);
+
+// Establecer el constructor de Shape.
+Shape.prototype.constructor = Shape;
+
 
 Shape.prototype.setHeight = function (value) {
   this.container.style.height = value + 'px'
@@ -64,9 +73,6 @@ Shape.prototype.moveRelative = function (dx, dy, dz) {
   this.moveRelativeZ(dz)
 }
 
-Shape.prototype.add = function (child) {
-  this.container.appendChild(child.container)
-}
 
 Shape.prototype.config = function (keyUp, keyDown, keyLeft, keyRight) {
   this.keyUp = keyUp
