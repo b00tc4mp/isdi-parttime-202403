@@ -2,5 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1vw;
+  justify-content: space-evenly;
+
 }

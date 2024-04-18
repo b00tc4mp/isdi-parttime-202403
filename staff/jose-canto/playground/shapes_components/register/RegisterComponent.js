@@ -2,7 +2,7 @@ function LoginComponent() {
   Form.call(this)
 
   //this.removeClass("Form") // Eliminamos la clase "Form"
-  this.addClass("LoginForm")
+  this.addClass("RegisterForm")
 
 
   // Creamos una instancia de la clase Label para el campo de nombre de usuario
@@ -25,7 +25,7 @@ function LoginComponent() {
   passwordInput.setId("password")
   passwordInput.setType("password")
 
-  var submitButton = new SubmitButton("Login")
+  var submitButton = new SubmitButton("Register")
 
 
   // Agregamos los elementos al formulario

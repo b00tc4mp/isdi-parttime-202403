@@ -1,11 +1,22 @@
 // Creamos una instancia de la clase Component y le pasamos el elemento body del documento como argumento
 var view = new Component(document.body)
 
-var loginCompoenent = new LoginComponent()
-var loginCompoenent2 = new LoginComponent()
+var headerLogin = new Header(1)
+headerLogin.setText("LOGIN")
 
-view.add(loginCompoenent)
-view.add(loginCompoenent2)
+var loginComponent = new LoginComponent()
+
+var registerLink = new Link()
+registerLink.setText("Register")
+registerLink.setUrl("../register/index.html")
+
+
+
+
+view.add(headerLogin)
+view.add(loginComponent)
+view.add(registerLink)
+
 
 
 
