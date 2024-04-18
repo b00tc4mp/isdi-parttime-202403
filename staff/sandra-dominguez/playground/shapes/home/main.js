@@ -7,7 +7,7 @@
         face2.config('w', 's', 'a', 'd')
         face2.move(300, 300, 0)
 
-        var step = 10
+        var step = 40
 
         var applyOnY = true
 

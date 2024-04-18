@@ -1,11 +1,12 @@
         function Shape() {
-            this.container = document.createElement('div')    // OTRA FORMA DE HACERLO
+          Component.call(this, 'div')
 
             this.container.style.position = 'absolute'
-
             this.move(0, 0, 0)
-
         }
+
+        Shape.prototype = Object.create(Component.prototype)
+        Shape.prototype.constructor = Shape
 
         Shape.prototype.setHeight = function (value) {
          this.container.style.height = value + 'px'
@@ -35,19 +36,8 @@
 
         Shape.prototype.moveZ = function (z) {
             this.z = z
-         //this.container.style.transitionProperty = 'transform'
-         //this.container.style.transitionDuration = '0.5s'
-         this.container.style.transform = 'scale(' + (z + 100) / 100 + ')'
+            this.container.style.transform = 'scale(' + (z + 100) / 100 + ')'
         }
-
-        //Shape.prototype.setBorder = function(pixels, bor, col) {
-        //    console.log(pixels, bor, col)
-
-        // this.container.style.borderWidth = '3px'
-        // this.container.style.borderStyle = 'solid'
-        // this.container.style.borderColor = 'black'
-        //}
-
 
         Shape.prototype.setzIndex = function (value) {
          this.container.style.zIndex = value + 'px'
@@ -75,16 +65,9 @@
         }
 
         Shape.prototype.moveRelative = function (dx, dy, dz) {
-            //this.moveX(this.x + dx)
-            //this.moveY(this.y + dy)
-            //this.moveZ(this.z + dz)
             this.moveRelativeX(dx)
             this.moveRelativeY(dy)
             this.moveRelativeZ(dz)
-        }
-         
-        Shape.prototype.add = function (child) {
-         this.container.appendChild(child.container)
         }
 
         Shape.prototype.config = function (keyUp, keyDown, keyLeft, keyRight) {
