@@ -1,12 +1,5 @@
 document.body.style.backgroundColor = 'MediumSeaGreen'
 
-Chicken.prototype.config = function(keyUp, keyDown, keyLeft, keyRight) {
-    this.keyUp = keyUp
-    this.keyDown = keyDown
-    this.keyLeft = keyLeft
-    this.keyRight = keyRight
-}
-
 var chicken = new Chicken()
 chicken.config('ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight')
 chicken.move(100, 100, 0)

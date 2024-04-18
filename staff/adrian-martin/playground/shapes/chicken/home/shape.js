@@ -1,17 +1,19 @@
 function Shape(){
-    this.container = document.createElement('div')
+    Component.call(this, 'div')
 
     this.container.style.position = 'absolute'
 
     this.move(0, 0, 0)
 }
 
-Shape.prototype.setHeight = function(value) {
-    this.container.style.height = value + 'px'
+Shape.prototype.setHeight = function(height) {
+    this.height = height
+    this.container.style.height = height + 'px'
 }
 
-Shape.prototype.setWidth = function(value) {
-    this.container.style.width = value + 'px'
+Shape.prototype.setWidth = function(width) {
+    this.width = width
+    this.container.style.width = width + 'px'
 }
 
 Shape.prototype.setBorder = function(width, style, color) {
@@ -27,16 +29,18 @@ Shape.prototype.setBorder = function(width, style, color) {
 
 }
 
-Shape.prototype.setRotate = function(value){
-    this.container.style.transform = 'rotate(' + value + 'deg)'
+Shape.prototype.setRotate = function(rotate){
+    this.rotate = rotate
+    this.container.style.transform = 'rotate(' + rotate + 'deg)'
 }
 
-Shape.prototype.setRadius = function(value) {
-    this.container.style.borderRadius = value + '%'
+Shape.prototype.setRadius = function(radius) {
+    this.radius = radius
+    this.container.style.borderRadius = radius + '%'
 }
 
-Shape.prototype.setColor = function(value) {
-    this.container.style.backgroundColor = value
+Shape.prototype.setColor = function(color) {
+    this.container.style.backgroundColor = color
 }
 
 Shape.prototype.setX = function(x) {
@@ -51,8 +55,6 @@ Shape.prototype.setY = function(y) {
 
 Shape.prototype.setZ = function(z) {
     this.z = z
-    // this.container.style.transitionProperty = 'transform'
-    // this.container.style.transitionDuration = '0.5s'
     this.container.style.transform = 'scale(' + (z + 100) / 100 + ')'
 }
 
@@ -68,8 +70,6 @@ Shape.prototype.setYRelative = function(dy) {
 
 Shape.prototype.setZRelative = function(dz) {
     this.z -= dz
-    // this.container.style.transitionProperty = 'transform'
-    // this.container.style.transitionDuration = '0.5s'
     this.container.style.transform = 'scale(' + (this.z + 100) / 100 + ')'
 }
 
@@ -87,4 +87,11 @@ Shape.prototype.moveRelative = function(dx, dy, dz) {
 
 Shape.prototype.add = function(child) {
     this.container.appendChild(child.container)
+}
+
+Shape.prototype.config = function(keyUp, keyDown, keyLeft, keyRight) {
+    this.keyUp = keyUp
+    this.keyDown = keyDown
+    this.keyLeft = keyLeft
+    this.keyRight = keyRight
 }
