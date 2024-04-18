@@ -27,27 +27,3 @@ function RegisterForm() {
 
 RegisterForm.prototype = Object.create(Form.prototype)
 RegisterForm.prototype.constructor = RegisterForm
-
-RegisterForm.prototype.getEmail = function () {
-    var emailField = this.children[0]
-
-    return emailField.getValue()
-}
-
-RegisterForm.prototype.getUsername = function () {
-    var usernameField = this.children[1]
-
-    return usernameField.getValue()
-}
-
-RegisterForm.prototype.getPassword = function () {
-    var passwordField = this.children[2]
-
-    return passwordField.getValue()
-}
-
-RegisterForm.prototype.getPasswordRepeat = function () {
-    var passwordFieldRepeat = this.children[3]
-
-    return passwordFieldRepeat.getValue()
-}

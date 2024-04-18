@@ -21,9 +21,3 @@ Field.prototype.constructor = Field
 Field.prototype.setPlaceholder = function (placeholder) {
     this.children[1].setPlaceholder(placeholder)
 }
-
-Field.prototype.getValue = function () {
-    var input = this.children[1]
-
-    return input.getValue()
-}
