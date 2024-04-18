@@ -2,4 +2,9 @@
   color: white;
   margin-top: 10px;
   letter-spacing: 2px;
+  font-size: 1.5rem;
+}
+
+.Link:hover {
+  color: yellowgreen;
 }

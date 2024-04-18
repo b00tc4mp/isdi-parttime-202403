@@ -24,7 +24,7 @@
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background-color: #ff833c;
+  background-color: greenyellow;
   transform-origin: center;
   transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
   transition: transform 0.45s ease-in-out;

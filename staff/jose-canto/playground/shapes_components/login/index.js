@@ -12,12 +12,9 @@ registerLink.setUrl("../register/index.html")
 
 
 
-
 view.add(headerLogin)
 view.add(loginComponent)
 view.add(registerLink)
-
-
 
 
 /* Esto lo movemos a LoginComponent.js, lo creamos como componente para poder ser reutilizado

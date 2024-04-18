@@ -18,15 +18,27 @@ function LoginComponent() {
   // Creamos una instancia de la clase Input para el campo de nombre de usuario
   var userNameInput = new Input
   userNameInput.setId("username")
+  userNameInput.setPlaceholder("User Name")
 
   // Creamos una instancia de la clase Input para el campo de contraseña
   var passwordInput = new Input
   passwordInput.setText("")
   passwordInput.setId("password")
   passwordInput.setType("password")
+  passwordInput.setPlaceholder("Your Password")
+
+  var passwordRepeatLabel = new Label()
+  passwordRepeatLabel.setText("Password Repeat: ")
+  passwordRepeatLabel.setFor("password")
+
+  var passworRepeatdInput = new Input
+  passworRepeatdInput.setText("")
+  passworRepeatdInput.setId("Password")
+  passworRepeatdInput.setType("password")
+  passworRepeatdInput.setPlaceholder("Repeat your Password")
+
 
   var submitButton = new SubmitButton("Login")
-
 
   // Agregamos los elementos al formulario
 
@@ -34,6 +46,8 @@ function LoginComponent() {
   this.add(userNameInput)
   this.add(passwordLabel)
   this.add(passwordInput)
+  this.add(passwordRepeatLabel)
+  this.add(passworRepeatdInput)
   this.add(submitButton)
 
 }
