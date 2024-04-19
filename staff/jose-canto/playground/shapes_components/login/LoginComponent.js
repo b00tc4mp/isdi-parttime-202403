@@ -4,7 +4,6 @@ function LoginComponent() {
   //this.removeClass("Form") // Eliminamos la clase "Form"
   this.addClass("LoginForm")
 
-
   // Creamos una instancia de la clase Label para el campo de nombre de usuario
   var usernameLabel = new Label() // En las constructoras si no se le pasan argumentos, se crean vacías
   usernameLabel.setText("Username: ")
@@ -27,16 +26,6 @@ function LoginComponent() {
   passwordInput.setType("password")
   passwordInput.setPlaceholder("Your Password")
 
-  var passwordRepeatLabel = new Label()
-  passwordRepeatLabel.setText("Password Repeat: ")
-  passwordRepeatLabel.setFor("password")
-
-  var passworRepeatdInput = new Input
-  passworRepeatdInput.setText("")
-  passworRepeatdInput.setId("Password")
-  passworRepeatdInput.setType("password")
-  passworRepeatdInput.setPlaceholder("Repeat your Password")
-
 
   var submitButton = new SubmitButton("Login")
 
@@ -46,10 +35,7 @@ function LoginComponent() {
   this.add(userNameInput)
   this.add(passwordLabel)
   this.add(passwordInput)
-  this.add(passwordRepeatLabel)
-  this.add(passworRepeatdInput)
   this.add(submitButton)
-
 }
 
 LoginComponent.prototype = Object.create(Form.prototype)

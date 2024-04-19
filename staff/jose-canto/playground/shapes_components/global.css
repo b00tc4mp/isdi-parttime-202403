@@ -29,7 +29,7 @@ body {
 }
 
 .Header {
-  color: tomato;
+  color: var(--first-color);
   letter-spacing: 2px;
   font-size: 3rem;
 }

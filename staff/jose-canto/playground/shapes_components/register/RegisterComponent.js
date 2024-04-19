@@ -1,8 +1,18 @@
-function LoginComponent() {
+function RegisterComponent() {
   Form.call(this)
 
   //this.removeClass("Form") // Eliminamos la clase "Form"
   this.addClass("RegisterForm")
+
+
+
+  var EmailLabel = new Label() // En las constructoras si no se le pasan argumentos, se crean vacías
+  EmailLabel.setText("E-mail: ")
+  EmailLabel.setFor("email")
+
+  var EmailInput = new Input
+  EmailInput.setId("email")
+  EmailInput.setPlaceholder("User E-mail")
 
 
   // Creamos una instancia de la clase Label para el campo de nombre de usuario
@@ -27,18 +37,52 @@ function LoginComponent() {
   passwordInput.setType("password")
   passwordInput.setPlaceholder("Your Password")
 
-  var submitButton = new SubmitButton("Register")
+  var passwordRepeatLabel = new Label()
+  passwordRepeatLabel.setText("Password Repeat: ")
+  passwordRepeatLabel.setFor("password")
 
+  var passworRepeatdInput = new Input
+  passworRepeatdInput.setText("")
+  passworRepeatdInput.setId("passwordRepeat")
+  passworRepeatdInput.setType("password")
+  passworRepeatdInput.setPlaceholder("Repeat your Password")
+
+  var submitButton = new SubmitButton("Register")
 
   // Agregamos los elementos al formulario
 
+  this.add(EmailLabel)
+  this.add(EmailInput)
   this.add(usernameLabel)
   this.add(userNameInput)
   this.add(passwordLabel)
   this.add(passwordInput)
+  this.add(passwordRepeatLabel)
+  this.add(passworRepeatdInput)
   this.add(submitButton)
 
 }
 
-LoginComponent.prototype = Object.create(Form.prototype)
-LoginComponent.prototype.constructor = Form
+RegisterComponent.prototype = Object.create(Form.prototype)
+RegisterComponent.prototype.constructor = RegisterComponent
+
+
+RegisterComponent.prototype.getEmail = function () {
+  var userEmail = this.container.querySelector("#email").value
+  return userEmail
+}
+
+RegisterComponent.prototype.getUsername = function () {
+  var userName = this.container.querySelector("#username").value
+  return userName
+}
+
+RegisterComponent.prototype.getPassword = function () {
+  var userPassword = this.container.querySelector("#password").value
+  return userPassword
+}
+
+RegisterComponent.prototype.getPasswordRepeat = function () {
+  var userPasswordRepeat = this.container.querySelector("#passwordRepeat").value
+  return userPasswordRepeat
+}

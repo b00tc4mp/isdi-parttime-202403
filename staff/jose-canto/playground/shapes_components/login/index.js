@@ -8,7 +8,19 @@ var loginComponent = new LoginComponent()
 
 var registerLink = new Link()
 registerLink.setText("Register")
-registerLink.setUrl("../register/index.html")
+//registerLink.setUrl("../register/index.html")
+
+registerLink.onClick(function (event) {
+  event.preventDefault()
+
+  console.log("...en espera de 1 segundo ⌛")
+  setTimeout(function () {
+    location.href = "../register"
+
+  }, 1000)
+})
+
+
 
 
 

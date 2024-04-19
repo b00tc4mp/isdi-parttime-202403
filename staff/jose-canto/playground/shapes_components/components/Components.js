@@ -39,3 +39,7 @@ Component.prototype.addClass = function (clazz) {
 Component.prototype.removeClass = function (clazz) {
   this.container.classList.remove(clazz)
 }
+
+Component.prototype.onClick = function (listener) {
+  this.container.addEventListener("click", listener)
+}
