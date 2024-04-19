@@ -1,17 +1,17 @@
 function map(array, callback) {
-    // TODO implement me (without using any Array.prototype method)
+  // TODO implement me (without using any Array.prototype method)
 
-    var mapped = []
+  var mapped = []
 
-    for (var i = 0; i < array.length; i++) {
-        var element = array[i]
+  for (var i = 0; i < array.length; i++) {
+      var element = array[i]
 
-        var mappedElement = callback(element)
+      var mappedElement = callback(element)
 
-        mapped[i] = mappedElement
-    }
+      mapped[i] = mappedElement
+  }
 
-    return mapped
+  return mapped
 }
 
 // CASE nums by 2
