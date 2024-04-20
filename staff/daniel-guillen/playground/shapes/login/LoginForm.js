@@ -1,32 +1,16 @@
 function LoginForm() {
     Form.call(this)
 
-    // this.removeClass('Form')
     this.addClass('LoginForm')
 
-    var usernameLabel = new Label
-    usernameLabel.setText('Username')
-    usernameLabel.setFor('username')
+    var usernameField = new Field('username', 'text', 'Username')
 
-    var usernameInput = new Input
-    usernameInput.setId('username')
+    var passwordField = new Field('password', 'password', 'Password')
 
-    var passwordLabel = new Label
-    passwordLabel.setText('Password')
-    passwordLabel.setFor('password')
+    var submitButton = new SubmitButton('Login')
 
-    var passwordInput = new Input
-    passwordInput.setId('password')
-    passwordInput.setType('password')
-
-    var submitButton = new Button
-    submitButton.setText('Register')
-    submitButton.setType('submit')
-
-    this.add(usernameLabel)
-    this.add(usernameInput)
-    this.add(passwordLabel)
-    this.add(passwordInput)
+    this.add(usernameField)
+    this.add(passwordField)
     this.add(submitButton)
 }
 

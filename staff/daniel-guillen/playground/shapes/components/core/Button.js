@@ -1,5 +1,7 @@
 function Button() {
     Component.call(this, 'button')
+
+    this.addClass('Button')
 }
 
 Button.prototype = Object.create(Component.prototype)

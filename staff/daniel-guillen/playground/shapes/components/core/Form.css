@@ -1,18 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
-* {
-    font-family: Workbench;
-    color: white;
-}
+
 .Form {
+    text-align: center;
     display: flex;
+    align-items: center;
     flex-direction: column;
     margin: 40px;
-}
-h1{
-    text-align: center;
-    color:black;
+    font-family: Workbench;
 }
 body{
-    border: darkblue 20px double;
+    background-color: black;
     margin:  50px;
 }
