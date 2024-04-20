@@ -18,3 +18,13 @@ function Field(id, type, text) {
 
 Field.prototype = Object.create(Component.prototype)
 Field.prototype.contructor = Field
+
+Field.prototype.setPlaceholder = function (placeholder) {
+    this.children[1].setPlaceholder(placeholder)
+}
+
+Field.prototype.getValue = function () {
+    var input = this.children[1]
+
+    return input.getValue()
+}

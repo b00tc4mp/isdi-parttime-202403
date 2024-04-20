@@ -6,8 +6,9 @@ title.setText('Iniciar sesión')
 
 var loginForm = new LoginForm
 var registerLink = new Link
+
 registerLink.setText('Registrarse')
-//registerLink.setUrl('https://www.google.com')
+registerLink.setUrl('../register')
 //registerLink.setTarget('_blank')
 
 view.add(title)
