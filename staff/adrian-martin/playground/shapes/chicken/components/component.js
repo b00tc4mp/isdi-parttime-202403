@@ -18,11 +18,11 @@ Component.prototype.add = function(child) {
     this.container.appendChild(child.container)
 }
 
-Component.prototype.setText = function(text){
+Component.prototype.setText = function(text) {
     this.container.innerText = text
 }
 
-Component.prototype.setId = function(id){
+Component.prototype.setId = function(id) {
     this.container.id = id
 }
 
@@ -30,6 +30,10 @@ Component.prototype.addClass = function(clazz) {
     this.container.classList.add(clazz)
 }
 
-Component.prototype.removeClass = function(clazz){
+Component.prototype.removeClass = function(clazz) {
     this.container.classList.remove(clazz)
+}
+
+Component.prototype.onClick = function(listener) {
+    this.container.addEventListener('click', listener)
 }

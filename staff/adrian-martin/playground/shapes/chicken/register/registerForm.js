@@ -1,4 +1,4 @@
-function LoginForm(){
+function RegisterForm(){
     Form.call(this)
 
     this.addClass('registerForm')
@@ -25,7 +25,33 @@ function LoginForm(){
     this.add(submitButton)
 }
 
-LoginForm.prototype = Object.create(Form.prototype)
-LoginForm.prototype.constructor = Form
+RegisterForm.prototype = Object.create(Form.prototype)
+RegisterForm.prototype.constructor = RegisterForm
+
+RegisterForm.prototype.getEmail = function() {
+    var emailField = this.children[0]
+
+    return emailField.getValue()
+}
+
+RegisterForm.prototype.getUsername = function() {
+    var usernameField = this.children[1]
+
+    return usernameField.getValue()
+}
+
+RegisterForm.prototype.getPassword = function() {
+    var passwordField = this.children[2]
+
+    return passwordField.getValue()
+}
+
+RegisterForm.prototype.getRetypePassword = function() {
+    var passwordRetypeField = this.children[3]
+
+    return passwordRetypeField.getValue()
+}
+
+
 
 
