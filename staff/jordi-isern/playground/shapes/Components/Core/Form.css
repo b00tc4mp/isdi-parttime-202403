@@ -1,0 +1,12 @@
+.Form {
+    background-color: var(--color3);
+    padding: .3rem 1rem;
+    margin: auto;
+    display: flex;
+    width: 12rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: .1rem;
+    border-radius: 1rem;
+}
