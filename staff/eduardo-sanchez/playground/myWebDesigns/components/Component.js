@@ -23,3 +23,7 @@ Component.prototype.setId = function (id) {
 Component.prototype.addClass = function (clazz) {
     this.container.classList.add(clazz)
 }
+
+Component.prototype.removeClass = function (clazz) {
+    this.container.classList.remove(clazz)
+}
