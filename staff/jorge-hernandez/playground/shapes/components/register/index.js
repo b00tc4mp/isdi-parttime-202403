@@ -11,24 +11,21 @@ registerForm.onSubmit(function (event) {
   if (password === repeatPassword) {
     for (var i = 0; i < users.length; i++) {
       var user = users[i].email
-      console.log(user)
       if (user === newUser.email) {
         event.preventDefault()
-        alert('este usuario ya existe')
+        alert('este email ya ha sido registrado anteriormente')
         return
       }
     }
     event.preventDefault()
     users.push(newUser)
     localStorage.users = JSON.stringify(users)
-    console.log('Nuevo usuario agregado:', email, username, password)
     localStorage.newUser = JSON.stringify(newUser)
-    console.log('Redirigiendo a la página de inicio...')
     window.location.href = '../home/index.html'
     // registerForm.clear()
   } else {
     event.preventDefault()
-    alert('La contraseña debe ser igual')
+    alert('Las contraseñas no coinciden')
   }
 })
 
