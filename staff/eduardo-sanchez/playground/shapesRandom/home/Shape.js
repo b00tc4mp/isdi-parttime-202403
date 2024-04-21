@@ -69,6 +69,7 @@ Shape.prototype.moveRelative = function (dx, dy, dz) {
     this.moveRelativeZ(dz)
 }
 
+
 Shape.prototype.config = function (keyUp, keyDown, keyLeft, keyRight) {
     this.keyUp = keyUp
     this.keyDown = keyDown

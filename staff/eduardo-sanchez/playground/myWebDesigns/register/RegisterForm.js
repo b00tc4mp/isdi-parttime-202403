@@ -1,14 +1,14 @@
 function LoginForm() {
     Form.call(this)
 
-    this.addClass('LoginForm')
+    this.addClass('RegisterForm')
 
     var userNameField = new Field('username', 'text', 'Username')
 
 
     var passwordField = new Field('password', 'password', 'Password')
 
-    var submitButton = new SubmitButton('Login')
+    var submitButton = new SubmitButton('Register')
 
 
     //var submitButton = new Button()

@@ -1,7 +1,5 @@
 function Input() {
     Component.call(this, 'input')
-
-    this.addClass('Input')
 }
 
 Input.prototype = Object.create(Component.prototype)

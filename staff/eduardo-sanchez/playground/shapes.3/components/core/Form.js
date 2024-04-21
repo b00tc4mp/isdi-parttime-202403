@@ -5,5 +5,6 @@ function Form() {
 
 }
 
+
 Form.prototype = Object.create(Component.prototype)
 Form.prototype.constructor = Form
