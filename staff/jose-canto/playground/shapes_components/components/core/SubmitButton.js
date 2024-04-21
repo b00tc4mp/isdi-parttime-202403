@@ -5,7 +5,6 @@ function SubmitButton(text) {
 
   this.setType("submit")
   this.setText(text)
-
 }
 
 SubmitButton.prototype = Object.create(Button.prototype)

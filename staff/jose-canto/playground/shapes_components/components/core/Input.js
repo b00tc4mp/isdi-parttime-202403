@@ -18,3 +18,7 @@ Input.prototype.setPlaceholder = function (placeholder) {
   this.container.placeholder = placeholder
 }
 
+Input.prototype.setRequired = function () {
+  this.container.required = "required"
+}
+

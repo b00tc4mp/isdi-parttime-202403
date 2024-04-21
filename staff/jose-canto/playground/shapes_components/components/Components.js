@@ -21,7 +21,6 @@ Component.prototype.add = function (child) {
   this.container.appendChild(child.container)
 }
 
-
 Component.prototype.setText = function (text) {
   // Este método establece el contenido textual del "container" con el texto proporcionado.
   this.container.innerText = text
