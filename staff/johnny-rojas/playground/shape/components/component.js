@@ -1,5 +1,3 @@
-// Con esto creamos el contenedor de sintaxis html <etiqueta> o container
-
 function Component(tagNameOrContainer) {
   if (typeof tagNameOrContainer === 'string')
       this.container = document.createElement(tagNameOrContainer)
@@ -11,8 +9,6 @@ function Component(tagNameOrContainer) {
   this.children = []
 }
 
-// No agrupa los child de un component en un array
-
 Component.prototype.add = function (child) {
   if (!(child instanceof Component)) throw new TypeError('child is not component')
 
@@ -20,8 +16,6 @@ Component.prototype.add = function (child) {
 
   this.container.appendChild(child.container)
 }
-
-// Cuando quieres añadir un "superpoder" a la funcion constructora
 
 Component.prototype.setText = function (text) {
   this.container.innerText = text
@@ -37,4 +31,8 @@ Component.prototype.addClass = function (clazz) {
 
 Component.prototype.removeClass = function (clazz) {
   this.container.classList.remove(clazz)
+}
+
+Component.prototype.onClick = function (listener) {
+  this.container.addEventListener('click', listener)
 }
