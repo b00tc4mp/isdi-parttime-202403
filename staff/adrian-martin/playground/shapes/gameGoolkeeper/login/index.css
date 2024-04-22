@@ -1,0 +1,19 @@
+.View {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}
+
+.LoginForm {
+    padding: 1rem;
+    width: 400px;
+}
+
+.LoginForm .Input, .Button {
+    background-color: transparent;
+    font-size: 1rem;
+    border: 1px solid var(--firts-color);
+    width: 300px;
+    
+}

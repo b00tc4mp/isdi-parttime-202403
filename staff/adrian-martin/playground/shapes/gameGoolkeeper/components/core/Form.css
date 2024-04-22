@@ -1,0 +1,9 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--second-color);
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 20px;
+    border: black 10px double;
+}
