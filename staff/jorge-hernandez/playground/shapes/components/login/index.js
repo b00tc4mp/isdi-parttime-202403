@@ -13,19 +13,34 @@ loginForm.onSubmit(function (event) {
     var users = localStorage.users ? JSON.parse(localStorage.users) : []
     var newUser = { username: userName }
     console.log(users)
-    for (var i = 0; i < users.length; i++) {
-      var user = users[i]
-      if (user.username === userName) {
-        if (user.password === password) {
-          localStorage.newUser = JSON.stringify(newUser)
-          window.location.href = '../home/index.html'
-          return
-        } else {
-          alert('contraseña incorrecta')
-          return
-        }
+    var user = users.find(function (user) {
+      return user.username === userName
+    })
+
+    if (user) {
+      if (user.password === password) {
+        localStorage.newUser = JSON.stringify(newUser)
+        window.location.href = '../home/index.html'
+        return
+      } else {
+        alert('contraseña incorrecta')
+        return
       }
     }
+
+    // for (var i = 0; i < users.length; i++) {
+    //   var user = users[i]
+    //   if (user.username === userName) {
+    //     if (user.password === password) {
+    //       localStorage.newUser = JSON.stringify(newUser)
+    //       window.location.href = '../home/index.html'
+    //       return
+    //     } else {
+    //       alert('contraseña incorrecta')
+    //       return
+    //     }
+    //   }
+    // }
     alert(
       'usuario no existe debe registrarse, será redirigido a la página de registro'
     )
@@ -37,4 +52,4 @@ var link = new Link()
 link.setUrl('../register/index.html')
 link.setTarget('_blank')
 link.setText('Register')
-document.body.appendChild(link.container)
+view.add(link)

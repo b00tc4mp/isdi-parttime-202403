@@ -1,6 +1,9 @@
+var view = new Component(document.body)
+view.addClass('View')
 var registerForm = new RegisterForm()
-document.body.appendChild(registerForm.container)
+view.add(registerForm)
 registerForm.onSubmit(function (event) {
+  event.preventDefault()
   var email = registerForm.getEmail()
   var username = registerForm.getUsername()
   var password = registerForm.getPassword()
@@ -13,26 +16,31 @@ registerForm.onSubmit(function (event) {
     password === '' ||
     repeatPassword === ''
   ) {
-    event.preventDefault()
     alert('Debes completar todos los campos')
   } else {
     if (password === repeatPassword) {
-      for (var i = 0; i < users.length; i++) {
-        var user = users[i].email
-        if (user === newUser.email) {
-          event.preventDefault()
-          alert('este email ya ha sido registrado anteriormente')
-          return
-        }
+      var existingUser = users.find(function (user) {
+        return user.email === newUser.email
+      })
+
+      if (existingUser) {
+        alert('este email ya ha sido registrado anteriormente')
+        return
       }
-      event.preventDefault()
+
+      // for (var i = 0; i < users.length; i++) {
+      //   var user = users[i].email
+      //   if (user === newUser.email) {
+      //     alert('este email ya ha sido registrado anteriormente')
+      //     return
+      //   }
+      // }
       users.push(newUser)
       localStorage.users = JSON.stringify(users)
       localStorage.newUser = JSON.stringify(newUser)
       window.location.href = '../home/index.html'
       // registerForm.clear()
     } else {
-      event.preventDefault()
       alert('Las contraseñas no coinciden')
     }
   }
@@ -42,4 +50,4 @@ var link = new Link()
 link.setUrl('../login/index.html')
 link.setTarget('_blank')
 link.setText('Login')
-document.body.appendChild(link.container)
+view.add(link)
