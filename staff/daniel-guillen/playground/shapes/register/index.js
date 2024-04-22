@@ -39,7 +39,7 @@ registerForm.onSubmit(function (event) {
 
 var loginLink = new Link
 loginLink.setText('Login')
-//loginLink.setUrl('../login')
+//Forma de hacerlo sin complicarse la vida //loginLink.setUrl('../login')
 loginLink.onClick(function (event) {
     event.preventDefault()
 
@@ -51,3 +51,28 @@ loginLink.onClick(function (event) {
 view.add(title)
 view.add(registerForm)
 view.add(loginLink)
+
+function ejecutaAlerta() {   
+    var w = window.open('','','width=300,height=120');
+    w.moveTo(500,500);
+    w.scrollbars = 'no';
+    w.directories = 'no';
+    w.location = 'no';
+    w.menubar = 'no';
+    w.document.write('Esta siendo direccionado!');
+        w.focus();
+    setTimeout(function() {
+        w.close();
+    }, 4000);
+}
+
+var link = document.getElementById('isdiLink');
+link.onclick = function(event) {
+    event.preventDefault();
+    console.log('Hola click');
+    ejecutaAlerta();
+
+    setTimeout(function() {
+        window.location.href = link.href;
+    }, 4000);
+};
