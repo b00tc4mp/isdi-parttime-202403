@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <form action="https://www.google.com/search" method="get">
+            <input type="text" name="q">
+            <button type="submit">Search</button>
+        </form>
+
+        <script>
+            var form = document.querySelector('form')
+
+            form.onsubmit = function (event) {
+                event.preventDefault()
+
+                console.log('hola submit')
+
+                console.log('you are to navigate to google in 3 seconds...')
+
+                setTimeout(function () {
+                    console.log('go to google now...')
+
+                    var input = form.querySelector('input')
+
+                    window.location.href = form.action + '?' + input.name + '=' + input.value
+                }, 3000)
+            }
+
+            form.addEventListener('submit', function (event) {
+                console.warn('hola submit')
+            })
+
+            form.addEventListener('submit', function (event) {
+                console.error('hola submit')
+
+                block(10000)
+            })
+
+            function block(millis) {
+                console.log('block start', new Date().toISOString())
+
+                var before = Date.now()
+
+                while (Date.now() - before < millis);
+
+                console.log('block end', new Date().toISOString())
+            }
+        </script>
+    </body>
+
+</html>

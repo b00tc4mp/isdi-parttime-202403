@@ -3,7 +3,6 @@ function RegisterForm() {
 
     this.addClass('RegisterForm')
 
-
     var emailField = new Field('email', 'email', 'E-mail')
     emailField.setPlaceholder('name@example.com')
 
