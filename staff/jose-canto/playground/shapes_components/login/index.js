@@ -5,21 +5,6 @@ var headerLogin = new Header(1)
 headerLogin.setText("LOGIN")
 
 var loginForm = new LoginComponent()
-
-var registerLink = new Link()
-registerLink.setText("Register")
-//registerLink.setUrl("../register/index.html")
-
-registerLink.onClick(function (event) {
-  event.preventDefault()
-
-  console.log("...en espera de 1 segundo ⌛")
-  setTimeout(function () {
-    location.href = "../register"
-  }, 1000)
-})
-
-
 loginForm.onSubmit(function (event) {
   event.preventDefault()
 
@@ -46,6 +31,19 @@ loginForm.onSubmit(function (event) {
   } else {
     alert("Login incorrecto ❌")
   }
+})
+
+var registerLink = new Link()
+registerLink.setText("Register")
+//registerLink.setUrl("../register/index.html")
+
+registerLink.onClick(function (event) {
+  event.preventDefault()
+
+  console.log("...en espera de 1 segundo ⌛")
+  setTimeout(function () {
+    location.href = "../register"
+  }, 1000)
 })
 
 

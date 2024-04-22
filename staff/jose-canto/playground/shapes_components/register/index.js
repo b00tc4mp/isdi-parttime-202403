@@ -5,17 +5,15 @@ var view = new Component(document.body)
 var headerLogin = new Header(1)
 headerLogin.setText("REGISTER")
 
+headerLogin.onClick(function (event) {
+  event.preventDefault()
+  alert("Click en el registro")
+})
+
 // Creamos un enlace para redirigir al usuario al inicio de sesión
 var loginLink = new Link()
 loginLink.setText("Login")
-// Configuramos un evento onclick para redirigir al usuario al inicio de sesión
-loginLink.onClick(function (event) {
-  event.preventDefault() // Prevenimos el comportamiento predeterminado del enlace
-  console.log("...en espera de 1 segundo ⌛")
-  setTimeout(function () {
-    location.href = "../login" // Redireccionamos al usuario al inicio de sesión después de 1 segundo
-  }, 1000)
-})
+
 
 // Creamos una instancia de la clase RegisterComponent
 var registerForm = new RegisterComponent()
@@ -29,12 +27,6 @@ registerForm.onSubmit(function (event) {
   var username = registerForm.getUsername()
   var password = registerForm.getPassword()
   var passwordRepeat = registerForm.getPasswordRepeat()
-
-  // var confirmation = registerForm.setPasswordRepeat(password, passwordRepeat)
-  // if (!confirmation) {
-  //   alert("Password no coincide")
-  //   return
-  // }
 
   // Obtenemos los usuarios del Local Storage o creamos un array vacío si no existen
   var usersJson = localStorage.users || "[]"
@@ -83,8 +75,17 @@ registerForm.onSubmit(function (event) {
 
     // Limpiamos el formulario de registro
     registerForm.clear()
-    location.href = "../login" // Redireccionamos al usuario al inicio de sesión 
+    //location.href = "../login" // Redireccionamos al usuario al inicio de sesión 
   }
+})
+
+// Configuramos un evento onclick para redirigir al usuario al inicio de sesión
+loginLink.onClick(function (event) {
+  event.preventDefault() // Prevenimos el comportamiento predeterminado del enlace
+  console.log("...en espera de 1 segundo ⌛")
+  setTimeout(function () {
+    location.href = "../login" // Redireccionamos al usuario al inicio de sesión después de 1 segundo
+  }, 1000)
 })
 
 // Agregamos los elementos al componente principal

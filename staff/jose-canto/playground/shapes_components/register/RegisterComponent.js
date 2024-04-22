@@ -21,7 +21,7 @@ function RegisterComponent() {
 
   var userNameInput = new Input
   userNameInput.setId("username")
-  userNameInput.setPlaceholder("User Name")
+  userNameInput.setPlaceholder("Username")
   userNameInput.setRequired()
 
   //* PASSWORD
@@ -33,7 +33,7 @@ function RegisterComponent() {
   passwordInput.setText("")
   passwordInput.setId("password")
   passwordInput.setType("password")
-  passwordInput.setPlaceholder("Your Password")
+  passwordInput.setPlaceholder("New Password")
   passwordInput.setRequired()
 
 

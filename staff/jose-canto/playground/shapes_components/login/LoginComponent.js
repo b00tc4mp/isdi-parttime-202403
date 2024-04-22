@@ -17,14 +17,14 @@ function LoginComponent() {
   // Creamos una instancia de la clase Input para el campo de nombre de usuario
   var userNameInput = new Input
   userNameInput.setId("username")
-  userNameInput.setPlaceholder("User Name")
+  userNameInput.setPlaceholder("Username")
 
   // Creamos una instancia de la clase Input para el campo de contraseña
   var passwordInput = new Input
   passwordInput.setText("")
   passwordInput.setId("password")
   passwordInput.setType("password")
-  passwordInput.setPlaceholder("Your Password")
+  passwordInput.setPlaceholder("Password")
 
 
   var submitButton = new SubmitButton("Login")
