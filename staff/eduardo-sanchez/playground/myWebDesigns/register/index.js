@@ -5,7 +5,7 @@ view.addClass('View')
 var title = new Heading(1)
 title.setText('Register')
 
-var loginForm = new LoginForm()
+var registerForm = new RegisterForm()
 
 var loginLink = new LinK()
 
@@ -16,7 +16,7 @@ loginLink.setText('Login')
 
 
 view.add(title)
-view.add(loginForm)
+view.add(registerForm)
 view.add(loginLink)
 
 

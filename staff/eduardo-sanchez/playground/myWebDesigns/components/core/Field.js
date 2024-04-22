@@ -1,5 +1,5 @@
 function Field(id, type, text) {
-    Component.call(this, text)
+    Component.call(this, 'div')
 
     this.addClass('Field')
 
@@ -18,3 +18,9 @@ function Field(id, type, text) {
 
 Field.prototype = Object.create(Component.prototype)
 Field.prototype.constructor = Field
+
+Field.prototype.setPlaceholder = function (placeholder) {
+    //child.input.setPlaceholder(placeholder)
+
+    this.children[1].setPlaceholder(placeholder)
+}
