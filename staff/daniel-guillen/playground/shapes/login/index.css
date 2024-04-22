@@ -1,9 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
-.LoginForm {
-    background-color: darkslategrey;
-    padding: 2rem;
-    font-size: x-large;
-}
 .View {
     display: flex;
     flex-direction: column;
@@ -14,7 +9,7 @@ h1{
     font-family: Workbench;
     font-size: 350%;
 }
-.LoginForm .Input,
+.Input,
 .Button {
     background-color: transparent;
     font-size: 1rem;

@@ -3,6 +3,9 @@ view.addClass('View')
 
 var title = new Heading(1)
 title.setText('Login')
+title.onClick(function () {
+    alert('Al hacer clic en este título no obtendrás nada')
+})
 
 var loginForm = new LoginForm
 var registerLink = new Link
@@ -19,28 +22,3 @@ registerLink.onClick(function (event) {
 view.add(title)
 view.add(loginForm)
 view.add(registerLink)
-
-function ejecutaAlerta() {   
-    var w = window.open('','','width=300,height=120');
-    w.moveTo(500,500);
-    w.scrollbars = 'no';
-    w.directories = 'no';
-    w.location = 'no';
-    w.menubar = 'no';
-    w.document.write('Esta siendo direccionado!');
-        w.focus();
-    setTimeout(function() {
-        w.close();
-    }, 4000);
-}
-
-var link = document.getElementById('isdiLink');
-link.onclick = function(event) {
-    event.preventDefault();
-    console.log('Hola click');
-    ejecutaAlerta();
-
-    setTimeout(function() {
-        window.location.href = link.href;
-    }, 4000);
-};

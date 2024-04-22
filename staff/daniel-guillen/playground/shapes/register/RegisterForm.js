@@ -12,7 +12,7 @@ function RegisterForm() {
     var passwordField = new Field('password', 'password', 'Password')
     passwordField.setPlaceholder('password')
 
-    var passwordRepeatField = new Field('repassword', 'repassword', 'Password repeat')
+    var passwordRepeatField = new Field('repassword', 'password', 'Password repeat')
     passwordRepeatField.setPlaceholder('repeat password')
 
     var submitButton = new SubmitButton('Register')
