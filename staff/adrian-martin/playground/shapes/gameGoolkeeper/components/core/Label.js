@@ -1,5 +1,7 @@
 function Label(){
     Component.call(this, 'label')
+
+    this.addClass('Label')
 }
 
 Label.prototype = Object.create(Component.prototype)

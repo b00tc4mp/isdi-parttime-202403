@@ -2,10 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
 :root {
-    --firts-color: ForestGreen;
-    --second-color: greenyellow;
-    --third-color:black;
+    --firts-color: rgb(175, 247, 142);
+    --second-color: rgb(159, 206, 88);
+    --third-color:rgb(10, 77, 19);
+    --fourth-color:rgb(10, 77, 19, 0.25);
 }
+
 
 * {
     /* font-family: Chakra Petch; */

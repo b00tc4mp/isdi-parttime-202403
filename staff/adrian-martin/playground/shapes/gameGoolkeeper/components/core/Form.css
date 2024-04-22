@@ -3,7 +3,9 @@
     flex-direction: column;
     background-color: var(--second-color);
     align-items: center;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     font-size: 20px;
     border: black 10px double;
+    border-radius: 10%;
 }

@@ -10,8 +10,6 @@ function LoginForm() {
     var submitButton = new SubmitButton('Login')
 
     
-
-    
     this.add(usernameField)
     this.add(passwordField)
     this.add(submitButton)

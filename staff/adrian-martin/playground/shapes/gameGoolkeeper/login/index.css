@@ -8,12 +8,14 @@
 .LoginForm {
     padding: 1rem;
     width: 400px;
+    
 }
 
 .LoginForm .Input, .Button {
-    background-color: transparent;
+    background-color:rgb(10, 77, 19, 0.15);
     font-size: 1rem;
-    border: 1px solid var(--firts-color);
+    border: 1px solid var(--third-color);
     width: 300px;
+    
     
 }
