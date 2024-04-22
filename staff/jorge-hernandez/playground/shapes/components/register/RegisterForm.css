@@ -8,6 +8,6 @@
     margin: 15px;
     padding: 10px;
     box-shadow: 0 0 10px black;
-    background-color: rgba(245, 245, 220, 0.739);
+    background: linear-gradient(to bottom, #1e6091, #3f9bd8);
 }
     

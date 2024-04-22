@@ -26,7 +26,6 @@ function RegisterForm() {
   this.add(passwordField)
   this.add(repeatPasswordField)
   this.add(button)
-  console.log(this.children)
 }
 
 RegisterForm.prototype = Object.create(Form.prototype)

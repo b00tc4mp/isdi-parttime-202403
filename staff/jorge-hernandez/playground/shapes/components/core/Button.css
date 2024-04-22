@@ -5,7 +5,7 @@
     font-weight: bold;
     color: #fff;
     background-color: #007bffb0;
-    border: none;
+    border: 1px solid rgba(0, 0, 255, 0.338);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;

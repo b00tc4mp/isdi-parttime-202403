@@ -14,3 +14,7 @@ Input.prototype.setType = function (type) {
 Input.prototype.getValue = function () {
   return this.container.value
 }
+
+Input.prototype.setPlaceholder = function (placeholder) {
+  this.container.placeholder = placeholder
+}

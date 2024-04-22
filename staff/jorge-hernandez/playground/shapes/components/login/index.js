@@ -2,24 +2,34 @@ var loginForm = new LoginForm()
 document.body.appendChild(loginForm.container)
 
 loginForm.onSubmit(function (event) {
-  event.preventDefault()
   var userName = loginForm.getUsername()
   var password = loginForm.getPassword()
-  var users = JSON.parse(localStorage.users)
-  var newUser = { username: userName }
-  console.log(users)
-  for (var i = 0; i < users.length; i++) {
-    var user = users[i]
-    if (user.username === userName) {
-      if (user.password === password) {
-        localStorage.newUser = JSON.stringify(newUser)
-        window.location.href = '../home/index.html'
-      } else {
-        alert('contraseña incorrecta')
+  console.log(userName, password)
+  if (userName === '' || password === '') {
+    event.preventDefault()
+    alert('debes completar todos los campos')
+  } else {
+    event.preventDefault()
+    var users = localStorage.users ? JSON.parse(localStorage.users) : []
+    var newUser = { username: userName }
+    console.log(users)
+    for (var i = 0; i < users.length; i++) {
+      var user = users[i]
+      if (user.username === userName) {
+        if (user.password === password) {
+          localStorage.newUser = JSON.stringify(newUser)
+          window.location.href = '../home/index.html'
+          return
+        } else {
+          alert('contraseña incorrecta')
+          return
+        }
       }
-    } else {
-      alert('este usuario no existe, debe registrarse')
     }
+    alert(
+      'usuario no existe debe registrarse, será redirigido a la página de registro'
+    )
+    window.location.href = '../register/index.html'
   }
 })
 
