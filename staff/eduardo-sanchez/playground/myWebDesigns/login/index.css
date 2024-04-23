@@ -7,6 +7,7 @@
 
 .LoginForm {
     padding: 1rem;
+    box-shadow: 5px 5px 5px black;
 }
 
 .LoginForm .Input,
@@ -14,4 +15,8 @@
     background-color: transparent;
     font-size: 1rem;
     border: 1px solid var(--first-color);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 15px;
+
+
 }

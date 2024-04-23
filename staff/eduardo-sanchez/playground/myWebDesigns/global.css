@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+
 
 
 :root {
-    --first-color: yellowgreen;
-    --second-color: black;
+    --first-color: rgb(50, 135, 205);
+    --second-color: grey(202, 22, 22);
 }
 
 * {
-    font-family: Workbench;
+    font-family: Oswald;
 
     color: var(--first-color);
 
@@ -15,6 +16,20 @@
 }
 
 body {
-    background-color: var(--second-color);
-    /* background-color: black; */
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-attachment: fixed;
+    height: 50vh;
+
+    /* background-image: url("https://images.hola.com/imagenes/mascotas/20221020219416/razas-perros-toy/1-154-385/razas-de-perro-toy-t.jpg"); */
+
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    box-shadow: black;
+
+
 }

@@ -28,6 +28,7 @@ var people = [{ name: 'Peter', age: 30 }, { name: 'Wendy', age: 29 }]
 forEach(people, function (person) { console.log(person.name.toUpperCase()) })
 
 var cart = [{ title: 'socks', quantity: 3, price: 10 }, { title: 't-shirt', quantity: 2, price: 20 }, { title: 'shoes', quantity: 1, price: 50 }]
+
 var total = 0
 forEach(cart, function (item) { total += item.quantity * item.price })
 console.log(total)
