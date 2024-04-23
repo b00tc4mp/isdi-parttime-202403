@@ -8,41 +8,56 @@ title.onClick(function () {
 })
 
 var registerForm = new RegisterForm();
-registerForm.onSubmit(function(event) {
+registerForm.onSubmit(function (event) {
     event.preventDefault();
 
-    var passwordRepeat = registerForm.getPasswordRepeat();
+    var email = registerForm.getEmail();
+    var username = registerForm.getUsername();
     var password = registerForm.getPassword();
-    
-    if (password === passwordRepeat) {
-        
-        var email = registerForm.getEmail()
-        var username = registerForm.getUsername()
-        var password = registerForm.getPassword()
+    var passwordRepeat = registerForm.getPasswordRepeat();
 
-        var usersJson = localStorage.users
-    
-        if (!usersJson) usersJson = '[]'
-    
-        var users = JSON.parse(usersJson)
-    
-        var user = {
-            email: email,
-            username: username,
-            password: password
-        }
-    
-        users.push(user)
-    
-        usersJson = JSON.stringify(users)
-    
-        localStorage.users = usersJson
-    
-        window.location.reload()
+    var usersJson = localStorage.users;
 
-    } else {
-        alert("Las contraseñas no coinciden");
+    if (!usersJson) usersJson = '[]';
+
+    var users = JSON.parse(usersJson);
+
+    var user = users.find(function (user) {
+        return user.email === email;
+    });
+
+    if (user) {
+        alert('Utilice otro correo.');
+        return;
     }
+
+    var user2 = users.find(function (registeredUser) {
+        return registeredUser.username === username;
+    });
+
+    if (user2) {
+        alert('Utilice otro nombre de usuario.');
+        return;
+    }
+
+    if (password !== passwordRepeat) {
+        alert('La contraseña no coincide.');
+        return;
+    }
+
+    user = {
+        email: email,
+        username: username,
+        password: password
+    };
+
+    users.push(user);
+
+    usersJson = JSON.stringify(users);
+
+    localStorage.users = usersJson;
+
+    registerForm.clear();
 });
 
 var loginLink = new Link
