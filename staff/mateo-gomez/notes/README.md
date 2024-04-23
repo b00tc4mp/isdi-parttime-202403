@@ -89,6 +89,15 @@ $ mkdir (name of new folder)
 ```
 
 
+
+
+
+
+
+## Git commands
+
+
+
 ### git init - Create an empty Git repository or reinitialize an existing one
 
 ```sh
@@ -348,3 +357,44 @@ document.querySelector(" "). innerText= " ";
     --> Ejemplo: 
         document.querySelector("title").innerText = "Cv-Pepito Grillo"
 ```
+
+
+
+## Local Storage
+
+### JSON.stringify({}) - Guardar objetos en Local Storage
+
+```sh
+Para guardar un objeto primero tenemos que convertirlo en un string json ya que el localStorage no permite guardar objetos de JavaScript pero si permite guardar strings. (lo que guarda básicamente es un string con forma de objeto de Java Script)
+
+const json = JSON.stringify({hola: mundo})
+
+---> En el local Storage se guardará como: 
+
+'{"hola":"mundo"}'
+
+--> Una vez que tenemos nuestro objeto en el formato correcto para local storage para guardarlo tendremos que hacer así:
+
+localStorage.data = json
+
+(RECUERDA que json es lo que hemos convertido de JSON.stringify({hola:mundo}))
+
+```
+
+
+### JSON.parse - Para reconstruir (sacar) un objeto de Local Storage
+
+```sh
+En el ejemplo anterior hemos visto como guardar un objeto de Java Script en local storage. Ahora necesitamos hacer el ejercicio inverso para sacar el objeto (que para guardarse en local storage lo hemos tenido que convertir a string) de local storage
+
+El string de local storage es así: 
+'{"hola":"mundo"}'
+
+---> JSON.parse(localStorage.data)
+
+--> El resultado será un objeto de Java Script: 
+
+{hola: 'mundo'}
+ 
+ ```
+ 
