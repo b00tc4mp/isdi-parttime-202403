@@ -22,8 +22,8 @@ registerForm.onSubmit(function (event) {
 
     var users = JSON.parse(usersJson);
 
-    var user = users.find(function (user) {
-        return user.email === email;
+    var user = users.find(function (registeredEmail) {
+        return registeredEmail.email === email;
     });
 
     if (user) {
