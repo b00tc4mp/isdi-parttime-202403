@@ -1,23 +1,8 @@
-function Field(id, type, text) {
-    Component.call(this, 'div')
-
-    var label = new Label()
-    label.setText('Username')
-    label.setFor('username')
-
-    var input = new Input()
-    input.setId('username')
-    input.setType(type)
-
-    this.add(label)
-    this.add(input)
-}
-
 function LoginForm() {
     Form.call(this)
 
-    var form = new Form()
-    this.removeClass('Form')
+    //var form = new Form()
+    //this.removeClass('Form')
     this.addClass('LoginForm')
 
     /*
@@ -27,12 +12,16 @@ function LoginForm() {
 
     var usernameInput = new Input()
     usernameInput.setId('username')
+    
+    var usernameField = new Field('username', 'Username')
+    
+    this.add(usernameField)
+
     */
+    var usernameField = new Field('username', 'text', 'Username')
 
-    var usernameField = new Field()
 
-
-    var passwordLabel = new Label()
+    /*var passwordLabel = new Label()
     passwordLabel.setText('Password')
     passwordLabel.setFor('password')
 
@@ -40,18 +29,27 @@ function LoginForm() {
     passwordLabel.setId('Password')
     passwordLabel.setType('password')
 
+    */
 
-    var submitButton = new Button()
-    submitButton.setText('Login')
-    submitButton.setType('submit')
+    var passwordField = new Field('password', 'password', 'Password')
+
+    /* var submitButton = new Button()
+     submitButton.setText('Register')
+     submitButton.setType('submit')
+ 
+     */
+
+    var submitButton = new SubmitButton('Login')
 
 
     //this.add(usernameLabel)
     //this.add(passwordLabel)
     this.add(usernameField)
-    this.add(usernameInput)
-    this.add(passwordInput)
+    //this.add(usernameInput)
+    //this.add(passwordInput)
+    this.add(passwordField)
     this.add(submitButton)
 }
 
 LoginForm.prototype = Object.create(Form.prototype)
+LoginForm.prototype.constructor = Form
