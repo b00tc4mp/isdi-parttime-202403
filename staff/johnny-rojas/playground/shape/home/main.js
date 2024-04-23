@@ -1,3 +1,11 @@
+var view = new Component(document.body)
+view.addClass('View')
+
+var title = new Heading(1)
+title.setText('Home')
+
+view.add(title)
+
 var pig = new Pig()
 pig.config('ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight')
 pig.move(100, 100, 0)

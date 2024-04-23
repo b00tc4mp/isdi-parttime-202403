@@ -14,7 +14,7 @@ registerForm.onSubmit(function (event) {
     var email = registerForm.getEmail()
     var username = registerForm.getUsername()
     var password = registerForm.getPassword()
-    // var passwordRepeat = registerForm.getPasswordRepeat()
+    var passwordRepeat = registerForm.getPasswordRepeat()
 
     var usersJson = localStorage.users
 
@@ -22,7 +22,23 @@ registerForm.onSubmit(function (event) {
 
     var users = JSON.parse(usersJson)
 
-    var user = {
+    var user = users.find(function (user) {
+        return user.email === email || user.username === username
+    })
+
+    if (user) {
+        alert('user already exists')
+
+        return
+    }
+
+    if (password !== passwordRepeat) {
+        alert('passwords don\'t match')
+
+        return
+    }
+
+    user = {
         email: email,
         username: username,
         password: password
