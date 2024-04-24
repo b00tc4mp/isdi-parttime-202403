@@ -11,39 +11,91 @@ var registerForm = new RegisterForm()
 registerForm.onSubmit(function(event) {
     event.preventDefault()
 
+    // PRESENTACION
     var email = registerForm.getEmail()
     var username = registerForm.getUsername()
     var password = registerForm.getPassword()
-    // var passwordRepeat = registerForm.getRetypePassword()
+    var passwordRepeat = registerForm.getRetypePassword()
 
-    // trae users
-    var usersJson = localStorage.users
+    var logic = {}
 
-    // Si usersJson esta vacio devuelve array vacio
-    if(!usersJson) usersJson = '[]'
+    // MANEJAR DATOS/input validation
+//     logic.registerUser = function(email, username, password, passwordRepeat){
+//         // trae users, trae el json
+//         var usersJson = localStorage.users
 
-    // Si hay usuario - convertir a array
-    var users = JSON.parse(usersJson)
+//         // validar el email
+//         if(!EMAIL_REGEX.test(email))
+//             throw new Error('email is not valid')
 
-    // inyectar el usuario
-    var user ={
-        email: email,
-        username: username,
-        password: password,
-        // passwordRepeat: passwordRepeat
-    }
+        
+//         // validar el usuario
+//         if(!USERNAME_REGEX.test(username))
+//             throw new Error('username is not valid')
+            
+        
+//         // validar la constraseña
+//         if(!PASSWORD_REGEX.test(password))
+//             throw new Error('password is not valid')
 
-    // meter en el array
-    users.push(user)
-    Shape()
-    // guardar en servidor
-    usersJson = JSON.stringify(users)
 
-    // guardar en local store
-    localStorage.users = usersJson
+//         // revisar si la contraseña coincide con la passwordRepeat
+//         if(password !== passwordRepeat)
+//             throw new Error('password don\'t match')
+        
 
-    registerForm.reset()
+//         // Si usersJson esta vacio devuelve array vacio
+//         if(!usersJson) usersJson = '[]'
+
+//         // Si hay usuario - convertir a array
+//         var users = JSON.parse(usersJson)
+
+//         // Revisar si ya existe y existe
+//         var user = users.find(function(user) {
+//             return user.email === email || user.username === username
+//         })
+
+//         // Revisar si ya existe y NO existe
+//         if (user)
+//             throw new Error('user already exists')
+        
+
+//         // inyectar el usuario
+//         user ={
+//             email: email,
+//             username: username,
+//             password: password,
+//         }
+
+//         // meter en el array
+//         users.push(user)
+
+//         // guardar en servidor
+//         usersJson = JSON.stringify(users)
+
+//         // guardar en local store
+//         localStorage.users = usersJson
+//     }
+//     try{
+//         if(logic.registerUser(email, username, password, passwordRepeat))
+
+//             registerForm.clear()
+//     }catch(error){
+//         // alert(error.message)
+//         registerForm.setFeedback(error.message)
+//     }
+
+try{
+    if(logic.registerUser(email, username, password, passwordRepeat))
+
+        registerForm.clear()
+}catch(error){
+    // alert(error.message)
+    registerForm.setFeedback(error.message)
+}
+
 })
+
 
 var loginLink = new Link
 loginLink.setText('Login')
@@ -53,9 +105,8 @@ loginLink.onClick(function (event) {
 
     setTimeout(function () {
         location.href = '../login'
-    }, 2000)
+    }, 1000)
 })
-
 
 view.add(title)
 view.add(registerForm)
@@ -63,56 +114,11 @@ view.add(loginLink)
 
 
 
-// var registerForm = new RegisterForm
-// registerForm.onSubmit(function (event) {
-//     event.preventDefault()
-
-//     var email = registerForm.getEmail()
-//     var username = registerForm.getUsername()
-//     var password = registerForm.getPassword()
-//     var passwordRepeat = registerForm.getPasswordRepeat()
-
-//     var usersJson = localStorage.users
-
-//     if (!usersJson) usersJson = '[]'
-
-//     var users = JSON.parse(usersJson)
-
-//     var user = users.find(function (user) {
-//         return user.email === email || user.username === username
-//     })
-
-//     if (user) {
-//         alert('user already exists')
-
-//         return
-//     }
-
-//     if (password !== passwordRepeat) {
-//         alert('passwords don\'t match')
-
-//         return
-//     }
-
-//     user = {
-//         email: email,
-//         username: username,
-//         password: password
-//     }
-
-//     users.push(user)
-
-//     usersJson = JSON.stringify(users)
-
-//     localStorage.users = usersJson
-
-//     registerForm.clear()
-// })
 
 
 
-// view.add(player2)
-// view.add(player1)
+
+
 
 
 

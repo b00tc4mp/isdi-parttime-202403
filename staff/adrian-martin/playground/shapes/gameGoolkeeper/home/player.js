@@ -9,7 +9,7 @@ function Player() {
     this.setHeight(50)
     this.setRadius(35)   
 
-    // camp.add(this)
+    camp.add(this)
 
     var lineTorso = new Shape
         if(player1){    
