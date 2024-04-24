@@ -6,8 +6,9 @@ var title = new Heading(1)
 title.setText('Register')
 
 title.onClick(function () {
-    alert('Haciendo click aquí no vas a poder registrarte, prueba más abajo :)')
+    alert('Haciendo click aquí no vas a poder registrarte, prueba más abajo ⬇️')
 })
+
 
 var registerForm = new RegisterForm
 registerForm.onSubmit(function (event) {
@@ -18,46 +19,24 @@ registerForm.onSubmit(function (event) {
     var password = registerForm.getPassword()
     var passwordRepeat = registerForm.getPasswordRepeat()
 
-    var usersJson = localStorage.users
 
-    if (!usersJson) usersJson = '[]'
+    try {
+        logic.registerUser(email, username, password, passwordRepeat)
 
-    var users = JSON.parse(usersJson)
+        registerForm.clear()
+    } catch (error) {
 
-    var user = users.find(function (users) {
-        return users.email === email || users.userame === username
-    })
 
-    if (user) {
-        alert('el usuario ya existe')
+        registerForm.setFeedback(error.message)
 
-        return
     }
-
-    if (password !== passwordRepeat) {
-        alert('passwords don\'t match \!')
-
-        return
-    }
-
-    var user = {
-        email: email,
-        username: username,
-        password: password,
-    }
-
-    users.push(user)
-
-    usersJson = JSON.stringify(users)
-
-    localStorage.users = usersJson
-
-    sterForm.clear()
-
 })
 
 
-var loginLink = new Link()
+
+
+
+loginLink = new Link()
 loginLink.setText('Login')
 //loginLink.setUrl('../login')
 loginLink.onClick(function (event) {
@@ -70,4 +49,4 @@ loginLink.onClick(function (event) {
 
 view.add(title)
 view.add(registerForm)
-view.add(loginLink)
+view.add(loginLink) 

@@ -11,3 +11,8 @@
     font-size: 1.5rem;
     border: 1px solid var(--first-color)
 }
+
+.RegisterForm .Feedback {
+    color: rgb(244, 42, 7);
+    font-size: 1.2rem;
+}
