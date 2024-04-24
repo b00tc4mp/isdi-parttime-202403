@@ -18,17 +18,19 @@ logic.registerUser = function (email, username, password, repeatPassword) {
   if (password !== repeatPassword)
     throw new Error('los campos de contraseña no coinciden')
 
+  var users = localStorage.users ? JSON.parse(localStorage.users) : []
   var newUser = { email: email, username: username, password: password }
-
-  var user = data.findUser(function (user) {
-    return user.email === email || user.username === username
+  var existingUser = users.find(function (user) {
+    return user.email === newUser.email || user.username === newUser.username
   })
-
-  if (user) {
+  if (existingUser) {
     throw new Error(
       'este email o nombre de usuario ya ha sido registrado anteriormente'
     )
   }
-
-  data.insertUser(newUser)
+  users.push(newUser)
+  localStorage.users = JSON.stringify(users)
+  localStorage.newUser = JSON.stringify(newUser)
+  window.location.href = '../home/index.html'
+  // registerForm.clear()
 }

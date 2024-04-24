@@ -11,7 +11,7 @@
     background: linear-gradient(to bottom, #1e6091, #3f9bd8);
 }
 
-.Feedback {
+.RegisterForm .Feedback {
     color: tomato;
     font-size: 12px
 }
