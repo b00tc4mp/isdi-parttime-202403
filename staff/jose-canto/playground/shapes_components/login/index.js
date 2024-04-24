@@ -1,5 +1,6 @@
 // Creamos una instancia de la clase Component y le pasamos el elemento body del documento como argumento
 var view = new Component(document.body)
+view.addClass("View")
 
 var headerLogin = new Header(1)
 headerLogin.setText("LOGIN")
@@ -35,16 +36,16 @@ loginForm.onSubmit(function (event) {
 
 var registerLink = new Link()
 registerLink.setText("Register")
-//registerLink.setUrl("../register/index.html")
+registerLink.setUrl("../register/index.html")
+registerLink.setTarget("_blank")
 
-registerLink.onClick(function (event) {
-  event.preventDefault()
-
-  console.log("...en espera de 1 segundo ⌛")
-  setTimeout(function () {
-    location.href = "../register"
-  }, 1000)
-})
+// registerLink.onClick(function (event) {
+//   event.preventDefault()
+//   console.log("...en espera de 1 segundo ⌛")
+//   setTimeout(function () {
+//     location.href = "../register"
+//   }, 1000)
+// })
 
 
 view.add(headerLogin)

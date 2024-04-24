@@ -13,10 +13,16 @@ function Component(tagNameOrContainer) {
   else {
     throw new Error("tagNameOrContainer debe ser una cadena o un elemento HTML")
   }
+
+  this.children = []
 }
 
 // Agregamos un método a los objetos Component:
 Component.prototype.add = function (child) {
+  if (!child instanceof Component) {
+    throw new TypeError("child is not component")
+  }
+  this.children.push(child) // Almacenamos cada componente en este array
   // Este método agrega el "container" del hijo al "container" del padre.
   this.container.appendChild(child.container)
 }

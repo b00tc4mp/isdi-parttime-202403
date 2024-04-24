@@ -1,0 +1,9 @@
+.Field {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+label {
+  margin: 0.4rem 0 0.5rem 0
+}

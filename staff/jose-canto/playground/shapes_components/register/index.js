@@ -1,11 +1,12 @@
 // Creamos una instancia de Component y la asociamos al body del documento
 var view = new Component(document.body)
+view.addClass("View")
 
 // Creamos un encabezado con nivel 1 y establecemos el texto como "REGISTER"
-var headerLogin = new Header(1)
-headerLogin.setText("REGISTER")
+var headerRegister = new Header(1)
+headerRegister.setText("REGISTER")
 
-headerLogin.onClick(function (event) {
+headerRegister.onClick(function (event) {
   event.preventDefault()
   alert("Click en el registro")
 })
@@ -89,6 +90,6 @@ loginLink.onClick(function (event) {
 })
 
 // Agregamos los elementos al componente principal
-view.add(headerLogin)
+view.add(headerRegister)
 view.add(registerForm)
 view.add(loginLink)

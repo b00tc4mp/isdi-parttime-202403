@@ -4,37 +4,19 @@ function LoginComponent() {
   //this.removeClass("Form") // Eliminamos la clase "Form"
   this.addClass("LoginForm")
 
-  // Creamos una instancia de la clase Label para el campo de nombre de usuario
-  var usernameLabel = new Label() // En las constructoras si no se le pasan argumentos, se crean vacías
-  usernameLabel.setText("Username: ")
-  usernameLabel.setFor("username")
+  var usernameField = new Field("username", "text", "Username")
+  usernameField.setPlaceholder("Username")
 
-  // Creamos una instancia de la clase Label para el campo de contraseña
-  var passwordLabel = new Label()
-  passwordLabel.setText("Password: ")
-  passwordLabel.setFor("password")
-
-  // Creamos una instancia de la clase Input para el campo de nombre de usuario
-  var userNameInput = new Input
-  userNameInput.setId("username")
-  userNameInput.setPlaceholder("Username")
-
-  // Creamos una instancia de la clase Input para el campo de contraseña
-  var passwordInput = new Input
-  passwordInput.setText("")
-  passwordInput.setId("password")
-  passwordInput.setType("password")
-  passwordInput.setPlaceholder("Password")
+  var passwordField = new Field("password", "password", "Password")
+  passwordField.setPlaceholder("Password")
 
 
   var submitButton = new SubmitButton("Login")
 
   // Agregamos los elementos al formulario
 
-  this.add(usernameLabel)
-  this.add(userNameInput)
-  this.add(passwordLabel)
-  this.add(passwordInput)
+  this.add(usernameField)
+  this.add(passwordField)
   this.add(submitButton)
 }
 

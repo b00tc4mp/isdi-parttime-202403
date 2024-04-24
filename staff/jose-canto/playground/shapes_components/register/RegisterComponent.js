@@ -5,62 +5,30 @@ function RegisterComponent() {
   this.addClass("RegisterForm")
 
   //* EMAIL
-  var EmailLabel = new Label() // Creamos una instancia de la clase Label para el campo de correo electrónico
-  EmailLabel.setText("E-mail: ")
-  EmailLabel.setFor("email")
+  var emailField = new Field("email", "email", "E-mail")
+  emailField.setPlaceholder("name@example.com")
 
-  var EmailInput = new Input
-  EmailInput.setId("email")
-  EmailInput.setPlaceholder("User E-mail")
-  EmailInput.setRequired()
 
   //* USERNAME
-  var usernameLabel = new Label()
-  usernameLabel.setText("Username: ")
-  usernameLabel.setFor("username")
-
-  var userNameInput = new Input
-  userNameInput.setId("username")
-  userNameInput.setPlaceholder("Username")
-  userNameInput.setRequired()
+  var userField = new Field("user", "user", "Username")
+  userField.setPlaceholder("Username")
 
   //* PASSWORD
-  var passwordLabel = new Label()
-  passwordLabel.setText("Password: ")
-  passwordLabel.setFor("password")
-
-  var passwordInput = new Input
-  passwordInput.setText("")
-  passwordInput.setId("password")
-  passwordInput.setType("password")
-  passwordInput.setPlaceholder("New Password")
-  passwordInput.setRequired()
-
+  var passwordField = new Field("password", "password", "password")
+  passwordField.setPlaceholder("Password")
 
   //* PASSWORD REPEAT
-  var passwordRepeatLabel = new Label()
-  passwordRepeatLabel.setText("Password Repeat: ")
-  passwordRepeatLabel.setFor("password")
+  var repeatPassword = new Field("password", "password", "Password Repeat")
+  repeatPassword.setPlaceholder("Repeat Password")
 
-  var passworRepeatdInput = new Input
-  passworRepeatdInput.setText("")
-  passworRepeatdInput.setId("passwordRepeat")
-  passworRepeatdInput.setType("password")
-  passworRepeatdInput.setPlaceholder("Repeat your Password")
-  passworRepeatdInput.setRequired()
-
-
+  //* Button
   var submitButton = new SubmitButton("Register")
 
   // Agregamos los elementos al formulario
-  this.add(EmailLabel)
-  this.add(EmailInput)
-  this.add(usernameLabel)
-  this.add(userNameInput)
-  this.add(passwordLabel)
-  this.add(passwordInput)
-  this.add(passwordRepeatLabel)
-  this.add(passworRepeatdInput)
+  this.add(emailField)
+  this.add(userField)
+  this.add(passwordField)
+  this.add(repeatPassword)
   this.add(submitButton)
 }
 
