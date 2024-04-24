@@ -21,19 +21,14 @@ registerForm.onSubmit(function (event) {
 
         registerForm.clear()
     } catch (error) {
-        if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + ', please, correct it')
-        if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + ', please, retype them')
-        else if (error instanceof DuplicityError)
-            registerForm.setFeedback(error.message + ', please, enter new one')
-        else
-            registerForm.setFeedback('sorry, there was an error, please try again later')
+        //alert(error.message)
+        registerForm.setFeedback(error.message)
     }
 })
 
 var loginLink = new Link
 loginLink.setText('Login')
+//loginLink.setUrl('../login')
 loginLink.onClick(function (event) {
     event.preventDefault()
 

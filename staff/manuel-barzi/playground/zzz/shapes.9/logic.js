@@ -5,26 +5,36 @@ var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 logic.registerUser = function (email, username, password, passwordRepeat) {
-    x
+    // TODO input validation
 
     if (!EMAIL_REGEX.test(email))
-        throw new ContentError('email is not valid')
+        throw new Error('email is not valid')
 
     if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
+        throw new Error('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
-        throw new ContentError('password is not valid')
+        throw new Error('password is not valid')
+
+    // if (!PASSWORD_REGEX.test(passwordRepeat))
+    //     throw new Error('password repeat is not valid')
 
     if (password !== passwordRepeat)
-        throw new MatchError('passwords don\'t match')
+        throw new Error('passwords don\'t match')
 
-    var user = data.findUser(function (user) {
+    //var usersJson = localStorage.getItem('users')
+    var usersJson = localStorage.users
+
+    if (!usersJson) usersJson = '[]'
+
+    var users = JSON.parse(usersJson)
+
+    var user = users.find(function (user) {
         return user.email === email || user.username === username
     })
 
     if (user)
-        throw new DuplicityError('user already exists')
+        throw new Error('user already exists')
 
     user = {
         email: email,
@@ -32,5 +42,9 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
         password: password
     }
 
-    data.insertUser(user)
+    users.push(user)
+
+    usersJson = JSON.stringify(users)
+
+    localStorage.users = usersJson
 }
