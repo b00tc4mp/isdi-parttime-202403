@@ -1,35 +1,17 @@
-function LoginForm () {
+function LoginForm() {
     Form.call(this)
 
+    this.addClass('LoginForm')
 
-    //this.removeClass('this')
-    this.addClass('Loginthis')
+    var usernameField = new Field('username', 'text', 'Username')
 
-    var usernameLabel = new Label()
-    usernameLabel.setText('Username')
-    usernameLabel.setFor('username')
+    var passwordField = new Field('password', 'password', 'Password')
 
-    var usernameInput = new Input()
-    usernameInput.setId('username')
+    var submitButton = new SubmitButton('Login')
 
-    var passwordLabel = new Label()
-    passwordLabel.setText('Password')
-    passwordLabel.setFor('password')
-
-    var passwordInput = new Input()
-    passwordInput.setId('password')
-    passwordInput.setType('password')
-
-    var submitButton = new Button()
-    submitButton.setText('Register')
-    submitButton.setType('submit')
-
-    this.add(usernameLabel)
-    this.add(usernameInput)
-    this.add(passwordLabel)
-    this.add(passwordInput)
+    this.add(usernameField)
+    this.add(passwordField)
     this.add(submitButton)
-
 }
 
 LoginForm.prototype = Object.create(Form.prototype)

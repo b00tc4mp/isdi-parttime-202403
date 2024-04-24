@@ -1,4 +1,4 @@
-function Label () {
+function Label() {
     Component.call(this, 'label')
 }
 
