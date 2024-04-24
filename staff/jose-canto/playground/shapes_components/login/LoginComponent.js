@@ -22,3 +22,13 @@ function LoginComponent() {
 
 LoginComponent.prototype = Object.create(Form.prototype)
 LoginComponent.prototype.constructor = Form
+
+LoginComponent.prototype.getUsername = function () {
+  var usernameField = this.children[0]
+  return usernameField.getValue()
+}
+
+LoginComponent.prototype.getPassword = function () {
+  var passwordField = this.children[1]
+  return passwordField.getValue()
+}

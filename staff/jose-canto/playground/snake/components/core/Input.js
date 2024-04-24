@@ -2,8 +2,6 @@
 function Input() {
   // Llamamos al constructor de Component con el argumento "input"
   Component.call(this, "input")
-
-  this.container.required = true
 }
 
 // Configuramos la cadena de prototipos para las instancias de Input
@@ -20,7 +18,6 @@ Input.prototype.setPlaceholder = function (placeholder) {
   this.container.placeholder = placeholder
 }
 
-Input.prototype.getValue = function () {
-  return this.container.value
+Input.prototype.setRequired = function () {
+  this.container.required = "required"
 }
-

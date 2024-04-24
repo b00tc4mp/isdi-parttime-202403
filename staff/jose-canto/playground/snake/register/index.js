@@ -1,22 +1,15 @@
-// Creamos una instancia de Component y la asociamos al body del documento
 var view = new Component(document.body)
 view.addClass("View")
 
-// Creamos un encabezado con nivel 1 y establecemos el texto como "REGISTER"
-var headerRegister = new Header(1)
-headerRegister.setText("REGISTER")
+// H1
+var header = new Header(1)
+header.setText("REGISTER SNAKE 🐍")
 
-headerRegister.onClick(function (event) {
-  event.preventDefault()
-  alert("Click en el registro")
+header.onClick(function () {
+  alert("BOOOOOM....💣💣💣")
 })
 
-// Creamos un enlace para redirigir al usuario al inicio de sesión
-var loginLink = new Link()
-loginLink.setText("Login")
-
-
-// Creamos una instancia de la clase RegisterComponent
+// FORM
 var registerForm = new RegisterComponent()
 
 // Escuchamos el evento submit del formulario de registro
@@ -33,31 +26,39 @@ registerForm.onSubmit(function (event) {
   var usersJson = localStorage.users
 
   if (!usersJson) {
-    usersJson = "[]"
+    usersJson = '[]'
   }
 
   // Convertimos la cadena JSON de usuarios a un array de objetos
   var usersArray = JSON.parse(usersJson)
 
+  var emailRegistered = usersArray.some(function (user) {
+    return user.email === email
+  })
   var userRegistered = usersArray.some(function (user) {
-    return user.email === email || user.username === username
+    return user.username === username
   })
 
-  if (userRegistered) {
-    alert("Users already exists ❌")
+  if (emailRegistered && userRegistered) {
+    alert(`El email ${email} y el nombre de usuario ${username} ya están en uso ❌❌`)
+
+  } else if (emailRegistered) {
+    alert(`El email ${email} ya esta en uso ❌`)
+
+  } else if (userRegistered) {
+    alert(`El nombre de usuario ${username} ya está en uso ❌`)
 
   } else if (password !== passwordRepeat) {
-    alert(`Password don't match ❌`)
+    alert(`Password no coincide ❌`)
 
   } else {
-    alert(`User ${username} created ✅`)
+    alert(`Usuario ${username} creado ✅`)
 
     // Creamos un objeto con los datos del nuevo usuario
     var user = {
       email: email,
       username: username,
       password: password,
-      passwordRepeat: passwordRepeat
     }
     usersArray.push(user)
     console.log(usersArray)
@@ -75,16 +76,24 @@ registerForm.onSubmit(function (event) {
   }
 })
 
-// Configuramos un evento onclick para redirigir al usuario al inicio de sesión
+// Login Link
+var loginLink = new Link()
+loginLink.setText("Login")
 loginLink.onClick(function (event) {
-  event.preventDefault() // Prevenimos el comportamiento predeterminado del enlace
-  console.log("...en espera de 1 segundo ⌛")
+  event.preventDefault()
+
+  console.log("...en espera de 1 segundo para acceder al login")
   setTimeout(function () {
-    location.href = "../login" // Redireccionamos al usuario al inicio de sesión después de 1 segundo
+
+    location.href = "../login"
+
   }, 1000)
 })
 
-// Agregamos los elementos al componente principal
-view.add(headerRegister)
+
+// ADD ELEMENT AT PRINCIPAL COMPONENT
+view.add(header)
 view.add(registerForm)
 view.add(loginLink)
+
+

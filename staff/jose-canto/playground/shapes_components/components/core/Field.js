@@ -8,7 +8,7 @@ function Field(id, type, text) {
   label.setFor(id)
 
   var input = new Input()
-  input.setId("username")
+  input.setId(id)
   input.setType(type)
 
   this.add(label)
@@ -20,4 +20,9 @@ Field.prototype.constructor = Field
 
 Field.prototype.setPlaceholder = function (placeholder) {
   this.children[1].setPlaceholder(placeholder)
+}
+
+Field.prototype.getValue = function () {
+  var input = this.children[1]
+  return input.getValue()
 }
