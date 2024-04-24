@@ -1,27 +1,3 @@
-// // Player
-
-// var torsoMadrid = new Shape()
-//     torsoMadrid.setColor('DarkSlateGrey')
-//     torsoMadrid.setWidth(30)
-//     torsoMadrid.setHeight(50)
-//     torsoMadrid.setRadius(35)
-//     torsoMadrid.setY(160)
-//     torsoMadrid.setX(630)
-
-//     camp.add(torsoMadrid)
-
-// var headMadrid = new Shape()
-//     headMadrid.setColor('PeachPuff')
-//     headMadrid.setWidth(25)
-//     headMadrid.setHeight(25)
-//     headMadrid.setRadius(50)
-//     headMadrid.setY(-20)
-//     headMadrid.setX(2)
-
-//     torsoMadrid.add(headMadrid)
-
-// Goolkeeper Player
-
 function Player() {
     Shape.call(this)
 
@@ -33,7 +9,7 @@ function Player() {
     this.setHeight(50)
     this.setRadius(35)   
 
-    camp.add(this)
+    // camp.add(this)
 
     var lineTorso = new Shape
         if(player1){    

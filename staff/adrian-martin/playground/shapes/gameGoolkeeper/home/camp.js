@@ -1,11 +1,15 @@
-document.body.style.backgroundColor = 'LawnGreen'
+var backgroundCamp = 'rgb(175, 247, 142)'
+var colorCamp = 'rgb(159, 206, 88)'
+
+document.body.style.backgroundColor = backgroundCamp
 
 var camp = new Shape
-camp.setColor('ForestGreen')
+camp.setColor(colorCamp)
 camp.setWidth(1200)
 camp.setHeight(800)
 camp.setX(10)
 camp.setY(10)
+camp.setBorder('5px', 'solid', 'rgb(10, 77, 19)')
 
 var line1 = new Shape()
 line1.setColor('aliceBlue')

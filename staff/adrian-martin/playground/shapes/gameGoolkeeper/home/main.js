@@ -35,16 +35,19 @@ function goal(){
 }
 
 function shootPenalty(){
-    //Movimiento de la Pelota
+
+    // Seleccionar una posicion aleatoria dentro de la porteria
     var targetX = Math.random() * (goalRightX - goalLeftX) + goalLeftX;
 
-    //Calcular la Trayectoria
+    // Calcular la trayectoria
     var totalFrames = 100
     var currentFrame = 0
 
+    // Esto implica dividir la distancia horizontal y vertical que la pelota debe recorrer por el numero de fotogramas ⭡
     var dx = (targetX - ballX) / totalFrames
     var dy = (ballY - 750) / totalFrames
 
+    // se utiliza setIntrval para animar el movimiento de la pelota, la posicion se actualiza sumando la velociadad horizontal y restando la vertical
     var ballInterval = setInterval(function() {
         ballX += dx;
         ballY -= dy;
@@ -52,11 +55,11 @@ function shootPenalty(){
         ball.setY(ballY)
         currentFrame++
 
-        //Verificar colision Torso
+        //Verificar colision Torso, si la pelota esta dentro del torso
         if (ballX >= x && ballX <= x + torsoWidth && ballY >= y && ballY <= y + torsoHeight) {
             clearInterval(ballInterval);
             resetBallPosition();
-}
+        }
 
         //Dedtener el Movimiento
         if(currentFrame >= totalFrames) {

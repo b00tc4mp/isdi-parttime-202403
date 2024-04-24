@@ -1,15 +1,14 @@
 function PlayerLoginRegister(){
     Shape.call(this)
 
-    this.x = 0
-    this.y = 0
 
     this.setColor('blue')
     this.setWidth(160)
     this.setHeight(250)
-    this.setRadius(35)   
+    this.setRadius(35)
+    this.setBorder('1px', 'solid', 'black') 
 
-    var lineTorso = new Shape
+    var lineTorso = new Shape()
         if(player1){    
             lineTorso.setColor('white')
         }else{
@@ -28,6 +27,8 @@ function PlayerLoginRegister(){
         head.setRadius(50)
         head.setY(-130)
         head.setX(5)
+        head.setBorder()
+        head.setBorder('1px', 'solid', 'black')
 
         this.add(lineTorso)
         this.add(head)

@@ -49,11 +49,6 @@ Shape.prototype.setY = function(value) {
     this.container.style.top = value + 'px'
 }
 
-// Shape.prototype.setLocation = function(x, y){
-//     this.x = x
-//     this.y = y
-
-// }
 
 Shape.prototype.add = function(child) {
     this.container.appendChild(child.container)
