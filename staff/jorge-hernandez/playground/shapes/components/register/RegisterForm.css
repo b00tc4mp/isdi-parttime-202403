@@ -10,4 +10,8 @@
     box-shadow: 0 0 10px black;
     background: linear-gradient(to bottom, #1e6091, #3f9bd8);
 }
-    
+
+.Feedback {
+    color: tomato;
+    font-size: 12px
+}
