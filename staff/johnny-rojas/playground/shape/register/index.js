@@ -16,41 +16,14 @@ registerForm.onSubmit(function (event) {
     var password = registerForm.getPassword()
     var passwordRepeat = registerForm.getPasswordRepeat()
 
-    var usersJson = localStorage.users
+    try {
+        logic.registerUser(email, username, password, passwordRepeat)
 
-    if (!usersJson) usersJson = '[]'
-
-    var users = JSON.parse(usersJson)
-
-    var user = users.find(function (user) {
-        return user.email === email || user.username === username
-    })
-
-    if (user) {
-        alert('user already exists')
-
-        return
+        registerForm.clear()
+    } catch (error) {
+        //alert(error.message)
+        registerForm.setFeedback(error.message)
     }
-
-    if (password !== passwordRepeat) {
-        alert('passwords don\'t match')
-
-        return
-    }
-
-    user = {
-        email: email,
-        username: username,
-        password: password
-    }
-
-    users.push(user)
-
-    usersJson = JSON.stringify(users)
-
-    localStorage.users = usersJson
-
-    registerForm.clear()
 })
 
 var loginLink = new Link
