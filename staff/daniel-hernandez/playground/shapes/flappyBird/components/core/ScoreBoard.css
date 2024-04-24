@@ -1,0 +1,44 @@
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Ubuntu", sans-serif;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--darkest-transparent);
+    color: var(--primary3);
+}
+
+.score-text, .high-score-text {
+    font-weight: bold;
+}
+
+.score-text,
+.current-score,
+.high-score-text,
+.high-score {
+    margin: 10px 0;
+    text-align: center; 
+}
+
+.restart-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--secondary);
+    color: var(--primary3);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+.restart-button:hover {
+    background-color: var(--primary2);
+}
