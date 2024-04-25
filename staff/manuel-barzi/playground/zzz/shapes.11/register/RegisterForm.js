@@ -55,20 +55,16 @@ RegisterForm.prototype.getPasswordRepeat = function () {
     return passwordFieldRepeat.getValue()
 }
 
-RegisterForm.prototype.setFeedback = function (message, level) {
+RegisterForm.prototype.setFeedback = function (message) {
     var feedbackPanel = this.children[this.children.length - 1]
-
-    if (level === 'success')
-        feedbackPanel.addClass('success')
 
     feedbackPanel.setText(message)
 }
 
-RegisterForm.prototype.clear = function () {
+RegisterForm.prototype.clear = function () { // method overriding
     Form.prototype.clear.call(this)
 
     var feedbackPanel = this.children[this.children.length - 1]
 
     feedbackPanel.setText('')
-    feedbackPanel.removeClass('success')
 }

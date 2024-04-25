@@ -20,12 +20,6 @@ registerForm.onSubmit(function (event) {
         logic.registerUser(email, username, password, passwordRepeat)
 
         registerForm.clear()
-
-        registerForm.setFeedback('user successfully registered', 'success')
-
-        setTimeout(function () {
-            location.href = '../login'
-        }, 1000)
     } catch (error) {
         if (error instanceof ContentError)
             registerForm.setFeedback(error.message + ', please, correct it')

@@ -12,3 +12,7 @@
 .RegisterForm .Feedback {
     color: tomato;
 }
+
+.RegisterForm .Feedback.success {
+    color: greenyellow;
+}
