@@ -1,12 +1,12 @@
 //CASO agregar 2 elementos al inicio
 
 function unshift() {
-    if(array.length > 0) {
-      var add = array.unshift(4, 5)
-      
-    }
-    return add
+  if (array.length > 0) {
+    var add = array.unshift(4, 5)
+
   }
+  return add
+}
 
 var num = [1, 2, 3]
 var nums = num.unshift(4, 5)

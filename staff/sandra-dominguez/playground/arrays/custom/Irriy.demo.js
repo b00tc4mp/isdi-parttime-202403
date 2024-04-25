@@ -16,7 +16,7 @@ function Irriy() {
 
 
 Irriy.prototype.push = function () {
-    for(var i = 0; i < arguments.length; i++) { 
+    for (var i = 0; i < arguments.length; i++) {
         var argument = arguments[i]
 
         this[this.length] = argument
@@ -37,7 +37,7 @@ Irriy.prototype.pop = function () {
 }
 
 Irriy.prototype.forEach = function (callback) {
-    for(var i = 0; i < this.length; i++) {
+    for (var i = 0; i < this.length; i++) {
         var element = this[i]
 
         this.length++
@@ -46,27 +46,37 @@ Irriy.prototype.forEach = function (callback) {
     }
 }
 
-Irriy.prototype.reverse = function() {
+Irriy.prototype.reverse = function () {
     var izq
 
-    for(var i = 0, j = this.length - 1; i < j; i++, j--) {
+    for (var i = 0, j = this.length - 1; i < j; i++, j--) {
         izq = this[i]
 
         this[i] = this[j]
         this[j] = izq
     }
-    return this   
+    return this
 }
 
-Irriy.prototype.shift = function() {
+Irriy.prototype.shift = function () {
     var removedElement = this[0]
-       for(var i = 0; i < this.length - 1; i++) {
+    for (var i = 0; i < this.length - 1; i++) {
         this[i] = this[i + 1]
-  
-       }
-       this.length = this.length - 1
-      return removedElement
-  }
+
+    }
+    this.length = this.length - 1
+    return removedElement
+}
+
+Irriy.prototype.every = function (callback) {
+    for (var i = 0; i < this.length; i++) {
+        var element = this[i]
+
+        var matched = callback(element)
+
+    }
+    return matched
+}
 
 
 //ARRAY
@@ -176,7 +186,7 @@ console.assert(chars[2] === 'c', 'chars 2 is c')
 //REVERSE
 console.info('CASO invertir 3 posiciones')
 
-var nums = new Irriy ('one', 'two', 'three')
+var nums = new Irriy('one', 'two', 'three')
 var result = nums.reverse()
 
 console.assert(result instanceof Irriy, 'result is instance of Irriy')
@@ -190,7 +200,7 @@ console.assert(result === nums, 'el resultado es nums')
 
 console.info('CASO invertir 4 posiciones')
 
-var nums = new Irriy ('one', 'two', 'three', 'four')
+var nums = new Irriy('one', 'two', 'three', 'four')
 var result = nums.reverse()
 
 console.assert(result instanceof Irriy, 'result is instance of Irriy')
@@ -206,7 +216,7 @@ console.assert(result === nums, 'el resultado es nums')
 
 console.info('CASO eliminar el primer elemento')
 
-var number = new Irriy (1, 2, 3)
+var number = new Irriy(1, 2, 3)
 var firstNum = number.shift()
 
 console.assert(firstNum === 1, "firstNum removed is 1")
@@ -214,3 +224,22 @@ console.assert(firstNum === 1, "firstNum removed is 1")
 console.assert(number.length === 2, "number length is 2")
 console.assert(number[0] === 2, 'number 0 is 2')
 console.assert(number[1] === 3, 'number 1 is 3')
+
+//EVERY
+
+console.info('CASO comprovar numeros inferiores a 40')
+
+var numbers = new Irriy(1, 30, 39, 29, 10, 13)
+var result = numbers.every(function (num) { return num < 40 })
+
+console.assert(result === true)
+
+//-----------------------------------------------------------
+
+var numbers = [1, 30, 39, 29, 10, 13]
+
+var result = numbers.every(function (num) {
+    return num < 40;
+})
+
+console.assert(result === true)
