@@ -1,8 +1,9 @@
 .SubmitButton {
-    background-color: var(--color5);
+    background-color: var(--color2);
     border: 0 transparent;
     height: 1.5rem;
     padding: 0 1.5rem;
-    color: var(--color1);
+    color: var(--color3);
     border-radius: .3rem;
 }
+

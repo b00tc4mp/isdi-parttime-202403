@@ -24,6 +24,7 @@ function PasswordField(id,text){
     var divLock = new Component('div')
     divLock.addClass('divLock')
     var lock = new Component('i')
+    lock.addClass('lock')
     lock.addClass("fa-solid")
     lock.addClass("fa-lock")
 

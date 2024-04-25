@@ -57,4 +57,8 @@ RegisterForm.prototype.getConfirmPassword = function(){
     var confirmPasswordField = this.children[4]
     return confirmPasswordField.getValue()
 }
+//TODO finish register from
+RegisterForm.setfeedback
+
+//TODO mirar classes dia 23 i 24 para comprender logic.js
 
