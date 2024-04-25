@@ -12,17 +12,20 @@ function RegisterForm() {
     var passwordField = new Field('password', 'password', 'Password')
     passwordField.setPlaceholder('password')
 
-    var passwordRepeatField = new Field('repassword', 'password', 'Password repeat')
+    var passwordRepeatField = new Field('password', 'password', 'Password repeat')
     passwordRepeatField.setPlaceholder('repeat password')
 
     var submitButton = new SubmitButton('Register')
+
+    var feedbackPanel = new Component('p')
+    feedbackPanel.addClass('Feedback')
 
     this.add(emailField)
     this.add(usernameField)
     this.add(passwordField)
     this.add(passwordRepeatField)
     this.add(submitButton)
-
+    this.add(feedbackPanel)
 }
 
 RegisterForm.prototype = Object.create(Form.prototype)
@@ -50,4 +53,18 @@ RegisterForm.prototype.getPasswordRepeat = function () {
     var passwordFieldRepeat = this.children[3]
 
     return passwordFieldRepeat.getValue()
+}
+
+RegisterForm.prototype.setFeedback = function (message) {
+    var feedbackPanel = this.children[this.children.length - 1]
+
+    feedbackPanel.setText(message)
+}
+
+RegisterForm.prototype.clear = function () { // method overriding
+    Form.prototype.clear.call(this)
+
+    var feedbackPanel = this.children[this.children.length - 1]
+
+    feedbackPanel.setText('')
 }
