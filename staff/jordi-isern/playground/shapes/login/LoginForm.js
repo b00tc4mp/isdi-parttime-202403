@@ -5,15 +5,13 @@ function LoginForm() {
 
     var usernameField = new Field('username', 'text', 'Username')
 
-    var passwordField = new Field('password', 'password', 'Password')
-
+    var passwordField = new PasswordField('password', 'Password')
     //var passwordReveal = new PasswordReveal(passwordField ,"fa-solid fa-lock")
  
     var submitButton = new SubmitButton('Login')
 
     this.add(usernameField)
     this.add(passwordField)
-    //this.add(passwordReveal)
     this.add(submitButton)
 }
 

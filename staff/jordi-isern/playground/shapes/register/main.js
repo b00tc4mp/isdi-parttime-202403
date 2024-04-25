@@ -11,47 +11,32 @@ registerForm.onSubmit(function(event){
     var dataAbsent = false
     var name = registerForm.getName()
     if(!name){
-        alert('Fill all the fields Name is empty')
-        dataAbsent = true;
-        location.href= '../register';
+        dataAbsent = DataAbsent('name')
     }
 
     var email = registerForm.getMail()
     if(email === ''){
-        alert('Fill all the fields Email is empty')
-        dataAbsent = true;
-        location.href= '../register';
+        
+        dataAbsent = DataAbsent('email')
 }
 
     var username = registerForm.getUserName()
     if(!username){
-        alert('Fill all the fields Usernname is empty')
-        dataAbsent = true;
-        location.href= '../register';
+        
+        dataAbsent = DataAbsent('username')
     }
 
     var password = registerForm.getPassword()
     if(!password){
-        alert('Fill all the fields Password is empty')
-        dataAbsent = true;
-        location.href= '../register';
+        dataAbsent = DataAbsent('password')
     }
 
     var confirmPassword = registerForm.getConfirmPassword()
     if(!confirmPassword){
-        alert('Fill all the fields Confirm Password is empty')
-        dataAbsent = true;
-        location.href= '../register';
+        dataAbsent = DataAbsent('Confirm Password')
     }
 
     if(password === confirmPassword && dataAbsent === false){
-        var username = {
-            name: name,
-            email: email,
-            username: username,
-            password: password
-        }
-
         var usersJson =  localStorage.users
 
         if(!usersJson){
@@ -60,6 +45,23 @@ registerForm.onSubmit(function(event){
 
         var users = JSON.parse(usersJson)
 
+        var user = users.find(function(user){
+            return (user.username === username || user.email === email)
+        })
+        if(user){
+            alert('this user is already loged')
+            return
+        }
+         user = {
+            name: name,
+            email: email,
+            username: username,
+            password: password
+        }
+
+
+        
+    
         users.push(username)
 
         usersJson = JSON.stringify(users)

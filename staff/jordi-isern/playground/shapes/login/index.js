@@ -13,15 +13,9 @@ loginForm.onSubmit(function(event){
     var userInput = loginForm.getUsername()
     var passwordInput = loginForm.getPassword()
     var condicion = function(element) { 
-        if(element.username === userInput && element.password === passwordInput){
-   
-            return true
-        }else {
-            return false
-        }}
+        return  element.username === userInput && element.password === passwordInput }
 
-        console.log(users.find(condicion))
-    if(users.find(condicion) !== undefined ){
+    if(users.find(condicion) === true ){
         location.href = '../Home'
     } else {
         alert('User or password incorrect')
@@ -31,7 +25,6 @@ loginForm.onSubmit(function(event){
 
     loginForm.clear()
 })
-
 var registerLink = new Link
 registerLink.setText('Register')
 registerLink.setUrl('../register')
