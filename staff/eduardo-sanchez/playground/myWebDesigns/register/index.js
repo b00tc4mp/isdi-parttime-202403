@@ -16,15 +16,30 @@ registerForm.onSubmit(function (event) {
     var email = registerForm.getEmail()
     var username = registerForm.getUsername()
     var password = registerForm.getPassword()
-    //var passwordRepeatField = registerForm.getPasswordRepeat()
+    var passwordRepeat = registerForm.getPasswordRepeat()
 
-    //console.log(email, username, password, passwordRepeatField)
 
     var usersJson = localStorage.users
 
     if (!usersJson) usersJson = '[]'
 
     var users = JSON.parse(usersJson)
+
+    var user = users.find(function (user) {
+        return user.email === email || user.username === username
+    })
+
+    if (user) {
+        alert('user already exists')
+
+        return
+    }
+
+    if (password !== passwordRepeat) {
+        alert('paswwords don\'t match')
+
+        return
+    }
 
     var user = {
         email: email,
@@ -39,7 +54,6 @@ registerForm.onSubmit(function (event) {
     localStorage.users = usersJson
 
     registerForm.clear()
-
 
 })
 
@@ -56,9 +70,6 @@ loginLink.onClick(function (event) {
     }, 500)
 
 })
-
-//registerLink.setUrl('https://www.google.com/')
-// registerLink.setTarget('_blank')
 
 view.add(title)
 view.add(registerForm)

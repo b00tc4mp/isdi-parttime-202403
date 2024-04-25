@@ -17,10 +17,6 @@ function RegisterForm() {
 
     var submitButton = new SubmitButton('Register')
 
-    //var submitButton = new Button()
-    // submitButton.setText('Login')
-    // submitButton.setType('submit')
-
     this.add(emailField)
     this.add(userNameField)
     this.add(passwordField)

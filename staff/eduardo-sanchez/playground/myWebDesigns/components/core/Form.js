@@ -8,8 +8,8 @@ function Form() {
 Form.prototype = Object.create(Component.prototype)
 Form.prototype.constructor = Form
 
-Form.prototype.onSubmit = function (listener) {
-    this.container.addEventListener('submit', listener)
+Form.prototype.onSubmit = function (event) {
+    this.container.addEventListener('submit', event)
 }
 
 Form.prototype.clear = function () {
