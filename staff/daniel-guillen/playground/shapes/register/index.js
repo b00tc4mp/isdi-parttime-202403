@@ -20,6 +20,7 @@ registerForm.onSubmit(function (event) {
         logic.registerUser(email, username, password, passwordRepeat)
 
         registerForm.clear()
+
     } catch (error) {
         if (error instanceof ContentError)
             registerForm.setFeedback(error.message + ', por favor, corrijalo')
@@ -27,8 +28,6 @@ registerForm.onSubmit(function (event) {
             registerForm.setFeedback(error.message + ', por favor, vuelva a intentarlo')
         else if (error instanceof DuplicityError)
             registerForm.setFeedback(error.message + ', por favor, pruebe uno nuevo')
-        else
-            registerForm.setFeedback('Lo siento, hubo un problema, pruebe más tarde')
     }
 })
 

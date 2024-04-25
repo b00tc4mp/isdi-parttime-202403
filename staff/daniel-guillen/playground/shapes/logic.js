@@ -5,7 +5,6 @@ var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 logic.registerUser = function (email, username, password, passwordRepeat) {
-    x
 
     if (!EMAIL_REGEX.test(email))
         throw new ContentError('el correo no es valido')
@@ -24,7 +23,7 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
     })
 
     if (user)
-        throw new DuplicityError('Utilice otro usuario')
+        throw new DuplicityError('Usuario ya utilizado')
 
     user = {
         email: email,
