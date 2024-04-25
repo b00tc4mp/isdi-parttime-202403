@@ -5,36 +5,30 @@ var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 logic.registerUser = function (email, username, password, passwordRepeat) {
-    // TODO input validation
-
+    
     if (!EMAIL_REGEX.test(email))
-        throw new Error('email is not valid')
+        throw new ContentError('email is not valid')
 
     if (!USERNAME_REGEX.test(username))
-        throw new Error('username is not valid')
+        throw new ContentError('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
-        throw new Error('password is not valid')
+        throw new ContentError('password is not valid')
 
-    if (!PASSWORD_REGEX.test(passwordRepeat))
-        throw new Error('password repeat is not valid')
+        //no haria falta ya que con la anterior y la siguiente ya estamos validando
+    //if (!PASSWORD_REGEX.test(passwordRepeat))
+     //   throw new ContentError('password repeat is not valid')
 
     if (password !== passwordRepeat)
-        throw new Error('passwords don\'t match')
+        throw new MatchError('passwords don\'t match')
 
+     var user = data.findUser(function (user) {
+            return user.email === email || user.username === username
+        })
     //var usersJson = localStorage.getItem('users')
-    var usersJson = localStorage.users
-
-    if (!usersJson) usersJson = '[]'
-
-    var users = JSON.parse(usersJson)
-
-    var user = users.find(function (user) {
-        return user.email === email || user.username === username
-    })
-
+    
     if (user)
-        throw new Error('user already exists')
+        throw new DuplicityError('user already exists')
 
     user = {
         email: email,
@@ -42,9 +36,26 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
         password: password
     }
 
-    users.push(user)
+    data.insertUser(user)
 
-    usersJson = JSON.stringify(users)
+}
 
-    localStorage.users = usersJson
+logic.loginUser = function (username, password) {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('username is not valid')
+
+    if (!PASSWORD_REGEX.test(password))
+        throw new ContentError('password is not valid')
+
+     var user = data.findUser(function (user) {
+            return user.username === username
+     })
+
+     if (!user)
+            throw new MatchError('user not found')
+
+    if (user.password !== password)
+            throw new MatchError('wrong password')
+
+    // TODO anything else?
 }

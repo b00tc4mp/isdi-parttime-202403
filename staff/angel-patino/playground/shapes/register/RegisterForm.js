@@ -55,8 +55,10 @@ RegisterForm.prototype.getPasswordRepeat = function () {
     return passwordFieldRepeat.getValue()
 }
 
-RegisterForm.prototype.setFeedback = function (message) {
+RegisterForm.prototype.setFeedback = function (message, level) {
     var feedbackPanel = this.children[this.children.length - 1]
+    if (level === 'success')
+    feedbackPanel.addClass('success')
 
     feedbackPanel.setText(message)
 }
@@ -67,4 +69,5 @@ RegisterForm.prototype.clear = function () { // method overriding
     var feedbackPanel = this.children[this.children.length - 1]
 
     feedbackPanel.setText('')
+    feedbackPanel.removeClass('success')
 }
