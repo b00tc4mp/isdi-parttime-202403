@@ -16,17 +16,11 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
   //if (!PASSWORD_REGEX.test(passwordRepeat)) { throw new Error("❌ Password repeat is not valid ❌") }
 
 
-  // Obtenemos los usuarios del Local Storage o creamos un array vacío si no existen
-  var usersJson = localStorage.users
 
-  if (!usersJson) { usersJson = "[]" }
-
-  // Convertimos la cadena JSON de usuarios a un array de objetos
-  var usersArray = JSON.parse(usersJson)
-
-  var userRegistered = usersArray.some(function (user) {
+  var userRegistered = data.findUser(function (user) {
     return user.email === email || user.username === username
   })
+
 
   if (userRegistered) {
     throw new Error("❌ Users already exists ❌")
