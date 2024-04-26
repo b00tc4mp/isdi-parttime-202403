@@ -48,3 +48,4 @@ Component.prototype.removeClass = function (clazz) {
 Component.prototype.onClick = function (listener) {
   this.container.addEventListener("click", listener)
 }
+
