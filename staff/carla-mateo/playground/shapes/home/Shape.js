@@ -1,10 +1,15 @@
+
+
 function Shape() {
-    this.container = document.createElement('div')
+    Component.call(this, 'div')
 
     this.container.style.position = 'absolute'
 
     this.move(0, 0, 0)
 }
+
+Shape.prototype = Object.create(Component.prototype)
+Shape.prototype.constructor = Shape
 
 Shape.prototype.setHeight = function (value) {
     this.container.style.height = value + 'px'
@@ -51,7 +56,4 @@ Shape.prototype.moveRelative = function (dx, dy, dz) {
     this.moveRelativeX(dx)
     this.moveRelativeY(dy)
     this.moveRelativeZ(dz)
-}
-Shape.prototype.add = function (child) {
-    this.container.appendChild(child.container)
 }
