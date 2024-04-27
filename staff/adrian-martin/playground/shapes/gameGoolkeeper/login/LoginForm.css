@@ -18,3 +18,11 @@
     
     
 }
+
+.LoginForm .Feedback {
+    color: tomato;
+}
+
+.LoginForm .Feedback .success{
+    color: greenyellow;
+}

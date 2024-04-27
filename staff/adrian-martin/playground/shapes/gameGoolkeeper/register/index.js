@@ -15,37 +15,43 @@ registerForm.onSubmit(function(event) {
     var email = registerForm.getEmail()
     var username = registerForm.getUsername()
     var password = registerForm.getPassword()
-    var passwordRepeat = registerForm.getRetypePassword()
+    var passwordRepeat = registerForm.getPasswordRepeat()
 
 
     try{
-        if(logic.registerUser(email, username, password, passwordRepeat))
+        logic.registerUser(email, username, password, passwordRepeat)
 
-            registerForm.clear()
+        registerForm.clear()
+
+        registerForm.setFeedback('user successfully registered', 'success')
+
+        setTimeout(function () {
+            location.href = '../login'
+        }, 1000)
+        
     }catch(error){
         if (error instanceof ContentError) 
         registerForm.setFeedback(error.message + '. please, repeat it')
         
-        if(error instanceof MatchError)
+        else if(error instanceof MatchError)
         registerForm.setFeedback(error.message + '. please, repeat them')
 
         else if(error instanceof DuplicityError)
         registerForm.setFeedback(error.message + '. please, enter new one')
 
-    else
+        else
         registerForm.setFeedback('sorry, there was an error, please try again later')
     }
 })
 
 var loginLink = new Link
 loginLink.setText('Login')
-//loginLink.setUrl('../login')
 loginLink.onClick(function (event) {
     event.preventDefault()
 
     setTimeout(function () {
         location.href = '../login'
-    }, 1000)
+    }, 500)
 })
 
 view.add(title)

@@ -12,7 +12,7 @@ data.findUser = function(callback) {
     // Revisar si ya existe y existe
     var user = users.find(callback)
 
-        return user
+    return user
 }
 
 data.insertUser = function(user) { 

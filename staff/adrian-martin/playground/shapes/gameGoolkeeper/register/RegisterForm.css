@@ -8,6 +8,7 @@
     background-color: var(--fourth-color);
     font-size: 1rem;
     border: 1px solid var(--third-color);
+    width: 100px;
 }
 
 .RegisterForm .Input{
@@ -20,4 +21,9 @@
 
 .RegisterForm .Feedback{
     color: DarkRed;
+    align-items: center;
+}
+
+.RegisterForm .Feedback .success{
+    color: greenyellow;
 }

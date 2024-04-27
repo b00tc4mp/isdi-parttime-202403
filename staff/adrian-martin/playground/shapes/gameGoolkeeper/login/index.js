@@ -1,14 +1,52 @@
 var view = new Component(document.body)
-
 view.addClass('View')
+
+var title = new Heading(1)
+title.setText('Login')
+
+var loginForm = new loginForm
+loginForm.onSubmit(function(event) {
+    event.preventDefault()
+
+    var username = loginForm.getUsername()
+    var password = loginForm.getPassword()
+
+
+    try{
+        logic.loginUser(username, password)
+
+        loginForm.clear()
+
+        loginForm.setFeedback('user successfully logged in', 'success')
+
+        setTimeout(function () {
+            loginForm.clear()
+
+            location.href = '../home'
+        }, 500)
+        
+    }catch(error){
+        if (error instanceof ContentError) 
+        loginForm.setFeedback(error.message + '. please, repeat it')
+        
+        else if(error instanceof MatchError)
+        loginForm.setFeedback('wrong credentials')
+
+        else
+        loginForm.setFeedback('sorry, there was an error, please try again later')
+    }
+})
 
 var loginForm = new LoginForm()
 var registerLink = new Link
 registerLink.setText('Register')
-registerLink.setUrl('../register')
+registerLink.onClick(function (event) {
+    event.preventDefault()
 
-var title = new Heading(1)
-title.setText('Login')
+    setTimeout(function () {
+        location.href = '../register'
+    }, 500)
+})
 
 // registerLink.setUrl('')
 // registerLink.setTarget('_blank')
