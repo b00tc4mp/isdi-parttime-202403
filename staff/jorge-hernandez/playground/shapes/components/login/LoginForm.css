@@ -11,3 +11,11 @@
     background: linear-gradient(to bottom, #1e6091, #3f9bd8);
 }
     
+.LoginForm .Feedback {
+    color: tomato;
+    font-size: 12px
+}
+
+.LoginForm i{
+    color: black;
+}

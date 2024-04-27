@@ -9,14 +9,36 @@ function LoginForm() {
   var passwordField = new Field('password', 'password', 'Password')
   passwordField.setPlaceholder('password')
 
+  var icon = new Component('i')
+  icon.setId('icon')
+
+  icon.addClass('fa-regular')
+  icon.addClass('fa-eye')
+  icon.addClass('icon')
+  icon.onclick = function showPass() {
+    if (passField.type === 'text') {
+      passField.type = 'password'
+      icon.removeClass('fa-eye-slash')
+      icon.addClass('fa-eye')
+    } else if (passField.type === 'password') {
+      passField.type = 'text'
+      icon.removeClass('fa-eye')
+      icon.addClass('fa-eye-slash')
+    }
+  }
   var button = new Button()
   button.setType('submit')
   button.setText('Login')
 
+  var feedbackPanel = new Component('p')
+  feedbackPanel.addClass('Feedback')
+
   this.add(heading)
   this.add(userNameField)
   this.add(passwordField)
+  this.add(icon)
   this.add(button)
+  this.add(feedbackPanel)
 }
 
 LoginForm.prototype = Object.create(Form.prototype)
@@ -30,4 +52,9 @@ LoginForm.prototype.getUsername = function () {
 LoginForm.prototype.getPassword = function () {
   var passwordField = this.children[2]
   return passwordField.getValue()
+}
+
+LoginForm.prototype.setFeedback = function (message) {
+  var feedbackPanel = this.children[5]
+  feedbackPanel.setText(message)
 }

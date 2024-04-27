@@ -29,3 +29,16 @@ input::placeholder {
     color: rgba(2, 2, 2, 0.293);
     font-size: 1em;
   }
+  /* Estilo para el ícono dentro del campo de contraseña */
+#password{
+    position: absolute;
+  }
+  
+.LoginForm i {
+    position: relative;
+    right: -60px; /* Ajusta la posición del ícono a la derecha */
+    top: -21px;
+    /* transform: translateY(-50%); */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+  }
+  

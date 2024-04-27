@@ -1,6 +1,7 @@
 function Field(id, type, text) {
   Component.call(this, 'div')
   this.addClass('Field')
+
   var label = new Label()
   label.setFor(id)
   label.setText(text)
