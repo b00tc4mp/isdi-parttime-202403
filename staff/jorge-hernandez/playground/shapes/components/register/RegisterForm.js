@@ -43,9 +43,9 @@ function RegisterForm() {
   this.add(emailField)
   this.add(userNameField)
   this.add(passwordField)
+  this.add(repeatPasswordField)
   this.add(icon)
   this.add(icon2)
-  this.add(repeatPasswordField)
   this.add(button)
   this.add(feedbackPanel)
 }
@@ -66,7 +66,7 @@ RegisterForm.prototype.getPassword = function () {
   return passwordField.getValue()
 }
 RegisterForm.prototype.getRepeatPassword = function () {
-  var repeatPasswordField = this.children[6]
+  var repeatPasswordField = this.children[4]
   return repeatPasswordField.getValue()
 }
 RegisterForm.prototype.setFeedback = function (message) {

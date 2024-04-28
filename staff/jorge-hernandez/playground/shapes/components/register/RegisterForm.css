@@ -19,7 +19,7 @@
 .RegisterForm .icon{
     position: relative;
     right: -60px; 
-    top: -20px;
+    top: -70px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
     font-size: 11px;
@@ -27,7 +27,7 @@
 .RegisterForm .icon2{
     position: relative;
     right: -60px; 
-    top: 40px;
+    top: -32px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
     font-size: 11px;
