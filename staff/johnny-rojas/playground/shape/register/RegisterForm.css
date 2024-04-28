@@ -8,3 +8,7 @@
   font-size: 1rem;
   border: 1px solid var(--first-color);
 }
+
+.RegisterForm .Feedback {
+  color: tomato;
+}
