@@ -17,5 +17,10 @@
 }
 
 .LoginForm i{
-    color: black;
+    position: relative;
+    right: -60px; 
+    top: -19px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 11px;
 }

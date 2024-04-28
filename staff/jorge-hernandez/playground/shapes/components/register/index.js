@@ -2,6 +2,22 @@ var view = new Component(document.body)
 view.addClass('View')
 var registerForm = new RegisterForm()
 view.add(registerForm)
+
+//onclick password
+var icon = document.getElementById('icon')
+var passField = document.getElementById('password')
+
+icon.onclick = function showPass() {
+  if (passField.type === 'password') {
+    passField.type = 'text'
+    icon.classList.add('fa-eye')
+    icon.classList.remove('fa-eye-slash')
+  } else if (passField.type === 'text') {
+    passField.type = 'password'
+    icon.classList.add('fa-eye-slash')
+    icon.classList.remove('fa-eye')
+  }
+}
 registerForm.onSubmit(function (event) {
   event.preventDefault()
   var email = registerForm.getEmail()
@@ -12,7 +28,17 @@ registerForm.onSubmit(function (event) {
   try {
     logic.registerUser(email, username, password, repeatPassword)
   } catch (error) {
-    registerForm.setFeedback(error.message)
+    if (error instanceof ContentError) {
+      registerForm.setFeedback(error.message + ', porfavor corrígelo')
+    } else if (error instanceof MatchError) {
+      registerForm.setFeedback('Error de credenciales')
+    } else if (error instanceof DuplicityError) {
+      registerForm.setFeedback('usuario ya existe')
+    } else {
+      registerForm.setFeedback(
+        'Hay un error lo solucionaremos lo antes posible'
+      )
+    }
   }
 })
 

@@ -21,6 +21,12 @@ function RegisterForm() {
   )
   repeatPasswordField.setPlaceholder('repeat-password')
 
+  var icon = new Component('i')
+  icon.setId('icon')
+  icon.addClass('fa-regular')
+  icon.addClass('fa-eye-slash')
+  icon.addClass('icon')
+
   var button = new Button()
   button.setType('submit')
   button.setText('Register')
@@ -31,6 +37,7 @@ function RegisterForm() {
   this.add(emailField)
   this.add(userNameField)
   this.add(passwordField)
+  this.add(icon)
   this.add(repeatPasswordField)
   this.add(button)
   this.add(feedbackPanel)
@@ -52,10 +59,10 @@ RegisterForm.prototype.getPassword = function () {
   return passwordField.getValue()
 }
 RegisterForm.prototype.getRepeatPassword = function () {
-  var repeatPasswordField = this.children[4]
+  var repeatPasswordField = this.children[5]
   return repeatPasswordField.getValue()
 }
 RegisterForm.prototype.setFeedback = function (message) {
-  var feedbackPanel = this.children[6]
+  var feedbackPanel = this.children[7]
   feedbackPanel.setText(message)
 }

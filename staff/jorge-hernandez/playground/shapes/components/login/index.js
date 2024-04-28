@@ -6,17 +6,16 @@ view.add(loginForm)
 //onclick password
 var icon = document.getElementById('icon')
 var passField = document.getElementById('password')
+
 icon.onclick = function showPass() {
-  if (passField.type === 'text') {
-    passField.type = 'password'
-
-    icon.classList.remove('fa-eye-slash')
-
-    icon.classList.add('fa-eye')
-  } else if (passField.type === 'password') {
+  if (passField.type === 'password') {
     passField.type = 'text'
-    icon.classList.remove('fa-eye')
+    icon.classList.add('fa-eye')
+    icon.classList.remove('fa-eye-slash')
+  } else if (passField.type === 'text') {
+    passField.type = 'password'
     icon.classList.add('fa-eye-slash')
+    icon.classList.remove('fa-eye')
   }
 }
 
@@ -27,7 +26,21 @@ loginForm.onSubmit(function (event) {
   try {
     logic.loginUser(username, password)
   } catch (error) {
-    loginForm.setFeedback(error.message)
+    if (error instanceof ContentError) {
+      loginForm.setFeedback(error.message + ', porfavor corrígelo')
+      var link = new Link()
+      link.setUrl('../register/index.html')
+      link.setTarget('_blank')
+      link.setText('¿olvidaste tu contraseña?')
+      link.addClass('forgot-pass')
+      loginForm.add(link)
+    } else if (error instanceof MatchError) {
+      loginForm.setFeedback('error de credenciales')
+    } else {
+      loginForm.setFeedback(
+        'Perdón, hay un error, lo solucionaremos lo antes posible'
+      )
+    }
   }
 })
 

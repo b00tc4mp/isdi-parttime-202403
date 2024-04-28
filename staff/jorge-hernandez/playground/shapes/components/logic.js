@@ -7,16 +7,16 @@ var logic = {}
 //logic RegisterForm
 logic.registerUser = function (email, username, password, repeatPassword) {
   if (!EMAIL_REGEX.test(email))
-    throw new Error('Esta cuenta de correo no es correcta')
+    throw new ContentError('Esta cuenta de correo no es correcta')
 
   if (!USERNAME_REGEX.test(username))
-    throw new Error('nombre de usuario no válido')
+    throw new ContentError('nombre de usuario no válido')
 
   if (!PASSWORD_REGEX.test(password))
-    throw new Error('La contraseña no cumple los criterios')
+    throw new ContentError('La contraseña no cumple los criterios')
 
   if (password !== repeatPassword)
-    throw new Error('los campos de contraseña no coinciden')
+    throw new MatchError('los campos de contraseña no coinciden')
 
   var newUser = { email: email, username: username, password: password }
 
@@ -25,7 +25,7 @@ logic.registerUser = function (email, username, password, repeatPassword) {
   })
 
   if (user) {
-    throw new Error(
+    throw new DuplicityError(
       'este email o nombre de usuario ya ha sido registrado anteriormente'
     )
   }
@@ -36,10 +36,10 @@ logic.registerUser = function (email, username, password, repeatPassword) {
 
 logic.loginUser = function (username, password) {
   if (!USERNAME_REGEX.test(username)) {
-    throw new Error('username no válido')
+    throw new ContentError('username no válido')
   }
   if (!PASSWORD_REGEX.test(password)) {
-    throw new Error('password no válido')
+    throw new ContentError('password no válido')
   }
   var newUser = { username: username }
   var user = data.findUser(function (user) {
@@ -51,7 +51,7 @@ logic.loginUser = function (username, password) {
       data.loginUser(newUser)
       window.location.href = '../home/index.html'
     } else {
-      throw new Error('contraseña incorrecta')
+      throw new ContentError('password incorrecto')
     }
   } else {
     alert('Usuario no existe. Serás redirigido a la página de registro.')

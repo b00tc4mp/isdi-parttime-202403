@@ -13,19 +13,20 @@ function LoginForm() {
   icon.setId('icon')
 
   icon.addClass('fa-regular')
-  icon.addClass('fa-eye')
+  icon.addClass('fa-eye-slash')
   icon.addClass('icon')
-  icon.onclick = function showPass() {
-    if (passField.type === 'text') {
-      passField.type = 'password'
-      icon.removeClass('fa-eye-slash')
-      icon.addClass('fa-eye')
-    } else if (passField.type === 'password') {
-      passField.type = 'text'
-      icon.removeClass('fa-eye')
-      icon.addClass('fa-eye-slash')
-    }
-  }
+
+  // icon.onclick = function showPass() {
+  //   if (passField.type === 'text') {
+  //     passField.type = 'password'
+  //     icon.removeClass('fa-eye-slash')
+  //     icon.addClass('fa-eye')
+  //   } else if (passField.type === 'password') {
+  //     passField.type = 'text'
+  //     icon.removeClass('fa-eye-slash')
+  //     icon.addClass('fa-eye')
+  //   }
+  // }
   var button = new Button()
   button.setType('submit')
   button.setText('Login')

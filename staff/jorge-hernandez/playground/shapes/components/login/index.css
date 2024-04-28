@@ -34,11 +34,12 @@ input::placeholder {
     position: absolute;
   }
   
-.LoginForm i {
+/* .LoginForm i {
     position: relative;
-    right: -60px; /* Ajusta la posición del ícono a la derecha */
+    right: -60px; 
     top: -21px;
-    /* transform: translateY(-50%); */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+    cursor: pointer;
+  } */
+  .LoginForm .forgot-pass{
+    font-size: 9px;
   }
-  
