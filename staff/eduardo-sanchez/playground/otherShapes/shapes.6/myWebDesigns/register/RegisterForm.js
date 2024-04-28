@@ -17,15 +17,11 @@ function RegisterForm() {
 
     var submitButton = new SubmitButton('Register')
 
-    var feedbackPanel = new Component('p')
-    feedbackPanel.addClass('Feedback')
-
     this.add(emailField)
     this.add(userNameField)
     this.add(passwordField)
     this.add(passwordRepeatField)
     this.add(submitButton)
-    this.add(feedbackPanel)
 
 }
 
@@ -56,18 +52,3 @@ RegisterForm.prototype.getPasswordRepeat = function () {
 
     return passwordRepeatField.getValue()
 }
-
-RegisterForm.prototype.setFeedback = function (message) {
-    var feedbackPanel = this.children[this.children.length - 1]
-
-    return feedbackPanel.setText(message)
-}
-
-RegisterForm.prototype.clear = function () { // method overriding
-    Form.prototype.clear.call(this)
-
-    var feedbackPanel = this.children[this.children.length - 1]
-
-    return feedbackPanel.setText('')
-}
-

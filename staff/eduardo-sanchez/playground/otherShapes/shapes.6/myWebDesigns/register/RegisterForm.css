@@ -10,7 +10,3 @@
     border: 1px solid var(--first-color);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
-.RegisterForm .Feedback {
-    color: tomato;
-}

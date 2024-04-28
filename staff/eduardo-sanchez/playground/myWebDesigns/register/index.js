@@ -1,5 +1,4 @@
 var view = new Component(document.body)
-
 view.addClass('View')
 
 var title = new Heading(1)
@@ -18,42 +17,15 @@ registerForm.onSubmit(function (event) {
     var password = registerForm.getPassword()
     var passwordRepeat = registerForm.getPasswordRepeat()
 
+    try {
 
-    var usersJson = localStorage.users
+        logic.registerUser(email, username, password, passwordRepeat)
+        registerForm.clear();
 
-    if (!usersJson) usersJson = '[]'
-
-    var users = JSON.parse(usersJson)
-
-    var user = users.find(function (user) {
-        return user.email === email || user.username === username
-    })
-
-    if (user) {
-        alert('user already exists')
-
-        return
+    } catch (error) {
+        //alert(error.message)
+        registerForm.setFeedback(error.message)
     }
-
-    if (password !== passwordRepeat) {
-        alert('paswwords don\'t match')
-
-        return
-    }
-
-    var user = {
-        email: email,
-        username: username,
-        password: password
-    }
-
-    users.push(user)
-
-    usersJson = JSON.stringify(users)
-
-    localStorage.users = usersJson
-
-    registerForm.clear()
 
 })
 
@@ -68,12 +40,8 @@ loginLink.onClick(function (event) {
 
         location.href = '../login'
     }, 500)
-
 })
 
 view.add(title)
 view.add(registerForm)
 view.add(loginLink)
-
-
-
