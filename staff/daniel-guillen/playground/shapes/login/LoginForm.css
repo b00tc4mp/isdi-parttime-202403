@@ -9,3 +9,10 @@
     font-size: 1rem;
     border: 1px solid var(--first-color);
 }
+.LoginForm .Feedback {
+    color: tomato;
+}
+
+.LoginForm .Feedback.success {
+    color: yellowgreen;
+}

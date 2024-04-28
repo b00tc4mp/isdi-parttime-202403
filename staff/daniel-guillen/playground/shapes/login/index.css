@@ -9,6 +9,11 @@ h1{
     font-family: Workbench;
     font-size: 350%;
 }
+h2{
+    text-align: center;
+    font-family: Workbench;
+    font-size: 250%;
+}
 .Input,
 .Button {
     background-color: transparent;
