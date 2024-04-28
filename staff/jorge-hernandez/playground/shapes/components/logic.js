@@ -58,3 +58,16 @@ logic.loginUser = function (username, password) {
     window.location.href = '../register/index.html'
   }
 }
+
+// show pass on click
+function showPass(icon, field, type1, type2) {
+  if (field.type === type1) {
+    field.type = type2
+    icon.classList.add('fa-eye')
+    icon.classList.remove('fa-eye-slash')
+  } else if (field.type === type2) {
+    field.type = type1
+    icon.classList.add('fa-eye-slash')
+    icon.classList.remove('fa-eye')
+  }
+}

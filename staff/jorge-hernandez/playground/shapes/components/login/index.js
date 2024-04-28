@@ -8,16 +8,8 @@ var linkCreated = false
 var icon = document.getElementById('icon')
 var passField = document.getElementById('password')
 
-icon.onclick = function showPass() {
-  if (passField.type === 'password') {
-    passField.type = 'text'
-    icon.classList.add('fa-eye')
-    icon.classList.remove('fa-eye-slash')
-  } else if (passField.type === 'text') {
-    passField.type = 'password'
-    icon.classList.add('fa-eye-slash')
-    icon.classList.remove('fa-eye')
-  }
+icon.onclick = function () {
+  showPass(icon, passField, 'password', 'text')
 }
 
 loginForm.onSubmit(function (event) {
@@ -29,6 +21,9 @@ loginForm.onSubmit(function (event) {
   } catch (error) {
     if (error instanceof ContentError) {
       loginForm.setFeedback(error.message + ', porfavor corrígelo')
+      setTimeout(function () {
+        loginForm.setFeedback('')
+      }, 2000)
       if (!linkCreated) {
         var link = new Link()
         link.setUrl('../register/index.html')
@@ -40,10 +35,11 @@ loginForm.onSubmit(function (event) {
       }
     } else if (error instanceof MatchError) {
       loginForm.setFeedback('error de credenciales')
+      loginForm.setFeedback(function () {
+        loginForm.setFeedback('')
+      })
     } else {
-      loginForm.setFeedback(
-        'Perdón, hay un error, lo solucionaremos lo antes posible'
-      )
+      loginForm.setFeedback('Hay un error, lo solucionaremos lo antes posible')
     }
   }
 })

@@ -4,35 +4,16 @@ var registerForm = new RegisterForm()
 view.add(registerForm)
 
 //onclick password
-
 var icon = document.getElementById('icon')
 var passField = document.getElementById('password')
-
-icon.onclick = function showPass() {
-  if (passField.type === 'password') {
-    passField.type = 'text'
-    icon.classList.add('fa-eye')
-    icon.classList.remove('fa-eye-slash')
-  } else if (passField.type === 'text') {
-    passField.type = 'password'
-    icon.classList.add('fa-eye-slash')
-    icon.classList.remove('fa-eye')
-  }
+icon.onclick = function () {
+  showPass(icon, passField, 'password', 'text')
 }
 
 var icon2 = document.getElementById('icon2')
 var passField2 = document.getElementById('repeat-password')
-
-icon2.onclick = function showPass() {
-  if (passField2.type === 'password') {
-    passField2.type = 'text'
-    icon2.classList.add('fa-eye')
-    icon2.classList.remove('fa-eye-slash')
-  } else if (passField2.type === 'text') {
-    passField2.type = 'password'
-    icon2.classList.add('fa-eye-slash')
-    icon2.classList.remove('fa-eye')
-  }
+icon2.onclick = function () {
+  showPass(icon2, passField2, 'password', 'text')
 }
 
 registerForm.onSubmit(function (event) {
@@ -46,11 +27,20 @@ registerForm.onSubmit(function (event) {
     logic.registerUser(email, username, password, repeatPassword)
   } catch (error) {
     if (error instanceof ContentError) {
-      registerForm.setFeedback(error.message + ', porfavor corrígelo')
+      registerForm.setFeedback(error.message + ', corrígelo')
+      setTimeout(function () {
+        registerForm.setFeedback('')
+      }, 2000)
     } else if (error instanceof MatchError) {
       registerForm.setFeedback('Error de credenciales')
+      setTimeout(function () {
+        registerForm.setFeedback('')
+      }, 2000)
     } else if (error instanceof DuplicityError) {
       registerForm.setFeedback('usuario ya existe')
+      setTimeout(function () {
+        registerForm.setFeedback('')
+      }, 2000)
     } else {
       registerForm.setFeedback(
         'Hay un error lo solucionaremos lo antes posible'

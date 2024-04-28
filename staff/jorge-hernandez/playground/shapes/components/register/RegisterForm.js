@@ -55,6 +55,7 @@ RegisterForm.prototype.constructor = RegisterForm
 
 RegisterForm.prototype.getEmail = function () {
   var emailField = this.children[1]
+  console.log(this.children)
   return emailField.getValue()
 }
 RegisterForm.prototype.getUsername = function () {
