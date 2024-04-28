@@ -33,3 +33,20 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
 
     data.insertUser(user)
 }
+logic.loginUser = function (username, password) {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('el nombre de usuario no es valido')
+
+    if (!PASSWORD_REGEX.test(password))
+        throw new ContentError('el password no es valido')
+
+    var user = data.findUser(function (user) {
+        return user.username === username
+    })
+
+    if (!user)
+        throw new MatchError('Usuario no encontrado')
+
+    if (user.password !== password)
+        throw new MatchError('el password no es correcto')
+}

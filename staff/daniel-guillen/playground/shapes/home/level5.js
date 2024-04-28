@@ -37,7 +37,7 @@ view.add(coma)
 var nextlevel = new Heading(3)
 nextlevel.setText('.')
 nextlevel.onClick(function () {
-    alert("Ya eres un experto! Pasas al ultimo nivel!")
+    alert("Felicidades!!!")
     location.href = "./level6.html"
 })
 
