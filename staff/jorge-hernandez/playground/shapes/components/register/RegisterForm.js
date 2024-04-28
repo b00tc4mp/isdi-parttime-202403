@@ -27,6 +27,12 @@ function RegisterForm() {
   icon.addClass('fa-eye-slash')
   icon.addClass('icon')
 
+  var icon2 = new Component('i')
+  icon2.setId('icon2')
+  icon2.addClass('fa-regular')
+  icon2.addClass('fa-eye-slash')
+  icon2.addClass('icon2')
+
   var button = new Button()
   button.setType('submit')
   button.setText('Register')
@@ -38,6 +44,7 @@ function RegisterForm() {
   this.add(userNameField)
   this.add(passwordField)
   this.add(icon)
+  this.add(icon2)
   this.add(repeatPasswordField)
   this.add(button)
   this.add(feedbackPanel)
@@ -59,10 +66,10 @@ RegisterForm.prototype.getPassword = function () {
   return passwordField.getValue()
 }
 RegisterForm.prototype.getRepeatPassword = function () {
-  var repeatPasswordField = this.children[5]
+  var repeatPasswordField = this.children[6]
   return repeatPasswordField.getValue()
 }
 RegisterForm.prototype.setFeedback = function (message) {
-  var feedbackPanel = this.children[7]
+  var feedbackPanel = this.children[8]
   feedbackPanel.setText(message)
 }

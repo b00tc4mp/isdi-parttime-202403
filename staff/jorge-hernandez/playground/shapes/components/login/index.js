@@ -2,6 +2,7 @@ var view = new Component(document.body)
 view.addClass('View')
 var loginForm = new LoginForm()
 view.add(loginForm)
+var linkCreated = false
 
 //onclick password
 var icon = document.getElementById('icon')
@@ -28,12 +29,15 @@ loginForm.onSubmit(function (event) {
   } catch (error) {
     if (error instanceof ContentError) {
       loginForm.setFeedback(error.message + ', porfavor corrígelo')
-      var link = new Link()
-      link.setUrl('../register/index.html')
-      link.setTarget('_blank')
-      link.setText('¿olvidaste tu contraseña?')
-      link.addClass('forgot-pass')
-      loginForm.add(link)
+      if (!linkCreated) {
+        var link = new Link()
+        link.setUrl('../register/index.html')
+        link.setTarget('_blank')
+        link.setText('¿olvidaste tu contraseña?')
+        link.addClass('forgot-pass')
+        loginForm.add(link)
+        linkCreated = true
+      }
     } else if (error instanceof MatchError) {
       loginForm.setFeedback('error de credenciales')
     } else {

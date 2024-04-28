@@ -4,6 +4,7 @@ var registerForm = new RegisterForm()
 view.add(registerForm)
 
 //onclick password
+
 var icon = document.getElementById('icon')
 var passField = document.getElementById('password')
 
@@ -18,6 +19,22 @@ icon.onclick = function showPass() {
     icon.classList.remove('fa-eye')
   }
 }
+
+var icon2 = document.getElementById('icon2')
+var passField2 = document.getElementById('repeat-password')
+
+icon2.onclick = function showPass() {
+  if (passField2.type === 'password') {
+    passField2.type = 'text'
+    icon2.classList.add('fa-eye')
+    icon2.classList.remove('fa-eye-slash')
+  } else if (passField2.type === 'text') {
+    passField2.type = 'password'
+    icon2.classList.add('fa-eye-slash')
+    icon2.classList.remove('fa-eye')
+  }
+}
+
 registerForm.onSubmit(function (event) {
   event.preventDefault()
   var email = registerForm.getEmail()

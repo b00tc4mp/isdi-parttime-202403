@@ -2,10 +2,10 @@ var newUser = localStorage.newUser ? JSON.parse(localStorage.newUser) : null
 
 if (newUser) {
   var title = new Heading(1)
-  title.setText('Bienvenido ' + newUser.username)
+  title.setText('Welcome ' + newUser.username)
 } else {
   var title = new Heading(1)
-  title.setText('Bienvenido')
+  title.setText('Welcome')
 }
 var link = new Link()
 link.setUrl('../login/index.html')
