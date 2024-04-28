@@ -20,7 +20,7 @@ view.add(level1)
 var children = new Heading(2)
 children.setText ('·')
 children.onClick(function () {
-    alert('Entiendo tu confusion, esto es un "children del children" de un punto!')
+    alert('Entiendo tu confusion, es un pariente cercano del punto que buscamos')
 })
 
 view.add(children)

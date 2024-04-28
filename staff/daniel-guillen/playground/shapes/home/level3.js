@@ -2,7 +2,7 @@ var view = new Component(document.body)
 view.addClass('View')
 
 var welcome = new Heading(1)
-welcome.setText("Se paso con el bronceado -  nivel 4")
+welcome.setText("Se paso con el bronceado -  nivel 3")
 welcome.onClick(function () {
     alert('Al hacer clic en este título no obtendrás nada')
 })
@@ -10,7 +10,7 @@ welcome.onClick(function () {
 view.add(welcome)
 
 var level1 = new Heading(1)
-level1.setText("Encuentra el punto blanco")
+level1.setText("Encuentra el punto no tan blanco")
 level1.onClick(function () {
     alert('si alguna vez pasaste demasiado tiempo al sol lo entenderas')
 })
