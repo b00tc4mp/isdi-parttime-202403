@@ -8,74 +8,34 @@ var registerForm = new RegisterForm
 
 registerForm.onSubmit(function(event){
     event.preventDefault()
-    var dataAbsent = false
+
     var name = registerForm.getName()
-    if(!name){
-        dataAbsent = DataAbsent('name')
-    }
-
-    var email = registerForm.getMail()
-    if(email === ''){
-        
-        dataAbsent = DataAbsent('email')
-}
-
     var username = registerForm.getUserName()
-    if(!username){
-        
-        dataAbsent = DataAbsent('username')
-    }
-
+    var email = registerForm.getMail()
     var password = registerForm.getPassword()
-    if(!password){
-        dataAbsent = DataAbsent('password')
-    }
-
     var confirmPassword = registerForm.getConfirmPassword()
-    if(!confirmPassword){
-        dataAbsent = DataAbsent('Confirm Password')
-    }
 
-    if(password === confirmPassword && dataAbsent === false){
-        var usersJson =  localStorage.users
+    try{
+        logic.registerUser(name, username, email, password, confirmPassword)
 
-        if(!usersJson){
-            usersJson = '[]'
-        }
+        registerForm.clear()
 
-        var users = JSON.parse(usersJson)
-
-        var user = users.find(function(user){
-            return (user.username === username || user.email === email)
-        })
-        if(user){
-            alert('this user is already loged')
-            return
-        }
-         user = {
-            name: name,
-            email: email,
-            username: username,
-            password: password
-        }
-
-
-        
+        registerForm.setFeedback('User successfullt registred', 'success')
     
-        users.push(username)
-
-        usersJson = JSON.stringify(users)
-        
-        localStorage.users = usersJson
-
-       location.href= '../Home'
-
-    }else if(confirmPassword !== password){
-        alert('Password and the Confirm password are not the equals')
-        location.href= '../register'
+        setTimeout(function(){
+            location.href = '../login'
+        },700)
+    } catch(error){
+        if (error instanceof ContentError){
+            registerForm.setFeedback(error.message +', please, correct it')
+        }else if (error instanceof MatchError){
+            registerForm.setFeedback(error.message +', please, retype them')
+        }else if(error instanceof DuplicityError){
+            registerForm.setFeedback(error.message + ', please, enter new one')
+        }else{
+            registerForm.setFeedback('sorry, there was an error, please try again later')
+        }
     }
-
-    registerForm.clear()
 })
 
 var loginLink = new Link

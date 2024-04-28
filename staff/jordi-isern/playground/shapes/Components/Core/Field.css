@@ -11,3 +11,6 @@
     border-radius: .3rem;
 }
 
+.input{
+    color: var(--color3);
+}

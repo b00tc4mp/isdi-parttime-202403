@@ -1,7 +1,9 @@
+
+
 function PasswordField(id,text){
     Component.call(this, 'div')
 
-    this.addClass('PasswordField')
+    this.addClass('FieldPassword')
 
     var divLavel = new Component('div')
     divLavel.addClass('divLavel')
@@ -17,6 +19,7 @@ function PasswordField(id,text){
     
     var input = new Input
     input.setId(id)
+    input.addClass('input')
     var type = 'password'
     input.setType(type)
     
@@ -56,7 +59,7 @@ PasswordField.prototype = Object.create(Component.prototype)
 PasswordField.prototype.constructor = PasswordField
 
 PasswordField.prototype.setPlaceholder = function(placeholder){
-    this.children[1].setPlaceholder(placeholder)
+    this.children[1].children[0].setPlaceholder(placeholder)
 }
 
 PasswordField.prototype.getValue = function(){

@@ -12,6 +12,7 @@ function Field(id, type,text){
     
     var input = new Input
     input.setId(id)
+    input.addClass('input')
     input.setType(type)
 
     this.add(label)

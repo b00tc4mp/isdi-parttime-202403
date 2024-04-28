@@ -6,19 +6,22 @@ function RegisterForm (){
     var nameField = new Field('name', 'text', 'Name')
     nameField.setPlaceholder('Name')
     
-    var emailField = new Field('enail', 'email', 'Email')
+    var emailField = new Field('email', 'text', 'Email')
     emailField.setPlaceholder('Email')
 
     var usernameField = new Field ('username', 'text', 'Username')
     usernameField.setPlaceholder('Usernname')
 
-    var passwordField = new Field('password', 'password', 'Password')
+    var passwordField = new PasswordField('password', 'Password')
     passwordField.setPlaceholder('password')
 
-    var confirmPasswordField = new Field('repeat password', 'password', 'Repeat Password')
+    var confirmPasswordField = new PasswordField('repeat password', 'Repeat Password')
     confirmPasswordField.setPlaceholder('Repeat password')
 
     var registerButton = new SubmitButton('Register')
+
+    var feedbackPanel = new Component('p')
+    feedbackPanel.addClass('feedback')
     
     this.add(nameField)
     this.add(emailField)
@@ -26,6 +29,7 @@ function RegisterForm (){
     this.add(passwordField)
     this.add(confirmPasswordField)
     this.add(registerButton)
+    this.add(feedbackPanel)
 
 }
 
@@ -57,8 +61,30 @@ RegisterForm.prototype.getConfirmPassword = function(){
     var confirmPasswordField = this.children[4]
     return confirmPasswordField.getValue()
 }
-//TODO finish register from
-RegisterForm.setfeedback
+
+RegisterForm.prototype.setFeedback = function(message, level){
+    var feedbackPanel = this.children[this.children.length -1]
+
+    if (level === 'success'){
+        feedbackPanel.addClass('success')   
+    }
+    feedbackPanel.setText(message)
+}
+
+RegisterForm.prototype.clear = function(){
+    Form.prototype.clear.call(this)
+
+    var feedbackPanel= this.children[this.children.length-1]
+    feedbackPanel.setText(' ')
+    feedbackPanel.removeClass('success')
+}
+
 
 //TODO mirar classes dia 23 i 24 para comprender logic.js
 
+//TODO aprender debug en navegador
+
+//TODO buscar svelte reackt-JSX  Angular typescript coffeescript
+
+
+//raycast

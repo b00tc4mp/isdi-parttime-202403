@@ -1,10 +1,14 @@
 var logic = {}
-
+var NAME_REGEX = /^[a-zA-z]/
 var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
-logic.registerUser = function(email, username, password, passwordRepeat){
+logic.registerUser = function(name, username,email, password, passwordRepeat){
+    if(!NAME_REGEX.test(name)){
+        throw new ContentError('name is not valid')
+    }
+
     if(!EMAIL_REGEX.test(email)){
         throw new ContentError('email is not valid')
     }
@@ -29,6 +33,7 @@ logic.registerUser = function(email, username, password, passwordRepeat){
     }
 
     user = {
+        name: name,
         email: email,
         username: username,
         password: password
