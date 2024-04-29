@@ -18,6 +18,7 @@ function RegisterForm() {
     var submitButton = new SubmitButton('Register')
 
     var feedbackPanel = new Component('p')
+    feedbackPanel.addClass('Feedback')
 
     this.add(emailField)
     this.add(usernameField)
@@ -54,12 +55,13 @@ RegisterForm.prototype.getPasswordRepeat = function () {
 
     return passwordFieldRepeat.getValue()
 }
-RegisterForm.prototype.setFeedback = function (message) {
+RegisterForm.prototype.setFeedback = function (message, level) {
     var feedbackPanel = this.children[this.children.length - 1]
 
-    feedbackPanel.setText(message)
+    if (level === 'success')
+        feedbackPanel.addClass('success')
 
-    feedbackPanel.addClass('Feedback')
+    feedbackPanel.setText(message)
 }
 RegisterForm.prototype.clear = function () {
     Form.prototype.clear.call(this)
@@ -67,4 +69,5 @@ RegisterForm.prototype.clear = function () {
     var feedbackPanel = this.children[this.children.length - 1]
 
     feedbackPanel.setText('')
+    feedbackPanel.removeClass('success')
 }

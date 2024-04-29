@@ -1,6 +1,7 @@
 .RegisterForm {
     padding: 1rem;
-    background-color: aqua;
+    background-color: rgb(206, 161, 12);
+    border-radius: 30px;
 }
 
 .RegisterForm .Input,
@@ -11,6 +12,11 @@
 }
 
 .RegisterForm .Feedback {
-    color: blue;
+    color: rgb(52, 26, 4);
+
+}
+
+.RegisterForm .Feedback.success {
+    color: rgb(85, 41, 5);
 
 }

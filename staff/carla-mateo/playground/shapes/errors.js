@@ -1,5 +1,6 @@
 function ContentError(message) {
     this.message = message
+
     Error.captureStackTrace(this, this.constructor)
 }
 
@@ -16,11 +17,11 @@ MatchError.prototype = Object.create(Error.prototype)
 MatchError.prototype.constructor = MatchError
 MatchError.prototype.name = MatchError.name
 
-function DuplicityhError(message) {
+function DuplicityError(message) {
     this.message = message
     Error.captureStackTrace(this, this.constructor)
 }
 
-DuplicityhError.prototype = Object.create(Error.prototype)
-DuplicityhError.prototype.constructor = DuplicityhError
-DuplicityhError.prototype.name = DuplicityhError.name
+DuplicityError.prototype = Object.create(Error.prototype)
+DuplicityError.prototype.constructor = DuplicityError
+DuplicityError.prototype.name = DuplicityError.name

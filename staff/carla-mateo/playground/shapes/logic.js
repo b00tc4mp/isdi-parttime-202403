@@ -4,7 +4,7 @@ var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@
 
 var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 
-var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
+var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 logic.registerUser = function (email, username, password, passwordRepeat) {
 
@@ -38,5 +38,24 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
     }
 
     data.insertUser(user)
+
+}
+logic.loginUser = function (username, password) {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('username is not valid')
+
+    if (!PASSWORD_REGEX.test(password))
+        throw new ContentError('password is not valid')
+
+    var user = data.findUser(function (user) {
+        return user.username === username
+    })
+
+    if (!user)
+        throw new MatchError('user not found')
+
+    if (user.password !== password)
+        throw new MatchError('wrong password')
+
 
 }

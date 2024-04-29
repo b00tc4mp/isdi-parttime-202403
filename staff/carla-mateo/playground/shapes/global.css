@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 :root {
-    --first-color: blueviolet;
-    --second-color: antiquewhite;
+    --first-color: rgb(29, 11, 45);
+    --second-color: rgb(245, 214, 174);
 }
 
 * {

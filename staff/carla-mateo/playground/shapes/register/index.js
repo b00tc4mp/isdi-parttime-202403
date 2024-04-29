@@ -19,15 +19,26 @@ registerForm.onSubmit(function (event) {
 
     try {
         logic.registerUser(email, username, password, passwordRepeat)
+
         registerForm.clear()
-        location.href = '../login'
+
+        registerForm.setFeedback('user successfully registered', 'success')
+
+        setTimeout(function () {
+            location.href = '../login'
+
+        }, 1000)
+
+
     } catch (error) {
         if (error instanceof ContentError)
             registerForm.setFeedback(error.message + '. please, correct it.')
-        if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + ', please retype them')
+        else if (error instanceof MatchError)
+            registerForm.setFeedback(error.message + ', please, retype them')
+        else if (error instanceof DuplicityError)
+            registerForm.setFeedback(error.message + ', please, enter new one')
         else
-            registerForm.setFeedback(error.message)
+            registerForm.setFeedback('Sorry, please try again later')
     }
 
 })
@@ -42,6 +53,7 @@ loginLink.onClick(function (event) {
         location.href = '../login'
     }, 500)
 })
+
 
 view.add(title)
 view.add(registerForm)

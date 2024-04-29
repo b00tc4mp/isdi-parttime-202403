@@ -1,5 +1,7 @@
 .LoginForm {
     padding: 1rem;
+    background-color: rgb(206, 161, 12);
+    border-radius: 30px;
 }
 
 .LoginForm .Input,
