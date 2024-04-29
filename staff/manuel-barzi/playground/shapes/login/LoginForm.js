@@ -1,52 +1,51 @@
-function LoginForm() {
-    Form.call(this)
+class LoginForm extends Form {
+    constructor() {
+        super()
 
-    this.addClass('LoginForm')
+        this.addClass('LoginForm')
 
-    var usernameField = new Field('username', 'text', 'Username')
+        const usernameField = new Field('username', 'text', 'Username')
 
-    var passwordField = new Field('password', 'password', 'Password')
+        const passwordField = new Field('password', 'password', 'Password')
 
-    var submitButton = new SubmitButton('Login')
+        const submitButton = new SubmitButton('Login')
 
-    var feedbackPanel = new Component('p')
-    feedbackPanel.addClass('Feedback')
+        const feedbackPanel = new Component('p')
+        feedbackPanel.addClass('Feedback')
 
-    this.add(usernameField)
-    this.add(passwordField)
-    this.add(submitButton)
-    this.add(feedbackPanel)
-}
+        this.add(usernameField)
+        this.add(passwordField)
+        this.add(submitButton)
+        this.add(feedbackPanel)
+    }
 
-LoginForm.prototype = Object.create(Form.prototype)
-LoginForm.prototype.constructor = Form
+    getUsername() {
+        const usernameField = this.children[0]
 
-LoginForm.prototype.getUsername = function () {
-    var usernameField = this.children[0]
+        return usernameField.getValue()
+    }
 
-    return usernameField.getValue()
-}
+    getPassword() {
+        const passwordField = this.children[1]
 
-LoginForm.prototype.getPassword = function () {
-    var passwordField = this.children[1]
+        return passwordField.getValue()
+    }
 
-    return passwordField.getValue()
-}
+    setFeedback(message, level) {
+        const feedbackPanel = this.children[this.children.length - 1]
 
-LoginForm.prototype.setFeedback = function (message, level) {
-    var feedbackPanel = this.children[this.children.length - 1]
+        if (level === 'success')
+            feedbackPanel.addClass('success')
 
-    if (level === 'success')
-        feedbackPanel.addClass('success')
+        feedbackPanel.setText(message)
+    }
 
-    feedbackPanel.setText(message)
-}
+    clear() {
+        super.clear()
 
-LoginForm.prototype.clear = function () {
-    Form.prototype.clear.call(this)
+        const feedbackPanel = this.children[this.children.length - 1]
 
-    var feedbackPanel = this.children[this.children.length - 1]
-
-    feedbackPanel.setText('')
-    feedbackPanel.removeClass('success')
+        feedbackPanel.setText('')
+        feedbackPanel.removeClass('success')
+    }
 }
