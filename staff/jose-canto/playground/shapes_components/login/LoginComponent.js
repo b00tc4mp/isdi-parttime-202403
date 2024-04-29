@@ -10,11 +10,10 @@ function LoginComponent() {
   var passwordField = new CheckPasswordField("password", "password", "Password")
   passwordField.setPlaceholder("Password")
 
-  //* FEEDBACK
-  var feedbackPanel = new Component("p")
-  feedbackPanel.addClass("Feedback")
-
   var submitButton = new SubmitButton("Login")
+
+  var feedbackPanel = new Component('p')
+  feedbackPanel.addClass('Feedback')
 
   // Agregamos los elementos al formulario
   this.add(usernameField)
@@ -36,15 +35,13 @@ LoginComponent.prototype.getPassword = function () {
   return passwordField.getValue()
 }
 
-LoginComponent.prototype.setFeedback = function (message, clazz) {
+LoginComponent.prototype.setFeedback = function (message, level) {
   var feedbackPanel = this.children[this.children.length - 1]
 
-  feedbackPanel.setText(message)
-  feedbackPanel.addClass(clazz)
+  if (level === "success")
+    feedbackPanel.addClass("success")
 
-  setTimeout(function () {
-    feedbackPanel.setText("")
-  }, 2000)
+  feedbackPanel.setText(message)
 }
 
 LoginComponent.prototype.clear = function () {
@@ -53,4 +50,5 @@ LoginComponent.prototype.clear = function () {
   var feedbackPanel = this.children[this.children.length - 1]
 
   feedbackPanel.setText("")
+  feedbackPanel.removeClass("success")
 }

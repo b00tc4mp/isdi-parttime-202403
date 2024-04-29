@@ -19,6 +19,7 @@ function RegisterComponent() {
   //* PASSWORD REPEAT
   var repeatPassword = new Field("passwordRepeat", "password", "Password Repeat")
   repeatPassword.setPlaceholder("Repeat Password")
+  repeatPassword.addClass("passwordRepeat")
 
   //* BUTTON
   var submitButton = new SubmitButton("Register")
@@ -62,15 +63,13 @@ RegisterComponent.prototype.getPasswordRepeat = function () {
   return repeatPasswordField.getValue()
 }
 
-RegisterComponent.prototype.setFeedback = function (message, clazz) {
+RegisterComponent.prototype.setFeedback = function (message, level) {
   var feedbackPanel = this.children[this.children.length - 1]
 
+  if (level === "success") {
+    feedbackPanel.addClass("success")
+  }
   feedbackPanel.setText(message)
-  feedbackPanel.addClass(clazz)
-
-  setTimeout(function () {
-    feedbackPanel.setText("")
-  }, 2000)
 }
 
 RegisterComponent.prototype.clear = function () {
@@ -79,5 +78,6 @@ RegisterComponent.prototype.clear = function () {
   var feedbackPanel = this.children[this.children.length - 1]
 
   feedbackPanel.setText("")
+  feedbackPanel.removeClass("success")
 }
 

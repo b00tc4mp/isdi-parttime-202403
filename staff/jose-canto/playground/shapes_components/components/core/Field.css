@@ -2,8 +2,13 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  ;
 }
 
 label {
   margin: 0.4rem 0 0.5rem 0
+}
+
+.Field.passwordRepeat {
+  margin-top: -15px;
 }

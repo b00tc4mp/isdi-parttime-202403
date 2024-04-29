@@ -6,75 +6,60 @@ var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 logic.registerUser = function (email, username, password, passwordRepeat) {
 
+  if (!EMAIL_REGEX.test(email)) {
+    throw new ContentError("❌ Email is not valid ❌")
+  }
 
-  if (!EMAIL_REGEX.test(email)) { throw new Error("❌ Email is not valid ❌") }
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("❌ Username is not valid ❌")
+  }
 
-  if (!USERNAME_REGEX.test(username)) { throw new Error("❌ Username is not valid ❌") }
+  if (!PASSWORD_REGEX.test(password)) {
+    throw new ContentError("❌ Password is not valid ❌")
+  }
 
-  if (!PASSWORD_REGEX.test(password)) { throw new Error("❌ Password is not valid ❌") }
-
-  //if (!PASSWORD_REGEX.test(passwordRepeat)) { throw new Error("❌ Password repeat is not valid ❌") }
-
-
+  if (password !== passwordRepeat) {
+    throw new MatchError("❌ Password don't match ❌")
+  }
 
   var userRegistered = data.findUser(function (user) {
     return user.email === email || user.username === username
   })
 
-
   if (userRegistered) {
-    throw new Error("❌ Users already exists ❌")
+    throw new DuplicityError("❌ Users already exists ❌")
   }
-
-  if (password !== passwordRepeat) {
-
-    throw new Error("❌ Password don't match ❌")
-  }
-
 
   var user = {
     email: email,
     username: username,
     password: password,
-    passwordRepeat: passwordRepeat
   }
-  usersArray.push(user)
-  console.log(usersArray)
 
-  // Convertimos el array de usuarios de nuevo a una cadena JSON
-  var updatedUsersJson = JSON.stringify(usersArray)
-
-  // Guardamos la cadena JSON actualizada en el Local Storage
-  localStorage.users = updatedUsersJson
-  console.log(localStorage.users)
-
-  // Limpiamos el formulario de registro
-  registerForm.clear()
-  setTimeout(function () {
-    location.href = "../login"
-  }, 2000)
-
+  data.insertUser(user)
 }
-
 
 logic.loginUser = function (username, password) {
 
-  if (!USERNAME_REGEX.test(username)) { throw new Error("❌ Username is not valid ❌") } // Comprobamos si el usuario introduce correctamente los caracteres para no cargar con peticiones al servidor
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("❌ Username is not valid ❌")
+  } // Comprobamos si el usuario introduce correctamente los caracteres para no cargar con peticiones al servidor
 
-  if (!PASSWORD_REGEX.test(password)) { throw new Error("❌ Password is not valid ❌") }
+  if (!PASSWORD_REGEX.test(password)) {
+    throw new ContentError("❌ Password is not valid ❌")
+  }
 
-  var usersArray = JSON.parse(localStorage.users)
-
-  var userFound = usersArray.some(function (user) {
-    return user.username === username && user.password === password
+  var userFound = data.findUser(function (user) {
+    return user.username === username
   })
 
   if (!userFound) {
     //alert("❌Login incorrecto ❌")
-    throw new Error("❌ Login incorrecto ❌")
+    throw new MatchError("❌ User not found ❌")
   }
-  setTimeout(function () {
-    location.href = "../home/"
-  }, 2000)
+  if (userFound.password !== password) {
+    throw new MatchError("❌ Wrong password ❌")
+  }
 
+  // TODO anything else?
 }
