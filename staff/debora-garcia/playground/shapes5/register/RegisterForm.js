@@ -4,7 +4,7 @@ function RegisterForm() {
 
     //var form = new Form()
     this.addClass("RegisterForm")
-
+    
     //TODO verificar type email
     var emailField = new Field("email", "text", "E-mail")
     emailField.setPlaceholder("koala@example.com")
@@ -58,11 +58,9 @@ RegisterForm.prototype.getPasswordRepeat = function () {
     return passwordFieldRepeat.getValue()
 }
 
-RegisterForm.prototype.setFeedback = function (message, level) {
+RegisterForm.prototype.setFeedback = function (message) {
     var feedbackPanel = this.children[this.children.length - 1]
-    
-    if (level === ("succes"))
-        feedbackPanel.addClass("succes")
+
     feedbackPanel.setText(message)
 }
 
@@ -72,6 +70,5 @@ RegisterForm.prototype.clear = function () {// method overriding
     var feedbackPanel = this.children[this.children.length - 1]
 
     feedbackPanel.setText("")
-    feedbackPanel.removeClass("succes")
 
 }

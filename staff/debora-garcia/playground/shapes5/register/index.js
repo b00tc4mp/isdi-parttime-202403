@@ -22,7 +22,7 @@ registerForm.onSubmit(function (event) {
         logic.registerUser(email, username, password, passwordRepeat)
 
         //registerForm.clear()
-        registerForm.setFeedback("Registration successful!","succes")
+        registerForm.setFeedback("Registration successful!")
 
         setTimeout(function () {
             location.href = "../login"
@@ -50,7 +50,6 @@ loginLink.onClick(function (event) {
         location.href = "../login"
     }, 1000)
 })
-
 
 view.add(title)
 view.add(registerForm)

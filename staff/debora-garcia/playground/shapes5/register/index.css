@@ -25,15 +25,7 @@
 }
 
 .RegisterForm .Feedback {
-  display: flex;
-  text-align: center;
-  max-width: 15rem;
-  position:relative;
   color: tomato;
-}
-
-.RegisterForm .Feedback.succes  { /* tiene mas especificidad por lo que antepondra al codigo anterior */
-  color: green;
 }
 
 a {
