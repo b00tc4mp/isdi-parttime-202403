@@ -14,7 +14,7 @@ var snakeWidth = 20
 var snakeHeight = 20
 var snakeColor = "green"
 
-var imgMiniManu = "../img/minimanu.png" // IMG
+var imgMiniManu = "../img/snake.jpg" // IMG
 
 var snake = new Snake()
 
