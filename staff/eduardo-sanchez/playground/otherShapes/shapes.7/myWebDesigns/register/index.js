@@ -22,17 +22,8 @@ registerForm.onSubmit(function (event) {
         registerForm.clear();
 
     } catch (error) {
-        if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + ', please correct it')
-
-        else if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + ', please retype it')
-
-        else if (error instanceof DuplicityError)
-            registerForm.setFeedback(error.message + ', please enter new one')
-
-        else
-            registerForm.setFeedback('an unexpected error happened, try again later')
+        //alert(error.message)
+        registerForm.setFeedback(error.message)
     }
 
 })
