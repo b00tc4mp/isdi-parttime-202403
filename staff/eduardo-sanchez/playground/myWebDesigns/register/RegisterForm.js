@@ -57,17 +57,23 @@ RegisterForm.prototype.getPasswordRepeat = function () {
     return passwordRepeatField.getValue()
 }
 
-RegisterForm.prototype.setFeedback = function (message) {
+RegisterForm.prototype.setFeedback = function (message, level) {
     var feedbackPanel = this.children[this.children.length - 1]
 
-    return feedbackPanel.setText(message)
+    if (level === 'success')
+        feedbackPanel.addClass('success')
+
+    feedbackPanel.setText(message)
+
 }
 
-RegisterForm.prototype.clear = function () { // method overriding
+RegisterForm.prototype.clear = function () {
     Form.prototype.clear.call(this)
 
     var feedbackPanel = this.children[this.children.length - 1]
 
-    return feedbackPanel.setText('')
+    feedbackPanel.setText('')
+    feedbackPanel.removeClass('success')
+
 }
 

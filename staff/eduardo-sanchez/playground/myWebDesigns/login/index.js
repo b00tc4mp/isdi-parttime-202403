@@ -10,6 +10,39 @@ title.onClick(function () {
 })
 
 var loginForm = new LoginForm()
+
+loginForm.onSubmit(function (event) {
+    event.preventDefault()
+
+    var username = loginForm.getUsername()
+    var password = loginForm.getPassword()
+
+    try {
+        logic.registerUser(username, password)
+
+        loginForm.clear();
+
+        loginForm.setFeedback('user successfully logged in', 'success')
+
+        setTimeout(function () {
+
+            location.href = '../home'
+        }, 500)
+
+    } catch (error) {
+        if (error instanceof ContentError)
+            loginForm.setFeedback(error.message + ', please correct it')
+
+        else if (error instanceof MatchError)
+            loginForm.setFeedback(error.message + ', please retype it')
+
+        else
+            loginForm.setFeedback('an unexpected error happened, try again later')
+    }
+
+})
+
+
 var registerLink = new LinK()
 registerLink.setText('Register')
 //registerLink.setUrl('../register')
@@ -23,9 +56,6 @@ registerLink.onClick(function (event) {
     }, 500)
 
 })
-
-//registerLink.setUrl('https://www.google.com/')
-// registerLink.setTarget('_blank')
 
 view.add(title)
 view.add(loginForm)

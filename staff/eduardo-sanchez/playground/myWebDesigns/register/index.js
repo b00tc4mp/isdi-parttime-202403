@@ -19,7 +19,15 @@ registerForm.onSubmit(function (event) {
 
     try {
         logic.registerUser(email, username, password, passwordRepeat)
+
         registerForm.clear();
+
+        registerForm.setFeedback('user successfully registered', 'success')
+
+        setTimeout(function () {
+
+            location.href = '../login'
+        }, 500)
 
     } catch (error) {
         if (error instanceof ContentError)

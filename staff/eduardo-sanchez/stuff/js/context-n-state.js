@@ -24,5 +24,7 @@ console.log(logic.isUserLoggedIn())
 logic.logoutUser()
 
 console.log(logic.isUserLoggedIn())
+
+
 // VM631: 22 true
 // VM631: 26 false
