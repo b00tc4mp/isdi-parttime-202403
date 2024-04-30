@@ -1,37 +1,40 @@
+if (logic.isUserLoggedIn())
+  location.href = '../home'
+
 // Creamos una instancia de Component y la asociamos al body del documento
-var view = new Component(document.body)
+const view = new Component(document.body)
 view.addClass("View")
 
 // Creamos un encabezado con nivel 1 y establecemos el texto como "REGISTER"
-var headerRegister = new Header(1)
+const headerRegister = new Header(1)
 headerRegister.setText("REGISTER")
-headerRegister.onClick(function (event) {
+headerRegister.onClick(event => {
   event.preventDefault()
   alert("Click en el registro")
 })
 
 // Creamos una instancia de la clase RegisterComponent
-var registerForm = new RegisterComponent()
+const registerForm = new RegisterComponent()
 // Escuchamos el evento submit del formulario de registro
-registerForm.onSubmit(function (event) {
+registerForm.onSubmit(event => {
   event.preventDefault() // Prevenimos el comportamiento predeterminado del formulario
 
   // Obtenemos los datos del formulario de registro
-  var email = registerForm.getEmail()
-  var username = registerForm.getUsername()
-  var password = registerForm.getPassword()
-  var passwordRepeat = registerForm.getPasswordRepeat()
+  const name = registerForm.getName()
+  const surname = registerForm.getSurname()
+  const email = registerForm.getEmail()
+  const username = registerForm.getUsername()
+  const password = registerForm.getPassword()
+  const passwordRepeat = registerForm.getPasswordRepeat()
 
   try {
-    logic.registerUser(email, username, password, passwordRepeat)
+    logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
     registerForm.clear()
 
-    registerForm.setFeedback("User registered ✅", "sucess")
+    registerForm.setFeedback("User registered ✅", "success")
 
-    setTimeout(function () {
-      location.href = '../login'
-    }, 1000)
+    setTimeout(() => location.href = '../login', 1000)
 
   } catch (error) {
     if (error instanceof ContentError) {
@@ -47,22 +50,20 @@ registerForm.onSubmit(function (event) {
       registerForm.setFeedback("sorry, ther was an error, please try again later")
     }
 
-    setTimeout(function () {
-      registerForm.setFeedback("")
-    }, 2000)
+    setTimeout(() => registerForm.setFeedback(""), 2000)
   }
 })
 
 // Creamos un enlace para redirigir al usuario al inicio de sesión
-var loginLink = new Link()
+const loginLink = new Link()
 loginLink.setText("Login")
 // loginLink.setTarget("_blank")
 
 // Configuramos un evento onclick para redirigir al usuario al inicio de sesión
-loginLink.onClick(function (event) {
+loginLink.onClick(event => {
   event.preventDefault() // Prevenimos el comportamiento predeterminado del enlace
   console.log("...en espera de 1 segundo ⌛")
-  setTimeout(function () {
+  setTimeout(() => {
     location.href = "../login" // Redireccionamos al usuario al inicio de sesión después de 1 segundo
   }, 1000)
 })

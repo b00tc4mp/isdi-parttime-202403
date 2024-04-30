@@ -1,4 +1,5 @@
 .SubmitButton {
+  z-index: 0;
   position: relative;
   font-size: inherit;
   color: white;
@@ -34,6 +35,7 @@
 .SubmitButton:hover {
   cursor: pointer;
   color: #272727;
+
 }
 
 .SubmitButton:hover::before {

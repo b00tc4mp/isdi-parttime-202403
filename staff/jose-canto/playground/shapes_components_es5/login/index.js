@@ -1,3 +1,7 @@
+if (logic.isUserLoggedIn()) {
+  location.href = "../home";
+}
+
 // Creamos una instancia de la clase Component y le pasamos el elemento body del documento como argumento
 var view = new Component(document.body)
 view.addClass("View")

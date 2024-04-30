@@ -6,7 +6,7 @@ function Component(tagNameOrContainer) {
     this.container = document.createElement(tagNameOrContainer)
   }
   // Si el parámetro es un elemento HTML, lo asignamos directamente al atributo "container" del objeto.
-  else if (tagNameOrContainer instanceof HTMLElement) {
+  else if (tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument) {
     this.container = tagNameOrContainer
   }
   // Si el parámetro no es una cadena ni un elemento HTML, lanzamos un error.
@@ -47,5 +47,13 @@ Component.prototype.removeClass = function (clazz) {
 
 Component.prototype.onClick = function (listener) {
   this.container.addEventListener("click", listener)
+}
+
+Component.prototype.onKeyDown = function (listener) {
+  this.container.addEventListener("keydown", listener)
+}
+
+Component.prototype.onKeyUp = function (listener) {
+  this.container.addEventListener("keyup", listener)
 }
 

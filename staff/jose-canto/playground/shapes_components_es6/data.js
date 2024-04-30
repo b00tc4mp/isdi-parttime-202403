@@ -1,28 +1,28 @@
-var data = {}
+const data = {}
 
-data.findUser = function (callback) {
+data.findUser = (callback) => {
   // Obtenemos los usuarios del Local Storage o creamos un array vacío si no existen
-  var usersJson = localStorage.users
+  let usersJson = localStorage.users
 
   if (!usersJson) { usersJson = "[]" }
 
   // Convertimos la cadena JSON de usuarios a un array de objetos
-  var usersArray = JSON.parse(usersJson)
+  const usersArray = JSON.parse(usersJson)
 
-  var userRegistered = usersArray.find(callback)
+  const userRegistered = usersArray.find(callback)
 
   return userRegistered
 }
 
 
-data.insertUser = function (user) {
+data.insertUser = (user) => {
   // Obtenemos los usuarios del Local Storage o creamos un array vacío si no existen
-  var usersJson = localStorage.users
+  let usersJson = localStorage.users
 
   if (!usersJson) { usersJson = "[]" }
 
   // Convertimos la cadena JSON de usuarios a un array de objetos
-  var usersArray = JSON.parse(usersJson)
+  const usersArray = JSON.parse(usersJson)
 
   usersArray.push(user)
 
