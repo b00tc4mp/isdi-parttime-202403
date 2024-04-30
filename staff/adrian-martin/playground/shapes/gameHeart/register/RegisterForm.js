@@ -3,6 +3,14 @@ function RegisterForm() {
 
     this.addClass('RegisterForm')
 
+    var nameField = new Field('name', 'text', 'Name')
+    nameField.setPlaceholder('name')
+
+    var surnameField = new Field('surname', 'text', 'Surname')
+    surnameField.setPlaceholder('surname')
+
+
+
     var emailField = new Field('email', 'email', 'E-mail')
     emailField.setPlaceholder('example@gmail.com')
 
@@ -20,6 +28,8 @@ function RegisterForm() {
     var feedbackPanel = new Component('p')
     feedbackPanel.addClass('Feedback')
 
+    this.add(nameField)
+    this.add(surnameField)
     this.add(emailField)
     this.add(usernameField)
     this.add(passwordField)
@@ -31,26 +41,38 @@ function RegisterForm() {
 RegisterForm.prototype = Object.create(Form.prototype)
 RegisterForm.prototype.constructor = RegisterForm
 
+RegisterForm.prototype.getName = function () {
+    var nameField = this.children[0]
+
+    return nameField.getValue()
+}
+
+RegisterForm.prototype.getSurname = function () {
+    var surnameField = this.children[1]
+
+    return surnameField.getValue()
+}
+
 RegisterForm.prototype.getEmail = function () {
-    var emailField = this.children[0]
+    var emailField = this.children[2]
     
     return emailField.getValue()
 }
 
 RegisterForm.prototype.getUsername = function () {
-    var usernameField = this.children[1]
+    var usernameField = this.children[3]
 
     return usernameField.getValue()
 }
 
 RegisterForm.prototype.getPassword = function () {
-    var passwordField = this.children[2]
+    var passwordField = this.children[4]
 
     return passwordField.getValue()
 }
 
 RegisterForm.prototype.getPasswordRepeat = function () {
-    var passwordRepeatField = this.children[3]
+    var passwordRepeatField = this.children[5]
 
     return passwordRepeatField.getValue()
 }

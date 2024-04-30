@@ -1,5 +1,24 @@
+if(!logic.isUserLoggedIn())
+    location.href = '../login'
+
 var view = new Component(document.body)
 view.addClass('View')
+
+var userName = logic.getUsername()
+
+var usernameTitle = new Heading(3)
+usernameTitle.setText(userName)
+
+var logoutButton = new Button
+logoutButton.setText('Logout')
+
+logoutButton.onClick(function() {
+    logic.logoutUser()
+
+    location.href = '../login'
+})
+
+
 
 var heart = new Heart()
 heart.setX(300)
@@ -28,5 +47,6 @@ document.onkeydown = function(event) {
 
 
 view.add(heart)
-
+view.add(logoutButton)
+view.add(usernameTitle)
 

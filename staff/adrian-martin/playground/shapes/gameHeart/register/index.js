@@ -1,3 +1,7 @@
+// if(sessionStorage.username)
+if(logic.isUserLoggedIn())
+    location.href = '../home'
+
 var view = new Component(document.body)
 
 view.addClass('View')
@@ -13,13 +17,15 @@ var registerForm = new RegisterForm
 registerForm.onSubmit(function(event) {
     event.preventDefault()
 
+    var name = registerForm.getName()
+    var surname = registerForm.getSurname()
     var email = registerForm.getEmail()
     var username = registerForm.getUsername()
     var password = registerForm.getPassword()
     var passwordRepeat = registerForm.getPasswordRepeat()
 
     try{
-        logic.registerUser(email, username, password, passwordRepeat)
+        logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
         registerForm.setFeedback('user successfully registered', 'success')
         

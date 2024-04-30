@@ -1,3 +1,6 @@
+if(logic.isUserLoggedIn())
+location.href = '../home'
+
 var view = new Component(document.body)
 
 view.addClass('View')

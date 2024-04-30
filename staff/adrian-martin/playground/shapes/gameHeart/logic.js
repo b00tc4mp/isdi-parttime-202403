@@ -3,8 +3,14 @@ var logic = {}
 var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
+var NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
-    logic.registerUser = function(email, username, password, passwordRepeat ){
+    logic.registerUser = function(name, surname, email, username, password, passwordRepeat ){
+        if(!NAME_REGEX.test(name))
+            throw new ContentError('name is not valid')
+
+        if(!NAME_REGEX.test(surname))
+            throw new ContentError('name is not valid')
 
         if(!EMAIL_REGEX.test(email)) 
             throw new ContentError('email is not valid')
@@ -26,6 +32,8 @@ var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
             throw new DuplicityError('user already exists')
     
         user = {
+            name: name,
+            surname: surname,
             email: email,
             username: username,
             password: password
@@ -52,6 +60,24 @@ var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
         if(user.password !== password)
             throw new MatchError('wrong password')
+
+        sessionStorage.username = username
+    }
+
+    logic.isUserLoggedIn = function() {
+        return !!sessionStorage.username
+    }
+
+    logic.logoutUser = function() {
+        delete sessionStorage.username
+    }
+
+    logic.getUsername = function() {
+        var user = data.findUser(function(user) {
+            return user.username = sessionStorage.username
+        })
+
+        return user.name
     }
 
             // var data = {}

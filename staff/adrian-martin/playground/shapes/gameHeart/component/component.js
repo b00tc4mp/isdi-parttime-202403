@@ -2,7 +2,7 @@ function Component(tagNameOrContainer){
     if(typeof tagNameOrContainer === 'string')
     this.container = document.createElement(tagNameOrContainer)
 
-    else if(tagNameOrContainer instanceof HTMLElement)
+    else if(tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument)
     this.container = tagNameOrContainer
 
     else
@@ -38,3 +38,5 @@ Component.prototype.removeClass = function(clazz) {
 Component.prototype.onClick = function(listener) {
     this.container.addEventListener('click', listener)
 }
+
+
