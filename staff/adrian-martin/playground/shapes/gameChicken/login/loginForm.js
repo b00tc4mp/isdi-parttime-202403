@@ -11,7 +11,7 @@ function LoginForm(){
     // var usernameInput = new Input()
     // usernameInput.setId('username')
 
-    var usernameFild = new Field('username','text', 'Username')
+    var usernameFild = new Field('username', 'text', 'Username')
 
     // var passwordLabel = new Label()
     // passwordLabel.setText('Password')

@@ -1,4 +1,5 @@
 var view = new Component(document.body)
+view.addClass('View')
 
 var heart = new Heart()
 heart.setX(300)

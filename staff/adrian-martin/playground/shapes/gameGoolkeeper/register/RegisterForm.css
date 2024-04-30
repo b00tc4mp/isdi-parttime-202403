@@ -24,6 +24,6 @@
     align-items: center;
 }
 
-.RegisterForm .Feedback .success{
+.RegisterForm .Feedback.success{
     color: greenyellow;
 }

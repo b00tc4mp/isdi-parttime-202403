@@ -47,8 +47,6 @@ logic.registerUser = function(email, username, password, passwordRepeat){
     data.insertUser(user)      
 }
 
-var logic = {}
-
 // var EMAIL_REGEX = /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}$/
 
 // var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
