@@ -1,23 +1,23 @@
-var data = {}
+const data = {}
 
-data.findUser = function (callback) {
-    var usersJson = localStorage.users
+data.findUser = callback => {
+    const usersJson = localStorage.users
 
  if (!usersJson) usersJson = '[]'
 
-var users = JSON.parse(usersJson)
-var user = users.find(callback)
+const users = JSON.parse(usersJson)
+const user = users.find(callback)
 
 return user
 
 }
 
-data.insertUser = function (user) {
-    var usersJson = localStorage.users
+data.insertUser = user => {
+    const usersJson = localStorage.users
 
     if (!usersJson) user = '[]'
 
-    var users = JSON.parse(usersJson)
+    const users = JSON.parse(usersJson)
 
     users.push(user)
 

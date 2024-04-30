@@ -1,15 +1,16 @@
-function LoginForm() {
-    Form.call(this)
+class LoginForm extends Form {
+    constructor(){
+        super()
 
     this.addClass('LoginForm')
 
-    var usernameField = new Field('username', 'text', 'Username')
+   const usernameField = new Field('username', 'text', 'Username')
 
-    var passwordField = new Field('password', 'password', 'Password')
+   const passwordField = new Field('password', 'password', 'Password')
 
-    var submitButton = new SubmitButton('Login')
+   const submitButton = new SubmitButton('Login')
     
-    var feedbackPanel = new Component('p')
+   const feedbackPanel = new Component('p')
     feedbackPanel.addClass('Feedback')
 
     this.add(usernameField)
@@ -18,23 +19,20 @@ function LoginForm() {
     this.add(feedbackPanel)
 }
 
-LoginForm.prototype = Object.create(Form.prototype)
-LoginForm.prototype.constructor = Form
-
-LoginForm.prototype.getUsername = function () {
-    var usernameField = this.children[0]
+getUsername() {
+   const usernameField = this.children[0]
 
     return usernameField.getValue()
 }
 
-LoginForm.prototype.getPassword = function () {
-    var passwordField = this.children[1]
+getPassword() {
+   const passwordField = this.children[1]
 
     return passwordField.getValue()
 }
 
-LoginForm.prototype.setFeedback = function (message, level) {
-    var feedbackPanel = this.children[this.children.length - 1]
+setFeedback(message, level) {
+   const feedbackPanel = this.children[this.children.length - 1]
     if (level === 'success')
     feedbackPanel.addClass('success')
 
@@ -42,11 +40,12 @@ LoginForm.prototype.setFeedback = function (message, level) {
 }
 
 
-LoginForm.prototype.clear = function () { // method overriding
-    Form.prototype.clear.call(this)
+clear() { // method overriding
+   this.super.clear()
 
-    var feedbackPanel = this.children[this.children.length - 1]
+   const feedbackPanel = this.children[this.children.length - 1]
 
     feedbackPanel.setText('')
     feedbackPanel.removeClass('success')
+}
 }

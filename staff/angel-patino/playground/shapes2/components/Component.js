@@ -6,11 +6,15 @@ function Component(tagOrNameHtml){
     else
         throw new Error('this is not a tag or container HTML')
 
+     this.children = []
+
 }
 
 Component.prototype.add = function (child) {
     if(!child instanceof Component) throw new TypeError('child is not component')
-    //this.chidren.push(child)
+    
+    this.children.push(child)
+    
     this.container.appendChild(child.container)
 }
 

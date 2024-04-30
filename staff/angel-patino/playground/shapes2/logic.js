@@ -1,18 +1,11 @@
-let logic = {}
+var logic = {}
 
-const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
+var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
-const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
-
-logic.registerUser (name, surname, email, username, password, passwordRepeat => {
-    if(!NAME_REGEX.test(name))
-    throw new ContentError('name is not valid')
-
-    if(!NAME_REGEX.test(surname))
-    throw new ContentError('surname is not valid')
-
+logic.registerUser = function(email, user, password, passwordRepeat){
+    
     if (!EMAIL_REGEX.test(email))
         throw new ContentError('email is not valid')
 
@@ -29,7 +22,7 @@ logic.registerUser (name, surname, email, username, password, passwordRepeat => 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
 
-     let user = data.findUser(function (user) {
+     var user = data.findUser(function (user) {
             return user.email === email || user.username === username
         })
     //var usersJson = localStorage.getItem('users')
@@ -38,8 +31,6 @@ logic.registerUser (name, surname, email, username, password, passwordRepeat => 
         throw new DuplicityError('user already exists')
 
     user = {
-        name:name,
-        surname:surname,
         email: email,
         username: username,
         password: password
@@ -47,16 +38,16 @@ logic.registerUser (name, surname, email, username, password, passwordRepeat => 
 
     data.insertUser(user)
 
-})
+}
 
-logic.loginUser(username, password => {
+logic.loginUser = function (username, password) {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
 
-     let user = data.findUser(function (user) {
+     var user = data.findUser(function (user) {
             return user.username === username
      })
 
@@ -66,21 +57,5 @@ logic.loginUser(username, password => {
     if (user.password !== password)
             throw new MatchError('wrong password')
 
-    sessionStorage.username = username
-    })
-
-logic.isUserLoggedIn() => {
-    return !!sessionStorage.username //la doble negacion convierte algo booleano que no es booleano
-}
-
-logic.logoutUser()=> {
-    delete sessionStorage.username
-}
-
-logic.getUserName() => {
-    let user = data.findUser(function(user) {
-        return user.username === sessionStorage.username
-    })
-
-    return user.name
+    // TODO anything else?
 }

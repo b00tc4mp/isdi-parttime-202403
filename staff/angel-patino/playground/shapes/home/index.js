@@ -1,27 +1,52 @@
-var pig = new Pig()
+if (!logic.isUserLoggedIn())
+    location.href = '../home'
+
+    const view = new Component(document.body)
+    view.addClass('View')
+
+    const usernameTitle = new Heading(3)
+    usernameTitle.setText(username)
+
+    view.add(usernameTitle)
+
+    const logoutButton = new Button
+    logoutButton.setText('Logout')
+
+    logoutButton.onClick(function() {
+        logic.logoutUser()
+
+        location.href='../login'
+    })
+
+    view.add(logoutButton)
+
+const pig = new Pig()
 pig.config('ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight')
 pig.move(100, 100, 0)
 
-var pig2 = new Pig()
+const pig2 = new Pig()
 pig2.config('w', 's', 'a', 'd')
 pig2.move(300, 300, 0)
 
-var pig3 = new Pig()
+const pig3 = new Pig()
 pig3.config('i', 'k', 'j', 'l')
 pig3.move(600, 600, 0)
 
-var step = 50
+const step = 50
 
-var applyOnY = true
+let applyOnY = true
 
-var shapes = [pig, pig2, pig3]
+const shapes = [pig, pig2, pig3]
 
-document.onkeydown = function (event) {
-    var key = event.key.toLowerCase()
+
+const doc = new Component(document)
+
+doc.onkeydown(event => {
+    const key = event.key.toLowerCase()
 
     console.log(key)
 
-    shapes.forEach(function (shape) {
+    shapes.forEach(shape => {
         if (key === shape.keyLeft.toLowerCase())
             shape.moveRelativeX(-step)
         else if (key === shape.keyRight.toLowerCase())
@@ -41,16 +66,14 @@ document.onkeydown = function (event) {
 
     if (event.key === 'Shift')
         applyOnY = false
-}
+})
 
-document.onkeyup = function (event) {
-    console.log(event.key)
-
+doc.onkeyup(event => {
     if (event.key === 'Shift')
         applyOnY = true
 
-}
-
-shapes.forEach(function (shape) {
-    document.body.appendChild(shape.container)
 })
+
+shapes.forEach(shape => 
+    view.add(shape)
+)

@@ -1,5 +1,6 @@
-function Pig() {
-    Shape.call(this)
+class Pig extends Shape {
+    constructor(){
+        super()
 
     this.setColor('pink')
     this.setHeight(100)
@@ -7,7 +8,7 @@ function Pig() {
     this.moveX(50)
     this.moveY(170)
 
-    var eyeL = new Shape()
+    const eyeL = new Shape()
     eyeL.setHeight(50)
     eyeL.setWidth(50)
     eyeL.setRadius(50)
@@ -15,7 +16,7 @@ function Pig() {
     eyeL.moveX(30)
     eyeL.moveY(30)
 
-    var eyeR = new Shape()
+    const eyeR = new Shape()
     eyeR.setHeight(50)
     eyeR.setWidth(50)
     eyeR.setRadius(50)
@@ -23,7 +24,7 @@ function Pig() {
     eyeR.moveX(90)
     eyeR.moveY(30)
 
-    var face = new Shape()
+    const face = new Shape()
     face.setColor('pink')
     face.setHeight(200)
     face.setWidth(200)
@@ -36,7 +37,7 @@ function Pig() {
 
     this.add(face)
 
-    var footL = new Shape()
+    const footL = new Shape()
     footL.setColor('pink')
     footL.setHeight(100)
     footL.setWidth(50)
@@ -45,7 +46,7 @@ function Pig() {
 
     this.add(footL)
 
-    var footR = new Shape()
+    const footR = new Shape()
     footR.setColor('pink')
     footR.setHeight(100)
     footR.setWidth(50)
@@ -55,5 +56,4 @@ function Pig() {
     this.add(footR)
 }
 
-Pig.prototype = Object.create(Shape.prototype)
-Pig.prototype.constructor = Pig
+}

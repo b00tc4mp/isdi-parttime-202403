@@ -4,8 +4,8 @@
         this.addClass('Field')
 
         var label = new Label
-        label.setFor(id)
         label.setText(text)
+        label.setFor(id)
 
         var input = new Input
         input.setId(id)
@@ -20,7 +20,7 @@
     Field.prototype.constructor = Field
 
     Field.prototype.setPlaceholder = function (placeholder) {
-            this.children[1].placeholder(placeholder)
+            this.children[1].setPlaceholder(placeholder)
 
     }
 

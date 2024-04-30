@@ -1,25 +1,35 @@
-function RegisterForm() {
-    Form.call(this)
+class RegisterForm extends Form {
+    constructor(){
+        super()
+
 
     this.addClass('RegisterForm')
 
-    var emailField = new Field('email', 'email', 'E-mail')
+    const nameField = new Field('name', 'text', 'Name')
+    nameField.setPlaceholder('name')
+
+    const surnameField = new Field('username', 'text', 'Username')
+    surnameField.setPlaceholder('username')
+
+    const emailField = new Field('email', 'email', 'E-mail')
     emailField.setPlaceholder('name@example.com')
 
-    var usernameField = new Field('username', 'text', 'Username')
+    const usernameField = new Field('username', 'text', 'Username')
     usernameField.setPlaceholder('username')
 
-    var passwordField = new Field('password', 'password', 'Password')
+    const passwordField = new Field('password', 'password', 'Password')
     passwordField.setPlaceholder('password')
 
-    var passwordRepeatField = new Field('password', 'password', 'Password repeat')
+    const passwordRepeatField = new Field('password', 'password', 'Password repeat')
     passwordRepeatField.setPlaceholder('repeat password')
 
-    var submitButton = new SubmitButton('Register')
+    const submitButton = new SubmitButton('Register')
 
-    var feedbackPanel = new Component('p')
+    const feedbackPanel = new Component('p')
     feedbackPanel.addClass('Feedback')
 
+    this.add(nameField)
+    this.add(surnameField)
     this.add(emailField)
     this.add(usernameField)
     this.add(passwordField)
@@ -28,46 +38,58 @@ function RegisterForm() {
     this.add(feedbackPanel)
 }
 
-RegisterForm.prototype = Object.create(Form.prototype)
-RegisterForm.prototype.constructor = RegisterForm
 
-RegisterForm.prototype.getEmail = function () {
-    var emailField = this.children[0]
+
+getName() {
+    const nameField = this.children[0]
+
+    return nameField.getValue()
+}
+
+getSurname() {
+    const surnameField = this.children[1]
+
+    return surnameField.getValue()
+}
+
+getEmail() {
+    const emailField = this.children[2]
 
     return emailField.getValue()
 }
 
-RegisterForm.prototype.getUsername = function () {
-    var usernameField = this.children[1]
+getUsername() {
+    const usernameField = this.children[3]
 
     return usernameField.getValue()
 }
 
-RegisterForm.prototype.getPassword = function () {
-    var passwordField = this.children[2]
+getPassword() {
+    const passwordField = this.children[4]
 
     return passwordField.getValue()
 }
 
-RegisterForm.prototype.getPasswordRepeat = function () {
-    var passwordFieldRepeat = this.children[3]
+getPasswordRepeat() {
+    const passwordFieldRepeat = this.children[5]
 
     return passwordFieldRepeat.getValue()
 }
 
-RegisterForm.prototype.setFeedback = function (message, level) {
-    var feedbackPanel = this.children[this.children.length - 1]
+setFeedback(message, level) {
+    const feedbackPanel = this.children[this.children.length - 1]
     if (level === 'success')
     feedbackPanel.addClass('success')
 
     feedbackPanel.setText(message)
 }
 
-RegisterForm.prototype.clear = function () { // method overriding
-    Form.prototype.clear.call(this)
+clear() { // method overriding
+    super.clear()
 
-    var feedbackPanel = this.children[this.children.length - 1]
+    const feedbackPanel = this.children[this.children.length - 1]
 
     feedbackPanel.setText('')
     feedbackPanel.removeClass('success')
+}
 }

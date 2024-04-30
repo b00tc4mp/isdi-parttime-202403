@@ -1,33 +1,35 @@
-var view = new Component(document.body)
+//if(sessionStorage.username)
+if(logic.isUserLoggedIn())
+    location.href = '../home'
+
+const view = new Component(document.body)
 view.addClass('View')
 
-var title = new Heading(1)
+const title = new Heading(1)
 title.setText('Register')
-title.onClick(function () {
-    alert('By clicking on this title you wont get anything .P')
-})
+title.onClick(() =>  alert('By clicking on this title you wont get anything .P'))
 
-var registerForm = new RegisterForm
-registerForm.onSubmit(function (event) {
+
+const registerForm = new RegisterForm
+registerForm.onSubmit(event => {
     event.preventDefault()
 
-    var email = registerForm.getEmail()
-    var username = registerForm.getUsername()
-    var password = registerForm.getPassword()
-    var passwordRepeat = registerForm.getPasswordRepeat()
+
+    const name = registerForm.getName()
+    const surname = registerForm.getSurname()
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
 
     try {
-        logic.registerUser(email, username, password, passwordRepeat)
+        logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
         registerForm.clear()
 
         registerForm.setFeedback('user successfully registered', 'success')
 
-        setTimeout(function() {
-            registerForm.clear()
-
-            location.href = '../login'
-        }, 2000)
+        setTimeout(() =>  location.href = '../login', 2000)
 
     } catch (error) {
         if (error instanceof ContentError)
@@ -38,20 +40,19 @@ registerForm.onSubmit(function (event) {
         else if ( error instanceof DuplicityError)
             registerForm.setFeedback(error.message + ', please, enter new one')
         else
-        registerForm.setFeedback('sorry, there was an error, please try again later')
+            registerForm.setFeedback('sorry, there was an error, please try again later')
 
     }
 })
 
-var loginLink = new Link
+const loginLink = new Link
 loginLink.setText('Login')
 //loginLink.setUrl('../login')
-loginLink.onClick(function (event) {
+loginLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(function () {
-        location.href = '../login'
-    }, 500)
+    setTimeout(() =>
+        location.href = '../login', 500)
 })
 
 view.add(title)
