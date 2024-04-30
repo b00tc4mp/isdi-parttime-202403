@@ -1,22 +1,21 @@
-var view = new Component(document.body)
+if (logic.isUserLoggedIn())
+    location.href = '../home'
+
+const view = new Component(document.body)
 view.addClass('View')
 
-var titleGame = new Heading(1)
+const titleGame = new Heading(1)
 titleGame.setText('Encuentra el Punto Blanco')
 
-var title = new Heading(2)
-title.setText('Login')
-title.onClick(function () {
-    alert('Al hacer clic en este título no obtendrás nada')
-})
+const title = new Heading(2)
+title.setText('Bienvenido')
 
-var loginForm = new LoginForm
-
-loginForm.onSubmit(function (event) {
+const loginForm = new LoginForm
+loginForm.onSubmit(event => {
     event.preventDefault()
 
-    var username = loginForm.getUsername()
-    var password = loginForm.getPassword()
+    const username = loginForm.getUsername()
+    const password = loginForm.getPassword()
 
     try {
         logic.loginUser(username, password)
@@ -25,9 +24,7 @@ loginForm.onSubmit(function (event) {
 
         loginForm.setFeedback('Se inicio sesion', 'success')
 
-        setTimeout(function () {
-            location.href = '../home'
-        }, 3000)
+        setTimeout(() => location.href = '../home', 2000)
     } catch (error) {
         if (error instanceof ContentError)
             loginForm.setFeedback(error.message + ', por favor, corrijalo')
@@ -38,15 +35,12 @@ loginForm.onSubmit(function (event) {
     }
 })
 
-var registerLink = new Link
-registerLink.setText('Register')
-//Forma de hacerlo sin complicarse la vida //registerLink.setUrl('../register')
-registerLink.onClick(function (event) {
+const registerLink = new Link
+registerLink.setText('Guarde sus datos de usuario')
+registerLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(function () {
-        location.href = '../register'
-    }, 500)
+    setTimeout(() => location.href = '../register', 1000)
 })
 
 view.add(titleGame)

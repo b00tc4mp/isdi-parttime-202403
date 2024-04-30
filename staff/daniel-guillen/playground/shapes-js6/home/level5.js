@@ -1,53 +1,56 @@
-var view = new Component(document.body)
+if (logic.isUserLoggedIn())
+    location.href = '../home'
+
+    const view = new Component(document.body)
 view.addClass('View')
 
-var welcome = new Heading(1)
-welcome.setText("Llegaste al ultimo nivel!")
-welcome.onClick(function () {
+const welcome5 = new Heading(1)
+welcome5.setText("Llegaste al ultimo nivel!")
+welcome5.onClick(function () {
     alert('Al hacer clic en este título no obtendrás nada')
 })
 
-view.add(welcome)
+view.add(welcome5)
 
-var level = new Heading(1)
-level.setText("Encuentra el punto blanco")
-level.onClick(function () {
+const level5 = new Heading(1)
+level5.setText("Encuentra el punto blanco")
+level5.onClick(function () {
     alert('usa una lupa si es necesario')
 })
 
-view.add(level)
+view.add(level5)
 
-var coma = new Heading(2)
-coma.setText(',')
-coma.onClick(function () {
+let sym1 = new Heading(2)
+sym1.setText(',')
+sym1.onClick(function () {
     alert('Tienes una obesion con las comas!')
 })
 
-view.add(coma)
+view.add(sym1)
 
-var coma = new Heading(2)
-coma.setText(',')
-coma.onClick(function () {
+let sym2 = new Heading(2)
+sym2.setText(',')
+sym2.onClick(function () {
     alert('Otra vez una coma! Empieza de nuevo')
     location.href = "./index.html"
 })
 
-view.add(coma)
+view.add(sym2)
 
-var nextlevel = new Heading(3)
-nextlevel.setText('.')
-nextlevel.onClick(function () {
+let sym3 = new Heading(3)
+sym3.setText('.')
+sym3.onClick(function () {
     alert("Felicidades!!!")
     location.href = "./level6.html"
 })
 
-view.add(nextlevel)
+view.add(sym3)
 
-var coma = new Heading(2)
-coma.setText(',')
-coma.onClick(function () {
+let sym4 = new Heading(2)
+sym4.setText(',')
+sym4.onClick(function () {
     alert('Otra vez una coma! Empieza de nuevo')
     location.href = "./index.html"
 })
 
-view.add(coma)
+view.add(sym4)

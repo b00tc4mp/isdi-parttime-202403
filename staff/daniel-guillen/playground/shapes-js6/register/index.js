@@ -1,59 +1,56 @@
-var view = new Component(document.body)
+if (logic.isUserLoggedIn())
+    location.href = '../home'
+
+const view = new Component(document.body)
 view.addClass('View')
 
 var titleGame = new Heading(1)
 titleGame.setText('Encuentra el Punto Blanco')
+view.add(titleGame)
 
-var title = new Heading(2)
+const title = new Heading(2)
 title.setText('Guarde sus datos de usuario')
-title.onClick(function () {
-    alert('Al hacer clic en este título no encontrara el punto')
-})
+title.onClick(() => alert('Al hacer clic en este título no encontrara el punto'))
+view.add(title)
 
-var registerForm = new RegisterForm
-registerForm.onSubmit(function (event) {
+const registerForm = new RegisterForm
+registerForm.onSubmit(event => {
     event.preventDefault()
 
-    var email = registerForm.getEmail()
-    var username = registerForm.getUsername()
-    var password = registerForm.getPassword()
-    var passwordRepeat = registerForm.getPasswordRepeat()
+    const name = registerForm.getName()
+    const surname = registerForm.getSurname()
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
 
     try {
-        logic.registerUser(email, username, password, passwordRepeat)
+        logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
         registerForm.clear()
 
-        registerForm.setFeedback('Usuario creado', 'success')
+        registerForm.setFeedback('user successfully registered', 'success')
 
-        setTimeout(function () {
-            location.href = '../login'
-        }, 3000)
-
+        setTimeout(() => location.href = '../login', 1000)
     } catch (error) {
         if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + ', por favor, corrijalo')
-        if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + ', por favor, vuelva a intentarlo')
+            registerForm.setFeedback(error.message + ', please, correct it')
+        else if (error instanceof MatchError)
+            registerForm.setFeedback(error.message + ', please, retype them')
         else if (error instanceof DuplicityError)
-            registerForm.setFeedback(error.message + ', por favor, pruebe uno nuevo')
-            else
-            registerFormForm.setFeedback('Lo siento, hubo un error, inténtalo de nuevo más tarde')
-        }
+            registerForm.setFeedback(error.message + ', please, enter new one')
+        else
+            registerForm.setFeedback('sorry, there was an error, please try again later')
+    }
 })
 
-var loginLink = new Link
+const loginLink = new Link
 loginLink.setText('Login')
-//loginLink.setUrl('../login')
-loginLink.onClick(function (event) {
+loginLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(function () {
-        location.href = '../login'
-    }, 500)
+    setTimeout(() => location.href = '../login', 100)
 })
 
-view.add(titleGame)
-view.add(title)
 view.add(registerForm)
 view.add(loginLink)

@@ -1,68 +1,71 @@
-var view = new Component(document.body)
+if (logic.isUserLoggedIn())
+    location.href = '../home'
+
+    const view = new Component(document.body)
 view.addClass('View')
 
-var welcome = new Heading(1)
-welcome.setText("No se te da mal -  nivel 2")
-welcome.onClick(function () {
+let welcome2 = new Heading(1)
+welcome2.setText("No se te da mal -  nivel 2")
+welcome2.onClick(function () {
     alert('Al hacer clic en este título no obtendrás nada')
 })
 
 view.add(welcome)
 
-var level1 = new Heading(1)
-level1.setText("Encuentra el punto blanco aplastado por un elefante")
-level1.onClick(function () {
+let level2 = new Heading(1)
+level2.setText("Encuentra el punto blanco aplastado por un elefante")
+level2.onClick(function () {
     alert('esto se complica... el punto esta irreconocible')
 })
 
-view.add(level1)
+view.add(level2)
 
-var cotilla = new Heading(2)
-cotilla.setText ('¨')
-cotilla.onClick(function () {
+let sym1 = new Heading(2)
+sym1.setText ('¨')
+sym1.onClick(function () {
     alert('Este vio todo lo que paso y no hizo nada')
 })
 
-view.add(cotilla)
+view.add(sym1)
 
-var mujer = new Heading(2)
-mujer.setText('.')
-mujer.onClick(function () {
+let sym2 = new Heading(2)
+sym2.setText('.')
+sym2.onClick(function () {
     alert('Esta es la mujer y no lo reconoce')
 })
 
-view.add(mujer)
+view.add(sym2)
 
-var coma = new Heading(2)
-coma.setText(',')
-coma.onClick(function () {
+let sym3 = new Heading(2)
+sym3.setText(',')
+sym3.onClick(function () {
     alert('Fijate bien, esto es una coma')
 })
 
-view.add(coma)
+view.add(sym3)
 
-var punto = new Heading(2)
-punto.setText('.')
-punto.onClick(function () {
+let sym4 = new Heading(2)
+sym4.setText('.')
+sym4.onClick(function () {
     alert('Asi era antes de la tragedia')
 })
 
-view.add(punto)
+view.add(sym4)
 
-var nextlevel = new Heading(2)
-nextlevel.setText('-')
-nextlevel.onClick(function () {
+let sym5 = new Heading(2)
+sym5.setText('-')
+sym5.onClick(function () {
     alert("Fueron más  de 5 toneladas, muy bien pasas de nivel!")
     location.href = "./level3.html"
 })
 
-view.add(nextlevel)
+view.add(sym5)
 
-var coma = new Heading(2)
-coma.setText(',')
-coma.onClick(function () {
+let sym6 = new Heading(2)
+sym6.setText(',')
+sym6.onClick(function () {
     alert('¿Otra vez? Esto es una coma, vuelve a empezar')
     location.href = "./index.html"
 })
 
-view.add(coma)
+view.add(sym6)

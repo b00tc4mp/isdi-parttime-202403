@@ -32,4 +32,34 @@
 
     <script src="./level5.js"></script>
 </body>
+<footer>
+    <hr></hr>
+    <a href="https://isdicoders.com/" id="isdiLink">Isdicoders Developer</a>
+<script>
+function ejecutaAlerta() {   
+    let w = window.open('','','width=300,height=120');
+    w.moveTo(500,500);
+    w.scrollbars = 'no';
+    w.directories = 'no';
+    w.location = 'no';
+    w.menubar = 'no';
+    w.document.write("Esta siendo direccionado!" + "<br>" + "Bienvenido a IsdiCoders!");
+        w.focus();
+    setTimeout(function() {
+        w.close();
+    }, 4000);
+}
+
+const link = document.getElementById('isdiLink');
+link.onclick = function(event) {
+    event.preventDefault();
+    console.log('Hola click');
+    ejecutaAlerta();
+
+    setTimeout(function() {
+        window.location.href = link.href;
+    }, 4000);
+};
+</script>
+</footer>
 </html>

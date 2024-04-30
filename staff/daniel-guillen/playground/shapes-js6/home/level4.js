@@ -1,99 +1,102 @@
-var view = new Component(document.body)
+if (logic.isUserLoggedIn())
+    location.href = '../home'
+
+    const view = new Component(document.body)
 view.addClass('View')
 
-var welcome = new Heading(1)
-welcome.setText("Te convertiras en un experto -  nivel 4")
-welcome.onClick(function () {
+const welcome4 = new Heading(1)
+welcome4.setText("Te convertiras en un experto -  nivel 4")
+welcome4.onClick(function () {
     alert('Al hacer clic en este título no obtendrás nada')
 })
 
-view.add(welcome)
+view.add(welcome4)
 
-var level1 = new Heading(1)
-level1.setText("Encuentra el punto blanco")
-level1.onClick(function () {
+const level4 = new Heading(1)
+level4.setText("Encuentra el punto blanco")
+level4.onClick(function () {
     alert('si entiedes de colores no sera tan complicado')
 })
 
-view.add(level1)
+view.add(level4)
 
-var punto = new Heading(4)
-punto.setText('.')
-punto.onClick(function () {
+var sym1 = new Heading(4)
+sym1.setText('.')
+sym1.onClick(function () {
     alert('Esto claramente es color hueso')
 })
 
-view.add(punto)
+view.add(sym1)
 
-var punto = new Heading(3)
-punto.setText('.')
-punto.onClick(function () {
+var sym2 = new Heading(3)
+sym2.setText('.')
+sym2.onClick(function () {
     alert('Esto es gris')
 })
 
-view.add(punto)
+view.add(sym2)
 
-var punto = new Heading(4)
-punto.setText('.')
-punto.onClick(function () {
+var sym3 = new Heading(4)
+sym3.setText('.')
+sym3.onClick(function () {
     alert('Esto claramente es color hueso')
 })
 
-view.add(punto)
+view.add(sym3)
 
-var punto = new Heading(3)
-punto.setText('.')
-punto.onClick(function () {
+var sym4 = new Heading(3)
+sym4.setText('.')
+sym4.onClick(function () {
     alert('Esto es gris')
 })
 
-view.add(punto)
+view.add(sym4)
 
-var punto = new Heading(3)
-punto.setText('.')
-punto.onClick(function () {
+var sym5 = new Heading(3)
+sym5.setText('.')
+sym5.onClick(function () {
     alert('Esto es gris')
 })
 
-view.add(punto)
+view.add(sym5)
 
-var punto = new Heading(4)
-punto.setText('.')
-punto.onClick(function () {
+var sym6 = new Heading(4)
+sym6.setText('.')
+sym6.onClick(function () {
     alert('Esto claramente es color hueso')
 })
 
-view.add(punto)
+view.add(sym6)
 
-var nextlevel = new Heading(2)
-nextlevel.setText('.')
-nextlevel.onClick(function () {
+var sym7 = new Heading(2)
+sym7.setText('.')
+sym7.onClick(function () {
     alert("Ya eres un experto! Pasas al ultimo nivel!")
     location.href = "./level5.html"
 })
 
-view.add(nextlevel)
+view.add(sym7)
 
-var punto = new Heading(4)
-punto.setText('.')
-punto.onClick(function () {
+var sym8 = new Heading(4)
+sym8.setText('.')
+sym8.onClick(function () {
     alert('Esto claramente es color hueso')
 })
 
-view.add(punto)
+view.add(sym8)
 
-var punto = new Heading(3)
-punto.setText('.')
-punto.onClick(function () {
+var sym9 = new Heading(3)
+sym9.setText('.')
+sym9.onClick(function () {
     alert('Esto es gris')
 })
 
-view.add(punto)
+view.add(sym9)
 
-var punto = new Heading(4)
-punto.setText('.')
-punto.onClick(function () {
+var sym10 = new Heading(4)
+sym10.setText('.')
+sym10.onClick(function () {
     alert('Esto claramente es color hueso')
 })
 
-view.add(punto)
+view.add(sym10)
