@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Climate+Crisis&family=Luckiest+Guy&family=Righteous&family=Sedgwick+Ave+Display&family=Slackey&display=swap');
-
-
-
-.registerForm {
+.RegisterForm_ {
     display: flex;
     flex-direction: column;
     font-family: "Slackey", sans-serif;
@@ -17,62 +13,74 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-.registerTitle {
+.Heading {
     align-self: center;
 }
 
-.label {
+.Label {
     margin-bottom: 5px;
+    font-size: 14px;
+    height: 20px;
 }
 
-.input {
-    margin-bottom: 15px;
-    border: transparent;
-    border-radius: 3px;
-    padding: 5px;
+.Input {
+    margin-bottom: 10px;
+    font-size: 14px;
+    height: 20px;
 }
 
 ::placeholder {
     font-family: cursive;
-    color: #063843;
     font-size: 10px;
 }
 
-.registerButton {
-    margin-top: 15px;
-    margin-bottom: 5px;
+.SubmitButton {
     font-family: "Slackey", sans-serif;
     letter-spacing: 1px;
     color: #063843;
     background-color: #FCFCD4;
-    font-size: 14px;
+    font-size: 16px;
     border: transparent;
     border-radius: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.registerButton:hover {
+.SubmitButton:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.boxP {
+.Block {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-}
-
-.registerP {
     font-size: 10px;
-
 }
 
-.registerLinkToLogin {
+.Link {
     font-size: 14px;
     color: #FCFCD4;
+    text-decoration: none;
 }
 
-.registerLinkToLogin:hover {
+.Link:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.FeedbackPanel {
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #F9F871;
+    color: #7E2D00ed;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.FeedbackPanel.succes {
+    color: green;
 }

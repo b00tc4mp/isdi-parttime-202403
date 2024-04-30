@@ -1,38 +1,77 @@
-var table = new Shape();
+function PingPong() {
+    Shape.call(this);
 
-table.setBackImage('PingPongTable600x300.jpg');
-table.setPosition('top left')
-table.setWidth(600);
-table.setHeight(300);
-table.setBorder(5, 'solid', 'white')
-table.addClass('pingPongTable')
+    this.addClass('PingPong')
+
+    var paddleL = new Shape()
+    paddleL.addClass('paddle-left')
+
+    var paddleR = new Shape()
+    paddleR.addClass('paddle-rigth')
+
+    var ball = new Shape()
+    ball.addClass('ball')
+
+    this.add(paddleL)
+    this.add(paddleR)
+    this.add(ball)
 
 
-document.body.appendChild(table.container);
+    var yPaddleL = 125;
+    var yPaddleR = 125;
+    var tableHeight = 295;
 
-var paddleL = new Shape()
-paddleL.setBackColor('#212121')
-paddleL.setWidth(10)
-paddleL.setHeight(50)
-paddleL.setPosition(20, 125)
-paddleL.setRadius(10)
+    document.onkeydown = function (event) {
+        if (event.key === 'w') {
+            if (yPaddleL > 0) {
+                yPaddleL -= 10;
+                paddleL.setPosition(20, yPaddleL);
+            }
+        } else if (event.key === 's') {
+            if (yPaddleL + 45 < tableHeight) {
+                yPaddleL += 10;
+                paddleL.setPosition(20, yPaddleL);
+            }
+        } else if (event.key === "ArrowUp") {
+            if (yPaddleR > 0) {
+                yPaddleR -= 10;
+                paddleR.setPosition(570, yPaddleR);
+            }
+        } else if (event.key === "ArrowDown") {
+            if (yPaddleR + 45 < tableHeight) {
+                yPaddleR += 10;
+                paddleR.setPosition(570, yPaddleR);
+            }
+        }
+    }
 
-table.add(paddleL.container)
+    var xBall = 290;
+    var yBall = 140;
+    var xSpeedBall = 1.2;
+    var ySpeedBall = 0.3;
 
-var paddleR = new Shape()
-paddleR.setBackColor('#212121')
-paddleR.setWidth(10)
-paddleR.setHeight(50)
-paddleR.setPosition(570, 125)
-paddleR.setRadius(10)
+    function moveBall() {
+        xBall += xSpeedBall;
+        yBall += ySpeedBall;
 
-table.add(paddleR.container)
+        if (xBall <= 0 || xBall + 10 >= 600) {
+            xSpeedBall = -xSpeedBall;
+        } else if (yBall <= 0 || yBall + 10 >= 300) {
+            ySpeedBall = -ySpeedBall;
+        }
 
-var ball = new Shape()
-ball.setWidth('10')
-ball.setHeight('10')
-ball.setRadius('50')
-ball.setBackColor('white')
-ball.setPosition(290, 140)
+        if (xBall <= 30 && yBall >= yPaddleL && yBall <= yPaddleL + 50) {
+            xSpeedBall = -xSpeedBall;
+        } else if (xBall + 10 >= 570 && yBall >= yPaddleR && yBall <= yPaddleR + 50) {
+            xSpeedBall = -xSpeedBall;
+        }
 
-table.add(ball.container);
+        ball.setPosition(xBall, yBall);
+    }
+
+    setInterval(moveBall);
+
+}
+
+PingPong.prototype = Object.create(Shape.prototype)
+PingPong.prototype.constructor = PingPong

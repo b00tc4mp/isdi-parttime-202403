@@ -1,86 +1,122 @@
 function RegisterForm() {
     Form.call(this)
 
+    this.addClass('RegisterForm_')
 
-    this.addClass('registerForm')
-
-    var RegisterTitle = new Header(1)
-    RegisterTitle.setText('REGISTER')
-    RegisterTitle.addClass('registerTitle')
-
-    var usernameLabel = new Label()
-    usernameLabel.setText('Username')
-    usernameLabel.setFor('username')
-    usernameLabel.addClass('label')
-
-    var usernameInput = new Input()
-    usernameInput.setId('username')
-    usernameInput.addClass('input')
-    usernameInput.setPlaceHolder('username')
+    var heading = new Heading('1')
+    heading.setText('REGISTER')
+    heading.addClass('Heading')
 
     var emailLabel = new Label()
-    emailLabel.setText('Em@il')
     emailLabel.setFor('email')
-    emailLabel.addClass('label')
+    emailLabel.setText('E-m@il')
+    emailLabel.addClass('Label')
 
     var emailInput = new Input()
     emailInput.setId('email')
-    emailInput.addClass('input')
-    emailInput.setPlaceHolder('username@email.com')
+    emailInput.setType('email')
+    emailInput.addClass('Input')
+    emailInput.setPlaceholder('username@email.com')
+
+    var usernameLabel = new Label()
+    usernameLabel.setFor('username')
+    usernameLabel.setText('Username')
+    usernameLabel.addClass('Label')
+
+    var usernameInput = new Input()
+    usernameInput.setId('username')
+    usernameInput.setType('text')
+    usernameInput.addClass('Input')
+    usernameInput.setPlaceholder('username')
+
 
     var passwordLabel = new Label()
+    passwordLabel.setFor('password')
     passwordLabel.setText('Password')
-    passwordLabel.addClass('label')
+    passwordLabel.addClass('Label')
 
     var passwordInput = new Input()
     passwordInput.setId('password')
     passwordInput.setType('password')
-    passwordInput.addClass('input')
-    passwordInput.setPlaceHolder('********')
+    passwordInput.addClass('Input')
+    passwordInput.setPlaceholder('password')
 
-    var rPasswordLabel = new Label()
-    rPasswordLabel.setText('Repeat Password')
-    rPasswordLabel.addClass('label')
+    var passwordLabelRepeat = new Label()
+    passwordLabelRepeat.setFor('passwordrepeat')
+    passwordLabelRepeat.setText('Password repeat')
+    passwordLabelRepeat.addClass('Label')
 
-    var rPasswordInput = new Input()
-    rPasswordInput.setId('rPassword')
-    rPasswordInput.setType('rPassword')
-    rPasswordInput.addClass('input')
-    rPasswordInput.setPlaceHolder('********')
+    var passwordInputRepeat = new Input()
+    passwordInputRepeat.setId('passwordrepeat')
+    passwordInputRepeat.setType('password')
+    passwordInputRepeat.addClass('Input')
+    passwordInputRepeat.setPlaceholder('password repeat')
 
-    var submitButton = new Button()
-    submitButton.setText('REGISTER')
-    submitButton.setType('submit')
-    submitButton.addClass('registerButton')
+    var submitButton = new SubmitButton('REGISTER')
+    submitButton.addClass('SubmitButton')
 
-    var boxP = new Box()
-    boxP.addClass('boxP')
+    var paragraph = new Paragraph()
+    paragraph.addClass('Paragraph')
+    paragraph.setText('Have an account?')
 
+    var link = new Link()
+    link.addClass('Link')
+    link.setText('Login')
+    link.setHref('../login/index.html')
 
-    var registerP = new Paragraph()
-    registerP.setText('Have an account?\n')
-    registerP.addClass('registerP')
+    var block = new Block()
+    block.addClass('Block')
+    block.add(paragraph)
+    block.add(link)
 
-    var registerLinkToLogin = new Link()
-    registerLinkToLogin.setText('Login')
-    registerLinkToLogin.addClass('registerLinkToLogin')
-    registerLinkToLogin.setHref('../login/index.html')
+    var feedbackPanel = new Component('p')
+    feedbackPanel.addClass('FeedbackPanel')
+    this.feedbackPanel = feedbackPanel
 
-    this.add(RegisterTitle)
-    this.add(usernameLabel)
-    this.add(usernameInput)
+    this.add(heading)
     this.add(emailLabel)
     this.add(emailInput)
+    this.add(usernameLabel)
+    this.add(usernameInput)
     this.add(passwordLabel)
     this.add(passwordInput)
-    this.add(rPasswordLabel)
-    this.add(rPasswordInput)
+    this.add(passwordLabelRepeat)
+    this.add(passwordInputRepeat)
     this.add(submitButton)
-    this.add(boxP)
-    boxP.add(registerP)
-    boxP.add(registerLinkToLogin)
+    this.add(block)
+    this.add(feedbackPanel)
 }
-
 
 RegisterForm.prototype = Object.create(Form.prototype)
 RegisterForm.prototype.constructor = RegisterForm
+
+RegisterForm.prototype.getEmail = function () {
+    return email.value
+}
+RegisterForm.prototype.getUsername = function () {
+    return username.value
+}
+RegisterForm.prototype.getPassword = function () {
+    return password.value
+}
+RegisterForm.prototype.getPasswordRepeat = function () {
+    return passwordrepeat.value
+}
+
+RegisterForm.prototype.setFeedback = function (message, level) {
+    if (level === 'succes')
+        this.feedbackPanel.addClass('succes')
+
+    this.feedbackPanel.setText(message)
+}
+
+RegisterForm.prototype.clear = function () {
+    Form.prototype.clear.call(this)
+
+    this.feedbackPanel.setText('')
+    this.feedbackPanel.removeClass('succes')
+}
+
+
+
+

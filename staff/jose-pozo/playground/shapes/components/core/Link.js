@@ -8,3 +8,7 @@ Link.prototype.constructor = Link
 Link.prototype.setHref = function (href) {
     this.container.href = href
 }
+
+Link.prototype.setTarget = function (target) {
+    this.container.target = target
+}

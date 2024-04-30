@@ -9,6 +9,10 @@ Input.prototype.setType = function (type) {
     this.container.type = type
 }
 
-Input.prototype.setPlaceHolder = function (placeholder) {
+Input.prototype.setPlaceholder = function (placeholder) {
     this.container.placeholder = placeholder
+}
+
+Input.prototype.getValue = function () {
+    this.container.value
 }
