@@ -1,6 +1,5 @@
 //if (sessionStorage.username)
-if (logic.isUserLoggedIn())
-    location.href = '../home'
+
 
 var view = new Component(document.body)
 view.addClass('View')
@@ -28,19 +27,16 @@ registerForm.onSubmit(function (event) {
         logic.registerUser(email, username, password, passwordRepeat)
 
         registerForm.clear()
-        registerForm.setFeedback('user successfuly success', 'success')
-
-
+        registerForm.setFeedback('user registered', 'success')
     } catch (error) {
         if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + ', por favor, corrijalo')
-        if (error instanceof MatchError)
+            registerForm.setFeedback(error.message + ', please, correct it')
+        else if (error instanceof MatchError)
             registerForm.setFeedback(error.message + ', please, retype them')
         else if (error instanceof DuplicityError)
             registerForm.setFeedback(error.message + ', please, enter new one')
         else
-            registerForm.setFeedback('Lamentablemente ha ocurrido un error, intentelo más tarde')
-
+            registerForm.setFeedback('sorry, there was an error, please try again later')
     }
 })
 
@@ -48,9 +44,8 @@ registerForm.onSubmit(function (event) {
 
 
 
-loginLink = new Link()
+var loginLink = new Link
 loginLink.setText('Login')
-//loginLink.setUrl('../login')
 loginLink.onClick(function (event) {
     event.preventDefault()
 
@@ -61,4 +56,4 @@ loginLink.onClick(function (event) {
 
 view.add(title)
 view.add(registerForm)
-view.add(loginLink) 
+view.add(loginLink)
