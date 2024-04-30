@@ -35,9 +35,9 @@ loginForm.onSubmit(function (event) {
       }
     } else if (error instanceof MatchError) {
       loginForm.setFeedback('error de credenciales')
-      loginForm.setFeedback(function () {
+      setTimeout(function () {
         loginForm.setFeedback('')
-      })
+      }, 2000)
     } else {
       loginForm.setFeedback('Hay un error, lo solucionaremos lo antes posible')
     }
