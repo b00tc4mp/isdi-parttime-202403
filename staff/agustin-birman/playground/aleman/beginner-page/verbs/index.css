@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+* {
+    font-family: 'Nunito';
+}
+
+html {
+    height: 100%;
+}
+
+.header {
+    border-bottom: 1px solid #00000077;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 50px;
+}
+
+li {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    background: linear-gradient(320deg, #eb92be, #ffef78, #63c9b4);
+}
+
+h1 {
+    text-align: center;
+}
+
+.verbs-exercise {
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+    height: 50%;
+    border: 1px solid #00000077;
+    border-radius: 40px;
+    padding: 15px;
+    text-align: center;
+    background-color: #77777744;
+}
+
+#showVerb {
+    font-size: 40px;
+    margin: 40px;
+}
+
+.input-verb {
+    width: 70%;
+    margin: 15px auto;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #00000011;
+    text-align: center;
+}
+
+#checkButton {
+    width: 60%;
+    height: 30px;
+    margin: 10px auto;
+    border-radius: 20px;
+    background-color: #00ff0033;
+}
+
+#errorVerb {
+    text-align: center;
+}
+
+.errorButton {
+    display: flex;
+    margin: 10px auto;
+    padding: 5px;
+    width: 20%;
+    height: 30px;
+    border-radius: 20px;
+    background: #00000022;
+}
