@@ -21,7 +21,8 @@ registerForm.onSubmit(function (event) {
     try {
         logic.registerUser(email, username, password, passwordRepeat)
 
-        //registerForm.clear()
+        //registerForm.clear()  no lo pongo por que se borran los campos y aparecen lo de placeholder
+        // TODO mirar de eliminar el placeholder cuando se hace el clear()
         registerForm.setFeedback("Registration successful!","succes")
 
         setTimeout(function () {
@@ -29,11 +30,11 @@ registerForm.onSubmit(function (event) {
         }, 1500)
     } catch (error) {
         if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + "please, correct it")
+            registerForm.setFeedback(error.message + " please, correct it")
         else if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + "please, retype them")
+            registerForm.setFeedback(error.message + " please, retype them")
         else if (error instanceof DuplicityError)
-            registerForm.setFeedback(error.message + "please, enter a new one ")
+            registerForm.setFeedback(error.message + " please, enter a new one ")
         else
             registerForm.setFeedback("sorry, there was an error, please try later")
     }
