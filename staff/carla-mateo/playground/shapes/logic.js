@@ -6,22 +6,29 @@ var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
-logic.registerUser = function (email, username, password, passwordRepeat) {
+var NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{4,}$/
+
+logic.registerUser = function (name, surname, email, username, password, passwordRepeat) {
+    if (!NAME_REGEX.test(name))
+        throw new ContentError('❌ Name is not valid')
+
+    if (!NAME_REGEX.test(surname))
+        throw new ContentError('❌ Surname is not valid')
 
     if (!EMAIL_REGEX.test(email))
-        throw new ContentError('email is not valid')
+        throw new ContentError('❌ Email is not valid')
 
     if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
+        throw new ContentError('❌ Username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
-        throw new ContentError('password is not valid')
+        throw new ContentError('❌ Password is not valid')
 
     if (!PASSWORD_REGEX.test(passwordRepeat))
-        throw new ContentError('password repeat is not valid')
+        throw new ContentError('❌ Password repeat is not valid')
 
     if (password !== passwordRepeat)
-        throw new MatchError('password don\'t match')
+        throw new MatchError('❌ Password don\'t match')
 
 
     var user = data.findUser(function (user) {
@@ -29,9 +36,12 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
     })
 
     if (user)
-        throw new DuplicityhError('user already exist')
+        throw new DuplicityhError('❌ User already exist')
 
     user = {
+
+        name: name,
+        surname: surname,
         email: email,
         username: username,
         password: password
@@ -42,20 +52,37 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
 }
 logic.loginUser = function (username, password) {
     if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
+        throw new ContentError('❌ Username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
-        throw new ContentError('password is not valid')
+        throw new ContentError('❌ Password is not valid')
 
     var user = data.findUser(function (user) {
         return user.username === username
     })
 
     if (!user)
-        throw new MatchError('user not found')
+        throw new MatchError('❌ User not found')
 
     if (user.password !== password)
-        throw new MatchError('wrong password')
+        throw new MatchError('❌ Wrong password')
 
-
+    sessionStorage.username = username
 }
+
+logic.isUserLoggedIn = function () {
+    return !!sessionStorage.username
+}
+
+logic.logoutUser = function () {
+    delete sessionStorage.username
+}
+logic.getUserName = function () {
+    var user = data.findUser(function (user) {
+        return user.username === sessionStorage.username
+    })
+
+    return user.name
+}
+
+

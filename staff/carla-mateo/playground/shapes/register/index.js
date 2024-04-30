@@ -1,3 +1,7 @@
+// if (logic.isUserLoggedIn)
+//     location.href = '../home'
+
+
 var view = new Component(document.body)
 view.addClass('View')
 
@@ -12,17 +16,19 @@ var registerForm = new RegisterForm
 registerForm.onSubmit(function (event) {
     event.preventDefault()
 
+    var name = registerForm.getName()
+    var surname = registerForm.getSurname()
     var email = registerForm.getEmail()
     var username = registerForm.getUsername()
     var password = registerForm.getPassword()
     var passwordRepeat = registerForm.getPasswordRepeat()
 
     try {
-        logic.registerUser(email, username, password, passwordRepeat)
+        logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
         registerForm.clear()
 
-        registerForm.setFeedback('user successfully registered', 'success')
+        registerForm.setFeedback('✅ User successfully registered', 'success')
 
         setTimeout(function () {
             location.href = '../login'
@@ -32,11 +38,11 @@ registerForm.onSubmit(function (event) {
 
     } catch (error) {
         if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + '. please, correct it.')
+            registerForm.setFeedback(error.message + '. Please, correct it.')
         else if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + ', please, retype them')
+            registerForm.setFeedback(error.message + ', Please, retype them')
         else if (error instanceof DuplicityError)
-            registerForm.setFeedback(error.message + ', please, enter new one')
+            registerForm.setFeedback(error.message + ', Please, enter new one')
         else
             registerForm.setFeedback('Sorry, please try again later')
     }

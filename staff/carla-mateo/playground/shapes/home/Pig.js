@@ -23,6 +23,15 @@ function Pig() {
     eyeR.moveX(110)
     eyeR.moveY(30)
 
+    var mouth = new Shape()
+    mouth.setColor('red')
+    mouth.setHeight(50)
+    mouth.setHeight(50)
+    mouth.setRadius(50)
+    mouth.moveX(60)
+    mouth.moveY(30)
+
+
     var face = new Shape()
     face.setColor('pink')
     face.setHeight(200)
@@ -33,6 +42,7 @@ function Pig() {
 
     face.add(eyeL)
     face.add(eyeR)
+    face.add(mouth)
 
     this.add(face)
 
