@@ -1,39 +1,28 @@
-// //delete Array.prototype.every
+function every(array, callback) {
+  for (var i = 0; i < array.length; i++) {
+    var element = array[i]
+  
+    var matches = callback(element)
+    if (!matches) {
+      return false
+    }
+  }
+  return true
+}
 
-// function every(array, callback) {
-//   for (var i = 0; i < array.length; i++) {
-//     if (!callback(array[i], i, array)) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
+console.info('Case 1')
 
-// //------------------------------------------------
+var numbers = [1, 30, 39, 29, 10, 13];
 
-// console.info('CASE smaller than 4')
+var isBelowThreshold = every(numbers, function (num) { return num < 40 })
 
-// var array = [1, 2, 3]
-// var result = every(array, function (element) {
-//   return element < 4
-// });
-// console.debug(result)
-// //true
-// console.assert(array[0] < 4, '1 is smaller than 4')
-// console.assert(array[1] < 4, '2 is smaller than 4')
-// console.assert(array[2] < 4, '3 is smaller than 4')
+console.log(isBelowThreshold)
+// Expected output: true
 
-// //------------------------------------------------
-
-// console.info('CASE bigger than 4')
-
-// var array = [1, 2, 3]
-// var result = every(array, function (element) {
-//   return element > 4
-// })
-// console.debug(result)
-// //false
-// console.assert(array[0] > 4, '1 is bigger than 4')
-// console.assert(array[1] > 4, '2 is bigger than 4')
-// console.assert(array[2] > 4, '3 is bigger than 4')
-
+console.assert(numbers[0] < 40, 'Es menor de 40')
+console.assert(numbers[1] < 40, 'Es menor de 40')
+console.assert(numbers[2] < 40, 'Es menor de 40')
+console.assert(numbers[3] < 40, 'Es menor de 40')
+console.assert(numbers[4] < 40, 'Es menor de 40')
+console.assert(numbers[5] < 40, 'Es menor de 40')
+console.assert(isBelowThreshold === true, 'Es true')

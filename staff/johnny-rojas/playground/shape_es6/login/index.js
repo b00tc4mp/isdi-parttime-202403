@@ -1,15 +1,18 @@
-var view = new Component(document.body)
+if (logic.isUserLoggedIn())
+    location.href = '../home'
+
+const view = new Component(document.body)
 view.addClass('View')
 
-var title = new Heading(1)
+const title = new Heading(1)
 title.setText('Login')
 
-var loginForm = new LoginForm
-loginForm.onSubmit(function (event) {
+const loginForm = new LoginForm
+loginForm.onSubmit(event => {
     event.preventDefault()
 
-    var username = loginForm.getUsername()
-    var password = loginForm.getPassword()
+    const username = loginForm.getUsername()
+    const password = loginForm.getPassword()
 
     try {
         logic.loginUser(username, password)
@@ -18,9 +21,7 @@ loginForm.onSubmit(function (event) {
 
         loginForm.setFeedback('user successfully logged in', 'success')
 
-        setTimeout(function () {
-            location.href = '../home'
-        }, 1000)
+        setTimeout(() => location.href = '../home', 1000)
     } catch (error) {
         if (error instanceof ContentError)
             loginForm.setFeedback(error.message + ', please, correct it')
@@ -31,14 +32,13 @@ loginForm.onSubmit(function (event) {
     }
 })
 
-var registerLink = new Link
+
+const registerLink = new Link
 registerLink.setText('Register')
-registerLink.onClick(function (event) {
+registerLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(function () {
-        location.href = '../register'
-    }, 500)
+    setTimeout(() => location.href = '../register', 500)
 })
 
 view.add(title)

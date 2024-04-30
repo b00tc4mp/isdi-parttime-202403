@@ -1,10 +1,26 @@
+if (!logic.isUserLoggedIn())
+    location.href = '../login'
+
 var view = new Component(document.body)
 view.addClass('View')
 
-var title = new Heading(1)
-title.setText('Home')
+var userName = logic.getUserName()
 
-view.add(title)
+var usernameTitle = new Heading(3)
+usernameTitle.setText(userName)
+
+view.add(usernameTitle)
+
+var logoutButton = new Button
+logoutButton.setText('Logout')
+
+logoutButton.onClick(function () {
+    logic.logoutUser()
+
+    location.href = '../login'
+})
+
+view.add(logoutButton)
 
 var pig = new Pig()
 pig.config('ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight')
@@ -24,7 +40,9 @@ var applyOnY = true
 
 var shapes = [pig, pig2, pig3]
 
-document.onkeydown = function (event) {
+var doc = new Component(document)
+
+doc.onKeyDown(function (event) {
     var key = event.key.toLowerCase()
 
     console.log(key)
@@ -49,16 +67,16 @@ document.onkeydown = function (event) {
 
     if (event.key === 'Shift')
         applyOnY = false
-}
+})
 
-document.onkeyup = function (event) {
+doc.onKeyUp(function (event) {
     console.log(event.key)
 
     if (event.key === 'Shift')
         applyOnY = true
 
-}
+})
 
 shapes.forEach(function (shape) {
-    document.body.appendChild(shape.container)
+    view.add(shape)
 })

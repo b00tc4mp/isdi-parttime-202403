@@ -4,7 +4,15 @@ var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@
 var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
-logic.registerUser = function (email, username, password, passwordRepeat) {
+var NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
+
+logic.registerUser = function (name, surname, email, username, password, passwordRepeat) {
+    if (!NAME_REGEX.test(name))
+        throw new ContentError('name is not valid')
+
+    if (!NAME_REGEX.test(surname))
+        throw new ContentError('surname is not valid')
+
     if (!EMAIL_REGEX.test(email))
         throw new ContentError('email is not valid')
 
@@ -25,6 +33,8 @@ logic.registerUser = function (email, username, password, passwordRepeat) {
         throw new DuplicityError('user already exists')
 
     user = {
+        name: name,
+        surname: surname,
         email: email,
         username: username,
         password: password
@@ -50,5 +60,28 @@ logic.loginUser = function (username, password) {
     if (user.password !== password)
         throw new MatchError('wrong password')
 
-    // TODO anything else?
+    sessionStorage.username = username
+}
+
+logic.isUserLoggedIn = function () {
+    // if (sessionStorage.username)
+    //     return true
+
+    // return false
+
+    // return sessionStorage.username ? true : false
+
+    return !!sessionStorage.username
+}
+
+logic.logoutUser = function () {
+    delete sessionStorage.username
+}
+
+logic.getUserName = function () {
+    var user = data.findUser(function (user) {
+        return user.username === sessionStorage.username
+    })
+
+    return user.name
 }
