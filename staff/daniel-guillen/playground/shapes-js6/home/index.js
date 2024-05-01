@@ -1,16 +1,17 @@
-if (logic.isUserLoggedIn())
-    location.href = '../home'
+
+if (!logic.isUserLoggedIn())
+    location.href = '../login'
 
 const view = new Component(document.body)
 view.addClass('View')
 
-const welcome1 = new Heading(2)
+const welcome1 = new Heading(1)
 welcome1.setText("Bienvenido al nivel 1")
 welcome1.onClick(function () {
     alert('Al hacer clic en este título no obtendrás nada')
 })
 
-view.add(welcome)
+view.add(welcome1)
 
 const level1 = new Heading(1)
 level1.setText("Encuentra el punto blanco")

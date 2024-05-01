@@ -1,81 +1,89 @@
 const logic = {}
 
-let EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-let USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-let PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
+const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
-let NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
+var NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
-logic.registerUser = function (name, surname, email, username, password, passwordRepeat) {
+logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
     if (!NAME_REGEX.test(name))
-        throw new ContentError('name is not valid')
-
+      throw new ContentError('❌ Nombre no válido')
+  
     if (!NAME_REGEX.test(surname))
-        throw new ContentError('surname is not valid')
-
-    if (!EMAIL_REGEX.test(email))
-        throw new ContentError('email is not valid')
-
-    if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
-
-    if (!PASSWORD_REGEX.test(password))
-        throw new ContentError('password is not valid')
-
-    if (password !== passwordRepeat)
-        throw new MatchError('passwords don\'t match')
-
-    let user = data.findUser(function (user) {
-        return user.email === email || user.username === username
-    })
-
-    if (user)
-        throw new DuplicityError('user already exists')
-
-    user = {
-        name: name,
-        surname: surname,
-        email: email,
-        username: username,
-        password: password
+      throw new ContentError('❌ Apellido no válido')
+  
+    if (!EMAIL_REGEX.test(email)) {
+      throw new ContentError("❌ Correo no válido")
     }
-
+  
+    if (!USERNAME_REGEX.test(username)) {
+      throw new ContentError("❌ Nombre de usuario no válido")
+    }
+  
+    if (!PASSWORD_REGEX.test(password)) {
+      throw new ContentError("❌ Contraseña no válida")
+    }
+  
+    if (password !== passwordRepeat) {
+      throw new MatchError("❌ No coincide contraseña")
+    }
+  
+    let userRegistered = data.findUser(function (user) {
+      return user.email === email || user.username === username
+    })
+  
+    if (userRegistered) {
+      throw new DuplicityError("❌ Usuario no disponible")
+    }
+  
+    const user = {
+      name: name,
+      surname: surname,
+      email: email,
+      username: username,
+      password: password,
+    }
+  
     data.insertUser(user)
-}
-
-logic.loginUser = function (username, password) {
-    if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
-
-    if (!PASSWORD_REGEX.test(password))
-        throw new ContentError('password is not valid')
-
-    let user = data.findUser(function (user) {
-        return user.username === username
-    })
-
-    if (!user)
-        throw new MatchError('user not found')
-
-    if (user.password !== password)
-        throw new MatchError('wrong password')
-
+  }
+  
+  logic.loginUser = (username, password) => {
+  
+    if (!USERNAME_REGEX.test(username)) {
+      throw new ContentError("❌ Usuario no válido")
+    }   
+    if (!PASSWORD_REGEX.test(password)) {
+      throw new ContentError("❌ Contraseña no válida")
+    }
+  
+    let userFound = data.findUser((user) => user.username === username)
+  
+    if (!userFound) {
+      throw new MatchError("❌ Usuario no válido")
+    }
+    if (userFound.password !== password) {
+      throw new MatchError("❌ Contraseña no válida")
+    }
     sessionStorage.username = username
-}
-
-logic.isUserLoggedIn = function () {
-
+  }
+  
+  logic.isUserLoggedIn = function () {
     return !!sessionStorage.username
-}
-
-logic.logoutUser = function () {
+  }
+  
+  logic.logetUser = function () {
     delete sessionStorage.username
-}
-
-logic.getUserName = function () {
-    var user = data.findUser(function (user) {
-        return user.username === sessionStorage.username
+  }
+  
+  logic.getUserName = function () {
+    let user = data.findUser(function (user) {
+      return user.username === sessionStorage.username
     })
-
+  
     return user.name
-}
+  }
+  
+  logic.logoutUser = function () {
+    delete sessionStorage.username
+  }

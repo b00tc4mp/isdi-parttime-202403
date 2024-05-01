@@ -4,7 +4,7 @@ if (logic.isUserLoggedIn())
 const view = new Component(document.body)
 view.addClass('View')
 
-var titleGame = new Heading(1)
+const titleGame = new Heading(1)
 titleGame.setText('Encuentra el Punto Blanco')
 view.add(titleGame)
 
@@ -14,9 +14,10 @@ title.onClick(() => alert('Al hacer clic en este título no encontrara el punto'
 view.add(title)
 
 const registerForm = new RegisterForm
+
 registerForm.onSubmit(event => {
     event.preventDefault()
-
+    
     const name = registerForm.getName()
     const surname = registerForm.getSurname()
     const email = registerForm.getEmail()
@@ -29,27 +30,33 @@ registerForm.onSubmit(event => {
 
         registerForm.clear()
 
-        registerForm.setFeedback('user successfully registered', 'success')
+        registerForm.setFeedback("✅ Usuario guardado!", "success")
 
-        setTimeout(() => location.href = '../login', 1000)
-    } catch (error) {
-        if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + ', please, correct it')
-        else if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + ', please, retype them')
-        else if (error instanceof DuplicityError)
-            registerForm.setFeedback(error.message + ', please, enter new one')
-        else
-            registerForm.setFeedback('sorry, there was an error, please try again later')
+        setTimeout(() => location.href = '../login', 3000)
+
     }
-})
+    catch (error) {
+        if (error instanceof ContentError) {
+            registerForm.setFeedback(error.message + ', por favor, corríjalo ❌')
+        }
+        else if (error instanceof MatchError) {
+            registerForm.setFeedback(error.message + ', por favor, vuelva a intentarlo ❌')
+        }
+        else if (error instanceof DuplicityError) {
+            registerForm.setFeedback(error.message + ', por favor, pruebe uno nuevo ❌')
+        }
+        else{
+            registerForm.setFeedback('Disculpe las molestias, pruebe más tarde')
+        }
+        setTimeout(() => registerForm.setFeedback(""), 3000)
+}})
 
 const loginLink = new Link
-loginLink.setText('Login')
+loginLink.setText('Entrar con Usuario')
 loginLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(() => location.href = '../login', 100)
+    setTimeout(() => location.href = '../login', 1000)
 })
 
 view.add(registerForm)

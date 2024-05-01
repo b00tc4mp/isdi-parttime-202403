@@ -22,18 +22,21 @@ loginForm.onSubmit(event => {
 
         loginForm.clear()
 
-        loginForm.setFeedback('Se inicio sesion', 'success')
+        loginForm.setFeedback('Se inicio sesion 🎉', 'success')
 
         setTimeout(() => location.href = '../home', 2000)
     } catch (error) {
-        if (error instanceof ContentError)
-            loginForm.setFeedback(error.message + ', por favor, corrijalo')
-        else if (error instanceof MatchError)
-            loginForm.setFeedback('Por favor, corrijalo')
-        else
+        if (error instanceof ContentError) {
+            loginForm.setFeedback(error.message + ', por favor, corrijalo ❌')
+    }
+        else if (error instanceof MatchError) {
+            loginForm.setFeedback('❌ Datos de usuario incorrectos, corrijalo ❌')
+        }
+        else {
             loginForm.setFeedback('Lo siento, hubo un error, inténtalo de nuevo más tarde')
     }
-})
+    setTimeout(() => loginForm.setFeedback(""), 3000)
+}})
 
 const registerLink = new Link
 registerLink.setText('Guarde sus datos de usuario')

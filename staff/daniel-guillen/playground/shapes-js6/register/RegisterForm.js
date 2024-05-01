@@ -5,24 +5,24 @@ class RegisterForm extends Form {
         this.addClass('RegisterForm')
 
         const nameField = new Field('name', 'text', 'Name')
-        nameField.setPlaceholder('name')
+        nameField.setPlaceholder('Nombre')
 
         const surnameField = new Field('surname', 'text', 'Surname')
-        surnameField.setPlaceholder('surname')
+        surnameField.setPlaceholder('Apellidos')
 
         const emailField = new Field('email', 'email', 'E-mail')
         emailField.setPlaceholder('name@example.com')
 
         const usernameField = new Field('username', 'text', 'Username')
-        usernameField.setPlaceholder('username')
+        usernameField.setPlaceholder('Nombre de Usuario')
 
         const passwordField = new Field('password', 'password', 'Password')
-        passwordField.setPlaceholder('password')
+        passwordField.setPlaceholder('Contraseña')
 
         const passwordRepeatField = new Field('repassword', 'password', 'Password repeat')
-        passwordRepeatField.setPlaceholder('repeat password')
+        passwordRepeatField.setPlaceholder('Repita contraseña')
 
-        const submitButton = new SubmitButton('Register')
+        const submitButton = new SubmitButton('Guardar datos de usuario')
 
         const feedbackPanel = new Component('p')
         feedbackPanel.addClass('Feedback')

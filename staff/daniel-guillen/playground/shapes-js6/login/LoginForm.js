@@ -4,11 +4,11 @@ class LoginForm extends Form {
 
         this.addClass('LoginForm')
 
-        const usernameField = new Field('username', 'text', 'Nombre de Usuario')
-        usernameField.setPlaceholder('Username')
+        const usernameField = new Field('username', 'text', 'Username')
+        usernameField.setPlaceholder('Nombre de usuario')
 
-        const passwordField = new Field('password', 'password', 'Contraseña')
-        passwordField.setPlaceholder('Password')
+        const passwordField = new Field('password', 'password', 'Password')
+        passwordField.setPlaceholder('Contraseña')
 
         const submitButton = new SubmitButton('Entrar con usuario')
 
