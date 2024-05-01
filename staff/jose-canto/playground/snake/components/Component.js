@@ -13,6 +13,7 @@ function Component(tagNameOrContainer) {
   else {
     throw new Error("tagNameOrContainer debe ser una cadena o un elemento HTML")
   }
+
 }
 
 // Agregamos un método a los objetos Component:

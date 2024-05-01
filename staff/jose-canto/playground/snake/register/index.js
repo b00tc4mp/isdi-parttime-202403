@@ -32,10 +32,10 @@ registerForm.onSubmit(function (event) {
   // Convertimos la cadena JSON de usuarios a un array de objetos
   var usersArray = JSON.parse(usersJson)
 
-  var emailRegistered = usersArray.some(function (user) {
+  var emailRegistered = usersArray.find(function (user) {
     return user.email === email
   })
-  var userRegistered = usersArray.some(function (user) {
+  var userRegistered = usersArray.find(function (user) {
     return user.username === username
   })
 
@@ -72,9 +72,10 @@ registerForm.onSubmit(function (event) {
 
     // Limpiamos el formulario de registro
     registerForm.clear()
-    //location.href = "../login" // Redireccionamos al usuario al inicio de sesión 
+    location.href = "../login" // Redireccionamos al usuario al inicio de sesión 
   }
 })
+
 
 // Login Link
 var loginLink = new Link()
@@ -89,7 +90,6 @@ loginLink.onClick(function (event) {
 
   }, 1000)
 })
-
 
 // ADD ELEMENT AT PRINCIPAL COMPONENT
 view.add(header)
