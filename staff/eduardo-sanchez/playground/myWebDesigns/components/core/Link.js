@@ -1,18 +1,17 @@
-function LinK() {
-    Component.call(this, 'a')
+class LinK extends Component {
+    constructor() {
+        super('a')
 
-    this.setUrl('')
+        this.setUrl('')
+
+    }
+
+    setUrl(url) {
+        this.container.href = url
+    }
+
+    setTarget(target) {
+        this.container.target = target
+    }
 
 }
-
-LinK.prototype = Object.create(Component.prototype)
-LinK.prototype.constructor = LinK
-
-LinK.prototype.setUrl = function (url) {
-    this.container.href = url
-}
-
-LinK.prototype.setTarget = function (target) {
-    this.container.target = target
-}
-

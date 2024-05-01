@@ -1,28 +1,29 @@
+// if (sessionStorage.username)
+//     location.href = '../home'
+
 if (logic.isUserLoggedIn())
     location.href = '../home'
 
-const view = new Component(document.body)
+var view = new Component(document.body)
 view.addClass('View')
 
-const title = new Heading(1)
+var title = new Heading(1)
 title.setText('Register')
-title.onClick(() => alert("By clicking on this title you wont get anything")
+title.onClick(function () {
+    alert("By clicking on this title you wont get anything")
 
-// title.onClick(() => {
-//     alert("By clicking on this title you wont get anything")
+})
 
-// })
-
-const registerForm = new RegisterForm()
-registerForm.onSubmit(event => {
+var registerForm = new RegisterForm()
+registerForm.onSubmit(function (event) {
     event.preventDefault()
 
-    const name = registerForm.getName()
-    const surname = registerForm.getSurname()
-    const email = registerForm.getEmail()
-    const username = registerForm.getUsername()
-    const password = registerForm.getPassword()
-    const passwordRepeat = registerForm.getPasswordRepeat()
+    var name = registerForm.getName()
+    var surname = registerForm.getSurname()
+    var email = registerForm.getEmail()
+    var username = registerForm.getUsername()
+    var password = registerForm.getPassword()
+    var passwordRepeat = registerForm.getPasswordRepeat()
 
     try {
         logic.registerUser(name, surname, email, username, password, passwordRepeat)
@@ -52,18 +53,17 @@ registerForm.onSubmit(event => {
 
 })
 
-const loginLink = new LinK()
+var loginLink = new LinK()
 
 loginLink.setText('Login')
 //loginLink.setUrl('../login')
 loginLink.onClick(function (event) {
     event.preventDefault()
 
-    setTimeout(() => location.href = '../login', 500)
+    setTimeout(function () {
 
-    // setTimeout(() => {
-    //     location.href = '../login'
-    // }, 500)
+        location.href = '../login'
+    }, 500)
 })
 
 view.add(title)

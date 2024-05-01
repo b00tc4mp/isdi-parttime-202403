@@ -1,24 +1,24 @@
 if (logic.isUserLoggedIn())
     location.href = '../home'
 
-const view = new Component(document.body)
+var view = new Component(document.body)
 
 view.addClass('View')
 
-const title = new Heading(1)
+var title = new Heading(1)
 title.setText('Login')
 title.onClick(function () {
     alert("By clicking on this title you wont get anything")
 
 })
 
-const loginForm = new LoginForm()
+var loginForm = new LoginForm()
 
-loginForm.onSubmit(event => {
+loginForm.onSubmit(function (event) {
     event.preventDefault()
 
-    const username = loginForm.getUsername()
-    const password = loginForm.getPassword()
+    var username = loginForm.getUsername()
+    var password = loginForm.getPassword()
 
     try {
         logic.loginUser(username, password)
@@ -27,7 +27,10 @@ loginForm.onSubmit(event => {
 
         loginForm.setFeedback('user successfully logged in', 'success')
 
-        setTimeout(() => location.href = '../home', 1000)
+        setTimeout(function () {
+
+            location.href = '../home'
+        }, 1000)
 
     } catch (error) {
         if (error instanceof ContentError)
@@ -43,11 +46,11 @@ loginForm.onSubmit(event => {
 })
 
 
-const registerLink = new LinK()
+var registerLink = new LinK()
 registerLink.setText('Register')
+//registerLink.setUrl('../register')
 
-
-registerLink.onClick(event => {
+registerLink.onClick(function (event) {
     event.preventDefault()
 
     setTimeout(function () {

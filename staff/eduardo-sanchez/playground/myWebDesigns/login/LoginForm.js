@@ -1,56 +1,58 @@
-function LoginForm() {
-    Form.call(this)
+class LoginForm extends Form {
+    constructor() {
+        super()
 
-    this.addClass('LoginForm')
+        this.addClass('LoginForm')
 
-    var userNameField = new Field('username', 'text', 'Username')
-
-
-    var passwordField = new Field('password', 'password', 'Password')
-
-    var submitButton = new SubmitButton('Login')
-
-    var feedbackPanel = new Component('p')
-    feedbackPanel.addClass('Feedback')
+        const userNameField = new Field('username', 'text', 'Username')
 
 
-    this.add(userNameField)
-    this.add(passwordField)
-    this.add(submitButton)
-    this.add(feedbackPanel)
-}
+        const passwordField = new Field('password', 'password', 'Password')
 
-LoginForm.prototype = Object.create(Form.prototype)
-LoginForm.prototype.constructor = LoginForm
+        const submitButton = new SubmitButton('Login')
 
-LoginForm.prototype.getUsername = function () {
-    var userNameField = this.children[0]
+        const feedbackPanel = new Component('p')
+        feedbackPanel.addClass('Feedback')
 
-    return userNameField.getValue()
-}
 
-LoginForm.prototype.getPassword = function () {
-    var passwordField = this.children[1]
+        this.add(userNameField)
+        this.add(passwordField)
+        this.add(submitButton)
+        this.add(feedbackPanel)
+    }
 
-    return passwordField.getValue()
-}
 
-LoginForm.prototype.setFeedback = function (message, level) {
-    var feedbackPanel = this.children[this.children.length - 1]
 
-    if (level === 'success')
-        feedbackPanel.addClass('success')
+    getUsername() {
+        const userNameField = this.children[0]
 
-    feedbackPanel.setText(message)
+        return userNameField.getValue()
+    }
 
-}
+    getPassword() {
+        const passwordField = this.children[1]
 
-LoginForm.prototype.clear = function () {
-    Form.prototype.clear.call(this)
+        return passwordField.getValue()
+    }
 
-    var feedbackPanel = this.children[this.children.length - 1]
+    setFeedback(message, level) {
+        const feedbackPanel = this.children[this.children.length - 1]
 
-    feedbackPanel.setText('')
-    feedbackPanel.removeClass('success')
+        if (level === 'success')
+            feedbackPanel.addClass('success')
+
+        feedbackPanel.setText(message)
+
+    }
+
+    clear() {
+        super.clear()
+
+        const feedbackPanel = this.children[this.children.length - 1]
+
+        feedbackPanel.setText('')
+        feedbackPanel.removeClass('success')
+
+    }
 
 }
