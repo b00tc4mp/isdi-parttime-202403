@@ -1,0 +1,31 @@
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 1rem;
+    padding: 0.25rem 2rem;
+}
+
+.header .Button{
+    height: 2rem;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--color1);
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.View{
+    padding-top: 4rem;
+}
