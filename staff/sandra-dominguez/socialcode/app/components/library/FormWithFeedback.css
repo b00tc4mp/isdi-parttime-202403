@@ -1,0 +1,14 @@
+.FormWithFeedback .Input,
+.Button {
+    font-size: 1rem;
+    border-radius: 15px;
+}
+
+.FormWithFeedback .Feedback {
+    color: tomato;
+    margin: 0;
+}
+
+.FormWithFeedback .Feedback.success {
+    color: white;
+}
