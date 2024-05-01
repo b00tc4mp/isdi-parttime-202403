@@ -44,7 +44,7 @@ class LoginComponent extends Form {
   }
 
   clear() {
-    Form.prototype.clear.call(this)
+    super.clear()
 
     const feedbackPanel = this.children[this.children.length - 1]
 
