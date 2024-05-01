@@ -9,10 +9,12 @@ image.setSrc('./woman.png')
 image.addClass('woman')
 
 
-var registerForm = new RegisterForm()
+var registerForm = new RegisterForm
 registerForm.onSubmit(function (event) {
     event.preventDefault()
 
+    var name = registerForm.getName()
+    var surname = registerForm.getSurname()
     var email = registerForm.getEmail()
     var username = registerForm.getUsername()
     var password = registerForm.getPassword()
@@ -20,13 +22,13 @@ registerForm.onSubmit(function (event) {
 
 
     try {
-        logic.registerUser(email, username, password, passwordRepeat)
+        logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
-        registerForm.setFeedback('user successfully registered', 'succes')
+        registerForm.clear()
+
+        registerForm.setFeedback('user successfully registered', 'success')
 
         setTimeout(function () {
-            registerForm.clear()
-
             location.href = '../login'
         }, 1000)
 

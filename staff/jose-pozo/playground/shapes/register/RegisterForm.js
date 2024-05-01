@@ -7,6 +7,33 @@ function RegisterForm() {
     heading.setText('REGISTER')
     heading.addClass('Heading')
 
+    //var nameField = new Field('name', 'text', 'Name')
+    //nameField.setPlaceholder('name')
+    var nameLabel = new Label()
+    nameLabel.setFor('name')
+    nameLabel.setText('Name')
+    nameLabel.addClass('Label')
+
+    var nameInput = new Input()
+    nameInput.setId('name')
+    nameInput.setType('text')
+    nameInput.addClass('Input')
+    //nameInput.setPlaceholder('')
+
+    //var surnameField = new Field('surname', 'text', 'Surname')
+    //surnameField.setPlaceholder('surname')
+
+    var surnameLabel = new Label()
+    surnameLabel.setFor('surname')
+    surnameLabel.setText('Surname')
+    surnameLabel.addClass('Label')
+
+    var surnameInput = new Input()
+    surnameInput.setId('surname')
+    surnameInput.setType('text')
+    surnameInput.addClass('Input')
+    //nameInput.setPlaceholder('')
+
     var emailLabel = new Label()
     emailLabel.setFor('email')
     emailLabel.setText('E-m@il')
@@ -74,6 +101,10 @@ function RegisterForm() {
     this.feedbackPanel = feedbackPanel
 
     this.add(heading)
+    this.add(nameLabel)
+    this.add(nameInput)
+    this.add(surnameLabel)
+    this.add(surnameInput)
     this.add(emailLabel)
     this.add(emailInput)
     this.add(usernameLabel)
@@ -89,6 +120,14 @@ function RegisterForm() {
 
 RegisterForm.prototype = Object.create(Form.prototype)
 RegisterForm.prototype.constructor = RegisterForm
+
+RegisterForm.prototype.getName = function () {
+    return name.value
+}
+
+RegisterForm.prototype.getSurname = function () {
+    return surname.value
+}
 
 RegisterForm.prototype.getEmail = function () {
     return email.value
