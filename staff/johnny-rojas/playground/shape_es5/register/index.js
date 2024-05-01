@@ -1,4 +1,3 @@
-//if (sessionStorage.username)
 if (logic.isUserLoggedIn())
     location.href = '../home'
 
