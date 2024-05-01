@@ -2,20 +2,20 @@ if(logic.isUserLoggedIn()){
     location.href=' ../home'
 }
 
-var view = new Component(document.body)
+const view = new Component(document.body)
 view.addClass('View')
 
-var title = new Heading(1)
+const title = new Heading(1)
 title.setText('Login')
 
-var loginForm = new LoginForm
+const loginForm = new LoginForm
 
-loginForm.onSubmit(function(event){
+loginForm.onSubmit((event) => {
     event.preventDefault()
 
-    var usersJson = localStorage.users
-    var users = JSON.parse(usersJson)
-    var userInput = loginForm.getUsername()
+    const usersJson = localStorage.users
+    const users = JSON.parse(usersJson)
+    const userInput = loginForm.getUsername()
     var passwordInput = loginForm.getPassword()
     try{
         logic.loginUser(userInput, passwordInput)

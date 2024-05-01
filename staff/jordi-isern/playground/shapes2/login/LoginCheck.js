@@ -1,4 +1,4 @@
-var LoginCheck = function(){
+const LoginCheck = function(){
     loginForm.onSubmit(function(event){
         event.preventDefault()
         var usersJson = localStorage.users

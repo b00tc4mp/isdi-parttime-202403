@@ -1,7 +1,7 @@
-var logic = {}
+const logic = {}
 
-logic.loginUser = function(username, password){
-    var user = data.findUser(function(user){
+logic.loginUser = (username, password) => {
+    const user = data.findUser((user) => {
         return user.username === username
     })
     console.log(username, password, user)
@@ -16,16 +16,16 @@ logic.loginUser = function(username, password){
     return (user)
 }
 
-logic.isUserLoggedIn = function(){
+logic.isUserLoggedIn = () =>{
     return !!sessionStorage.username
 }
 
-var NAME_REGEX = /^[a-zA-z]/
-var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-var PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_$%&=\[\]\{\}\<\>\(\)]).{8,}$/
+const NAME_REGEX = /^[a-zA-z]/
+const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_$%&=\[\]\{\}\<\>\(\)]).{8,}$/
 
-logic.registerUser = function(name, username,email, password, passwordRepeat){
+logic.registerUser = (name, username,email, password, passwordRepeat) => {
     if(!NAME_REGEX.test(name)){
         throw new ContentError('name is not valid')
     }
@@ -45,7 +45,7 @@ logic.registerUser = function(name, username,email, password, passwordRepeat){
         throw new MatchError('passwords dont\'t match')
     }
 
-    var user = data.findUser(function(user){
+    const user = data.findUser((user) => {
         return user.email === email || user.username === username
     })
     
@@ -63,12 +63,12 @@ logic.registerUser = function(name, username,email, password, passwordRepeat){
     data.insertUser(user)
 }
 
-logic.logOutUser = function(){
+logic.logOutUser = ()=>{
     delete sessionStorage.username
 }
 
-logic.getUserName = function(){
-    var user = data.findUser(function(user){
+logic.getUserName = ()=>{
+    const user = data.findUser((user) =>{
         return  user.username === sessionStorage.username
     })
     return user.name   

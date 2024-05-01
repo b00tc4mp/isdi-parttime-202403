@@ -2,22 +2,22 @@ if(logic.isUserLoggedIn()){
     location.href=' ../home'
 }
 
-var view = new Component(document.body) 
+const view = new Component(document.body) 
 view.addClass('View')
 
-var title = new Heading(1)
+const title = new Heading(1)
 title.setText('Register')
 
-var registerForm = new RegisterForm
+const registerForm = new RegisterForm
 
 registerForm.onSubmit(function(event){
     event.preventDefault()
 
-    var name = registerForm.getName()
-    var username = registerForm.getUserName()
-    var email = registerForm.getMail()
-    var password = registerForm.getPassword()
-    var confirmPassword = registerForm.getConfirmPassword()
+    const name = registerForm.getName()
+    const username = registerForm.getUserName()
+    const email = registerForm.getMail()
+    const password = registerForm.getPassword()
+    const confirmPassword = registerForm.getConfirmPassword()
 
     try{
         logic.registerUser(name, username, email, password, confirmPassword)
@@ -42,7 +42,7 @@ registerForm.onSubmit(function(event){
     }
 })
 
-var loginLink = new Link
+const loginLink = new Link
 loginLink.setUrl('../login')
 loginLink.setText('Login')
 loginLink.addClass('loginLink')

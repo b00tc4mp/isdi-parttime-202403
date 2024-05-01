@@ -1,12 +1,5 @@
-function PasswordReveal (input, icon){
-    Component.call(this, 'i')
-
-    //this.addClass(icon)
-
-    // this.onclick(function(){
-    //     input.setType('text')
-    // })
+class PasswordReveal extends Component{
+    constructor (input, icon){
+        super('i')
+    }
 }
-
-PasswordReveal.prototype = Object.create(Component.prototype)
-PasswordReveal.prototype.constructor = PasswordReveal
