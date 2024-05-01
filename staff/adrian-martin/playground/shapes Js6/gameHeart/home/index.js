@@ -1,5 +1,5 @@
-if(!logic.isUserLoggedIn())
-    location.href = '../login'
+// if(!logic.isUserLoggedIn())
+//     location.href = '../login'
 
 const view = new Component(document.body)
 view.addClass('View')
@@ -25,7 +25,9 @@ heart.setY(300)
 let x = 300
 let y = 300
 
-document.onkeydown(event => {
+const doc = new Component(document)
+
+doc.onKeyDown(event => {
     if (event.key === 'ArrowLeft')
         x -= 20
 

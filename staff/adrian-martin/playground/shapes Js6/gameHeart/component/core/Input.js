@@ -1,8 +1,8 @@
 class Input extends Component{
     constructor(){
-    super('Input')
+        super('Input')
 
-    this.addClass('Input')
+        this.addClass('Input')
     }
 
     setType(type) {

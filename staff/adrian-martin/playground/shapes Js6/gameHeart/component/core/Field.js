@@ -1,19 +1,19 @@
 class Field extends Component {
     constructor(id, type, text) {
-    super()
+        super('div')
 
-    this.addClass('Field')
+        this.addClass('Field')
 
-    const label = new Label
-    label.setText(text)
-    label.setFor(id)
+        const label = new Label
+        label.setText(text)
+        label.setFor(id)
 
-    const input = new Input
-    input.setId(id)
-    input.setType(type)
+        const input = new Input
+        input.setId(id)
+        input.setType(type)
 
-    this.add(label)
-    this.add(input)
+        this.add(label)
+        this.add(input)
     }
 
     setPlaceholder(placeholder){

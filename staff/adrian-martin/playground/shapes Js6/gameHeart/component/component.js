@@ -1,4 +1,4 @@
-class Component{
+class Component {
     constructor(tagNameOrContainer = 'div'){
     if(typeof tagNameOrContainer === 'string')
     this.container = document.createElement(tagNameOrContainer)
@@ -38,6 +38,14 @@ class Component{
 
     onClick(listener) {
         this.container.addEventListener('click', listener)
+    }
+
+    onKeyDown(listener) {
+        this.container.addEventListener('keydown', listener)
+    }
+
+    onKeyUp(listener) {
+        this.container.addEventListener('keyup', listener)
     }
 }
 

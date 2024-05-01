@@ -1,6 +1,6 @@
 class Label extends Component{
     constructor(){
-    super('label')
+        super('label')
     }
 
     setFor(id) {

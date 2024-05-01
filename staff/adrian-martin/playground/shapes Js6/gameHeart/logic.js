@@ -24,7 +24,7 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
         if(password !== passwordRepeat) 
             throw new MatchError('password don\'t match')
 
-        const user = data.findUser(function (user) {
+        let user = data.findUser(function (user) {
             return user.email === email || user.username === username
         })
     
@@ -51,7 +51,7 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
         if(!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
 
-        const user = data.findUser(user => {
+        let user = data.findUser(user => {
             return user.username === username
         })
 

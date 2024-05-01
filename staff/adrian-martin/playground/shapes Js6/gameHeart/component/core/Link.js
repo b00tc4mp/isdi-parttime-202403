@@ -1,13 +1,17 @@
 class Link extends Component{
     constructor() {
-    super('a')
+        super('a')
 
-    this.setUrl('')
+        this.setUrl('')
 
-    this.addClass('Link')
+        this.addClass('Link')
     }
 
     setUrl(url) {
         this.container.href = url
+    }
+
+    setTarget(target) {
+        this.container.target = target
     }
 }

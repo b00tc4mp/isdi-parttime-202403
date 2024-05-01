@@ -1,8 +1,8 @@
 class Form extends Component {
     constructor(){
-    super('form')
+        super('form')
 
-    this.addClass('Form')
+        this.addClass('Form')
     }    
 
     onSubmit(listener) {

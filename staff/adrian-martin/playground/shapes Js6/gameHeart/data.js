@@ -1,27 +1,27 @@
 const data = {}
 
-        data.findUser = callback => {
-            const usersJson = localStorage.users
+data.findUser = callback => {
+    let usersJson = localStorage.users
 
-            if(!usersJson) usersJson = '[]'
+    if(!usersJson) usersJson = '[]'
         
-            const users = JSON.parse(usersJson)
+    const users = JSON.parse(usersJson)
         
-            const user = users.find(callback)
+    const user = users.find(callback)
 
-            return user
-        }
+    return user
+}
 
-        data.insertUser = user => {
-            const usersJson = localStorage.users
+data.insertUser = user => {
+    let usersJson = localStorage.users
 
-            if(!usersJson) usersJson = '[]'
+    if(!usersJson) usersJson = '[]'
         
-            const users = JSON.parse(usersJson)
+    const users = JSON.parse(usersJson)
 
-            users.push(user)
+    users.push(user)
     
-            usersJson = JSON.stringify(users)
+    usersJson = JSON.stringify(users)
         
-            localStorage.users = usersJson
-        }
+    localStorage.users = usersJson
+}

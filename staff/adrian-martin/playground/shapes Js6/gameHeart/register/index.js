@@ -8,18 +8,18 @@ view.addClass('View')
 
 const title = new Heading(1)
 title.setText('Register')
-title.onClick(() => { alert('Remember, there will always be a better half for you.')})
+title.onClick(() =>  alert('Remember, there will always be a better half for you.'))
 
 const registerForm = new RegisterForm
 registerForm.onSubmit( event => {
     event.preventDefault()
 
-    let name = registerForm.getName()
-    let surname = registerForm.getSurname()
-    let email = registerForm.getEmail()
-    let username = registerForm.getUsername()
-    let password = registerForm.getPassword()
-    let passwordRepeat = registerForm.getPasswordRepeat()
+    const name = registerForm.getName()
+    const surname = registerForm.getSurname()
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
 
     try{
         logic.registerUser(name, surname, email, username, password, passwordRepeat)
@@ -28,7 +28,7 @@ registerForm.onSubmit( event => {
         
         registerForm.clear()
 
-        setTimeout( () => { location.href = '../login'}, 2000)
+        setTimeout( () =>  location.href = '../login', 2000)
 
     }catch (error) {
         if(error instanceof ContentError)
@@ -47,7 +47,7 @@ registerLink.setText('Login')
 registerLink.onClick( event => {
     event.preventDefault()
 
-    setTimeout( () => { location.href = '../login'}, 1000)
+    setTimeout( () =>  location.href = '../login', 1000)
 })
 
 view.add(title)

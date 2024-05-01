@@ -2,23 +2,23 @@ class ContentError extends Error{
     constructor(message){
         super(message)
 
-        this.name = ContentError.name
+        this.name = this.constructor.name
     }
 }
 
 class MatchError extends Error{
     constructor(message){
-        this.message = message
+        super(message)
 
-        this.name = MatchError.name
+        this.name = this.constructor.name
     }
 }
 
 class DuplicityError extends Error{
     constructor(message){
-        this.message = message
- 
-        this.name = DuplicityError.name
+        super(message)
+        
+        this.name = this.constructor.name
     }
 }
 

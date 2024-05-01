@@ -2,12 +2,11 @@ if(logic.isUserLoggedIn())
 location.href = '../home'
 
 const view = new Component(document.body)
-
 view.addClass('View')
 
 const title = new Heading(1)
 title.setText('Login')
-title.onClick(function() {
+title.onClick( () => {
     alert('Remember, there will always be a better half for you.')
 })
 
@@ -15,8 +14,8 @@ const loginForm = new LoginForm
 loginForm.onSubmit( event => {
     event.preventDefault()
 
-    let username = loginForm.getUsername()
-    let password = loginForm.getPassword()
+    const username = loginForm.getUsername()
+    const password = loginForm.getPassword()
 
 
     try{
@@ -26,7 +25,7 @@ loginForm.onSubmit( event => {
 
         loginForm.setFeedback('user successfully logged in', 'success')
 
-        setTimeout( () => { location.href = '../home'}, 500)
+        setTimeout( () =>  location.href = '../home', 500)
         
     }catch(error){
         if (error instanceof ContentError) 
@@ -45,7 +44,7 @@ loginLink.setText('Register')
 loginLink.onClick( event => {
     event.preventDefault()
 
-    setTimeout( () => { location.href = '../register' }, 1000)
+    setTimeout( () =>  location.href = '../register' , 1000)
 })
 
 

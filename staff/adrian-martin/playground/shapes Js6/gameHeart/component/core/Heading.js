@@ -1,7 +1,7 @@
 class Heading extends Component{
     constructor(level) {
-    super('h' + level)
+        super('h' + level)
 
-    this.addClass('Heading')
+        this.addClass('Heading')
     }
 }
