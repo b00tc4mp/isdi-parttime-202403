@@ -39,28 +39,19 @@ LoginForm.prototype.getPassword = function () {
 
 LoginForm.prototype.setFeedback = function (message, level) {
     var feedbackPanel = this.children[this.children.length - 1]
-
-    if (level===("succes"))
+    //Añadiendo la classe succes pintamos de verde el mensaje
+    if (level === ("succes"))
         feedbackPanel.addClass("succes")
     feedbackPanel.setText(message)
 }
 
-RegisterForm.prototype.clear = function () {// method overriding
+LoginForm.prototype.clear = function () {// method overriding
     Form.prototype.clear.call(this)
 
     var feedbackPanel = this.children[this.children.length - 1]
 
     feedbackPanel.setText("")
-    feedbackPanel.removeClass("succes")
-
-}
-
-LoginFormForm.prototype.clear = function () {// method overriding
-    Form.prototype.clear.call(this)
-
-    var feedbackPanel = this.children[this.children.length - 1]
-
-    feedbackPanel.setText("")
+    //quitamos la classe del feedback para que de nuevo este con el color determinada 
     feedbackPanel.removeClass("succes")
 
 }

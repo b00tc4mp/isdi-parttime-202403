@@ -57,5 +57,25 @@ logic.loginUser = function (username, password) {
 
     if (user.password !== password)
         throw new MatchError("wrong password")
-    
+
+    sessionStorage.username = username
+    // sessionStorage almacena datos mientras la ventana esté abierta
+    // de esta manera conectas al usuario a la session
+}
+
+logic.isUserLoggedIn = function () {
+    //return sessionStorage.user ? true : false
+
+    return !!sessionStorage.username // doble negacion conviertes string a booleano
+}
+
+logic.logoutUser = function () {
+    delete sessionStorage.username
+}
+
+logic.getUserName = function () {
+    var user = data.findUser(function (user) {
+        return user.username === sessionStorage.username
+    })
+    return user.username
 }

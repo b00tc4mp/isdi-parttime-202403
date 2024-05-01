@@ -1,3 +1,6 @@
+if (logic.isUserLoggedIn())// si has hecho login no puedas acceder a la pagina hasta hacer logout
+    location.href = "../home"
+
 var view = new Component(document.body)
 
 view.addClass("View")
@@ -18,11 +21,13 @@ loginForm.onSubmit(function (event) {
     try {
         logic.loginUser(username, password)
 
+        loginForm.clear()
+
         loginForm.setFeedback("Log in succesful", "succes")
 
         setTimeout(function () {
             location.href = "../home"
-        }), 1500
+        }, 1500)
     } catch (error) {
         if (error instanceof ContentError)
             loginForm.setFeedback(error.message + " please, correct it")

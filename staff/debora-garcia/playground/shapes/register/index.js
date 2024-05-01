@@ -1,3 +1,6 @@
+if (logic.isUserLoggedIn()) // Llamamos a esta funcion para comprobar si esta logeado no deje ir a la pagina de registro, de esta manera desde home no se puede acceder a la pgina de registro
+    location.href = "../home"
+
 var view = new Component(document.body)
 
 view.addClass("View")
@@ -23,7 +26,7 @@ registerForm.onSubmit(function (event) {
 
         //registerForm.clear()  no lo pongo por que se borran los campos y aparecen lo de placeholder
         // TODO mirar de eliminar el placeholder cuando se hace el clear()
-        registerForm.setFeedback("Registration successful!","succes")
+        registerForm.setFeedback("Registration successful!", "succes")
 
         setTimeout(function () {
             location.href = "../login"
