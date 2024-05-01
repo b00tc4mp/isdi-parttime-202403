@@ -27,7 +27,7 @@ registerForm.onSubmit(function (event) {
         setTimeout(function () {
 
             location.href = '../login'
-        }, 500)
+        }, 1000)
 
     } catch (error) {
         if (error instanceof ContentError)

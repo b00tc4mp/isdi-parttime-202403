@@ -18,7 +18,7 @@ loginForm.onSubmit(function (event) {
     var password = loginForm.getPassword()
 
     try {
-        logic.registerUser(username, password)
+        logic.loginUser(username, password)
 
         loginForm.clear();
 
@@ -27,14 +27,14 @@ loginForm.onSubmit(function (event) {
         setTimeout(function () {
 
             location.href = '../home'
-        }, 500)
+        }, 1000)
 
     } catch (error) {
         if (error instanceof ContentError)
             loginForm.setFeedback(error.message + ', please correct it')
 
         else if (error instanceof MatchError)
-            loginForm.setFeedback(error.message + ', please retype it')
+            loginForm.setFeedback('wrong credentials')
 
         else
             loginForm.setFeedback('an unexpected error happened, try again later')
