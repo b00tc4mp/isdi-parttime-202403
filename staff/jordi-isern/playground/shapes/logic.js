@@ -1,4 +1,25 @@
 var logic = {}
+
+logic.loginUser = function(username, password){
+    var user = data.findUser(function(user){
+        return user.username === username
+    })
+    console.log(username, password, user)
+    if(!user){
+        throw new MatchError('usern not found')
+    }
+
+    if(user.password !== password){
+        throw new MatchError('wrong password')
+    }
+
+    return (user)
+}
+
+logic.isUserLoggedIn = function(){
+    return !!sessionStorage.username
+}
+
 var NAME_REGEX = /^[a-zA-z]/
 var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
@@ -42,7 +63,13 @@ logic.registerUser = function(name, username,email, password, passwordRepeat){
     data.insertUser(user)
 }
 
+logic.logOutUser = function(){
+    delete sessionStorage.username
+}
 
-logic.isUserLoggedIn = function(){
-    return !! sessionStorage.username
+logic.getUserName = function(){
+    var user = data.findUser(function(user){
+        return  user.username === sessionStorage.username
+    })
+    return user.name   
 }
