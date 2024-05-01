@@ -1,0 +1,28 @@
+.LoginForm {
+    padding: 1rem;
+    width: 400px;
+    
+}
+
+.Button{
+    background-color:var(--fourth-color);
+    font-size: 1rem;
+    border: 1px solid var(--third-color);
+}
+
+.LoginForm .Input {
+    background-color:var(--fourth-color);
+    font-size: 1rem;
+    border: 1px solid var(--third-color);
+    width: 300px;
+    
+    
+}
+
+.LoginForm .Feedback {
+    color: tomato;
+}
+
+.LoginForm .Feedback .success{
+    color: greenyellow;
+}
