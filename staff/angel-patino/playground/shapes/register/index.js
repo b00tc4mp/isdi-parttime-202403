@@ -51,8 +51,7 @@ loginLink.setText('Login')
 loginLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(() =>
-        location.href = '../login', 500)
+    setTimeout(() => location.href = '../login', 500)
 })
 
 view.add(title)

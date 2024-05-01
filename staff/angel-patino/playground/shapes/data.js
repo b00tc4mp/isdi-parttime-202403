@@ -15,7 +15,7 @@ return user
 data.insertUser = user => {
     const usersJson = localStorage.users
 
-    if (!usersJson) user = '[]'
+    if (!usersJson) usersJson = '[]'
 
     const users = JSON.parse(usersJson)
 

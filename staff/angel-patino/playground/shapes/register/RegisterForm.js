@@ -8,8 +8,8 @@ class RegisterForm extends Form {
     const nameField = new Field('name', 'text', 'Name')
     nameField.setPlaceholder('name')
 
-    const surnameField = new Field('username', 'text', 'Username')
-    surnameField.setPlaceholder('username')
+    const surnameField = new Field('surname', 'text', 'Surname')
+    surnameField.setPlaceholder('surname')
 
     const emailField = new Field('email', 'email', 'E-mail')
     emailField.setPlaceholder('name@example.com')
@@ -79,7 +79,7 @@ getPasswordRepeat() {
 setFeedback(message, level) {
     const feedbackPanel = this.children[this.children.length - 1]
     if (level === 'success')
-    feedbackPanel.addClass('success')
+         feedbackPanel.addClass('success')
 
     feedbackPanel.setText(message)
 }

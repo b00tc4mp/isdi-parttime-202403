@@ -1,8 +1,10 @@
 if (!logic.isUserLoggedIn())
-    location.href = '../home'
+    location.href = '../login'
 
     const view = new Component(document.body)
     view.addClass('View')
+
+    const userName = logic.getUserName()
 
     const usernameTitle = new Heading(3)
     usernameTitle.setText(username)
@@ -12,7 +14,7 @@ if (!logic.isUserLoggedIn())
     const logoutButton = new Button
     logoutButton.setText('Logout')
 
-    logoutButton.onClick(function() {
+    logoutButton.onClick(() => {
         logic.logoutUser()
 
         location.href='../login'
@@ -68,12 +70,11 @@ doc.onkeydown(event => {
         applyOnY = false
 })
 
-doc.onkeyup(event => {
+doc.onKeyUp(event => {
     if (event.key === 'Shift')
         applyOnY = true
 
 })
 
-shapes.forEach(shape => 
-    view.add(shape)
+shapes.forEach(shape => view.add(shape)
 )

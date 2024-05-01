@@ -1,5 +1,5 @@
 class Link extends Component {
-    constructos(){
+    constructor(){
         super('a')
 
         this.setUrl('')

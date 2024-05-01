@@ -26,7 +26,7 @@ class Component {
         this.container.id = id
     }
 
-    CaddClass(clazz) {
+    addClass(clazz) {
     this.container.classList.add(clazz)
     }
 
@@ -38,11 +38,11 @@ class Component {
     this.container.addEventListener('click', listener)
     }
 
-    onkeydown(listener) {
-    this.container,addEventListener('keydown', listener)
+    onKeyDown(listener) {
+    this.container.addEventListener('keydown', listener)
     }
 
-        onkeyup(listener) {
+    onKeyUp(listener) {
         this.container.addEventListener('keyup', listener)
     }
 }

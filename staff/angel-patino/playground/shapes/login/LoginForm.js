@@ -34,14 +34,14 @@ getPassword() {
 setFeedback(message, level) {
    const feedbackPanel = this.children[this.children.length - 1]
     if (level === 'success')
-    feedbackPanel.addClass('success')
+        feedbackPanel.addClass('success')
 
     feedbackPanel.setText(message)
 }
 
 
 clear() { // method overriding
-   this.super.clear()
+    super.clear()
 
    const feedbackPanel = this.children[this.children.length - 1]
 

@@ -27,11 +27,11 @@ loginForm.onSubmit(event => {
     } catch (error) {
         if (error instanceof ContentError)
         //alert(error.message)
-        loginForm.setFeedback(error.message + ', please, correct it')
+            loginForm.setFeedback(error.message + ', please, correct it')
         else if (error instanceof MatchError)
             loginForm.setFeedback('wrong credentials')
         else
-        loginForm.setFeedback('sorry, there was an error, please try again later')
+            loginForm.setFeedback('sorry, there was an error, please try again later')
 
     }
 })
@@ -39,11 +39,10 @@ loginForm.onSubmit(event => {
 const registerLink = new Link
 registerLink.setText('Register')
 //registerLink.setUrl('../register')
-registerLink.onClick(function (event) {
+registerLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(() => 
-        location.href = '../register', 500)
+    setTimeout(() => location.href = '../register', 500)
 })
 
 view.add(title)
