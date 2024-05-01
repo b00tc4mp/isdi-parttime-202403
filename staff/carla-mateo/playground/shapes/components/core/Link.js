@@ -1,16 +1,19 @@
-function Link() {
-    Component.call(this, 'a')
+class Link extends Component {
+    constructor() {
+        super('a')
 
-    this.setUrl('https://www.google.com')
+        this.setUrl('')
+    }
+
+
+    setUrl(url) {
+        this.container.href = url
+    }
+
+    setTarget(target) {
+        this.container.target = target
+    }
 }
 
-Link.prototype = Object.create(Component.prototype)
-Link.prototype.constructor = Link
 
-Link.prototype.setUrl = function (url) {
-    this.container.href = url
-}
 
-Link.prototype.setTarget = function (target) {
-    this.container.target = target
-}

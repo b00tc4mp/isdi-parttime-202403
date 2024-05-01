@@ -1,14 +1,14 @@
-var logic = {}
+const logic = {}
 
-var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 
-var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
+const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
-var NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{4,}$/
+const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{4,}$/
 
-logic.registerUser = function (name, surname, email, username, password, passwordRepeat) {
+logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
     if (!NAME_REGEX.test(name))
         throw new ContentError('❌ Name is not valid')
 
@@ -31,7 +31,7 @@ logic.registerUser = function (name, surname, email, username, password, passwor
         throw new MatchError('❌ Password don\'t match')
 
 
-    var user = data.findUser(function (user) {
+    const user = data.findUser(function (user) {
         return user.email === email || user.username === username
     })
 
@@ -50,14 +50,15 @@ logic.registerUser = function (name, surname, email, username, password, passwor
     data.insertUser(user)
 
 }
-logic.loginUser = function (username, password) {
+
+logic.loginUser = (username, password) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('❌ Username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('❌ Password is not valid')
 
-    var user = data.findUser(function (user) {
+    const user = data.findUser(function (user) {
         return user.username === username
     })
 
@@ -78,7 +79,7 @@ logic.logoutUser = function () {
     delete sessionStorage.username
 }
 logic.getUserName = function () {
-    var user = data.findUser(function (user) {
+    const user = data.findUser(function (user) {
         return user.username === sessionStorage.username
     })
 

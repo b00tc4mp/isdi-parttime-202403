@@ -1,30 +1,32 @@
-function Field(id, type, text) {
-    Component.call(this, 'div')
+class Field extends Component {
+    constructor(id, type, text) {
+        super('div')
 
-    this.addClass('Field')
+        this.addClass('Field')
 
-    var label = new Label
-    label.setText(text)
-    label.setFor(id)
+        const label = new Label
+        label.setText(text)
+        label.setFor(id)
 
-    var input = new Input
-    input.setId(id)
-    input.setType(type)
+        const input = new Input
+        input.setId(id)
+        input.setType(type)
 
-    this.add(label)
-    this.add(input)
+        this.add(label)
+        this.add(input)
+    }
+
+    setPlaceholder(placeholder) {
+        this.children[1].setPlaceholder(placeholder)
+    }
+
+    getValue() {
+        const input = this.children[1]
+
+        return input.getValue()
+    }
 
 }
 
-Field.prototype = Object.create(Component.prototype)
-Field.prototype.constructor = Field
 
-Field.prototype.setPlaceholder = function (placeholder) {
-    this.children[1].setPlaceholder(placeholder)
-}
 
-Field.prototype.getValue = function () {
-    var input = this.children[1]
-
-    return input.getValue()
-}

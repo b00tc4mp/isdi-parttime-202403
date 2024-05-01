@@ -2,26 +2,24 @@
 //     location.href = '../home'
 
 
-var view = new Component(document.body)
+const view = new Component(document.body)
 view.addClass('View')
 
-var title = new Heading(1)
+const title = new Heading(1)
 title.setText('Register')
-title.onClick(function () {
-    alert('By clicking on this title you wont get anything .P')
-})
+title.onClick(() => alert('By clicking on this title you wont get anything .P'))
 
 
-var registerForm = new RegisterForm
-registerForm.onSubmit(function (event) {
+const registerForm = new RegisterForm
+registerForm.onSubmit(event => {
     event.preventDefault()
 
-    var name = registerForm.getName()
-    var surname = registerForm.getSurname()
-    var email = registerForm.getEmail()
-    var username = registerForm.getUsername()
-    var password = registerForm.getPassword()
-    var passwordRepeat = registerForm.getPasswordRepeat()
+    const name = registerForm.getName()
+    const surname = registerForm.getSurname()
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
 
     try {
         logic.registerUser(name, surname, email, username, password, passwordRepeat)
@@ -30,11 +28,7 @@ registerForm.onSubmit(function (event) {
 
         registerForm.setFeedback('✅ User successfully registered', 'success')
 
-        setTimeout(function () {
-            location.href = '../login'
-
-        }, 1000)
-
+        setTimeout(() => location.href = '../login', 1000)
 
     } catch (error) {
         if (error instanceof ContentError)
@@ -49,15 +43,13 @@ registerForm.onSubmit(function (event) {
 
 })
 
-var loginLink = new Link
+const loginLink = new Link
 loginLink.setText('Login')
 
-loginLink.onClick(function (event) {
+loginLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(function () {
-        location.href = '../login'
-    }, 500)
+    setTimeout(() => location.href = '../login', 500)
 })
 
 
