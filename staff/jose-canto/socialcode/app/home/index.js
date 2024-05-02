@@ -3,6 +3,11 @@
 const view = new Component(document.body)
 view.addClass('View')
 
+//LOGO
+const logo = new Image()
+logo.setImage("../img/logo.jpg")
+logo.addClass("Logo")
+
 // HEADER
 const header = new Component("header")
 header.addClass("Header")
@@ -64,8 +69,10 @@ addPostButton.setText("+")
 
 
 // ADD AT HEADER
+header.add(logo)
 header.add(usernameTitle)
 header.add(logoutButton)
+
 
 // ADD AT VIEW (BODY)
 view.add(header)
