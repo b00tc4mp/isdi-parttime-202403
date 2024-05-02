@@ -1,38 +1,36 @@
+class Shape extends Component {
+    constructor() {
+        super()// ya se asume que es un div
+        this.container = document.createElement("div")
+        this.container.style.position = "absolute"
+    }
 
-function Shape() {
-    Component.call(this,"div")
-    this.container = document.createElement("div")
-    this.container.style.position = "absolute"
-}
+    setHeight(value) {
+        this.container.style.height = value + "px"
+    }
 
-Shape.prototype=Object.create(Component.prototype)
-Shape.prototype.constructor=Shape 
+    setWidth(value) {
+        this.container.style.width = value + "px"
+    }
 
-Shape.prototype.setHeight = function (value) {
-    this.container.style.height = value + "px"
-}
+    setRadius(value) {
+        this.container.style.borderRadius = value + "%"
+    }
 
-Shape.prototype.setWidth = function (value) {
-    this.container.style.width = value + "px"
-}
+    setColor(value) {
+        this.container.style.backgroundColor = value
+    }
 
-Shape.prototype.setRadius = function (value) {
-    this.container.style.borderRadius = value + "%"
-}
+    setX(value) {
+        this.container.style.left = value + "px"
+    }
 
-Shape.prototype.setColor = function (value) {
-    this.container.style.backgroundColor = value
-}
-
-Shape.prototype.setX = function (value) {
-    this.container.style.left = value + "px"
-}
-
-Shape.prototype.setY = function (value) {
-    this.container.style.top = value + "px"
-}
+    setY(value) {
+        this.container.style.top = value + "px"
+    }
 
 
-Shape.prototype.setZIndex = function (value) {
-    this.container.style.zIndex = value;
+    setZIndex(value) {
+        this.container.style.zIndex = value;
+    }
 }

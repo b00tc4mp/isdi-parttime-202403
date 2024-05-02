@@ -1,57 +1,55 @@
 
-function LoginForm() {
-    Form.call(this)
+class LoginForm extends Form {
+    constructor() {
+        super()
 
-    //var form = new Form()
-    this.addClass("LoginForm") // de esta manera hereda los estilos de Form y se agrega otra personaliada de "loginForm"
+        //var form = new Form()
+        this.addClass("LoginForm") // de esta manera hereda los estilos de Form y se agrega otra personaliada de "loginForm"
 
-    var usernameField = new Field("username", "text", "Username")
-    var passwordField = new Field("password", "password", "Password")
-
-
-    var submitButton = new SubmitButton("Login")
-
-    var feedbackPanel = new Component("p")
-    feedbackPanel.addClass("Feedback")
-
-    this.add(usernameField)
-    this.add(passwordField)
-    this.add(submitButton)
-    this.add(feedbackPanel)
-
-}
-
-LoginForm.prototype = Object.create(Form.prototype)
-LoginForm.prototype.constructor = Form
+        const usernameField = new Field("username", "text", "Username")
+        const passwordField = new Field("password", "password", "Password")
 
 
-LoginForm.prototype.getUsername = function () {
-    var usernameField = this.children[0]
+        const submitButton = new SubmitButton("Login")
 
-    return usernameField.getValue()
-}
+        const feedbackPanel = new Component("p")
+        feedbackPanel.addClass("Feedback")
 
-LoginForm.prototype.getPassword = function () {
-    var passwordField = this.children[1]
+        this.add(usernameField)
+        this.add(passwordField)
+        this.add(submitButton)
+        this.add(feedbackPanel)
 
-    return passwordField.getValue()
-}
+    }
 
-LoginForm.prototype.setFeedback = function (message, level) {
-    var feedbackPanel = this.children[this.children.length - 1]
-    //Añadiendo la classe succes pintamos de verde el mensaje
-    if (level === ("succes"))
-        feedbackPanel.addClass("succes")
-    feedbackPanel.setText(message)
-}
+    getUsername() {
+        const usernameField = this.children[0]
 
-LoginForm.prototype.clear = function () {// method overriding
-    Form.prototype.clear.call(this)
+        return usernameField.getValue()
+    }
 
-    var feedbackPanel = this.children[this.children.length - 1]
+    getPassword() {
+        const passwordField = this.children[1]
 
-    feedbackPanel.setText("")
-    //quitamos la classe del feedback para que de nuevo este con el color determinada 
-    feedbackPanel.removeClass("succes")
+        return passwordField.getValue()
+    }
 
+    setFeedback(message, level) {
+        const feedbackPanel = this.children[this.children.length - 1]
+        //Añadiendo la classe succes pintamos de verde el mensaje
+        if (level === ("succes"))
+            feedbackPanel.addClass("succes")
+        feedbackPanel.setText(message)
+    }
+
+    clear() {// method overriding
+        Form.prototype.clear.call(this)
+
+        const feedbackPanel = this.children[this.children.length - 1]
+
+        feedbackPanel.setText("")
+        //quitamos la classe del feedback para que de nuevo este con el color determinada 
+        feedbackPanel.removeClass("succes")
+
+    }
 }

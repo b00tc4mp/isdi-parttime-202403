@@ -1,24 +1,24 @@
 if (logic.isUserLoggedIn()) // Llamamos a esta funcion para comprobar si esta logeado no deje ir a la pagina de registro, de esta manera desde home no se puede acceder a la pgina de registro
     location.href = "../home"
 
-var view = new Component(document.body)
+const view = new Component(document.body)
 
 view.addClass("View")
 
-var title = new Heading(1)
+const title = new Heading(1)
 title.setText("New account!")
 
 
 
-var registerForm = new RegisterForm
-registerForm.onSubmit(function (event) {
+const registerForm = new RegisterForm
+registerForm.onSubmit(event => {
     event.preventDefault()
     console.log("submit")
 
-    var email = registerForm.getEmail()
-    var username = registerForm.getUsername()
-    var password = registerForm.getPassword()
-    var passwordRepeat = registerForm.getPasswordRepeat()
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
     console.log(email, username, password, passwordRepeat)
 
     try {
@@ -28,9 +28,7 @@ registerForm.onSubmit(function (event) {
         // TODO mirar de eliminar el placeholder cuando se hace el clear()
         registerForm.setFeedback("Registration successful!", "succes")
 
-        setTimeout(function () {
-            location.href = "../login"
-        }, 1500)
+        setTimeout(() => location.href = "../login", 1500)
     } catch (error) {
         if (error instanceof ContentError)
             registerForm.setFeedback(error.message + " please, correct it")
@@ -43,12 +41,12 @@ registerForm.onSubmit(function (event) {
     }
 })
 
-var loginLink = new Link
+const loginLink = new Link
 loginLink.setText("Login")
 //loginLink.setUrl("../login") esta seria la forma rapida de que el link te redirigera a otra pagina
 // pero lo haremos mediante JS:
 
-loginLink.onClick(function (event) {
+loginLink.onClick(event => {
     event.preventDefault()
     setTimeout(function () {
         location.href = "../login"

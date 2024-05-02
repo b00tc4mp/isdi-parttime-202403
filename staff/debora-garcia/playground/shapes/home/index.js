@@ -1,22 +1,22 @@
 if (!logic.isUserLoggedIn())// si no ha hecho login no te deje acceder al juego
     location.href = "../login"
 
-var view = new Component(document.body)
+const view = new Component(document.body)
 view.addClass("View")
 
-var logoutButton = new Button
+const logoutButton = new Button
 logoutButton.setText("Logout")
 logoutButton.addClass("logoutButton")
 
-logoutButton.onClick(function () {
+logoutButton.onClick(() => {
     logic.logoutUser()
 
     location.href = "../login"
 })
 
-var userName= logic.getUserName()
+const userName = logic.getUserName()
 
-var userNameTitle= new Heading(3)
+const userNameTitle = new Heading(3)
 userNameTitle.setText(userName)
 
 view.add(userNameTitle)
@@ -24,18 +24,18 @@ view.add(userNameTitle)
 view.add(logoutButton)
 
 
-var koala = new Koala()
+const koala = new Koala()
+let x = 300
+let y = 300
+let step = 20
 
 koala.setX(x)
 koala.setY(y)
 
-var x = 300
-var y = 300
-var step = 20
 
-var doc = new Component(document)
+const doc = new Component(document)
 
-doc.onKeyDown(function (event) {
+doc.onKeyDown(event => {
     if (event.key === "ArrowLeft")
         x -= step
     else if (event.key === "ArrowRight")
