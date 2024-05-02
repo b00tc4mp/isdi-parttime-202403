@@ -72,7 +72,7 @@ logic.getUserName = () => {
 logic.getAllPosts = () => {
     const posts = data.findPosts(() => true)
 
-    return posts.reverse()
+    return posts
 }
 
 logic.createPost = (title, image, description) => {

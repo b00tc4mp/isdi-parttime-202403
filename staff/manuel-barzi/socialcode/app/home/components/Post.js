@@ -11,12 +11,16 @@ class Post extends Component {
         const postImage = new Image
         postImage.setUrl(post.image)
 
-        const postText = new Component('p')
-        postText.setText(post.text)
+        const postDescription = new Component('p')
+        postDescription.setText(post.description)
+
+        const postDate = new Component('time')
+        postDate.setText(post.date)
 
         this.add(authorTitle)
         this.add(postTitle)
         this.add(postImage)
-        this.add(postText)
+        this.add(postDescription)
+        this.add(postDate)
     }
 }
