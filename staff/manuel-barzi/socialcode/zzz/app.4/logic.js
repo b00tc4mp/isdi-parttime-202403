@@ -85,9 +85,3 @@ logic.getUserName = function () {
 
     return user.name
 }
-
-logic.getAllPosts = function () {
-    const posts = data.findPosts(function () { return true })
-
-    return posts
-}
