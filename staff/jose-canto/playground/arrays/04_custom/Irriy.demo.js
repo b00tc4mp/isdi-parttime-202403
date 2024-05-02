@@ -75,6 +75,20 @@ Irriy.prototype.reverse = function () {
   return this
 }
 
+Irriy.prototype.find = function (callback) {
+
+  for (var i = 0; i < this.length; i++) {
+    var element = this[i]
+
+    var matched = callback(element)
+
+    if (matched) {
+      return element
+    }
+  }
+  return undefined
+}
+
 
 console.info('--- CASE constructs an instance with 2 elements ---')
 
@@ -271,3 +285,30 @@ console.assert(resultReverse[2] === "Maserati", "third model is Maserati")
 console.assert(resultReverse[3] === "Mazda", "four model is Mazda")
 console.assert(resultReverse[4] === "Porche", "five model is Porche")
 console.assert(resultReverse[5] === "Ferrari", "six model is Ferrari")
+
+//? -----------------------------------------------------------
+
+console.info("--- CASE find car model ---")
+
+var cars = new Irriy("Ferrari", "Mazda", "Porche")
+console.log(cars)
+
+var foundCars = cars.find(function (car) { return car === "Mazda" })
+console.log(foundCars)
+
+//! TEST ASSERT
+
+console.assert(foundCars === "Mazda", "find Mazda model")
+
+console.info("--- CASE return first element of array ---")
+
+var numbers = new Irriy(5, 12, 8, 130, 44);
+
+var found = numbers.find(function (num) { return num > 10 });
+
+console.log(found);
+// Expected output: 12
+
+//! TEST ASSERT
+
+console.assert(found === 12, "first element of array is 12")
