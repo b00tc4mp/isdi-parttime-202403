@@ -23,13 +23,14 @@ class LoginForm extends Form {
 
     const feedbackPanel = new Component('p')
     feedbackPanel.addClass('Feedback')
+    this.feedbackPanel = feedbackPanel
 
     this.add(heading)
     this.add(userNameField)
     this.add(passwordField)
     this.add(icon)
     this.add(button)
-    this.add(feedbackPanel)
+    // this.add(feedbackPanel)
   }
 
   getUsername() {
@@ -43,7 +44,14 @@ class LoginForm extends Form {
   }
 
   setFeedback(message) {
-    const feedbackPanel = this.children[5]
-    feedbackPanel.setText(message)
+    // const feedbackPanel = this.children[5]
+    this.feedbackPanel.setText(message)
+    this.add(this.feedbackPanel)
+  }
+
+  clear() {
+    super.clear()
+    this.feedbackPanel.setText('')
+    this.remove(this.feedbackPanel)
   }
 }

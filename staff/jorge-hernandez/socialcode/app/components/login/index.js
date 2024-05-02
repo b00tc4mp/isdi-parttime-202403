@@ -1,3 +1,4 @@
+if (logic.isUserLoggedIn()) location.href = '../home'
 const view = new Component(document.body)
 view.addClass('View')
 const loginForm = new LoginForm()
@@ -22,7 +23,7 @@ loginForm.onSubmit((event) => {
     if (error instanceof ContentError) {
       loginForm.setFeedback(error.message + ', porfavor corrígelo')
       setTimeout(() => {
-        loginForm.setFeedback('')
+        loginForm.clear()
       }, 2000)
       if (!linkCreated) {
         const link = new Link()
@@ -36,7 +37,7 @@ loginForm.onSubmit((event) => {
     } else if (error instanceof MatchError) {
       loginForm.setFeedback('error de credenciales')
       setTimeout(() => {
-        loginForm.setFeedback('')
+        loginForm.clear()
       }, 2000)
     } else {
       loginForm.setFeedback('Hay un error, lo solucionaremos lo antes posible')

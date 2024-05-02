@@ -1,6 +1,6 @@
 .Button {
     display: inline-block;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 16px;
     font-weight: bold;
     color: #fff;
@@ -9,8 +9,8 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    margin-top: 20px;
     width: 100px;
+    height: 40px;
   }
 
   

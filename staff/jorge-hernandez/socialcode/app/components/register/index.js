@@ -1,3 +1,4 @@
+if (logic.isUserLoggedIn()) location.href = '../home'
 const view = new Component(document.body)
 view.addClass('View')
 const registerForm = new RegisterForm()

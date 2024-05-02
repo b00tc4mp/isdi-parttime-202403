@@ -14,6 +14,15 @@ class Component {
     this.children.push(child)
   }
 
+  remove(child) {
+    const index = this.children.indexOf(child)
+    if (index > -1) {
+      this.children.splice(index, 1)
+    }
+    this.container.removeChild(child.container)
+    this.children.push(child)
+  }
+
   setText(text) {
     this.container.innerText = text
   }
@@ -28,5 +37,9 @@ class Component {
 
   removeClass(clazz) {
     this.container.classList.remove(clazz)
+  }
+
+  onClick(listener) {
+    this.container.addEventListener('click', listener)
   }
 }

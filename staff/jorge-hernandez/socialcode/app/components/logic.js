@@ -49,6 +49,7 @@ logic.loginUser = (username, password) => {
   if (user) {
     if (user.password === password) {
       data.loginUser(newUser)
+      sessionStorage.username = username
       window.location.href = '../home/index.html'
     } else {
       throw new ContentError('password incorrecto')
@@ -70,4 +71,20 @@ const showPass = (icon, field, type1, type2) => {
     icon.classList.add('fa-eye-slash')
     icon.classList.remove('fa-eye')
   }
+}
+
+logic.isUserLoggedIn = function () {
+  return !!sessionStorage.username
+}
+
+logic.logoutUser = function () {
+  delete sessionStorage.username
+}
+
+logic.getUserName = function () {
+  var user = data.findUser((user) => {
+    return user.username === sessionStorage.username
+  })
+
+  return user.username
 }
