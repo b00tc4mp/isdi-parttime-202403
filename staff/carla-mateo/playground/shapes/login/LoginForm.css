@@ -11,3 +11,14 @@
     border: 1px solid var(--first-color);
 
 }
+
+.LoginForm .Feedback {
+    display: flex;
+    text-align: center;
+    color: rgb(52, 26, 4);
+    max-width: 11rem;
+}
+
+.LoginForm .Feedback.success {
+    color: rgb(85, 41, 5);
+}

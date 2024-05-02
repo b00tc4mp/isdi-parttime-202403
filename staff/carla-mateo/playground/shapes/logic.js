@@ -31,12 +31,10 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
         throw new MatchError('❌ Password don\'t match')
 
 
-    const user = data.findUser(function (user) {
-        return user.email === email || user.username === username
-    })
+    let user = data.findUser((user) => user.email === email || user.username === username)
 
     if (user)
-        throw new DuplicityhError('❌ User already exist')
+        throw new DuplicityError('❌ User already exist')
 
     user = {
 
@@ -58,9 +56,7 @@ logic.loginUser = (username, password) => {
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('❌ Password is not valid')
 
-    const user = data.findUser(function (user) {
-        return user.username === username
-    })
+    let user = data.findUser((user) => user.username === username)
 
     if (!user)
         throw new MatchError('❌ User not found')
@@ -79,7 +75,7 @@ logic.logoutUser = function () {
     delete sessionStorage.username
 }
 logic.getUserName = function () {
-    const user = data.findUser(function (user) {
+    let user = data.findUser(function (user) {
         return user.username === sessionStorage.username
     })
 

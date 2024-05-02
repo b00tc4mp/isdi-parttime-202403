@@ -1,5 +1,5 @@
-if (!logic.isUserLoggedIn())
-    location.href = '../login'
+// if (!logic.isUserLoggedIn())
+//     location.href = '../login'
 
 const view = new Component(document.body)
 view.addClass('View')

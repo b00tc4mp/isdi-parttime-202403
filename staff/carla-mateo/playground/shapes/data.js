@@ -1,7 +1,7 @@
 const data = {}
 
 data.findUser = callback => {
-    const usersJson = localStorage.users
+    let usersJson = localStorage.users
 
     if (!usersJson) usersJson = '[]'
 
@@ -10,11 +10,10 @@ data.findUser = callback => {
     const user = users.find(callback)
 
     return user
-
 }
 
 data.insertUser = user => {
-    const usersJson = localStorage.users
+    let usersJson = localStorage.users
 
     if (!usersJson) usersJson = '[]'
 
