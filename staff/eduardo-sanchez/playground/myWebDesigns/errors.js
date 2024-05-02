@@ -1,29 +1,26 @@
-function ContentError(message) {
-    this.message = message
+class ContentError extends Error {
+    constructor(message) {
+        super(message)
 
-    Error.captureStackTrace(this, this.constructor)
+        this.name = this.constructor.name
+        //this.name = ContentError.name
+    }
 }
 
-ContentError.prototype = Object.create(Error.prototype)
-ContentError.prototype.constructor = ContentError
-ContentError.prototype.name = ContentError.name
+class MatchError extends Error {
+    constructor(message) {
+        super(message)
 
-function MatchError(message) {
-    this.message = message
-
-    Error.captureStackTrace(this, this.constructor)
+        this.name = this.constructor.name
+    }
 }
 
-MatchError.prototype = Object.create(Error.prototype)
-MatchError.prototype.constructor = MatchError
-MatchError.prototype.name = MatchError.name
 
-function DuplicityError(message) {
-    this.message = message
+class DuplicityError extends Error {
+    constructor(message) {
+        super(message)
 
-    Error.captureStackTrace(this, this.constructor)
+        this.name = this.constructor.name
+    }
 }
 
-DuplicityError.prototype = Object.create(Error.prototype)
-DuplicityError.prototype.constructor = DuplicityError
-DuplicityError.prototype.name = DuplicityError.name

@@ -6,7 +6,7 @@ view.addClass('View')
 
 const title = new Heading(1)
 title.setText('Register')
-title.onClick(() => alert("By clicking on this title you wont get anything")
+title.onClick(() => alert("By clicking on this title you wont get anything"))
 
 // title.onClick(() => {
 //     alert("By clicking on this title you wont get anything")
@@ -31,10 +31,11 @@ registerForm.onSubmit(event => {
 
         registerForm.setFeedback('user successfully registered', 'success')
 
-        setTimeout(function () {
+        setTimeout(() => location.href = '../login', 1000)
 
-            location.href = '../login'
-        }, 1000)
+        // setTimeout(() => {
+        //     location.href = '../login'
+        // }, 1000)
 
     } catch (error) {
         if (error instanceof ContentError)
@@ -56,7 +57,7 @@ const loginLink = new LinK()
 
 loginLink.setText('Login')
 //loginLink.setUrl('../login')
-loginLink.onClick(function (event) {
+loginLink.onClick(event => {
     event.preventDefault()
 
     setTimeout(() => location.href = '../login', 500)
