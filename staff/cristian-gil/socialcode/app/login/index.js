@@ -7,7 +7,7 @@ view.addClass('View')
 const title = new Heading(1)
 title.setText('Login')
 
-const loginForm = new LoginForm
+const loginForm = new LoginForm()
 loginForm.onSubmit(event => {
     event.preventDefault()
 
