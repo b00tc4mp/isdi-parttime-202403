@@ -1,0 +1,19 @@
+.View {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginForm {
+    padding: 1rem;
+    background:linear-gradient(45deg,var(--first-color) ,var(--second-color));
+    box-shadow: 0 0 20px 0 black  ;
+    border-radius: 10%
+}
+
+.LoginForm .Input,
+.Button {
+    background-color: transparent;
+    font-size: 1rem;
+    border: 1px solid blue;
+}
