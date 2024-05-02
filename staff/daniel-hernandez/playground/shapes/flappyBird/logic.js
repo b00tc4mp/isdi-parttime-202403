@@ -5,7 +5,7 @@ var EMAIL_REGEX =
 var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
 var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
 
-logic.registerUser = function (email, username, password, passwordRepeat) {
+logic.registerUser = function (email, username, password, repeatedPassword) {
   //TODO input validation
 
   // check if all fields are full
