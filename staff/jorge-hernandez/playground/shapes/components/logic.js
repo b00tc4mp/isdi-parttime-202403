@@ -31,6 +31,7 @@ logic.registerUser = function (email, username, password, repeatPassword) {
   }
 
   data.insertUser(newUser)
+  sessionStorage.username = username
 }
 //Logic Login
 
@@ -41,15 +42,16 @@ logic.loginUser = function (username, password) {
   if (!PASSWORD_REGEX.test(password)) {
     throw new ContentError('password no válido')
   }
-  var newUser = { username: username }
+  // var newUser = { username: username }
   var user = data.findUser(function (user) {
     return user.username === username
   })
 
   if (user) {
     if (user.password === password) {
-      data.loginUser(newUser)
+      // data.loginUser(newUser)
       window.location.href = '../home/index.html'
+      sessionStorage.username = username
     } else {
       throw new ContentError('password incorrecto')
     }
@@ -70,4 +72,7 @@ function showPass(icon, field, type1, type2) {
     icon.classList.add('fa-eye-slash')
     icon.classList.remove('fa-eye')
   }
+}
+logic.isUserLoggedIn = () => {
+  return !!sessionStorage.username
 }
