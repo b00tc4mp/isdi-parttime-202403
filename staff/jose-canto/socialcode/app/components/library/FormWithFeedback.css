@@ -1,0 +1,18 @@
+.FormWithFeedback {
+  margin: 0;
+  color: white;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 42rem;
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+}
+
+.FormWithFeedback {
+  color: greenyellow;
+}
+
+.RegisterForm .FormWithFeedback {
+  top: 50rem;
+}

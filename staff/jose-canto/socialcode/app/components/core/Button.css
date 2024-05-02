@@ -1,0 +1,41 @@
+.Button {
+  z-index: 0;
+  position: relative;
+  font-size: 1rem;
+  color: white;
+  padding: 0.7rem;
+  outline: none;
+  border: none;
+  background-color: hsl(27, 84%, 37%);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: rgb(228, 148, 0);
+  transform-origin: center;
+  transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+  transition: transform 0.45s ease-in-out;
+}
+
+.Button:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.Button:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+}

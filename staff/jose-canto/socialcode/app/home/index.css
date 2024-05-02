@@ -1,0 +1,85 @@
+.View {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header {
+  position: fixed;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  justify-content: end;
+  align-items: center;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  letter-spacing: .3rem;
+  background-color: rgba(0, 0, 0, 0.8)
+}
+
+.Footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid rgb(255, 255, 255);
+  padding: 0.5rem 0;
+  background-color: rgba(0, 0, 0, 0.8)
+}
+
+.Footer .Button {
+  font-size: 2rem;
+}
+
+.Article {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 5.3rem 1rem 5rem 1rem;
+  width: 100%;
+  max-width: 50rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+
+}
+
+.Article .AuthorTitle {
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.Article p {
+  color: black;
+  font-size: 1.2rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Article .PostTitle {
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 2rem;
+  color: whitesmoke;
+  width: 100%;
+}
+
+.Article .PostText {
+  margin: 0;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.DivImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+
+}
+
+.Image {
+  max-width: 75%;
+  height: auto;
+}
