@@ -1,5 +1,5 @@
 class Component {
-    constructor(tagNameOrComponent) {
+    constructor(tagNameOrComponent = 'div') {
         if (typeof tagNameOrComponent === 'string')
             this.container = document.createElement(tagNameOrComponent)
         else if (tagNameOrComponent instanceof HTMLElement || tagNameOrComponent instanceof HTMLDocument)

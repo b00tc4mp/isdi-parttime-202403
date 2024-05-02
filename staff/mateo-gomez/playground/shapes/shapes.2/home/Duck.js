@@ -1,22 +1,20 @@
-function Duck() {
-    Shape.call(this)
+class Duck extends Component {
+    constructor() {
+        super()
 
 
-    this.setColor('transparent')
-    this.setHeight(500)
-    this.setWidth(450)
-    this.setPosition('absolute')
-    this.setX(160)
-    this.setY(150)
+        this.setColor('transparent')
+        this.setHeight(500)
+        this.setWidth(450)
+        this.setPosition('absolute')
+        this.setX(160)
+        this.setY(150)
 
 
-}
+    }
 
 
-Duck.prototype = Object.create(Shape.prototype)
-Duck.prototype.constructor = Duck
-
-var contenedor = new Shape()
+    const contenedor = new Shape()
 contenedor.setColor('transparent')
 contenedor.setHeight(500)
 contenedor.setWidth(450)
@@ -24,7 +22,7 @@ contenedor.setPosition('absolute')
 contenedor.setX(160)
 contenedor.setY(150)
 
-var body = new Shape()
+    const body = new Shape()
 body.setColor('yellow')
 body.setHeight(150)
 body.setWidth(150)
@@ -36,7 +34,7 @@ body.setBorderColor('black')
 
 
 
-var body2 = new Shape()
+    const body2 = new Shape()
 body2.setColor('orange')
 body2.setHeight(130)
 body2.setWidth(220)
@@ -46,7 +44,7 @@ body2.setX(320)
 body2.setY(400)
 body2.setBorderColor('black')
 
-var wing = new Shape()
+    const wing = new Shape()
 wing.setColor('#FFCC33')
 wing.setHeight(110)
 wing.setWidth(170)
@@ -56,7 +54,7 @@ wing.setX(350)
 wing.setY(400)
 wing.setBorderColor('black')
 
-var eyeL = new Shape()
+    const eyeL = new Shape()
 eyeL.setColor('white')
 eyeL.setHeight(30)
 eyeL.setWidth(30)
@@ -66,7 +64,7 @@ eyeL.setX(290)
 eyeL.setY(330)
 eyeL.setBorderColor('black')
 
-var pupilL = new Shape()
+    const pupilL = new Shape()
 pupilL.setColor('black')
 pupilL.setHeight(4)
 pupilL.setWidth(4)
@@ -76,7 +74,7 @@ pupilL.setX(298)
 pupilL.setY(335)
 pupilL.setBorderColor('black')
 
-var eyeR = new Shape()
+    const eyeR = new Shape()
 eyeR.setColor('white')
 eyeR.setHeight(45)
 eyeR.setWidth(45)
@@ -86,7 +84,7 @@ eyeR.setX(350)
 eyeR.setY(330)
 eyeR.setBorderColor('black')
 
-var pupilR = new Shape()
+    const pupilR = new Shape()
 pupilR.setColor('black')
 pupilR.setHeight(5)
 pupilR.setWidth(5)
@@ -96,7 +94,7 @@ pupilR.setX(375)
 pupilR.setY(340)
 pupilR.setBorderColor('black')
 
-var pico = new Shape()
+    const pico = new Shape()
 pico.setColor('#FF6433')
 pico.setHeight(20)
 pico.setWidth(90)
@@ -108,9 +106,9 @@ pico.setRadius(18)
 
 
 
-// var x = 200
-//var y = 300
-//var z = 100
+// const x = 200
+//const y = 300
+//const z = 100
 
 
 //body.setX(x)
@@ -137,3 +135,4 @@ document.body.appendChild(eyeR.container)
 document.body.appendChild(pupilL.container)
 document.body.appendChild(pupilR.container)
 document.body.appendChild(pico.container)
+

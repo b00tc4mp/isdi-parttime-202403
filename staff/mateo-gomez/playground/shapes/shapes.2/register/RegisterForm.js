@@ -1,116 +1,135 @@
-function RegisterForm() {
-    Form.call(this)
+class RegisterForm extends Form {
+    constructor() {
+        super()
 
-    //var form = new Form()
-    //this.removeClass('Form')
-    this.addClass('RegisterForm')
+        //const form = new Form()
+        //this.removeClass('Form')
+        this.addClass('RegisterForm')
 
-    /*
-    var usernameLabel = new Label()
-    usernameLabel.setText('Username')
-    usernameLabel.setFor('username')
-
-    var usernameInput = new Input()
-    usernameInput.setId('username')
+        /*
+        const usernameLabel = new Label()
+        usernameLabel.setText('Username')
+        usernameLabel.setFor('username')
     
-    var usernameField = new Field('username', 'Username')
+        var usernameInput = new Input()
+        usernameInput.setId('username')
+        
+        var usernameField = new Field('username', 'Username')
+        
+        this.add(usernameField)
     
-    this.add(usernameField)
+        */
 
-    */
+        const nameField = new Field('name', 'text', 'Name')
+        nameField.setPlaceholder('name')
 
-    var emailField = new Field('email', 'email', 'E-mail')
-    emailField.setPlaceholder('name@example.com')
+        const surnameField = new Field('surname', 'text', 'Surname')
+        surnameField.setPlaceholder('surname')
 
-
-    var usernameField = new Field('username', 'text', 'Username')
-    usernameField.setPlaceholder('username')
-
-
-    /*var passwordLabel = new Label()
-    passwordLabel.setText('Password')
-    passwordLabel.setFor('password')
-
-    var passwordInput = new Input()
-    passwordLabel.setId('Password')
-    passwordLabel.setType('password')
-
-    */
-
-    var passwordField = new Field('password', 'password', 'Password')
-    passwordField.setPlaceholder('password')
-    var repeatPasswordField = new Field('password', 'password', 'Repeat Password')
-    repeatPasswordField.setPlaceholder('repeat password')
-
-    /* var submitButton = new Button()
-     submitButton.setText('Register')
-     submitButton.setType('submit')
- 
-     */
-
-    var submitButton = new SubmitButton('Register')
-
-    var feedbackPanel = new Component('p')
-    feedbackPanel.addClass('Feedback')
+        const emailField = new Field('email', 'email', 'E-mail')
+        emailField.setPlaceholder('name@example.com')
 
 
-    //this.add(usernameLabel)
-    //this.add(passwordLabel)
-    //this.add(usernameInput)
-    //this.add(passwordInput)
-
-    this.add(emailField)
-    this.add(usernameField)
-    this.add(passwordField)
-    this.add(repeatPasswordField)
-    this.add(submitButton)
-    this.add(feedbackPanel)
-
-}
-
-RegisterForm.prototype = Object.create(Form.prototype)
-RegisterForm.prototype.constructor = RegisterForm
-
-RegisterForm.prototype.getEmail = function () {
-    var emailField = this.children[0]
-
-    return emailField.getValue()
-}
-
-RegisterForm.prototype.getUsername = function () {
-    var usernameField = this.children[1]
-
-    return usernameField.getValue()
-}
-
-RegisterForm.prototype.getPassword = function () {
-    var passwordField = this.children[2]
-
-    return passwordField.getValue()
-}
-
-RegisterForm.prototype.getPasswordRepeat = function () {
-    var passwordFieldRepeat = this.children[3]
-
-    return passwordFieldRepeat.getValue()
-}
-
-RegisterForm.prototype.setFeedback = function (message, level) {
-    var feedbackPanel = this.children[this.children.length - 1]
-
-    if (level === 'success')
-        feedbackPanel.addClass('success')
+        const usernameField = new Field('username', 'text', 'Username')
+        usernameField.setPlaceholder('username')
 
 
+        /*const passwordLabel = new Label()
+        passwordLabel.setText('Password')
+        passwordLabel.setFor('password')
+    
+        const passwordInput = new Input()
+        passwordLabel.setId('Password')
+        passwordLabel.setType('password')
+    
+        */
 
-    feedbackPanel.setText(message)
-}
+        const passwordField = new Field('password', 'password', 'Password')
+        passwordField.setPlaceholder('password')
+        const repeatPasswordField = new Field('password', 'password', 'Repeat Password')
+        repeatPasswordField.setPlaceholder('repeat password')
 
-RegisterForm.prototype.clear = function () { // method overriding
-    Form.prototype.clear.call(this)
+        /* const submitButton = new Button()
+         submitButton.setText('Register')
+         submitButton.setType('submit')
+     
+         */
 
-    var feedbackPanel = this.children[this.children.length - 1]
+        const submitButton = new SubmitButton('Register')
 
-    feedbackPanel.setText('')
-    feedbackPanel.removeClass('success')
+        const feedbackPanel = new Component('p')
+        feedbackPanel.addClass('Feedback')
+
+
+        //this.add(usernameLabel)
+        //this.add(passwordLabel)
+        //this.add(usernameInput)
+        //this.add(passwordInput)
+
+        this.add(nameField)
+        this.add(surnameField)
+        this.add(emailField)
+        this.add(usernameField)
+        this.add(passwordField)
+        this.add(repeatPasswordField)
+        this.add(submitButton)
+        this.add(feedbackPanel)
+
+    }
+
+    getName() {
+        const nameField = this.children[0]
+
+        return nameField.getValue()
+    }
+
+    getSurname() {
+        const surnameField = this.children[1]
+
+        return surnameField.getValue()
+    }
+
+    getEmail() {
+        const emailField = this.children[2]
+
+        return emailField.getValue()
+    }
+
+    getUsername() {
+        const usernameField = this.children[3]
+
+        return usernameField.getValue()
+    }
+
+    getPassword() {
+        const passwordField = this.children[4]
+
+        return passwordField.getValue()
+    }
+
+    getPasswordRepeat() {
+        const passwordFieldRepeat = this.children[5]
+
+        return passwordFieldRepeat.getValue()
+    }
+
+    setFeedback(message, level) {
+        const feedbackPanel = this.children[this.children.length - 1]
+
+        if (level === 'success')
+            feedbackPanel.addClass('success')
+
+
+
+        feedbackPanel.setText(message)
+    }
+
+    clear() { // method overriding
+        super.clear()
+
+        const feedbackPanel = this.children[this.children.length - 1]
+
+        feedbackPanel.setText('')
+        feedbackPanel.removeClass('success')
+    }
 }

@@ -2,11 +2,11 @@
 if (logic.isUserLoggedIn())
     location.href = '../home'
 
-var view = new Component(document.body)
+const view = new Component(document.body)
 view.addClass('View')
 
 
-var title = new Heading(1)
+const title = new Heading(1)
 title.setText('Register')
 
 title.onClick(function () {
@@ -14,18 +14,20 @@ title.onClick(function () {
 })
 
 
-var registerForm = new RegisterForm
+const registerForm = new RegisterForm
 registerForm.onSubmit(function (event) {
     event.preventDefault()
 
-    var email = registerForm.getEmail()
-    var username = registerForm.getUsername()
-    var password = registerForm.getPassword()
-    var passwordRepeat = registerForm.getPasswordRepeat()
+    const name = registerForm.getName()
+    const surname = registerForm.getSurname()
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
 
 
     try {
-        logic.registerUser(email, username, password, passwordRepeat)
+        logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
         registerForm.clear()
         registerForm.setFeedback('user successfuly success', 'success')
@@ -34,7 +36,7 @@ registerForm.onSubmit(function (event) {
     } catch (error) {
         if (error instanceof ContentError)
             registerForm.setFeedback(error.message + ', por favor, corrijalo')
-        if (error instanceof MatchError)
+        else if (error instanceof MatchError)
             registerForm.setFeedback(error.message + ', please, retype them')
         else if (error instanceof DuplicityError)
             registerForm.setFeedback(error.message + ', please, enter new one')
@@ -42,6 +44,7 @@ registerForm.onSubmit(function (event) {
             registerForm.setFeedback('Lamentablemente ha ocurrido un error, intentelo más tarde')
 
     }
+
 })
 
 
@@ -54,9 +57,7 @@ loginLink.setText('Login')
 loginLink.onClick(function (event) {
     event.preventDefault()
 
-    setTimeout(function () {
-        location.href = '../login'
-    }, 500)
+    setTimeout(() => location.href = '../login', 500)
 })
 
 view.add(title)

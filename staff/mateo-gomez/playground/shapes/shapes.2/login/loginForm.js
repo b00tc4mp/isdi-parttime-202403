@@ -1,90 +1,88 @@
-function LoginForm() {
-    Form.call(this)
+class LoginForm extends Form {
+    constructor() {
+        super()
 
-    //var form = new Form()
-    //this.removeClass('Form')
-    this.addClass('LoginForm')
+        //const form = new Form()
+        //this.removeClass('Form')
+        this.addClass('LoginForm')
 
-    /*
-    var usernameLabel = new Label()
-    usernameLabel.setText('Username')
-    usernameLabel.setFor('username')
-
-    var usernameInput = new Input()
-    usernameInput.setId('username')
+        /*
+        const usernameLabel = new Label()
+        usernameLabel.setText('Username')
+        usernameLabel.setFor('username')
     
-    var usernameField = new Field('username', 'Username')
+        const usernameInput = new Input()
+        usernameInput.setId('username')
+        
+        const usernameField = new Field('username', 'Username')
+        
+        this.add(usernameField)
     
-    this.add(usernameField)
-
-    */
-    var usernameField = new Field('username', 'text', 'Username')
+        */
+        const usernameField = new Field('username', 'text', 'Username')
 
 
-    /*var passwordLabel = new Label()
-    passwordLabel.setText('Password')
-    passwordLabel.setFor('password')
+        /*const passwordLabel = new Label()
+        passwordLabel.setText('Password')
+        passwordLabel.setFor('password')
+    
+        const passwordInput = new Input()
+        passwordLabel.setId('Password')
+        passwordLabel.setType('password')
+    
+        */
 
-    var passwordInput = new Input()
-    passwordLabel.setId('Password')
-    passwordLabel.setType('password')
+        const passwordField = new Field('password', 'password', 'Password')
 
-    */
+        /* const submitButton = new Button()
+         submitButton.setText('Register')
+         submitButton.setType('submit')
+     
+         */
 
-    var passwordField = new Field('password', 'password', 'Password')
+        const submitButton = new SubmitButton('Login')
 
-    /* var submitButton = new Button()
-     submitButton.setText('Register')
-     submitButton.setType('submit')
- 
-     */
-
-    var submitButton = new SubmitButton('Login')
-
-    var feedbackPanel = new Component('p')
-    feedbackPanel.addClass('Feedback')
-
-
-    //this.add(usernameLabel)
-    //this.add(passwordLabel)
-    this.add(usernameField)
-    //this.add(usernameInput)
-    //this.add(passwordInput)
-    this.add(passwordField)
-    this.add(submitButton)
-    this.add(feedbackPanel)
-}
-
-LoginForm.prototype = Object.create(Form.prototype)
-LoginForm.prototype.constructor = Form
+        const feedbackPanel = new Component('p')
+        feedbackPanel.addClass('Feedback')
 
 
-LoginForm.prototype.getUsername = function () {
-    var usernameField = this.children[0]
+        //this.add(usernameLabel)
+        //this.add(passwordLabel)
+        this.add(usernameField)
+        //this.add(usernameInput)
+        //this.add(passwordInput)
+        this.add(passwordField)
+        this.add(submitButton)
+        this.add(feedbackPanel)
+    }
 
-    return usernameField.getValue()
-}
+    getUsername() {
+        const usernameField = this.children[0]
 
-LoginForm.prototype.getPassword = function () {
-    var passwordField = this.children[1]
+        return usernameField.getValue()
+    }
 
-    return passwordField.getValue()
-}
+    getPassword() {
+        const passwordField = this.children[1]
 
-LoginForm.prototype.setFeedback = function (message, level) {
-    var feedbackPanel = this.children[this.children.length - 1]
+        return passwordField.getValue()
+    }
 
-    if (level === 'success')
-        feedbackPanel.addClass('success')
+    setFeedback(message, level) {
+        const feedbackPanel = this.children[this.children.length - 1]
 
-    feedbackPanel.setText(message)
-}
+        if (level === 'success')
+            feedbackPanel.addClass('success')
 
-LoginForm.prototype.clear = function () {
-    Form.prototype.clear.call(this)
+        feedbackPanel.setText(message)
+    }
 
-    var feedbackPanel = this.children[this.children.length - 1]
+    clear() {
+        super.clear()
 
-    feedbackPanel.setText('')
-    feedbackPanel.removeClass('success')
+        const feedbackPanel = this.children[this.children.length - 1]
+
+        feedbackPanel.setText('')
+        feedbackPanel.removeClass('success')
+    }
 }

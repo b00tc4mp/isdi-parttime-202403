@@ -4,11 +4,11 @@ if (!logic.isUserLoggedIn())
 const view = new Component(document.body)
 view.addClass('View')
 
-const usernameTitle = new Heading(1)
-usernameTitle.setText('Login')
-usernameTitle.onClick(function (event) {
-    alert('¡Esto no es un botón!\nIntroduce tus datos de inicio de sesión más abajo 🤪')
-})
+const userName = logic.getUserName()
+
+const usernameTitle = new Heading(3)
+usernameTitle.setText(userName)
+
 
 view.add(usernameTitle)
 
@@ -20,6 +20,8 @@ logoutButton.onClick(() => {
 
     location.href = '../login'
 })
+
+
 
 view.add(logoutButton)
 
