@@ -80,3 +80,31 @@ logic.registerUser = function (email, username, password, repeatedPassword) {
   registerForm.success("Registered succesfully, thank you");
   registerForm.clear();
 };
+
+logic.loginUser = function (username, password) {
+  if (!USERNAME_REGEX.test(username)) {
+    loginForm.shakeButton();
+  }
+
+  if (!PASSWORD_REGEX.test(password)) {
+    loginForm.shakeButton();
+  }
+
+  var userKey = "user_" + username.toLowerCase();
+  var userKeyString = JSON.stringify(userKey);
+
+  if (localStorage.getItem(userKeyString)) {
+    var userData = JSON.parse(localStorage.getItem(userKeyString));
+    if (password === userData.password) {
+      loginForm.success("Logged in successfully");
+      loginForm.clear();
+      setTimeout(function () {
+        window.location.href = "../public/src/index.html";
+      }, 1000);
+    } else {
+      loginForm.shakeButton();
+    }
+  } else {
+    loginForm.shakeButton();
+  }
+};
