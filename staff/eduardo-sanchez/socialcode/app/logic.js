@@ -67,9 +67,7 @@ logic.loginUser = (username, password) => {
     sessionStorage.username = username
 }
 
-logic.isUserLoggedIn = function () {
-
-    return !!sessionStorage.username
+logic.isUserLoggedIn = () => !!sessionStorage.username
 }
 
 logic.getUserName = () => {
@@ -80,6 +78,10 @@ logic.getUserName = () => {
     return user.name
 }
 
-logic.logoutUser = function () {
-    delete sessionStorage.username
-}
+logic.logoutUser = () => delete sessionStorage.username
+
+
+// logic.logoutUser = () => {
+//     delete sessionStorage.username
+
+// }
