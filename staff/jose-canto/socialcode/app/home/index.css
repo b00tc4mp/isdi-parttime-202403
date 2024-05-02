@@ -24,6 +24,7 @@
 .Header .Button {
   position: relative;
   right: 2rem;
+  letter-spacing: 0.2rem;
 }
 
 .Logo {
@@ -41,12 +42,18 @@
   justify-content: center;
   position: fixed;
   bottom: 0;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   background-color: rgba(0, 0, 0, 0.8)
 }
 
 .Footer .Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  width: 2rem;
+  height: 2.2rem;
 }
 
 .Article {
@@ -94,10 +101,9 @@
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
-
 }
 
 .Image {
-  max-width: 75%;
+  max-width: 60%;
   height: auto;
 }

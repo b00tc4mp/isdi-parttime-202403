@@ -10,10 +10,6 @@
   overflow: hidden;
   transition: color 0.4s ease-in-out;
   border-radius: 5px;
-  letter-spacing: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .Button::before {
