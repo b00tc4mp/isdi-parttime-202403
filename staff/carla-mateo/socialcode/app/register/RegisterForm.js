@@ -1,4 +1,4 @@
-class RegisterForm extends Form {
+class RegisterForm extends FormWithFeedback {
     constructor() {
         super()
 
@@ -24,9 +24,6 @@ class RegisterForm extends Form {
 
         const submitButton = new SubmitButton('Register')
 
-        const feedbackPanel = new Component('p')
-        feedbackPanel.addClass('Feedback')
-
         this.add(nameField)
         this.add(surnameField)
         this.add(emailField)
@@ -34,7 +31,6 @@ class RegisterForm extends Form {
         this.add(passwordField)
         this.add(passwordRepeatField)
         this.add(submitButton)
-        this.add(feedbackPanel)
     }
 
     getName() {
@@ -71,22 +67,6 @@ class RegisterForm extends Form {
         const passwordFieldRepeat = this.children[5]
 
         return passwordFieldRepeat.getValue()
-    }
-    setFeedback(message, level) {
-        const feedbackPanel = this.children[this.children.length - 1]
-
-        if (level === 'success')
-            feedbackPanel.addClass('success')
-
-        feedbackPanel.setText(message)
-    }
-    clear() {
-        super.clear()
-
-        const feedbackPanel = this.children[this.children.length - 1]
-
-        feedbackPanel.setText('')
-        feedbackPanel.removeClass('success')
     }
 
 }

@@ -27,7 +27,8 @@ class Component {
         if (index > -1)
             this.children.splice(index, 1)
 
-        this.container.removeChild(child.container)
+        if (this.container.contains(child.container))
+            this.container.removeChild(child.container)
     }
 
     setText(text) {

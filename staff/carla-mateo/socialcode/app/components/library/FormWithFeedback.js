@@ -7,8 +7,7 @@ class FormWithFeedback extends Form {
         const feedbackPanel = new Component('p')
         feedbackPanel.addClass('Feedback')
 
-        if ()
-            this.feedbackPanel = feedbackPanel
+        this.feedbackPanel = feedbackPanel
     }
 
     setFeedback(message, level) {

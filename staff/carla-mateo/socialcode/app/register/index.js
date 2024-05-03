@@ -1,5 +1,5 @@
-// if (logic.isUserLoggedIn())
-//     location.href = '../home'
+if (logic.isUserLoggedIn())
+    location.href = '../home'
 
 const view = new Component(document.body)
 view.addClass('View')
@@ -24,7 +24,7 @@ registerForm.onSubmit(event => {
 
         registerForm.clear()
 
-        registerForm.setFeedback('user successfully registered', 'success')
+        registerForm.setFeedback('✅ User successfully registered', 'success')
 
         setTimeout(() => location.href = '../login', 1000)
     } catch (error) {
@@ -35,7 +35,7 @@ registerForm.onSubmit(event => {
         else if (error instanceof DuplicityError)
             registerForm.setFeedback(error.message + ', please, enter new one')
         else
-            registerForm.setFeedback('sorry, there was an error, please try again later')
+            registerForm.setFeedback('❌ Sorry, there was an error, please try again later')
     }
 })
 

@@ -28,7 +28,7 @@ loginForm.onSubmit(event => {
         else if (error instanceof MatchError)
             loginForm.setFeedback('❌ Wrong credentials')
         else
-            loginForm.setFeedback('Sorry, there was an error, please try again later')
+            loginForm.setFeedback('❌ Sorry, there was an error, please try again later')
     }
 })
 

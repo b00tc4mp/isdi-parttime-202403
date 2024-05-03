@@ -6,7 +6,7 @@ const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 
 const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
-const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{4,}$/
+const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{2,}$/
 
 logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
     if (!NAME_REGEX.test(name))
@@ -67,19 +67,43 @@ logic.loginUser = (username, password) => {
     sessionStorage.username = username
 }
 
-logic.isUserLoggedIn = function () {
-    return !!sessionStorage.username
-}
+logic.isUserLoggedIn = () => !!sessionStorage.username
 
-logic.logoutUser = function () {
-    delete sessionStorage.username
-}
-logic.getUserName = function () {
-    let user = data.findUser(function (user) {
-        return user.username === sessionStorage.username
-    })
+logic.logoutUser = () => delete sessionStorage.username
+
+logic.getUserName = () => {
+    const user = data.findUser(user => user.username === sessionStorage.username)
 
     return user.name
+}
+
+logic.getAllPosts = () => {
+    const posts = data.findPosts(() => true)
+
+    return posts.reverse()
+}
+
+logic.createPost = (title, image, description) => {
+    if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('❌ Title is not valid')
+    if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('❌ Image is not valid')
+    if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('❌ Description is not valid')
+
+    const newDate = new Date();
+    const year = newDate.getFullYear()
+    const month = newDate.getMonth() + 1
+    const day = newDate.getDay()
+    const hour = newDate.getHours()
+    const minut = newDate.getMinutes()
+
+    const post = {
+        author: sessionStorage.username,
+        title,
+        image,
+        description,
+        date: day + '/' + month + '/' + year + ' ' + hour + ':' + minut
+    }
+
+    data.insertPost(post)
 }
 
 
