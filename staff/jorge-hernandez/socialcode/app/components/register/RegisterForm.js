@@ -1,10 +1,16 @@
-class RegisterForm extends Form {
+class RegisterForm extends FormWithFeedback {
   constructor() {
     super()
     this.addClass('RegisterForm')
 
     const heading = new Heading(1)
     heading.setText('Register')
+
+    const nameField = new Field('name', 'text', 'Name')
+    nameField.setPlaceholder('name')
+
+    const surnameField = new Field('surname', 'text', 'Surname')
+    surnameField.setPlaceholder('surname')
 
     const emailField = new Field('email', 'email', 'E-mail')
     emailField.setPlaceholder('email@email.com')
@@ -38,9 +44,9 @@ class RegisterForm extends Form {
     button.setType('submit')
     button.setText('Register')
 
-    const feedbackPanel = new Component('p')
-    feedbackPanel.addClass('Feedback')
     this.add(heading)
+    this.add(nameField)
+    this.add(surnameField)
     this.add(emailField)
     this.add(userNameField)
     this.add(passwordField)
@@ -48,27 +54,32 @@ class RegisterForm extends Form {
     this.add(icon)
     this.add(icon2)
     this.add(button)
-    this.add(feedbackPanel)
+  }
+
+  getName() {
+    const nameField = this.children[1]
+    return nameField.getValue()
+  }
+
+  getSurname() {
+    const surnameField = this.children[2]
+    return surnameField.getValue()
   }
 
   getEmail() {
-    const emailField = this.children[1]
+    const emailField = this.children[3]
     return emailField.getValue()
   }
   getUsername() {
-    const usernameField = this.children[2]
+    const usernameField = this.children[4]
     return usernameField.getValue()
   }
   getPassword() {
-    const passwordField = this.children[3]
+    const passwordField = this.children[5]
     return passwordField.getValue()
   }
   getRepeatPassword() {
-    const repeatPasswordField = this.children[4]
+    const repeatPasswordField = this.children[6]
     return repeatPasswordField.getValue()
-  }
-  setFeedback(message) {
-    const feedbackPanel = this.children[8]
-    feedbackPanel.setText(message)
   }
 }

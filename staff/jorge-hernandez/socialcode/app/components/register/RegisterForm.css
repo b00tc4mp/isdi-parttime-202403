@@ -5,8 +5,8 @@
     border: 1px solid black;
     border-radius: 10px;
     width: 250px;
-    height: 400px;
-    margin: 15px;
+    height: 440px;
+    margin: 10px;
     padding: 10px;
     box-shadow: 0 0 10px black;
     background: linear-gradient(to bottom, #1e6091, #3f9bd8);
@@ -20,7 +20,7 @@
 .RegisterForm .icon{
     position: relative;
     right: -60px; 
-    top: -70px;
+    top: -62px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
     font-size: 11px;
@@ -28,8 +28,23 @@
 .RegisterForm .icon2{
     position: relative;
     right: -60px; 
-    top: -32px;
+    top: -29px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
     font-size: 11px;
 }
+
+.RegisterForm .Button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bffb0;
+    border: 1px solid rgba(0, 0, 255, 0.338);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    width: 100px;
+    height: 40px;
+  }

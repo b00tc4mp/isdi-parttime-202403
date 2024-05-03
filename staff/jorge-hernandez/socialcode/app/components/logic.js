@@ -5,7 +5,17 @@ const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{6,}$/
 
 const logic = {}
 //logic RegisterForm
-logic.registerUser = (email, username, password, repeatPassword) => {
+logic.registerUser = (
+  name,
+  surname,
+  email,
+  username,
+  password,
+  repeatPassword
+) => {
+  if (!USERNAME_REGEX.test(name)) throw new ContentError('nombre no válido')
+  if (!USERNAME_REGEX.test(surname)) throw new ContentError('surname no válido')
+
   if (!EMAIL_REGEX.test(email))
     throw new ContentError('Esta cuenta de correo no es correcta')
 
@@ -18,7 +28,13 @@ logic.registerUser = (email, username, password, repeatPassword) => {
   if (password !== repeatPassword)
     throw new MatchError('los campos de contraseña no coinciden')
 
-  const newUser = { email: email, username: username, password: password }
+  const newUser = {
+    name: name,
+    surname: surname,
+    email: email,
+    username: username,
+    password: password,
+  }
 
   const user = data.findUser((user) => {
     return user.email === email || user.username === username

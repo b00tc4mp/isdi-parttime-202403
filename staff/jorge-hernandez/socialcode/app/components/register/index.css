@@ -6,7 +6,7 @@ body {
     background: linear-gradient(to bottom, #2980b9, #6dd5fa);
     height: 100vh;
     margin: 0;
-    color: #fff; /* Color de texto blanco para contrastar con el fondo */
+    color: #fff;
 }
 
 h1{
@@ -20,6 +20,7 @@ a {
     color: #eef0f4;
     font-weight: bold;
     transition: color 0.3s ease;
+    margin-top: 1px;
 }
 a:hover {
     color: #617e7e;

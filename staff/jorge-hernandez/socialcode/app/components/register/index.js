@@ -19,28 +19,30 @@ icon2.onclick = () => {
 
 registerForm.onSubmit((event) => {
   event.preventDefault()
+  const name = registerForm.getName()
+  const surname = registerForm.getSurname()
   const email = registerForm.getEmail()
   const username = registerForm.getUsername()
   const password = registerForm.getPassword()
   const repeatPassword = registerForm.getRepeatPassword()
 
   try {
-    logic.registerUser(email, username, password, repeatPassword)
+    logic.registerUser(name, surname, email, username, password, repeatPassword)
   } catch (error) {
     if (error instanceof ContentError) {
       registerForm.setFeedback(error.message + ', corrígelo')
       setTimeout(() => {
-        registerForm.setFeedback('')
+        registerForm.clear()
       }, 2000)
     } else if (error instanceof MatchError) {
       registerForm.setFeedback('Error de credenciales')
       setTimeout(() => {
-        registerForm.setFeedback('')
+        registerForm.clear()
       }, 2000)
     } else if (error instanceof DuplicityError) {
       registerForm.setFeedback('usuario ya existe')
       setTimeout(() => {
-        registerForm.setFeedback('')
+        registerForm.clear()
       }, 2000)
     } else {
       registerForm.setFeedback(
