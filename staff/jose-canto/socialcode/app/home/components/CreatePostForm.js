@@ -17,6 +17,8 @@ class CreatePostForm extends FormWithFeedback {
 
     const descriptionTextArea = new TextArea()
     descriptionTextArea.setPlaceholder("description.....")
+    descriptionTextArea.setId("TextArea")
+    this.descriptionTextArea = descriptionTextArea
 
 
     const submitButton = new SubmitButton("Create")
@@ -40,4 +42,8 @@ class CreatePostForm extends FormWithFeedback {
     return imageField.getValue()
   }
 
+  getDescription() {
+    const descriptionTextArea = createPostForm.descriptionTextArea.getValue()
+    return descriptionTextArea
+  }
 }
