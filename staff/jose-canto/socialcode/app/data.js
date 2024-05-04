@@ -14,7 +14,6 @@ data.findUser = (callback) => {
   return userRegistered
 }
 
-
 data.insertUser = (user) => {
   // Obtenemos los usuarios del Local Storage o creamos un array vacío si no existen
   let usersJson = localStorage.users
@@ -31,4 +30,36 @@ data.insertUser = (user) => {
 
   // Guardamos la cadena JSON actualizada en el Local Storage
   localStorage.users = usersJson
+}
+
+data.findPosts = (callback) => {
+  let postsJson = localStorage.posts
+
+  if (!postsJson)
+    postsJson = "[]"
+
+
+  const posts = JSON.parse(postsJson)
+
+  const filtered = posts.filter(callback)
+
+  return filtered
+}
+
+data.insertPost = (post) => {
+
+  let postsJson = localStorage.posts
+
+  if (!postsJson) {
+    postsJson = "[]"
+  }
+
+  const posts = JSON.parse(postsJson)
+
+  posts.push(post)
+
+  postsJson = JSON.stringify(posts)
+
+  localStorage.posts = postsJson
+
 }
