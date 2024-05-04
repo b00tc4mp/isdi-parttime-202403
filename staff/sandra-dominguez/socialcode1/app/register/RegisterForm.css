@@ -1,0 +1,9 @@
+.RegisterForm {
+    background-color: rgb(229, 211, 241);
+    padding: 40px;
+    border: solid rgb(204, 203, 205) 2px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px black;
+    width: 250px;
+    height: 530px;
+}
