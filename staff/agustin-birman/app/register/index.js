@@ -1,5 +1,5 @@
-if (logic.isUserLoggedIn())
-    location.href = '../home'
+// if (userLogic.isUserLoggedIn())
+//     location.href = '../login'
 
 const view = new Component(document.body)
 view.addClass('View')
@@ -8,18 +8,9 @@ const title = new Heading(1)
 title.setText('Register')
 
 const registerForm = new RegisterForm
-registerForm.onSubmit(event => {
-    event.preventDefault()
-
-    const name = registerForm.getName()
-    const surname = registerForm.getSurname()
-    const email = registerForm.getEmail()
-    const username = registerForm.getUsername()
-    const password = registerForm.getPassword()
-    const passwordRepeat = registerForm.getPasswordRepeat()
-
+registerForm.onRegisterSubmit((name, surname, email, username, password, passwordRepeat) => {
     try {
-        logic.registerUser(name, surname, email, username, password, passwordRepeat)
+        userLogic.registerUser(name, surname, email, username, password, passwordRepeat)
 
         registerForm.clear()
 
@@ -49,7 +40,3 @@ loginLink.onClick(event => {
 view.add(title)
 view.add(registerForm)
 view.add(loginLink)
-
-var es = []
-if(es) 
-console.log('Hola')

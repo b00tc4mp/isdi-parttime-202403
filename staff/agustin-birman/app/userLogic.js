@@ -1,11 +1,11 @@
-const logic = {}
+const userLogic = {}
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
-logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
+userLogic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
     if (!NAME_REGEX.test(name))
         throw new ContentError('Name is not valid')
 
@@ -32,17 +32,17 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
         throw new DuplicityError('user already exists')
 
     user = {
-        name: name,
-        surname: surname,
-        email: email,
-        username: username,
-        password: password
+        name,
+        surname,
+        email,
+        username,
+        password,
     }
 
     data.insertUser(user)
 }
 
-logic.loginUser = (username, password) => {
+userLogic.loginUser = (username, password) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('Username is not valid')
 
@@ -62,41 +62,15 @@ logic.loginUser = (username, password) => {
     sessionStorage.username = username
 }
 
-logic.isUserLoggedIn = () => { !!sessionStorage.username }
+userLogic.isUserLoggedIn = () => { !!sessionStorage.username }
 
-logic.logoutUser = () => { delete sessionStorage.username }
+userLogic.logoutUser = () => { delete sessionStorage.username }
 
-logic.getUserName = () => {
+userLogic.getUserName = () => {
     const user = data.findUser(user => user.username === sessionStorage.username)
 
     return user.name
 }
 
-logic.getAllPosts = () => {
-    const posts = data.findPosts(() => true)
+userLogic.getLoggedInUsername = () => sessionStorage.username
 
-    return posts.reverse()
-}
-
-logic.createPost = (title, image, description) => {
-    if (typeof title !== 'string' || !title.length)
-        throw new ContentError('Title is not valid')
-    if (title.length > 50)
-        throw new ContentError('Title is too long (It should be less than 50 characters)')
-
-    if (typeof image !== 'string' || !image.startsWith('http'))
-        throw new ContentError('Image is not valid')
-
-    if (typeof description !== 'string' || description.length > 250)
-        throw new ContentError('Description is not valid')
-
-    const post = {
-        author: sessionStorage.username,
-        title,
-        image,
-        description,
-        date: new Date().toISOString(),
-    }
-
-    data.insterPost(post)
-}

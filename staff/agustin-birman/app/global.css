@@ -14,6 +14,6 @@
 
 body {
     background-color: var(--second-color);
-    background: linear-gradient(to bottom right, blue, rgb(42, 42, 255), aqua, rgb(105, 228, 228)) no-repeat;
+    background: linear-gradient(to bottom right, rgba(0, 0, 255, 0.63), rgba(42, 42, 255, 0.788), rgba(0, 255, 255, 0.788), rgba(105, 228, 228, 0.76)) no-repeat;
     height: 100vh;
 }
