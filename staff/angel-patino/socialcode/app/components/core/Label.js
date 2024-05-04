@@ -4,6 +4,6 @@ class Label extends Component {
     }
 
     setFor(id) {
-    this.container.htmlFor = id
+        this.container.htmlFor = id
     }
 }

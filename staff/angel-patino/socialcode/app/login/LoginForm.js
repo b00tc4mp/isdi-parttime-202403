@@ -1,33 +1,29 @@
 class LoginForm extends FormWithFeedback {
-    constructor(){
+    constructor() {
         super()
 
-    this.addClass('LoginForm')
+        this.addClass('LoginForm')
 
-   const usernameField = new Field('username', 'text', 'Username')
+        const usernameField = new Field('username', 'text', 'Username')
 
-   const passwordField = new Field('password', 'password', 'Password')
+        const passwordField = new Field('password', 'password', 'Password')
 
-   const submitButton = new SubmitButton('Login')
-    
- 
-    this.add(usernameField)
-    this.add(passwordField)
-    this.add(submitButton)
-    
+        const submitButton = new SubmitButton('Login')
+
+        this.add(usernameField)
+        this.add(passwordField)
+        this.add(submitButton)
     }
 
     getUsername() {
-   const usernameField = this.children[0]
+        const usernameField = this.children[0]
 
-    return usernameField.getValue()
+        return usernameField.getValue()
     }
 
     getPassword() {
-   const passwordField = this.children[1]
+        const passwordField = this.children[1]
 
-    return passwordField.getValue()
+        return passwordField.getValue()
     }
-
-
 }

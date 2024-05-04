@@ -1,21 +1,21 @@
 class Component {
-    constructor(tagNameOrContainer = 'div'){
-    if (typeof tagNameOrContainer === 'string')
-        this.container = document.createElement(tagNameOrContainer)
-    else if (tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument)
-        this.container = tagNameOrContainer
-    else
-        throw new Error('tagNameOrContainer is not a tagName or container')
+    constructor(tagNameOrContainer = 'div') {
+        if (typeof tagNameOrContainer === 'string')
+            this.container = document.createElement(tagNameOrContainer)
+        else if (tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument)
+            this.container = tagNameOrContainer
+        else
+            throw new Error('tagNameOrContainer is not a tagName or container')
 
-    this.children = []
-}
+        this.children = []
+    }
 
     add(child) {
-     if (!(child instanceof Component)) throw new TypeError('child is not component')
+        if (!(child instanceof Component)) throw new TypeError('child is not component')
 
-     this.children.push(child)
+        this.children.push(child)
 
-     this.container.appendChild(child.container)
+        this.container.appendChild(child.container)
     }
 
     remove(child) {
@@ -23,11 +23,12 @@ class Component {
 
         const index = this.children.indexOf(child)
 
-        if(index > -1)
-             this.children.splice(index, 1)
-   
-        this.container.removeChild(child.container)
-       }
+        if (index > -1)
+            this.children.splice(index, 1)
+
+        if (this.container.contains(child.container))
+            this.container.removeChild(child.container)
+    }
 
     setText(text) {
         this.container.innerText = text
@@ -38,19 +39,19 @@ class Component {
     }
 
     addClass(clazz) {
-    this.container.classList.add(clazz)
+        this.container.classList.add(clazz)
     }
 
     removeClass(clazz) {
-    this.container.classList.remove(clazz)
+        this.container.classList.remove(clazz)
     }
 
     onClick(listener) {
-    this.container.addEventListener('click', listener)
+        this.container.addEventListener('click', listener)
     }
 
     onKeyDown(listener) {
-    this.container.addEventListener('keydown', listener)
+        this.container.addEventListener('keydown', listener)
     }
 
     onKeyUp(listener) {

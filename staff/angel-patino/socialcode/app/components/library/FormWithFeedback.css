@@ -1,12 +1,12 @@
-.LoginForm {
+.FormWithFeedback {
     padding: 1rem;
 }
 
 
-.LoginForm .Feedback {
+.FormWithFeedback .Feedback {
     color: tomato;
 }
 
-.LoginForm .Feedback.success {
+.FormWithFeedback .Feedback.success {
     color: greenyellow;
 }

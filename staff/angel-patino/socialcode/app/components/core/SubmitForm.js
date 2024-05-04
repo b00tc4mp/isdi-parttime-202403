@@ -1,10 +1,10 @@
 class SubmitButton extends Button {
-        constructor(text) {
+    constructor(text) {
         super()
 
-    this.addClass('SubmitButton')
+        this.addClass('SubmitButton')
 
-    this.setType('submit')
-    this.setText(text)
+        this.setType('submit')
+        this.setText(text)
     }
 }

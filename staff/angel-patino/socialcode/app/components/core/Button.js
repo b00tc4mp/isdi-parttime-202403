@@ -6,6 +6,6 @@ class Button extends Component {
     }
 
     setType(type) {
-    this.container.type = type
+        this.container.type = type
     }
 }   

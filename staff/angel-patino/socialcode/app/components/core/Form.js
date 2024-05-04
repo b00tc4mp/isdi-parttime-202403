@@ -6,10 +6,10 @@ class Form extends Component {
     }
 
     onSubmit(listener) {
-    this.container.addEventListener('submit', listener)
+        this.container.addEventListener('submit', listener)
     }
 
-    clear () {
-    this.container.reset()
+    clear() {
+        this.container.reset()
     }
 }

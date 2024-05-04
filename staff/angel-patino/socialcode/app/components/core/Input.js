@@ -1,20 +1,20 @@
-class Input extends Component{
+class Input extends Component {
     constructor() {
         super('input')
 
         this.addClass('Input')
-}
+    }
 
 
     setType(type) {
-    this.container.type = type
+        this.container.type = type
     }
 
     setPlaceholder(placeholder) {
-    this.container.placeholder = placeholder
+        this.container.placeholder = placeholder
     }
 
     getValue() {
-    return this.container.value
+        return this.container.value
     }
 }

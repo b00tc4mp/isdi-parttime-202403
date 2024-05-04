@@ -12,4 +12,5 @@
 
 body {
     background-color: var(--second-color);
+    margin: 0;
 }

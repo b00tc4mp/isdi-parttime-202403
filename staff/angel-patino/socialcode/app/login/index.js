@@ -1,4 +1,4 @@
-if(logic.isUserLoggedIn())
+if (logic.isUserLoggedIn())
     location.href = '../home'
 
 const view = new Component(document.body)
@@ -13,7 +13,6 @@ loginForm.onSubmit(event => {
 
     const username = loginForm.getUsername()
     const password = loginForm.getPassword()
-   
 
     try {
         logic.loginUser(username, password)
@@ -22,23 +21,20 @@ loginForm.onSubmit(event => {
 
         loginForm.setFeedback('user successfully logged in', 'success')
 
-        setTimeout(() =>
-            location.href = '../home', 1500)
+        setTimeout(() => location.href = '../home', 1000)
     } catch (error) {
         if (error instanceof ContentError)
-        //alert(error.message)
             loginForm.setFeedback(error.message + ', please, correct it')
         else if (error instanceof MatchError)
             loginForm.setFeedback('wrong credentials')
         else
             loginForm.setFeedback('sorry, there was an error, please try again later')
-
     }
 })
 
+
 const registerLink = new Link
 registerLink.setText('Register')
-//registerLink.setUrl('../register')
 registerLink.onClick(event => {
     event.preventDefault()
 
