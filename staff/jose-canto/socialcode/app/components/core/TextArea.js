@@ -9,4 +9,8 @@ class TextArea extends Component {
     this.container.placeholder = placeholder
   }
 
+  getValue() {
+    return this.container.value
+  }
+
 }

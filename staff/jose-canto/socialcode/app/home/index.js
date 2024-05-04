@@ -57,7 +57,6 @@ const posts = logic.getAllPosts()
 logic.posts()
 const createPostForm = new CreatePostForm()
 
-
 createPostForm.onSubmit((event) => {
   event.preventDefault()
 
@@ -87,7 +86,28 @@ addPostButton.setText("+")
 
 logic.statusButton()
 
+
+const scrollTop = new Component("i")
+scrollTop.addClass("fa-solid")
+scrollTop.addClass("fa-arrow-up-long")
+
+
+scrollTop.onClick(() => {
+  const scrollDuration = 2000
+  const scrollStep = -window.scrollY / (scrollDuration / 15)
+  const scrollInterval = setInterval(() => {
+    if (window.scrollY !== 0) {
+      window.scrollBy(0, scrollStep)
+    } else {
+      clearInterval(scrollInterval)
+    }
+  })
+})
+
+
 const footer = new Component("footer")
 footer.addClass("Footer")
 view.add(footer)
 footer.add(addPostButton)
+footer.add(scrollTop)
+

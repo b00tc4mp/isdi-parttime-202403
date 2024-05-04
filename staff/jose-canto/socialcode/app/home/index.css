@@ -65,8 +65,10 @@
 
 .Article .AuthorTitle {
   font-size: 1.2rem;
+  font-weight: 900;
   margin: 0;
   padding: 0;
+
 }
 
 .Article p {
@@ -103,14 +105,14 @@
 }
 
 .Image {
-  max-width: 60%;
+  max-width: 100%;
   height: auto;
 }
 
 .Footer {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   position: fixed;
   bottom: 0;
   padding: 0.5rem;
@@ -118,6 +120,7 @@
 }
 
 .Footer .Button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,4 +128,16 @@
   margin-bottom: 0.5rem;
   width: 2rem;
   height: 2.2rem;
+}
+
+.Footer i {
+  position: relative;
+  font-size: 2rem;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: 0.25s ease-in;
+}
+
+.Footer i:hover {
+  color: var(--first-color);
 }
