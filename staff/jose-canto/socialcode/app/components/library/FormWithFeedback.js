@@ -19,6 +19,7 @@ class FormWithFeedback extends Form {
   }
 
   clearFeedback() {
+    //super.clear()
 
     this.feedbackPanel.setText("")
     this.feedbackPanel.removeClass("success")

@@ -1,3 +1,6 @@
+if (!logic.isUserLoggedIn()) {
+  location.href = "../login";
+}
 
 //BODY
 const view = new Component(document.body)
@@ -12,6 +15,13 @@ logo.addClass("Logo")
 const header = new Component("header")
 header.addClass("Header")
 
+// MAIN
+const main = new Component("main")
+main.addClass("Main")
+
+// SECTION
+const postList = new Component("section")
+postList.addClass("Section")
 
 // USER
 const name = logic.getName()
@@ -30,64 +40,54 @@ logoutButton.onClick(() => {
 })
 
 
-// POST
-const post = new Component("article")
-post.addClass("Article")
-
-const postTitle = new Component("h2")
-postTitle.setText("Console.log")
-postTitle.addClass("PostTitle")
-
-const postText = new Component("p")
-postText.addClass("PostText")
-postText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit justo et odio venenatis, ut commodo sem scelerisque. Pellentesque id mi ac tortor congue congue nec eget ipsum. Sed et justo dolor. Vivamus nec blandit velit. Integer facilisis, metus eget congue tincidunt, ligula lectus mattis dui, et rutrum nunc ipsum sit amet urna. Nullam id nibh non enim consequat suscipit at eu lacus. Morbi malesuada aliquet ex, nec hendrerit libero lacinia at. Sed eleifend nunc et ipsum rutrum, ac cursus lorem fringilla. ")
-
-const authorTitle = new Component("p")
-
-const userName = logic.getUserName()
-authorTitle.setText(userName)
-authorTitle.addClass("AuthorTitle")
-
-const postImage = new Image()
-postImage.setImage("../img/code.png")
-postImage.addClass("Image")
-
-
-
-const divImage = new Component("div")
-divImage.addClass("DivImage")
-
-
-// FOOTER
-const footer = new Component("footer")
-footer.addClass("Footer")
-
-
-//FOOTER BUTTON
-const addPostButton = new Button()
-addPostButton.setText("+")
-
-
 // ADD AT HEADER
 header.add(logo)
 header.add(usernameTitle)
 header.add(logoutButton)
 
-
 // ADD AT VIEW (BODY)
 view.add(header)
-view.add(post)
+view.add(main)
 
-// ADD AT POST
-post.add(authorTitle)
-post.add(postTitle)
-post.add(postText)
-post.add(divImage)
+// ADD AT MAIN
+main.add(postList)
 
-// ADD AT DIV IMAGE
-divImage.add(postImage)
 
+const posts = logic.getAllPosts()
+logic.posts()
+const createPostForm = new CreatePostForm()
+
+
+createPostForm.onSubmit((event) => {
+  event.preventDefault()
+
+  const title = createPostForm.getTitle()
+  const image = createPostForm.getImage()
+  const description = createPostForm.getDescription()
+
+  try {
+    logic.createPost(title, image, description)
+
+    //TODO refresh post list
+    location.reload()
+
+    window.scrollTo(0, 0)
+
+  } catch (error) {
+    if (error instanceof ContentError) {
+      createPostForm.setFeedback(error.message + ", please correct it")
+    } else {
+      createPostForm.setFeedback("Sorry, there was an error, ples try again later")
+    }
+  }
+})
+
+const addPostButton = new Button()
+addPostButton.setText("+")
+
+logic.statusButton()
+
+const footer = new Component("footer")
+footer.addClass("Footer")
 view.add(footer)
-
-//ADD AT FOOTER
 footer.add(addPostButton)
