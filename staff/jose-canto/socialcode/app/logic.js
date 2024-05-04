@@ -29,7 +29,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
     throw new MatchError("❌ Password don't match ❌")
   }
 
-  let userRegistered = data.findUser(function (user) {
+  let userRegistered = data.findUser((user) => {
     return user.email === email || user.username === username
   })
 
@@ -70,7 +70,7 @@ logic.loginUser = (username, password) => {
   sessionStorage.username = username
 }
 
-logic.isUserLoggedIn = function () {
+logic.isUserLoggedIn = () => {
   // if (sessionStorage.username)
   //     return true
 
@@ -81,28 +81,94 @@ logic.isUserLoggedIn = function () {
   return !!sessionStorage.username
 }
 
-logic.logetUser = function () {
+logic.logetUser = () => {
   delete sessionStorage.username
 }
 
-logic.getName = function () {
-  let user = data.findUser(function (user) {
+logic.getName = () => {
+  let user = data.findUser((user) => {
     return user.username === sessionStorage.username
   })
 
   return user.name
 }
 
-logic.getUserName = function () {
-  let user = data.findUser(function (user) {
+logic.getUserName = () => {
+  let user = data.findUser((user) => {
     return user.username === sessionStorage.username
   })
 
   return user.username
 }
 
-
-
-logic.logoutUser = function () {
+logic.logoutUser = () => {
   delete sessionStorage.username
+}
+
+logic.getAllPosts = () => {
+
+  const posts = data.findPosts(() => {
+    return true
+  })
+
+  return posts.reverse()
+}
+
+logic.posts = () => {
+  posts.forEach((post) => {
+    const postComponent = new Post(post)
+
+    postList.add(postComponent)
+  })
+}
+
+
+
+logic.createPost = (title, image, description) => {
+  if (typeof title !== "string" || !title.length || title.length > 50) {
+    throw new ContentError("Title is not valid")
+  }
+
+  if (typeof image !== "string" || !image.startsWith("http")) {
+    throw new ContentError("Image is not valid")
+  }
+
+  if (typeof description !== "string" || !description.length || description.length > 200) {
+    throw new ContentError("Description is not valid")
+  }
+
+
+  const newDate = new Date();
+  const year = newDate.getFullYear();
+  const month = newDate.getMonth() + 1; // Agregamos 1 porque los meses van de 0 a 11
+  const day = newDate.getDate();
+  const hours = newDate.getHours();
+  const minutes = newDate.getMinutes();
+
+  const post = {
+    author: sessionStorage.username,
+    title: title,
+    image: image,
+    description: description,
+    // Formateamos la fecha en el formato deseado (por ejemplo, DD/MM/AAAA HH:MM)
+    date: `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year.toString()} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
+  };
+
+  data.insertPost(post)
+}
+
+logic.statusButton = () => {
+  let statusButton = true
+
+  addPostButton.onClick(event => {
+    event.preventDefault()
+
+    statusButton = !statusButton
+    if (!statusButton) {
+      main.add(createPostForm)
+      window.scrollTo(0, document.body.scrollHeight);
+
+    } else if (statusButton)
+      main.remove(createPostForm)
+  })
 }
