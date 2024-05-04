@@ -34,7 +34,21 @@ h1{
     border-radius: .3rem;
     width: 10rem;
     background-color: transparent;
+    padding: .5rem 
+}
+.Input:focus{
+    outline: none;
 }
 h1{
     margin-bottom: 1rem;
+}
+
+.Textarea{
+    border: 0 transparent;
+    padding: .5rem;
+    width: 97%;
+    height: 100%
+}
+.Textarea:focus{
+    outline: none;
 }

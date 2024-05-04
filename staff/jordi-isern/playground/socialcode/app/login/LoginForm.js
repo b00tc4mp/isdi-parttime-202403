@@ -4,7 +4,7 @@ class LoginForm extends FormWithFeedback {
 
         this.addClass('LoginForm')
 
-        const usernameField = new Field('username', 'text', 'Username')
+        const usernameField = new FieldInput('username', 'text', 'Username')
 
         const passwordField = new PasswordField('password', 'Password')
         //var passwordReveal = new PasswordReveal(passwordField ,"fa-solid fa-lock")

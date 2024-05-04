@@ -16,7 +16,7 @@ logic.loginUser = (username, password) => {
     return (user)
 }
 
-logic.isUserLoggedIn = () =>{
+logic.isUserLoggedIn = () => {
     return !!sessionStorage.username
 }
 
@@ -25,7 +25,7 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+")
 const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_$%&=\[\]\{\}\<\>\(\)]).{8,}$/
 
-logic.registerUser = (name, username,email, password, passwordRepeat) => {
+logic.registerUser = function(name, username,email, password, passwordRepeat) {
     if(!NAME_REGEX.test(name)){
         throw new ContentError('name is not valid')
     }
@@ -45,7 +45,7 @@ logic.registerUser = (name, username,email, password, passwordRepeat) => {
         throw new MatchError('passwords dont\'t match')
     }
 
-    const user = data.findUser((user) => {
+    let user = data.findUser((user) => {
         return user.email === email || user.username === username
     })
     
@@ -63,13 +63,34 @@ logic.registerUser = (name, username,email, password, passwordRepeat) => {
     data.insertUser(user)
 }
 
-logic.logOutUser = ()=>{
-    delete sessionStorage.username
-}
+logic.logOutUser = () => {delete sessionStorage.username}
 
-logic.getUserName = ()=>{
+logic.getUserName = () => {
     const user = data.findUser((user) =>{
         return  user.username === sessionStorage.username
     })
-    return user.name   
+    return user.name  
+} 
+
+logic.getAllPosts = () => {
+    const posts = data.findPosts(() => {true})
+
+    return posts
+}
+
+logic.createPost = ( title , image, description) => {
+    if(typeof title !== 'string' || !title.length || title.length > 50)throw new ContentError('titple is not valid')
+    if(typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
+    if(typeof description !== 'string' || !description.length || title.length > 200) throw new ContentError('description is not valid')
+
+
+    const post = {
+        author : sessionStorage.username,
+        title,
+        image,
+        description,
+        date: new Date().toISOString()
+    } 
+
+    data.insertPost(post)
 }

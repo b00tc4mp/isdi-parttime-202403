@@ -1,0 +1,20 @@
+.createPostForm{
+    justify-self: center;
+    align-self: center;
+    margin: 0%;
+    width: 40rem;
+    height: 28rem;
+    align-items: flex-start;
+}
+
+
+.createPostForm div{
+    width: 40rem;
+}
+.createPostForm input{
+    width: 39.8rem;
+}
+
+.createPostForm textarea{
+    height: 10rem;
+}

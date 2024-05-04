@@ -1,4 +1,4 @@
-if(!logic.isUserLoggedIn()){
+if (!logic.isUserLoggedIn()) {
     location.href = '../login'
 }
 
@@ -25,27 +25,26 @@ logoutButton.onClick(() => {
     location.href = '../login'
 })
 
+
+
 header.add(usernameTitle)
 header.add(logoutButton)
 
-const post = new Component('article')
-const postTitle = new Heading(2)
-postTitle.setText('How to console.log')
-const authorTitle = new Heading(3)
-authorTitle.setText(userName)
-const postImage = new Image
-postImage.setUrl('https://www.udacity.com/blog/wp-content/uploads/2020/11/Hello-World_Blog-scaled.jpeg')
-const postText = new Component('p')
-postText.setText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor neque vitae tempus quam pellentesque nec nam aliquam. Ultrices gravida dictum fusce ut placerat.')
-
-post.add(authorTitle)
-post.add(postTitle)
-post.add(postImage)
-post.add(postText)
 
 
 
+const main = new Component('main')
+main.addClass('main')
 
+const postList = new Component('section')
+main.add(postList)
+
+const posts = logic.getAllPosts()
+
+posts.forEach(post => {
+    const post2 = new Post(post)
+    postList.add(post2)
+});
 
 const footer = new Component('footer')
 footer.addClass('footer')
@@ -56,7 +55,36 @@ addPostButton.addClass("fa-plus")
 
 footer.add(addPostButton)
 
+addPostButton.onClick(()=>{
+    const createPostForm = new CreatePost
+    view.add(createPostForm)
+
+    main.style.opacity = '40%'
+
+    createPostForm.onSubmit((event) =>{
+        event.preventDefault()
+
+        
+
+        const title = createPostForm.getTitle()
+        const image = createPostForm.getImage()
+        const description = createPostForm.getDescription()
+        
+        try {
+            logic.createPost(title, image, description)
+
+        } catch (error) {
+            if(error instanceof ContentError){
+                createPostForm.setFeedback(error.message + ', Please, Correct it')
+            }else{
+                createPostForm.setFeedback('Sorry, there was an error, please try again later')
+            }
+        }
+        
+    })
+})
+
 
 view.add(header)
-view.add(post)
+view.add(main)
 view.add(footer)

@@ -1,5 +1,5 @@
 .Form {
-    background-color: var(--color3);
+    border: 1px solid var(--color3);
     padding: .3rem 1rem;
     margin: auto;
     display: flex;

@@ -4,13 +4,13 @@ class RegisterForm extends FormWithFeedback{
 
         this.addClass('RegisterFrom')
 
-        const nameField = new Field('name', 'text', 'Name')
+        const nameField = new FieldInput('name', 'text', 'Name')
         nameField.setPlaceholder('Name')
         
-        const emailField = new Field('email', 'text', 'Email')
+        const emailField = new FieldInput('email', 'text', 'Email')
         emailField.setPlaceholder('Email')
 
-        const usernameField = new Field ('username', 'text', 'Username')
+        const usernameField = new FieldInput ('username', 'text', 'Username')
         usernameField.setPlaceholder('Usernname')
 
         const passwordField = new PasswordField('password', 'Password')
@@ -79,11 +79,8 @@ class RegisterForm extends FormWithFeedback{
     }
 }
 
-//TODO mirar classes dia 23 i 24 para comprender logic.js
 
 //TODO aprender debug en navegador
-
-//TODO buscar svelte reackt-JSX  Angular typescript coffeescript
 
 // TODO VPN WARP es gratuita y de cloudflare
 

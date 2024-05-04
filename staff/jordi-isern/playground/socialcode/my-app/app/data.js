@@ -13,7 +13,7 @@ data.findUser = function (callback) {
 }
 
 data.insertUser = function(user){
-    const usersJson = localStorage.users
+    let usersJson = localStorage.users
 
     if(!usersJson){
         usersJson = '[]'

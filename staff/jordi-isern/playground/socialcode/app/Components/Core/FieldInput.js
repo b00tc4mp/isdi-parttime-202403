@@ -1,8 +1,8 @@
-class Field extends Component{
+class FieldInput extends Component{
     constructor(id, type,text){
         super('div')
 
-        this.addClass('Field')
+        this.addClass('FieldInput')
 
         var label = new Label
         label.setText(text)

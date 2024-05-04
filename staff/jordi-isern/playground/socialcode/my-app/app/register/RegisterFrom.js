@@ -79,12 +79,3 @@ class RegisterForm extends FormWithFeedback{
     }
 }
 
-//TODO mirar classes dia 23 i 24 para comprender logic.js
-
-//TODO aprender debug en navegador
-
-//TODO buscar svelte reackt-JSX  Angular typescript coffeescript
-
-// TODO VPN WARP es gratuita y de cloudflare
-
-//raycast
