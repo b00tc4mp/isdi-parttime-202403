@@ -10,12 +10,12 @@ data.insertUser = (newUser) => {
 
   users.push(newUser)
   localStorage.users = JSON.stringify(users)
-  localStorage.newUser = JSON.stringify(newUser)
+  // localStorage.newUser = JSON.stringify(newUser)
   window.location.href = '../home/index.html'
   // registerForm.clear()
 }
 // data loginForm
 
-data.loginUser = (newUser) => {
-  localStorage.newUser = JSON.stringify(newUser)
-}
+// data.loginUser = (newUser) => {
+//   localStorage.newUser = JSON.stringify(newUser)
+// }

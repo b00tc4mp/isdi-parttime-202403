@@ -64,7 +64,7 @@ logic.loginUser = (username, password) => {
 
   if (user) {
     if (user.password === password) {
-      data.loginUser(newUser)
+      // data.loginUser(newUser)
       sessionStorage.username = username
       window.location.href = '../home/index.html'
     } else {

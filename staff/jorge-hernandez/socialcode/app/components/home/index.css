@@ -11,23 +11,47 @@
     display: flex;
     justify-content: right;
     align-items: center;
-    gap: 1rem;
+    background: linear-gradient(to bottom, #07273b, #214c5b);
+    gap: .5rem;
     width: 100%;
     position: fixed;
     top: 0;
     padding: .5rem;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--first-color);
-    background-color: var(--second-color);
+    border-bottom: 1px solid blue;
+}
+h3{
+    font-size: 24px;
+    margin: 5px
+}
+
+.Post{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 40px
 }
 
 .Footer {
     width: 100%;
     display: flex;
     justify-content: center;
+    background: linear-gradient(to bottom, #07273b, #214c5b);
     position: fixed;
     bottom: 0;
     padding: .5rem 0;
-    border-top: 1px solid var(--first-color);
-    background-color: var(--second-color);
+    border-top: 1px solid blue;
+    height: 40px;
 }
+
+.Post h2{
+    margin: 2px;
+    
+}
+
+.Post p{
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+
