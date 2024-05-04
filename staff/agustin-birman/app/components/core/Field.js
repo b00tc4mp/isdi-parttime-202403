@@ -12,6 +12,8 @@ class Field extends Component {
         input.setId(id)
         input.setType(type)
 
+        this.add(label)
+        this.add(input)
     }
 
     setPlaceholder(placeholder) {
@@ -21,6 +23,6 @@ class Field extends Component {
     getValue() {
         const input = this.children[1]
 
-        input.getValue()
+        return input.getValue()
     }
 }

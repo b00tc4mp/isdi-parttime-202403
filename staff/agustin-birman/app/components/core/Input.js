@@ -9,7 +9,7 @@ class Input extends Component {
         this.container.type = type
     }
 
-    setPlaceholder(placegholder) {
+    setPlaceholder(placeholder) {
         this.container.placeholder = placeholder
     }
 

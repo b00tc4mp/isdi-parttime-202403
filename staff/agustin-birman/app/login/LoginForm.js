@@ -8,10 +8,28 @@ class LoginForm extends FormWithFeedback {
 
         const passwordField = new Field('password', 'password', 'Password')
 
+        const imageField = new Image
+        imageField.setUrl('https://site-assets.fontawesome.com/releases/v6.5.2/svgs/regular/lock.svg')
+        imageField.addClass('Lock')
+        imageField.onClick(() => {
+
+            let passwordButton = document.getElementById('password')
+
+            if (passwordButton.type === 'password') {
+                passwordButton.type = 'text'
+                imageField.setUrl('https://site-assets.fontawesome.com/releases/v6.5.2/svgs/regular/lock-open.svg')
+            } else {
+                passwordButton.type = 'password'
+                imageField.setUrl('https://site-assets.fontawesome.com/releases/v6.5.2/svgs/regular/lock.svg')
+            }
+
+        })
+
         const submitButton = new SubmitButton('Login')
 
         this.add(usernameField)
         this.add(passwordField)
+        this.add(imageField)
         this.add(submitButton)
     }
 
@@ -24,6 +42,6 @@ class LoginForm extends FormWithFeedback {
     getPassword() {
         const passwordField = this.children[1]
 
-        return usernameField.getValue()
+        return passwordField.getValue()
     }
 }

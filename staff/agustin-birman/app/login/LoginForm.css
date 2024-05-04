@@ -1,0 +1,45 @@
+.LoginForm {
+    padding: 1rem;
+    margin-bottom: 10px;
+    width: 300px;
+    height: auto;
+    background-color: aqua;
+    border-radius: 20px;
+    border: 1px solid black;
+    border-bottom-right-radius: 30%;
+    box-shadow: rgba(0, 0, 0, 40%) -5px 5px;
+}
+
+.LoginForm .Input {
+    background-color: transparent;
+    font-size: 1rem;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0;
+    border-bottom: 1px solid black;
+    border-radius: 20px;
+    padding-left: 10px;
+    margin: 15px
+}
+
+.LoginForm .Button {
+    background-color: transparent;
+    font-size: 17px;
+    border-radius: 20px 0;
+    width: 60px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.LoginForm .Lock {
+    height: 15px;
+    width: 15px;
+}
+
+.Button:hover {
+    background-color: rgb(75, 153, 177);
+}
+
+.Button:active {
+    background-color: lightblue;
+}

@@ -11,16 +11,16 @@ class RegisterForm extends FormWithFeedback {
         surnameField.setPlaceholder('surname')
 
         const emailField = new Field('email', 'email', 'E-mail')
-        surnameField.setPlaceholder('name@example.com')
+        emailField.setPlaceholder('name@example.com')
 
         const usernameField = new Field('username', 'text', 'Username')
-        surnameField.setPlaceholder('surname')
+        usernameField.setPlaceholder('username')
 
         const passwordField = new Field('password', 'password', 'Password')
-        surnameField.setPlaceholder('*********')
+        passwordField.setPlaceholder('password')
 
         const passwordRepeatField = new Field('password', 'password', 'Password repeat')
-        surnameField.setPlaceholder('*********')
+        passwordRepeatField.setPlaceholder('repeat password')
 
         const submitButton = new SubmitButton('Register')
 
@@ -64,8 +64,8 @@ class RegisterForm extends FormWithFeedback {
     }
 
     getPasswordRepeat() {
-        const passwordRepeatField = this.children[5]
+        const passwordFieldRepeat = this.children[5]
 
-        return passwordRepeatField.getValue()
+        return passwordFieldRepeat.getValue()
     }
 }

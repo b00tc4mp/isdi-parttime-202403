@@ -4,7 +4,7 @@ class SubmitButton extends Button {
 
         this.addClass('SubmitButton')
 
-        this.SetType('submit')
+        this.setType('submit')
         this.setText(text)
     }
 }

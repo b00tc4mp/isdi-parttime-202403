@@ -1,5 +1,5 @@
-if (logic.isUserLoggedIn())
-    location.href = '../home'
+// if (logic.isUserLoggedIn())
+//     location.href = '../home'
 
 const view = new Component(document.body)
 view.addClass('View')
@@ -26,9 +26,9 @@ loginForm.onSubmit(event => {
         if (error instanceof ContentError)
             loginForm.setFeedback(error.message + ', please, correct it')
         else if (error instanceof MatchError)
-            loginForm.setFeedback('Wrong credentials')
+            loginForm.setFeedback('wrong credentials')
         else
-            loginForm.setFeedback('sorry, there was an error, please try later')
+            loginForm.setFeedback('sorry, there was an error, please try again later')
     }
 })
 

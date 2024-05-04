@@ -1,0 +1,71 @@
+.View {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4rem 2rem;
+}
+
+.Header {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: right;
+    position: fixed;
+    top: 0;
+    padding: .5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid green;
+    background-color: greenyellow;
+}
+
+.Footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    padding: .5rem 0;
+    border-top: 1px solid red;
+    background-color: purple;
+}
+
+.Button:hover {
+    background-color: rgb(75, 153, 177);
+}
+
+.Button:active {
+    background-color: lightblue;
+}
+
+p.Author {
+    margin-top: 1.8rem;
+    margin-bottom: .5rem;
+}
+
+h2.Title {
+    margin: 2px;
+    padding: 0;
+}
+
+img.Image {
+    max-width: 90%;
+    height: auto;
+}
+
+time.Date {
+    border-bottom: 1px solid black;
+}
+
+body {
+    height: 100%;
+}
+
+.divCreatePost {
+    top: 50%;
+    left: 50%;
+    width: 95%;
+    height: auto;
+    border: 1px solid black;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}

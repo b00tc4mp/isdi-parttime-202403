@@ -5,7 +5,7 @@ const view = new Component(document.body)
 view.addClass('View')
 
 const title = new Heading(1)
-title.setText(Register)
+title.setText('Register')
 
 const registerForm = new RegisterForm
 registerForm.onSubmit(event => {
@@ -43,9 +43,13 @@ loginLink.setText('Login')
 loginLink.onClick(event => {
     event.preventDefault()
 
-    setTimeout(() => location.href = ',,/login', 500)
+    setTimeout(() => location.href = '../login', 500)
 })
 
 view.add(title)
 view.add(registerForm)
 view.add(loginLink)
+
+var es = []
+if(es) 
+console.log('Hola')

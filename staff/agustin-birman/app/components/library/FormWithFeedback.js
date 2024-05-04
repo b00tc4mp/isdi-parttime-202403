@@ -1,8 +1,8 @@
 class FormWithFeedback extends Form {
-    contructor() {
+    constructor() {
         super()
 
-        this.addClass('FormWhitFeedback')
+        this.addClass('FormWithFeedback')
 
         const feedbackPanel = new Component('p')
         feedbackPanel.addClass('Feedback')

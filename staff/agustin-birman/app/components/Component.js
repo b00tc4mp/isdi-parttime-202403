@@ -1,14 +1,13 @@
 class Component {
-    contructor(tagNameOrContainer = 'div') {
+    constructor(tagNameOrContainer = 'div') {
         if (typeof tagNameOrContainer === 'string')
             this.container = document.createElement(tagNameOrContainer)
         else if (tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument)
             this.container = tagNameOrContainer
         else
-            throw new Error('tagNameOrContainer is not a tagName or conteiner')
+            throw new Error('tagNameOrContainer is not a tagName or container')
 
         this.children = []
-
     }
 
     add(child) {
@@ -20,14 +19,15 @@ class Component {
     }
 
     remove(child) {
-        if (!(child instanceof Component)) throw new TypeError('Child is not component')
+        if (!(child instanceof Component)) throw new TypeError('child is not component')
 
         const index = this.children.indexOf(child)
 
         if (index > -1)
             this.children.splice(index, 1)
 
-        this.container.removeChild(child.container)
+        if (this.container.contains(child.container))
+            this.container.removeChild(child.container)
     }
 
     setText(text) {
@@ -43,7 +43,7 @@ class Component {
     }
 
     removeClass(clazz) {
-        this.container.removeClass.remove(clazz)
+        this.container.classList.remove(clazz)
     }
 
     onClick(listener) {

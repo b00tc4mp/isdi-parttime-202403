@@ -10,6 +10,6 @@ class Link extends Component {
     }
 
     setTarget(target) {
-        this.conainer.taget = target
+        this.container.target = target
     }
 }
