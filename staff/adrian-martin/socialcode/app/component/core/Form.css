@@ -3,8 +3,8 @@
     flex-direction: column;
     margin-top: 200px;
     align-items: center;
-    background-color: var(--first-color);
+    background-color: var(--fourth-color);
     padding: 1rem;
     border-radius: 5%;
-    border: 10px double var(--forth-color);
+    border: 10px double var(--first-color);
 }

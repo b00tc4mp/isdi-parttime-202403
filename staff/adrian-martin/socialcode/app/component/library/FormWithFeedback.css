@@ -10,7 +10,7 @@
 }
 
 .FormWithFeedback .Feedback{
-    color: var(--third-color);
+    color: red;
 }
 
 .FormWithFeedback .Feedback.success{
