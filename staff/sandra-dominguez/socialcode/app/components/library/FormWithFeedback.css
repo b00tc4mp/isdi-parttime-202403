@@ -1,7 +1,7 @@
 .FormWithFeedback .Input,
 .Button {
     font-size: 1rem;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .FormWithFeedback .Feedback {
