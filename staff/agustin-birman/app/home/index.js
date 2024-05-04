@@ -39,36 +39,6 @@ posts.forEach(post => {
     postList.add(newPost)
 })
 
-
-
-
-
-// const createPostForm = new CreatePostForm()
-
-// createPostForm.onSubmit(event => {
-//     event.preventDefault()
-
-//     const title = createPostForm.getTitle()
-//     const image = createPostForm.getImage()
-//     const description = createPostForm.getDescription()
-
-//     try {
-//         logic.createPost(title, image, description)
-
-//         createPostForm.clear()
-
-//         location.reload()
-
-//     } catch (error) {
-//         if (error instanceof ContentError)
-//             createPostForm.setFeedback('error.mesasge' + ', please, correct it')
-//         else
-//             createPostForm.setFeedback('Sorry, there was an error, try later again')
-//     }
-// })
-
-// main.add(createPostForm)
-
 const footer = new Component('footer')
 footer.addClass('Footer')
 view.add(footer)
@@ -77,42 +47,66 @@ const addPostButton = new Button
 addPostButton.setText("+")
 footer.add(addPostButton)
 
-const divCreatePost = new Component('dialog')
+const scrollTop = new Component('i')
+scrollTop.addClass('fa-solid')
+scrollTop.addClass('fa-arrow-up-long')
+footer.add(scrollTop)
 
-addPostButton.onClick(() => {
-    divCreatePost.addClass('diveCreatePost')
-
-    const createPostForm = new CreatePostForm()
-
-    createPostForm.onSubmit(event => {
-        event.preventDefault()
-
-        const title = createPostForm.getTitle()
-        const image = createPostForm.getImage()
-        const description = createPostForm.getDescription()
-
-        try {
-            logic.createPost(title, image, description)
-
-            createPostForm.clear()
-
-            location.reload()
-
-        } catch (error) {
-            if (error instanceof ContentError)
-                createPostForm.setFeedback('error.mesasge' + ', please, correct it')
-            else
-                createPostForm.setFeedback('Sorry, there was an error, try later again')
+scrollTop.onClick(() => {
+    const scrollDuration = 2000
+    const scrollStep = -window.scrollY / (scrollDuration / 15)
+    const scrollInterval = setInterval(() => {
+        if (window.scrollY !== 0) {
+            window.scrollBy(0, scrollStep)
+        } else {
+            clearInterval(scrollInterval)
         }
     })
-    divCreatePost.add(createPostForm)
 })
 
-view.add(divCreatePost)
+const divCreatePost = new Component('div')
+let windowPost = true
+divCreatePost.addClass('divCreatePost')
+const createPostForm = new CreatePostForm()
 
+addPostButton.onClick(() => {
+    // esto sirve para crear el formulario para crear un post
+    windowPost = !windowPost
+    if (!windowPost) {
+        createPostForm.onSubmit(event => {
+            event.preventDefault()
 
-// [{
-//     "author": "pepitogrillo",
-//         "title": "How to console.log",
-//         "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--gJWXQzd2--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://cdn-images-1.medium.com/max/800/1%2AqmBE-ip-IkMnQuz3ZnaXHg.jpeg",
-//         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}]
+            const title = createPostForm.getTitle()
+            const image = createPostForm.getImage()
+            const description = createPostForm.getDescription()
+
+            try {
+                logic.createPost(title, image, description)
+
+                createPostForm.clear()
+
+                location.reload()
+
+            } catch (error) {
+                if (error instanceof ContentError)
+                    createPostForm.setFeedback('error.mesasge' + ', please, correct it')
+                else
+                    createPostForm.setFeedback('Sorry, there was an error, try later again')
+            }
+        })
+
+        divCreatePost.add(createPostForm)
+        view.add(divCreatePost)
+
+    } else if (windowPost) {
+        view.remove(divCreatePost)
+    }
+
+})
+
+// css
+// https://miro.medium.com/v2/resize:fit:471/1*uKYwbfGFzTwXr-1g7FYYow.png
+// java
+// https://web-assets.esetstatic.com/wls/2022/06/6.jpg
+// HTMLAllCollection
+// https://image.slidesharecdn.com/cdigohtmltrabajocompu-140108182640-phpapp02/85/cdigo-html-trabajo-compu-4-320.jpg

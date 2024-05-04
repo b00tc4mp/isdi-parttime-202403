@@ -1,0 +1,36 @@
+.Article {
+    background-color: #aaa6;
+    border-radius: 20px;
+    padding: auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2.Title {
+    padding-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+img.Image {
+    max-width: 90%;
+    height: auto;
+    border-radius: 20px;
+    margin-left: 0.9rem;
+}
+
+p.Description {
+    position: relative;
+    padding: 0 0.7rem;
+}
+
+time.Date {
+    position: relative;
+    top: 2.7rem;
+    padding-left: 0.7rem;
+}
+
+p.Author {
+    padding-right: 1rem;
+    padding-bottom: 0.4rem;
+    display: flex;
+    justify-content: end;
+}

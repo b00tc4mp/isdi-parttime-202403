@@ -3,11 +3,11 @@
     margin-bottom: 10px;
     width: 300px;
     height: auto;
-    background-color: aqua;
     border-radius: 20px;
     border: 1px solid black;
     border-bottom-right-radius: 20%;
-    box-shadow: rgba(0, 0, 0, 40%) -5px 5px;
+    background-color: rgba(175, 222, 238, 0.603);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .RegisterForm .Input {

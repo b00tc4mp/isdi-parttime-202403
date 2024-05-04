@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 4rem 2rem;
+    margin: 4.7rem 2rem;
 }
 
 .Header {
@@ -14,8 +14,8 @@
     top: 0;
     padding: .5rem;
     box-sizing: border-box;
-    border-bottom: 1px solid green;
-    background-color: greenyellow;
+    background-color: rgba(175, 222, 238, 0.603);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .Footer {
@@ -25,47 +25,58 @@
     position: fixed;
     bottom: 0;
     padding: .5rem 0;
-    border-top: 1px solid red;
-    background-color: purple;
+    background-color: rgba(175, 222, 238, 0.603);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.Button:hover {
-    background-color: rgb(75, 153, 177);
-}
-
-.Button:active {
-    background-color: lightblue;
-}
-
-p.Author {
-    margin-top: 1.8rem;
-    margin-bottom: .5rem;
-}
-
-h2.Title {
-    margin: 2px;
-    padding: 0;
-}
-
-img.Image {
-    max-width: 90%;
-    height: auto;
-}
-
-time.Date {
-    border-bottom: 1px solid black;
+.Footer i {
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+    font-size: 2rem;
 }
 
 body {
     height: 100%;
 }
 
-.divCreatePost {
-    top: 50%;
-    left: 50%;
-    width: 95%;
-    height: auto;
+.Header .Button,
+.Footer .Button,
+.divCreatePost .Button {
+    background-color: transparent;
+    font-size: 17px;
+    border-radius: 20px 0;
+    width: 60px;
+    padding: 5px;
     border: 1px solid black;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
+    cursor: pointer;
+    transition: 0.25s ease-in;
+}
+
+.Footer .Button {
+    font-size: 25px;
+    font-weight: 800;
+    padding: 0;
+}
+
+.divCreatePost .ExitButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 0 20px;
+    width: 35px;
+    height: 35px;
+}
+
+.Button:hover {
+    background-color: rgb(126, 213, 240);
+    transition: 0.25s ease-in;
+}
+
+.Button:active {
+    background-color: lightblue;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.699);
 }

@@ -90,13 +90,34 @@ logic.createPost = (title, image, description) => {
     if (typeof description !== 'string' || description.length > 250)
         throw new ContentError('Description is not valid')
 
+    const fullDate = new Date()
+    const year = fullDate.getFullYear()
+    let month = fullDate.getMonth() + 1
+    let day = fullDate.getDay()
+    let hour = fullDate.getHours()
+    let minute = fullDate.getMinutes()
+
+    if (month <= 9)
+        month = '0' + month
+
+    if (day <= 9)
+        day = '0' + day
+
+    if (hour <= 9)
+        hour = '0' + hour
+
+    if (minute <= 9)
+        minute = '0' + minute
+
+    const date = day + '/' + month + '/' + year + ' ' + hour + ':' + minute
+
+
     const post = {
         author: sessionStorage.username,
         title,
         image,
         description,
-        date: new Date().toISOString(),
+        date,
     }
-
     data.insterPost(post)
 }
