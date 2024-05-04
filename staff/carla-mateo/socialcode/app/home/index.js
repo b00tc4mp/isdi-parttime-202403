@@ -54,8 +54,8 @@ createPostForm.onSubmit(event => {
 
         location.reload()
 
-        // TODO dismount create post form from main
-        // TODO refresh post list
+        window.scrollTo(0, 0)
+
     } catch (error) {
         if (error instanceof ContentError)
             createPostForm.setFeedback(error.message + ', please, correct it')
@@ -65,7 +65,7 @@ createPostForm.onSubmit(event => {
 })
 
 
-// TODO mount create post form when clicking on plus button
+logic.statusButton()
 
 const footer = new Component('footer')
 footer.addClass('Footer')
@@ -75,20 +75,6 @@ const addPostButton = new Button
 addPostButton.setText('+')
 footer.add(addPostButton)
 
-let statusButton = false
 
-addPostButton.onClick(event => {
-    event.preventDefault()
-
-    statusButton = !statusButton
-
-    if (statusButton) {
-        main.add(createPostForm)
-
-    } else if (!statusButton) {
-        main.remove(createPostForm)
-    }
-
-})
 
 

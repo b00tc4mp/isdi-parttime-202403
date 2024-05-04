@@ -106,4 +106,22 @@ logic.createPost = (title, image, description) => {
     data.insertPost(post)
 }
 
+logic.statusButton = () => {
+    let statusButton = false
+
+    addPostButton.onClick(event => {
+        event.preventDefault()
+
+        statusButton = !statusButton
+
+        if (statusButton) {
+            main.add(createPostForm)
+            window.scrollTo(0, document.body.scrollHeight)
+
+        } else if (!statusButton) {
+            main.remove(createPostForm)
+        }
+
+    })
+}
 
