@@ -31,8 +31,6 @@ registerForm.onSubmit(event => {
 
     registerForm.clear()
 
-    registerForm.setFeedback("User registered ✅", "success")
-
     setTimeout(() => location.href = '../login', 1000)
 
   } catch (error) {
@@ -49,7 +47,7 @@ registerForm.onSubmit(event => {
     } else {
       registerForm.setFeedback("❌ Sorry, ther was an error, please try again later ❌")
     }
-    setTimeout(() => registerForm.clearFeedback(), 2000)
+    //setTimeout(() => registerForm.clearFeedback(), 2000)
   }
 })
 

@@ -22,8 +22,6 @@ loginForm.onSubmit(event => {
 
     loginForm.clear()
 
-    loginForm.setFeedback("User logged in ✅", "success")
-
     setTimeout(() => {
       location.href = '../home'
     }, 1000)
