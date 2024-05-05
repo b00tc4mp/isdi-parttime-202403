@@ -1,19 +1,18 @@
-function Input() {
-    Component.call(this, 'input');
-    this.addClass('Input');
-}
+class Input extends Component {
+  constructor() {
+    super("input");
+    this.addClass("Input");
+  }
 
-Input.prototype = Object.create(Component.prototype);
-Input.prototype.constructor = Input;
-
-Input.prototype.setType = function(type) {
+  setType(type) {
     this.container.type = type;
-}
+  }
 
-Input.prototype.setPlaceholder = function(placeholder) {
+  setPlaceholder(placeholder) {
     this.container.placeholder = placeholder;
-}
+  }
 
-Input.prototype.getValue = function () {
+  getValue() {
     return this.container.value;
+  }
 }

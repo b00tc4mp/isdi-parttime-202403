@@ -1,59 +1,58 @@
-function LoginForm() {
-  Form.call(this);
-  this.removeClass("Form");
-  this.addClass("LoginForm");
+class LoginForm extends Form {
+  constructor() {
+    super();
+    this.removeClass("Form");
+    this.addClass("LoginForm");
 
-  var usernameField = new Field("username", "text", "Username");
+    const usernameField = new Field("username", "text", "Username");
 
-  var passwordField = new Field("password", "password", "Password");
+    const passwordField = new Field("password", "password", "Password");
 
-  var submitButton = new SubmitButton("Login");
+    const submitButton = new SubmitButton("Login");
 
-  this.add(usernameField);
-  this.add(passwordField);
-  this.add(submitButton);
+    this.add(usernameField);
+    this.add(passwordField);
+    this.add(submitButton);
+  }
+
+  getUsername() {
+    const usernameField = this.children[0];
+
+    return usernameField.getValue();
+  }
+
+  getPassword() {
+    const passwordField = this.children[1];
+
+    return passwordField.getValue();
+  }
+
+  shakeButton() {
+    const button = this.children[2];
+    button.removeClass("SubmitButton");
+    button.addClass("error");
+
+    setTimeout(() => {
+      button.removeClass("error");
+      button.addClass("SubmitButton");
+    }, 400);
+  }
+
+  success(message) {
+    const successMessage = new Div();
+    successMessage.addClass("success");
+    successMessage.setText(message);
+
+    this.add(successMessage);
+
+    const successMessageElement = successMessage.getElement();
+
+    setTimeout(() => {
+      successMessageElement.parentNode.removeChild(successMessageElement);
+    }, 5000);
+  }
+
+  clear() {
+    Form.prototype.clear.call(this);
+  }
 }
-
-LoginForm.prototype = Object.create(Form.prototype);
-LoginForm.prototype.constructor = LoginForm;
-
-LoginForm.prototype.getUsername = function () {
-  var usernameField = this.children[0];
-
-  return usernameField.getValue();
-};
-
-LoginForm.prototype.getPassword = function () {
-  var passwordField = this.children[1];
-
-  return passwordField.getValue();
-};
-
-LoginForm.prototype.shakeButton = function () {
-  var button = this.children[2];
-
-  button.removeClass("SubmitButton");
-  button.addClass("error");
-  setTimeout(function () {
-    button.removeClass("error");
-    button.addClass("SubmitButton");
-  }, 400);
-};
-
-LoginForm.prototype.success = function (message) {
-  var successMessage = new Div();
-  successMessage.addClass("success");
-  successMessage.setText(message);
-
-  this.add(successMessage);
-
-  var successMessageElement = successMessage.getElement();
-
-  setTimeout(function () {
-    successMessageElement.parentNode.removeChild(successMessageElement);
-  }, 5000);
-};
-
-LoginForm.prototype.clear = function () {
-  Form.prototype.clear.call(this);
-};

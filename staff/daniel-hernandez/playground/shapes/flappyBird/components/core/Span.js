@@ -1,6 +1,5 @@
-function Span() {
-    Component.call(this, 'span');
+class Span extends Component {
+  constructor() {
+    super("span");
+  }
 }
-
-Span.prototype = Object.create(Component.prototype);
-Span.prototype.constructor = Span;

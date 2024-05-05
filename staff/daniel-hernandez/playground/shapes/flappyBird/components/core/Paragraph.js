@@ -1,6 +1,5 @@
-function Paragraph() {
-    Component.call(this, 'p');
+class Paragraph extends Component {
+  constructor() {
+    super("p");
+  }
 }
-
-Paragraph.prototype = Object.create(Component.prototype);
-Paragraph.prototype.constructor = Paragraph;

@@ -1,15 +1,15 @@
-var AnimationManager = function () {
-    var animationId = null;
+const AnimationManager = () => {
+  let animationId = null;
 
-    return {
-        start: function (callback) {
-            animationId = requestAnimationFrame(callback);
-        },
-        stop: function () {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-                animationId = null;
-            }
-        }
-    }
-}
+  return {
+    start: (callback) => {
+      animationId = requestAnimationFrame(callback);
+    },
+    stop: () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    },
+  };
+};

@@ -1,6 +1,5 @@
-function Div() {
-    Component.call(this, 'div');
+class Div extends Component {
+  constructor() {
+    super("div");
+  }
 }
-
-Div.prototype = Object.create(Component.prototype);
-Div.prototype.constructor = Div;

@@ -1,25 +1,25 @@
-var body = new Component(document.body);
+const body = new Component(document.body);
 
-var container = new Div();
+const container = new Div();
 container.addClass("container");
 
-var title = new Heading(1);
+const title = new Heading(1);
 title.setText("Register");
 title.addClass("heading");
 
-var registerForm = new RegisterForm();
-registerForm.onSubmit(function (event) {
+const registerForm = new RegisterForm();
+registerForm.onSubmit((event) => {
   event.preventDefault();
 
-  var email = registerForm.getEmail();
-  var username = registerForm.getUsername();
-  var password = registerForm.getPassword();
-  var repeatedPassword = registerForm.getRepeatedPassword();
+  const email = registerForm.getEmail();
+  const username = registerForm.getUsername();
+  const password = registerForm.getPassword();
+  const repeatedPassword = registerForm.getRepeatedPassword();
 
   logic.registerUser(email, username, password, repeatedPassword);
 });
 
-var loginLink = new Link();
+const loginLink = new Link();
 loginLink.setText("Login");
 loginLink.setUrl("../login");
 

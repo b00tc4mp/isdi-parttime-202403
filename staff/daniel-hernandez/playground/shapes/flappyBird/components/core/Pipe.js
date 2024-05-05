@@ -1,20 +1,19 @@
-function Pipe(height, width) {
-    CollidableObject.call(this, height, width);
-    this.removeClass('collision-block');
-    this.addClass('pipe');
-}
+class Pipe extends CollidableObject {
+  constructor(height, width) {
+    super(height, width);
 
+    this.removeClass("collision-block");
+    this.addClass("pipe");
+  }
 
-Pipe.prototype = Object.create(CollidableObject.prototype);
-Pipe.prototype.constructor = Pipe;
+  createTop() {
+    this.removeClass("pipe");
+    this.addClass("topPipe");
+  }
 
-Pipe.prototype.createTop = function () {
-    this.removeClass('pipe');
-    this.addClass('topPipe');
-}
-
-Pipe.prototype.createBottom = function (gap) {
-    this.removeClass('pipe');
-    this.addClass('bottomPipe');
+  createBottom(gap) {
+    this.removeClass("pipe");
+    this.addClass("bottomPipe");
     this.setTopMargin(gap);
+  }
 }

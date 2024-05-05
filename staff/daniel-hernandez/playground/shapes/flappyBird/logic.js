@@ -1,11 +1,11 @@
-var logic = {};
+const logic = {};
 
-var EMAIL_REGEX =
+const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-var USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
-var PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
+const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
+const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
 
-logic.registerUser = function (email, username, password, repeatedPassword) {
+logic.registerUser = (email, username, password, repeatedPassword) => {
   //TODO input validation
 
   // check if all fields are full
@@ -57,8 +57,8 @@ logic.registerUser = function (email, username, password, repeatedPassword) {
   }
 
   // generate userkey
-  var userKey = "user_" + username.toLowerCase();
-  var userKeyString = JSON.stringify(userKey);
+  const userKey = "user_" + username.toLowerCase();
+  const userKeyString = JSON.stringify(userKey);
 
   // check if user exists
   if (localStorage.getItem(userKeyString)) {
@@ -70,7 +70,7 @@ logic.registerUser = function (email, username, password, repeatedPassword) {
 
   //TODO hash passwords
 
-  var userData = {
+  const userData = {
     email: email,
     username: username,
     password: password,
@@ -81,7 +81,7 @@ logic.registerUser = function (email, username, password, repeatedPassword) {
   registerForm.clear();
 };
 
-logic.loginUser = function (username, password) {
+logic.loginUser = (username, password) => {
   if (!USERNAME_REGEX.test(username)) {
     loginForm.shakeButton();
   }
@@ -90,14 +90,15 @@ logic.loginUser = function (username, password) {
     loginForm.shakeButton();
   }
 
-  var userKey = "user_" + username.toLowerCase();
-  var userKeyString = JSON.stringify(userKey);
+  const userKey = "user_" + username.toLowerCase();
+  const userKeyString = JSON.stringify(userKey);
 
   if (localStorage.getItem(userKeyString)) {
-    var userData = JSON.parse(localStorage.getItem(userKeyString));
+    const userData = JSON.parse(localStorage.getItem(userKeyString));
     if (password === userData.password) {
       loginForm.success("Logged in successfully");
       loginForm.clear();
+      sessionStorage.username = username;
       setTimeout(function () {
         window.location.href = "../public/src/index.html";
       }, 1000);
@@ -107,4 +108,25 @@ logic.loginUser = function (username, password) {
   } else {
     loginForm.shakeButton();
   }
+};
+
+logic.isUserLoggedIn = () => {
+  return !!sessionStorage.username;
+};
+
+logic.logoutUser = () => {
+  delete sessionStorage.username;
+};
+
+logic.getUsername = () => {
+  const username = sessionStorage.getItem("username");
+
+  // check if username is defined correctly, if not redirect to the login page
+  if (username === undefined || username === null) {
+    // for debugging
+    console.error("username is undefined or null");
+    window.location.href = "../flappyBird/login/index.html";
+  }
+
+  return username;
 };
