@@ -21,24 +21,19 @@ logoutButton.onClick( () => {
     location.href = '../login'
 })
 
-const post = new Component('article')
+const main = new Component('main')
 
-const authorTitle = new Component
-authorTitle.setText('Iñaki Barrera')
+const postList = new Component('section')
 
-const postTitle = new Component('h2')
-postTitle.setText('How to console.log')
+main.add(postList)
 
-const postImage = new Image
-postImage.setUrl('https://miro.medium.com/v2/resize:fit:1400/0*p4qK_4rSh9jpoGqt.png')
+const posts = logic.getAllPosts()
 
-const postText = new Component('p')
-postText.setText('console. log : imprime el texto en la consola como un mensaje de registro.')
+posts.forEach(post => {
+    const post2 = new Post(post)
 
-post.add(authorTitle)
-post.add(postTitle)
-post.add(postImage)
-post.add(postText)
+    postList.add(post2)
+});
 
 const footer = new Component('footer')
 footer.addClass('Footer')
@@ -52,5 +47,30 @@ header.add(usernameTitle)
 footer.add(addPostButton)
 
 view.add(header)
-view.add(post)
+
+view.add(main)
 view.add(footer)
+
+
+
+
+// {
+//     const postData = {
+//         author: 'Iñaki Barrera',
+//         title: 'How to console.log',
+//         image: 'https://miro.medium.com/v2/resize:fit:1400/0*p4qK_4rSh9jpoGqt.png',
+//         text: 'console. log : imprime el texto en la consola como un mensaje de registro.'
+//     }
+
+//     const post = new Post(postData)
+
+//     postList.add(post)
+// }
+
+// {
+//     const postData = {
+//         author: 'Ismael Garrido',
+//         title: 'How use the Error in js',
+//         image: 'https://miro.medium.com/v2/resize:fit:1400/1*NyTCYBdQZsKpR2TUEN_FIw.png',
+//         text: 'Mediante el try catch podemos recoger el error'
+//     }
