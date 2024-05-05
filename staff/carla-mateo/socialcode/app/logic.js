@@ -92,15 +92,16 @@ logic.createPost = (title, image, description) => {
     const year = newDate.getFullYear()
     const month = newDate.getMonth() + 1
     const day = newDate.getDay()
-    const hour = newDate.getHours()
-    const minut = newDate.getMinutes()
+    const hours = newDate.getHours()
+    const minutes = newDate.getMinutes()
+
 
     const post = {
         author: sessionStorage.username,
         title,
         image,
         description,
-        date: day + '/' + month + '/' + year + ' ' + hour + ':' + minut
+        date: `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year.toString()} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
     }
 
     data.insertPost(post)

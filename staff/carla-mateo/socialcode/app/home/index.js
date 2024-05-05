@@ -33,6 +33,10 @@ const postList = new Component('section')
 postList.addClass('Section')
 main.add(postList)
 
+const article = new Component("article")
+article.addClass("Article")
+postList.add(article)
+
 const posts = logic.getAllPosts()
 
 posts.forEach(post => {
@@ -65,7 +69,6 @@ createPostForm.onSubmit(event => {
 })
 
 
-logic.statusButton()
 
 const footer = new Component('footer')
 footer.addClass('Footer')
@@ -73,6 +76,9 @@ view.add(footer)
 
 const addPostButton = new Button
 addPostButton.setText('+')
+
+logic.statusButton()
+
 footer.add(addPostButton)
 
 

@@ -23,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     gap: 3rem;
+
 }
 
 .Section {
@@ -31,6 +32,13 @@
     align-items: center;
     width: 50rem;
     gap: 3rem;
+
+}
+
+.Article {
+    border: 5px solid black;
+    background-color: rgb(15, 86, 148);
+    opacity: 60%;
 }
 
 .Footer {

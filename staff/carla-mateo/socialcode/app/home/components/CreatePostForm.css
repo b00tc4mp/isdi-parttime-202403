@@ -2,5 +2,11 @@
     width: 20rem;
     position: relative;
     bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.SubmitButton {
+    align-self: center;
 
 }
