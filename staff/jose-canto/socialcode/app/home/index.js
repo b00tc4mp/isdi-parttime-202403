@@ -39,6 +39,10 @@ logoutButton.onClick(() => {
   location.href = '../login'
 })
 
+// FOOTER
+const footer = new Component("footer")
+footer.addClass("Footer")
+
 
 // ADD AT HEADER
 header.add(logo)
@@ -86,11 +90,9 @@ addPostButton.setText("+")
 
 logic.statusButton()
 
-
 const scrollTop = new Component("i")
 scrollTop.addClass("fa-solid")
 scrollTop.addClass("fa-arrow-up-long")
-
 
 scrollTop.onClick(() => {
   const scrollDuration = 2000
@@ -105,8 +107,7 @@ scrollTop.onClick(() => {
 })
 
 
-const footer = new Component("footer")
-footer.addClass("Footer")
+// ADD FOOTER
 view.add(footer)
 footer.add(addPostButton)
 footer.add(scrollTop)

@@ -132,7 +132,7 @@ logic.createPost = (title, image, description) => {
     throw new ContentError("Image is not valid")
   }
 
-  if (typeof description !== "string" || !description.length || description.length > 500) {
+  if (typeof description !== "string" || !description.length || description.length > 600) {
     throw new ContentError("Description is not valid")
   }
 
