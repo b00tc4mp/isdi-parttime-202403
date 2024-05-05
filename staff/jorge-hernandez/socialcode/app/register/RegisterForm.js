@@ -15,7 +15,7 @@ class RegisterForm extends FormWithFeedback {
     const emailField = new Field('email', 'email', 'E-mail')
     emailField.setPlaceholder('email@email.com')
 
-    const userNameField = new Field('name', 'text', 'Name')
+    const userNameField = new Field('name', 'text', 'Username')
     userNameField.setPlaceholder('name')
 
     const passwordField = new Field('password', 'password', 'Password')

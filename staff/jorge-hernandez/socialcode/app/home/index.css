@@ -1,0 +1,97 @@
+.View {
+    display: flex;
+    background: linear-gradient(to bottom, #2980b9, #6dd5fa);
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+    color: #fff;
+}
+main{
+    border: 1px solid #0000ff26;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    border-radius: 20px;
+}
+.Header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background: linear-gradient(to bottom, #07273b, #214c5b);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding: .2rem;
+    padding-right: .5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid blue;
+}
+.Header h3{
+    font-size: 18px;
+    margin: 5px
+}
+
+.Post{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 30px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 255, 0.225);
+}
+
+.Footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom, #07273b, #214c5b);
+    position: fixed;
+    bottom: 0;
+    padding: .5rem 0;
+    border-top: 1px solid blue;
+    /* height: 40px; */
+}
+
+.Post h2{
+    margin: 2px;
+    
+}
+
+.Post p{
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.Footer .Button {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bffb0;
+    border: 1px solid rgba(0, 0, 255, 0.338);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    width: 60px;
+    height: 30px;
+  }
+
+  
+  .Footer .Button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .Footer .Button:active {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .Footer .Button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  }
+  time{
+    font-size: 9px;
+  }

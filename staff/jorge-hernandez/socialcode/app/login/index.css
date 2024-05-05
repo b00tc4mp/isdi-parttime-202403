@@ -6,7 +6,7 @@ body {
     background: linear-gradient(to bottom, #2980b9, #6dd5fa);
     height: 100vh;
     margin: 0;
-    color: #fff; /* Color de texto blanco para contrastar con el fondo */
+    color: #fff;
 }
 
 h1{
@@ -30,17 +30,7 @@ input::placeholder {
     color: rgba(2, 2, 2, 0.293);
     font-size: 1em;
   }
-  /* Estilo para el ícono dentro del campo de contraseña */
-/* #password{
-    position: absolute;
-  }
-   */
-/* .LoginForm i {
-    position: relative;
-    right: -60px; 
-    top: -21px;
-    cursor: pointer;
-  } */
+
   .LoginForm .forgot-pass{
     font-size: 9px;
   }

@@ -10,12 +10,24 @@ data.insertUser = (newUser) => {
 
   users.push(newUser)
   localStorage.users = JSON.stringify(users)
-  // localStorage.newUser = JSON.stringify(newUser)
   window.location.href = '../home/index.html'
   // registerForm.clear()
 }
-// data loginForm
+data.findPosts = (callback) => {
+  let postsJson = localStorage.postsJson
 
-// data.loginUser = (newUser) => {
-//   localStorage.newUser = JSON.stringify(newUser)
-// }
+  if (!localStorage.posts) {
+    postsJson = '[]'
+  } else {
+    const posts = JSON.parse(localStorage.posts)
+    const filtered = posts.filter(callback).reverse()
+    return filtered
+  }
+}
+
+data.insertPost = (post) => {
+  const posts = localStorage.posts ? JSON.parse(localStorage.posts) : []
+
+  posts.push(post)
+  localStorage.posts = JSON.stringify(posts)
+}

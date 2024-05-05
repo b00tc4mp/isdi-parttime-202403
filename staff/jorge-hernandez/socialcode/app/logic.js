@@ -64,7 +64,6 @@ logic.loginUser = (username, password) => {
 
   if (user) {
     if (user.password === password) {
-      // data.loginUser(newUser)
       sessionStorage.username = username
       window.location.href = '../home/index.html'
     } else {
@@ -89,18 +88,45 @@ const showPass = (icon, field, type1, type2) => {
   }
 }
 
-logic.isUserLoggedIn = function () {
+logic.isUserLoggedIn = () => {
   return !!sessionStorage.username
 }
 
-logic.logoutUser = function () {
+logic.logoutUser = () => {
   delete sessionStorage.username
 }
 
-logic.getUserName = function () {
+logic.getUserName = () => {
   var user = data.findUser((user) => {
     return user.username === sessionStorage.username
   })
 
   return user.username
+}
+
+logic.getAllPosts = () => {
+  const posts = data.findPosts((post) => {
+    return true
+  })
+  return posts
+}
+
+logic.createPost = (title, image, description) => {
+  if (typeof title !== 'string' || !title.length) {
+    throw new ContentError('Título no válido')
+  }
+  if (typeof image !== 'string' || !image.startsWith('http')) {
+    throw new ContentError('Imagen no válida')
+  }
+  if (typeof description !== 'string' || !description.length) {
+    throw new ContentError('descripción no válida')
+  }
+  const post = {
+    author: sessionStorage.username,
+    title: title,
+    image: image,
+    description: description,
+    date: new Date().toString(),
+  }
+  data.insertPost(post)
 }

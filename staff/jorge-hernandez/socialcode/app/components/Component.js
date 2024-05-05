@@ -15,12 +15,17 @@ class Component {
   }
 
   remove(child) {
+    if (!(child instanceof Component))
+      throw new TypeError('chid is not a component')
+
     const index = this.children.indexOf(child)
+
     if (index > -1) {
       this.children.splice(index, 1)
     }
-    this.container.removeChild(child.container)
-    this.children.push(child)
+    if (this.container.contains(child.container)) {
+      this.container.removeChild(child.container)
+    }
   }
 
   setText(text) {

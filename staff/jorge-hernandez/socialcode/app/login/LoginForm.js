@@ -5,7 +5,7 @@ class LoginForm extends FormWithFeedback {
     const heading = new Heading(1)
     heading.setText('Login')
 
-    const userNameField = new Field('name', 'text', 'Name')
+    const userNameField = new Field('name', 'text', 'Username')
     userNameField.setPlaceholder('name')
     const passwordField = new Field('password', 'password', 'Password')
     passwordField.setPlaceholder('password')
