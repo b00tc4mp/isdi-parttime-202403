@@ -1,6 +1,5 @@
 .Button {
-    padding: .4rem;
-    /* margin: 5px; */
+    padding: .4rem 0;
     background-color: transparent;
     font-size: 1rem;
     border: 1px solid var(--first-color);
