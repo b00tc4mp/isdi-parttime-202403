@@ -68,20 +68,10 @@ logic.isUserLoggedIn = () => !!sessionStorage.username
 logic.logoutUser = () => delete sessionStorage.username
 
 logic.getUserName = () => {
-    const user = data.findUser(user => user.username === sessionStorage.username)
+    const user = data.findUser((user) => {
+        return user.username === sessionStorage.username
+    })
 
     return user.name
-
 }
 
-//data.findPosts((post) => true) no hace falta q le pasemos el parametro post
-
-
-logic.getAllPosts = () => {
-    const posts = data.findPosts(() => true)
-
-    return posts
-
-    /*abreviado a una linea:
-    //logic.getAllPosts = () => data.findPosts(() => true);*/
-}

@@ -28,16 +28,3 @@ data.insertUser = user => {
     localStorage.users = usersJson
 
 }
-
-data.findPosts = callback => {
-    const postsJson = localStorage.posts
-
-    if (!postsJson)
-        postsJson = '[]'
-
-    const posts = JSON.parse(postsJson)
-
-    const filtered = posts.filter(callback)
-
-    return filtered
-}
