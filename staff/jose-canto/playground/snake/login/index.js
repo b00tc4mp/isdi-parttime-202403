@@ -51,7 +51,6 @@ registerLink.onClick(function (event) {
   }, 1000)
 })
 
-
 view.add(header)
 view.add(loginForm)
 view.add(registerLink)

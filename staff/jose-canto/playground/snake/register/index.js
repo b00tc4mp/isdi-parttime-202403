@@ -22,78 +22,43 @@ registerForm.onSubmit(function (event) {
   var password = registerForm.getPassword()
   var passwordRepeat = registerForm.getPasswordRepeat()
 
-  // Obtenemos los usuarios del Local Storage o creamos un array vacío si no existen
-  var usersJson = localStorage.users
+  try {
 
-  if (!usersJson) {
-    usersJson = '[]'
-  }
+    logic.registerUser(email, username, password, passwordRepeat)
 
-  // Convertimos la cadena JSON de usuarios a un array de objetos
-  var usersArray = JSON.parse(usersJson)
-
-  var emailRegistered = usersArray.find(function (user) {
-    return user.email === email
-  })
-  var userRegistered = usersArray.find(function (user) {
-    return user.username === username
-  })
-
-  if (emailRegistered && userRegistered) {
-    alert(`El email ${email} y el nombre de usuario ${username} ya están en uso ❌❌`)
-
-  } else if (emailRegistered) {
-    alert(`El email ${email} ya esta en uso ❌`)
-
-  } else if (userRegistered) {
-    alert(`El nombre de usuario ${username} ya está en uso ❌`)
-
-  } else if (password !== passwordRepeat) {
-    alert(`Password no coincide ❌`)
-
-  } else {
-    alert(`Usuario ${username} creado ✅`)
-
-    // Creamos un objeto con los datos del nuevo usuario
-    var user = {
-      email: email,
-      username: username,
-      password: password,
-    }
-    usersArray.push(user)
-    console.log(usersArray)
-
-    // Convertimos el array de usuarios de nuevo a una cadena JSON
-    var updatedUsersJson = JSON.stringify(usersArray)
-
-    // Guardamos la cadena JSON actualizada en el Local Storage
-    localStorage.users = updatedUsersJson
-    console.log(localStorage.users)
-
-    // Limpiamos el formulario de registro
     registerForm.clear()
-    location.href = "../login" // Redireccionamos al usuario al inicio de sesión 
+
+    setTimeout(function () {
+      location.href = "../login"
+    })
+
+  } catch (error) {
+    if (error instanceof ContentError) {
+      //alert(error.message)
+      registerForm.setFeedback(error.message + ", correct it")
+    } else if (error instanceof MatchError) {
+      registerForm.setFeedback(error.message + ", please, retype them")
+
+    } else if (error instanceof DuplicityError) {
+      registerForm.setFeedback(error.message + ", enter new one")
+
+    } else {
+      registerForm.setFeedback("sorry, ther was an error, please try again later")
+    }
+
+    setTimeout(function () {
+      registerForm.setFeedback("")
+    }, 2000)
   }
 })
-
 
 // Login Link
 var loginLink = new Link()
 loginLink.setText("Login")
-loginLink.onClick(function (event) {
-  event.preventDefault()
 
-  console.log("...en espera de 1 segundo para acceder al login")
-  setTimeout(function () {
-
-    location.href = "../login"
-
-  }, 1000)
-})
+logic.loginLink()
 
 // ADD ELEMENT AT PRINCIPAL COMPONENT
 view.add(header)
 view.add(registerForm)
 view.add(loginLink)
-
-

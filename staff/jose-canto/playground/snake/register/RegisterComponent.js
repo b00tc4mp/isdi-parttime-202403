@@ -78,7 +78,3 @@ RegisterComponent.prototype.getPasswordRepeat = function () {
 }
 
 
-// RegisterComponent.prototype.setPasswordRepeat = function (userPassword, userPasswordRepeat) {
-
-//   return userPassword === userPasswordRepeat
-// }
