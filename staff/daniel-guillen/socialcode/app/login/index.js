@@ -22,21 +22,17 @@ loginForm.onSubmit(event => {
 
         loginForm.clear()
 
-        loginForm.setFeedback('User successfully logged in 🎉', 'success')
+        loginForm.setFeedback('user successfully logged in', 'success')
 
         setTimeout(() => location.href = '../home', 1000)
     } catch (error) {
-        if (error instanceof ContentError){
-            loginForm.setFeedback(error.message + ', please, correct it 👌')
-        }
-        else if (error instanceof MatchError){
-            loginForm.setFeedback('wrong credentials 😵')
-        }
-        else{
-            loginForm.setFeedback('😵 Sorry, there was an error, please try again later ⏳')
-        }
-        //setTimeout(() => loginForm.setFeedback(""), 4000,)
-        }
+        if (error instanceof ContentError)
+            loginForm.setFeedback(error.message + ', please, correct it')
+        else if (error instanceof MatchError)
+            loginForm.setFeedback('wrong credentials')
+        else
+            loginForm.setFeedback('sorry, there was an error, please try again later')
+    }
 })
 
 

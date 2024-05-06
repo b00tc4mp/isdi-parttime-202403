@@ -11,16 +11,10 @@ class LoginForm extends FormWithFeedback {
         passwordField.setPlaceholder('password')
         
         const submitButton = new SubmitButton('Login')
-
-        //const feedbackPanel = new Component('p')
-        //feedbackPanel.addClass('Feedback')
-
-        //this.feedbackPanel = feedbackPanel
-        
+                
         this.add(usernameField)
         this.add(passwordField)
         this.add(submitButton)
-        //this.add(this.feedbackPanel)
     }
 
     getUsername() {
@@ -34,25 +28,4 @@ class LoginForm extends FormWithFeedback {
 
         return passwordField.getValue()
     }
-    /* setFeedback(message, level) {
-        //const feedbackPanel = this.children[this.children.length - 1]
-
-        if (level === 'success')
-            feedbackPanel.addClass('success')
-
-        this.feedbackPanel.setText(message)
-
-        this.add(this.feedbackPanel)
-    }
-
-    clear() {
-        super.clear()
-
-        //const feedbackPanel = this.children[this.children.length - 1]
-
-        this.feedbackPanel.setText('')
-        this.feedbackPanel.removeClass('success')
-
-        this.remove(this.feedbackPanel)
-    } */
 }

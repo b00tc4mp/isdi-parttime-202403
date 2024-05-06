@@ -5,17 +5,17 @@ etiqueta y valor de marcador de posición. Además, se crea un botón de envío 
 class RegisterForm extends FormWithFeedback {
     constructor() {
         super()
-
-        this.addClass('RegisterForm')
+    
+        this.addClass("RegisterForm")
 
         const nameField = new Field('name', 'text', 'Name')
         nameField.setPlaceholder('name')
-
+    
         const surnameField = new Field('surname', 'text', 'Surname')
         surnameField.setPlaceholder('surname')
 
-        const emailField = new Field('email', 'email', 'E-mail')
-        emailField.setPlaceholder('name@example.com')
+        const emailField = new Field("email", "email", "E-mail")
+        emailField.setPlaceholder("name@example.com")
 
         const usernameField = new Field('username', 'text', 'Username')
         usernameField.setPlaceholder('username')
@@ -28,11 +28,6 @@ class RegisterForm extends FormWithFeedback {
 
         const submitButton = new SubmitButton('Register')
 
-        //const feedbackPanel = new Component('p')
-        //feedbackPanel.addClass('Feedback')
-
-        //this.feedbackPanel = feedbackPanel
-
         this.add(nameField)
         this.add(surnameField)
         this.add(emailField)
@@ -40,7 +35,6 @@ class RegisterForm extends FormWithFeedback {
         this.add(passwordField)
         this.add(passwordRepeatField)
         this.add(submitButton)
-        //this.add(feedbackPanel)
     }
 
     getName() {
@@ -78,25 +72,4 @@ class RegisterForm extends FormWithFeedback {
 
         return passwordFieldRepeat.getValue()
     }
-    /*setFeedback(message, level) {
-        //const feedbackPanel = this.children[this.children.length - 1]
-
-        if (level === 'success')
-            feedbackPanel.addClass('success')
-
-        this.feedbackPanel.setText(message)
-
-        this.add(this.feedbackPanel)
-    }
-
-    clear() {
-        super.clear()
-
-        //const feedbackPanel = this.children[this.children.length - 1]
-
-        this.feedbackPanel.setText('')
-        this.feedbackPanel.removeClass('success')
-
-        this.remove(this.feedbackPanel)
-    } */
 }

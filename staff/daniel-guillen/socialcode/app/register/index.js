@@ -16,6 +16,7 @@ Cuando se envía el formulario, evita el comportamiento de envío de formulario 
 se recupera los valores de entrada de los campos del formulario (nombre, apellido, correo electrónico, nombre de usuario, contraseña, contraseñaRepeat)
 para hacer el guardado con la funcion en logic 'registerUser' si son validos se redirige a 'login'
 sino se recibira avisos o errores mediante Feedbacks dentro del Form */
+
 const registerForm = new RegisterForm
 registerForm.onSubmit(event => {
     event.preventDefault()
@@ -32,24 +33,20 @@ registerForm.onSubmit(event => {
 
         registerForm.clear()
 
-        registerForm.setFeedback('user successfully registered 🎉', 'success')
+        registerForm.setFeedback('user successfully registered', 'success')
 
         setTimeout(() => location.href = '../login', 1000)
     } catch (error) {
-        if (error instanceof ContentError) {
-            registerForm.setFeedback(error.message + ', please, correct it 👌')
-        }
-        else if (error instanceof MatchError) {
-            registerForm.setFeedback(error.message + ', please, retype them 👌')
-        }
-        else if (error instanceof DuplicityError) {
-            registerForm.setFeedback(error.message + ', please, enter new one 👌')
-        }
-        else {
-            registerForm.setFeedback('😵 Sorry, there was an error, please try again later ⏳')
+        if (error instanceof ContentError)
+            registerForm.setFeedback(error.message + ', please, correct it')
+        else if (error instanceof MatchError)
+            registerForm.setFeedback(error.message + ', please, retype them')
+        else if (error instanceof DuplicityError)
+            registerForm.setFeedback(error.message + ', please, enter new one')
+        else
+            registerForm.setFeedback('sorry, there was an error, please try again later')
     }
-        setTimeout(() => registerForm.setFeedback(""), 4000)
-}})
+})
 
 const loginLink = new Link
 loginLink.setText('Login')
