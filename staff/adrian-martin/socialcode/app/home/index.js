@@ -35,6 +35,30 @@ posts.forEach(post => {
     postList.add(post2)
 });
 
+const createPostForm = new CreatePostForm
+
+createPostForm.onSubmit(event => {
+    event.preventDefault()
+
+    const title = createPostForm.getTitle()
+    const image = createPostForm.getImage()
+    const description = createPostForm.getDescription()
+
+    try{
+        logic.createPost(title, image, description)
+
+
+    }catch (error){
+        if (error instanceof ContentError) 
+            createPostForm.setFeedback(error.message + '. please, repeat it')
+
+        else
+            createPostForm.setFeedback('sorry, there was an error, please try again later')
+    }
+})
+
+main.add(createPostForm)
+
 const footer = new Component('footer')
 footer.addClass('Footer')
 

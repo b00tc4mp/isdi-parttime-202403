@@ -1,7 +1,7 @@
 const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/ //  /^[\w-]+$/
 const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
@@ -79,7 +79,23 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
     }
 
     logic.getAllPosts = () => {
-        const posts = data.findPosts(function (post) {return true})
+        const posts = data.findPosts( () => {return true})
 
-        return posts
+        return posts.reverse()
+    }
+
+    logic.createPost = (title, image, description)  => {
+        if(typeof title !== 'string' || !title.length || title.length > 30) throw new ContentError('title is not valid')
+        if(typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
+        if(typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
+
+        const post = {
+            author: sessionStorage.username,
+            title,
+            image,
+            description,
+            date: new Date().toISOString()
+        }
+
+        data.insertPost(post)
     }
