@@ -14,7 +14,6 @@ class CreatePostForm extends FormWithFeedback {
         descriptionField.setPlaceholder('description')
 
         const cancelButton = new Button('Cancel')
-        cancelButton.setType('button')
 
         this.cancelButton = cancelButton
 

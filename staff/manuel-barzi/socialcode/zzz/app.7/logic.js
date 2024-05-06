@@ -81,7 +81,6 @@ logic.createPost = (title, image, description) => {
     if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
 
     const post = {
-        id: Date.now(),
         author: sessionStorage.username,
         title,
         image,
@@ -91,7 +90,3 @@ logic.createPost = (title, image, description) => {
 
     data.insertPost(post)
 }
-
-logic.getLoggedInUsername = () => sessionStorage.username
-
-logic.deletePost = id => data.deletePost(post => post.id === id)

@@ -28,8 +28,16 @@ header.add(logoutButton)
 const main = new Component('main')
 view.add(main)
 
-const postList = new PostList
+const postList = new Component('section')
 main.add(postList)
+
+const posts = logic.getAllPosts()
+
+posts.forEach(post => {
+    const post2 = new Post(post)
+
+    postList.add(post2)
+})
 
 const createPostForm = new CreatePostForm
 
@@ -47,7 +55,15 @@ createPostForm.onSubmit(event => {
 
         main.remove(createPostForm)
 
-        postList.load()
+        postList.removeAll()
+
+        const posts = logic.getAllPosts()
+
+        posts.forEach(post => {
+            const post2 = new Post(post)
+
+            postList.add(post2)
+        })
     } catch (error) {
         if (error instanceof ContentError)
             createPostForm.setFeedback(error.message + ', please, correct it')
@@ -56,11 +72,7 @@ createPostForm.onSubmit(event => {
     }
 })
 
-createPostForm.onCancelClick(event => {
-    event.preventDefault()
-
-    main.remove(createPostForm)
-})
+createPostForm.onCancelClick(() => main.remove(createPostForm))
 
 const footer = new Component('footer')
 footer.addClass('Footer')

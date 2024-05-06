@@ -30,12 +30,6 @@ class Component {
             this.container.removeChild(child.container)
     }
 
-    removeAll() {
-        const children = this.children.concat()
-
-        children.forEach(child => this.remove(child))
-    }
-
     setText(text) {
         this.container.innerText = text
     }

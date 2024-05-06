@@ -1,10 +1,8 @@
 class Button extends Component {
-    constructor(text) {
+    constructor() {
         super('button')
 
         this.addClass('Button')
-
-        if (text) this.setText(text)
     }
 
     setType(type) {
