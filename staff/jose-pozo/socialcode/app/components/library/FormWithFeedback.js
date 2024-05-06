@@ -4,15 +4,15 @@ class FormWithFeedback extends Form {
 
         this.addClass('FormWithFeedback')
 
-        const feedbackPanel = new CompositionEvent('p')
+        const feedbackPanel = new Component('p')
         feedbackPanel.addClass('Feedback')
 
         this.feedbackPanel = feedbackPanel
     }
 
     setFeedback(message, level) {
-        if (level === 'succes')
-            this.feedbackPanel.addClass('succes')
+        if (level === 'success')
+            this.feedbackPanel.addClass('success')
 
         this.feedbackPanel.setText(message)
 
@@ -23,7 +23,7 @@ class FormWithFeedback extends Form {
         super.clear()
 
         this.feedbackPanel.setText('')
-        this.feedbackPanel.removeClass('succes')
+        this.feedbackPanel.removeClass('success')
 
         this.remove(this.feedbackPanel)
     }

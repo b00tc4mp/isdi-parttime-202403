@@ -4,11 +4,11 @@ class Field extends Component {
 
         this.addClass('Field')
 
-        const label = new label
+        const label = new Label
         label.setText(text)
         label.setFor(id)
 
-        const input = new input
+        const input = new Input
         input.setId(id)
         input.setType(type)
 

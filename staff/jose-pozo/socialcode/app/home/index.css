@@ -1,30 +1,87 @@
 .View {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 4rem 0;
+    margin: 0;
 }
 
 .Header {
+    width: 90%;
     display: flex;
     gap: 1rem;
-    width: 100%;
+    align-self: center;
     justify-content: right;
+    align-items: center;
     position: fixed;
     top: 0;
-    padding: .5rem;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--first-color);
+    /*border-bottom: 1px solid var(--first-color);*/
     background-color: var(--second-color);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.Logo {
+    height: 50px;
+    margin-right: auto;
+}
+
+.UsernameTitle {
+    color: #70FACB;
+}
+
+.LogoutButton:hover {
+    cursor: pointer;
+    background-color: #f73a1c;
+}
+
+.Main {
+    display: flex;
+    justify-content: center;
+}
+
+.PostList {
+    width: 90%;
+    margin-top: 6rem;
+    margin-bottom: 5rem;
+
+}
+
+.Button.logout {
+    /*margin-right: 0.6rem;*/
 }
 
 .Footer {
     width: 100%;
+    padding: 1rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: fixed;
     bottom: 0;
     padding: .5rem 0;
-    border-top: 1px solid var(--first-color);
+    /*border-top: 1px solid var(--first-color);*/
     background-color: var(--second-color);
+}
+
+.HomeButton {
+    width: 2rem;
+    height: 2rem;
+    background-image: url(../assets/Home.png);
+    background-size: cover;
+    border: none;
+}
+
+.PostButton {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.PostButton:hover {
+    cursor: pointer;
+    background-color: #f73a1c;
 }

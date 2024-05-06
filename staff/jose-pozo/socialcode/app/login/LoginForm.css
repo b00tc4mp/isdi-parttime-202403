@@ -1,0 +1,9 @@
+.SubmitLogin {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.SubmitLogin:hover {
+    background-color: #f73a1c;
+    cursor: pointer;
+}

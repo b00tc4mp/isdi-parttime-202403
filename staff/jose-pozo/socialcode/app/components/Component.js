@@ -11,7 +11,7 @@ class Component {
     }
 
     add(child) {
-        if (!(child instanceof Component)) throw new error TypeErrror('child is not component')
+        if (!(child instanceof Component)) throw new TypeError('child is not component')
 
         this.children.push(child)
 
@@ -26,7 +26,8 @@ class Component {
         if (index > -1)
             this.children.splice(index, 1)
 
-        this.container.removeChild(child.container)
+        if (this.container.contains(child.container))
+            this.container.removeChild(child.container)
     }
 
     setText(text) {

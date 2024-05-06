@@ -1,4 +1,4 @@
-class Input extends Compnent {
+class Input extends Component {
     constructor() {
         super('input')
 
