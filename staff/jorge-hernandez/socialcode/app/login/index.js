@@ -1,6 +1,19 @@
 if (logic.isUserLoggedIn()) location.href = '../home'
 const view = new Component(document.body)
 view.addClass('View')
+
+const logo = new Image()
+// logo.alt('logo')
+logo.setUrl('../src/logo.png')
+logo.addClass('Logo')
+
+const header = new Component('header')
+view.add(header)
+const headerTitle = new Component('h1')
+headerTitle.setText('ocialCode')
+header.add(logo)
+header.add(headerTitle)
+
 const loginForm = new LoginForm()
 view.add(loginForm)
 let linkCreated = false

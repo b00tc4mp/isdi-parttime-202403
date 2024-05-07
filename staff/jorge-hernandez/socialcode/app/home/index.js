@@ -23,7 +23,7 @@ const main = new Component('main')
 view.add(main)
 const postList = new Component('section')
 main.add(postList)
-
+//TODO LOGIC TO DELETE POST
 logoutButton.onClick(() => {
   logic.logoutUser()
   location.href = '../login'
@@ -31,6 +31,7 @@ logoutButton.onClick(() => {
 
 const posts = logic.getAllPosts()
 // const posts = JSON.parse(localStorage.posts)
+//TODO CREAR COMPO PARA EL FOREACH
 if (localStorage.posts) {
   posts.forEach((post) => {
     const post2 = new Post(post)
@@ -48,7 +49,7 @@ createPostForm.onSubmit((event) => {
   try {
     logic.createPost(title, image, description)
     main.remove(createPostForm)
-
+    //TODO change location reload
     location.reload()
   } catch (error) {
     if (error instanceof ContentError) {
@@ -57,6 +58,12 @@ createPostForm.onSubmit((event) => {
       createPostForm.setFeedback('Hay un error, en breve lo solucionaremos')
     }
   }
+})
+
+createPostForm.onCancelClick((event) => {
+  event.preventDefault()
+
+  main.remove(createPostForm)
 })
 
 const footer = new Component('footer')

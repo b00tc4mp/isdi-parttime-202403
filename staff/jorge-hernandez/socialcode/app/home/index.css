@@ -28,16 +28,17 @@ main{
     border-bottom: 1px solid blue;
 }
 .Header h3{
-    font-size: 18px;
+    font-size: 1.75vw;
     margin: 5px
 }
+
 
 .Post{
     display: flex;
     flex-direction: column;
     align-items: left;
     padding: 30px;
-    width: 100%;
+    width: auto;
     border-bottom: 1px solid rgba(0, 0, 255, 0.225);
 }
 
@@ -55,12 +56,14 @@ main{
 
 .Post h2{
     margin: 2px;
+    font-size: 3vw;
     
 }
 
 .Post p{
     margin-top: 15px;
     margin-bottom: 5px;
+    font-size: 2vw;
 }
 
 .Footer .Button {
@@ -93,5 +96,5 @@ main{
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
   }
   time{
-    font-size: 9px;
+    font-size: 1.5vw;
   }

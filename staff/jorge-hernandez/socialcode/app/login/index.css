@@ -34,3 +34,21 @@ input::placeholder {
   .LoginForm .forgot-pass{
     font-size: 9px;
   }
+
+  .Logo{
+    height: 100px;
+    width: 100px;
+    margin-right: 0;
+    padding: auto;
+
+  }
+  header{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    margin-bottom: 0;
+  }
+  h1{
+    margin-bottom: 0;
+    margin-left: 0px;
+  }
