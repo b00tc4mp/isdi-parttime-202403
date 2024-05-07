@@ -1,0 +1,8 @@
+.CreatePostForm {
+    width: 100%;
+    position: fixed;
+    bottom: 3rem;
+    left: 0;
+    box-sizing: border-box;
+    background-color: var(--second-color);
+}

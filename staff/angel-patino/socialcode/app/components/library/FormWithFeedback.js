@@ -10,7 +10,7 @@ class FormWithFeedback extends Form {
         this.feedbackPanel = feedbackPanel
     }
 
-    setFeedbakc(message, level) {
+    setFeedback(message, level) {
         if (level === 'success')
             this.feedbackPanel.addClass('success')
 
@@ -26,6 +26,5 @@ class FormWithFeedback extends Form {
         this.feedbackPanel.removeClass('success')
 
         this.remove(this.feedbackPanel)
-
     }
 }

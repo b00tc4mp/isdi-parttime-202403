@@ -30,6 +30,11 @@ class Component {
             this.container.removeChild(child.container)
     }
 
+    removeAll() {
+        const children = this.children.concat() //slice(0) dos formas para crear un array
+        children.forEach(child => this.remove(child))
+    }
+
     setText(text) {
         this.container.innerText = text
     }

@@ -1,7 +1,7 @@
 const data = {}
 
 data.findUser = callback => {
-    const usersJson = localStorage.users
+    let usersJson = localStorage.users
 
     if (!usersJson) usersJson = '[]'
 
@@ -27,7 +27,7 @@ data.insertUser = user => {
 }
 
 data.findPosts = callback => {
-    const postsJson = localStorage.posts
+    let postsJson = localStorage.posts
 
     if (!postsJson) postsJson = '[]'
 
@@ -50,4 +50,22 @@ data.insertPost = post => {
     postsJson = JSON.stringify(posts)
 
     localStorage.posts = postsJson
+}
+
+data.deletePost = callback => {
+    let postsJson = localStorage.posts
+
+    if (!postsJson) postsJson = '[]'
+
+    const posts = JSON.parse(postsJson)
+
+    const index = posts.findIndex(callback)
+
+    if (index > -1) {
+        posts.splice(index, 1)
+
+        postsJson = JSON.stringify(posts)
+
+        localStorage.posts = postsJson
+    }
 }

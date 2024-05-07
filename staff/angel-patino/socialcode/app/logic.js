@@ -25,7 +25,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
 
-    const user = data.findUser(user => user.email === email || user.username === username)
+    let user = data.findUser(user => user.email === email || user.username === username)
 
     if (user)
         throw new DuplicityError('user already exists')
@@ -48,7 +48,7 @@ logic.loginUser = (username, password) => {
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
 
-    const user = data.findUser(user => user.username === username)
+    let user = data.findUser(user => user.username === username)
 
     if (!user)
         throw new MatchError('user not found')
@@ -64,7 +64,7 @@ logic.isUserLoggedIn = () => !!sessionStorage.username
 logic.logoutUser = () => delete sessionStorage.username
 
 logic.getUserName = () => {
-    const user = data.findUser(user => user.username === sessionStorage.username)
+    let user = data.findUser(user => user.username === sessionStorage.username)
 
     return user.name
 }
@@ -81,6 +81,7 @@ logic.createPost = (title, image, description) => {
     if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
 
     const post = {
+        id: Date.now,
         author: sessionStorage.username,
         title,
         image,
@@ -90,3 +91,7 @@ logic.createPost = (title, image, description) => {
 
     data.insertPost(post)
 }
+
+logic.getLoggedInUsername = () => sessionStorage.username
+
+logic.deletePost = id => data.deletePost(post => post.id === id)

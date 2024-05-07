@@ -22,7 +22,7 @@ registerForm.onSubmit(event => {
     try {
         logic.registerUser(name, surname, email, username, password, passwordRepeat)
 
-        // registerForm.clear()
+        registerForm.clear()
 
         registerForm.setFeedback('user successfully registered', 'success')
 
