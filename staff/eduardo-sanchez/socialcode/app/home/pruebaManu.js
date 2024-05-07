@@ -14,7 +14,7 @@ const usernameTitle = new Heading(3)
 usernameTitle.setText(userName)
 header.add(usernameTitle)
 
-const logoutButton = new Button()
+const logoutButton = new Button
 logoutButton.setText('Logout')
 
 logoutButton.onClick(() => {
@@ -34,13 +34,11 @@ main.add(postList)
 const posts = logic.getAllPosts()
 
 posts.forEach(post => {
-
     const post2 = new Post(post)
 
     postList.add(post2)
 })
-
-const createPostForm = new CreatePostForm()
+const createPostForm = new CreatePostForm
 
 createPostForm.onSubmit(event => {
     event.preventDefault()
@@ -54,16 +52,14 @@ createPostForm.onSubmit(event => {
 
         // TODO dismount create post form from main
         // TODO refresh post list
-
     } catch (error) {
         if (error instanceof ContentError)
-            createPostForm.setFeedback(error.message + ', please correct it')
-
+            createPostForm.setFeedback(error.message + ', please, correct it')
         else
-            createPostForm.setFeedback('an unexpected error happened, try again later')
+            createPostForm.setFeedback('sorry, there was an error, please try again later')
     }
-
 })
+
 
 // TODO mount create post form when clicking on plus button
 main.add(createPostForm)
@@ -72,7 +68,6 @@ const footer = new Component('footer')
 footer.addClass('Footer')
 view.add(footer)
 
-const addPostButton = new Button()
+const addPostButton = new Button
 addPostButton.setText('+')
 footer.add(addPostButton)
-

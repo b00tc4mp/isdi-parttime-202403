@@ -1,7 +1,7 @@
 const data = {}
 
 data.findUser = callback => {
-    let usersJson = localStorage.users
+    const usersJson = localStorage.users
 
     if (!usersJson) usersJson = '[]'
 
@@ -29,7 +29,9 @@ data.insertUser = user => {
 }
 
 data.findPosts = callback => {
-    let postsJson = localStorage.posts
+    const postsJson = localStorage.posts
+
+    // let? Si solo necesitas usar las variables dentro del callback puedes usar const para declararlas. Si necesitas modificar las variables o reasignarles valores dentro del callback, debes usar let
 
     if (!postsJson) postsJson = '[]'
 

@@ -80,7 +80,7 @@ logic.getUserName = () => {
 logic.getAllPosts = () => {
     const posts = data.findPosts(() => true)
 
-    return posts
+    return posts.reverse()
 
 }
 
