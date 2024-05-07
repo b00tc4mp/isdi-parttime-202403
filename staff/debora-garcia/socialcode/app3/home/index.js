@@ -37,44 +37,26 @@ const postList = new Component("section")
 main.add(postList)
 
 
-const posts = logic.getPosts()
+const posts =logic.getPosts()
 
 posts.forEach(post => {
     const newPost = new Post(post)
     postList.add(newPost)
 
-})
+}) 
 
-const createPostForm = new NewPostForm
-
-createPostForm.onSubmit(event => {
-    event.preventDefault()
-    const title = createPostForm.getTitle()
-    const image = createPostForm.getImage()
-    const description = createPostForm.getDescription()
-
-    try {
-        logic.createPost(title, image, description)
-    } catch (error) {
-        if (error instanceof ContentError)
-            createPostForm.setFeedback(error.message + ", please, correct it")
-        else
-            createPostForm.setFeedback("sorry, there was an error, please try again later")
-    }
-})
-
-main.add(createPostForm)
 
 const footer = new Component("footer")
 footer.addClass("Footer")
-view.add(footer)
 
 const addPostButton = new Button
 addPostButton.setText("+")
 addPostButton.addClass("PostButton")
+
+
+
 footer.add(addPostButton)
-
-
+view.add(footer)
 
 
 

@@ -2,8 +2,8 @@ const logic = {}
 //creamos un metodo para el objeto logic para almacenar los datos de los usuarios. Modelizar las reglas de negocio
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const USERNAME_REGEX = /^[\w-]+$/
-const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
+const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 logic.registerUser = (email, username, password, passwordRepeat) => {
 
@@ -59,6 +59,7 @@ logic.loginUser = (username, password) => {
 
 logic.isUserLoggedIn = () => !!sessionStorage.username
 
+
 logic.logoutUser = () => delete sessionStorage.username
 
 logic.getUserName = () => {
@@ -68,36 +69,17 @@ logic.getUserName = () => {
     return user.username
 }
 
+/* 
+nos hemos saltado la capa de data, por lo que reajustamos el metodo
+logic.getPosts= function(){
+    const posts=JSON.parse(localStorage.posts)
+
+    return posts
+} */
+
 logic.getPosts = () => {
-    const posts = data.findPosts(() => true)
+    const posts = data.findPosts(function(){ return true})
 
-    return posts.reverse()
-}
-
-logic.createPost = (title, image, description) => {
-    if (typeof title !== "string" || !title.length || title.length > 50) throw new ContentError("title is not valid")
-    if (typeof image !== "string" || !image.startsWith("http")) throw new ContentError("image is not valid")
-    if (typeof description !== "string" || !description.length || description.length > 1000) throw new ContentError("description is not valid")
-
-
-    const fechaActual = new Date();
-    const año = fechaActual.getFullYear();
-    const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Agrega cero al mes si es de un solo dígito
-    const dia = fechaActual.getDate().toString().padStart(2, '0'); // Agrega cero al día si es de un solo dígito
-    const hora = fechaActual.getHours().toString().padStart(2, '0'); // Agrega cero a la hora si es de un solo dígito
-    const minutos = fechaActual.getMinutes().toString().padStart(2, '0'); // Agrega cero a los minutos si es de un solo dígito
-    
-    const fechaFormateada = `${año}-${mes}-${dia} ${hora}:${minutos}`;
-    
-    const post = {
-        author: sessionStorage.username,
-        title,
-        image,
-        description,
-        date: fechaFormateada
-    };
-    
-
-    data.insertPost(post)
+    return posts
 
 }

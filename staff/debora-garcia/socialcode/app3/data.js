@@ -32,7 +32,7 @@ data.insertUser = (user) => {
 
 data.findPosts = function (callback) {
     // let??
-    let postsJson = localStorage.posts
+    const postsJson = localStorage.posts
 
     if (!postsJson) postsJson = "[]"
 
@@ -41,23 +41,5 @@ data.findPosts = function (callback) {
     const filtered = posts.filter(callback)
 
     return filtered
-
-}
-
-data.insertPost = post => {
-
-    let postsJson = localStorage.posts
-
-    if (!postsJson) postsJson = "[]"
-
-    const posts = JSON.parse(postsJson)
-
-    posts.push(post)
-
-    postsJson = JSON.stringify(posts)
-
-    localStorage.posts = postsJson
-
-    //registerForm.clear()
 
 }
