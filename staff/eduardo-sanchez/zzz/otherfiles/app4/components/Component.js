@@ -2,10 +2,9 @@ class Component {
     constructor(tagNameOrContainer = 'div') {
         if (typeof tagNameOrContainer === 'string')
             this.container = document.createElement(tagNameOrContainer)
-
         else if (tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument)
             this.container = tagNameOrContainer
-
+        //container es un elemento de html ya existente y tagName es un elemento de tipo string
         else
             throw new Error('tagNameOrContainer is not a tagName or container')
 

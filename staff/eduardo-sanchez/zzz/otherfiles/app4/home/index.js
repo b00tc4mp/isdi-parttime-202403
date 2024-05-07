@@ -31,6 +31,9 @@ view.add(main)
 const postList = new Component('section')
 main.add(postList)
 
+//const posts = JSON.parse(localStorage.posts) // NOTE quick demo
+
+
 const posts = logic.getAllPosts()
 
 posts.forEach(post => {

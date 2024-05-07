@@ -2,6 +2,8 @@ const data = {}
 
 data.findUser = callback => {
     let usersJson = localStorage.users
+    //const usersJson = localStorage.users
+    //you can use const instead of let bcz it's only used once
 
     if (!usersJson) usersJson = '[]'
 
@@ -30,6 +32,7 @@ data.insertUser = user => {
 
 data.findPosts = callback => {
     let postsJson = localStorage.posts
+    //const postsJson = localStorage.posts
 
     if (!postsJson) postsJson = '[]'
 

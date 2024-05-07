@@ -8,6 +8,9 @@ const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
+//const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+// const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
+
 logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
 
     if (!NAME_REGEX.test(name))
@@ -32,6 +35,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
         return user.email === email || user.username === username
 
     })
+    //const user = data.findUser(user => user.email === email || user.username === username)
 
     if (user)
         throw new DuplicityError('user already exists')
@@ -57,6 +61,12 @@ logic.loginUser = (username, password) => {
 
     const user = data.findUser(user => user.username === username)
 
+    // const user = data.findUser((user) => user.username === username)
+
+    /*const user = data.findUser((user) => {
+        return user.username === username
+    })*/
+
     if (!user)
         throw new MatchError('user not found')
 
@@ -77,14 +87,33 @@ logic.getUserName = () => {
 
 }
 
+/*logic.getUserName = () => {
+    const user = data.findUser(user => {
+        return user.username === sessionStorage.username
+    })
+
+    return user.name
+
+}*/
+
+
 logic.getAllPosts = () => {
     const posts = data.findPosts(() => true)
 
     return posts
 
+    /*abreviado a una linea:
+
+    logic.getAllPosts = () => data.findPosts(() => true); 
+    
+    */
+
+    //data.findPosts((post) => true) no hace falta q le pasemos el parametro post
+
 }
 
 logic.createPost = (title, image, description) => {
+    //TODO sessionStorage.username
 
     if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
 
@@ -100,8 +129,9 @@ logic.createPost = (title, image, description) => {
         description,
         date: new Date().toISOString()
 
+        //title: sessionStorage.title
     }
 
     data.insertPost(post)
-
+    // return post
 }
