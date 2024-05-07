@@ -2,7 +2,10 @@ class Post extends Component {
   constructor(post) {
       super('article')
 
+      this.addClass('article')
+
       const authorTitle = new Component('p')
+      authorTitle.addClass('authorTitle')
       authorTitle.setText(post.author)
 
       const postTitle = new Component('h2')
@@ -38,5 +41,7 @@ class Post extends Component {
 
   onPostDeleted(listener) {
       this.onPostDeletedListener = listener
+
+      this.addClass('deleteButton')
   }
 }

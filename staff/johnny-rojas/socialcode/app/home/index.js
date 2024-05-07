@@ -4,11 +4,18 @@ if (!logic.isUserLoggedIn())
 const view = new Component(document.body)
 view.addClass('View')
 
+const headerSC = new Heading(1)
+headerSC.setText('SocialCode')
+headerSC.addClass('HeaderSC')
+
+
 const header = new Component('header')
 header.addClass('Header')
 view.add(header)
 
 const userName = logic.getUserName()
+
+header.add(headerSC)
 
 const usernameTitle = new Heading(3)
 usernameTitle.setText(userName)
@@ -16,6 +23,7 @@ header.add(usernameTitle)
 
 const logoutButton = new Button
 logoutButton.setText('Logout')
+logoutButton.addClass('LogoutButton')
 
 logoutButton.onClick(() => {
     logic.logoutUser()
@@ -24,8 +32,8 @@ logoutButton.onClick(() => {
 })
 
 header.add(logoutButton)
-
 const main = new Component('main')
+main.addClass('Main')
 view.add(main)
 
 const postList = new PostList

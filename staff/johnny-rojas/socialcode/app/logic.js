@@ -2,7 +2,7 @@ const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[\w-]+$/
-const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
+const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
@@ -25,7 +25,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
 
-    const user = data.findUser(user => user.email === email || user.username === username)
+    let user = data.findUser(user => user.email === email || user.username === username)
 
     if (user)
         throw new DuplicityError('user already exists')

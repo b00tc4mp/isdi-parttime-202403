@@ -1,21 +1,22 @@
 class PostList extends Component {
-  constructor() {
-      super('section')
+    constructor() {
+        super('section')
 
-      this.load()
-  }
+        this.load()
+        this.addClass('PostList')
+    }
 
-  load() {
-      this.removeAll()
+    load() {
+        this.removeAll()
 
-      const posts = logic.getAllPosts()
+        const posts = logic.getAllPosts()
 
-      posts.forEach(post => {
-          const post2 = new Post(post)
+        posts.forEach(post => {
+            const post2 = new Post(post)
 
-          post2.onPostDeleted(() => this.load())
+            post2.onPostDeleted(() => this.load())
 
-          this.add(post2)
-      })
-  }
+            this.add(post2)
+        })
+    }
 }
