@@ -28,7 +28,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
 
-    const user = data.findUser((user) => {
+    let user = data.findUser((user) => {
         return user.email === email || user.username === username
 
     })
@@ -81,6 +81,8 @@ logic.getAllPosts = () => {
     const posts = data.findPosts(() => true)
 
     return posts.reverse()
+    //return posts 
+    //esto te lo devuelve con los post mas nuevos abajo
 
 }
 
