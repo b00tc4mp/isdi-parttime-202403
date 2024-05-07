@@ -1,0 +1,13 @@
+.CreatePostForm {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
+    background-color: rgba(255, 191, 0, 0.792);
+
+}
+
+.form-input {
+    border-color: 2px solid black;
+}
