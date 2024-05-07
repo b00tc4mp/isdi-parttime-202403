@@ -1,73 +1,66 @@
-/* Definimos una función constructora Component que acepta un parámetro:
-tagNameOrContainer: puede ser un nombre de etiqueta HTML o un elemento HTML existente. */
-
 class Component {
-    constructor(tagNameOrContainer = "div") {
-      // Si el parámetro es una cadena, creamos un nuevo elemento HTML con ese nombre de etiqueta y lo asignamos al atributo "container" del objeto.
-      if (typeof tagNameOrContainer === "string") {
-        this.container = document.createElement(tagNameOrContainer)
-      }
-      // Si el parámetro es un elemento HTML, lo asignamos directamente al atributo "container" del objeto.
-      else if (tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument) {
-        this.container = tagNameOrContainer
-      }
-      // Si el parámetro no es una cadena ni un elemento HTML, lanzamos un error.
-      else {
-        throw new Error("tagNameOrContainer debe ser una cadena o un elemento HTML")
-      }
-  
+  constructor(tagNameOrContainer = 'div') {
+      if (typeof tagNameOrContainer === 'string')
+          this.container = document.createElement(tagNameOrContainer)
+      else if (tagNameOrContainer instanceof HTMLElement || tagNameOrContainer instanceof HTMLDocument)
+          this.container = tagNameOrContainer
+      else
+          throw new Error('tagNameOrContainer is not a tagName or container')
+
       this.children = []
-    }
-// Agregamos un método a los objetos Component:
+  }
+
   add(child) {
-    if (!(child instanceof Component)) {
-      throw new TypeError("child is not component")
-    }
-    this.children.push(child) // Almacenamos cada componente en este array
-// Este método agrega el "container" del hijo al "container" del padre.
-    this.container.appendChild(child.container)
+      if (!(child instanceof Component)) throw new TypeError('child is not component')
+
+      this.children.push(child)
+
+      this.container.appendChild(child.container)
   }
 
   remove(child) {
-    if (!(child instanceof Component)) {
-      throw new TypeError("child is not component")
-    }
+      if (!(child instanceof Component)) throw new TypeError('child is not component')
 
-    const index = this.children.indexOf(child)
-    if (index !== -1) {
-      this.children.splice(index, 1)
-    }
+      const index = this.children.indexOf(child)
 
-    this.container.removeChild(child.container)
+      if (index > -1)
+          this.children.splice(index, 1)
+
+      if (this.container.contains(child.container))
+          this.container.removeChild(child.container)
+  }
+
+  removeAll() {
+      const children = this.children.concat()
+
+      children.forEach(child => this.remove(child))
   }
 
   setText(text) {
-// Este método establece el contenido textual del "container" con el texto proporcionado.
-    this.container.innerText = text
+      this.container.innerText = text
   }
 
   setId(id) {
-    this.container.id = id
+      this.container.id = id
   }
 
-// Este método agrega una clase CSS al "container" del componente.
   addClass(clazz) {
-    this.container.classList.add(clazz)
+      this.container.classList.add(clazz)
   }
 
   removeClass(clazz) {
-    this.container.classList.remove(clazz)
+      this.container.classList.remove(clazz)
   }
 
   onClick(listener) {
-    this.container.addEventListener("click", listener)
+      this.container.addEventListener('click', listener)
   }
 
   onKeyDown(listener) {
-    this.container.addEventListener('keydown', listener)
+      this.container.addEventListener('keydown', listener)
   }
 
   onKeyUp(listener) {
-    this.container.addEventListener('keyup', listener)
+      this.container.addEventListener('keyup', listener)
   }
 }

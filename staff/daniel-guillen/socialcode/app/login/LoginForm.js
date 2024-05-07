@@ -5,13 +5,11 @@ class LoginForm extends FormWithFeedback {
         this.addClass('LoginForm')
 
         const usernameField = new Field('username', 'text', 'Username')
-        usernameField.setPlaceholder('username')
 
         const passwordField = new Field('password', 'password', 'Password')
-        passwordField.setPlaceholder('password')
-        
+
         const submitButton = new SubmitButton('Login')
-                
+
         this.add(usernameField)
         this.add(passwordField)
         this.add(submitButton)

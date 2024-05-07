@@ -1,6 +1,3 @@
-/* La clase `...Error` extiende la clase `Error` en JavaScript y establece su propia propiedad de nombre en
-el nombre del constructor. */
-
 class ContentError extends Error {
     constructor(message) {
         super(message)
@@ -9,7 +6,6 @@ class ContentError extends Error {
         this.name = this.constructor.name
     }
 }
-
 
 class MatchError extends Error {
     constructor(message) {

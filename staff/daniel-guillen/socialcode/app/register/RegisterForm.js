@@ -5,17 +5,17 @@ etiqueta y valor de marcador de posición. Además, se crea un botón de envío 
 class RegisterForm extends FormWithFeedback {
     constructor() {
         super()
-    
-        this.addClass("RegisterForm")
+
+        this.addClass('RegisterForm')
 
         const nameField = new Field('name', 'text', 'Name')
         nameField.setPlaceholder('name')
-    
+
         const surnameField = new Field('surname', 'text', 'Surname')
         surnameField.setPlaceholder('surname')
 
-        const emailField = new Field("email", "email", "E-mail")
-        emailField.setPlaceholder("name@example.com")
+        const emailField = new Field('email', 'email', 'E-mail')
+        emailField.setPlaceholder('name@example.com')
 
         const usernameField = new Field('username', 'text', 'Username')
         usernameField.setPlaceholder('username')
