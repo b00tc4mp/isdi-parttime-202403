@@ -1,9 +1,11 @@
+
 class NewPostForm extends FormWithFeedback {
     constructor() {
         super()
 
         this.addClass("NewPostForm")
 
+        //TODO verificar type email
         const titleField = new Field("title", "text", "Title")
         titleField.setPlaceholder("title")
 
@@ -13,19 +15,14 @@ class NewPostForm extends FormWithFeedback {
         const descriptionField = new Field("description", "text", "Description")
         descriptionField.setPlaceholder("description")
 
-        const cancelButton = new Button("Cancel")
-        cancelButton.setType("button")
-        // especificamos tipo button para que al dar al enter no actue como un submit
+       
 
-        this.cancelButton = cancelButton //se referencia como propiedad para poder acceder a el 
-
-        const submitButton = new SubmitButton("Share")
+        const submitButton = new SubmitButton("Register")
 
 
         this.add(titleField)
         this.add(imageField)
         this.add(descriptionField)
-        this.add(cancelButton)
         this.add(submitButton)
     }
 
@@ -48,7 +45,4 @@ class NewPostForm extends FormWithFeedback {
         return descriptionField.getValue()
     }
 
-    onCancelClick(listener) {
-        this.cancelButton.onClick(listener)
-    }
 }

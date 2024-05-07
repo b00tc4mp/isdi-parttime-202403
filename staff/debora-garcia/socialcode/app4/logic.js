@@ -86,22 +86,18 @@ logic.createPost = (title, image, description) => {
     const dia = fechaActual.getDate().toString().padStart(2, '0'); // Agrega cero al día si es de un solo dígito
     const hora = fechaActual.getHours().toString().padStart(2, '0'); // Agrega cero a la hora si es de un solo dígito
     const minutos = fechaActual.getMinutes().toString().padStart(2, '0'); // Agrega cero a los minutos si es de un solo dígito
-
+    
     const fechaFormateada = `${año}-${mes}-${dia} ${hora}:${minutos}`;
-
+    
     const post = {
-        id: Date.now(),// identificador de hora y milisegundos
         author: sessionStorage.username,
         title,
         image,
         description,
         date: fechaFormateada
     };
+    
 
     data.insertPost(post)
 
 }
-
-logic.getLoggedInUsername = () => sessionStorage.username
-
-logic.deletePost = id => data.deletePost(post => post.id === id)

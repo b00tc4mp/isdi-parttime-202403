@@ -33,18 +33,17 @@ header.add(logoutButton)
 const main = new Component("main")
 view.add(main)
 
-// const postList = new Component("section")
-const postList = new PostList
+const postList = new Component("section")
 main.add(postList)
 
 
-// const posts = logic.getPosts()
+const posts = logic.getPosts()
 
-// posts.forEach(post => {
-//     const newPost = new Post(post)
-//     postList.add(newPost)
+posts.forEach(post => {
+    const newPost = new Post(post)
+    postList.add(newPost)
 
-// })
+})
 
 const createPostForm = new NewPostForm
 
@@ -56,13 +55,6 @@ createPostForm.onSubmit(event => {
 
     try {
         logic.createPost(title, image, description)
-        //limpiamos formularo
-        createPostForm.clear()
-
-        main.remove(createPostForm)
-        //eliminamos el formulario de crearel post
-
-        postList.load()
     } catch (error) {
         if (error instanceof ContentError)
             createPostForm.setFeedback(error.message + ", please, correct it")
@@ -71,10 +63,7 @@ createPostForm.onSubmit(event => {
     }
 })
 
-createPostForm.onCancelClick(event => {
-    event.preventDefault()
-    main.add(createPostForm)
-})
+main.add(createPostForm)
 
 const footer = new Component("footer")
 footer.addClass("Footer")
@@ -82,11 +71,7 @@ view.add(footer)
 
 const addPostButton = new Button
 addPostButton.setText("+")
-
 addPostButton.addClass("PostButton")
-// mecanizamos qu el formularo aparezca al clicar el boton
-addPostButton.onClick(() => main.add(createPostForm))
-
 footer.add(addPostButton)
 
 

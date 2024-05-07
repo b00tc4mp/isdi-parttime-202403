@@ -27,21 +27,11 @@ class Component {
         if (index > -1)
             this.children.splice(index, 1)
 
-        //Manera de evitar error del clear
+            //Manera de evitar error del clear
         if (this.container.contains(child.container))
             this.container.removeChild(child.container)
     }
 
-//TODO entender esto?¿?
-    removeAll() {
-
-        //this.children.forEach(child => this.remove(child))
-        //Hacemos una copia del array para tomarlo como referenia con el metodo concat()
-        //De esta manera ira recorriendo el array sin alterar los indices y evitar que se modifique l array original
-        const children = this.children.concat()
-
-        children.forEach(child => this.remove(child))
-    }
     setText(text) {
         this.container.innerText = text
     }

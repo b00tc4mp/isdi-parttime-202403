@@ -25,10 +25,13 @@ data.insertUser = (user) => {
     usersJson = JSON.stringify(users)
 
     localStorage.users = usersJson
+
+    //registerForm.clear()
+
 }
 
 data.findPosts = function (callback) {
-
+    // let??
     let postsJson = localStorage.posts
 
     if (!postsJson) postsJson = "[]"
@@ -49,32 +52,12 @@ data.insertPost = post => {
 
     const posts = JSON.parse(postsJson)
 
-
-    //identificion unico combinando numeros random con tiempo
-    post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
-
     posts.push(post)
 
     postsJson = JSON.stringify(posts)
 
     localStorage.posts = postsJson
 
-}
+    //registerForm.clear()
 
-data.deletePost = callback => {
-    let postsJson = localStorage.posts
-
-    if (!postsJson) postsJson = "[]"
-
-    const posts = JSON.parse(postsJson)
-
-    const index = posts.findIndex(callback)
-
-    if (index > -1) {
-        posts.splice(index, 1)
-
-        postsJson = JSON.stringify(posts)
-
-        localStorage.posts = postsJson
-    }
 }
