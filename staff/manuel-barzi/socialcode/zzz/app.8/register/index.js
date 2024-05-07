@@ -9,7 +9,16 @@ title.setText('Register')
 title.onClick(() => alert('By clicking on this title you wont get anything .P'))
 
 const registerForm = new RegisterForm
-registerForm.onRegisterSubmit((name, surname, email, username, password, passwordRepeat) => {
+registerForm.onSubmit(event => {
+    event.preventDefault()
+
+    const name = registerForm.getName()
+    const surname = registerForm.getSurname()
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
+
     try {
         logic.registerUser(name, surname, email, username, password, passwordRepeat)
 

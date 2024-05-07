@@ -33,7 +33,13 @@ main.add(postList)
 
 const createPostForm = new CreatePostForm
 
-createPostForm.onPostSubmit((title, image, description) => {
+createPostForm.onSubmit(event => {
+    event.preventDefault()
+
+    const title = createPostForm.getTitle()
+    const image = createPostForm.getImage()
+    const description = createPostForm.getDescription()
+
     try {
         logic.createPost(title, image, description)
 

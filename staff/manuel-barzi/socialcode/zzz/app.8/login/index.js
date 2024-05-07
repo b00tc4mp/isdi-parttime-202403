@@ -8,8 +8,12 @@ const title = new Heading(1)
 title.setText('Login')
 
 const loginForm = new LoginForm
+loginForm.onSubmit(event => {
+    event.preventDefault()
 
-loginForm.onLoginSubmit((username, password) => {
+    const username = loginForm.getUsername()
+    const password = loginForm.getPassword()
+
     try {
         logic.loginUser(username, password)
 
