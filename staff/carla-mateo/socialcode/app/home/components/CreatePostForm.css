@@ -1,9 +1,11 @@
 .CreatePostForm {
     width: 20rem;
-    position: relative;
+    position: fixed;
     bottom: 1rem;
     display: flex;
     flex-direction: column;
+    background-color: aliceblue;
+    margin-bottom: 3rem;
 }
 
 .SubmitButton {

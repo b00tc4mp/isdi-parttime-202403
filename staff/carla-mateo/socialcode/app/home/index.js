@@ -29,21 +29,12 @@ const main = new Component('main')
 main.addClass('Main')
 view.add(main)
 
-const postList = new Component('section')
+const postList = new PostList
 postList.addClass('Section')
 main.add(postList)
 
-const article = new Component("article")
-article.addClass("Article")
-postList.add(article)
+utils.getStringInDateFormat()
 
-const posts = logic.getAllPosts()
-
-posts.forEach(post => {
-    const post2 = new Post(post)
-
-    postList.add(post2)
-})
 const createPostForm = new CreatePostForm
 
 createPostForm.onSubmit(event => {
@@ -56,7 +47,11 @@ createPostForm.onSubmit(event => {
     try {
         logic.createPost(title, image, description)
 
-        location.reload()
+        createPostForm.clear()
+
+        main.remove(createPostForm)
+
+        postList.load()
 
         window.scrollTo(0, 0)
 
@@ -68,6 +63,12 @@ createPostForm.onSubmit(event => {
     }
 })
 
+createPostForm.onCancelClick(event => {
+    event.preventDefault()
+
+    main.remove(createPostForm)
+})
+
 
 
 const footer = new Component('footer')
@@ -77,7 +78,7 @@ view.add(footer)
 const addPostButton = new Button
 addPostButton.setText('+')
 
-logic.statusButton()
+addPostButton.onClick(() => main.add(createPostForm))
 
 footer.add(addPostButton)
 
