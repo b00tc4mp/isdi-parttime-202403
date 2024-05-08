@@ -78,30 +78,24 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
         return user.name
     }
 
-            // var data = {}
+    logic.getAllPosts = () => {
+        const posts = data.findPosts( () => true )
 
-        // data.findUser = function (callback){
-        //     var usersJson = localStorage.users
+        return posts
+    }
 
-        //     if(!usersJson) usersJson = '[]'
-        
-        //     var users = JSON.parse(usersJson)
-        
-        //     var user = users.find(callback)
+    logic.createPost = (title, image, description)  => {
+        if(typeof title !== 'string' || !title.length || title.length > 30) throw new ContentError('title is not valid')
+        if(typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
+        if(typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
 
-        //     return user
-        // }
+        const post = {
+            author: sessionStorage.username,
+            title,
+            image,
+            description,
+            date: new Date().toISOString()
+        }
 
-        // data.insertUser = function (user) {
-        //     var usersJson = localStorage.users
-
-        //     if(!usersJson) usersJson = '[]'
-        
-        //     var users = JSON.parse(usersJson)
-
-        //     users.push(user)
-    
-        //     usersJson = JSON.stringify(users)
-        
-        //     localStorage.users = usersJson
-        // }
+        data.insertPost(post)
+    }

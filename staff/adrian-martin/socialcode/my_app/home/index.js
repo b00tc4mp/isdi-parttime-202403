@@ -12,6 +12,10 @@ const userName = logic.getUsername()
 const usernameTitle = new Heading(3)
 usernameTitle.setText(userName)
 
+const appTitle = new Heading(3)
+appTitle.setText('BurningGate')
+appTitle.addClass('BurningGate')
+
 const logoutButton = new Button
 logoutButton.setText('Logout')
 
@@ -21,37 +25,54 @@ logoutButton.onClick( () => {
     location.href = '../login'
 })
 
-const post = new Component('article')
+const main = new Component('main')
 
-const authorTitle = new Component
-authorTitle.setText('Amanda Loriente')
+view.add(main)
 
-const postTitle = new Component('h2')
-postTitle.setText('Relajandome en la playita')
+const postList =  new Component('section')
 
-const postImage = new Image
-postImage.setUrl('https://static.vecteezy.com/system/resources/previews/009/347/940/non_2x/silhouette-of-young-woman-on-the-beach-latin-american-woman-sitting-on-the-beach-sand-looking-at-the-sky-on-a-beautiful-summer-day-photo.jpg')
+main.add(postList)
 
-const postText = new Component('p')
-postText.setText('Busco chico guapo, que le guste viajar, y quiera tener 3 niños jijiji')
+const posts = logic.getAllPosts()
 
-post.add(authorTitle)
-post.add(postTitle)
-post.add(postImage)
-post.add(postText)
+posts.forEach(post => {
+    const post2 = new Post(post)
+
+    postList.add(post2)
+});
+const createPostForm = new CreatePostForm
+
+createPostForm.onSubmit(event => {
+    event.preventDefault()
+
+    const title = createPostForm.getTitle()
+    const image = createPostForm.getImage()
+    const description = createPostForm.getDescription()
+
+    try{
+        logic.createPost(title, image, description)
+
+    } catch (error) {
+        if (error instanceof ContentError) 
+            createPostForm.setFeedback(error.message + '. please, repeat it')
+        else
+            createPostForm.setFeedback('sorry, there was an error, please try again later')
+    }
+})
+
+main.add(createPostForm)
 
 const footer = new Component('footer')
 footer.addClass('Footer')
 
 const addPostButton = new Button
 addPostButton.setText('+')
+footer.add(addPostButton)
 
+header.add(appTitle)
 header.add(logoutButton)
 header.add(usernameTitle)
 
-footer.add(addPostButton)
-
 view.add(header)
-view.add(post)
 view.add(footer)
 

@@ -11,13 +11,8 @@ title.onClick( () => {
 })
 
 const loginForm = new LoginForm
-loginForm.onSubmit( event => {
-    event.preventDefault()
 
-    const username = loginForm.getUsername()
-    const password = loginForm.getPassword()
-
-
+loginForm.onLoginSubmit((username, password) => {
     try{
         logic.loginUser(username, password)
 
@@ -51,4 +46,3 @@ loginLink.onClick( event => {
 view.add(title)
 view.add(loginForm)
 view.add(loginLink)
-
