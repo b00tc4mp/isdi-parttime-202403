@@ -31,6 +31,20 @@ class RegisterForm extends FormWithFeedback {
         this.add(passwordField)
         this.add(passwordRepeatField)
         this.add(submitButton)
+
+        this.onSubmit(event => {
+            event.preventDefault()
+
+            const name = this.getName()
+            const surname = this.getSurname()
+            const email = this.getEmail()
+            const username = this.getUsername()
+            const password = this.getPassword()
+            const passwordRepeat = this.getPasswordRepeat()
+
+
+            this.onRegisterSubmitListener(name, surname, email, username, password, passwordRepeat)
+        })
     }
 
     getName() {
@@ -61,5 +75,9 @@ class RegisterForm extends FormWithFeedback {
     getPasswordRepeat() {
         const passwordFieldRepeat = this.children[5]
         return passwordFieldRepeat.getValue()
+    }
+
+    onRegisterSubmit(listener) {
+        this.onRegisterSubmitListener = listener
     }
 }
