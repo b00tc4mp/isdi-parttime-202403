@@ -29,7 +29,7 @@ header.add(logoutButton)
 const main = new Component('main')
 view.add(main)
 
-const postList = new Component('section')
+const postList = new PostList
 main.add(postList)
 
 
@@ -47,27 +47,6 @@ main.add(postList)
 //
 //    postList.add(post)
 //}
-//
-//{
-//    const postData = {
-//        author: 'SandraCore',
-//        title: 'Que es forEach?',
-//        image: 'https://www.configuroweb.com/wp-content/uploads/2023/03/Como-recorrer-un-Array-con-el-metodo-ForEach-en-Javascript.jpg',
-//        text: 'La función foreach() tiene la función de iterar sobre una colección de elementos, como un array, una lista o cualquier otra estructura de datos iterable, y ejecutar un bloque de código para cada elemento de esa colección. Su propósito principal es simplificar el proceso de recorrer una colección de datos y realizar operaciones en cada uno de sus elementos, sin tener que preocuparse por la gestión de índices o el control del bucle manualmente. Al utilizar foreach(), el código se vuelve más legible y conciso, ya que la sintaxis está diseñada específicamente para este tipo de operaciones, lo que facilita la comprensión del código tanto para los desarrolladores como para quienes lo lean en el futuro.'
-//    }
-//
-//    const post = new Post(postData)
-//
-//    postList.add(post)
-//}
-
-const posts = logic.getAllPosts()
-
-posts.forEach(post => {
-    const post2 = new Post(post)
-
-    postList.add(post2)
-})
 
 const createPostForm = new CreatePostForm
 
@@ -81,6 +60,12 @@ createPostForm.onSubmit(event => {
     try {
         logic.createPost(title, image, description)
 
+        createPostForm.clear()
+
+        main.remove(createPostForm)
+
+        postList.load()
+
     } catch (error) {
         if (error instanceof ContentError)
             createPostForm.setFeedback(error.message + ', por favor corrígelo')
@@ -89,7 +74,11 @@ createPostForm.onSubmit(event => {
     }
 })
 
-main.add(createPostForm)
+createPostForm.onCancelClick(event => {
+    event.preventDefault()
+
+    main.remove(createPostForm)
+})
 
 const footer = new Component('footer')
 footer.addClass('Footer')
@@ -97,4 +86,7 @@ view.add(footer)
 
 const addPostButton = new Button
 addPostButton.setText('+')
+
+addPostButton.onClick(() => main.add(createPostForm))
+
 footer.add(addPostButton)

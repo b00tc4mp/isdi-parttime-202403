@@ -15,10 +15,16 @@ class CreatePostForm extends FormWithFeedback {
 
         const submitButton = new SubmitButton('Crear')
 
+        const cancelButton = new Button('Cancelar')
+        cancelButton.setType('reset')
+
+        this.cancelButton = cancelButton
+
         this.add(titleField)
         this.add(imageField)
         this.add(descriptionField)
         this.add(submitButton)
+        this.add(cancelButton)
     }
 
     getTitle() {
@@ -37,5 +43,9 @@ class CreatePostForm extends FormWithFeedback {
         const descriptionField = this.children[2]
 
         return descriptionField.getValue()
+    }
+
+    onCancelClick(listener) {
+        this.cancelButton.onClick(listener)
     }
 }

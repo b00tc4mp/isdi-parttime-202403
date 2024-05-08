@@ -25,7 +25,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
     if (password !== passwordRepeat)
         throw new MatchError('Las contraseñas no coinciden')
 
-    const user = data.findUser(user => user.email === email || user.username === username)
+    let user = data.findUser(user => user.email === email || user.username === username)
 
     if (user)
         throw new DuplicityError('El usuario ya existe')
@@ -83,6 +83,7 @@ logic.createPost = (title, image, description) => {
     if (typeof description !== 'string' || !description.length || description.length > 400) throw new ContentError('La descripción no es válido')
 
     const post = {
+        id: Date.now(),
         author: sessionStorage.username,
         title,
         image,
@@ -92,3 +93,7 @@ logic.createPost = (title, image, description) => {
 
     data.insertPost(post)
 }
+
+logic.getLoggedInUsername = () => sessionStorage.username
+
+logic.deletePost = id => data.deletePost(post => post.id === id)

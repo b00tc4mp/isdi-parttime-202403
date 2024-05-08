@@ -5,6 +5,7 @@ class SubmitButton extends Button {
         this.addClass('SubmitButton')
 
         this.setType('submit')
-        this.setText(text)
+
+        if (text) this.setText(text)
     }
 }
