@@ -21,13 +21,23 @@ class CreatePostForm extends FormWithFeedback {
     this.descriptionTextArea = descriptionTextArea
 
 
+    const cancelButton = new Component("i")
+    cancelButton.addClass("fa-regular")
+    cancelButton.addClass("fa-rectangle-xmark")
+
+
+    this.cancelButton = cancelButton
+
+
     const submitButton = new SubmitButton("Create")
+
 
     this.add(titleField)
     this.add(imageField)
     this.add(descriptionLabel)
     this.add(descriptionTextArea)
     this.add(submitButton)
+    this.add(cancelButton)
   }
 
   getTitle() {
@@ -45,5 +55,10 @@ class CreatePostForm extends FormWithFeedback {
   getDescription() {
     const descriptionTextArea = createPostForm.descriptionTextArea.getValue()
     return descriptionTextArea
+  }
+
+
+  onCancelButton(event) {
+    this.cancelButton.onClick(event)
   }
 }
