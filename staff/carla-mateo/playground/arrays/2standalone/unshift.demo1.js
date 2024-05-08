@@ -1,24 +1,23 @@
-debugger
 
 delete Array.prototype.unshift
 
 var animals = ['gato', 'perro', 'loro', 'pez']
 
-function unshift(array){
+function unshift(array) {
 
     var result = []
 
-    for( var i = 1; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i++) {
         var argument = arguments[i]
 
         result[result.length] = argument
     }
-    for( var j = array.length-1; j >= 0; j--){
+    for (var j = array.length - 1; j >= 0; j--) {
         var element = array[j]
 
         array[j + result.length] = element //['gato', <empty>, <empty>, 'gato', 'perro', 'loro', 'pez']
     }
-    for(var k = 0; k < result.length; k++){
+    for (var k = 0; k < result.length; k++) {
         var element1 = result[k]
 
         array[k] = element1
