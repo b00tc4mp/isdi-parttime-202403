@@ -1,8 +1,13 @@
 .Article {
+<<<<<<< HEAD
     position: relative;
     background-color: #aaa6;
     border-radius: 20px;
     height: auto;
+=======
+    background-color: #aaa6;
+    border-radius: 20px;
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
     padding: auto;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -14,10 +19,22 @@ h2.Title {
 
 img.Image {
     max-width: 90%;
+<<<<<<< HEAD
+=======
+    height: auto;
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
     border-radius: 20px;
     margin-left: 0.9rem;
 }
 
+<<<<<<< HEAD
+=======
+p.Description {
+    position: relative;
+    padding: 0 0.7rem;
+}
+
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 time.Date {
     position: relative;
     top: 2.7rem;
@@ -29,6 +46,7 @@ p.Author {
     padding-bottom: 0.4rem;
     display: flex;
     justify-content: end;
+<<<<<<< HEAD
 }
 
 p.Description {
@@ -66,4 +84,6 @@ i.fa-bars {
 .EditButton,
 .DeleteButton {
     z-index: 500;
+=======
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 }

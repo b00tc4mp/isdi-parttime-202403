@@ -16,7 +16,10 @@
     box-sizing: border-box;
     background-color: rgba(175, 222, 238, 0.603);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+<<<<<<< HEAD
     z-index: 1000;
+=======
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 }
 
 .Footer {
@@ -41,6 +44,10 @@ body {
     height: 100%;
 }
 
+<<<<<<< HEAD
+=======
+.Header .Button,
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 .Footer .Button,
 .divCreatePost .Button {
     background-color: transparent;
@@ -53,6 +60,7 @@ body {
     transition: 0.25s ease-in;
 }
 
+<<<<<<< HEAD
 .Header .Button {
     background-color: transparent;
     font-size: 17px;
@@ -64,6 +72,8 @@ body {
     transition: 0.25s ease-in;
 }
 
+=======
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 .Footer .Button {
     font-size: 25px;
     font-weight: 800;

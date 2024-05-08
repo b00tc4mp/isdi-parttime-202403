@@ -1,8 +1,13 @@
 class Post extends Component {
     constructor(post) {
         super('article')
-
         this.addClass('Article')
+
+
+<<<<<<< HEAD
+        this.addClass('Article')
+=======
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 
         const postTitle = new Component('h2')
         postTitle.setText(post.title)
@@ -30,6 +35,7 @@ class Post extends Component {
         this.add(postDescription)
         this.add(postDate)
         this.add(postAuthor)
+<<<<<<< HEAD
 
         if (post.author === sessionStorage.username) {
             const navButton = new Component('i')
@@ -68,5 +74,7 @@ class Post extends Component {
     }
     onPostDeleted(listener) {
         this.onPostDeletedListener = listener
+=======
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
     }
 }

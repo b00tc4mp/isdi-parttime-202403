@@ -17,6 +17,7 @@ class CreatePostForm extends FormWithFeedback {
 
         const submitButton = new SubmitButton('Post')
 
+<<<<<<< HEAD
         const exitButton = new Button('X')
         exitButton.addClass('ExitButton')
         exitButton.setType('button')
@@ -26,6 +27,11 @@ class CreatePostForm extends FormWithFeedback {
             createPostForm.clear()
             view.remove(divCreatePost)
         })
+=======
+        const exitButton = new Button
+        exitButton.setText('X')
+        exitButton.addClass('ExitButton')
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 
         this.add(heading)
         this.add(titleField)
@@ -33,6 +39,7 @@ class CreatePostForm extends FormWithFeedback {
         this.add(descriptionField)
         this.add(submitButton)
         this.add(exitButton)
+<<<<<<< HEAD
 
         this.onSubmit(event => {
             event.preventDefault()
@@ -43,6 +50,8 @@ class CreatePostForm extends FormWithFeedback {
 
             this.onCreatePostSubmitListener(title, image, description)
         })
+=======
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
     }
 
     getTitle() {
@@ -56,6 +65,11 @@ class CreatePostForm extends FormWithFeedback {
 
         return image.getValue()
     }
+<<<<<<< HEAD
+=======
+    getDescription() {
+        const description = this.children[3]
+>>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 
     onCreatePostSubmit(listener) {
         this.onCreatePostSubmitListener = listener
