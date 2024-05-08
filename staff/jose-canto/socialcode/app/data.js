@@ -38,7 +38,6 @@ data.findPosts = (callback) => {
   if (!postsJson)
     postsJson = "[]"
 
-
   const posts = JSON.parse(postsJson)
 
   const filtered = posts.filter(callback)
@@ -56,10 +55,29 @@ data.insertPost = (post) => {
 
   const posts = JSON.parse(postsJson)
 
+  post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+
   posts.push(post)
 
   postsJson = JSON.stringify(posts)
 
   localStorage.posts = postsJson
+}
 
+data.deletePost = callback => {
+  let postsJson = localStorage.posts
+
+  if (!postsJson) postJson = "[]"
+
+  const posts = JSON.parse(postsJson)
+
+  const index = posts.findIndex(callback)
+
+  if (index > -1) {
+    posts.splice(index, 1)
+
+    postsJson = JSON.stringify(posts)
+
+    localStorage.posts = postsJson
+  }
 }
