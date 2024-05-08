@@ -18,15 +18,7 @@ para hacer el guardado con la funcion en logic 'registerUser' si son validos se 
 sino se recibira avisos o errores mediante Feedbacks dentro del Form */
 
 const registerForm = new RegisterForm
-registerForm.onSubmit(event => {
-    event.preventDefault()
-
-    const name = registerForm.getName()
-    const surname = registerForm.getSurname()
-    const email = registerForm.getEmail()
-    const username = registerForm.getUsername()
-    const password = registerForm.getPassword()
-    const passwordRepeat = registerForm.getPasswordRepeat()
+registerForm.onRegisterSubmit((name, surname, email, username, password, passwordRepeat) => {
 
     try {
         logic.registerUser(name, surname, email, username, password, passwordRepeat)

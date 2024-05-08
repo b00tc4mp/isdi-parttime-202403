@@ -13,6 +13,16 @@ class LoginForm extends FormWithFeedback {
         this.add(usernameField)
         this.add(passwordField)
         this.add(submitButton)
+
+        this.onSubmit(event => {
+            event.preventDefault()
+
+            const username = this.getUsername()
+            const password = this.getPassword()
+
+            this.onLoginSubmitListener(username, password)
+        })
+
     }
 
     getUsername() {
@@ -25,5 +35,8 @@ class LoginForm extends FormWithFeedback {
         const passwordField = this.children[1]
 
         return passwordField.getValue()
+    }
+    onLoginSubmit(listener) {
+        this.onLoginSubmitListener = listener
     }
 }

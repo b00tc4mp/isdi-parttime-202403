@@ -11,12 +11,8 @@ title.setText('Welcome - Login')
 se inicia sesión con usuario utilizando la función `logic.loginUser` si las credenciales proporcionadas son correctas.
 Si los datos introducidos en los campos no son validos se lanzan avisos o errores mediante Feedback dentro de Form */
 const loginForm = new LoginForm
-loginForm.onSubmit(event => {
-    event.preventDefault()
 
-    const username = loginForm.getUsername()
-    const password = loginForm.getPassword()
-
+loginForm.onLoginSubmit((username, password) => {
     try {
         logic.loginUser(username, password)
 
