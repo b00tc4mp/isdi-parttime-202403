@@ -36,6 +36,7 @@ class Post extends Component {
 
         if (post.author === logic.getLoggedInUsername()) {
             const deleteButton = new Button('Delete')
+            deleteButton.addClass('DeleteButton')
 
             deleteButton.onClick(() => {
                 logic.deletePost(post.id)
@@ -51,7 +52,7 @@ class Post extends Component {
     onPostDeleted(listener) {
         this.onPostDeletedListener = listener
 
-        this.addClass('PostDeleted')
+
     }
 }
 
