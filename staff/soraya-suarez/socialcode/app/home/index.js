@@ -28,16 +28,9 @@ header.add(logoutButton)
 const main = new Component('main')
 view.add(main)
 
-const postList = new Component('section')
+const postList = new PostList
 main.add(postList)
 
-const posts = logic.getAllPosts()
-
-posts.forEach(post => {
-    const post2 = new Post(post)
-
-    postList.add(post2)
-})
 const createPostForm = new CreatePostForm
 
 createPostForm.onSubmit(event => {
@@ -49,9 +42,9 @@ createPostForm.onSubmit(event => {
 
     try {
         logic.createPost(title, image, description)
-
-        // TODO dismount create post form from main
-        // TODO refresh post list
+        createPostForm.clear()
+        main.remove(createPostForm)
+        postList.load()
     } catch (error) {
         if (error instanceof ContentError)
             createPostForm.setFeedback(error.message + ', please, correct it')
@@ -60,9 +53,10 @@ createPostForm.onSubmit(event => {
     }
 })
 
-
-// TODO mount create post form when clicking on plus button
-main.add(createPostForm)
+createPostForm.onCancelClick(event => {
+    event.preventDefault()
+    main.remove(createPostForm)
+})
 
 const footer = new Component('footer')
 footer.addClass('Footer')
@@ -70,4 +64,5 @@ view.add(footer)
 
 const addPostButton = new Button
 addPostButton.setText('+')
+addPostButton.onClick(() => main.add(createPostForm))
 footer.add(addPostButton)
