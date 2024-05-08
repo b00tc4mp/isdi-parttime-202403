@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5rem 1rem;
-    height: calc(100vh - 3.5rem - 5rem);
+    margin: 5rem 3.5rem;
     justify-content: center;
 }
 
@@ -15,15 +14,21 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content:right;
     gap: 1rem;
     padding: 0.25rem 2rem;
     border-bottom: 1px solid var(--color1);
+    background-color: white;
 }
 
 .header .Button{
     height: 2rem;
 }
+.header .title{
+    justify-self: left;
+    
+}
+
 
 .footer{
     position: fixed;
@@ -35,6 +40,7 @@
     justify-content: center;
     padding: 1rem 0;
     height: 3.5rem;
+    background-color: white;
 }
 .footer .Button{
     height: 2rem;
@@ -44,6 +50,6 @@
 }
 
 .main{
-    width: 100%;
-    height: calc(100vh - 3.5rem - 5rem);
+    width: 60%;
+    margin-bottom: 3.5rem;
 }

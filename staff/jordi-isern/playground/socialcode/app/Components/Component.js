@@ -20,6 +20,19 @@ class Component {
 
         this.container.appendChild(child.container)
     }
+    /*remove(child){
+        if (!(child instanceof Component)) throw new TypeError('child is not component'){
+            const index = this.children.indexOf(child)
+        }
+
+        if(index > -1){
+            this.children.splice(index, 1)
+        }
+
+        if(this.container.contains(child.container)){
+            this.container.removeChild(child.container)
+        }
+    }*/
 
     setText(text) {
         this.container.innerText = text

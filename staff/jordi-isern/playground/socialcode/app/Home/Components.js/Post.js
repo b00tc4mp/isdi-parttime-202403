@@ -1,4 +1,4 @@
-class post extends Component{
+class Post extends Component{
     constructor(post){
         super('article')
         const postTitle = new Heading(2)
@@ -11,12 +11,12 @@ class post extends Component{
     postDescription.setText(post.description)
 
     const postDate = new Component('time')
-    postDate.setText(postDate)
+    postDate.setText(post.date)
 
     this.add(authorTitle)
     this.add(postTitle)
     this.add(postImage)
     this.add(postDescription)
-    main.add(post)
+    this.add(postDate)
     }
 }

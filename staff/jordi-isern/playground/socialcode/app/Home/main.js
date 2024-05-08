@@ -8,6 +8,10 @@ view.addClass('View')
 const header = new Component('header')
 header.addClass('header')
 
+const title = new Heading(2)
+title.addClass('title')
+title.setText('SocialCode')
+
 const userName = logic.getUserName()
 
 const usernameTitle = new Heading(3)
@@ -26,7 +30,7 @@ logoutButton.onClick(() => {
 })
 
 
-
+header.add(title)
 header.add(usernameTitle)
 header.add(logoutButton)
 
@@ -58,33 +62,37 @@ footer.add(addPostButton)
 addPostButton.onClick(()=>{
     const createPostForm = new CreatePost
     view.add(createPostForm)
-
-    main.style.opacity = '40%'
-
-    createPostForm.onSubmit((event) =>{
-        event.preventDefault()
-
-        
-
-        const title = createPostForm.getTitle()
-        const image = createPostForm.getImage()
-        const description = createPostForm.getDescription()
-        
-        try {
-            logic.createPost(title, image, description)
-
-        } catch (error) {
-            if(error instanceof ContentError){
-                createPostForm.setFeedback(error.message + ', Please, Correct it')
-            }else{
-                createPostForm.setFeedback('Sorry, there was an error, please try again later')
-            }
-        }
-        
-    })
 })
+
+createPostForm.onSubmit((event) =>{
+    event.preventDefault()
+
+    
+
+    const title = createPostForm.getTitle()
+    const image = createPostForm.getImage()
+    const description = createPostForm.getDescription()
+    
+    try {
+        logic.createPost(title, image, description)
+        view.remove(createPostForm)
+        
+
+    } catch (error) {
+        if(error instanceof ContentError){
+            createPostForm.setFeedback(error.message + ', Please, Correct it')
+        }else{
+            createPostForm.setFeedback('Sorry, there was an error, please try again later')
+        }
+    }
+    
+})
+
+createPostForm.onCancelClick() => view.remove(createPostForm)
 
 
 view.add(header)
 view.add(main)
 view.add(footer)
+// update code segun classe dia 6/05
+

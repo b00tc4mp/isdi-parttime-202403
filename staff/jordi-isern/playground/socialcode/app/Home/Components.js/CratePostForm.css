@@ -1,10 +1,11 @@
 .createPostForm{
-    justify-self: center;
-    align-self: center;
+    position: fixed;
+    bottom: 25vh;
     margin: 0%;
     width: 40rem;
     height: 28rem;
     align-items: flex-start;
+    background-color:var(--color1)
 }
 
 
@@ -17,4 +18,9 @@
 
 .createPostForm textarea{
     height: 10rem;
+}
+
+.cancelButton {
+    border: 1px solid var(--color3);
+    border-radius: .3rem;
 }

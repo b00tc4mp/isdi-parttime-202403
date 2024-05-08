@@ -15,9 +15,14 @@ class CreatePost extends FormWithFeedback {
 
         const submitButton = new SubmitButton('Create')
 
+        this.cancelButton = new Button
+        cancelButton.setText('Cancel')
+        cancelButton.addClass('cancelButton')
+
         this.add(titleField)
         this.add(imageField)
         this.add(descriptionField)
+        this.add(cancelButton)
         this.add(submitButton)
     }
 
@@ -38,5 +43,8 @@ class CreatePost extends FormWithFeedback {
         return descriptionField.getValue()
     }
 
+    onCancelClick (listener){
+        this.cancelButton
 
+    }
 }
