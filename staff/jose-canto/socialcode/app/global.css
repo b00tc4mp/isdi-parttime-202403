@@ -27,3 +27,15 @@
   margin: 0;
   padding: 1rem;
 }
+
+.Logo {
+  width: auto;
+  height: auto;
+  position: absolute;
+  font-size: 5vw;
+  color: blanchedalmond;
+  left: 0;
+  padding: 0.1rem;
+  margin-left: 1.5rem;
+  border-radius: 10px;
+}

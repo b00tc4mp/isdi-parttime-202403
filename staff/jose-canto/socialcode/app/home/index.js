@@ -7,8 +7,8 @@ const view = new Component(document.body)
 view.addClass('View')
 
 //LOGO
-const logo = new Image()
-logo.setImage("../img/logo.jpg")
+const logo = new Component("div")
+logo.setText("SOCIAL CODE")
 logo.addClass("Logo")
 
 // HEADER
@@ -20,7 +20,7 @@ const main = new Component("main")
 main.addClass("Main")
 
 // SECTION
-const postList = new Component("section")
+const postList = new PostList()
 postList.addClass("Section")
 
 // USER
@@ -57,8 +57,8 @@ view.add(main)
 main.add(postList)
 
 
-const posts = logic.getAllPosts()
-logic.posts()
+utils.getDateStringDayMonthYearFormat()
+
 const createPostForm = new CreatePostForm()
 
 createPostForm.onSubmit((event) => {
@@ -68,13 +68,22 @@ createPostForm.onSubmit((event) => {
   const image = createPostForm.getImage()
   const description = createPostForm.getDescription()
 
+
   try {
     logic.createPost(title, image, description)
 
-    //TODO refresh post list
-    location.reload()
+    createPostForm.clear()
+
+    main.remove(createPostForm)
+
+    postList.removeAll()
+
+    postList.load()
+
+
 
     window.scrollTo(0, 0)
+    statusButton = !statusButton
 
   } catch (error) {
     if (error instanceof ContentError) {
@@ -88,21 +97,34 @@ createPostForm.onSubmit((event) => {
 const addPostButton = new Button()
 addPostButton.setText("+")
 
-logic.statusButton()
+let statusButton = true
+addPostButton.onClick(event => {
+  event.preventDefault()
+
+  statusButton = !statusButton
+  if (!statusButton) {
+    main.add(createPostForm)
+
+  } else if (statusButton)
+    main.remove(createPostForm)
+})
+
+createPostForm.onCancelButton(() => {
+  main.remove(createPostForm)
+
+  statusButton = !statusButton
+})
+
 
 const scrollTop = new Component("i")
 scrollTop.addClass("fa-solid")
 scrollTop.addClass("fa-arrow-up-long")
 
 scrollTop.onClick(() => {
-  const scrollDuration = 2000
-  const scrollStep = -window.scrollY / (scrollDuration / 15)
-  const scrollInterval = setInterval(() => {
-    if (window.scrollY !== 0) {
-      window.scrollBy(0, scrollStep)
-    } else {
-      clearInterval(scrollInterval)
-    }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   })
 })
 

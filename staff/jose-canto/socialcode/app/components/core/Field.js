@@ -1,6 +1,6 @@
 class Field extends Component {
   constructor(id, type, text) {
-    super()
+    super("div")
 
     this.addClass("Field")
 
