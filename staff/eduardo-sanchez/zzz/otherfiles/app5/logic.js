@@ -81,6 +81,8 @@ logic.getAllPosts = () => {
     const posts = data.findPosts(() => true)
 
     return posts.reverse()
+    //return posts 
+    //esto te lo devuelve con los post mas nuevos abajo
 
 }
 

@@ -65,18 +65,14 @@ createPostForm.onSubmit(event => {
 
 })
 
+// TODO mount create post form when clicking on plus button
+main.add(createPostForm)
+
 const footer = new Component('footer')
 footer.addClass('Footer')
 view.add(footer)
 
 const addPostButton = new Button()
 addPostButton.setText('+')
-
-addPostButton.onClick(() => main.add(createPostForm))
-
-/*addPostButton.onClick(() => {
-    return main.add(createPostForm)
-})*/
-
 footer.add(addPostButton)
 

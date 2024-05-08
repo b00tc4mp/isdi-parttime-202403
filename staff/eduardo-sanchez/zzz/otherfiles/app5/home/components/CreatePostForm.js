@@ -13,15 +13,11 @@ class CreatePostForm extends FormWithFeedback {
         const descriptionField = new Field('description', 'text', 'Description')
         descriptionField.setPlaceholder('description')
 
-        const cancelButton = new SubmitButton('Cancel')
-
-
         const submitButton = new SubmitButton('Create')
 
         this.add(titleField)
         this.add(imageField)
         this.add(descriptionField)
-        this.add(cancelButton)
         this.add(submitButton)
 
     }
