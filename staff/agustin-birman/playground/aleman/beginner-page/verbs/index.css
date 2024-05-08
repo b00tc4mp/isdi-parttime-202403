@@ -24,15 +24,15 @@ li {
     align-items: center;
 }
 
-body {
-    background: linear-gradient(320deg, #eb92be, #ffef78, #63c9b4);
+/* body {
+    /* background: linear-gradient(320deg, #eb92be, #ffef78, #63c9b4); */
 }
 
-h1 {
+*/ h1 {
     text-align: center;
 }
 
-.verbs-exercise {
+section {
     flex-direction: column;
     margin: 0 auto;
     width: 60%;
@@ -49,7 +49,7 @@ h1 {
     margin: 40px;
 }
 
-.input-verb {
+input {
     width: 70%;
     margin: 15px auto;
     border-radius: 20px;
@@ -59,7 +59,7 @@ h1 {
     text-align: center;
 }
 
-#checkButton {
+button {
     width: 60%;
     height: 30px;
     margin: 10px auto;
