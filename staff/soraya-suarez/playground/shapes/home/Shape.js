@@ -77,6 +77,19 @@ class Shape extends Component {
         this.container.style.top = y + 'px';
     }
 
+    moveYConstantly(speed) {
+        let seg = 0;
+        let posY = -3;
+        const myTimer = setInterval(() => {
+            seg += 1;
+            posY += 1;
+            this.moveY(posY*speed);
+            if ( seg === 35 ) {
+                clearInterval(myTimer);
+            }
+        }, 500);
+    }
+
     moveZ(z) {
         this.z = z;
         this.container.style.transform = 'scale(' + (z + 100) / 100 +')';
