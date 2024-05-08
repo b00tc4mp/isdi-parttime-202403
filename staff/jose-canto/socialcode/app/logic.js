@@ -114,15 +114,6 @@ logic.getAllPosts = () => {
   return posts.reverse()
 }
 
-logic.posts = () => {
-  posts.forEach((post) => {
-    const postComponent = new Post(post)
-
-    postList.add(postComponent)
-  })
-}
-
-
 logic.createPost = (title, image, description) => {
   if (typeof title !== "string" || !title.length || title.length > 30) {
     throw new ContentError("Title is not valid")
@@ -136,38 +127,20 @@ logic.createPost = (title, image, description) => {
     throw new ContentError("Description is not valid")
   }
 
-
-  const newDate = new Date();
-  const year = newDate.getFullYear();
-  const month = newDate.getMonth() + 1; // Agregamos 1 porque los meses van de 0 a 11
-  const day = newDate.getDate();
-  const hours = newDate.getHours();
-  const minutes = newDate.getMinutes();
-
   const post = {
     author: sessionStorage.username,
     title: title,
     image: image,
     description: description,
-    // Formateamos la fecha en el formato deseado (por ejemplo, DD/MM/AAAA HH:MM)
-    date: `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year.toString()} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
+    date: utils.getDateStringDayMonthYearFormat(),
   };
 
   data.insertPost(post)
 }
 
-logic.statusButton = () => {
-  let statusButton = true
 
-  addPostButton.onClick(event => {
-    event.preventDefault()
-
-    statusButton = !statusButton
-    if (!statusButton) {
-      main.add(createPostForm)
-      window.scrollTo(0, document.body.scrollHeight);
-
-    } else if (statusButton)
-      main.remove(createPostForm)
-  })
+logic.getLoggedInUsername = () => {
+  return sessionStorage.username
 }
+
+logic.deletePost = id => data.deletePost(post => post.id === id)
