@@ -27,26 +27,9 @@ class Post extends Component {
             const deleteButton = new Button('Delete')
 
             deleteButton.onClick(() => {
-                // const confirmed = confirm('Delete the post?')
+                logic.deletePost(post.id)
 
-                // if (confirmed) {
-                //     logic.deletePost(post.id)
-
-                //     this.onPostDeletedListener()
-                // }
-
-                const confirm = new Confirm
-                confirm.setText('Delete the post?')
-
-                confirm.onConfirm(() => {
-                    logic.deletePost(post.id)
-
-                    this.onPostDeletedListener()
-                })
-
-                confirm.onCancel(() => this.remove(confirm))
-
-                this.add(confirm)
+                this.onPostDeletedListener()
             })
 
             this.add(deleteButton)
