@@ -8,7 +8,7 @@ const view = new Component(document.body)
 view.addClass('View')
 
 const title = new Heading(1)
-title.setText('Welcome - Register')
+title.setText('SOCIAL CODE - Register')
 title.onClick(() => alert('By clicking on this title you wont get anything 😒'))
 
 /* Aqui se maneja el envío de un formulario de registro.
@@ -25,7 +25,7 @@ registerForm.onRegisterSubmit((name, surname, email, username, password, passwor
 
         registerForm.clear()
 
-        registerForm.setFeedback('user successfully registered', 'success')
+        registerForm.setFeedback('🎉 User registered 🎉', 'success')
 
         setTimeout(() => location.href = '../login', 1000)
     } catch (error) {
@@ -36,7 +36,7 @@ registerForm.onRegisterSubmit((name, surname, email, username, password, passwor
         else if (error instanceof DuplicityError)
             registerForm.setFeedback(error.message + ', please, enter new one')
         else
-            registerForm.setFeedback('sorry, there was an error, please try again later')
+            registerForm.setFeedback('😵 sorry, please try again later')
     }
 })
 

@@ -24,7 +24,7 @@ class Post extends Component {
         this.add(postDate)
 
         if (post.author === logic.getLoggedInUsername()) {
-            const deleteButton = new Button('Delete')
+            const deleteButton = new Button('Delete Post 🚽')
 
             deleteButton.onClick(() => {
                 logic.deletePost(post.id)

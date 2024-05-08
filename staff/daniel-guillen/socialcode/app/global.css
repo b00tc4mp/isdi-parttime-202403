@@ -3,7 +3,7 @@
 
 :root {
     --first-color: white;
-    --second-color: rgb(28, 27, 27);
+    --second-color: rgb(41, 41, 41);
 }
 
 * {
@@ -15,3 +15,15 @@ body {
     background-color: var(--second-color);
     margin: 0;
 }
+
+.Logo {
+    width: auto;
+    height: auto;
+    position: absolute;
+    font-size: 5vw;
+    color: white;
+    left: 0;
+    padding: 0.1rem;
+    margin-left: 1.5rem;
+    border-radius: 10px;
+  }

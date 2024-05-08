@@ -1,12 +1,19 @@
 if (!logic.isUserLoggedIn())
     location.href = '../login'
 
+
 const view = new Component(document.body)
 view.addClass('View')
 
 const header = new Component('header')
 header.addClass('Header')
 view.add(header)
+
+const logo = new Component("div")
+logo.setText("SOCIAL CODE")
+logo.addClass("Logo")
+
+header.add(logo)
 
 const userName = logic.getUserName()
 
@@ -15,7 +22,7 @@ usernameTitle.setText(userName)
 header.add(usernameTitle)
 
 const logoutButton = new Button
-logoutButton.setText('Logout')
+logoutButton.setText('Logout 💤')
 
 logoutButton.onClick(() => {
     logic.logoutUser()
@@ -47,7 +54,7 @@ createPostForm.onPostSubmit((title, image, description) => {
         if (error instanceof ContentError)
             createPostForm.setFeedback(error.message + ', please, correct it')
         else
-            createPostForm.setFeedback('sorry, there was an error, please try again later')
+            createPostForm.setFeedback('😵 sorry, please try again later')
     }
 })
 
@@ -64,7 +71,7 @@ footer.addClass('Footer')
 view.add(footer)
 
 const addPostButton = new Button
-addPostButton.setText('+')
+addPostButton.setText('New Post ➕')
 
 addPostButton.onClick(() => main.add(createPostForm))
 

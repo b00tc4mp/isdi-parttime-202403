@@ -23,7 +23,7 @@ class RegisterForm extends FormWithFeedback {
         const passwordField = new Field('password', 'password', 'Password')
         passwordField.setPlaceholder('password')
 
-        const passwordRepeatField = new Field('password', 'password', 'Password repeat')
+        const passwordRepeatField = new Field('repassword', 'password', 'Password repeat')
         passwordRepeatField.setPlaceholder('repeat password')
 
         const submitButton = new SubmitButton('Register')

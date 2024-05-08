@@ -5,7 +5,7 @@ const view = new Component(document.body)
 view.addClass('View')
 
 const title = new Heading(1)
-title.setText('Welcome - Login')
+title.setText('SOCIAL CODE - Login')
 
 /* Cuando se envía el formulario, se recupera el nombre de usuario y la contraseña ingresados ​​en los campos del loginForm,
 se inicia sesión con usuario utilizando la función `logic.loginUser` si las credenciales proporcionadas son correctas.
@@ -18,7 +18,7 @@ loginForm.onLoginSubmit((username, password) => {
 
         loginForm.clear()
 
-        loginForm.setFeedback('user successfully logged in', 'success')
+        loginForm.setFeedback('🎉 User logged in 🎉', 'success')
 
         setTimeout(() => location.href = '../home', 1000)
     } catch (error) {
@@ -27,7 +27,7 @@ loginForm.onLoginSubmit((username, password) => {
         else if (error instanceof MatchError)
             loginForm.setFeedback('wrong credentials')
         else
-            loginForm.setFeedback('sorry, there was an error, please try again later')
+            loginForm.setFeedback('😵 sorry, please try again later')
     }
 })
 
