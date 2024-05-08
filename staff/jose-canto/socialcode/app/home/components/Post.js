@@ -23,6 +23,7 @@ class Post extends Component {
     const divImage = new Component("div")
     divImage.addClass("DivImage")
 
+
     const postDate = new Component("time")
     postDate.setText(post.date)
 
@@ -36,8 +37,25 @@ class Post extends Component {
     // POST DIVIMAGE ADD
     divImage.add(postImage)
 
-    // POSTLIST ADD
-    postList.add(this)
+    if (post.author === logic.getLoggedInUsername()) {
+      const deleteButton = new Button("Delete")
+      deleteButton.addClass("DeleteButton")
+
+      deleteButton.onClick(() => {
+
+        logic.deletePost(post.id)
+
+        this.onPostDeletedListener()
+      })
+
+      this.add(deleteButton)
+    }
+  }
+
+  onPostDeleted(listener) {
+    this.onPostDeletedListener = listener
+
 
   }
+
 }
