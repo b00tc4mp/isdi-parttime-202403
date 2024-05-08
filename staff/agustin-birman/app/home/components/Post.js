@@ -1,13 +1,8 @@
 class Post extends Component {
     constructor(post) {
         super('article')
-        this.addClass('Article')
 
-
-<<<<<<< HEAD
         this.addClass('Article')
-=======
->>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
 
         const postTitle = new Component('h2')
         postTitle.setText(post.title)
@@ -35,7 +30,6 @@ class Post extends Component {
         this.add(postDescription)
         this.add(postDate)
         this.add(postAuthor)
-<<<<<<< HEAD
 
         if (post.author === sessionStorage.username) {
             const navButton = new Component('i')
@@ -50,9 +44,20 @@ class Post extends Component {
             deleteButton.addClass('DeleteButton')
 
             deleteButton.onClick(() => {
-                postLogic.deletePost(post.id)
 
-                this.onPostDeletedListener()
+                const confirm = new Confirm
+                confirm.setText('Delete the post?')
+                this.add(confirm)
+
+                confirm.onConfirm(() => {
+                    postLogic.deletePost(post.id)
+
+                    this.onPostDeletedListener()
+                })
+
+                confirm.onCancel(() => this.remove(confirm))
+
+
             })
 
             const editButton = new Button('Edit')
@@ -74,7 +79,5 @@ class Post extends Component {
     }
     onPostDeleted(listener) {
         this.onPostDeletedListener = listener
-=======
->>>>>>> a2fc28ce2924d11bb35aa943bc05a27afe6f6ead
     }
 }
