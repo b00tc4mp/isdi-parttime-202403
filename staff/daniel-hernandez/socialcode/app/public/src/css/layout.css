@@ -1,0 +1,34 @@
+/* layout */
+
+body {
+  background-color: var(--darkest);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+
+.nav-bar {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 300;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: var(--dark);
+  color: var(--primary3);
+  z-index: 5000;
+  padding: 10px;
+  box-shadow: inset 0 0 0 2px var(--darkest);
+}
+
+.nav-bar > * {
+  display: inline-block;
+  margin-left: 20px;
+}
