@@ -10,14 +10,20 @@ class CreatePostForm extends FormWithFeedback {
         const imageField = new Field('image', 'text', 'Image')
         imageField.setPlaceholder('image')
 
-        const descriptcionField = new Field('description', 'text', 'Descriptcion')
-        descriptcionField.setPlaceholder('descriptcion')
+        const descriptionField = new Field('description', 'text', 'Descriptcion')
+        descriptionField.addClass('DescriptionField')
+        descriptionField.setPlaceholder('descriptcion')
+
+        const cancelButton = new Button('Cancel')
+        cancelButton.setType('button')
+        this.cancelButton = cancelButton
 
         const submitButton = new SubmitButton('Create')
 
         this.add(titleField)
         this.add(imageField)
-        this.add(descriptcionField)
+        this.add(descriptionField)
+        this.add(cancelButton)
         this.add(submitButton)
         
         }
@@ -35,8 +41,12 @@ class CreatePostForm extends FormWithFeedback {
         }
 
         getDescription() {
-            const descriptcionField = this.children[2]
+            const descriptionField = this.children[2]
             
-            return descriptcionField.getValue()
+            return descriptionField.getValue()
+        }
+
+        onCancelClick(listener) {
+            this.cancelButton.onClick(listener)
         }
     }

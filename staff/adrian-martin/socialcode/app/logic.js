@@ -90,6 +90,7 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
         if(typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
 
         const post = {
+            id: Date.now(),
             author: sessionStorage.username,
             title,
             image,
@@ -99,3 +100,9 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
         data.insertPost(post)
     }
+
+    logic.getLoggedInUsername = () => sessionStorage.username
+
+    logic.deletePost = id => data.deletePost(post => post.id === id)
+    
+

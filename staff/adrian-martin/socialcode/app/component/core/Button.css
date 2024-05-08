@@ -1,5 +1,6 @@
 .Button{
     background-color: transparent;
     border: 1px solid var(--first-color);
-    padding: .6rem .7rem;
+    padding: .4rem .7rem;
+    cursor: pointer;
 }

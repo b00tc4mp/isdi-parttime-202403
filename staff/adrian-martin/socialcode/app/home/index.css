@@ -10,12 +10,13 @@
     display: flex;
     gap: 1rem;
     width: 100%;
-    justify-content: right;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     padding: .5rem;
     box-sizing: border-box;
     border-bottom: 2px solid var(--first-color);
+    background-color: black;
 }
 
 .Footer{
@@ -26,4 +27,18 @@
     bottom: 0;
     padding: 1rem;
     border-top: 2px solid var(--first-color);
+    background-color: black;
 }
+
+.SocialCode {
+    color: aliceblue;
+    margin-right: auto;
+}
+
+.FormWithFeedback .Field .Input {
+    width: 500px;
+}
+
+/* .FormWithFeedback .Field .Input .DescriptionField{
+    width: 00px !important;
+} */

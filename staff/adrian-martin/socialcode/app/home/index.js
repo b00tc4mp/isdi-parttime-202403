@@ -12,6 +12,10 @@ const userName = logic.getUsername()
 const usernameTitle = new Heading(3)
 usernameTitle.setText(userName)
 
+const appTitle = new Heading(3)
+appTitle.setText('SocialCode')
+appTitle.addClass('SocialCode')
+
 const logoutButton = new Button
 logoutButton.setText('Logout')
 
@@ -23,17 +27,8 @@ logoutButton.onClick( () => {
 
 const main = new Component('main')
 
-const postList = new Component('section')
-
+const postList = new PostList()
 main.add(postList)
-
-const posts = logic.getAllPosts()
-
-posts.forEach(post => {
-    const post2 = new Post(post)
-
-    postList.add(post2)
-});
 
 const createPostForm = new CreatePostForm
 
@@ -47,7 +42,11 @@ createPostForm.onSubmit(event => {
     try{
         logic.createPost(title, image, description)
 
+        createPostForm.clear()
 
+        main.remove(createPostForm)
+
+        postList.load()
     }catch (error){
         if (error instanceof ContentError) 
             createPostForm.setFeedback(error.message + '. please, repeat it')
@@ -57,7 +56,11 @@ createPostForm.onSubmit(event => {
     }
 })
 
-main.add(createPostForm)
+createPostForm.onCancelClick(event => {
+    event.preventDefault()
+    
+    main.remove(createPostForm)
+})
 
 const footer = new Component('footer')
 footer.addClass('Footer')
@@ -65,6 +68,9 @@ footer.addClass('Footer')
 const addPostButton = new Button
 addPostButton.setText('+')
 
+addPostButton.onClick(() => main.add(createPostForm))
+
+header.add(appTitle)
 header.add(logoutButton)
 header.add(usernameTitle)
 

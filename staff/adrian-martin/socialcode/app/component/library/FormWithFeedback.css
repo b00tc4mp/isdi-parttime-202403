@@ -1,7 +1,9 @@
 .FormWithFeedback{
-    padding: rem;
+
+    text-align: center;
     width: 400px;
 }
+
 
 .FormWithFeedback .Input {
     background-color:var(--fourth-color);
