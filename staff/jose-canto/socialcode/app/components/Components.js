@@ -34,12 +34,21 @@ class Component {
     }
 
     const index = this.children.indexOf(child)
-    if (index !== -1) {
+    if (index > -1) {
       this.children.splice(index, 1)
     }
 
-    this.container.removeChild(child.container)
+    if (this.container.contains(child.container)) {
+      this.container.removeChild(child.container)
+    }
   }
+
+  removeAll() {
+    const children = this.children.concat()
+
+    children.forEach(child => this.remove(child))
+  }
+
 
   setText(text) {
     // Este método establece el contenido textual del "container" con el texto proporcionado.
