@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 :root {
-    --first-color: rgb(63, 4, 116);
-    --second-color: #845EC2;
+    --first-color: rgb(4, 65, 34);
+    --second-color: #0a7073;
 }
 
 * {
@@ -14,7 +14,11 @@
 
 
 .View {
-    background-image: linear-gradient(#845EC2, #D65DB1, #FF6F91, #FF9671);
+    background-image: linear-gradient(#0D878B,
+            #1FA191,
+            #4CBB8E,
+            #7FD385,
+            #B9E779);
     background-attachment: fixed;
     margin: 0;
     font-family: "Jersey 10", sans-serif;

@@ -37,13 +37,7 @@ utils.getStringInDateFormat()
 
 const createPostForm = new CreatePostForm
 
-createPostForm.onSubmit(event => {
-    event.preventDefault()
-
-    const title = createPostForm.getTitle()
-    const image = createPostForm.getImage()
-    const description = createPostForm.getDescription()
-
+createPostForm.onPostSubmit((title, image, description) => {
     try {
         logic.createPost(title, image, description)
 

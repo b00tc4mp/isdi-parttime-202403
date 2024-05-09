@@ -27,8 +27,8 @@ class Post extends Component {
 
         this.add(authorTitle)
         this.add(postTitle)
-        this.add(postText)
         this.add(divImage)
+        this.add(postText)
         this.add(postDate)
 
         divImage.add(postImage)

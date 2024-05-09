@@ -4,11 +4,15 @@
     bottom: 1rem;
     display: flex;
     flex-direction: column;
-    background-color: aliceblue;
+    background-color: #13abb0;
     margin-bottom: 3rem;
 }
 
 .SubmitButton {
     align-self: center;
 
+}
+
+.CancelButton {
+    align-self: center;
 }
