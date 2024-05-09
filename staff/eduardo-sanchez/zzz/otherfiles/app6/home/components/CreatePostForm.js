@@ -16,8 +16,6 @@ class CreatePostForm extends FormWithFeedback {
         const cancelButton = new Button('Cancel')
         // cancelButton.setText('Cancel')
 
-        cancelButton.setType('button')
-
         this.cancelButton = cancelButton
 
         const submitButton = new SubmitButton('Create')

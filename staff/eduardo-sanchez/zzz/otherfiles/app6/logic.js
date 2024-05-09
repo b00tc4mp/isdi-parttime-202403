@@ -94,7 +94,6 @@ logic.createPost = (title, image, description) => {
 
 
     const post = {
-        id: Date.now(),
         author: sessionStorage.username,
         title,
         image,
@@ -106,11 +105,3 @@ logic.createPost = (title, image, description) => {
     data.insertPost(post)
 
 }
-
-logic.getLoggedInUsername = () => sessionStorage.username
-
-logic.deletePost = id => data.deletePost(post => post.id === id)
-
-// logic.deletePost = id => {
-//     data.deletePost(post => post.id === id)
-// }
