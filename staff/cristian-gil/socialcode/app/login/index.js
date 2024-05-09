@@ -7,31 +7,9 @@ view.addClass('View')
 const title = new Heading(1)
 title.setText('Login')
 
-const loginForm = new LoginForm()
-loginForm.onSubmit(event => {
-    event.preventDefault()
+const loginForm = new LoginForm
 
-    const username = loginForm.getUsername()
-    const password = loginForm.getPassword()
-
-    try {
-        logic.loginUser(username, password)
-
-        loginForm.clear()
-
-        loginForm.setFeedback('user successfully logged in', 'success')
-
-        setTimeout(() => location.href = '../home', 1000)
-    } catch (error) {
-        if (error instanceof ContentError)
-            loginForm.setFeedback(error.message + ', please, correct it')
-        else if (error instanceof MatchError)
-            loginForm.setFeedback('wrong credentials')
-        else
-            loginForm.setFeedback('sorry, there was an error, please try again later')
-    }
-})
-
+loginForm.onLoggedIn(() => setTimeout(() => location.href = '../home', 1000))
 
 const registerLink = new Link
 registerLink.setText('Register')

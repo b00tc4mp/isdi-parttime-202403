@@ -1,7 +1,7 @@
 const data = {}
 
 data.findUser = callback => {
-    const usersJson = localStorage.users
+    let usersJson = localStorage.users
 
     if (!usersJson) usersJson = '[]'
 
@@ -13,7 +13,7 @@ data.findUser = callback => {
 }
 
 data.insertUser = user => {
-    const usersJson = localStorage.users
+    let usersJson = localStorage.users
 
     if (!usersJson) usersJson = '[]'
 
@@ -24,4 +24,50 @@ data.insertUser = user => {
     usersJson = JSON.stringify(users)
 
     localStorage.users = usersJson
+}
+
+data.findPosts = callback => {
+    let postsJson = localStorage.posts
+
+    if (!postsJson) postsJson = '[]'
+
+    const posts = JSON.parse(postsJson)
+
+    const filtered = posts.filter(callback)
+
+    return filtered
+}
+
+data.insertPost = post => {
+    let postsJson = localStorage.posts
+
+    if (!postsJson) postsJson = '[]'
+
+    const posts = JSON.parse(postsJson)
+
+    post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+
+    posts.push(post)
+
+    postsJson = JSON.stringify(posts)
+
+    localStorage.posts = postsJson
+}
+
+data.deletePost = callback => {
+    let postsJson = localStorage.posts
+
+    if (!postsJson) postsJson = '[]'
+
+    const posts = JSON.parse(postsJson)
+
+    const index = posts.findIndex(callback)
+
+    if (index > -1) {
+        posts.splice(index, 1)
+
+        postsJson = JSON.stringify(posts)
+
+        localStorage.posts = postsJson
+    }
 }
