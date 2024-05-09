@@ -8,21 +8,8 @@ const title = new Heading(1)
 title.setText('Login')
 
 const loginForm = new LoginForm
-loginForm.onLoginSubmit((username, password) => {
-    try {
-        logic.loginUser(username, password)
-        loginForm.clear()
-        loginForm.setFeedback('user successfully logged in', 'success')
-        location.href = '../home'
-    } catch (error) {
-        if (error instanceof ContentError)
-            loginForm.setFeedback(error.message + ', please, correct it')
-        else if (error instanceof MatchError)
-            loginForm.setFeedback('wrong credentials')
-        else
-            loginForm.setFeedback('sorry, there was an error, please try again later')
-    }
-})
+
+loginForm.onLoggedIn(() => location.href = '../home')
 
 
 const registerLink = new Link

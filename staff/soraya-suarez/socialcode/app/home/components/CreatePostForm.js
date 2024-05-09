@@ -16,7 +16,11 @@ class CreatePostForm extends FormWithFeedback {
         const cancelButton = new Button('Cancel')
         cancelButton.setType('button')
 
-        this.cancelButton = cancelButton
+        cancelButton.onClick(event => {
+            event.preventDefault()
+            this.clear()
+            this.onCancelClickListener()
+        })
 
         const submitButton = new SubmitButton('Create')
 
@@ -29,11 +33,20 @@ class CreatePostForm extends FormWithFeedback {
         this.onSubmit(event => {
             event.preventDefault()
 
-            const title = createPostForm.getTitle()
-            const image = createPostForm.getImage()
-            const description = createPostForm.getDescription()
+            const title = this.getTitle()
+            const image = this.getImage()
+            const description = this.getDescription()
 
-            this.onPostSubmitListener(title, image, description)
+            try {
+                logic.createPost(title, image, description)
+                this.clear()
+                this.onPostCreatedListener()
+            } catch (error) {
+                if (error instanceof ContentError)
+                    this.setFeedback(error.message + ', please, correct it')
+                else
+                    this.setFeedback('sorry, there was an error, please try again later')
+            }
         })
     }
 
@@ -53,10 +66,10 @@ class CreatePostForm extends FormWithFeedback {
     }
 
     onCancelClick(listener) {
-        this.cancelButton.onClick(listener)
+        this.onCancelClickListener = listener
     }
 
-    onPostSubmit(listener) {
-        this.onPostSubmitListener = listener
+    onPostCreated(listener) {
+        this.onPostCreatedListener = listener
     }
 }
