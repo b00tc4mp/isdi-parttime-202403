@@ -139,8 +139,6 @@ logic.createPost = (title, image, description) => {
 }
 
 
-logic.getLoggedInUsername = () => {
-  return sessionStorage.username
-}
+logic.getLoggedInUsername = () => { return sessionStorage.username }
 
 logic.deletePost = id => data.deletePost(post => post.id === id)

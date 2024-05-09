@@ -25,12 +25,14 @@ class CreatePostForm extends FormWithFeedback {
     cancelButton.addClass("fa-regular")
     cancelButton.addClass("fa-rectangle-xmark")
 
+    //this.cancelButton = cancelButton ya no es necesario referenciarlo porque lo hacemos en el metodo mas abajo.
+    cancelButton.onClick(() => {
+      createPostForm.clear()
 
-    this.cancelButton = cancelButton
-
+      this.onCancelClickListener()
+    })
 
     const submitButton = new SubmitButton("Create")
-
 
     this.add(titleField)
     this.add(imageField)
@@ -38,6 +40,29 @@ class CreatePostForm extends FormWithFeedback {
     this.add(descriptionTextArea)
     this.add(submitButton)
     this.add(cancelButton)
+
+    this.onSubmit((event) => {
+      event.preventDefault()
+
+      const title = createPostForm.getTitle()
+      const image = createPostForm.getImage()
+      const description = createPostForm.getDescription()
+
+      try {
+        logic.createPost(title, image, description)
+
+        this.clear()
+
+        this.onPostCreatedListener()
+
+      } catch (error) {
+        if (error instanceof ContentError) {
+          createPostForm.setFeedback(error.message + ", please correct it")
+        } else {
+          createPostForm.setFeedback("Sorry, there was an error, ples try again later")
+        }
+      }
+    })
   }
 
   getTitle() {
@@ -58,7 +83,11 @@ class CreatePostForm extends FormWithFeedback {
   }
 
 
-  onCancelButton(event) {
-    this.cancelButton.onClick(event)
+  onCancelClick(listener) {
+    this.onCancelClickListener = listener
+  }
+
+  onPostCreated(listener) {
+    this.onPostCreatedListener = listener
   }
 }

@@ -38,6 +38,42 @@ class RegisterComponent extends FormWithFeedback {
     this.add(passwordField)
     this.add(repeatPassword)
     this.add(submitButton)
+
+    this.onSubmit(event => {
+      event.preventDefault()
+
+      const name = registerForm.getName()
+      const surname = registerForm.getSurname()
+      const email = registerForm.getEmail()
+      const username = registerForm.getUsername()
+      const password = registerForm.getPassword()
+      const passwordRepeat = registerForm.getPasswordRepeat()
+
+      try {
+        logic.registerUser(name, surname, email, username, password, passwordRepeat)
+
+        this.clear()
+
+        this.onRegisterSubmittedListener()
+
+      } catch (error) {
+        if (error instanceof ContentError) {
+
+          this.setFeedback(error.message + ", correct it ❌")
+
+        } else if (error instanceof MatchError) {
+          this.setFeedback(error.message + ", please, retype them ❌")
+
+        } else if (error instanceof DuplicityError) {
+          this.setFeedback(error.message + ", enter new one ❌")
+
+        } else {
+          this.setFeedback("❌ Sorry, ther was an error, please try again later ❌")
+        }
+        setTimeout(() => this.clearFeedback(), 2000)
+      }
+    })
+
   }
 
   getName() {
@@ -73,5 +109,9 @@ class RegisterComponent extends FormWithFeedback {
     const repeatPasswordField = this.children[5]
 
     return repeatPasswordField.getValue()
+  }
+
+  onRegisterSubmitted(listener) {
+    this.onRegisterSubmittedListener = listener
   }
 }

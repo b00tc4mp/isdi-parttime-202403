@@ -17,6 +17,34 @@ class LoginComponent extends FormWithFeedback {
     this.add(usernameField)
     this.add(passwordField)
     this.add(submitButton)
+
+    this.onSubmit(event => {
+      event.preventDefault()
+
+      const username = this.getUsername()
+      const password = this.getPassword()
+
+      try {
+        logic.loginUser(username, password)
+
+        this.clear()
+
+        this.onLoginSubmittedListener()
+
+      } catch (error) {
+        //alert(error.message)
+        if (error instanceof ContentError) {
+          this.setFeedback(error.message + ", please, correct it ❌")
+
+        } else if (error instanceof MatchError) {
+          this.setFeedback("❌ Wrong credentials ❌")
+
+        } else {
+          this.setFeedback("Please try again later ⌛")
+        }
+        setTimeout(() => this.clearFeedback(), 2000)
+      }
+    })
   }
 
   getUsername() {
@@ -29,4 +57,8 @@ class LoginComponent extends FormWithFeedback {
     return passwordField.getValue()
   }
 
+
+  onLoginSubmitted(listener) {
+    this.onLoginSubmittedListener = listener
+  }
 }

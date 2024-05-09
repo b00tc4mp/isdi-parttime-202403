@@ -10,36 +10,8 @@ headerLogin.setText("LOGIN")
 headerLogin.addClass("HeaderLoginRegister")
 
 const loginForm = new LoginComponent()
-loginForm.onSubmit(event => {
-  event.preventDefault()
 
-  const username = loginForm.getUsername()
-
-  const password = loginForm.getPassword()
-
-  try {
-    logic.loginUser(username, password)
-
-    loginForm.clear()
-
-    setTimeout(() => {
-      location.href = '../home'
-    }, 1000)
-
-  } catch (error) {
-    //alert(error.message)
-    if (error instanceof ContentError) {
-      loginForm.setFeedback(error.message + ", please, correct it ❌")
-
-    } else if (error instanceof MatchError) {
-      loginForm.setFeedback("❌ Wrong credentials ❌")
-
-    } else {
-      loginForm.setFeedback("Please try again later ⌛")
-    }
-    setTimeout(() => loginForm.clearFeedback(), 2000)
-  }
-})
+loginForm.onLoginSubmitted(() => setTimeout(() => location.href = '../home', 1000))
 
 const registerLink = new Link()
 registerLink.setText("Register")

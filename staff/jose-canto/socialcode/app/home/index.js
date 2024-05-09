@@ -61,60 +61,25 @@ utils.getDateStringDayMonthYearFormat()
 
 const createPostForm = new CreatePostForm()
 
-createPostForm.onSubmit((event) => {
-  event.preventDefault()
+createPostForm.onPostCreated(() => {
+  main.remove(createPostForm)
 
-  const title = createPostForm.getTitle()
-  const image = createPostForm.getImage()
-  const description = createPostForm.getDescription()
+  postList.removeAll()
 
+  postList.load()
 
-  try {
-    logic.createPost(title, image, description)
-
-    createPostForm.clear()
-
-    main.remove(createPostForm)
-
-    postList.removeAll()
-
-    postList.load()
-
-
-
-    window.scrollTo(0, 0)
-    statusButton = !statusButton
-
-  } catch (error) {
-    if (error instanceof ContentError) {
-      createPostForm.setFeedback(error.message + ", please correct it")
-    } else {
-      createPostForm.setFeedback("Sorry, there was an error, ples try again later")
-    }
-  }
+  window.scrollTo(0, 0)
 })
 
 const addPostButton = new Button()
 addPostButton.setText("+")
 
-let statusButton = true
 addPostButton.onClick(event => {
   event.preventDefault()
-
-  statusButton = !statusButton
-  if (!statusButton) {
-    main.add(createPostForm)
-
-  } else if (statusButton)
-    main.remove(createPostForm)
+  main.add(createPostForm)
 })
 
-createPostForm.onCancelButton(() => {
-  main.remove(createPostForm)
-
-  statusButton = !statusButton
-})
-
+createPostForm.onCancelClick(() => main.remove(createPostForm))
 
 const scrollTop = new Component("i")
 scrollTop.addClass("fa-solid")
@@ -127,7 +92,6 @@ scrollTop.onClick(() => {
     behavior: "smooth"
   })
 })
-
 
 // ADD FOOTER
 view.add(footer)
