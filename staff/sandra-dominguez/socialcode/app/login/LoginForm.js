@@ -15,6 +15,31 @@ class LoginForm extends FormWithFeedback {
         this.add(usernameField)
         this.add(passwordField)
         this.add(submitButton)
+
+        this.onSubmit(event => {
+            event.preventDefault()
+
+            const username = this.getUsername()
+            const password = this.getPassword()
+
+            try {
+                logic.loginUser(username, password)
+
+                this.clear()
+
+                this.setFeedback('El usuario inició sesión exitosamente', 'success')
+
+                this.onLoggedInListener()
+
+            } catch (error) {
+                if (error instanceof ContentError)
+                    this.setFeedback(error.message + ', por favor corrígelo')
+                else if (error instanceof MatchError)
+                    this.setFeedback('Credenciales incorrectas')
+                else
+                    this.setFeedback('Lo siento, hubo un error, inténtalo de nuevo más tarde.')
+            }
+        })
     }
 
     getUsername() {
@@ -27,5 +52,9 @@ class LoginForm extends FormWithFeedback {
         const passwordField = this.children[1]
 
         return passwordField.getValue()
+    }
+
+    onLoggedIn(listener) {
+        this.onLoggedInListener = listener
     }
 }
