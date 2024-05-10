@@ -32,20 +32,11 @@ header.add(logoutButton)
 
 const main = new Component('main')
 view.add(main)
-const postList = new Component('section')
+const postList = new PostList
 main.add(postList)
 
 
 
-
-const posts = logic.getAllPosts()
-
-posts.forEach(post => {
-    const post2 = new Post(post)
-
-    postList.add(post2)
-
-});
 const createPostForm = new CreatePostForm
 
 createPostForm.onPostCreated(() => {
