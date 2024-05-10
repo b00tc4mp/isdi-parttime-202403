@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Micro+5+Charted&family=Pacifico&display=swap');
+
 .View {
     height: 100vh -1rem;
     display: flex;
@@ -23,6 +25,7 @@
     padding: .5rem;
     box-sizing: content-box;
     border-bottom: 1px solid var(--first-color);
+    margin-right: 2rem;
 }
 
 .Footer {
@@ -35,4 +38,17 @@
     padding: 1 rem 0;
     box-sizing: content-box;
 
+
+}
+
+.Title {
+    display: flex;
+    justify-content: left;
+    position: fixed;
+    left: 0;
+    margin-top: 0;
+    margin-left: 1rem;
+    font-family: 'Pacifico', sans-serif;
+    font-size: 30px;
+    -webkit-text-stroke: 0.01rem rgb(111, 59, 7);
 }

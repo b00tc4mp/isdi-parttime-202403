@@ -15,47 +15,14 @@ title.onClick(function () {
 
 
 const registerForm = new RegisterForm
-registerForm.onSubmit(function (event) {
-    event.preventDefault()
-
-    const name = registerForm.getName()
-    const surname = registerForm.getSurname()
-    const email = registerForm.getEmail()
-    const username = registerForm.getUsername()
-    const password = registerForm.getPassword()
-    const passwordRepeat = registerForm.getPasswordRepeat()
-
-
-    try {
-        logic.registerUser(name, surname, email, username, password, passwordRepeat)
-
-        registerForm.clear()
-        registerForm.setFeedback('user successfuly success', 'success')
-
-
-
-    } catch (error) {
-        if (error instanceof ContentError)
-            registerForm.setFeedback(error.message + ', por favor, corrijalo')
-        else if (error instanceof MatchError)
-            registerForm.setFeedback(error.message + ', please, retype them')
-        else if (error instanceof DuplicityError)
-            registerForm.setFeedback(error.message + ', please, enter new one')
-        else
-            registerForm.setFeedback('Lamentablemente ha ocurrido un error, intentelo más tarde')
-
-    }
-
-})
-
-
+registerForm.onRegistered(() => setTimeout(() => location.href = '../login', 200))
 
 
 
 loginLink = new Link()
 loginLink.setText('Login')
 //loginLink.setUrl('../login')
-loginLink.onClick(function (event) {
+loginLink.onClick((event) => {
     event.preventDefault()
 
     setTimeout(() => location.href = '../login', 500)

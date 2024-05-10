@@ -87,8 +87,9 @@ logic.logoutUser = () => {
 
 logic.getUserName = () => {
     const user = data.findUser(user =>
-        user.username === sessionStorage.username
-    )
+        user.username === sessionStorage.username)
+
+    return user.name
 }
 
 logic.getAllPosts = () => {

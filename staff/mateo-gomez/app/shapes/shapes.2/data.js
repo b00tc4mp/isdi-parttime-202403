@@ -14,17 +14,17 @@ data.findUser = (callback) => {
 
 
 data.insertUser = (user) => {
-    let userJson = localStorage.users //-->Extraer info --> const userJson = localStorage.getItem('users)
+    let usersJson = localStorage.users //-->Extraer info --> const userJson = localStorage.getItem('users)
 
-    if (!userJson) userJson = '[]'
+    if (!usersJson) usersJson = '[]'
 
-    const users = JSON.parse(userJson)
+    const users = JSON.parse(usersJson)
 
     users.push(user)
 
-    userJson = JSON.stringify(users)
+    usersJson = JSON.stringify(users)
 
-    localStorage.users = userJson
+    localStorage.users = usersJson
 
 }
 
@@ -58,19 +58,19 @@ data.insertPost = (post) => {
 
 }
 data.deletePost = (callback) => {
-    let postJson = localStorage.posts //-->Extraer info --> const postJson = localStorage.getItem('posts)
+    let postsJson = localStorage.posts //-->Extraer info --> const postJson = localStorage.getItem('posts)
 
-    if (!postJson) postJson = '[]'
+    if (!postsJson) postsJson = '[]'
 
-    const posts = JSON.parse(postJson)
+    const posts = JSON.parse(postsJson)
 
     const index = posts.findIndex(callback)
 
     if (index > -1)
         posts.splice(index, 1)
 
-    postJson = JSON.stringify(posts)
+    postsJson = JSON.stringify(posts)
 
-    localStorage.posts = postJson
+    localStorage.posts = postsJson
 
 }

@@ -13,14 +13,42 @@ class LoginForm extends FormWithFeedback {
         const feedbackPanel = new Component('p')
         feedbackPanel.addClass('Feedback')
 
-        this.feedbackPanel = feedbackPanel
 
 
         this.add(usernameField)
         this.add(passwordField)
         this.add(submitButton)
         // this.add(feedbackPanel)
+
+        this.onSubmit(event => {
+            event.preventDefault()
+
+            const username = this.getUsername()
+            const password = this.getPassword()
+
+
+            try {
+                logic.loginUser(username, password)
+
+                this.clear()
+
+                this.setFeedback('user successfully logged in', 'success')
+
+                this.onLoggedInListener()
+            } catch (error) {
+                if (error instanceof ContentError)
+                    this.setFeedback(error.message + ', please, correct it')
+                else if (error instanceof MatchError)
+                    this.setFeedback('wrong credentials')
+                else
+                    this.setFeedback('sorry, there was an error, please try again later')
+            }
+
+
+        })
     }
+
+
 
     getUsername() {
         const usernameField = this.children[0]
@@ -34,5 +62,8 @@ class LoginForm extends FormWithFeedback {
         return passwordField.getValue()
     }
 
+    onLoggedIn(listener) {
+        this.onLoggedInListener = listener
+    }
 
 }

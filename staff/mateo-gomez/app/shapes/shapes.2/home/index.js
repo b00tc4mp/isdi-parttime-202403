@@ -12,7 +12,11 @@ view.add(header)
 const userName = logic.getUserName()
 const usernameTitle = new Heading(3)
 usernameTitle.setText(userName)
+const title = new Heading(1)
+title.setText('SocialCode')
+title.addClass('Title')
 
+header.add(title)
 header.add(usernameTitle)
 
 
@@ -44,38 +48,16 @@ posts.forEach(post => {
 });
 const createPostForm = new CreatePostForm
 
-createPostForm.onSubmit(event => {
-    event.preventDefault()
-
-    const title = createPostForm.getTitle()
-    const image = createPostForm.getImage()
-    const description = createPostForm.getDescription()
-
-    try {
-        logic.createPost(title, image, description)
-
-        createPostForm.clear()
-
-        main.remove(createPostForm)
-
-        // refresh post list
-        postList.load()
-
-    } catch (error) {
-        if (error instanceof ContentError)
-            createPostForm.setFeedback(error.message + ', please, correct it')
-        else
-            createPostForm.setFeedback('sorry, there was an error, please try again later')
-    }
-})
-
-
-createPostForm.onCancelClick((event) => {
-    event.preventDefault()
-
+createPostForm.onPostCreated(() => {
     main.remove(createPostForm)
 
+    // refresh post list
+    postList.load()
+
 })
+
+
+createPostForm.onCancelClick(() => main.remove(createPostForm))
 
 
 const footer = new Component('footer')
