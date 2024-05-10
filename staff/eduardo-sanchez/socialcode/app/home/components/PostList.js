@@ -23,6 +23,8 @@ class PostList extends Component {
 
             const post2 = new Post(post)
 
+            post2.onPostDeleted(() => this.load())
+
             this.add(post2)
         })
 
