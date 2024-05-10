@@ -71,10 +71,8 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
     }
 
     logic.getUsername = () => {
-        const user = data.findUser(user => {
-            return user.username = sessionStorage.username
-        })
-
+        const user = data.findUser(user => user.username === sessionStorage.username)
+    
         return user.name
     }
 

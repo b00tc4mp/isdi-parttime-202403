@@ -11,6 +11,7 @@ const userName = logic.getUsername()
 
 const usernameTitle = new Heading(3)
 usernameTitle.setText(userName)
+// usernameTitle.setText(sessionStorage.username)
 
 const appTitle = new Heading(3)
 appTitle.setText('SocialCode')
@@ -32,29 +33,31 @@ main.add(postList)
 
 const createPostForm = new CreatePostForm
 
-createPostForm.onPostSubmit((title, image, description) => {
-    try{
-        logic.createPost(title, image, description)
-
-        createPostForm.clear()
-
-        main.remove(createPostForm)
-
-        postList.load()
-    }catch (error){
-        if (error instanceof ContentError) 
-            createPostForm.setFeedback(error.message + '. please, repeat it')
-
-        else
-            createPostForm.setFeedback('sorry, there was an error, please try again later')
-    }
-})
-
-createPostForm.onCancelClick(event => {
-    event.preventDefault()
-    
+createPostForm.onPostCreated((title, image, description) => {
     main.remove(createPostForm)
+
+    postList.load()
 })
+
+// createPostForm.onPostSubmit((title, image, description) => {
+//     try{
+//         logic.createPost(title, image, description)
+
+//         createPostForm.clear()
+
+//         main.remove(createPostForm)
+
+//         postList.load()
+//     }catch (error){
+//         if (error instanceof ContentError) 
+//             createPostForm.setFeedback(error.message + '. please, repeat it')
+
+//         else
+//             createPostForm.setFeedback('sorry, there was an error, please try again later')
+//     }   
+// })
+
+createPostForm.onCancelClick(() => main.remove(createPostForm))
 
 const footer = new Component('footer')
 footer.addClass('Footer')

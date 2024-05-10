@@ -42,7 +42,25 @@ class RegisterForm extends FormWithFeedback {
                 const password = this.getPassword()
                 const passwordRepeat = this.getPasswordRepeat()
 
-                this.onRegisterSubmitListener(name, surname,email, username, password, passwordRepeat)
+                
+                    try{
+                        logic.registerUser(name, surname, email, username, password, passwordRepeat)
+                
+                        this.clear()
+                
+                        this.setFeedback('user successfully registered', 'success')
+
+                        this.onRegistered()
+                    }catch (error) {
+                        if(error instanceof ContentError)
+                            this.setFeedback(error.message + '. please, correct it')
+                        else if(error instanceof MatchError)
+                            this.setFeedback(error.message + '. please, retype them')
+                        else if(error instanceof DuplicityError)
+                            this.setFeedback(error.message + '. please, enter new one')
+                        else
+                            this.setFeedback('sorry there was an error, please try again')
+                    } 
             })
         
         }
@@ -83,7 +101,7 @@ class RegisterForm extends FormWithFeedback {
             return passwordRepeatField.getValue()
         }
 
-        onRegisterSubmit(listener) {
-            this.onRegisterSubmitListener = listener
+        onRegistered(listener) {
+            this.onRegistered = listener
         }
 }

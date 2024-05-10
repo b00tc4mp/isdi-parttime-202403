@@ -21,18 +21,21 @@ class Component {
     }
 
     remove(child) {
+        // if(!(child instanceof Component)) throw new TypeError('child is not component')
+
         const index = this.children.indexOf(child)
 
         if(index > -1)
             this.children.splice(index, 1)
 
-        this.container.removeChild(child.container)
+        if (this.container.contains(child.container))
+            this.container.removeChild(child.container)
     }
 
     removeAll() {
         const children = this.children.concat()
         
-        this.children.forEach(child => this.remove(child))
+        children.forEach(child => this.remove(child))
     }
 
     setText(text) {
