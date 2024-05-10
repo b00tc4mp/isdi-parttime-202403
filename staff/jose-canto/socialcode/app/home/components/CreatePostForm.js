@@ -27,7 +27,7 @@ class CreatePostForm extends FormWithFeedback {
 
     //this.cancelButton = cancelButton ya no es necesario referenciarlo porque lo hacemos en el metodo mas abajo.
     cancelButton.onClick(() => {
-      createPostForm.clear()
+      this.clear()
 
       this.onCancelClickListener()
     })
@@ -44,9 +44,9 @@ class CreatePostForm extends FormWithFeedback {
     this.onSubmit((event) => {
       event.preventDefault()
 
-      const title = createPostForm.getTitle()
-      const image = createPostForm.getImage()
-      const description = createPostForm.getDescription()
+      const title = this.getTitle()
+      const image = this.getImage()
+      const description = this.getDescription()
 
       try {
         logic.createPost(title, image, description)
@@ -57,9 +57,9 @@ class CreatePostForm extends FormWithFeedback {
 
       } catch (error) {
         if (error instanceof ContentError) {
-          createPostForm.setFeedback(error.message + ", please correct it")
+          this.setFeedback(error.message + ", please correct it")
         } else {
-          createPostForm.setFeedback("Sorry, there was an error, ples try again later")
+          this.setFeedback("Sorry, there was an error, ples try again later")
         }
       }
     })
@@ -78,7 +78,7 @@ class CreatePostForm extends FormWithFeedback {
   }
 
   getDescription() {
-    const descriptionTextArea = createPostForm.descriptionTextArea.getValue()
+    const descriptionTextArea = this.descriptionTextArea.getValue()
     return descriptionTextArea
   }
 

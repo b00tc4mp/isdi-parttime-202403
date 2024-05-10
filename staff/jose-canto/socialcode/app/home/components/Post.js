@@ -59,10 +59,10 @@ class Post extends Component {
         })
 
         confirm.onCancel(() => {
-          this.remove(confirm)
+          divImage.remove(confirm)
         })
 
-        this.add(confirm)
+        divImage.add(confirm)
       })
 
       this.add(deleteButton)
