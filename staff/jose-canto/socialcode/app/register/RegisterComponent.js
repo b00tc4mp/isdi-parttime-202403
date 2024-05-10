@@ -42,12 +42,12 @@ class RegisterComponent extends FormWithFeedback {
     this.onSubmit(event => {
       event.preventDefault()
 
-      const name = registerForm.getName()
-      const surname = registerForm.getSurname()
-      const email = registerForm.getEmail()
-      const username = registerForm.getUsername()
-      const password = registerForm.getPassword()
-      const passwordRepeat = registerForm.getPasswordRepeat()
+      const name = this.getName()
+      const surname = this.getSurname()
+      const email = this.getEmail()
+      const username = this.getUsername()
+      const password = this.getPassword()
+      const passwordRepeat = this.getPasswordRepeat()
 
       try {
         logic.registerUser(name, surname, email, username, password, passwordRepeat)

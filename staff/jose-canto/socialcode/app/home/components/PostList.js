@@ -1,6 +1,6 @@
 class PostList extends Component {
   constructor() {
-    super('section');
+    super('section')
 
     this.load()
   }
