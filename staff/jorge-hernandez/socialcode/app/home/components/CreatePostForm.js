@@ -38,7 +38,6 @@ class CreatePostForm extends FormWithFeedback {
 
     divButtons.add(cancelButton)
     divButtons.add(createButton)
-    console.log(this.children[4].children[0])
   }
 
   getTitle() {

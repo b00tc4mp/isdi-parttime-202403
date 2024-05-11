@@ -19,25 +19,15 @@ const logoutButton = new Button()
 logoutButton.setText('Logout')
 header.add(logoutButton)
 
-const main = new Component('main')
-view.add(main)
-const postList = new Component('section')
-main.add(postList)
-//TODO LOGIC TO DELETE POST
 logoutButton.onClick(() => {
   logic.logoutUser()
   location.href = '../login'
 })
 
-const posts = logic.getAllPosts()
-// const posts = JSON.parse(localStorage.posts)
-//TODO CREAR COMPO PARA EL FOREACH
-if (localStorage.posts) {
-  posts.forEach((post) => {
-    const post2 = new Post(post)
-    postList.add(post2)
-  })
-}
+const main = new Component('main')
+view.add(main)
+const postList = new PostList()
+main.add(postList)
 
 const createPostForm = new CreatePostForm()
 
@@ -49,8 +39,8 @@ createPostForm.onSubmit((event) => {
   try {
     logic.createPost(title, image, description)
     main.remove(createPostForm)
-    //TODO change location reload
-    location.reload()
+
+    postList.load()
   } catch (error) {
     if (error instanceof ContentError) {
       createPostForm.setFeedback(error.message + ' corrígelo')

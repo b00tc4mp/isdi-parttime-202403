@@ -27,7 +27,19 @@ data.findPosts = (callback) => {
 
 data.insertPost = (post) => {
   const posts = localStorage.posts ? JSON.parse(localStorage.posts) : []
+  post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
 
   posts.push(post)
   localStorage.posts = JSON.stringify(posts)
+}
+
+data.deletePost = (callback) => {
+  let posts = localStorage.posts ? JSON.parse(localStorage.posts) : []
+
+  const index = posts.findIndex(callback)
+
+  if (index > -1) {
+    posts.splice(index, 1)
+    localStorage.posts = JSON.stringify(posts)
+  }
 }

@@ -126,7 +126,16 @@ logic.createPost = (title, image, description) => {
     title: title,
     image: image,
     description: description,
-    date: new Date().toString(),
+    date: new Date().toISOString(),
   }
   data.insertPost(post)
+}
+
+logic.getLoggedInUsername = () => sessionStorage.username
+
+logic.deletePost = (id) => {
+  // Utiliza data.deletePost para eliminar el post del almacenamiento de datos
+  data.deletePost((post) => {
+    return post.id === id
+  })
 }

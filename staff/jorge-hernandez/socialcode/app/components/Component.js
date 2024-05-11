@@ -14,6 +14,12 @@ class Component {
     this.children.push(child)
   }
 
+  removeAll() {
+    const children = this.children.concat()
+
+    children.forEach((child) => this.remove(child))
+  }
+
   remove(child) {
     if (!(child instanceof Component))
       throw new TypeError('chid is not a component')
