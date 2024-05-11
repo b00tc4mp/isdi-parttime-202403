@@ -1,0 +1,8 @@
+.MessageList {
+    background-color: aquamarine;
+    }
+    
+    .MessageList .title {
+        color: greenyellow;
+        background-color: blueviolet;
+    }
