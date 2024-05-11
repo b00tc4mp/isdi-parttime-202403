@@ -134,3 +134,11 @@ logic.getUsersName = () => {
 
   return userData.name;
 };
+
+logic.getAllPosts = () => {
+  const posts = data.findPosts(() => {
+    return true;
+  });
+
+  return posts;
+};

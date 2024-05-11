@@ -16,3 +16,17 @@ data.insertUser = (userData) => {
 
   localStorage.setItem(userKeyString, JSON.stringify(userData));
 };
+
+data.findPosts = (callback) => {
+  let postsJson = localStorage.posts;
+
+  if (!postsJson) {
+    postsJson = "[]";
+  }
+
+  const posts = JSON.parse(postsJson);
+
+  const filteredPost = posts.filter(callback);
+
+  return filteredPost;
+};
