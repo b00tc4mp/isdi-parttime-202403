@@ -1,0 +1,33 @@
+.ContainColor {
+  background-color: rgb(97, 47, 6);
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+
+}
+
+.ContainerOne {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  width: 20rem;
+  height: 20rem;
+  cursor: pointer;
+  background-color: antiquewhite;
+  box-shadow: inset 0px 0px 20px 11px white;
+}
+
+.ContainerTwo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  width: 20rem;
+  height: 20rem;
+  cursor: pointer;
+  background-color: burlywood;
+  box-shadow: 0px 0px 20px 11px white;
+}
