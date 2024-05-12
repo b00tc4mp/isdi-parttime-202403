@@ -14,7 +14,29 @@ title.onClick(function () {
 
 const loginForm = new LoginForm()
 
-loginForm.onLoggedIn(() => setTimeout(() => location.href = '../home', 1000))
+loginForm.onLoginSubmitted((username, password) => {
+
+    try {
+        logic.loginUser(username, password)
+
+        loginForm.clear();
+
+        loginForm.setFeedback('user successfully logged in', 'success')
+
+        setTimeout(() => location.href = '../home', 1000)
+
+    } catch (error) {
+        if (error instanceof ContentError)
+            loginForm.setFeedback(error.message + ', please correct it')
+
+        else if (error instanceof MatchError)
+            loginForm.setFeedback('wrong credentials')
+
+        else
+            loginForm.setFeedback('an unexpected error happened, try again later')
+    }
+
+})
 
 // loginForm.onLoggedIn(() => location.href = '../home')
 

@@ -33,17 +33,42 @@ main.add(postList)
 
 const createPostForm = new CreatePostForm()
 
-createPostForm.onPostCreated(() => {
-    main.remove(createPostForm)
+createPostForm.onPostSubmitted((title, image, description) => {
 
-    postList.load()
+    try {
+        logic.createPost(title, image, description)
+
+        createPostForm.clear()
+
+        main.remove(createPostForm)
+
+        postList.load()
+
+    } catch (error) {
+        if (error instanceof ContentError)
+            createPostForm.setFeedback(error.message + ', please correct it')
+
+        else
+            createPostForm.setFeedback('an unexpected error happened, try again later')
+    }
+
 })
 
 createPostForm.onCancelClick(() => main.remove(createPostForm))
 
+
+/* createPostForm.onCancelClick(event => {
+ 
+    event.preventDefault()
+
+    createPostForm.clear()
+
+    main.remove(createPostForm)
+
+}) */
+
 const footer = new Component('footer')
 footer.addClass('Footer')
-
 view.add(footer)
 
 const addPostButton = new Button()
