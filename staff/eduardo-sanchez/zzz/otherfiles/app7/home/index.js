@@ -33,7 +33,12 @@ main.add(postList)
 
 const createPostForm = new CreatePostForm()
 
-createPostForm.onPostSubmitted((title, image, description) => {
+createPostForm.onSubmit(event => {
+    event.preventDefault()
+
+    const title = createPostForm.getTitle()
+    const image = createPostForm.getImage()
+    const description = createPostForm.getDescription()
 
     try {
         logic.createPost(title, image, description)
@@ -70,6 +75,10 @@ const addPostButton = new Button()
 addPostButton.setText('+')
 
 addPostButton.onClick(() => main.add(createPostForm))
+
+/*addPostButton.onClick(() => {
+    return main.add(createPostForm)
+})*/
 
 footer.add(addPostButton)
 

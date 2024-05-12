@@ -3,6 +3,14 @@ class PostList extends Component {
         super('section')
 
         this.load()
+        // const posts = logic.getAllPosts()
+
+        // posts.forEach(post => {
+
+        //     const post2 = new Post(post)
+
+        //     this.add(post2)
+        // })
 
     }
 

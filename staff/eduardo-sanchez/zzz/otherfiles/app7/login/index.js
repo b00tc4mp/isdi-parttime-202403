@@ -14,7 +14,11 @@ title.onClick(function () {
 
 const loginForm = new LoginForm()
 
-loginForm.onLoginSubmitted((username, password) => {
+loginForm.onSubmit(event => {
+    event.preventDefault()
+
+    const username = loginForm.getUsername()
+    const password = loginForm.getPassword()
 
     try {
         logic.loginUser(username, password)
@@ -37,8 +41,6 @@ loginForm.onLoginSubmitted((username, password) => {
     }
 
 })
-
-// loginForm.onLoggedIn(() => location.href = '../home')
 
 
 const registerLink = new LinK()
