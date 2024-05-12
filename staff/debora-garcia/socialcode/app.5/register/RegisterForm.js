@@ -26,18 +26,6 @@ class RegisterForm extends FormWithFeedback {
         this.add(passwordField)
         this.add(passwordRepeatField)
         this.add(submitButton)
-
-        // este metodo lo hemos trasladado como propiedad del constructor
-        this.onSubmit(event => {
-            event.preventDefault()
-
-            const email = registerForm.getEmail()
-            const username = registerForm.getUsername()
-            const password = registerForm.getPassword()
-            const passwordRepeat = registerForm.getPasswordRepeat()
-
-            this.onRegisterSubmitListener(email, username, password, passwordRepeat)
-        })
     }
 
 
@@ -65,8 +53,4 @@ class RegisterForm extends FormWithFeedback {
         return passwordFieldRepeat.getValue()
     }
 
-
-    onRegisterSubmit(listener) {
-        this.onRegisterSubmitListener = listener
-    }
 }

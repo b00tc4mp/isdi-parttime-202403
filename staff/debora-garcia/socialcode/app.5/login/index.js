@@ -9,7 +9,15 @@ const title = new Heading(1)
 title.setText("Login")
 
 const loginForm = new LoginForm
-loginForm.onLoginSubmit((username, password) => {
+loginForm.onSubmit(function (event) {
+    event.preventDefault()
+    console.log("submit")
+
+    const username = loginForm.getUsername()
+    const password = loginForm.getPassword()
+
+    console.log(username, password)
+
     try {
         logic.loginUser(username, password)
 
@@ -25,6 +33,7 @@ loginForm.onLoginSubmit((username, password) => {
             loginForm.setFeedback("wrong credentials")
         else
             loginForm.setFeedback("sorry, there was an error, please try again")
+
 
     }
 })

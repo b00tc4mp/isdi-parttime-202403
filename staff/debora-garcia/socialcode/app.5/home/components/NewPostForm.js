@@ -27,16 +27,6 @@ class NewPostForm extends FormWithFeedback {
         this.add(descriptionField)
         this.add(cancelButton)
         this.add(submitButton)
-
-        this.onSubmit(event => {
-            event.preventDefault()
-            const title = createPostForm.getTitle()
-            const image = createPostForm.getImage()
-            const description = createPostForm.getDescription()
-
-            this.onPostSubmitListener(title, image, description)
-        })
-
     }
 
 
@@ -60,9 +50,5 @@ class NewPostForm extends FormWithFeedback {
 
     onCancelClick(listener) {
         this.cancelButton.onClick(listener)
-    }
-
-    onPostSubmit(listener) {
-        this.onPostSubmitListener = listener
     }
 }

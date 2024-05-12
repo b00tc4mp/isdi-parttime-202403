@@ -11,14 +11,22 @@ title.setText("New account!")
 
 
 const registerForm = new RegisterForm
-registerForm.onRegisterSubmit((email, username, password, passwordRepeat) => {
-//de esta manera le pasamos todos los parametros que recibimos de la funcion onRegisterSubmit
+registerForm.onSubmit(event => {
+    event.preventDefault()
+
+    const email = registerForm.getEmail()
+    const username = registerForm.getUsername()
+    const password = registerForm.getPassword()
+    const passwordRepeat = registerForm.getPasswordRepeat()
+    console.log(email, username, password, passwordRepeat)
+
     try {
         logic.registerUser(email, username, password, passwordRepeat)
-       
         registerForm.clear()
-
+        // TODO mirar de eliminar el placeholder cuando se hace el clear()
         registerForm.setFeedback("Registration successful!", "success")
+
+        
 
         setTimeout(() => location.href = "../login", 3000)
     } catch (error) {
@@ -31,10 +39,13 @@ registerForm.onRegisterSubmit((email, username, password, passwordRepeat) => {
         else
             registerForm.setFeedback("sorry, there was an error, please try later")
     }
+    //setTimeout(() => registerForm.clearFeedback(), 3000)
 })
 
 const loginLink = new Link
 loginLink.setText("Login")
+//loginLink.setUrl("../login") esta seria la forma rapida de que el link te redirigera a otra pagina
+// pero lo haremos mediante JS:
 
 loginLink.onClick(event => {
     event.preventDefault()

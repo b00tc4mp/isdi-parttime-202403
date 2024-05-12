@@ -77,7 +77,7 @@ logic.getPosts = () => {
 logic.createPost = (title, image, description) => {
     if (typeof title !== "string" || !title.length || title.length > 50) throw new ContentError("title is not valid")
     if (typeof image !== "string" || !image.startsWith("http")) throw new ContentError("image is not valid")
-    if (typeof description !== "string" || !description.length || description.length > 5000) throw new ContentError("description is not valid")
+    if (typeof description !== "string" || !description.length || description.length > 1000) throw new ContentError("description is not valid")
 
 
     const fechaActual = new Date();
