@@ -40,31 +40,13 @@ main.add(postList)
 
 const createPostForm = new CreatePostForm
 
-createPostForm.onPostSubmit((title, image, description) => {
-
-    try {
-        logic.createPost(title, image, description)
-
-        createPostForm.clear()
-
-        main.remove(createPostForm)
-
-        postList.load()
-    } catch (error) {
-        if (error instanceof ContentError)
-            createPostForm.setFeedback(error.message + ', please, correct it')
-        else
-            createPostForm.setFeedback('😵 sorry, please try again later')
-    }
-})
-
-createPostForm.onCancelClick(event => {
-    event.preventDefault()
-
-    createPostForm.clear()
-
+createPostForm.onPostCreated(() => {
     main.remove(createPostForm)
+
+    postList.load()
 })
+
+createPostForm.onCancelClick(() => main.remove(createPostForm))
 
 const footer = new Component('footer')
 footer.addClass('Footer')

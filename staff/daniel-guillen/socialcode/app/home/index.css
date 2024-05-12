@@ -15,7 +15,7 @@
     padding: .5rem;
     box-sizing: border-box;
     border-bottom: 1px solid black;
-    background: linear-gradient(#000000, #373737);
+    background: linear-gradient(#333f36, #333f36, #000000);
 }
 
 .Footer {
@@ -26,5 +26,5 @@
     bottom: 0;
     padding: .5rem 0;
     border-top: 1px solid black;
-    background: linear-gradient(#373737,#000000);
+    background:#333f36
 }
