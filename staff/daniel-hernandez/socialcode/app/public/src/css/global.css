@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap"); */
 
 /* font-family: "Ubuntu", sans-serif; */
 
 :root {
-    --darkest-transparent: rgba(64, 66, 88, 0.8);
-    --darkest: rgb(64, 66, 88);
-    --dark: rgb(71, 78, 104);
-    --secondary: rgb(80, 87, 122);
-    --primary: rgb(107, 114, 142);
-    --primary2: rgb(87, 95, 128);
-    --primary3: rgb(126, 133, 159);
+  --darkest-transparent: rgba(64, 66, 88, 0.8);
+  --darkest: rgb(64, 66, 88);
+  --dark: rgb(71, 78, 104);
+  --secondary: rgb(80, 87, 122);
+  --primary: rgb(107, 114, 142);
+  --primary2: rgb(87, 95, 128);
+  --primary3: rgb(126, 133, 159);
 }

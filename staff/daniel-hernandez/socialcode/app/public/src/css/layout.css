@@ -12,22 +12,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* TODO move to separate css file */
-.nav-bar {
-  font-family: "Silkscreen", sans-serif;
-  font-weight: 300;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  background-color: var(--dark);
-  color: var(--primary3);
-  z-index: 5000;
-  padding: 10px;
-  box-shadow: inset 0 0 0 2px var(--darkest);
-}
-
-.nav-bar > * {
-  display: inline-block;
-  margin-left: 20px;
-}

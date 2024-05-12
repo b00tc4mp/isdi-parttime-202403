@@ -1,0 +1,21 @@
+/* container */
+/* article {} */
+
+/* username */
+.author {
+  font-size: medium;
+  margin-top: 5px;
+}
+
+/* title */
+.post-title {
+  margin-bottom: 0px;
+}
+
+/* image */
+img {
+  border-radius: 5%;
+}
+
+/* description */
+/* .post-description {} */

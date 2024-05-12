@@ -1,0 +1,16 @@
+.main-content {
+  color: var(--primary3);
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  padding-top: 100px;
+  padding-bottom: 70px;
+  overflow-y: auto;
+  height: calc(100% - 170px);
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main-content::-webkit-scrollbar {
+  display: none;
+}

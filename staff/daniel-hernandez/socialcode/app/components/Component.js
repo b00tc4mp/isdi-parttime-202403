@@ -129,4 +129,8 @@ class Component {
       y: rect.top,
     };
   }
+
+  onClick(callback) {
+    this.container.addEventListener("click", callback);
+  }
 }

@@ -24,24 +24,11 @@ navBar.add(logoutButton);
 navBar.add(usernameDisplay);
 
 const main = new Component("main");
+main.addClass("main-content");
 body.add(main);
 
 const postList = new Component("section");
 main.add(postList);
-
-{
-  const postData = {
-    author: "MrBlue",
-    title: "Im MrBlue !",
-    image:
-      "https://imgs.search.brave.com/5Rxb3vgWLKdyD40_Hj2iwSiXoOmp-dLXm8SsQpMcRgk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFxQm1pcU5vckwu/anBn",
-    text: "there's nothing to say.. I'm litteraly MrBlue.",
-  };
-
-  const post = new Post(postData);
-
-  postList.add(post);
-}
 
 const posts = logic.getAllPosts();
 posts.forEach((post) => {
@@ -50,11 +37,40 @@ posts.forEach((post) => {
   postList.add(post2);
 });
 
+const createPostForm = new CreatePostForm();
+createPostForm.onSubmit((event) => {
+  event.preventDefault();
+
+  const title = createPostForm.getTitle();
+  const image = createPostForm.getImage();
+  const description = createPostForm.getDescription();
+
+  try {
+    logic.createPost(title, image, description);
+
+    // TODO dismount createPostForm from main
+    // TODO refresh post list
+  } catch (error) {
+    if (error instanceof ContentError) {
+      createPostForm.setFeedback(`${error.message}`);
+    } else {
+      createPostForm.setFeedback(`Error. Please try again later.`);
+    }
+  }
+});
+
+//main.add(createPostForm);
+
 const footer = new Component("footer");
 footer.addClass("Footer");
 
 const addPostButton = new Button();
+addPostButton.removeClass("Button");
+addPostButton.addClass("create-post");
 addPostButton.setText("+");
+addPostButton.onClick(() => {
+  main.add(createPostForm);
+});
 
 footer.add(addPostButton);
 
