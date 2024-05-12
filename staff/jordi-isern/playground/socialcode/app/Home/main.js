@@ -50,6 +50,14 @@ posts.forEach(post => {
     postList.add(post2)
 });
 
+const createPostForm = new CreatePostForm
+
+createPostForm.onPostCreated(() => {
+    main.remove(createPostForm)
+  
+  postList.load()
+})
+
 const footer = new Component('footer')
 footer.addClass('footer')
 
@@ -59,9 +67,7 @@ addPostButton.addClass("fa-plus")
 
 footer.add(addPostButton)
 
-addPostButton.onClick(()=>{
-    const createPostForm = new CreatePost
-    view.add(createPostForm)
+addPostButton.onClick(()=>{main.add(createPostForm)
 })
 
 createPostForm.onSubmit((event) =>{
@@ -75,7 +81,7 @@ createPostForm.onSubmit((event) =>{
     
     try {
         logic.createPost(title, image, description)
-        view.remove(createPostForm)
+        main.remove(createPostForm)
         
 
     } catch (error) {
@@ -88,11 +94,12 @@ createPostForm.onSubmit((event) =>{
     
 })
 
-createPostForm.onCancelClick() => view.remove(createPostForm)
+createPostForm.onCancelClick(() => main.remove(createPostForm))
 
 
 view.add(header)
 view.add(main)
 view.add(footer)
-// update code segun classe dia 6/05
+
+
 

@@ -54,3 +54,9 @@ data.insertPost = (post) => {
 
     localStorage.posts = postsJson
 }
+
+data.deletePost = callback => {
+    let postsJson = localStorage.posts
+
+    if (!postsJson) postsJson = '[]'
+}
