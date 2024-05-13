@@ -29,6 +29,16 @@ class CreatePostForm extends Form {
     this.add(descriptionField);
     this.add(cancelButton);
     this.add(submitButton);
+
+    this.onSubmit((event) => {
+      event.preventDefault();
+
+      const title = createPostForm.getTitle();
+      const image = createPostForm.getImage();
+      const description = createPostForm.getDescription();
+
+      this.onPostSubmitListener(title, image, description);
+    });
   }
 
   getTitle() {
@@ -69,5 +79,9 @@ class CreatePostForm extends Form {
 
   onCancelClick(listener) {
     this.cancelButton.onClick(listener);
+  }
+
+  onPostSubmit(listener) {
+    this.onPostSubmitListener = listener;
   }
 }

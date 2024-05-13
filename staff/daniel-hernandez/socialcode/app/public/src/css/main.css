@@ -9,6 +9,7 @@
 
   scrollbar-width: none;
   -ms-overflow-style: none;
+  max-width: 500px;
 }
 
 .main-content::-webkit-scrollbar {

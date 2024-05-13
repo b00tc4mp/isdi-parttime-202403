@@ -29,6 +29,26 @@ class RegisterForm extends Form {
     this.add(passwordField);
     this.add(passwordConfirmField);
     this.add(submitButton);
+
+    this.onSubmit((event) => {
+      event.preventDefault();
+
+      const name = this.getName();
+      const surname = this.getSurname();
+      const email = this.getEmail();
+      const username = this.getUsername();
+      const password = this.getPassword();
+      const repeatedPassword = this.getRepeatedPassword();
+
+      this.onRegisterSubmitListener(
+        name,
+        surname,
+        email,
+        username,
+        password,
+        repeatedPassword,
+      );
+    });
   }
 
   getName() {
@@ -117,5 +137,9 @@ class RegisterForm extends Form {
 
   clear() {
     Form.prototype.clear.call(this);
+  }
+
+  onRegisterSubmit(listener) {
+    this.onRegisterSubmitListener = listener;
   }
 }

@@ -13,6 +13,15 @@ class LoginForm extends Form {
     this.add(usernameField);
     this.add(passwordField);
     this.add(submitButton);
+
+    this.onSubmit((event) => {
+      event.preventDefault();
+
+      const username = this.getUsername();
+      const password = this.getPassword();
+
+      this.onLoginSubmitListener(username, password);
+    });
   }
 
   getUsername() {
@@ -54,5 +63,9 @@ class LoginForm extends Form {
 
   clear() {
     Form.prototype.clear.call(this);
+  }
+
+  onLoginSubmit(listener) {
+    this.onLoginSubmitListener = listener;
   }
 }
