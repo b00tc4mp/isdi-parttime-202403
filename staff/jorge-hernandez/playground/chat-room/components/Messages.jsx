@@ -1,4 +1,4 @@
-
+const {Component} = React
 class Messages extends Component{
     constructor(){
         super()

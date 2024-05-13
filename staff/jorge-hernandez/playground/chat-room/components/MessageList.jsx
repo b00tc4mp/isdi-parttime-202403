@@ -3,7 +3,7 @@ function MessageList(props){
     const {title, messages} = props
 
     return <section className="MessageList">
-        <h2>{title}</h2> 
+        <h2 className="title">{title}</h2> 
         <ul>
             {messages.map(message =>
         <li>
