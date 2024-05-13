@@ -1,0 +1,9 @@
+.MessageList {
+    background-color: aquamarine;
+
+}
+
+.MessageList .title {
+    color: rebeccapurple;
+    background-color: yellow;
+}
