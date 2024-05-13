@@ -1,47 +1,60 @@
 class Post extends Component {
-  constructor(post) {
-      super('article')
+    constructor(post) {
+        super('article')
 
-      this.addClass('article')
+        const authorTitle = new Component('p')
+        authorTitle.setText(post.author)
+        authorTitle.addClass('Author')
 
-      const authorTitle = new Component('p')
-      authorTitle.addClass('authorTitle')
-      authorTitle.setText(post.author)
+        const postTitle = new Component('h2')
+        postTitle.setText(post.title)
 
-      const postTitle = new Component('h2')
-      postTitle.setText(post.title)
+        const postImage = new Image
+        postImage.setUrl(post.image)
 
-      const postImage = new Image
-      postImage.setUrl(post.image)
+        const postDescription = new Component('p')
+        postDescription.setText(post.description)
 
-      const postDescription = new Component('p')
-      postDescription.setText(post.description)
+        const postDate = new Component('time')
+        postDate.setText(post.date)
 
-      const postDate = new Component('time')
-      postDate.setText(post.date)
+        this.add(authorTitle)
+        this.add(postTitle)
+        this.add(postImage)
+        this.add(postDescription)
+        this.add(postDate)
 
-      this.add(authorTitle)
-      this.add(postTitle)
-      this.add(postImage)
-      this.add(postDescription)
-      this.add(postDate)
+        if (post.author === logic.getLoggedInUsername()) {
+            const deleteButton = new Button('Delete')
 
-      if (post.author === logic.getLoggedInUsername()) {
-          const deleteButton = new Button('Delete')
+            deleteButton.onClick(() => {
+                // const confirmed = confirm('Delete the post?')
 
-          deleteButton.onClick(() => {
-              logic.deletePost(post.id)
+                // if (confirmed) {
+                //     logic.deletePost(post.id)
 
-              this.onPostDeletedListener()
-          })
+                //     this.onPostDeletedListener()
+                // }
 
-          this.add(deleteButton)
-      }
-  }
+                const confirm = new Confirm
+                confirm.setText('Delete the post?')
 
-  onPostDeleted(listener) {
-      this.onPostDeletedListener = listener
+                confirm.onConfirm(() => {
+                    logic.deletePost(post.id)
 
-      this.addClass('deleteButton')
-  }
+                    this.onPostDeletedListener()
+                })
+
+                confirm.onCancel(() => this.remove(confirm))
+
+                this.add(confirm)
+            })
+
+            this.add(deleteButton)
+        }
+    }
+
+    onPostDeleted(listener) {
+        this.onPostDeletedListener = listener
+    }
 }

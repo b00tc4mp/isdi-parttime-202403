@@ -3,7 +3,6 @@ class PostList extends Component {
         super('section')
 
         this.load()
-        this.addClass('PostList')
     }
 
     load() {

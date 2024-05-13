@@ -18,6 +18,10 @@
   background-color: var(--second-color);
 }
 
+.LogoutButton {
+  text-decoration: underline;
+}
+
 .Footer {
   width: 100%;
   display: flex;
@@ -34,6 +38,7 @@
   justify-content: center;
   width: 45%;
   margin-top: 2rem;
+
 }
 
 .Main {
@@ -41,6 +46,10 @@
   justify-content: center;
 }
 
+.Author{
+  text-decoration: underline;
+}
+
 .Header .HeaderSC {
-  margin-right: 510px;
+  margin-right: 505px;
 }

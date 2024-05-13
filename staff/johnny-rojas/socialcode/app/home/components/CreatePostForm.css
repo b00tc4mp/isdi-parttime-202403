@@ -1,11 +1,8 @@
 .CreatePostForm {
   position: fixed;
   bottom: 3rem;
-  width: 45%;
+  width: 100%;
+  left: 0;
   box-sizing: border-box;
   background-color: var(--second-color);
-}
-
-.authorTitle {
-  text-decoration: underline;
 }
