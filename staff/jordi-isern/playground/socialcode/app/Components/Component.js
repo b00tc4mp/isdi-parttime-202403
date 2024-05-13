@@ -54,4 +54,8 @@ class Component {
     onClick(action){
         this.container.addEventListener('click', action)
     }
+    removeAll(){
+        const children = this.children.concat()
+        children.forEach(child => this.remove(child))
+    }
 }

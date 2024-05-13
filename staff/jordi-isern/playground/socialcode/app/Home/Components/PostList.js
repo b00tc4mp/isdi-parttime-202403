@@ -1,19 +1,19 @@
 class PostList extends Component {
     constructor(){
-        super('selection')
+        super('section')
         this.load()
     }
     load(){
         this.removeAll()
 
-        const post = logic.getAllPosts()
+        const posts = logic.getAllPosts()
 
-        posts.foreach(post =>{
+        posts.forEach(post =>{
             const post2 = new Post(post)
-
             post2.onPostDeleted(() => {this.load()})
 
             this.add(post2)
         })
     }
+
 }
