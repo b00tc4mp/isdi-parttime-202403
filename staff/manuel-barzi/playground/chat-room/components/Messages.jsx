@@ -51,6 +51,7 @@ class Messages extends Component {
             <MessageList title={'Messages'} messages={this.state.messages} />
 
             <form onSubmit={this.handleMessageSubmit.bind(this)}>
+                {/* form.addEventListener('submit', this.handleMessageSubmit.bind(this)) */}
                 <input name="username" placeholder="username" />
                 <input name="text" placeholder="message" />
                 <button type="submit">Send</button>
