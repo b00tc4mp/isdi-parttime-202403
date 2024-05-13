@@ -1,8 +1,11 @@
 .MessageList {
-    background-color: aquamarine;
+    color: white;
+    background-color: rgb(2, 27, 97);
+    font-size: 150%;
+
 }
 
 .MessageList .title {
-    color: red;
-    background-color: yellow;
+    color: white;
+    background-color: rgb(0, 128, 255);
 }
