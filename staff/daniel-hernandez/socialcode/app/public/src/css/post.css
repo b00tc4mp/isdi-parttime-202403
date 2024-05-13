@@ -41,6 +41,11 @@ time {
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .remove-post-button:hover {

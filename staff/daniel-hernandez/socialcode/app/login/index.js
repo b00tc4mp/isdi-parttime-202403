@@ -12,27 +12,10 @@ title.setText("Login");
 title.addClass("heading");
 
 const loginForm = new LoginForm();
-loginForm.onLoginSubmit((username, password) => {
-  try {
-    logic.loginUser(username, password);
-
-    loginForm.success("Logged in successfully");
-    loginForm.clear();
-    setTimeout(() => {
-      window.location.href = "../public/src/";
-    }, 1000);
-  } catch (error) {
-    if (
-      error instanceof ContentError ||
-      error instanceof MatchError ||
-      error instanceof DuplicityError
-    ) {
-      loginForm.shakeButton();
-    } else {
-      console.error("DEV unregistered error");
-      console.log("Error, please try again later");
-    }
-  }
+loginForm.onLoggedIn(() => {
+  setTimeout(() => {
+    window.location.href = "../public/src/";
+  }, 1000);
 });
 
 const registerLink = new Link();

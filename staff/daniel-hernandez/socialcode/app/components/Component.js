@@ -139,4 +139,8 @@ class Component {
   onClick(callback) {
     this.container.addEventListener("click", callback);
   }
+
+  addAutoFocusAttribute() {
+    this.container.autofocus = true;
+  }
 }

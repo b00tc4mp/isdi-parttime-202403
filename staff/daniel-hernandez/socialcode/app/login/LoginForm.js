@@ -20,7 +20,25 @@ class LoginForm extends Form {
       const username = this.getUsername();
       const password = this.getPassword();
 
-      this.onLoginSubmitListener(username, password);
+      try {
+        logic.loginUser(username, password);
+
+        loginForm.success("Logged in successfully");
+        loginForm.clear();
+
+        this.onLoggedInListener();
+      } catch (error) {
+        if (
+          error instanceof ContentError ||
+          error instanceof MatchError ||
+          error instanceof DuplicityError
+        ) {
+          loginForm.shakeButton();
+        } else {
+          console.error("DEV unregistered error");
+          console.log("Error, please try again later");
+        }
+      }
     });
   }
 
@@ -65,7 +83,7 @@ class LoginForm extends Form {
     Form.prototype.clear.call(this);
   }
 
-  onLoginSubmit(listener) {
-    this.onLoginSubmitListener = listener;
+  onLoggedIn(listener) {
+    this.onLoggedInListener = listener;
   }
 }

@@ -22,7 +22,12 @@ class CreatePostForm extends Form {
     cancelButton.removeClass("Button");
     cancelButton.addClass("cancel-post-button");
     cancelButton.setType("button");
-    this.cancelButton = cancelButton;
+    cancelButton.onClick((event) => {
+      event.preventDefault();
+      this.clear();
+
+      this.onCancelClickListener();
+    });
 
     this.add(titleField);
     this.add(imageField);
@@ -33,11 +38,22 @@ class CreatePostForm extends Form {
     this.onSubmit((event) => {
       event.preventDefault();
 
-      const title = createPostForm.getTitle();
-      const image = createPostForm.getImage();
-      const description = createPostForm.getDescription();
+      const title = this.getTitle();
+      const image = this.getImage();
+      const description = this.getDescription();
 
-      this.onPostSubmitListener(title, image, description);
+      try {
+        logic.createPost(title, image, description);
+
+        this.clear();
+        this.onPostCreatedListener();
+      } catch (error) {
+        if (error instanceof ContentError) {
+          createPostForm.setFeedback(`${error.message}`);
+        } else {
+          createPostForm.setFeedback(`Error. Please try again later.`);
+        }
+      }
     });
   }
 
@@ -78,10 +94,10 @@ class CreatePostForm extends Form {
   }
 
   onCancelClick(listener) {
-    this.cancelButton.onClick(listener);
+    this.onCancelClickListener = listener;
   }
 
-  onPostSubmit(listener) {
-    this.onPostSubmitListener = listener;
+  onPostCreated(listener) {
+    this.onPostCreatedListener = listener;
   }
 }

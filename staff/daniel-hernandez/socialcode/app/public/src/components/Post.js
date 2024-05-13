@@ -31,9 +31,21 @@ class Post extends Component {
       deleteButton.addClass("remove-post-button");
 
       deleteButton.onClick(() => {
-        logic.deletePost(post.Id);
+        const confirmDialog = new Confirm();
+        main.add(confirmDialog);
+        confirmDialog.showModal();
 
-        this.onPostDeletedListener();
+        confirmDialog.onCancel(() => {
+          confirmDialog.close();
+          main.remove(confirmDialog);
+        });
+
+        confirmDialog.onOk(() => {
+          logic.deletePost(post.Id);
+          this.onPostDeletedListener();
+          confirmDialog.close();
+          main.remove(confirmDialog);
+        });
       });
 
       this.add(deleteButton);

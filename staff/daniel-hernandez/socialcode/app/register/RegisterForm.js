@@ -40,14 +40,33 @@ class RegisterForm extends Form {
       const password = this.getPassword();
       const repeatedPassword = this.getRepeatedPassword();
 
-      this.onRegisterSubmitListener(
-        name,
-        surname,
-        email,
-        username,
-        password,
-        repeatedPassword,
-      );
+      try {
+        logic.registerUser(
+          name,
+          surname,
+          email,
+          username,
+          password,
+          repeatedPassword,
+        );
+
+        registerForm.success("Registered succesfully, thank you");
+        registerForm.clear();
+
+        this.onRegisteredListener();
+      } catch (error) {
+        if (
+          error instanceof ContentError ||
+          error instanceof MatchError ||
+          error instanceof DuplicityError
+        ) {
+          registerForm.shakeButton();
+          registerForm.warnAll(error.message);
+        } else {
+          registerForm.shakeButton();
+          registerForm.warnAll("Error, please try again later..");
+        }
+      }
     });
   }
 
@@ -139,7 +158,7 @@ class RegisterForm extends Form {
     Form.prototype.clear.call(this);
   }
 
-  onRegisterSubmit(listener) {
-    this.onRegisterSubmitListener = listener;
+  onRegistered(listener) {
+    this.onRegisteredListener = listener;
   }
 }
