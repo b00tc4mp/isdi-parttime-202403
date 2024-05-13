@@ -24,7 +24,6 @@ class Post extends Component {
         postDate.setText(post.date)
         postDate.addClass('Date')
 
-
         this.add(postTitle)
         this.add(postImage)
         this.add(postDescription)
@@ -54,10 +53,7 @@ class Post extends Component {
 
                     this.onPostDeletedListener()
                 })
-
                 confirm.onCancel(() => this.remove(confirm))
-
-
             })
 
             const editButton = new Button('Edit')
