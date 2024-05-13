@@ -16,9 +16,31 @@ class Post extends Component {
     postText.setText(post.description);
     postText.addClass("post-description");
 
+    const postDate = new Component("time");
+    postDate.setText(post.date);
+
     this.add(postTitle);
     this.add(authorTitle);
     this.add(postImage);
     this.add(postText);
+    this.add(postDate);
+
+    if (post.author === logic.getUsername()) {
+      const deleteButton = new Button("Delete");
+      deleteButton.removeClass("Button");
+      deleteButton.addClass("remove-post-button");
+
+      deleteButton.onClick(() => {
+        logic.deletePost(post.Id);
+
+        this.onPostDeletedListener();
+      });
+
+      this.add(deleteButton);
+    }
+  }
+
+  onPostDeleted(listener) {
+    this.onPostDeletedListener = listener;
   }
 }

@@ -4,6 +4,7 @@ if (!logic.isUserLoggedIn()) {
 
 const body = new Component(document.body);
 
+// nav bar
 const navBar = new Div();
 navBar.addClass("nav-bar");
 const username = logic.getUsername();
@@ -27,15 +28,8 @@ const main = new Component("main");
 main.addClass("main-content");
 body.add(main);
 
-const postList = new Component("section");
+const postList = new PostList();
 main.add(postList);
-
-const posts = logic.getAllPosts();
-posts.forEach((post) => {
-  const post2 = new Post(post);
-
-  postList.add(post2);
-});
 
 const createPostForm = new CreatePostForm();
 createPostForm.onSubmit((event) => {
@@ -48,8 +42,10 @@ createPostForm.onSubmit((event) => {
   try {
     logic.createPost(title, image, description);
 
-    // TODO dismount createPostForm from main
-    // TODO refresh post list
+    createPostForm.clear();
+    main.remove(createPostForm);
+
+    postList.load();
   } catch (error) {
     if (error instanceof ContentError) {
       createPostForm.setFeedback(`${error.message}`);
@@ -59,7 +55,12 @@ createPostForm.onSubmit((event) => {
   }
 });
 
-//main.add(createPostForm);
+createPostForm.onCancelClick((event) => {
+  event.preventDefault();
+
+  main.remove(createPostForm);
+  createPostForm.clear();
+});
 
 const footer = new Component("footer");
 footer.addClass("Footer");

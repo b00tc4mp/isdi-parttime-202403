@@ -136,11 +136,9 @@ logic.getUsersName = () => {
 };
 
 logic.getAllPosts = () => {
-  const posts = data.findPosts(() => {
-    return true;
-  });
+  const posts = data.findPosts(() => true);
 
-  return posts;
+  return posts.reverse();
 };
 
 logic.createPost = (title, image, description) => {
@@ -159,6 +157,7 @@ logic.createPost = (title, image, description) => {
   }
 
   const post = {
+    Id: Date.now(),
     author: sessionStorage.username,
     title,
     image,
@@ -167,4 +166,8 @@ logic.createPost = (title, image, description) => {
   };
 
   data.insertPost(post);
+};
+
+logic.deletePost = (id) => {
+  data.deletePost((post) => post.Id === id);
 };

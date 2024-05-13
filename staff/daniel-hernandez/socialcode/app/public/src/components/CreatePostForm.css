@@ -1,0 +1,88 @@
+.create-post-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 40%;
+	max-width: 400px;
+	box-sizing: border-box;
+	background-color: var(--dark);
+	color: var(--primary3);
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.Field {
+	width: 100%;
+}
+
+.Input {
+	width: 96%;
+	background-color: var(--secondary);
+	color: var(--primary3);
+	outline: none;
+	border: none;
+	border-radius: 4px;
+	padding: 8px;
+}
+
+.Field label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 3px;
+	margin-top: 5px;
+}
+
+.create-post-button,
+.cancel-post-button {
+	width: 100%;
+	padding: 10px;
+	background-color: var(--secondary);
+	color: var(--primary3);
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+	font-family: "Ubuntu", sans-serif;
+	transition:
+		background-color 0.5s,
+		color 0.5s,
+		border 0.5s;
+	margin-top: 20px;
+}
+
+.cancel-post-button {
+	border: #d75656 1px solid;
+	color: #d75656;
+}
+
+.create-post-button {
+	border: #56d77d 1px solid;
+	color: #56d77d;
+}
+
+.cancel-post-button:hover {
+	border: var(--dark) 1px solid;
+	color: var(--primary3);
+	background-color: #d75656;
+}
+
+.create-post-button:hover {
+	border: var(--dark) 1px solid;
+	color: var(--primary3);
+	background-color: #56d77d;
+}
+
+.cancel-post-button:active {
+	color: #d75656;
+	background-color: #f18e8e;
+}
+
+.create-post-button:active {
+	color: #56d77d;
+	background-color: #81e39d;
+}

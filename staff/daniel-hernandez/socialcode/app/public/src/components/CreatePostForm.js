@@ -9,19 +9,25 @@ class CreatePostForm extends Form {
     this.feedbackPanel = feedbackPanel;
 
     const titleField = new Field("title", "text", "Title");
-    titleField.setPlaceholder("title");
 
     const imageField = new Field("image", "text", "Image");
-    imageField.setPlaceholder("image");
 
     const descriptionField = new Field("description", "text", "Description");
-    descriptionField.setPlaceholder("description");
 
     const submitButton = new SubmitButton("Create");
+    submitButton.removeClass("SubmitButton");
+    submitButton.addClass("create-post-button");
+
+    const cancelButton = new Button("Cancel");
+    cancelButton.removeClass("Button");
+    cancelButton.addClass("cancel-post-button");
+    cancelButton.setType("button");
+    this.cancelButton = cancelButton;
 
     this.add(titleField);
     this.add(imageField);
     this.add(descriptionField);
+    this.add(cancelButton);
     this.add(submitButton);
   }
 
@@ -59,5 +65,9 @@ class CreatePostForm extends Form {
     this.feedbackPanel.removeClass("success");
 
     this.remove(this.feedbackPanel);
+  }
+
+  onCancelClick(listener) {
+    this.cancelButton.onClick(listener);
   }
 }

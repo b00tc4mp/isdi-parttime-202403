@@ -38,6 +38,12 @@ class Component {
     }
   }
 
+  removeAll() {
+    const children = this.children.concat();
+
+    children.forEach((child) => this.remove(child));
+  }
+
   setID(id) {
     this.container.id = id;
   }
