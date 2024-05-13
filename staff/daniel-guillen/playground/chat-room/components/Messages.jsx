@@ -7,18 +7,18 @@ class Messages extends Component {
         this.state = {
             messages: [
                 {
-                    username: 'pepitogrillo',
-                    text: 'blah',
+                    username: 'PepitoGrillo',
+                    text: 'Todo lo bueno requiere paciencia',
                     date: new Date().toISOString()
                 },
                 {
-                    username: 'wendydarling',
-                    text: 'blah blah',
+                    username: 'WendyDarling',
+                    text: '¿qué es un capitán sin su barco?',
                     date: new Date().toISOString()
                 },
                 {
-                    username: 'peterpan',
-                    text: 'blah blah blah',
+                    username: 'PeterPan',
+                    text: 'Nunca es muchisimo tiempo',
                     date: new Date().toISOString()
                 }
             ]
