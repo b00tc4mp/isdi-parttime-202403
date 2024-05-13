@@ -33,22 +33,13 @@ header.add(logoutButton)
 const main = new Component("main")
 view.add(main)
 
-// const postList = new Component("section")
 const postList = new PostList
 main.add(postList)
 
 
-// const posts = logic.getPosts()
-
-// posts.forEach(post => {
-//     const newPost = new Post(post)
-//     postList.add(newPost)
-
-// })
-
 const createPostForm = new NewPostForm
 
-createPostForm.onPostSubmit((title, image, description) => {
+/* createPostForm.onPostSubmit((title, image, description) => {
 
     try {
         logic.createPost(title, image, description)
@@ -65,12 +56,22 @@ createPostForm.onPostSubmit((title, image, description) => {
         else
             createPostForm.setFeedback("sorry, there was an error, please try again later")
     }
+}) */
+
+/* createPostForm.onCancelClick(event => {
+    event.preventDefault()
+    main.remove(createPostForm)
+}) */
+
+//otorgamos mas responsabilidad al constructor mandandole la accion de  try catch
+createPostForm.onPostCreated(() => {
+    main.remove(createPostForm)
+    postList.load()
 })
 
-createPostForm.onCancelClick(event => {
-    event.preventDefault()
-    main.add(createPostForm)
-})
+//mecanizamos de igual forma el boton de cancelar
+createPostForm.onCancelClick(() => main.remove(createPostForm))
+
 
 const footer = new Component("footer")
 footer.addClass("Footer")

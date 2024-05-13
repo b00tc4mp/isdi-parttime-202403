@@ -17,27 +17,10 @@ class LoginForm extends FormWithFeedback {
         this.onSubmit(event => {
             event.preventDefault()
 
-            const username = this.getUsername()
-            const password = this.getPassword()
+            const username = loginForm.getUsername()
+            const password = loginForm.getPassword()
 
-            try {
-                logic.loginUser(username, password)
-
-                this.clear()
-
-                this.setFeedback("Log in succesful", "success")
-
-                this.onLoggedInListener()
-
-            } catch (error) {
-                if (error instanceof ContentError)
-                    this.setFeedback(error.message + " please, correct it")
-                else if (error instanceof MatchError)
-                    this.setFeedback("wrong credentials")
-                else
-                    this.setFeedback("sorry, there was an error, please try again")
-
-            }
+            this.onLoginSubmitListener(username, password)
         })
 
     }
@@ -54,8 +37,8 @@ class LoginForm extends FormWithFeedback {
         return passwordField.getValue()
     }
 
-    onLoggedIn(listener) {
-        this.onLoggedInListener = listener
+    onLoginSubmit(listener) {
+        this.onLoginSubmitListener = listener
     }
 
 }

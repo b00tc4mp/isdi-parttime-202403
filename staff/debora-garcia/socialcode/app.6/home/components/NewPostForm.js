@@ -17,19 +17,9 @@ class NewPostForm extends FormWithFeedback {
         cancelButton.setType("button")
         // especificamos tipo button para que al dar al enter no actue como un submit
 
-        // this.cancelButton = cancelButton //se referencia como propiedad para poder acceder a el 
-
-        //le añadimos responsabilidad al constructor para que realice la accion del boton cancelar
-        cancelButton.onClick(event => {
-            event.preventDefault()
-
-            this.clear()
-
-            this.onCancelClickListener()
-        })
+        this.cancelButton = cancelButton //se referencia como propiedad para poder acceder a el 
 
         const submitButton = new SubmitButton("Share")
-        // se guarda la funcion de forma temporal hasta que es llamado, se guarda como propiedad en lugar de asignarlo directamente al boton
 
 
         this.add(titleField)
@@ -40,25 +30,11 @@ class NewPostForm extends FormWithFeedback {
 
         this.onSubmit(event => {
             event.preventDefault()
-            const title = this.getTitle()
-            const image = this.getImage()
-            const description = this.getDescription()
+            const title = createPostForm.getTitle()
+            const image = createPostForm.getImage()
+            const description = createPostForm.getDescription()
 
-            try {
-                logic.createPost(title, image, description)
-                //limpiamos formularo
-                this.clear()
-
-                this.onPostCreatedListener()
-
-
-            } catch (error) {
-                if (error instanceof ContentError)
-                    this.setFeedback(error.message + ", please, correct it")
-                else
-                    this.setFeedback("sorry, there was an error, please try again later")
-            }
-
+            this.onPostSubmitListener(title, image, description)
         })
 
     }
@@ -82,17 +58,11 @@ class NewPostForm extends FormWithFeedback {
         return descriptionField.getValue()
     }
 
-    /*  onCancelClick(listener) {
-         this.cancelButton.onClick(listener)
-      }
-    */
-
     onCancelClick(listener) {
-        this.onCancelClickListener = listener
+        this.cancelButton.onClick(listener)
     }
 
-
-    onPostCreated(listener) {
-        this.onPostCreatedListener = listener
+    onPostSubmit(listener) {
+        this.onPostSubmitListener = listener
     }
 }

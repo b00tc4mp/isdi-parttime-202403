@@ -27,22 +27,10 @@ class Post extends Component {
         if (post.author === logic.getLoggedInUsername()) {
             const deleteButton = new Button('Delete')
 
-            //añadimos el compo confirm
             deleteButton.onClick(() => {
-                //logic.deletePost(post.id)
+                logic.deletePost(post.id)
 
-                const confirm = new Confirm
-                confirm.setText("Delete the post?")
-
-                confirm.onConfirm(() => {
-                    logic.deletePost(post.id)
-                    this.onPostDeletedListener()
-                })
-
-                confirm.onCancel(() => this.remove(confirm))
-
-                this.add(confirm)
-
+                this.onPostDeletedListener()
             })
 
             this.add(deleteButton)

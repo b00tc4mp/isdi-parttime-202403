@@ -9,9 +9,6 @@ const title = new Heading(1)
 title.setText("Login")
 
 const loginForm = new LoginForm
-
-loginForm.onLoggedIn(() => setTimeout(() => location.href = "../home", 1500))
-/* 
 loginForm.onLoginSubmit((username, password) => {
     try {
         logic.loginUser(username, password)
@@ -30,7 +27,7 @@ loginForm.onLoginSubmit((username, password) => {
             loginForm.setFeedback("sorry, there was an error, please try again")
 
     }
-}) */
+})
 
 
 const registerLink = new Link

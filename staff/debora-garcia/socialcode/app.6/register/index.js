@@ -11,11 +11,11 @@ title.setText("New account!")
 
 
 const registerForm = new RegisterForm
-/* registerForm.onRegisterSubmit((email, username, password, passwordRepeat) => {
-    //de esta manera le pasamos todos los parametros que recibimos de la funcion onRegisterSubmit
+registerForm.onRegisterSubmit((email, username, password, passwordRepeat) => {
+//de esta manera le pasamos todos los parametros que recibimos de la funcion onRegisterSubmit
     try {
         logic.registerUser(email, username, password, passwordRepeat)
-
+       
         registerForm.clear()
 
         registerForm.setFeedback("Registration successful!", "success")
@@ -31,9 +31,8 @@ const registerForm = new RegisterForm
         else
             registerForm.setFeedback("sorry, there was an error, please try later")
     }
-}) */
+})
 
-registerForm.onReggistered(() => setTimeout(() => location.href = "../login", 3000))
 const loginLink = new Link
 loginLink.setText("Login")
 
