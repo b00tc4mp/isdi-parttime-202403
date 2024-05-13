@@ -37,33 +37,16 @@ utils.getStringInDateFormat()
 
 const createPostForm = new CreatePostForm
 
-createPostForm.onPostSubmit((title, image, description) => {
-    try {
-        logic.createPost(title, image, description)
-
-        createPostForm.clear()
-
-        main.remove(createPostForm)
-
-        postList.load()
-
-        window.scrollTo(0, 0)
-
-    } catch (error) {
-        if (error instanceof ContentError)
-            createPostForm.setFeedback(error.message + ', please, correct it')
-        else
-            createPostForm.setFeedback('❌ Sorry, there was an error, please try again later')
-    }
-})
-
-createPostForm.onCancelClick(event => {
-    event.preventDefault()
-
+createPostForm.onPostCreated(() => {
     main.remove(createPostForm)
+
+    postList.load()
+
+    window.scrollTo(0, 0)
+
 })
 
-
+createPostForm.onCancelClick(() => main.remove(createPostForm))
 
 const footer = new Component('footer')
 footer.addClass('Footer')

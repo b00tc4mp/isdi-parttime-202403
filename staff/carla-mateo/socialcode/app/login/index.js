@@ -9,24 +9,7 @@ title.setText('Login')
 
 const loginForm = new LoginForm
 
-loginForm.onLoginSubmit((username, password) => {
-    try {
-        logic.loginUser(username, password)
-
-        loginForm.clear()
-
-        loginForm.setFeedback('✅ User successfully logged in', 'success')
-
-        setTimeout(() => location.href = '../home', 1000)
-    } catch (error) {
-        if (error instanceof ContentError)
-            loginForm.setFeedback(error.message + ', please, correct it')
-        else if (error instanceof MatchError)
-            loginForm.setFeedback('❌ Wrong credentials')
-        else
-            loginForm.setFeedback('❌ Sorry, there was an error, please try again later')
-    }
-})
+loginForm.onLoggedIn(() => setTimeout(() => location.href = '../home', 1000))
 
 
 const registerLink = new Link
