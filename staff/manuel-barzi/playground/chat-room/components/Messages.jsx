@@ -4,6 +4,8 @@ class Messages extends Component {
     constructor() {
         super()
 
+        console.log('Messages -> constructor')
+
         this.state = {
             messages: [
                 {
@@ -25,8 +27,16 @@ class Messages extends Component {
         }
     }
 
-    handleMessageSubmit(event) {
+    setState(newState) { // method overriding
+        console.log('Messages -> setState')
+
+        super.setState(newState)
+    }
+
+    handleMessageSubmit = event => {
         event.preventDefault()
+
+        console.log('Messages -> handleMessageSubmit')
 
         const form = event.target
 
@@ -46,12 +56,29 @@ class Messages extends Component {
         form.reset()
     }
 
+    componentDidMount() { // method overriding
+        console.log('Messages -> componentDidMount')
+    }
+
+    componentDidUpdate() { // method overriding
+        console.log('Messages -> componentDidUpdate')
+    }
+
+    componentWillUnmount() { // method overriding
+        console.log('Messages -> componentWillUnmount')
+    }
+
+    componentWillReceiveProps(newProps, oldProps) { // method overriding
+        console.log('Messages -> componentWillUnmount')
+    }
+
     render() {
+        console.log('Messages -> render')
+
         return <div>
             <MessageList title={'Messages'} messages={this.state.messages} />
 
-            <form onSubmit={this.handleMessageSubmit.bind(this)}>
-                {/* form.addEventListener('submit', this.handleMessageSubmit.bind(this)) */}
+            <form onSubmit={this.handleMessageSubmit}>
                 <input name="username" placeholder="username" />
                 <input name="text" placeholder="message" />
                 <button type="submit">Send</button>
