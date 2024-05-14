@@ -40,6 +40,9 @@ const init = () => {
   gameFrame.addClass("game-container");
 
   bird = new Bird();
+  handler.collisionDetected = false;
+  handler.score = 0;
+  handler.pipeSetsPassed = [false, false];
   const birdImg = new Img("../assets/not-found-box.svg");
 
   floor = new Floor();
@@ -57,22 +60,12 @@ const init = () => {
   gameFrameElement = gameFrame.getElement();
   listenerManager.add(gameFrameElement, "click", bird.jump.bind(bird), false);
 
-  bodyElement = body.getElement();
-  const b = (event) => {
-    if (event.keyCode === 32) {
-      bird.jump();
-    }
-  };
-  listenerManager.add(bodyElement, "keydown", b, false);
-
   const a = () => {
     createPipes(1, gameFrame, gameFrameElement, bird.getBounds().right - 300);
     listenerManager.remove(gameFrameElement, "click", a, false);
-    listenerManager.remove(bodyElement, "keydown", a, false);
   };
-  // gameFrame.stopListeningAfterClick(a);
+
   listenerManager.add(gameFrameElement, "click", a, false);
-  listenerManager.add(bodyElement, "keydown", a, false);
 };
 
 const startGame = () => {
@@ -92,6 +85,7 @@ const gameLoop = (timestamp) => {
     handler.detectCollisions(bird, floor, score);
 
     if (handler.collisionDetected) {
+      activePipes = 1;
       return; // end game if collision is detected
     }
 

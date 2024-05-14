@@ -117,17 +117,12 @@ const handler = {
     const randomIndex = Math.floor(Math.random() * deathMessageArray.length);
     const deathMessage = deathMessageArray[randomIndex];
 
-    //console.log(deathMessage);
     scoreComponent.setText(deathMessage);
 
     listenerManager.removeAll();
 
-    // death box with current and high score ~ make it account dependant**
-    // restart button
+    // TODO make scoreboard account dependant**
     const scoreBoard = new ScoreBoard();
-    gameFrame.add(scoreBoard);
-    scoreBoard.setCurrentScore(handler.score);
-
     // check if score is higher than high score
     const storedHighScore = localStorage.getItem("HighScore");
     if (!storedHighScore || handler.score > parseInt(storedHighScore)) {
@@ -139,6 +134,15 @@ const handler = {
 
     //make bird fall to ground
     animationManager.start(handler.F);
+
+    gameFrame.add(scoreBoard);
+    scoreBoard.setCurrentScore(handler.score);
+
+    scoreBoard.restartButton.stopListeningAfterClick(() => {
+      animationManager.stop(handler.F);
+      body.removeAll();
+      startGame();
+    });
   },
 
   onScore: (scoreComponent) => {

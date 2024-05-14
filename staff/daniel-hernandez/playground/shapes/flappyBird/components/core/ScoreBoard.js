@@ -23,12 +23,7 @@ class ScoreBoard extends Div {
     restartButton.removeClass("Button");
     restartButton.addClass("restart-button");
     restartButton.setText("restart");
-
-    const x = () => {
-      location.reload();
-    };
-
-    restartButton.stopListeningAfterClick(x);
+    this.restartButton = restartButton;
 
     this.add(scoreText);
     this.add(currentScoreElem);
