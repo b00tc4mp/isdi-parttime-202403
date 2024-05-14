@@ -110,5 +110,46 @@ var o = {
 //var hello = o.b[1][1][4][1].hello
 var { b: [, [, { 4: [, { hello }] }]] } = o
 
-console.log(hello)
+console.log(o)
+
+/*
+{ a: 1, b: Array(3), c: 11 }
+a
+:
+1
+b
+:
+Array(3)
+0
+:
+2
+1
+:
+(3)[3, {… }, 9]
+2
+:
+10
+length
+:
+3
+[[Prototype]]
+:
+Array(0)
+c
+:
+11
+[[Prototype]]
+:
+Object
+
+*/
+
+
+///////////////////////////
+
+
+// var hello = o.b[1][1][4][1].hello
+
+// console.log(hello)
+
 // world

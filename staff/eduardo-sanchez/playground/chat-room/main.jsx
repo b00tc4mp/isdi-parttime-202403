@@ -1,7 +1,4 @@
-
-const rootElement = document.getElementById('root')
-
-const root = ReactDOM.createRoot(rootElement)
+const root = ReactDOM.createRoot(document.getElementById('root'))
 
 
 const title = <h1>Chat Room</h1>
@@ -24,21 +21,26 @@ const messages = [
     }
 ]
 
-function MessageList(props) {
+const { Component } = React
 
-    const messages = props.messages
+class Counter extends Component {
+    constructor() {
+        super()
 
-    const lis = messages.map(message => <li>
-        <h3>{message.username}</h3>
-        <p>{message.text}</p>
-        <time>{message.date}</time>
+        this.state = { count: 0 }
+    }
 
-    </li>)
+    handleCountClick() {
+        this.setState({ count: this.state.count + 1 })
+    }
 
-    const messageList = <ul>{lis}</ul>
+    render() {
+        return <section>
+            <p>{this.state.count}</p>
 
-    return messageList
-
+            <button onClick={this.handleCountClick.bind(this)}>Count</button>
+        </section>
+    }
 }
 
-root.render([title, <MessageList messages={messages} />])
+root.render([title, <MessageList title={'Messages'} messages={messages} />, <Counter />])
