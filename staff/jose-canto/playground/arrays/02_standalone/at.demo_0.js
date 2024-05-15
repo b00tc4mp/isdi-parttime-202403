@@ -2,11 +2,13 @@
 
 
 function at(array, index) {
-  if (index > 0) {
-    return array[index];
-  } else {
-    return array[array.length + index]
-  }
+  // if (index > 0) {
+  //   return array[index];
+  // } else {
+  //   return array[array.length + index]
+  // }
+
+  return index > 0 ? array[index] : array[array.length + index];
 }
 
 console.info('--- CASE return element with a parameter index of array ---');
