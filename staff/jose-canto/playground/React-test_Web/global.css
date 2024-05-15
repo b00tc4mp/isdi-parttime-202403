@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Resto de tus estilos aquí */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(to bottom, #5e5e5e67, #8b8b8b, #adadad, #d4d4d4, #bebebe);
+}
+
+
+.Title {
+  padding: 1rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}

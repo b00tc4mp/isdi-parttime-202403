@@ -1,5 +1,5 @@
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const title = "Login";
+const title = "Register";
 
-root.render([<Header />, <Login />]);
+root.render([<Header />, <Register />]);

@@ -1,33 +1,45 @@
 const { Component } = React;
 
-class Login extends Component {
+class Register extends Component {
 	constructor() {
 		super();
 
 		this.state = {
 			username: "",
 			password: "",
+			email: "",
 		};
 	}
 
 	handleChange = (event) => {
-		this.setState({ [event.target.name]: event.target.value });
+		this.setState({ [event.target.id]: event.target.value });
 	};
 
 	handleSubmit = (event) => {
 		event.preventDefault();
 
-		const { username, password } = this.state;
+		const { username, password, email } = this.state;
 
 		const user = {
 			username: username,
 			password: password,
+			email: email,
 		};
 
-		localStorage.user = JSON.stringify(user);
+		let users = localStorage.getItem("users");
+		if (!users) {
+			users = "[]";
+		}
 
-		this.setState({ password: "" });
-		this.setState({ username: "" });
+		users = JSON.parse(users);
+		users.push(user);
+
+		localStorage.setItem("users", JSON.stringify(users));
+
+		// Reseteamos el estado
+		this.setState({ password: "", username: "", email: "" });
+
+		location.href = "../Login/index.html";
 	};
 
 	render() {
@@ -38,25 +50,36 @@ class Login extends Component {
 						Username:
 						<input
 							type='text'
-							name='username'
 							id='username'
 							placeholder='Username'
 							value={this.state.username}
 							onChange={this.handleChange}
+							required
 						/>
 					</label>
 					<label>
 						Password:
 						<input
 							type='password'
-							name='password'
 							id='password'
 							placeholder='Password'
 							value={this.state.password}
 							onChange={this.handleChange}
+							required
 						/>
 					</label>
-					<button type='submit'>Login</button>
+					<label>
+						Email:
+						<input
+							type='email'
+							id='email'
+							placeholder='Email'
+							value={this.state.email}
+							onChange={this.handleChange}
+							required
+						/>
+					</label>
+					<button type='submit'>Register</button>
 				</form>
 			</div>
 		);
