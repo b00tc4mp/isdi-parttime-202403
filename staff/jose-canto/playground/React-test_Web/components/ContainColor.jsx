@@ -1,5 +1,13 @@
 const { Component } = React;
 
+const getRandomColor = () => {
+	const r = Math.floor(Math.random() * 256);
+	const g = Math.floor(Math.random() * 256);
+	const b = Math.floor(Math.random() * 256);
+
+	return `rgb(${r},${g},${b})`;
+};
+
 class ContainColor extends Component {
 	constructor() {
 		super();
@@ -8,45 +16,24 @@ class ContainColor extends Component {
 			colorOne: "red",
 			colorTwo: "blue",
 		};
+
+		// this.handleClickContainerOne = this.handleClickContainerOne.bind(this);
+		// this.handleClickContainerTwo = this.handleClickContainerTwo.bind(this);
 	}
 
-	handleClickContainerOne = () => {
-		function getRandomColor() {
-			const r = Math.floor(Math.random() * 256);
-			const g = Math.floor(Math.random() * 256);
-			const b = Math.floor(Math.random() * 256);
-
-			const hexR = r.toString(16).padStart(2, "0");
-			const hexG = g.toString(16).padStart(2, "0");
-			const hexB = b.toString(16).padStart(2, "0");
-
-			return `#${hexR}${hexG}${hexB}`;
-		}
-
+	handleClickContainerOne() {
 		const randomColor = getRandomColor();
 		const randomColor2 = getRandomColor();
 
 		this.setState({ colorOne: randomColor });
 		this.setState({ colorTwo: randomColor2 });
-	};
+	}
 
-	handleClickContainerTwo = () => {
-		function getRandomColor() {
-			const r = Math.floor(Math.random() * 256);
-			const g = Math.floor(Math.random() * 256);
-			const b = Math.floor(Math.random() * 256);
-
-			const hexR = r.toString(16).padStart(2, "0");
-			const hexG = g.toString(16).padStart(2, "0");
-			const hexB = b.toString(16).padStart(2, "0");
-
-			return `#${hexR}${hexG}${hexB}`;
-		}
-
+	handleClickContainerTwo() {
 		const randomColor2 = getRandomColor();
 
 		this.setState({ colorTwo: randomColor2 });
-	};
+	}
 
 	render() {
 		return (
@@ -54,13 +41,13 @@ class ContainColor extends Component {
 				<div
 					className='ContainerOne'
 					style={{ backgroundColor: this.state.colorOne }}
-					onClick={this.handleClickContainerOne}
+					onClick={this.handleClickContainerOne.bind(this)}
 				>
 					Click me to swap Color!
 				</div>
 				<div
 					style={{ backgroundColor: this.state.colorTwo }}
-					onClick={this.handleClickContainerTwo}
+					onClick={this.handleClickContainerTwo.bind(this)}
 					className='ContainerTwo'
 				>
 					Click me to swap Color!

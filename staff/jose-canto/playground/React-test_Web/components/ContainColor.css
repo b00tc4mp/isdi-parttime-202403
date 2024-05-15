@@ -5,7 +5,11 @@
   gap: 1rem;
   padding: 1rem;
   border-radius: 10px;
-
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  background: #996929;
+  -webkit-box-shadow: 18px 18px 31px #493214, -18px -18px 31px #e9a03e;
+  box-shadow: 18px 18px 31px #493214, -18px -18px 31px #e9a03e;
 }
 
 .ContainerOne {
@@ -18,6 +22,11 @@
   cursor: pointer;
   background-color: antiquewhite;
   box-shadow: inset 0px 0px 20px 11px white;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  background: #996929;
+  -webkit-box-shadow: 18px 18px 31px #493214, -18px -18px 31px #e9a03e;
+  box-shadow: 18px 18px 31px #493214, -18px -18px 31px #e9a03e;
 }
 
 .ContainerTwo {
@@ -30,4 +39,9 @@
   cursor: pointer;
   background-color: burlywood;
   box-shadow: 0px 0px 20px 11px white;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  background: #996929;
+  -webkit-box-shadow: 18px 18px 31px #493214, -18px -18px 31px #e9a03e;
+  box-shadow: 18px 18px 31px #493214, -18px -18px 31px #e9a03e;
 }

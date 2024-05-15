@@ -1,0 +1,31 @@
+.ContainerForm {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.Form {
+  border: 2px solid black;
+  width: 20rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  background: #996929;
+  -webkit-box-shadow: 18px 18px 31px #493214,
+    -18px -18px 31px #e9a03e;
+  box-shadow: 18px 18px 31px #493214,
+    -18px -18px 31px #e9a03e;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
