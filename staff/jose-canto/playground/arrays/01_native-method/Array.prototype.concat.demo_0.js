@@ -6,7 +6,7 @@ var chars = ['d', 'e', 'f'];
 var result = numbers.concat(chars);
 
 console.log(result);
-// Expected output: Array ["a", "b", "c", "d", "e", "f"]
+// Expected output: Array [1, 2, 3, "d", "e", "f"]
 
 
 //! TEST ASSERT
