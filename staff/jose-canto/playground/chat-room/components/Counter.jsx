@@ -24,7 +24,7 @@ class Counter extends Component {
 
 				{/*<button onClick={() => this.handleCountClick()}>COUNT</button> usando la funcion flecha en el onClick(3)*/}
 
-				<button onClick={this.handleCountClick}></button>
+				<button onClick={this.handleCountClick}>CLICK</button>
 				{/*usando funcion flecha, al usar la funcion flecha referencia esta funcion. (4)*/}
 			</section>
 		);

@@ -22,10 +22,12 @@ class Messages extends Component {
 					date: new Date().toISOString(),
 				},
 			],
+			username: "",
+			text: "",
 		};
 	}
 
-	handleMessageSubmit(event) {
+	handleMessageSubmit = (event) => {
 		event.preventDefault();
 
 		const form = event.target;
@@ -44,14 +46,14 @@ class Messages extends Component {
 		this.setState({ messages });
 
 		form.reset();
-	}
+	};
 
 	render() {
 		return (
 			<div>
 				<MessageList title={"Messages"} messages={this.state.messages} />
 
-				<form onSubmit={this.handleMessageSubmit.bind(this)}>
+				<form onSubmit={this.handleMessageSubmit}>
 					<input name='username' placeholder='username' />
 					<input name='text' placeholder='message' />
 					<button type='submit'>Send</button>
