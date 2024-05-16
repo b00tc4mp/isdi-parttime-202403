@@ -64,3 +64,10 @@ class Messages extends Component {
         </div>
     }
 }
+
+// Sile quitasemos el bind al form estariamos enviando al submit una funcion como callback y esa funcion utiliza this, ese this se perderia.Al llmar a esa funcion como viene del DOM esta no tiene un contexto definido, el this se pierde y no va a encontrar al setState.Ademas cuando el this que se invoca esta dentro de otra funcion el this se pierde y da como resultado indefinido, ni siquiera apunta a windows x eso tengo q utilizar bind y pasarle this el cual tiene el contexto del propio componente.
+
+
+{/* <form onSubmit={this.handleMessageSubmit}> */ }
+// {/* form.addEventListener('submit', function() {...}) */}
+// {/* form.addEventListener('submit', this.handleMessageSubmit.bind(this)) */}
