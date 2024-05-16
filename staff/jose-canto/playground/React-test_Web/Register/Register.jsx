@@ -11,20 +11,21 @@ class Register extends Component {
 		};
 	}
 
-	handleChange = (event) => {
-		this.setState({ [event.target.id]: event.target.value });
-	};
-
 	handleSubmit = (event) => {
 		event.preventDefault();
 
-		const { username, password, email } = this.state;
+		const form = event.target;
+		const username = form.username.value;
+		const password = form.password.value;
+		const email = form.email.value;
 
 		const user = {
 			username: username,
 			password: password,
 			email: email,
 		};
+
+		this.setState({ user });
 
 		let users = localStorage.getItem("users");
 		if (!users) {
@@ -36,9 +37,6 @@ class Register extends Component {
 
 		localStorage.setItem("users", JSON.stringify(users));
 
-		// Reseteamos el estado
-		this.setState({ password: "", username: "", email: "" });
-
 		location.href = "../Login/index.html";
 	};
 
@@ -48,36 +46,15 @@ class Register extends Component {
 				<form className='Form' onSubmit={this.handleSubmit}>
 					<label>
 						Username:
-						<input
-							type='text'
-							id='username'
-							placeholder='Username'
-							value={this.state.username}
-							onChange={this.handleChange}
-							required
-						/>
+						<input type='text' id='username' placeholder='Username' required />
 					</label>
 					<label>
 						Password:
-						<input
-							type='password'
-							id='password'
-							placeholder='Password'
-							value={this.state.password}
-							onChange={this.handleChange}
-							required
-						/>
+						<input type='password' id='password' placeholder='Password' required />
 					</label>
 					<label>
 						Email:
-						<input
-							type='email'
-							id='email'
-							placeholder='Email'
-							value={this.state.email}
-							onChange={this.handleChange}
-							required
-						/>
+						<input type='email' id='email' placeholder='Email' required />
 					</label>
 					<button type='submit'>Register</button>
 				</form>
