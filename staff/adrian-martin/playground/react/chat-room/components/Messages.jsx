@@ -7,25 +7,25 @@ class Messages extends Component {
         this.state = {
             messages: [
                 {
-                    username: 'pepitogrillo',
-                    text: 'blah',
+                    username: 'Iñaki',
+                    text: 'Me voy a Malaga',
                     date: new Date().toISOString()
                 },
                 {
-                    username: 'wendydarling',
-                    text: 'blah blah',
+                    username: 'Ismael',
+                    text: 'Me voy a Francia',
                     date: new Date().toISOString()
                 },
                 {
-                    username: 'peterpan',
-                    text: 'blah blah blah',
+                    username: 'Jesus',
+                    text: 'Me voy a Polonia',
                     date: new Date().toISOString()
                 }
             ]
         }
     }
 
-    handleMessageSubmit(event) {
+    handleMessageSubmit = (event) => {
         event.preventDefault()
 
         const form = event.target
@@ -50,7 +50,7 @@ class Messages extends Component {
         return <div>
             <MessageList title={'Messages'} messages={this.state.messages} />
 
-            <form onSubmit={this.handleMessageSubmit.bind(this)}>
+            <form onSubmit={this.handleMessageSubmit}>
                 <input name="username" placeholder="username" />
                 <input name="text" placeholder="message" />
                 <button type="submit">Send</button>
