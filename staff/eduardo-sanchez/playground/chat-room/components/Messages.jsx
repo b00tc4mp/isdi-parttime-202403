@@ -4,30 +4,39 @@ class Messages extends Component {
     constructor() {
         super()
 
-        this.state = {
+        console.log('Messages -> constructor')
 
+        this.state = {
             messages: [
                 {
-                    username: "manoloescobar",
-                    text: "mi carro",
+                    username: 'pepitogrillo',
+                    text: 'blah',
                     date: new Date().toISOString()
                 },
                 {
-                    username: "lolaflores",
-                    text: "pena penita",
+                    username: 'wendydarling',
+                    text: 'blah blah',
                     date: new Date().toISOString()
                 },
                 {
-                    username: "peterpan",
-                    text: "tinkerbell",
+                    username: 'peterpan',
+                    text: 'blah blah blah',
                     date: new Date().toISOString()
                 }
             ]
         }
     }
 
-    handleMessageSubmit(event) {
+    setState(newState) { // method overriding
+        console.log('Messages -> setState')
+
+        super.setState(newState)
+    }
+
+    handleMessageSubmit = event => {
         event.preventDefault()
+
+        console.log('Messages -> handleMessageSubmit')
 
         const form = event.target
 
@@ -47,27 +56,44 @@ class Messages extends Component {
         form.reset()
     }
 
+    componentDidMount() { // method overriding
+        console.log('Messages -> componentDidMount')
+    }
+
+    componentDidUpdate() { // method overriding
+        console.log('Messages -> componentDidUpdate')
+    }
+
+    componentWillUnmount() { // method overriding
+        console.log('Messages -> componentWillUnmount')
+    }
+
+    componentWillReceiveProps(newProps, oldProps) { // method overriding
+        console.log('Messages -> componentWillUnmount')
+    }
 
     render() {
+        console.log('Messages -> render')
+
         return <div>
             <MessageList title={'Messages'} messages={this.state.messages} />
 
-
-            <form onSubmit={this.handleMessageSubmit.bind(this)}>
+            <form onSubmit={this.handleMessageSubmit}>
                 <input name="username" placeholder="username" />
                 <input name="text" placeholder="message" />
                 <button type="submit">Send</button>
-
             </form>
-
-
         </div>
     }
 }
 
-// Sile quitasemos el bind al form estariamos enviando al submit una funcion como callback y esa funcion utiliza this, ese this se perderia.Al llmar a esa funcion como viene del DOM esta no tiene un contexto definido, el this se pierde y no va a encontrar al setState.Ademas cuando el this que se invoca esta dentro de otra funcion el this se pierde y da como resultado indefinido, ni siquiera apunta a windows x eso tengo q utilizar bind y pasarle this el cual tiene el contexto del propio componente.
 
+// En la devtools veremos esto cuando escribamos usuario y mensaje, y pulsemos el boton de Send
 
-{/* <form onSubmit={this.handleMessageSubmit}> */ }
-// {/* form.addEventListener('submit', function() {...}) */}
-// {/* form.addEventListener('submit', this.handleMessageSubmit.bind(this)) */}
+// Messages -> handleMessageSubmit
+// Messages.jsx: 31 Messages -> setState
+// Messages.jsx: 76 Messages -> render
+// MessageList.jsx: 23 MessageList -> componentWillReceiveProps
+// MessageList.jsx: 27 MessageList -> render
+// MessageList.jsx: 15 MessageList -> componentDidUpdate
+// Messages.jsx: 64 Messages -> componentDidUpdate
