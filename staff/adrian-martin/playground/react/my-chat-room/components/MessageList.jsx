@@ -3,20 +3,20 @@ const {Component} = React
 class MessageList extends Component{
     constructor(){
         super()
+
     }
 
     render() {
-        const { username, messages } = this.props
+        const { title, messages } = this.props
 
         return <section className="MessageList">
-            <h2 className="username">{username}</h2>
+            <h2 className="title">{title}</h2>
 
-            <ul>{messages.map(message => <li>
-                <h3>{message.title}</h3>
-                <p>{message.text}</p>
-                <time>{message.date}</time>
+            <ul>{messages.map(message => <li className="Li">
+                <h3 className="Username">{message.username}</h3>
+                <p className="Text">{message.text}</p>
+                <time className="Date">{message.date}</time>
             </li>)}</ul>
-
         </section>
     }
 }

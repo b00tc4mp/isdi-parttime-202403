@@ -1,0 +1,33 @@
+.AllInputs{
+    text-align: center;
+    
+}
+
+.Form{
+    display: flex;
+    flex-direction: column;
+    background-color:  rgb(204, 204, 204);;
+    border-radius:25px 25px 25px 25px;
+    -moz-border-radius:25px 25px 25px 25px;
+    -webkit-border-radius:25px 25px 25px 25px;
+
+    padding: 20px;
+    height: 160px;
+    border: 6px double black;
+}
+
+.Input{
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border: 1px solid black;
+}
+
+.Button{
+    text-align: center;
+    font-size: 17px;
+    padding: 10px;
+    border: 4px double black;
+    border-radius:25px 25px 25px 25px;
+}
