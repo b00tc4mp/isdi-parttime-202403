@@ -24,6 +24,13 @@ class Messages extends Component {
 
     }
 
+    //definimos de nuevo el metodo setState propio de la classe para poder añadir el chivato
+    setState(newState) { //method overriding, metodo que creas en la clase hija que ya existria en la clase padre
+        console.log("Messages->setState")
+        super.setState(newState)
+
+    }
+
     handleMessagesSubmit(event) {
         event.preventDefault()
 
@@ -36,7 +43,7 @@ class Messages extends Component {
         const message = {
             username,
             text,
-            date: new Date().toISOString
+            date: new Date().toISOString()
         }
 
         const messages = this.state.messages.concat(message)
@@ -44,7 +51,24 @@ class Messages extends Component {
 
         form.reset()
     }
+
+    componentDidMount() {//method overriding
+        console.log("Messages->componentDidMount")
+
+    }
+
+    componentDidUpdate() {//method overriding
+        console.log("Messages->componentDidUpdate")
+
+    }
+
+    componentWillUnmount() {//method overriding
+        console.log("Messages->componentWillUnmount")
+
+    }
+
     render() {
+        console.log("Messages->render")
         return <div>
             <MessageList title={"Messages"} messages={this.state.messages} />
 
@@ -56,3 +80,5 @@ class Messages extends Component {
         </div>
     }
 }
+
+//TODO actualizar metodos react y funcion flecha

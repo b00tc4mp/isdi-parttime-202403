@@ -20,7 +20,9 @@ class Counter extends Component {
         return <section>
             <p>{this.state.count}</p>
             {/* le estamos pasando el objecto en memoria de la funcion handelCountClick() que referenciada por esta propiedad */}
+            <button onClick={() => { this.handelCountClick() }}>Count</button>
             <button onClick={this.handelCountClick.bind(this)}>Count</button>
+
             {/* bind envuelve la funcion dentro de otra usando el contexto de la funcion a la queremos referenciar */}
         </section>
 
