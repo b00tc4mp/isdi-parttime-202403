@@ -95,4 +95,4 @@ server.get("/*", (req, res) => {
 
 
 
-server.listen(8080, () => console.log("server running on port 8080"))
+server.listen(8080, () => console.log("server running on port 8080  http://localhost:8080"))
