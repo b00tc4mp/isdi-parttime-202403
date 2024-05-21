@@ -59,25 +59,11 @@ function game() {
             rocket.moveRelativeX(step);
         }
 
-        //Intentar hacerlo con los bordes de la caja la colisión
-
-        //Height máximo rocket aprox 100
-        //Widht máximo rocket aprox 50
-
-        //Height máximo ufo aprox 45
-        //Widht máximo ufo aprox 60
-        /*if ((rocket.getX() + 50) === (ufo.getX() + 60) ||  (rocket.getX() + 50) === (ufo.getX() + 60) || 
-            rocket.getY() === ufo.getY()) {
-            console.log("Colisión");
-        }*/
-
-        //El lado izquierdo de rocket se encuentra con el lado derecho de ufo
-        //El lado derecho de rocket se encuentra con el lado izquierdo de ufo
-        //
-        /*if ((rocket.getX() - 50) === (ufo.getX() + 60) && (rocket.getX() + 50) === (ufo.getX() - 60) && (rocket.getY() + 45) >= (ufo.getY() + 50)) {
-            console.log("Colisión");
-        }*/
-
+        //Condición para que choquen, ufo esté en el área de rocket
+        //No entra aunque coincidan supuestamente, comprobado con el debugger. LLama cada vez que se mueve el rocket
+        if ( ((ufo.getY() + 50) > rocket.getY()) && (((ufo.getX() + 60) >= rocket.getX()) && ((ufo.getX() + 60) <= (rocket.getX() + 102.57))) ) {
+            console.log("BOOM");
+        }
         console.log('Pos X del cohete: ', rocket.getX());
         console.log('Pos Y del cohete: ',rocket.getY());
         console.log('Pos X del ufo: ',ufo.getX());
