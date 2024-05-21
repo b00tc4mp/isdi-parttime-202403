@@ -14,3 +14,5 @@ xhr.open("GET", "https://www.google.com/search?q=hello+world")
 // mandamos la peticion
 
 xhr.send()
+
+//CORS no permite conectarse al servidor desde una pagina que no sea desde google
