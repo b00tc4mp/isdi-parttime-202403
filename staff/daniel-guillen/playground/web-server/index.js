@@ -1,71 +1,25 @@
+/* `const express = require('express')` está importando el marco Express al archivo JavaScript. Por
+Al requerir el módulo 'express', el código obtiene acceso a todas las funcionalidades proporcionadas por
+Express, que permite la creación de una aplicación Express para manejar solicitudes y respuestas HTTP. */
 const express = require('express')
-const fs = require('fs')
+/* La línea `const filesMiddleware = require('./filesMiddleware')` está importando un middleware personalizado
+función denominada `filesMiddleware` de un archivo llamado `filesMiddleware.js`. Esto permite al Express
+servidor para utilizar la funcionalidad proporcionada por el middleware `filesMiddleware` al manejar archivos entrantes.
+Solicitudes HTTP. Las funciones de middleware en Express pueden realizar tareas como registro, autenticación,
+análisis de datos y más, lo que ayuda a procesar las solicitudes antes de que lleguen a los controladores de ruta. */
+const filesMiddleware = require('./filesMiddleware')
 
+/* `const server = express()` está creando una instancia de la aplicación Express. Esta línea inicializa
+un nuevo servidor Express que manejará las solicitudes y respuestas HTTP entrantes. La variable `servidor` es
+se utiliza para configurar rutas, middleware y otras configuraciones para la aplicación Express. */
 const server = express()
 
-server.get('/*', (req, res) => {
-    const path = req.params[0]
-    const route = `./public/${path}`
+/* La línea `server.get('/*', filesMiddleware)` en el fragmento de código está configurando una ruta en el
+Servidor expreso. */
+server.get('/*', filesMiddleware)
 
-    fs.stat(route, (error, stats) => {
-        if (error) {
-            res.status(404).send(error.message)
-
-            return
-        }
-
-        if (stats.isFile()) {
-            if (path.endsWith('.txt') || path.endsWith('.html') || path.endsWith('.css'))
-                fs.readFile(route, 'utf8', (error, content) => {
-                    if (error) {
-                        res.status(404).send(error.message)
-
-                        return
-                    }
-
-                    if (path.endsWith('.txt'))
-                        res.setHeader('Content-Type', 'text/plain')
-                    else if (path.endsWith('.html'))
-                        res.setHeader('Content-Type', 'text/html')
-                    else if (path.endsWith('.css'))
-                        res.setHeader('Content-Type', 'text/css')
-
-                    res.send(content)
-                })
-            else
-                fs.readFile(route, (error, content) => {
-                    if (error) {
-                        res.status(404).send(error.message)
-
-                        return
-                    }
-
-                    if (path.endsWith('.ico'))
-                        res.setHeader('Content-Type', 'image/vnd.microsoft.icon')
-                    else if (path.endsWith('.png'))
-                        res.setHeader('Content-Type', 'image/png')
-                    else if (path.endsWith('.jpg'))
-                        res.setHeader('Content-Type', 'image/jpeg')
-
-                    res.send(content)
-                })
-        } else if (stats.isDirectory())
-            fs.readdir(route, (error, files) => {
-                if (error) {
-                    res.status(404).send(error.message)
-
-                    return
-                }
-
-                const html = `<ul>
-                    ${files.map(file => `<li>
-                        <a href="${path}/${file}">${file}</a>
-                    </li>`).join('')}
-                </ul>`
-
-                res.send(html)
-            })
-    })
-})
-
+/* La llamada a la función `server.listen(8080, () => console.log('server up'))` está iniciando Express
+servidor en el puerto 8080. Cuando el servidor se inicia correctamente, registrará el mensaje "servidor activo" en el
+consola. Esta llamada a función es esencial para que el servidor comience a escuchar las solicitudes entrantes en
+el puerto especificado. */
 server.listen(8080, () => console.log('server up'))

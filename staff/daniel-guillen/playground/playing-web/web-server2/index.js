@@ -8,7 +8,7 @@ server.get('/hello', (req, res) => {
     res.send(utils.toRandomCase('Hello, World!'))
 })
 
-// http://localhost:8080/hello/Pepito
+// http://localhost:8080/hello/Campanilla
 server.get('/hello/:to', (req, res) => {
     //const to = req.params.to
     const { to } = req.params
