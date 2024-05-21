@@ -1,16 +1,1 @@
-[
-  {
-    "name": "Peter",
-    "surname": "Pan",
-    "email": "peter@pan.com",
-    "username": "peterpan",
-    "password": "123123123"
-  },
-  {
-    "name": "Wendy",
-    "surname": "Darling",
-    "email": "wendy@darling.com",
-    "username": "wendydarling",
-    "password": "123123123"
-  }
-]
+[{"name":"Peter","surname":"Pan","email":"peter@pan.com","username":"peterpan","password":"123123123"},{"name":"Wendy","surname":"Darling","email":"wendy@darling.com","username":"wendydarling","password":"123123123"},{"name":"James","surname":"Hook","email":"james@hook.com","username":"jameshook","password":"123123123"},{"name":"Mr","surname":"Blue","email":"Mr@Blue.com","username":"MrBlue","password":"123412342134"},{"name":"jonny","surname":"doe","email":"jonny@doe.com","username":"joonydoe","password":"123123123"}]
