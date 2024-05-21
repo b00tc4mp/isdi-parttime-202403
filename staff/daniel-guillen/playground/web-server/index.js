@@ -1,30 +1,46 @@
 const express = require('express')
+const fs = require('fs')
 
 const server = express()
 
-server.get('/hello', (req, res) => {
-    res.send('hello, world!')   
+server.get('/*', (req, res) => {
+    const path = req.params[0]
+    const route = `./public/${path}`
 
-})
-server.get('/hello/:to', (req, res) => {
-    const { to } = req.params
+    fs.stat(route, (error, stats) => {
+        if (error) {
+            res.status(404).send(error.message)
 
-    res.send(`hello, ${to}!`)  
+            return
+        }
 
-})
+        if (stats.isFile())
+            fs.readFile(route, 'utf8', (error, content) => {
+                if (error) {
+                    res.status(404).send(error.message)
 
-const data = [
-    { name: 'Peter Pan', age: 20 },
-    { name: 'Wendy Darling', age: 21 },
-    { name: 'Campanilla', age: 60 }
-]
+                    return
+                }
 
-server.get('/search', (req, res) => {
-    const { q } = req.query
+                res.send(content)
+            })
+        else if (stats.isDirectory())
+            fs.readdir(route, (error, files) => {
+                if (error) {
+                    res.status(404).send(error.message)
 
-    const filtered = data.filter(person => person.name.includes(q))
+                    return
+                }
 
-    res.json(filtered)
+                const html = `<ul>
+                    ${files.map(file => `<li>
+                        <a href="${path}/${file}">${file}</a>
+                    </li>`).join('')}
+                </ul>`
+
+                res.send(html)
+            })
+    })
 })
 
 server.listen(8080, () => console.log('server up'))
