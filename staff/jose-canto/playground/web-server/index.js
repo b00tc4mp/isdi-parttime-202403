@@ -5,6 +5,7 @@ const utils = require('./utils')
 
 const server = express()
 
+server.use(express.static('public'))
 
 // http://localhost:8080/hello
 server.get("/hello", (req, res) => {
@@ -45,7 +46,6 @@ server.get("/search", (req, res) => {
 
 
 //? ----------------------------------------------------------------------
-
 
 
 server.get("/*", (req, res) => {
