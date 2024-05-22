@@ -5,12 +5,14 @@ class RegisterForm extends Component {
         super(props)
 
         this.state = {
-            name: '',
-            surname: '',
-            email: '',
-            password: '',
-            repeatPassword: ''
-
+            data: {
+                name: '',
+                surname: '',
+                email: '',
+                password: '',
+                repeatPassword: '',
+                successMessage: ''
+            }
         }
 
     }
@@ -25,7 +27,37 @@ class RegisterForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const { name, surname, email, password, repeatPassword } = this.state;
-        console.log('Form Submitted: ', { name, surname, email, password, repeatPassword })
+        if (!name || !surname || !email || !password || password !== repeatPassword) {
+            console.error('Please fill in all fields and make sure passwords match')
+            return
+
+        } else {
+            console.log('Form Submitted: ', { name, surname, email, password, repeatPassword })
+        }
+
+        const data = {
+            name,
+            surname,
+            email,
+            password
+        };
+
+        localStorage.setItem('user', JSON.stringify(data));
+        this.setState({
+            successMessage: 'Registration succesful',
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
+            repeatPassword: ''
+
+        });
+
+
+        setTimeout(() => {
+            window.location.href = '../LoginForm'
+        }, 1000)
+
     }
 
     render() {
