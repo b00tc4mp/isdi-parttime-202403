@@ -3,8 +3,6 @@ import fs from 'fs'
 
 const api = express()
 
-const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
-
 api.get('/posts', (req, res) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
         if (error) {
@@ -12,6 +10,9 @@ api.get('/posts', (req, res) => {
 
             return
         }
+
+        //res.setHeader('Content-Type', 'application/json')
+        //res.send(json)
 
         const posts = JSON.parse(json)
         res.json(posts)
@@ -26,10 +27,31 @@ api.get('/users', (req, res) => {
             return
         }
 
+        //res.setHeader('Content-Type', 'application/json')
+        //res.send(json)
+
         const users = JSON.parse(json)
         res.json(users)
     })
 })
+
+function jsonBodyParser(req, res, next) {
+    const contentType = req.headers['content-type']
+
+    if (contentType.includes('application/json')) {
+        let json = ''
+
+        req.on('data', chunk => json += chunk.toString())
+
+        req.on('end', () => {
+            const body = JSON.parse(json)
+
+            req.body = body
+
+            next()
+        })
+    } else next()
+}
 
 api.post('/users', jsonBodyParser, (req, res) => {
     const user = req.body
