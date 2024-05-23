@@ -12,6 +12,7 @@
 	"author": "Jose A. Cantó",
 	"license": "ISC",
 	"dependencies": {
-		"express": "^4.19.2"
+		"express": "^4.19.2",
+		"i": "^0.3.7"
 	}
 }

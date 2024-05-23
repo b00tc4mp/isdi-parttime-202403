@@ -48,50 +48,50 @@ server.get("/search", (req, res) => {
 //? ----------------------------------------------------------------------
 
 
-server.get("/*", (req, res) => {
+// server.get("/*", (req, res) => {
 
-  const path = req.params[0]
-  const route = `./public/${path}`
+//   const path = req.params[0]
+//   const route = `./public/${path}`
 
-  fs.stat(route, (error, stats) => {
+//   fs.stat(route, (error, stats) => {
 
-    if (error) {
+//     if (error) {
 
-      res.status(404).send(error.message)
-      return
-    }
+//       res.status(404).send(error.message)
+//       return
+//     }
 
-    if (stats.isFile()) {
+//     if (stats.isFile()) {
 
-      fs.readFile(route, "utf8", (error, content) => {
-        if (error) {
-          res.status(404).send(error.message)
-          return
-        }
+//       fs.readFile(route, "utf8", (error, content) => {
+//         if (error) {
+//           res.status(404).send(error.message)
+//           return
+//         }
 
-        res.send(content)
-      })
+//         res.send(content)
+//       })
 
-    } else if (stats.isDirectory()) {
-      fs.readdir(route, (error, files) => {
-        if (error) {
+//     } else if (stats.isDirectory()) {
+//       fs.readdir(route, (error, files) => {
+//         if (error) {
 
-          res.status(404).send(error.message)
-          return
-        }
+//           res.status(404).send(error.message)
+//           return
+//         }
 
-        const html = `<ul>
-        ${files.map(file => `<li>
-            <a href="${path}/${file}">${file}</a>
-          </li>`).join("\n")}
-        </ul>`
+//         const html = `<ul>
+//         ${files.map(file => `<li>
+//             <a href="${path}/${file}">${file}</a>
+//           </li>`).join("\n")}
+//         </ul>`
 
-        res.send(html)
+//         res.send(html)
 
-      })
-    }
-  })
-})
+//       })
+//     }
+//   })
+// })
 
 
 
