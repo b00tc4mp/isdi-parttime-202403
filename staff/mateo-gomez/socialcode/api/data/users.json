@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Luka",
+        "surname": "Doncic",
+        "email": "luka@nba.es",
+        "username": "doncic",
+        "password": "123123123"
+    },
+    {
+        "name": "LeBron",
+        "surname": "James",
+        "email": "LeBron@nba.es",
+        "username": "king_james",
+        "password": "123123123"
+    }
+]
