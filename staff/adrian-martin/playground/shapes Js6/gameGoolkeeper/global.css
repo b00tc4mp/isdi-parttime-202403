@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+:root {
+    --firts-color: rgb(175, 247, 142);
+    --second-color: rgb(159, 206, 88);
+    --third-color:rgb(10, 77, 19);
+    --fourth-color:rgb(10, 77, 19, 0.15);
+}
+
+
+* {
+    font-family: Silkscreen;
+    color: var(--third-color);
+    
+}
+
+body{
+    background-color: var(--firts-color)
+}

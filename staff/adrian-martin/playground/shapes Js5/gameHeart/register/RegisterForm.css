@@ -1,0 +1,18 @@
+.RegisterForm{
+    padding: 1rem;
+    width: 400px;
+}
+
+.RegisterForm .Input {
+    background-color:var(--fourth-color);
+    font-size: 1rem;
+    width: 300px;
+}
+
+.RegisterForm .Feedback{
+    color: var(--third-color);
+}
+
+.RegisterForm .Feedback.success{
+    color: green;
+}

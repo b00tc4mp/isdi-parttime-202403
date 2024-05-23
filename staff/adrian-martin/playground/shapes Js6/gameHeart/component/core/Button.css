@@ -1,0 +1,5 @@
+.Button{
+    background-color: transparent;
+    border: 1px solid var(--forth-color);
+    padding: .3rem .6rem;
+}

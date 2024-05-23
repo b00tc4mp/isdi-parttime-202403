@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script>
+        const rootElement = document.getElementById('root')
+
+        const root = ReactDOM.createRoot(rootElement)
+
+        const _jsx = React.createElement
+
+        const title = _jsx('h1', {children: 'Hola Mundo'})
+
+        const redItem = _jsx('li', {children: 'red'})
+        const blueItem = _jsx('li', {children: 'blue'})
+        const yellowItem = _jsx('li', {children: 'yellow'})
+
+        const colorList = _jsx('ul', {children: [redItem, blueItem, yellowItem]})
+
+        const helloButton = _jsx('button', {
+            children: 'Button',
+            onClick(){
+                alert('React funciona')
+            }
+        })
+
+        root.render([title, colorList, helloButton])
+    </script>
+</body>
+</html>

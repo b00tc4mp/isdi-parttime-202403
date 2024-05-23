@@ -1,0 +1,39 @@
+.MessageList {
+    border: 6px double black;
+    background-color: rgb(238, 238, 238);
+    border-radius:28px 28px 28px 28px;
+    -moz-border-radius:28px 28px 28px 28px;
+    -webkit-border-radius:28px 28px 28px 28px;
+    }
+    
+.MessageList .title {
+    font-size: 30px;
+    margin-top: 0px;
+    /* text-align: center; */
+    padding: 20px;
+    color: black;
+    background-color: rgb(204, 204, 204);
+    border: 6px double black;
+    border-radius:20px 20px 20px 20px;
+    -moz-border-radius:20px 20px 20px 20px;
+    -webkit-border-radius:20px 20px 20px 20px;
+}
+
+.Li{
+    margin-bottom: 60px;
+}
+
+.Username{
+    font-size: 25px;
+}
+
+.Text{
+    margin-top: -25px;
+    padding: 20px 20px 0 0 ;
+}
+
+.Date{
+    font-size: 12px;
+    padding-bottom: 30px;
+    border-bottom:1px double rgb(157, 157, 157) ;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shapes</title>
+</head>
+<body>
+    <script>        
+        // function Shape() {
+        //    this.container = document.createElement('div')
+        //    this.container.style.position = 'absolute'
+        // }
+       
+        // Shape.prototype.setHeight = function(value){
+        //     this.container.style.height = value + 'px'
+        // }
+
+        // Shape.prototype.setWidth = function(value){
+        //     this.container.style.width = value + 'px'
+        // }
+
+        // Shape.prototype.setRadius = function(value){
+        //     this.container.style.borderRadius = value + '%'
+        // }
+
+        // Shape.prototype.setColor = function(value){
+        //     this.container.style.backgroundColor = value
+        // }
+
+        // Shape.prototype.setX = function(value){
+        //     this.container.style.left = value + 'px'
+        // }
+
+        // Shape.prototype.setY = function(value){
+        //     this.container.style.top = value + 'px'
+        // }
+
+        // Shape.prototype.add = function(child){
+        //     this.container.appendChild(child.container)
+        // }
+
+        var eyeL = new Shape()
+        eyeL.setHeight(50)
+        eyeL.setWidth(50)
+        eyeL.setRadius(50)
+        eyeL.setColor('black')
+        eyeL.setX(30)
+        eyeL.setY(30)
+
+        var eyeR = new Shape()
+        eyeR.setHeight(50)
+        eyeR.setWidth(50)
+        eyeR.setRadius(50)
+        eyeR.setColor('black')
+        eyeR.setX(120)
+        eyeR.setY(30)
+
+        var nose = new Shape()
+        nose.setHeight(20)
+        nose.setWidth(35)
+        nose.setRadius(30)
+        nose.setColor('HotPink')
+        nose.setX(80)
+        nose.setY(90)
+
+        var mouth = new Shape()
+        mouth.setHeight(30)
+        mouth.setWidth(30)
+        mouth.setRadius(50)
+        mouth.setColor('LightCoral')
+        mouth.setX(80)
+        mouth.setY(140)
+      
+        var face = new Shape()
+        face.setColor('pink')
+        face.setRadius(50)
+        face.setWidth(200)
+        face.setHeight(200)
+        face.setY(-190)
+        face.setX(-56)
+
+        face.add(eyeL)
+        face.add(eyeR)
+        face.add(nose)
+        face.add(mouth)   
+
+        var body = new Shape()
+        body.setHeight(100)
+        body.setWidth(250)
+        body.setColor('pink')
+        body.setX(50)
+        body.setY(170)
+
+        body.add(face)
+
+        var tail = new Shape()
+        tail.setHeight(10)
+        tail.setWidth(60)
+        tail.setColor('pink')
+        tail.setX(250)
+        tail.setY(20)
+
+        var foot1 = new Shape()
+        foot1.setHeight(100)
+        foot1.setWidth(40)
+        foot1.setColor('pink')
+        foot1.setX()
+        foot1.setY(100)
+
+        var foot2 = new Shape()
+        foot2.setHeight(100)
+        foot2.setWidth(40)
+        foot2.setColor('pink')
+        foot2.setX(60)
+        foot2.setY(100)
+
+        var foot3 = new Shape()
+        foot3.setHeight(100)
+        foot3.setWidth(40)
+        foot3.setColor('pink')
+        foot3.setX(150)
+        foot3.setY(100)
+
+        var foot4 = new Shape()
+        foot4.setHeight(100)
+        foot4.setWidth(40)
+        foot4.setColor('pink')
+        foot4.setX(210)
+        foot4.setY(100)
+
+        body.add(tail)
+        body.add(foot1)
+        body.add(foot2)
+        body.add(foot3)
+        body.add(foot4)
+
+        var x = 200
+        var y = 300
+
+        body.setX(x)
+        body.setY(y)
+
+        document.onkeydown = function(event) {
+            if (event.key === 'ArrowLeft')
+                x -= 10
+
+            else if(event.key === 'ArrowRight')
+                x += 10
+
+            else if(event.key === 'ArrowUp')
+                y -= 10
+
+            else if(event.key === 'ArrowDown')
+                y += 10
+
+            body.setX(x)
+            body.setY(y)
+        }
+
+        document.body.appendChild(body.container)
+
+    </script>
+</body>
+</html>
