@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Bruno",
+    "surname": "Wayne",
+    "email": "bruno@waynecorp.com",
+    "username": "Batman",
+    "password": "123"
+  },
+  {
+    "name": "Daniel",
+    "surname": "Guillen",
+    "email": "danielguillen85@gmail.com",
+    "username": "Dani88",
+    "password": "123"
+  },
+  {
+    "name": "Pedro",
+    "surname": "Mapache",
+    "email": "pedro@mapache.com",
+    "username": "ElMapache",
+    "password": "123"
+  },
+  {
+    "name": "Peter",
+    "surname": "Pan",
+    "email": "peter@pan.com",
+    "username": "PeterPan",
+    "password": "123"
+  },
+  {
+    "name": "Luffy",
+    "surname": "DMonkey",
+    "email": "luffy@dmonkey.com",
+    "username": "SombrerodePaja",
+    "password": "123"
+  },
+  {
+    "name": "Rogelio",
+    "surname": "Rodrigues",
+    "email": "roro@gmail.com",
+    "username": "RoRo",
+    "password": "123"
+  },
+  {
+    "name": "James",
+    "surname": "Bond",
+    "email": "007@gmail.com",
+    "username": "007",
+    "password": "123"
+  }
+]
