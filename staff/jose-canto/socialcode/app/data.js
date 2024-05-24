@@ -67,7 +67,7 @@ data.insertPost = (post) => {
 data.deletePost = callback => {
   let postsJson = localStorage.posts
 
-  if (!postsJson) postJson = "[]"
+  if (!postsJson) postsJson = "[]"
 
   const posts = JSON.parse(postsJson)
 

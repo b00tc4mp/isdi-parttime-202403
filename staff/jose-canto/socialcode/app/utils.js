@@ -13,3 +13,5 @@ utils.getDateStringDayMonthYearFormat = () => {
 
   return date
 }
+
+module.exports = utils
