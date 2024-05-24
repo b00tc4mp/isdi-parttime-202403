@@ -38,6 +38,7 @@ data.createUser = async (user) => {
   }
 };
 
+// TODO create a FILTER posts
 data.findPost = async (condition) => {
   try {
     const filePath = path.resolve(__dirname, "./posts.json");

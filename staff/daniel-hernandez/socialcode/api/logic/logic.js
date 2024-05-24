@@ -14,6 +14,11 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/;
 
 const logic = {};
 
+//TODO logic.loginUser
+//TODO logic.isUserLoggedIn
+//TODO logic.logoutUser
+//TODO logic.getUsername && getUsersName
+
 logic.getPosts = async () => {
   try {
     const posts = await data.getPosts();
@@ -32,15 +37,13 @@ logic.getUsers = async () => {
   }
 };
 
-logic.createPost = async (reqbody) => {
+logic.createPost = async (title, image, description) => {
   try {
     function generateId() {
       const timestamp = Date.now().toString(36);
       const random = Math.random().toString(36).substr(2, 5);
       return timestamp + random;
     }
-
-    const { title, image, description } = reqbody;
 
     if (typeof title !== "string" || !title.length || title.length > 20) {
       throw new ContentError("Title is not valid.");
@@ -71,11 +74,15 @@ logic.createPost = async (reqbody) => {
   }
 };
 
-logic.createUser = async (reqbody) => {
+logic.createUser = async (
+  name,
+  surname,
+  email,
+  username,
+  password,
+  repeatedPassword,
+) => {
   try {
-    const { name, surname, email, username, password, repeatedPassword } =
-      reqbody;
-
     if (
       !name ||
       !surname ||

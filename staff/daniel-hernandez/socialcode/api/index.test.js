@@ -78,3 +78,4 @@ async function testGetUsers() {
 }
 
 testGetPosts();
+testGetUsers();
