@@ -44,64 +44,82 @@ data.insertUser = (user, callback) => {
             callback(null)
         })
     })
-
-    // let usersJson = localStorage.users
-
-    // if (!usersJson) usersJson = '[]'
-
-    // const users = JSON.parse(usersJson)
-
-    // users.push(user)
-
-    // usersJson = JSON.stringify(users)
-
-    // localStorage.users = usersJson
 }
 
-data.findPosts = callback => {
-    let postsJson = localStorage.posts
+data.findPosts = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
-    if (!postsJson) postsJson = '[]'
+            return
+        }
 
-    const posts = JSON.parse(postsJson)
+        if (!json) json = '[]'
 
-    const filtered = posts.filter(callback)
+        const posts = JSON.parse(json)
 
-    return filtered
+        const filtered = posts.filter(condition)
+
+        callback(null, filtered)
+    })
 }
 
-data.insertPost = post => {
-    let postsJson = localStorage.posts
+data.insertPost = (post, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
-    if (!postsJson) postsJson = '[]'
+            return
+        }
 
-    const posts = JSON.parse(postsJson)
+        const posts = JSON.parse(json)
 
-    post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
 
-    posts.push(post)
+        posts.push(post)
 
-    postsJson = JSON.stringify(posts)
+        const newJson = JSON.stringify(posts)
 
-    localStorage.posts = postsJson
+        fs.writeFile('./data/users.json', newJson, error => {
+            if (error) {
+                callback(new SystemError(error.message))
+
+                return
+            }
+
+            callback(null)
+        })
+    })
 }
 
-data.deletePost = callback => {
-    let postsJson = localStorage.posts
+data.deletePost = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
-    if (!postsJson) postsJson = '[]'
+            return
+        }
 
-    const posts = JSON.parse(postsJson)
+        const posts = JSON.parse(json)
 
-    const index = posts.findIndex(callback)
+        const index = posts.findIndex(condition)
 
-    if (index > -1) {
-        posts.splice(index, 1)
+        if (index > -1) {
+            posts.splice(index, 1)
 
-        postsJson = JSON.stringify(posts)
+            const newJson = JSON.stringify(posts)
 
-        localStorage.posts = postsJson
-    }
+            fs.writeFile('./data/users.json', newJson, error => {
+                if (error) {
+                    callback(new SystemError(error.message))
+
+                    return
+                }
+
+                callback(null)
+            })
+        }else callback(null)
+    })
 }
 
 export default data

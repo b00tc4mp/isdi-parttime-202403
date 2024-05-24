@@ -89,28 +89,42 @@ api.get('/users', (req, res) => {
 api.post('/users', jsonBodyParser, (req, res) => {
     const user = req.body
 
-    fs.readFile('./data/users.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+    // fs.readFile('./data/users.json', 'utf8', (error, json) => {
+    //     if (error) {
+    //         res.status(500).json({ error: error.constructor.name, message: error.message })
 
-            return
-        }
+    //         return
+    //     }
 
-        const users = JSON.parse(json)
-        users.push(user)
+    //     const users = JSON.parse(json)
+    //     users.push(user)
 
-        const newJson = JSON.stringify(users)
+    //     const newJson = JSON.stringify(users)
 
-        fs.writeFile('./data/users.json', newJson, error => {
+    //     fs.writeFile('./data/users.json', newJson, error => {
+    //         if (error) {
+    //             res.status(500).json({ error: error.constructor.name, message: error.message })
+
+    //             return
+    //         }
+
+    //         res.status(201).send()
+    //     })
+    // })
+
+    const {name, surname, email, username, password, passwordRepeat} = user
+
+    try {
+        logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
-
+    
                 return
             }
-
-            res.status(201).send()
         })
-    })
+    } catch (error) {
+        res.status(201).send()
+    }
 })
 
 api.listen(8080, () => console.log('api is up'))
