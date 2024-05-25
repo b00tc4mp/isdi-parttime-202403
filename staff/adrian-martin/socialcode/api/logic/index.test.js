@@ -1,13 +1,15 @@
-import logic from "./index.js";
+import logic from './index.js'
 
 try {
-    logic.registerUser('Adrian', 'adrian@gonzalo.com', 'AdrianGon', '123123123', error => {
+    logic.registerUser('Adrian', 'Martin', 'adrian@martin.com', 'AdrianGon', '321321321', '321321321', error => {
         if (error) {
-            console.log(error)
+            console.error(error)
 
             return
         }
+
+        console.log('user registered')
     })
 } catch (error) {
     console.error(error)
-}
+} 

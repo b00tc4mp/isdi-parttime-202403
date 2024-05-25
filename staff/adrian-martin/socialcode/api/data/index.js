@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { SystemError } from '../error'
+import { SystemError } from '../error.js'
 
 const data = {}
 
@@ -29,7 +29,10 @@ data.insertUser = (user, callback) => {
             return
         }
 
+        if (!json) json = '[]'
+
         const users = JSON.parse(json)
+
         users.push(user)
 
         const newJson = JSON.stringify(users)
@@ -72,6 +75,8 @@ data.insertPost = (post, callback) => {
             return
         }
 
+        if (!json) json = '[]'
+
         const posts = JSON.parse(json)
 
         post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
@@ -80,7 +85,7 @@ data.insertPost = (post, callback) => {
 
         const newJson = JSON.stringify(posts)
 
-        fs.writeFile('./data/users.json', newJson, error => {
+        fs.writeFile('./data/posts.json', newJson, error => {
             if (error) {
                 callback(new SystemError(error.message))
 
@@ -100,6 +105,8 @@ data.deletePost = (condition, callback) => {
             return
         }
 
+        if (!json) json = '[]'
+
         const posts = JSON.parse(json)
 
         const index = posts.findIndex(condition)
@@ -109,7 +116,7 @@ data.deletePost = (condition, callback) => {
 
             const newJson = JSON.stringify(posts)
 
-            fs.writeFile('./data/users.json', newJson, error => {
+            fs.writeFile('./data/posts.json', newJson, error => {
                 if (error) {
                     callback(new SystemError(error.message))
 
@@ -118,7 +125,7 @@ data.deletePost = (condition, callback) => {
 
                 callback(null)
             })
-        }else callback(null)
+        } else callback(null)
     })
 }
 
