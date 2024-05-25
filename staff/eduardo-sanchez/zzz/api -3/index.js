@@ -29,23 +29,22 @@ api.get('/users', (req, res) => {
     })
 })
 
+
 function jsonBodyParser(req, res, next) {
-    const contentType = req.headers['content-type']
+    let json = ''
 
-    if (contentType.includes('application/json')) {
-        let json = ''
+    req.on('data', chunk => json += chunk.toString())
 
-        req.on('data', chunk => json += chunk.toString())
+    req.on('end', () => {
+        const body = JSON.parse(json)
 
-        req.on('end', () => {
-            const body = JSON.parse(json)
+        req.body = body
 
-            req.body = body
+        next()
+    })
 
-            next()
-        })
-    } else next()
 }
+
 
 api.post('/users', jsonBodyParser, (req, res) => {
     const user = req.body
@@ -106,3 +105,44 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 })
 
 api.listen(8080, () => console.log('api is up'))
+
+/*
+
+api.post('/posts', (req, res) => {
+    let json = ''
+
+    req.on('data', chunk => json += chunk.toString())
+
+    req.on('end', () => {
+        const post = JSON.parse(json)
+
+        fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            const posts = JSON.parse(json)
+
+            post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+            post.date = new Date().toISOString()
+
+            posts.push(post)
+
+            const newJson = JSON.stringify(posts)
+
+            fs.writeFile('./data/posts.json', newJson, error => {
+                if (error) {
+                    res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                    return
+                }
+
+                res.status(201).send()
+            })
+        })
+    })
+})
+
+*/
