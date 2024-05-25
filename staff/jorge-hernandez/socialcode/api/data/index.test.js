@@ -1,14 +1,14 @@
 import data from "./index.js";
 
-// data.findUser(user => user.surname === 'Grillo', (error, user) => {
-//     if (error) {
-//         console.error(error)
+data.findUser(user => user.surname === 'Grillo', (error, user) => {
+    if (error) {
+        console.error(error)
 
-//         return
-//     }
+        return
+    }
 
-//     console.log(user)
-// })
+    console.log(user)
+})
 
 // data.insertUser({ name: 'Jorge', surname: 'Moreno', email: 'test@gmail.com', username: 'Jorgem', password: '123123' }, error => {
 //     if (error) {
@@ -19,12 +19,12 @@ import data from "./index.js";
 //     console.log('User inserted')
 // })
 
-data.findPosts(post => post.date.includes('T19'), (error, posts) => {
-    if (error) {
-        console.error(error)
+// data.findPosts(post => post.date.includes('T19'), (error, posts) => {
+//     if (error) {
+//         console.error(error)
 
-        return
-    }
+//         return
+//     }
 
-    console.log(posts)
-})
+//     console.log(posts)
+// })

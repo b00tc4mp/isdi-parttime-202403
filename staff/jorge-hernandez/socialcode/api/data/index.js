@@ -19,7 +19,6 @@ data.findUser = (condition, callback) => {
 
         callback(null, user)
     })
-
 }
 
 
