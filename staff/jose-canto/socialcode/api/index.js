@@ -1,26 +1,46 @@
 import express from 'express'
 import fs from "fs"
 
+import logic from "./logic/index.js"
+
 import utils from "../app/utils.js"
 
 const api = express()
 
 const jsonBodyParser = express.json({ strict: true, type: "application/json" })
 
+api.get("/", (req, res) => {
+  res.send("Hello World")
+})
+
+
 api.get('/posts', (req, res) => {
-  fs.readFile("./data/posts.json", "utf-8", (error, data) => {
-    if (error) {
-      res.status(500).json({ error: error.constructor.name, message: error.message })
-      return
-    }
+  // fs.readFile("./data/posts.json", "utf-8", (error, data) => {
+  //   if (error) {
+  //     res.status(500).json({ error: error.constructor.name, message: error.message })
+  //     return
+  //   }
 
-    // res.setHeader("Content-Type", "application/json") otra opcion de enviar un header
-    // res.send(data) otra opcion de enviar la data
+  //   // res.setHeader("Content-Type", "application/json") otra opcion de enviar un header
+  //   // res.send(data) otra opcion de enviar la data
 
-    const posts = JSON.parse(data)
+  //   const posts = JSON.parse(data)
 
-    res.json(posts)
-  })
+  //   res.json(posts)
+  // })
+  try {
+    logic.getAllPosts((error, posts) => {
+      if (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+        return
+      }
+
+      res.json(posts)
+    })
+  } catch (error) {
+
+    res.status(500).json({ error: error.constructor.name, message: error.message })
+  }
 })
 
 api.get('/users', (req, res) => {
@@ -65,27 +85,44 @@ api.get('/users', (req, res) => {
 
 api.post("/users", jsonBodyParser, (req, res) => {
 
-  const user = req.body
+  //const user = req.body
 
-  fs.readFile("./data/users.json", "utf-8", (error, existingData) => {
-    if (error) {
-      res.status(500).json({ error: error.constructor.name, message: error.message })
-      return
-    }
+  // fs.readFile("./data/users.json", "utf-8", (error, existingData) => {
+  //   if (error) {
+  //     res.status(500).json({ error: error.constructor.name, message: error.message })
+  //     return
+  //   }
 
-    const users = JSON.parse(existingData)
-    users.push(user)
+  //   const users = JSON.parse(existingData)
+  //   users.push(user)
 
-    const usersJson = JSON.stringify(users)
+  //   const usersJson = JSON.stringify(users)
 
-    fs.writeFile("./data/users.json", usersJson, error => {
+  //   fs.writeFile("./data/users.json", usersJson, error => {
+  //     if (error) {
+  //       res.status(500).json({ error: error.constructor.name, message: error.message })
+  //       return
+  //     }
+  //     res.status(201).send(user)
+  //   })
+  // })
+
+  const { name, surname, email, username, password, passwordRepeat } = req.body
+  try {
+    logic.registerUser(name, surname, email, username, password, passwordRepeat, (error) => {
+
       if (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
         return
       }
-      res.status(201).send(user)
+
+      res.status(201).send()
     })
-  })
+
+  } catch (error) {
+    res.status(500).json({ error: error.constructor.name, message: error.message })
+
+  }
 })
 
 

@@ -5,7 +5,7 @@ import { SystemError } from '../error.js'
 const data = {}
 
 data.findUser = (condition, callback) => {
-  fs.readFile("./users.json", "utf-8", (error, usersJson) => {
+  fs.readFile("./data/users.json", "utf8", (error, usersJson) => {
 
     if (error) {
       callback(new SystemError(error.message))
@@ -25,12 +25,14 @@ data.findUser = (condition, callback) => {
 
 data.insertUser = (user, callback) => {
 
-  fs.readFile("./users.json", "utf-8", (error, usersJson) => {
+  fs.readFile("./data/users.json", "utf8", (error, usersJson) => {
     if (error) {
       callback(new SystemError(error.message))
 
       return
     }
+
+    if (!usersJson) usersJson = "[]"
 
     const usersArray = JSON.parse(usersJson)
 
@@ -38,7 +40,7 @@ data.insertUser = (user, callback) => {
 
     const newJson = JSON.stringify(usersArray)
 
-    fs.writeFile("./users.json", newJson, error => {
+    fs.writeFile("./data/users.json", newJson, (error) => {
 
       if (error) {
         callback(new SystemError(error.message))
@@ -46,14 +48,13 @@ data.insertUser = (user, callback) => {
         return
       }
       callback(null)
-
     })
   })
 }
 
 data.findPosts = (condition, callback) => {
 
-  fs.readFile("./posts.json", "utf-8", (error, postsJson) => {
+  fs.readFile("./data/posts.json", "utf8", (error, postsJson) => {
     if (error) {
       callback(new SystemError(error.message))
 
@@ -73,7 +74,7 @@ data.findPosts = (condition, callback) => {
 
 data.insertPost = (post, callback) => {
 
-  fs.readFile("./posts.json", "utf-8", (error, postsJson) => {
+  fs.readFile("./data/posts.json", "utf8", (error, postsJson) => {
     if (error) {
       callback(new SystemError(error.message))
 
@@ -92,7 +93,7 @@ data.insertPost = (post, callback) => {
 
     const newJson = JSON.stringify(posts)
 
-    fs.writeFile("./posts.json", newJson, error => {
+    fs.writeFile("./data/posts.json", newJson, (error) => {
 
       if (error) {
         callback(new SystemError(error.message))
@@ -107,7 +108,7 @@ data.insertPost = (post, callback) => {
 
 data.deletePost = (condition, callback) => {
 
-  fs.readFile("./posts.json", "utf-8", (error, postsJson) => {
+  fs.readFile("./data/posts.json", "utf8", (error, postsJson) => {
     if (error) {
       callback(new SystemError(error.message))
 
@@ -120,23 +121,25 @@ data.deletePost = (condition, callback) => {
 
     const index = posts.findIndex(condition)
 
-    if (index > -1) {
-      posts.splice(index, 1)
-
+    if (index > -1) { //-1 significa que no hay coincidencias
+      const deletedPost = posts.splice(index, 1)[0]
       const newJson = JSON.stringify(posts)
 
 
-      fs.writeFile("./posts.json", newJson, error => {
+      fs.writeFile("./data/posts.json", newJson, (error) => {
 
         if (error) {
           callback(new SystemError(error.message))
 
           return
         }
-        callback(null)
+        callback(null, deletedPost)
+
+
       })
+
     } else {
-      callback(null)
+      callback(null) // no hay coincidencias
     }
   })
 }

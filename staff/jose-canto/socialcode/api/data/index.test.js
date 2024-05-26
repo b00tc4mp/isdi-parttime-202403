@@ -1,15 +1,15 @@
 import data from "./index.js"
 
-// data.findUser(user => user.name === "Luna", (error, user) => {
-//   if (error) {
+data.findUser(user => user.name === "Luna", (error, user) => {
+  if (error) {
 
-//     console.error(error)
+    console.error(error)
 
-//     return
-//   }
+    return
+  }
 
-//   console.log(user)
-// })
+  console.log(user)
+})
 
 // data.findUser((user) => {  mismo código de arriba de diferente forma
 //   return user.surname === "Sparrow";
@@ -38,7 +38,7 @@ import data from "./index.js"
 
 //? ------------------------------------------------------
 
-// data.findPosts(post => post.title && post.title.includes("TEST"), (error, posts) => {
+// data.findPosts(post => post.title && post.title.includes("L"), (error, posts) => {
 //   if (error) {
 //     console.error(error);
 //     return;
@@ -60,10 +60,14 @@ import data from "./index.js"
 
 //? ------------------------------------------------------
 
-data.deletePost(post => post.date.includes("date"), (error) => {
-  if (error) {
-    console.error(error)
-  }
+// data.deletePost(post => post.id.includes("1716629444900"), (error, deletedPost) => {
+//   if (error) {
+//     console.error(error)
+//   }
 
-  console.log("Post deleted")
-})
+//   if (!deletedPost) {
+//     console.error("Post not found")
+//   } else {
+//     console.log(`Post with id: ${deletedPost.id} deleted`)
+//   }
+// })
