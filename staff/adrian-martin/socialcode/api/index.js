@@ -27,18 +27,19 @@ api.post('/users', jsonBodyParser, (req, res) => {
 })
 
 api.get('/posts', (req, res) => {
-    // TODO use logic here
 
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+    try {
+        logic.getAllPosts((error, posts) => {
+            if(error){
+                res.status(500).json({error: error.constructor.name, message: error.message})
 
-            return
-        }
-
-        const posts = JSON.parse(json)
-        res.json(posts)
-    })
+                return
+            }
+            res.status(201).send(posts)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 api.get('/users', (req, res) => {

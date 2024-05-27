@@ -77,6 +77,49 @@ logic.loginUser = (username, password) => {
         throw new MatchError('wrong password')
 }
 
+logic.isUserLoggedIn = () => { !!sessionStorage.username }
+
+logic.logoutUser = () => {
+    delete sessionStorage.username
+}
+
+// logic.getAllUsers = callback => {
+//     data.findUser( () => true, (error, users) => {
+//         if(error){
+//             callback(error)
+
+//             return
+//         }
+//         callback(null, users)
+//     })
+// }
+
+logic.getUsername = callback => {
+    data.findUser(user => user.username, (error, posts) => {
+        if(callback)
+
+        if (error) {
+            callback(error)
+
+            return
+        }
+        callback(null, user)
+    })
+    return user.name
+}
+
+logic.getAllPosts = callback => {
+    data.findPosts(() => true, (error, posts) => {
+
+        if (error) {
+            callback(error)
+
+            return
+        }
+        callback(null, posts)
+    })
+}
+
 logic.createPost = (username, image, description) => {
     if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
     if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')

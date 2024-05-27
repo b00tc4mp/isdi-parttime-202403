@@ -58,6 +58,9 @@ data.insertUser = (user, callback) => {
     })
 }
 
+
+
+
 data.findPosts = (condition, callback) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
         if (error) {
@@ -75,6 +78,9 @@ data.findPosts = (condition, callback) => {
         callback(null, filtered)
     })
 }
+
+
+
 
 data.insertPost = (post, callback) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
