@@ -77,12 +77,6 @@ logic.loginUser = (username, password) => {
         throw new MatchError('wrong password')
 }
 
-logic.getAllPosts = () => {
-    const posts = data.findPosts(() => true)
-
-    return posts.reverse()
-}
-
 logic.createPost = (username, image, description) => {
     if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
     if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
@@ -99,6 +93,7 @@ logic.createPost = (username, image, description) => {
 
     data.insertPost(post)
 }
+
 
 logic.deletePost = id => data.deletePost(post => post.id === id)
 
