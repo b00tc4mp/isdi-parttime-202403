@@ -1,9 +1,34 @@
 import express from 'express'
 import fs from 'fs'
+import logic from './logic/index.js'
 
 const api = express()
 
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+
+api.get('/', (req, res) => res.send('Hello, World!'))
+
+api.post('/users', jsonBodyParser, (req, res) => {
+    const { name, surname, email, username, password, passwordRepeat } = req.body
+
+    try {
+        logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.status(201).send()
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
 api.get('/posts', (req, res) => {
+    // TODO use logic here
+
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
         if (error) {
             res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -11,15 +36,14 @@ api.get('/posts', (req, res) => {
             return
         }
 
-        //res.setHeader('Content-Type', 'application/json')
-        //res.send(json)
-
         const posts = JSON.parse(json)
         res.json(posts)
     })
 })
 
 api.get('/users', (req, res) => {
+    // TODO use logic here
+
     fs.readFile('./data/users.json', 'utf8', (error, json) => {
         if (error) {
             res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -27,11 +51,41 @@ api.get('/users', (req, res) => {
             return
         }
 
-        //res.setHeader('Content-Type', 'application/json')
-        //res.send(json)
-
         const users = JSON.parse(json)
         res.json(users)
+    })
+})
+
+api.post('/posts', jsonBodyParser, (req, res) => {
+    const post = req.body
+
+    // TODO use logic here
+
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+            return
+        }
+
+        const posts = JSON.parse(json)
+
+        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+        post.date = new Date().toISOString()
+
+        posts.push(post)
+
+        const newJson = JSON.stringify(posts)
+
+        fs.writeFile('./data/posts.json', newJson, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.status(201).send()
+        })
     })
 })
 
