@@ -12,5 +12,12 @@
         "email": "adrian@martin.com",
         "username": "AdrianGon",
         "password": "321321321"
+    },
+    {
+        "name": "Inaki",
+        "surname": "Barrera",
+        "email": "inaki@barrera.com",
+        "username": "Brutalito",
+        "password": "123123123"
     }
 ]

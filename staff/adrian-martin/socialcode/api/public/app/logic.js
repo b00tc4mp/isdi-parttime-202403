@@ -5,7 +5,7 @@ const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/ //  /^[\w-]+$/
 const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
-logic.registerUser = (name, surname, email, username, password, passwordRepeat, calback) => {
+logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     if (!NAME_REGEX.test(name))
         throw new ContentError('name is not valid')
 
@@ -28,7 +28,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
     xhr.onload = () => {
         if (xhr.status === 201) {
-            calback(null)
+            callback(null)
 
             return
         }
@@ -37,12 +37,12 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
         const constructor = errors[error]
 
-        calback(new constructor(message))
+        callback(new constructor(message))
     }
 
     xhr.open('POST', 'http://localhost:8080/users')
 
-    const body = { name, surname, email, username, password, passwordRepeat}
+    const body = { name, surname, email, username, password, passwordRepeat }
 
     const json = JSON.stringify(body)
 
@@ -51,7 +51,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
 }
 
-logic.loginUser = (username, password, calback) => {
+logic.loginUser = (username, password, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('username is not valid')
 
@@ -65,7 +65,7 @@ logic.loginUser = (username, password, calback) => {
         if (xhr.status === 200) {
             sessionStorage.username = username
 
-            calback(null)
+            callback(null)
 
             return
         }
@@ -74,12 +74,12 @@ logic.loginUser = (username, password, calback) => {
 
         const constructor = errors[error]
 
-        calback(new constructor(message))
+        callback(new constructor(message))
     }
 
     xhr.open('POST', 'http://localhost:8080/users/auth')
 
-    const body = {username, password}
+    const body = { username, password }
 
     const json = JSON.stringify(body)
 
@@ -93,10 +93,35 @@ logic.logoutUser = () => {
     delete sessionStorage.username
 }
 
-logic.getUsername = () => {
-    const user = data.findUser(user => user.username === sessionStorage.username)
+logic.getUsername = (username, callback) => {
+    data.findUser((user) => {
 
-    return user.name
+        const xhr = new XMLHttpRequest
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                sessionStorage.username = username
+
+                callback(null)
+
+                return
+            }
+
+            const { error, message } = JSON.parse(xhr.response)
+
+            const constructor = errors[error]
+
+            callback(new constructor(message))
+        }
+        xhr.open('POST', 'http://localhost:8080/users/auth')
+
+        const body = { username }
+
+        const json = JSON.stringify(body)
+
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(json)
+    })
 }
 
 logic.getAllPosts = () => {

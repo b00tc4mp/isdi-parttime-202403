@@ -47,9 +47,9 @@ class LoginForm extends FormWithFeedback{
     }
 
         getUsername() {
-            // const usernameField = this.children[0]
+            const usernameField = this.children[0]
 
-            // return usernameField.getValue()
+            return usernameField.getValue()
         }
 
         getPassword() {

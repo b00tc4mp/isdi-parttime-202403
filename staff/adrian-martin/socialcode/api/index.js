@@ -41,13 +41,30 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
     
                 return
             }
-    
+            console.log(`User ${username} authenticated`)
             res.status(200).send()
         })
     } catch (error) {
         res.status(500).json({error: error.constructor.name, message: error.message})
     } 
 })
+
+// api.post('/home', jsonBodyParser, (req, res) => {
+//     const {username} = req.body
+
+//     try {
+//         logic.findUser(username, error => {
+//             if (error) {
+//                 res.status(500).json({error: error.constructor.name, message: error.message})
+    
+//                 return
+//             }
+//             res.status(200).send()
+//         })
+//     } catch (error) {
+//         res.status(500).json({error: error.constructor.name, message: error.message})
+//     } 
+// })
 
 
 api.get('/posts', (req, res) => {

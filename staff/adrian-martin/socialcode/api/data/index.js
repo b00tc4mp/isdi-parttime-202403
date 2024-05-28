@@ -1,12 +1,6 @@
 import fs from 'fs'
 import { SystemError } from '../error.js'
 
-// import { fileURLToPath } from "url";
-// import path from "path" 
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
 const data = {}
 
 data.findUser = (condition, callback) => {
@@ -28,9 +22,7 @@ data.findUser = (condition, callback) => {
 }
 
 data.insertUser = (user, callback) => {
-    // const filepath = path.resolve(__dirname, "./users.json")
     
-
     fs.readFile('./data/users.json', 'utf8', (error, json) => {
         if (error) {
             callback(new SystemError(error.message))
@@ -46,7 +38,7 @@ data.insertUser = (user, callback) => {
 
         const newJson = JSON.stringify(users)
 
-        fs.writeFile(filepath, newJson, error => {
+        fs.writeFile('./data/users.json', newJson, error => {
             if (error) {
                 callback(new SystemError(error.message))
 
