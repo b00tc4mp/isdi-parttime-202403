@@ -1,7 +1,3 @@
-/* Este fragmento de código define una class llamada "RegisterForm" que extiende "FormWithFeedback". Adentro
-el constructor de `RegisterForm`, inicializa varios campos del formulario como nombre, apellido, correo electrónico,
-nombre de usuario, contraseña y repetir contraseña utilizando la class `Field`. A cada Field se le asigna un tipo,
-etiqueta y valor de marcador de posición. Además, se crea un botón de envío utilizando `SubmitButton`. */
 class RegisterForm extends FormWithFeedback {
     constructor() {
         super()
@@ -23,7 +19,7 @@ class RegisterForm extends FormWithFeedback {
         const passwordField = new Field('password', 'password', 'Password')
         passwordField.setPlaceholder('password')
 
-        const passwordRepeatField = new Field('repassword', 'password', 'Password repeat')
+        const passwordRepeatField = new Field('password', 'password', 'Password repeat')
         passwordRepeatField.setPlaceholder('repeat password')
 
         const submitButton = new SubmitButton('Register')
@@ -46,15 +42,20 @@ class RegisterForm extends FormWithFeedback {
             const password = this.getPassword()
             const passwordRepeat = this.getPasswordRepeat()
 
-
             try {
-                logic.registerUser(name, surname, email, username, password, passwordRepeat)
+                logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+                    if (error) {
+                        this.setFeedback(error.message + ', please, correct it')
 
-                this.clear()
+                        return
+                    }
 
-                this.setFeedback('🎉User registered🎉', 'success')
+                    this.clear()
 
-                this.onRegisteredListener()
+                    this.setFeedback('user successfully registered', 'success')
+
+                    this.onRegisteredListener()
+                })
             } catch (error) {
                 if (error instanceof ContentError)
                     this.setFeedback(error.message + ', please, correct it')
@@ -63,7 +64,7 @@ class RegisterForm extends FormWithFeedback {
                 else if (error instanceof DuplicityError)
                     this.setFeedback(error.message + ', please, enter new one')
                 else
-                    this.setFeedback('😵 Sorry, please try again later')
+                    this.setFeedback('sorry, there was an error, please try again later')
             }
         })
     }
