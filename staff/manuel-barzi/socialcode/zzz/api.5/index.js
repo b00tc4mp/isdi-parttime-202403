@@ -39,7 +39,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            res.send()
+            res.status(200).send()
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -47,28 +47,42 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 })
 
 api.get('/posts', (req, res) => {
-    try {
-        logic.getAllPosts((error, posts) => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+    // TODO use logic here
 
-                return
-            }
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            res.status(500).json({ error: error.constructor.name, message: error.message })
 
-            res.json(posts)
-        })
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
+            return
+        }
+
+        const posts = JSON.parse(json)
+        res.json(posts)
+    })
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
-    const username = req.headers.authorization.slice(6)
+    const post = req.body
 
-    const { title, image, description } = req.body
+    // TODO use logic here
 
-    try {
-        logic.createPost(username, title, image, description, error => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+            return
+        }
+
+        const posts = JSON.parse(json)
+
+        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+        post.date = new Date().toISOString()
+
+        posts.push(post)
+
+        const newJson = JSON.stringify(posts)
+
+        fs.writeFile('./data/posts.json', newJson, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -77,9 +91,7 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 
             res.status(201).send()
         })
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
+    })
 })
 
 api.listen(8080, () => console.log('api is up'))
