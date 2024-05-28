@@ -94,4 +94,4 @@ api.post('/posts', jsonBodyParser, (req, res) => {
     })
 })
 
-api.listen(8080, () => console.log('api is up'))
+api.listen(8080, () => console.log('api is up!'))
