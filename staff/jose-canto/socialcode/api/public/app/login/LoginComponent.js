@@ -25,11 +25,16 @@ class LoginComponent extends FormWithFeedback {
       const password = this.getPassword()
 
       try {
-        logic.loginUser(username, password)
+        logic.loginUser(username, password, error => {
+          if (error) {
+            this.setFeedback(error.message + ", please, correct it ❌")
+            return
+          }
 
-        this.clear()
+          this.clear()
 
-        this.onLoginSubmittedListener()
+          this.onLoginSubmittedListener()
+        })
 
       } catch (error) {
         //alert(error.message)

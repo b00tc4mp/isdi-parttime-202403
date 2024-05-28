@@ -3,9 +3,11 @@ import fs from "fs"
 
 import logic from "./logic/index.js"
 
-import utils from "../app/utils.js"
+import utils from "./public/app/utils.js"
 
 const api = express()
+
+api.use(express.static("public"))
 
 const jsonBodyParser = express.json({ strict: true, type: "application/json" })
 
@@ -43,21 +45,23 @@ api.get('/posts', (req, res) => {
   }
 })
 
-api.get('/users', (req, res) => {
-  fs.readFile("./data/users.json", "utf-8", (error, data) => {
-    if (error) {
-      res.status(500).json({ error: error.constructor.name, message: error.message })
-      return
-    }
 
-    // res.setHeader("Content-Type", "application/json") otra opcion de enviar un header
-    // res.send(data) otra opcion de enviar la data
+// este endpoint no es necesario ya que obtenemos a todos los usuarios
+// api.get('/users', (req, res) => {
+//   fs.readFile("./data/users.json", "utf-8", (error, data) => {
+//     if (error) {
+//       res.status(500).json({ error: error.constructor.name, message: error.message })
+//       return
+//     }
 
-    const users = JSON.parse(data)
+//     // res.setHeader("Content-Type", "application/json") otra opcion de enviar un header
+//     // res.send(data) otra opcion de enviar la data
 
-    res.json(users)
-  })
-})
+//     const users = JSON.parse(data)
+
+//     res.json(users)
+//   })
+// })
 
 
 // function jsonBodyParser(req, res, next) {  En vez de montar nosotros el jsonBodyParser, lo utilizamos de forma nativa de express
@@ -124,6 +128,29 @@ api.post("/users", jsonBodyParser, (req, res) => {
 
   }
 })
+
+
+api.post("/users/auth", jsonBodyParser, (req, res) => {
+
+  const { username, password } = req.body
+  try {
+    logic.authenticateUser(username, password, error => {
+
+      if (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+        return
+      }
+
+      res.status(200).send()
+      console.log(`User ${username} authenticated`)
+    })
+
+  } catch (error) {
+    res.status(500).json({ error: error.constructor.name, message: error.message })
+  }
+})
+
+
 
 
 api.post("/posts", jsonBodyParser, (req, res) => {

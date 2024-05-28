@@ -1,5 +1,5 @@
 import data from "../data/index.js"
-import { ContentError, DuplicityError, MatchError } from "../error.js"
+import { ContentError, DuplicityError, MatchError, SystemError } from "../error.js"
 
 const logic = {}
 
@@ -67,7 +67,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
   })
 }
 
-logic.loginUser = (username, password) => {
+logic.authenticateUser = (username, password, callback) => {
 
   if (!USERNAME_REGEX.test(username)) {
     throw new ContentError("❌ Username is not valid ❌")
@@ -77,16 +77,29 @@ logic.loginUser = (username, password) => {
     throw new ContentError("❌ Password is not valid ❌")
   }
 
-  let userFound = data.findUser((user) => user.username === username)
+  data.findUser((user) => user.username === username, (error, userFound) => {
 
-  if (!userFound) {
-    //alert("❌Login incorrecto ❌")
-    throw new MatchError("❌ User not found ❌")
-  }
-  if (userFound.password !== password) {
-    throw new MatchError("❌ Wrong password ❌")
-  }
-  sessionStorage.username = username
+    if (error) {
+      callback(error)
+      return
+    }
+
+    if (!userFound) {
+      //alert("❌Login incorrecto ❌")
+      callback(new MatchError("❌ User not found ❌"))
+
+      return
+
+    }
+    if (userFound.password !== password) {
+      callback(new MatchError("❌ Wrong password ❌"))
+
+      return
+    }
+
+    callback(null, userFound.username)
+  })
+
 }
 
 logic.isUserLoggedIn = () => {
@@ -104,20 +117,25 @@ logic.logetUser = () => {
   delete sessionStorage.username
 }
 
-logic.getName = () => {
-  let user = data.findUser((user) => {
-    return user.username === sessionStorage.username
+// logic.getUserName = () => {
+//   let user = data.findUser((user) => {
+//     return user.username === sessionStorage.username
+//   })
+
+//   return user.username
+// }
+
+logic.getUserName = (callback) => {
+
+
+  data.findUser((user) => user.username === "Luna", (error, users) => {
+    if (error) {
+      callback(new SystemError(error.message))
+      return
+    }
+
+    callback(null, users)
   })
-
-  return user.name
-}
-
-logic.getUserName = () => {
-  let user = data.findUser((user) => {
-    return user.username === sessionStorage.username
-  })
-
-  return user.username
 }
 
 logic.logoutUser = () => {
@@ -131,10 +149,12 @@ logic.getAllPosts = (callback) => {
     if (error) {
       callback(new SystemError(error.message))
 
-    } else {
+      return
 
-      callback(null, posts)
     }
+
+    callback(null, posts)
+
   })
 }
 
