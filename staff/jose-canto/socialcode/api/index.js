@@ -3,7 +3,7 @@ import fs from "fs"
 
 import logic from "./logic/index.js"
 
-import utils from "./public/app/utils.js"
+
 
 const api = express()
 
@@ -143,13 +143,14 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
 
       res.status(200).send()
       console.log(`User ${username} authenticated`)
+      //console.log("User " + username + " authenticated")
+
     })
 
   } catch (error) {
     res.status(500).json({ error: error.constructor.name, message: error.message })
   }
 })
-
 
 
 
