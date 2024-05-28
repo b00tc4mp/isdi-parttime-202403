@@ -12,12 +12,41 @@
 
 ```js
 const xhr = new XMLHttpRequest
+xhr.onload = () => {
+    debugger
+    
+    if (xhr.status === 201) {
+        console.log('user registered')
+        return
+    }
+    const { error, message } = JSON.parse(xhr.response)
+    console.error(error, message)
+}
+
+xhr.open('POST', 'http://localhost:8080/users')
+
+const body = {name:'Peter',surname:'Grillo',email:'pepito@grillo.com',bodyname:'pepitogrillo',password:'123123123', passwordRepeat:'123123123'}
+
+const json = JSON.stringify(body)
+
+xhr.setRequestHeader('Content-Type', 'application/json')
+xhr.send(json)
+```
+
+- authenticate user
+
+```sh
+🐖 curl -X POST http://localhost:8080/users/auth -H "Content-Type: application/json" -d '{"username":"Jack","password":"1234"}' -v
+```
+
+```js
+const xhr = new XMLHttpRequest
 
 xhr.onload = () => {
     debugger
 
-    if (xhr.status === 201) {
-        console.log('user registered')
+    if (xhr.status === 200) {
+        console.log('user authenticated')
 
         return
     }
@@ -27,19 +56,18 @@ xhr.onload = () => {
     console.error(error, message)
 }
 
-xhr.open('POST', 'http://localhost:8080/users')
+xhr.open('POST', 'http://localhost:8080/users/auth')
 
-const user = {name:'Peter',surname:'Grillo',email:'pepito@grillo.com',username:'pepitogrillo',password:'123123123', passwordRepeat:'123123123'}
+const body = {username:'pepitogrillo',password:'123123123'}
 
-const json = JSON.stringify(user)
+const json = JSON.stringify(body)
 
 xhr.setRequestHeader('Content-Type', 'application/json')
 xhr.send(json)
+
 ```
 
 - list posts
-
-    Expand Down
 
 ```sh
 🐖 curl http://localhost:8080/posts -v
