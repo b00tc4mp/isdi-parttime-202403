@@ -2,7 +2,8 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "errors.js",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
     "start": "node .",
     "inspect": "node --inspect-brk .",

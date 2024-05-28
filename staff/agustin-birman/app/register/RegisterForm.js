@@ -35,16 +35,41 @@ class RegisterForm extends FormWithFeedback {
         this.onSubmit(event => {
             event.preventDefault()
 
-            const name = registerForm.getName()
-            const surname = registerForm.getSurname()
-            const email = registerForm.getEmail()
-            const username = registerForm.getUsername()
-            const password = registerForm.getPassword()
-            const passwordRepeat = registerForm.getPasswordRepeat()
+            const name = this.getName()
+            const surname = this.getSurname()
+            const email = this.getEmail()
+            const username = this.getUsername()
+            const password = this.getPassword()
+            const passwordRepeat = this.getPasswordRepeat()
 
-            this.onRegisterSubmitListener(name, surname, email, username, password, passwordRepeat)
+            try {
+                userLogic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+                    if (error) {
+                        this.setFeedback(error.message + ', please, correct it')
+
+                        return
+                    }
+
+                    this.clear()
+
+                    this.setFeedback('user successfully registered', 'success')
+
+                    this.onRegisterListener()
+                })
+            } catch (error) {
+                if (error instanceof ContentError)
+                    this.setFeedback(error.message + ', please, correct it')
+                else if (error instanceof MatchError)
+                    this.setFeedback(error.message + ', please, retype them')
+                else if (error instanceof DuplicityError)
+                    this.setFeedback(error.message + ', please, enter new one')
+                else
+                    this.setFeedback('sorry, there was an error, please try again later')
+            }
         })
     }
+
+
 
     getName() {
         const nameField = this.children[0]
@@ -82,7 +107,7 @@ class RegisterForm extends FormWithFeedback {
         return passwordFieldRepeat.getValue()
     }
 
-    onRegisterSubmit(listener) {
-        this.onRegisterSubmitListener = listener
+    onRegister(listener) {
+        this.onRegisterListener = listener
     }
 }

@@ -31,8 +31,8 @@ class SystemError extends Error {
 }
 
 export {
+    ContentError,
     MatchError,
     DuplicityError,
-    SystemError,
-    ContentError
+    SystemError
 }

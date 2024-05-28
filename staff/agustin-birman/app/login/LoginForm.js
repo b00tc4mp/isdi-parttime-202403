@@ -28,26 +28,32 @@ class LoginForm extends FormWithFeedback {
         this.onSubmit(event => {
             event.preventDefault()
 
-            const username = loginForm.getUsername()
-            const password = loginForm.getPassword()
+            const username = this.getUsername()
+            const password = this.getPassword()
 
             this.onLoggedInListener(username, password)
 
             try {
-                userLogic.loginUser(username, password)
+                userLogic.loginUser(username, password, error => {
+                    if (error) {
+                        this.setFeedback(error.message + ', please, correct it')
 
-                loginForm.clear()
+                        return
+                    }
 
-                loginForm.setFeedback('user successfully logged in', 'success')
+                    this.clear()
 
-                setTimeout(() => location.href = '../home', 1000)
+                    this.setFeedback('user successfully logged in', 'success')
+
+                    setTimeout(() => location.href = '../home', 1000)
+                })
             } catch (error) {
                 if (error instanceof ContentError)
-                    loginForm.setFeedback(error.message + ', please, correct it')
+                    this.setFeedback(error.message + ', please, correct it')
                 else if (error instanceof MatchError)
-                    loginForm.setFeedback('wrong credentials')
+                    this.setFeedback('wrong credentials')
                 else
-                    loginForm.setFeedback('sorry, there was an error, please try again later')
+                    this.setFeedback('sorry, there was an error, please try again later')
             }
         }
         )
