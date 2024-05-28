@@ -20,7 +20,7 @@ logic.registerUser = (email, username, password, passwordRepeat) => {
         throw new MatchError("passwords don't match")
 
 
-    let userRegistered = data.findUser(user => { return user.email === email || user.username === username })
+    let userRegistered = data.findUser(user => user.email === email || user.username === username)
 
     if (userRegistered)
         throw new DuplicityError("user already exists")

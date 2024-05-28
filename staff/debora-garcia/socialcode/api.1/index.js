@@ -61,11 +61,6 @@ api.post("/users", (req, res) => {
                     return
                 }
 
-                if (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error })
-
-                    return
-                }
                 //201 se usa cuando se crea algo, y se envia un un body vacio.
                 res.status(201).send()
             })
@@ -104,11 +99,6 @@ api.post("/posts", (req, res) => {
                     return
                 }
 
-                if (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error })
-
-                    return
-                }
                 res.status(201).send()
             })
         })

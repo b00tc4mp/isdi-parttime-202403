@@ -1,3 +1,5 @@
+import data from "../data/index.js" // importamos el objeto data
+import { ContentError, DuplicityError, MatchError } from "../errors.js"
 const logic = {}
 //creamos un metodo para el objeto logic para almacenar los datos de los usuarios. Modelizar las reglas de negocio
 
@@ -5,7 +7,8 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+")
 const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
-logic.registerUser = (email, username, password, passwordRepeat) => {
+//añadimos el callback para poder trabajar en asincronia
+logic.registerUser = (email, username, password, passwordRepeat, callback) => {
 
     if (!EMAIL_REGEX.test(email)) // .test funciona comprobamndo que el valor que lo pases contenga esos caracteres
         throw new ContentError("email is not valid")
@@ -20,19 +23,39 @@ logic.registerUser = (email, username, password, passwordRepeat) => {
         throw new MatchError("passwords don't match")
 
 
-    let userRegistered = data.findUser(user => { return user.email === email || user.username === username })
+    // let userRegistered = data.findUser(user => user.email === email || user.username === username) tenemos que hacerlo asyncro
 
-    if (userRegistered)
-        throw new DuplicityError("user already exists")
+    // find user tiene (condicion,callback) que a la vez callback tiene (error,user)
+    // si no hay error del sistema devuelve (null y user)
+    data.findUser(user => user.email === email || user.username === username, (error, user) => {
+        if (error) { // este es el error del sistema de data (error de archivo)
+            callback(error)
+
+            return
+        }
+        // aqui lanzaria error si ya se encuentra usuario
+        if (user) {
+            callback(new DuplicityError("user already exists"))
+
+            return
+        }
 
 
-    const user = {
-        email: email,
-        username: username,
-        password: password
-    }
+        const newUser = {
+            email: email,
+            username: username,
+            password: password
+        }
+        //insertUser recibe dos parametros (user,callback) que el callback es el error
+        data.insertUser(newUser, error => {
+            if (error) {
+                callback(error)
 
-    data.insertUser(user)
+                return
+            }
+            callback(null)
+        })
+    })
 
 }
 
@@ -105,3 +128,5 @@ logic.createPost = (title, image, description) => {
 logic.getLoggedInUsername = () => sessionStorage.username
 
 logic.deletePost = id => data.deletePost(post => post.id === id)
+
+export default logic
