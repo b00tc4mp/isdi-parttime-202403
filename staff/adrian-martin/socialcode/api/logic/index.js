@@ -61,20 +61,32 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     })
 }
 
-logic.loginUser = (username, password) => {
+logic.authenticateUser = (username, password, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
 
-    const user = data.findUser(user => user.username === username)
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
 
-    if (!user)
-        throw new MatchError('user not found')
+            return
+        }
 
-    if (user.password !== password)
-        throw new MatchError('wrong password')
+        if (!user) {
+            callback(new MatchError('user not found'))
+
+            return
+        }
+        if (user.password !== password) {
+            callback(new MatchError('wrong password'))
+
+            return
+        }
+        callback(null)
+    })
 }
 
 logic.isUserLoggedIn = () => { !!sessionStorage.username }
@@ -96,13 +108,13 @@ logic.logoutUser = () => {
 
 logic.getUsername = callback => {
     data.findUser(user => user.username, (error, posts) => {
-        if(callback)
+        if (callback)
 
-        if (error) {
-            callback(error)
+            if (error) {
+                callback(error)
 
-            return
-        }
+                return
+            }
         callback(null, user)
     })
     return user.name

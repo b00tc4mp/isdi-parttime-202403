@@ -14,6 +14,19 @@ import logic from './index.js'
 //     console.error(error)
 // } 
 
+try {
+    logic.authenticateUser('AdrianGon', '321321321', error => {
+        if (error) {
+            console.error(error)
+
+            return
+        }
+
+        console.log('user authenticated')
+    })
+} catch (error) {
+    console.error(error)
+} 
 
 // logic.getAllPosts( (error, posts) => {
 //     if(error) {
@@ -25,12 +38,12 @@ import logic from './index.js'
 //     console.log(posts)
 // })
 
-logic.getUsername('Pepito', error => {
-    if(error){
-        console.error(error)
+// logic.getUsername('Pepito', error => {
+//     if(error){
+//         console.error(error)
 
-        return
-    }
+//         return
+//     }
 
-    console.log(users)
-})
+//     console.log(users)
+// })

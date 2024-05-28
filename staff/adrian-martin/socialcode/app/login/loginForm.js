@@ -21,13 +21,18 @@ class LoginForm extends FormWithFeedback{
             const password = this.getPassword()
 
             try{
-                logic.loginUser(username, password)
-        
-                this.clear()
-        
-                this.setFeedback('user successfully logged in', 'success')
-                
-                this.onLoggedIn()
+                logic.loginUser(username, password, error => {
+                    if(error){
+                        this.setFeedback(error.message + ', please, correct it')
+
+                        return
+                    }
+                    this.clear()
+            
+                    this.setFeedback('user successfully logged in', 'success')
+                    
+                    this.onLoggedIn()
+                })
             }catch(error){
                 if (error instanceof ContentError) 
                     this.setFeedback(error.message + '. please, repeat it')
@@ -42,9 +47,9 @@ class LoginForm extends FormWithFeedback{
     }
 
         getUsername() {
-            const usernameField = this.children[0]
+            // const usernameField = this.children[0]
 
-            return usernameField.getValue()
+            // return usernameField.getValue()
         }
 
         getPassword() {

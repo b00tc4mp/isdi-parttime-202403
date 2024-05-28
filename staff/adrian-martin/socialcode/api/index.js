@@ -2,7 +2,11 @@ import express from 'express'
 import fs from 'fs'
 import logic from './logic/index.js'
 
+// import { measureMemory } from 'vm'
+
 const api = express()
+
+api.use(express.static('public'))
 
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
@@ -26,6 +30,26 @@ api.post('/users', jsonBodyParser, (req, res) => {
     }
 })
 
+
+api.post('/users/auth', jsonBodyParser, (req, res) => {
+    const {username, password} = req.body
+
+    try {
+        logic.authenticateUser(username, password, error => {
+            if (error) {
+                res.status(500).json({error: error.constructor.name, message: error.message})
+    
+                return
+            }
+    
+            res.status(200).send()
+        })
+    } catch (error) {
+        res.status(500).json({error: error.constructor.name, message: error.message})
+    } 
+})
+
+
 api.get('/posts', (req, res) => {
 
     try {
@@ -39,23 +63,9 @@ api.get('/posts', (req, res) => {
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
+    }logic
 })
 
-api.get('/users', (req, res) => {
-    // TODO use logic here
-
-    fs.readFile('./data/users.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-            return
-        }
-
-        const users = JSON.parse(json)
-        res.json(users)
-    })
-})
 
 api.post('/posts', jsonBodyParser, (req, res) => {
     const post = req.body
