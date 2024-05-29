@@ -1,4 +1,5 @@
-import data from "./data/data.js";
+// import data from "./data/data.js";
+import logic from "./logic/logic.js";
 
 async function testFindUser() {
   try {
@@ -11,13 +12,14 @@ async function testFindUser() {
 
 async function testCreateUser() {
   try {
-    const newuser = await data.createUser({
-      name: "Mr",
-      surname: "Blue",
-      email: "Mr@Blue.com",
-      username: "MrBlue",
-      password: "123412342134",
-    });
+    await logic.createUser(
+      "Mr",
+      "Blue",
+      "mrblue@email.com",
+      "MrBlue",
+      "123123123",
+      "123123123",
+    );
   } catch (error) {
     console.log(error);
   }
@@ -36,14 +38,12 @@ async function testFindPost() {
 
 async function testCreatePost() {
   try {
-    const newPost = await data.createPost({
-      id: "1716319512771-8375259641077482",
-      author: "nill",
-      title: "null",
-      image: ".img",
-      description: "null",
-      date: "null",
-    });
+    await logic.createPost(
+      "MrBlue",
+      "Hello World",
+      "https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png",
+      "console.log('HelloWorld')",
+    );
   } catch (error) {
     console.log(error);
   }
@@ -61,7 +61,7 @@ async function testDeletePost() {
 
 async function testGetPosts() {
   try {
-    const posts = await data.getPosts();
+    const posts = await logic.getPosts();
     console.log(posts);
   } catch (error) {
     console.log(error);
@@ -77,5 +77,10 @@ async function testGetUsers() {
   }
 }
 
-testGetPosts();
-testGetUsers();
+async function testAuthenticateUser() {
+  try {
+    await logic.authenticateUser("MrBlue", "123123123");
+  } catch (error) {
+    console.log(error);
+  }
+}

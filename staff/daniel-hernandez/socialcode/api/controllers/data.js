@@ -1,9 +1,10 @@
 import logic from "../logic/logic.js";
+// TODO async wrapper
 
 const getPosts = async (req, res) => {
   try {
     const posts = await logic.getPosts();
-    res.status(200).json({ data: posts });
+    res.status(200).json({ posts });
   } catch (error) {
     res.status(500).json({
       error: error.constructor.name,
@@ -26,10 +27,12 @@ const getUsers = async (req, res) => {
 
 const createPost = async (req, res) => {
   try {
+    const username = req.headers.authorization.slice(6);
+
     const { title, image, description } = req.body;
 
-    await logic.createPost(title, image, description);
-    res.status(200).json({ msg: "created post" });
+    await logic.createPost(username, title, image, description);
+    res.status(201).send();
   } catch (error) {
     res.status(500).json({
       error: error.constructor.name,
@@ -51,7 +54,7 @@ const createUser = async (req, res) => {
       password,
       repeatedPassword,
     );
-    res.status(200).json({ msg: "created user" });
+    res.status(201).send();
   } catch (error) {
     res.status(500).json({
       error: error.constructor.name,
@@ -75,7 +78,7 @@ const getUser = async (req, res) => {
 const getPost = async (req, res) => {
   try {
     const post = await logic.getPost(req.params.id);
-    res.status(200).json({ post });
+    res.status(201).json({ post });
   } catch (error) {
     res.status(500).json({
       error: error.constructor.name,
@@ -97,6 +100,20 @@ const deletePost = async (req, res) => {
   }
 };
 
+const authUser = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    await logic.authenticateUser(username, password);
+    res.status(200).send();
+  } catch (error) {
+    res.status(500).json({
+      error: error.constructor.name,
+      errormsg: error.message,
+    });
+  }
+};
+
 export {
   getPosts,
   getUsers,
@@ -105,4 +122,5 @@ export {
   getUser,
   getPost,
   deletePost,
+  authUser,
 };

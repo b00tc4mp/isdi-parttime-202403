@@ -21,12 +21,17 @@ class LoginForm extends Form {
       const password = this.getPassword();
 
       try {
-        logic.loginUser(username, password);
+        logic.loginUser(username, password, (error) => {
+          if (error) {
+            loginForm.shakeButton();
+            console.error(`error. please fix or try again later`);
+            return;
+          }
+          loginForm.success("Logged in successfully");
+          loginForm.clear();
 
-        loginForm.success("Logged in successfully");
-        loginForm.clear();
-
-        this.onLoggedInListener();
+          this.onLoggedInListener();
+        });
       } catch (error) {
         if (
           error instanceof ContentError ||

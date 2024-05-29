@@ -8,12 +8,12 @@ import {
   getUser,
   getPost,
   deletePost,
+  authUser,
 } from "../controllers/data.js";
 
 router.route("/posts").get(getPosts).post(createPost);
-router.route("/posts/:id").get(getPost).delete(deletePost);
 
-router.route("/users").get(getUsers).post(createUser);
-router.route("/users/:username").get(getUser);
+router.route("/users").post(createUser);
+router.route("/users/auth").post(authUser);
 
 export { router as datarouter };

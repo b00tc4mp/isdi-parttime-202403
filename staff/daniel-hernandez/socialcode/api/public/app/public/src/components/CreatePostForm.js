@@ -43,15 +43,25 @@ class CreatePostForm extends Form {
       const description = this.getDescription();
 
       try {
-        logic.createPost(title, image, description);
+        logic.createPost(title, image, description, (error) => {
+          if (error) {
+            if (error instanceof ContentError) {
+              this.setFeedback(error.message);
+            } else {
+              this.setFeedback("error. please try again later");
+            }
 
-        this.clear();
-        this.onPostCreatedListener();
+            return;
+          }
+
+          this.clear();
+          this.onPostCreatedListener();
+        });
       } catch (error) {
         if (error instanceof ContentError) {
-          createPostForm.setFeedback(`${error.message}`);
+          this.setFeedback(`${error.message}`);
         } else {
-          createPostForm.setFeedback(`Error. Please try again later.`);
+          this.setFeedback(`Error. Please try again later.`);
         }
       }
     });

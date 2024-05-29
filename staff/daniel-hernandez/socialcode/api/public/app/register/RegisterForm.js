@@ -48,12 +48,19 @@ class RegisterForm extends Form {
           username,
           password,
           repeatedPassword,
+          (error) => {
+            if (error) {
+              registerForm.shakeButton();
+              registerForm.warnAll(`${error.message}`);
+              return;
+            }
+
+            registerForm.success("Registered succesfully, thank you");
+            registerForm.clear();
+
+            this.onRegisteredListener();
+          },
         );
-
-        registerForm.success("Registered succesfully, thank you");
-        registerForm.clear();
-
-        this.onRegisteredListener();
       } catch (error) {
         if (
           error instanceof ContentError ||

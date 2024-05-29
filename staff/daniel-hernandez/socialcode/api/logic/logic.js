@@ -4,7 +4,7 @@ import {
   ContentError,
   DuplicityError,
   MatchError,
-} from "../errors.js";
+} from "../errors/errors.js";
 
 const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -14,7 +14,6 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/;
 
 const logic = {};
 
-//TODO logic.loginUser
 //TODO logic.isUserLoggedIn
 //TODO logic.logoutUser
 //TODO logic.getUsername && getUsersName
@@ -22,7 +21,7 @@ const logic = {};
 logic.getPosts = async () => {
   try {
     const posts = await data.getPosts();
-    return posts;
+    return posts.reverse();
   } catch (error) {
     throw new SystemError(`failed fetching posts: ${error.message}`);
   }
@@ -37,7 +36,7 @@ logic.getUsers = async () => {
   }
 };
 
-logic.createPost = async (title, image, description) => {
+logic.createPost = async (username, title, image, description) => {
   try {
     function generateId() {
       const timestamp = Date.now().toString(36);
@@ -58,10 +57,14 @@ logic.createPost = async (title, image, description) => {
     ) {
       throw new ContentError("Description is not valid.");
     }
+    const user = await data.findUser((user) => user.username === username);
+    if (!user) {
+      throw new MatchError("user not found");
+    }
 
     const post = {
       id: generateId(),
-      author: "nill",
+      author: username,
       title,
       image,
       description,
@@ -176,6 +179,29 @@ logic.deletePost = async (id) => {
     await data.deletePost((post) => post.id === id);
   } catch (error) {
     throw new SystemError(`failed to delete post: ${error.message}`);
+  }
+};
+
+logic.authenticateUser = async (username, password) => {
+  try {
+    if (!USERNAME_REGEX.test(username)) {
+      throw new ContentError("username is not valid");
+    }
+
+    if (!PASSWORD_REGEX.test(password)) {
+      throw new ContentError("password is not valid");
+    }
+
+    const user = await data.findUser((user) => user.username === username);
+    if (!user) {
+      throw new MatchError("user not found");
+    }
+
+    if (user.password !== password) {
+      throw new MatchError("wrong password");
+    }
+  } catch (error) {
+    throw new SystemError(`failed to authenticate user: ${error.message}`);
   }
 };
 
