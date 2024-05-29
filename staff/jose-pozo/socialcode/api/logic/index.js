@@ -1,12 +1,15 @@
+import data from '../data/index.js'
+import { ContentError, DuplicityError, MatchError } from '../errors.js'
+
 const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[\w-]+$/
-const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
+const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
-logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
+logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     if (!NAME_REGEX.test(name))
         throw new ContentError('name is not valid')
 
@@ -25,20 +28,37 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
 
-    let user = data.findUser(user => user.email === email || user.username === username)
+    data.findUser(user => user.email === email || user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
 
-    if (user)
-        throw new DuplicityError('user already exists')
+            return
+        }
 
-    user = {
-        name: name,
-        surname: surname,
-        email: email,
-        username: username,
-        password: password
-    }
+        if (user) {
+            callback(new DuplicityError('user already exists'))
 
-    data.insertUser(user)
+            return
+        }
+
+        const newUser = {
+            name: name,
+            surname: surname,
+            email: email,
+            username: username,
+            password: password
+        }
+
+        data.insertUser(newUser, error => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            callback(null)
+        })
+    })
 }
 
 logic.loginUser = (username, password) => {
@@ -118,3 +138,4 @@ logic.createPost = (title, image, description) => {
     data.insertPost(post)
 }
 
+export default logic

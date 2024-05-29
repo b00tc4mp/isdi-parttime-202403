@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "- list users",
   "dependencies": {
     "express": "^4.19.2"
   }

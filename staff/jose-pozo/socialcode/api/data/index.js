@@ -1,9 +1,10 @@
 import fs from 'fs'
+import { SystemError } from '../errors.js'
 
 const data = {}
 
 data.findUser = (condition, callback) => {
-    fs.readFile('./data/users.json', 'utf-8', (error, json) => {
+    fs.readFile('./data/users.json', 'utf8', (error, json) => {
         if (error) {
             callback(new SystemError(error.message))
 
@@ -18,67 +19,114 @@ data.findUser = (condition, callback) => {
 
         callback(null, user)
     })
-
 }
 
-data.insertUser = user => {
-    let usersJson = localStorage.users
+data.insertUser = (user, callback) => {
+    fs.readFile('./data/users.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
-    if (!usersJson) usersJson = '[]'
+            return
+        }
 
-    const users = JSON.parse(usersJson)
+        if (!json) json = '[]'
 
-    users.push(user)
+        const users = JSON.parse(json)
 
-    usersJson = JSON.stringify(users)
+        users.push(user)
 
-    localStorage.users = usersJson
+        const newJson = JSON.stringify(users)
+
+        fs.writeFile('./data/users.json', newJson, error => {
+            if (error) {
+                callback(new SystemError(error.message))
+
+                return
+            }
+
+            callback(null)
+        })
+    })
 }
 
-data.findPosts = callback => {
-    let postsJson = localStorage.posts
+data.findPosts = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
-    if (!postsJson) postsJson = '[]'
+            return
+        }
 
-    const posts = JSON.parse(postsJson)
+        if (!json) json = '[]'
 
-    const filtered = posts.filter(callback)
+        const posts = JSON.parse(json)
 
-    return filtered
+        const filtered = posts.filter(condition)
+
+        callback(null, filtered)
+    })
 }
 
-data.insertPost = post => {
-    let postsJson = localStorage.posts
+data.insertPost = (post, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
-    if (!postsJson) postsJson = '[]'
+            return
+        }
 
-    const posts = JSON.parse(postsJson)
+        if (!json) json = '[]'
 
-    post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+        const posts = JSON.parse(json)
 
-    posts.push(post)
+        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
 
-    postsJson = JSON.stringify(posts)
+        posts.push(post)
 
-    localStorage.posts = postsJson
+        const newJson = JSON.stringify(posts)
+
+        fs.writeFile('./data/posts.json', newJson, error => {
+            if (error) {
+                callback(new SystemError(error.message))
+
+                return
+            }
+
+            callback(null)
+        })
+    })
 }
 
-data.deletePost = callback => {
-    let postsJson = localStorage.posts
+data.deletePost = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
-    if (!postsJson) postsJson = '[]'
+            return
+        }
 
-    const posts = JSON.parse(postsJson)
+        if (!json) json = '[]'
 
-    const index = posts.findIndex(callback)
+        const posts = JSON.parse(json)
 
-    if (index > -1) {
-        posts.splice(index, 1)
+        const index = posts.findIndex(condition)
 
-        postsJson = JSON.stringify(posts)
+        if (index > -1) {
+            posts.splice(index, 1)
 
-        localStorage.posts = postsJson
-    }
+            const newJson = JSON.stringify(posts)
+
+            fs.writeFile('./data/posts.json', newJson, error => {
+                if (error) {
+                    callback(new SystemError(error.message))
+
+                    return
+                }
+
+                callback(null)
+            })
+        } else callback(null)
+    })
 }
 
 export default data

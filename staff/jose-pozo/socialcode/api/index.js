@@ -1,9 +1,33 @@
 import express from 'express'
 import fs from 'fs'
+import logic from './logic/index.js'
 
 const api = express()
 
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+
+api.get('/', (req, res) => res.send('Hello World!'))
+
+api.post('/users', jsonBodyParser, (req, res) => {
+    const { name, surname, email, username, password, passwordRepeat } = req.body
+    try {
+        logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.status(201).send()
+        })
+    }
+    catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+
+
 
 api.get('/posts', (req, res) => {
     fs.readFile('./data/posts.json', 'utf-8', (error, json) => {
@@ -56,33 +80,6 @@ api.get('/users', (req, res) => {
 //         })
 //     } else next()
 // }
-
-api.post('/users', jsonBodyParser, (req, res) => {
-    const user = req.body
-
-    fs.readFile('./data/users.json', 'utf-8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-            return
-        }
-
-        const users = JSON.parse(json)
-        users.push(user)
-
-        const newJson = JSON.stringify(users)
-
-        fs.writeFile('./data/users.json', newJson, error => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                return
-            }
-
-            res.status(201).send()
-        })
-    })
-})
 
 
 api.post('/posts', jsonBodyParser, (req, res) => {
