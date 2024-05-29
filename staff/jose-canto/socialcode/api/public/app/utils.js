@@ -14,3 +14,4 @@ utils.getDateStringDayMonthYearFormat = () => {
   return date
 }
 
+export default utils

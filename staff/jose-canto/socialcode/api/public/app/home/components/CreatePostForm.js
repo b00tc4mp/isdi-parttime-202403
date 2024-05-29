@@ -49,17 +49,29 @@ class CreatePostForm extends FormWithFeedback {
       const description = this.getDescription()
 
       try {
-        logic.createPost(title, image, description)
+        logic.createPost(title, image, description, error => {
 
-        this.clear()
+          if (error) {
 
-        this.onPostCreatedListener()
+            if (error instanceof ContentError) {
+              this.setFeedback(error.message + ", please correct it")
+            } else
+
+              this.setFeedback("Sorry, there was an error, please try again later")
+
+            return
+          }
+          this.clear()
+
+          this.onPostCreatedListener()
+        })
 
       } catch (error) {
         if (error instanceof ContentError) {
           this.setFeedback(error.message + ", please correct it")
+
         } else {
-          this.setFeedback("Sorry, there was an error, ples try again later")
+          this.setFeedback("Sorry, there was an error, please try again later")
         }
       }
     })

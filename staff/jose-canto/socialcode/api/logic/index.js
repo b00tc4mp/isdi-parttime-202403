@@ -1,5 +1,6 @@
 import data from "../data/index.js"
 import { ContentError, DuplicityError, MatchError, SystemError } from "../error.js"
+import utils from "../public/app/utils.js"
 
 const logic = {}
 
@@ -91,6 +92,7 @@ logic.authenticateUser = (username, password, callback) => {
       return
 
     }
+    
     if (userFound.password !== password) {
       callback(new MatchError("❌ Wrong password ❌"))
 
@@ -111,10 +113,6 @@ logic.isUserLoggedIn = () => {
   // return sessionStorage.username ? true : false
 
   return !!sessionStorage.username
-}
-
-logic.logetUser = () => {
-  delete sessionStorage.username
 }
 
 // logic.getUserName = () => {
@@ -147,18 +145,21 @@ logic.getAllPosts = (callback) => {
   data.findPosts(() => true, (error, posts) => {
 
     if (error) {
-      callback(new SystemError(error.message))
+      callback(error.message)
 
       return
-
     }
 
-    callback(null, posts)
-
+    callback(null, posts.reverse())
   })
 }
 
-logic.createPost = (title, image, description) => {
+logic.createPost = (username, title, image, description, callback) => {
+
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("❌ Username is not valid ❌")
+  }
+
   if (typeof title !== "string" || !title.length || title.length > 30) {
     throw new ContentError("Title is not valid")
   }
@@ -171,15 +172,40 @@ logic.createPost = (title, image, description) => {
     throw new ContentError("Description is not valid")
   }
 
-  const post = {
-    author: sessionStorage.username,
-    title: title,
-    image: image,
-    description: description,
-    date: utils.getDateStringDayMonthYearFormat(),
-  };
+  data.findUser(user => user.username === username, (error, user) => {
 
-  data.insertPost(post)
+    if (error) {
+
+      callback(error)
+      return
+    }
+
+    if (!user) {
+
+      callback(new MatchError("❌ User not found ❌"))
+
+      return
+    }
+
+    const post = {
+      // id: Date.now(), data.insertPost() nos genera un id automático ya creado 
+      author: username,
+      title: title,
+      image: image,
+      description: description,
+      date: utils.getDateStringDayMonthYearFormat(),
+    };
+
+    data.insertPost(post, error => {
+
+      if (error) {
+
+        callback(error)
+        return
+      }
+      callback(null)
+    })
+  })
 }
 
 logic.getLoggedInUsername = () => { return sessionStorage.username }

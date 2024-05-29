@@ -70,8 +70,25 @@ xhr.send(json)
 🐖 curl http://localhost:8080/posts -v
 ```
 
+```js
+const xhr = new XMLHttpRequest
+xhr.onload = () => {
+    
+    if (xhr.status === 200) {
+        const posts = JSON.parse(xhr.response)
+        console.log("post retrieved", posts)
+        return
+    }
+    const { error, message } = JSON.parse(xhr.response)
+    console.error(error, message)
+}
+
+xhr.open('GET', 'http://localhost:8080/posts')
+xhr.send()
+```
+
 - create post
 
 ```sh
-🐖 curl -X POST http://localhost:8080/posts -H "Content-Type: application/json" -d '{"author":"pepitogrillo","title":"blah","image":"https://m.media-amazon.com/images/I/41xsPjrM-pL._AC_UF350,350_QL50_.jpg","description":"blah blah"}' -v
+curl -X POST http://localhost:8080/posts -H "Authorization: Basic Luna" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://m.media-amazon.com/images/I/41xsPjrM-pL._AC_UF350,350_QL50_.jpg","description":"blah blah"}' -v
 ```

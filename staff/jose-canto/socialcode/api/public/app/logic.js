@@ -130,16 +130,30 @@ logic.logoutUser = () => {
   delete sessionStorage.username
 }
 
-logic.getAllPosts = () => {
+logic.getAllPosts = (callback) => {
 
-  const posts = data.findPosts(() => {
-    return true
-  })
+  const xhr = new XMLHttpRequest
+  xhr.onload = () => {
 
-  return posts.reverse()
+    if (xhr.status === 200) {
+      const posts = JSON.parse(xhr.response)
+
+      callback(null, posts)
+      return
+
+    }
+    const { error, message } = JSON.parse(xhr.response)
+
+    const constructor = errors[error]
+
+    callback(new constructor(message))
+  }
+
+  xhr.open('GET', 'http://localhost:8080/posts')
+  xhr.send()
 }
 
-logic.createPost = (title, image, description) => {
+logic.createPost = (title, image, description, callback) => {
   if (typeof title !== "string" || !title.length || title.length > 30) {
     throw new ContentError("Title is not valid")
   }
@@ -152,15 +166,36 @@ logic.createPost = (title, image, description) => {
     throw new ContentError("Description is not valid")
   }
 
-  const post = {
-    author: sessionStorage.username,
+
+  const xhr = new XMLHttpRequest
+  xhr.onload = () => {
+
+    if (xhr.status === 201) {
+
+      callback(null)
+
+      return
+    }
+    const { error, message } = JSON.parse(xhr.response)
+
+    const constructor = errors[error]
+
+    callback(new constructor(message))
+  }
+
+  xhr.open('POST', 'http://localhost:8080/posts')
+  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+
+  const body = {
     title: title,
     image: image,
     description: description,
-    date: utils.getDateStringDayMonthYearFormat(),
+
   };
 
-  data.insertPost(post)
+  const json = JSON.stringify(body)
+  xhr.send(json)
 }
 
 

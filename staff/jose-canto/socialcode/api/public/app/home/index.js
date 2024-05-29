@@ -1,4 +1,5 @@
 
+import utils from "../utils.js"
 
 if (!logic.isUserLoggedIn()) {
   location.href = "../login";

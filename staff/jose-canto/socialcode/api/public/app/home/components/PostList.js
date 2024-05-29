@@ -8,13 +8,29 @@ class PostList extends Component {
   load() {
     this.removeAll()
 
-    const posts = logic.getAllPosts()
+    try {
 
-    posts.forEach(post => {
-      const post2 = new Post(post)
+      logic.getAllPosts((error, posts) => {
 
-      post2.onPostDeleted(() => this.load())
-      this.add(post2)
-    })
+        if (error) {
+          console.error(error)
+          //TODO show feedback to the user in a better way
+          alert(error.message)
+          return
+        }
+
+        posts.forEach(post => {
+          const post2 = new Post(post)
+
+          post2.onPostDeleted(() => this.load())
+          this.add(post2)
+        })
+      })
+
+    } catch (error) {
+      console.error(error)
+      //TODO show feedback to the user in a better way
+      alert(error.message)
+    }
   }
 }

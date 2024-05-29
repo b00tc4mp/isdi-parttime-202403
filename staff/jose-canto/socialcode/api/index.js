@@ -132,7 +132,11 @@ api.post("/users", jsonBodyParser, (req, res) => {
 
 api.post("/users/auth", jsonBodyParser, (req, res) => {
 
+  // const username = req.body.username
+  // const password = req.body.password
+
   const { username, password } = req.body
+
   try {
     logic.authenticateUser(username, password, error => {
 
@@ -141,7 +145,7 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
         return
       }
 
-      res.status(200).send()
+      res.send()
       console.log(`User ${username} authenticated`)
       //console.log("User " + username + " authenticated")
 
@@ -156,30 +160,55 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
 
 api.post("/posts", jsonBodyParser, (req, res) => {
 
-  const post = req.body
+  // const post = req.body
 
-  fs.readFile("./data/posts.json", "utf-8", (error, existingData) => {
-    if (error) {
-      res.status(500).json({ error: error.constructor.name, message: error.message })
-      return
-    }
+  // fs.readFile("./data/posts.json", "utf-8", (error, existingData) => {
+  //   if (error) {
+  //     res.status(500).json({ error: error.constructor.name, message: error.message })
+  //     return
+  //   }
 
-    const posts = JSON.parse(existingData)
-    posts.push(post)
+  //   const posts = JSON.parse(existingData)
+  //   posts.push(post)
 
-    post.date = utils.getDateStringDayMonthYearFormat()
-    post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+  //   post.date = utils.getDateStringDayMonthYearFormat()
+  //   post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
 
-    const postsJson = JSON.stringify(posts)
+  //   const postsJson = JSON.stringify(posts)
 
-    fs.writeFile("./data/posts.json", postsJson, error => {
+  //   fs.writeFile("./data/posts.json", postsJson, error => {
+  //     if (error) {
+  //       res.status(500).json({ error: error.constructor.name, message: error.message })
+  //       return
+  //     }
+  //     res.status(201).send(post)
+  //   })
+  // })
+
+  const username = req.headers.authorization.slice(6) // cabezera para la autenticacion del usuario
+  const { title, image, description, } = req.body
+
+
+  try {
+
+    logic.createPost(username, title, image, description, (error) => {
+
       if (error) {
+
         res.status(500).json({ error: error.constructor.name, message: error.message })
         return
       }
-      res.status(201).send(post)
+
+      res.status(201).send()
     })
-  })
+
+
+  } catch (error) {
+
+    res.status(500).json({ error: error.constructor.name, message: error.message })
+    return
+
+  }
 })
 
 
