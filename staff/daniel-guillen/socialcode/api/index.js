@@ -8,7 +8,7 @@ api.use(express.static('public'))
 
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
-api.get('/', (req, res) => res.send('Hello, World!'))
+api.get('/', (req, res) => res.send('TAMOS LAAAAIF!!'))
 
 api.post('/users', jsonBodyParser, (req, res) => {
     const { name, surname, email, username, password, passwordRepeat } = req.body
@@ -39,7 +39,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            res.status(200).send()
+            res.send()
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -47,42 +47,28 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 })
 
 api.get('/posts', (req, res) => {
-    // TODO use logic here
+    try {
+        logic.getAllPosts((error, posts) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
 
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+                return
+            }
 
-            return
-        }
-
-        const posts = JSON.parse(json)
-        res.json(posts)
-    })
+            res.json(posts)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
-    const post = req.body
+    const username = req.headers.authorization.slice(6)
 
-    // TODO use logic here
+    const { title, image, description } = req.body
 
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-            return
-        }
-
-        const posts = JSON.parse(json)
-
-        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
-        post.date = new Date().toISOString()
-
-        posts.push(post)
-
-        const newJson = JSON.stringify(posts)
-
-        fs.writeFile('./data/posts.json', newJson, error => {
+    try {
+        logic.createPost(username, title, image, description, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -91,7 +77,9 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 
             res.status(201).send()
         })
-    })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
-api.listen(8080, () => console.log('api is up!'))
+api.listen(8080, () => console.log('TAMOS LAAAAIF!!'))
