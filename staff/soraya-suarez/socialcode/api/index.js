@@ -4,6 +4,8 @@ import logic from './logic/index.js'
 
 const api = express()
 
+api.use(express.static('public'))
+
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.get('/', (req, res) => res.send('Hello, World!'))
@@ -26,58 +28,47 @@ api.post('/users', jsonBodyParser, (req, res) => {
     }
 })
 
-api.get('/posts', (req, res) => {
-    // TODO use logic here
+api.post('/users/auth', jsonBodyParser, (req, res) => {
+    const { username, password } = req.body
 
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+    try {
+        logic.authenticateUser(username, password, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
 
-            return
-        }
+                return
+            }
 
-        const posts = JSON.parse(json)
-        res.json(posts)
-    })
+            res.send()
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
-api.get('/users', (req, res) => {
-    // TODO use logic here
+api.get('/posts', (req, res) => {
+    try {
+        logic.getAllPosts((error, posts) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
 
-    fs.readFile('./data/users.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+                return
+            }
 
-            return
-        }
-
-        const users = JSON.parse(json)
-        res.json(users)
-    })
+            res.json(posts)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
-    const post = req.body
+    const username = req.headers.authorization.slice(6)
 
-    // TODO use logic here
+    const { title, image, description } = req.body
 
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-            return
-        }
-
-        const posts = JSON.parse(json)
-
-        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
-        post.date = new Date().toISOString()
-
-        posts.push(post)
-
-        const newJson = JSON.stringify(posts)
-
-        fs.writeFile('./data/posts.json', newJson, error => {
+    try {
+        logic.createPost(username, title, image, description, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -86,7 +77,9 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 
             res.status(201).send()
         })
-    })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 api.listen(8080, () => console.log('api is up'))

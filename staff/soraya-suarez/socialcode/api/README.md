@@ -29,16 +29,49 @@ xhr.onload = () => {
 
 xhr.open("POST", "http://localhost:8080/users");
 
-const user = {
+const body = {
   name: "Peter",
   surname: "Grillo",
   email: "pepito@grillo.com",
-  username: "pepitogrillo",
+  bodyname: "pepitogrillo",
   password: "123123123",
   passwordRepeat: "123123123",
 };
 
-const json = JSON.stringify(user);
+const json = JSON.stringify(body);
+
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send(json);
+```
+
+- authenticate user
+
+```sh
+🐖 curl -X POST http://localhost:8080/users/auth -H "Content-Type: application/json" -d '{"username":"pepitogrillo","password":"123123123"}' -v
+```
+
+```js
+const xhr = new XMLHttpRequest();
+
+xhr.onload = () => {
+  debugger;
+
+  if (xhr.status === 200) {
+    console.log("user authenticated");
+
+    return;
+  }
+
+  const { error, message } = JSON.parse(xhr.response);
+
+  console.error(error, message);
+};
+
+xhr.open("POST", "http://localhost:8080/users/auth");
+
+const body = { username: "pepitogrillo", password: "123123123" };
+
+const json = JSON.stringify(body);
 
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send(json);
@@ -53,5 +86,5 @@ xhr.send(json);
 - create post
 
 ```sh
-🐖 curl -X POST http://localhost:8080/posts -H "Content-Type: application/json" -d '{"author":"pepitogrillo","title":"blah","image":"https://m.media-amazon.com/images/I/41xsPjrM-pL._AC_UF350,350_QL50_.jpg","description":"blah blah"}' -v
+🐖 curl -X POST http://localhost:8080/posts -H "Authorization: Basic peterpan" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg","description":"blah blah"}' -v
 ```
