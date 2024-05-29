@@ -13,7 +13,7 @@ class CreatePostForm extends FormWithFeedback {
         const descriptionField = new Field('description', 'text', 'Description')
         descriptionField.setPlaceholder('description')
 
-        const cancelButton = new Button('🗑️ Cancel')
+        const cancelButton = new Button('Cancel')
         cancelButton.setType('button')
 
         cancelButton.onClick(event => {
@@ -24,7 +24,8 @@ class CreatePostForm extends FormWithFeedback {
             this.onCancelClickListener()
         })
 
-        const submitButton = new SubmitButton('Create ✍️')
+
+        const submitButton = new SubmitButton('Create')
 
         this.add(titleField)
         this.add(imageField)
@@ -40,19 +41,27 @@ class CreatePostForm extends FormWithFeedback {
             const description = this.getDescription()
 
             try {
-                logic.createPost(title, image, description)
+                logic.createPost(title, image, description, error => {
+                    if (error) {
+                        if (error instanceof ContentError)
+                            this.setFeedback(error.message + ', please, correct it')
+                        else
+                            this.setFeedback('sorry, there was an error, please try again later')
 
-                this.clear()
+                        return
+                    }
 
-            this.onPostCreatedListener()
-        } catch (error) {
-            if (error instanceof ContentError)
-                this.setFeedback(error.message + ', please, correct it')
-            else
-                this.setFeedback('😵 Sorry, please try again later')
-        }
+                    this.clear()
+
+                    this.onPostCreatedListener()
+                })
+            } catch (error) {
+                if (error instanceof ContentError)
+                    this.setFeedback(error.message + ', please, correct it')
+                else
+                    this.setFeedback('sorry, there was an error, please try again later')
+            }
         })
-
     }
 
     getTitle() {
