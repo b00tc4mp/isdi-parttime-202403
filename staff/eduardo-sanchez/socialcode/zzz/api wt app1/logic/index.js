@@ -93,16 +93,10 @@ logic.authenticateUser = (username, password, callback) => {
 }
 
 
-logic.getAllPosts = callback => {
-    data.findPosts(() => true, (error, posts) => {
-        if (error) {
-            callback(error)
+logic.getAllPosts = () => {
+    const posts = data.findPosts(() => true)
 
-            return
-        }
-
-        callback(null, posts.reverse())
-    })
+    return posts.reverse()
 }
 
 logic.createPost = (username, image, description) => {

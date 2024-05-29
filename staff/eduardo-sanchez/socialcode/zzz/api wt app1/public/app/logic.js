@@ -1,6 +1,3 @@
-import data from '../data/index.js'
-import { ContentError, DuplicityError, MatchError } from '../errors.js'
-
 const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -28,91 +25,91 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
 
-    data.findUser(user => user.email === email || user.username === username, (error, user) => {
-        if (error) {
-            callback(error)
+    const xhr = new XMLHttpRequest
 
-            return
-        }
-
-        if (user) {
-            callback(new DuplicityError('user already exists'))
-
-            return
-        }
-
-        const newUser = {
-            name: name,
-            surname: surname,
-            email: email,
-            username: username,
-            password: password
-        }
-
-        data.insertUser(newUser, error => {
-            if (error) {
-                callback(error)
-
-                return
-            }
-
+    xhr.onload = () => {
+        if (xhr.status === 201) {
             callback(null)
-        })
-    })
+
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('POST', 'http://localhost:8080/users')
+
+    const body = { name, surname, email, username, password, passwordRepeat }
+
+    const json = JSON.stringify(body)
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(json)
 }
 
-logic.authenticateUser = (username, password, callback) => {
+logic.loginUser = (username, password, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
 
-    data.findUser(user => user.username === username, (error, user) => {
-        if (error) {
-            callback(error)
+    const xhr = new XMLHttpRequest
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            sessionStorage.username = username
+
+            callback(null)
 
             return
         }
 
-        if (!user) {
-            callback(new MatchError('user not found'))
+        const { error, message } = JSON.parse(xhr.response)
 
-            return
+        const constructor = errors[error]
 
-        }
+        callback(new constructor(message))
+    }
 
-        if (user.password !== password) {
-            callback(new MatchError('wrong password'))
+    xhr.open('POST', 'http://localhost:8080/users/auth')
 
-            return
-        }
+    const body = { username, password }
 
-        callback(null)
-    })
+    const json = JSON.stringify(body)
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(json)
 }
 
+logic.isUserLoggedIn = () => !!sessionStorage.username
 
-logic.getAllPosts = callback => {
-    data.findPosts(() => true, (error, posts) => {
-        if (error) {
-            callback(error)
+logic.logoutUser = () => delete sessionStorage.username
 
-            return
-        }
+logic.getUserName = () => {
+    // const user = data.findUser(user => user.username === sessionStorage.username)
 
-        callback(null, posts.reverse())
-    })
+    // return user.name
 }
 
-logic.createPost = (username, image, description) => {
+logic.getAllPosts = () => {
+    const posts = data.findPosts(() => true)
+
+    return posts.reverse()
+}
+
+logic.createPost = (title, image, description) => {
     if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
     if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
     if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
 
     const post = {
         id: Date.now(),
-        author: username,
+        author: sessionStorage.username,
         title,
         image,
         description,
@@ -122,6 +119,6 @@ logic.createPost = (username, image, description) => {
     data.insertPost(post)
 }
 
-logic.deletePost = id => data.deletePost(post => post.id === id)
+logic.getLoggedInUsername = () => sessionStorage.username
 
-export default logic
+logic.deletePost = id => data.deletePost(post => post.id === id)

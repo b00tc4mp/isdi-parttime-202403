@@ -3,22 +3,35 @@ class PostList extends Component {
         super('section')
 
         this.load()
-
     }
 
     load() {
         this.removeAll()
 
-        const posts = logic.getAllPosts()
+        try {
+            logic.getAllPosts((error, posts) => {
+                if (error) {
+                    console.error(error)
 
-        posts.forEach(post => {
+                    // TODO show feedback to the user in a better way
+                    alert(error.message)
 
-            const post2 = new Post(post)
+                    return
+                }
 
-            post2.onPostDeleted(() => this.load())
+                posts.forEach(post => {
+                    const post2 = new Post(post)
 
-            this.add(post2)
-        })
+                    post2.onPostDeleted(() => this.load())
 
+                    this.add(post2)
+                })
+            })
+        } catch (error) {
+            console.error(error)
+
+            // TODO show feedback to the user in a better way
+            alert(error.message)
+        }
     }
 }

@@ -96,10 +96,28 @@ logic.getUserName = () => {
     // return user.name
 }
 
-logic.getAllPosts = () => {
-    const posts = data.findPosts(() => true)
+logic.getAllPosts = callback => {
+    const xhr = new XMLHttpRequest
 
-    return posts.reverse()
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const posts = JSON.parse(xhr.response)
+
+            callback(null, posts)
+
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('GET', 'http://localhost:8080/posts')
+
+    xhr.send()
 }
 
 logic.createPost = (title, image, description) => {
