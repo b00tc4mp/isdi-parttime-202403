@@ -128,25 +128,49 @@ logic.getAllPosts = callback => {
 
             return
         }
-        callback(null, posts)
+        callback(null, posts.reverse())
     })
 }
 
-logic.createPost = (username, image, description) => {
+logic.createPost = (username, title, image, description, callback) => {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('username is not valid')
     if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
     if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
     if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
 
-    const post = {
-        id: Date.now(),
-        author: username,
-        title,
-        image,
-        description,
-        date: new Date().toISOString()
-    }
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
 
-    data.insertPost(post)
+            return
+        }
+
+        if (!user) {
+            callback(new MatchError('user not found'))
+
+            return
+        }
+
+        const post = {
+            author: username,
+            title,
+            image,
+            description,
+            date: new Date().toISOString()
+        }
+
+        data.insertPost(post, error => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            callback(null)
+        })
+    })
+
 }
 
 

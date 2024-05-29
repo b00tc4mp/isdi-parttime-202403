@@ -68,8 +68,8 @@ addPostButton.setText('+')
 addPostButton.onClick(() => main.add(createPostForm))
 
 header.add(appTitle)
-header.add(logoutButton)
 header.add(usernameTitle)
+header.add(logoutButton)
 
 footer.add(addPostButton)
 
