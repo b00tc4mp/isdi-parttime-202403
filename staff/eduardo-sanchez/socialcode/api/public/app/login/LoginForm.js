@@ -6,7 +6,6 @@ class LoginForm extends FormWithFeedback {
 
         const usernameField = new Field('username', 'text', 'Username')
 
-
         const passwordField = new Field('password', 'password', 'Password')
 
         const submitButton = new SubmitButton('Login')
@@ -22,25 +21,27 @@ class LoginForm extends FormWithFeedback {
             const password = this.getPassword()
 
             try {
-                logic.loginUser(username, password)
+                logic.loginUser(username, password, error => {
+                    if (error) {
+                        this.setFeedback(error.message + ', please, correct it')
 
-                this.clear();
+                        return
+                    }
 
-                this.setFeedback('user successfully logged in', 'success')
+                    this.clear()
 
-                this.onLoggedInListener()
+                    this.setFeedback('user successfully logged in', 'success')
 
+                    this.onLoggedInListener()
+                })
             } catch (error) {
                 if (error instanceof ContentError)
-                    this.setFeedback(error.message + ', please correct it')
-
+                    this.setFeedback(error.message + ', please, correct it')
                 else if (error instanceof MatchError)
                     this.setFeedback('wrong credentials')
-
                 else
-                    this.setFeedback('an unexpected error happened, try again later')
+                    this.setFeedback('sorry, there was an error, please try again later')
             }
-
         })
     }
 

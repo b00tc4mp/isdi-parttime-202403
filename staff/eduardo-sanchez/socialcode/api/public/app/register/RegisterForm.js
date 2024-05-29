@@ -43,13 +43,19 @@ class RegisterForm extends FormWithFeedback {
             const passwordRepeat = registerForm.getPasswordRepeat()
 
             try {
-                logic.registerUser(name, surname, email, username, password, passwordRepeat)
+                logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+                    if (error) {
+                        this.setFeedback(error.message + ', please, correct it')
 
-                this.clear()
+                        return
+                    }
 
-                this.setFeedback('user successfully registered', 'success')
+                    this.clear()
 
-                this.onRegisteredListener()
+                    this.setFeedback('user successfully registered', 'success')
+
+                    this.onRegisteredListener()
+                })
             } catch (error) {
                 if (error instanceof ContentError)
                     this.setFeedback(error.message + ', please, correct it')
@@ -61,7 +67,6 @@ class RegisterForm extends FormWithFeedback {
                     this.setFeedback('sorry, there was an error, please try again later')
             }
         })
-
     }
 
     getName() {
