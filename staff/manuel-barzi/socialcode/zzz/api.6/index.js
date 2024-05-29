@@ -46,26 +46,6 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
     }
 })
 
-api.get('/users/:targetUsername', (req, res) => {
-    const username = req.headers.authorization.slice(6)
-
-    const { targetUsername } = req.params
-
-    try {
-        logic.getUserName(username, targetUsername, (error, name) => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                return
-            }
-
-            res.json(name)
-        })
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
-
 api.get('/posts', (req, res) => {
     try {
         logic.getAllPosts((error, posts) => {
@@ -96,26 +76,6 @@ api.post('/posts', jsonBodyParser, (req, res) => {
             }
 
             res.status(201).send()
-        })
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
-
-api.delete('/posts/:postId', (req, res) => {
-    const username = req.headers.authorization.slice(6)
-
-    const { postId } = req.params
-
-    try {
-        logic.deletePost(username, postId, error => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                return
-            }
-
-            res.status(204).send()
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
