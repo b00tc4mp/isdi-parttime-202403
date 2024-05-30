@@ -27,10 +27,19 @@ const postList = new PostList()
 postList.addClass("Section")
 
 // USER
-const name = logic.getName()
+logic.getUserName((error, userName) => {
+  if (error) {
+    alert(error.message)
+
+    return
+  }
+
+  usernameTitle.setText(userName)
+})
 
 const usernameTitle = new Header(3)
-usernameTitle.setText(name)
+header.add(usernameTitle)
+
 
 // LOGOUT BUTTON
 const logoutButton = new Button
@@ -49,7 +58,6 @@ footer.addClass("Footer")
 
 // ADD AT HEADER
 header.add(logo)
-header.add(usernameTitle)
 header.add(logoutButton)
 
 // ADD AT VIEW (BODY)

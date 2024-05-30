@@ -53,9 +53,23 @@ class Post extends Component {
         confirm.setText("Delete the post?")
 
         confirm.onConfirm(() => {
-          logic.deletePost(post.id)
 
-          this.onPostDeletedListener()
+          try {
+            logic.deletePost(post.id, error => {
+
+              if (error) {
+
+                alert(error.message)
+                return
+              }
+
+              this.onPostDeletedListener()
+            })
+
+          } catch (error) {
+
+            alert(error.message)
+          }
         })
 
         confirm.onCancel(() => {

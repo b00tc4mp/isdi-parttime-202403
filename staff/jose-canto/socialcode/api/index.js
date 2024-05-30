@@ -1,5 +1,5 @@
 import express from 'express'
-import fs from "fs"
+//import fs from "fs"
 
 import logic from "./logic/index.js"
 
@@ -156,6 +156,31 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
   }
 })
 
+api.get("/users/:targetUsername", (req, res) => {
+  const username = req.headers.authorization.slice(6)
+
+  const { targetUsername } = req.params
+
+  try {
+    logic.getUserName(username, targetUsername, (error, name) => {
+
+      if (error) {
+
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+        return
+      }
+
+      res.json(name)
+    })
+
+
+  } catch (error) {
+
+    res.status(500).json({ error: error.constructor.name, message: error.message })
+
+  }
+})
+
 
 
 api.post("/posts", jsonBodyParser, (req, res) => {
@@ -210,6 +235,32 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 
   }
 })
+
+
+api.delete("/posts/:postId", (req, res) => {
+  const username = req.headers.authorization.slice(6) // cabezera para la autenticacion del usuario
+
+  const { postId } = req.params
+
+  try {
+    logic.deletePost(username, postId, (error) => {
+      if (error) {
+
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+        return
+      }
+    })
+
+    res.status(204).send()
+
+
+  } catch (error) {
+
+    res.status(500).json({ error: error.constructor.name, message: error.message })
+
+  }
+})
+
 
 
 api.listen(8080, () => console.log('listening on port http://localhost:8080'))

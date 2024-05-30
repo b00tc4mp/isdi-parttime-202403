@@ -7,8 +7,9 @@ const logic = {}
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
 const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
-
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
+
+const ID_REGEX = /^[0-9]+-[0-9]+$/
 
 logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
   if (!NAME_REGEX.test(name))
@@ -31,6 +32,11 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
   if (password !== passwordRepeat) {
     throw new MatchError("❌ Password don't match ❌")
+  }
+
+  if (typeof callback !== "function") {
+    throw new TypeError("Callback is not a function")
+
   }
 
   data.findUser((user) => user.email === email || user.username === username, (error, user) => {
@@ -78,6 +84,11 @@ logic.authenticateUser = (username, password, callback) => {
     throw new ContentError("❌ Password is not valid ❌")
   }
 
+  if (typeof callback !== "function") {
+    throw new TypeError("Callback is not a function")
+
+  }
+
   data.findUser((user) => user.username === username, (error, userFound) => {
 
     if (error) {
@@ -92,7 +103,7 @@ logic.authenticateUser = (username, password, callback) => {
       return
 
     }
-    
+
     if (userFound.password !== password) {
       callback(new MatchError("❌ Wrong password ❌"))
 
@@ -115,24 +126,52 @@ logic.isUserLoggedIn = () => {
   return !!sessionStorage.username
 }
 
-// logic.getUserName = () => {
-//   let user = data.findUser((user) => {
-//     return user.username === sessionStorage.username
-//   })
 
-//   return user.username
-// }
+logic.getUserName = (username, targetUsername, callback) => {
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("❌ Username is not valid ❌")
+  }
 
-logic.getUserName = (callback) => {
+  if (!USERNAME_REGEX.test(targetUsername)) {
+    throw new ContentError("❌ targetUsername is not valid ❌")
+  }
 
+  if (typeof callback !== "function") {
+    throw new MatchError("Callback is not a function")
+  }
 
-  data.findUser((user) => user.username === "Luna", (error, users) => {
+  data.findUser(user => user.username === username, (error, user) => {
+
     if (error) {
-      callback(new SystemError(error.message))
+      callback(error)
+
       return
     }
 
-    callback(null, users)
+    if (!user) {
+
+      callback(new MatchError("❌ User not found ❌"))
+
+      return
+    }
+
+    data.findUser(user => user.username === targetUsername, (error, targetUser) => {
+
+      if (error) {
+        callback(error)
+
+        return
+      }
+
+      if (!targetUser) {
+
+        callback(new MatchError("❌ targetUser not found ❌"))
+
+        return
+      }
+
+      callback(null, targetUser.name)
+    })
   })
 }
 
@@ -170,6 +209,10 @@ logic.createPost = (username, title, image, description, callback) => {
 
   if (typeof description !== "string" || !description.length || description.length > 600) {
     throw new ContentError("Description is not valid")
+  }
+
+  if (typeof callback !== "function") {
+    throw new MatchError("Callback is not a function")
   }
 
   data.findUser(user => user.username === username, (error, user) => {
@@ -210,7 +253,61 @@ logic.createPost = (username, title, image, description, callback) => {
 
 logic.getLoggedInUsername = () => { return sessionStorage.username }
 
-logic.deletePost = id => data.deletePost(post => post.id === id)
+logic.deletePost = (username, postId, callback) => {
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("❌ Username is not valid ❌")
+  }
 
+  if (!ID_REGEX.test(postId)) {
+    throw new ContentError("❌ postId is not valid ❌")
+  }
+
+
+  if (typeof callback !== "function") {
+    throw new MatchError("Callback is not a function")
+  }
+  data.findUser(user => user.username === username, (error, user) => {
+
+    if (error) {
+
+      callback(error)
+      return
+    }
+
+    if (!user) {
+
+      callback(new MatchError("❌ User not found ❌"))
+
+      return
+    }
+    data.findOnePost(post => post.id === postId, (error, post) => {
+
+      if (error) {
+        callback(error)
+        return
+
+      }
+      if (!post) {
+        callback(new MatchError("❌ Post not found ❌"))
+        return
+      }
+
+      if (post.author !== username) {
+        callback(new MatchError("❌ You can't delete this post ❌"))
+
+        return
+      }
+
+      data.deletePost(post => post.id === postId, (error,) => {
+        if (error) {
+          callback(error)
+          return
+        }
+        callback(null)
+      })
+    })
+
+  })
+}
 
 export default logic

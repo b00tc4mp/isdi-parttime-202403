@@ -18,22 +18,8 @@ import logic from './index.js'
 
 // ? ------------------------------------------------------------
 
-
-
-// logic.getUserName((error, users) => {
-
-//   if (error) {
-//     console.error(error)
-//     return
-//   } else {
-//     console.log(users)
-//   }
-// })
-
-// ? ------------------------------------------------------------
-
 try {
-  logic.authenticateUser("Jack", "1234", (error, userFound) => {
+  logic.getUserName("Jack", "Jack", (error, name) => {
     if (error) {
 
       console.error(error)
@@ -41,14 +27,34 @@ try {
       return
     }
 
-    console.log(`User ${userFound} authenticated`)
+    console.log(`Name : ${name}`)
   })
 
 } catch (error) {
-
   console.error(error)
 
 }
+
+
+// ? ------------------------------------------------------------
+
+// try {
+//   logic.authenticateUser("Jack", "1234", (error, userFound) => {
+//     if (error) {
+
+//       console.error(error)
+
+//       return
+//     }
+
+//     console.log(`User ${userFound} authenticated`)
+//   })
+
+// } catch (error) {
+
+//   console.error(error)
+
+// }
 
 // ? ------------------------------------------------------------
 
@@ -79,6 +85,23 @@ try {
 //     }
 
 //     console.log("posts created")
+//   })
+
+// } catch (error) {
+
+//   console.error(error)
+// }
+
+// try {
+//   logic.deletePost("Jack", "056995665805484874-1717008459451", error => {
+
+//     if (error) {
+//       console.error(error)
+
+//       return
+//     }
+
+//     console.log("posts deleted")
 //   })
 
 // } catch (error) {
