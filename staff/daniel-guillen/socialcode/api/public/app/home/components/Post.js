@@ -24,17 +24,26 @@ class Post extends Component {
         this.add(postDate)
 
         if (post.author === logic.getLoggedInUsername()) {
-            const deleteButton = new Button('Delete 🚽')
+            const deleteButton = new Button('Delete')
 
             deleteButton.onClick(() => {
-
                 const confirm = new Confirm
                 confirm.setText('Delete the post?')
 
                 confirm.onConfirm(() => {
-                    logic.deletePost(post.id)
+                    try {
+                        logic.deletePost(post.id, error => {
+                            if (error) {
+                                alert(error.message)
 
-                    this.onPostDeletedListener()
+                                return
+                            }
+
+                            this.onPostDeletedListener()
+                        })
+                    } catch (error) {
+                        alert(error.message)
+                    }
                 })
 
                 confirm.onCancel(() => this.remove(confirm))
