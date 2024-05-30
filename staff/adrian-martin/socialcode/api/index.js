@@ -49,22 +49,24 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
     } 
 })
 
-// api.post('/home', jsonBodyParser, (req, res) => {
-//     const {username} = req.body
+api.get('/users/:targetUsername', (req, res) => {
+    const username = req.headers.authorization.slice(6)
 
-//     try {
-//         logic.findUser(username, error => {
-//             if (error) {
-//                 res.status(500).json({error: error.constructor.name, message: error.message})
-    
-//                 return
-//             }
-//             res.status(200).send()
-//         })
-//     } catch (error) {
-//         res.status(500).json({error: error.constructor.name, message: error.message})
-//     } 
-// })
+    const { targetUsername } = req.params
+
+    try {
+        logic.getUserName(username, targetUsername, (error, name) => {
+            if(error){
+                res.status(500).json({error: error.constructor.name, message: error.message})
+
+                return
+            }
+            res.json(name)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
 
 
 api.get('/posts', (req, res) => {
@@ -80,7 +82,7 @@ api.get('/posts', (req, res) => {
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
-    }logic
+    }
 })
 
 
@@ -99,6 +101,28 @@ api.post('/posts', jsonBodyParser, (req, res) => {
             }
     
             res.status(201).send()
+        })
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+
+api.delete('/posts/:postId', (req, res) => {
+    const username = req.headers.authorization.slice(6)
+
+    const { postId } = req.params
+    
+
+    try {
+        logic.deletePost(username, postId, error => {
+            if (error) {
+                res.status(500).json({error: error.constructor.name, message: error.message})
+    
+                return
+            }
+    
+            res.status(204).send()
         })
     } catch (error) {
         console.error(error)

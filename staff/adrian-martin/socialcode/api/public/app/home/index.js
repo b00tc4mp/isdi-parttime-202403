@@ -7,11 +7,19 @@ view.addClass('View')
 const header = new Component('header')
 header.addClass('Header')
 
-const userName = logic.getUsername()
+
+logic.getUserName((error, userName) => {
+    if(error){
+        alert(error.message)
+
+        return
+    }
+    
+    usernameTitle.setText(userName)
+})
 
 const usernameTitle = new Heading(3)
-usernameTitle.setText(userName)
-// usernameTitle.setText(sessionStorage.username)
+
 
 const appTitle = new Heading(3)
 appTitle.setText('SocialCode')

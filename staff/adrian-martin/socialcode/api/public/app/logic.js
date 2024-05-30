@@ -4,6 +4,7 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+")
 const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/ //  /^[\w-]+$/
 const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
+const ID_REGEX = /^[0-9]+-[0-9]+$/
 
 logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     if (!NAME_REGEX.test(name))
@@ -23,6 +24,9 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
     if (password !== passwordRepeat)
         throw new MatchError('password don\'t match')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
     const xhr = new XMLHttpRequest
 
@@ -93,38 +97,39 @@ logic.logoutUser = () => {
     delete sessionStorage.username
 }
 
-logic.getUsername = (username, callback) => {
-    data.findUser((user) => {
+logic.getUserName = callback => {
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
-        const xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest
 
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                sessionStorage.username = username
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const name = JSON.parse(xhr.response)
+            
+            callback(null, name)
 
-                callback(null)
-
-                return
-            }
-
-            const { error, message } = JSON.parse(xhr.response)
-
-            const constructor = errors[error]
-
-            callback(new constructor(message))
+            return
         }
-        xhr.open('POST', 'http://localhost:8080/users/auth')
 
-        const body = { username }
+        const { error, message } = JSON.parse(xhr.response)
 
-        const json = JSON.stringify(body)
+        const constructor = errors[error]
 
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.send(json)
-    })
+        callback(new constructor(message))
+    }
+
+    xhr.open('GET', `http://localhost:8080/users/${sessionStorage.username}`)
+
+    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+
+    xhr.send()
 }
 
 logic.getAllPosts = callback => {
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {
@@ -149,9 +154,17 @@ logic.getAllPosts = callback => {
 }
 
 logic.createPost = (title, image, description, callback) => {
-    if (typeof title !== 'string' || !title.length || title.length > 30) throw new ContentError('title is not valid')
-    if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
-    if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
+    if (typeof title !== 'string' || !title.length || title.length > 30)
+        throw new ContentError('title is not valid')
+
+    if (typeof image !== 'string' || !image.startsWith('http'))
+        throw new ContentError('image is not valid')
+
+    if (typeof description !== 'string' || !description.length || description.length > 200)
+        throw new ContentError('description is not valid')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
     const xhr = new XMLHttpRequest
 
@@ -187,6 +200,34 @@ logic.createPost = (title, image, description, callback) => {
 
 logic.getLoggedInUsername = () => sessionStorage.username
 
-logic.deletePost = id => data.deletePost(post => post.id === id)
+logic.deletePost = (postId, callback) => {
+    if (!ID_REGEX.test(postId))
+        throw new ContentError('postId is not a string')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
+    const xhr = new XMLHttpRequest
+
+    xhr.onload = () => {
+        if (xhr.status === 204) {
+            callback(null)
+
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('DELETE', `http://localhost:8080/posts/${postId}`)
+
+    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+
+    xhr.send()
+}
 
 

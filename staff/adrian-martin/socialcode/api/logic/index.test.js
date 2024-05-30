@@ -52,15 +52,43 @@ import logic from './index.js'
 //     console.log(users)
 // })
 
+// try {
+//     logic.createPost('AdrianGon', 'smile4', 'https://imgs.search.brave.com/rY4vd7ChrTffot87xezWVyJZcsjp10UPNHx2EQMRCfs/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFiL2Qx/L2I2LzFiZDFiNjE1/ZTZkYTcwZGQ3MWRj/ODRmZDJmNDdjODBk/LmpwZw', 'hi 2', error => {
+//         if (error) {
+//             console.error(error)
+
+//             return
+//         }
+
+//         console.log('posts created')
+//     })
+// } catch (error) {
+//     console.error(error)
+// }
+
+// try {
+//     logic.deletePost('AdrianGon', '7956804321626201-1716989998965', error => {
+//         if (error) {
+//             console.error(error)
+
+//             return
+//         }
+
+//         console.log('posts deleted')
+//     })
+// } catch (error) {
+//     console.error(error)
+// }
+
 try {
-    logic.createPost('AdrianGon', 'smile4', 'https://imgs.search.brave.com/rY4vd7ChrTffot87xezWVyJZcsjp10UPNHx2EQMRCfs/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFiL2Qx/L2I2LzFiZDFiNjE1/ZTZkYTcwZGQ3MWRj/ODRmZDJmNDdjODBk/LmpwZw', 'hi 2', error => {
+    logic.getUserName('AdrianGon', 'AdrianGon', (error, name) => {
         if (error) {
             console.error(error)
 
             return
         }
 
-        console.log('posts created')
+        console.log('username retrived', name)
     })
 } catch (error) {
     console.error(error)
