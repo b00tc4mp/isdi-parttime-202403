@@ -92,7 +92,6 @@ logic.authenticateUser = (username, password, callback) => {
     })
 }
 
-
 logic.getAllPosts = callback => {
     data.findPosts(() => true, (error, posts) => {
         if (error) {
@@ -105,21 +104,50 @@ logic.getAllPosts = callback => {
     })
 }
 
-logic.createPost = (username, image, description) => {
-    if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
-    if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
-    if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
+logic.createPost = (username, title, image, description, callback) => {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('username is not valid')
 
-    const post = {
-        id: Date.now(),
-        author: username,
-        title,
-        image,
-        description,
-        date: new Date().toISOString()
-    }
+    if (typeof title !== 'string' || !title.length || title.length > 50)
+        throw new ContentError('title is not valid')
 
-    data.insertPost(post)
+    if (typeof image !== 'string' || !image.startsWith('http'))
+        throw new ContentError('image is not valid')
+
+    if (typeof description !== 'string' || !description.length || description.length > 200)
+        throw new ContentError('description is not valid')
+
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
+
+            return
+        }
+
+        if (!user) {
+            callback(new MatchError('user not found'))
+
+            return
+        }
+
+        const post = {
+            author: username,
+            title,
+            image,
+            description,
+            date: new Date().toISOString()
+        }
+
+        data.insertPost(post, error => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            callback(null)
+        })
+    })
 }
 
 logic.deletePost = id => data.deletePost(post => post.id === id)
