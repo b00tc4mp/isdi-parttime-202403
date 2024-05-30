@@ -1,0 +1,17 @@
+.CreatePostForm {
+  position: fixed;
+  bottom: 3rem;
+  width: 55%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px); 
+  padding: 1rem; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.Cancel{
+  border: 0 !important;
+}
