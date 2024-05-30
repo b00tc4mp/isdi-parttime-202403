@@ -51,12 +51,20 @@ class RegisterForm extends FormWithFeedback {
 
 
             try {
-                logic.registerUser(name, surname, email, username, password, passwordRepeat)
+                logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+                    if (error) {
+                        this.setFeedback(error.message + ', please, correct it')
 
-                this.clear()
-                this.setFeedback('user successfuly success', 'success')
+                        return
+                    }
 
-                this.onRegisteredListener()
+                    this.clear()
+
+                    this.setFeedback('user successfully registered', 'success')
+
+                    this.onRegisteredListener()
+                })
+
 
             } catch (error) {
                 if (error instanceof ContentError)

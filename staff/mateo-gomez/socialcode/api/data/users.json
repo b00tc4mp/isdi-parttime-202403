@@ -12,5 +12,29 @@
         "email": "LeBron@nba.es",
         "username": "king_james",
         "password": "123123123"
+    },
+    {
+        "name": "LeBron",
+        "surname": "James",
+        "email": "lebron@james.es",
+        "username": "lebronjames",
+        "password": "123123123",
+        "passwordRepeat": "123123123"
+    },
+    {
+        "name": "LeBron",
+        "surname": "James",
+        "email": "lebron@james.es",
+        "username": "lebronjames",
+        "password": "123123123",
+        "passwordRepeat": "123123123"
+    },
+    {
+        "name": "Anthony",
+        "surname": "Edwards",
+        "email": "anthony@edwards.es",
+        "username": "Ant",
+        "password": "123123123",
+        "passwordRepeat": "123123123"
     }
 ]

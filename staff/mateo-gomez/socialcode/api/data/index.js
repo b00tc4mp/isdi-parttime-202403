@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { SystemError } from '../errors'
+import { SystemError } from '../errors.js'
 
 const data = {}
 
@@ -73,7 +73,7 @@ data.findPosts = (condition, callback) => {
     })
 }
 
-data.insertPost = (post) => {
+data.insertPost = (post, callback) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
         if (error) {
             callback(new SystemError(error.message))

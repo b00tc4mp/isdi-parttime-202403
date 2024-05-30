@@ -28,13 +28,20 @@ class LoginForm extends FormWithFeedback {
 
 
             try {
-                logic.loginUser(username, password)
+                logic.loginUser(username, password, error => {
+                    if (error) {
+                        this.setFeedback(error.message + ', please, correct it')
 
-                this.clear()
+                        return
+                    }
+                    this.clear()
 
-                this.setFeedback('user successfully logged in', 'success')
+                    this.setFeedback('user successfully logged in', 'success')
 
-                this.onLoggedInListener()
+                    this.onLoggedInListener()
+                })
+
+
             } catch (error) {
                 if (error instanceof ContentError)
                     this.setFeedback(error.message + ', please, correct it')
