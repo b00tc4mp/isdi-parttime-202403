@@ -1,16 +1,1 @@
-[
-    {
-        "name": "Pepito",
-        "surname": "Grillo",
-        "email": "pepito@grillo.com",
-        "username": "pepitogrillo",
-        "password": "123123123"
-    },
-    {
-        "name": "Peter",
-        "surname": "Pan",
-        "email": "peter@pan.com",
-        "username": "peterpan",
-        "password": "123123123"
-    }
-]
+[{"name":"Pepito","surname":"Grillo","email":"pepito@grillo.com","username":"pepitogrillo","password":"123123123"},{"name":"Peter","surname":"Pan","email":"peter@pan.com","username":"peterpan","password":"123123123"},{"name":"wendy","surname":"darling","email":"wendy@darling.com","username":"wendydarling","password":"wendydarling"}]

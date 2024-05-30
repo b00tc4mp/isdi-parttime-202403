@@ -67,6 +67,24 @@ data.findPosts = (condition, callback) => {
     })
 }
 
+data.findPost = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
+
+            return
+        }
+
+        if (!json) json = '[]'
+
+        const posts = JSON.parse(json)
+
+        const post = posts.find(condition)
+
+        callback(null, post)
+    })
+}
+
 data.insertPost = (post, callback) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
         if (error) {
