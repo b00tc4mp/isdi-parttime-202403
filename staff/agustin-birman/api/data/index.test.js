@@ -10,15 +10,15 @@ import data from './index.js'
 //     console.log(user)
 // })
 
-data.insertUser({ name: 'James', surname: 'Hook', email: 'james@hook.com', username: 'jameshook', password: '123123123' }, error => {
-    if (error) {
-        console.error(error)
+// data.insertUser({ name: 'James', surname: 'Hook', email: 'james@hook.com', username: 'jameshook', password: '123123123' }, error => {
+//     if (error) {
+//         console.error(error)
 
-        return
-    }
+//         return
+//     }
 
-    console.log('user inserted')
-})
+//     console.log('user inserted')
+// })
 
 // data.findPosts(post => post.date.includes('T19'), (error, posts) => {
 //     if (error) {

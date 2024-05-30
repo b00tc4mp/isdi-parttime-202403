@@ -1,6 +1,7 @@
 // if (!logic.isUserLoggedIn())
 //     location.href = '../login'
 
+
 const view = new Component(document.body)
 view.addClass('View')
 
@@ -8,10 +9,17 @@ const header = new Component('header')
 header.addClass('Header')
 view.add(header)
 
-const userName = userLogic.getUserName()
+userLogic.getUserName((error, userName) => {
+    if (error) {
+        alert(error.message)
+
+        return
+    }
+
+    usernameTitle.setText(userName)
+})
 
 const usernameTitle = new Heading(3)
-usernameTitle.setText(userName)
 header.add(usernameTitle)
 
 const logoutButton = new Button('Logout')

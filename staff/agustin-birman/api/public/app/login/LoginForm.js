@@ -31,8 +31,6 @@ class LoginForm extends FormWithFeedback {
             const username = this.getUsername()
             const password = this.getPassword()
 
-            this.onLoggedInListener(username, password)
-
             try {
                 userLogic.loginUser(username, password, error => {
                     if (error) {
@@ -44,6 +42,8 @@ class LoginForm extends FormWithFeedback {
                     this.clear()
 
                     this.setFeedback('user successfully logged in', 'success')
+
+                    this.onLoggedInListener()
 
                     setTimeout(() => location.href = '../home', 1000)
                 })

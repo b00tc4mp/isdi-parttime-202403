@@ -22,10 +22,11 @@ class PostList extends Component {
                 posts.forEach(post => {
                     const post2 = new Post(post)
 
-                    post2.onPostdeleted(() => this.load())
+                    post2.onPostDeleted(() => this.load())
 
                     this.add(post2)
                 })
+                this.load()
             })
         } catch (error) {
             console.error(error)

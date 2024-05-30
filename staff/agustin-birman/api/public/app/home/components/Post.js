@@ -49,9 +49,19 @@ class Post extends Component {
                 this.add(confirm)
 
                 confirm.onConfirm(() => {
-                    postLogic.deletePost(post.id)
+                    try {
+                        postLogic.deletePost(post.id, error => {
+                            if (error) {
+                                alert(error.message)
 
-                    this.onPostDeletedListener()
+                                return
+                            }
+
+                            this.onPostDeletedListener()
+                        })
+                    } catch (error) {
+                        alert(error.message)
+                    }
                 })
                 confirm.onCancel(() => this.remove(confirm))
             })

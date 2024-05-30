@@ -3,7 +3,6 @@ const userLogic = {}
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[\w-]+$/
-
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 userLogic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
@@ -24,6 +23,9 @@ userLogic.registerUser = (name, surname, email, username, password, passwordRepe
 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
     const xhr = new XMLHttpRequest
 
@@ -58,6 +60,9 @@ userLogic.loginUser = (username, password, callback) => {
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('Password is not valid')
 
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {
@@ -90,10 +95,32 @@ userLogic.isUserLoggedIn = () => { !!sessionStorage.username }
 
 userLogic.logoutUser = () => { delete sessionStorage.username }
 
-userLogic.getUserName = () => {
-    const user = data.findUser(user => user.username === sessionStorage.username)
+userLogic.getUserName = callback => {
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
-    return user.name
+    const xhr = new XMLHttpRequest
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const name = JSON.parse(xhr.response)
+
+            callback(null, name)
+
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('GET', `http://localhost:8080/users/${sessionStorage.username}`)
+
+    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.send()
 }
 
 userLogic.getLoggedInUsername = () => sessionStorage.username

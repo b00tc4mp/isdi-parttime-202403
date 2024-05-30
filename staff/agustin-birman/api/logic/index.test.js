@@ -42,16 +42,44 @@ import logic from "./index.js"
 //     console.error(error)
 // }
 
+// try {
+//     logic.createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+//         if (error) {
+//             console.error(error)
+
+//             return
+//         }
+
+//         console.log('post created')
+//     })
+// } catch (error) {
+//     console.error(error)
+// }
+
+// try {
+//     logic.deletePost('pepitogrillo', '8826114904894882-1716924151128', error => {
+//         if (error) {
+//             console.error(error)
+
+//             return
+//         }
+
+//         console.log('post deleted')
+//     })
+// } catch (error) {
+//     console.error(error)
+// } 
+
 try {
-    logic.createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+    logic.getUserName('peterpan', 'pepitogrillo', (error, name) => {
         if (error) {
             console.error(error)
 
             return
         }
 
-        console.log('post created')
+        console.log('user name retrieved', name)
     })
 } catch (error) {
     console.error(error)
-}
+} 
