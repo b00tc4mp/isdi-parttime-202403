@@ -35,9 +35,6 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     throw new TypeError("callback is not a function")
   }
 
-
-
-
   const xhr = new XMLHttpRequest
   xhr.onload = () => {
     debugger
@@ -85,8 +82,8 @@ logic.loginUser = (username, password, callback) => {
 
       callback(null)
       console.log("user logged in")
-      return
 
+      return
     }
 
     const { error, message } = JSON.parse(xhr.response)
@@ -143,8 +140,6 @@ logic.getUserName = (callback) => {
 
     const { error, message } = JSON.parse(xhr.response)
 
-
-
     const constructor = errors[error]
 
     callback(new constructor(message))
@@ -196,8 +191,9 @@ logic.createPost = (title, image, description, callback) => {
     throw new ContentError("Description is not valid")
   }
 
-  if (typeof callback !== "function")
+  if (typeof callback !== "function") {
     throw new TypeError("callback is not a function")
+  }
 
 
   const xhr = new XMLHttpRequest

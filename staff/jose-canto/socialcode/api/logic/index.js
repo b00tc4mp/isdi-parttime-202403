@@ -39,7 +39,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
   }
 
-  data.findUser((user) => user.email === email || user.username === username, (error, user) => {
+  data.findUser((user) => user.email.toLowerCase() === email.toLowerCase() || user.username.toLowerCase() === username.toLowerCase(), (error, user) => {
 
     if (error) {
       callback(error)
@@ -113,17 +113,6 @@ logic.authenticateUser = (username, password, callback) => {
     callback(null, userFound.username)
   })
 
-}
-
-logic.isUserLoggedIn = () => {
-  // if (sessionStorage.username)
-  //     return true
-
-  // return false
-
-  // return sessionStorage.username ? true : false
-
-  return !!sessionStorage.username
 }
 
 
