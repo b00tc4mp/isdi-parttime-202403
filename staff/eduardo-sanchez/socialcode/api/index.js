@@ -83,4 +83,24 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 
 })
 
+api.delete('/posts/:postId', (req, res) => {
+    const username = req.headers.authorization.slice(6)
+
+    const { postId } = req.params
+
+    try {
+        logic.deletePost(username, postId, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.status(204).send()
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
 api.listen(8080, () => console.log('api is up'))

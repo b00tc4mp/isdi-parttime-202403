@@ -9,6 +9,8 @@ const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
+const ID_REGEX = /^[0-9]+-[0-9]+$/
+
 logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     if (!NAME_REGEX.test(name))
         throw new ContentError('name is not valid')
@@ -27,6 +29,9 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
     data.findUser(user => user.email === email || user.username === username, (error, user) => {
         if (error) {
@@ -67,6 +72,9 @@ logic.authenticateUser = (username, password, callback) => {
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
     data.findUser(user => user.username === username, (error, user) => {
         if (error) {
@@ -117,6 +125,9 @@ logic.createPost = (username, title, image, description, callback) => {
     if (typeof description !== 'string' || !description.length || description.length > 200)
         throw new ContentError('description is not valid')
 
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
     data.findUser(user => user.username === username, (error, user) => {
         if (error) {
             callback(error)
@@ -150,6 +161,59 @@ logic.createPost = (username, title, image, description, callback) => {
     })
 }
 
-logic.deletePost = id => data.deletePost(post => post.id === id)
+logic.deletePost = (username, postId, callback) => {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('username is not valid')
+
+    if (!ID_REGEX.test(postId))
+        throw new ContentError('postId is not valid')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
+
+            return
+        }
+
+        if (!user) {
+            callback(new MatchError('user not found'))
+
+            return
+        }
+
+        data.findPost(post => post.id === postId, (error, post) => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            if (!post) {
+                callback(new MatchError('post not found'))
+
+                return
+            }
+
+            if (post.author !== username) {
+                callback(new MatchError('post author does not match user'))
+
+                return
+            }
+
+            data.deletePost(post => post.id === postId, error => {
+                if (error) {
+                    callback(error)
+
+                    return
+                }
+
+                callback(null)
+            })
+        })
+    })
+}
 
 export default logic

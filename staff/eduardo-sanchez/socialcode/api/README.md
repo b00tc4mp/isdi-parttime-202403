@@ -105,3 +105,9 @@ xhr.send()
 ```sh
 🐖 curl -X POST http://localhost:8080/posts -H "Authorization: Basic peterpan" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg","description":"blah blah"}' -v
 ```
+
+- delete post
+
+```sh
+🐖 curl -X DELETE http://localhost:8080/posts/4007381802005925-1717082344121 -H "Authorization: Basic peterpan" -v
+```
