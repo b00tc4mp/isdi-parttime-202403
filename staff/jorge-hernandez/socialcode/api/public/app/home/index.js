@@ -1,4 +1,4 @@
-if (!sessionStorage.username) {
+if (!logic.isUserLoggedIn()) {
   location.href = '../login'
 }
 
@@ -9,10 +9,18 @@ const header = new Component('header')
 header.addClass('Header')
 view.add(header)
 
-const userName = logic.getUserName()
+
+logic.getUserName((error, userName) => {
+  if (error) {
+    alert(error.message)
+
+    return
+  }
+
+  usernameTitle.setText(userName)
+})
 
 const usernameTitle = new Heading(3)
-usernameTitle.setText('Hola ' + userName)
 header.add(usernameTitle)
 
 const logoutButton = new Button()
@@ -31,28 +39,13 @@ main.add(postList)
 
 const createPostForm = new CreatePostForm()
 
-createPostForm.onSubmit((event) => {
-  event.preventDefault()
-  const title = createPostForm.getTitle()
-  const image = createPostForm.getImage()
-  const description = createPostForm.getDescription()
-  try {
-    logic.createPost(title, image, description)
-    main.remove(createPostForm)
+createPostForm.onPostCreated(() => {
+  main.remove(createPostForm)
 
-    postList.load()
-  } catch (error) {
-    if (error instanceof ContentError) {
-      createPostForm.setFeedback(error.message + ' corrígelo')
-    } else {
-      createPostForm.setFeedback('Hay un error, en breve lo solucionaremos')
-    }
-  }
+  postList.load()
 })
 
-createPostForm.onCancelClick((event) => {
-  event.preventDefault()
-
+createPostForm.onCancelClick(() => {
   main.remove(createPostForm)
 })
 

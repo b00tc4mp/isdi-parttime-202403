@@ -7,8 +7,9 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 10px;
-    width: 250px;
-    margin: 60px;
+    width: 400px;
+    height: 300px;
+    /* margin: 30px; */
     padding: 20px;
     box-shadow: 0 0 10px black;
     background: linear-gradient(to bottom, #1e6091, #3f9bd8);
@@ -45,9 +46,7 @@
 img{
     width: 80%;
 }
-section{
-    width: 80%;
-}
+
 
 h2{
     font-size: 2vh;

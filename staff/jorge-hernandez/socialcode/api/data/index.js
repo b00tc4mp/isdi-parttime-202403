@@ -66,6 +66,24 @@ data.findPosts = (condition, callback) => {
     })
 }
 
+data.findPost = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
+
+            return
+        }
+
+        if (!json) json = '[]'
+
+        const posts = JSON.parse(json)
+
+        const post = posts.find(condition)
+
+        callback(null, post)
+    })
+}
+
 data.insertPost = (post, callback) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
         if (error) {
@@ -74,7 +92,8 @@ data.insertPost = (post, callback) => {
             return
         }
 
-        const posts = JSON.parse(json)
+        const posts = json ? JSON.parse(json) : []
+
 
 
         post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
@@ -82,7 +101,7 @@ data.insertPost = (post, callback) => {
 
         posts.push(post)
 
-        const newJson = JSON.stringify(users)
+        const newJson = JSON.stringify(posts)
 
         fs.writeFile('./data/posts.json', newJson, error => {
             if (error) {
@@ -108,7 +127,7 @@ data.deletePost = (condition, callback) => {
 
         const posts = JSON.parse(json)
 
-        const index = posts.findIndex(post)
+        const index = posts.findIndex(condition)
 
         if (index > -1) {
             posts.splice(index, 1)
