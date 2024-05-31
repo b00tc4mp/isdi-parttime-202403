@@ -9,6 +9,8 @@ const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
+const ID_REGEX = /^[0-9]+-[0-9]+$/
+
 
 logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     //Input validation
@@ -105,11 +107,37 @@ logic.logoutUser = () => {
     delete sessionStorage.username
 }
 
-logic.getUserName = () => {
+logic.getUserName = callback => {
     /* const user = data.findUser(user =>
          user.username === sessionStorage.username)
  
      return user.name*/
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
+    const xhr = new XMLHttpRequest
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const name = JSON.parse(xhr.response)
+
+            callback(null, name)
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+    xhr.open('DELETE', `http://localhost:8080/users/${sessionStorage.username}`)
+
+    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+
+    xhr.send()
+
 }
 
 logic.getAllPosts = callback => {
@@ -176,4 +204,35 @@ logic.createPost = (title, image, description, callback) => {
 
 logic.getLoggedInUsername = () => sessionStorage.username
 
-logic.deletePost = id => data.deletePost(post => post.id === id)
+logic.deletePost = (postId, callback) => {
+    if (!ID_REGEX.test(postId))
+        throw new ContentError('postId is not valid')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
+    const xhr = new XMLHttpRequest
+
+    xhr.onload = () => {
+        if (xhr.status === 204) {
+
+
+            callback(null)
+
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('DELETE', `http://localhost:8080/posts/${postId}`)
+
+    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+
+    xhr.send()
+
+}

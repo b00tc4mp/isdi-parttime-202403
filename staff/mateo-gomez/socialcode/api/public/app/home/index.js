@@ -9,9 +9,20 @@ header.addClass('Header')
 view.add(header)
 
 
-const userName = logic.getUserName()
+logic.getUserName((error, userName) => {
+    if (error) {
+        alert(error.message)
+
+        return
+    }
+
+    usernameTitle.setText(userName)
+})
+
 const usernameTitle = new Heading(3)
-usernameTitle.setText(userName)
+
+
+
 const title = new Heading(1)
 title.setText('SocialCode')
 title.addClass('Title')

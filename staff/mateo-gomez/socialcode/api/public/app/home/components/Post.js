@@ -12,7 +12,7 @@ class Post extends Component {
         postTitle.setText(post.title)
         postTitle.addClass('PostTitle')
 
-        const postImage = new Image
+        const postImage = new Image()
         postImage.setUrl(post.image)
         postImage.addClass('PostImage')
 
@@ -49,9 +49,17 @@ class Post extends Component {
                 confirm.setText('Delete the post?')
 
                 confirm.onConfirm(() => {
-                    logic.deletePost(post.id)
-
-                    this.onPostDeletedListener()
+                    try {
+                        logic.deletePost(post.id, error => {
+                            if (error) {
+                                alert(error.message)
+                                return
+                            }
+                            this.onPostDeletedListener()
+                        })
+                    } catch (error) {
+                        alert(error.message)
+                    }
                 })
 
                 confirm.onCancel(() => this.remove(confirm))

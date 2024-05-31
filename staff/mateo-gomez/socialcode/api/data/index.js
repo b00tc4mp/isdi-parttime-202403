@@ -67,9 +67,9 @@ data.findPosts = (condition, callback) => {
 
         const posts = JSON.parse(json)
 
-        const filtered = posts.filter(condition)
+        const post = posts.find(condition)
 
-        callback(null, filtered)
+        callback(null, post)
     })
 }
 
