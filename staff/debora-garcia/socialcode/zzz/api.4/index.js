@@ -10,10 +10,6 @@ const api = express()
 
 const jsonBodyParser = express.json({ strict: true, type: "application/json" })
 
-api.use(express.static("public"))
-
-
-//TODO logic here
 api.get("/posts", (req, res) => {
     fs.readFile("./data/posts.json", "utf8", (error, json) => {
         if (error) {
@@ -35,6 +31,7 @@ api.get("/", (req, res) => res.send("Hello world"))
 
 api.post("/users", jsonBodyParser, (req, res) => {
     //ahora ya hay separacion de responsabilidades con lo que no usamos data en este archivo
+
     const { email, username, password, passwordRepeat } = req.body
 
     try {
@@ -72,8 +69,6 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
         res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
-
-//TODO Logic here
 // creamos nuevo post
 api.post("/posts", jsonBodyParser, (req, res) => {
     const post = req.body
@@ -107,4 +102,4 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 })
 
 
-api.listen(8080, () => console.log("api is up http://localhost:8080"))
+api.listen(8080, () => console.log("api is up"))

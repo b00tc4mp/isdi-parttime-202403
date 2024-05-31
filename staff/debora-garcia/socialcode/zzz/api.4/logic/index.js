@@ -56,6 +56,7 @@ logic.registerUser = (email, username, password, passwordRepeat, callback) => {
             callback(null)
         })
     })
+
 }
 
 // cambiamos el nombre de loginUser a authentication, ya que no cuardamos estado sesion, no guardamos datos, solo validamos. Las APIs son stateless
@@ -94,15 +95,14 @@ logic.authenticateUser = (username, password, callback) => {
 
 }
 
-//TODO 
 // no manejamos la sessionstrage, ya que lo haremos desde el navegador
+
 logic.getPosts = () => {
     const posts = data.findPosts(() => true)
 
     return posts.reverse()
 }
 
-//TODO
 //enviamos el usuario que es lo que identifica de forma unica al usuario, luego usaremos id
 logic.createPost = (username, title, image, description) => {
     if (typeof title !== "string" || !title.length || title.length > 50) throw new ContentError("title is not valid")
@@ -135,7 +135,6 @@ logic.createPost = (username, title, image, description) => {
 
 //logic.getLoggedInUsername = () => sessionStorage.username
 
-//TODO
 logic.deletePost = id => data.deletePost(post => post.id === id)
 
 export default logic
