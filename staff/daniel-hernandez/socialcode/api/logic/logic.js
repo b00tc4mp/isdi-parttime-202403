@@ -11,12 +11,11 @@ const EMAIL_REGEX =
 const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/;
+const ID_REGEX = /^[a-z0-9]+[a-z0-9]{5}$/;
 
 const logic = {};
 
 //TODO logic.isUserLoggedIn
-//TODO logic.logoutUser
-//TODO logic.getUsername && getUsersName
 
 logic.getPosts = async () => {
   try {
@@ -157,25 +156,72 @@ logic.createUser = async (
 logic.getUser = async (username) => {
   try {
     let user = await data.findUser((user) => user.username === username);
-    if (!user) user = { 404: "user not found" };
+    if (!user) throw new MatchError("user not found");
+
     return user;
   } catch (error) {
     throw new SystemError(`failed to get user: ${error.message}`);
   }
 };
 
+logic.getUsersName = async (username, targetUsername) => {
+  try {
+    if (!USERNAME_REGEX.test(username)) {
+      throw new ContentError("Username is not valid");
+    }
+    if (!USERNAME_REGEX.test(targetUsername)) {
+      throw new ContentError("target username is not valid");
+    }
+
+    const user = await data.findUser((user) => user.username === username);
+    if (!user) throw new MatchError("user not found");
+
+    const targetUser = await data.findUser(
+      (user) => user.username === targetUsername,
+    );
+    if (!targetUser) throw new MatchError("target user was not found");
+
+    return targetUser.name;
+  } catch (error) {
+    throw new SystemError(`failed to get user's name: ${error.message}'`);
+  }
+};
+
 logic.getPost = async (id) => {
   try {
     let post = await data.findPost((post) => post.id === id);
-    if (!post) post = { 404: "post not found" };
+    if (!post) throw new MatchError("post not found");
+
     return post;
   } catch (error) {
     throw new SystemError(`failed to get post: ${error.message}`);
   }
 };
 
-logic.deletePost = async (id) => {
+logic.deletePost = async (username, id) => {
   try {
+    if (!USERNAME_REGEX.test(username)) {
+      throw new ContentError("Username is not valid");
+    }
+
+    if (!ID_REGEX.test(id)) {
+      throw new ContentError("Post ID is not valid");
+    }
+
+    const user = await data.findUser((user) => user.username === username);
+    if (!user) {
+      throw new MatchError("user not found");
+    }
+
+    const post = await data.findPost((post) => post.id === id);
+    if (!post) {
+      throw new MatchError("post not found");
+    }
+
+    if (post.author !== username) {
+      throw new MatchError("post author does not match user");
+    }
+
     await data.deletePost((post) => post.id === id);
   } catch (error) {
     throw new SystemError(`failed to delete post: ${error.message}`);

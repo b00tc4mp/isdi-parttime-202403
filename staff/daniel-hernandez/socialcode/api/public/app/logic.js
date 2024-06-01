@@ -5,6 +5,7 @@ const EMAIL_REGEX =
 const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/;
+const ID_REGEX = /^[a-z0-9]+[a-z0-9]{5}$/;
 
 logic.registerUser = (
   name,
@@ -69,6 +70,10 @@ logic.registerUser = (
     throw new DuplicityError("Username already exists");
   }
 
+  if (typeof callback !== "function") {
+    throw new TypeError("callback is not a function");
+  }
+
   const xhr = new XMLHttpRequest();
 
   xhr.onload = () => {
@@ -103,6 +108,10 @@ logic.loginUser = (username, password, callback) => {
   // password regex
   if (!PASSWORD_REGEX.test(password)) {
     throw new ContentError();
+  }
+
+  if (typeof callback !== "function") {
+    throw new TypeError("callback is not a function");
   }
 
   // const user = data.findUser(username);
@@ -153,24 +162,39 @@ logic.getUsername = () => {
   return sessionStorage.getItem("username");
 };
 
-// logic.getUsersName = () => {
-//   const username = sessionStorage.getItem("username");
+logic.getUsersName = (callback) => {
+  if (typeof callback !== "function") {
+    throw new TypeError("callback is not a function");
+  }
 
-//   // check if username is defined correctly, if not redirect to the login page
-//   if (username === undefined || username === null) {
-//     // for debugging
-//     console.error("username is undefined or null");
-//     window.location.href = "./login";
-//   }
+  const xhr = new XMLHttpRequest();
 
-//   const userKey = "user_" + username.toLowerCase();
-//   const userKeyString = JSON.stringify(userKey);
-//   const userData = JSON.parse(localStorage.getItem(userKeyString));
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      const name = JSON.parse(xhr.response);
 
-//   return userData.name;
-// };
+      callback(null, name);
+      return;
+    }
+
+    const { error, errormsg } = JSON.parse(xhr.response);
+
+    const constructor = errors[error];
+
+    callback(new constructor(errormsg));
+  };
+
+  xhr.open("GET", `http://localhost:8080/users/${sessionStorage.username}`);
+
+  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`);
+  xhr.send();
+};
 
 logic.getAllPosts = (callback) => {
+  if (typeof callback !== "function") {
+    throw new TypeError("callback is not a function");
+  }
+
   const xhr = new XMLHttpRequest();
   xhr.onload = () => {
     if (xhr.status === 200) {
@@ -202,6 +226,9 @@ logic.createPost = (title, image, description, callback) => {
   ) {
     throw new ContentError("Description is not valid.");
   }
+  if (typeof callback !== "function") {
+    throw new TypeError("callback is not a function");
+  }
 
   const xhr = new XMLHttpRequest();
   xhr.onload = () => {
@@ -231,6 +258,32 @@ logic.createPost = (title, image, description, callback) => {
   xhr.send(json);
 };
 
-logic.deletePost = (id) => {
-  data.deletePost((post) => post.Id === id);
+logic.deletePost = (id, callback) => {
+  if (!ID_REGEX.test(id)) {
+    throw new ContentError("post ID is not valid");
+  }
+  if (typeof callback !== "function") {
+    throw new TypeError("callback is not a function");
+  }
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = () => {
+    if (xhr.status === 204) {
+      callback(null);
+
+      return;
+    }
+
+    const { error, errormsg } = JSON.parse(xhr.response);
+
+    const constructor = errors[error];
+
+    callback(new constructor(errormsg));
+  };
+
+  xhr.open("DELETE", `http://localhost:8080/posts/${id}`);
+
+  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`);
+  xhr.send();
 };

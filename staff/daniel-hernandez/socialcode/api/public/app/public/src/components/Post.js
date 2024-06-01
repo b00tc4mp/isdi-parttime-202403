@@ -41,10 +41,21 @@ class Post extends Component {
         });
 
         confirmDialog.onOk(() => {
-          logic.deletePost(post.Id);
-          this.onPostDeletedListener();
-          confirmDialog.close();
-          main.remove(confirmDialog);
+          try {
+            logic.deletePost(post.id, (error) => {
+              if (error) {
+                alert(error.message);
+
+                return;
+              }
+
+              this.onPostDeletedListener();
+              confirmDialog.close();
+              main.remove(confirmDialog);
+            });
+          } catch (error) {
+            alert(error.message);
+          }
         });
       });
 

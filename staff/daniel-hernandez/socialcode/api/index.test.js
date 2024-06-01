@@ -39,10 +39,10 @@ async function testFindPost() {
 async function testCreatePost() {
   try {
     await logic.createPost(
-      "MrBlue",
-      "Hello World",
-      "https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png",
-      "console.log('HelloWorld')",
+      "MrRed",
+      "test post title",
+      "https://picsum.photos/200/300",
+      "test post",
     );
   } catch (error) {
     console.log(error);
@@ -51,9 +51,7 @@ async function testCreatePost() {
 
 async function testDeletePost() {
   try {
-    await data.deletePost(
-      (post) => post.id === "1716319512771-8375259641077482",
-    );
+    logic.deletePost("MrRed", "lwvg8vq4uvttq");
   } catch (error) {
     console.log(error);
   }
@@ -80,6 +78,15 @@ async function testGetUsers() {
 async function testAuthenticateUser() {
   try {
     await logic.authenticateUser("MrBlue", "123123123");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function testGetUsersName() {
+  try {
+    const name = await logic.getUsersName("MrBlue", "someone");
+    console.log(`users name retrieved: ${name}`);
   } catch (error) {
     console.log(error);
   }

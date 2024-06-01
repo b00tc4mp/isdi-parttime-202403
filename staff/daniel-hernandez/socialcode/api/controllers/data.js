@@ -27,7 +27,7 @@ const getUsers = async (req, res) => {
 
 const createPost = async (req, res) => {
   try {
-    const username = req.headers.authorization.slice(6);
+    const username = req.headers.authorization.split(" ")[1];
 
     const { title, image, description } = req.body;
 
@@ -65,8 +65,11 @@ const createUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const user = await logic.getUser(req.params.username);
-    res.status(200).json({ user });
+    const username = req.headers.authorization.split(" ")[1];
+    const { targetUsername } = req.params;
+
+    const name = await logic.getUsersName(username, targetUsername);
+    res.status(200).json({ name });
   } catch (error) {
     res.status(500).json({
       error: error.constructor.name,
@@ -89,9 +92,11 @@ const getPost = async (req, res) => {
 
 const deletePost = async (req, res) => {
   try {
-    const postID = req.params.id;
-    await logic.deletePost(postID);
-    res.status(200).json({ msg: `deleted post with id: ${postID} ` });
+    const username = req.headers.authorization.split(" ")[1];
+    const { postID } = req.params;
+
+    await logic.deletePost(username, postID);
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({
       error: error.constructor.name,
