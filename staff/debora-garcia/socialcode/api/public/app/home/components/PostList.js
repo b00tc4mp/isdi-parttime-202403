@@ -12,16 +12,30 @@ class PostList extends Component {
     load() {
         this.removeAll()
 
-        const posts = logic.getPosts()
+        try {
+            logic.getPosts((error, posts) => {
+                if(error){
+                    console.error(error)
+                    alert(error.message)
 
-        posts.forEach(post => {
-            const newPost = new Post(post)
+                    return
+                }
+                posts.forEach(post => {
+                    const newPost = new Post(post)
 
-            //cuando se elimina el post, refrescar la pagina
-            newPost.onPostDeleted(() => this.load())
+                    newPost.onPostDeleted(() => this.load())
 
-            this.add(newPost)
-        })
+                    this.add(newPost)
+                })
+            })
+
+
+        } catch (error) {
+            console.error(error)
+            //TODO show feedback panel
+
+            alert(error.message)
+        }
     }
 }
 // eliina los hijos si los hay, obtiene todos los posts

@@ -13,18 +13,31 @@ const jsonBodyParser = express.json({ strict: true, type: "application/json" })
 api.use(express.static("public"))
 
 
-//TODO logic here
 api.get("/posts", (req, res) => {
-    fs.readFile("./data/posts.json", "utf8", (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+    /*  fs.readFile("./data/posts.json", "utf8", (error, json) => {
+         if (error) {
+             res.status(500).json({ error: error.constructor.name, message: error.message })
+ 
+             return
+         }
+ 
+         const posts = JSON.parse(json)
+         res.json(posts)
+     }) */
 
-            return
-        }
+    try {//recibimos dos parametros que son los que devuelve la funcion getPosts en logic
+        logic.getPosts((error, posts) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
 
-        const posts = JSON.parse(json)
-        res.json(posts)
-    })
+                return
+            }
+            res.json(posts) //automaticamente enviara estado 200
+        })
+
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 //comprobamos que la api funciona
@@ -65,44 +78,37 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
 
                 return
             }
-            //200 ya que no estanos construiendo nada
-            res.status(200).send()
+            //status(200) ya que no estanos construiendo nada pero no hace falta por que lo devuelve por defecto
+            //send() es cuando no enviamos nada
+            res.send()
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
-//TODO Logic here
 // creamos nuevo post
 api.post("/posts", jsonBodyParser, (req, res) => {
-    const post = req.body
+    //en el body no se envia el username, se envia en una cabecera llamada authorisation : Authorisation: Basic <credentials>
+    //de esta manera usamos el identidicador de la persona que quiere crear el post
 
-    fs.readFile("./data/posts.json", "utf8", (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+    const username = req.headers.authorization.slice(6) //a partir del caracter 6 de la cabecera
+    const { title, image, description } = req.body
 
-            return
-        }
-        const posts = JSON.parse(json)
 
-        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
-        post.date = new Date().toISOString()
-
-        posts.push(post)
-
-        const newJson = JSON.stringify(posts)
-
-        fs.writeFile("./data/posts.json", newJson, error => {
+    try {//recibimos dos parametros que son los que devuelve la funcion getPosts en logic
+        logic.createPost(username, title, image, description, (error) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
-
-            res.status(201).send()
+            res.status(201).send() //automaticamente enviara estado 200
         })
-    })
+
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 
 })
 

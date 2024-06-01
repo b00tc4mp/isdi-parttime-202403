@@ -92,37 +92,63 @@ logic.getUsername = () => {
      */
 }
 
-logic.getPosts = () => {
-    const posts = data.findPosts(() => true)
+logic.getPosts = callback => {
+    const xhr = new XMLHttpRequest
+    //manejamos primero la respuesta antes de la peticion
+    xhr.onload = () => {
+        // no hay nada que enviar, pro como respuesta hay que parsear los posts
+        if (xhr.status === 200) {
+            const posts = JSON.parse(xhr.response)
+            callback(null, posts)
 
-    return posts.reverse()
+            return
+        }
+        const { error, message } = JSON.parse(xhr.response)
+        //recuperamos la constructora del error para reconstruir el mensaje de error
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+    xhr.open("GET", "http://localhost:8080/posts")
+
+    xhr.send()
 }
 
-logic.createPost = (title, image, description) => {
+logic.createPost = (title, image, description, callback) => {
     if (typeof title !== "string" || !title.length || title.length > 50) throw new ContentError("title is not valid")
     if (typeof image !== "string" || !image.startsWith("http")) throw new ContentError("image is not valid")
     if (typeof description !== "string" || !description.length || description.length > 5000) throw new ContentError("description is not valid")
 
+    const xhr = new XMLHttpRequest
 
-    const fechaActual = new Date();
-    const año = fechaActual.getFullYear();
-    const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Agrega cero al mes si es de un solo dígito
-    const dia = fechaActual.getDate().toString().padStart(2, '0'); // Agrega cero al día si es de un solo dígito
-    const hora = fechaActual.getHours().toString().padStart(2, '0'); // Agrega cero a la hora si es de un solo dígito
-    const minutos = fechaActual.getMinutes().toString().padStart(2, '0'); // Agrega cero a los minutos si es de un solo dígito
+    xhr.onload = () => {
+        if (xhr.status === 201) {
+            callback(null)
 
-    const fechaFormateada = `${año}-${mes}-${dia} ${hora}:${minutos}`;
+            return
+        }
+        const { error, message } = JSON.parse(xhr.response)
 
-    const post = {
-        id: Date.now(),// identificador de hora y milisegundos
-        author: sessionStorage.username,
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open("POST", "http://localhost:8080/posts/")
+
+    xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
+    const body = {
+        //author: sessionStorage.username,--> enviamos la cabecera en authorization
         title,
         image,
-        description,
-        date: fechaFormateada
-    };
+        description
+        //date: fechaFormateada-->la hacemos desde logic
+    }
 
-    data.insertPost(post)
+    const json = JSON.stringify(body)
+
+    xhr.setRequestHeader("Content-type", "application/json")
+    xhr.send(json)
 
 }
 
