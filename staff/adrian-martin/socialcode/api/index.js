@@ -1,8 +1,6 @@
 import express from 'express'
-import fs from 'fs'
+// import fs from 'fs'
 import logic from './logic/index.js'
-
-// import { measureMemory } from 'vm'
 
 const api = express()
 
@@ -125,7 +123,7 @@ api.delete('/posts/:postId', (req, res) => {
             res.status(204).send()
         })
     } catch (error) {
-        console.error(error)
+        res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 

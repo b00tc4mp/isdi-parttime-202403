@@ -19,5 +19,12 @@
         "email": "inaki@barrera.com",
         "username": "Brutalito",
         "password": "123123123"
+    },
+    {
+        "name": "Jesus",
+        "surname": "Bertolin",
+        "email": "jesus@bertolin.com",
+        "username": "Pollete",
+        "password": "123123123"
     }
 ]
