@@ -5,14 +5,6 @@
     margin: 4rem 2rem;
 }
 
-.Logo {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-}
-
 .Header {
     display: flex;
     gap: 1rem;

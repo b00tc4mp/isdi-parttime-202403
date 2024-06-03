@@ -1,7 +1,6 @@
 if (!logic.isUserLoggedIn())
     location.href = '../login'
 
-
 const view = new Component(document.body)
 view.addClass('View')
 
@@ -22,7 +21,7 @@ logic.getUserName((error, userName) => {
         return
     }
 
-    usernameTitle.setText(userName)
+    usernameTitle.setText('🖖🏻 Hola, ' + userName + '!')
 })
 
 const usernameTitle = new Heading(3)

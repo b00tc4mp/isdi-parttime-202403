@@ -13,17 +13,14 @@
 
 body {
     background-color: var(--second-color);
-    margin: 0;
+    margin: 0 auto;
 }
 
 .Logo {
-    width: auto;
-    height: auto;
     position: absolute;
+    left: 30%;
+    width: auto;
+    height: auto; 
     font-size: 5vw;
     color: white;
-    left: 0;
-    padding: 0.1rem;
-    margin-left: 1.5rem;
-    border-radius: 10px;
   }
