@@ -34,9 +34,10 @@ data.insertUser = (user, callback) => {
             return
         }
 
-
+        if (!json) json = '[]'
 
         const users = JSON.parse(json)
+
         users.push(user)
 
         const newJson = JSON.stringify(users)
@@ -62,6 +63,24 @@ data.findPosts = (condition, callback) => {
             return
         }
 
+
+        if (!json) json = '[]'
+
+        const posts = JSON.parse(json)
+
+        const post = posts.filter(condition)
+
+        callback(null, post)
+    })
+}
+
+data.findPost = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
+
+            return
+        }
 
         if (!json) json = '[]'
 

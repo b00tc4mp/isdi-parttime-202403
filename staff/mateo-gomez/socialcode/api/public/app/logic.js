@@ -61,12 +61,15 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     xhr.send(json)
 }
 
-logic.loginUser = (username, password) => {
+logic.loginUser = (username, password, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
     const xhr = new XMLHttpRequest
 
@@ -132,7 +135,7 @@ logic.getUserName = callback => {
 
         callback(new constructor(message))
     }
-    xhr.open('DELETE', `http://localhost:8080/users/${sessionStorage.username}`)
+    xhr.open('GET', `http://localhost:8080/users/${sessionStorage.username}`)
 
     xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
 
@@ -165,9 +168,21 @@ logic.getAllPosts = callback => {
 }
 
 logic.createPost = (title, image, description, callback) => {
-    if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
-    if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
-    if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
+    if (typeof title !== 'string' || !title.length || title.length > 50) {
+        throw new ContentError('title is not valid')
+    }
+
+    if (typeof image !== 'string' || !image.startsWith('http')) {
+        throw new ContentError('image is not valid')
+    }
+
+    if (typeof description !== 'string' || !description.length || description.length > 200) {
+        throw new ContentError('description is not valid')
+    }
+
+    if (typeof callback !== 'function') {
+        throw new TypeError('callback is not a function')
+    }
 
 
     const xhr = new XMLHttpRequest

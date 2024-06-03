@@ -1,12 +1,12 @@
-import express, { json } from 'express'
-import fs from 'fs'
+import express from 'express'
+//import fs from 'fs'
 import logic from './logic/index.js'
 
 const api = express()
 
 api.use(express.static('public'))
 
-const jsonBodyParser = express.json({ strict: true, type: 'aplication/json' })
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.get('/', (req, res) => res.send('Hello, World!'))
 
@@ -64,7 +64,7 @@ api.get('/users/:targetUsername', (req, res) => {
                 return
             }
 
-            res.json(posts)
+            res.json(name)
 
         })
 

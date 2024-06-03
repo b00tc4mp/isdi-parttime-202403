@@ -36,5 +36,12 @@
         "username": "Ant",
         "password": "123123123",
         "passwordRepeat": "123123123"
+    },
+    {
+        "name": "jason",
+        "surname": "tatum",
+        "email": "tatum@celtics.es",
+        "username": "tatum",
+        "password": "123123123"
     }
 ]
