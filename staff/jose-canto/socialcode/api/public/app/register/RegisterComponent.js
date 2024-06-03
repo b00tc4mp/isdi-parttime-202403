@@ -50,7 +50,7 @@ class RegisterComponent extends FormWithFeedback {
       const passwordRepeat = this.getPasswordRepeat()
 
       try {
-        logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+        logic.registerUser(username, password, error => {
           if (error) {
             this.setFeedback(error.message + ", please, correct them ❌")
 

@@ -1,1 +1,30 @@
-[{"name":"Jack","surname":"Sparrow","email":"jack@email.es","username":"Jack","password":"1234"},{"name":"Luna","surname":"Dog","email":"luna@dog.es","username":"Luna","password":"1234"},{"name":"Pepito","surname":"Grillo","email":"pepito@grillo.es","username":"pepito","password":"1234"},{"name":"Bruce","surname":"Wayne","email":"batman@email.es","username":"Batman","password":"1234"},{"name":"bruce","surname":"wayne","email":"bruce@batman.es","username":"batman","password":"1234"}]
+[
+	{
+		"name": "Jack",
+		"surname": "Sparrow",
+		"email": "jack@email.es",
+		"username": "Jack",
+		"password": "1234"
+	},
+	{
+		"name": "Luna",
+		"surname": "Dog",
+		"email": "luna@dog.es",
+		"username": "Luna",
+		"password": "1234"
+	},
+	{
+		"name": "Bruce",
+		"surname": "Wayne",
+		"email": "batman@email.es",
+		"username": "Batman",
+		"password": "1234"
+	},
+	{
+		"name": "bruce",
+		"surname": "wayne",
+		"email": "bruce@batman.es",
+		"username": "batman",
+		"password": "1234"
+	}
+]
