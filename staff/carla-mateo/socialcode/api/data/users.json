@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Wendy",
+        "surname": "Wen",
+        "email": "wen@dy.com",
+        "username": "Wen",
+        "password": "1234"
+    },
+    {
+        "name": "Wendy",
+        "surname": "Wendy",
+        "email": "Wen@dy.com",
+        "username": "Wendy",
+        "password": "1234"
+    },
+    {
+        "name": "jordi",
+        "surname": "asen",
+        "email": "jordi@asen.com",
+        "username": "jordi",
+        "password": "1234"
+    },
+    {
+        "name": "jordis",
+        "surname": "asens",
+        "email": "jordi2@asen.com",
+        "username": "jordi2",
+        "password": "1234"
+    },
+    {
+        "name": "anna",
+        "surname": "mariana",
+        "email": "ana@mariana.com",
+        "username": "ana",
+        "password": "1234"
+    },
+    {
+        "name": "Anna",
+        "surname": "Maria",
+        "email": "anna@maria.com",
+        "username": "Anna",
+        "password": "1234"
+    },
+    {
+        "name": "Osso",
+        "surname": "Polar",
+        "email": "osso@polar.com",
+        "username": "Osso",
+        "password": "1234"
+    },
+    {
+        "name": "wendy",
+        "surname": "martinez",
+        "email": "wendy@martinez.com",
+        "username": "wendy",
+        "password": "1234"
+    }
+]
