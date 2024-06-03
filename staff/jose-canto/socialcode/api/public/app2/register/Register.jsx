@@ -7,6 +7,7 @@ class Register extends Component {
 		this.state = {
 			username: "",
 			password: "",
+			isSubmitted: false,
 		};
 	}
 
@@ -31,23 +32,47 @@ class Register extends Component {
 				}
 
 				console.log("User created");
+				this.clearForm();
 			});
 		} catch (error) {
 			alert(error.message);
 			return;
 		}
+
+		this.setState({ username: "", password: "" });
+	};
+
+	clearForm = () => {
+		this.setState({ username: "", password: "", isSubmitted: true });
+
+		setTimeout(() => {
+			window.location.href = "../login/index.html";
+		}, 1000);
 	};
 
 	render() {
+		const { isSubmitted } = this.state;
 		return (
 			<div className='RegisterForm'>
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor='username'>Username:</label>
-					<input id='username' type='text' onChange={this.handleChange}></input>
+					<input
+						id='username'
+						type='text'
+						placeholder='Username'
+						onChange={this.handleChange}
+					></input>
 
 					<label htmlFor='password'>Password: </label>
-					<input id='password' type='password' onChange={this.handleChange}></input>
-					<button type='submit'>Register</button>
+					<input
+						id='password'
+						type='password'
+						placeholder='Password'
+						onChange={this.handleChange}
+					></input>
+					<button type='submit' className={isSubmitted ? "submitted" : ""}>
+						Register
+					</button>
 				</form>
 				<a href='../login/index.html'>Login</a>
 			</div>

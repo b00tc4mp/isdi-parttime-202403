@@ -97,7 +97,6 @@ logic.authenticateUser = (username, password, callback) => {
     }
 
     if (!userFound) {
-      //alert("❌Login incorrecto ❌")
       callback(new MatchError("❌ User not found ❌"))
 
       return

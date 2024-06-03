@@ -39,3 +39,7 @@
 .RegisterForm>a:hover {
   color: slateblue
 }
+
+.submitted {
+  background-color: greenyellow;
+}

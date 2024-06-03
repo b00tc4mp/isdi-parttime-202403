@@ -1,15 +1,15 @@
 import data from "./index.js"
 
-data.findUser(user => user.name === "Luna", (error, user) => {
-  if (error) {
+// data.findUser(user => user.name === "Luna", (error, user) => {
+//   if (error) {
 
-    console.error(error)
+//     console.error(error)
 
-    return
-  }
+//     return
+//   }
 
-  console.log(user)
-})
+//   console.log(user)
+// })
 
 // data.findUser((user) => {  mismo código de arriba de diferente forma
 //   return user.surname === "Sparrow";

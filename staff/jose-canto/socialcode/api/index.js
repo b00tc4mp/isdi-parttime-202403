@@ -1,13 +1,11 @@
 import express from 'express'
-//import fs from "fs"
+//import fs from "fs" 
 
 import logic from "./logic/index.js"
 
-
-
 const api = express()
 
-api.use(express.static("public/app2"))
+api.use(express.static("public"))
 
 const jsonBodyParser = express.json({ strict: true, type: "application/json" })
 
@@ -173,15 +171,12 @@ api.get("/users/:targetUsername", (req, res) => {
       res.json(name)
     })
 
-
   } catch (error) {
 
     res.status(500).json({ error: error.constructor.name, message: error.message })
 
   }
 })
-
-
 
 api.post("/posts", jsonBodyParser, (req, res) => {
 
@@ -215,7 +210,6 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 
 
   try {
-
     logic.createPost(username, title, image, description, (error) => {
 
       if (error) {
@@ -226,7 +220,6 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 
       res.status(201).send()
     })
-
 
   } catch (error) {
 
@@ -261,6 +254,4 @@ api.delete("/posts/:postId", (req, res) => {
   }
 })
 
-
-
-api.listen(8080, () => console.log('listening on port http://localhost:8080'))
+api.listen(8080, () => console.log('listening on port http://localhost:8080/app2/login'))
