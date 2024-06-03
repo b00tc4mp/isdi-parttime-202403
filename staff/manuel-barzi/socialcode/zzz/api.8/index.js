@@ -1,12 +1,12 @@
 import express from 'express'
 import logic from './logic/index.js'
-import cors from 'cors'
+import cors from './cors.js'
 
 const api = express()
 
 api.use(express.static('public'))
 
-api.use(cors())
+api.use('*', cors)
 
 api.get('/', (req, res) => res.send('Hello, World!'))
 

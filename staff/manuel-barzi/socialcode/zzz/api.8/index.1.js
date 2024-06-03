@@ -1,12 +1,17 @@
 import express from 'express'
 import logic from './logic/index.js'
-import cors from 'cors'
 
 const api = express()
 
 api.use(express.static('public'))
 
-api.use(cors())
+api.use('*', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', '*')
+    res.setHeader('Access-Control-Allow-Headers', '*')
+
+    next()
+})
 
 api.get('/', (req, res) => res.send('Hello, World!'))
 
