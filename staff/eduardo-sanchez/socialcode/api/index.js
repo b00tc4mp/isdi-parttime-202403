@@ -46,6 +46,26 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
     }
 })
 
+api.get('/users/:targetUsername', (req, res) => {
+    const username = req.headers.authorization.slice(6)
+
+    const { targetUsername } = req.params
+
+    try {
+        logic.getUserName(username, targetUsername, (error, name) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.json(name)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
 api.get('/posts', (req, res) => {
     try {
         logic.getAllPosts((error, posts) => {

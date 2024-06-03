@@ -26,5 +26,12 @@
         "email": "manolo@cabezabolo.com",
         "username": "ManoloC",
         "password": "Hola1234"
+    },
+    {
+        "name": "Pablo",
+        "surname": "Picasso",
+        "email": "pablo@motpicasso.com",
+        "username": "PabloP",
+        "password": "Hola1234"
     }
 ]

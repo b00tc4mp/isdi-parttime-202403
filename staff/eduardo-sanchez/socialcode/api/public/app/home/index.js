@@ -6,12 +6,20 @@ view.addClass('View')
 
 const header = new Component('header')
 header.addClass('Header')
+
 view.add(header)
 
-const userName = logic.getUserName()
+logic.getUserName((error, userName) => {
+    if (error) {
+        alert(error.message)
+
+        return
+    }
+
+    usernameTitle.setText(userName)
+})
 
 const usernameTitle = new Heading(3)
-usernameTitle.setText(userName)
 header.add(usernameTitle)
 
 const logoutButton = new Button()
@@ -26,6 +34,7 @@ logoutButton.onClick(() => {
 header.add(logoutButton)
 
 const main = new Component('main')
+
 view.add(main)
 
 const postList = new PostList('section')

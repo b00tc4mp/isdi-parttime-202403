@@ -60,15 +60,29 @@ import logic from './index.js'
 // } 
 
 
+// try {
+//     logic.deletePost('peterpan', '4007381802005925-1717082344125', error => {
+//         if (error) {
+//             console.error(error)
+
+//             return
+//         }
+
+//         console.log('post deleted')
+//     })
+// } catch (error) {
+//     console.error(error)
+// } 
+
 try {
-    logic.deletePost('peterpan', '4007381802005925-1717082344125', error => {
+    logic.getUserName('peterpan', 'pepitogrillo', (error, name) => {
         if (error) {
             console.error(error)
 
             return
         }
 
-        console.log('post deleted')
+        console.log('user name retrieved', name)
     })
 } catch (error) {
     console.error(error)

@@ -98,10 +98,32 @@ logic.isUserLoggedIn = () => !!sessionStorage.username
 
 logic.logoutUser = () => delete sessionStorage.username
 
-logic.getUserName = () => {
-    // const user = data.findUser(user => user.username === sessionStorage.username)
+logic.getUserName = callback => {
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
-    // return user.name
+    const xhr = new XMLHttpRequest
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const name = JSON.parse(xhr.response)
+
+            callback(null, name)
+
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('GET', `http://localhost:8080/users/${sessionStorage.username}`)
+
+    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.send()
 }
 
 logic.getAllPosts = callback => {

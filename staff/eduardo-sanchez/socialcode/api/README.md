@@ -70,6 +70,12 @@ xhr.setRequestHeader('Content-Type', 'application/json')
 xhr.send(json)
 ```
 
+- get user name
+
+```sh
+🐖 curl http://localhost:8080/users/pepitogrillo -H "Authorization: Basic peterpan" -v
+```
+
 - list posts
 
 ```sh
