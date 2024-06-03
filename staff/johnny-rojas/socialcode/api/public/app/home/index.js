@@ -19,11 +19,18 @@ logic.getUserName((error, userName) => {
     usernameTitle.setText(userName)
 })
 
+const appTitle = new Heading(1)
+appTitle.setText('SocialCode')
+appTitle.addClass('AppTitle')
+header.add(appTitle)
+
 const usernameTitle = new Heading(3)
+usernameTitle.addClass('usernameTitle')
 header.add(usernameTitle)
 
 const logoutButton = new Button
 logoutButton.setText('Logout')
+logoutButton.addClass('LogoutButton')
 
 logoutButton.onClick(() => {
     logic.logoutUser()

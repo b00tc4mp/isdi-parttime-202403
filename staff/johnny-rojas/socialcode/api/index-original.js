@@ -2,19 +2,26 @@ import express from 'express'
 // import fs from 'fs'
 import logic from './logic/index.js'
 
+
 const api = express()
 
 api.use(express.static('public'))
 
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
+const cors = require('cors');
+
+api.use(cors());
+
+// api.use([express.static("public"), express.json(), cors()]); //Todo junto
+
 api.get('/', (req, res) => res.send('Hello, Mundo!'))
 
 api.post('/users', jsonBodyParser, (req, res) => {
-    const {username, password, } = req.body
+    const { name, surname, email, username, password, passwordRepeat } = req.body
 
     try {
-        logic.registerUser(username, password, error => {
+        logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 

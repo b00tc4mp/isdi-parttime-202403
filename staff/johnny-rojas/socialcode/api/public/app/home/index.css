@@ -9,7 +9,7 @@
   display: flex;
   gap: 1rem;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between; /* Cambiado a space-between para separar los elementos */
   position: fixed;
   top: 0;
   padding: .5rem;
@@ -18,27 +18,41 @@
   background-color: var(--second-color);
 }
 
-article {
-  display: flex;
-  flex-direction: column;
+.AppTitle {
+  display: flex; 
+  justify-content: flex-start; 
+  flex-grow: 1; 
+  margin-left: 30px ;
+}
+
+.usernameTitle {
+  justify-self: flex-end; 
   align-items: center;
-  justify-content: center;
-  width: 100%; 
-  padding: 2rem 0; 
+margin-top: 30px ;
 }
 
 .LogoutButton {
   border: 0 !important;
   text-decoration: underline;
+  justify-self: flex-end; 
+  align-items: center;
+  margin-right: 30px ;
+}
+
+
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 0;
 }
 
 .Post {
-  width: 100%;
-
-  max-width: 600px;
-
+  width: 100%; 
+  max-width: 600px; 
   margin-bottom: 1rem;
-
 }
 
 .Delete {
@@ -62,7 +76,7 @@ article {
   flex-direction: column;
   align-items: center;
   width: 100%;
- 
+
   padding-top: 4rem;
 
   padding-bottom: 4rem;
