@@ -7,10 +7,17 @@ view.addClass("View")
 const header = new Component("header")
 header.addClass("Header")
 
-const userName = logic.getUsername()
+logic.getUsername((error, username) => {
+    if (error) {
+        alert(error.message)
+
+        return
+    }
+
+    userNameTitle.setText(username)
+})
 
 const userNameTitle = new Heading(3)
-userNameTitle.setText(userName)
 
 header.add(userNameTitle)
 

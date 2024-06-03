@@ -29,8 +29,6 @@ data.findUser = (condition, callback) => {
     // no retornamos nada, aplicamos callback 
     // si ha ido mal enviamos error, si ha ido bien enviamos el usuario con el callback (null,usuario)
     // este callback lo recibira la logica
-
-
 }
 
 data.insertUser = (user, callback) => {
@@ -57,9 +55,7 @@ data.insertUser = (user, callback) => {
             //al devolver null significa que no hay ningun error
             callback(null)
         })
-
     })
-
 }
 
 data.findPosts = (condition, callback) => {
@@ -89,11 +85,26 @@ data.findPosts = (condition, callback) => {
 
         callback(null, filtered)
     })
-
 }
+//busqueda d un solo post
+data.findPost = (condition, callback) => {
+    fs.readFile("./data/posts.json", "utf8", (error, json) => {
+        if (error) {
+            callback(new SystemError(error.message))
 
+            return
+        }
+
+        if (!json) json = "[]"
+
+        const posts = JSON.parse(json)
+
+        const post = posts.find(condition)
+
+        callback(null, post)
+    })
+}
 data.insertPost = (post, callback) => {
-
     /* let postsJson = localStorage.posts
 
     if (!postsJson) postsJson = "[]"
@@ -133,9 +144,7 @@ data.insertPost = (post, callback) => {
             //al devolver null significa que no hay ningun error
             callback(null)
         })
-
     })
-
 }
 
 data.deletePost = (condition, callback) => {
@@ -171,7 +180,6 @@ data.deletePost = (condition, callback) => {
             //si no encuentra tampoco devuelve error
             // esta funcion solo tiene el parametro error como callback, por lo tanto solo devolvera error o null
         } else callback(null)
-
     })
 }
 

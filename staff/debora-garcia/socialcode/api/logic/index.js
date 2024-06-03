@@ -5,6 +5,7 @@ const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[\w-]+$/
+const ID_REGEX = /^[0-9]+-[0-9]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 //añadimos el callback para poder trabajar en asincronia
@@ -21,6 +22,9 @@ logic.registerUser = (email, username, password, passwordRepeat, callback) => {
 
     if (password !== passwordRepeat)
         throw new MatchError("passwords don't match")
+
+    if (typeof callback !== "function")
+        throw new TypeError("callback is not a function")
 
 
     // let userRegistered = data.findUser(user => user.email === email || user.username === username) tenemos que hacerlo asyncro
@@ -88,6 +92,52 @@ logic.authenticateUser = (username, password, callback) => {
         callback(null)
     })
 }
+logic.getUsername = (username, targetUsername, callback) => {
+    //se pasan los paramentros demusuario y quien pide el usuario 
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError("username is not valid")
+
+    if (!USERNAME_REGEX.test(targetUsername))
+        throw new ContentError("targetUsername is not valid")
+
+    if (typeof callback !== "function")
+        throw new TypeError("callback is not a function")
+
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
+
+            return
+        }
+
+        if (!user) {
+            callback(new MatchError("user not found"))
+
+            return
+        }
+
+        data.findUser(user => user.username === targetUsername, (error, targetUser) => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            if (!targetUser) {
+                callback(new MatchError("targetUser not found"))
+
+                return
+            }
+
+            callback(null, targetUser.username)
+            // TODO cambiar a que devuelva name,
+        })
+    })
+
+
+
+
+}
 
 // no manejamos la sessionstrage, ya que lo haremos desde el navegador
 logic.getPosts = callback => {
@@ -111,9 +161,14 @@ logic.createPost = (username, title, image, description, callback) => {
 
     if (!USERNAME_REGEX.test(username))
         throw new ContentError("username is not valid")
-    if (typeof title !== "string" || !title.length || title.length > 50) throw new ContentError("title is not valid")
-    if (typeof image !== "string" || !image.startsWith("http")) throw new ContentError("image is not valid")
-    if (typeof description !== "string" || !description.length || description.length > 5000) throw new ContentError("description is not valid")
+    if (typeof title !== "string" || !title.length || title.length > 50)
+        throw new ContentError("title is not valid")
+    if (typeof image !== "string" || !image.startsWith("http"))
+        throw new ContentError("image is not valid")
+    if (typeof description !== "string" || !description.length || description.length > 5000)
+        throw new ContentError("description is not valid")
+    if (typeof callback !== "function")
+        throw new TypeError("callback is not a function")
 
     //validamos si el usuario existe primero antes de insertar el post
 
@@ -161,7 +216,61 @@ logic.createPost = (username, title, image, description, callback) => {
 
 //logic.getLoggedInUsername = () => sessionStorage.username
 
-//TODO
-logic.deletePost = id => data.deletePost(post => post.id === id)
+
+logic.deletePost = (username, postId, callback) => {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError("username is not valid")
+
+    if (!ID_REGEX.test(postId))
+        throw new ContentError("post id is not valid")
+
+    if (typeof callback !== "function")
+        throw new TypeError("callback is not a function")
+
+    //no dejaremos borrar un post a quien no sea dueño del post y que el usuario existe
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
+
+            return
+        }
+        // los errores los mandamos al callback (no puede ser throw(syncro))
+        if (!user) {
+            callback(new MatchError("user not found"))
+
+            return
+        }
+        data.findPost(post => post.id === postId, (error, post) => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+            if (!post) {
+                callback(new MatchError("post not found"))
+
+                return
+            }
+
+            if (post.author !== username) {
+                callback(new MatchError("post author does not match user"))
+
+                return
+            }
+
+            data.deletePost(post => post.id === postId, error => {
+                if (error) {
+                    callback(error)
+
+                    return
+                }
+
+                callback(null)
+
+            })
+        })
+    })
+
+}
 
 export default logic

@@ -65,6 +65,31 @@ api.post("/users", jsonBodyParser, (req, res) => {
     }
 })
 
+api.get("/users/:targetUsername", (req, res) => {
+    //con target podemos recuperar el nombre de otro usuario
+    //en este caso las credenciales coinciden con el id, pero la forma correcta es usar un id diferente del username
+    const username = req.headers.authorization.slice(6) //a partir del caracter 6 de la cabecera
+
+    const { targetUsername } = req.params
+
+    try {
+        logic.getUsername(username, targetUsername, (error, username) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.json(username)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+
+
+
+})
+
 //autentificacion de usuario
 api.post("/users/auth", jsonBodyParser, (req, res) => {
     //ahora ya hay separacion de responsabilidades con lo que no usamos data en este archivo
@@ -112,5 +137,27 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 
 })
 
+// eliminamos un post
+api.delete("/posts/:postId", (req, res) => {
+    //cuando queremos especificar que post queremos eliminar, lo especificamos por la url. Recogemos el dato medianto params
+
+    const username = req.headers.authorization.slice(6) //a partir del caracter 6 de la cabecera
+
+    const { postId } = req.params
+
+    try {
+        logic.deletePost(username, postId, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+            res.status(204).send() //cuando no hay nada que responder, todo Ok pero no hay contenido de respuesta
+        })
+
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
 
 api.listen(8080, () => console.log("api is up http://localhost:8080"))

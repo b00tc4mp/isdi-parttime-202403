@@ -41,3 +41,14 @@ curl http://localhost:8080/posts -v
 ```
 
 - delete post
+
+```sh
+curl -X DELETE http://localhost:8080/posts/8422506284986642-1717177023435 -H "Authorization: Basic RotoJaz" -v
+
+```
+- get username 
+
+```sh
+curl http://localhost:8080/users/RotoJaz -H "Authorization: Basic RotoJaz" -v
+
+```

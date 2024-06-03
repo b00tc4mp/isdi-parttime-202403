@@ -41,13 +41,37 @@ import logic from "./index.js"
 } */
 
 
-try {
+/* try {
     logic.createPost("RotoJaz", "koala", "https://koalahospital.org.au/cdn/shop/products/f7p40CJBP5hB09Vp6TeSXFwMe0E_lion-leo-adoption-certificate.jpg?v=1608174739&width=600", "bla bla", error => {
         if (error) {
             console.error(error)
             return
         }
         console.log("post created")
+    })
+} catch (error) {
+    console.error(error)
+} */
+
+/* try {
+    logic.deletePost("RotoJaz", "45055983651437126-1717177280798", error => {
+        if (error) {
+            console.error(error)
+            return
+        }
+        console.log("post deleted")
+    })
+} catch (error) {
+    console.error(error)
+} */
+
+try {
+    logic.getUsername("RotoJaz", "RotoJaz", (error, username) => {
+        if (error) {
+            console.error(error)
+            return
+        }
+        console.log("username retrieved", username)
     })
 } catch (error) {
     console.error(error)
