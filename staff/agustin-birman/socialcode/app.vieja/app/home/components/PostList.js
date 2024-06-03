@@ -26,7 +26,6 @@ class PostList extends Component {
 
                     this.add(post2)
                 })
-                this.load()
             })
         } catch (error) {
             console.error(error)
