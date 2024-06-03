@@ -254,4 +254,4 @@ api.delete("/posts/:postId", (req, res) => {
   }
 })
 
-api.listen(8080, () => console.log('listening on port http://localhost:8080/app2/login'))
+api.listen(8080, () => console.log('listening on port http://localhost:8080/app2/register'))
