@@ -30,5 +30,26 @@
         "description": "Programar software conlleva un proceso largo que suele involucrar, al menos parcialmente, a varios desarrolladores, por lo que durante el desarrollo el código fuente a menudo se amplía y modifica. Si además de estos cambios, tenemos en cuenta que se trabaja a contrarreloj y utilizan ciertas prácticas anticuadas, observamos como resultado una acumulación de elementos defectuosos en el código fuente, los llamados code smells. Estos puntos débiles, que van aumentando a medida que avanza el proceso, ponen en peligro la funcionalidad y la compatibilidad del software en cuestión. Para evitar esta erosión continua del programa, se utiliza la refactorización o refactoring.",
         "date": "13/05/2024 12:43",
         "id": "2974781931238051-1715597031983"
+    },
+    {
+        "title": "blah",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg",
+        "description": "blah blah",
+        "id": "5205152449887058-1717483622402",
+        "date": "2024-06-04T06:47:02.402Z"
+    },
+    {
+        "title": "blah",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg",
+        "description": "blah blah",
+        "id": "09751448450891798-1717484396269",
+        "date": "2024-06-04T06:59:56.269Z"
+    },
+    {
+        "title": "blah",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg",
+        "description": "blah blah",
+        "id": "4979269813523035-1717497692022",
+        "date": "2024-06-04T10:41:32.022Z"
     }
 ]

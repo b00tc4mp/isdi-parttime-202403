@@ -54,5 +54,17 @@
         "email": "wendy@martinez.com",
         "username": "wendy",
         "password": "1234"
+    },
+    {
+        "name": "James",
+        "surname": "Hook",
+        "email": "james@hook.com",
+        "password": "1234"
+    },
+    {
+        "name": "James",
+        "surname": "Hook",
+        "email": "james@hook.com",
+        "password": "1234"
     }
 ]
