@@ -37,3 +37,5 @@ const errors = {
     DuplicityError,
     SystemError
 }
+
+export default errors
