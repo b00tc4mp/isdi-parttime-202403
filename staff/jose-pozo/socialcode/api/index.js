@@ -27,6 +27,24 @@ api.post('/users', jsonBodyParser, (req, res) => {
 })
 
 
+api.post('/users/auth', jsonBodyParser, (req, res) => {
+    const { name, surname, email, username, password, passwordRepeat } = req.body
+
+    try {
+        logic.authenticateUser(username, password, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.status(200).send()
+        })
+    }
+    catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
 
 
 api.get('/posts', (req, res) => {

@@ -61,27 +61,40 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     })
 }
 
-logic.loginUser = (username, password) => {
+logic.authenticateUser = (username, password, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
 
-    let user = data.findUser(user => user.username === username)
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
-    if (!user)
-        throw new MatchError('user not found')
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
 
-    if (user.password !== password)
-        throw new MatchError('wrong password')
+            return
+        }
 
-    sessionStorage.username = username
+        if (!user) {
+            callback(new MatchError('user not found'))
+
+            return
+        }
+        if (user.password !== password) {
+            callback(new MatchError('wrong password'))
+
+            return
+        }
+
+        callback(null)
+    })
+
+
 }
 
-logic.isUserLoggedIn = () => !!sessionStorage.username
-
-logic.logoutUser = () => delete sessionStorage.username
 
 logic.getUserName = () => {
     const user = data.findUser(user => user.username === sessionStorage.username)
