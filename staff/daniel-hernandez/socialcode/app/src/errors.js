@@ -1,9 +1,8 @@
-// TODO: custom error (msg, status code) => extends error => extend this and make fixed val
-
 class ContentError extends Error {
   constructor(message) {
     super(message);
 
+    //this.name = ContentError.name
     this.name = this.constructor.name;
   }
 }
@@ -32,4 +31,11 @@ class SystemError extends Error {
   }
 }
 
-export { ContentError, MatchError, DuplicityError, SystemError };
+const errors = {
+  ContentError,
+  MatchError,
+  DuplicityError,
+  SystemError,
+};
+
+export default errors;

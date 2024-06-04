@@ -1,5 +1,5 @@
 import logic from "../logic/logic.js";
-// TODO async wrapper
+// TODO: async wrapper
 
 const getPosts = async (req, res) => {
   try {

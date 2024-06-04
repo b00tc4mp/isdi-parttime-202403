@@ -1,11 +1,11 @@
 import express from "express";
-// import cors from "cors";
-// TODO configure cors
+import cors from "cors";
+// TODO: configure cors
 const api = express();
 
 //middleware
-// TODO error handler middleware (works in tandem with custom error and async wrapper)
-api.use([express.static("public"), express.json()]);
+// TODO: error handler middleware (works in tandem with custom error and async wrapper)
+api.use([express.static("public"), express.json(), cors()]);
 
 // routes
 import { datarouter } from "./routes/data.js";

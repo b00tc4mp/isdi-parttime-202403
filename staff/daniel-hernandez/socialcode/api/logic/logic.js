@@ -15,8 +15,6 @@ const ID_REGEX = /^[a-z0-9]+[a-z0-9]{5}$/;
 
 const logic = {};
 
-//TODO logic.isUserLoggedIn
-
 logic.getPosts = async () => {
   try {
     const posts = await data.getPosts();

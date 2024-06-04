@@ -12,12 +12,5 @@
     "email": "mrblue@email.com",
     "username": "MrBlue",
     "password": "123123123"
-  },
-  {
-    "name": "John",
-    "surname": "Doe",
-    "email": "email@email.com",
-    "username": "someone",
-    "password": "123123123"
   }
 ]
