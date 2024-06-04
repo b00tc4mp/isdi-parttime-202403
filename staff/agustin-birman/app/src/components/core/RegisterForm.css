@@ -1,0 +1,36 @@
+.RegisterForm {
+    padding: 1rem;
+    margin-bottom: 10px;
+    width: 300px;
+    height: auto;
+    border-radius: 20px;
+    border: 1px solid black;
+    border-bottom-right-radius: 20%;
+    background-color: rgba(175, 222, 238, 0.603);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.RegisterForm .Input {
+    background-color: transparent;
+    font-size: 1rem;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0;
+    border-bottom: 1px solid black;
+    border-radius: 20px;
+    padding-left: 10px;
+    margin: 15px
+}
+
+.RegisterForm .Button {
+    background-color: transparent;
+    font-size: 17px;
+    border-radius: 20px 0;
+    width: 80px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.View {
+    height: 100%;
+}
