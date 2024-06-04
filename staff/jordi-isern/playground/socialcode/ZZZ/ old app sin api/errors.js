@@ -40,5 +40,18 @@ InputError.prototype = Object.create(Error.prototype)
 InputError.prototype.constructor = InputError
 InputError.prototype.name = InputError.name
 
+class SystemError extends Error{
+    constructor(message) {
+        super (message)
 
+        this.name = this.constructor.name
+    }
+}
+
+const error = { SystemError,
+    DuplicityError,
+    InputError,
+    ContentError,
+    MatchError
+}
 

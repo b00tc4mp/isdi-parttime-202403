@@ -32,6 +32,40 @@ class RegisterForm extends FormWithFeedback{
         this.add(passwordField)
         this.add(confirmPasswordField)
         this.add(registerButton)
+        
+        this.onSubmit(event => {
+            event.preventDefault()
+
+            const name = this.getName()
+            const surname = this.getSurname()
+            const email = this.getMail()
+            const password = this.getPassword()
+            const passwordRepeat = this.getConfirmPassword()
+            try{
+                logic.registerUser(name, surname, email, surname, password, passwordRepeat, error =>{
+                    if(error){
+                        this.setFeedback(error.message + 'please, correct it')
+
+                        return
+                    }
+                    this.clear()
+
+                    this.setFeedback('user successfully registered', 'success')
+
+                    this.onRegisteredListener()
+                })
+            }catch(error){
+                if(error instanceof ContentError){
+                    this.setFeedback(error.message + ', please, correct it')
+                }else if(error instanceof MatchError){
+                    this.setFeedback(error.message + ', please retype them')
+                }else if (error instanceof DuplicityError){
+                    this.setFeedback(error.message + ', please enter new one')
+                }else {
+                    this.setFeedback('Sorry, there was an error , please try again later')
+                }
+            }
+        })
     }
 
 
@@ -79,9 +113,3 @@ class RegisterForm extends FormWithFeedback{
     }
 }
 
-
-//TODO aprender debug en navegador
-
-// TODO VPN WARP es gratuita y de cloudflare
-
-//raycast

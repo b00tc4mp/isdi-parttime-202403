@@ -3,98 +3,132 @@
 import express from 'express'
 import fs from 'fs'
 import logic from './logic/index.js'
-import { error } from 'console'
+import cors from 'cors'
 
 
 const api = express()
 
-const jsonBodyParser = express.json({strict: true, type:'aplication/json'})
+api.use(express.static('public'))
 
-api.get('/',(req, res) => res.send('Hello, World'))
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
-api.post('users',jsonBodyParser,(req, res) => {
-    const { name, surname, email, username, password, passwordRepeat} = req.body
+api.get('/', (req, res) => res.send('Hello, World'))
 
-    try{
+api.get('/',(req, res) )
+
+api.post('users', jsonBodyParser, (req, res) => {
+    const { name, surname, email, username, password, passwordRepeat } = req.body
+
+    try {
         logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
-            if (error){
-                res.status(500).json({error: error.contructor.name, message: error.message})
+            if (error) {
+                res.status(500).json({ error: error.contructor.name, message: error.message })
 
                 return
             }
 
             res.status(201).send()
         })
-    }catch(error){
-        res.status(500).json({error: error.constructor.name, message: error.message})
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
 
 
-api.get('/posts', (req,res) =>{
-    
-    try{
-        logic.getAllPost((error, posts)=>{
-            if(error){
-                res.status(500).json({error: error.constructor.name, message: error.message})
+api.post('/user/auth', jsonBodyParser, (req, res) => {
+    const { username, password } = req.body
 
-                return
-            }
-            res.status(200).send(posts)
-        })
-    }catch(error){
-        res.status(500).json({error : error.constructor.name, message: error.message})
-    }
-})
-
-
-
-
-api.post('/posts',jsonBodyParser,(req, res) => {
-    const {author, title, image, description} = req.body
-
-    try{
-        logic.createPost(author, title, image, description, (error)=>{
-            if(error){
-                res.status(500).json({error: error.constructor.name, message: error.message})
+    try {
+        logic.authenticateUser(username, password, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
             res.status(200).send()
         })
-    }catch(error) {
-        res.status(500).json({error: error.contructor.name, message: error.message})
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+        console.error(error)
     }
-
-
-    //TODO use logic here
-    // fs.readFile('./data/posts.json', 'utf8',(error, json)=>{
-    //     if (error) {
-    //         res.status(500).json({error: error.contructor.name, message: error,message })
-
-    //         return
-    //     }
-    //     const posts = JSON.parse(json)
-
-    //     post.id = `${Math.random().toString.slice(2)}-${Date.now()}`
-    //     post.date = new Date().toISOString()
-
-    //     posts.push(post)
-
-    //     const newJson = JSON.stringify(posts)
-
-    //     fs.writeFile('./data/posts.json', newJson, error => {
-    //         if( error) {
-    //             res.status(500).json({error : error.constructor.name, message: error.message})
-
-    //             return
-    //         }
-    //         res.status(201).send()
-    //     })
-    // })
 })
 
+api.get('./users/:targetUsername',(req, res) => {
+    const username = req.headers.authorization.slice(6)
 
-api.listen(8080, ()=> console.log('api is up'))
+    const {targetUsername } = req.params
+
+    try {
+        logic.getUserName( username, targetUsername, (error, name) => {
+            if(error){
+                res.status(500).json({error: error.constructor.name, message: error.message})
+
+                return
+            }
+            res.json(name)
+
+        })
+    }catch (error) {
+        res.status(500).json({error: error.constructor.name, message: error.message})
+    }
+})
+
+ 
+api.get('/posts', (req, res) => {
+
+    try {
+        logic.getAllPost((error, posts) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+            res.status(200).send(posts)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+api.post('/posts', jsonBodyParser, (req, res) => {
+    const username = req.headers.authorization.slice(6)
+    const {title, image, description } = req.body
+
+    try {
+        logic.createPost(username, title, image, description, (error) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.status(201).send()
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+api.delete('./posts/:postId', (req, res) => {
+    const username = req.headers.authorization.splice(6)
+
+    const { postId } = req.params
+
+    try {
+        logic.deletePost(username, postId, error => {
+            if(error) {
+                res.status(500).json({error: error.constructor.name, message: error.message})
+
+                return
+            }
+
+            res.status(204).send()
+        })
+    }catch (error) {
+        res.status(500).json({error: error.constructor.name, message: error.message})
+    }
+})
+
+api.listen(8080, () => console.log('api is up'))

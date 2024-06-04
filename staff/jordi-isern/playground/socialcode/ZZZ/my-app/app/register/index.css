@@ -1,0 +1,6 @@
+.loginLink {
+    margin: .4rem;
+    display: block;
+    text-align: center;
+    color:var(--color4);
+}

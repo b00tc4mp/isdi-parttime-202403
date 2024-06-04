@@ -1,0 +1,17 @@
+.FieldTextarea {
+    display: flex;
+    flex-direction: column;
+    margin: .7rem 0;
+}
+
+.divTextarea{
+    width: 12rem;
+    background-color: whitesmoke;
+    border: 0 transparent;
+    border-radius: .3rem;
+}
+
+.textarea{
+    color: var(--color3);
+    background-color: transparent;
+}
