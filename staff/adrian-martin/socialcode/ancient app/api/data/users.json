@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepitogrillo",
+        "password": "123123123"
+    },
+    {
+        "name": "Adrian",
+        "surname": "Martin",
+        "email": "adrian@martin.com",
+        "username": "AdrianGon",
+        "password": "321321321"
+    },
+    {
+        "name": "Inaki",
+        "surname": "Barrera",
+        "email": "inaki@barrera.com",
+        "username": "Brutalito",
+        "password": "123123123"
+    },
+    {
+        "name": "Jesus",
+        "surname": "Bertolin",
+        "email": "jesus@bertolin.com",
+        "username": "Pollete",
+        "password": "123123123"
+    }
+]
