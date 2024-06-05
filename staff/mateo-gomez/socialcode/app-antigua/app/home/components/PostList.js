@@ -6,6 +6,7 @@ class PostList extends Component {
     }
 
     load() {
+        //TODO checks what's going on here, the page 
         this.removeAll()
 
         try {

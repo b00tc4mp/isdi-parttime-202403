@@ -17,7 +17,7 @@ title.onClick(event => {
 })
 //setTimeout(() => location.href = '../home', 200)
 const loginForm = new LoginForm
-loginForm.onLoggedIn(() => setTimeout(() => location.href = '../home', 200))
+loginForm.onLoggedIn = (() => setTimeout(() => location.href = '../home', 200))
 
 
 

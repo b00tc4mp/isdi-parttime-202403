@@ -60,13 +60,9 @@ class CreatePostForm extends FormWithFeedback {
 
                     this.clear()
 
+
                     this.onPostCreatedListener()
                 })
-
-                this.clear()
-
-                this.onPostCreatedListener()
-
             } catch (error) {
                 if (error instanceof ContentError)
                     this.setFeedback(error.message + ', please, correct it')
