@@ -1,5 +1,7 @@
+import errors from "./errors"
+//desestructuramos para poder usar los errores
+const { ContentError, MatchError } = errors
 const logic = {}
-//creamos un metodo para el objeto logic para almacenar los datos de los usuarios. Modelizar las reglas de negocio
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[\w-]+$/
@@ -61,7 +63,7 @@ logic.loginUser = (username, password, callback) => {
 
     //autentificacion la hace la api
     const xhr = new XMLHttpRequest
-
+    // se configura pero no se ejecuta
     xhr.onload = () => {
         if (xhr.status === 200) {
             // si ha ido bien guardamos el username
@@ -76,6 +78,7 @@ logic.loginUser = (username, password, callback) => {
 
         callback(new constructor(message))
     }
+    //conectamos la app con la api
     xhr.open("POST", "http://localhost:8080/users/auth")
 
     const user = { username, password }
@@ -226,3 +229,4 @@ logic.deletePost = (postId, callback) => {
     xhr.send()
 }
 
+export default logic

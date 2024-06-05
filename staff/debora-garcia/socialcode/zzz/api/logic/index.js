@@ -1,6 +1,5 @@
 import data from "../data/index.js" // importamos el objeto data
 import { ContentError, DuplicityError, MatchError } from "../errors.js"
-
 const logic = {}
 //creamos un metodo para el objeto logic para almacenar los datos de los usuarios. Modelizar las reglas de negocio
 

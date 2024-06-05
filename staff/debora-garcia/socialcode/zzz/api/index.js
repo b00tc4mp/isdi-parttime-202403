@@ -1,16 +1,29 @@
+// const express = require("express")
+//import express, { json } from "express"
 import express from "express"
+import fs from "fs"
 import logic from "./logic/index.js"
-import cors from "cors"
 
 const api = express()
 
-api.use(express.static("public"))
-
-api.use(cors())
+// express ya tiene montado el jsonBodyParser
 
 const jsonBodyParser = express.json({ strict: true, type: "application/json" })
 
+api.use(express.static("public"))
+
+
 api.get("/posts", (req, res) => {
+    /*  fs.readFile("./data/posts.json", "utf8", (error, json) => {
+         if (error) {
+             res.status(500).json({ error: error.constructor.name, message: error.message })
+ 
+             return
+         }
+ 
+         const posts = JSON.parse(json)
+         res.json(posts)
+     }) */
 
     try {//recibimos dos parametros que son los que devuelve la funcion getPosts en logic
         logic.getPosts((error, posts) => {
@@ -147,4 +160,4 @@ api.delete("/posts/:postId", (req, res) => {
     }
 })
 
-api.listen(8080, () => console.log("api is up"))
+api.listen(8080, () => console.log("api is up http://localhost:8080"))
