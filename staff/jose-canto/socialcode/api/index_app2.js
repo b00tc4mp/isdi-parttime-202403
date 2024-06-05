@@ -1,9 +1,7 @@
 import express from 'express'
-//import fs from "fs"
+//import fs from "fs" 
 
-import logic from "./logic/index.js"
-
-
+import logic from "./logic/index_app2.js"
 
 const api = express()
 
@@ -111,9 +109,9 @@ api.post("/users", jsonBodyParser, (req, res) => {
   //   })
   // })
 
-  const { name, surname, email, username, password, passwordRepeat } = req.body
+  const { username, password } = req.body
   try {
-    logic.registerUser(name, surname, email, username, password, passwordRepeat, (error) => {
+    logic.registerUser(username, password, (error) => {
 
       if (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -173,15 +171,12 @@ api.get("/users/:targetUsername", (req, res) => {
       res.json(name)
     })
 
-
   } catch (error) {
 
     res.status(500).json({ error: error.constructor.name, message: error.message })
 
   }
 })
-
-
 
 api.post("/posts", jsonBodyParser, (req, res) => {
 
@@ -215,7 +210,6 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 
 
   try {
-
     logic.createPost(username, title, image, description, (error) => {
 
       if (error) {
@@ -226,7 +220,6 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 
       res.status(201).send()
     })
-
 
   } catch (error) {
 
@@ -261,6 +254,4 @@ api.delete("/posts/:postId", (req, res) => {
   }
 })
 
-
-
-api.listen(8080, () => console.log('listening on port http://localhost:8080'))
+api.listen(8080, () => console.log('listening on port http://localhost:8080/app2/register'))

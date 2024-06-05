@@ -11,16 +11,7 @@ const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
 const ID_REGEX = /^[0-9]+-[0-9]+$/
 
-logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
-  if (!NAME_REGEX.test(name))
-    throw new ContentError('❌ name is not valid ❌')
-
-  if (!NAME_REGEX.test(surname))
-    throw new ContentError('❌ surname is not valid ❌')
-
-  if (!EMAIL_REGEX.test(email)) {
-    throw new ContentError("❌ Email is not valid ❌")
-  }
+logic.registerUser = (username, password, callback) => {
 
   if (!USERNAME_REGEX.test(username)) {
     throw new ContentError("❌ Username is not valid ❌")
@@ -30,16 +21,13 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     throw new ContentError("❌ Password is not valid ❌")
   }
 
-  if (password !== passwordRepeat) {
-    throw new MatchError("❌ Password don't match ❌")
-  }
 
   if (typeof callback !== "function") {
     throw new TypeError("Callback is not a function")
 
   }
 
-  data.findUser((user) => user.email.toLowerCase() === email.toLowerCase() || user.username.toLowerCase() === username.toLowerCase(), (error, user) => {
+  data.findUser((user) => user.username.toLowerCase() === username.toLowerCase(), (error, user) => {
 
     if (error) {
       callback(error)
@@ -54,9 +42,6 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     }
 
     const newUser = {
-      name: name,
-      surname: surname,
-      email: email,
       username: username,
       password: password,
     }
