@@ -1,11 +1,17 @@
 import './App.css'
 import logic from './logic'
+import './components/core/Form.css'
+import './components/core/Field.css'
+import './components/core/Label.css'
+import './components/core/Input.css'
+import './components/core/Button.css'
+import './components/core/SubmitButton.css'
 import './components/library/FormWithFeedback.css'
 import './App.css'
 import { useState } from 'react'
 import Field from './components/core/Field'
 import SubmitButton from './components/core/SubmitButton'
-import FormWithFeedback from './components/library/FormWithFeedback'
+
 
 function App() {
   console.log('App -> virtual dom')
@@ -86,7 +92,7 @@ function App() {
     {view === 'register' && <main className="View">
       <h1>Register</h1>
 
-      <FormWithFeedback onSubmit={handleRegisterSubmit}>
+      <form className="Form FormWithFeedback RegisterForm" onSubmit={handleRegisterSubmit}>
         <Field id="name" placeholder="name">Name</Field>
 
         <Field id="surname" placeholder="surname">Surname</Field>
@@ -99,8 +105,8 @@ function App() {
 
         <Field id="passwordRepeat" type="password" placeholder="password repeat">Password Repeat</Field>
 
-        <SubmitButton>Register</SubmitButton>
-      </FormWithFeedback>
+        <button className="Button SubmitButton" type="submit">Register</button>
+      </form>
 
       <a href="" onClick={handleLoginClick}>Login</a>
     </main>}
@@ -108,13 +114,13 @@ function App() {
     {view === 'login' && <main className="View">
       <h1>Login</h1>
 
-      <FormWithFeedback onSubmit={handleLoginSubmit}>
+      <form className="Form FormWithFeedback" onSubmit={handleLoginSubmit}>
         <Field id="username" placeholder="username">Username</Field>
 
         <Field id="password" type="password" placeholder="password">Password</Field>
 
         <SubmitButton>Login</SubmitButton>
-      </FormWithFeedback>
+      </form>
 
       <a href="" onClick={handleRegisterClick}>Register</a>
     </main>}
