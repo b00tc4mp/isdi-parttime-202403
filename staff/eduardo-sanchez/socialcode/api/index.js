@@ -1,14 +1,16 @@
 import express from 'express'
-import fs from 'fs'
 import logic from './logic/index.js'
+import cors from 'cors'
 
 const api = express()
 
 api.use(express.static('public'))
 
-const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+api.use(cors())
 
 api.get('/', (req, res) => res.send('Hello, World!'))
+
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.post('/users', jsonBodyParser, (req, res) => {
     const { name, surname, email, username, password, passwordRepeat } = req.body
@@ -83,8 +85,8 @@ api.get('/posts', (req, res) => {
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
-
     const username = req.headers.authorization.slice(6)
+
     const { title, image, description } = req.body
 
     try {
@@ -100,7 +102,6 @@ api.post('/posts', jsonBodyParser, (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
     }
-
 })
 
 api.delete('/posts/:postId', (req, res) => {
