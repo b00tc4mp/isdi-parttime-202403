@@ -9,7 +9,7 @@
 	font-weight: 400;
 	z-index: 998;
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	padding: 10px 20px;
 	box-sizing: border-box;
@@ -20,7 +20,8 @@
 	user-select: none;
 }
 
-.createPostButton {
+.createPostButton,
+.scrollUpButton {
 	padding: 10px 13px;
 	border: none;
 	background-color: var(--secondary);
@@ -32,6 +33,11 @@
 	transition: background-color 0.3s;
 }
 
-.createPostButton:hover {
+.createPostButton:hover,
+.scrollUpButton:hover {
 	background-color: var(--primary2);
+}
+
+.scrollUpButton {
+	padding: 12.26px 13px;
 }

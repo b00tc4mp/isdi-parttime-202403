@@ -1,35 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./PostList.module.css";
 import logic from "../../logic.js";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog.jsx";
 
-function PostList() {
-  const [posts, setPosts] = useState([]);
+function PostList({ posts, fetchPosts }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
-
-  useEffect(() => {
-    logic.getAllPosts((error, response) => {
-      if (error) {
-        console.error(error);
-
-        // TODO: show feedback in a more user-friendly way
-        alert(error.message);
-
-        return;
-      }
-
-      const posts = response.posts;
-
-      if (!Array.isArray(posts)) {
-        console.error("Expected an array, but got: ", posts);
-        alert("An error occurred while loading posts.");
-        return;
-      }
-
-      setPosts(posts);
-    });
-  }, []);
 
   const handleDelete = (postId) => {
     setShowConfirm(true);
@@ -46,7 +22,7 @@ function PostList() {
           return;
         }
 
-        setPosts((p) => p.filter((post) => post.id !== postToDelete));
+        fetchPosts();
         setShowConfirm(false);
         setPostToDelete(null);
       });
