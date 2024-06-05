@@ -1,17 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import styles from "./LoginForm.module.css";
-import logic from "../logic.js";
+import logic from "../logic";
+import ViewContext from "../ViewContext.jsx";
 
 function LoginForm() {
+  const { setView } = useContext(ViewContext);
   const formRef = useRef(null);
   const [shake, setShake] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (logic.isUserLoggedIn()) {
-      location.href = "/HOME";
+      setView("home");
     }
-  }, []);
+  }, [setView]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ function LoginForm() {
         setSuccessMessage("Logged in successfully");
         setTimeout(() => {
           setSuccessMessage("");
-          window.location.href = "/HOME";
+          setView("home");
         }, 1000);
       });
     } catch (error) {
@@ -75,7 +77,14 @@ function LoginForm() {
           <div className={styles.success}>{successMessage}</div>
         )}
       </div>
-      <a className={styles.link} href="../register">
+      <a
+        className={styles.link}
+        href=""
+        onClick={(e) => {
+          e.preventDefault();
+          setView("register");
+        }}
+      >
         Register
       </a>
     </>

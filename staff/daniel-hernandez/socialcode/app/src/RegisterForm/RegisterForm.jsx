@@ -1,8 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import styles from "./RegisterForm.module.css";
-import logic from "../logic.js";
+import logic from "../logic";
+import ViewContext from "../ViewContext.jsx";
 
 function RegisterForm() {
+  const { setView } = useContext(ViewContext);
   const formRef = useRef(null);
   const [shake, setShake] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
@@ -10,9 +12,9 @@ function RegisterForm() {
 
   useEffect(() => {
     if (logic.isUserLoggedIn()) {
-      location.href = "/HOME";
+      setView("home");
     }
-  }, []);
+  }, [setView]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -51,7 +53,7 @@ function RegisterForm() {
           setSuccessMessage("Registered successfully, thank you!");
           setTimeout(() => {
             setSuccessMessage("");
-            window.location.href = "/LOGIN";
+            setView("login");
           }, 1000);
         },
       );
@@ -134,7 +136,14 @@ function RegisterForm() {
           <div className={styles.success}>{successMessage}</div>
         )}
       </div>
-      <a className={styles.link} href="../login">
+      <a
+        className={styles.link}
+        href=""
+        onClick={(e) => {
+          e.preventDefault();
+          setView("login");
+        }}
+      >
         Login
       </a>
     </>

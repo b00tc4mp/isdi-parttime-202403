@@ -1,12 +1,15 @@
+import React, { useContext } from "react";
 import styles from "./Header.module.css";
-import logic from "../../logic.js";
+import logic from "../../logic";
+import ViewContext from "../../ViewContext.jsx";
 
 function Header() {
+  const { setView } = useContext(ViewContext);
   const username = logic.getUsername();
 
   const handleLogout = () => {
     logic.logoutUser();
-    window.location.href = "/login";
+    setView("login");
   };
 
   return (
