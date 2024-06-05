@@ -12,8 +12,6 @@ api.get('/', (req, res) => res.send('TAMOS LAAAAIF!!'))
 
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
-
-
 api.post('/users', jsonBodyParser, (req, res) => {
     const { name, surname, email, username, password, passwordRepeat } = req.body
 
@@ -31,6 +29,8 @@ api.post('/users', jsonBodyParser, (req, res) => {
         res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
+
+
 
 api.post('/users/auth', jsonBodyParser, (req, res) => {
     const { username, password } = req.body

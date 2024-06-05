@@ -1,30 +1,41 @@
-class FormWithFeedback extends Form {
-    constructor() {
-        super()
+class ContentError extends Error {
+    constructor(message) {
+        super(message)
 
-        this.addClass('FormWithFeedback')
-
-        const feedbackPanel = new Component('p')
-        feedbackPanel.addClass('Feedback')
-
-        this.feedbackPanel = feedbackPanel
-    }
-
-    setFeedback(message, level) {
-        if (level === 'success')
-            this.feedbackPanel.addClass('success')
-
-        this.feedbackPanel.setText(message)
-
-        this.add(this.feedbackPanel)
-    }
-
-    clear() {
-        super.clear()
-
-        this.feedbackPanel.setText('')
-        this.feedbackPanel.removeClass('success')
-
-        this.remove(this.feedbackPanel)
+        //this.name = ContentError.name
+        this.name = this.constructor.name
     }
 }
+
+class MatchError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
+class DuplicityError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
+class SystemError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
+const errors = {
+    ContentError,
+    MatchError,
+    DuplicityError,
+    SystemError
+}
+
+export default errors
