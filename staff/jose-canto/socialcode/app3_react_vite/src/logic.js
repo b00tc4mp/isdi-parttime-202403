@@ -9,10 +9,8 @@ const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\\[\]\\{\\}\\<\\>\\(\\)]{4,}$/
-
-const NAME_REGEX = /^[a-zA-Z=\\[\]\\{\\}\\<\\>\\(\\)]{1,}$/
-
+const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=[\]{}<>()]{4,}$/
+const NAME_REGEX = /^[a-zA-Z=[\]{}<>()]{1,}$/
 const ID_REGEX = /^[0-9]+-[0-9]+$/
 
 logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
@@ -122,8 +120,6 @@ logic.isUserLoggedIn = () => {
   return !!sessionStorage.username
 }
 
-
-
 logic.getUserName = (callback) => {
 
   if (typeof callback !== "function")
@@ -155,7 +151,6 @@ logic.getUserName = (callback) => {
 
   xhr.send()
 }
-
 
 logic.getAllPosts = (callback) => {
   if (typeof callback !== "function")
@@ -200,7 +195,6 @@ logic.createPost = (title, image, description, callback) => {
     throw new TypeError("callback is not a function")
   }
 
-
   const xhr = new XMLHttpRequest
   xhr.onload = () => {
     if (xhr.status === 201) {
@@ -233,8 +227,6 @@ logic.createPost = (title, image, description, callback) => {
 
 logic.getLoggedInUsername = () => { return sessionStorage.username }
 
-
-
 logic.deletePost = (postId, callback) => {
   if (!ID_REGEX.test(postId))
     throw new ContentError("postId is not valid")
@@ -261,6 +253,5 @@ logic.deletePost = (postId, callback) => {
   xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
   xhr.send()
 }
-
 
 export default logic

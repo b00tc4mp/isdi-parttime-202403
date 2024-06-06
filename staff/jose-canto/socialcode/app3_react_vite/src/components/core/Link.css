@@ -3,6 +3,9 @@
   margin-top: 10px;
   letter-spacing: 2px;
   font-size: 1.8rem;
+  transition: color 0.4s ease-in-out;
+  cursor: pointer;
+  text-decoration: underline
 }
 
 .Link:hover {

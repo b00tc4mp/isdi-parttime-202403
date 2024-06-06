@@ -69,7 +69,6 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
       }
 
       callback(null)
-
     })
   })
 }
@@ -100,7 +99,6 @@ logic.authenticateUser = (username, password, callback) => {
       callback(new MatchError("❌ User not found ❌"))
 
       return
-
     }
 
     if (userFound.password !== password) {
