@@ -20,7 +20,7 @@ function App() {
 
     {view === 'login' && <Login onUserLoggedIn={handleGoToHome} onRegisterLinkClick={handleGoToRegister} />}
 
-    {view === 'home' && <Home onUserLoggedOut={handleGoToLogin} />}
+    {view === 'home' && <Home />}
   </>
 }
 
