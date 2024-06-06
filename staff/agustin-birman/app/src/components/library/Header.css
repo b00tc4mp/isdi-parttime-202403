@@ -1,0 +1,24 @@
+.Header {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: right;
+    position: fixed;
+    top: 0;
+    padding: .5rem;
+    box-sizing: border-box;
+    background-color: rgba(175, 222, 238, 0.603);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.Header .Button {
+    background-color: transparent;
+    font-size: 17px;
+    border-radius: 0 20px;
+    width: 60px;
+    padding: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.25s ease-in;
+}
