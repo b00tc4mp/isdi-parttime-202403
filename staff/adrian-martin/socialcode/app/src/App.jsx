@@ -1,69 +1,128 @@
 import './App.css'
-import { Component } from 'react'
 import logic from './logic'
-import './component/core/Button.css'
-import './component/core/Field.css'
-import './component/core/Form.css'
 import './component/core/Heading.css'
-// import './component/core/SumbitButton.css'
 import './component/core/Link.css'
-import './component/core/Label.css'
-import './component/core/Input.css'
-import './component/core/Image.css'
-import './component/library/FormWithFeedback.css'
+import { useState } from 'react'
+import Field from './component/core/Field'
+import SubmitButton from './component/core/SubmitButton'
+import FormWithFeedback from './component/library/FormWithFeedback'
 
-class App extends Component {
-  constructor() {
-    super()
-  }
 
-  handleSubmit = event => {
+function App() {
+  console.log('App -> virtual dom')
+
+  const [view, setView] = useState('login')
+
+  const handleRegisterSubmit = event => {
     event.preventDefault()
 
     const form = event.target
+
+    const name = form.name.value
+    const surname = form.surname.value
+    const email = form.email.value
+    const username = form.username.value
+    const password = form.password.value
+    const passwordRepeat = form.passwordRepeat.value
+
+    try {
+      logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+        if (error) {
+          console.error(error)
+          alert(error.message)
+
+          return
+        }
+
+        setView('login')
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleLoginClick = event => {
+    event.preventDefault()
+
+    setView('login')
+  }
+
+  const handleLoginSubmit = event => {
+    event.preventDefault()
+
+    const form = event.target
+
     const username = form.username.value
     const password = form.password.value
 
     try {
       logic.loginUser(username, password, error => {
         if (error) {
-          console.error(error.message + ', please, correct it')
+          console.error(error)
+          alert(error.message)
 
           return
         }
 
-        console.log('user successfully logged in')
+        setView('home')
       })
     } catch (error) {
-      // if (error instanceof ContentError)
-      //   this.setFeedback(error.message + '. please, repeat it')
-
-      // else if (error instanceof MatchError)
-      //   this.setFeedback('wrong credentials')
-
-      // else
-      //   this.setFeedback('sorry, there was an error, please try again later')
       console.error(error)
+      alert(error.message)
     }
   }
 
-  render() {
-    return <main>
-      <h1>SocialCode</h1>
+  const handleRegisterClick = event => {
+    event.preventDefault()
 
-      <form className="Form FormWithFeedback" onSubmit={this.handleSubmit}>
-        <div className="Field">
-          <label className="Label" htmlFor="username">Username</label>
-          <input className="Input" id="username" type="text" />
-        </div>
-        <div className="Field">
-          <label className="Label" htmlFor="password">Password</label>
-          <input className="Input" id="password" type="password" />
-        </div>
-        <button className="Button SubmitButton" type="submit">Login</button>
-      </form>
-    </main>
+    setView('register')
   }
+
+  return <>
+    {view === 'register' && <main className="View">
+      <h1 className="Heading">Register</h1>
+
+      <FormWithFeedback onSubmit={handleRegisterSubmit}>
+        <Field id="name" placeholder="name">Name</Field>
+
+        <Field id="surname" placeholder="surname">Surname</Field>
+
+        <Field id="email" placeholder="email">E-mail</Field>
+
+        <Field id="username" placeholder="username">Username</Field>
+
+        <Field id="password" placeholder="password">Password</Field>
+
+        <Field id="passwordRepeat" placeholder="passwordRepeat">Password Repeat</Field>
+
+        <SubmitButton>Register</SubmitButton>
+      </FormWithFeedback>
+      <a href="" onClick={handleLoginClick} className="Link">Login</a>
+
+
+    </main>
+
+    }
+
+    {view === 'login' && <main className='View'>
+      <h1 className="Heading">Login</h1>
+
+      <FormWithFeedback onSubmit={handleLoginSubmit}>
+
+        <Field id="username" placeholder="username">Username</Field>
+
+        <Field id="password" placeholder="password">Password</Field>
+
+        <SubmitButton>Login</SubmitButton>
+      </FormWithFeedback>
+
+      <a href="" onClick={handleRegisterClick} className="Link">Register</a>
+    </main>}
+
+    {view === 'home' && <main className='View'>
+      <h1>Hello, Home!!</h1>
+    </main>}
+  </>
 }
 
 export default App
