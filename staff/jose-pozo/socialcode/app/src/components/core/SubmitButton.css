@@ -1,0 +1,18 @@
+.SubmitButton {
+    width: 100%;
+    margin: 1.5rem 0 .5rem 0;
+    padding: 0rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    color: #7C91ff;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+.SubmitButton:hover {
+    border-color: #7c91ff;
+}

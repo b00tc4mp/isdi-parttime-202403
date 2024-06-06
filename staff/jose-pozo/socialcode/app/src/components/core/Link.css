@@ -1,0 +1,9 @@
+.Link {
+    cursor: pointer;
+    margin-top: 100px;
+    color: #7c91ff;
+}
+
+.Link:hover {
+    border-color: #7c91ff;
+}
