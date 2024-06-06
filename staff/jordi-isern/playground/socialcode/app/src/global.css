@@ -29,16 +29,6 @@ h1{
     text-align: center;
 }
 
-.Input {
-    border: 0 transparent;
-    border-radius: .3rem;
-    width: 10rem;
-    background-color: transparent;
-    padding: .5rem 
-}
-.Input:focus{
-    outline: none;
-}
 h1{
     margin-bottom: 1rem;
 }

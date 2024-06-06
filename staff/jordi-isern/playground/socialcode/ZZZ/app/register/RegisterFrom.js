@@ -111,5 +111,9 @@ class RegisterForm extends FormWithFeedback{
         feedbackPanel.setText(' ')
         feedbackPanel.removeClass('success')
     }
+
+    onRegistered(listener) {
+        this.onRegisteredListener = listener
+    }
 }
 

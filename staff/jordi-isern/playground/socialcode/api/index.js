@@ -10,11 +10,11 @@ const api = express()
 
 api.use(express.static('public'))
 
+api.use(cors())
+
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.get('/', (req, res) => res.send('Hello, World'))
-
-api.get('/',(req, res) )
 
 api.post('users', jsonBodyParser, (req, res) => {
     const { name, surname, email, username, password, passwordRepeat } = req.body
