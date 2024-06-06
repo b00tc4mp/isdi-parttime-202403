@@ -1,7 +1,8 @@
 .Button {
     padding: .4rem 0;
     background-color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     border: 1px solid var(--first-color);
     cursor: pointer;
+    width: 7rem;
 }
