@@ -3,6 +3,7 @@ import { useState } from "react";
 import logic from "./logic";
 
 import "./index.css";
+
 import "./components/LoginComponent.css";
 import "./components/RegisterComponent.css";
 import "./components/core/Field.css";
@@ -12,6 +13,8 @@ import "./components/core/Input.css";
 import "./components/core/Link.css";
 import "./components/core/Button.css";
 import "./components/core/SubmitButton.css";
+import "./components/core/CheckPasswordField.css";
+import "./components/core/TextArea.css";
 
 function App() {
 	const [view, setView] = useState("login");
