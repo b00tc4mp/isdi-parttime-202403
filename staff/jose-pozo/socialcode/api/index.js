@@ -2,6 +2,8 @@ import express from 'express'
 import fs from 'fs'
 import logic from './logic/index.js'
 
+import cors from 'cors'
+
 const api = express()
 
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
