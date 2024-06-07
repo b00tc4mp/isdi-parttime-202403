@@ -1,4 +1,4 @@
-import "./Form.css";
+import "./Form.css"
 
 function Form({ className, onSubmit, children }) {
 	return (
@@ -7,7 +7,7 @@ function Form({ className, onSubmit, children }) {
 				{children}
 			</form>
 		</>
-	);
+	)
 }
 
-export default Form;
+export default Form

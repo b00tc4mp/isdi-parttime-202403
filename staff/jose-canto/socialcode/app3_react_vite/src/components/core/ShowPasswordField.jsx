@@ -1,13 +1,13 @@
-import Label from "./Label";
-import Input from "./Input";
-import "./ShowPasswordField.css";
+import Label from "./Label"
+import Input from "./Input"
+import "./ShowPasswordField.css"
 
-import { useState } from "react";
+import { useState } from "react"
 
 function ShowPasswordField({ id, placeholder, children }) {
-	const [inputType, setInputType] = useState("password");
+	const [inputType, setInputType] = useState("password")
 
-	const showPassword = () => setInputType(inputType === "password" ? "text" : "password");
+	const showPassword = () => setInputType(inputType === "password" ? "text" : "password")
 
 	return (
 		<div className="ShowPasswordField">
@@ -20,7 +20,7 @@ function ShowPasswordField({ id, placeholder, children }) {
 				onClick={showPassword}
 			></i>
 		</div>
-	);
+	)
 }
 
-export default ShowPasswordField;
+export default ShowPasswordField

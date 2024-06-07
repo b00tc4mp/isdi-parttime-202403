@@ -1,94 +1,92 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import logic from "./logic";
+import logic from "./logic"
 
-import Header from "./components/Header";
-import Field from "./components/core/Field";
-import CheckPasswordField from "./components/core/ShowPasswordField";
-import Link from "./components/core/Link";
-import SubmitButton from "./components/core/SubmitButton";
-import Form from "./components/core/Form";
+import Header from "./components/Title"
+import Field from "./components/core/Field"
+import CheckPasswordField from "./components/core/ShowPasswordField"
+import Link from "./components/core/Link"
+import SubmitButton from "./components/core/SubmitButton"
+import FormWithFeedback from "./components/library/FormWithFeedback"
 
-import "./index.css";
-import "./components/LoginComponent.css";
-import "./components/RegisterComponent.css";
-import "./components/core/Form.css";
-import "./components/library/FormWithFeedback.css";
+import "./index.css"
+import "./components/LoginComponent.css"
+import "./components/RegisterComponent.css"
 
 function App() {
-	const [view, setView] = useState("login");
+	const [view, setView] = useState("login")
 
 	const handleRegisterSubmit = (event) => {
-		event.preventDefault();
+		event.preventDefault()
 
-		const target = event.target;
+		const target = event.target
 
-		const name = target.name.value;
-		const surname = target.surname.value;
-		const email = target.email.value;
-		const username = target.username.value;
-		const password = target.password.value;
-		const passwordRepeat = target.passwordRepeat.value;
+		const name = target.name.value
+		const surname = target.surname.value
+		const email = target.email.value
+		const username = target.username.value
+		const password = target.password.value
+		const passwordRepeat = target.passwordRepeat.value
 
 		try {
 			logic.registerUser(name, surname, email, username, password, passwordRepeat, (error) => {
 				if (error) {
-					console.log(error);
+					console.log(error)
 
-					alert(error.message);
-					return;
+					alert(error.message)
+					return
 				}
-				setView("login");
-				console.log("user registered");
-			});
+				setView("login")
+				console.log("user registered")
+			})
 		} catch (error) {
-			alert(error.message);
-			console.error(error.message);
+			alert(error.message)
+			console.error(error.message)
 		}
-	};
+	}
 
 	const handleLoginSubmit = (event) => {
-		event.preventDefault();
+		event.preventDefault()
 
-		const target = event.target;
+		const target = event.target
 
-		const username = target.username.value;
-		const password = target.password.value;
+		const username = target.username.value
+		const password = target.password.value
 
 		try {
 			logic.loginUser(username, password, (error) => {
 				if (error) {
-					console.log(error);
+					console.log(error)
 
-					alert(error.message);
-					return;
+					alert(error.message)
+					return
 				}
-				setView("home");
-				console.log("user logged in");
-			});
+				setView("home")
+				console.log("user logged in")
+			})
 		} catch (error) {
-			alert(error.message);
-			console.error(error.message);
+			alert(error.message)
+			console.error(error.message)
 		}
-	};
+	}
 
 	const handleRegisterClick = (event) => {
-		event.preventDefault();
+		event.preventDefault()
 
-		setView("register");
-	};
+		setView("register")
+	}
 	const handleLoginClick = (event) => {
-		event.preventDefault();
+		event.preventDefault()
 
-		setView("login");
-	};
+		setView("login")
+	}
 
 	return (
 		<>
 			{view === "register" && (
 				<main className="View">
 					<Header>REGISTER</Header>
-					<Form className="RegisterForm" onSubmit={handleRegisterSubmit}>
+					<FormWithFeedback className="RegisterForm" onSubmit={handleRegisterSubmit}>
 						<Field id="name" placeholder="name">
 							Name
 						</Field>
@@ -116,15 +114,15 @@ function App() {
 						<SubmitButton className="Button SubmitButton" type="submit">
 							Register
 						</SubmitButton>
-					</Form>
-					<Link onClick={handleLoginClick}>LOGIN</Link>
+					</FormWithFeedback>
+					<Link onClick={handleLoginClick}>Have already an account? Login</Link>
 				</main>
 			)}
 
 			{view === "login" && (
 				<main className="View">
 					<Header>LOGIN</Header>
-					<Form className="LoginForm" onSubmit={handleLoginSubmit}>
+					<FormWithFeedback className="LoginForm" onSubmit={handleLoginSubmit}>
 						<Field id="username" placeholder="Username">
 							Username
 						</Field>
@@ -134,8 +132,8 @@ function App() {
 						<SubmitButton className="Button SubmitButton" type="submit">
 							Login
 						</SubmitButton>
-					</Form>
-					<Link onClick={handleRegisterClick}>REGISTER</Link>
+					</FormWithFeedback>
+					<Link onClick={handleRegisterClick}> Don't have an account? Register </Link>
 				</main>
 			)}
 
@@ -145,6 +143,6 @@ function App() {
 				</main>
 			)}
 		</>
-	);
+	)
 }
-export default App;
+export default App

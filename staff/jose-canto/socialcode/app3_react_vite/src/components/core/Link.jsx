@@ -1,4 +1,4 @@
-import "./Link.css";
+import "./Link.css"
 function Link({ onClick, children }) {
 	return (
 		<>
@@ -6,7 +6,7 @@ function Link({ onClick, children }) {
 				{children}
 			</a>
 		</>
-	);
+	)
 }
 
-export default Link;
+export default Link

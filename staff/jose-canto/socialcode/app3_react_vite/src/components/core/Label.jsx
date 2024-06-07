@@ -1,4 +1,4 @@
 function Label({ htmlFor, children }) {
-	return <label htmlFor={htmlFor}>{children}</label>;
+	return <label htmlFor={htmlFor}>{children}</label>
 }
-export default Label;
+export default Label

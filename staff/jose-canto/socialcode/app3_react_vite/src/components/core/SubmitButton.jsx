@@ -1,4 +1,4 @@
-import "./SubmitButton.css";
+import "./SubmitButton.css"
 
 function SubmitButton({ type, children }) {
 	return (
@@ -7,7 +7,7 @@ function SubmitButton({ type, children }) {
 				{children}
 			</button>
 		</>
-	);
+	)
 }
 
-export default SubmitButton;
+export default SubmitButton

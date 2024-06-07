@@ -1,7 +1,7 @@
-import Label from "./Label";
-import Input from "./Input";
+import Label from "./Label"
+import Input from "./Input"
 
-import "./Field.css";
+import "./Field.css"
 
 function Field({ id, type, placeholder, children }) {
 	return (
@@ -9,7 +9,7 @@ function Field({ id, type, placeholder, children }) {
 			<Label htmlFor={id}>{children}</Label>
 			<Input id={id} type={type} placeholder={placeholder} />
 		</div>
-	);
+	)
 }
 
-export default Field;
+export default Field
