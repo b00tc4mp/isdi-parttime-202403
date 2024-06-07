@@ -8,7 +8,7 @@ const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{2,}$/
 
-logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
+logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     if (!NAME_REGEX.test(name))
         throw new ContentError('❌ Name is not valid')
 
@@ -24,47 +24,70 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('❌ Password is not valid')
 
-    if (!PASSWORD_REGEX.test(passwordRepeat))
-        throw new ContentError('❌ Password repeat is not valid')
-
     if (password !== passwordRepeat)
         throw new MatchError('❌ Password don\'t match')
 
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 
-    let user = data.findUser((user) => user.email === email || user.username === username)
+    const xhr = new XMLHttpRequest
 
-    if (user)
-        throw new DuplicityError('❌ User already exist')
+    xhr.onload = () => {
+        if (xhr.status === 201) {
+            callback(null)
 
-    user = {
+            return
+        }
 
-        name: name,
-        surname: surname,
-        email: email,
-        username: username,
-        password: password
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
     }
 
-    data.insertUser(user)
+    xhr.open('POST', 'http://localhost:8080/users')
+
+    const body = { name, surname, email, username, password, passwordRepeat }
+
+    const json = JSON.stringify(body)
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(json)
 
 }
 
-logic.loginUser = (username, password) => {
+logic.loginUser = (username, password, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('❌ Username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('❌ Password is not valid')
 
-    let user = data.findUser((user) => user.username === username)
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            sessionStorage.username = username
 
-    if (!user)
-        throw new MatchError('❌ User not found')
+            callback(null)
 
-    if (user.password !== password)
-        throw new MatchError('❌ Wrong password')
+            return
+        }
 
-    sessionStorage.username = username
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('POST', 'http://localhost:8080/users/auth')
+
+    const body = { username, password }
+
+    const json = JSON.stringify(body)
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(json)
 }
 
 logic.isUserLoggedIn = () => !!sessionStorage.username

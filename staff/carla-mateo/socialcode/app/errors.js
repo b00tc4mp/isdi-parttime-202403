@@ -21,3 +21,20 @@ class DuplicityError extends Error {
         this.name = this.constructor.name
     }
 }
+
+class SystemError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
+const errors = {
+    ContentError,
+    MatchError,
+    DuplicityError,
+    SystemError
+
+}
+

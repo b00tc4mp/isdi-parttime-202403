@@ -70,27 +70,37 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
 }
 
-logic.loginUser = (username, password) => {
+logic.authenticateUser = (username, password, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('❌ Username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('❌ Password is not valid')
 
-    let user = data.findUser((user) => user.username === username)
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
 
-    if (!user)
-        throw new MatchError('❌ User not found')
+            return
+        }
 
-    if (user.password !== password)
-        throw new MatchError('❌ Wrong password')
+        if (!user) {
+            callback(new MatchError('❌ User not found'))
 
-}
+            return
+        }
 
-logic.getUserName = () => {
-    const user = data.findUser(user => user.username === sessionStorage.username)
 
-    return user.name
+        if (user.password !== password) {
+            callback(new MatchError('❌ Wrong password'))
+
+            return
+        }
+
+
+        callback(null)
+    })
+
 }
 
 logic.getAllPosts = () => {
