@@ -1,128 +1,31 @@
-import './App.css'
-import logic from './logic'
-import './component/core/Heading.css'
-import './component/core/Link.css'
 import { useState } from 'react'
-import Field from './component/core/Field'
-import SubmitButton from './component/core/SubmitButton'
-import FormWithFeedback from './component/library/FormWithFeedback'
 
+import Register from './views/Register'
+import Login from './views/Login'
+import Home from './views/Home'
 
 function App() {
-  console.log('App -> virtual dom')
+  console.log('App -> render')
 
   const [view, setView] = useState('login')
 
-  const handleRegisterSubmit = event => {
-    event.preventDefault()
+  const handleGoToLogin = () => setView('login')
 
-    const form = event.target
+  const handleGoToHome = () => setView('home')
 
-    const name = form.name.value
-    const surname = form.surname.value
-    const email = form.email.value
-    const username = form.username.value
-    const password = form.password.value
-    const passwordRepeat = form.passwordRepeat.value
-
-    try {
-      logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
-        if (error) {
-          console.error(error)
-          alert(error.message)
-
-          return
-        }
-
-        setView('login')
-      })
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const handleLoginClick = event => {
-    event.preventDefault()
-
-    setView('login')
-  }
-
-  const handleLoginSubmit = event => {
-    event.preventDefault()
-
-    const form = event.target
-
-    const username = form.username.value
-    const password = form.password.value
-
-    try {
-      logic.loginUser(username, password, error => {
-        if (error) {
-          console.error(error)
-          alert(error.message)
-
-          return
-        }
-
-        setView('home')
-      })
-    } catch (error) {
-      console.error(error)
-      alert(error.message)
-    }
-  }
-
-  const handleRegisterClick = event => {
-    event.preventDefault()
-
-    setView('register')
-  }
+  const handleGoToRegister = () => setView('register')
 
   return <>
-    {view === 'register' && <main className="View">
-      <h1 className="Heading">Register</h1>
-
-      <FormWithFeedback onSubmit={handleRegisterSubmit}>
-        <Field id="name" placeholder="name">Name</Field>
-
-        <Field id="surname" placeholder="surname">Surname</Field>
-
-        <Field id="email" placeholder="email">E-mail</Field>
-
-        <Field id="username" placeholder="username">Username</Field>
-
-        <Field id="password" placeholder="password">Password</Field>
-
-        <Field id="passwordRepeat" placeholder="passwordRepeat">Password Repeat</Field>
-
-        <SubmitButton>Register</SubmitButton>
-      </FormWithFeedback>
-      <a href="" onClick={handleLoginClick} className="Link">Login</a>
+    {view === 'register' && <Register onUserRegistered={handleGoToLogin} onLoginLinkClick={handleGoToLogin} />}
 
 
-    </main>
+    {view === 'login' && <Login onUserLoggin={handleGoToHome} onRegisterLinkClick={handleGoToRegister} />}
 
-    }
 
-    {view === 'login' && <main className='View'>
-      <h1 className="Heading">Login</h1>
-
-      <FormWithFeedback onSubmit={handleLoginSubmit}>
-
-        <Field id="username" placeholder="username">Username</Field>
-
-        <Field id="password" placeholder="password">Password</Field>
-
-        <SubmitButton>Login</SubmitButton>
-      </FormWithFeedback>
-
-      <a href="" onClick={handleRegisterClick} className="Link">Register</a>
-    </main>}
-
-    {view === 'home' && <main className='View'>
-      <h1>Hello, Home!!</h1>
-    </main>}
+    {view === 'home' && <Home onUserLoggedOut={handleGoToLogin} />}
   </>
 }
+
+// TODO fix the title, the position of the home button and the type of the password
 
 export default App
