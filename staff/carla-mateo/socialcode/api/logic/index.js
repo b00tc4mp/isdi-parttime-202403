@@ -1,3 +1,6 @@
+import data from '../data/index.js'
+import { ContentError, DuplicityError, MatchError } from '../errors.js'
+
 const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -8,7 +11,7 @@ const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{2,}$/
 
-logic.registerUser = (name, surname, email, username, password, passwordRepeat) => {
+logic.registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     if (!NAME_REGEX.test(name))
         throw new ContentError('❌ Name is not valid')
 
@@ -31,21 +34,39 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat) 
         throw new MatchError('❌ Password don\'t match')
 
 
-    let user = data.findUser((user) => user.email === email || user.username === username)
+    data.findUser(user => user.email === email || user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
 
-    if (user)
-        throw new DuplicityError('❌ User already exist')
+            return
+        }
+        if (user) {
+            callback(new DuplicityError('❌ User already exist'))
 
-    user = {
+            return
 
-        name: name,
-        surname: surname,
-        email: email,
-        username: username,
-        password: password
-    }
+        }
 
-    data.insertUser(user)
+        const newUser = {
+
+            name: name,
+            surname: surname,
+            email: email,
+            username: username,
+            password: password
+        }
+
+        data.insertUser(newUser, error => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            callback(null)
+
+        })
+    })
 
 }
 
@@ -64,12 +85,7 @@ logic.loginUser = (username, password) => {
     if (user.password !== password)
         throw new MatchError('❌ Wrong password')
 
-    sessionStorage.username = username
 }
-
-logic.isUserLoggedIn = () => !!sessionStorage.username
-
-logic.logoutUser = () => delete sessionStorage.username
 
 logic.getUserName = () => {
     const user = data.findUser(user => user.username === sessionStorage.username)
@@ -83,13 +99,13 @@ logic.getAllPosts = () => {
     return posts.reverse()
 }
 
-logic.createPost = (title, image, description) => {
+logic.createPost = (username, title, image, description) => {
     if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('❌ Title is not valid')
     if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('❌ Image is not valid')
     if (typeof description !== 'string' || !description.length || description.length > 3000) throw new ContentError('❌ Description is not valid')
 
     const post = {
-        author: sessionStorage.username,
+        author: username,
         title,
         image,
         description,
@@ -99,6 +115,6 @@ logic.createPost = (title, image, description) => {
     data.insertPost(post)
 }
 
-logic.getLoggedInUsername = () => sessionStorage.username
-
 logic.deletePost = id => data.deletePost(post => post.id === id)
+
+export default logic
