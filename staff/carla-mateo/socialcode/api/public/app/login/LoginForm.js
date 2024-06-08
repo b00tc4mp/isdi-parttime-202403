@@ -23,7 +23,7 @@ class LoginForm extends FormWithFeedback {
             try {
                 logic.loginUser(username, password, error => {
                     if (error) {
-                        this.Form.setFeedback(error.message + ', please, correct it')
+                        this.setFeedback(error.message + ', please, correct it')
 
                         return
                     }
@@ -37,11 +37,11 @@ class LoginForm extends FormWithFeedback {
 
             } catch (error) {
                 if (error instanceof ContentError)
-                    this.Form.setFeedback(error.message + ', please, correct it')
+                    this.setFeedback(error.message + ', please, correct it')
                 else if (error instanceof MatchError)
-                    this.Form.setFeedback('❌ Wrong credentials')
+                    this.setFeedback('❌ Wrong credentials')
                 else
-                    this.Form.setFeedback('❌ Sorry, there was an error, please try again later')
+                    this.setFeedback('❌ Sorry, there was an error, please try again later')
             }
 
         })

@@ -5,5 +5,19 @@
         "email": "pepito@grillo.com",
         "username": "pepitogrillo",
         "password": "1234"
+    },
+    {
+        "name": "Peter",
+        "surname": "Pan",
+        "email": "peter@pan.com",
+        "username": "peterpan",
+        "password": "1234"
+    },
+    {
+        "name": "Wendy",
+        "surname": "Darling",
+        "email": "wendy@darling.com",
+        "username": "wendy",
+        "password": "1234"
     }
 ]

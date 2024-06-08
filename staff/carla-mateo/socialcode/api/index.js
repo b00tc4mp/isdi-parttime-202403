@@ -4,6 +4,8 @@ import logic from './logic/index.js'
 
 const api = express()
 
+api.use(express.static('public'))
+
 const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.get('/', (req, res) => res.send('Hello, World!'))
@@ -37,7 +39,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            res.status(200).send()
+            res.send()
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -45,18 +47,40 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 })
 
 api.get('/posts', (req, res) => {
-    // TODO use logic here
+    try {
+        logic.getAllPosts((error, posts) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
 
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+                return
+            }
 
-            return
-        }
+            res.json(posts)
+        })
 
-        const posts = JSON.parse(json)
-        res.json(posts)
-    })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+api.post('/posts', jsonBodyParser, (req, res) => {
+    const username = req.headers.authorization.slice(6)
+
+    const { title, image, description } = req.body
+
+    try {
+        logic.createPost(username, title, image, description, error => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.status(201).send()
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 

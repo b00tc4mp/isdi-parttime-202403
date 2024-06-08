@@ -64,6 +64,8 @@ logic.loginUser = (username, password, callback) => {
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('❌ Password is not valid')
 
+    const xhr = new XMLHttpRequest
+
     xhr.onload = () => {
         if (xhr.status === 200) {
             sessionStorage.username = username
@@ -95,31 +97,78 @@ logic.isUserLoggedIn = () => !!sessionStorage.username
 logic.logoutUser = () => delete sessionStorage.username
 
 logic.getUserName = () => {
-    const user = data.findUser(user => user.username === sessionStorage.username)
+    // const user = data.findUser(user => user.username === sessionStorage.username)
 
-    return user.name
+    // return user.name
 }
 
-logic.getAllPosts = () => {
-    const posts = data.findPosts(() => true)
+logic.getAllPosts = callback => {
+    const xhr = new XMLHttpRequest
 
-    return posts.reverse()
-}
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const posts = JSON.parse(xhr.response)
 
-logic.createPost = (title, image, description) => {
-    if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('❌ Title is not valid')
-    if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('❌ Image is not valid')
-    if (typeof description !== 'string' || !description.length || description.length > 3000) throw new ContentError('❌ Description is not valid')
+            callback(null, posts)
 
-    const post = {
-        author: sessionStorage.username,
-        title,
-        image,
-        description,
-        date: utils.getStringInDateFormat()
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
     }
 
-    data.insertPost(post)
+    xhr.open('GET', 'http://localhost:8080/posts')
+
+    xhr.send()
+}
+
+logic.createPost = (title, image, description, callback) => {
+    if (typeof title !== 'string' || !title.length || title.length > 50)
+        throw new ContentError('title is not valid')
+
+    if (typeof image !== 'string' || !image.startsWith('http'))
+        throw new ContentError('image is not valid')
+
+    if (typeof description !== 'string' || !description.length || description.length > 200)
+        throw new ContentError('description is not valid')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
+
+    const xhr = new XMLHttpRequest
+
+    xhr.onload = () => {
+        if (xhr.status === 201) {
+            callback(null)
+
+            return
+        }
+
+        const { error, message } = JSON.parse(xhr.response)
+
+        const constructor = errors[error]
+
+        callback(new constructor(message))
+    }
+
+    xhr.open('POST', 'http://localhost:8080/posts')
+
+    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+
+    const body = {
+        title,
+        image,
+        description
+    }
+
+    const json = JSON.stringify(body)
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(json)
 }
 
 logic.getLoggedInUsername = () => sessionStorage.username

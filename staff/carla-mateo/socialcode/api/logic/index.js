@@ -103,26 +103,56 @@ logic.authenticateUser = (username, password, callback) => {
 
 }
 
-logic.getAllPosts = () => {
-    const posts = data.findPosts(() => true)
+logic.getAllPosts = callback => {
+    data.findPosts(() => true, (error, posts) => {
+        if (error) {
+            callback(error)
 
-    return posts.reverse()
+            return
+        }
+
+        callback(null, posts.reverse())
+    })
 }
 
-logic.createPost = (username, title, image, description) => {
+logic.createPost = (username, title, image, description, callback) => {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('❌ Username is not valid')
     if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('❌ Title is not valid')
     if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('❌ Image is not valid')
     if (typeof description !== 'string' || !description.length || description.length > 3000) throw new ContentError('❌ Description is not valid')
 
-    const post = {
-        author: username,
-        title,
-        image,
-        description,
-        date: utils.getStringInDateFormat()
-    }
+    data.findUser(user => user.username === username, (error, user) => {
+        if (error) {
+            callback(error)
 
-    data.insertPost(post)
+            return
+        }
+        if (!user) {
+            callback(new MatchErrorError('❌ User not found'))
+
+            return
+
+        }
+        const post = {
+            author: username,
+            title,
+            image,
+            description,
+            date: new Date().toISOString()
+        }
+
+        data.insertPost(post, error => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            callback(null)
+        })
+    })
+
 }
 
 logic.deletePost = id => data.deletePost(post => post.id === id)
