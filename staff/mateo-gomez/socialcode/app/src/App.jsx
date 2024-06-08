@@ -1,20 +1,20 @@
 import './App.css'
 import logic from './logic'
-import './components/core/Field.css'
-import './components/core/Form.css'
-import './components/core/Button.css'
+import Field from './components/core/Field'
+import FormWithFeedback from './components/library/FormWithFeedBack'
+import SubmitButton from './components/core/SubmitButton'
 import './components/core/Image.css'
-import './components/core/Input.css'
-import './components/core/SubmitButton.css'
-import './components/library/FormWithFeedback.css'
+
 import { useState } from 'react'
+
+
 
 
 
 function App() {
   console.log('App -> virtual dom')
 
-  const [view, setView] = useState('register')
+  const [view, setView] = useState('login')
 
 
   const handleRegisterSubmit = event => {
@@ -108,40 +108,17 @@ function App() {
 
       <h1 className='MainTitle'>Register</h1>
 
-      <form className="Form FormWithFeedback RegisterForm" onSubmit={handleRegisterSubmit}>
-        <div className="Field">
-          <label htmlFor="name">Name</label>
-          <input className="Input" id="name" type="text" placeholder="name" />
-        </div>
+      <FormWithFeedback onSubmit={handleRegisterSubmit}>
+        <Field id='name' type='text' placeholder='name'>name</Field>
+        <Field id='surname' type='text' placeholder='surname'>surname</Field>
+        <Field id='email' type='email' placeholder='E-Mail'>E-Mail</Field>
+        <Field id='username' type='text' placeholder='username'>username</Field>
+        <Field id='password' type='password' placeholder='password'>password</Field>
+        <Field id='passwordRepeat' type='password' placeholder='Repeat Password'>passwordRepeat</Field>
 
-        <div className="Field">
-          <label htmlFor="surname">Surname</label>
-          <input className="Input" id="surname" type="text" placeholder="surname" />
-        </div>
+        <SubmitButton type='submit'>Register</SubmitButton>
 
-        <div className="Field">
-          <label htmlFor="email">E-mail</label>
-          <input className="Input" id="email" type="email" placeholder="name@example.com" />
-        </div>
-
-        <div className="Field">
-          <label htmlFor="username">Username</label>
-          <input className="Input" id="username" type="text" placeholder="username" />
-        </div>
-
-        <div className="Field">
-          <label htmlFor="password">Password</label>
-          <input className="Input" id="password" type="password" placeholder="password" />
-        </div>
-
-        <div className="Field">
-          <label htmlFor="password">Repeat Password</label>
-          <input className="Input" id="passwordRepeat" type="password" placeholder="repeat password" />
-        </div>
-
-        <button className="Button SubmitButton" type="submit">Register</button>
-
-      </form>
+      </FormWithFeedback>
 
       <a href='' onClick={handleLoginClick}>Login</a>
 
@@ -149,19 +126,14 @@ function App() {
 
 
     {view === 'login' && <main className='View'>
-      <h1 class='MainTitle'>Login</h1>
+      <h1 className='MainTitle'>Login</h1>
 
-      <form className="Form FormWithFeedback" onSubmit={handleLoginSubmit}>
-        <div className="Field">
-          <label htmlFor="username">Username</label>
-          <input className="Input" id="username" type="text"></input>
-        </div>
-        <div className="Field">
-          <label htmlFor="password">Password</label>
-          <input className="Input" id="password" type="password"></input>
-        </div>
-        <button className="Button SubmitButton" type="submit">Login</button>
-      </form>
+      <FormWithFeedback onSubmit={handleLoginSubmit}>
+        <Field id='username' type='text' placeholder='username'>username</Field>
+        <Field id='password' type='password' placeholder='password'>password</Field>
+
+        <SubmitButton type='submit'>Login</SubmitButton>
+      </FormWithFeedback>
       <a href='' onClick={handleRegisterClick}>Register</a>
 
     </main>}
@@ -170,6 +142,7 @@ function App() {
     {
       view === 'home' && <main className='View'>
         <h1>Hello, Home!</h1>
+
       </main>
     }
   </>
