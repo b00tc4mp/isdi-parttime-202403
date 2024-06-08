@@ -46,6 +46,26 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
     }
 })
 
+api.get('/users/:targetUsername', (req, res) => {
+    const username = req.headers.authorization.slice(6)
+
+    const { targetUsername } = req.params
+
+    try {
+        logic.getUserName(username, targetUsername, (error, name) => {
+            if (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                return
+            }
+
+            res.json(name)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
 api.get('/posts', (req, res) => {
     try {
         logic.getAllPosts((error, posts) => {
@@ -84,37 +104,24 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 })
 
 
-api.post('/posts', jsonBodyParser, (req, res) => {
-    const post = req.body
+api.delete('/posts/:postId', (req, res) => {
+    const username = req.headers.authorization.slice(6)
 
-    // TODO use logic here
+    const { postId } = req.params
 
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-            return
-        }
-
-        const posts = JSON.parse(json)
-
-        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
-        post.date = new Date().toISOString()
-
-        posts.push(post)
-
-        const newJson = JSON.stringify(posts)
-
-        fs.writeFile('./data/posts.json', newJson, error => {
+    try {
+        logic.deletePost(username, postId, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
-            res.status(201).send()
+            res.status(204).send()
         })
-    })
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 api.listen(8080, () => console.log('api is up'))
