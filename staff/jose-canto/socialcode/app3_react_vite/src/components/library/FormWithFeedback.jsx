@@ -4,7 +4,7 @@ import "./FormWithFeedback.css"
 function FormWithFeedback({ className, onSubmit, children }) {
 	return (
 		<>
-			<Form className={`FormWithFeedback ${className ? className : ""} `} onSubmit={onSubmit}>
+			<Form className="FormWithFeedback" onSubmit={onSubmit}>
 				{children}
 			</Form>
 		</>

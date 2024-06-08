@@ -1,0 +1,56 @@
+.View {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  max-width: 80%;
+
+}
+
+.Section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5.2rem;
+  margin-bottom: 5rem;
+  gap: 2rem
+}
+
+.Footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8)
+}
+
+.Footer .Button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  width: 2rem;
+  height: 2.2rem;
+}
+
+.Footer i {
+  position: relative;
+  font-size: 2rem;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: 0.25s ease-in;
+}
+
+.Footer i:hover {
+  color: var(--first-color);
+}
