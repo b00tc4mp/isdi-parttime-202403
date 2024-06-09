@@ -1,14 +1,16 @@
 import express from 'express'
-import fs from 'fs'
 import logic from './logic/index.js'
+import cors from 'cors'
 
 const api = express()
 
 api.use(express.static('public'))
 
-const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+api.use(cors())
 
 api.get('/', (req, res) => res.send('Hello, World!'))
+
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.post('/users', jsonBodyParser, (req, res) => {
     const { name, surname, email, username, password, passwordRepeat } = req.body
