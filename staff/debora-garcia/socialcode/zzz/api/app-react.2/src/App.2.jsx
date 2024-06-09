@@ -1,11 +1,16 @@
 import "./App.css"
 //import { Component } from "react" se quita el component ya que no usamos clases
 import logic from "./logic"
+import "./components/core/Button.css"
+import "./components/core/Field.css"
+import "./components/core/Form.css"
+import "./components/core/Image.css"
+import "./components/core/Input.css"
+import "./components/core/SubmitButton.css"
 import "./components/library/FormWithFeedback.css"
 import { useState } from "react"
-import Field from "./components/core/Field"
-import SubmitButton from "./components/core/SubmitButton"
-import FormWithFeedback from "./components/library/FormWithFeedback"
+import Label from "./components/core/Label"
+import Input from "./components/core/Input"
 
 
 //utilizamos compo de tipo funcion usando hooks
@@ -82,17 +87,29 @@ function App() {
     {view === "register" && <main className="View">
       <h1>Register</h1>
 
-      <FormWithFeedback onSubmit={handleRegisterSubmit}>
-        <Field id="email" placeholder="koala@example.com">E-mail</Field>
+      <form className="Form FormWithFeedback RegisterForm" onSubmit={handleRegisterSubmit}>
+        <div className="Field">
+          <Label htmlFor="email">E-mail</Label>
+          <Input id="email" type="text" placeholder="name" />
+        </div>
 
-        <Field id="username" placeholder="username">username</Field>
+        <div className="Field">
+          <Label htmlFor="username">Username</Label>
+          <Input id="username" type="text" placeholder="username" />
+        </div>
 
-        <Field id="password" placeholder="password">Password</Field>
+        <div className="Field">
+          <Label htmlFor="password">Password</Label>
+          <Input id="password" type="password" placeholder="password" />
+        </div>
 
-        <Field id="passwordRepeat" placeholder="passwordRepeat">Password repeat</Field>
+        <div className="Field">
+          <Label htmlFor="password">Password repeat</Label>
+          <Input id="passwordRepeat" type="password" placeholder="repeat password" />
+        </div>
 
-        <SubmitButton>Register</SubmitButton>
-      </FormWithFeedback>
+        <button className="Button SubmitButton" type="submit">Register</button>
+      </form>
 
       <a href="" onClick={handleLoginClick}>Login</a>
     </main>}
@@ -100,14 +117,17 @@ function App() {
 
     {view === "login" && <main className="View">
       <h1>Login</h1>
-      <FormWithFeedback onSubmit={handleLoginSubmit}>
-
-        <Field id="username" placeholder="username">username</Field>
-
-        <Field id="password" placeholder="password">Password</Field>
-
-        <SubmitButton>Login</SubmitButton>
-      </FormWithFeedback>
+      <form className="Form FormWithFeedback" onSubmit={handleLoginSubmit}>
+        <div className="Field">
+          <Label htmlFor="username">Username</Label>
+          <Input id="username" type="text" placeholder="username" />
+        </div>
+        <div className="Field">
+          <Label htmlFor="password">Password</Label>
+          <Input id="password" type="password" placeholder="password" />
+        </div>
+        <button className="Button SubmitButton" type="submit">Login</button>
+      </form>
 
       <a href="" onClick={handleRegisterClick}>Register</a>
     </main>}

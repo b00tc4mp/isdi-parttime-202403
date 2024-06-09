@@ -1,11 +1,18 @@
 import "./App.css"
 //import { Component } from "react" se quita el component ya que no usamos clases
 import logic from "./logic"
+import "./components/core/Button.css"
+import "./components/core/Field.css"
+import "./components/core/Form.css"
+import "./components/core/Image.css"
+import "./components/core/Input.css"
+import "./components/core/SubmitButton.css"
 import "./components/library/FormWithFeedback.css"
 import { useState } from "react"
+// import Label from "./components/core/Label"
+// import Input from "./components/core/Input"
 import Field from "./components/core/Field"
 import SubmitButton from "./components/core/SubmitButton"
-import FormWithFeedback from "./components/library/FormWithFeedback"
 
 
 //utilizamos compo de tipo funcion usando hooks
@@ -82,7 +89,7 @@ function App() {
     {view === "register" && <main className="View">
       <h1>Register</h1>
 
-      <FormWithFeedback onSubmit={handleRegisterSubmit}>
+      <form className="Form FormWithFeedback RegisterForm" onSubmit={handleRegisterSubmit}>
         <Field id="email" placeholder="koala@example.com">E-mail</Field>
 
         <Field id="username" placeholder="username">username</Field>
@@ -92,7 +99,7 @@ function App() {
         <Field id="passwordRepeat" placeholder="passwordRepeat">Password repeat</Field>
 
         <SubmitButton>Register</SubmitButton>
-      </FormWithFeedback>
+      </form>
 
       <a href="" onClick={handleLoginClick}>Login</a>
     </main>}
@@ -100,14 +107,14 @@ function App() {
 
     {view === "login" && <main className="View">
       <h1>Login</h1>
-      <FormWithFeedback onSubmit={handleLoginSubmit}>
+      <form className="Form FormWithFeedback" onSubmit={handleLoginSubmit}>
 
         <Field id="username" placeholder="username">username</Field>
 
         <Field id="password" placeholder="password">Password</Field>
 
         <SubmitButton>Login</SubmitButton>
-      </FormWithFeedback>
+      </form>
 
       <a href="" onClick={handleRegisterClick}>Register</a>
     </main>}
