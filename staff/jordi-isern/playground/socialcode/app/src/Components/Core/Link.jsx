@@ -1,4 +1,4 @@
-function Link (onClick, children) {
+function Link ({onClick, children}) {
     return (
         <a href="" onClick={onClick}>{children}</a>
     )

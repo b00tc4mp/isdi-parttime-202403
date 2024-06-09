@@ -2,13 +2,13 @@ import { useState } from 'react'
 import logic from '../logic.js'
 import Field from '../Components/Core/Field.jsx'
 import SubmitButton from '../Components/Core/SubmitButton.jsx'
-import FormWithFeedback from './Components/Library/FormWithFeedback.jsx'
+import FormWithFeedback from '../Components/Library/FormWithFeedback.jsx'
 import Link from '../Components/Core/Link.jsx'
 import Title from '../Components/Core/Title.jsx'
 import View from '../Components/Library/View.jsx'
 
 
-function Register (onUserRegistered ,onLoginLinkClick){
+function Register ({onUserRegistered ,onLoginLinkClick}){
 
     const  handleRegisterSubmit = event => {
         event.preventDefault()
@@ -51,9 +51,11 @@ function Register (onUserRegistered ,onLoginLinkClick){
         <Title>Register</Title>
         <FormWithFeedback onSubmit={handleRegisterSubmit}>
           <Field id="name" placeholder="name">Name</Field>
+          <Field id="surname" placeholder="surname">Surname</Field>
           <Field id="email" placeholder="email">E-mail</Field>
+          <Field id="username" placeholder="Username">Username</Field>
           <Field id="password" placeholder="password" type="password">Password</Field>
-          <Field id="repeatPassword" placeholder="Repeat Password" type="password"> Repeat Password</Field>
+          <Field id="passwordRepeat" placeholder="Repeat Password" type="password"> Repeat Password</Field>
           <SubmitButton>Register</SubmitButton>
         </FormWithFeedback>
         <Link onClick={handleLoginClick}>Login</Link>

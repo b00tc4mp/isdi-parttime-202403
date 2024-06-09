@@ -16,7 +16,7 @@ const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.get('/', (req, res) => res.send('Hello, World'))
 
-api.post('users', jsonBodyParser, (req, res) => {
+api.post('/users', jsonBodyParser, (req, res) => {
     const { name, surname, email, username, password, passwordRepeat } = req.body
 
     try {
@@ -36,7 +36,7 @@ api.post('users', jsonBodyParser, (req, res) => {
 
 
 
-api.post('/user/auth', jsonBodyParser, (req, res) => {
+api.post('/users/auth', jsonBodyParser, (req, res) => {
     const { username, password } = req.body
 
     try {

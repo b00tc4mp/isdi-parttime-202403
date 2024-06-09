@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './global.css'
 import './App.css'
-import logic from './logic.js'
+
 import Login from './views/Login.jsx'
 import Register from './views/Register.jsx'
-import Home from './views/Home.jsx'
+import Home from './views/home/Home.jsx'
 
 
 function App () {
@@ -22,7 +22,7 @@ const [view, setView] = useState('login')
     }
     {view ==='register' && <Register onUserRestered={handleGoToLogin} onLoginLinkClick={handleGoToLogin}/>
   }
-  {view === ' home' && <Home/>}
+  {view === 'home' && <Home/>}
     </>)
 }
 

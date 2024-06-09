@@ -11,3 +11,5 @@ function Field({id, type, placeholder, children}){
         </div>
     </div>
 }
+
+export default FieldInput

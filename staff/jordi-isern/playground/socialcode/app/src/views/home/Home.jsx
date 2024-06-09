@@ -1,9 +1,9 @@
-import Button from "../Components/Core/Button";
-import Title from "../Components/Core/Title";
-import View from "../Components/Library/View";
+import Button from "../../Components/Core/Button";
+import Title from "../../Components/Core/Title";
+import View from "../../Components/Library/View";
 import Header from "./components/Header";
 
-function Home(onUserLoggedOut) {
+function Home({onUserLoggedOut}) {
     console.log('home -> render')
 
     const handleLogout =() => {
