@@ -12,7 +12,6 @@
   color: var(--first-color)
 }
 
-
 body {
   background-image: linear-gradient(#0D878B,
       #1FA191,
@@ -24,4 +23,7 @@ body {
   font-family: "Jersey 10", sans-serif;
   font-weight: 400;
   font-style: normal;
+  display: flex;
+  justify-content: center;
+
 }
