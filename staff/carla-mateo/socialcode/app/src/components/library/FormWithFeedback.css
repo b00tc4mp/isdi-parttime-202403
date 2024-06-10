@@ -1,0 +1,25 @@
+.FormWithFeedback {
+    padding: 1rem;
+    border-radius: 30px;
+    border: 4px solid black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    width: auto;
+
+}
+
+.FormWithFeedback .Feedback {
+    display: flex;
+    text-align: center;
+    color: rgb(52, 26, 4);
+    max-width: 15rem;
+}
+
+
+
+.FormWithFeedback .Feedback.success {
+    color: rgb(85, 41, 5);
+    max-width: 15rem;
+}
