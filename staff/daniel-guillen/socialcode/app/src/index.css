@@ -15,12 +15,3 @@ body {
     background-color: var(--second-color);
     margin: 0 auto;
 }
-
-/*.Logo {
-    position: absolute;
-    left: 30%;
-    width: auto;
-    height: auto; 
-    font-size: 5vw;
-    color: white;
-  }*/
