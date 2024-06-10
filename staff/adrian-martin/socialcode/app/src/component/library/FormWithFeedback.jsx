@@ -1,7 +1,7 @@
 import Form from '../core/Form'
 import './FormWithFeedback.css'
 
-function FormWithFeedback ({className, onSubmit, children}){
+function FormWithFeedback ({onSubmit, children}){
     return <Form className="FormWithFeedback" onSubmit={onSubmit}>{children}</Form>
 }
 

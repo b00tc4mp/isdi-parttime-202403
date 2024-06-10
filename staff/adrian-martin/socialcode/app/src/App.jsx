@@ -26,6 +26,6 @@ function App() {
   </>
 }
 
-// TODO fix the title, the position of the home button and the type of the password
+// TODO the position of the home button and the type of the password
 
 export default App

@@ -1,6 +1,6 @@
 import './View.css'
 
-function View ({tag: Tag = 'div',children}){
+function View ({tag: Tag = 'div', children}){
     return <Tag className="View">{children}</Tag>
 }
 

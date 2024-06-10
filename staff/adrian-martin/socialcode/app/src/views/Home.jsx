@@ -1,5 +1,3 @@
-import Button from '../component/core/Button'
-import Title from '../component/core/Title'
 import View from '../component/library/View'
 
 import Header from './components/Header'
@@ -9,10 +7,11 @@ import logic from '../logic'
 function Home({ onUserLoggedOut }) {
     console.log('Home -> render')
 
-    const handleLogout = () => 
+    const handleLogout = () => {
         logic.logoutUser()
 
     onUserLoggedOut()
+    }
 
     return <View>
         <Header>

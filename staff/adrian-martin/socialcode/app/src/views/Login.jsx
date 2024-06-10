@@ -25,7 +25,7 @@ function Login({ onUserLoggin, onRegisterLinkClick }) {
 
                     return
                 }
-
+                console.log('Funciona bien :)')
                 onUserLoggin()
             })
         } catch (error) {
@@ -45,9 +45,9 @@ function Login({ onUserLoggin, onRegisterLinkClick }) {
 
         <FormWithFeedback onSubmit={handleLoginSubmit}>
 
-            <Field id="username" placeholder="username">Username</Field>
+            <Field id="username" type='text' placeholder="username">Username</Field>
 
-            <Field id="password" placeholder="password">Password</Field>
+            <Field id="password" type='password' placeholder="password">Password</Field>
 
             <SubmitButton>Login</SubmitButton>
         </FormWithFeedback>
