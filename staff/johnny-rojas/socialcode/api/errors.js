@@ -2,7 +2,6 @@ class ContentError extends Error {
   constructor(message) {
       super(message)
 
-      //this.name = ContentError.name
       this.name = this.constructor.name
   }
 }

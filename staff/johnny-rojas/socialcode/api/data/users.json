@@ -29,5 +29,33 @@
   },
   { "username": "mercadona", "password": "1234" },
   { "username": "hacendado", "password": "1234" },
-  { "username": "BosqueVerde", "password": "1234" }
+  { "username": "BosqueVerde", "password": "1234" },
+  {
+    "name": "gin",
+    "surname": "tonic",
+    "email": "gin@tonic.com",
+    "username": "gingin",
+    "password": "1234"
+  },
+  {
+    "name": "hola",
+    "surname": "chao",
+    "email": "hola@chao.com",
+    "username": "holachao",
+    "password": "1234"
+  },
+  {
+    "name": "manzana",
+    "surname": "pera",
+    "email": "manzana@pera.com",
+    "username": "manzanapera",
+    "password": "1234"
+  },
+  {
+    "name": "Banana",
+    "surname": "Split",
+    "email": "Banana@Split.com",
+    "username": "BananaSplit",
+    "password": "1234"
+  }
 ]

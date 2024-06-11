@@ -1,0 +1,26 @@
+.FormWithFeedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FormWithFeedback .Feedback {
+  color: tomato;
+}
+
+.FormWithFeedback .Feedback.success {
+  color: greenyellow;
+}
+
+.FormWithFeedback .Field {
+  margin-bottom: 0px;
+  height: 46px;
+}
+
+.FormWithFeedback .EyeIcon {
+  position: relative;
+  left: 154px;
+  top: -26px;
+  width: fit-content;
+  padding: 0px;
+}

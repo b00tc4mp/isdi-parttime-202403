@@ -1,0 +1,29 @@
+.Header {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between; 
+  position: fixed;
+  top: 0;
+  padding: .5rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--first-color);
+  background-color: var(--second-color);
+}
+
+.Logo {
+  width: 50px !important; 
+  height: auto !important; 
+}
+
+.LogoutButton {
+  border: 0 !important;
+  text-decoration: underline;
+  justify-self: flex-end; 
+  align-items: center;
+  margin-right: 30px ;
+}
+
+h3 {
+  margin-left: 30px;
+}
