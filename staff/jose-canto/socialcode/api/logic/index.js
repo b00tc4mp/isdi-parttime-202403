@@ -292,7 +292,6 @@ logic.deletePost = (username, postId, callback) => {
         callback(null)
       })
     })
-
   })
 }
 

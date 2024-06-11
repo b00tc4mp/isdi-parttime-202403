@@ -1,8 +1,8 @@
 import "./View.css"
-function View({ tag: Tag = "div", children }) {
+function View({ tag: Tag = "div", className, children }) {
 	return (
 		<>
-			<Tag className="View">{children}</Tag>
+			<Tag className={`${className ? className : ""}`}>{children}</Tag>
 		</>
 	)
 }

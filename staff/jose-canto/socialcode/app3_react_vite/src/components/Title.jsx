@@ -1,8 +1,11 @@
 import "./Title.css"
+import Heading from "./core/Heading"
 function Title({ children }) {
 	return (
 		<>
-			<h1 className="HeaderLoginRegister">{children}</h1>
+			<Heading level="1" className="HeaderLoginRegister">
+				{children}
+			</Heading>
 		</>
 	)
 }
