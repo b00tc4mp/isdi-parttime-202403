@@ -1,5 +1,3 @@
-/* import Title from '../components/core/Title' */
-
 import { useState, useEffect } from 'react'
 
 import View from '../components/library/View'
@@ -28,7 +26,7 @@ function Home({ onUserLoggedOut }) {
 
     useEffect(() => {
         console.log('Home -> useEffect')
-        // setTimeout(() => {
+
         try {
             logic.getUserName((error, name) => {
                 if (error) {
@@ -48,7 +46,7 @@ function Home({ onUserLoggedOut }) {
 
             alert(error.message)
         }
-        // }, 10000)
+
     }, [])
 
     return <View>
