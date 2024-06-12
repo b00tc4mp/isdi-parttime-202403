@@ -9,6 +9,7 @@ import Link from "../core/Link"
 import SubmitButton from "../core/SubmitButton"
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
+	console.log("Register --> render")
 	const handleRegisterSubmit = (event) => {
 		event.preventDefault()
 
@@ -48,7 +49,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 	}
 	return (
 		<>
-			<View className="View" tag="main">
+			<View className="View RegisterForm" tag="main">
 				<Title>REGISTER</Title>
 				<FormWithFeedback className="RegisterForm" onSubmit={handleRegisterSubmit}>
 					<Field id="name" placeholder="name">

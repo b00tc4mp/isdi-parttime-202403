@@ -2,9 +2,7 @@ import { useState, useEffect } from "react"
 import "./Post.css"
 
 import View from "../../library/View"
-import Image from "../../core/Image"
-import Heading from "../../core/Heading"
-import Button from "../../core/Button"
+import Post from "./Post"
 
 import logic from "../../../logic"
 
@@ -16,6 +14,10 @@ function PostList() {
 	useEffect(() => {
 		console.log("PostList --> useEffect")
 
+		loadPosts()
+	}, [])
+
+	const loadPosts = () => {
 		try {
 			logic.getAllPosts((error, posts) => {
 				if (error) {
@@ -30,29 +32,15 @@ function PostList() {
 
 			alert(error.message)
 		}
-	}, [])
+	}
+
+	const handlePostDeleted = () => loadPosts()
 
 	return (
 		<>
 			<View tag="section" className="Section">
 				{posts.map((post) => (
-					<article className="Article">
-						<p className="AuthorTitle">{post.user}</p>
-
-						<Heading level="2" className="PostTitle">
-							{post.title}
-						</Heading>
-
-						<p className="PostText">{post.description}</p>
-
-						<div className="DivImage">
-							<Image className="Image" src={post.image}></Image>
-						</div>
-
-						<time>{post.date}</time>
-
-						<Button className="DeleteButton">Delete</Button>
-					</article>
+					<Post post={post} key={post.id} onPostDeleted={handlePostDeleted}></Post>
 				))}
 			</View>
 		</>
