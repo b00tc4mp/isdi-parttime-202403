@@ -141,7 +141,7 @@ api.delete('/posts/:postId', (req, res) => {
 
             res.status(204).send()
         })
-    } catch {
+    } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 

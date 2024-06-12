@@ -194,6 +194,8 @@ logic.createPost = (username, title, image, description, callback) => {
 
         if (!user) {
             callback(new MatchError('user not found'))
+
+            return
         }
 
         const post = {
@@ -207,6 +209,8 @@ logic.createPost = (username, title, image, description, callback) => {
         data.insertPost(post, error => {
             if (error) {
                 callback(error)
+
+                return
             }
 
             callback(null)
@@ -216,7 +220,7 @@ logic.createPost = (username, title, image, description, callback) => {
 }
 
 
-logic.deletePost = (postId, callback) => {
+logic.deletePost = (username, postId, callback) => {
     if (!USERNAME_REGEX.test(username))
         throw new ContentError('username is not valid')
 
@@ -235,9 +239,11 @@ logic.deletePost = (postId, callback) => {
 
         if (!user) {
             callback(new MatchError('user not found'))
+
+            return
         }
 
-        data.findPosts(post => post.id === postId, (error, post) => {
+        data.findPost(post => post.id === postId, (error, post) => {
             if (error) {
                 callback(error)
 
@@ -269,3 +275,4 @@ logic.deletePost = (postId, callback) => {
     })
 }
 export default logic
+
