@@ -1,7 +1,7 @@
-import "./Form.css"
+import './Form.css'
 
-function Button({ type, children }) {
-    return <button className="Button" type={type}>{children}</button>
+function Form({ className, onSubmit, children }) {
+    return <form className={`Form ${className ? className : ''}`} onSubmit={onSubmit}>{children}</form>
 }
 
-export default Button
+export default Form

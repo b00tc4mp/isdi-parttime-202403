@@ -86,13 +86,13 @@ function App() {
       <Title>Register</Title>
 
       <FormWithFeedback onSubmit={handleRegisterSubmit}>
-        <Field id="email" type="email" placeholder="koala@example.com">E-mail</Field>
+        <Field id="email" placeholder="koala@example.com">E-mail</Field>
 
         <Field id="username" placeholder="username">username</Field>
 
-        <Field id="password" type="password" placeholder="password">Password</Field>
+        <Field id="password" placeholder="password">Password</Field>
 
-        <Field id="passwordRepeat" type="password" placeholder="passwordRepeat">Password repeat</Field>
+        <Field id="passwordRepeat" placeholder="passwordRepeat">Password repeat</Field>
 
         <SubmitButton>Register</SubmitButton>
       </FormWithFeedback>
@@ -106,7 +106,7 @@ function App() {
 
         <Field id="username" placeholder="username">username</Field>
 
-        <Field id="password"  placeholder="password">Password</Field>
+        <Field id="password" placeholder="password">Password</Field>
 
         <SubmitButton>Login</SubmitButton>
       </FormWithFeedback>

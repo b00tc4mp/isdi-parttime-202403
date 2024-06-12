@@ -12,6 +12,8 @@
 }*/
 
 //REFACTORING
+
+import './Label.css'
 function Label({ htmlFor, children }) {
     return <label className="Label" htmlFor={htmlFor}>{children}</label>
 }
