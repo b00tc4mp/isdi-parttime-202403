@@ -7,12 +7,19 @@ import Heading from "../core/Heading"
 import Header from "./components/Header"
 import Button from "../core/Button"
 import PostList from "./components/PostList"
+import Footer from "../core/Footer"
 
 import "./Home.css"
+import "../core/Input.css"
+import "../core/CreatePostForm.css"
+import "../core/Field.css"
+import "../core/TextArea.css"
 
 function Home({ onUserLoggedOut }) {
 	console.log("Home --> render")
+
 	const [name, setName] = useState("")
+	const [view, setView] = useState("")
 
 	const handleLogout = () => {
 		logic.logoutUser()
@@ -40,6 +47,9 @@ function Home({ onUserLoggedOut }) {
 		}
 	}, [])
 
+	const handleCreatePostClick = () => setView("create-post")
+	const handelCancelCreatePost = () => setView("")
+
 	return (
 		<>
 			<Header>
@@ -49,9 +59,28 @@ function Home({ onUserLoggedOut }) {
 
 			<View className="View" tag="view">
 				<PostList />
+
+				{view === "create-post" && (
+					<form className="Form CreatePostForm">
+						<div className="Field" bis_skin_checked="1">
+							<label for="title">Title</label>
+							<input className="Input" required="" id="title" type="text" placeholder="title" />
+						</div>
+						<div className="Field" bis_skin_checked="1">
+							<label for="image">Image</label>
+							<input className="Input" required="" id="image" type="text" placeholder="image" />
+						</div>
+						<label>Description</label>
+						<textarea className="TextArea" placeholder="description....." id="TextArea"></textarea>
+						<button className="Button SubmitButton" type="submit">
+							Create
+						</button>
+						<i className="fa-regular fa-rectangle-xmark" onClick={handelCancelCreatePost}></i>
+					</form>
+				)}
 			</View>
 
-			<footer></footer>
+			<Footer onCreatePostClick={handleCreatePostClick} />
 		</>
 	)
 }
