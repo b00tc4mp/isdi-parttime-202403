@@ -1,6 +1,8 @@
 import Image from "../../components/core/Image"
 import Heading from '../../components/core/Heading'
 
+import './Post.css'
+
 function Post({ post, onPostDeleted }) {
     console.log('Post -> render')
 
