@@ -1,8 +1,4 @@
-.PostList {
-    margin: 60px 10px;
-}
-
-.Article {
+article {
     position: relative;
     background-color: #aaa6;
     border-radius: 20px;
@@ -13,6 +9,15 @@
     padding: auto;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     margin: 10px auto;
+
+}
+
+p.Author {
+    padding-right: 1rem;
+    padding-bottom: 0.4rem;
+    display: flex;
+    justify-content: end;
+}
 }
 
 h2.Title {
@@ -20,7 +25,7 @@ h2.Title {
     margin-left: 1rem;
 }
 
-img.Image {
+.Image {
     max-width: 90%;
     height: auto;
     border-radius: 20px;
@@ -32,21 +37,10 @@ p.Description {
     padding: 0 0.7rem;
 }
 
-time.Date {
+time {
     position: relative;
     top: 2.7rem;
     padding-left: 0.7rem;
-}
-
-p.Author {
-    padding-right: 1rem;
-    padding-bottom: 0.4rem;
-    display: flex;
-    justify-content: end;
-}
-
-p.Description {
-    padding: 0 10px;
 }
 
 i.fa-bars {

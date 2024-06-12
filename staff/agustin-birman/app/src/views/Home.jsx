@@ -6,12 +6,15 @@ import Footer from '../components/library/Footer'
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
 import PostList from './components/PostList'
+import CreatePostForm from './components/CreatePostForm'
 
 import userLogic from '../userLogic'
 
 function Home({ onUserLoggedOut }) {
 
     const [name, setName] = useState('')
+    const [view, setView] = useState('')
+    const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
     const handleLogout = () => {
         userLogic.logoutUser()
@@ -39,6 +42,16 @@ function Home({ onUserLoggedOut }) {
         }
     }, [])
 
+    const handleCreatePostClick = () => setView('create-post')
+
+    const handleCancelCreatePostClick = () => setView('')
+
+    const handlePostCreated = () => {
+        setPostListRefreshStamp(Date.now())
+
+        setView('')
+    }
+
     return <View>
         <Header>
             <Heading level='3'>{name}</Heading>
@@ -46,13 +59,12 @@ function Home({ onUserLoggedOut }) {
         </Header>
 
         <View tag='main'>
-            <PostList />
+            <PostList onRefreshStamp={postListRefreshStamp} />
 
+            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
 
-        <Footer>
-            <Button>+</Button>
-        </Footer>
+        <Footer onCreatePostClick={handleCreatePostClick} />
     </View>
 }
 

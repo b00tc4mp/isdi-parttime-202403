@@ -12,7 +12,7 @@
     z-index: 1000;
 }
 
-.Header .Button {
+/* .Header .Button {
     background-color: transparent;
     font-size: 17px;
     border-radius: 0 20px;
@@ -21,4 +21,4 @@
     border: 1px solid black;
     cursor: pointer;
     transition: 0.25s ease-in;
-}
+} */

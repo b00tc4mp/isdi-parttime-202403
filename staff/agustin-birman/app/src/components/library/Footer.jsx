@@ -1,7 +1,13 @@
 import './Footer.css'
 
-function Footer({ children }) {
-    return <footer className='Footer'>{children}</footer>
+import Button from '../core/Button'
+
+function Footer({ onCreatePostClick }) {
+    const handleCreatePostClick = () => onCreatePostClick()
+
+    return <footer className='Footer'>
+        <Button onClick={handleCreatePostClick}>+</Button>
+    </footer>
 }
 
 export default Footer

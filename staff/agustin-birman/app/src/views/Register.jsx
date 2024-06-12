@@ -1,7 +1,7 @@
 import '../global.css'
 import userLogic from '../userLogic'
 
-import '../components/core/RegisterForm.css'
+import './Register.css'
 import View from '../components/library/View'
 import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'

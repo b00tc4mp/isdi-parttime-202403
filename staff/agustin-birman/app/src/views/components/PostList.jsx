@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 
-import './PostList.css'
-
-import Image from '../../components/core/Image'
-import Heading from "../../components/core/Heading"
+import Post from "./Post"
 import View from "../../components/library/View"
 
 import postLogic from '../../postLogic'
 
-function PostList() {
+function PostList({ onRefreshStamp }) {
 
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
+        loadPosts()
+    }, [onRefreshStamp])
+
+    const loadPosts = () => {
         try {
             postLogic.getAllPosts((error, posts) => {
                 if (error) {
@@ -30,21 +31,12 @@ function PostList() {
 
             alert(error.message)
         }
-    }, [])
+    }
+
+    const handlePostDeleted = () => loadPosts()
 
     return <View tag='section' className='PostList'>
-        {posts.map(post => <article className='Article' key={post.id}>
-            <p>{post.author}</p>
-
-            <Heading level='2'>{post.title}</Heading>
-
-            <Image src={post.image} />
-
-            <p>{post.description}</p>
-
-            <time>{post.date}</time>
-
-        </article>)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
     </View>
 }
 

@@ -31,10 +31,10 @@
     border: 1px solid black;
 }
 
-.LoginForm .Lock {
+/* .LoginForm .Lock {
     height: 15px;
     width: 15px;
-}
+} */
 
 .Button:hover {
     background-color: rgb(75, 153, 177);
