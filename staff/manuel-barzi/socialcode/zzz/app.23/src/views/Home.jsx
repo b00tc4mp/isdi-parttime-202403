@@ -5,7 +5,6 @@ import View from '../components/library/View'
 import Header from './components/Header'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
-import CreatePostForm from './components/CreatePostForm'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
@@ -17,7 +16,6 @@ function Home({ onUserLoggedOut }) {
 
     const [name, setName] = useState('')
     const [view, setView] = useState('')
-    const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
     const handleLogout = () => {
         logic.logoutUser()
@@ -54,12 +52,6 @@ function Home({ onUserLoggedOut }) {
 
     const handleCancelCreatePostClick = () => setView('')
 
-    const handlePostCreated = () => {
-        setPostListRefreshStamp(Date.now())
-
-        setView('')
-    }
-
     return <View>
         <Header>
             <Heading level="3">{name}</Heading>
@@ -67,9 +59,25 @@ function Home({ onUserLoggedOut }) {
         </Header>
 
         <View tag="main">
-            <PostList refreshStamp={postListRefreshStamp} />
+            <PostList />
 
-            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
+            {view === 'create-post' && <form class="Form FormWithFeedback CreatePostForm">
+                <div class="Field">
+                    <label for="title">Title</label>
+                    <input class="Input" id="title" type="text" placeholder="title" />
+                </div>
+                <div class="Field">
+                    <label for="image">Image</label>
+                    <input class="Input" id="image" type="text" placeholder="image" />
+                </div>
+                <div class="Field">
+                    <label for="description">Description</label>
+                    <input class="Input" id="description" type="text" placeholder="description" />
+                </div>
+                <button class="Button" type="button" onClick={handleCancelCreatePostClick}>Cancel</button>
+                <button class="Button SubmitButton" type="submit">Create</button>
+                <p class="Feedback">image is not valid, please, correct it</p>
+            </form>}
         </View>
 
         <Footer onCreatePostClick={handleCreatePostClick} />

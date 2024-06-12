@@ -5,7 +5,7 @@ import Button from '../../components/core/Button'
 function Footer({ onCreatePostClick }) {
     const handleCreatePostClick = () => onCreatePostClick()
 
-    return <footer className="Footer">
+    return <footer class="Footer">
         <Button onClick={handleCreatePostClick}>+</Button>
     </footer>
 }
