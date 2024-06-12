@@ -1,0 +1,8 @@
+.Post {
+    width: 50rem;
+    height: auto;
+    background-color: aliceblue;
+    border: 1px solid orange;
+    margin: 2rem;
+    border-radius: 4%;
+}

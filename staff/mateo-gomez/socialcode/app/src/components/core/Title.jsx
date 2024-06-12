@@ -1,5 +1,8 @@
+import Heading from './Heading'
+
+
 function Title({ children }) {
-    return <h1>{children}</h1>
+    return <Heading level='1'>{children}</Heading>
 }
 
 export default Title
