@@ -8,6 +8,7 @@ import PostList from '../Views/components/PostList'
 import Button from '../core/Button'
 import Heading from '../core/Heading'
 import PrincipalBar from '../core/PrincipalBar'
+// import Footer from '../core/Footer'
 
 import logic from '../../logic'
 
@@ -47,7 +48,7 @@ function Home({ onUserLoggedOut }) {
       <PostList />
     </View>
 
-    <footer></footer>
+    {/* <Footer></Footer> */}
   </View>
 }
 
