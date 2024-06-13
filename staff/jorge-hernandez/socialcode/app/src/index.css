@@ -1,4 +1,4 @@
-body {
+/* body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,13 +7,45 @@ body {
     height: 100vh;
     margin: 0;
     color: #fff;
+} */
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-h1{
-    border-bottom: 1px solid #f7f8f9;
-    padding: 3px;
-    border-radius: 10px
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #2980b9, #a2cfec, #2980b9);
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
+    /* height: 300vh; */
+    margin: 0;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    overflow: scroll;
+}
 
-
+h1 {
+    font-size: 3em;
+    animation: floating 3s ease-in-out infinite;
+}

@@ -1,4 +1,4 @@
-import './Imput.css'
+import './Input.css'
 
 function Input({ id, type, placeholder }) {
   return (

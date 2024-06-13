@@ -4,3 +4,11 @@
     margin: .25rem 0;
 }
 
+.iconShowPass{
+    position: relative;
+    top: -25px;
+    left: 150px;
+    color: rgb(144, 140, 140);
+    cursor: pointer;
+}
+

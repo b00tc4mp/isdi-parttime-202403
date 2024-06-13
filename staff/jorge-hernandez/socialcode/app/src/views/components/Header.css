@@ -1,0 +1,13 @@
+.Header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background: linear-gradient(to bottom, #07273b, #214c5b);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding: .2rem;
+    padding-right: .5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid blue;
+}
