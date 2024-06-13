@@ -11,38 +11,13 @@ function HomePage() {
   const mainRef = useRef(null);
   const { setView } = useContext(ViewContext);
   const [showCreatePostForm, setShowCreatePostForm] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const [refreshTimeStamp, setRefreshTimeStamp] = useState(0);
 
   useEffect(() => {
     if (!logic.isUserLoggedIn()) {
       setView("login");
-    } else {
-      fetchPosts();
     }
   }, [setView]);
-
-  const fetchPosts = () => {
-    logic.getAllPosts((error, response) => {
-      if (error) {
-        console.error(error);
-
-        // TODO: show feedback in a more user-friendly way
-        alert(error.message);
-
-        return;
-      }
-
-      const posts = response.posts;
-
-      if (!Array.isArray(posts)) {
-        console.error("Expected an array, but got: ", posts);
-        alert("An error occurred while loading posts.");
-        return;
-      }
-
-      setPosts(posts);
-    });
-  };
 
   const scrollToTop = () => {
     if (mainRef.current) {
@@ -52,7 +27,7 @@ function HomePage() {
 
   const handlePostCreated = () => {
     setShowCreatePostForm(false);
-    fetchPosts();
+    setRefreshTimeStamp(Date.now());
     scrollToTop();
   };
 
@@ -68,7 +43,7 @@ function HomePage() {
     <div className={styles.container}>
       <Header />
       <main className={styles.mainContent} ref={mainRef}>
-        <PostList posts={posts} fetchPosts={fetchPosts} />
+        <PostList refreshTimeStamp={refreshTimeStamp} />
         {showCreatePostForm && (
           <CreatePostForm
             onPostCreated={handlePostCreated}

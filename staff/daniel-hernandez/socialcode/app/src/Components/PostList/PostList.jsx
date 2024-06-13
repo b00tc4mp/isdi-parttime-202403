@@ -1,11 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./PostList.module.css";
 import logic from "../../logic.js";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog.jsx";
 
-function PostList({ posts, fetchPosts }) {
+function PostList({ refreshTimeStamp }) {
+  const [posts, setPosts] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
+
+  useEffect(() => {
+    loadPosts();
+  }, [refreshTimeStamp])
+
+
+  const loadPosts = () => {
+    try {
+      logic.getAllPosts((error, response) => {
+        if (error) {
+          console.error(error);
+
+          // TODO: show feedback in a more user-friendly way
+          alert(error.message);
+
+          return;
+        }
+
+        const posts = response.posts;
+
+        if (!Array.isArray(posts)) {
+          console.error("Expected an array, but got: ", posts);
+          alert("An error occurred while loading posts.");
+          return;
+        }
+
+        setPosts(posts);
+      });
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+  };
 
   const handleDelete = (postId) => {
     setShowConfirm(true);
@@ -16,17 +50,19 @@ function PostList({ posts, fetchPosts }) {
     try {
       logic.deletePost(postToDelete, (error) => {
         if (error) {
+          console.log(error.message);
           alert(error.message);
           // TODO: show errors more gracefully
 
           return;
         }
 
-        fetchPosts();
+        loadPosts();
         setShowConfirm(false);
         setPostToDelete(null);
       });
     } catch (error) {
+      console.error(error.message);
       alert(error.message);
     }
   };
