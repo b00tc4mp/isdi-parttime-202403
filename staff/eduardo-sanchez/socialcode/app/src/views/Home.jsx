@@ -4,6 +4,7 @@ import View from '../components/library/View'
 
 import Header from './components/Header'
 import PostList from './components/PostList'
+import Footer from './components/Footer'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
@@ -14,6 +15,7 @@ function Home({ onUserLoggedOut }) {
     console.log('Home -> render')
 
     const [name, setName] = useState('')
+    const [view, setView] = useState('')
 
     const handleLogout = () => {
         logic.logoutUser()
@@ -46,6 +48,10 @@ function Home({ onUserLoggedOut }) {
         // }, 10000)
     }, [])
 
+    const handleCreatePostClick = () => setView('create-post')
+
+    const handleCancelCreatePostClick = () => setView('')
+
     return <View>
         <Header>
             <Heading level="3">{name}</Heading>
@@ -54,9 +60,27 @@ function Home({ onUserLoggedOut }) {
 
         <View tag="main">
             <PostList />
+
+            {view === 'create-post' && <form className="Form FormWithFeedback CreatePostForm">
+                <div className="Field">
+                    <label htmlFor="title">Title</label>
+                    <input className="Input" id="title" type="text" placeholder="title" />
+                </div>
+                <div className="Field">
+                    <label htmlFor="image">Image</label>
+                    <input className="Input" id="image" type="text" placeholder="image" />
+                </div>
+                <div className="Field">
+                    <label htmlFor="description">Description</label>
+                    <input className="Input" id="description" type="text" placeholder="description" />
+                </div>
+                <button className="Button" type="button" onClick={handleCancelCreatePostClick}>Cancel</button>
+                <button className="Button SubmitButton" type="submit">Create</button>
+                <p className="Feedback">image is not valid, correct it</p>
+            </form>}
         </View>
 
-        <footer></footer>
+        <Footer onCreatePostClick={handleCreatePostClick} />
     </View>
 }
 
