@@ -21,6 +21,7 @@ function Post({ post, onPostDeleted }) {
                 }
 
                 onPostDeleted()
+                alert('Deleted post!')
             })
         } catch (error) {
             console.error(error)
