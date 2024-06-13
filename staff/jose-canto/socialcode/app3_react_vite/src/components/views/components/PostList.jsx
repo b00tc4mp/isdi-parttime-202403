@@ -6,7 +6,7 @@ import Post from "./Post"
 
 import logic from "../../../logic"
 
-function PostList() {
+function PostList({ refreshStamp }) {
 	console.log("Postlist --> render")
 
 	const [posts, setPosts] = useState([])
@@ -15,7 +15,7 @@ function PostList() {
 		console.log("PostList --> useEffect")
 
 		loadPosts()
-	}, [])
+	}, [refreshStamp])
 
 	const loadPosts = () => {
 		try {

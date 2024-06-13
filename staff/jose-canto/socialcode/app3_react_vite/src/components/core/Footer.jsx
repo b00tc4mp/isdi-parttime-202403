@@ -1,14 +1,15 @@
 import Button from "./Button"
 
-function Footer({ onCreatePostClick }) {
+function Footer({ onCreatePostClick, onClickScrollTop }) {
 	const handleCreatePostClick = () => onCreatePostClick()
+
 	return (
 		<>
-			<footer class="Footer">
-				<Button onClick={handleCreatePostClick} class="Button">
+			<footer className="Footer">
+				<Button onClick={handleCreatePostClick} className="Button">
 					+
 				</Button>
-				<i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+				<i className="fa-solid fa-arrow-up-long" onClick={onClickScrollTop}></i>
 			</footer>
 		</>
 	)

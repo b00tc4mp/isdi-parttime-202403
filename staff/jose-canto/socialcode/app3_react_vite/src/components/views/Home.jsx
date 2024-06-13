@@ -8,6 +8,7 @@ import Header from "./components/Header"
 import Button from "../core/Button"
 import PostList from "./components/PostList"
 import Footer from "../core/Footer"
+import CreatePostForm from "./components/CreatePostForm"
 
 import "./Home.css"
 import "../core/Input.css"
@@ -20,6 +21,7 @@ function Home({ onUserLoggedOut }) {
 
 	const [name, setName] = useState("")
 	const [view, setView] = useState("")
+	const [postListRefresh, setPostListRefresh] = useState(0)
 
 	const handleLogout = () => {
 		logic.logoutUser()
@@ -48,7 +50,18 @@ function Home({ onUserLoggedOut }) {
 	}, [])
 
 	const handleCreatePostClick = () => setView("create-post")
-	const handelCancelCreatePost = () => setView("")
+	const handleCancelCreatePost = () => setView("")
+	const handleCreatePost = () => {
+		setPostListRefresh(Date.now())
+		setView("")
+	}
+
+	const scrollTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		})
+	}
 
 	return (
 		<>
@@ -58,29 +71,18 @@ function Home({ onUserLoggedOut }) {
 			</Header>
 
 			<View className="View" tag="view">
-				<PostList />
+				<PostList refreshStamp={postListRefresh} />
 
 				{view === "create-post" && (
-					<form className="Form CreatePostForm">
-						<div className="Field" bis_skin_checked="1">
-							<label for="title">Title</label>
-							<input className="Input" required="" id="title" type="text" placeholder="title" />
-						</div>
-						<div className="Field" bis_skin_checked="1">
-							<label for="image">Image</label>
-							<input className="Input" required="" id="image" type="text" placeholder="image" />
-						</div>
-						<label>Description</label>
-						<textarea className="TextArea" placeholder="description....." id="TextArea"></textarea>
-						<button className="Button SubmitButton" type="submit">
-							Create
-						</button>
-						<i className="fa-regular fa-rectangle-xmark" onClick={handelCancelCreatePost}></i>
-					</form>
+					<CreatePostForm
+						onCancelCreatedPostClick={handleCancelCreatePost}
+						onPostCreated={handleCreatePost}
+						onClickScrollTop={scrollTop}
+					/>
 				)}
 			</View>
 
-			<Footer onCreatePostClick={handleCreatePostClick} />
+			<Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop} />
 		</>
 	)
 }
