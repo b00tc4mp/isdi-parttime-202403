@@ -1,13 +1,12 @@
+import Button from "../components/core/Button"
+//import Title from "../components/core/Title"
 import { useState, useEffect } from "react" //** 
-import logic from "../logic"
-
 import View from "../components/library/View"
 import Header from "./components/Header"
+import logic from "../logic"
 import Heading from "../components/core/Heading"
-import Button from "../components/core/Button"
 import PostList from "./components/PostList"
 import Footer from "./components/Footer"
-import CreatePostForm from "./components/CreatePostForm"
 // se usa para manejar una situacion asincrona de recarca de react.
 // hay que volver a repintar el compo para que se pinte el username, hay que llamar a la api 
 // para que nos traiga un dato que es asincrono. 
@@ -19,7 +18,7 @@ function Home({ onUserLoggedOut }) {
 
     const [username, setUsername] = useState("")
     const [view, setView] = useState("")
-    const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
+    const [postListRefreshStamp, setpostListRefreshStamp] = useState(0)
 
     // estampa de tiempo inicialmente de 0
     const handleLogout = () => {
@@ -58,10 +57,34 @@ function Home({ onUserLoggedOut }) {
 
     const handleCancelCreatePostClick = () => setView("")
 
-    const handlePostCreated = () => {
-        setPostListRefreshStamp(Date.now())
+    const handleCreatePostSubmit = event => {
+        event.preventDefault()
 
-        setView("")
+        const form = event.target
+
+        const title = form.title.value
+        const image = form.image.value
+        const description = form.description.value
+
+        try {
+            logic.createPost(title, image, description, error => {
+                if (error) {
+                    console.error(error)
+
+                    alert(error.message)
+
+                    return
+                }
+
+                setpostListRefreshStamp(Date.now())
+                setView("")
+            })
+
+        } catch {
+            console.error(error)
+
+            alert(error.message)
+        }
     }
 
     return <View>
@@ -72,8 +95,24 @@ function Home({ onUserLoggedOut }) {
 
         <View tag="main">
             <PostList refreshStamp={postListRefreshStamp} />
-
-            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
+            
+            {view === 'create-post' && <form className="Form FormWithFeedback CreatePostForm" onSubmit={handleCreatePostSubmit}>
+                <div className="Field">
+                    <label htmlFor="title">Title</label>
+                    <input className="Input" id="title" type="text" placeholder="title" />
+                </div>
+                <div className="Field">
+                    <label htmlFor="image">Image</label>
+                    <input className="Input" id="image" type="text" placeholder="image" />
+                </div>
+                <div className="Field">
+                    <label htmlFor="description">Description</label>
+                    <input className="Input" id="description" type="text" placeholder="description" />
+                </div>
+                <button className="Button" type="button" onClick={handleCancelCreatePostClick}>Cancel</button>
+                <button className="Button SubmitButton" type="submit">Create</button>
+                <p className="Feedback">image is not valid, please, correct it</p>
+            </form>}
         </View>
 
         <Footer onCreatePostClick={handleCreatePostClick} />
