@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 
 import logic from "../../logic"
 
@@ -10,23 +10,27 @@ import PostList from "./components/PostList"
 import Footer from "../core/Footer"
 import CreatePostForm from "./components/CreatePostForm"
 
+import ViewContext from "../../ViewContext"
+
 import "./Home.css"
 import "../core/Input.css"
 import "./components/CreatePostForm.css"
 import "../core/Field.css"
 import "../core/TextArea.css"
 
-function Home({ onUserLoggedOut }) {
+function Home() {
+	const { setView } = useContext(ViewContext)
+
 	console.log("Home --> render")
 
 	const [name, setName] = useState("")
-	const [view, setView] = useState("")
+	const [viewCreatePostForm, setViewCreatePostForm] = useState("")
 	const [postListRefresh, setPostListRefresh] = useState(0)
 
 	const handleLogout = () => {
 		logic.logoutUser()
 
-		onUserLoggedOut()
+		setView("login")
 	}
 
 	useEffect(() => {
@@ -49,11 +53,11 @@ function Home({ onUserLoggedOut }) {
 		}
 	}, [])
 
-	const handleCreatePostClick = () => setView("create-post")
-	const handleCancelCreatePost = () => setView("")
+	const handleCreatePostClick = () => setViewCreatePostForm("create-post")
+	const handleCancelCreatePost = () => setViewCreatePostForm("")
 	const handleCreatePost = () => {
 		setPostListRefresh(Date.now())
-		setView("")
+		setViewCreatePostForm("")
 	}
 
 	const scrollTop = () => {
@@ -73,7 +77,7 @@ function Home({ onUserLoggedOut }) {
 			<View className="View" tag="view">
 				<PostList refreshStamp={postListRefresh} />
 
-				{view === "create-post" && (
+				{viewCreatePostForm === "create-post" && (
 					<CreatePostForm
 						onCancelCreatedPostClick={handleCancelCreatePost}
 						onPostCreated={handleCreatePost}

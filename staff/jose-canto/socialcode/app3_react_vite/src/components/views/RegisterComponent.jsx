@@ -1,3 +1,5 @@
+import { useContext } from "react"
+
 import logic from "../../logic"
 
 import View from "../library/View"
@@ -8,8 +10,13 @@ import CheckPasswordField from "../core/ShowPasswordField"
 import Link from "../core/Link"
 import SubmitButton from "../core/SubmitButton"
 
-function Register({ onUserRegistered, onLoginLinkClick }) {
+import ViewContext from "../../ViewContext"
+
+function Register() {
 	console.log("Register --> render")
+
+	const { setView } = useContext(ViewContext)
+
 	const handleRegisterSubmit = (event) => {
 		event.preventDefault()
 
@@ -32,7 +39,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 					return
 				}
 
-				onUserRegistered()
+				setView("home")
 
 				console.log("user registered")
 			})
@@ -45,7 +52,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 	const handleLoginClick = (event) => {
 		event.preventDefault()
 
-		onLoginLinkClick()
+		setView("login")
 	}
 	return (
 		<>
