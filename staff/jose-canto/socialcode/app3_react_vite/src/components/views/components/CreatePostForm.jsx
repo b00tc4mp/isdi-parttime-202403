@@ -1,7 +1,18 @@
 import logic from "../../../logic"
 
+import FormWithFeedback from "../../library/FormWithFeedback"
+
+import Field from "../../core/Field"
+import Button from "../../core/Button"
+
+import "./CreatePostForm.css"
+import { useState } from "react"
+
 function CreatePostForm({ onCancelCreatedPostClick, onPostCreated, onClickScrollTop }) {
 	console.log("CreatePostForm --> render")
+
+	const [message, setMessage] = useState("")
+
 	const handleCancelCreatePostClick = () => onCancelCreatedPostClick()
 
 	const handleCreatePostSubmit = (event) => {
@@ -17,7 +28,11 @@ function CreatePostForm({ onCancelCreatedPostClick, onPostCreated, onClickScroll
 			logic.createPost(title, image, description, (error) => {
 				if (error) {
 					console.error(error.message)
-					alert(error.message)
+					//alert(error.message)
+
+					setMessage(error.message)
+					setTimeout(() => setMessage(""), 2000)
+
 					return
 				}
 
@@ -26,28 +41,31 @@ function CreatePostForm({ onCancelCreatedPostClick, onPostCreated, onClickScroll
 			})
 		} catch (error) {
 			console.error(error.message)
-			alert(error.message)
+			//alert(error.message)
+
+			setMessage(error.message)
+			setTimeout(() => setMessage(""), 2000)
 		}
 	}
 
 	return (
 		<>
-			<form className="Form CreatePostForm" onSubmit={handleCreatePostSubmit}>
-				<div className="Field">
-					<label htmlFor="title">Title</label>
-					<input className="Input" required="" id="title" type="text" placeholder="title" />
-				</div>
-				<div className="Field">
-					<label htmlFor="image">Image</label>
-					<input className="Input" required="" id="image" type="text" placeholder="image" />
-				</div>
+			<FormWithFeedback className="CreatePostForm" onSubmit={handleCreatePostSubmit} message={message}>
+				<Field id="title" type="text" placeholder="Title">
+					Title
+				</Field>
+
+				<Field id="image" type="text" placeholder="image">
+					Title
+				</Field>
+
 				<label>Description</label>
 				<textarea className="TextArea" placeholder="description....." id="description"></textarea>
-				<button className="Button SubmitButton" type="submit">
+				<Button className="Button SubmitButton" type="submit">
 					Create
-				</button>
+				</Button>
 				<i className="fa-regular fa-rectangle-xmark" onClick={handleCancelCreatePostClick}></i>
-			</form>
+			</FormWithFeedback>
 		</>
 	)
 }

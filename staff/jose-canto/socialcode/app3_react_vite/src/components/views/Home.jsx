@@ -12,7 +12,7 @@ import CreatePostForm from "./components/CreatePostForm"
 
 import "./Home.css"
 import "../core/Input.css"
-import "../core/CreatePostForm.css"
+import "./components/CreatePostForm.css"
 import "../core/Field.css"
 import "../core/TextArea.css"
 

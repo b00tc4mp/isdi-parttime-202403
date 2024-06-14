@@ -10,6 +10,8 @@
   padding: 0 1rem 1rem 1rem;
 }
 
-.FormWithFeedback {
-  color: greenyellow;
+
+.error {
+  color: rgb(255, 187, 0);
+  top: 26rem
 }

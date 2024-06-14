@@ -9,6 +9,7 @@ import Link from "../core/Link"
 import SubmitButton from "../core/SubmitButton"
 
 function Login({ onRegisterLinkClick, onUserLoggedIn }) {
+	console.log("Login --> render")
 	const handleLoginSubmit = (event) => {
 		event.preventDefault()
 

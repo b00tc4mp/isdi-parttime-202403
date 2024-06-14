@@ -9,8 +9,3 @@
   background-image: linear-gradient(to right top, #f97c16, #d25a2c, #a54031, #742c2e, #441c22, #2f161b, #1c0e11, #1b1b1b, #1b1b1b, #1b1b1b, #000000, #000000);
   letter-spacing: 2px;
 }
-
-.Form p {
-  position: absolute;
-  top: 49rem
-}
