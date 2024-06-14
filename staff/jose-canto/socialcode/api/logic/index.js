@@ -1,6 +1,6 @@
 import data from "../data/index.js"
 import { ContentError, DuplicityError, MatchError, SystemError } from "../error.js"
-import utils from "../public/app/utils.js"
+//import utils from "../public/app/utils.js"
 
 const logic = {}
 
@@ -222,8 +222,9 @@ logic.createPost = (username, title, image, description, callback) => {
       title: title,
       image: image,
       description: description,
-      date: utils.getDateStringDayMonthYearFormat(),
-    };
+      date: Date.now(),
+      //date: utils.getDateStringDayMonthYearFormat(),
+    }
 
     data.insertPost(post, error => {
 
