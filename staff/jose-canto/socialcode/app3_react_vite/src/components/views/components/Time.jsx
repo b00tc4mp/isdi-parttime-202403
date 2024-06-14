@@ -1,3 +1,5 @@
+import "./Time.css"
+
 function Time({ children: time }) {
 	console.log("Time --> render")
 	const date = new Date(time)

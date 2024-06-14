@@ -16,7 +16,6 @@
 
 }
 
-
 .Article .PostTitle {
   margin-bottom: 1rem;
   padding: 0.5rem;
@@ -24,34 +23,4 @@
   color: whitesmoke;
   width: 100%;
   border-bottom: 2px solid white;
-
-}
-
-.Article .PostText {
-  margin: 0;
-  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-}
-
-.Article time {
-  font-size: 1.7rem;
-  color: black;
-}
-
-.Article .DeleteButton {
-  width: fit-content;
-  margin-top: 1rem;
-}
-
-.DivImage {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.Image {
-  max-width: 100%;
-  height: auto;
 }
