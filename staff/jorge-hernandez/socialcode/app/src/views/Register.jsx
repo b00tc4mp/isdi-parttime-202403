@@ -6,8 +6,12 @@ import Link from '../components/core/Link'
 import Title from '../components/core/Title'
 import View from '../components/library/View'
 
+import { useState } from 'react'
+
 function Register({ onUserRegistered, onLoginLinkClick }) {
   console.log('Register -> render')
+
+  const [message, setMessage] = useState('')
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault()
@@ -33,8 +37,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
           if (error) {
             console.log(error)
 
-            alert(error.message)
-
+            setMessage(error.message)
             return
           }
 
@@ -44,7 +47,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
     } catch (error) {
       console.error(error)
 
-      alert(error.message)
+      setMessage(error.message)
     }
   }
 
@@ -56,7 +59,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 
   return (
     <View tag='main'>
-      <FormWithFeedback onSubmit={handleRegisterSubmit}>
+      <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
         <Title>Register</Title>
         <Field id='name' placeholder='name'>
           Name

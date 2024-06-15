@@ -50,7 +50,7 @@ function Home({ onUserLoggedOut, onCreatePostClick }) {
   return (
     <View>
       <Header>
-        <Heading level='2'>{name}</Heading>
+        <Heading level='3'>{name}</Heading>
         <Button onClick={handleLogout}>Logout</Button>
       </Header>
 

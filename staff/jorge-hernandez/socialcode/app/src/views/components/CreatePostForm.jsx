@@ -3,6 +3,7 @@ import Heading from '../../components/core/Heading'
 import logic from '../../logic'
 import './CreatePostForm.css'
 import Button from '../../components/core/Button'
+import FormWithFeedback from '../../components/library/FormWithFeedback'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
   console.log('CreatePostForm -> render')
@@ -40,8 +41,8 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
   }
 
   return (
-    <form
-      className='Form FormWithFeedback CreatePostForm'
+    <FormWithFeedback
+      className='CreatePostForm'
       onSubmit={handleCreatePostSubmit}
     >
       <Heading level='1'>Create New Post</Heading>
@@ -58,7 +59,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         Cancel
       </Button>
       <Button type='submit'>Create</Button>
-    </form>
+    </FormWithFeedback>
   )
 }
 

@@ -5,23 +5,24 @@ import logic from '../../logic'
 
 function Post({ post, onPostDeleted }) {
   const handleDeletePost = (postId) => {
-    try {
-      logic.deletePost(postId, (error) => {
-        if (error) {
-          console.error(error)
+    if (confirm('Are you sure you want to delete this post?'))
+      try {
+        logic.deletePost(postId, (error) => {
+          if (error) {
+            console.error(error)
 
-          alert(error.message)
+            alert(error.message)
 
-          return
-        }
+            return
+          }
 
-        onPostDeleted()
-      })
-    } catch (error) {
-      console.error(error)
+          onPostDeleted()
+        })
+      } catch (error) {
+        console.error(error)
 
-      alert(error.message)
-    }
+        alert(error.message)
+      }
   }
 
   return (
