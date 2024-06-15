@@ -6,47 +6,69 @@ import View from "../../Components/Library/View";
 import Header from "./components/Header";
 import Heading from "../../Components/Core/Heading";
 import PostList from "./components/PostList";
+import Footer from "./components/Footer";
 
-function Home({onUserLoggedOut}) {
-    console.log('home -> render')
+import logic from "../../logic";
 
-    const [name,setName] = useState('')
+function Home({ onUserLoggedOut }) {
+    console.log('Home -> render')
 
-    const handleLogout =() => {
-        logic.logoutUsern()
+    const [name, setName] = useState('')
+    const [view, setView] = useState('')
+    const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
+
+    const handleLogout = () => {
+        logic.logoutUser()
 
         onUserLoggedOut()
     }
 
-    useEffect(()=>{
-        try{
-            logic.getUserName((error, name) =>{
-                if(error){
+    useEffect(() => {
+        console.log('Home -> useEffect')
+        try {
+            logic.getUserName((error, name) => {
+                if (error) {
                     console.error(error)
+
                     alert(error.message)
+
+                    return
                 }
+
+                console.log('Home -> setName')
+
                 setName(name)
             })
-
-        }catch{
+        } catch (error) {
             console.error(error)
 
-        alert(error.message)}
-    },[])
+            alert(error.message)
+        }
+    }, [])
 
+    const handleCreatePostClick = ()=> setView('create-post')
+
+    const handleCancelCreatePostClick = ()=> setView('')
+
+    const handlePostCreated = () => {
+        setPostListRefreshStamp(Date.now())
+
+        setView('')
+    }
 
     return <View>
         <Header>
-            <Heading level='3'>{name}</Heading>
-            <Button onClick={handleLogout}>logout</Button>
+            <Heading level="3">{name}</Heading>
+            <Button onClick={handleLogout}>Logout</Button>
         </Header>
 
+        <View tag="main">
+            <PostList refreshStamp={postListRefreshStamp} />
 
-        <View tag='main'>
-            <PostList/>
+            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
 
-        <footer></footer>
+        <Footer onCreatePostClick={handleCreatePostClick} />
     </View>
 }
 

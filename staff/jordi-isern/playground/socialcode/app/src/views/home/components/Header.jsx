@@ -1,6 +1,7 @@
 import './Header.css'
-import Button from '../../../Components/Core/Button'
+
 function Header ({children}){
+    console.log('Header -> render')
     return <header className='Header'>{children}</header>
 }
 

@@ -136,7 +136,7 @@ logic.getUserName = (username, targetUsername, callback) => {
     })
 }
 
-logic.getAllPost = (callback) => {
+logic.getAllPosts = (callback) => {
     data.findPosts(() => true, (error, posts) => {
         if (error) {
             callback(error)

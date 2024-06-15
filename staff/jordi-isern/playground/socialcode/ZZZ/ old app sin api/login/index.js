@@ -10,8 +10,6 @@ title.setText('Login')
 
 const loginForm = new LoginForm
 
-loginForm.onliggedIn/(=> setTimeoput(() => location.href = '../home', 1000))
-
 
 const registerLink = new Link
 registerLink.setText('Register')

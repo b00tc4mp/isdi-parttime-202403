@@ -1,7 +1,9 @@
 import './Input.css'
 
 function Input({id, type, placeholder}) {
-    return <input className="Input" id={id} type={type} placeholder={placeholder}></input>
+    return <div className='divInput'>
+        <input className="Input" id={id} type={type} placeholder={placeholder}></input>
+        </div>
 }
 
 export default Input
