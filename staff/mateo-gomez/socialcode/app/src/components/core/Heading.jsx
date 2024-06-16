@@ -1,7 +1,7 @@
 function Heading({ level, className, children }) {
     const Tag = `h${level}`
 
-    return <Tag >{children}</Tag>
+    return <Tag className={`className ${className ? className : ''}`}>{children}</Tag>
 
 }
 

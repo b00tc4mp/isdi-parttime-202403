@@ -3,8 +3,8 @@ import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'
 import FormWithFeedback from '../components/library/FormWithFeedBack'
 import Link from '../components/core/Link'
-import Title from '../components/core/Title'
 import View from '../components/library/View'
+import Title from '../components/core/Title'
 
 function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     console.log('Login -> render')
@@ -43,7 +43,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     }
 
     return <View tag="main">
-        <Title>Login</Title>
+        <Title className='MainTitle'>Login</Title>
 
         <FormWithFeedback onSubmit={handleLoginSubmit}>
             <Field id="username" placeholder="username">Username</Field>

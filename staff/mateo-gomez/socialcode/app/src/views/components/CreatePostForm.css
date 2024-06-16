@@ -1,0 +1,10 @@
+.CreatePostForm {
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    bottom: 10rem;
+    width: 30rem;
+    box-sizing: border-box;
+    background-color: rgba(255, 191, 0, 0.792);
+
+}

@@ -1,5 +1,6 @@
 import Image from "../../components/core/Image"
 import Heading from '../../components/core/Heading'
+import logic from "../../logic"
 
 import './Post.css'
 
@@ -29,15 +30,21 @@ function Post({ post, onPostDeleted }) {
 
     return <article className="Post">
         <p className="AuthorTitle">{post.author}</p>
+
         <Heading level='2' className="PostTitle">{post.title}</Heading>
+
         <Image className="PostImage" src={post.image} />
+
         <Heading level='4' className="DescriptionTitle">
             Description:
         </Heading>
+
         <p className="PostDescription">
             {post.description}</p>
+
         <time>{post.date}</time>
-        {post.author === logic.getLoggedInUsername() && <button className="Button" onClick={() => handleDeletePost(post.id)}>Delete</button>}
+
+        {post.author === logic.getLoggedInUsername() && <button className="DeleteButton" onClick={() => handleDeletePost(post.id)}>Delete</button>}
     </article>
 }
 
