@@ -1,43 +1,64 @@
-import Image from '../../core/Image'
-import Heading from '../../core/Heading'
-
-import logic from '../../../logic'
+import React, { useState } from 'react';
+import '../components/Post.css';
+import Image from '../../core/Image';
+import Heading from '../../core/Heading';
+import logic from '../../../logic';
+import ConfirmDelete from './ConfirmDelete';
+import Time from '../../core/Time';
 
 function Post({ post, onPostDeleted }) {
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
-    const handleDeletePost = postId => {
+    const handleCancelDelete = () => { setShowConfirmDelete(false); }
+
+    const showDeletePost = () => { setShowConfirmDelete(true); }
+
+    const handleConfirmDeletePost = () => {
         try {
-            logic.deletePost(postId, error => {
+            logic.deletePost(post.id, error => {
                 if (error) {
-                    console.error(error)
-
-                    alert(error.message)
-
-                    return
+                    console.error(error);
+                    alert(error.message);
+                    return;
                 }
-
-                onPostDeleted()
-            })
+                onPostDeleted();
+            });
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            console.error(error);
+            alert(error.message);
         }
     }
 
-    return <article>
-        <p>{post.author}</p>
-
-        <Heading level="2">{post.title}</Heading>
-
-        <Image src={post.image} />
-
-        <p>{post.description}</p>
-
-        <time>{post.date}</time>
-
-        {post.author === logic.getLoggedInUsername() && <button className="Button" onClick={() => handleDeletePost(post.id)}>Delete</button>}
-    </article>
+    return (
+        <article className="post">
+            <div className='post-header'>
+                <p className='Author'>{post.author}</p>
+                <Heading className="post-title" level="2">{post.title}</Heading>
+            </div>
+            <div>
+                <Image src={post.image} />
+                {showConfirmDelete && (
+                    <div className="confirm-delete-container">
+                        <ConfirmDelete onConfirmDeletePost={handleConfirmDeletePost} onCancelDeletePost={handleCancelDelete} post={post} />
+                    </div>
+                )}
+            </div>
+            <div className='footer-container'>
+                <div className='post-footer'>
+                    <p>{post.description}</p>
+                    {post.author === logic.getLoggedInUsername() && (
+                        <button className="Button" onClick={showDeletePost}>Delete</button>
+                    )}
+                    <Time>{post.date}</Time>
+                </div>
+                <div className='post-icons'>
+                    <div className='icon'>💜</div>
+                    <div className='icon'>🗣️</div>
+                    <div className='icon'>💬</div>
+                </div>
+            </div>
+        </article>
+    );
 }
 
-export default Post
+export default Post;

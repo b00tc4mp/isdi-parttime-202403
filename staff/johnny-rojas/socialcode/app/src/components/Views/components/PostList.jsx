@@ -7,16 +7,14 @@ import View from '../../library/View'
 import logic from '../../../logic'
 
 
-function PostList() {
-  console.log('PostList -> render')
+function PostList({refreshStamp}) {
 
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-      console.log('PostList -> useEffect')
 
       loadPosts()
-  }, [])
+  }, [refreshStamp])
 
   const loadPosts = () => {
       try {
@@ -28,8 +26,6 @@ function PostList() {
 
                   return
               }
-
-              console.log('PostList -> setPosts')
 
               setPosts(posts)
           })
@@ -44,7 +40,7 @@ function PostList() {
 
 
   return <View tag="section" className="PostList">
-  {posts.map(post => <Post post={post} onPostDeleted={handlePostDeleted} />)}
+  {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
 </View>
 }
 

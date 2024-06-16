@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react'
 
 import View from '../library/View'
 
-import Header from '../Views/components/Header'
-import PostList from '../Views/components/PostList'
-
-import Button from '../core/Button'
-import Heading from '../core/Heading'
 import PrincipalBar from '../core/PrincipalBar'
-// import Footer from '../core/Footer'
+import PostList from '../Views/components/PostList'
+import Footer from '../Views/components/Footer'
+import CreatePostView from '../Views/components/CreatePostView'
 
 import logic from '../../logic'
 
 function Home({ onUserLoggedOut }) {
   const [name, setName] = useState('')
+  const [view, setView] = useState('')
+  const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
   const handleLogout = () => {
     logic.logoutUser()
@@ -41,14 +40,34 @@ function Home({ onUserLoggedOut }) {
     }
   }, [])
 
+  const handleCreatePostClick = () => setView('create-post')
+
+  const handleCancelCreatePostClick = () => setView('')
+
+  const handlePostCreated = () => {
+    setPostListRefreshStamp(Date.now)
+
+    setView('')
+  }
+
   return <View>
     <PrincipalBar name={name} onClick={handleLogout} children={"Logout"}></PrincipalBar>
 
     <View tag="main">
-      <PostList />
+      
+      <PostList refreshStamp={postListRefreshStamp} />
+      {view === 'create-post' && ( <>
+            <div className="modal-backdrop" onClick={handleCancelCreatePostClick}></div>
+            <div className="modal">
+              <CreatePostView 
+                onCancelCreatePostClick={handleCancelCreatePostClick} 
+                onPostCreated={handlePostCreated} 
+              />
+            </div>
+          </>
+        )}
     </View>
-
-    {/* <Footer></Footer> */}
+    <Footer onCreatePostClick={handleCreatePostClick}></Footer>
   </View>
 }
 

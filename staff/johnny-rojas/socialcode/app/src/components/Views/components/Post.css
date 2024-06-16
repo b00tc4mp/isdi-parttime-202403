@@ -1,0 +1,111 @@
+article {
+  width: 700px;
+  height: auto;
+  margin-top: 3rem;
+  margin-bottom: 60px;
+  background-color: #f4f4f4;
+  border: 1px solid #dbdbdb;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.post-header {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin-left: 15px;
+}
+
+.post-header>.Author {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+Image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.footer-container {
+  display: flex;
+  align-items: flex-start;
+  /* Alinea los elementos al inicio del eje vertical */
+}
+
+.post-footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-bottom: 7px;
+  width: 635px;
+  /* Mantiene el ancho fijo */
+  min-height: 50px;
+  /* Establece una altura mínima */
+  height: auto;
+  /* Permite que crezca en altura según el contenido */
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  /* Asegura que el padding se incluya en el ancho y alto */
+  overflow-wrap: break-word;
+  /* Permite que las palabras largas se ajusten al contenedor */
+}
+
+.post-footer>p{
+  margin-top: 5px;
+}
+
+.post-footer>.Button {
+  margin: 0rem;
+  align-items: center;
+  margin-top: .5rem;
+  width: 180px;
+  margin-left: 200px;
+  margin-bottom: 15px;
+  justify-self: center;
+  border-radius: 20px;
+  border: 1px solid #272727;
+  color: #272727;
+}
+
+.post-icons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  /* Espacio entre el post-footer y los iconos */
+  margin-top: 8px;
+}
+
+.icon {
+  font-size: 24px;
+  /* Tamaño de los iconos */
+  /* Espacio entre los iconos */
+  cursor: pointer;
+}
+
+
+time {
+  text-decoration: underline;
+}
+
+.confirm-delete-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}

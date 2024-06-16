@@ -1,42 +1,8 @@
-article {
+.PostsList {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 2rem 0;
-}
-
-.Post {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 1rem;
-}
-
-.Delete {
-  border: 0 !important;
-}
-
-
-.Main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-.Image {
-  width: 100%;
-  max-width: 60%;
-}
-
-.Author {
-  text-decoration: underline;
-  margin-bottom: 0px;
-}
-
-h2 {
-  margin-top: 10px;
+  width: 80%;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
