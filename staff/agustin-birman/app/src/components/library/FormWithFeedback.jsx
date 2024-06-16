@@ -1,9 +1,12 @@
 import Form from '../core/Form'
+import Text from '../core/Text'
 
 import './FormWithFeedback.css'
 
-function FormWithFeedback({ className, onSubmit, children }) {
-    return <Form className={`FormWithFeedback ${className ? className : ''}`} onSubmit={onSubmit}>{children}</Form>
+function FormWithFeedback({ className, onSubmit, children, message, level }) {
+    return <Form className={`FormWithFeedback ${className ? className : ''}`} onSubmit={onSubmit}>{children}
+        {message && <Text className={`Feedback ${level}`}>{message}</Text>}
+    </Form>
 }
 
 export default FormWithFeedback

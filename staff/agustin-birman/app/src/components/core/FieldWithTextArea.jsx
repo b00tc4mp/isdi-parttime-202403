@@ -4,7 +4,7 @@ import TextArea from './TextArea'
 import './Field.css'
 
 function FieldWithTextArea({ id, type, placeholder, children }) {
-    return <div className='Field'>
+    return <div className='FieldWithTextArea'>
         <Label htmlFor={id}>{children}</Label>
         <TextArea id={id} type={type} placeholder={placeholder} />
     </div>

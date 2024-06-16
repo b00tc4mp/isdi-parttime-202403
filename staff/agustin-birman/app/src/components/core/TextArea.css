@@ -1,7 +1,5 @@
 .TextArea {
     display: flex;
-    flex-direction: column;
-    text-align: left;
     height: 90px;
     width: 300px;
     background-color: transparent;

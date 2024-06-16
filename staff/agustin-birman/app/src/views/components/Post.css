@@ -1,29 +1,41 @@
-article {
+.Post {
     position: relative;
-    background-color: #aaa6;
-    border-radius: 20px;
-    width: 90%;
     height: auto;
+    width: 100%;
     background-color: #aaa6;
-    border-radius: 20px;
-    padding: auto;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    margin: 10px auto;
-
+    border-radius: 20px;
+    padding: 15px;
 }
 
-p.Author {
+.PostHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.PostHeader .Button {
+    margin: 10px;
+}
+
+.PostFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Image {
+    border-radius: 20px;
+}
+
+/* p.Author {
+    position: relative;
     padding-right: 1rem;
     padding-bottom: 0.4rem;
-    display: flex;
-    justify-content: end;
-}
+
 }
 
-h2.Title {
-    padding-top: 0.5rem;
-    margin-left: 1rem;
-}
+
+
 
 .Image {
     max-width: 90%;
@@ -37,7 +49,7 @@ p.Description {
     padding: 0 0.7rem;
 }
 
-time {
+Time {
     position: relative;
     top: 2.7rem;
     padding-left: 0.7rem;
@@ -67,4 +79,4 @@ i.fa-bars {
 .EditButton,
 .DeleteButton {
     z-index: 500;
-}
+} */

@@ -1,15 +1,22 @@
 import './Post.css'
 
-import Image from '../../components/core/Image'
-import Heading from '../../components/core/Heading'
-import Button from '../../components/core/Button'
 import postLogic from '../../postLogic'
 import userLogic from '../../userLogic'
 
+import Time from '../../components/core/Time'
+import Text from '../../components/core/Text'
+import Image from '../../components/core/Image'
+import Heading from '../../components/core/Heading'
+import Button from '../../components/core/Button'
+import ConfirmDelete from '../../components/core/ConfirmDelete'
+import { useState } from 'react'
+
 function Post({ post, onPostDeleted }) {
-    const handleDeletePost = postId => {
+    const [showConfirm, setShowConfirm] = useState('')
+
+    const handleDeletePost = () => {
         try {
-            postLogic.deletePost(postId, error => {
+            postLogic.deletePost(post.id, error => {
                 if (error) {
                     console.error(error)
 
@@ -27,18 +34,26 @@ function Post({ post, onPostDeleted }) {
         }
     }
 
-    return <article >
-        <p className='Author'>{post.author}</p>
+    const handleShowConfirmDelete = () => setShowConfirm('show')
 
-        <Heading className='Title' level='2'>{post.title}</Heading>
+    const handleCancelConfirmDelete = () => setShowConfirm('')
+
+    return <article className='Post'>
+        <div className='PostHeader'>
+            <Heading className='Title' level='2'>{post.title}</Heading>
+            {post.author === userLogic.getLoggedInUsername() && <Button onClick={handleShowConfirmDelete}>Delete</Button>}
+        </div>
 
         <Image src={post.image} />
 
-        <p className='Description'>{post.description}</p>
+        <Text className='Description'>{post.description}</Text>
 
-        <time>{post.date}</time>
+        <div className='PostFooter'>
+            <Time>{post.date}</Time>
+            <Text className='Author'>{post.author}</Text>
+        </div>
+        {showConfirm === 'show' && <ConfirmDelete onCancelConfirm={handleCancelConfirmDelete} onConfirmDelete={() => handleDeletePost(post.id)} />}
 
-        {post.author === userLogic.getLoggedInUsername() && <Button onClick={() => handleDeletePost(post.id)}>Delete</Button>}
     </article>
 }
 

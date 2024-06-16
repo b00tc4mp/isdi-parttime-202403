@@ -1,7 +1,16 @@
 .Button {
-    padding: .4rem;
     background-color: transparent;
-    font-size: 1rem;
-    border: 1px solid var(--first-color);
+    border: 1px solid black;
     cursor: pointer;
+    border-radius: 8px;
+    padding: auto;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.25s;
+
+}
+
+button:hover {
+    border-color: #646cff;
 }

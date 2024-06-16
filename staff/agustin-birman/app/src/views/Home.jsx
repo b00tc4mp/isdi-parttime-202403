@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import './Home.css'
+
 import View from '../components/library/View'
 import Header from '../components/library/Header'
 import Footer from '../components/library/Footer'

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import postLogic from '../../postLogic'
 import './CreatePostForm.css'
 
 import Button from '../../components/core/Button'
@@ -5,9 +7,10 @@ import Field from '../../components/core/Field'
 import FieldWithTextArea from '../../components/core/FieldWithTextArea'
 import SubmitButton from '../../components/core/SubmitButton'
 import FormWithFeedback from '../../components/library/FormWithFeedback'
-import postLogic from '../../postLogic'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
+    const [message, setMessage] = useState('')
+
     const handleCancelCreatePostClick = () => onCancelCreatePostClick()
 
     const handleCreatedPost = event => {
@@ -24,7 +27,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
                 if (error) {
                     console.error(error)
 
-                    alert(error.message)
+                    setMessage(error.message)
 
                     return
                 }
@@ -34,11 +37,11 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            setMessage(error.message)
         }
     }
 
-    return <FormWithFeedback className='CreatePostForm' onSubmit={handleCreatedPost}>
+    return <FormWithFeedback className='CreatePostForm' onSubmit={handleCreatedPost} message={message}>
 
         <Field id='title' type='text' placeholder='title'>Title</Field>
 

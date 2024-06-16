@@ -185,7 +185,7 @@ logic.createPost = (username, title, image, description, callback) => {
             title,
             image,
             description,
-            date: getFullDateString()
+            date: new Date()
         }
 
         data.insertPost(newPost, error => {
