@@ -19,11 +19,11 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     if (!NAME_REGEX.test(surname))
         throw new ContentError('surname is not valid')
 
-    if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
-
     if (!EMAIL_REGEX.test(email))
         throw new ContentError('email is not valid')
+
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('username is not valid')
 
     if (!PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')

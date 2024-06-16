@@ -1,9 +1,7 @@
 import './Header.css'
 
-function Header({ }) {
-    return <header classsName='Header'>
-        <h1>Hello, World!</h1>
-    </header>
+function Header({ children }) {
+    return <header className='Header'>{children}</header>
 }
 
 export default Header

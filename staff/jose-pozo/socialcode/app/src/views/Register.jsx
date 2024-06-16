@@ -1,12 +1,20 @@
+import { useState } from 'react'
+
 import logic from '../logic'
-import View from '../components/library/View'
-import Title from '../components/core/Title'
-import Form from '../components/core/Form'
+
 import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'
 import Link from '../components/core/Link'
+import Title from '../components/core/Title'
+
+import FormWithFeedback from '../components/library/FormWithFeedback'
+import View from '../components/library/View'
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
+    console.log('Register -> render')
+
+    const [message, setMessage] = useState('')
+
     const handleRegisterSubmit = event => {
         event.preventDefault()
 
@@ -14,19 +22,17 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 
         const name = form.name.value
         const surname = form.surname.value
-        const username = form.username.value
         const email = form.email.value
+        const username = form.username.value
         const password = form.password.value
-        const passwordRepeat = form.passwordrepeat.value
-
-        console.log({ name, surname, username, email, password, passwordRepeat })
+        const passwordRepeat = form.passwordRepeat.value
 
         try {
-            logic.registerUser(name, surname, username, email, password, passwordRepeat, (error) => {
+            logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
                 if (error) {
                     console.log(error)
 
-                    alert(error.message)
+                    setMessage(error.message)
 
                     return
                 }
@@ -34,9 +40,9 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
                 onUserRegistered()
             })
         } catch (error) {
-            console.log(error)
+            console.error(error)
 
-            alert(error.message)
+            setMessage(error.message)
         }
     }
 
@@ -46,20 +52,25 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         onLoginLinkClick()
     }
 
-    return <View tag='main'>
-        <Form className={'RegisterForm'} onSubmit={handleRegisterSubmit}>
-            <Field id='name' type='text' placeholder='name'>Name</Field>
-            <Field id='surname' type='text' placeholder='surname'>Surname</Field>
-            <Field id='username' type='text' placeholder='username'>Username</Field>
-            <Field id='email' type='mail' placeholder='email'>Email</Field>
-            <Field id='password' type='password' placeholder='password'>Password</Field>
-            <Field id='passwordrepeat' type='password' placeholder='password repeat'>Password Repeat</Field>
+    return <View tag="main">
+        <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
+            <Field id="name" placeholder="name">Name</Field>
+
+            <Field id="surname" placeholder="surname">Surname</Field>
+
+            <Field id="email" type="email" placeholder="name@example.com">E-mail</Field>
+
+            <Field id="username" placeholder="username">Username</Field>
+
+            <Field id="password" type="password" placeholder="password">Password</Field>
+
+            <Field id="passwordRepeat" type="password" placeholder="password repeat">Password Repeat</Field>
+
             <SubmitButton>Register</SubmitButton>
-        </Form>
-        <Link href='' onClick={handleLoginClick}>Have an account? Sign in'</Link>
+        </FormWithFeedback>
+
+        <Link onClick={handleLoginClick}>Login</Link>
     </View>
 }
 
 export default Register
-
-
