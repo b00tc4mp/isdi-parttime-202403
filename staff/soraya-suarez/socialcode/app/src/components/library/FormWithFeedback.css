@@ -2,7 +2,7 @@
     padding: 1rem;
 }
 
-.FormWithFeedback .Feedback {
+.FormWithFeedback .Feedback.error {
     color: tomato;
 }
 
