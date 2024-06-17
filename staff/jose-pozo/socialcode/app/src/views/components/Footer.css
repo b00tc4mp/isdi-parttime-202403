@@ -1,5 +1,14 @@
-.ButtonFooter {
-    width: 500px;
-    font-size: 30px;
+.Footer {
+    width: 450px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
 
+.ButtonFooter {
+    color: yellow;
+
+    font-weight: 5rem;
 }

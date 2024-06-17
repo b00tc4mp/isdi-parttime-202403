@@ -12,7 +12,7 @@ import FormWithFeedback from '../../components/library/FormWithFeedback'
 import View from '../../components/library/View'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
-    const [message, setMessage] = useStage('')
+    const [message, setMessage] = useState('')
 
     const handleCancelCreatePostClick = () => onCancelCreatePostClick()
 
@@ -46,9 +46,9 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
 
     return <View className="CreatePostForm">
         <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
-            <Field id="title">Title</Field>
-            <Field id="image">Image</Field>
-            <Field id="description">Description</Field>
+            <Field id='title'>Title</Field>
+            <Field id='image'>Image</Field>
+            <Field id='description'>Description</Field>
 
             <View direction='row'>
                 <SubmitButton>Create</SubmitButton>

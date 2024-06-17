@@ -1,0 +1,14 @@
+.Post {
+    width: 450px;
+    margin: 1.5rem 0;
+    align-items: normal;
+}
+
+.PostHeader {}
+
+.PostAuthor {}
+
+.PostFooter {
+    display: flex;
+    justify-content: space-between;
+}

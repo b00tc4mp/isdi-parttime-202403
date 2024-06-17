@@ -6,7 +6,7 @@ function Footer({ onCreatePostClick }) {
     const handleCreatePostClick = () => onCreatePostClick()
 
     return <footer className='Footer'>
-        <Button onClick={handleCreatePostClick}>➕</Button>
+        <Button className='ButtonFooter' onClick={handleCreatePostClick}>+</Button>
     </footer>
 }
 

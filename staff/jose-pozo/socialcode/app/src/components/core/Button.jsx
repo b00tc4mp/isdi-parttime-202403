@@ -1,7 +1,7 @@
-function Button({ type, className, children }) {
-    return <button type={type} className={`Button ${className ? className : ''}`}>
-        {children}
-    </button>
+import './Button.css'
+
+function Button({ type, className, onClick, children }) {
+    return <button className={`Button ${className ? className : ''}`} type={type} onClick={onClick}>{children}</button>
 }
 
 export default Button
