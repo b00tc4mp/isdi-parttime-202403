@@ -19,7 +19,7 @@
 - get user name
 
 ```sh
-🐖 curl http://localhost:8080/users/pepitogrillo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3ZW5keWRhcmxpbmciLCJpYXQiOjE3MTg2NTExMDAsImV4cCI6MTcxODY1NDcwMH0.XcfzV8eMk7dv8kawAArnIqbECPkv2dZI8px2zKbI8s4" -v
+🐖 curl http://localhost:8080/users/pepitogrillo -H "Authorization: Basic peterpan" -v
 ```
 
 - list posts
@@ -31,7 +31,7 @@
 - create post
 
 ```sh
-🐖 curl -X POST http://localhost:8080/posts -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXBpdG9ncmlsbG8iLCJpYXQiOjE3MTg2NTI4OTgsImV4cCI6MTcxODY1NjQ5OH0.cVvHfJ_cE-dDMgD9UduooRkPG6Dxa09PRKZnABDxj2I"%" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg","description":"blah blah"}' -v
+🐖 curl -X POST http://localhost:8080/posts -H "Authorization: Basic peterpan" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg","description":"blah blah"}' -v
 ```
 
 - delete post
