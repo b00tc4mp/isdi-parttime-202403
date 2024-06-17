@@ -14,7 +14,9 @@ function Post({ post, onPostDeleted }) {
 
 	const [showConfirmDelete, setShowConfirmDelete] = useState(false)
 
-	const handleDeletePost = () => setShowConfirmDelete(true)
+	const [like, setLike] = useState(true)
+
+	const handleDeletePost = () => setShowConfirmDelete(false)
 
 	const confirmDeletePost = () => {
 		try {
@@ -25,7 +27,6 @@ function Post({ post, onPostDeleted }) {
 				}
 
 				onPostDeleted()
-				setShowConfirmDelete(false)
 			})
 		} catch (error) {
 			console.error(error)
@@ -37,6 +38,10 @@ function Post({ post, onPostDeleted }) {
 		setShowConfirmDelete(false)
 	}
 
+	const handleLike = () => {
+		setLike(!like)
+	}
+
 	return (
 		<>
 			<article className="Article">
@@ -45,8 +50,9 @@ function Post({ post, onPostDeleted }) {
 				<Heading level="2" className="PostTitle">
 					{post.title}
 				</Heading>
-
-				<Text className="PostText">{post.description}</Text>
+				<div className="TextContainer">
+					<Text className="PostText">{post.description}</Text>
+				</div>
 
 				<div className="DivImage">
 					<Image className="Image" src={post.image}></Image>
@@ -55,7 +61,10 @@ function Post({ post, onPostDeleted }) {
 					)}
 				</div>
 
-				<Time>{post.date}</Time>
+				<div className="TimeLike">
+					<Time>{post.date}</Time>
+					<i className={like ? "fa-regular fa-heart" : "fa-solid fa-heart"} onClick={handleLike}></i>
+				</div>
 
 				{post.author === logic.getLoggedInUsername() && (
 					<Button className="DeleteButton" onClick={handleDeletePost}>

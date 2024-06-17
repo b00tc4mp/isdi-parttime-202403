@@ -2,3 +2,15 @@ time {
   font-size: 1.3rem;
   color: black;
 }
+
+.TimeLike {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fa-heart {
+  color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
