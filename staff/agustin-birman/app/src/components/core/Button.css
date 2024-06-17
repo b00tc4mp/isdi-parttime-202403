@@ -11,6 +11,10 @@
 
 }
 
-button:hover {
-    border-color: #646cff;
+.Button:hover {
+    background-color: rgb(75, 153, 177);
+}
+
+.Button:active {
+    background-color: lightblue;
 }

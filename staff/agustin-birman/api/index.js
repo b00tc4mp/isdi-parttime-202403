@@ -1,6 +1,8 @@
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
+import jwt from 'jsonwebtoken'
+import { SystemError } from './errors.js'
 
 const api = express()
 
@@ -43,7 +45,9 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            res.send()
+            const token = jwt.sign({ sub: username }, 'hola', { expiresIn: '1h' })
+
+            res.json(token)
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -51,7 +55,9 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 })
 
 api.get('/users/:targetUsername', (req, res) => {
-    const username = req.headers.authorization.slice(6)
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, 'hola')
 
     const { targetUsername } = req.params
 
@@ -87,11 +93,13 @@ api.get('/posts', (req, res) => {
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
-    const username = req.headers.authorization.slice(6)
-
-    const { title, image, description } = req.body
-
     try {
+        const token = req.headers.authorization.slice(7)
+
+        const { sub: username } = jwt.verify(token, 'hola')
+
+        const { title, image, description } = req.body
+
         logic.createPost(username, title, image, description, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -102,7 +110,10 @@ api.post('/posts', jsonBodyParser, (req, res) => {
             res.status(201).send()
         })
     } catch (error) {
-        res.status(500).json({ error: error.contructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError)
+            res.status(500).json({ error: SystemError.name, message: message.error })
+        else
+            res.status(500).json({ error: error.contructor.name, message: error.message })
     }
 })
 

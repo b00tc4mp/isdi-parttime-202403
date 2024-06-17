@@ -61,7 +61,7 @@ postLogic.createPost = (title, image, description, callback) => {
 
     xhr.open('POST', 'http://localhost:8080/posts')
 
-    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 
     const body = {
         title,

@@ -14,7 +14,13 @@
     color: var(--first-color);
 }
 
-
+html,
+body {
+    min-height: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
 
 /* 
 body {

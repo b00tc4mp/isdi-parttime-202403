@@ -1,3 +1,8 @@
+main {
+    margin-top: 90px;
+    margin-bottom: 60px;
+}
+
 .LoginForm {
     padding: 1rem;
     margin-bottom: 10px;
@@ -29,17 +34,4 @@
     width: 60px;
     padding: 5px;
     border: 1px solid black;
-}
-
-/* .LoginForm .Lock {
-    height: 15px;
-    width: 15px;
-} */
-
-.Button:hover {
-    background-color: rgb(75, 153, 177);
-}
-
-.Button:active {
-    background-color: lightblue;
 }

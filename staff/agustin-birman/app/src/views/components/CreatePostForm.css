@@ -27,6 +27,7 @@
 
 .CreatePostForm .FieldWithTextArea {
     display: flex;
+    justify-content: center;
 }
 
 .CreatePostForm textarea {
