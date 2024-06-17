@@ -55,7 +55,6 @@ function Home({ onUserLoggedOut }) {
     const handleCancelCreatePostClick = () => setView('')
 
     const handlePostCreated = () => {
-        //TODO refresh posts
         setPostListRefreshStamp(Date.now())
 
         setView('')

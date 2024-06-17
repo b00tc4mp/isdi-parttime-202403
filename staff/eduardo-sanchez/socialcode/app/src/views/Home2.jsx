@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react'
 
 import View from '../components/library/View'
@@ -5,7 +6,6 @@ import View from '../components/library/View'
 import Header from './components/Header'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
-import CreatePostForm from './components/CreatePostForm'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
@@ -55,7 +55,6 @@ function Home({ onUserLoggedOut }) {
     const handleCancelCreatePostClick = () => setView('')
 
     const handlePostCreated = () => {
-        //TODO refresh posts
         setPostListRefreshStamp(Date.now())
 
         setView('')
@@ -75,6 +74,58 @@ function Home({ onUserLoggedOut }) {
 
         <Footer onCreatePostClick={handleCreatePostClick} />
     </View>
+}
+
+function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
+    console.log('CreatePostForm -> render')
+
+    const handleCancelCreatePostClick = () => onCancelCreatePostClick()
+
+    const handleCreatePostSubmit = event => {
+        event.preventDefault()
+
+        const form = event.target
+
+        const title = form.title.value
+        const image = form.image.value
+        const description = form.description.value
+
+        try {
+            logic.createPost(title, image, description, error => {
+                if (error) {
+                    console.error(error)
+
+                    alert(error.message)
+
+                    return
+                }
+
+                onPostCreated()
+            })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
+    return <form className="Form FormWithFeedback CreatePostForm" onSubmit={handleCreatePostSubmit}>
+        <div className="Field">
+            <label htmlFor="title">Title</label>
+            <input className="Input" id="title" type="text" placeholder="title" />
+        </div>
+        <div className="Field">
+            <label htmlFor="image">Image</label>
+            <input className="Input" id="image" type="text" placeholder="image" />
+        </div>
+        <div className="Field">
+            <label htmlFor="description">Description</label>
+            <input className="Input" id="description" type="text" placeholder="description" />
+        </div>
+        <button className="Button" type="button" onClick={handleCancelCreatePostClick}>Cancel</button>
+        <button className="Button SubmitButton" type="submit">Create</button>
+        <p className="Feedback">image is not valid, please, correct it</p>
+    </form>
 }
 
 export default Home
