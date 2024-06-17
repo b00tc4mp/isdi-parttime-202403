@@ -2,8 +2,8 @@ import './Footer.css'
 
 import Button from '../../../Components/Core/Button'
 
-function Footer({onCreatepostClick}) {
-    const handleCreatePostClick = () => onCreatepostClick()
+function Footer({onCreatePostClick}) {
+    const handleCreatePostClick = () => onCreatePostClick()
 
     return < footer className='Footer'>
         <Button onClick={handleCreatePostClick}>+</Button>

@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Heading from "../../Components/Core/Heading";
 import PostList from "./components/PostList";
 import Footer from "./components/Footer";
+import CreatePostForm from "./components/CreatePostForm";
 
 import logic from "../../logic";
 

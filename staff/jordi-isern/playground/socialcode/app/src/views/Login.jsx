@@ -7,7 +7,7 @@ import Link from '../Components/Core/Link.jsx'
 import Title from '../Components/Core/Title.jsx'
 import View from '../Components/Library/View.jsx'
 
-function Login ({onUserLoged, onClickRegister}){
+function Login ({onUserLoggedin, onClickRegister}){
     const handleLoginSubmit = event => {
         event.preventDefault()
       
@@ -26,7 +26,7 @@ function Login ({onUserLoged, onClickRegister}){
                 return
               }
       
-              onUserLoged()
+              onUserLoggedin()
             })
           }catch (error) {
             console.log(error)

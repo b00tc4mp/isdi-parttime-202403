@@ -6,6 +6,7 @@ button {
     font-weight: 500;
     font-family: inherit;
     background-color: #646cff;    cursor: pointer;
+    color: white;
     transition: border-color 0.25s;
   }
   button:hover {
