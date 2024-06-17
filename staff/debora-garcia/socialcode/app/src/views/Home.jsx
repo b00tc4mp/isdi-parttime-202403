@@ -63,7 +63,10 @@ function Home({ onUserLoggedOut }) {
 
         setView("")
     }
-
+    // stamp inicialmente es 0, cuando se hace el primer render, setstamp se actualizara a Date now
+    // Post list recive esta prop, y en la dependencia de useEffect se detectara que dicha estamp ha cambiado de valor con lo que se volvera a pintar de nuevo
+    // de esta manera el compo sabe que tiene que repintar los posts cuando se ha añadido un post nuevo
+    // cuando creamos el CreatePost form, este recive dos parametros para que es home el que maneja la funcion de los botones
     return <View>
         <Header>
             <Heading level="3">{username}</Heading>

@@ -7,9 +7,15 @@ import logic from "../../logic"
 function Post({ post, onPostDeleted }) {
     console.log("Post -> render")
 
-    const handleDeletePost = postId => {
+    /* const handleDeletePost = postId => {
         try {
-            logic.deletePost(postId, error => {
+            logic.deletePost(postId, error => { 
+                ya recibimos el post desde props y por lo taanto su id
+    */
+
+    const handleDeletePost = () => {
+        try {
+            logic.deletePost(post.id, error => {
                 if (error) {
                     console.error(error)
 
@@ -38,7 +44,10 @@ function Post({ post, onPostDeleted }) {
 
         <time>{post.date}</time>
 
-        {post.author === logic.getLoggedInUsername() && <button className="Button" onClick={() => handleDeletePost(post.id)}>Delete</button>}
+        {/*{post.author === logic.getLoggedInUsername() && <button className="Button" onClick={() => handleDeletePost(post.id)}>Delete</button>}
+        como y recibimos post desde props en el compo no hace falta usar una funcion callback para pasarle el post.id*/}
+
+        {post.author === logic.getLoggedInUsername() && <button className="Button" onClick={handleDeletePost}>Delete</button>}
     </article>
 }
 

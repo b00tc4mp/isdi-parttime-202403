@@ -18,7 +18,7 @@ function Home({ onUserLoggedOut }) {
 
     const [username, setUsername] = useState("")
     const [view, setView] = useState("")
-    const [postListRefreshStamp, setpostListRefreshStamp] = useState(0)
+    const [postListRefreshStamp, setpostListRefreshStamp] = useState(0) //*
 
     // estampa de tiempo inicialmente de 0
     const handleLogout = () => {
@@ -86,6 +86,10 @@ function Home({ onUserLoggedOut }) {
             alert(error.message)
         }
     }
+
+    // stamp inicialmente es 0, cuando se hace el primer render, setstamp se actualizara a Date now
+    // Post list recive esta prop, y en la dependencia de useEffect se detectara que dicha estamp ha cambiado de valor con lo que se volvera a pintar de nuevo
+    // de esta manera el compo sabe que tiene que repintar los posts cuando se ha añadido un post nuevo
 
     return <View>
         <Header>
