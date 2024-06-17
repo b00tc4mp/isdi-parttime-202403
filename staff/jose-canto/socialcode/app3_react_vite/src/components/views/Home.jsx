@@ -74,7 +74,7 @@ function Home() {
 				<Button onClick={handleLogout}>Logout</Button>
 			</Header>
 
-			<View className="View" tag="view">
+			<View className="View">
 				<PostList refreshStamp={postListRefresh} />
 
 				{viewCreatePostForm === "create-post" && (

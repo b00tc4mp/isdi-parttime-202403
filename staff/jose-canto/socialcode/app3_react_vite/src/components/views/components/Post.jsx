@@ -16,7 +16,7 @@ function Post({ post, onPostDeleted }) {
 
 	const [like, setLike] = useState(true)
 
-	const handleDeletePost = () => setShowConfirmDelete(false)
+	const handleDeletePost = () => setShowConfirmDelete(true)
 
 	const confirmDeletePost = () => {
 		try {
@@ -27,6 +27,7 @@ function Post({ post, onPostDeleted }) {
 				}
 
 				onPostDeleted()
+				setShowConfirmDelete(false)
 			})
 		} catch (error) {
 			console.error(error)
