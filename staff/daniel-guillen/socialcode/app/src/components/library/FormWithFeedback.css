@@ -2,10 +2,10 @@
     padding: 1rem;
 }
 
-.FormWithFeedback .Feedback {
-    color: tomato;
+.FormWithFeedback .Feedback.error {
+    color: red;
 }
 
 .FormWithFeedback .Feedback.success {
-    color: greenyellow;
+    color: limegreen;
 }

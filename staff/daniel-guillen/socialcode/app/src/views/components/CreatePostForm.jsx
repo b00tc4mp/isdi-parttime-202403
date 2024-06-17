@@ -1,7 +1,20 @@
+import { useState } from 'react'
+
+import './CreatePostForm.css'
+
 import logic from '../../logic'
+
+import Field from '../../components/core/Field'
+import Button from '../../components/core/Button'
+import SubmitButton from '../../components/core/SubmitButton'
+
+import FormWithFeedback from '../../components/library/FormWithFeedback'
+import View from '../../components/library/View'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     console.log('CreatePostForm -> render')
+
+    const [message, setMessage] = useState('')
 
     const handleCancelCreatePostClick = () => onCancelCreatePostClick()
 
@@ -19,7 +32,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
                 if (error) {
                     console.error(error)
 
-                    alert(error.message)
+                    setMessage(error.message)
 
                     return
                 }
@@ -35,27 +48,22 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            setMessage(error.message)
         }
     }
 
-    return <form className="Form FormWithFeedback CreatePostForm" onSubmit={handleCreatePostSubmit}>
-        <div className="Field">
-            <label htmlFor="title">Title</label>
-            <input className="Input" id="title" type="text" placeholder="title" />
-        </div>
-        <div className="Field">
-            <label htmlFor="image">Image</label>
-            <input className="Input" id="image" type="text" placeholder="image" />
-        </div>
-        <div className="Field">
-            <label htmlFor="description">Description</label>
-            <input className="Input" id="description" type="text" placeholder="description" />
-        </div>
-        <button className="Button" type="button" onClick={handleCancelCreatePostClick}>Cancel</button>
-        <button className="Button SubmitButton" type="submit">Create</button>
-        <p className="Feedback">image is not valid, please, correct it</p>
-    </form>
+    return <View className="CreatePostForm">
+    <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
+        <Field id="title">Title</Field>
+        <Field id="image">Image</Field>
+        <Field id="description">Description</Field>
+
+        <View direction='row'>
+            <SubmitButton>Create</SubmitButton>
+            <Button onClick={handleCancelCreatePostClick}>Cancel</Button>
+        </View>
+    </FormWithFeedback>
+    </View>
 }
 
 export default CreatePostForm

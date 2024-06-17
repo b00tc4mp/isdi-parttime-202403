@@ -1,5 +1,17 @@
 .View {
     display: flex;
+}
+
+.View.column {
     flex-direction: column;
-    align-items: center;
+}
+
+.View.row {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.View.row {
+    flex-direction: row;
+    gap: 1rem;
 }
