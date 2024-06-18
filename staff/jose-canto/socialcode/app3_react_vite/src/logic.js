@@ -83,6 +83,10 @@ logic.loginUser = (username, password, callback) => {
     if (xhr.status === 200) {
       sessionStorage.username = username
 
+      const token = JSON.parse(xhr.response)
+
+      sessionStorage.token = token
+
       callback(null)
       console.log("user logged in")
 
@@ -147,7 +151,7 @@ logic.getUserName = (callback) => {
   }
 
   xhr.open("GET", `http://localhost:8080/users/${sessionStorage.username}`)
-  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
+  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
 
   xhr.send()
 }
@@ -211,7 +215,7 @@ logic.createPost = (title, image, description, callback) => {
   }
 
   xhr.open("POST", "http://localhost:8080/posts")
-  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
+  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.token}`)
   xhr.setRequestHeader("Content-Type", "application/json")
 
   const body = {

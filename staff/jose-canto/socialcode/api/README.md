@@ -38,12 +38,16 @@ xhr.send(json)
 ```sh
 curl http://localhost:8080/users/Jack -H "Authorization: Basic Jack" -v 
 
+ curl http://localhost:8080/users/Jack -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWNrIiwiaWF0IjoxNzE4Njk3Mjg5LCJleHAiOjE3MTg3MDA4ODl9.nQff39GC5yaIJjmzsPOkpmb1fRgAhNALUQ3vHphB6tM" -v 
+
 ```
 
 - authenticate user
 
 ```sh
 🐖 curl -X POST http://localhost:8080/users/auth -H "Content-Type: application/json" -d '{"username":"Jack","password":"1234"}' -v
+
+
 ```
 
 ```js
@@ -98,6 +102,8 @@ xhr.send()
 
 ```sh
 curl -X POST http://localhost:8080/posts -H "Authorization: Basic Luna" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://m.media-amazon.com/images/I/41xsPjrM-pL._AC_UF350,350_QL50_.jpg","description":"blah blah"}' -v
+
+curl -X POST http://localhost:8080/posts -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWNrIiwiaWF0IjoxNzE4NzAwMDk5LCJleHAiOjE3MTg3MDM2OTl9.uGgUn2I26CfG9p1RNTv7GETHX9zvsFg8xOpGdo3U2P0" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://m.media-amazon.com/images/I/41xsPjrM-pL._AC_UF350,350_QL50_.jpg","description":"blah blah"}' -v
 ```
 
 - delete post
