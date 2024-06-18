@@ -62,11 +62,9 @@ function Home({ onUserLoggedOut }) {
             <Heading level="3">{name}</Heading>
             <Button onClick={handleLogout}>Logout</Button>
         </Header>
-
+        {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         <View tag="main">
             <PostList refreshStamp={postListRefreshStamp} />
-
-            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
 
         <Footer onCreatePostClick={handleCreatePostClick} />

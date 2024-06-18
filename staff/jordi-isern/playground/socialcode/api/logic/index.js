@@ -136,14 +136,28 @@ logic.getUserName = (username, targetUsername, callback) => {
     })
 }
 
-logic.getAllPosts = (callback) => {
-    data.findPosts(() => true, (error, posts) => {
-        if (error) {
+logic.getAllPosts = (username, callback) => {
+    data.findUser(user = user.username === username, (error , user) => {
+        if(error){
             callback(error)
 
             return
         }
-        callback(null, posts.reverse())
+
+        if(!user){
+            callback(new MatchError('usern not found'))
+
+            return
+        }
+        
+        data.findPosts(() => true, (error, posts) => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+            callback(null, posts.reverse())
+        })
     })
 
 }

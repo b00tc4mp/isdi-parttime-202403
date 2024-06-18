@@ -1,3 +1,4 @@
+import './PostList.css'
 import { useEffect, useState } from 'react'
 
 import Heading from '../../../Components/Core/Heading'

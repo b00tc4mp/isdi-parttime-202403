@@ -4,6 +4,7 @@ import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { SystemError } from './error.js'
 
+const {JsonWebTokenError, TokenExpiredError}  = jwt
 const api = express()
 
 api.use(express.static('public'))
@@ -80,7 +81,11 @@ api.get('/users/:targetUsername', (req, res) => {
 
 api.get('/posts', (req, res) => {
     try {
-        logic.getAllPosts((error, posts) => {
+        const token = req.headers.authorization.slice(7)
+
+        const {sub: username } = jwt.verify(token, 'voy a ir al granada sound')
+
+        logic.getAllPosts(username, (error, posts) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -114,7 +119,7 @@ api.post('/posts', jsonBodyParser, (req, res) => {
             res.status(201).send()
         })
     } catch (error) {
-        if(error instanceof JsonWebTokenError){
+        if(error instanceof  JsonWebTokenError || error instanceof TokenExpiredError){
             res.status(500).json({error : SystemError.name, message: error.message})
         }
         res.status(500).json({ error: error.constructor.name, message: error.message })

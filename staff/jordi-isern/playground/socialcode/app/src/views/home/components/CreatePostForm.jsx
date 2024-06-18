@@ -46,7 +46,8 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         }
     }
 
-    return <View className="CreatePostForm">
+    return <div className='"BackgorundCreatePostForm'>
+        <View className="CreatePostForm">
         <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
             <Field id="title">Title</Field>
             <Field id="image">Image</Field>
@@ -58,6 +59,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
             </View>
         </FormWithFeedback>
     </View>
+    </div>
 }
 
 export default CreatePostForm
