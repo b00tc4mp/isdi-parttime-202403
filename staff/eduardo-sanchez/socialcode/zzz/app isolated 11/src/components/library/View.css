@@ -1,0 +1,40 @@
+.View {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+}
+
+.View--column {
+    flex-direction: column;
+}
+
+.View--row {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.View--center {
+    align-items: center;
+}
+
+
+
+
+/*
+.View {
+    display: flex;
+}
+
+.View.column {
+    flex-direction: column;
+}
+
+.View.row {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.View.center {
+    align-items: center;
+}
+*/
