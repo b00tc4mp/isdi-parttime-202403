@@ -1,5 +1,6 @@
 .Image {
     width: 80%;
+    max-height: 80%;
     display: flex;
     justify-content: center;
     border-radius: 5%;

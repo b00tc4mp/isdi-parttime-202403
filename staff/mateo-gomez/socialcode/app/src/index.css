@@ -13,5 +13,5 @@
 }
 
 body {
-  background-color: var(--second-color);
+  background: linear-gradient(to bottom right, rgb(241, 178, 5), rgb(234, 205, 127));
 }

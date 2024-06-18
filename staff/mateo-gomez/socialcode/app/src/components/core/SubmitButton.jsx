@@ -1,9 +1,10 @@
 import './SubmitButton.css'
 import './Button.css'
+import Button from './Button'
 
 
-function SubmitButton({ type, children }) {
-    return <button className='Button SubmitButton' type={type}>{children}</button>
+function SubmitButton({ children }) {
+    return <Button className='SubmitButton' type='submit'>{children}</Button>
 }
 
 

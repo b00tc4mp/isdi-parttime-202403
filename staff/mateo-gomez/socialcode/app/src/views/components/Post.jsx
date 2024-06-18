@@ -1,35 +1,40 @@
 import Image from "../../components/core/Image"
 import Heading from '../../components/core/Heading'
 import logic from "../../logic"
+import Button from "../../components/core/Button"
+import Text from "../../components/core/Text"
+import Time from "../../components/core/Time"
 
 import './Post.css'
+import View from "../../components/library/View"
 
 function Post({ post, onPostDeleted }) {
     console.log('Post -> render')
 
     const handleDeletePost = postId => {
-        try {
-            logic.deletePost(postId, error => {
-                if (error) {
-                    console.error(error)
+        if (confirm('Delete post?'))
+            try {
+                logic.deletePost(postId, error => {
+                    if (error) {
+                        console.error(error)
 
-                    alert(error.message)
+                        alert(error.message)
 
-                    return
-                }
+                        return
+                    }
 
-                onPostDeleted()
-            })
+                    onPostDeleted()
+                })
 
-        } catch (error) {
-            console.error(error)
+            } catch (error) {
+                console.error(error)
 
-            alert(error.message)
-        }
+                alert(error.message)
+            }
     }
 
     return <article className="Post">
-        <p className="AuthorTitle">{post.author}</p>
+        <Text className="AuthorTitle">{post.author}</Text>
 
         <Heading level='2' className="PostTitle">{post.title}</Heading>
 
@@ -39,12 +44,14 @@ function Post({ post, onPostDeleted }) {
             Description:
         </Heading>
 
-        <p className="PostDescription">
-            {post.description}</p>
 
-        <time>{post.date}</time>
+        <Text className="PostDescription">
+            {post.description}</Text>
 
-        {post.author === logic.getLoggedInUsername() && <button className="DeleteButton" onClick={() => handleDeletePost(post.id)}>Delete</button>}
+        <Time>{post.date}</Time>
+
+        {post.author === logic.getLoggedInUsername() && <Button className="DeleteButton" onClick={() => handleDeletePost(post.id)}>Delete</Button>}
+
     </article>
 }
 

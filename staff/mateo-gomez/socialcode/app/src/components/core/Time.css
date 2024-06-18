@@ -1,0 +1,7 @@
+.Time {
+    display: flex;
+    align-items: center;
+    margin-left: 5rem;
+    margin-top: 2rem;
+    width: 6rem;
+}

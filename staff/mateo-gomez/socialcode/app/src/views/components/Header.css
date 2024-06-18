@@ -9,5 +9,6 @@
     padding: .5rem;
     box-sizing: content-box;
     border-bottom: 1px solid var(--first-color);
-    margin-right: 2rem;
+    padding-right: 3rem;
+    z-index: 100;
 }

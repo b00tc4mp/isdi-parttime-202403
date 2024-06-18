@@ -1,10 +1,12 @@
 .Post {
+    position: relative;
     width: 50rem;
     height: auto;
     background-color: aliceblue;
     border: 1px solid orange;
     margin: 2rem;
     border-radius: 4%;
+    padding-top: 3rem;
 
 }
 
@@ -12,8 +14,9 @@
     display: flex;
     justify-content: left;
     font-size: 3rem;
-    margin-top: 0%;
     margin-left: 3rem;
+    margin-right: 5rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -23,28 +26,8 @@
     border-radius: 5%;
 }
 
-.AuthorTitle {
-    display: inline-block;
-    justify-content: flex-end;
-    margin-right: 3rem;
-    margin-top: 2rem;
-    margin-left: auto;
-    border: 1px outset orange;
-    padding: 1rem;
-    margin-left: 40rem;
-    border-radius: 50%;
-    font-size: 1.3rem;
 
 
-}
-
-.PostDescription {
-    margin: 2rem;
-    border: 1px dotted orange;
-    margin-top: 3px;
-    height: auto;
-
-}
 
 .DescriptionTitle {
     margin-left: 2rem;
@@ -54,11 +37,14 @@
 }
 
 .DeleteButton {
-    display: inline-block;
-    justify-content: flex-end;
-    margin-left: 25rem;
-    margin-bottom: 2rem;
-    color: red;
+    display: flex;
+    justify-content: center;
+    margin-left: 40rem;
+    margin-bottom: 3rem;
+    color: rgb(232, 7, 7);
+    background-color: rgba(243, 90, 90, 0.199);
     border: 1px solid red;
     cursor: pointer;
+    border-radius: 12%;
+
 }

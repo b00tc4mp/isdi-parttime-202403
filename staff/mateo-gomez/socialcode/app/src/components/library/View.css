@@ -1,16 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Micro+5+Charted&family=Pacifico&display=swap');
 
 .View {
-    height: auto;
-    min-height: 100vh;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    background: linear-gradient(to bottom right, rgb(241, 178, 5), rgb(234, 205, 127));
+
 }
 
 
+
+
+
+.View.column {
+    flex-direction: column;
+
+}
+
+.View.row {
+    flex-direction: row;
+
+}
 
 
 .View .FormWithFeedback {

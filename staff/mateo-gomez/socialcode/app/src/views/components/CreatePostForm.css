@@ -2,9 +2,11 @@
     position: fixed;
     justify-content: center;
     align-items: center;
-    bottom: 10rem;
-    width: 30rem;
+    padding-bottom: 10rem;
+    width: 100%;
     box-sizing: border-box;
     background-color: rgba(255, 191, 0, 0.792);
+    height: 100vh;
+    z-index: 80;
 
 }

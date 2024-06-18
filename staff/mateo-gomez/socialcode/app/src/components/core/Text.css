@@ -1,0 +1,23 @@
+.AuthorTitle {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin-top: -1.5rem;
+    border: 1px outset orange;
+    padding: 1rem;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    position: absolute;
+    right: 3rem;
+    z-index: 10;
+
+
+}
+
+.PostDescription {
+    margin: 2rem;
+    border: 1px dotted orange;
+    margin-top: 3px;
+    height: auto;
+
+}

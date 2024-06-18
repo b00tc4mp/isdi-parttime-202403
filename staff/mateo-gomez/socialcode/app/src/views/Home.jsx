@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react'
+
 import View from '../components/library/View'
+
 import Header from './components/Header'
 import Button from '../components/core/Button'
-import logic from '../logic'
+
 import Heading from '../components/core/Heading'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
+
+
+import logic from '../logic'
 
 function Home({ onUserLoggedOut }) {
     console.log('Home -> render')
@@ -65,7 +70,7 @@ function Home({ onUserLoggedOut }) {
         <View tag='main'>
             <PostList refreshStamp={postListRefreshStamp} />
 
-            {view === 'create-post' && <CreatePostForm onnCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
+            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
 
         </View>
         <Footer onCreatePostClick={handleCreatePostClick} />

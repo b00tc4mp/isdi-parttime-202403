@@ -4,5 +4,7 @@
     width: 100%;
     left: 0;
     box-sizing: border-box;
-    background-color: rgba(255, 191, 0, 0.792);
+    background-color: transparent;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
