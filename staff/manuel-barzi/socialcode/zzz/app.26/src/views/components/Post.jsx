@@ -45,7 +45,7 @@ function Post({ post, onPostDeleted }) {
         <View direction='row'>
             <Time>{post.date}</Time>
 
-            {post.author === logic.getUserUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
+            {post.author === logic.getLoggedInUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
         </View>
     </View>
 }
