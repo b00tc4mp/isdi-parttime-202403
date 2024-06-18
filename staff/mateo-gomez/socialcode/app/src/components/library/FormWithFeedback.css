@@ -1,7 +1,9 @@
 .FormWithFeedback {
     padding: 3rem;
     box-shadow: 15px 5px 30px;
-    height: 20%;
+    height: auto;
+    padding: 4rem 0;
+
 }
 
 

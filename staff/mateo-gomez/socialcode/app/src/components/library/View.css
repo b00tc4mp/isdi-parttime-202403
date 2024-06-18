@@ -9,6 +9,10 @@
 }
 
 
+.main {
+    height: 100vh;
+}
+
 
 
 
@@ -25,8 +29,4 @@
 
 .View .FormWithFeedback {
     margin-top: 15rem;
-}
-
-.View .login {
-    color: blue;
 }

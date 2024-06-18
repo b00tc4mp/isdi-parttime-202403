@@ -42,7 +42,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
         onRegisterLinkClick()
     }
 
-    return <View tag="main">
+    return <View tag="main" className='main'>
         <Title className='MainTitle'>Login</Title>
 
         <FormWithFeedback onSubmit={handleLoginSubmit}>

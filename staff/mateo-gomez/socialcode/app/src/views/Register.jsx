@@ -51,7 +51,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         onLoginLinkClick()
     }
 
-    return <View tag='main'>
+    return <View tag='main' className='main'>
 
         <Title className='ViewTitle'>Register</Title>
 

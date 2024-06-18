@@ -61,7 +61,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
                 <Button className="Button" type="button" onClick={handleCancelCreatePostClick}>Cancel</Button>
                 <SubmitButton className="SubmitButton" >Create</SubmitButton>
             </View>
-            <p className='Feedback'>image is not valid</p>
+
         </FormWithFeedback >
     </View>
 }

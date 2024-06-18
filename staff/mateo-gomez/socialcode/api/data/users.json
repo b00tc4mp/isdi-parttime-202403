@@ -1,16 +1,1 @@
-[
-    {
-        "name": "Luka",
-        "surname": "Doncic",
-        "email": "luka@nba.es",
-        "username": "doncic",
-        "password": "123123123"
-    },
-    {
-        "name": "Pepe",
-        "surname": "Pepito",
-        "email": "pepe@pepito.es",
-        "username": "Pepito",
-        "password": "123123123"
-    }
-]
+[{"name":"Luka","surname":"Doncic","email":"luka@nba.es","username":"doncic","password":"123123123"},{"name":"Pepe","surname":"Pepito","email":"pepe@pepito.es","username":"Pepito","password":"123123123"},{"name":"Lebron","surname":"James","email":"lebron@james.es","username":"lebronJames2024","password":"123123123"}]
