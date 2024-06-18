@@ -1,6 +1,25 @@
-.View {
+/* .View {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.5rem;
 
+} */
+
+.View {
+    display: flex;
+    padding: 1rem;
+}
+
+.View.column {
+    flex-direction: column;
+}
+
+.View.row {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.View.center {
+    align-items: center;
 }

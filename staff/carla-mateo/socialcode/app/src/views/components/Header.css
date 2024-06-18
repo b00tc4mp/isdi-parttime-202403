@@ -5,8 +5,8 @@
     justify-content: right;
     position: fixed;
     top: 0;
-    padding: .5rem;
+    padding: 1rem;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--first-color);
+    border-bottom: 5px solid var(--first-color);
     background-color: var(--second-color);
 }
