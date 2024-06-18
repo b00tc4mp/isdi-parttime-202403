@@ -1,4 +1,3 @@
-import { useState } from "react"
 import logic from "../logic"
 import Field from "../components/core/Field"
 import SubmitButton from "../components/core/SubmitButton"
@@ -11,8 +10,6 @@ import View from "../components/library/View"
 //para informar a la app del setView hay que linkarlos con callbacks
 function Register({ onUserRegistered, onLoginLinkClick }) {
     console.log("Register -> render")
-
-    const [message, setMessage] = useState("")
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -28,7 +25,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
                 if (error) {
                     console.log(error)
 
-                    setMessage(error.message)
+                    alert(error.message)
 
                     return
                 }
@@ -41,7 +38,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         } catch (error) {
             console.error(error)
 
-            setMessage(error.message)
+            alert(error.message)
         }
     }
 
@@ -55,7 +52,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
     return <View tag="main">
         <Title>Register</Title>
 
-        <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
+        <FormWithFeedback onSubmit={handleRegisterSubmit}>
             <Field id="email" type="email" placeholder="koala@example.com">E-mail</Field>
 
             <Field id="username" placeholder="username">username</Field>

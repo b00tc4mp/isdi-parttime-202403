@@ -1,5 +1,9 @@
 import Image from "../../components/core/Image"
 import Heading from "../../components/core/Heading"
+import Button from "../../components/core/Button"
+import Text from "../../components/core/Text"
+import Time from "../../components/core/Time"
+import View from '../../components/library/View'
 
 import logic from "../../logic"
 
@@ -15,17 +19,18 @@ function Post({ post, onPostDeleted }) {
 
     const handleDeletePost = () => {
         try {
-            logic.deletePost(post.id, error => {
-                if (error) {
-                    console.error(error)
+            if (confirm("Delete post?"))
+                logic.deletePost(post.id, error => {
+                    if (error) {
+                        console.error(error)
 
-                    alert(error.message)
+                        alert(error.message)
 
-                    return
-                }
-                //loadPosts()
-                onPostDeleted()
-            })
+                        return
+                    }
+                    //loadPosts()
+                    onPostDeleted()
+                })
         } catch (error) {
             console.error(error)
 
@@ -33,22 +38,29 @@ function Post({ post, onPostDeleted }) {
         }
     }
 
-    return <article>
-        <p>{post.author}</p>
+    return <View tag="article" align="">
+        <View direction="row">
+            <Text>{post.author}</Text>
 
-        <Heading level="2">{post.title}</Heading>
+            <Heading level="2">{post.title}</Heading>
+        </View>
 
         <Image src={post.image} />
 
-        <p>{post.description}</p>
+        <Text>{post.description}</Text>
 
-        <time>{post.date}</time>
+        {/*<View style={{ display: "flex", alignItems: "center", gap: "1rem" }}>*/}
 
-        {/*{post.author === logic.getLoggedInUsername() && <button className="Button" onClick={() => handleDeletePost(post.id)}>Delete</button>}
+        <View direction="row">
+            <Time>{post.date}</Time>
+
+            {/*{post.author === logic.getLoggedInUsername() && <button className="Button" onClick={() => handleDeletePost(post.id)}>Delete</button>}
         como y recibimos post desde props en el compo no hace falta usar una funcion callback para pasarle el post.id*/}
 
-        {post.author === logic.getLoggedInUsername() && <button className="Button" onClick={handleDeletePost}>Delete</button>}
-    </article>
+            {post.author === logic.getLoggedInUsername() && <Button className="Button" onClick={handleDeletePost}>Delete</Button>}
+        </View>
+
+    </View>
 }
 
 export default Post

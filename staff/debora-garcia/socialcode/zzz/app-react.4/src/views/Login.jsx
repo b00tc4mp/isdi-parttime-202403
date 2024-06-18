@@ -1,7 +1,4 @@
-import { useState } from "react"
-
 import logic from "../logic"
-
 import Field from "../components/core/Field"
 import SubmitButton from "../components/core/SubmitButton"
 import FormWithFeedback from "../components/library/FormWithFeedback"
@@ -11,8 +8,6 @@ import View from "../components/library/View"
 
 function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     console.log("Login -> render")
-
-    const [message, setMessage] = useState("")
 
     const handleLoginSubmit = (event) => {
         event.preventDefault()
@@ -26,10 +21,9 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
                 if (error) {
                     console.error(error.message + ", please, correct it")
 
-                    setMessage(error.message)
-
                     return
                 }
+                console.log("Log in succesful")
 
                 //setView("home")
                 onUserLoggedIn()
@@ -37,8 +31,6 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
 
         } catch (error) {
             console.error(error)
-
-            setMessage(error.message)
         }
     }
 
@@ -50,7 +42,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     }
     return <View tag="main">
         <Title>Login</Title>
-        <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
+        <FormWithFeedback onSubmit={handleLoginSubmit}>
 
             <Field id="username" placeholder="username">username</Field>
 

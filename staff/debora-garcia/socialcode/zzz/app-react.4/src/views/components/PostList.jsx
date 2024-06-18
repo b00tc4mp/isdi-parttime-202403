@@ -6,7 +6,7 @@ import View from "../../components/library/View"
 import Post from "./Post"
 import logic from "../../logic"
 
-function PostList({ refreshStamp }) {
+function PostList({refreshStamp}) {
     console.log("PostList -> render")
 
     const [posts, setPosts] = useState([])
@@ -17,7 +17,7 @@ function PostList({ refreshStamp }) {
 
         loadPosts()
     }, [refreshStamp])
-
+    
 
     const loadPosts = () => {
         try {
@@ -43,9 +43,9 @@ function PostList({ refreshStamp }) {
 
     //para manejar el onPostDeleted usamos handlePostDeleted que recargara los posts y los repinte
     const handlePostDeleted = () => loadPosts()
-// usamos key como identificador para react ya que al devolver un array, en caso de que un post cambiara, se repintaria unicamente el post modificado.
+
     return <View tag="section" className="PostList">
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
+        {posts.map(post => <Post post={post} onPostDeleted={handlePostDeleted} />)}
     </View>
 }
 
