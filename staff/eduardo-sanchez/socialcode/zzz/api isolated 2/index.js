@@ -1,8 +1,6 @@
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
-import jwt, { JsonWebTokenError } from 'jsonwebtoken'
-import { SystemError } from './errors.js'
 
 const api = express()
 
@@ -43,9 +41,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            const token = jwt.sign({ sub: username }, 'ManoloC & PedroP are friends', { expiresIn: '1h' })
-
-            res.json(token)
+            res.send()
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -53,14 +49,11 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 })
 
 api.get('/users/:targetUsername', (req, res) => {
+    const username = req.headers.authorization.slice(6)
+
+    const { targetUsername } = req.params
 
     try {
-        const token = req.headers.authorization.slice(7)
-
-        const { sub: username } = jwt.verify(token, 'ManoloC & PedroP are friends')
-
-        const { targetUsername } = req.params
-
         logic.getUserName(username, targetUsername, (error, name) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -92,14 +85,11 @@ api.get('/posts', (req, res) => {
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
+    const username = req.headers.authorization.slice(6)
+
+    const { title, image, description } = req.body
 
     try {
-        const token = req.headers.authorization.slice(7)
-
-        const { sub: username } = jwt.verify(token, 'ManoloC & PedroP are friends')
-
-        const { title, image, description } = req.body
-
         logic.createPost(username, title, image, description, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -110,10 +100,7 @@ api.post('/posts', jsonBodyParser, (req, res) => {
             res.status(201).send()
         })
     } catch (error) {
-        if (error instanceof JsonWebTokenError)
-            res.status(500).json({ error: SystemError.name, message: error.message })
-        else
-            res.status(500).json({ error: error.constructor.name, message: error.message })
+        res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
