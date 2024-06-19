@@ -1,4 +1,5 @@
 import errors from './errors'
+import extractPayloadFromJWT from './utils/extractPayloadFromJWT.js'
 
 const {
     ContentError, MatchError } = errors
@@ -82,6 +83,9 @@ logic.loginUser = (username, password, callback) => {
         if (xhr.status === 200) {
             sessionStorage.username = username
 
+            const token = JSON.parse(xhr.response)
+            sessionStorage.token = token
+
             callback(null)
 
             return
@@ -123,6 +127,8 @@ logic.getUserName = callback => {
     if (typeof callback !== 'function')
         throw new TypeError('callback is not a function')
 
+    const { sub: username } = extractPayloadFromJWT(sessionStorage.token)
+
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {
@@ -139,9 +145,9 @@ logic.getUserName = callback => {
 
         callback(new constructor(message))
     }
-    xhr.open('GET', `http://localhost:8080/users/${sessionStorage.username}`)
+    xhr.open('GET', `http://localhost:8080/users/${username}`)
 
-    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 
     xhr.send()
 
@@ -167,6 +173,7 @@ logic.getAllPosts = callback => {
     }
 
     xhr.open('GET', 'http://localhost:8080/posts')
+    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 
     xhr.send()
 }
@@ -207,7 +214,7 @@ logic.createPost = (title, image, description, callback) => {
 
     xhr.open('POST', 'http://localhost:8080/posts')
 
-    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 
     const body = {
         title,
@@ -221,8 +228,11 @@ logic.createPost = (title, image, description, callback) => {
     xhr.send(json)
 }
 
-logic.getLoggedInUsername = () => sessionStorage.username
+logic.getLoggedInUsername = () => {
+    const { sub: username } = extractPayloadFromJWT(sessionStorage.token)
 
+    return username
+}
 logic.deletePost = (postId, callback) => {
     if (!ID_REGEX.test(postId))
         throw new ContentError('postId is not valid')
