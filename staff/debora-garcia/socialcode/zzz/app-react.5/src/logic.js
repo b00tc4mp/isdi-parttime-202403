@@ -1,4 +1,5 @@
 import errors from "./errors"
+import extractPayloadFormJWT from "./utils/extractPayloadFormJWT"
 //desestructuramos para poder usar los errores
 const { ContentError, MatchError } = errors
 const logic = {}
@@ -7,6 +8,7 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+")
 const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 const ID_REGEX = /^[0-9]+-[0-9]+$/
+
 
 //añadimos callback para avisar al registerForm que ha ido bien el proceso
 logic.registerUser = (email, username, password, passwordRepeat, callback) => {
@@ -48,7 +50,6 @@ logic.registerUser = (email, username, password, passwordRepeat, callback) => {
 
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(json)
-
 }
 
 logic.loginUser = (username, password, callback) => {
@@ -66,8 +67,11 @@ logic.loginUser = (username, password, callback) => {
     // se configura pero no se ejecuta
     xhr.onload = () => {
         if (xhr.status === 200) {
-            // si ha ido bien guardamos el username
-            sessionStorage.username = username
+            //sessionStorage.username = username
+
+            const token = JSON.parse(xhr.response)
+            sessionStorage.token = token
+
             callback(null)
 
             return
@@ -87,18 +91,17 @@ logic.loginUser = (username, password, callback) => {
 
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(json)
-
 }
 
-//TODO Actualizar
-logic.isUserLoggedIn = () => !!sessionStorage.username
+logic.isUserLoggedIn = () => !!sessionStorage.token
 
-logic.logoutUser = () => delete sessionStorage.username
+logic.logoutUser = () => delete sessionStorage.token
 
 logic.getUsername = callback => {
-
     if (typeof callback !== "function")
         throw new TypeError("callback is not a function")
+
+    const { sub: username } = extractPayloadFormJWT(sessionStorage.token)
 
     const xhr = new XMLHttpRequest
 
@@ -108,9 +111,9 @@ logic.getUsername = callback => {
 
             callback(null, username)
 
-
             return
         }
+
         const { error, message } = JSON.parse(xhr.response)
 
         const constructor = errors[error]
@@ -118,21 +121,19 @@ logic.getUsername = callback => {
         callback(new constructor(message))
     }
 
-    xhr.open("GET", `http://localhost:8080/users/${sessionStorage.username}`)
+    xhr.open("GET", `http://localhost:8080/users/${username}`)
 
-    xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
 
     xhr.send()
-
 }
 
 logic.getPosts = callback => {
-    //este ejemplo esta desprotegido ya que no valida credenciales.
     if (typeof callback !== "function")
         throw new TypeError("callback is not a function")
 
     const xhr = new XMLHttpRequest
-    //manejamos primero la respuesta antes de la peticion
+
     xhr.onload = () => {
         // no hay nada que enviar, pro como respuesta hay que parsear los posts
         if (xhr.status === 200) {
@@ -148,6 +149,8 @@ logic.getPosts = callback => {
         callback(new constructor(message))
     }
     xhr.open("GET", "http://localhost:8080/posts")
+
+    xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
 
     xhr.send()
 }
@@ -182,7 +185,7 @@ logic.createPost = (title, image, description, callback) => {
 
     xhr.open("POST", "http://localhost:8080/posts/")
 
-    xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
     const body = {
         //author: sessionStorage.username,--> enviamos la cabecera en authorization
         title,
@@ -195,10 +198,15 @@ logic.createPost = (title, image, description, callback) => {
 
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(json)
-
 }
 
-logic.getLoggedInUsername = () => sessionStorage.username
+//extraemos el usename del token
+logic.getLoggedInUsername = () => {
+    //y del objeto, sacamos el el username que viene en sub
+    const { sub: username } = extractPayloadFormJWT(sessionStorage.token)
+
+    return username
+}
 
 logic.deletePost = (postId, callback) => {
     if (!ID_REGEX.test(postId))
@@ -224,7 +232,7 @@ logic.deletePost = (postId, callback) => {
 
     xhr.open("DELETE", `http://localhost:8080/posts/${postId}`)
 
-    xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
 
     xhr.send()
 }

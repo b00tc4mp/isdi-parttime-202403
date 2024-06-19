@@ -22,6 +22,11 @@ curl -X POST http://localhost:8080/users/auth -H "Content-Type: application/json
 ```sh
 curl http://localhost:8080/users/RotoJaz -H "Authorization: Basic RotoJaz" -v
 ```
+- get user name (TOKEN)
+
+```sh
+curl http://localhost:8080/users/RotoJaz -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJSb3RvSmF6IiwiaWF0IjoxNzE4NzI4MjAwLCJleHAiOjE3MTg3MzE4MDB9.ipG3zAdEzNLWqE_FqGeFMEED9E3eU2rg459rpGOVunY" -v
+```
 
 - create post
 
@@ -29,6 +34,12 @@ curl http://localhost:8080/users/RotoJaz -H "Authorization: Basic RotoJaz" -v
 curl -X POST http://localhost:8080/posts -H "Content-Type: application/json"  -d '{"author":"RotoJaz","title":"Lion Leo","image":"https://koalahospital.org.au/cdn/shop/products/f7p40CJBP5hB09Vp6TeSXFwMe0E_lion-leo-adoption-certificate.jpg?v=1608174739&width=600","description":"Released  In September 2019 "}' -v
 
 curl -X POST http://localhost:8080/posts -H "Authorization: Basic RotoJaz" -H "Content-Type: application/json" -d '{"title":"Lion Leo","image":"https://koalahospital.org.au/cdn/shop/products/f7p40CJBP5hB09Vp6TeSXFwMe0E_lion-leo-adoption-certificate.jpg?v=1608174739&width=600","description":"Blah blah "}' -v
+
+```
+- create post (TOKEN)
+
+```sh
+curl -X POST http://localhost:8080/posts -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJSb3RvSmF6IiwiaWF0IjoxNzE4NzI4MjAwLCJleHAiOjE3MTg3MzE4MDB9.ipG3zAdEzNLWqE_FqGeFMEED9E3eU2rg459rpGOVunY" -H "Content-Type: application/json" -d '{"title":"Lion Leo","image":"https://koalahospital.org.au/cdn/shop/products/f7p40CJBP5hB09Vp6TeSXFwMe0E_lion-leo-adoption-certificate.jpg?v=1608174739&width=600","description":"Blah blah "}' -v
 
 ```
 
@@ -44,6 +55,12 @@ curl http://localhost:8080/posts -v
 
 ```sh
 curl -X DELETE http://localhost:8080/posts/8422506284986642-1717177023435 -H "Authorization: Basic RotoJaz" -v
+
+```
+- delete post (TOKEN)
+
+```sh
+curl -X DELETE http://localhost:8080/posts/8422506284986642-1717177023435 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJSb3RvSmF6IiwiaWF0IjoxNzE4NzI4MjAwLCJleHAiOjE3MTg3MzE4MDB9.ipG3zAdEzNLWqE_FqGeFMEED9E3eU2rg459rpGOVunY" -v
 
 ```
 - get username 
