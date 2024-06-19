@@ -75,10 +75,12 @@ xhr.send(json)
 
 ```
 
-- list posts
+- get all posts
 
 ```sh
-🐖 curl http://localhost:8080/posts -v
+curl http://localhost:8080/posts -v
+
+ curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWNrIiwiaWF0IjoxNzE4NzMzMzk1LCJleHAiOjE3MTg3MzY5OTV9.pH7ja4m7Eun_y67fIDQ_IfihcVwwZIrvZPlfb34TZIQ" http://localhost:8080/posts -v
 ```
 
 ```js
@@ -109,5 +111,7 @@ curl -X POST http://localhost:8080/posts -H "Authorization: Bearer eyJhbGciOiJIU
 - delete post
 
 ```sh
-curl -X DELETE http://localhost:8080/posts/3357405759613019-1716455311899 -H "Authorization: Basic Luna"  -v
+curl -X DELETE http://localhost:8080/posts/3357405759613019-1716455311899 -H "Authorization: Basic Luna" -v
+
+curl -X DELETE http://localhost:8080/posts/7880574722792297-1718700143365 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWNrIiwiaWF0IjoxNzE4NzA1MjU2LCJleHAiOjE3MTg3MDg4NTZ9.Ppl7xsFCtGNW-nzV9Guc_Tve9tOR6Euublx3E3lbZ30" -v
 ```
