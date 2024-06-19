@@ -1,17 +1,8 @@
-- list users
+# React + Vite
 
-```sh
-🐖 curl http://localhost:8080/users -v
-```
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- create user
+Currently, two official plugins are available:
 
-```sh
-🐖 curl -X POST http://localhost:8080/users -d '{"name":"Pepito","surname":"Grillo","email":"pepito@grillo.com","username":"pepitogrillo","password":"123123123"}' -v
-```
-
-- list posts
-
-```sh
-🐖 curl http://localhost:8080/posts -v
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
