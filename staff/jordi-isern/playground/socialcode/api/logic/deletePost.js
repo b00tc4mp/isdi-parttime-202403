@@ -1,20 +1,14 @@
+import validate from 'com/validate.js'
 import data from '../data/index.js'
-import { ContentError, MatchError } from "../error.js"
+import { MatchError } from "com/errors.js"
 
-const USERNAME_REGEX = /^[\w-]+$/
-const ID_REGEX = /^[0-9]+-[0-9]+$/
 
 const deletePost = ( username, postId, callback) => {
-    if(!USERNAME_REGEX.test(username)){
-        throw new ContentError('username is not valid')
-    }
+    validate.username(username)
+    validate.id(postId)
+    validate.callback(callback)
 
-    if(!ID_REGEX.test(postId)){
-        throw new ContentError('postID is not valid')
-    }
-    if(typeof callback !== 'function'){
-        throw new TypeError('callback is not a function')
-    }
+    
 
     data.findUser(use4r => user.username === username, (error , user) => {
         if(error) {

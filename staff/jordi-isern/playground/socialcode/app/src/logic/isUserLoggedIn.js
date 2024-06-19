@@ -1,4 +1,4 @@
-import errors from '../errors'
+import errors from '.com/errorss'
 
 const isUserLoggedIn = () => !!sessionStorage.token
 

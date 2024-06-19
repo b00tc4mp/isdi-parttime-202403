@@ -1,17 +1,13 @@
-//LOGIC
-
+import validate from 'com/validate.js'
 import data from '../data/index.js'
-import { ContentError, MatchError } from "../error.js"
-
-
-const USERNAME_REGEX = /^[\w-]+$/
+import { ContentError, MatchError } from "com/errors.js"
 
 
 const createPost = (author, title, image, description, callback) => {
-    if(!USERNAME_REGEX.test(author))throw new ContentError('username is not valid')
-    if (typeof title !== 'string' || !title.length || title.length > 50) throw new ContentError('title is not valid')
-    if (typeof image !== 'string' || !image.startsWith('http')) throw new ContentError('image is not valid')
-    if (typeof description !== 'string' || !description.length || description.length > 200) throw new ContentError('description is not valid')
+    validate.username(author)
+    validate.text(title, 'title', 50)
+    validate.url(image,'image')
+    validate.text(description,'description', 200)
     
     data.findUser(user => user.username === author,(error, user)=> {
             if(error){
