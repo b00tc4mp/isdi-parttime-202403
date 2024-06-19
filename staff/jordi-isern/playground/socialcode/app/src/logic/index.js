@@ -1,23 +1,24 @@
-import registerUser from "./registerUser"
-import loginUser from "./loginUser"
-import isUserLoggedIn from "./isUserLoggedIn"
-import logoutUser from "./logoutUser"
-import getUserName from "./getUserName"
-import getAllPosts from "./getAllPosts"
-import createPost from "./createPost"
-import getLoggedInUsername from "./getLoggedInUsername"
-import deletePost from "./deletePost"
+import registerUser from './registerUser'
+import loginUser from './loginUser'
+import getUserName from './getUserName'
+import isUserLoggedIn from './isUserLoggedIn'
+import getUserUsername from './getUserUsername'
+import logoutUser from './logoutUser'
 
+import getAllPosts from './getAllPosts'
+import createPost from './createPost'
+import deletePost from './deletePost'
 
 const logic = {
-    registerUser
-    loginUser
-    isUserLoggedIn
-    logoutUser
-    getUserName
-    getAllPosts
-    createPost
-    getLoggedInUsername
+    registerUser,
+    loginUser,
+    getUserName,
+    isUserLoggedIn,
+    getUserUsername,
+    logoutUser,
+
+    getAllPosts,
+    createPost,
     deletePost
 }
 

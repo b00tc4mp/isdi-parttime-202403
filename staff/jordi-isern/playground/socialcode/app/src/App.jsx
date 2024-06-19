@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './global.css'
 import './App.css'
-import logic from './logic.js'
+import logic from './logic'
 
 import Login from './views/Login.jsx'
 import Register from './views/Register.jsx'

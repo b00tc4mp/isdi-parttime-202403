@@ -6,6 +6,9 @@ const getUserName = callback => {
         const {sub: username} = extractPayloadFromJWT(sessionStorage.token)
         throw new TypeError('callback is not a function')
     }
+
+    const { sub: username } = extractPayloadFromJWT(sessionStorage.token)
+    
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {

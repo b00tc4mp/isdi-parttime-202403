@@ -1,7 +1,6 @@
-import errors from '../errors'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
-const getLoggedInUsername = () => {
+const getUserUsername = () => {
     
 
     const {sub : username } = extractPayloadFromJWT(sessionStorage.token)
@@ -9,4 +8,4 @@ const getLoggedInUsername = () => {
     return username
 }
 
-export default getLoggedInUsername
+export default getUserUsername

@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import { SystemError } from './error.js'
 
 const {JsonWebTokenError, TokenExpiredError}  = jwt
+
 const api = express()
 
 api.use(express.static('public'))
