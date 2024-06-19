@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import styles from "./PostList.module.css";
+import styles from "./index.module.css";
 import logic from "../../logic.js";
-import ConfirmDialog from "../ConfirmDialog/ConfirmDialog.jsx";
+import Section from "../Atomic/Section.jsx";
+import Post from "../Atomic/Post/index.jsx";
+import ConfirmDialog from "../ConfirmDialog/index.jsx";
 
 function PostList({ refreshTimeStamp }) {
   const [posts, setPosts] = useState([]);
-  const [showConfirm, setShowConfirm] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
 
   useEffect(() => {
     loadPosts();
-  }, [refreshTimeStamp])
-
+  }, [refreshTimeStamp]);
 
   const loadPosts = () => {
     try {
@@ -42,7 +42,6 @@ function PostList({ refreshTimeStamp }) {
   };
 
   const handleDelete = (postId) => {
-    setShowConfirm(true);
     setPostToDelete(postId);
   };
 
@@ -58,7 +57,6 @@ function PostList({ refreshTimeStamp }) {
         }
 
         loadPosts();
-        setShowConfirm(false);
         setPostToDelete(null);
       });
     } catch (error) {
@@ -68,38 +66,18 @@ function PostList({ refreshTimeStamp }) {
   };
 
   const cancelDelete = () => {
-    setShowConfirm(false);
     setPostToDelete(null);
   };
 
+  // TODO: delegate post deletion to post component
   return (
     <>
-      <section className={styles.postList}>
+      <Section className={styles.postList}>
         {posts.map((post) => (
-          <article key={post.id} className={styles.post}>
-            <h2 className={styles.postTitle}>{post.title}</h2>
-            <p className={styles.author}>{post.author}</p>
-            <img
-              src={post.image}
-              alt={post.title}
-              className={styles.postImage}
-            />
-            <p className={styles.postDescription}>{post.description}</p>
-            <time className={styles.postTime}>{post.date}</time>
-            {post.author === logic.getUsername() && (
-              <button
-                className={styles.removePostButton}
-                onClick={() => {
-                  handleDelete(post.id);
-                }}
-              >
-                Delete
-              </button>
-            )}
-          </article>
+          <Post key={post.id} post={post} onDelete={handleDelete} />
         ))}
-      </section>
-      {showConfirm && (
+      </Section>
+      {postToDelete && (
         <ConfirmDialog
           dialog="Are you sure you want to delete this post?"
           onConfirm={confirmDelete}

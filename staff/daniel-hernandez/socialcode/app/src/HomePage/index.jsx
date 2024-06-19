@@ -1,23 +1,16 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
-import Header from "../Components/Header/Header.jsx";
-import PostList from "../Components/PostList/PostList.jsx";
-import CreatePostForm from "../Components/CreatePostForm/CreatePostForm.jsx";
-import Footer from "../Components/Footer/Footer.jsx";
-import styles from "./HomePage.module.css";
-import logic from "../logic";
-import ViewContext from "../ViewContext.jsx";
+import React, { useState, useRef } from "react";
+import Header from "../Components/Header/index.jsx";
+import PostList from "../Components/PostList/index.jsx";
+import CreatePostForm from "../Components/CreatePostForm/index.jsx";
+import Footer from "../Components/Footer/index.jsx";
+import styles from "./index.module.css";
+import Container from "../Components/Atomic/Container.jsx";
+import Main from "../Components/Atomic/Main.jsx";
 
 function HomePage() {
   const mainRef = useRef(null);
-  const { setView } = useContext(ViewContext);
   const [showCreatePostForm, setShowCreatePostForm] = useState(false);
   const [refreshTimeStamp, setRefreshTimeStamp] = useState(0);
-
-  useEffect(() => {
-    if (!logic.isUserLoggedIn()) {
-      setView("login");
-    }
-  }, [setView]);
 
   const scrollToTop = () => {
     if (mainRef.current) {
@@ -40,9 +33,9 @@ function HomePage() {
   };
 
   return (
-    <div className={styles.container}>
+    <Container className={styles.container}>
       <Header />
-      <main className={styles.mainContent} ref={mainRef}>
+      <Main className={styles.mainContent} ref={mainRef}>
         <PostList refreshTimeStamp={refreshTimeStamp} />
         {showCreatePostForm && (
           <CreatePostForm
@@ -50,9 +43,9 @@ function HomePage() {
             onCancel={handleCancel}
           />
         )}
-      </main>
+      </Main>
       <Footer onAddPost={handleAddPost} onScroll={scrollToTop} />
-    </div>
+    </Container>
   );
 }
 
