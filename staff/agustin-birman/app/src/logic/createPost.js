@@ -1,4 +1,5 @@
-import errors from '../errors'
+import errors from 'com/errors'
+import validate from 'com/validate'
 
 const { ContentError } = errors
 
@@ -15,8 +16,7 @@ const createPost = (title, image, description, callback) => {
     if (typeof description !== 'string' || description.length > 250)
         throw new ContentError('Description is not valid')
 
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 

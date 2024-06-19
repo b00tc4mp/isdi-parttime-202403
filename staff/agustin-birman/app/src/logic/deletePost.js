@@ -1,16 +1,9 @@
-import errors from '../errors'
-
-const { ContentError } = errors
-
-const ID_REGEX = /^[0-9]+-[0-9]+$/
-
+import validate from '../../../com/validate'
+import errors from 'com/errors'
 
 const deletePost = (postId, callback) => {
-    if (!ID_REGEX.test(postId))
-        throw new ContentError('postId is not valid')
-
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.id(postId, 'postId')
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 
