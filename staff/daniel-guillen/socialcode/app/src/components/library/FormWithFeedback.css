@@ -3,7 +3,7 @@
 }
 
 .FormWithFeedback .Feedback.error {
-    color: red;
+    color: tomato;
 }
 
 .FormWithFeedback .Feedback.success {

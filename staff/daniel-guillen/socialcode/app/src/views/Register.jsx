@@ -72,7 +72,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
             <SubmitButton>Register</SubmitButton>
         </FormWithFeedback>
 
-        <Link onClick={handleLoginClick}>Login</Link>
+        <Link className='Link' onClick={handleLoginClick}>Login</Link>
     </View>
 }
 

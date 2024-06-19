@@ -5,3 +5,18 @@
 .ContainerImg {
     margin: 3em auto 3em;
 }
+
+.TextAuthor {
+    color: rgb(0, 162, 255);
+    font-size: 200%;
+}
+
+.TextTitle {
+    color: blue;
+    font-size: 200%;
+}
+
+.TextDescription {
+    color: red;
+    font-size: 200%;
+}

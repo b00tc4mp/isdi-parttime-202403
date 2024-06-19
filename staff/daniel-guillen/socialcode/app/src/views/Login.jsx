@@ -60,7 +60,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
             <SubmitButton>Login</SubmitButton>
         </FormWithFeedback>
 
-        <Link onClick={handleRegisterClick}>Register</Link>
+        <Link className='Link' onClick={handleRegisterClick}>Register</Link>
     </View>
 }
 

@@ -38,19 +38,19 @@ function Post({ post, onPostDeleted }) {
 
     return <View tag="article" align="">
     <View direction='row'>
-        <Text>{post.author}</Text>
+        <div className='TextAuthor'><Text>{post.author}</Text></div>
 
-        <Heading level="2">{post.title}</Heading>
+        <div className='TextTitle'><Heading level="1">{post.title}</Heading></div>
         </View>
 
         <div className='ContainerImg'><Image src={post.image} /></div>
 
-        <Text>{post.description}</Text>
+        <div className='TextDescription'><Text>{post.description}</Text></div>
 
         <View direction='row'>
             <Time>{post.date}</Time>
 
-        {post.author === logic.getLoggedInUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
+        {post.author === logic.getUserUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
         </View>
     </View>
 }

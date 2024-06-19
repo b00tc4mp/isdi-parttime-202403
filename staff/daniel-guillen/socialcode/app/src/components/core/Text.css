@@ -1,3 +1,11 @@
 .Text {
-    color: tomato;
+    color: grey;
+}
+
+.Text.Description {
+    color: grey;
+}
+
+.Text.Author {
+    color: grey;
 }

@@ -10,8 +10,6 @@
     flex-direction: row;
     gap: 1rem;
 }
-
-.View.row {
-    flex-direction: row;
-    gap: 1rem;
+.View.center {
+    align-items: center;
 }
