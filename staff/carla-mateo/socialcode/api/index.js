@@ -1,17 +1,20 @@
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
+import jwt from 'jsonwebtoken'
+import { SystemError } from './errors.js'
+
+const { JsonWebTokenError, TokenExpiredError } = jwt
 
 const api = express()
 
 api.use(express.static('public'))
 
-api.use('*', cors())
-const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+api.use(cors())
 
 api.get('/', (req, res) => res.send('Hello, World!'))
 
-
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
 api.post('/users', jsonBodyParser, (req, res) => {
     const { name, surname, email, username, password, passwordRepeat } = req.body
@@ -42,7 +45,9 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            res.send()
+            const token = jwt.sign({ sub: username }, 'peter and wendy have a rollete', { expiresIn: '1h' })
+
+            res.json(token)
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -50,7 +55,9 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 })
 
 api.get('/users/:targetUsername', (req, res) => {
-    const username = req.headers.authorization.slice(6)
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
 
     const { targetUsername } = req.params
 
@@ -65,13 +72,20 @@ api.get('/users/:targetUsername', (req, res) => {
             res.json(name)
         })
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
 api.get('/posts', (req, res) => {
     try {
-        logic.getAllPosts((error, posts) => {
+        const token = req.headers.authorization.slice(7)
+
+        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+
+        logic.getAllPosts(username, (error, posts) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -82,12 +96,17 @@ api.get('/posts', (req, res) => {
         })
 
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
-    const username = req.headers.authorization.slice(6)
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
 
     const { title, image, description } = req.body
 
@@ -102,13 +121,18 @@ api.post('/posts', jsonBodyParser, (req, res) => {
             res.status(201).send()
         })
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
 
 api.delete('/posts/:postId', (req, res) => {
-    const username = req.headers.authorization.slice(6)
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
 
     const { postId } = req.params
 
@@ -123,7 +147,10 @@ api.delete('/posts/:postId', (req, res) => {
             res.status(204).send()
         })
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 

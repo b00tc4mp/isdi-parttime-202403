@@ -22,6 +22,16 @@
 🐖 curl http://localhost:8080/users/pepitogrillo -H "Authorization: Basic peterpan" -v
 ```
 
+```sh
+🐖 curl http://localhost:8080/users/pepitogrillo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3ZW5keWRhcmxpbmciLCJpYXQiOjE3MTg2NTExMDAsImV4cCI6MTcxODY1NDcwMH0.XcfzV8eMk7dv8kawAArnIqbECPkv2dZI8px2zKbI8s4" -v
+```
+
+- get all posts
+
+```sh
+🐖 curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXBpdG9ncmlsbG8iLCJpYXQiOjE3MTg3MzMyOTAsImV4cCI6MTcxODczNjg5MH0.wRhT3s-62X7hS3oxH0cMAulEy7smhzyVpibkvfLjXFQ" http://localhost:8080/posts -v
+```
+
 - list posts
 
 ```sh

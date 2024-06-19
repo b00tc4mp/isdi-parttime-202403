@@ -40,6 +40,11 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
 
     xhr.onload = () => {
         if (xhr.status === 201) {
+            sessionStorage.username = username
+
+            const token = JSON.parse(hxr.response)
+            sessionStorage.token = token
+
             callback(null)
 
             return
