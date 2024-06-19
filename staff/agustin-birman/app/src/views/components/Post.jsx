@@ -1,7 +1,6 @@
 import './Post.css'
 
-import postLogic from '../../postLogic'
-import userLogic from '../../userLogic'
+import logic from '../../logic'
 
 import Time from '../../components/core/Time'
 import Text from '../../components/core/Text'
@@ -16,7 +15,7 @@ function Post({ post, onPostDeleted }) {
 
     const handleDeletePost = () => {
         try {
-            postLogic.deletePost(post.id, error => {
+            logic.deletePost(post.id, error => {
                 if (error) {
                     console.error(error)
 
@@ -41,7 +40,7 @@ function Post({ post, onPostDeleted }) {
     return <article className='Post'>
         <div className='PostHeader'>
             <Heading className='Title' level='2'>{post.title}</Heading>
-            {post.author === userLogic.getLoggedInUsername() && <Button onClick={handleShowConfirmDelete}>Delete</Button>}
+            {post.author === logic.getUserUsername() && <Button onClick={handleShowConfirmDelete}>Delete</Button>}
         </div>
 
         <Image src={post.image} />

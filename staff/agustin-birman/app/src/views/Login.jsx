@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import userLogic from '../userLogic'
+import logic from '../logic'
 
 import '../global.css'
 import './Login.css'
@@ -24,7 +24,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
         const password = form.password.value
 
         try {
-            userLogic.loginUser(username, password, error => {
+            logic.loginUser(username, password, error => {
                 if (error) {
                     console.log(error)
 

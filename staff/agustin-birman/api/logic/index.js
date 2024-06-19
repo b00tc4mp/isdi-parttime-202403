@@ -138,15 +138,34 @@ logic.getUserName = (username, targetUsername, callback) => {
     })
 }
 
-logic.getAllposts = callback => {
-    data.findPosts(() => true, (error, posts) => {
+logic.getAllPosts = (username, callback) => {
+    if (!USERNAME_REGEX.test(username))
+        throw new ContentError('Username is not valid')
+
+    if (typeof callback !== 'function')
+        throw new TypeError('Callback is not a function')
+
+    data.findUser(user => user.username === username, (error, user) => {
         if (error) {
             callback(error)
 
             return
         }
 
-        callback(null, posts.reverse())
+        if (!user) {
+            callback(new MatchError('User not found'))
+
+            return
+        }
+
+        data.findPosts(() => true, (error, posts) => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+            callback(null, posts.reverse())
+        })
     })
 }
 

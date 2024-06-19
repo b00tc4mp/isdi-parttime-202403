@@ -10,7 +10,7 @@ import Heading from '../components/core/Heading'
 import PostList from './components/PostList'
 import CreatePostForm from './components/CreatePostForm'
 
-import userLogic from '../userLogic'
+import logic from '../logic'
 
 function Home({ onUserLoggedOut }) {
 
@@ -19,14 +19,14 @@ function Home({ onUserLoggedOut }) {
     const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
     const handleLogout = () => {
-        userLogic.logoutUser()
+        logic.logoutUser()
 
         onUserLoggedOut()
     }
 
     useEffect(() => {
         try {
-            userLogic.getUserName((error, name) => {
+            logic.getUserName((error, name) => {
                 if (error) {
                     console.error(error)
 

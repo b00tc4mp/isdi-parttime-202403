@@ -1,8 +1,12 @@
+import errors from '../app/src/errors.js'
+
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { SystemError } from './errors.js'
+
+const { JsonWebTokenError, TokenExpiredError } = jwt
 
 const api = express()
 
@@ -72,13 +76,20 @@ api.get('/users/:targetUsername', (req, res) => {
             res.json(name)
         })
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
 api.get('/posts', (req, res) => {
     try {
-        logic.getAllposts((error, posts) => {
+        const token = req.headers.authorization.slice(7)
+
+        const { sub: username } = jwt.verify(token, 'hola')
+
+        logic.getAllPosts(username, (error, posts) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -88,7 +99,10 @@ api.get('/posts', (req, res) => {
             res.json(posts)
         })
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
@@ -110,15 +124,17 @@ api.post('/posts', jsonBodyParser, (req, res) => {
             res.status(201).send()
         })
     } catch (error) {
-        if (error instanceof JsonWebTokenError)
-            res.status(500).json({ error: SystemError.name, message: message.error })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
         else
-            res.status(500).json({ error: error.contructor.name, message: error.message })
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
 api.delete('/posts/:postId', (req, res) => {
-    const username = req.headers.authorization.slice(6)
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, 'hola')
 
     const { postId } = req.params
 
@@ -133,7 +149,10 @@ api.delete('/posts/:postId', (req, res) => {
             res.status(204).send()
         })
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 

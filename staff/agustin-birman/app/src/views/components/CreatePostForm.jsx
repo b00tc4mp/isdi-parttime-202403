@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import postLogic from '../../postLogic'
+import logic from '../../logic'
 import './CreatePostForm.css'
 
 import Button from '../../components/core/Button'
@@ -23,7 +23,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         const description = form.description.value
 
         try {
-            postLogic.createPost(title, image, description, error => {
+            logic.createPost(title, image, description, error => {
                 if (error) {
                     console.error(error)
 

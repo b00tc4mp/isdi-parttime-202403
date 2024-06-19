@@ -1,5 +1,5 @@
 import '../global.css'
-import userLogic from '../userLogic'
+import logic from '../logic'
 
 import './Register.css'
 import View from '../components/library/View'
@@ -25,7 +25,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         const passwordRepeat = form.passwordRepeat.value
 
         try {
-            userLogic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+            logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
                 if (error) {
                     console.log(error)
 

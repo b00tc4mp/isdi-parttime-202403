@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 
 import Post from "./Post"
 import View from "../../components/library/View"
-
-import postLogic from '../../postLogic'
+import logic from "../../logic";
 
 function PostList({ onRefreshStamp }) {
 
@@ -15,7 +14,7 @@ function PostList({ onRefreshStamp }) {
 
     const loadPosts = () => {
         try {
-            postLogic.getAllPosts((error, posts) => {
+            logic.getAllPosts((error, posts) => {
                 if (error) {
                     console.error(error)
 
