@@ -1,7 +1,6 @@
 import data from '../data/index.js'
-import { DuplicityError, SystemError } from 'com/errors.js'
+import { DuplicityError } from 'com/errors.js'
 import validate from 'com/validate.js'
-import bcrypt from 'bcryptjs'
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     validate.name(name)
@@ -25,30 +24,22 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
             return
         }
 
-        bcrypt.hash(password, 8, (error, hash) => {
+        const newUser = {
+            name: name,
+            surname: surname,
+            email: email,
+            username: username,
+            password: password
+        }
+
+        data.insertUser(newUser, error => {
             if (error) {
-                callback(new SystemError(error.message))
+                callback(error)
 
                 return
             }
 
-            const newUser = {
-                name: name,
-                surname: surname,
-                email: email,
-                username: username,
-                password: hash
-            }
-
-            data.insertUser(newUser, error => {
-                if (error) {
-                    callback(error)
-
-                    return
-                }
-
-                callback(null)
-            })
+            callback(null)
         })
     })
 }

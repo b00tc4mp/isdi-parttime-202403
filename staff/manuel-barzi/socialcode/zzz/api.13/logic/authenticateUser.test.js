@@ -1,7 +1,7 @@
 import logic from './index.js'
 
 try {
-    logic.authenticateUser('leon', '123123123', error => {
+    logic.authenticateUser('pepitogrillo', '123123123', error => {
         if (error) {
             console.error(error)
 

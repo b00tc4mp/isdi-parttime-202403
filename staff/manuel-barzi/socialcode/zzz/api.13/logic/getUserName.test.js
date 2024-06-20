@@ -1,14 +1,14 @@
 import logic from './index.js'
 
 try {
-    logic.authenticateUser('leon', '123123123', error => {
+    logic.getUserName('peterpan', 'pepitogrillo', (error, name) => {
         if (error) {
             console.error(error)
 
             return
         }
 
-        console.log('user authenticated')
+        console.log('user name retrieved', name)
     })
 } catch (error) {
     console.error(error)

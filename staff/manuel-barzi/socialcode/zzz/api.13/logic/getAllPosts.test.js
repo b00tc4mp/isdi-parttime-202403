@@ -1,14 +1,14 @@
 import logic from './index.js'
 
 try {
-    logic.authenticateUser('leon', '123123123', error => {
+    logic.getAllPosts('pepitogrillo', (error, posts) => {
         if (error) {
             console.error(error)
 
             return
         }
 
-        console.log('user authenticated')
+        console.log('posts retrieved', posts)
     })
 } catch (error) {
     console.error(error)
