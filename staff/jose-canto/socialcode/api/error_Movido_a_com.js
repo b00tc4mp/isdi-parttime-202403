@@ -1,3 +1,5 @@
+// Movemos el archivo error.js para poder usarlo tanto en api como en app, creandolo como una dependencia e instalandolo en api y app como dependencia.
+
 class ContentError extends Error {
   constructor(message) {
     super(message); // Llama al constructor de la clase base con el mensaje de error
@@ -31,11 +33,10 @@ class SystemError extends Error {
   }
 }
 
-const errors = {
+export {
   ContentError,
   MatchError,
   DuplicityError,
   SystemError
 }
 
-export default errors;

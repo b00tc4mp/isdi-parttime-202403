@@ -39,7 +39,7 @@ function Register() {
 					return
 				}
 
-				setView("home")
+				setView("login")
 
 				console.log("user registered")
 			})

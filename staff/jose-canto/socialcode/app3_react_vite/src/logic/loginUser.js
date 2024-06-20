@@ -1,4 +1,4 @@
-import errors from "../error.js"
+import errors from "com/error"
 
 const { ContentError } = errors
 
@@ -22,7 +22,7 @@ const loginUser = (username, password, callback) => {
   xhr.onload = () => {
 
     if (xhr.status === 200) {
-      sessionStorage.username = username
+      //sessionStorage.username = username
 
       const token = JSON.parse(xhr.response)
 

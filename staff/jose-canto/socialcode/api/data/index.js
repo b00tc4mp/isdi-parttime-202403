@@ -1,6 +1,7 @@
 import fs from 'fs'
+import errors from "com/error.js"
 
-import { SystemError } from '../error.js'
+const { SystemError } = errors
 
 const data = {}
 

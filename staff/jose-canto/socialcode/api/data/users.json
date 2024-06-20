@@ -1,30 +1,6 @@
 [
-	{
-		"name": "Jack",
-		"surname": "Sparrow",
-		"email": "jack@email.es",
-		"username": "Jack",
-		"password": "1234"
-	},
-	{
-		"name": "Luna",
-		"surname": "Dog",
-		"email": "luna@dog.es",
-		"username": "Luna",
-		"password": "1234"
-	},
-	{
-		"name": "Bruce",
-		"surname": "Wayne",
-		"email": "batman@email.es",
-		"username": "Batman",
-		"password": "1234"
-	},
-	{
-		"name": "Lolo",
-		"surname": "Sparrow",
-		"email": "lolo@sparrow.es",
-		"username": "Lolo",
-		"password": "1234"
-	}
+	{ "name": "Jack", "surname": "Sparrow", "email": "jack@email.es", "username": "Jack", "password": "1234" },
+	{ "name": "Luna", "surname": "Dog", "email": "luna@dog.es", "username": "Luna", "password": "1234" },
+	{ "name": "Bruce", "surname": "Wayne", "email": "batman@email.es", "username": "Batman", "password": "1234" },
+	{ "name": "Lolo", "surname": "Sparrow", "email": "lolo@sparrow.es", "username": "Lolo", "password": "1234" }
 ]
