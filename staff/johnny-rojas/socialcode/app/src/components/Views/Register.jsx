@@ -1,3 +1,5 @@
+// import { useState } from 'react'
+
 import logic from '../../logic'
 import Field from '../core/Field'
 import SubmitButton from '../core/SubmitButton'
@@ -6,11 +8,11 @@ import ShowPassword from '../core/ShowPasswordField'
 import Link from '../core/Link'
 import Title from '../core/Title'
 import View from '../library/View'
-import MyIcon from '../../../public/SocialCode.svg'
+import MyIcon from '/SocialCode.svg'
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
 
-  const handleRegisternSubmit = event => {
+  const handleRegisterSubmit = event => {
     event.preventDefault()
 
     const form = event.target
@@ -52,7 +54,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 
     <Title className='TitlePrincipal'>Register</Title>
 
-    <FormWithFeedback className="Form FormWithFeedback RegisterForm" onSubmit={handleRegisternSubmit}>
+    <FormWithFeedback className="Form FormWithFeedback RegisterForm" onSubmit={handleRegisterSubmit}>
 
       <Field id='name' type='text' placeholder='Name'></Field>
 
@@ -62,9 +64,9 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 
       <Field id='username' type='text' placeholder='Username'></Field>
 
-      <ShowPassword className="Field" id="PasswordView" placeholder="Password"></ShowPassword>
+      <ShowPassword className="Field" id="password" placeholder="Password"></ShowPassword>
 
-      <ShowPassword className="Field" id="PasswordView" placeholder="Repeat password"></ShowPassword>
+      <ShowPassword className="Field" id="passwordRepeat" placeholder="Repeat password"></ShowPassword>
 
       <SubmitButton>Register</SubmitButton>
 

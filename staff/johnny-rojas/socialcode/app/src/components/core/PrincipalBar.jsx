@@ -1,6 +1,6 @@
 import Header from '../Views/components/Header'
 import '../core/PrincipalBar.css'
-import MyIcon from '../../../public/SocialCode.svg'
+import MyIcon from '/SocialCode.svg'
 
 import Button from '../core/Button'
 import Heading from '../core/Heading'

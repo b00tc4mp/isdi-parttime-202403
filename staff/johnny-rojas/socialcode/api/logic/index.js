@@ -33,7 +33,7 @@ logic.registerUser = (name, surname, email, username, password, passwordRepeat, 
     if (typeof callback !== 'function')
         throw new TypeError('callback is not a function')
 
-    data.findUser(user => user.email.toLowerCase() === email.toLowerCase() || user.username.toLowerCase() === username.toLowerCase(), (error, user) => {
+    data.findUser(user => user.email === email || user.username === username, (error, user) => {
         if (error) {
             callback(error)
 
@@ -76,20 +76,20 @@ logic.authenticateUser = (username, password, callback) => {
     if (typeof callback !== 'function')
         throw new TypeError('callback is not a function')
 
-    data.findUser(user => user.username === username, (error, user) => {
+    data.findUser(user => user.username === username, (error, userFound) => {
         if (error) {
             callback(error)
 
             return
         }
 
-        if (!user) {
+        if (!userFound) {
             callback(new MatchError('user not found'))
 
             return
         }
 
-        if (user.password !== password) {
+        if (userFound.password !== password) {
             callback(new MatchError('wrong password'))
 
             return

@@ -1,9 +1,8 @@
 .Header {
   display: flex;
   width: 100%;
-  position: fixed;
   top: 0;
-  padding: .5rem;
+  padding: .5vh;
   background-color: var(--second-color);
   align-items: center;
   position:fixed;

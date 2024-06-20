@@ -6,7 +6,7 @@ import ShowPassword from '../core/ShowPasswordField'
 import Link from '../core/Link'
 import Title from '../core/Title'
 import View from '../library/View'
-import MyIcon from '../../../public/SocialCode.svg'
+import MyIcon from '/SocialCode.svg'
 
 function Login({ onUserLoggedIn, onRegisterLinkClick }) {
 
