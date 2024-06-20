@@ -2,7 +2,7 @@ import express from "express"
 import logic from "./logic/index.js"
 import cors from "cors"
 import jwt from "jsonwebtoken"
-import { SystemError } from './errors.js'
+import { SystemError } from 'com/errors.js'
 
 const { JsonWebTokenError, TokenEpiredError } = jwt
 

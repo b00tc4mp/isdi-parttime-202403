@@ -1,5 +1,5 @@
 import fs from "fs"
-import { SystemError } from "../errors.js"
+import { SystemError } from "com/errors.js"
 const data = {}
 
 //el callback era para buscar el usuario (condition), la respuesta hay que darla en otro callback (asyncro), de todo el proceso la lectura de la busqueda de archivo en la base de datos

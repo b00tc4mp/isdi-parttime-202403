@@ -1,27 +1,12 @@
-import errors from "../errors"
-const { ContentError, MatchError } = errors
-
-const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const USERNAME_REGEX = /^[\w-]+$/
-const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
-
+import errors from "com/errors"
+import validate from "com/validate"
 
 const registerUser = (email, username, password, passwordRepeat, callback) => {
-
-    if (!EMAIL_REGEX.test(email)) // .test funciona comprobamndo que el valor que lo pases contenga esos caracteres
-        throw new ContentError("email is not valid")
-
-    if (!USERNAME_REGEX.test(username))
-        throw new ContentError("username is not valid")
-
-    if (!PASSWORD_REGEX.test(password))
-        throw new ContentError("password is not valid")
-
-    if (password !== passwordRepeat)
-        throw new MatchError("passwords don't match")
-
-    if (typeof callback !== "function")
-        throw new TypeError("callback is not a function")
+    validate.email(email)
+    validate.username(username)
+    validate.password(password)
+    validate.passwordsMatch(password, passwordRepeat)
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 
