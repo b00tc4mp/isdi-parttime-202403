@@ -1,8 +1,11 @@
+import 'dotenv/config'
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { SystemError } from 'com/errors.js'
+
+const { PORT, JWT_SECRET } = process.env
 
 const { JsonWebTokenError, TokenExpiredError } = jwt
 
@@ -47,7 +50,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            const token = jwt.sign({ sub: username }, 'peter and wendy have a rollete', { expiresIn: '1h' })
+            const token = jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' })
 
             res.json(token)
         })
@@ -60,7 +63,7 @@ api.get('/users/:targetUsername', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
 
         const { targetUsername } = req.params
 
@@ -85,7 +88,7 @@ api.get('/posts', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
 
         logic.getAllPosts(username, (error, posts) => {
             if (error) {
@@ -108,7 +111,7 @@ api.post('/posts', jsonBodyParser, (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
 
         const { title, image, description } = req.body
 
@@ -133,7 +136,7 @@ api.delete('/posts/:postId', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
 
         const { postId } = req.params
 
@@ -154,4 +157,4 @@ api.delete('/posts/:postId', (req, res) => {
     }
 })
 
-api.listen(8080, () => console.log('api is up'))
+api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))

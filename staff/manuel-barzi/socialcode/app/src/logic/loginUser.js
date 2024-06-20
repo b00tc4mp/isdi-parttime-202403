@@ -26,7 +26,7 @@ const loginUser = (username, password, callback) => {
         callback(new constructor(message))
     }
 
-    xhr.open('POST', 'http://localhost:8080/users/auth')
+    xhr.open('POST', `${import.meta.env.VITE_API_URL}/users/auth`)
 
     const body = { username, password }
 
