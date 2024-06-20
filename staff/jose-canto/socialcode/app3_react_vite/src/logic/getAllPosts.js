@@ -1,4 +1,4 @@
-import errors from "com/error"
+import errors from "com/errors"
 
 const getAllPosts = (callback) => {
   if (typeof callback !== "function")

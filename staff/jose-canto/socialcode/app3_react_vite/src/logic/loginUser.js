@@ -1,22 +1,12 @@
-import errors from "com/error"
-
-const { ContentError } = errors
-
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=[\]{}<>()]{4,}$/
+import errors from "com/errors"
+import validate from "com/validate"
 
 const loginUser = (username, password, callback) => {
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError("❌ Username is not valid ❌")
-  } // Comprobamos si el usuario introduce correctamente los caracteres para no cargar con peticiones al servidor
-
-  if (!PASSWORD_REGEX.test(password)) {
-    throw new ContentError("❌ Password is not valid ❌")
-  }
+  validate.username(username)
+  validate.password(password)
 
   if (typeof callback !== "function")
     throw new TypeError("callback is not a function")
-
 
   const xhr = new XMLHttpRequest
   xhr.onload = () => {

@@ -13,8 +13,7 @@ function Post({ post, onPostDeleted }) {
 	console.log("Post --> render")
 
 	const [showConfirmDelete, setShowConfirmDelete] = useState(false)
-
-	const [like, setLike] = useState(true)
+	const [like, setLike] = useState(post.liked)
 
 	const handleDeletePost = () => setShowConfirmDelete(true)
 
@@ -40,7 +39,14 @@ function Post({ post, onPostDeleted }) {
 	}
 
 	const handleLike = () => {
-		setLike(!like)
+		logic.toggleLike(post.id, (error, liked) => {
+			if (error) {
+				console.error(error)
+				return
+			}
+
+			setLike(!liked)
+		})
 	}
 
 	return (

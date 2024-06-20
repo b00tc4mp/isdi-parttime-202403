@@ -1,10 +1,9 @@
-import errors from "com/error"
+import errors from "com/errors"
+import validate from "com/validate"
 
 const { ContentError, MatchError } = errors
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=[\]{}<>()]{4,}$/
 const NAME_REGEX = /^[a-zA-Z=[\]{}<>()]{1,}$/
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
@@ -18,13 +17,9 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     throw new ContentError("❌ Email is not valid ❌")
   }
 
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError("❌ Username is not valid ❌")
-  }
+  validate.username(username)
+  validate.password(password)
 
-  if (!PASSWORD_REGEX.test(password)) {
-    throw new ContentError("❌ Password is not valid ❌")
-  }
 
   if (password !== passwordRepeat) {
     throw new MatchError("❌ Password don't match ❌")

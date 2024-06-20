@@ -1,4 +1,4 @@
-import errors from "com/error"
+import errors from "com/errors"
 import extractPayloadFromJWT from "../utils/extractPayloadFromJWT.js"
 
 const getUserName = (callback) => {

@@ -1,4 +1,4 @@
-import errors from "com/error.js"
+import errors from "com/errors.js"
 
 const { ContentError, MatchError } = errors
 
