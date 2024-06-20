@@ -2,6 +2,8 @@ import errors from './errors'
 
 const { ContentError, MatchError } = errors
 
+import extractPayloadFromJWT from './utils/extractPayloadFromJWT'
+
 const logic = {}
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -101,9 +103,9 @@ logic.loginUser = (username, password, callback) => {
     xhr.send(json)
 }
 
-logic.isUserLoggedIn = () => !!sessionStorage.username
+logic.isUserLoggedIn = () => !!sessionStorage.token
 
-logic.logoutUser = () => delete sessionStorage.username
+logic.logoutUser = () => delete sessionStorage.token
 
 logic.getUserName = callback => {
     if (typeof callback !== 'function')
@@ -157,6 +159,8 @@ logic.getAllPosts = callback => {
 
     xhr.open('GET', 'http://localhost:8080/posts')
 
+    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
+
     xhr.send()
 }
 
@@ -205,7 +209,40 @@ logic.createPost = (title, image, description, callback) => {
     xhr.send(json)
 }
 
-logic.getLoggedInUsername = () => sessionStorage.username
+logic.getLoggedInUsername = () => {
+
+    // const payload = extractPayloadFromJWT(sessionStorage.token)
+
+    // const { sub: username } = payload
+
+
+    const { sub: username } = extractPayloadFromJWT(sessionStorage.token)
+
+    return username
+}
+
+// logic.getLoggedInUsername = () => {
+//     if (!JWT_REGEX.test(sessionStorage.token)) throw new ContentError('invalid jwt')
+
+//     const [, payload64] = sessionStorage.token.split('.')
+
+//     const payloadJSON = atob(payload64)
+
+//     const payload = JSON.parse(payloadJSON)
+
+//     const { exp } = payload
+
+//     const nowSeconds = Date.now() / 1000
+
+//     if (nowSeconds >= exp) throw new MatchError('token expired')
+
+////     //return payload
+
+//     const { sub: username } = payload
+
+//     return username
+// }
+
 
 logic.deletePost = (postId, callback) => {
     if (!ID_REGEX.test(postId))
@@ -232,7 +269,7 @@ logic.deletePost = (postId, callback) => {
 
     xhr.open('DELETE', `http://localhost:8080/posts/${postId}`)
 
-    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
     xhr.send()
 }
 
