@@ -1,25 +1,16 @@
 import data from "../data/index.js"
-import errors from "com/error.js"
+import errors, { SystemError } from "com/errors.js"
+import validate from "com/validate.js"
+import bcrypt from "bcryptjs"
 
-const { ContentError } = errors
+const { MatchError } = errors
 
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
 const authenticateUser = (username, password, callback) => {
 
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError("❌ Username is not valid ❌")
-  }
-
-  if (!PASSWORD_REGEX.test(password)) {
-    throw new ContentError("❌ Password is not valid ❌")
-  }
-
-  if (typeof callback !== "function") {
-    throw new TypeError("Callback is not a function")
-
-  }
+  validate.username(username)
+  validate.password(password)
+  validate.callback(callback)
 
   data.findUser((user) => user.username === username, (error, userFound) => {
 
@@ -34,13 +25,26 @@ const authenticateUser = (username, password, callback) => {
       return
     }
 
-    if (userFound.password !== password) {
-      callback(new MatchError("❌ Wrong password ❌"))
+    // if (userFound.password !== password) {
+    //   callback(new MatchError("❌ Wrong password ❌"))
 
-      return
-    }
+    //   return
+    // }
 
-    callback(null, userFound.username)
+    bcrypt.compare(password, userFound.password, (error, match) => {
+      if (error) {
+        callback(new SystemError("❌ Wrong password ❌"))
+
+        return
+      }
+      if (!match) {
+        callback(new MatchError("❌ Wrong password ❌"))
+
+        return
+      }
+    })
+
+    callback(null)
   })
 
 }

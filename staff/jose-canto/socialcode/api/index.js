@@ -2,7 +2,7 @@ import express from 'express'
 import cors from "cors"
 import logic from "./logic/index.js"
 import jwt from "jsonwebtoken"
-import errors from "com/error.js"
+import errors from "com/errors.js"
 
 const { SystemError } = errors
 
@@ -81,7 +81,7 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
         return
       }
 
-      const token = jwt.sign({ sub: username }, "peter and wendy have a rollete", { expiresIn: "1h" })
+      const token = jwt.sign({ sub: username }, "peter and wendy have a rollete", { expiresIn: "7d" })
 
       res.json(token)
       console.log(`User ${username} authenticated`)
@@ -175,6 +175,37 @@ api.delete("/posts/:postId", (req, res) => {
       res.status(204).send()
     })
 
+
+  } catch (error) {
+    if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+
+      res.status(500).json({ error: SystemError.name, message: error.message })
+    } else {
+
+      res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+  }
+})
+
+
+api.post("/posts/:postId/like", (req, res) => {
+
+  const token = req.headers.authorization.split(7)
+  const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
+  const { postId } = req.params
+
+  try {
+
+    logic.toggleLike(username, postId, (error, liked) => {
+      if (error) {
+
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+        return
+      }
+
+
+      res.json(liked)
+    })
 
   } catch (error) {
     if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {

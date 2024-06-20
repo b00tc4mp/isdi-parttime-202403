@@ -1,18 +1,13 @@
 import data from "../data/index.js"
-import errors from "com/error.js"
+import errors from "com/errors.js"
+import validate from "com/validate.js"
 
-const { ContentError, MatchError } = errors
-
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+const { MatchError } = errors
 
 const getAllPosts = (username, callback) => {
 
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError("❌ Username is not valid ❌")
-  }
-  if (typeof callback !== "function") {
-    throw new MatchError("Callback is not a function")
-  }
+  validate.username(username)
+  validate.callback(callback)
 
   data.findUser(user => user.username === username, (error, user) => {
 

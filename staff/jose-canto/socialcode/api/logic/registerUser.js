@@ -1,42 +1,16 @@
+import validate from "com/validate.js"
 import data from "../data/index.js"
-import errors from "com/error.js"
-
-const { ContentError, MatchError, DuplicityError } = errors
-
-
-const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
-const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
+import bcrypt from "bcryptjs"
 
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
-  if (!NAME_REGEX.test(name))
-    throw new ContentError('❌ name is not valid ❌')
-
-  if (!NAME_REGEX.test(surname))
-    throw new ContentError('❌ surname is not valid ❌')
-
-  if (!EMAIL_REGEX.test(email)) {
-    throw new ContentError("❌ Email is not valid ❌")
-  }
-
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError("❌ Username is not valid ❌")
-  }
-
-  if (!PASSWORD_REGEX.test(password)) {
-    throw new ContentError("❌ Password is not valid ❌")
-  }
-
-  if (password !== passwordRepeat) {
-    throw new MatchError("❌ Password don't match ❌")
-  }
-
-  if (typeof callback !== "function") {
-    throw new TypeError("Callback is not a function")
-
-  }
+  validate.name(name)
+  validate.surname(surname, "surname")
+  validate.email(email)
+  validate.username(username)
+  validate.password(password)
+  validate.passwordRepeat(passwordRepeat, "passwordRepeat")
+  validate.callback(callback)
 
   data.findUser((user) => user.email.toLowerCase() === email.toLowerCase() || user.username.toLowerCase() === username.toLowerCase(), (error, user) => {
 
@@ -52,22 +26,28 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
       return
     }
 
-    const newUser = {
-      name: name,
-      surname: surname,
-      email: email,
-      username: username,
-      password: password,
-    }
-
-    data.insertUser(newUser, error => {
+    bcrypt.hash(password, 8, (error, hash) => {
       if (error) {
-        callback(error)
-
+        callback(new SystemError(error.message))
         return
       }
 
-      callback(null)
+      const newUser = {
+        name: name,
+        surname: surname,
+        email: email,
+        username: username,
+        password: hash,
+      }
+      data.insertUser(newUser, error => {
+        if (error) {
+          callback(error)
+
+          return
+        }
+
+        callback(null)
+      })
     })
   })
 }
