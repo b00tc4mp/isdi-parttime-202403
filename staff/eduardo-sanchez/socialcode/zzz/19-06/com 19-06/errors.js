@@ -2,7 +2,6 @@ class ContentError extends Error {
     constructor(message) {
         super(message)
 
-        //this.name = ContentError.name
         this.name = this.constructor.name
     }
 }
@@ -37,3 +36,12 @@ export {
     DuplicityError,
     SystemError
 }
+
+const errors = {
+    ContentError,
+    MatchError,
+    DuplicityError,
+    SystemError
+}
+
+export default errors
