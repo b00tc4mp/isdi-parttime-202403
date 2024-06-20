@@ -39,3 +39,10 @@ const errors = {
 }
 
 export default errors
+
+export {
+  ContentError,
+  MatchError,
+  DuplicityError,
+  SystemError
+}
