@@ -58,8 +58,8 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
             <Field id='description'>Description</Field>
 
             <View direction='row'>
-                <Button className="Button" type="button" onClick={handleCancelCreatePostClick}>Cancel</Button>
-                <SubmitButton className="SubmitButton" >Create</SubmitButton>
+                <Button className="Button CancelButton" type="button" onClick={handleCancelCreatePostClick}>Cancel</Button>
+                <SubmitButton className="SubmitButton CreateButton" >Create</SubmitButton>
             </View>
 
         </FormWithFeedback >

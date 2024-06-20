@@ -1,4 +1,4 @@
-import logic from '../logic'
+import logic from '../logic/index'
 import Field from '../components/core/Field'
 import FormWithFeedback from '../components/library/FormWithFeedBack'
 import SubmitButton from '../components/core/SubmitButton'

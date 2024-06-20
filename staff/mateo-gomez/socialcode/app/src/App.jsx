@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import logic from './logic.js'
+import logic from './logic/index'
 
 import Register from './views/Register'
 import Login from './views/Login'

@@ -15,9 +15,9 @@ function extractPayloadFromJWT(token) {
     const payload = JSON.parse(payloadJSON)
     const { exp } = payload;
 
-    const newSeconds = Date.now() / 1000
+    const nowSeconds = Date.now() / 1000
 
-    if (newSeconds >= exp) {
+    if (nowSeconds >= exp) {
         throw new MatchError('token expired')
     }
 

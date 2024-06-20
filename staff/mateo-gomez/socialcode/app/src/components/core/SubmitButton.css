@@ -4,3 +4,15 @@
     border-radius: 10%;
     border: 2px solid black;
 }
+
+.SubmitButton,
+.CreateButton {
+    border: 2px solid green;
+    background-color: rgba(0, 128, 0, 0.2);
+    border-radius: 5%;
+}
+
+.SubmitButton,
+.LoginButton {
+    border: 2px solid rgb(135, 56, 4);
+}

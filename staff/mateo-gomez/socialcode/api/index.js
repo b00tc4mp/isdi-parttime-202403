@@ -4,6 +4,7 @@ import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { SystemError } from './errors.js'
+
 const { JsonWebTokenError, TokenExpiredError } = jwt
 
 const api = express()

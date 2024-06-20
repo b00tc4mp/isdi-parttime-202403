@@ -1,4 +1,4 @@
-import logic from '../logic'
+import logic from '../logic/index'
 import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'
 import FormWithFeedback from '../components/library/FormWithFeedBack'
@@ -50,7 +50,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
 
             <Field id="password" type="password" placeholder="password">Password</Field>
 
-            <SubmitButton>Login</SubmitButton>
+            <SubmitButton className='LoginButton'>Login</SubmitButton>
         </FormWithFeedback>
 
         <Link onClick={handleRegisterClick}>Register</Link>

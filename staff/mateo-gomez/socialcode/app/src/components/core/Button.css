@@ -2,7 +2,15 @@
     padding: .4rem 0;
     background-color: transparent;
     font-size: 1.3rem;
-    border: 1px solid var(--first-color);
     cursor: pointer;
     width: 7rem;
+    height: auto;
+
+}
+
+.CancelButton {
+    border: 2px solid red;
+    background: rgba(255, 0, 0, 0.179);
+    border-radius: 5%;
+    margin: 2rem;
 }

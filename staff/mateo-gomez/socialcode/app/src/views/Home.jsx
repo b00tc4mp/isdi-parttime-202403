@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
 
 
-import logic from '../logic'
+import logic from '../logic/index'
 
 function Home({ onUserLoggedOut }) {
     console.log('Home -> render')

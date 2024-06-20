@@ -9,6 +9,7 @@
     box-sizing: content-box;
     height: 3.5rem;
     border-top: 2px solid brown;
+    z-index: 100;
 
 
 }
