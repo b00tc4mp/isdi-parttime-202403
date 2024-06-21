@@ -1,11 +1,13 @@
 import { useState } from 'react'
 
+import logic from './logic/index'
+
 import Register from './views/Register'
 import Login from './views/Login'
 import Home from './views/Home'
 
 function App() {
-  const [view, setView] = useState('login')
+  const [view, setView] = useState(logic.isUserLoggedIn() ? 'home' : 'login')
 
   const handleGoToLogin = () => setView('login')
 
