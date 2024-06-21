@@ -1,9 +1,1 @@
-[
-    {
-        "name": "Jon",
-        "surname": "Snow",
-        "email": "jon@snow.com",
-        "username": "JonSnow",
-        "password": "12345678"
-    }
-]
+[{"name":"Jon","surname":"Snow","email":"jon@snow.com","username":"JonSnow","password":"12345678"},{"name":"Daenerys","surname":"Targaryen","email":"daenerys@targaryen.com","username":"DaenerysTargaryen","password":"12345678"}]

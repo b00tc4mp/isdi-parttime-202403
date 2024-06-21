@@ -27,7 +27,7 @@ const deletePost = (postId, callback) => {
 
     xhr.open('DELETE', `http://localhost:8080/posts/${postId}`)
 
-    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 
     xhr.send()
 }

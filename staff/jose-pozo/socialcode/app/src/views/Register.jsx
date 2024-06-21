@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import logic from '../logic'
+import logic from '../logic/index'
 
 import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'
@@ -11,8 +11,6 @@ import FormWithFeedback from '../components/library/FormWithFeedback'
 import View from '../components/library/View'
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
-    console.log('Register -> render')
-
     const [message, setMessage] = useState('')
 
     const handleRegisterSubmit = event => {

@@ -1,8 +1,9 @@
+// import errors from 'com/errors'
 import errors from '../errors'
 
 const { ContentError, MatchError } = errors
 
-const JWT_REGEX = /^[A-Za-z0-9-]+.[A-Za-z0-9-]+.[A-Za-z0-9-]+$/
+const JWT_REGEX = /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/
 
 function extractPayloadFromJWT(token) {
     if (!JWT_REGEX.test(token)) throw new ContentError('invalid jwt')

@@ -11,7 +11,7 @@ import Heading from '../components/core/Heading'
 import PostList from './components/PostList'
 import CreatePostForm from './components/CreatePostForm'
 
-import logic from '../logic'
+import logic from '../logic/index'
 
 function Home({ onUserLoggedOut }) {
     const [name, setName] = useState('')

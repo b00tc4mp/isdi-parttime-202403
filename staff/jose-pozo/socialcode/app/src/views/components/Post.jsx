@@ -7,7 +7,7 @@ import Text from '../../components/core/Text'
 import Time from '../../components/core/Time'
 import View from '../../components/library/View'
 
-import logic from '../../logic'
+import logic from '../../logic/index'
 
 function Post({ post, onPostDeleted }) {
 

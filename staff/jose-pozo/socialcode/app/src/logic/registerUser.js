@@ -8,6 +8,10 @@ const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
+
+    console.log(`Validating name: "${name}"`);
+
+
     if (!NAME_REGEX.test(name))
         throw new ContentError('name is not valid')
 
