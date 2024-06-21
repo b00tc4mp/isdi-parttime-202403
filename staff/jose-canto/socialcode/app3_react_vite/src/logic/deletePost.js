@@ -3,7 +3,7 @@ import validate from "com/validate"
 
 
 const deletePost = (postId, callback) => {
-  validate.validateId(postId, "postId")
+  validate.id(postId, "postId")
   validate.callback(callback)
 
   const xhr = new XMLHttpRequest()

@@ -190,7 +190,7 @@ api.delete("/posts/:postId", (req, res) => {
 
 api.post("/posts/:postId/like", (req, res) => {
 
-  const token = req.headers.authorization.split(7)
+  const token = req.headers.authorization.slice(7)
   const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
   const { postId } = req.params
 

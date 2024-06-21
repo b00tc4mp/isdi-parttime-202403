@@ -6,7 +6,7 @@ const { MatchError } = errors
 
 const deletePost = (username, postId, callback) => {
   validate.username(username)
-  validate.validateId(postId, "postId")
+  validate.id(postId, "postId")
   validate.callback(callback)
 
   data.findUser(user => user.username === username, (error, user) => {

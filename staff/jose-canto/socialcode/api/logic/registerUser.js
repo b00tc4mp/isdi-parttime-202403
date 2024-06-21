@@ -5,11 +5,11 @@ import bcrypt from "bcryptjs"
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
   validate.name(name)
-  validate.surname(surname, "surname")
+  validate.name(surname, "surname")
   validate.email(email)
   validate.username(username)
   validate.password(password)
-  validate.passwordRepeat(passwordRepeat, "passwordRepeat")
+  validate.passwordsMatch(password, passwordRepeat)
   validate.callback(callback)
 
   data.findUser((user) => user.email.toLowerCase() === email.toLowerCase() || user.username.toLowerCase() === username.toLowerCase(), (error, user) => {

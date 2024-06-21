@@ -4,9 +4,7 @@ import validate from "com/validate"
 const loginUser = (username, password, callback) => {
   validate.username(username)
   validate.password(password)
-
-  if (typeof callback !== "function")
-    throw new TypeError("callback is not a function")
+  validate.callback(callback)
 
   const xhr = new XMLHttpRequest
   xhr.onload = () => {
