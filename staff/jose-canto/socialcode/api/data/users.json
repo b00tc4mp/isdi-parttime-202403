@@ -19,5 +19,12 @@
 		"email": "luna@dog.es",
 		"username": "Luna",
 		"password": "$2a$08$hAQ7Xmdf6rfZusZIWdb7B.8OlSgEUQB0nr08v4CoxXsL5R4eLvMRa"
+	},
+	{
+		"name": "Bruce",
+		"surname": "Wayne",
+		"email": "Batman@dc.es",
+		"username": "Batman",
+		"password": "$2a$08$YON50/ef9RGCAiSJo/y2Vu3zKPF8SZpxUvlW6AW/ICwwzWnlEywIu"
 	}
 ]

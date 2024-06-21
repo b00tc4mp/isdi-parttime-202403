@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import Image from "../../core/Image"
 import Heading from "../../core/Heading"
@@ -8,12 +8,24 @@ import Time from "../../views/components/Time"
 import ConfirmDelete from "./ConfirmDelete"
 
 import logic from "../../../logic"
+import getLoggedInUsername from "../../../logic/getLoggedInUsername"
 
 function Post({ post, onPostDeleted }) {
 	console.log("Post --> render")
 
 	const [showConfirmDelete, setShowConfirmDelete] = useState(false)
-	const [like, setLike] = useState(post.liked)
+	const [like, setLike] = useState(false)
+	const [likeNum, setLikeNum] = useState()
+
+	useEffect(() => {
+		setLike(includeUserLike())
+		setLikeNum(post.liked.length)
+	}, [])
+
+	const includeUserLike = () => {
+		const username = getLoggedInUsername()
+		return post.liked.includes(username)
+	}
 
 	const handleDeletePost = () => setShowConfirmDelete(true)
 
@@ -39,13 +51,19 @@ function Post({ post, onPostDeleted }) {
 	}
 
 	const handleLike = () => {
-		logic.toggleLike(post.id, (error, liked) => {
+		logic.toggleLike(post.id, (error) => {
 			if (error) {
 				console.error(error)
 				return
 			}
 
-			setLike(!liked)
+			if (like) {
+				setLike(false)
+				setLikeNum(likeNum - 1)
+			} else {
+				setLike(true)
+				setLikeNum(likeNum + 1)
+			}
 		})
 	}
 
@@ -70,7 +88,9 @@ function Post({ post, onPostDeleted }) {
 
 				<div className="TimeLike">
 					<Time>{post.date}</Time>
-					<i className={like ? "fa-regular fa-heart" : "fa-solid fa-heart"} onClick={handleLike}></i>
+					<i className={`Likes ${like ? "fa-solid fa-heart" : "fa-regular fa-heart"}`} onClick={handleLike}>
+						<sub>{likeNum}</sub>
+					</i>
 				</div>
 
 				{post.author === logic.getLoggedInUsername() && (

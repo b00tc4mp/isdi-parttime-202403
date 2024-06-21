@@ -145,7 +145,6 @@ api.post("/posts", jsonBodyParser, (req, res) => {
       res.status(201).send()
     })
 
-
   } catch (error) {
     if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
 
@@ -175,7 +174,6 @@ api.delete("/posts/:postId", (req, res) => {
       res.status(204).send()
     })
 
-
   } catch (error) {
     if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
 
@@ -188,7 +186,7 @@ api.delete("/posts/:postId", (req, res) => {
 })
 
 
-api.post("/posts/:postId/like", (req, res) => {
+api.post("/posts/like/:postId", (req, res) => {
 
   const token = req.headers.authorization.slice(7)
   const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")

@@ -1,11 +1,11 @@
 import data from "../data/index.js"
-import { ContentError, MatchError } from "com/errors.js"
+import { MatchError } from "com/errors.js"
 import validate from "com/validate.js"
 
 
 const toggleLike = (username, postId, callback) => {
   validate.username(username)
-  validate.validateId(postId, "postId")
+  validate.id(postId, "postId")
   validate.callback(callback)
 
   data.findUser(user => user.username === username, (error, user) => {

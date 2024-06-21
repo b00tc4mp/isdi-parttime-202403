@@ -176,7 +176,7 @@ data.toggleLike = (postId, username, callback) => {
 
     const posts = JSON.parse(postsJson);
 
-    const postIndex = posts.id.findIndex(postId);
+    const postIndex = posts.findIndex(post => post.id === postId);
     if (postIndex === -1) {
       callback(new MatchError('Post not found'));
       return;
