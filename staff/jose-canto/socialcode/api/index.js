@@ -1,8 +1,12 @@
+import "dotenv/config"
 import express from 'express'
 import cors from "cors"
 import logic from "./logic/index.js"
 import jwt from "jsonwebtoken"
 import errors from "com/errors.js"
+
+const { PORT, JWT_SECRET } = process.env
+
 
 const { SystemError } = errors
 
@@ -24,7 +28,7 @@ api.get('/posts', (req, res) => {
   try {
     const token = req.headers.authorization.slice(7)
 
-    const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
+    const { sub: username } = jwt.verify(token, JWT_SECRET)
 
     logic.getAllPosts(username, (error, posts) => {
       if (error) {
@@ -81,7 +85,7 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
         return
       }
 
-      const token = jwt.sign({ sub: username }, "peter and wendy have a rollete", { expiresIn: "7d" })
+      const token = jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: "7d" })
 
       res.json(token)
       console.log(`User ${username} authenticated`)
@@ -97,7 +101,7 @@ api.get("/users/:targetUsername", (req, res) => {
   try {
     const token = req.headers.authorization.slice(7)
 
-    const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
+    const { sub: username } = jwt.verify(token, JWT_SECRET)
 
     const { targetUsername } = req.params
 
@@ -130,7 +134,7 @@ api.post("/posts", jsonBodyParser, (req, res) => {
   try {
     const token = req.headers.authorization.slice(7) // cabezera para la autenticacion del usuario
 
-    const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
+    const { sub: username } = jwt.verify(token, JWT_SECRET)
 
     const { title, image, description, } = req.body
 
@@ -161,7 +165,7 @@ api.delete("/posts/:postId", (req, res) => {
   try {
     const token = req.headers.authorization.slice(7) // cabezera para la autenticacion del token
 
-    const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
+    const { sub: username } = jwt.verify(token, JWT_SECRET)
 
     const { postId } = req.params
 
@@ -189,7 +193,7 @@ api.delete("/posts/:postId", (req, res) => {
 api.post("/posts/like/:postId", (req, res) => {
 
   const token = req.headers.authorization.slice(7)
-  const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
+  const { sub: username } = jwt.verify(token, JWT_SECRET)
   const { postId } = req.params
 
   try {
@@ -216,4 +220,4 @@ api.post("/posts/like/:postId", (req, res) => {
   }
 })
 
-api.listen(8080, () => console.log('listening on port http://localhost:8080/app/login'))
+api.listen(PORT, () => console.log(`listening on port http://localhost:${PORT}/app/login`))

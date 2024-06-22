@@ -36,5 +36,5 @@
 
 .Article .Likes:hover {
   color: greenyellow;
-  transform: translateY(10px);
+  transform: translateY(7px);
 }
