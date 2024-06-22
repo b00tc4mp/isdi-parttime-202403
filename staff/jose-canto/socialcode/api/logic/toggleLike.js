@@ -16,11 +16,12 @@ const toggleLike = (username, postId, callback) => {
       return callback(new MatchError('❌ User not found ❌'));
     }
 
-    data.toggleLike(postId, username, (error, liked) => {
+    data.toggleLike(postId, username, (error) => {
       if (error) {
         return callback(error);
       }
-      callback(null, liked);
+
+      callback(null);
     });
   });
 };

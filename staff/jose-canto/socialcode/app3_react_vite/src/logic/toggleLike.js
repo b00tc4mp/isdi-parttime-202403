@@ -10,8 +10,7 @@ const toggleLike = (postId, callback) => {
 
   xhr.onload = () => {
     if (xhr.status === 200) {
-      const liked = JSON.parse(xhr.response);
-      callback(null, liked);
+      callback(null);
       return;
     }
 

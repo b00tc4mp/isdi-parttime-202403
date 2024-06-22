@@ -198,15 +198,13 @@ api.post("/posts/like/:postId", (req, res) => {
 
   try {
 
-    logic.toggleLike(username, postId, (error, liked) => {
+    logic.toggleLike(username, postId, (error) => {
       if (error) {
 
         res.status(500).json({ error: error.constructor.name, message: error.message })
         return
       }
-
-
-      res.json(liked)
+      res.status(200).send()
     })
 
   } catch (error) {

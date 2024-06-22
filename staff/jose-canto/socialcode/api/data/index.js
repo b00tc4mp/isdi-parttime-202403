@@ -205,7 +205,7 @@ data.toggleLike = (postId, username, callback) => {
         return;
       }
 
-      callback(null, selectedPost.liked.includes(username));
+      callback(null);
     });
   });
 };
