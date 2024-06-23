@@ -1,25 +1,17 @@
-import errors from '../errors'
-
-const { ContentError } = errors
-
-const USERNAME_REGEX = /^[\w-]+$/
-const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{3,}$/
+import errors from 'com/errors'
+import validate from 'com/validate'
 
 const loginUser = (username, password, callback) => {
-    if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
-
-    if (!PASSWORD_REGEX.test(password))
-        throw new ContentError('password is not valid')
-
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.username(username)
+    validate.password(password)
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {
         if (xhr.status === 200) {
             const token = JSON.parse(xhr.response)
+
             sessionStorage.token = token
 
             callback(null)

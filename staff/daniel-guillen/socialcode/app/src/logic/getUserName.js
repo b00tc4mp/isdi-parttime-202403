@@ -1,10 +1,10 @@
-import errors from '../errors'
+import errors from 'com/errors'
+import validate from 'com/validate'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
 const getUserName = callback => {
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.callback(callback)
 
     const { sub: username } = extractPayloadFromJWT(sessionStorage.token)
 
