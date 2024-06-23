@@ -1,23 +1,33 @@
 import { useState, useEffect } from 'react'
 
 import View from '../components/library/View'
-import './Home.css'
+
 import Header from './components/Header'
-import Button from '../components/core/Button'
-import PostList from '../views/components/PostList'
-import logic from '../logic'
+import PostList from './components/PostList'
 import Footer from './components/Footer'
-import Heading from '../components/core/Heading'
 import CreatePostForm from './components/CreatePostForm'
 
-function Home({ onUserLoggedOut, onCreatePostClick }) {
+import Button from '../components/core/Button'
+import Heading from '../components/core/Heading'
+
+import logic from '../logic'
+
+function Home({ onUserLoggedOut }) {
   console.log('Home -> render')
 
   const [name, setName] = useState('')
   const [view, setView] = useState('')
   const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
+  const handleLogout = () => {
+    logic.logoutUser()
+
+    onUserLoggedOut()
+  }
+
   useEffect(() => {
+    console.log('Home -> useEffect')
+    // setTimeout(() => {
     try {
       logic.getUserName((error, name) => {
         if (error) {
@@ -28,22 +38,25 @@ function Home({ onUserLoggedOut, onCreatePostClick }) {
           return
         }
 
+        console.log('Home -> setName')
+
         setName(name)
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
+
+      alert(error.message)
     }
+    // }, 10000)
   }, [])
 
-  const handleLogout = () => {
-    logic.logoutUser()
-    onUserLoggedOut()
-  }
-
   const handleCreatePostClick = () => setView('create-post')
+
   const handleCancelCreatePostClick = () => setView('')
-  const handleOnPostCreated = () => {
+
+  const handlePostCreated = () => {
     setPostListRefreshStamp(Date.now())
+
     setView('')
   }
 
@@ -60,7 +73,7 @@ function Home({ onUserLoggedOut, onCreatePostClick }) {
         {view === 'create-post' && (
           <CreatePostForm
             onCancelCreatePostClick={handleCancelCreatePostClick}
-            onPostCreated={handleOnPostCreated}
+            onPostCreated={handlePostCreated}
           />
         )}
       </View>

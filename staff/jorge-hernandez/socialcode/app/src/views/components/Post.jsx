@@ -37,7 +37,7 @@ function Post({ post, onPostDeleted }) {
 
       <time>{post.date}</time>
 
-      {post.author === logic.getLoggedInUsername() && (
+      {post.author === logic.getUserUsername() && (
         <button className='Button' onClick={() => handleDeletePost(post.id)}>
           Delete
         </button>

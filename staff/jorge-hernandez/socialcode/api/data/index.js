@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { SystemError } from '../errors.js'
+import { SystemError } from 'com/errors.js'
 
 const data = {}
 
@@ -20,7 +20,6 @@ data.findUser = (condition, callback) => {
         callback(null, user)
     })
 }
-
 
 data.insertUser = (user, callback) => {
     fs.readFile('./data/users.json', 'utf8', (error, json) => {

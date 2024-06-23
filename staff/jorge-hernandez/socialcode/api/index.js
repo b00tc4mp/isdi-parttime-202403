@@ -1,6 +1,10 @@
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
+import { SystemError } from 'com/errors.js'
+
+import jwt from 'jsonwebtoken'
+
 
 const api = express()
 
@@ -41,7 +45,9 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            res.send()
+            const token = jwt.sign({ sub: username }, 'Hola Mundo', { expiresIn: '1d' })
+
+            res.json(token)
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -49,7 +55,9 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 })
 
 api.get('/users/:targetUsername', (req, res) => {
-    const username = req.headers.authorization.slice(6)
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, 'Hola Mundo')
 
     const { targetUsername } = req.params
 
@@ -70,7 +78,11 @@ api.get('/users/:targetUsername', (req, res) => {
 
 api.get('/posts', (req, res) => {
     try {
-        logic.getAllPosts((error, posts) => {
+        const token = req.headers.authorization.slice(7)
+
+        const { sub: username } = jwt.verify(token, 'Hola Mundo')
+
+        logic.getAllPosts(username, (error, posts) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -80,15 +92,21 @@ api.get('/posts', (req, res) => {
             res.json(posts)
         })
     } catch (error) {
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+
+
         res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
 api.post('/posts', jsonBodyParser, (req, res) => {
-    const username = req.headers.authorization.slice(6)
+
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, 'Hola Mundo')
 
     const { title, image, description } = req.body
-
     try {
         logic.createPost(username, title, image, description, error => {
             if (error) {
@@ -105,11 +123,13 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 })
 
 api.delete('/posts/:postId', (req, res) => {
-    const username = req.headers.authorization.slice(6)
-
-    const { postId } = req.params
 
     try {
+        const token = req.headers.authorization.slice(7)
+
+        const { sub: username } = jwt.verify(token, 'Hola Mundo')
+
+        const { postId } = req.params
         logic.deletePost(username, postId, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
