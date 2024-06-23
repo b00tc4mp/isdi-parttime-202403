@@ -1,7 +1,6 @@
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
-
 import jwt from 'jsonwebtoken'
 import { SystemError } from './errors.js'
 
@@ -134,11 +133,10 @@ api.delete('/posts/:postId', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-    const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
 
         const { postId } = req.params
 
-    
         logic.deletePost(username, postId, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })

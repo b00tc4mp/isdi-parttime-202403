@@ -1,9 +1,9 @@
 import { useState } from 'react'
+
 import logic from '../logic'
 
 import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'
-
 import Link from '../components/core/Link'
 import Title from '../components/core/Title'
 
@@ -38,7 +38,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
                 }
 
                 onUserRegistered()
-                alert('registration completed!')
+                alert('Registration completed! 🎉')
             })
         } catch (error) {
             console.error(error)
@@ -72,7 +72,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
             <SubmitButton>Register</SubmitButton>
         </FormWithFeedback>
 
-        <Link className='Link' onClick={handleLoginClick}>Login</Link>
+        <Link onClick={handleLoginClick}>Login</Link>
     </View>
 }
 

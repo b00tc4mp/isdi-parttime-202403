@@ -1,9 +1,9 @@
 import { useState } from 'react'
+
 import logic from '../logic'
 
 import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'
-
 import Link from '../components/core/Link'
 import Title from '../components/core/Title'
 
@@ -34,7 +34,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
                 }
 
                 onUserLoggedIn()
-                alert('Welcome!')
+                alert('Welcome! ♥️')
             })
         } catch (error) {
             console.log(error)
@@ -60,7 +60,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
             <SubmitButton>Login</SubmitButton>
         </FormWithFeedback>
 
-        <Link className='Link' onClick={handleRegisterClick}>Register</Link>
+        <Link onClick={handleRegisterClick}>Register</Link>
     </View>
 }
 

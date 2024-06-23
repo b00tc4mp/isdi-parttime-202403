@@ -1,5 +1,3 @@
-/* import Title from '../components/core/Title' */
-
 import { useState, useEffect } from 'react'
 
 import View from '../components/library/View'
@@ -67,7 +65,7 @@ function Home({ onUserLoggedOut }) {
     return <View>
         <Header>
             <Heading level="3">{name}</Heading>
-            <Button onClick={handleLogout}>Logout</Button>
+            <Button onClick={handleLogout}>🖖🏻</Button>
         </Header>
 
         <View tag="main">

@@ -3,9 +3,7 @@ import { useState } from 'react'
 import logic from './logic'
 
 import Register from './views/Register'
-
 import Login from './views/Login'
-
 import Home from './views/Home'
 
 function App() {

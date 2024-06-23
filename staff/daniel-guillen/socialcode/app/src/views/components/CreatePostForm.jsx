@@ -39,11 +39,10 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
 
                 onPostCreated()
 
-                
                 window.scrollTo(top)
                 
 
-                alert('Post created!')
+                alert('Post created! 🎉')
             })
         } catch (error) {
             console.error(error)
@@ -53,16 +52,16 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     }
 
     return <View className="CreatePostForm">
-    <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
-        <Field id="title">Title</Field>
-        <Field id="image">Image</Field>
-        <Field id="description">Description</Field>
+        <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
+            <Field id="title">Title</Field>
+            <Field id="image">Image</Field>
+            <Field id="description">Description</Field>
 
-        <View direction='row'>
-            <SubmitButton>Create</SubmitButton>
-            <Button onClick={handleCancelCreatePostClick}>Cancel</Button>
-        </View>
-    </FormWithFeedback>
+            <View direction='row'>
+                <SubmitButton>✍️</SubmitButton>
+                <Button onClick={handleCancelCreatePostClick}>🗑️</Button>
+            </View>
+        </FormWithFeedback>
     </View>
 }
 
