@@ -1,24 +1,12 @@
-import errors from '../errors'
+import errors from 'com/errors'
+import validate from 'com/validate.js'
 
-const {
-    ContentError } = errors
 
 const createPost = (title, image, description, callback) => {
-    if (typeof title !== 'string' || !title.length || title.length > 50) {
-        throw new ContentError('title is not valid')
-    }
-
-    if (typeof image !== 'string' || !image.startsWith('http')) {
-        throw new ContentError('image is not valid')
-    }
-
-    if (typeof description !== 'string' || !description.length || description.length > 200) {
-        throw new ContentError('description is not valid')
-    }
-
-    if (typeof callback !== 'function') {
-        throw new TypeError('callback is not a function')
-    }
+    validate.text(title, 'title', 50)
+    validate.url(image, 'image')
+    validate.text(description, 'deescription', 300)
+    validate.callback(callback)
 
 
     const xhr = new XMLHttpRequest
