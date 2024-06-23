@@ -1,20 +1,11 @@
 import data from '../data/index.js'
-import { ContentError, MatchError } from '../errors.js'
-
-
-const USERNAME_REGEX = /^[\w-]+$/
-
-
+import { MatchError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const getUserName = (username, targetUsername, callback) => {
-    if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
-
-    if (!USERNAME_REGEX.test(targetUsername))
-        throw new ContentError('targetUsername is not valid')
-
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.username(username)
+    validate.username(targetUsername, 'targetUsername')
+    validate.callback(callback)
 
     data.findUser(user => user.username === username, (error, user) => {
         if (error) {

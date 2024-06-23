@@ -2,7 +2,7 @@ import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
-import { SystemError } from './errors.js'
+import { SystemError } from 'com/errors.js'
 
 const { JsonWebTokenError, TokenExpiredError } = jwt
 
@@ -87,7 +87,12 @@ api.get('/users/:targetUsername', (req, res) => {
 
 api.get('/posts', (req, res) => {
     try {
-        logic.getAllPosts((error, posts) => {
+
+        const token = req.headers.authorization.slice(7)
+
+        const { sub: username } = jwt.verify(token, 'secreto iberico')
+
+        logic.getAllPosts(username, (error, posts) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -97,7 +102,10 @@ api.get('/posts', (req, res) => {
             res.json(posts)
         })
     } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+            res.status(500).json({ error: SystemError.name, message: error.message })
+        else
+            res.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 

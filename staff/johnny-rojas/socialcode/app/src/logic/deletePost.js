@@ -1,15 +1,9 @@
 import errors from 'com/errors'
-
-const { ContentError } = errors
-
-const ID_REGEX = /^[0-9]+-[0-9]+$/
+import validate from 'com/validate'
 
 const deletePost = (postId, callback) => {
-    if (!ID_REGEX.test(postId))
-        throw new ContentError('postId is not valid')
-
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.id(postId, 'postId')
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 
@@ -29,7 +23,8 @@ const deletePost = (postId, callback) => {
 
     xhr.open('DELETE', `http://localhost:8080/posts/${postId}`)
 
-    xhr.setRequestHeader('Authorization', `Basic ${sessionStorage.username}`)
+    xhr.setRequestHeader('Authorization', `Baerer ${sessionStorage.token}`)
+    
     xhr.send()
 }
 

@@ -31,6 +31,13 @@ class SystemError extends Error {
   }
 }
 
+export {
+  ContentError,
+  MatchError,
+  DuplicityError,
+  SystemError
+}
+
 const errors = {
   ContentError,
   MatchError,
@@ -39,10 +46,3 @@ const errors = {
 }
 
 export default errors
-
-export {
-  ContentError,
-  MatchError,
-  DuplicityError,
-  SystemError
-}
