@@ -3,6 +3,7 @@ import { MatchError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const createPost = (username, title, image, description, callback) => {
+    validate.username(username)
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
     validate.text(description, 'description', 200)
