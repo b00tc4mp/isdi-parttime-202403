@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logic from "./logic";
 import LoginPage from "./LoginPage/index.jsx";
 import RegisterPage from "./RegisterPage/index.jsx";
@@ -6,12 +6,7 @@ import HomePage from "./HomePage/index.jsx";
 import ViewContext from "./ViewContext.jsx";
 
 function App() {
-  const [view, setView] = useState("login");
-  useEffect(() => {
-    if (logic.isUserLoggedIn()) {
-      setView("home");
-    }
-  }, []);
+  const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login");
 
   return (
     <>

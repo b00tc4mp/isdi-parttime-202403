@@ -1,4 +1,5 @@
 import errors from "./errors";
+import extractPayload from "./utils/extractPayload";
 const { ContentError, MatchError, TypeError, SystemError } = errors;
 
 const logic = {};
@@ -31,37 +32,30 @@ logic.registerUser = (
     throw new ContentError("All fields are required");
   }
 
-  // name regex
   if (!NAME_REGEX.test(name)) {
     throw new ContentError("Name is not valid");
   }
 
-  // surname regex
   if (!NAME_REGEX.test(surname)) {
     throw new ContentError("Surname is not valid");
   }
 
-  // email regex
   if (!EMAIL_REGEX.test(email)) {
     throw new ContentError("Email is not valid");
   }
 
-  // username regex
   if (!USERNAME_REGEX.test(username)) {
     throw new ContentError("Username is not valid");
   }
 
-  // password regex
   if (!PASSWORD_REGEX.test(password)) {
     throw new ContentError("Password is not valid");
   }
 
-  // check password length
   if (password.length < 8) {
     throw new ContentError("Password should be at least 8 characters long");
   }
 
-  // check if passwords match
   if (password !== repeatedPassword) {
     throw new MatchError("Passwords do not match");
   }
@@ -78,11 +72,11 @@ logic.registerUser = (
       return;
     }
 
-    const { error, errormsg } = JSON.parse(xhr.response);
+    const { error, message } = JSON.parse(xhr.response);
 
     const constructor = errors[error];
 
-    callback(new constructor(errormsg));
+    callback(new constructor(message));
   };
 
   xhr.onerror = () => {
@@ -100,12 +94,10 @@ logic.registerUser = (
 };
 
 logic.loginUser = (username, password, callback) => {
-  // username regex
   if (!USERNAME_REGEX.test(username)) {
     throw new ContentError();
   }
 
-  // password regex
   if (!PASSWORD_REGEX.test(password)) {
     throw new ContentError();
   }
@@ -117,16 +109,18 @@ logic.loginUser = (username, password, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.onload = () => {
     if (xhr.status === 200) {
-      sessionStorage.username = username;
+      const { token } = JSON.parse(xhr.response);
+      sessionStorage.token = token;
+
       callback(null);
       return;
     }
 
-    const { error, errormsg } = JSON.parse(xhr.response);
+    const { error, message } = JSON.parse(xhr.response);
 
     const constructor = errors[error];
 
-    callback(new constructor(errormsg));
+    callback(new constructor(message));
   };
 
   xhr.onerror = () => {
@@ -143,47 +137,47 @@ logic.loginUser = (username, password, callback) => {
   xhr.send(json);
 };
 
-logic.isUserLoggedIn = () => {
-  return !!sessionStorage.username;
-};
+logic.isUserLoggedIn = () => !!sessionStorage.token;
 
-logic.logoutUser = () => {
-  delete sessionStorage.username;
-};
+logic.logoutUser = () => delete sessionStorage.token;
 
 logic.getUsername = () => {
-  return sessionStorage.getItem("username");
+  const { sub: username } = extractPayload(sessionStorage.token);
+  return username;
 };
 
+// NOTE: unused ( for now )
 logic.getUsersName = (callback) => {
   if (typeof callback !== "function") {
     throw new TypeError("callback is not a function");
   }
+
+  const { sub: username } = extractPayload(sessionStorage.token);
 
   const xhr = new XMLHttpRequest();
 
   xhr.onload = () => {
     if (xhr.status === 200) {
       const name = JSON.parse(xhr.response);
-
       callback(null, name);
+
       return;
     }
 
-    const { error, errormsg } = JSON.parse(xhr.response);
+    const { error, message } = JSON.parse(xhr.response);
 
     const constructor = errors[error];
 
-    callback(new constructor(errormsg));
+    callback(new constructor(message));
   };
 
   xhr.onerror = () => {
     callback(new SystemError("Network error: Unable to reach the server."));
   };
 
-  xhr.open("GET", `http://localhost:8080/users/${sessionStorage.username}`);
+  xhr.open("GET", `http://localhost:8080/users/${username}`);
 
-  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`);
+  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
   xhr.send();
 };
 
@@ -193,16 +187,20 @@ logic.getAllPosts = (callback) => {
   }
 
   const xhr = new XMLHttpRequest();
+
   xhr.onload = () => {
     if (xhr.status === 200) {
       const posts = JSON.parse(xhr.response);
       callback(null, posts);
+
       return;
     }
-    const { error, errormsg } = JSON.parse(xhr.response);
+
+    const { error, message } = JSON.parse(xhr.response);
 
     const constructor = errors[error];
-    callback(new constructor(errormsg));
+
+    callback(new constructor(message));
   };
 
   xhr.onerror = () => {
@@ -210,6 +208,9 @@ logic.getAllPosts = (callback) => {
   };
 
   xhr.open("GET", "http://localhost:8080/posts");
+
+  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
+
   xhr.send();
 };
 
@@ -232,16 +233,18 @@ logic.createPost = (title, image, description, callback) => {
   }
 
   const xhr = new XMLHttpRequest();
+
   xhr.onload = () => {
     if (xhr.status === 201) {
       callback(null);
+
       return;
     }
 
-    const { error, errormsg } = JSON.parse(xhr.response);
+    const { error, message } = JSON.parse(xhr.response);
     const constructor = errors[error];
 
-    callback(new constructor(errormsg));
+    callback(new constructor(message));
   };
 
   xhr.onerror = () => {
@@ -249,7 +252,7 @@ logic.createPost = (title, image, description, callback) => {
   };
 
   xhr.open("POST", "http://localhost:8080/posts");
-  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`);
+  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
 
   const body = {
     title,
@@ -280,11 +283,11 @@ logic.deletePost = (id, callback) => {
       return;
     }
 
-    const { error, errormsg } = JSON.parse(xhr.response);
+    const { error, message } = JSON.parse(xhr.response);
 
     const constructor = errors[error];
 
-    callback(new constructor(errormsg));
+    callback(new constructor(message));
   };
 
   xhr.onerror = () => {
@@ -293,7 +296,7 @@ logic.deletePost = (id, callback) => {
 
   xhr.open("DELETE", `http://localhost:8080/posts/${id}`);
 
-  xhr.setRequestHeader("Authorization", `Basic ${sessionStorage.username}`);
+  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
   xhr.send();
 };
 

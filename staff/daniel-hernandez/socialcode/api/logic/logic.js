@@ -15,46 +15,110 @@ const ID_REGEX = /^[a-z0-9]+[a-z0-9]{5}$/;
 
 const logic = {};
 
-logic.getPosts = async () => {
-  try {
-    const posts = await data.getPosts();
-    return posts.reverse();
-  } catch (error) {
-    throw new SystemError(`failed fetching posts: ${error.message}`);
+logic.getPosts = (username) => {
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("username is not valid");
   }
+
+  return (async () => {
+    let user, posts;
+
+    try {
+      user = data.findUser((user) => user.username === username);
+    } catch (error) {
+      throw new SystemError(`failed to get posts: ${error.message}`);
+    }
+
+    if (!user) {
+      throw new MatchError("user not found");
+    }
+
+    try {
+      posts = await data.getPosts();
+    } catch (error) {
+      throw new SystemError(`failed fetching posts: ${error.message}`);
+    }
+
+    return posts.reverse();
+  })();
+
+  /* return data
+    .findUser((user) => user.username === username)
+    .then((user) => {
+      if (!user) {
+        throw new MatchError("user not found");
+      }
+
+      return data.getPosts();
+    })
+    .then((posts) => {
+      return posts.reverse();
+    })
+    .catch((error) => {
+      if (error instanceof MatchError) {
+        throw error;
+      } else {
+        throw new SystemError(`failed fetching posts: ${error.message}`);
+      }
+    }); */
 };
 
-logic.getUsers = async () => {
-  try {
+// NOTE: unused
+logic.getUsers = /* async */ () => {
+  /* try {
     const users = await data.getUsers();
     return users;
   } catch (error) {
     throw new SystemError(`failed fetching users: ${error.message}`);
-  }
+  } */
+
+  return (async () => {
+    let users;
+
+    try {
+      users = await data.getUsers();
+    } catch (error) {
+      throw new SystemError(`failed fetching users: ${error.message}`);
+    }
+
+    return users;
+  })();
+
+  /* return data.getUsers().catch((error) => {
+    throw new SystemError(`failed fetching users: ${error.message}`);
+  }); */
 };
 
-logic.createPost = async (username, title, image, description) => {
-  try {
-    function generateId() {
-      const timestamp = Date.now().toString(36);
-      const random = Math.random().toString(36).substr(2, 5);
-      return timestamp + random;
+logic.createPost = (username, title, image, description) => {
+  function generateId() {
+    const timestamp = Date.now().toString(36);
+    const random = Math.random().toString(36).substring(2, 7);
+    return timestamp + random;
+  }
+
+  if (typeof title !== "string" || !title.length || title.length > 20) {
+    throw new ContentError("Title is not valid.");
+  }
+  if (typeof image !== "string" || !image.startsWith("http")) {
+    throw new ContentError("Image is not valid.");
+  }
+  if (
+    typeof description !== "string" ||
+    !description.length ||
+    description.length > 200
+  ) {
+    throw new ContentError("Description is not valid.");
+  }
+
+  return (async () => {
+    let user;
+
+    try {
+      user = await data.findUser((user) => user.username === username);
+    } catch (error) {
+      throw new SystemError(`failed to create post: ${error.message}`);
     }
 
-    if (typeof title !== "string" || !title.length || title.length > 20) {
-      throw new ContentError("Title is not valid.");
-    }
-    if (typeof image !== "string" || !image.startsWith("http")) {
-      throw new ContentError("Image is not valid.");
-    }
-    if (
-      typeof description !== "string" ||
-      !description.length ||
-      description.length > 200
-    ) {
-      throw new ContentError("Description is not valid.");
-    }
-    const user = await data.findUser((user) => user.username === username);
     if (!user) {
       throw new MatchError("user not found");
     }
@@ -68,13 +132,41 @@ logic.createPost = async (username, title, image, description) => {
       date: new Date().toISOString(),
     };
 
-    data.createPost(post);
-  } catch (error) {
-    throw new SystemError(`failed to create post: ${error.message}`);
-  }
+    try {
+      await data.createPost(post);
+    } catch (error) {
+      throw new SystemError(`failed to create post: ${error.message}`);
+    }
+  })();
+
+  /* return data
+    .findUser((user) => user.username === username)
+    .then((user) => {
+      if (!user) {
+        throw new MatchError("user not found");
+      }
+
+      const post = {
+        id: generateId(),
+        author: username,
+        title,
+        image,
+        description,
+        date: new Date().toISOString(),
+      };
+
+      return data.createPost(post);
+    })
+    .catch((error) => {
+      if (error instanceof MatchError) {
+        throw error;
+      } else {
+        throw new SystemError(`failed to create post ${error.message}`);
+      }
+    }); */
 };
 
-logic.createUser = async (
+logic.createUser = (
   name,
   surname,
   email,
@@ -82,57 +174,62 @@ logic.createUser = async (
   password,
   repeatedPassword,
 ) => {
-  try {
-    if (
-      !name ||
-      !surname ||
-      !email ||
-      !username ||
-      !password ||
-      !repeatedPassword
-    ) {
-      throw new ContentError("All fields are required");
-    }
+  if (
+    !name ||
+    !surname ||
+    !email ||
+    !username ||
+    !password ||
+    !repeatedPassword
+  ) {
+    throw new ContentError("All fields are required");
+  }
 
-    // name regex
-    if (!NAME_REGEX.test(name)) {
-      throw new ContentError("Name is not valid");
-    }
+  // name regex
+  if (!NAME_REGEX.test(name)) {
+    throw new ContentError("Name is not valid");
+  }
 
-    // surname regex
-    if (!NAME_REGEX.test(surname)) {
-      throw new ContentError("Surname is not valid");
-    }
+  // surname regex
+  if (!NAME_REGEX.test(surname)) {
+    throw new ContentError("Surname is not valid");
+  }
 
-    // email regex
-    if (!EMAIL_REGEX.test(email)) {
-      throw new ContentError("Email is not valid");
-    }
+  // email regex
+  if (!EMAIL_REGEX.test(email)) {
+    throw new ContentError("Email is not valid");
+  }
 
-    // username regex
-    if (!USERNAME_REGEX.test(username)) {
-      throw new ContentError("Username is not valid");
-    }
+  // username regex
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("Username is not valid");
+  }
 
-    // password regex
-    if (!PASSWORD_REGEX.test(password)) {
-      throw new ContentError("Password is not valid");
-    }
+  // password regex
+  if (!PASSWORD_REGEX.test(password)) {
+    throw new ContentError("Password is not valid");
+  }
 
-    // check password length
-    if (password.length < 8) {
-      throw new ContentError("Password should be at least 8 characters long");
-    }
+  // check password length
+  if (password.length < 8) {
+    throw new ContentError("Password should be at least 8 characters long");
+  }
 
-    // check if passwords match
-    if (password !== repeatedPassword) {
-      throw new MatchError("Passwords do not match");
-    }
+  // check if passwords match
+  if (password !== repeatedPassword) {
+    throw new MatchError("Passwords do not match");
+  }
+
+  return (async () => {
+    let existingUser;
 
     // check if user exists
-    const existingUser = await data.findUser(
-      (user) => user.username === username,
-    );
+    try {
+      existingUser = await data.findUser((user) => user.username === username);
+    } catch (error) {
+      throw new SystemError(`failed to create user: ${error.message}`);
+    }
+
     if (existingUser) {
       throw new DuplicityError("Username already exists");
     }
@@ -145,73 +242,175 @@ logic.createUser = async (
       password,
     };
 
-    await data.createUser(userData);
-  } catch (error) {
-    throw new SystemError(`failed to create user: ${error.message}`);
-  }
+    try {
+      await data.createUser(userData);
+    } catch (error) {
+      throw new SystemError(`failed to create user: ${error.message}`);
+    }
+  })();
+
+  /* return data
+    .findUser((user) => user.username === username)
+    .then((existingUser) => {
+      if (existingUser) {
+        throw new DuplicityError("username already exists");
+      }
+
+      const userData = {
+        name,
+        surname,
+        email,
+        username,
+        password,
+      };
+
+      return data.createUser(userData);
+    })
+    .catch((error) => {
+      if (error instanceof DuplicityError) {
+        throw error;
+      } else {
+        throw new SystemError(`failed to create user: ${error.message}`);
+      }
+    }); */
 };
 
-logic.getUser = async (username) => {
-  try {
-    let user = await data.findUser((user) => user.username === username);
+logic.getUser = (username) => {
+  return (async () => {
+    let user;
+
+    try {
+      user = await data.findUser((user) => user.username === username);
+    } catch (error) {
+      throw new SystemError(`failed to get user: ${error.message}`);
+    }
+
     if (!user) throw new MatchError("user not found");
 
     return user;
-  } catch (error) {
-    throw new SystemError(`failed to get user: ${error.message}`);
-  }
+  })();
+
+  /* return data
+    .findUser((user) => user.username === username)
+    .catch((error) => {
+      throw new SystemError(`failed to get user: ${error.message}`);
+    })
+    .then((user) => {
+      if (!user) throw new MatchError("user not found");
+
+      return user;
+    }); */
 };
 
-logic.getUsersName = async (username, targetUsername) => {
-  try {
-    if (!USERNAME_REGEX.test(username)) {
-      throw new ContentError("Username is not valid");
-    }
-    if (!USERNAME_REGEX.test(targetUsername)) {
-      throw new ContentError("target username is not valid");
+logic.getUsersName = (username, targetUsername) => {
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("Username is not valid");
+  }
+  if (!USERNAME_REGEX.test(targetUsername)) {
+    throw new ContentError("target username is not valid");
+  }
+
+  return (async () => {
+    let user, targetUser;
+
+    try {
+      user = await data.findUser((user) => user.username === username);
+    } catch (error) {
+      throw new SystemError(`failed to get user's name: ${error.message}`);
     }
 
-    const user = await data.findUser((user) => user.username === username);
     if (!user) throw new MatchError("user not found");
 
-    const targetUser = await data.findUser(
-      (user) => user.username === targetUsername,
-    );
+    try {
+      targetUser = await data.findUser(
+        (user) => user.username === targetUsername,
+      );
+    } catch (error) {
+      throw new SystemError(`failed to get user's name: ${error.message}`);
+    }
+
     if (!targetUser) throw new MatchError("target user was not found");
 
     return targetUser.name;
-  } catch (error) {
-    throw new SystemError(`failed to get user's name: ${error.message}'`);
-  }
+  })();
+
+  /* return data
+    .findUser((user) => user.username === username)
+    .then((user) => {
+      if (!user) throw new MatchError("user not found");
+
+      return data.findUser((user) => user.username === targetUsername);
+    })
+    .then((targetUser) => {
+      if (!targetUser) throw new MatchError("target user was not found");
+
+      return targetUser.name;
+    })
+    .catch((error) => {
+      if (error instanceof MatchError) {
+        throw error;
+      } else {
+        throw new SystemError(`failed to get user's name: ${error.message}`);
+      }
+    }); */
 };
 
-logic.getPost = async (id) => {
-  try {
-    let post = await data.findPost((post) => post.id === id);
+// NOTE: unused
+logic.getPost = (id) => {
+  return (async () => {
+    let post;
+
+    try {
+      post = await data.findPost((post) => post.id === id);
+    } catch (error) {
+      throw new SystemError(`failed to get post: ${error.message}`);
+    }
+
     if (!post) throw new MatchError("post not found");
 
     return post;
-  } catch (error) {
-    throw new SystemError(`failed to get post: ${error.message}`);
-  }
+  })();
+
+  /* return data
+    .findPost((post) => post.id === id)
+    .catch((error) => {
+      throw new SystemError(`failed to get post: ${error.message}`);
+    })
+    .then((post) => {
+      if (!post) throw new MatchError("post not found");
+
+      return post;
+    }); */
 };
 
-logic.deletePost = async (username, id) => {
-  try {
-    if (!USERNAME_REGEX.test(username)) {
-      throw new ContentError("Username is not valid");
+logic.deletePost = (username, id) => {
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("Username is not valid");
+  }
+
+  if (!ID_REGEX.test(id)) {
+    throw new ContentError("Post ID is not valid");
+  }
+
+  return (async () => {
+    let user, post;
+
+    try {
+      user = await data.findUser((user) => user.username === username);
+    } catch {
+      throw new SystemError(`failed to delete post: ${error.message}`);
     }
 
-    if (!ID_REGEX.test(id)) {
-      throw new ContentError("Post ID is not valid");
-    }
-
-    const user = await data.findUser((user) => user.username === username);
     if (!user) {
       throw new MatchError("user not found");
     }
 
-    const post = await data.findPost((post) => post.id === id);
+    try {
+      post = await data.findPost((post) => post.id === id);
+    } catch (error) {
+      throw new SystemError(`failed to delete post: ${error.message}`);
+    }
+
     if (!post) {
       throw new MatchError("post not found");
     }
@@ -220,23 +419,60 @@ logic.deletePost = async (username, id) => {
       throw new MatchError("post author does not match user");
     }
 
-    await data.deletePost((post) => post.id === id);
-  } catch (error) {
-    throw new SystemError(`failed to delete post: ${error.message}`);
-  }
+    try {
+      await data.deletePost((post) => post.id === id);
+    } catch (error) {
+      throw new SystemError(`failed to delete post: ${error.message}`);
+    }
+  })();
+
+  /* return data
+    .findUser((user) => user.username === username)
+    .then((user) => {
+      if (!user) {
+        throw new MatchError("user not found");
+      }
+
+      return data.findPost((post) => post.id === id);
+    })
+    .then((post) => {
+      if (!post) {
+        throw new MatchError("post not found");
+      }
+
+      if (post.author !== username) {
+        throw new MatchError("post author does not match user");
+      }
+      
+      return data.deletePost((post) => post.id === id);
+    })
+    .catch((error) => {
+      if (error instanceof MatchError || error instanceof ContentError) {
+        throw error;
+      } else {
+        throw new SystemError(`failed to delete post: ${error.message}`);
+      }
+    }); */
 };
 
-logic.authenticateUser = async (username, password) => {
-  try {
-    if (!USERNAME_REGEX.test(username)) {
-      throw new ContentError("username is not valid");
+logic.authenticateUser = (username, password) => {
+  if (!USERNAME_REGEX.test(username)) {
+    throw new ContentError("username is not valid");
+  }
+
+  if (!PASSWORD_REGEX.test(password)) {
+    throw new ContentError("password is not valid");
+  }
+
+  return (async () => {
+    let user;
+
+    try {
+      user = await data.findUser((user) => user.username === username);
+    } catch (error) {
+      throw new SystemError(`failed to authenticate user: ${error.message}`);
     }
 
-    if (!PASSWORD_REGEX.test(password)) {
-      throw new ContentError("password is not valid");
-    }
-
-    const user = await data.findUser((user) => user.username === username);
     if (!user) {
       throw new MatchError("user not found");
     }
@@ -244,9 +480,22 @@ logic.authenticateUser = async (username, password) => {
     if (user.password !== password) {
       throw new MatchError("wrong password");
     }
-  } catch (error) {
-    throw new SystemError(`failed to authenticate user: ${error.message}`);
-  }
+  })();
+
+  /* return data
+    .findUser((user) => user.username === username)
+    .catch((error) => {
+      throw new SystemError(`failed to authenticate user: ${error.message}`);
+    })
+    .then((user) => {
+      if (!user) {
+        throw new MatchError("user not found");
+      }
+
+      if (user.password !== password) {
+        throw new MatchError("wrong password");
+      }
+    }); */
 };
 
 export default logic;

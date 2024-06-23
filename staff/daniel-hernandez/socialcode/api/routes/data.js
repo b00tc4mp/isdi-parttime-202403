@@ -5,7 +5,6 @@ import {
   createUser,
   createPost,
   getUser,
-  getPost,
   deletePost,
   authUser,
 } from "../controllers/data.js";
