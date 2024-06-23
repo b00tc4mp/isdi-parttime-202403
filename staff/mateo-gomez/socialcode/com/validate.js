@@ -26,7 +26,7 @@ function validatePassword(password) {
         throw new ContentError('password is not valid')
 }
 
-function validatePasswordMatch(password, repeatPassword) {
+function validatePasswordMatch(password, passwordRepeat) {
     if (password !== passwordRepeat) {
         throw new MatchError('password don\'t match')
     }
