@@ -21,6 +21,12 @@ const authenticateUser = (username, password, callback) => {
             return
         }
 
+        // if (user.password !== password) {
+        //     callback(new MatchError('wrong password'))
+
+        //     return
+        // }
+
         bcrypt.compare(password, user.password, (error, match) => {
             if (error) {
                 callback(new SystemError(error.message))

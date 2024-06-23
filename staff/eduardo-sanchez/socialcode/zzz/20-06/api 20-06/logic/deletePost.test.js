@@ -1,15 +1,14 @@
 import logic from './index.js'
 
 try {
-    logic.authenticateUser('peterpan', '123123123', error => {
-    // logic.authenticateUser('dana', 'Hola1234', error => {
+    logic.deletePost('peterpan', '17164141890669127-1718895026735', error => {
         if (error) {
             console.error(error)
 
             return
         }
 
-        console.log('user authenticated')
+        console.log('post deleted')
     })
 } catch (error) {
     console.error(error)

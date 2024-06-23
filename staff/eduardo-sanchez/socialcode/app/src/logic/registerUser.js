@@ -7,7 +7,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.email(email)
     validate.username(username)
     validate.password(password)
-    validate.passowrdsMatch(password, passwordRepeat)
+    validate.passwordsMatch(password, passwordRepeat)
     validate.callback(callback)
 
     const xhr = new XMLHttpRequest

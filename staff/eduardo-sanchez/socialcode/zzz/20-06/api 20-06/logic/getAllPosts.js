@@ -1,11 +1,9 @@
 import data from '../data/index.js'
 import { MatchError } from 'com/errors.js'
 import validate from 'com/validate.js'
-import bcrypt from 'bcryptjs'
 
-const authenticateUser = (username, password, callback) => {
+const getAllPosts = (username, callback) => {
     validate.username(username)
-    validate.password(password)
     validate.callback(callback)
 
     data.findUser(user => user.username === username, (error, user) => {
@@ -21,22 +19,16 @@ const authenticateUser = (username, password, callback) => {
             return
         }
 
-        bcrypt.compare(password, user.password, (error, match) => {
+        data.findPosts(() => true, (error, posts) => {
             if (error) {
-                callback(new SystemError(error.message))
+                callback(error)
 
                 return
             }
 
-            if (!match) {
-                callback(new MatchError('wrong password'))
-
-                return
-            }
-
-            callback(null)
+            callback(null, posts.reverse())
         })
     })
 }
 
-export default authenticateUser
+export default getAllPosts
