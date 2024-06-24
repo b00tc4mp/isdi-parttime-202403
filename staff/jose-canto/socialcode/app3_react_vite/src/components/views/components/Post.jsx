@@ -15,7 +15,7 @@ function Post({ post, onPostDeleted }) {
 
 	const [showConfirmDelete, setShowConfirmDelete] = useState(false)
 	const [like, setLike] = useState(false)
-	const [likeNum, setLikeNum] = useState()
+	const [likeNum, setLikeNum] = useState(0)
 
 	useEffect(() => {
 		setLike(includeUserLike())

@@ -191,12 +191,12 @@ api.delete("/posts/:postId", (req, res) => {
 
 
 api.post("/posts/like/:postId", (req, res) => {
-
-  const token = req.headers.authorization.slice(7)
-  const { sub: username } = jwt.verify(token, JWT_SECRET)
-  const { postId } = req.params
-
   try {
+    const token = req.headers.authorization.slice(7)
+
+    const { sub: username } = jwt.verify(token, JWT_SECRET)
+
+    const { postId } = req.params
 
     logic.toggleLike(username, postId, (error) => {
       if (error) {
