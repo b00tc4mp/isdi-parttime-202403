@@ -54,12 +54,5 @@
         "email": "pablo@picasso.com",
         "username": "PabloP",
         "password": "$2a$08$UFSFpsfswc.jmgZtLVTLI.PXz0eNMrQW6DI/y/jNIdif2q8C2b4Te"
-    },
-    {
-        "name": "James",
-        "surname": "Hook",
-        "email": "james@hook.com",
-        "username": "jameshook",
-        "password": "$2a$10$als5ALhJ0eaUX5cgfD.EFOuPZAYu1AmmZY76aNWn5ZHP6/ty1XwEq"
     }
 ]
