@@ -1,6 +1,7 @@
 import data from "../data/data.js";
 import { SystemError, DuplicityError, ContentError } from "com/errors.js";
 import validate from "com/validate.js";
+import bcrypt from "bcryptjs";
 
 const createUser = (
   name,
@@ -29,9 +30,8 @@ const createUser = (
   validate.matchingPasswords(password, repeatedPassword);
 
   return (async () => {
-    let existingUser;
+    let existingUser, hash;
 
-    // check if user exists
     try {
       existingUser = await data.findUser((user) => user.username === username);
     } catch (error) {
@@ -42,12 +42,18 @@ const createUser = (
       throw new DuplicityError("Username already exists");
     }
 
+    try {
+      hash = await bcrypt.hash(password, 8);
+    } catch (error) {
+      throw new SystemError(error.message);
+    }
+
     const userData = {
       name,
       surname,
       email,
       username,
-      password,
+      password: hash,
     };
 
     try {

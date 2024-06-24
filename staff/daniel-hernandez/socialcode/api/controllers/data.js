@@ -159,7 +159,7 @@ const authUser = async (req, res) => {
   try {
     await logic.authenticateUser(username, password);
     const token = jwt.sign({ sub: username }, "super secret", {
-      expiresIn: "1h",
+      expiresIn: "8h",
     });
 
     res.status(200).json({ token });
