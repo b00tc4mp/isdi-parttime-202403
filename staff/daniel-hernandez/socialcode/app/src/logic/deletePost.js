@@ -21,7 +21,7 @@ const deletePost = (id, callback) => {
     callback(new constructor(message));
   };
 
-  xhr.open("DELETE", `http://localhost:8080/posts/${id}`);
+  xhr.open("DELETE", `${import.meta.env.VITE_API_URL}/posts/${id}`);
 
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
   xhr.send();

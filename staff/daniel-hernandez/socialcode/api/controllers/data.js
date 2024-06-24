@@ -2,12 +2,13 @@ import logic from "../logic/index.js";
 import jwt from "jsonwebtoken";
 const { JsonWebTokenError, TokenExpiredError } = jwt;
 import { SystemError } from "com/errors.js";
+const { JWT_SECRET } = process.env;
 // TODO: async wrapper
 
 const getPosts = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: username } = jwt.verify(token, "super secret");
+    const { sub: username } = jwt.verify(token, JWT_SECRET);
 
     const posts = await logic.getPosts(username);
     res.status(200).json({ posts });
@@ -29,23 +30,10 @@ const getPosts = async (req, res) => {
   }
 };
 
-// NOTE: unused
-const getUsers = async (req, res) => {
-  try {
-    const users = await logic.getUsers();
-    res.status(200).json({ data: users });
-  } catch (error) {
-    res.status(500).json({
-      error: error.constructor.name,
-      message: error.message,
-    });
-  }
-};
-
 const createPost = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: username } = jwt.verify(token, "super secret");
+    const { sub: username } = jwt.verify(token, JWT_SECRET);
     const { title, image, description } = req.body;
 
     await logic.createPost(username, title, image, description);
@@ -93,7 +81,7 @@ const createUser = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: username } = jwt.verify(token, "super secret");
+    const { sub: username } = jwt.verify(token, JWT_SECRET);
     const { targetUsername } = req.params;
 
     const name = await logic.getUsersName(username, targetUsername);
@@ -117,23 +105,10 @@ const getUser = async (req, res) => {
   }
 };
 
-// NOTE: unused
-const getPost = async (req, res) => {
-  try {
-    const post = await logic.getPost(req.params.id);
-    res.status(200).json({ post });
-  } catch (error) {
-    res.status(500).json({
-      error: error.constructor.name,
-      message: error.message,
-    });
-  }
-};
-
 const deletePost = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: username } = jwt.verify(token, "super secret");
+    const { sub: username } = jwt.verify(token, JWT_SECRET);
     const { postID } = req.params;
 
     await logic.deletePost(username, postID);
@@ -158,7 +133,7 @@ const authUser = async (req, res) => {
 
   try {
     await logic.authenticateUser(username, password);
-    const token = jwt.sign({ sub: username }, "super secret", {
+    const token = jwt.sign({ sub: username }, JWT_SECRET, {
       expiresIn: "8h",
     });
 
@@ -171,13 +146,4 @@ const authUser = async (req, res) => {
   }
 };
 
-export {
-  getPosts,
-  getUsers,
-  createUser,
-  createPost,
-  getUser,
-  getPost,
-  deletePost,
-  authUser,
-};
+export { getPosts, createUser, createPost, getUser, deletePost, authUser };

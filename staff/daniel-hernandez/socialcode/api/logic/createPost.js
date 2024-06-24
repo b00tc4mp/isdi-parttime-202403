@@ -9,6 +9,7 @@ const createPost = (username, title, image, description) => {
     return timestamp + random;
   }
 
+  validate.username(username);
   validate.text(title, "Title", 50);
   validate.url(image, "Image");
   validate.text(description, "Description", 200);

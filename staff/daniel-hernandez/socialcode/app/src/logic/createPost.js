@@ -19,10 +19,11 @@ const createPost = (title, image, description, callback) => {
     const { error, message } = JSON.parse(xhr.response);
     const constructor = errors[error];
 
+    console.log(error, message);
     callback(new constructor(message));
   };
 
-  xhr.open("POST", "http://localhost:8080/posts");
+  xhr.open("POST", `${import.meta.env.VITE_API_URL}/posts`);
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
 
   const body = {

@@ -1,7 +1,9 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 // TODO: configure cors
 const api = express();
+const { PORT } = process.env;
 
 //middleware
 // TODO: error handler middleware (works in tandem with custom error and async wrapper)
@@ -15,4 +17,4 @@ api.use("/", datarouter);
 api.use(notFound);
 // api.use(errorHandler)
 
-api.listen(8080, () => console.log("server up"));
+api.listen(PORT, () => console.log(`server listening on port: ${PORT}`));

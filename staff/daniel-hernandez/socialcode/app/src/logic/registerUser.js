@@ -45,7 +45,7 @@ const registerUser = (
     callback(new constructor(message));
   };
 
-  xhr.open("POST", "http://localhost:8080/users");
+  xhr.open("POST", `${import.meta.env.VITE_API_URL}/users`);
 
   const body = { name, surname, email, username, password, repeatedPassword };
 
