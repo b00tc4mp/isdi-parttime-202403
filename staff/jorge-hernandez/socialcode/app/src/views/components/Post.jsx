@@ -1,9 +1,21 @@
 import Image from '../../components/core/Image'
 import Heading from '../../components/core/Heading'
+import Button from '../../components/core/Button'
+import Text from '../../components/core/Text'
 import './Post.css'
 import logic from '../../logic'
 
 function Post({ post, onPostDeleted }) {
+  const date = new Date(post.date)
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  }
+  const formattedDate = date.toLocaleDateString(undefined, options)
+
   const handleDeletePost = (postId) => {
     if (confirm('Are you sure you want to delete this post?'))
       try {
@@ -26,22 +38,30 @@ function Post({ post, onPostDeleted }) {
   }
 
   return (
-    <article>
-      <p>{post.author}</p>
+    <article className='Post'>
+      <Text>{post.author}</Text>
 
       <Heading level='2'>{post.title}</Heading>
 
       <Image src={post.image} />
 
-      <p>{post.description}</p>
+      <Text>{post.description}</Text>
 
-      <time>{post.date}</time>
+      <div className='button-container'>
+        <time className='Time'>{formattedDate}</time>
 
-      {post.author === logic.getUserUsername() && (
-        <button className='Button' onClick={() => handleDeletePost(post.id)}>
-          Delete
-        </button>
-      )}
+        {post.author === logic.getUserUsername() && (
+          <Button
+            className='Button delete'
+            title='Delete Post'
+            onClick={() => handleDeletePost(post.id)}
+          >
+            x
+          </Button>
+        )}
+      </div>
+
+      <hr className='custom-hr' />
     </article>
   )
 }

@@ -43,7 +43,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
   }
 
   return (
-    <View tag='main'>
+    <View className='View center' tag='main'>
       <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
         <Title>Login</Title>
         <Field id='username' placeholder='username'>

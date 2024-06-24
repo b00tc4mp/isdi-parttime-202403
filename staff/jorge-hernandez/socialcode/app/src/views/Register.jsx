@@ -58,7 +58,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
   }
 
   return (
-    <View tag='main'>
+    <View className='View center' tag='main'>
       <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
         <Title>Register</Title>
         <Field id='name' placeholder='name'>

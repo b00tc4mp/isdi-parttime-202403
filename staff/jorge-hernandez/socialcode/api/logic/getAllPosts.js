@@ -1,7 +1,11 @@
 import data from '../data/index.js'
 import { MatchError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const getAllPosts = (username, callback) => {
+    validate.username(username)
+    validate.callback(callback)
+
     data.findUser(user => user.username === username, (error, user) => {
         if (error) {
             callback(error)

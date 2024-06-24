@@ -2,12 +2,10 @@
     display: flex;
     justify-content: right;
     align-items: center;
-    background: linear-gradient(to bottom, #07273b, #214c5b);
+    background: linear-gradient(to bottom, #07273b91, #214c5b99);
     width: 100%;
     position: fixed;
     top: 0;
-    padding: .2rem;
-    padding-right: .5rem;
-    box-sizing: border-box;
+    padding: .1rem;
     border-bottom: 1px solid blue;
 }

@@ -2,6 +2,7 @@ import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
 import { SystemError } from 'com/errors.js'
+import 'dotenv/config'
 
 import jwt from 'jsonwebtoken'
 
@@ -45,7 +46,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            const token = jwt.sign({ sub: username }, 'Hola Mundo', { expiresIn: '1d' })
+            const token = jwt.sign({ sub: username }, process.env.JWT_SECRET, { expiresIn: '1d' })
 
             res.json(token)
         })
@@ -57,7 +58,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
 api.get('/users/:targetUsername', (req, res) => {
     const token = req.headers.authorization.slice(7)
 
-    const { sub: username } = jwt.verify(token, 'Hola Mundo')
+    const { sub: username } = jwt.verify(token, process.env.JWT_SECRET)
 
     const { targetUsername } = req.params
 
@@ -80,7 +81,7 @@ api.get('/posts', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'Hola Mundo')
+        const { sub: username } = jwt.verify(token, process.env.JWT_SECRET)
 
         logic.getAllPosts(username, (error, posts) => {
             if (error) {
@@ -104,7 +105,7 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 
     const token = req.headers.authorization.slice(7)
 
-    const { sub: username } = jwt.verify(token, 'Hola Mundo')
+    const { sub: username } = jwt.verify(token, process.env.JWT_SECRET)
 
     const { title, image, description } = req.body
     try {
@@ -127,7 +128,7 @@ api.delete('/posts/:postId', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'Hola Mundo')
+        const { sub: username } = jwt.verify(token, process.env.JWT_SECRET)
 
         const { postId } = req.params
         logic.deletePost(username, postId, error => {
@@ -144,4 +145,4 @@ api.delete('/posts/:postId', (req, res) => {
     }
 })
 
-api.listen(8080, () => console.log('api is up'))
+api.listen(process.env.PORT, () => console.log(`api is up in port ${process.env.PORT}`))

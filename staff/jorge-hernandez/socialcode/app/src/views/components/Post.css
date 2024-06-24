@@ -1,20 +1,39 @@
 .Post{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(0, 0, 255, 0.225);
+    border: 1px solid white;
+    border-radius: 30px;
+    margin: 1rem;
+    padding: 1.5rem;
+    width: 75%;
+    box-shadow: 0 0 10px black;
+    background: linear-gradient(to bottom, #1e6091, #3f9bd8);
 }
 
-.Post h2{
-    margin: 2px;
-    font-size: 3vw;
+.Button.delete{
+    background-color: rgba(255, 0, 0, 0.51);
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: .8rem;
+    border-radius: 100%;
+    position: relative; 
+      
+}
+
+.Time{
+    font-size: .8rem;
+    position: relative;
+    left: .5rem
     
 }
 
-.Post p{
-    margin-top: .2rem;
-    margin-bottom: .1rem;
-    font-size: 18px;
-    float: left;
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.custom-hr{
+    border-color: blue;
+    margin-top: 1.5rem;
 }

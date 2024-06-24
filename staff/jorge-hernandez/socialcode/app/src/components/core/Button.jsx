@@ -1,9 +1,10 @@
 import './Button.css'
 
-function Button({ type, className, onClick, children }) {
+function Button({ type, className, title, onClick, children }) {
   return (
     <button
       className={`Button ${className ? className : ''}`}
+      title={`${title ? title : ''}`}
       type={type}
       onClick={onClick}
     >

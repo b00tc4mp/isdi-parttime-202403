@@ -1,3 +1,5 @@
+import './PostList.css'
+
 import { useEffect, useState } from 'react'
 import View from '../../components/library/View'
 import Post from './Post'

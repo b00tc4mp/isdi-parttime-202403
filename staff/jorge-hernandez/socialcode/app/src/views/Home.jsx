@@ -27,7 +27,6 @@ function Home({ onUserLoggedOut }) {
 
   useEffect(() => {
     console.log('Home -> useEffect')
-    // setTimeout(() => {
     try {
       logic.getUserName((error, name) => {
         if (error) {
@@ -47,7 +46,6 @@ function Home({ onUserLoggedOut }) {
 
       alert(error.message)
     }
-    // }, 10000)
   }, [])
 
   const handleCreatePostClick = () => setView('create-post')
@@ -67,7 +65,7 @@ function Home({ onUserLoggedOut }) {
         <Button onClick={handleLogout}>Logout</Button>
       </Header>
 
-      <View tag='main'>
+      <View className='View center' tag='main'>
         <PostList refreshStamp={postListRefreshStamp} />
 
         {view === 'create-post' && (
