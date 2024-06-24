@@ -1,4 +1,4 @@
-import Text from "./Atomic/Text.jsx";
+import Text from "./atomic/Text.jsx";
 
 function FeedbackForm({
   formClassName,

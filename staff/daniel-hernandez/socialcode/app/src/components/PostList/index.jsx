@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
-import logic from "../../logic.js";
-import Section from "../Atomic/Section.jsx";
-import Post from "../Atomic/Post/index.jsx";
+import logic from "../../logic/index";
+import Section from "../atomic/Section.jsx";
+import Post from "../atomic/Post/index.jsx";
 import ConfirmDialog from "../ConfirmDialog/index.jsx";
 
 function PostList({ refreshTimeStamp }) {

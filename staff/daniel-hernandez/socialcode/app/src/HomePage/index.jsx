@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
-import Header from "../Components/Header/index.jsx";
-import PostList from "../Components/PostList/index.jsx";
-import CreatePostForm from "../Components/CreatePostForm/index.jsx";
-import Footer from "../Components/Footer/index.jsx";
+import Header from "../components/Header/index.jsx";
+import PostList from "../components/PostList/index.jsx";
+import CreatePostForm from "../components/CreatePostForm/index.jsx";
+import Footer from "../components/Footer/index.jsx";
 import styles from "./index.module.css";
-import Container from "../Components/Atomic/Container.jsx";
-import Main from "../Components/Atomic/Main.jsx";
+import Container from "../components/atomic/Container.jsx";
+import Main from "../components/atomic/Main.jsx";
 
 function HomePage() {
   const mainRef = useRef(null);

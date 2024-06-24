@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
-import logic from "../../logic";
+import logic from "../../logic/index";
 import errors from "../../errors";
 const { ContentError } = errors;
-import Container from "../Atomic/Container.jsx";
+import Container from "../atomic/Container.jsx";
 import FeedbackForm from "../FeedbackForm.jsx";
-import Field from "../Atomic/Field.jsx";
-import Button from "../Atomic/Button.jsx";
-import SubmitButton from "../Atomic/SubmitButton.jsx";
+import Field from "../atomic/Field.jsx";
+import Button from "../atomic/Button.jsx";
+import SubmitButton from "../atomic/SubmitButton.jsx";
 
 function CreatePostForm({ onPostCreated, onCancel }) {
   const [feedback, setFeedback] = useState("");

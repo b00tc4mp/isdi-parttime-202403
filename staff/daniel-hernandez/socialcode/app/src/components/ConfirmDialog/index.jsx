@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import styles from "./index.module.css";
-import Button from "../Atomic/Button.jsx";
+import Button from "../atomic/Button.jsx";
 
 function ConfirmDialog({ dialog, onConfirm, onCancel }) {
   const dialogRef = useRef(null);

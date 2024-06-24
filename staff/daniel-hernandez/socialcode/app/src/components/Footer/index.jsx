@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
-import Container from "../Atomic/Container.jsx";
-import Button from "../Atomic/Button.jsx";
+import Container from "../atomic/Container.jsx";
+import Button from "../atomic/Button.jsx";
 
 function Footer({ onAddPost, onScroll }) {
   return (

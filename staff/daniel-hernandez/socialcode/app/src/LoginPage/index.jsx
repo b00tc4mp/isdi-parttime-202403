@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import styles from "./index.module.css";
-import logic from "../logic";
+import logic from "../logic/index";
 import ViewContext from "../ViewContext.jsx";
-import Container from "../Components/Atomic/Container.jsx";
-import Title from "../Components/Atomic/Title.jsx";
-import FeedbackForm from "../Components/FeedbackForm.jsx";
-import Field from "../Components/Atomic/Field.jsx";
-import SubmitButton from "../Components/Atomic/SubmitButton.jsx";
-import Link from "../Components/Atomic/Link.jsx";
+import Container from "../components/atomic/Container.jsx";
+import Title from "../components/atomic/Title.jsx";
+import FeedbackForm from "../components/FeedbackForm.jsx";
+import Field from "../components/atomic/Field.jsx";
+import SubmitButton from "../components/atomic/SubmitButton.jsx";
+import Link from "../components/atomic/Link.jsx";
 
 function LoginPage() {
   const { setView } = useContext(ViewContext);

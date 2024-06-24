@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import styles from "./index.module.css";
-import logic from "../../logic";
+import logic from "../../logic/index";
 import ViewContext from "../../ViewContext.jsx";
-import Container from "../Atomic/Container.jsx";
-import Text from "../Atomic/Text.jsx";
-import Button from "../Atomic/Button.jsx";
+import Container from "../atomic/Container.jsx";
+import Text from "../atomic/Text.jsx";
+import Button from "../atomic/Button.jsx";
 
 function Header() {
   const { setView } = useContext(ViewContext);

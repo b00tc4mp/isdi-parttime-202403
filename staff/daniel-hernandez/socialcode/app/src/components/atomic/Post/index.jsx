@@ -1,5 +1,5 @@
 import styles from "./index.module.css";
-import logic from "../../../logic.js";
+import logic from "../../../logic/index";
 import Article from "../Article.jsx";
 import Heading from "../Heading.jsx";
 import Text from "../Text.jsx";
