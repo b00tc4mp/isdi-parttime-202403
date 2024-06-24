@@ -32,12 +32,6 @@
 🐖 curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXBpdG9ncmlsbG8iLCJpYXQiOjE3MTg3MzMyOTAsImV4cCI6MTcxODczNjg5MH0.wRhT3s-62X7hS3oxH0cMAulEy7smhzyVpibkvfLjXFQ" http://localhost:8080/posts -v
 ```
 
-- list posts
-
-```sh
-🐖 curl http://localhost:8080/posts -v
-```
-
 - create post
 
 ```sh

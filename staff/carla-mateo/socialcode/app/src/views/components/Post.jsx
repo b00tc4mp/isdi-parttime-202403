@@ -3,9 +3,10 @@ import Heading from '../../components/core/Heading'
 import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
 import Time from '../../components/core/Time'
+import View from '../../components/library/View'
 
 import logic from '../../logic'
-import View from '../../components/library/View'
+
 
 function Post({ post, onPostDeleted }) {
     console.log('Post -> render')
@@ -45,7 +46,7 @@ function Post({ post, onPostDeleted }) {
         <View direction="row">
             <Time>{post.date}</Time>
 
-            {post.author === logic.getLoggedInUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
+            {post.author === logic.getUserUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
         </View>
     </View>
 }
