@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import View from '../components/library/View'
 
 import Header from './components/Header'
+import Title from '../components/core/Title'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
@@ -24,7 +25,7 @@ function Home({ onUserLoggedOut }) {
         logic.logoutUser()
 
         onUserLoggedOut()
-        alert('see you soon!')
+        alert('see you soon! 🖖🏻')
     }
 
     useEffect(() => {
@@ -64,8 +65,9 @@ function Home({ onUserLoggedOut }) {
 
     return <View>
         <Header>
-            <Heading level="3">{name}</Heading>
-            <Button onClick={handleLogout}>🖖🏻</Button>
+            <div className="Home"><Title>SocialCode</Title></div>
+            <div className="UserName"><Heading level="3">👋🏻 Welcome {name} ! !</Heading></div>
+            <div className="Logout"><Button onClick={handleLogout}>Bye Bye 😴</Button></div>
         </Header>
 
         <View tag="main">

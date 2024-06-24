@@ -5,6 +5,8 @@ import Text from '../../components/core/Text'
 import Time from '../../components/core/Time'
 import View from '../../components/library/View'
 
+import './Post.css'
+
 import logic from '../../logic'
 
 function Post({ post, onPostDeleted }) {

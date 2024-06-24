@@ -5,4 +5,5 @@
     left: 0;
     box-sizing: border-box;
     background-color: var(--second-color);
+    background: linear-gradient(#000000, #373737);
 }

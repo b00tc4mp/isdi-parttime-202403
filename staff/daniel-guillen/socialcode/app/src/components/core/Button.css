@@ -5,5 +5,6 @@
     font-size: 150%;  
     border: 1px solid var(--first-color);
     border-radius: 5px;
-    cursor: pointer;    
+    cursor: pointer;
+    background: linear-gradient(cyan, rgb(82, 107, 107), black);
 }
