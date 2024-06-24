@@ -4,7 +4,7 @@ import validate from "com/validate"
 const createPost = (title, image, description, callback) => {
     validate.text(title, "title", 50)
     validate.url(image, "image")
-    validate.text(description, "description", 200)
+    validate.text(description, "description", 500)
     validate.callback(callback)
 
     const xhr = new XMLHttpRequest

@@ -1,8 +1,6 @@
 import data from "../data/index.js" // importamos el objeto data
-import { ContentError, MatchError, SystemError } from "com/errors.js"
+import { ContentError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
-import bcrypt from "bcryptjs"
-
 
 // cambiamos el nombre de loginUser a authentication, ya que no cuardamos estado sesion, no guardamos datos, solo validamos. Las APIs son stateless
 const authenticateUser = (username, password, callback) => {
@@ -24,25 +22,11 @@ const authenticateUser = (username, password, callback) => {
             return
         }
 
-       /*  if (user.password !== password) {
+        if (user.password !== password) {
             callback(new MatchError("wrong password"))
 
             return
-        } */
-
-        //compara el hash almacenado con el pasword que recibe el usuario
-        bcrypt.compare(password, user.password, (error, match) => {
-            if (error) {
-                callback(new SystemError(error.message))
-
-                return
-            }
-            if (!match) {
-                callback(new MatchError("wrong password"))
-
-                return
-            }
-        })
+        }
 
         // si la autentificacion va bien mandamos error->null
         callback(null)

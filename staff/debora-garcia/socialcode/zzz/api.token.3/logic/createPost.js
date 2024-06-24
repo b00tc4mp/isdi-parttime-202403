@@ -8,7 +8,7 @@ const createPost = (username, title, image, description, callback) => {
     validate.username(username)
     validate.text(title, "title", 50)
     validate.url(image, "image")
-    validate.text(description, "description", 500)
+    validate.text(description, "description", 200)
     validate.callback(callback)
 
     //validamos si el usuario existe primero antes de insertar el post

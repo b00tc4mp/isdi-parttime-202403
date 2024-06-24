@@ -46,7 +46,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
                 onPostCreated()
             })
 
-        } catch {
+        } catch (error) {
             console.error(error)
 
             //alert(error.message)
