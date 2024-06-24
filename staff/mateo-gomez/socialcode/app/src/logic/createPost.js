@@ -5,7 +5,7 @@ import validate from 'com/validate.js'
 const createPost = (title, image, description, callback) => {
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
-    validate.text(description, 'deescription', 300)
+    validate.text(description, 'description', 300)
     validate.callback(callback)
 
 

@@ -18,7 +18,7 @@ function validateSurname(surname, explain = 'surname') {
 
 function validateUserName(username, explain = 'username') {
     if (typeof username !== 'string' || !USERNAME_REGEX.test(username))
-        throw new ContentError(`${explain} username is not valid`)
+        throw new ContentError(`${explain} is not valid`)
 }
 
 function validatePassword(password) {
@@ -43,13 +43,13 @@ function validateEmail(email) {
 }
 
 function validateText(text, explain = 'text', maxLength = Infinity) {
-    if (typeof text !== 'string' || !title.length || text.length > maxLength) {
+    if (typeof text !== 'string' || !text.length || text.length > maxLength) {
         throw new ContentError(`${explain} is not valid`)
     }
 }
 
 function validateURL(url, explain = 'url') {
-    if (typeof url !== 'string' || !image.startsWith('http')) {
+    if (typeof url !== 'string' || !url.startsWith('http')) {
         throw new ContentError(`${explain} is not valid`)
     }
 }
