@@ -1,11 +1,6 @@
-import errors from "../errors";
-const { ContentError, MatchError } = errors;
-
-const EMAIL_REGEX =
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
-const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/;
+import errors from "com/errors";
+import validate from "com/validate";
+const { ContentError } = errors;
 
 const registerUser = (
   name,
@@ -16,7 +11,6 @@ const registerUser = (
   repeatedPassword,
   callback,
 ) => {
-  // check if all fields are full
   if (
     !name ||
     !surname ||
@@ -28,37 +22,13 @@ const registerUser = (
     throw new ContentError("All fields are required");
   }
 
-  if (!NAME_REGEX.test(name)) {
-    throw new ContentError("Name is not valid");
-  }
-
-  if (!NAME_REGEX.test(surname)) {
-    throw new ContentError("Surname is not valid");
-  }
-
-  if (!EMAIL_REGEX.test(email)) {
-    throw new ContentError("Email is not valid");
-  }
-
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError("Username is not valid");
-  }
-
-  if (!PASSWORD_REGEX.test(password)) {
-    throw new ContentError("Password is not valid");
-  }
-
-  if (password.length < 8) {
-    throw new ContentError("Password should be at least 8 characters long");
-  }
-
-  if (password !== repeatedPassword) {
-    throw new MatchError("Passwords do not match");
-  }
-
-  if (typeof callback !== "function") {
-    throw new TypeError("callback is not a function");
-  }
+  validate.name(name);
+  validate.name(surname, "Surname");
+  validate.email(email);
+  validate.username(username);
+  validate.password(password);
+  validate.matchingPasswords(password, repeatedPassword);
+  validate.callback(callback);
 
   const xhr = new XMLHttpRequest();
 
@@ -73,10 +43,6 @@ const registerUser = (
     const constructor = errors[error];
 
     callback(new constructor(message));
-  };
-
-  xhr.onerror = () => {
-    callback(new SystemError("Network error: Unable to reach the server."));
   };
 
   xhr.open("POST", "http://localhost:8080/users");

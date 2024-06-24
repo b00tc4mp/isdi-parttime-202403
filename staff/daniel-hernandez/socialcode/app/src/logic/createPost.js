@@ -1,23 +1,11 @@
-import errors from "../errors";
-const { ContentError } = errors;
+import errors from "com/errors";
+import validate from "com/validate";
 
 const createPost = (title, image, description, callback) => {
-  if (typeof title !== "string" || !title.length || title.length > 50) {
-    throw new ContentError("Title is not valid.");
-  }
-  if (typeof image !== "string" || !image.startsWith("http")) {
-    throw new ContentError("Image is not valid.");
-  }
-  if (
-    typeof description !== "string" ||
-    !description.length ||
-    description.length > 200
-  ) {
-    throw new ContentError("Description is not valid.");
-  }
-  if (typeof callback !== "function") {
-    throw new TypeError("callback is not a function");
-  }
+  validate.text(title, "Title", 50);
+  validate.url(image, "Image");
+  validate.text(description, "Description", 200);
+  validate.callback(callback);
 
   const xhr = new XMLHttpRequest();
 
@@ -32,10 +20,6 @@ const createPost = (title, image, description, callback) => {
     const constructor = errors[error];
 
     callback(new constructor(message));
-  };
-
-  xhr.onerror = () => {
-    callback(new SystemError("Network error: Unable to reach the server."));
   };
 
   xhr.open("POST", "http://localhost:8080/posts");

@@ -1,9 +1,8 @@
-import errors from "../errors";
+import errors from "com/errors";
+import validate from "com/validate";
 
 const getAllPosts = (callback) => {
-  if (typeof callback !== "function") {
-    throw new TypeError("callback is not a function");
-  }
+  validate.callback(callback);
 
   const xhr = new XMLHttpRequest();
 
@@ -20,10 +19,6 @@ const getAllPosts = (callback) => {
     const constructor = errors[error];
 
     callback(new constructor(message));
-  };
-
-  xhr.onerror = () => {
-    callback(new SystemError("Network error: Unable to reach the server."));
   };
 
   xhr.open("GET", "http://localhost:8080/posts");

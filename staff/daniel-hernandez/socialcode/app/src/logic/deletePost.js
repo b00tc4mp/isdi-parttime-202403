@@ -1,15 +1,9 @@
-import errors from "../errors";
-const { ContentError } = errors;
-
-const ID_REGEX = /^[a-z0-9]+[a-z0-9]{5}$/;
+import errors from "com/errors";
+import validate from "com/validate";
 
 const deletePost = (id, callback) => {
-  if (!ID_REGEX.test(id)) {
-    throw new ContentError("post ID is not valid");
-  }
-  if (typeof callback !== "function") {
-    throw new TypeError("callback is not a function");
-  }
+  validate.id(id, "post ID");
+  validate.callback(callback);
 
   const xhr = new XMLHttpRequest();
 
@@ -25,10 +19,6 @@ const deletePost = (id, callback) => {
     const constructor = errors[error];
 
     callback(new constructor(message));
-  };
-
-  xhr.onerror = () => {
-    callback(new SystemError("Network error: Unable to reach the server."));
   };
 
   xhr.open("DELETE", `http://localhost:8080/posts/${id}`);

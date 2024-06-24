@@ -1,21 +1,10 @@
-import errors from "../errors";
-const { ContentError } = errors;
-
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
+import errors from "com/errors";
+import validate from "com/validate";
 
 const loginUser = (username, password, callback) => {
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError("username is not valid");
-  }
-
-  if (!PASSWORD_REGEX.test(password)) {
-    throw new ContentError("password is not valid");
-  }
-
-  if (typeof callback !== "function") {
-    throw new TypeError("callback is not a function");
-  }
+  validate.username(username, "Username");
+  validate.password(password);
+  validate.callback(callback);
 
   const xhr = new XMLHttpRequest();
 
@@ -33,11 +22,6 @@ const loginUser = (username, password, callback) => {
     const constructor = errors[error];
 
     callback(new constructor(message));
-  };
-
-  xhr.onerror = () => {
-    callback(new SystemError("Network error: Unable to reach the server."));
-    console.error("Network error: Unable to reach the server.");
   };
 
   xhr.open("POST", "http://localhost:8080/users/auth");

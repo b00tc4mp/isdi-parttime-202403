@@ -1,7 +1,7 @@
-import logic from "../logic/logic.js";
+import logic from "../logic/index.js";
 import jwt from "jsonwebtoken";
 const { JsonWebTokenError, TokenExpiredError } = jwt;
-import { SystemError } from "../errors/errors.js";
+import { SystemError } from "com/errors.js";
 // TODO: async wrapper
 
 const getPosts = async (req, res) => {

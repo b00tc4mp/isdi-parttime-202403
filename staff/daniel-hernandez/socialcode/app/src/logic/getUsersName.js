@@ -1,11 +1,10 @@
-import errors from "../errors";
+import errors from "com/errors";
+import validate from "com/validate";
 import extractPayload from "../utils/extractPayload";
 
 // NOTE: unused
 const getUsersName = (callback) => {
-  if (typeof callback !== "function") {
-    throw new TypeError("callback is not a function");
-  }
+  validate.callback(callback);
 
   const { sub: username } = extractPayload(sessionStorage.token);
 
@@ -24,10 +23,6 @@ const getUsersName = (callback) => {
     const constructor = errors[error];
 
     callback(new constructor(message));
-  };
-
-  xhr.onerror = () => {
-    callback(new SystemError("Network error: Unable to reach the server."));
   };
 
   xhr.open("GET", `http://localhost:8080/users/${username}`);

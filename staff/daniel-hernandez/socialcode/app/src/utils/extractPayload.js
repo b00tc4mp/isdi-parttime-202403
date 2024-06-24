@@ -1,4 +1,4 @@
-import errors from "../errors";
+import errors from "com/errors";
 const { ContentError, MatchError } = errors;
 
 const JWT_REGEX = /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/;

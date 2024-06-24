@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
 import logic from "../../logic/index";
-import errors from "../../errors";
+import errors from "com/errors.js";
 const { ContentError } = errors;
 import Container from "../atomic/Container.jsx";
 import FeedbackForm from "../FeedbackForm.jsx";
