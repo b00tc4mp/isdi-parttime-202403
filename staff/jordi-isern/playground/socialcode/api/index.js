@@ -47,7 +47,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            const token = jwt.sign({sub: username}, 'voy a ir al granada fest', {expiresIn:'1h'})
+            const token = jwt.sign({sub: username}, process.emv.JWT_SECRET, {expiresIn:'1h'})
 
             res.json(token)
         })
@@ -62,7 +62,7 @@ api.get('/users/:targetUsername', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const {sub: username} = jwt.verify(token,'voy a ir al granada sound' )
+        const {sub: username} = jwt.verify(token,process.emv.JWT_SECRET )
 
         const { targetUsername } = req.params
         
@@ -84,7 +84,7 @@ api.get('/posts', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const {sub: username } = jwt.verify(token, 'voy a ir al granada sound')
+        const {sub: username } = jwt.verify(token, process.emv.JWT_SECRET)
 
         logic.getAllPosts(username, (error, posts) => {
             if (error) {
@@ -107,7 +107,7 @@ api.post('/posts', jsonBodyParser, (req, res) => {
 
         const token = req.headers.authorization.slice(7)
         
-        const {sub: username} = jwt.verify(token,'voy a ir al granada sound' )
+        const {sub: username} = jwt.verify(token, process.emv.JWT_SECRET)
 
         const { title, image, description } = req.body
         logic.createPost(username, title, image, description, error => {
@@ -132,7 +132,7 @@ api.delete('/posts/:postId', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        const {sub:username} = jwt.verify(token, 'voy a ir  al granda sound')
+        const {sub:username} = jwt.verify(token, process.emv.JWT_SECRET)
 
         const { postId } = req.params
     
@@ -150,4 +150,4 @@ api.delete('/posts/:postId', (req, res) => {
     }
 })
 
-api.listen(8080, () => console.log('api is up'))
+api.listen(process.emv.PORT, () => console.log('api is up'))
