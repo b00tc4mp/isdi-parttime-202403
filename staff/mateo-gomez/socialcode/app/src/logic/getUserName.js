@@ -29,7 +29,7 @@ const getUserName = callback => {
 
         callback(new constructor(message))
     }
-    xhr.open('GET', `http://localhost:8080/users/${username}`)
+    xhr.open('GET', `${import.meta.env.VITE_API_URL}/users/${username}`)
 
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 

@@ -6,6 +6,7 @@ const USERNAME_REGEX = /^[\w-]+$/
 
 
 const createPost = (username, title, image, description, callback) => {
+    validate.username(username)
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
     validate.text(description, 'deescription', 300)
