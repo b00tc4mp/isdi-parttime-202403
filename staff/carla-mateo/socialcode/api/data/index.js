@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { SystemError } from '../errors.js'
+import { SystemError } from 'com/errors.js'
 
 const data = {}
 

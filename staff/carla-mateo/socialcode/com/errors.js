@@ -37,3 +37,11 @@ export {
     SystemError
 }
 
+const errors = {
+    ContentError,
+    MatchError,
+    DuplicityError,
+    SystemError
+}
+
+export default errors
