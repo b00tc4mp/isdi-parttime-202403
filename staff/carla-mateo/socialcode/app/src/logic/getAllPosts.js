@@ -22,7 +22,7 @@ const getAllPosts = callback => {
         callback(new constructor(message))
     }
 
-    xhr.open('GET', 'http://localhost:8080/posts')
+    xhr.open('GET', `${import.meta.env.VITE_API_URL}/posts`)
 
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 
