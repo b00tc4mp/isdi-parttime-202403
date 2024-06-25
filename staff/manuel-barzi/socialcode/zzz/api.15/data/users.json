@@ -54,19 +54,5 @@
         "email": "wendy@darling.com",
         "username": "wendydarling",
         "password": "$2a$08$sp3j5Ak4z53nGRb8VyJCF.kbr.d.OnVrOuqPdOnCggF7OEUZXK/62"
-    },
-    {
-        "name": "Pepito",
-        "surname": "Grillo",
-        "email": "pepito2@grillo.com",
-        "username": "pepito2grillo",
-        "password": "$2a$08$sm3ydymZ6WA3UsIR3rmD1eXK0idgejatvluh7LhCQRG614bst9VYq"
-    },
-    {
-        "name": "Pepito",
-        "surname": "Grillo",
-        "email": "pepito3@grillo.com",
-        "username": "pepito3grillo",
-        "password": "$2a$08$tkuvHWWRnTNmo8rKm8kFdevMM4tMnN4Dwp3cpy1KhyKJEMVXH4Oki"
     }
 ]

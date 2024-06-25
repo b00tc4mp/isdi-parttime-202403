@@ -50,15 +50,9 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
                 return
             }
 
-            jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
-                if (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
+            const token = jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' })
 
-                    return
-                }
-
-                res.json(token)
-            })
+            res.json(token)
         })
     } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -69,28 +63,19 @@ api.get('/users/:targetUsername', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        jwt.verify(token, JWT_SECRET, (error, payload) => {
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
+
+        const { targetUsername } = req.params
+
+        logic.getUserName(username, targetUsername, (error, name) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
-            const { sub: username } = payload
-
-            const { targetUsername } = req.params
-
-            logic.getUserName(username, targetUsername, (error, name) => {
-                if (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                    return
-                }
-
-                res.json(name)
-            })
+            res.json(name)
         })
-
     } catch (error) {
         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
             res.status(500).json({ error: SystemError.name, message: error.message })
@@ -103,24 +88,16 @@ api.get('/posts', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        jwt.verify(token, JWT_SECRET, (error, payload) => {
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
+
+        logic.getAllPosts(username, (error, posts) => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
-            const { sub: username } = payload
-
-            logic.getAllPosts(username, (error, posts) => {
-                if (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                    return
-                }
-
-                res.json(posts)
-            })
+            res.json(posts)
         })
     } catch (error) {
         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
@@ -134,26 +111,18 @@ api.post('/posts', jsonBodyParser, (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        jwt.verify(token, JWT_SECRET, (error, payload) => {
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
+
+        const { title, image, description } = req.body
+
+        logic.createPost(username, title, image, description, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
-            const { sub: username } = payload
-
-            const { title, image, description } = req.body
-
-            logic.createPost(username, title, image, description, error => {
-                if (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                    return
-                }
-
-                res.status(201).send()
-            })
+            res.status(201).send()
         })
     } catch (error) {
         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
@@ -167,26 +136,18 @@ api.delete('/posts/:postId', (req, res) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        jwt.verify(token, JWT_SECRET, (error, payload) => {
+        const { sub: username } = jwt.verify(token, JWT_SECRET)
+
+        const { postId } = req.params
+
+        logic.deletePost(username, postId, error => {
             if (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
-            const { sub: username } = payload
-
-            const { postId } = req.params
-
-            logic.deletePost(username, postId, error => {
-                if (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                    return
-                }
-
-                res.status(204).send()
-            })
+            res.status(204).send()
         })
     } catch (error) {
         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
