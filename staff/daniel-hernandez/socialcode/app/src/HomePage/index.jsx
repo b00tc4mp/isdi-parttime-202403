@@ -36,7 +36,7 @@ function HomePage() {
     <Container className={styles.container}>
       <Header />
       <Main className={styles.mainContent} ref={mainRef}>
-        <PostList refreshTimeStamp={refreshTimeStamp} />
+        <PostList refreshTimeStamp={refreshTimeStamp} mainRef={mainRef} />
         {showCreatePostForm && (
           <CreatePostForm
             onPostCreated={handlePostCreated}

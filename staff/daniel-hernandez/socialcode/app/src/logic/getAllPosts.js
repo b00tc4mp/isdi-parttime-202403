@@ -1,15 +1,15 @@
 import errors from "com/errors";
 import validate from "com/validate";
 
-const getAllPosts = (callback) => {
+const getAllPosts = (page, limit, callback) => {
   validate.callback(callback);
 
   const xhr = new XMLHttpRequest();
 
   xhr.onload = () => {
     if (xhr.status === 200) {
-      const posts = JSON.parse(xhr.response);
-      callback(null, posts);
+      const response = JSON.parse(xhr.response);
+      callback(null, response);
 
       return;
     }
@@ -21,7 +21,10 @@ const getAllPosts = (callback) => {
     callback(new constructor(message));
   };
 
-  xhr.open("GET", `${import.meta.env.VITE_API_URL}/posts`);
+  xhr.open(
+    "GET",
+    `${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`,
+  );
 
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
 
