@@ -28,7 +28,7 @@ const loginUser = (username, password, callback) => {
         callback(new constructor(message))
     }
     //conectamos la app con la api
-    xhr.open("POST", "http://localhost:8080/users/auth")
+    xhr.open("POST", `${import.meta.env.VITE_API_URL}/users/auth`)
 
     const user = { username, password }
 

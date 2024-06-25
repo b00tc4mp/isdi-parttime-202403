@@ -1,11 +1,8 @@
-import "dotenv/config"
 import express from "express"
 import logic from "./logic/index.js"
 import cors from "cors"
 import jwt from "jsonwebtoken"
 import { SystemError } from 'com/errors.js'
-
-const { PORT, JWT_SECRET } = process.env
 
 const { JsonWebTokenError, TokenEpiredError } = jwt
 
@@ -55,7 +52,7 @@ api.post("/users/auth", jsonBodyParser, (req, res) => {
 
                 return
             }
-            const token = jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' })
+            const token = jwt.sign({ sub: username }, "peter and wendy have a rollete", { expiresIn: '1h' })
             // res.send() al devolver un dato especificamos json
             res.json(token)
         })
@@ -71,7 +68,7 @@ api.get("/users/:targetUsername", (req, res) => {
         //validamos el token 
         // si todo va bien el verify devuelve un json convertido a un objeto (payload), que 
         // desestructuramos el objeto y usamos el valor de interes (el sub del token) y lo metemos en la variable username
-        const { sub: username } = jwt.verify(token, JWT_SECRET)
+        const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
 
         const { targetUsername } = req.params
 
@@ -97,7 +94,7 @@ api.get("/posts", (req, res) => {
     //añadimos que pida username para poder accedir a los posts
     const token = req.headers.authorization.slice(7)
 
-    const { sub: username } = jwt.verify(token, JWT_SECRET)
+    const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
     try {
         logic.getPosts(username, (error, posts) => {
             if (error) {
@@ -122,7 +119,7 @@ api.post("/posts", jsonBodyParser, (req, res) => {
 
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, JWT_SECRET)
+        const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
 
         const { title, image, description } = req.body
 
@@ -150,7 +147,7 @@ api.delete("/posts/:postId", (req, res) => {
 
         const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, JWT_SECRET)
+        const { sub: username } = jwt.verify(token, "peter and wendy have a rollete")
 
         const { postId } = req.params
         logic.deletePost(username, postId, error => {
@@ -170,4 +167,4 @@ api.delete("/posts/:postId", (req, res) => {
     }
 })
 
-api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
+api.listen(8080, () => console.log("api is up"))

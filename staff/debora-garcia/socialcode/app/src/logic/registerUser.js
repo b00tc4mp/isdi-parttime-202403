@@ -1,6 +1,7 @@
 import errors from "com/errors"
 import validate from "com/validate"
 
+
 const registerUser = (email, username, password, passwordRepeat, callback) => {
     validate.email(email)
     validate.username(username)
