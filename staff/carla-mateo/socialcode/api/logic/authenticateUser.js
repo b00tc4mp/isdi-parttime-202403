@@ -1,5 +1,5 @@
 import data from '../data/index.js'
-import { MatchError } from 'com/errors.js'
+import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 
@@ -21,13 +21,19 @@ const authenticateUser = (username, password, callback) => {
             return
         }
 
+        bcrypt.compare(password, user.password, (error, match) => {
+            if (error) {
+                callback(new SystemError(error.message))
 
-        if (user.password !== password) {
-            callback(new MatchError('❌ Wrong password'))
+                return
+            }
 
-            return
-        }
+            if (!match) {
+                callback(new MatchError('wrong password'))
 
+                return
+            }
+        })
 
         callback(null)
     })

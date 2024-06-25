@@ -1,7 +1,7 @@
 import logic from './index.js'
 
 try {
-    logic.registerUser('sam', 'sami', 'sam@sami.com', 'samsami', '1234', '1234', error => {
+    logic.registerUser('ana', 'bana', "ana@banana.com", 'banana', '1234', '1234', error => {
         if (error) {
             console.error(error)
 
@@ -14,4 +14,6 @@ try {
 } catch (error) {
     console.error(error)
 }
+
+
 
