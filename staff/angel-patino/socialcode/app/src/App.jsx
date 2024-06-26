@@ -3,7 +3,7 @@ import Register from "./views/Register.jsx"
 import Login from "./views/Login.jsx"
 import Home from "./views/Home.jsx"
 
-import logic from "./logic.js"
+import logic from "./logic"
 
 function App() {
   console.log("App -> paint")

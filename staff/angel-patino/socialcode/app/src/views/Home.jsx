@@ -8,7 +8,7 @@ import Heading from "../components/core/Heading.jsx"
 import Footer from "./components/Footer.jsx"
 import CreatePostForm from "./components/CreatePostForm"
 
-import logic from "../logic.js"
+import logic from "../logic"
 
 function Home({ onUserLoggedOut }) {
   const [name, setName] = useState("")

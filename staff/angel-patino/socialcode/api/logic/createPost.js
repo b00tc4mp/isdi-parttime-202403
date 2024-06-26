@@ -1,4 +1,4 @@
-import data from '../data.index.js'
+import data from '../data/index.js'
 import { MatchError } from 'com/errors.js'
 import validate from 'com/validate.js'
 

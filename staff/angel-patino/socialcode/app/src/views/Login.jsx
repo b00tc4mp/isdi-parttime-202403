@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import logic from "../logic.js"
+import logic from "../logic"
 
 import Field from "../components/core/Field.jsx"
 import SubmitButton from "../components/core/SubmitButton.jsx"
