@@ -30,7 +30,9 @@ const createPost = (username, title, image, description, callback) => {
             title,
             image,
             description,
-            date: new Date().toISOString()
+            date: new Date().toISOString(),
+            likes: 0,
+            liked: []
         }
 
         data.insertPost(post, error => {

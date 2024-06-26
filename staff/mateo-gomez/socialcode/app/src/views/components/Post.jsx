@@ -1,20 +1,35 @@
-import Image from "../../components/core/Image"
-import Heading from '../../components/core/Heading'
-import logic from "../../logic"
-import Button from "../../components/core/Button"
+import { useEffect, useState } from "react"
+import Heading from "../../components/core/Heading"
 import Text from "../../components/core/Text"
+import Image from "../../components/core/Image"
+import Button from "../../components/core/Button"
 import Time from "../../components/core/Time"
 
+import logic from "../../logic"
+
 import './Post.css'
-import View from "../../components/library/View"
+import getLoggedInUsername from "../../logic/getLoggedInUsername"
 
 function Post({ post, onPostDeleted }) {
     console.log('Post -> render')
 
-    const handleDeletePost = postId => {
+    const [like, setLike] = useState(false)
+    const [likeNum, setLikeNum] = useState(0)
+
+    useEffect(() => {
+        setLike(includeUserLike())
+        setLikeNum(post.liked.length)
+    }, [])
+
+    const includeUserLike = () => {
+        const username = getLoggedInUsername()
+        return post.liked.includes(username)
+    }
+
+    const handleDeletePost = () => {
         if (confirm('Delete post?'))
             try {
-                logic.deletePost(postId, error => {
+                logic.deletePost(post.id, error => {
                     if (error) {
                         console.error(error)
 
@@ -33,12 +48,40 @@ function Post({ post, onPostDeleted }) {
             }
     }
 
+    const handleLike = () => {
+        logic.toggleLike(post.id, (error) => {
+            if (error) {
+                console.error(error)
+                return
+            }
+
+            if (like) {
+                setLike(false)
+                setLikeNum(likeNum - 1)
+            } else {
+                setLike(true)
+                setLikeNum(likeNum + 1)
+            }
+        })
+    }
+
+
     return <article className="Post">
         <Text className="AuthorTitle">{post.author}</Text>
 
         <Heading level='2' className="PostTitle">{post.title}</Heading>
 
         <Image className="PostImage" src={post.image} />
+
+
+
+        <div>
+            <Time>{post.date}</Time>
+            <i className={`Likes ${like ? "fa-solid fa-heart" : "fa-regular fa-heart"}`} onClick={handleLike}>
+                <sub>{likeNum}</sub>
+            </i>
+        </div>
+
 
         <Heading level='4' className="DescriptionTitle">
             Description:
@@ -48,11 +91,12 @@ function Post({ post, onPostDeleted }) {
         <Text className="PostDescription">
             {post.description}</Text>
 
-        <Time>{post.date}</Time>
 
-        {post.author === logic.getLoggedInUsername() && <Button className="DeleteButton" onClick={() => handleDeletePost(post.id)}>Delete</Button>}
+
+        {post.author === logic.getLoggedInUsername() && <Button className="DeleteButton" onClick={handleDeletePost}>Delete</Button>}
 
     </article>
 }
+
 
 export default Post

@@ -8,6 +8,7 @@ import isUserLoggedIn from './isUserLoggedIn';
 import getAllPosts from './getAllPosts';
 import createPost from './createPost';
 import deletePost from './deletePost';
+import toggleLike from './toggleLike';
 
 const logic = {
     registerUser,
@@ -16,6 +17,8 @@ const logic = {
     getLoggedInUsername,
     isUserLoggedIn,
     logoutUser,
+
+    toggleLike,
 
     getAllPosts,
     createPost,
