@@ -1,7 +1,15 @@
-    import './Button.css'
-    
-    function Button ({ type, className, onClick, children }) {
-        return <button className={`Button ${className ? className: ''}`} onClick={onClick} type={type}>{children}</button>
-    }
+import "./Button.css"
 
-    export default Button
+function Button({ type, className, onClick, children }) {
+  return (
+    <button
+      className={`Button ${className ? className : ""}`}
+      type={type}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  )
+}
+
+export default Button
