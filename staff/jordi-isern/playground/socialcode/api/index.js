@@ -3,6 +3,10 @@ import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { SystemError } from './error.js'
+import { MongoClient } from 'mongodb'
+
+const client = new MongoClient(MONGODB_URL)
+
 
 const {JsonWebTokenError, TokenExpiredError}  = jwt
 

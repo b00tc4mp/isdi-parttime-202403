@@ -13,7 +13,16 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.password(password)
     validate.passwordMatch(passwordRepeat)
 
-    
+    data.users.findOne({$or: {email, username}})
+        .then(user => {
+            if(user){
+                callback(new DuplicityError('user already exists'))
+
+                return
+            }
+            
+        })
+        .catch(error => console.error(error))
 
     data.findUser(user => user.mail === email || user.username === username, (error, user) => {
         if (error) {
