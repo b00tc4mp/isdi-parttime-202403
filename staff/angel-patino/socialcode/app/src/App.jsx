@@ -1,26 +1,38 @@
-  import { useState } from 'react'
-  import Register from './views/Register.jsx'
-  import Login from './views/Login.jsx'
-  import Home from './views/Home.jsx'
+import { useState } from "react"
+import Register from "./views/Register.jsx"
+import Login from "./views/Login.jsx"
+import Home from "./views/Home.jsx"
 
-  function App() {
-    console.log('App -> paint')
+import logic from "./logic.js"
 
-    const [view, setView] = useState('login')
+function App() {
+  console.log("App -> paint")
 
-    const handleGoToLogin = () => setView('login')
+  const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login")
 
-    const handleGoToHome = () => setView('home')
+  const handleGoToLogin = () => setView("login")
 
-    const handleGoToRegister = () => setView('register')
+  const handleGoToHome = () => setView("home")
 
-    return (
-      <>
-        {view === 'register' && <Register onUserRegistered={handleGoToLogin} onLoginLinkClick={handleGoToLogin} />}
-        {view === 'login' && <Login onUserLoggedIn={handleGoToHome} onRegisterLinkClick={handleGoToRegister} />}
-        {view === 'home' && <Home onUserLoggedOut={handleGoToLogin} />}
-     </>
-    )
-  }
+  const handleGoToRegister = () => setView("register")
 
-  export default App
+  return (
+    <>
+      {view === "register" && (
+        <Register
+          onUserRegistered={handleGoToLogin}
+          onLoginLinkClick={handleGoToLogin}
+        />
+      )}
+      {view === "login" && (
+        <Login
+          onUserLoggedIn={handleGoToHome}
+          onRegisterLinkClick={handleGoToRegister}
+        />
+      )}
+      {view === "home" && <Home onUserLoggedOut={handleGoToLogin} />}
+    </>
+  )
+}
+
+export default App

@@ -1,11 +1,12 @@
 import "./Footer.css"
+
 import Button from "../../components/core/Button"
 
 function Footer({ onCreatePostClick }) {
-  const handleCancelCreatePostClick = () => onCreatePostClick()
+  const handleCreatePostClick = () => onCreatePostClick()
   return (
     <footer className="Footer">
-      <Button onClick={handleCancelCreatePostClick}>✚</Button>
+      <Button onClick={handleCreatePostClick}>✚</Button>
     </footer>
   )
 }

@@ -3,6 +3,7 @@ import Heading from "../../components/core/Heading"
 import Button from "../../components/core/Button"
 import Text from "../../components/core/Text"
 import Time from "../../components/core/Time"
+import View from "../../components/library/View"
 
 import logic from "../../logic"
 
@@ -10,9 +11,11 @@ function Post({ post, onPostDeleted }) {
   const handleDeletePost = () => {
     if (confirm("Delete post?"))
       try {
-        logic.deletePost(postId, (error) => {
+        logic.deletePost(post.id, (error) => {
           if (error) {
             console.error(error)
+
+            alert(error.message)
 
             return
           }
@@ -27,21 +30,25 @@ function Post({ post, onPostDeleted }) {
   }
 
   return (
-    <article>
-      <Text>{post.author}</Text>
+    <View tag="aticle" align="">
+      <View direction="row">
+        <Text>{post.author}</Text>
 
-      <Heading level="2">{post.title}</Heading>
+        <Heading level="2">{post.title}</Heading>
+      </View>
 
       <Image src={post.image} />
 
       <Text>{post.description}</Text>
 
-      <Time>{post.date}</Time>
+      <View direction="row">
+        <Time>{post.date}</Time>
 
-      {post.author === logic.getLoggedInUsername() && (
-        <Button onClick={() => handleDeletePost(post.id)}>Delete</Button>
-      )}
-    </article>
+        {post.author === logic.getUserName() && (
+          <Button onClick={handleDeletePost}>Delete</Button>
+        )}
+      </View>
+    </View>
   )
 }
 export default Post
