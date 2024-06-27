@@ -16,7 +16,7 @@ const createPost = (username, title, image, description, callback) => {
             return
         }
         if (!user) {
-            callback(new MatchErrorError('❌ User not found'))
+            callback(new MatchError('❌ User not found'))
 
             return
 

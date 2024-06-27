@@ -58,7 +58,7 @@ const validate = {
     name: validateName,
     username: validateUsername,
     password: validatePassword,
-    passwordMatch: validatePasswordsMatch,
+    passwordsMatch: validatePasswordsMatch,
     email: validateEmail,
     callback: validateCallback,
     text: validateText,
