@@ -1,9 +1,7 @@
-//LOGIC
-
-import validate from 'com/validate.js'
 import data from '../data/index.js'
-import { ContentError, DuplicityError, MatchError} from "com/errors.js"
-import { SystemError } from '../error.js'
+import { DuplicityError, SystemError } from 'com/errors.js'
+import validate from 'com/validate.js'
+import bcrypt from 'bcryptjs'
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     validate.name(name)
@@ -11,58 +9,38 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.email(email)
     validate.username(username)
     validate.password(password)
-    validate.passwordMatch(passwordRepeat)
+    validate.passwordsMatch(password, passwordRepeat)
+    validate.callback(callback)
 
-    data.users.findOne({$or: {email, username}})
+    data.users.findOne({ $or: [{ email }, { username }] })
         .then(user => {
-            if(user){
+            if (user) {
                 callback(new DuplicityError('user already exists'))
 
                 return
             }
-            
-        })
-        .catch(error => console.error(error))
 
-    data.findUser(user => user.mail === email || user.username === username, (error, user) => {
-        if (error) {
-            callback(error)
+            bcrypt.hash(password, 8, (error, hash) => {
+                if (error) {
+                    callback(new SystemError(error.message))
 
-            return
-        }
+                    return
+                }
 
-        if (user) {
-            callback(new DuplicityError('user already exists'))
+                const newUser = {
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    username: username,
+                    password: hash
+                }
 
-            return
-        }
-
-        bcrypt.hash(password,8, (err, hash) => {  
-            if(error) {
-                callback(new SystemError(error. message))
-
-                return
-            }
-            
-            const newUser = {
-            name: name,
-            surname: surname,
-            email: email,
-            username: username,
-            password: password
-            }
-
-            data.insertUser(newUser, error => {
-            if (error) {
-                callback(error)
-
-                return
-            }
-            callback(null)
+                data.users.insertOne(newUser)
+                    .then(() => callback(null))
+                    .catch(error => callback(new SystemError(error.message)))
             })
-        })    
-    })
+        })
+        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default registerUser
-

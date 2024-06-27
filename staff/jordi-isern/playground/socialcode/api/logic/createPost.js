@@ -1,42 +1,35 @@
-import validate from 'com/validate.js'
 import data from '../data/index.js'
-import { ContentError, MatchError } from "com/errors.js"
+import { MatchError, SystemError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
-
-const createPost = (author, title, image, description, callback) => {
-    validate.username(author)
+const createPost = (username, title, image, description, callback) => {
+    validate.username(username)
     validate.text(title, 'title', 50)
-    validate.url(image,'image')
-    validate.text(description,'description', 200)
+    validate.url(image, 'image')
+    validate.text(description, 'description', 200)
+    validate.callback(callback)
+ 
+    data.users.findOne({username})
+        .then(user=> {
+            if (!user) {
+                callback(new MatchError('user not found'))
     
-    data.findUser(user => user.username === author,(error, user)=> {
-            if(error){
-                callback(error); 
-                return
-            } 
-            if(!user){
-                callback(new MatchError('User not found'))
-
-                return 
-            }
-
-        const newPost = {
-            author: author,
-            title: title,
-            image: image,
-            description
-        }
-        data.insertPost(newPost, (error) => {
-            if (error) {
-                callback(error)
-
                 return
             }
-            callback(null)
+            const post = {
+                author: username,
+                title,
+                image,
+                description,
+                date: new Date(),
+                likes: []
+            }
+            data.post.insertOne(post)
+                .then(() => callback(null))
+                .catch(error => callback(new SystemError(error.message)))
+            
         })
-    })
+        .catch(error => (callback(new SystemError(error.message))))
 }
 
-
 export default createPost
-

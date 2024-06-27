@@ -1,33 +1,26 @@
-
-
 import data from '../data/index.js'
-
+import { MatchError, SystemError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const getAllPosts = (username, callback) => {
-    data.findUser(user = user.username === username, (error , user) => {
-        if(error){
-            callback(error)
+    validate.username(username)
+    validate.callback(callback)
 
-            return
-        }
-
-        if(!user){
-            callback(new MatchError('usern not found'))
-
-            return
-        }
-        
-        data.findPosts(() => true, (error, posts) => {
-            if (error) {
-                callback(error)
-
+    data.users.findOne({username})
+        .then(user=> {
+            if (!user) {
+                callback(new MatchError('user not found'))
+    
                 return
             }
-            callback(null, posts.reverse())
+
+            data.post.find({}).toArray()
+                .then(posts =>{
+                    callback(null, posts)
+                })
+                .catch(error => callback(new SystemError(error.message)))
         })
-    })
-
+        .catch(error => (callback(new SystemError(error.message))))
 }
-
 
 export default getAllPosts

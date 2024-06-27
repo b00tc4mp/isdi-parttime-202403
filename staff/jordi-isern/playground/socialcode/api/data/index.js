@@ -1,8 +1,5 @@
-//DATA
-
 import fs from 'fs'
-import { SystemError } from '../error.js'
-import { json } from 'express'
+import { SystemError } from 'com/errors.js'
 
 const data = {}
 
@@ -14,7 +11,7 @@ data.findUser = (condition, callback) => {
             return
         }
 
-        if (!json) { json = '[]' }
+        if (!json) json = '[]'
 
         const users = JSON.parse(json)
 
@@ -32,7 +29,7 @@ data.insertUser = (user, callback) => {
             return
         }
 
-        if (!json) { json = '[]' }
+        if (!json) json = '[]'
 
         const users = JSON.parse(json)
 
@@ -52,7 +49,6 @@ data.insertUser = (user, callback) => {
     })
 }
 
-
 data.findPosts = (condition, callback) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
         if (error) {
@@ -61,7 +57,7 @@ data.findPosts = (condition, callback) => {
             return
         }
 
-        if (!json) { json = '[]' }
+        if (!json) json = '[]'
 
         const posts = JSON.parse(json)
 
@@ -71,24 +67,23 @@ data.findPosts = (condition, callback) => {
     })
 }
 
-data.findPost = (condition, callback)=> {
-    fs.readFile('.data/posts.json', 'utf8', (error ,json) =>{
-        if(error){
+data.findPost = (condition, callback) => {
+    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+        if (error) {
             callback(new SystemError(error.message))
 
             return
         }
 
-        if(!json) json = '[]'
+        if (!json) json = '[]'
 
         const posts = JSON.parse(json)
 
         const post = posts.find(condition)
 
-        callback(null , post)
+        callback(null, post)
     })
 }
-
 
 data.insertPost = (post, callback) => {
     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
@@ -97,15 +92,17 @@ data.insertPost = (post, callback) => {
 
             return
         }
-        if (!json) { json = '[]' }
+
+        if (!json) json = '[]'
 
         const posts = JSON.parse(json)
 
-        post.id = `${Math.random().toString().slice(2)} -${Date.now()}`
-        post.date = new Date().toISOString()
+        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+
         posts.push(post)
 
         const newJson = JSON.stringify(posts)
+
         fs.writeFile('./data/posts.json', newJson, error => {
             if (error) {
                 callback(new SystemError(error.message))
@@ -115,7 +112,6 @@ data.insertPost = (post, callback) => {
 
             callback(null)
         })
-
     })
 }
 
@@ -126,10 +122,12 @@ data.deletePost = (condition, callback) => {
 
             return
         }
-        if (!json) { json = '[]' }
+
+        if (!json) json = '[]'
+
         const posts = JSON.parse(json)
 
-        const index = posts.findIdex(condition)
+        const index = posts.findIndex(condition)
 
         if (index > -1) {
             posts.splice(index, 1)
@@ -142,6 +140,7 @@ data.deletePost = (condition, callback) => {
 
                     return
                 }
+
                 callback(null)
             })
         } else callback(null)
