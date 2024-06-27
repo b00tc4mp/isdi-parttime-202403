@@ -4,7 +4,7 @@ import validate from "com/validate.js"
 
 const { MatchError } = errors
 
-const getAllPosts = (username, callback) => {
+const getAllPosts = (username, page, limit, callback) => {
 
   validate.username(username)
   validate.callback(callback)
@@ -32,7 +32,14 @@ const getAllPosts = (username, callback) => {
         return
       }
 
-      callback(null, posts.reverse())
+      posts.reverse()
+
+      const startIndex = (page - 1) * limit
+      const endIndex = startIndex + limit
+
+      const paginatedPost = posts.slice(startIndex, endIndex)
+
+      callback(null, paginatedPost);
     })
   })
 }
