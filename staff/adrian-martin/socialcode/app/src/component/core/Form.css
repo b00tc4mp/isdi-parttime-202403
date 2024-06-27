@@ -1,7 +1,6 @@
 .Form{
     display: flex;
     flex-direction: column;
-    margin-top: 200px;
     align-items: center;
     background-color: var(--fourth-color);
     padding: 1rem;

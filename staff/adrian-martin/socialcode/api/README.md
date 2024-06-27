@@ -2,7 +2,7 @@
 
 ```sh
 🐖 curl http://localhost:8080/users -v
-``
+```
 
 - register user
 
@@ -18,13 +18,13 @@
 - get user name
 
 ```sh
-🐖 curl http://localhost:8080/users/AdrianGon -H "Authorization: Basic AdrianGon" -v
+🐖 curl http://localhost:8080/users/AdrianGon -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBZHJpYW5Hb24iLCJpYXQiOjE3MTg3MzY3NTgsImV4cCI6MTcxODc0MDM1OH0.abhG3rqw9V6XdNZ4Qzs09Xs2ysbMHa5OprRJtm5VyjI" -v
 ```
 
-- list posts
+- get all posts
 
 ```sh
-🐖 curl http://localhost:8080/posts -v
+🐖 curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBZHJpYW5Hb24iLCJpYXQiOjE3MTg3ODk5NDEsImV4cCI6MTcxODc5MzU0MX0.nKzPApr26Fr15DMWxBNe7k0QbBDE21E1yllUNJBgozQ" http://localhost:8080/posts -v
 ```
 
 - create post

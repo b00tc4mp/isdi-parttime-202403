@@ -1,4 +1,4 @@
-import logic from './index.js'
+// import logic from './index.js'
 
 // try {
 //     logic.registerUser('Adrian', 'Martin', 'adrian@martin.com', 'AdrianGon', '321321321', '321321321', error => {
@@ -80,16 +80,16 @@ import logic from './index.js'
 //     console.error(error)
 // }
 
-try {
-    logic.getUserName('AdrianGon', 'AdrianGon', (error, name) => {
-        if (error) {
-            console.error(error)
+// try {
+//     logic.getUserName('AdrianGon', 'AdrianGon', (error, name) => {
+//         if (error) {
+//             console.error(error)
 
-            return
-        }
+//             return
+//         }
 
-        console.log('username retrived', name)
-    })
-} catch (error) {
-    console.error(error)
-}
+//         console.log('username retrived', name)
+//     })
+// } catch (error) {
+//     console.error(error)
+// }

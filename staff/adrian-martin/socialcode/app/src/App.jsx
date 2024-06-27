@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import logic from './logic'
 
 import Register from './views/Register'
 import Login from './views/Login'
@@ -7,7 +8,7 @@ import Home from './views/Home'
 function App() {
   console.log('App -> render')
 
-  const [view, setView] = useState('login')
+  const [view, setView] = useState(logic.isUserLoggedIn() ? 'home' : 'login')
 
   const handleGoToLogin = () => setView('login')
 
@@ -25,7 +26,5 @@ function App() {
     {view === 'home' && <Home onUserLoggedOut={handleGoToLogin} />}
   </>
 }
-
-// TODO the position of the home button and the type of the password
 
 export default App

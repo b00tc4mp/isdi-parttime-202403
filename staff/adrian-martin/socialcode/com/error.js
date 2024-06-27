@@ -30,11 +30,18 @@ class SystemError extends Error{
     }
 }
 
-const errors = {
+export {
     ContentError,
     MatchError,
     DuplicityError,
     SystemError
 }
 
-export default errors
+const error = {
+    ContentError,
+    MatchError,
+    DuplicityError,
+    SystemError
+}
+
+export default error

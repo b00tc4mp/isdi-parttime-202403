@@ -1,7 +1,17 @@
 .View {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* font-size: 50px; */
     background-color: var(--second-color);
+}
+
+.View.column{
+    flex-direction: column;
+}
+
+.View.row{
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.View.center {
+    align-items: center;
 }

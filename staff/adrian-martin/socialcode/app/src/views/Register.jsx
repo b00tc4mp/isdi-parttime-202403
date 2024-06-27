@@ -1,3 +1,5 @@
+import {useState} from 'react'
+
 import logic from '../logic'
 import Field from '../component/core/Field'
 import SubmitButton from '../component/core/SubmitButton'
@@ -8,6 +10,8 @@ import View from '../component/library/View'
 
 function Register({onUserRegistered, onLoginLinkClick}) {
     console.log('Register -> render')
+
+    const [message, setMessage] = useState('')
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -25,7 +29,7 @@ function Register({onUserRegistered, onLoginLinkClick}) {
             logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
                 if (error) {
                     console.error(error)
-                    alert(error.message)
+                    setMessage(error.message)
 
                     return
                 }
@@ -34,6 +38,8 @@ function Register({onUserRegistered, onLoginLinkClick}) {
             })
         } catch (error) {
             console.error(error)
+
+            setMessage(error.message)
         }
     }
 
@@ -46,7 +52,7 @@ function Register({onUserRegistered, onLoginLinkClick}) {
     return <View tag='main'>
         <Title>Register</Title>
 
-        <FormWithFeedback onSubmit={handleRegisterSubmit}>
+        <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
             <Field id="name" placeholder="name">Name</Field>
 
             <Field id="surname" placeholder="surname">Surname</Field>
