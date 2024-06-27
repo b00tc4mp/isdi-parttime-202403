@@ -8,9 +8,8 @@
     top: 0;
     padding: .5rem;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--first-color);
     background-color: var(--second-color);
-    background: linear-gradient(#000000, #373737);
+    background: linear-gradient(white,transparent);
 }
 
 .Home {

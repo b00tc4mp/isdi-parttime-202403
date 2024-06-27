@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
 :root {
-    --first-color: white;
-    --second-color: black;
+    --first-color: black;
+    --second-color: grey;
 }
 
 * {
@@ -12,6 +12,6 @@
 }
 
 body {
-    background-color: var(--second-color);
+    background-color: rgb(238, 234, 234);
     margin: 0 auto;
 }
