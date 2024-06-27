@@ -18,10 +18,14 @@ function PostList({ refreshTimeStamp, mainRef }) {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    loadPosts();
+    setPage(1);
+  }, [refreshTimeStamp]);
+
+  useEffect(() => {
+    loadPosts(page);
   }, [refreshTimeStamp, page]);
 
-  const loadPosts = () => {
+  const loadPosts = (page) => {
     try {
       logic.getAllPosts(page, 10, (error, response) => {
         if (error) {
@@ -64,7 +68,7 @@ function PostList({ refreshTimeStamp, mainRef }) {
           return;
         }
 
-        loadPosts();
+        loadPosts(page);
         setPostToDelete(null);
       });
     } catch (error) {

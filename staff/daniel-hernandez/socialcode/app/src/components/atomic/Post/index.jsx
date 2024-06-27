@@ -8,6 +8,14 @@ import Time from "../Time.jsx";
 import Button from "../Button.jsx";
 
 function Post({ post, onDelete }) {
+  let username;
+
+  try {
+    username = logic.getUsername();
+  } catch (error) {
+    alert(error);
+  }
+
   return (
     <Article className={styles.post}>
       <Heading level={2} className={styles.postTitle}>
@@ -21,7 +29,7 @@ function Post({ post, onDelete }) {
       />
       <Text className={styles.postDescription}>{post.description}</Text>
       <Time className={styles.postTime}>{post.date}</Time>
-      {post.author === logic.getUsername() && (
+      {post.author === username && (
         <Button
           className={styles.removePostButton}
           onClick={() => onDelete(post.id)}

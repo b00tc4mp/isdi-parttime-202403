@@ -8,7 +8,13 @@ import Button from "../atomic/Button.jsx";
 
 function Header() {
   const { setView } = useContext(ViewContext);
-  const username = logic.getUsername();
+  let username;
+
+  try {
+    username = logic.getUsername();
+  } catch (error) {
+    alert(error);
+  }
 
   const handleLogout = () => {
     logic.logoutUser();
