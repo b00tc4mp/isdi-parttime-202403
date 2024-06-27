@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
 import logic from "../../logic"
 
@@ -16,6 +16,7 @@ function Register() {
 	console.log("Register --> render")
 
 	const { setView } = useContext(ViewContext)
+	const [message, setMessage] = useState("")
 
 	const handleRegisterSubmit = (event) => {
 		event.preventDefault()
@@ -34,7 +35,8 @@ function Register() {
 				if (error) {
 					console.log(error)
 
-					alert(error.message)
+					setMessage(error.message)
+					setTimeout(() => setMessage(""), 2000)
 
 					return
 				}
@@ -44,7 +46,8 @@ function Register() {
 				console.log("user registered")
 			})
 		} catch (error) {
-			alert(error.message)
+			setMessage(error.message)
+			setTimeout(() => setMessage(""), 2000)
 			console.error(error.message)
 		}
 	}
@@ -58,7 +61,7 @@ function Register() {
 		<>
 			<View className="View RegisterForm" tag="main">
 				<Title>REGISTER</Title>
-				<FormWithFeedback className="RegisterForm" onSubmit={handleRegisterSubmit}>
+				<FormWithFeedback className="RegisterForm" onSubmit={handleRegisterSubmit} message={message}>
 					<Field id="name" placeholder="name">
 						Name
 					</Field>

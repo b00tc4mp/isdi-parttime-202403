@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
 import logic from "../../logic"
 
@@ -16,6 +16,7 @@ function Login() {
 	console.log("Login --> render")
 
 	const { setView } = useContext(ViewContext)
+	const [message, setMessage] = useState("")
 
 	const handleLoginSubmit = (event) => {
 		event.preventDefault()
@@ -30,7 +31,8 @@ function Login() {
 				if (error) {
 					console.log(error)
 
-					alert(error.message)
+					setMessage(error.message)
+					setTimeout(() => setMessage(""), 2000)
 					return
 				}
 
@@ -38,7 +40,8 @@ function Login() {
 				console.log("user logged in")
 			})
 		} catch (error) {
-			alert(error.message)
+			setMessage(error.message)
+			setTimeout(() => setMessage(""), 2000)
 			console.error(error.message)
 		}
 	}
@@ -52,7 +55,7 @@ function Login() {
 		<>
 			<View className="View LoginForm" tag="main">
 				<Title>LOGIN</Title>
-				<FormWithFeedback className="LoginForm" onSubmit={handleLoginSubmit}>
+				<FormWithFeedback className="LoginForm" onSubmit={handleLoginSubmit} message={message}>
 					<Field id="username" placeholder="Username">
 						Username
 					</Field>

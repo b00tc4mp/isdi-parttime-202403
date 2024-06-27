@@ -56,7 +56,7 @@ function CreatePostForm({ onCancelCreatedPostClick, onPostCreated, onClickScroll
 				</Field>
 
 				<Field id="image" type="text" placeholder="image">
-					Title
+					Image
 				</Field>
 
 				<label>Description</label>

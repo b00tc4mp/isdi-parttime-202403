@@ -19,6 +19,7 @@ const logic = {
   isUserLoggedIn,
   getUserName,
   getLoggedInUsername,
+
   toggleLike,
 
   getAllPosts,
