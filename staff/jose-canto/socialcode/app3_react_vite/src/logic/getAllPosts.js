@@ -1,7 +1,7 @@
 import errors from "com/errors"
 import validate from "com/validate"
 
-const getAllPosts = (callback) => {
+const getAllPosts = (page, limit, callback) => {
   validate.callback(callback)
 
   const xhr = new XMLHttpRequest
@@ -22,7 +22,12 @@ const getAllPosts = (callback) => {
   }
 
 
-  xhr.open("GET", `${import.meta.env.VITE_API_URL}/posts`)
+  const url = new URL(`${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`)
+  // url.searchParams.append("page", page)
+  // url.searchParams.append("limit", limit)
+
+
+  xhr.open("GET", url)
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
   xhr.send()
 }
