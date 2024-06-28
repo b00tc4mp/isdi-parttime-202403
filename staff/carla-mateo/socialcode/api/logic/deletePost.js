@@ -1,6 +1,7 @@
 import data from '../data/index.js'
-import { MatchError } from 'com/errors.js'
+import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
+import { ObjectId } from 'mongodb'
 
 
 const deletePost = (username, postId, callback) => {
@@ -8,50 +9,35 @@ const deletePost = (username, postId, callback) => {
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    data.findUser(user => user.username === username, (error, user) => {
-        if (error) {
-            callback(error)
-
-            return
-        }
-
-        if (!user) {
-            callback(new MatchError('user not found'))
-
-            return
-        }
-
-        data.findPost(post => post.id === postId, (error, post) => {
-            if (error) {
-                callback(error)
+    data.users.findOne({ username })
+        .then(user => {
+            if (!user) {
+                callback(new MatchError('❌user not found'))
 
                 return
             }
 
-            if (!post) {
-                callback(new MatchError('post not found'))
+            data.posts.findOne({ _id: new ObjectId(postId) })
+                .then(post => {
+                    if (!post) {
+                        callback(new MatchError('❌post not found'))
 
-                return
-            }
+                        return
+                    }
 
-            if (post.author !== username) {
-                callback(new MatchError('post author does not match user'))
+                    if (post.author !== username) {
+                        callback(new MatchError('❌post author does not match user'))
 
-                return
-            }
+                        return
+                    }
 
-            data.deletePost(post => post.id === postId, error => {
-                if (error) {
-                    callback(error)
-
-                    return
-                }
-
-                callback(null)
-            })
+                    data.posts.deleteOne({ _id: new ObjectId(postId) })
+                        .then(() => callback(null))
+                        .catch(error => callback(new SystemError(error.message)))
+                })
+                .catch(error => callback(new SystemError(error.message)))
         })
-    })
+        .catch(error => callback(new SystemError(error.message)))
 }
-
 
 export default deletePost

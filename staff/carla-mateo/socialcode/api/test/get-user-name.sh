@@ -1,0 +1,1 @@
+curl http://localhost:9090/users/malefica -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYWNrIiwiaWF0IjoxNzE5NTk1NzUxLCJleHAiOjE3MTk1OTkzNTF9.o-ZBmuLizY4poRPLq1S8p3okT1Nc6L0EBJHRUGZUxKI" -v

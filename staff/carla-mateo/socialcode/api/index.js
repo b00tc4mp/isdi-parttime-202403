@@ -16,7 +16,9 @@ client.connect()
         const db = connection.db('test')
 
         const users = db.collection('users')
+        const posts = db.collection('posts')
 
+        data.posts = posts
         data.users = users
 
         const { JsonWebTokenError, TokenExpiredError } = jwt
@@ -211,5 +213,6 @@ client.connect()
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
 
     })
+    .catch(error => console.error(error))
 
 

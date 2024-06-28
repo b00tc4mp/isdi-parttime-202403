@@ -1,0 +1,1 @@
+curl -X POST http://localhost:9090/posts -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYWNrIiwiaWF0IjoxNzE5NTkzMDA4LCJleHAiOjE3MTk1OTY2MDh9.xqKJSoNBdzaBPCxsnQf08k1EXNPWv8iTh8nmhiZnOgo" -H "Content-Type: application/json" -d '{"title":"blah","image":"https://upload.wikimedia.org/wikipedia/commons/1/1d/Blah_Blah_Blah.jpg","description":"blah blah"}' -v

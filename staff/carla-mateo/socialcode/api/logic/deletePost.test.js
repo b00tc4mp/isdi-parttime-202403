@@ -1,16 +1,36 @@
+import 'dotenv/config'
+import { MongoClient } from 'mongodb'
+import data from '../data/index.js'
+
 import logic from './index.js'
 
-try {
-    logic.deletePost("peterpan", "5838445445732432-1716838752497",
-        error => {
-            if (error) {
-                console.error(error)
+const { MONGODB_URL } = process.env
 
-                return
-            }
+const client = new MongoClient(MONGODB_URL)
 
-            console.log('post deleted')
-        })
-} catch (error) {
-    console.error(error)
-} 
+client.connect()
+    .then(connection => {
+        const db = connection.db('test')
+
+        const users = db.collection('users')
+        const posts = db.collection('posts')
+
+        data.users = users
+        data.posts = posts
+        try {
+            logic.deletePost("jack", "667ee8faf96a711b6bccb3a6",
+                error => {
+                    if (error) {
+                        console.error(error)
+
+                        return
+                    }
+
+                    console.log('post deleted')
+                })
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))
+

@@ -15,7 +15,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     data.users.findOne({ $or: [{ email }, { username }] })
         .then(user => {
             if (user) {
-                callback(new DuplicityError('user already exists'))
+                callback(new DuplicityError('❌user already exists'))
 
                 return
             }

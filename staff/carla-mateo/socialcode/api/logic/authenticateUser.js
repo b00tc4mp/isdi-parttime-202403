@@ -25,7 +25,7 @@ const authenticateUser = (username, password, callback) => {
                 }
 
                 if (!match) {
-                    callback(new MatchError('wrong password'))
+                    callback(new MatchError('❌wrong password'))
 
                     return
                 }
