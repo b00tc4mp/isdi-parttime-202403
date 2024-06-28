@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+
+
 import './Home.css'
 
 import View from '../components/library/View'
@@ -53,8 +55,6 @@ function Home({ onUserLoggedOut }) {
 
         setView('')
     }
-
-
 
     return <View>
         <Header>

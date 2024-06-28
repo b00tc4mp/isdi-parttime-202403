@@ -1,167 +1,202 @@
 import jwt from 'jsonwebtoken'
-
+import 'dotenv/config'
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
-import { SystemError } from './errors.js'
+import data from './data/index.js'
+import { SystemError } from 'com/errors.js'
+import { MongoClient } from 'mongodb'
 
-const { JsonWebTokenError, TokenExpiredError } = jwt
+const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
-const api = express()
+const client = new MongoClient(MONGODB_URL)
 
-api.use(express.static('public'))
+client.connect()
+    .then(connection => {
+        const db = connection.db('test')
 
-api.use(cors())
+        // const users = connection.db('test').collection('users')
 
-api.get('/', (req, res) => res.send('Hello, World!'))
+        const users = db.collection('users')
 
-const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+        // const posts = connection.db('test').collection('posts')
 
-api.post('/users', jsonBodyParser, (req, res) => {
-    const { name, surname, email, username, password, passwordRepeat } = req.body
+        const posts = db.collection('posts')
 
-    try {
-        logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
-            if (error) {
+        data.users = users
+
+        data.posts = posts
+
+        const { JsonWebTokenError, TokenExpiredError } = jwt
+
+        const api = express()
+
+        api.use(express.static('public'))
+
+        api.use(cors())
+
+        api.get('/', (req, res) => res.send('Hello, World!'))
+
+        const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+
+        api.post('/users', jsonBodyParser, (req, res) => {
+            const { name, surname, email, username, password, passwordRepeat } = req.body
+
+            try {
+                logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+
+                    res.status(201).send()
+                })
+            } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                return
             }
-
-            res.status(201).send()
         })
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
 
 
 
-api.post('/users/auth', jsonBodyParser, (req, res) => {
-    const { username, password } = req.body
+        api.post('/users/auth', jsonBodyParser, (req, res) => {
+            const { username, password } = req.body
 
-    try {
-        logic.authenticateUser(username, password, error => {
-            if (error) {
+            try {
+                logic.authenticateUser(username, password, error => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+                    jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
+                        if (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                            return
+                        }
+                        res.json(token)
+                    })
+                })
+            }
+            catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                return
             }
-            const token = jwt.sign({ sub: username }, 'peter and wendy have a rollete', { expiresIn: '1h' })
-            res.json(token)
-
         })
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
 
-api.get('/users/:targetUsername', (req, res) => {
+        api.get('/users/:targetUsername', (req, res) => {
 
-    try {
-        const token = req.headers.authorization.slice(7)
+            try {
+                const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+                const { sub: username } = jwt.verify(token, JWT_SECRET)
 
-        const { targetUsername } = req.params
+                const { targetUsername } = req.params
 
-        logic.getUserName(username, targetUsername, (error, name) => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                logic.getUserName(username, targetUsername, (error, name) => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                return
+                        return
+                    }
+
+                    res.json(name)
+                })
+            } catch (error) {
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+                } else {
+                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                }
             }
-
-            res.json(name)
         })
-    } catch (error) {
-        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-            res.status(500).json({ error: SystemError.name, message: error.message })
-        } else {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-        }
-    }
-})
 
-api.get('/posts', (req, res) => {
-    try {
-        const token = req.headers.authorization.slice(7)
+        api.get('/posts', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+                const { sub: username } = jwt.verify(token, JWT_SECRET)
 
-        logic.getAllPosts(username, (error, posts) => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                logic.getAllPosts(username, (error, posts) => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                return
+                        return
+                    }
+
+                    res.json(posts)
+                })
+            } catch (error) {
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+                } else {
+                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                }
             }
-
-            res.json(posts)
         })
-    } catch (error) {
-        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-            res.status(500).json({ error: SystemError.name, message: error.message })
-        } else {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-        }
-    }
-})
 
-api.post('/posts', jsonBodyParser, (req, res) => {
+        api.post('/posts', jsonBodyParser, (req, res) => {
 
-    try {
-        const token = req.headers.authorization.slice(7)
+            try {
+                const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+                const { sub: username } = jwt.verify(token, JWT_SECRET)
 
-        const { title, image, description } = req.body
+                const { title, image, description } = req.body
 
-        logic.createPost(username, title, image, description, error => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                logic.createPost(username, title, image, description, error => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                return
+                        return
+                    }
+
+                    res.status(201).send()
+                })
+            } catch (error) {
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+                } else {
+                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                }
             }
-
-            res.status(201).send()
         })
-    } catch (error) {
-        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-            res.status(500).json({ error: SystemError.name, message: error.message })
-        } else {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-        }
-    }
-})
 
-api.delete('/posts/:postId', (req, res) => {
+        api.delete('/posts/:postId', (req, res) => {
 
 
 
 
-    try {
-        const token = req.headers.authorization.slice(7)
+            try {
+                const token = req.headers.authorization.slice(7)
 
-        const { sub: username } = jwt.verify(token, 'peter and wendy have a rollete')
+                const { sub: username } = jwt.verify(token, JWT_SECRET)
 
-        const { postId } = req.params
+                const { postId } = req.params
 
-        logic.deletePost(username, postId, error => {
-            if (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                logic.deletePost(username, postId, error => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                return
+                        return
+                    }
+
+                    res.status(204).send()
+                })
+            } catch (error) {
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+                } else {
+                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                }
             }
-
-            res.status(204).send()
         })
-    } catch (error) {
-        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-            res.status(500).json({ error: SystemError.name, message: error.message })
-        } else {
-            res.status(500).json({ error: error.constructor.name, message: error.message })
-        }
-    }
-})
 
-api.listen(8080, () => console.log('api is up'))
+        api.listen(PORT, () => console.log('Tamosss Laifff!!!'))
+
+    })
+    .catch(error => console.error(error))
+
+
+
+

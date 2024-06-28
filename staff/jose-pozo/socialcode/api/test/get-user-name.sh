@@ -1,0 +1,1 @@
+curl http://localhost:8080/users/peterpan -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJEYWVuZXJ5c1RhcmdhcnllbiIsImlhdCI6MTcxOTU5NzQ0MiwiZXhwIjoxNzE5NjAxMDQyfQ.q0oGtHppCqEy77opjhlIzXuQcTZtzCe3uSuC94c_LXE" -v

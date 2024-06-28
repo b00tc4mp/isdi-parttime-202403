@@ -2,6 +2,7 @@
     width: 450px;
     margin: 1.5rem 0;
     align-items: normal;
+    box-shadow: 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 .PostHeader {}

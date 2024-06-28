@@ -1,13 +1,9 @@
-import errors from '../errors'
-
-const ID_REGEX = /^[0-9]+-[0-9]+$/
+import errors from 'com/errors'
+import validate from 'com/validate'
 
 const deletePost = (postId, callback) => {
-    if (!ID_REGEX.test(postId))
-        throw new ContentError('postId is not valid')
-
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.id(postId, 'postId')
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 
@@ -25,10 +21,9 @@ const deletePost = (postId, callback) => {
         callback(new constructor(message))
     }
 
-    xhr.open('DELETE', `http://localhost:8080/posts/${postId}`)
+    xhr.open('DELETE', `${import.meta.env.VITE_API_URL}/posts/${postId}`)
 
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
-
     xhr.send()
 }
 

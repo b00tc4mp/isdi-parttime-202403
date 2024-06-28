@@ -1,37 +1,14 @@
-import errors from '../errors'
-const { ContentError, MatchError } = errors
-
-const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const USERNAME_REGEX = /^[\w-]+$/
-const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
-
-const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
+import errors from 'com/errors'
+import validate from 'com/validate'
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
-
-    console.log(`Validating name: "${name}"`);
-
-
-    if (!NAME_REGEX.test(name))
-        throw new ContentError('name is not valid')
-
-    if (!NAME_REGEX.test(surname))
-        throw new ContentError('surname is not valid')
-
-    if (!EMAIL_REGEX.test(email))
-        throw new ContentError('email is not valid')
-
-    if (!USERNAME_REGEX.test(username))
-        throw new ContentError('username is not valid')
-
-    if (!PASSWORD_REGEX.test(password))
-        throw new ContentError('password is not valid')
-
-    if (password !== passwordRepeat)
-        throw new MatchError('passwords don\'t match')
-
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.name(name)
+    validate.name(surname, 'surname')
+    validate.email(email)
+    validate.username(username)
+    validate.password(password)
+    validate.passowrdsMatch(password, passwordRepeat)
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 
@@ -49,7 +26,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
         callback(new constructor(message))
     }
 
-    xhr.open('POST', 'http://localhost:8080/users')
+    xhr.open('POST', `${import.meta.env.VITE_API_URL}/users`)
 
     const body = { name, surname, email, username, password, passwordRepeat }
 
@@ -58,6 +35,5 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.send(json)
 }
-
 
 export default registerUser
