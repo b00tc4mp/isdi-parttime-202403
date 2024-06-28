@@ -1,55 +1,45 @@
 import data from "../data/index.js"
-import errors from "com/errors.js"
+import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
+import { ObjectId } from "mongodb"
 
-const { MatchError } = errors
 
 const deletePost = (username, postId, callback) => {
   validate.username(username)
   validate.id(postId, "postId")
   validate.callback(callback)
 
-  data.findUser(user => user.username === username, (error, user) => {
 
-    if (error) {
+  data.users.findOne({ username })
+    .then(user => {
+      if (!user) {
 
-      callback(error)
-      return
-    }
-
-    if (!user) {
-
-      callback(new MatchError("❌ User not found ❌"))
-
-      return
-    }
-    data.findOnePost(post => post.id === postId, (error, post) => {
-
-      if (error) {
-        callback(error)
-        return
-
-      }
-      if (!post) {
-        callback(new MatchError("❌ Post not found ❌"))
-        return
-      }
-
-      if (post.author !== username) {
-        callback(new MatchError("❌ You can't delete this post ❌"))
+        callback(new MatchError("❌ User not found ❌"))
 
         return
       }
 
-      data.deletePost(post => post.id === postId, (error,) => {
-        if (error) {
-          callback(error)
-          return
-        }
-        callback(null)
-      })
+      data.posts.findOne({ _id: new ObjectId(postId) })
+        .then(post => {
+          if (!post) {
+            callback(new MatchError("❌ Post not found ❌"))
+            return
+          }
+
+          if (post.author !== username) {
+            callback(new MatchError("❌ You can't delete this post ❌"))
+            return
+          }
+
+          data.posts.deleteOne({ _id: new ObjectId(postId) })
+            .then(() => callback(null, postId))
+            .catch(error => callback(new SystemError(error.message)))
+
+        })
+        .catch(error => callback(new SystemError(error.message)))
+
     })
-  })
+    .catch(error => callback(new SystemError(error.message)))
 }
 
 export default deletePost

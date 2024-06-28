@@ -1,47 +1,42 @@
 import data from "../data/index.js"
-import errors from "com/errors.js"
+import { SystemError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
 
-const { MatchError } = errors
 
 const getAllPosts = (username, page, limit, callback) => {
 
   validate.username(username)
   validate.callback(callback)
 
-  data.findUser(user => user.username === username, (error, user) => {
+  data.users.findOne({ username })
+    .then(user => {
+      if (!user) {
 
-    if (error) {
-
-      callback(error)
-      return
-    }
-
-    if (!user) {
-
-      callback(new MatchError("❌ User not found ❌"))
-
-      return
-    }
-
-    data.findPosts(() => true, (error, posts) => {
-
-      if (error) {
-        callback(error.message)
+        callback(new MatchError("❌ User not found ❌"))
 
         return
       }
 
-      posts.reverse()
+      data.posts.find({}).toArray()
+        .then(posts => {
+          posts.forEach(post => {
+            post.id = post._id.toString()
 
-      const startIndex = (page - 1) * limit
-      const endIndex = startIndex + limit
+            delete post._id
+          })
 
-      const paginatedPost = posts.slice(startIndex, endIndex)
+          posts.reverse()
 
-      callback(null, paginatedPost);
+          const startIndex = (page - 1) * limit
+          const endIndex = startIndex + limit
+
+          const paginatedPost = posts.slice(startIndex, endIndex)
+
+          callback(null, paginatedPost);
+        })
+        .catch(error => callback(new SystemError(error.message)))
     })
-  })
+    .catch(error => callback(error))
 }
 
 export default getAllPosts

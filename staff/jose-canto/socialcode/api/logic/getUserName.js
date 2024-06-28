@@ -7,39 +7,31 @@ const getUserName = (username, targetUsername, callback) => {
   validate.username(targetUsername, "targetUsername")
   validate.callback(callback)
 
-  data.findUser(user => user.username === username, (error, user) => {
+  data.users.findOne({ username })
+    .then(user => {
 
-    if (error) {
-      callback(error)
+      if (!user) {
 
-      return
-    }
-
-    if (!user) {
-
-      callback(new MatchError("❌ User not found ❌"))
-
-      return
-    }
-
-    data.findUser(user => user.username === targetUsername, (error, targetUser) => {
-
-      if (error) {
-        callback(error)
+        callback(new MatchError("❌ User not found ❌"))
 
         return
       }
 
-      if (!targetUser) {
+      data.users.findOne({ username: targetUsername })
+        .then(targetUser => {
+          if (!targetUser) {
 
-        callback(new MatchError("❌ targetUser not found ❌"))
+            callback(new MatchError("❌ targetUser not found ❌"))
 
-        return
-      }
+            return
+          }
 
-      callback(null, targetUser.name)
+          callback(null, targetUser.name)
+
+        })
+        .catch(error => callback(error))
     })
-  })
+    .catch(error => callback(error))
 }
 
 export default getUserName

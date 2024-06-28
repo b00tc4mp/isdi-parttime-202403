@@ -10,36 +10,34 @@ const authenticateUser = (username, password, callback) => {
   validate.password(password)
   validate.callback(callback)
 
-  data.findUser((user) => user.username === username, (error, userFound) => {
-    if (error) {
-      callback(error)
-      return
-    }
 
-    if (!userFound) {
-      callback(new MatchError("❌ User not found ❌"))
-      return
-    }
+  data.users.findOne({ username })
+    .then(userFound => {
 
-    console.log(`User found: ${userFound.username}`)
-    console.log(`Password hash: ${userFound.password}`)
-
-    bcrypt.compare(password, userFound.password, (error, match) => {
-      if (error) {
-        callback(new SystemError(error.message))
+      if (!userFound) {
+        callback(new MatchError("❌ User not found ❌"))
         return
       }
 
-      console.log(`Password match: ${match}`)
+      console.log(`User found: ${userFound.username}`)
+      console.log(`Password hash: ${userFound.password}`)
 
-      if (!match) {
-        callback(new MatchError(error.message))
-        return
-      }
+      bcrypt.compare(password, userFound.password, (error, match) => {
+        if (error) {
+          callback(new SystemError(error.message))
+          return
+        }
 
-      callback(null)
+        console.log(`Password match: ${match}`)
+
+        if (!match) {
+          callback(new MatchError(error.message))
+          return
+        }
+
+        callback(null, userFound.username)
+      })
     })
-  })
+    .catch(error => callback(error))
 }
-
 export default authenticateUser

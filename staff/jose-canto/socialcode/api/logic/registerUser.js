@@ -1,7 +1,7 @@
 import validate from "com/validate.js"
 import data from "../data/index.js"
 import bcrypt from "bcryptjs"
-import { DuplicityError } from "com/errors.js"
+import { DuplicityError, SystemError } from "com/errors.js"
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
   validate.name(name)

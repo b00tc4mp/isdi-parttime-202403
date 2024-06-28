@@ -16,7 +16,6 @@ client.connect()
 
     try {
       logic.registerUser("Bruce", "Wayne", "batman@email.es", "batman", "1234", "1234", (error) => {
-
         if (error) {
           console.error(error)
 
@@ -31,4 +30,4 @@ client.connect()
     }
 
   })
-  .catch(error => { console.error(error) })
+  .catch(error => console.error(error))

@@ -1,6 +1,6 @@
 // index antes de separar
 
-import data from "../data/index.js"
+import data from "../data/dataConServerPropio/index.js"
 import { ContentError, DuplicityError, MatchError } from "../error.js"
 //import utils from "../public/app/utils.js"
 

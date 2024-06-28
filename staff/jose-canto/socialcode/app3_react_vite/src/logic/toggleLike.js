@@ -19,7 +19,7 @@ const toggleLike = (postId, callback) => {
     callback(new constructor(message));
   };
 
-  xhr.open('POST', `${import.meta.env.VITE_API_URL}/posts/like/${postId}`);
+  xhr.open('PATCH', `${import.meta.env.VITE_API_URL}/posts/like/${postId}`);
   xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`);
   xhr.setRequestHeader('Content-Type', 'application/json');
 
