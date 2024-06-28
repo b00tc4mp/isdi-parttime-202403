@@ -39,16 +39,8 @@ function Post({ post, onPostDeleted }) {
 
   return (
     <article className='Post'>
-      <Text>{post.author}</Text>
-
-      <Heading level='2'>{post.title}</Heading>
-
-      <Image src={post.image} />
-
-      <Text>{post.description}</Text>
-
-      <div className='button-container'>
-        <time className='Time'>{formattedDate}</time>
+      <div className='header-post'>
+        <Text>{post.author}</Text>
 
         {post.author === logic.getUserUsername() && (
           <Button
@@ -59,6 +51,26 @@ function Post({ post, onPostDeleted }) {
             x
           </Button>
         )}
+      </div>
+
+      <Heading level='2'>{post.title}</Heading>
+
+      <Image src={post.image} />
+
+      <Text>{post.description}</Text>
+
+      <div className='button-container'>
+        <time className='Time'>{formattedDate}</time>
+
+        {/* {post.author === logic.getUserUsername() && (
+          <Button
+            className='Button delete'
+            title='Delete Post'
+            onClick={() => handleDeletePost(post.id)}
+          >
+            x
+          </Button>
+        )} */}
       </div>
 
       <hr className='custom-hr' />

@@ -5,13 +5,13 @@ function View({
   className,
   children,
   direction = 'column',
-  align = 'center',
+  align = '',
 }) {
   return (
     <Tag
-      className={`View ${className ? className : ''} 
-
-      `}
+      className={`View ${className ? className : ''} ${
+        direction === 'column' ? 'View column' : 'View row'
+      } ${align === 'center' ? 'View center' : ''}`}
     >
       {children}
     </Tag>

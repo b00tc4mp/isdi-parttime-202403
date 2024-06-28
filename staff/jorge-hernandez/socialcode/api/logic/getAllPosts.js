@@ -6,29 +6,27 @@ const getAllPosts = (username, callback) => {
     validate.username(username)
     validate.callback(callback)
 
-    data.findUser(user => user.username === username, (error, user) => {
-        if (error) {
-            callback(error)
-
-            return
-        }
-
-        if (!user) {
-            callback(new MatchError('user not found'))
-
-            return
-        }
-
-        data.findPosts(() => true, (error, posts) => {
-            if (error) {
-                callback(error)
+    data.users.findOne({ username })
+        .then(user => {
+            if (!user) {
+                callback(new MatchError('user not found'))
 
                 return
             }
 
-            callback(null, posts.reverse())
+            data.posts.find({}).toArray()
+                .then(posts => {
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+
+                        delete post._id
+                    })
+
+                    callback(null, posts)
+                })
+                .catch(error => callback(error))
         })
-    })
+        .catch(error => callback(error))
 }
 
 export default getAllPosts
