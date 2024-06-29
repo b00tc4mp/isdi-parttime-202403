@@ -1,9 +1,11 @@
 import "dotenv/config";
 import express from "express";
+import connectDB from "./db/connect.js";
+import data from "./data/data.js";
 import cors from "cors";
 // TODO: configure cors
 const api = express();
-const { PORT } = process.env;
+const { PORT, MONGO_URI } = process.env;
 
 //middleware
 // TODO: error handler middleware (works in tandem with custom error and async wrapper)
@@ -17,4 +19,17 @@ api.use("/", datarouter);
 api.use(notFound);
 // api.use(errorHandler)
 
-api.listen(PORT, () => console.log(`server listening on port: ${PORT}`));
+const start = async () => {
+  try {
+    const client = await connectDB(MONGO_URI);
+    const db = client.db("test");
+    const users = db.collection("users");
+    data.users = users;
+
+    api.listen(PORT, () => console.log(`server listening on port: ${PORT}...`));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+start();

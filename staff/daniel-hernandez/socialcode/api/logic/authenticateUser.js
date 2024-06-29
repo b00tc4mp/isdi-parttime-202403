@@ -11,7 +11,7 @@ const authenticateUser = (username, password) => {
     let user, match;
 
     try {
-      user = await data.findUser((user) => user.username === username);
+      user = await data.users.findOne({ username });
     } catch (error) {
       throw new SystemError(`failed to authenticate user: ${error.message}`);
     }
@@ -31,19 +31,26 @@ const authenticateUser = (username, password) => {
     }
   })();
 
-  /* return data
-    .findUser((user) => user.username === username)
-    .catch((error) => {
-      throw new SystemError(`failed to authenticate user: ${error.message}`);
-    })
+  /* return data.users
+    .findOne({ username })
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
       }
 
-      if (user.password !== password) {
+      return bcrypt.compare(password, user.password);
+    })
+    .then((match) => {
+      if (!match) {
         throw new MatchError("wrong password");
       }
+    })
+    .catch((error) => {
+      if (error instanceof MatchError) {
+        throw error;
+      }
+
+      throw new SystemError(`failed to authenticate user: ${error.message}`);
     }); */
 };
 

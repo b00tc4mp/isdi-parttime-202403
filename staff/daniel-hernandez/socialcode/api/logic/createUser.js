@@ -33,13 +33,15 @@ const createUser = (
     let existingUser, hash;
 
     try {
-      existingUser = await data.findUser((user) => user.username === username);
+      existingUser = await data.users.findOne({
+        $or: [{ email }, { username }],
+      });
     } catch (error) {
       throw new SystemError(`failed to create user: ${error.message}`);
     }
 
     if (existingUser) {
-      throw new DuplicityError("Username already exists");
+      throw new DuplicityError("Username or email already exist");
     }
 
     try {
@@ -57,28 +59,31 @@ const createUser = (
     };
 
     try {
-      await data.createUser(userData);
+      await data.users.insertOne(userData);
     } catch (error) {
       throw new SystemError(`failed to create user: ${error.message}`);
     }
   })();
 
-  /* return data
-    .findUser((user) => user.username === username)
+  /* return data.users
+    .findOne({ $or: [{ email }, { username }] })
     .then((existingUser) => {
       if (existingUser) {
-        throw new DuplicityError("username already exists");
+        throw new DuplicityError("Username or email already exist");
       }
 
+      return bcrypt.hash(password, 8);
+    })
+    .then((hash) => {
       const userData = {
         name,
         surname,
         email,
         username,
-        password,
+        password: hash,
       };
 
-      return data.createUser(userData);
+      return data.users.insertOne(userData);
     })
     .catch((error) => {
       if (error instanceof DuplicityError) {
