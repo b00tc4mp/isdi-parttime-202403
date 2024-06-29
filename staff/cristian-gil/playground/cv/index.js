@@ -12,7 +12,7 @@ head.appendChild(style);
 
 //Nombre
 var introName = document.createElement('h2');
-introName.innerText = 'Pinocho Grillo Disney';
+introName.innerText = 'Pinocho Grillo';
 introName.style.textDecoration = 'underline overline double';
 introName.style.textAlign = 'center';
 introName.style.fontFamily = 'New Walt Disney Font', 'sans-serif';
