@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import { MongoClient } from 'mongodb'
 import data from '../data/index.js'
+
 import logic from './index.js'
 
 const { MONGODB_URL } = process.env
@@ -18,16 +19,19 @@ client.connect()
         data.posts = posts
 
         try {
-            logic.createPost('peterpan', 'Buenas, mundo!', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+            logic.toggleLikePost('Wendydarling', '66815fed173c860fcb9a4cb4', error => {
+                //logic.registerUser('Wendy', 'Darling', 'wendy@darling.com', 'wendydarling', '123123123', '123123123', error => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
-                console.log('post created')
+
+                console.log('user registered')
             })
         } catch (error) {
             console.error(error)
         }
+
     })
     .catch(error => console.error(error))

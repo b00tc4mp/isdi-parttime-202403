@@ -7,7 +7,7 @@ import View from "../../components/library/View"
 
 import logic from "../../logic"
 
-function Post({ post, onPostDeleted }) {
+function Post({ post, onPostDeleted, onPostLikeToggled }) {
   const handleDeletePost = () => {
     if (confirm("Delete post?"))
       try {
@@ -29,6 +29,26 @@ function Post({ post, onPostDeleted }) {
       }
   }
 
+  const handleToggleLikePost = () => {
+    try {
+      logic.toggleLikePost(post.id, (error) => {
+        if (error) {
+          console.error(error)
+
+          alert(error.message)
+
+          return
+        }
+
+        onPostLikeToggled()
+      })
+    } catch (error) {
+      console.error(error)
+
+      alert(error.message)
+    }
+  }
+
   return (
     <View tag="aticle" align="">
       <View direction="row">
@@ -40,6 +60,14 @@ function Post({ post, onPostDeleted }) {
       <Image src={post.image} />
 
       <Text>{post.description}</Text>
+      <View direction="row">
+        <Button onClick={handleToggleLikePost}>
+          {`
+          ${post.likes.includes(logic.getUserUsername()) ? "❤️‍🔥" : "🤍"} ${
+            post.likes.length
+          } like${post.likes.length === 1 ? "" : "s"}`}
+        </Button>
+      </View>
 
       <View direction="row">
         <Time>{post.date}</Time>
