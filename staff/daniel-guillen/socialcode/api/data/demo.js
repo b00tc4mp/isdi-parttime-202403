@@ -15,13 +15,13 @@ client.connect()
         //    .then(result => console.log(result))
         //    .catch(error => console.error(error))
 
-        // users.deleteOne({ _id: new ObjectId('XXXXXXXXX') })
-        //   .then(result => console.log(result))
-        //   .catch(error => console.error(error))
-
-            users.find({}).toArray()
-           .then(results => console.log(results))
+         users.deleteOne({ _id: new ObjectId('66818d075e170f3bddc96241') })
+           .then(result => console.log(result))
            .catch(error => console.error(error))
+
+        //    users.find({}).toArray()
+        //   .then(results => console.log(results))
+        //   .catch(error => console.error(error))
 
         // users.updateOne({ _id: new ObjectId('668136b5bc68b2f277cc8988') }, { $set: { password: '123' } })
         //     .then(result => console.log(result))
