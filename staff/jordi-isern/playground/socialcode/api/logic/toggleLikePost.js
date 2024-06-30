@@ -1,6 +1,6 @@
-import data from '../data'
-import validate from  'com/validate'
-import { MatchError, SystemError } from 'com/errors'
+import data from '../data/index.js'
+import validate from  'com/validate.js'
+import { MatchError, SystemError } from 'com/errors.js'
 import { ObjectId } from 'mongodb'
 
 function toggleLikePost(username, postId,callback){

@@ -1,9 +1,8 @@
-import errors from '.com/errorss'
+import errors from 'com/errors'
+import validate from 'com/validate'
 
-const getAllPosts = ( callback) => {
-
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+const getAllPosts = callback => {
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 
@@ -23,7 +22,7 @@ const getAllPosts = ( callback) => {
         callback(new constructor(message))
     }
 
-    xhr.open('GET', 'http://localhost:8080/posts')
+    xhr.open('GET', `${import.meta.env.VITE_API_URL}/posts`)
 
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 

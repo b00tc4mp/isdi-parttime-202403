@@ -9,7 +9,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.email(email)
     validate.username(username)
     validate.password(password)
-    validate.passwordsMatch(password, passwordRepeat)
+    validate.passwordMatch(password, passwordRepeat)
     validate.callback(callback)
 
     data.users.findOne({ $or: [{ email }, { username }] })

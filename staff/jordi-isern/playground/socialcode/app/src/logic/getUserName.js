@@ -1,14 +1,13 @@
-import errors from '.com/errorss'
+import errors from 'com/errors'
+import validate from 'com/validate'
+
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
 const getUserName = callback => {
-    if (typeof callback !== 'function'){
-        const {sub: username} = extractPayloadFromJWT(sessionStorage.token)
-        throw new TypeError('callback is not a function')
-    }
+    validate.callback(callback)
 
     const { sub: username } = extractPayloadFromJWT(sessionStorage.token)
-    
+
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {
@@ -27,7 +26,7 @@ const getUserName = callback => {
         callback(new constructor(message))
     }
 
-    xhr.open('GET', `http://localhost:8080/users/${username}`)
+    xhr.open('GET', `${import.meta.env.VITE_API_URL}/users/${username}`)
 
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
     xhr.send()

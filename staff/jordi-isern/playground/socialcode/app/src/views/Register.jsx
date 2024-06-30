@@ -25,7 +25,7 @@ function Register ({onUserRegistered ,onLoginLinkClick}){
         try{
           logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
             if(error) {
-              console.log(error)
+              console.error(error)
               
               alert(error.message)
               
@@ -34,7 +34,7 @@ function Register ({onUserRegistered ,onLoginLinkClick}){
             onUserRegistered()
           })
         }catch(error) {
-          console.log(error)
+          console.error(error)
     
           alert(error.message)
         }

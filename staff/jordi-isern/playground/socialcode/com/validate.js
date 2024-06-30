@@ -19,10 +19,9 @@ function validatePasword(password){
     }
 }
 
-function validatePaswordsMatch( password, passwordRepeat){
-    if (password !== passwordRepeat) {
+function validatePasswordsMatch(password, passwordRepeat) {
+    if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
-    }
 }
 
 function validateIDpost(postId){
@@ -61,7 +60,7 @@ function validateURL (url, explain = 'url') {
 const validate = {
     username: validateUsername,
     password: validatePasword,
-    passwordMatch: validatePaswordsMatch,
+    passwordMatch: validatePasswordsMatch,
     callback: validateCallback,
     name: validateName,
     id: validateIDpost,
