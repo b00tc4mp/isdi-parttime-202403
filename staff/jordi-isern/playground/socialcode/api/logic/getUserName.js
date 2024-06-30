@@ -15,15 +15,15 @@ const getUserName = (username, targetUsername, callback) => {
     
                 return
             }
-            data.users.findOne({targetUsername})
-                .this(user => {
-                    if (!targetUser) {
+            data.users.findOne({username: targetUsername})
+                .then(user => {
+                    if (!user) {
                         callback(new MatchError('targetUser not found'))
         
                         return
                     }
         
-                    callback(null, targetUser.name)
+                    callback(null, user.name)
                 })
                 .catch(error => callback(new SystemError(error.message)))
         })

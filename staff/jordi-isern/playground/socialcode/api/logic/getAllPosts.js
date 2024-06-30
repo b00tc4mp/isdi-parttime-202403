@@ -14,9 +14,9 @@ const getAllPosts = (username, callback) => {
                 return
             }
 
-            data.post.find({}).toArray()
+            data.posts.find({}).toArray()
                 .then(posts =>{
-                    callback(null, posts)
+                    callback(null, posts.reverse())
                 })
                 .catch(error => callback(new SystemError(error.message)))
         })

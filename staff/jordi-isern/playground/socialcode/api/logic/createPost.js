@@ -24,7 +24,7 @@ const createPost = (username, title, image, description, callback) => {
                 date: new Date(),
                 likes: []
             }
-            data.post.insertOne(post)
+            data.posts.insertOne(post)
                 .then(() => callback(null))
                 .catch(error => callback(new SystemError(error.message)))
             

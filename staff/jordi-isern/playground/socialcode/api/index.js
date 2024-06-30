@@ -9,7 +9,7 @@ import data from './data/index.js'
 
 const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
-const client = new MongoClient(MONGODB_URL)
+const client = new MongoClient(MONGODB_URL,{family: 4})
 
 client.connect()
     .then(connection => {

@@ -49,7 +49,7 @@ function validateEmail (email){
 }
 
 function validateText(text, explain ='text', maxLength = Infinity){
-    if (typeof title !== 'string' || !title.length || text.length > maxLength){
+    if (typeof text !== 'string' || !text.length || text.length > maxLength){
         throw new ContentError(`${explain} is not valid`)
     }
 }
