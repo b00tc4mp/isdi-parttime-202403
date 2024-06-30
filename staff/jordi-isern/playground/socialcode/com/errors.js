@@ -29,6 +29,13 @@ class SystemError extends Error{
     }
 }
 
+class TypeError extends Error {
+    constructor(message){
+        super(message)
+        this.name = this.constructor.name
+    }
+}
+
 export {
     ContentError,
     MatchError,

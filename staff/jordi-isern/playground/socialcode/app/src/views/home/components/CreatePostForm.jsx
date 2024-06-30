@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import './CreatePostForm.css'
 
@@ -16,7 +16,16 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
 
     const [message, setMessage] = useState('')
 
+    const elemeantHandle = useRef()
+
     const handleCancelCreatePostClick = () => onCancelCreatePostClick()
+
+    useEffect(() => {
+        if(elemeantHandle.current){
+            elemeantHandle.current.scrollIntoView({behavior: 'smooth', block :'end' })
+        }
+    })
+    
 
     const handleCreatePostSubmit = event => {
         event.preventDefault()
@@ -46,7 +55,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         }
     }
 
-    return <div className='"BackgorundCreatePostForm'>
+    return <div className='"BackgorundCreatePostForm' ref={elemeantHandle}>
         <View className="CreatePostForm">
         <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
             <Field id="title">Title</Field>

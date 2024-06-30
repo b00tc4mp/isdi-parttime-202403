@@ -4,16 +4,18 @@ import Button from '../../../Components/Core/Button'
 import Text from '../../../Components/Core/Text'
 import Time from '../../../Components/Core/Time'
 import View from '../../../Components/Library/View'
+import CommentPostForm from './CommentPostForm'
+import CommentList from './commentList'
 
 import logic from '../../../logic'
 
-function Post({ post, onPostDeleted, onPostLikeToggled }) {
+function Post({ post, onPostDeleted, onPostLikeToggled, onPostCommented }) {
     console.log('Post -> render')
 
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
             try {
-                logic.deletePost(post.id, error => {
+                logic.deletePost(post._id, error => {
                     if (error) {
                         console.error(error)
 
@@ -33,7 +35,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
     const handleToggleLikePost = () => {
         try {
-            logic.toggleLikePost(post.id, error => {
+            logic.toggleLikePost(post._id, error => {
                 if (error) {
                     console.error(error)
 
@@ -63,7 +65,9 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         <Text>{post.description}</Text>
 
         <View direction='row'>
-            {/* <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button> */}
+            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
+            <CommentList comments={post.comments}/>
+            <CommentPostForm onPostCommented = {onPostCommented} postid={post._id}/>
         </View>
 
         <View direction='row'>

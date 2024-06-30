@@ -22,7 +22,8 @@ const createPost = (username, title, image, description, callback) => {
                 image,
                 description,
                 date: new Date(),
-                likes: []
+                likes: [],
+                comments: []
             }
             data.posts.insertOne(post)
                 .then(() => callback(null))

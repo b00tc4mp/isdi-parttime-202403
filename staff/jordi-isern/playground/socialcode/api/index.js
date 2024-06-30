@@ -212,8 +212,6 @@ client.connect()
 
         api.patch('/posts/:postId/likes', (req, res) => {
             try {
-                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
-                    res.status(500).json({ error: SystemError.name, message: error.message })
                 const token = req.headers.authorization.slice(7)
 
                 jwt.verify(token, JWT_SECRET, (error, payload) => {
@@ -229,6 +227,7 @@ client.connect()
 
                     logic.toggleLikePost(username, postId, error => {
                         if (error) {
+                            console.log('failed like')
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
                             return
@@ -238,9 +237,50 @@ client.connect()
                     })
                 })
             } catch (error) {
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+
                     res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
+        
+        api.patch('/posts/:postId/comments', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+
+                jwt.verify(token, JWT_SECRET, (error, payload) => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+
+                    const { sub: username } = payload
+
+                    const { postId } = req.params
+                    const { comment } = req.body
+
+                    
+                    logic.createComment(username, postId, comment, error => {
+                        if (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                            return
+                        }
+
+                        res.status(201).send()
+                    })
+                })
+            } catch (error) {
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+
+                    res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+
+
 
   
 
