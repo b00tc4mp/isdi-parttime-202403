@@ -1,8 +1,7 @@
 import validate from 'com/validate.js'
 import data from '../data/index.js'
 import { SystemError, DuplicityError } from 'com/errors.js'
-
-
+import bcrypt from 'bcryptjs'
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
     validate.name(name)
@@ -13,37 +12,35 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.passowrdsMatch(password, passwordRepeat)
     validate.callback(callback)
 
-    data.findUser(user => user.email === email || user.username === username, (error, user) => {
-        if (error) {
-            callback(new SystemError(error.message))
-
-            return
-        }
-
-        if (user) {
-            callback(new DuplicityError('user already exists'))
-
-            return
-        }
-
-        const newUser = {
-            name,
-            surname,
-            email,
-            username,
-            password
-        }
-
-        data.insertUser(newUser, error => {
-            if (error) {
-                callback(new SystemError(error.message))
+    data.users.findOne({ $or: [{ email }, { username }] })
+        .then(user => {
+            if (user) {
+                callback(new DuplicityError('user already exists'))
 
                 return
             }
 
-            callback(null, newUser)
+            bcrypt.hash(password, 8, (error, hash) => {
+                if (error) {
+                    callback(new SystemError(error.message))
+
+                    return
+                }
+                const newUser = {
+                    name,
+                    surname,
+                    email,
+                    username,
+                    password: hash
+                }
+
+                data.users.insertOne(newUser)
+                    .then(() => callback(null))
+                    .catch(error => callback(error))
+
+            })
         })
-    })
+        .catch(error => callback(error))
 }
 
 export default registerUser
