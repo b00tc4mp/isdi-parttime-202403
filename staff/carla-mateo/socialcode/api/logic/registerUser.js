@@ -37,10 +37,16 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
 
                 data.users.insertOne(newUser)
                     .then(() => callback(null))
-                    .catch(error => callback(error))
+                    .catch(error => callback(new SystemError(error.message)))
             })
+
+
+
         })
-        .catch(error => callback(error))
+
+        .catch(error => callback(new SystemError(error.message)))
 }
+
+
 
 export default registerUser

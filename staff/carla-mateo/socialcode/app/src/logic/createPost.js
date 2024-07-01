@@ -2,7 +2,7 @@ import errors from 'com/errors'
 import validate from 'com/validate'
 
 const createPost = (title, image, description, callback) => {
-    validate.text(title, 'title', 50)
+    validate.text(title, 'title', 56)
     validate.url(image, 'image')
     validate.text(description, 'description', 200)
     validate.callback(callback)
