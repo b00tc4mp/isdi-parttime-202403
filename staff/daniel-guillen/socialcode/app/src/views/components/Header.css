@@ -9,7 +9,7 @@
     padding: .5rem;
     box-sizing: border-box;
     background-color: var(--second-color);
-    background: linear-gradient(white,transparent);
+    background: linear-gradient(white, transparent);
 }
 
 .Home {
