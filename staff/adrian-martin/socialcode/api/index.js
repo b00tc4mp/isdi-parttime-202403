@@ -15,9 +15,11 @@ client.connect()
     .then(connection => {
         const db = connection.db('test')
 
-        const users =db.collection('users')
+        const users = db.collection('users')
+        const posts = db.collection('posts')
 
         data.users = users
+        data.posts = posts
 
         const { JsonWebTokenError, TokenExpiredError } = jwt
 
@@ -83,6 +85,10 @@ client.connect()
 
                 jwt.verify(token, JWT_SECRET, (error, payload) => {
                     if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+
                         res.status(500).json({ error: error.constructor.name, message: error.message })
 
                         return
@@ -102,10 +108,7 @@ client.connect()
                 })
 
             } catch (error) {
-                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
-                    res.status(500).json({ error: SystemError.name, message: error.message })
-                else
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -117,6 +120,9 @@ client.connect()
 
                 jwt.verify(token, JWT_SECRET, (error, payload) => {
                     if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
                         res.status(500).json({ error: error.constructor.name, message: error.message })
 
                         return
@@ -134,9 +140,6 @@ client.connect()
                 })
 
             } catch (error) {
-                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
-                    res.status(500).json({ error: SystemError.name, message: error.message })
-                else
                     res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
@@ -149,6 +152,9 @@ client.connect()
 
                 jwt.verify(token, JWT_SECRET, (error, payload) => {
                     if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
                         res.status(500).json({ error: error.constructor.name, message: error.message })
 
                         return
@@ -168,9 +174,6 @@ client.connect()
                     })
                 })
             } catch (error) {
-                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
-                    res.status(500).json({ error: SystemError.name, message: error.message })
-                else
                     res.status(500).json({ error: error.constructor.name, message: error.message })
 
             }
@@ -183,6 +186,9 @@ client.connect()
 
                 jwt.verify(token, JWT_SECRET, (error, payload) => {
                     if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
                         res.status(500).json({ error: error.constructor.name, message: error.message })
 
                         return
@@ -202,14 +208,43 @@ client.connect()
                     })
                 })
             } catch (error) {
-                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
-                    res.status(500).json({ error: SystemError.name, message: error.message })
-                else
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
-        api.listen(PORT, () => console.log('api is up'))
+        api.patch('/posts/:postId/likes', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+
+                jwt.verify(token, JWT_SECRET, (error, payload) => {
+                    if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+                    const { sub: username } = payload
+
+                    const { postId } = req.params
+
+                    logic.toggleLikePost(username, postId, error => {
+                        if (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                            return
+                        }
+
+                        res.status(204).send()
+                    })
+                })
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
     })
     .catch(error => console.error(error))
 
