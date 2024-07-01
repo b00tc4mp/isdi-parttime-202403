@@ -1,6 +1,7 @@
-import data from "../data/data.js";
+import data from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
+import { ObjectId } from "mongodb";
 
 const deletePost = (username, id) => {
   validate.username(username);
@@ -10,7 +11,7 @@ const deletePost = (username, id) => {
     let user, post;
 
     try {
-      user = await data.findUser((user) => user.username === username);
+      user = await data.users.findOne({ username });
     } catch {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
@@ -20,7 +21,7 @@ const deletePost = (username, id) => {
     }
 
     try {
-      post = await data.findPost((post) => post.id === id);
+      post = await data.posts.findOne({ _id: new ObjectId(id) });
     } catch (error) {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
@@ -34,20 +35,20 @@ const deletePost = (username, id) => {
     }
 
     try {
-      await data.deletePost((post) => post.id === id);
+      await data.posts.deleteOne({ _id: new ObjectId(id) });
     } catch (error) {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
   })();
 
-  /* return data
-    .findUser((user) => user.username === username)
+  /* return data.users
+    .findOne({ username })
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
       }
 
-      return data.findPost((post) => post.id === id);
+      return data.posts.findOne({ _id: new ObjectId(id) });
     })
     .then((post) => {
       if (!post) {
@@ -57,11 +58,11 @@ const deletePost = (username, id) => {
       if (post.author !== username) {
         throw new MatchError("post author does not match user");
       }
-      
-      return data.deletePost((post) => post.id === id);
+
+      return data.posts.deleteOne({ _id: new ObjectId(id) });
     })
     .catch((error) => {
-      if (error instanceof MatchError || error instanceof ContentError) {
+      if (error instanceof MatchError) {
         throw error;
       } else {
         throw new SystemError(`failed to delete post: ${error.message}`);

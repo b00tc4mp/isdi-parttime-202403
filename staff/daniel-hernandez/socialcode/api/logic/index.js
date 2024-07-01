@@ -6,8 +6,7 @@ import getPosts from "./getPosts.js";
 import createPost from "./createPost.js";
 import deletePost from "./deletePost.js";
 
-// TODO: implement tests
-// TODO: move tests to shellscript executable files
+// TODO: create shellscript tests
 const logic = {
   createUser,
   authenticateUser,

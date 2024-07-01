@@ -1,4 +1,4 @@
-import data from "../data/data.js";
+import data from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
 
@@ -9,7 +9,7 @@ const getPosts = (username) => {
     let user, posts;
 
     try {
-      user = data.findUser((user) => user.username === username);
+      user = data.users.findOne({ username });
     } catch (error) {
       throw new SystemError(`failed to get posts: ${error.message}`);
     }
@@ -19,31 +19,43 @@ const getPosts = (username) => {
     }
 
     try {
-      posts = await data.getPosts();
+      posts = await data.posts.find({}).toArray();
     } catch (error) {
-      throw new SystemError(`failed fetching posts: ${error.message}`);
+      throw new SystemError(`failed to get posts: ${error.message}`);
     }
+
+    posts.forEach((post) => {
+      post.id = post._id.toString();
+
+      delete post._id;
+    });
 
     return posts.reverse();
   })();
 
-  /* return data
-    .findUser((user) => user.username === username)
+  /* return data.users
+    .findOne({ username })
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
       }
 
-      return data.getPosts();
+      return data.posts.find({}).toArray();
     })
     .then((posts) => {
+      posts.forEach((post) => {
+        post.id = post._id.toString();
+
+        delete post._id;
+      });
+
       return posts.reverse();
     })
     .catch((error) => {
       if (error instanceof MatchError) {
         throw error;
       } else {
-        throw new SystemError(`failed fetching posts: ${error.message}`);
+        throw new SystemError(`failed to get posts: ${error.message}`);
       }
     }); */
 };

@@ -5,14 +5,17 @@ import logic from "./index.js";
 
 const { MONGO_URI } = process.env;
 
-const testCreateUser = async () => {
+const testGetPosts = async () => {
   const client = new MongoClient(MONGO_URI);
 
   try {
     await client.connect();
     const db = client.db("test");
     const users = db.collection("users");
+    const postsC = db.collection("posts");
+
     data.users = users;
+    data.posts = postsC;
 
     console.log("connected to database");
   } catch (error) {
@@ -20,15 +23,8 @@ const testCreateUser = async () => {
   }
 
   try {
-    await logic.createUser(
-      "Mr",
-      "Purple",
-      "mr@purple.com",
-      "MrPurple",
-      "123123123",
-      "123123123",
-    );
-    console.log("user created");
+    const posts = await logic.getPosts("tester");
+    console.log(posts);
   } catch (error) {
     console.error(error);
   } finally {
@@ -37,4 +33,4 @@ const testCreateUser = async () => {
   }
 };
 
-testCreateUser();
+testGetPosts();

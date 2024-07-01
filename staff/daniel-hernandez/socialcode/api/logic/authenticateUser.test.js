@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { MongoClient } from "mongodb";
-import data from "../data/data.js";
+import data from "../data/index.js";
 import logic from "./index.js";
 
 const { MONGO_URI } = process.env;
