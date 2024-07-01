@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 
 import Image from "../../core/Image"
 import Heading from "../../core/Heading"
-import Button from "../../core/Button"
 import Text from "../../core//Text"
 import Time from "../../views/components/Time"
 import ConfirmDelete from "./ConfirmDelete"
+import Navbar from "./Navbar"
+import CreateComment from "./CreateComment"
 
 import logic from "../../../logic"
-import getLoggedInUsername from "../../../logic/getLoggedInUsername"
+import createComment from "../../../logic/createComment"
 
 function Post({ post, onPostDeleted }) {
 	console.log("Post --> render")
@@ -16,14 +17,17 @@ function Post({ post, onPostDeleted }) {
 	const [showConfirmDelete, setShowConfirmDelete] = useState(false)
 	const [like, setLike] = useState(false)
 	const [likeNum, setLikeNum] = useState(0)
+	const [showAddComment, setShowAddComment] = useState(false)
+	const [comments, setComments] = useState([])
 
 	useEffect(() => {
 		setLike(includeUserLike())
 		setLikeNum(post.liked.length)
+		setComments(post.comments || [])
 	}, [])
 
 	const includeUserLike = () => {
-		const username = getLoggedInUsername()
+		const username = logic.getLoggedInUsername()
 		return post.liked.includes(username)
 	}
 
@@ -67,10 +71,21 @@ function Post({ post, onPostDeleted }) {
 		})
 	}
 
+	const handleShowComment = () => {
+		if (showAddComment) {
+			setShowAddComment(false)
+		} else {
+			setShowAddComment(true)
+		}
+	}
+
 	return (
 		<>
 			<article className="Article">
-				<Text className="AuthorTitle">{post.author}</Text>
+				<div className="Author_navbar">
+					<Text className="AuthorTitle">{post.author}</Text>
+					<Navbar post={post} handleDeletePost={handleDeletePost} />
+				</div>
 
 				<Heading level="2" className="PostTitle">
 					{post.title}
@@ -91,13 +106,24 @@ function Post({ post, onPostDeleted }) {
 					<i className={`Likes ${like ? "fa-solid fa-heart" : "fa-regular fa-heart"}`} onClick={handleLike}>
 						<sub>{likeNum}</sub>
 					</i>
+					<i className="fa-regular fa-comments" onClick={handleShowComment}></i>
 				</div>
 
-				{post.author === logic.getLoggedInUsername() && (
-					<Button className="DeleteButton" onClick={handleDeletePost}>
-						Delete
-					</Button>
+				{showAddComment && (
+					<CreateComment
+						onClickScrollTop={handleShowComment}
+						onCommentCreated={setComments}
+						onCancelCreatedCommentClick={handleShowComment}
+					/>
 				)}
+
+				<div className="Comments">
+					{comments.map((comment, index) => (
+						<p key={index}>
+							{comment.author}: {comment.text}
+						</p>
+					))}
+				</div>
 			</article>
 		</>
 	)

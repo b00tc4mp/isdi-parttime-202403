@@ -1,9 +1,12 @@
 time {
   font-size: 1.3rem;
   color: black;
+  min-width: 8rem;
 }
 
 .TimeLike {
+  display: flex;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;

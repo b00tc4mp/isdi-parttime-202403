@@ -1,0 +1,50 @@
+.Author_navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Navbar {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: end;
+  width: 5rem;
+  height: auto;
+
+}
+
+.Delete_Container {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+
+.DeleteButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.NavButton {
+  font-size: 1.5rem;
+  cursor: pointer;
+
+}
+
+.NavButton:hover {
+  color: var(--second-color);
+}
+
+.fa-solid.fa-bars {
+  color: white;
+}
+
+.fa-bars-staggered {
+  color: black;
+
+}

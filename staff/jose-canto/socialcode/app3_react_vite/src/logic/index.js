@@ -5,6 +5,7 @@ import isUserLoggedIn from "./isUserLoggedIn"
 import getUserName from "./getUserName"
 import getLoggedInUsername from "./getLoggedInUsername"
 import toggleLike from "./toggleLike"
+import createComment from "./createComment"
 
 
 import getAllPosts from "./getAllPosts"
@@ -21,6 +22,7 @@ const logic = {
   getLoggedInUsername,
 
   toggleLike,
+  createComment,
 
   getAllPosts,
   createPost,

@@ -38,7 +38,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
           .catch(error => callback(error))
       })
     })
-    .catch(error => callback(error))
+    .catch(error => callback(new SystemError(error.message)))
 }
 
 export default registerUser

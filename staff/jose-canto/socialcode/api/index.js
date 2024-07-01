@@ -32,6 +32,8 @@ client.connect()
 
     const jsonBodyParser = express.json({ strict: true, type: "application/json" })
 
+
+
     api.get("/", (req, res) => {
       res.send("Hello World")
     })
@@ -270,6 +272,44 @@ client.connect()
               return
             }
             res.status(200).send()
+          })
+        })
+
+      } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+      }
+    })
+
+    api.patch("/posts/comments/:postId", jsonBodyParser, (req, res) => {
+
+      try {
+        const token = req.headers.authorization.slice(7)
+
+        jwt.verify(token, JWT_SECRET, (error, payload) => {
+          if (error) {
+            if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+
+              res.status(500).json({ error: SystemError.name, message: error.message })
+            } else {
+
+              res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+            return
+          }
+
+          const { sub: username } = payload
+
+          const { postId } = req.params
+
+          const { text } = req.body
+
+
+          logic.createComment(username, postId, text, (error) => {
+            if (error) {
+              res.status(500).json({ error: error.constructor.name, message: error.message })
+              return
+            }
+            res.status(201).send()
           })
         })
 

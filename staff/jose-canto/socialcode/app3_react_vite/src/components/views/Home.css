@@ -62,3 +62,17 @@
 .Footer i:hover {
   color: var(--first-color);
 }
+
+@media (max-width: 768px) {
+
+  .Logo {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 425px) {
+
+  .Logo {
+    font-size: 1.4rem;
+  }
+}

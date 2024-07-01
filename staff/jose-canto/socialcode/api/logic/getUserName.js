@@ -1,5 +1,5 @@
 import data from "../data/index.js"
-import { MatchError } from "com/errors.js"
+import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 
 const getUserName = (username, targetUsername, callback) => {
@@ -29,9 +29,9 @@ const getUserName = (username, targetUsername, callback) => {
           callback(null, targetUser.name)
 
         })
-        .catch(error => callback(error))
+        .catch(error => callback(new SystemError(error.message)))
     })
-    .catch(error => callback(error))
+    .catch(error => callback(new SystemError(error.message)))
 }
 
 export default getUserName
