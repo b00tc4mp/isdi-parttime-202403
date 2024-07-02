@@ -1,6 +1,6 @@
 import validate from "com/validate.js"
 import data from "../data/index.js" // importamos el objeto data
-import { MatchError } from "com/errors.js"
+import { MatchError,SystemError } from "com/errors.js"
 
 
 const getUsername = (username, targetUsername, callback) => {
@@ -9,36 +9,26 @@ const getUsername = (username, targetUsername, callback) => {
     validate.username(targetUsername, "targetUsername")
     validate.callback(callback)
 
-    data.findUser(user => user.username === username, (error, user) => {
-        if (error) {
-            callback(error)
-
-            return
-        }
-
-        if (!user) {
-            callback(new MatchError("user not found"))
-
-            return
-        }
-
-        data.findUser(user => user.username === targetUsername, (error, targetUser) => {
-            if (error) {
-                callback(error)
+    data.users.findOne({ username })
+        .then(user => {
+            if (!user) {
+                callback(new MatchError("user not found"))
 
                 return
             }
 
-            if (!targetUser) {
-                callback(new MatchError("targetUser not found"))
+            data.users.findOne({ username: targetUsername })
+                .then(user => {
+                    if (!user) {
+                        callback(new MatchError("targetUsername not found"))
 
-                return
-            }
-
-            callback(null, targetUser.username)
-            // TODO cambiar a que devuelva name,
+                        return
+                    }
+                    callback(null, user.username)
+                })
+                .catch(error => callback(new SystemError(error.message)))
         })
-    })
+        .catch(error => callback(new SystemError(error.message)))
 
 }
 

@@ -22,7 +22,6 @@ curl -X POST http://localhost:8080/users/auth -H "Content-Type: application/json
 ```sh
 curl http://localhost:8080/users/RotoJaz -H "Authorization: Basic RotoJaz" -v
 ```
-
 - get user name (TOKEN)
 
 ```sh
@@ -37,7 +36,6 @@ curl -X POST http://localhost:8080/posts -H "Content-Type: application/json"  -d
 curl -X POST http://localhost:8080/posts -H "Authorization: Basic RotoJaz" -H "Content-Type: application/json" -d '{"title":"Lion Leo","image":"https://koalahospital.org.au/cdn/shop/products/f7p40CJBP5hB09Vp6TeSXFwMe0E_lion-leo-adoption-certificate.jpg?v=1608174739&width=600","description":"Blah blah "}' -v
 
 ```
-
 - create post (TOKEN)
 
 ```sh
@@ -45,17 +43,11 @@ curl -X POST http://localhost:8080/posts -H "Authorization: Bearer eyJhbGciOiJIU
 
 ```
 
-- get posts
+- list posts
 
 ```sh
 curl (-X GET) http://localhost:8080/posts -v (por defecto hace un GET)
 curl http://localhost:8080/posts -v
-
-```
-- get posts (TOKEN)
-
-```sh
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXBpdG9ncmlsbG8iLCJpYXQiOjE3MTk1MTA5NTIsImV4cCI6MTcxOTUxNDU1Mn0.ee8qg81fCjIXYqgiDU5tA3ILo7r9BBimpCbnMPK9yiI" http://localhost:8080/posts -v
 
 ```
 
@@ -65,31 +57,15 @@ curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJw
 curl -X DELETE http://localhost:8080/posts/8422506284986642-1717177023435 -H "Authorization: Basic RotoJaz" -v
 
 ```
-
 - delete post (TOKEN)
 
 ```sh
 curl -X DELETE http://localhost:8080/posts/8422506284986642-1717177023435 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJSb3RvSmF6IiwiaWF0IjoxNzE4NzI4MjAwLCJleHAiOjE3MTg3MzE4MDB9.ipG3zAdEzNLWqE_FqGeFMEED9E3eU2rg459rpGOVunY" -v
 
 ```
-
-- get username
+- get username 
 
 ```sh
 curl http://localhost:8080/users/RotoJaz -H "Authorization: Basic RotoJaz" -v
 
-```
-
-# API
-
-## Installation
-
-```sh
-$ npm i
-```
-
-## Execution
-
-```sh
-$ npm start
 ```

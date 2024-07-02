@@ -8,7 +8,7 @@ import View from '../../components/library/View'
 import logic from "../../logic"
 
 // post recive dos props, post y un callback que avisa cuando se ha borrado un post, ya que inicialmente se usaba loadPosts, pero esta funcion esta fuera del compo
-function Post({ post, onPostDeleted }) {
+function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log("Post -> render")
 
     /* const handleDeletePost = postId => {
@@ -38,6 +38,25 @@ function Post({ post, onPostDeleted }) {
         }
     }
 
+    const handleToggleLikePost = () => {
+        try {
+            logic.toggleLikePost(post.id, (error) => {
+                if (error) {
+                    console.error(error)
+
+                    alert(error.message)
+
+                    return
+                }
+
+                onPostLikeToggled()
+            })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
     return <View tag="article" align="">
         <View direction="row">
             <Text>{post.author}</Text>
@@ -49,8 +68,11 @@ function Post({ post, onPostDeleted }) {
 
         <Text>{post.description}</Text>
 
-        {/*<View style={{ display: "flex", alignItems: "center", gap: "1rem" }}>*/}
+        <View direction="row">
+            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getLoggedInUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
+        </View>
 
+        {/*<View style={{ display: "flex", alignItems: "center", gap: "1rem" }}>*/}
         <View direction="row">
             <Time>{post.date}</Time>
 

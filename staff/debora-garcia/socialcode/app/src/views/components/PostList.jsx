@@ -43,9 +43,12 @@ function PostList({ refreshStamp }) {
 
     //para manejar el onPostDeleted usamos handlePostDeleted que recargara los posts y los repinte
     const handlePostDeleted = () => loadPosts()
-// usamos key como identificador para react ya que al devolver un array, en caso de que un post cambiara, se repintaria unicamente el post modificado.
+
+    const handlePostLikeToggled = () => loadPosts()
+    
+    // usamos key como identificador para react ya que al devolver un array, en caso de que un post cambiara, se repintaria unicamente el post modificado.
     return <View tag="section" className="PostList">
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
+    {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} onPostLikeToggled={handlePostLikeToggled} />)}
     </View>
 }
 

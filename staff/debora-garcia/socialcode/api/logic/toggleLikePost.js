@@ -1,9 +1,9 @@
-import data from "../data/index.js" // importamos el objeto data
-import { MatchError,SystemError } from "com/errors.js"
+import data from "../data/index.js"
 import validate from "com/validate.js"
+import { MatchError, SystemError } from "com/errors.js"
 import { ObjectId } from "mongodb"
 
-const deletePost = (username, postId, callback) => {
+function toggleLikePost(username, postId, callback) {
     validate.username(username)
     validate.id(postId, "postId")
     validate.callback(callback)
@@ -22,12 +22,15 @@ const deletePost = (username, postId, callback) => {
 
                         return
                     }
-                    if (post.author !== username) {
-                        callback(new MatchError("post author does not match user"))
+                    const index = post.likes.indexOf(username) //** 
 
-                        return
-                    }
-                    data.posts.deleteOne({ _id: new ObjectId(postId) })
+                    if (index < 0)
+                        post.likes.push(username)
+                    else
+                        post.likes.splice(index, 1)
+                    //set reemplaza el post completo
+
+                    data.posts.updateOne({ _id: new ObjectId(postId) }, { $set: post })
                         .then(() => callback(null))
                         .catch(error => callback(new SystemError(error.message)))
 
@@ -35,7 +38,8 @@ const deletePost = (username, postId, callback) => {
                 .catch(error => callback(new SystemError(error.message)))
         })
         .catch(error => callback(new SystemError(error.message)))
-
 }
 
-export default deletePost
+//** Buscamos si el usuario le ha dado like, si no lo encuentra se añade en el array likes, sino lo elimina en la posicion index
+
+export default toggleLikePost
