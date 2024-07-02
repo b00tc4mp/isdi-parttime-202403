@@ -4,9 +4,7 @@ import Button from "./Button"
 import './ConfirmDelete.css'
 
 function ConfirmDelete({ onCancelConfirm, onConfirmDelete }) {
-    // const handleCancelConfirmDelete = onCancelConfirm()
 
-    // const handleDeletePost = onConfirmDelete()
 
 
     return <div className="ConfirmDelete">

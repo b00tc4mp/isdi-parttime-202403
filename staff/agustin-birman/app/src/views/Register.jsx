@@ -8,6 +8,7 @@ import SubmitButton from '../components/core/SubmitButton'
 import FormWithFeedback from '../components/library/FormWithFeedback'
 import Link from '../components/core/Link'
 import { useState } from 'react'
+import validate from 'com/validate'
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
     const [message, setMessage] = useState('')
@@ -73,3 +74,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 
 
 export default Register
+
+
+
+
