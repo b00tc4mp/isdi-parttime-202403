@@ -1,0 +1,1 @@
+curl http://localhost:8080/users/batman -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWNrIiwiaWF0IjoxNzE5NTEyODkzLCJleHAiOjE3MjAxMTc2OTN9.bMNu1zYCpvx5aCTq7wyj-TQFTOozOIG3jUnuX-YGf20" -v 

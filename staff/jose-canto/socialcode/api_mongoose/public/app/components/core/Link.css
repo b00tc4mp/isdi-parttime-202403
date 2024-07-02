@@ -1,0 +1,10 @@
+.Link {
+  color: white;
+  margin-top: 10px;
+  letter-spacing: 2px;
+  font-size: 1.8rem;
+}
+
+.Link:hover {
+  color: var(--second-color);
+}
