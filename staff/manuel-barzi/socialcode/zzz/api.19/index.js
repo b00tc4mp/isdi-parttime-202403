@@ -4,12 +4,23 @@ import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { SystemError } from 'com/errors.js'
-import mongoose from 'mongoose'
+import { MongoClient } from 'mongodb'
+import data from './data/index.js'
 
 const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
-mongoose.connect(MONGODB_URL)
-    .then(() => {
+const client = new MongoClient(MONGODB_URL)
+
+client.connect()
+    .then(connection => {
+        const db = connection.db('test')
+
+        const users = db.collection('users')
+        const posts = db.collection('posts')
+
+        data.users = users
+        data.posts = posts
+
         const { JsonWebTokenError, TokenExpiredError } = jwt
 
         const api = express()

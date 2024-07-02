@@ -1,28 +1,15 @@
-import { MongoClient, ObjectId } from 'mongodb'
+import mongoose from 'mongoose'
+import { User, Post } from './index.js'
 
 
-const client = new MongoClient('mongodb://localhost:27017')
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('test')
-
-        const users = db.collection('users')
-
-        // users.insertOne({ name: 'Pepito', surname: 'Grillo', email: 'pepito@grillo.com', username: 'pepitogrillo', password: '123123123' })
-        //     .then(result => console.log(result))
+mongoose.connect('mongodb://localhost:27017/test')
+    .then(() => {
+        // User.create({ name: 'Super', surname: 'Woman', email: 'super@woman.com', username: 'superwoman', password: '123123123' })
+        //     .then(() => console.log('created'))
         //     .catch(error => console.error(error))
 
-        // users.deleteOne({ _id: new ObjectId('667c5c1d8e6ac610bb9f7f6a') })
-        //     .then(result => console.log(result))
-        //     .catch(error => console.error(error))
-
-        users.find({}).toArray()
-            .then(results => console.log(results))
+        Post.create({ author: 'pepitogrillo', title: 'console.log', image: 'https://whatever.com', description: '...' })
+            .then(() => console.log('created'))
             .catch(error => console.error(error))
-
-        // users.updateOne({ _id: new ObjectId('667c60becdc4257cb3416eca') }, { $set: { password: '234234234' } })
-        //     .then(result => console.log(result))
-        //     .catch(error => console.error(result))
     })
     .catch(error => console.error(error))
