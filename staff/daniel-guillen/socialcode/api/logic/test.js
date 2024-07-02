@@ -150,7 +150,7 @@ client.connect()
 
     // deletePost
 
-import 'dotenv/config'
+/*import 'dotenv/config'
 import { MongoClient } from 'mongodb'
 import data from '../data/index.js'
 
@@ -178,6 +178,60 @@ client.connect()
                 }
 
                 console.log('post deleted')
+            })
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))*/
+
+    //mongoose registerUser
+
+/*import 'dotenv/config'
+import mongoose from 'mongoose'
+
+import registerUser from './registerUser.js'
+
+const { MONGODB_URL } = process.env
+
+mongoose.connect(MONGODB_URL)
+    .then(() => {
+        try {
+            registerUser('Cat', 'Woman', 'cat@woman.com', 'Catwoman', '123', '123', error => {
+                if (error) {
+                    console.error(error)
+
+                    return
+                }
+
+                console.log('user registered')
+            })
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))*/
+
+    //createPost
+
+    import 'dotenv/config'
+import mongoose from 'mongoose'
+
+import createPost from './createPost.js'
+
+const { MONGODB_URL } = process.env
+
+mongoose.connect(MONGODB_URL)
+    .then(() => {
+        try {
+            createPost('Catwoman', 'miaw', 'https://www.lacasadeel.net/wp-content/uploads/2022/11/batmancatwoman10-a-1068x539.jpg', 'miaw', error => {
+                if (error) {
+                    console.error(error)
+
+                    return
+                }
+
+                console.log('post created')
             })
         } catch (error) {
             console.error(error)

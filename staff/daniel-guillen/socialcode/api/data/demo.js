@@ -1,30 +1,15 @@
-import mongodb from 'mongodb'
-//import { MongoClient, ObjectId } from 'mongodb'
-
-const { MongoClient } =mongodb
+import mongoose from 'mongoose'
+import { User, Post } from './index.js'
 
 const client = new MongoClient('mongodb://localhost:27017')
 
-client.connect()
-        .then(connection => {
-            const db = connection.db('test')
-    
-            const users = db.collection('users')
-        
-        //    users.insertOne({ name: 'pedro', surname: 'mapache', email: 'pedro@mapache.com', username: 'elmapache', password: '123123' })
-        //    .then(result => console.log(result))
-        //    .catch(error => console.error(error))
-
-         users.deleteOne({ _id: new ObjectId('66818d075e170f3bddc96241') })
-           .then(result => console.log(result))
-           .catch(error => console.error(error))
-
-        //    users.find({}).toArray()
-        //   .then(results => console.log(results))
-        //   .catch(error => console.error(error))
-
-        // users.updateOne({ _id: new ObjectId('668136b5bc68b2f277cc8988') }, { $set: { password: '123' } })
-        //     .then(result => console.log(result))
-        //     .catch(error => console.error(result))
-    })
-    .catch(error => console.error(error))
+mongoose.connect('mongodb://localhost:27017/test')
+    .then(() => {
+        //  User.create({ name: 'Cat', surname: 'Woman', email: 'cat@woman.com', username: 'Catwoman', password: '123' })
+        //      .then(() => console.log('created'))
+        //      .catch(error => console.error(error))
+             Post.create({ author: 'Catwoman', title: 'console.log', image: 'https://www.lacasadeel.net/wp-content/uploads/2022/11/batmancatwoman10-a-1068x539.jpg', description: '...' })
+             .then(() => console.log('created'))
+             .catch(error => console.error(error))
+     })
+     .catch(error => console.error(error))
