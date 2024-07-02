@@ -8,7 +8,7 @@ const authenticateUser = (username, password, callback) => {
     validate.password(password)
     validate.callback(callback)
 
-    User.findOne({ username })
+    User.findOne({ username }).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
