@@ -1,24 +1,13 @@
-import logic from "./index.js"
-import data from "../data/index.js"
+import getAllPosts from './getAllPosts.js'
+import mongoose from 'mongoose'
 import 'dotenv/config'
-import { MongoClient } from "mongodb"
 
 const { MONGODB_URL } = process.env
 
-const client = new MongoClient(MONGODB_URL)
-
-client.connect()
-    .then(connection => {
-        const db = client.db('test')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        data.users = users
-        data.posts = posts
-
+mongoose.connect(MONGODB_URL)
+    .then(() => {
         try {
-            logic.getAllposts('pepe', (error, posts) => {
+            getAllposts('pepe', (error, posts) => {
                 if (error) {
                     console.error(error)
 

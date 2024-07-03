@@ -1,7 +1,6 @@
-import data from "../data/index.js"
+import { ObjectId } from "mongodb"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
-import { ObjectId } from "mongodb"
 
 const createComment = (username, textComment, postId, callback) => {
     validate.username(username)

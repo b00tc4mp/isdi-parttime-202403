@@ -1,25 +1,13 @@
-import logic from "./index.js"
-import data from "../data/index.js"
-import { MongoClient } from 'mongodb'
+import createPost from './createPost.js'
+import mongoose from 'mongoose'
 import 'dotenv/config'
 
 const { MONGODB_URL } = process.env
 
-const client = new MongoClient(MONGODB_URL)
-
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('test')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        data.users = users
-        data.posts = posts
-
+mongoose.connect(MONGODB_URL)
+    .then(() => {
         try {
-            logic.createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+            createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
                 if (error) {
                     console.error(error)
 

@@ -15,7 +15,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmit }) {
     const [showConfirm, setShowConfirm] = useState('')
     const [showAddComment, setShowAddComment] = useState('')
 
-    const handleCommentPostSubmit = onCommentPostSubmit()
+    const handleCommentPostSubmit = () => onCommentPostSubmit()
 
     const handleDeletePost = () => {
         try {

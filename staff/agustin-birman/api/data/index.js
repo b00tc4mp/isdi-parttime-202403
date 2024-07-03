@@ -1,3 +1,7 @@
-const data = {}
+import User from './User.js'
+import Post from './Post.js'
 
-export default data
+export {
+    User,
+    Post
+}

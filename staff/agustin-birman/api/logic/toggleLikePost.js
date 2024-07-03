@@ -1,7 +1,7 @@
-import data from '../data/index.js'
+import { User, Post } from '../data/index.js'
+import { ObjectId } from 'mongodb'
 import { ContentError, MatchError, SystemError, } from 'com/errors.js'
 import validate from 'com/validate.js'
-import { ObjectId } from 'mongodb'
 
 
 const toggleLikePost = (username, postId, callback) => {
@@ -9,7 +9,7 @@ const toggleLikePost = (username, postId, callback) => {
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    data.users.findOne({ username })
+    User.findOne({ username }).lean()
         .then(user => {
             if (!user) {
                 callback(new ContentError('User not found'))
@@ -17,7 +17,7 @@ const toggleLikePost = (username, postId, callback) => {
                 return
             }
 
-            data.posts.findOne({ _id: new Object(ObjectId) })
+            Post.findOne({ _id: new Object(postId) })
                 .then(post => {
                     if (!post) {
                         callback(new MatchError('post not found'))
@@ -32,8 +32,7 @@ const toggleLikePost = (username, postId, callback) => {
                     else
                         post.likes.splice(index, 1)
 
-
-                    data.posts.updateOne({ _id: new ObjectId(postId) }, { $set: { likes: post.likes } })
+                    post.save()
                         .then(() => callback(null))
                         .catch(error => callback(new SystemError(error.message)))
                 })
