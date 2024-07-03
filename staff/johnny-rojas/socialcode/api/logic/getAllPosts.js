@@ -1,4 +1,4 @@
-import data from '../data/index.js'
+import { User, Post } from '../data/index.js'
 import { MatchError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
@@ -6,29 +6,27 @@ const getAllPosts = (username, callback) => {
     validate.username(username)
     validate.callback(callback)
 
-    data.findUser(user => user.username === username, (error, user) => {
-        if (error) {
-            callback(error)
-
-            return
-        }
-
+    User.findOne({ username }).lean()
+    .then(user => {
         if (!user) {
             callback(new MatchError('user not found'))
 
             return
         }
 
-        data.findPosts(() => true, (error, posts) => {
-            if (error) {
-                callback(error)
+        Post.find({}).select('-__v').sort({ date: -1 }).lean()
+            .then(posts => {
+                posts.forEach(post => {
+                    post.id = post._id.toString()
 
-                return
-            }
+                    delete post._id
+                })
 
-            callback(null, posts.reverse())
-        })
+                callback(null, posts)
+            })
+            .catch(error => callback(new SystemError(error.message)))
     })
+    .catch(error => callback(new SystemError(error.message)))
 }
 
 export default getAllPosts

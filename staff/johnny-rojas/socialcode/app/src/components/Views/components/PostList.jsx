@@ -9,8 +9,8 @@ import logic from '../../../logic'
 
 function PostList({refreshStamp}) {
 
-  const [posts, setPosts] = useState([])
-
+    const [posts, setPosts] = useState([])
+    
   useEffect(() => {
 
       loadPosts()

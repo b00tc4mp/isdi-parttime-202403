@@ -14,19 +14,19 @@ import logic from './index.js'
 //     console.error(error)
 // }
 
-// try {
-//     logic.authenticateUser('pepitogrillo', '123123123', error => {
-//         if (error) {
-//             console.error(error)
+try {
+    logic.authenticateUser('izipizi', '1234', error => {
+        if (error) {
+            console.error(error)
 
-//             return
-//         }
+            return
+        }
 
-//         console.log('user authenticated')
-//     })
-// } catch (error) {
-//     console.error(error)
-// } 
+        console.log('user authenticated')
+    })
+} catch (error) {
+    console.error(error)
+} 
 
 // try {
 //     logic.getAllPosts((error, posts) => {
@@ -56,16 +56,16 @@ import logic from './index.js'
 //     console.error(error)
 // }
 
-try {
-    logic.getUserName('peterpan', 'pepitogrillo', (error, name) => {
-        if (error) {
-            console.error(error)
+// try {
+//     logic.getUserName('peterpan', 'pepitogrillo', (error, name) => {
+//         if (error) {
+//             console.error(error)
 
-            return
-        }
+//             return
+//         }
 
-        console.log('user name retrieved', name)
-    })
-} catch (error) {
-    console.error(error)
-} 
+//         console.log('user name retrieved', name)
+//     })
+// } catch (error) {
+//     console.error(error)
+// } 
