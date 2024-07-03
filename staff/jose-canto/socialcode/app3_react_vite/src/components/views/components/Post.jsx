@@ -9,7 +9,7 @@ import Navbar from "./Navbar"
 import CreateComment from "./CreateComment"
 
 import logic from "../../../logic"
-import createComment from "../../../logic/createComment"
+import CommentList from "./CommentList"
 
 function Post({ post, onPostDeleted }) {
 	console.log("Post --> render")
@@ -23,7 +23,7 @@ function Post({ post, onPostDeleted }) {
 	useEffect(() => {
 		setLike(includeUserLike())
 		setLikeNum(post.liked.length)
-		setComments(post.comments || [])
+		setComments(post.comments)
 	}, [])
 
 	const includeUserLike = () => {
@@ -72,10 +72,24 @@ function Post({ post, onPostDeleted }) {
 	}
 
 	const handleShowComment = () => {
-		if (showAddComment) {
-			setShowAddComment(false)
-		} else {
-			setShowAddComment(true)
+		setShowAddComment(!showAddComment)
+	}
+
+	const handleCommentPostSubmitted = () => {
+		//TODO logic getPostComments (post.id), setComments(comments)
+		try {
+			logic.getPostComments(post.id, (error, comments) => {
+				if (error) {
+					console.error(error)
+					alert(error.message)
+					return
+				}
+				setComments(comments)
+				setShowAddComment(false)
+			})
+		} catch (error) {
+			console.error(error)
+			alert(error.message)
 		}
 	}
 
@@ -111,19 +125,13 @@ function Post({ post, onPostDeleted }) {
 
 				{showAddComment && (
 					<CreateComment
-						onClickScrollTop={handleShowComment}
-						onCommentCreated={setComments}
+						onCommentPostSubmitted={handleCommentPostSubmitted}
+						postId={post.id}
 						onCancelCreatedCommentClick={handleShowComment}
 					/>
 				)}
 
-				<div className="Comments">
-					{comments.map((comment, index) => (
-						<p key={index}>
-							{comment.author}: {comment.text}
-						</p>
-					))}
-				</div>
+				<CommentList comments={comments} />
 			</article>
 		</>
 	)

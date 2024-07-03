@@ -6,7 +6,7 @@ import Button from "../../core/Button"
 
 import "./CreateComment.css"
 
-function CreateComment({ onCancelCreatedCommentClick, onCommentCreated, onClickScrollTop }) {
+function CreateComment({ postId, onCancelCreatedCommentClick, onCommentPostSubmitted }) {
 	console.log("CreateComment --> render")
 
 	const [message, setMessage] = useState("")
@@ -18,10 +18,10 @@ function CreateComment({ onCancelCreatedCommentClick, onCommentCreated, onClickS
 
 		const form = event.target
 
-		const textComment = form.text.value
+		const textComment = form.textComment.value
 
 		try {
-			logic.createComment(textComment, (error, newComment) => {
+			logic.createPostComment(postId, textComment, (error) => {
 				if (error) {
 					console.error(error.message)
 					//alert(error.message)
@@ -32,8 +32,7 @@ function CreateComment({ onCancelCreatedCommentClick, onCommentCreated, onClickS
 					return
 				}
 
-				onCommentCreated(newComment)
-				onClickScrollTop()
+				onCommentPostSubmitted()
 			})
 		} catch (error) {
 			console.error(error.message)
@@ -48,7 +47,7 @@ function CreateComment({ onCancelCreatedCommentClick, onCommentCreated, onClickS
 		<>
 			<FormWithFeedback className="CreateComment" onSubmit={handleCreateCommentSubmit} message={message}>
 				<label>Write a comment</label>
-				<textarea className="TextArea" placeholder="bla... bla... bla..." id="text"></textarea>
+				<textarea className="TextArea" placeholder="bla... bla... bla..." id="textComment"></textarea>
 				<Button className="Button SubmitButton" type="submit">
 					Add Comment
 				</Button>

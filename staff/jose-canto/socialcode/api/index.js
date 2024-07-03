@@ -271,7 +271,7 @@ client.connect()
               res.status(500).json({ error: error.constructor.name, message: error.message })
               return
             }
-            res.status(200).send()
+            res.status(204).send()
           })
         })
 
@@ -280,7 +280,7 @@ client.connect()
       }
     })
 
-    api.patch("/posts/comments/:postId", jsonBodyParser, (req, res) => {
+    api.patch("/posts/:postId/comments", jsonBodyParser, (req, res) => {
 
       try {
         const token = req.headers.authorization.slice(7)
@@ -304,7 +304,7 @@ client.connect()
           const { text } = req.body
 
 
-          logic.createComment(username, postId, text, (error) => {
+          logic.createPostComment(username, postId, text, (error) => {
             if (error) {
               res.status(500).json({ error: error.constructor.name, message: error.message })
               return
@@ -317,6 +317,44 @@ client.connect()
         res.status(500).json({ error: error.constructor.name, message: error.message })
       }
     })
+
+    // TODO API ROUTE GET, /posts/:postId/comments
+    api.get("/posts/:postId/comments", (req, res) => {
+
+      try {
+        const token = req.headers.authorization.slice(7)
+
+        jwt.verify(token, JWT_SECRET, (error, payload) => {
+          if (error) {
+            if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+
+              res.status(500).json({ error: SystemError.name, message: error.message })
+            } else {
+
+              res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+            return
+          }
+
+          const { sub: username } = payload
+
+          const { postId } = req.params
+
+
+          logic.getPostComments(username, postId, (error, comments) => {
+            if (error) {
+              res.status(500).json({ error: error.constructor.name, message: error.message })
+              return
+            }
+            res.json(comments)
+          })
+
+        })
+      } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+      }
+    })
+
 
     api.listen(PORT, () => console.log(`listening on port http://localhost:${PORT}/app/login`))
   })

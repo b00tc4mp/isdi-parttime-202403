@@ -31,9 +31,7 @@ function PostList({ refreshStamp }) {
 				}
 				console.log("cargando posts...")
 				console.log(newPosts)
-				setTimeout(() => {
-					setPosts((prevPosts) => [...prevPosts, ...newPosts])
-				}, 500)
+				setPosts((prevPosts) => [...prevPosts, ...newPosts])
 			})
 		} catch (error) {
 			console.error(error.message)
@@ -58,7 +56,12 @@ function PostList({ refreshStamp }) {
 		<>
 			<View tag="section" className="Section">
 				{posts.map((post) => (
-					<Post post={post} key={post.id} onPostDeleted={handlePostDeleted}></Post>
+					<Post
+						post={post}
+						key={post.id}
+						onPostDeleted={handlePostDeleted}
+						onCommentPostSubmitted={handlePostDeleted}
+					></Post>
 				))}
 			</View>
 		</>

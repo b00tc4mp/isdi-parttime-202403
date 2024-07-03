@@ -4,21 +4,19 @@ import data from "../data/index.js"
 import logic from './index.js'
 
 const { MONGODB_URL } = process.env
-
 const client = new MongoClient(MONGODB_URL)
 
 client.connect()
   .then(connection => {
     const db = connection.db("test")
-
     const users = db.collection("users")
     const posts = db.collection("posts")
 
-    data.users = users
     data.posts = posts
+    data.users = users
 
     try {
-      logic.createComment("Jack", "Test comentario", "668048d8dd036ae881c8306c", (error) => {
+      logic.getPostComments("Jack", "667e93990fee8336e46238f7", (error, comments) => {
 
         if (error) {
           console.error(error)
@@ -26,7 +24,7 @@ client.connect()
           return
         }
 
-        console.log("comment created")
+        console.log("comments retrieved", comments)
       })
 
     } catch (error) {
@@ -35,7 +33,3 @@ client.connect()
     }
   })
   .catch(error => console.error(error))
-
-
-
-

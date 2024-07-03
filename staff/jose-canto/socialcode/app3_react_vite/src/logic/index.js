@@ -4,13 +4,16 @@ import logoutUser from "./logoutUser"
 import isUserLoggedIn from "./isUserLoggedIn"
 import getUserName from "./getUserName"
 import getLoggedInUsername from "./getLoggedInUsername"
+
 import toggleLike from "./toggleLike"
-import createComment from "./createComment"
+import createPostComment from "./createPostComment"
+import getPostComments from "./getPostComments"
 
 
 import getAllPosts from "./getAllPosts"
 import createPost from "./createPost"
 import deletePost from "./deletePost"
+
 
 const logic = {
 
@@ -22,12 +25,12 @@ const logic = {
   getLoggedInUsername,
 
   toggleLike,
-  createComment,
+  createPostComment,
+  getPostComments,
 
   getAllPosts,
   createPost,
   deletePost,
-
 
 }
 

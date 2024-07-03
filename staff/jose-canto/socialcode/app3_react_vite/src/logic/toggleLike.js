@@ -3,13 +3,13 @@ import validate from "com/validate"
 
 
 const toggleLike = (postId, callback) => {
-  validate.id(postId)
+  validate.id(postId, 'postId');
   validate.callback(callback);
 
   const xhr = new XMLHttpRequest();
 
   xhr.onload = () => {
-    if (xhr.status === 200) {
+    if (xhr.status === 204) {
       callback(null);
       return;
     }

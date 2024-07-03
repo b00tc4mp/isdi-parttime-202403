@@ -2,17 +2,16 @@ import errors from "com/errors"
 import validate from "com/validate"
 
 
-const createComment = (postId, textComment, callback) => {
-  validate.text(textComment, "comments", 200)
+const createPostComment = (postId, textComment, callback) => {
+  validate.id(postId)
+  validate.text(textComment, "comments", 150)
   validate.callback(callback)
 
   const xhr = new XMLHttpRequest
   xhr.onload = () => {
     if (xhr.status === 201) {
 
-      const newComment = JSON.parse(xhr.response)
-
-      callback(null, newComment)
+      callback(null)
 
       return
     }
@@ -23,7 +22,7 @@ const createComment = (postId, textComment, callback) => {
     callback(new constructor(message))
   }
 
-  xhr.open("PATCH", `${import.meta.env.VITE_API_URL}/posts/comments/${postId}`)
+  xhr.open("PATCH", `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`)
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
   xhr.setRequestHeader("Content-Type", "application/json")
 
@@ -35,4 +34,4 @@ const createComment = (postId, textComment, callback) => {
   xhr.send(json)
 }
 
-export default createComment
+export default createPostComment

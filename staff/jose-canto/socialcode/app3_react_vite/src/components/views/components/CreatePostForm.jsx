@@ -1,12 +1,11 @@
+import { useState } from "react"
 import logic from "../../../logic"
 
 import FormWithFeedback from "../../library/FormWithFeedback"
-
 import Field from "../../core/Field"
 import Button from "../../core/Button"
 
 import "./CreatePostForm.css"
-import { useState } from "react"
 
 function CreatePostForm({ onCancelCreatedPostClick, onPostCreated, onClickScrollTop }) {
 	console.log("CreatePostForm --> render")

@@ -17,15 +17,13 @@ const getAllPosts = (username, page, limit, callback) => {
         return
       }
 
-      data.posts.find({}).toArray()
+      data.posts.find().sort({ date: -1 }).toArray()
         .then(posts => {
           posts.forEach(post => {
             post.id = post._id.toString()
 
             delete post._id
           })
-
-          posts.reverse()
 
           const startIndex = (page - 1) * limit
           const endIndex = startIndex + limit
