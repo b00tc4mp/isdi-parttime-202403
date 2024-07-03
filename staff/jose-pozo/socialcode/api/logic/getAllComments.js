@@ -2,8 +2,9 @@ import data from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getAllPosts = (username, callback) => {
+const getAllComments = (username, postId, callback) => {
     validate.username(username)
+    validate.id(postId, 'postId')
     validate.callback(callback)
 
     data.users.findOne({ username })
@@ -15,7 +16,7 @@ const getAllPosts = (username, callback) => {
                 return
             }
 
-            data.posts.find({}).toArray()
+            data.posts.comments.find({}).toArray()
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()

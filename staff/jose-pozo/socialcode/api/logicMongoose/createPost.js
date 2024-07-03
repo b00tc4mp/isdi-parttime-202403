@@ -1,4 +1,4 @@
-import data from '../data/index.js'
+import { User, Post } from '../dataMongoose/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
@@ -9,7 +9,7 @@ const createPost = (username, title, image, description, callback) => {
     validate.text(description, 'description', 200)
     validate.callback(callback)
 
-    data.users.findOne({ username })
+    User.findOne({ username })
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
@@ -22,12 +22,12 @@ const createPost = (username, title, image, description, callback) => {
                 title,
                 image,
                 description,
-                date: new Date().toLocaleDateString(),
+                date: new Date,
                 likes: [],
                 comments: []
             }
 
-            data.posts.insertOne(post)
+            Post.create(post)
                 .then(() => callback(null))
                 .catch(error => callback(new SystemError(error.message)))
         })

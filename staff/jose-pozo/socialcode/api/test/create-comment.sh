@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:8080/posts/66831a26daceb08a9a5c0a0f/comments -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXRlcnBhbiIsImlhdCI6MTcxOTkxMjY1OSwiZXhwIjoxNzE5OTE2MjU5fQ.zhT9IbB9d3nRybBm-BXhv2tbFUl6fPhCc-Q8D9w6Rzk" -H "Content-Type: application/json" -d '{"description":"You are all the time...blah, blah, blah"}' -v

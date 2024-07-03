@@ -6,8 +6,6 @@ const client = new MongoClient('mongodb://localhost:27017')
 
 client.connect()
     .then(connection => {
-        console.log(connection)
-
         const db = connection.db('test')
 
         const users = db.collection('users')
