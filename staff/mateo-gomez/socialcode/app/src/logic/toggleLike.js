@@ -2,7 +2,7 @@ import errors from "com/errors.js"
 import validate from "com/validate.js"
 
 const toggleLike = (postId, callback) => {
-    validate.id(postId, "postId")
+    validate.id(postId)
     validate.callback(callback)
 
     const xhr = new XMLHttpRequest()
@@ -17,7 +17,7 @@ const toggleLike = (postId, callback) => {
         const constructor = errors[error]
         callback(new constructor(message))
     }
-    xhr.open('POST', `${import.meta.env.VITE_API_URL}/posts/like/${postId}`)
+    xhr.open('PATCH', `${import.meta.env.VITE_API_URL}/posts/${postId}/likes`)
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
     xhr.setRequestHeader('Content-Type', 'application/json')
 

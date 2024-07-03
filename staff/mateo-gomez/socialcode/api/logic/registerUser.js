@@ -14,45 +14,77 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.passwordMatch(password, passwordRepeat)
     validate.callback(callback)
 
-    data.findUser(user => user.email.toLowerCase() === email.toLowerCase() || user.username.toLowerCase() === username.toLowerCase(), (error, user) => {
-        if (error) {
-            callback(error)
-
-            return
-        }
-
-        if (user) {
-            callback(new DuplicityError('username already exists'))
-
-            return
-        }
-
-        bcrypt.hash(password, 8, (error, hash) => {
-            if (error) {
-                callback(new SystemError(error.message))
+    data.users.findOne({ $or: [{ email }, { username }] })
+        .then(user => {
+            if (user) {
+                callback(new DuplicityError('username already exists'))
 
                 return
             }
 
-            const newUser = {
-                name: name,
-                surname: surname,
-                email: email,
-                username: username,
-                password: hash,
-            }
-
-            data.insertUser(newUser, error => {
+            bcrypt.hash(password, 8, (error, hash) => {
                 if (error) {
-                    callback(error)
+                    callback(new SystemError(error.message))
 
                     return
                 }
 
-                callback(null)
+                const newUser = {
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    username: username,
+                    password: hash,
+                }
+
+                data.users.insertOne(newUser)
+                    .then(result => callback(null))
+                    .catch(error => callback(new SystemError(error.message)))
             })
         })
-    })
+        .catch(error => callback(new SystemError(error.message)))
+
+    //Así lo hacíamos antes de mongodb
+
+    /* data.findUser(user => user.email.toLowerCase() === email.toLowerCase() || user.username.toLowerCase() === username.toLowerCase(), (error, user) => {
+         if (error) {
+             callback(new SystemError(error.message))
+ 
+             return
+         }
+ 
+         if (user) {
+             callback(new DuplicityError('username already exists'))
+ 
+             return
+         }
+ 
+         bcrypt.hash(password, 8, (error, hash) => {
+             if (error) {
+                 callback(new SystemError(error.message))
+ 
+                 return
+             }
+ 
+             const newUser = {
+                 name: name,
+                 surname: surname,
+                 email: email,
+                 username: username,
+                 password: hash,
+             }
+ 
+             data.insertUser(newUser, error => {
+                 if (error) {
+                     callback(new SystemError(error.message))
+ 
+                     return
+                 }
+ 
+                 callback(null)
+             })
+         })
+     })*/
 
 
 }

@@ -10,9 +10,39 @@ const authenticateUser = (username, password, callback) => {
     validate.password(password)
     validate.callback(callback)
 
-    data.findUser((user) => user.username === username, (error, user) => {
+    data.users.findOne({ username })
+        .then(user => {
+            if (!user) {
+                callback(new MatchError('User not found'))
+
+                return
+
+            }
+            bcrypt.compare(password, user.password, (error, match) => {
+                if (error) {
+                    callback(new SystemError(error.message))
+
+                    return
+                }
+
+                if (!match) {
+                    callback(new MatchError('wrong password'))
+
+                    return
+                }
+
+                callback(null)
+            })
+
+
+        })
+        .catch(error => callback(new SystemError(error.message)))
+
+
+    //Así lo hacíamos antes de mongodb
+    /*data.findUser((user) => user.username === username, (error, user) => {
         if (error) {
-            callback(error)
+            callback(new SystemError(error.message))
 
             return
         }
@@ -41,7 +71,7 @@ const authenticateUser = (username, password, callback) => {
 
 
 
-    })
+    })*/
 
 }
 

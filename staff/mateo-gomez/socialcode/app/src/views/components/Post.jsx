@@ -82,16 +82,16 @@ function Post({ post, onPostDeleted }) {
             </i>
         </div>
 
-
-        <Heading level='4' className="DescriptionTitle">
-            Description:
-        </Heading>
-
-
-        <Text className="PostDescription">
-            {post.description}</Text>
+        <div>
+            <Heading level='4' className="DescriptionTitle">
+                Description:
+            </Heading>
 
 
+            <Text className="PostDescription">
+                {post.description}</Text>
+
+        </div>
 
         {post.author === logic.getLoggedInUsername() && <Button className="DeleteButton" onClick={handleDeletePost}>Delete</Button>}
 
