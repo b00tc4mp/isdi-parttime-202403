@@ -1,4 +1,4 @@
-import deletePost from './deletePost'
+import deletePost from './deletePost.js'
 import mongoose from 'mongoose'
 import 'dotenv/config'
 
@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            deletePost('pepitogrillo', '8826114904894882-1716924151128', error => {
+            deletePost('6685c5e29e4dca5e7bbf9c49', '6685c8d50548602f95343a11', error => {
                 if (error) {
                     console.error(error)
 

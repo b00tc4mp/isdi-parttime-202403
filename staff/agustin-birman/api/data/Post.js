@@ -1,4 +1,7 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
+
+const { ObjectId } = Types
+
 
 const post = new Schema({
     author: {
@@ -23,7 +26,8 @@ const post = new Schema({
         default: Date.now
     },
     likes: [{
-        type: String
+        type: ObjectId,
+        ref: 'User'
     }]
     // ,
     //     comments: [{

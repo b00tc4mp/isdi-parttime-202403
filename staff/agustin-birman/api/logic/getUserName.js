@@ -4,27 +4,27 @@ import { MatchError, SystemError } from 'com/errors.js'
 
 
 
-const getUserName = (username, targetUsername, callback) => {
-    validate.username(username)
-    validate.username(targetUsername, 'targetUsername')
+const getUserName = (userId, targetUserId, callback) => {
+    validate.id(userId)
+    validate.id(targetUserId, 'targetUserId')
     validate.callback(callback)
 
 
-    User.findOne({ username }).lean()
+    User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
 
                 return
             }
-            User.findOne({ username: targetUsername }).lean()
-                .then(targetUser => {
-                    if (!targetUser) {
+            User.findById(userId).lean()
+                .then(user => {
+                    if (!user) {
                         callback(new MatchError('targetUser not found'))
 
                         return
                     }
-                    callback(null.targetUser.name)
+                    callback(null, user.name)
                 })
                 .catch(error => callback(error => callback(new SystemError(error.message))))
 

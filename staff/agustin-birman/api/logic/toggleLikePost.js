@@ -4,12 +4,12 @@ import { ContentError, MatchError, SystemError, } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 
-const toggleLikePost = (username, postId, callback) => {
-    validate.username(username)
+const toggleLikePost = (userId, postId, callback) => {
+    validate.id(userId, 'userId')
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    User.findOne({ username }).lean()
+    User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new ContentError('User not found'))
@@ -17,7 +17,7 @@ const toggleLikePost = (username, postId, callback) => {
                 return
             }
 
-            Post.findOne({ _id: new Object(postId) })
+            Post.findById(postId)
                 .then(post => {
                     if (!post) {
                         callback(new MatchError('post not found'))
@@ -25,10 +25,10 @@ const toggleLikePost = (username, postId, callback) => {
                         return
                     }
 
-                    const index = post.likes.indexOf(username)
+                    const index = post.likes.indexOf(userId)
 
                     if (index < 0)
-                        post.likes.push(username)
+                        post.likes.push(userId)
                     else
                         post.likes.splice(index, 1)
 

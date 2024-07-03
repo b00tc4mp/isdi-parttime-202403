@@ -2,11 +2,11 @@ import validate from 'com/validate.js'
 import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 
-const getAllPosts = (username, callback) => {
-    validate.username(username)
+const getAllPosts = (userId, callback) => {
+    validate.id(userId, 'userId')
     validate.callback(callback)
 
-    User.findOne({ username }).lean()
+    User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('User not found'))
@@ -14,12 +14,19 @@ const getAllPosts = (username, callback) => {
                 return
             }
 
-            Post.find({}).sort({ date: -1 }).lean()
+            Post.find({}).populate('author', 'username').sort({ date: -1 }).lean()
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
-
                         delete post._id
+
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
+
+                            delete post.author._id
+                        }
+
+                        post.likes = post.likes.map(userObjectId => userObjectId.toString())
                     })
                     callback(null, posts)
                 })

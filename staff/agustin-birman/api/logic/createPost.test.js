@@ -7,7 +7,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+            createPost('6685c5e29e4dca5e7bbf9c49', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
                 if (error) {
                     console.error(error)
 
@@ -20,4 +20,4 @@ mongoose.connect(MONGODB_URL)
             console.error(error)
         }
     })
-    .catch(console.error(error.message))
+    .catch(error => console.error(error))

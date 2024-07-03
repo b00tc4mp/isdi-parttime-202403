@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getUserName('peterpan', 'pepitogrillo', (error, name) => {
+            getUserName('6685c5e29e4dca5e7bbf9c49', '6685c5e29e4dca5e7bbf9c49', (error, name) => {
                 if (error) {
                     console.error(error)
 

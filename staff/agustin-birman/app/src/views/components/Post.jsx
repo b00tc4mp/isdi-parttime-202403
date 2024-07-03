@@ -69,9 +69,9 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmit }) {
         <div className='PostHeader'>
             <Heading className='Title' level='2'>{post.title}</Heading>
 
-            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
+            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
 
-            {post.author === logic.getUserUsername() && <Button onClick={handleShowConfirmDelete}>Delete</Button>}
+            {post.author.id === logic.getUserId() && <Button onClick={handleShowConfirmDelete}>Delete</Button>}
 
             <Button onClick={handleShowAddComment}>Comment</Button>
         </div>
@@ -82,7 +82,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmit }) {
 
         <div className='PostFooter'>
             <Time>{post.date}</Time>
-            <Text className='Author'>{post.author}</Text>
+            <Text className='Author'>{post.author.username}</Text>
         </div>
 
         {showConfirm === 'show' && <ConfirmDelete onCancelConfirm={handleCancelConfirmDelete} onConfirmDelete={() => handleDeletePost(post.id)} />}

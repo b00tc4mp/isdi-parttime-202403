@@ -2,14 +2,14 @@ import validate from 'com/validate.js'
 import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 
-const createPost = (username, title, image, description, callback) => {
-    validate.username(username)
+const createPost = (userId, title, image, description, callback) => {
+    validate.id(userId, 'userId')
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
     validate.text(description, 'description', 200)
     validate.callback(callback)
 
-    User.findOne({ username }).lean()
+    User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
@@ -18,7 +18,7 @@ const createPost = (username, title, image, description, callback) => {
             }
 
             const newPost = {
-                author: username,
+                author: userId,
                 title,
                 image,
                 description,
