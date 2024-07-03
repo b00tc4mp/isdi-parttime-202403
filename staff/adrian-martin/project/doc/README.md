@@ -4,6 +4,8 @@ In this app you can create your own video game list, along with being able to se
 
 ## Funcional
 
+hola
+
 ### Use Cases
 
 ## Technical
