@@ -1,8 +1,8 @@
 article {
-  width: 700px;
+  width: 65%;
   height: auto;
   margin-top: 3rem;
-  margin-bottom: 60px;
+  margin-bottom: 3.75 rem;
   background-color: #f4f4f4;
   border: 1px solid #dbdbdb;
   border-radius: 10px;
@@ -32,7 +32,8 @@ Image {
 .footer-container {
   display: flex;
   align-items: flex-start;
-  /* Alinea los elementos al inicio del eje vertical */
+  width: 90%;
+
 }
 
 .post-footer {
@@ -41,21 +42,16 @@ Image {
   margin-top: 5px;
   margin-left: 15px;
   margin-bottom: 7px;
-  width: 635px;
-  /* Mantiene el ancho fijo */
+  width: 90%;
   min-height: 50px;
-  /* Establece una altura mínima */
   height: auto;
-  /* Permite que crezca en altura según el contenido */
   padding: 10px 15px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  /* Asegura que el padding se incluya en el ancho y alto */
   overflow-wrap: break-word;
-  /* Permite que las palabras largas se ajusten al contenedor */
 }
 
 .post-footer>p{
@@ -63,6 +59,7 @@ Image {
 }
 
 .post-footer>.Button {
+  position:inherit;
   margin: 0rem;
   align-items: center;
   margin-top: .5rem;
@@ -79,14 +76,11 @@ Image {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
-  /* Espacio entre el post-footer y los iconos */
   margin-top: 8px;
 }
 
 .icon {
   font-size: 24px;
-  /* Tamaño de los iconos */
-  /* Espacio entre los iconos */
   cursor: pointer;
 }
 
@@ -96,7 +90,7 @@ time {
 }
 
 .confirm-delete-container {
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   top: 50%;

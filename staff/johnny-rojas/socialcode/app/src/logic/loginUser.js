@@ -10,8 +10,8 @@ const loginUser = (username, password, callback) => {
 
     xhr.onload = () => {
         if (xhr.status === 200) {
-
             const token = JSON.parse(xhr.response)
+
             sessionStorage.token = token
 
             callback(null)
