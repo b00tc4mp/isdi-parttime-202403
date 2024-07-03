@@ -37,13 +37,12 @@ function PostList({ refreshStamp }) {
         }
     }
 
-    const handlePostLikeToggled = () => loadPost()
-
     const handleDeletePost = () => loadPost()
 
+    const handlePostLikeToggled = () => loadPost()
+
     return <View tag='section' className="PostList">
-        {posts.map(post => <Post 
-       key={post.id} post={post} onPostDeleted={handleDeletePost} onPostLikeToggled={handlePostLikeToggled}/>
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handleDeletePost} onPostLikeToggled={handlePostLikeToggled}/>
         )}
     </View>
 }

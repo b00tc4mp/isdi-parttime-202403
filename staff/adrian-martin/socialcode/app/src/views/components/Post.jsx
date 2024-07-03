@@ -10,8 +10,6 @@ import View from '../../component/library/View'
 
 import logic from '../../logic'
 
-
-
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
@@ -66,7 +64,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         <Text>{post.description}</Text>
 
         <View direction='row'>
-            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserName()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
+            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getLoggedInUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? 's' : 's'}`}</Button>
         </View>
 
         <View direction='row'>

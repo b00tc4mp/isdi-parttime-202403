@@ -1,155 +1,163 @@
-import fs from 'fs'
-import { SystemError } from 'com/error.js'
+import User from './User.js';
+import Post from './Post.js';
 
-const data = {}
-
-data.findUser = (condition, callback) => {
-    fs.readFile('./data/users.json', 'utf8', (error, json) => {
-        if (error) {
-            callback(new SystemError(error.message))
-
-            return
-        }
-
-        if (!json) json = '[]'
-
-        const users = JSON.parse(json)
-
-        const user = users.find(condition)
-
-        callback(null, user)
-    })
+export {
+    User,
+    Post
 }
 
-data.insertUser = (user, callback) => {
+// import fs from 'fs'
+// import { SystemError } from 'com/error.js'
+
+// const data = {}
+
+// data.findUser = (condition, callback) => {
+//     fs.readFile('./data/users.json', 'utf8', (error, json) => {
+//         if (error) {
+//             callback(new SystemError(error.message))
+
+//             return
+//         }
+
+//         if (!json) json = '[]'
+
+//         const users = JSON.parse(json)
+
+//         const user = users.find(condition)
+
+//         callback(null, user)
+//     })
+// }
+
+// data.insertUser = (user, callback) => {
     
-    fs.readFile('./data/users.json', 'utf8', (error, json) => {
-        if (error) {
-            callback(new SystemError(error.message))
+//     fs.readFile('./data/users.json', 'utf8', (error, json) => {
+//         if (error) {
+//             callback(new SystemError(error.message))
 
-            return
-        }
+//             return
+//         }
 
-        if (!json) json = '[]'
+//         if (!json) json = '[]'
 
-        const users = JSON.parse(json)
+//         const users = JSON.parse(json)
 
-        users.push(user)
+//         users.push(user)
 
-        const newJson = JSON.stringify(users)
+//         const newJson = JSON.stringify(users)
 
-        fs.writeFile('./data/users.json', newJson, error => {
-            if (error) {
-                callback(new SystemError(error.message))
+//         fs.writeFile('./data/users.json', newJson, error => {
+//             if (error) {
+//                 callback(new SystemError(error.message))
 
-                return
-            }
+//                 return
+//             }
 
-            callback(null)
-        })
-    })
-}
-
-
+//             callback(null)
+//         })
+//     })
+// }
 
 
-data.findPosts = (condition, callback) => {
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            callback(new SystemError(error.message))
-
-            return
-        }
-
-        if (!json) json = '[]'
-
-        const posts = JSON.parse(json)
-
-        const filtered = posts.filter(condition)
-
-        callback(null, filtered)
-    })
-}
-
-data.findPost = (condition, callback) => {
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            callback(new SystemError(error.message))
-
-            return
-        }
-
-        if (!json) json = '[]'
-
-        const posts = JSON.parse(json)
-
-        const post = posts.find(condition)
-
-        callback(null, post)
-    })
-}
 
 
-data.insertPost = (post, callback) => {
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            callback(new SystemError(error.message))
+// data.findPosts = (condition, callback) => {
+//     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+//         if (error) {
+//             callback(new SystemError(error.message))
 
-            return
-        }
+//             return
+//         }
 
-        if (!json) json = '[]'
+//         if (!json) json = '[]'
 
-        const posts = JSON.parse(json)
+//         const posts = JSON.parse(json)
 
-        post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
+//         const filtered = posts.filter(condition)
 
-        posts.push(post)
+//         callback(null, filtered)
+//     })
+// }
 
-        const newJson = JSON.stringify(posts)
+// data.findPost = (condition, callback) => {
+//     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+//         if (error) {
+//             callback(new SystemError(error.message))
 
-        fs.writeFile('./data/posts.json', newJson, error => {
-            if (error) {
-                callback(new SystemError(error.message))
+//             return
+//         }
 
-                return
-            }
+//         if (!json) json = '[]'
 
-            callback(null)
-        })
-    })
-}
+//         const posts = JSON.parse(json)
 
-data.deletePost = (condition, callback) => {
-    fs.readFile('./data/posts.json', 'utf8', (error, json) => {
-        if (error) {
-            callback(new SystemError(error.message))
+//         const post = posts.find(condition)
 
-            return
-        }
+//         callback(null, post)
+//     })
+// }
 
-        if (!json) json = '[]'
 
-        const posts = JSON.parse(json)
+// data.insertPost = (post, callback) => {
+//     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+//         if (error) {
+//             callback(new SystemError(error.message))
 
-        const index = posts.findIndex(condition)
+//             return
+//         }
 
-        if (index > -1) {
-            posts.splice(index, 1)
+//         if (!json) json = '[]'
 
-            const newJson = JSON.stringify(posts)
+//         const posts = JSON.parse(json)
 
-            fs.writeFile('./data/posts.json', newJson, error => {
-                if (error) {
-                    callback(new SystemError(error.message))
+//         post.id = `${Math.random().toString().slice(2)}-${Date.now()}`
 
-                    return
-                }
+//         posts.push(post)
 
-                callback(null)
-            })
-        } else callback(null)
-    })
-}
+//         const newJson = JSON.stringify(posts)
 
-export default data
+//         fs.writeFile('./data/posts.json', newJson, error => {
+//             if (error) {
+//                 callback(new SystemError(error.message))
+
+//                 return
+//             }
+
+//             callback(null)
+//         })
+//     })
+// }
+
+// data.deletePost = (condition, callback) => {
+//     fs.readFile('./data/posts.json', 'utf8', (error, json) => {
+//         if (error) {
+//             callback(new SystemError(error.message))
+
+//             return
+//         }
+
+//         if (!json) json = '[]'
+
+//         const posts = JSON.parse(json)
+
+//         const index = posts.findIndex(condition)
+
+//         if (index > -1) {
+//             posts.splice(index, 1)
+
+//             const newJson = JSON.stringify(posts)
+
+//             fs.writeFile('./data/posts.json', newJson, error => {
+//                 if (error) {
+//                     callback(new SystemError(error.message))
+
+//                     return
+//                 }
+
+//                 callback(null)
+//             })
+//         } else callback(null)
+//     })
+// }
+
+// export default data
