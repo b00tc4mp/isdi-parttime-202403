@@ -29,3 +29,18 @@
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
   }
   
+  .Button.likes-Button:hover {
+    background-color: transparent;
+    border-color: none;
+  }
+  
+  .Button.likes-Button:active {
+    background-color: transparent;
+    border-color: none;
+  }
+  
+  .Button.likes-Button:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  

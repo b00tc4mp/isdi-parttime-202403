@@ -23,7 +23,7 @@ function PostList({ refreshStamp }) {
 
           return
         }
-
+        posts.reverse()
         setPosts(posts)
       })
     } catch (error) {
@@ -32,11 +32,17 @@ function PostList({ refreshStamp }) {
   }
 
   const handlePostDeleted = () => loadPosts()
+  const handlePostToggled = () => loadPosts()
 
   return (
     <View tag='section' className='PostList'>
       {posts.map((post) => (
-        <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />
+        <Post
+          key={post.id}
+          post={post}
+          onPostDeleted={handlePostDeleted}
+          onPostLikeToggled={handlePostToggled}
+        />
       ))}
     </View>
   )

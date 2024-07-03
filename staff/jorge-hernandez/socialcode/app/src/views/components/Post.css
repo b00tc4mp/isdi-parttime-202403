@@ -3,9 +3,10 @@
     flex-direction: column;
     border: 1px solid white;
     border-radius: 30px;
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 1.5rem;
-    width: 75%;
+    padding-bottom: .2rem;
+    width: 60%;
     box-shadow: 0 0 10px black;
     background: linear-gradient(to bottom, #1e6091, #3f9bd8);
 }
@@ -22,9 +23,12 @@
     height: 2rem;
     font-size: .8rem;
     border-radius: 100%;
-    margin: 0
-    /* position: relative;  */
-      
+    margin: 0      
+}
+.likes-Button{
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
 }
 
 .Time{
@@ -44,3 +48,14 @@
     border-color: blue;
     margin-top: 1.5rem;
 }
+
+ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 2px
+  }
+
+ul li {
+    margin-bottom: 10px;
+  }
+  

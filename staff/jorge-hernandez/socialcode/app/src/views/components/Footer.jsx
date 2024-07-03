@@ -10,8 +10,6 @@ function Footer({ onCreatePostClick }) {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
   }
   const formattedDate = date.toLocaleDateString(undefined, options)
 

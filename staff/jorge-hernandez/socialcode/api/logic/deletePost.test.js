@@ -1,21 +1,20 @@
 import 'dotenv/config'
+import deletePost from './deletePost.js'
 import mongoose from 'mongoose'
-
-import getAllPosts from './getAllPosts.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
-    .then(() => {
+    .then(connection => {
         try {
-            getAllPosts('Jorge', (error, posts) => {
+            deletePost('Jorge', '6684ede2d9d6bb8d50f8bebb', error => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
 
-                console.log('posts retrieved', posts)
+                console.log('post deleted')
             })
         } catch (error) {
             console.error(error)

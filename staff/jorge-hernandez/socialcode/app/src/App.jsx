@@ -9,7 +9,7 @@ import Home from './views/Home'
 function App() {
   console.log('App -> render')
 
-  const [view, setView] = useState(!!logic.isUserLoggedIn ? 'home' : 'login')
+  const [view, setView] = useState(!logic.isUserLoggedIn ? 'home' : 'login')
 
   const handleGoToLogin = () => setView('login')
 

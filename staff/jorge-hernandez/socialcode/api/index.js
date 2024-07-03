@@ -4,23 +4,13 @@ import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { SystemError } from 'com/errors.js'
-import { MongoClient } from 'mongodb'
-import data from './data/index.js'
+import mongoose from 'mongoose'
 
 const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
-const client = new MongoClient(MONGODB_URL)
 
-client.connect()
-    .then(connection => {
-        const db = connection.db('test')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        data.users = users
-        data.posts = posts
-
+mongoose.connect(MONGODB_URL)
+    .then(() => {
         const { JsonWebTokenError, TokenExpiredError } = jwt
 
         const api = express()
@@ -193,6 +183,39 @@ client.connect()
                     const { postId } = req.params
 
                     logic.deletePost(username, postId, error => {
+                        if (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                            return
+                        }
+
+                        res.status(204).send()
+                    })
+                })
+            } catch (error) {
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+                else
+                    res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        api.patch('/posts/:postId/likes', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+
+                jwt.verify(token, JWT_SECRET, (error, payload) => {
+                    if (error) {
+                        res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+
+                    const { sub: username } = payload
+
+                    const { postId } = req.params
+
+                    logic.toggleLikePost(username, postId, error => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
