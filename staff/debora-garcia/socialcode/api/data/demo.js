@@ -1,35 +1,40 @@
-import { MongoClient, ObjectId } from "mongodb"
-//object Id es una cosntructora que esta dentro del paquete mongo  
+import mongoose, { model } from "mongoose"
+import { User, Post } from "./index.js"
 
-// construimos un cliente que nos permita conectar a mongo
+/* 
 
-//este es el puerto que se conecta por defecto el servidor
-const client = new MongoClient("mongodb://localhost:27017")
+---> EJEMPLO
+//const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/test');
 
-//es como un try catch asincrono con promesas
-client.connect()
-    .then(connection => {
-        //console.log(connection)
-        // conectarme dentro de la base de datos test y devuelve el manejador de la base de datos 
-        const db = connection.db("test")
-        // y dento d la base de datos, conectarse a la coleccion de usuarios
-        const users = db.collection("users")
-        //es un proceso asincrono que funciona con promesas
-        users.insertOne({ email: "lionleo@gmail.com", username: "LionLeo", password: "1234" })
-            .then(result => console.log(result))
+const Cat = mongoose.model('Cat', { name: String });
+
+const kitty = new Cat({ name: 'Zildjian' });
+
+kitty.save()
+    .then(() => console.log('meow'))
+    .catch(console.error);
+const User = mongoose.model("User", user)
+
+const user = new Schema({ name: String })
+
+ */
+
+// mongoose.connect("mongodb://localhost:27017/test")
+//     .then(() => {
+//         User.create({ email: "mongoose@gmail.com", username: "mongoose", password: "1234" })
+//             .then(() => console.log("created"))
+//             .catch(error => console.error(error))
+//     })
+
+//     .catch(error => console.error(error))
+
+    mongoose.connect("mongodb://localhost:27017/test")
+    .then(() => {
+        Post.create({ author: "mongo", title: "mongooseTest", image: "http:nose", description:"blah" })
+            .then(() => console.log("created"))
             .catch(error => console.error(error))
-
-        // users.deleteOne({ _id: new ObjectId("6682d19fb2b1e028a3f77ee7") })
-        //     .then(result => console.log(result))
-        //     .catch(error => console.error(error))
-
-        // users.find({}).toArray() // devuelve todos los usuarios
-        //     .then(result => console.log(result))
-        //     .catch(error => console.error(error))
-
-        // users.updateOne({ _id: new ObjectId("ID") }, { $set: { password: "otropassword" } })
-        //     .then(result => console.log(result))
-        //     .catch(error => console.error(error))
-
     })
+
     .catch(error => console.error(error))
+

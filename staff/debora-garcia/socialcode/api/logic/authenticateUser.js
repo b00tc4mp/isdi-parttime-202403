@@ -1,5 +1,6 @@
-import data from "../data/index.js" // importamos el objeto data
-import { ContentError, MatchError, SystemError } from "com/errors.js"
+import { User } from "../data/index.js"
+// importamos el objeto data
+import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import bcrypt from "bcryptjs"
 
@@ -9,7 +10,7 @@ const authenticateUser = (username, password, callback) => {
     validate.username(username)
     validate.password(password)
     validate.callback(callback)
-    data.users.findOne({ username })
+    User.findOne({ username }).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError("user not found"))

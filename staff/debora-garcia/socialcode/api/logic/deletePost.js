@@ -1,5 +1,6 @@
-import data from "../data/index.js" // importamos el objeto data
-import { MatchError,SystemError } from "com/errors.js"
+import { User } from "../data/index.js" // importamos el objeto data
+import { Post } from "../data/index.js" // importamos el objeto data
+import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import { ObjectId } from "mongodb"
 
@@ -8,14 +9,14 @@ const deletePost = (username, postId, callback) => {
     validate.id(postId, "postId")
     validate.callback(callback)
 
-    data.users.findOne({ username })
+    User.findOne({ username }).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError("user not found"))
 
                 return
             }
-            data.posts.findOne({ _id: new ObjectId(postId) })
+            Post.findById(postId)
                 .then(post => {
                     if (!post) {
                         callback(new MatchError("post not found"))
@@ -27,7 +28,7 @@ const deletePost = (username, postId, callback) => {
 
                         return
                     }
-                    data.posts.deleteOne({ _id: new ObjectId(postId) })
+                    Post.deleteOne({ _id: new ObjectId(postId) })
                         .then(() => callback(null))
                         .catch(error => callback(new SystemError(error.message)))
 

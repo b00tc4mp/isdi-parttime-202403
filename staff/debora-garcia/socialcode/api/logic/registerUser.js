@@ -1,4 +1,4 @@
-import data from "../data/index.js" // importamos el objeto data
+import { User } from "../data/index.js"
 import { DuplicityError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import bcrypt from "bcryptjs"
@@ -11,7 +11,7 @@ const registerUser = (email, username, password, passwordRepeat, callback) => {
     validate.passwordsMatch(password, passwordRepeat)
     validate.callback(callback)
 
-    data.users.findOne({ $or: [{ email }, { username }] })
+    User.findOne({ $or: [{ email }, { username }] })
         .then(user => {
             if (user) {
                 callback(new DuplicityError("user already exists"))
@@ -33,7 +33,7 @@ const registerUser = (email, username, password, passwordRepeat, callback) => {
                 }
 
                 //insertUser recibe dos parametros (user,callback) que el callback es el error
-                data.users.insertOne(newUser)
+                User.create(newUser)
                     .then(() => callback(null))
                     .catch(error => callback(new SystemError(error.message)))
             })

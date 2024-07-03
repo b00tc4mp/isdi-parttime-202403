@@ -4,24 +4,13 @@ import logic from "./logic/index.js"
 import cors from "cors"
 import jwt from "jsonwebtoken"
 import { SystemError } from 'com/errors.js'
-import { MongoClient } from "mongodb"
-import data from "./data/index.js"
+import mongoose from "mongoose"
 
 const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
-const client = new MongoClient(MONGODB_URL)
-
-client.connect()
-    .then(connection => {
-        // por ahora mandamos a que mongo se conecte la base de datos test
-        const db = connection.db("test")
-
-        const users = db.collection("users")
-        const posts = db.collection("posts")
-        // y lo inyectamos en data
-        data.users = users
-        data.posts = posts
-
+mongoose.connect(MONGODB_URL)
+    .then(() => {
+   
         const { JsonWebTokenError, TokenEpiredError } = jwt
 
         const api = express()
