@@ -1,4 +1,4 @@
-import data from "../data/index.js"
+import { User } from "../data/index.js"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 
@@ -7,7 +7,7 @@ const getUserName = (username, targetUsername, callback) => {
   validate.username(targetUsername, "targetUsername")
   validate.callback(callback)
 
-  data.users.findOne({ username })
+  User.findOne({ username }).lean()
     .then(user => {
 
       if (!user) {
@@ -17,7 +17,7 @@ const getUserName = (username, targetUsername, callback) => {
         return
       }
 
-      data.users.findOne({ username: targetUsername })
+      User.findOne({ username: targetUsername }).lean()
         .then(targetUser => {
           if (!targetUser) {
 

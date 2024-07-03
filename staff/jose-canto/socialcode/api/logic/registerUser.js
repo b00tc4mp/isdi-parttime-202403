@@ -1,5 +1,5 @@
 import validate from "com/validate.js"
-import data from "../data/index.js"
+import { User } from "../data/index.js"
 import bcrypt from "bcryptjs"
 import { DuplicityError, SystemError } from "com/errors.js"
 
@@ -12,7 +12,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
   validate.passwordsMatch(password, passwordRepeat)
   validate.callback(callback)
 
-  data.users.findOne({ $or: [{ email }, { username }] })
+  User.findOne({ $or: [{ email }, { username }] })
     .then(user => {
       if (user) {
         callback(new DuplicityError("❌ Users already exists ❌"))
@@ -33,7 +33,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
           username: username,
           password: hash,
         }
-        data.users.insertOne(newUser)
+        User.create(newUser)
           .then(() => callback(null))
           .catch(error => callback(error))
       })

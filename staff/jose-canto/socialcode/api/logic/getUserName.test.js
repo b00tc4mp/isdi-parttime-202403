@@ -1,21 +1,13 @@
 import "dotenv/config"
-import logic from './index.js'
-import { MongoClient } from "mongodb"
-import data from "../data/index.js"
+import getUserName from './getUserName.js'
+import mongoose from "mongoose"
 
 const { MONGODB_URL } = process.env
-const client = new MongoClient(MONGODB_URL)
 
-client.connect()
-  .then(connection => {
-    const db = connection.db("test")
-
-    const users = db.collection("users")
-
-    data.users = users
-
+mongoose.connect(MONGODB_URL)
+  .then(() => {
     try {
-      logic.getUserName("batman", "pepitogrillo", (error, name) => {
+      getUserName("Jack", "Batman", (error, name) => {
         if (error) {
 
           console.error(error)

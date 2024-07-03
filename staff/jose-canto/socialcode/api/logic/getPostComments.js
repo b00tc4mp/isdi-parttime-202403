@@ -1,15 +1,14 @@
-import data from "../data/index.js"
+import { User, Post } from "../data/index.js"
 import { SystemError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
 import { ObjectId } from "mongodb"
-
 
 const getPostComments = (username, postId, callback) => {
   validate.username(username)
   validate.id(postId, "postId")
   validate.callback(callback)
 
-  data.users.findOne({ username })
+  User.findOne({ username }).lean()
     .then(user => {
       if (!user) {
 
@@ -18,7 +17,7 @@ const getPostComments = (username, postId, callback) => {
         return
       }
 
-      data.posts.findOne({ _id: new ObjectId(postId) })
+      Post.findOne({ _id: new ObjectId(postId) }).lean()
         .then(post => {
           if (!post) {
             callback(new MatchError("❌ Post not found ❌"))
@@ -26,8 +25,6 @@ const getPostComments = (username, postId, callback) => {
           }
 
           callback(null, post.comments)
-
-
         })
         .catch(error => callback(new SystemError(error.message)))
 

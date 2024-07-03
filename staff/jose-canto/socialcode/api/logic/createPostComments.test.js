@@ -1,24 +1,13 @@
 import "dotenv/config"
-import { MongoClient } from "mongodb"
-import data from "../data/index.js"
-import logic from './index.js'
+import mongoose from "mongoose"
+import createPostComment from './createPostComments.js'
 
 const { MONGODB_URL } = process.env
 
-const client = new MongoClient(MONGODB_URL)
-
-client.connect()
-  .then(connection => {
-    const db = connection.db("test")
-
-    const users = db.collection("users")
-    const posts = db.collection("posts")
-
-    data.users = users
-    data.posts = posts
-
+mongoose.connect(MONGODB_URL)
+  .then(() => {
     try {
-      logic.createPostComment("Jack", "6683c3631731dad3b8648d6e", "Test comentario", (error) => {
+      createPostComment("Jack", "668433e9cb80df21e9d9707f", "Test comentario", (error) => {
 
         if (error) {
           console.error(error)

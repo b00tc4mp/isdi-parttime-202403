@@ -1,23 +1,14 @@
 import "dotenv/config"
-import { MongoClient } from "mongodb"
-import logic from './index.js'
-import data from "../data/index.js"
+import mongoose from "mongoose"
+import toggleLike from './toggleLike.js'
+
 
 const { MONGODB_URL } = process.env
-const client = new MongoClient(MONGODB_URL)
 
-client.connect()
-  .then(connection => {
-
-    const db = connection.db("test")
-    const users = db.collection("users")
-    const posts = db.collection("posts")
-
-    data.users = users
-    data.posts = posts
-
+mongoose.connect(MONGODB_URL)
+  .then(() => {
     try {
-      logic.toggleLike("Jack", "667e8080053d0ec369021a9e", (error, postLiked) => {
+      toggleLike("Jack", "668433e9cb80df21e9d9707f", (error, postLiked) => {
 
         if (error) {
           console.error(error)
