@@ -1,4 +1,4 @@
-import data from "../data/index.js";
+import { User, Post } from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
 
@@ -12,7 +12,7 @@ const createPost = (username, title, image, description) => {
     let user;
 
     try {
-      user = await data.users.findOne({ username });
+      user = await User.findOne({ username }).lean();
     } catch (error) {
       throw new SystemError(`failed to create post: ${error.message}`);
     }
@@ -31,14 +31,14 @@ const createPost = (username, title, image, description) => {
     };
 
     try {
-      await data.posts.insertOne(post);
+      await Post.create(post);
     } catch (error) {
       throw new SystemError(`failed to create post: ${error.message}`);
     }
   })();
 
-  /* return data.users
-    .findOne({ username })
+  /* return User
+    .findOne({ username }).lean()
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
@@ -52,7 +52,7 @@ const createPost = (username, title, image, description) => {
         data: new Date(),
       };
 
-      return data.posts.insertOne(post);
+      return Post.create(post);
     })
     .catch((error) => {
       if (error instanceof MatchError) {

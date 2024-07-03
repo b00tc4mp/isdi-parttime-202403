@@ -1,34 +1,24 @@
 import "dotenv/config";
-import { MongoClient } from "mongodb";
-import data from "../data/index.js";
-import logic from "./index.js";
+import mongoose from "mongoose";
+import likePost from "./likePost.js";
 
 const { MONGO_URI } = process.env;
 
 const testLikePost = async () => {
-  const client = new MongoClient(MONGO_URI);
-
   try {
-    await client.connect();
-    const db = client.db("test");
-    const users = db.collection("users");
-    const posts = db.collection("posts");
-
-    data.users = users;
-    data.posts = posts;
-
+    await mongoose.connect(MONGO_URI);
     console.log("connected to database");
   } catch (error) {
     console.error(`failed to connect to db: ${error}`);
   }
 
   try {
-    await logic.likePost("tester2", "6682fa252730f888ec932134");
+    await likePost("tester2", "668580c514cd0c74444073fe");
     console.log("post liked");
   } catch (error) {
     console.error(error);
   } finally {
-    await client.close();
+    await mongoose.disconnect();
     console.log("database connection closed");
   }
 };

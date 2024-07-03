@@ -1,4 +1,4 @@
-import data from "../data/index.js";
+import { User } from "../data/index.js";
 import { SystemError, DuplicityError, ContentError } from "com/errors.js";
 import validate from "com/validate.js";
 import bcrypt from "bcryptjs";
@@ -33,7 +33,7 @@ const createUser = (
     let existingUser, hash;
 
     try {
-      existingUser = await data.users.findOne({
+      existingUser = await User.findOne({
         $or: [{ email }, { username }],
       });
     } catch (error) {
@@ -59,13 +59,13 @@ const createUser = (
     };
 
     try {
-      await data.users.insertOne(userData);
+      await User.create(userData);
     } catch (error) {
       throw new SystemError(`failed to create user: ${error.message}`);
     }
   })();
 
-  /* return data.users
+  /* return User
     .findOne({ $or: [{ email }, { username }] })
     .then((existingUser) => {
       if (existingUser) {
@@ -83,7 +83,7 @@ const createUser = (
         password: hash,
       };
 
-      return data.users.insertOne(userData);
+      return User.create(userData);
     })
     .catch((error) => {
       if (error instanceof DuplicityError) {

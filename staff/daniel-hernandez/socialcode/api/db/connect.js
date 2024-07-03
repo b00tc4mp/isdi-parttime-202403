@@ -1,16 +1,15 @@
+import mongoose from "mongoose";
 import { SystemError } from "com/errors.js";
-import { MongoClient } from "mongodb";
 
 const connectDB = async (url) => {
   try {
-    const client = await MongoClient.connect(url, {
+    await mongoose.connect(url, {
       /*options*/
     });
 
-    console.log("MongoDB connected...");
-    return client;
+    console.log("mongoose connected...");
   } catch (error) {
-    throw new SystemError(`mongoDB connection failed: ${error}`);
+    throw new SystemError(`mongoose connection failed: ${error}`);
   }
 };
 

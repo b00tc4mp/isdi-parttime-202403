@@ -1,4 +1,4 @@
-import data from "../data/index.js";
+import { User } from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
 
@@ -10,7 +10,7 @@ const getUsersName = (username, targetUsername) => {
     let user, targetUser;
 
     try {
-      user = await data.users.findOne({ username });
+      user = await User.findOne({ username }).lean();
     } catch (error) {
       throw new SystemError(`failed to get user's name: ${error.message}`);
     }
@@ -18,7 +18,7 @@ const getUsersName = (username, targetUsername) => {
     if (!user) throw new MatchError("user not found");
 
     try {
-      targetUser = await data.users.findOne({ username: targetUsername });
+      targetUser = await User.findOne({ username: targetUsername }).lean();
     } catch (error) {
       throw new SystemError(`failed to get user's name: ${error.message}`);
     }
@@ -28,12 +28,12 @@ const getUsersName = (username, targetUsername) => {
     return targetUser.name;
   })();
 
-  /* return data.users
+  /* return User
     .findOne({ username })
     .then((user) => {
       if (!user) throw new MatchError("user not found");
 
-      return data.users.findOne({ username: targetUsername });
+      return User.findOne({ username: targetUsername });
     })
     .then((targetUser) => {
       if (!targetUser) throw new MatchError("target user was not found");

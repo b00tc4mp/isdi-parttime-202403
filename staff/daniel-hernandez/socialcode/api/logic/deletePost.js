@@ -1,7 +1,8 @@
-import data from "../data/index.js";
+import { User, Post } from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
-import { ObjectId } from "mongodb";
+import { Types } from "mongoose";
+const { ObjectId } = Types;
 
 const deletePost = (username, id) => {
   validate.username(username);
@@ -11,7 +12,7 @@ const deletePost = (username, id) => {
     let user, post;
 
     try {
-      user = await data.users.findOne({ username });
+      user = await User.findOne({ username }).lean();
     } catch {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
@@ -21,7 +22,7 @@ const deletePost = (username, id) => {
     }
 
     try {
-      post = await data.posts.findOne({ _id: new ObjectId(id) });
+      post = await Post.findById(id).lean();
     } catch (error) {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
@@ -35,20 +36,20 @@ const deletePost = (username, id) => {
     }
 
     try {
-      await data.posts.deleteOne({ _id: new ObjectId(id) });
+      await Post.deleteOne({ _id: new ObjectId(id) });
     } catch (error) {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
   })();
 
-  /* return data.users
+  /* return User
     .findOne({ username })
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
       }
 
-      return data.posts.findOne({ _id: new ObjectId(id) });
+      return Post.findById(id).lean();
     })
     .then((post) => {
       if (!post) {
@@ -59,7 +60,7 @@ const deletePost = (username, id) => {
         throw new MatchError("post author does not match user");
       }
 
-      return data.posts.deleteOne({ _id: new ObjectId(id) });
+      return Post.deleteOne({ _id: new ObjectId(id) });
     })
     .catch((error) => {
       if (error instanceof MatchError) {

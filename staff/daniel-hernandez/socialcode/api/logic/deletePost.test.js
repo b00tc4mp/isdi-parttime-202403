@@ -1,34 +1,24 @@
 import "dotenv/config";
-import { MongoClient } from "mongodb";
-import data from "../data/index.js";
-import logic from "./index.js";
+import mongoose from "mongoose";
+import deletePost from "./deletePost.js";
 
 const { MONGO_URI } = process.env;
 
 const testDeletePost = async () => {
-  const client = new MongoClient(MONGO_URI);
-
   try {
-    await client.connect();
-    const db = client.db("test");
-    const users = db.collection("users");
-    const posts = db.collection("posts");
-
-    data.users = users;
-    data.posts = posts;
-
+    await mongoose.connect(MONGO_URI);
     console.log("connected to database");
   } catch (error) {
     console.error(`failed to connect to db: ${error}`);
   }
 
   try {
-    await logic.deletePost("tester", "6681ff90e628bc5f2f16c64c");
+    await deletePost("tester", "66857f3a1c1f08e7f5935f26");
     console.log("post deleted");
   } catch (error) {
     console.error(error);
   } finally {
-    await client.close();
+    await mongoose.disconnect();
     console.log("database connection closed");
   }
 };

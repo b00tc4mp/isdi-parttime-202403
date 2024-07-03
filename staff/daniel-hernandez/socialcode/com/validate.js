@@ -1,9 +1,9 @@
 import { ContentError, MatchError } from "./errors.js";
 
-const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/;
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
-const EMAIL_REGEX =
+export const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/;
+export const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/;
+export const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{8,}$/;
+export const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const ID_REGEX = /^[a-z0-9]+[a-z0-9]{5}$/;
 

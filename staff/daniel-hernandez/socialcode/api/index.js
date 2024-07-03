@@ -1,7 +1,6 @@
 import "dotenv/config";
 import express from "express";
 import connectDB from "./db/connect.js";
-import data from "./data/index.js";
 import cors from "cors";
 // TODO: configure cors
 const api = express();
@@ -21,13 +20,7 @@ api.use(notFound);
 
 const start = async () => {
   try {
-    const client = await connectDB(MONGO_URI);
-    const db = client.db("test");
-    const users = db.collection("users");
-    const posts = db.collection("posts");
-
-    data.users = users;
-    data.posts = posts;
+    await connectDB(MONGO_URI);
 
     api.listen(PORT, () => console.log(`server listening on port: ${PORT}...`));
   } catch (error) {

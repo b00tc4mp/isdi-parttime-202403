@@ -1,26 +1,19 @@
 import "dotenv/config";
-import { MongoClient } from "mongodb";
-import data from "../data/index.js";
-import logic from "./index.js";
+import mongoose from "mongoose";
+import createUser from "./createUser.js";
 
 const { MONGO_URI } = process.env;
 
 const testCreateUser = async () => {
-  const client = new MongoClient(MONGO_URI);
-
   try {
-    await client.connect();
-    const db = client.db("test");
-    const users = db.collection("users");
-    data.users = users;
-
+    await mongoose.connect(MONGO_URI);
     console.log("connected to database");
   } catch (error) {
     console.error(`failed to connect to db: ${error}`);
   }
 
   try {
-    await logic.createUser(
+    await createUser(
       "Mr",
       "Purple",
       "mr@purple.com",
@@ -32,7 +25,7 @@ const testCreateUser = async () => {
   } catch (error) {
     console.error(error);
   } finally {
-    await client.close();
+    await mongoose.disconnect();
     console.log("database connection closed");
   }
 };

@@ -1,4 +1,4 @@
-import data from "../data/index.js";
+import { User, Post } from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
 
@@ -9,7 +9,7 @@ const getPosts = (username) => {
     let user, posts;
 
     try {
-      user = data.users.findOne({ username });
+      user = await User.findOne({ username }).lean();
     } catch (error) {
       throw new SystemError(`failed to get posts: ${error.message}`);
     }
@@ -19,7 +19,10 @@ const getPosts = (username) => {
     }
 
     try {
-      posts = await data.posts.find({}).sort({ date: -1 }).toArray();
+      posts = await Post.find({})
+        .select("-__v -createdAt -updatedAt")
+        .sort({ date: -1 })
+        .lean();
     } catch (error) {
       throw new SystemError(`failed to get posts: ${error.message}`);
     }
@@ -33,14 +36,14 @@ const getPosts = (username) => {
     return posts;
   })();
 
-  /* return data.users
+  /* return User
     .findOne({ username })
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
       }
 
-      return data.posts.find({}).toArray();
+      return Post.find({}).select("-__v -createdAt -updatedAt").sort({ date: -1 }).lean();
     })
     .then((posts) => {
       posts.forEach((post) => {
@@ -49,7 +52,7 @@ const getPosts = (username) => {
         delete post._id;
       });
 
-      return posts.reverse();
+      return posts;
     })
     .catch((error) => {
       if (error instanceof MatchError) {

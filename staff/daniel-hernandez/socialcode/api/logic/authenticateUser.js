@@ -1,4 +1,4 @@
-import data from "../data/index.js";
+import { User } from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
 import bcrypt from "bcryptjs";
@@ -11,7 +11,7 @@ const authenticateUser = (username, password) => {
     let user, match;
 
     try {
-      user = await data.users.findOne({ username });
+      user = await User.findOne({ username }).lean();
     } catch (error) {
       throw new SystemError(`failed to authenticate user: ${error.message}`);
     }
@@ -31,7 +31,7 @@ const authenticateUser = (username, password) => {
     }
   })();
 
-  /* return data.users
+  /* return User
     .findOne({ username })
     .then((user) => {
       if (!user) {

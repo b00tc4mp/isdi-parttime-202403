@@ -1,7 +1,6 @@
-import data from "../data/index.js";
-import { SystemError, MatchError } from "com/errors.js";
+import { User, Post } from "../data/index.js";
 import validate from "com/validate.js";
-import { ObjectId } from "mongodb";
+import { SystemError, MatchError } from "com/errors.js";
 
 const likePost = (username, id) => {
   validate.username(username);
@@ -11,7 +10,7 @@ const likePost = (username, id) => {
     let user, post;
 
     try {
-      user = await data.users.findOne({ username });
+      user = await User.findOne({ username }).lean();
     } catch (error) {
       throw new SystemError(`failed to like post: ${error.message}`);
     }
@@ -21,7 +20,7 @@ const likePost = (username, id) => {
     }
 
     try {
-      post = await data.posts.findOne({ _id: new ObjectId(id) });
+      post = await Post.findById(id);
     } catch (error) {
       throw new SystemError(`failed to like post: ${error.message}`);
     }
@@ -39,11 +38,43 @@ const likePost = (username, id) => {
     }
 
     try {
-      await data.posts.updateOne({ _id: new ObjectId(id) }, { $set: post });
+      await post.save();
     } catch (error) {
       throw new SystemError(`failed to like post: ${error.message}`);
     }
   })();
+
+  /* return User.findOne({ username })
+    .lean()
+    .then((user) => {
+      if (!user) {
+        throw new MatchError("user not found");
+      }
+
+      return Post.findById(id)
+    })
+    .then((post) => {
+      if (!post) {
+        throw new MatchError("post not found");
+      }
+
+      const index = post.likes.indexOf(username);
+
+      if (index < 0) {
+        post.likes.push(username);
+      } else {
+        post.likes.splice(index, 1);
+      }
+
+      return post.save();
+    })
+    .catch(error) {
+    if (error instanceof MatchError) {
+      throw error
+    } else {
+      throw new SystemError(`failed to like post: ${error.message}`)
+    }
+  } */
 };
 
 export default likePost;
