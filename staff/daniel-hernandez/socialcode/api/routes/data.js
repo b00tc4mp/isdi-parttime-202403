@@ -7,10 +7,12 @@ import {
   getUser,
   deletePost,
   authUser,
+  likePost,
 } from "../controllers/data.js";
 
 router.route("/posts").get(getPosts).post(createPost);
 router.route("/posts/:postID").delete(deletePost);
+router.route("/posts/:postID/likes").patch(likePost);
 
 router.route("/users").post(createUser);
 router.route("/users/auth").post(authUser);

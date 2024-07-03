@@ -27,6 +27,7 @@ const createPost = (username, title, image, description) => {
       image,
       description,
       date: new Date(),
+      likes: [],
     };
 
     try {

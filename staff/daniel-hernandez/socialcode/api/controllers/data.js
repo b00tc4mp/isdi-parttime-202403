@@ -154,4 +154,35 @@ const authUser = async (req, res) => {
   }
 };
 
-export { getPosts, createUser, createPost, getUser, deletePost, authUser };
+const likePost = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const { sub: username } = jwt.verify(token, JWT_SECRET);
+    const { postID } = req.params;
+
+    await logic.likePost(username, postID);
+    res.status(204).send();
+  } catch (error) {
+    if (
+      error instanceof JsonWebTokenError ||
+      error instanceof TokenExpiredError
+    ) {
+      res.status(500).json({ error: SystemError.name, message: error.message });
+    } else {
+      res.status(500).json({
+        error: error.constructor.name,
+        message: error.message,
+      });
+    }
+  }
+};
+
+export {
+  getPosts,
+  createUser,
+  createPost,
+  getUser,
+  deletePost,
+  authUser,
+  likePost,
+};

@@ -19,7 +19,7 @@ const getPosts = (username) => {
     }
 
     try {
-      posts = await data.posts.find({}).toArray();
+      posts = await data.posts.find({}).sort({ date: -1 }).toArray();
     } catch (error) {
       throw new SystemError(`failed to get posts: ${error.message}`);
     }
@@ -30,7 +30,7 @@ const getPosts = (username) => {
       delete post._id;
     });
 
-    return posts.reverse();
+    return posts;
   })();
 
   /* return data.users

@@ -95,13 +95,38 @@ function PostList({ refreshTimeStamp, mainRef }) {
     }
   };
 
+  const handleLiked = (postId) => {
+    try {
+      logic.likePost(postId, (error) => {
+        if (error) {
+          // TODO: show error more gracefully
+          console.error(error);
+          alert(error.message);
+
+          return;
+        }
+
+        loadPosts(page);
+      });
+    } catch (error) {
+      // TODO: show error more gracefully
+      console.error(error);
+      alert(error.message);
+    }
+  };
+
   // TODO: delegate post deletion to post component
   // TODO: move pagination to its own component
   return (
     <>
       <Section className={styles.postList}>
         {posts.map((post) => (
-          <Post key={post.id} post={post} onDelete={handleDelete} />
+          <Post
+            key={post.id}
+            post={post}
+            onDelete={handleDelete}
+            onLiked={handleLiked}
+          />
         ))}
       </Section>
       {postToDelete && (

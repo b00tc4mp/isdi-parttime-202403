@@ -5,8 +5,8 @@ import getUsersName from "./getUsersName.js";
 import getPosts from "./getPosts.js";
 import createPost from "./createPost.js";
 import deletePost from "./deletePost.js";
+import likePost from "./likePost.js";
 
-// TODO: create shellscript tests
 const logic = {
   createUser,
   authenticateUser,
@@ -15,6 +15,7 @@ const logic = {
   getPosts,
   createPost,
   deletePost,
+  likePost,
 };
 
 export default logic;
