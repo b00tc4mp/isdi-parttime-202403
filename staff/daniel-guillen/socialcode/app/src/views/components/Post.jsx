@@ -57,7 +57,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
     return <View tag="article" align="">
         <View direction='row'>
-        <Text>{post.author}</Text>
+        <Text>{post.author.username}</Text>
 
         <Heading level="1">{post.title}</Heading>
         </View>
@@ -67,13 +67,13 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         <Text>{post.description}</Text>
         
         <View direction='row'>
-            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
+            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
         </View>
         
         <View direction='row'>
             <Time>{post.date}</Time>
 
-            {post.author === logic.getUserUsername() && <Button onClick={handleDeletePost}>🗑️</Button>}
+            {post.author === logic.getUserId() && <Button onClick={handleDeletePost}>🗑️</Button>}
         </View>
     </View>
 }
