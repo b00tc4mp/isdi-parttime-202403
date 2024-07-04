@@ -1,14 +1,14 @@
 import { User, Post } from "../data/index.js"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
-import { ObjectId } from "mongodb"
+import { Types } from "mongoose"
 
+const { ObjectId } = Types
 
 const deletePost = (username, postId, callback) => {
   validate.username(username)
   validate.id(postId, "postId")
   validate.callback(callback)
-
 
   User.findOne({ username }).lean()
     .then(user => {
