@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
   .then(() => {
 
     try {
-      deletePost("Lolo", "6683dcae2f70f72e23d68e31", error => {
+      deletePost("6686980096815ae00d1ad34f", "668698996b9bbf5c26a7488c", error => {
 
         if (error) {
           console.error(error)

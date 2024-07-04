@@ -8,7 +8,7 @@ function CommentList({ comments }) {
 		<View tag="section" className="CommentList">
 			{comments.map((comment, index) => (
 				<p key={index}>
-					{comment.author}: {comment.text}
+					{comment.author.username}: {comment.text}
 				</p>
 			))}
 		</View>

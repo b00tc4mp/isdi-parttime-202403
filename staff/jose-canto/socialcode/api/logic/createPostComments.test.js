@@ -7,7 +7,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      createPostComment("Jack", "668433e9cb80df21e9d9707f", "Test comentario", (error) => {
+      createPostComment("668698726b9bbf5c26a74888", "668698996b9bbf5c26a7488c", "Test comentario", (error) => {
 
         if (error) {
           console.error(error)

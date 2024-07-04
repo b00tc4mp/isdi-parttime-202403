@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
   .then(() => {
 
     try {
-      getPostComments("Jack", "667e93990fee8336e46238f7", (error, comments) => {
+      getPostComments("668698726b9bbf5c26a74888", "6686a31f86430bf971fba0a7", (error, comments) => {
 
         if (error) {
           console.error(error)
@@ -17,7 +17,7 @@ mongoose.connect(MONGODB_URL)
           return
         }
 
-        console.log("comments retrieved", comments)
+        console.log("comments retrieved", JSON.stringify(comments))
       })
 
     } catch (error) {

@@ -1,1 +1,1 @@
-curl http://localhost:8080/users/batman -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWNrIiwiaWF0IjoxNzE5NTEyODkzLCJleHAiOjE3MjAxMTc2OTN9.bMNu1zYCpvx5aCTq7wyj-TQFTOozOIG3jUnuX-YGf20" -v 
+curl http://localhost:8080/users/6686771e2288837791e6fa9b -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg2NjQyNzAwZGViOTYxYzJiYTczNGIiLCJpYXQiOjE3MjAwODk5NTksImV4cCI6MTcyMDY5NDc1OX0.lKpb_c4tiJFYDUMh65ogj8c6-d_BNFfjnFRcqOB7VG4" -v 

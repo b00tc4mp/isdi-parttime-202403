@@ -1,14 +1,13 @@
 import { User, Post } from "../data/index.js"
 import { SystemError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
-import { ObjectId } from "mongodb"
 
-const getPostComments = (username, postId, callback) => {
-  validate.username(username)
+const getPostComments = (userId, postId, callback) => {
+  validate.id(userId, "userId")
   validate.id(postId, "postId")
   validate.callback(callback)
 
-  User.findOne({ username }).lean()
+  User.findById(userId).lean()
     .then(user => {
       if (!user) {
 
@@ -17,12 +16,27 @@ const getPostComments = (username, postId, callback) => {
         return
       }
 
-      Post.findOne({ _id: new ObjectId(postId) }).lean()
+      Post.findById((postId)).populate("comments.author", "username").lean()
         .then(post => {
           if (!post) {
             callback(new MatchError("❌ Post not found ❌"))
             return
           }
+
+          post.comments.forEach(comment => {
+            comment.id = comment._id.toString()
+            delete comment._id
+          })
+
+
+          post.comments.forEach(comment => {
+
+            if (comment.author._id) {
+              comment.author.id = comment.author._id.toString()
+              delete comment.author._id
+            }
+
+          })
 
           callback(null, post.comments)
         })

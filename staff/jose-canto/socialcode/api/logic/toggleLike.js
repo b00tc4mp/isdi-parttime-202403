@@ -1,32 +1,31 @@
 import { User, Post } from "../data/index.js"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
-import { ObjectId } from "mongodb"
 
 
-const toggleLike = (username, postId, callback) => {
-  validate.username(username)
+const toggleLike = (userId, postId, callback) => {
+  validate.id(userId, "userId")
   validate.id(postId, "postId")
   validate.callback(callback)
 
 
-  User.findOne({ username }).lean()
+  User.findById(userId).lean()
     .then(user => {
       if (!user) {
         callback(new MatchError('❌ User not found ❌'));
         return
       }
 
-      Post.findOne({ _id: new ObjectId(postId) })
+      Post.findById((postId))
         .then(post => {
           if (!post) {
             callback(new MatchError("❌ Post not found ❌"));
             return
           }
 
-          const userIndex = post.liked.indexOf(username);
+          const userIndex = post.liked.indexOf(userId);
           if (userIndex === -1) {
-            post.liked.push(username);
+            post.liked.push(userId);
           } else {
             post.liked.splice(userIndex, 1);
           }

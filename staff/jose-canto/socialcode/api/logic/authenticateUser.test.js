@@ -8,14 +8,14 @@ mongoose.connect(MONGODB_URL)
   .then(() => {
 
     try {
-      authenticateUser("Jack", "1234", (error, userFound) => {
+      authenticateUser("Jack", "1234", (error, userId) => {
         if (error) {
           console.error(error)
 
           return
         }
 
-        console.log(`User ${userFound} authenticated`)
+        console.log(`User ${userId} authenticated`)
       })
 
     } catch (error) {

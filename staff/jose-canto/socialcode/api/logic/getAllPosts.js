@@ -3,12 +3,12 @@ import { SystemError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
 
 
-const getAllPosts = (username, page, limit, callback) => {
+const getAllPosts = (userId, page, limit, callback) => {
 
-  validate.username(username)
+  validate.id(userId, "userId")
   validate.callback(callback)
 
-  User.findOne({ username }).lean()
+  User.findById(userId).lean()
     .then(user => {
       if (!user) {
 
@@ -17,12 +17,27 @@ const getAllPosts = (username, page, limit, callback) => {
         return
       }
 
-      Post.find().select("-__v").sort({ date: -1 }).lean()
+      Post.find({}).populate("author", "username").select("-__v").populate("comments.author", "username").sort({ date: -1 }).lean()
         .then(posts => {
           posts.forEach(post => {
-            post.id = post._id.toString()
-
+            post.id = post._id.toString() // sobreescribimos el id en objeto para cambiarlo a un string y asi evitar que no se sepa que se usa mongo por debajo. Sanear datos.
             delete post._id
+
+            if (post.author._id) {
+
+              post.author.id = post.author._id.toString()
+              delete post.author._id
+            }
+
+            post.liked = post.liked.map(userObjectId => userObjectId = userObjectId.toString())
+
+            post.comments.forEach(comment => {
+
+              if (comment.author._id) {
+                comment.author.id = comment.author._id.toString()
+                delete comment.author._id
+              }
+            })
           })
 
           const startIndex = (page - 1) * limit

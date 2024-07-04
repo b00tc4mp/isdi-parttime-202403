@@ -15,7 +15,7 @@ function Navbar({ post, handleDeletePost }) {
 
 	return (
 		<>
-			{post.author === logic.getLoggedInUsername() && (
+			{post.author.id === logic.getUserId() && (
 				<nav className="Navbar">
 					<i
 						className={`NavButton ${showNavbar ? "fa-solid fa-bars-staggered" : "fa-solid fa-bars"}`}

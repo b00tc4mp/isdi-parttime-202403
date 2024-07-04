@@ -5,12 +5,12 @@ import { Types } from "mongoose"
 
 const { ObjectId } = Types
 
-const deletePost = (username, postId, callback) => {
-  validate.username(username)
+const deletePost = (userId, postId, callback) => {
+  validate.id(userId, "userId")
   validate.id(postId, "postId")
   validate.callback(callback)
 
-  User.findOne({ username }).lean()
+  User.findById(userId).lean()
     .then(user => {
       if (!user) {
 
@@ -19,14 +19,14 @@ const deletePost = (username, postId, callback) => {
         return
       }
 
-      Post.findOne({ _id: new ObjectId(postId) }).lean()
+      Post.findById(postId).lean()
         .then(post => {
           if (!post) {
             callback(new MatchError("❌ Post not found ❌"))
             return
           }
 
-          if (post.author !== username) {
+          if (post.author.toString() !== userId) {
             callback(new MatchError("❌ You can't delete this post ❌"))
             return
           }

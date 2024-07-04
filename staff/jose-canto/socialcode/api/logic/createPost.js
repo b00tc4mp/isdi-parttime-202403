@@ -2,14 +2,14 @@ import { User, Post } from "../data/index.js"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 
-const createPost = (username, title, image, description, callback) => {
-  validate.username(username)
+const createPost = (userId, title, image, description, callback) => {
+  validate.id(userId, "userId")
   validate.text(title, "title", 30)
   validate.url(image, "image")
   validate.text(description, "description", 500)
   validate.callback(callback)
 
-  User.findOne({}).lean()
+  User.findById(userId).lean()
     .then(user => {
       if (!user) {
 
@@ -19,7 +19,7 @@ const createPost = (username, title, image, description, callback) => {
       }
 
       const post = {
-        author: username,
+        author: userId,
         title: title,
         image: image,
         description: description,

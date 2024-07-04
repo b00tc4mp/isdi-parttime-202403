@@ -1,15 +1,14 @@
 import { User, Post } from "../data/index.js"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
-import { ObjectId } from "mongodb"
 
-const createPostComment = (username, postId, textComment, callback) => {
-  validate.username(username)
+const createPostComment = (userId, postId, textComment, callback) => {
+  validate.id(userId, "userId")
   validate.id(postId, "postId")
   validate.text(textComment, "description", 150)
   validate.callback(callback)
 
-  User.findOne({ username }).lean()
+  User.findById(userId).lean()
     .then(user => {
       if (!user) {
 
@@ -18,7 +17,7 @@ const createPostComment = (username, postId, textComment, callback) => {
         return
       }
 
-      Post.findOne({ _id: new ObjectId(postId) })
+      Post.findById(postId)
         .then(post => {
           if (!post) {
 
@@ -27,7 +26,7 @@ const createPostComment = (username, postId, textComment, callback) => {
             return
           }
 
-          Post.findByIdAndUpdate({ _id: new ObjectId(postId) }, { $push: { comments: { author: username, text: textComment, date: new Date() } } })
+          Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, text: textComment, date: new Date() } } })
             .then(() => callback(null))
             .catch(error => callback(new SystemError(error.message)))
 

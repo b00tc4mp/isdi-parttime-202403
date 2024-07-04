@@ -27,7 +27,7 @@ function Post({ post, onPostDeleted }) {
 	}, [])
 
 	const includeUserLike = () => {
-		const username = logic.getLoggedInUsername()
+		const username = logic.getUserId()
 		return post.liked.includes(username)
 	}
 
@@ -97,7 +97,7 @@ function Post({ post, onPostDeleted }) {
 		<>
 			<article className="Article">
 				<div className="Author_navbar">
-					<Text className="AuthorTitle">{post.author}</Text>
+					<Text className="AuthorTitle">{post.author.username}</Text>
 					<Navbar post={post} handleDeletePost={handleDeletePost} />
 				</div>
 
