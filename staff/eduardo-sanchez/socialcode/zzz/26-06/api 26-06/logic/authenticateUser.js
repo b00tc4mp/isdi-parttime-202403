@@ -33,7 +33,7 @@ const authenticateUser = (username, password, callback) => {
                 callback(null)
             })
         })
-        .catch(error => callback(new SystemError(error.message)))
+        .catch(error => callback(error))
 }
 
 export default authenticateUser

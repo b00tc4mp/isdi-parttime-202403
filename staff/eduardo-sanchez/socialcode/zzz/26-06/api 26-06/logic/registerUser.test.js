@@ -13,20 +13,19 @@ client.connect()
         const db = connection.db('test')
 
         const users = db.collection('users')
-        const posts = db.collection('posts')
 
         data.users = users
-        data.posts = posts
 
         try {
-            logic.createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+            //logic.registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123', error => {
+            logic.registerUser('Pablo', 'Picasso', 'pablo@picasso.com', 'PabloP', 'Hola1234', 'Hola1234', error => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
 
-                console.log('post created')
+                console.log('user registered')
             })
         } catch (error) {
             console.error(error)
@@ -36,20 +35,31 @@ client.connect()
 
 
 
+
+
+
+
+
+
+
 /*
 import logic from './index.js'
 
 try {
-    logic.createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+    // logic.registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123', error => {
+    
+    // logic.registerUser('Wendy', 'Darling', 'wendy@darling.com', 'wendydarling', '123123123', '123123123', error => {
+    
+    logic.registerUser('Pablo', 'Picasso', 'pablo@picasso.com', 'PabloP', 'Hola1234', 'Hola1234', error => {
         if (error) {
             console.error(error)
 
             return
         }
 
-        console.log('post created')
+        console.log('user registered')
     })
 } catch (error) {
     console.error(error)
-} 
+}
 */

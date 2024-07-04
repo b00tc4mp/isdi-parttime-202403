@@ -17,7 +17,7 @@ client.connect()
         data.users = users
 
         try {
-            logic.authenticateUser('pepitogrillo', '123123123', error => {
+            logic.authenticateUser('ramonin', 'Hola1234', error => {
                 if (error) {
                     console.error(error)
 

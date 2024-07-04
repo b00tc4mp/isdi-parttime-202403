@@ -19,37 +19,17 @@ client.connect()
         data.posts = posts
 
         try {
-            logic.createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
+            logic.toggleLikePost('manzana', '6682fde32d0d51911e6b5e90', error => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
 
-                console.log('post created')
+                console.log('user toggled like')
             })
         } catch (error) {
             console.error(error)
         }
     })
     .catch(error => console.error(error))
-
-
-
-/*
-import logic from './index.js'
-
-try {
-    logic.createPost('peterpan', 'hello world', 'https://miro.medium.com/v2/resize:fit:1024/1*OohqW5DGh9CQS4hLY5FXzA.png', 'console.log("hello world")', error => {
-        if (error) {
-            console.error(error)
-
-            return
-        }
-
-        console.log('post created')
-    })
-} catch (error) {
-    console.error(error)
-} 
-*/
