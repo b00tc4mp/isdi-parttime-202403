@@ -1,8 +1,8 @@
 import errors from 'com/errors'
+import validate from 'com/validate'
 
 const getAllPosts = callback => {
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
+    validate.callback(callback)
 
     const xhr = new XMLHttpRequest
 

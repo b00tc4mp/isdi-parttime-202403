@@ -1,28 +1,19 @@
-import { MongoClient, ObjectId } from 'mongodb'
+import mongoose from "mongoose"
+import { User, Post } from './index.js'
 
-const client = new MongoClient('mongodb://localhost:27017')
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('test')
-
-        const users = db.collection('users')
-
-        // users.insertOne({ name: 'eve', surname: 'lyn', email: 'eve@lyn.com', username: 'evelyn', password: '1234' })
-        //     .then(result => console.log(result))
+mongoose.connect('mongodb://localhost:27017')
+    .then(() => {
+        // User.create({ name: 'Noco', surname: 'lasito', email: 'nico@blasito.com', username: 'nicolasito', password: '1234' })
+        //     .then(() => console.log('created'))
         //     .catch(error => console.error(error))
 
-        // users.deleteOne({ _id: new ObjectId('667d10bd046330cc60cc898c') })
-        //     .then(result => console.log(result))
+        // Post.create({ author: 'Nicolasito', image: 'https://media2.giphy.com/media/ciqS8U27hugHAaUEST/giphy.webp?cid=790b76115soc2friat8l0w6u8f001xyt4ky0ocj38g8jfrv0&ep=v1_gifs_search&rid=giphy.webp&ct=g', description: 'Mew' })
+        //     .then(() => console.log('created'))
         //     .catch(error => console.error(error))
 
-        users.find({}).toArray()
-            .then(results => console.log(results))
+        Post.find({}).populate('author', 'username')
+            .then(posts => console.log('retrieved', posts))
             .catch(error => console.error(error))
 
-        // users.updateOne({ _id: new ObjectId('667d1a885dfbc6dd5b6aa12f') }, { $set: { password: '3456' } })
-        //     .then(results => console.log(results))
-        //     .catch(error => console.error(error))
     })
-
     .catch(error => console.error(error))

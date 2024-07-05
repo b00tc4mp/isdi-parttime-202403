@@ -1,1 +1,1 @@
-curl http://localhost:9090/users/malefica -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYWNrIiwiaWF0IjoxNzE5NTk1NzUxLCJleHAiOjE3MTk1OTkzNTF9.o-ZBmuLizY4poRPLq1S8p3okT1Nc6L0EBJHRUGZUxKI" -v
+curl http://localhost:9090/users/6686c3e1dd24eb84190d4818 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg2YzNlMWRkMjRlYjg0MTkwZDQ4MTgiLCJpYXQiOjE3MjAxNjYwNjEsImV4cCI6MTcyMDE2OTY2MX0.K17xBYpTajhLEFqE6Lxjb2XI7daDln2peAwWXyczNFQ" -v
