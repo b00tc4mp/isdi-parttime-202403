@@ -15,8 +15,6 @@ const loginUser = (username, password, callback) => {
     })
         .then(response => {
             if (response.status === 200) {
-                callback(null)
-
                 return response.json()
                     .then(token => {
                         sessionStorage.token = token
