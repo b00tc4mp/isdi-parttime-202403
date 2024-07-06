@@ -1,35 +1,34 @@
-import errors from "com/errors"
+import errors, { SystemError } from "com/errors"
 import validate from "com/validate"
 
 const getPostComments = (postId, callback) => {
   validate.id(postId, "postId")
   validate.callback(callback)
 
+  fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`, {
+    mehtod: "GET",
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.token}`
+    },
+  })
 
-  const xhr = new XMLHttpRequest()
+    .then(response => {
+      if (response.status === 200) {
+        return response.json()
+          .then(comments => callback(null, comments))
+          .catch(error => callback(error))
+      }
 
-  xhr.onload = () => {
-    if (xhr.status === 200) {
+      return response.json()
+        .then(body => {
+          const { error, message } = body
 
-      const comments = JSON.parse(xhr.response)
+          const constructor = errors[error]
 
-      callback(null, comments)
-      return
-    }
-
-    const { error, message } = JSON.parse(xhr.response)
-
-    const constructor = errors[error]
-
-    callback(new constructor(message))
-
-  }
-  const url = new URL(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`)
-
-
-  xhr.open("GET", url)
-  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
-  xhr.send()
+          callback(new constructor(message))
+        })
+    })
+    .catch(error => callback(new SystemError(error)))
 
 }
 

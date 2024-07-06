@@ -1,38 +1,40 @@
-import errors from "com/errors"
+import errors, { SystemError } from "com/errors"
 import extractPayloadFromJWT from "../utils/extractPayloadFromJWT.js"
 import validate from "com/validate"
 
 const getUserName = (callback) => {
-
   validate.callback(callback)
 
-  const { sub: userId } = extractPayloadFromJWT(sessionStorage.token) //const payload = [{ sub: "Jack", iat: 1660000000, exp: 1660000000 }]
+  const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
 
-  const xhr = new XMLHttpRequest
+  fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
 
-  xhr.onload = () => {
-    if (xhr.status === 200) {
-
-      const name = JSON.parse(xhr.response)
-
-
-      callback(null, name)
-
-      return
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.token}`
     }
+  })
+    .then(response => {
+      if (response.status === 200) {
 
-    const { error, message } = JSON.parse(xhr.response)
+        return response.json()
+          .then(name => callback(null, name))
+      }
 
-    const constructor = errors[error]
+      return response.json()
+        .then(body => {
 
-    callback(new constructor(message))
-  }
+          const { error, message } = body
 
-  xhr.open("GET", `${import.meta.env.VITE_API_URL}/users/${userId}`)
-  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
+          const constructor = errors[error]
 
-  xhr.send()
+          callback(new constructor(message))
+        })
+        .catch(error => callback(new SystemError(error.message)))
+    })
+    .catch(error => callback(new SystemError(error.message)))
+
 }
 
 export default getUserName

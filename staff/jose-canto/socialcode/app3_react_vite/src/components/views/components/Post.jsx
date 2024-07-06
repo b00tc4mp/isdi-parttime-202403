@@ -109,7 +109,22 @@ function Post({ post, onPostDeleted }) {
 				</div>
 
 				<div className="DivImage">
-					<Image className="Image" src={post.image}></Image>
+					<Image className="Image" src={post.image}>
+						{showAddComment && (
+							<CreateComment
+								onCommentPostSubmitted={handleCommentPostSubmitted}
+								postId={post.id}
+								onCancelCreatedCommentClick={handleShowComment}
+							/>
+						)}
+					</Image>
+					{showAddComment && (
+						<CreateComment
+							onCommentPostSubmitted={handleCommentPostSubmitted}
+							postId={post.id}
+							onCancelCreatedCommentClick={handleShowComment}
+						/>
+					)}
 					{showConfirmDelete && (
 						<ConfirmDelete post={post} onConfirmDeletePost={confirmDeletePost} onCancelDeletePost={cancelDeletePost} />
 					)}
@@ -122,14 +137,6 @@ function Post({ post, onPostDeleted }) {
 					</i>
 					<i className="fa-regular fa-comments" onClick={handleShowComment}></i>
 				</div>
-
-				{showAddComment && (
-					<CreateComment
-						onCommentPostSubmitted={handleCommentPostSubmitted}
-						postId={post.id}
-						onCancelCreatedCommentClick={handleShowComment}
-					/>
-				)}
 
 				<CommentList comments={comments} />
 			</article>

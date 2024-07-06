@@ -13,9 +13,8 @@
   letter-spacing: 2px;
 }
 
-.CreatePostForm .SubmitButton {
-  width: 10rem;
-  justify-content: center;
+.CreatePostForm.Textarea {
+  height: 1rem;
 }
 
 .CreatePostForm input {

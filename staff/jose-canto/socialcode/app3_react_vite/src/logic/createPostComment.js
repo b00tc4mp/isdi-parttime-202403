@@ -1,4 +1,4 @@
-import errors from "com/errors"
+import errors, { SystemError } from "com/errors"
 import validate from "com/validate"
 
 
@@ -7,31 +7,35 @@ const createPostComment = (postId, textComment, callback) => {
   validate.text(textComment, "comments", 150)
   validate.callback(callback)
 
-  const xhr = new XMLHttpRequest
-  xhr.onload = () => {
-    if (xhr.status === 201) {
+  fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`, {
+    method: "PATCH",
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.token}`,
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify({ postId, text: textComment })
 
-      callback(null)
+  })
+    .then(response => {
+      if (response.status === 201) {
+        callback(null)
+        return
+      }
 
-      return
-    }
-    const { error, message } = JSON.parse(xhr.response)
+      return response.json()
+        .then(body => {
+          const { error, message } = body
 
-    const constructor = errors[error]
+          const constructor = errors[error]
 
-    callback(new constructor(message))
-  }
+          callback(new constructor(message))
+        })
+        .catch(error => callback(new SystemError(error)))
 
-  xhr.open("PATCH", `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`)
-  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
-  xhr.setRequestHeader("Content-Type", "application/json")
 
-  const body = {
-    text: textComment,
-  }
 
-  const json = JSON.stringify(body)
-  xhr.send(json)
+    })
+    .catch(error => callback(new SystemError(error)))
 }
 
 export default createPostComment
