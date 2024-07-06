@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
             //logic.registerUser('Jorge', 'Moreno', 'jorge@moreno.com', 'peterpan', '123123123', '123123123', error => {
-            registerUser('Jorge', 'Moreno', 'jorge@moreno.com', 'jorge', '123123123', '123123123', error => {
+            registerUser('Jorge', 'Moreno', 'jorge@moreno.com', 'Jorge', '123123123', '123123123', error => {
                 if (error) {
                     console.error(error)
 

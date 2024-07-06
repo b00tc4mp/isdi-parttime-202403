@@ -23,7 +23,6 @@ function PostList({ refreshStamp }) {
 
           return
         }
-        posts.reverse()
         setPosts(posts)
       })
     } catch (error) {

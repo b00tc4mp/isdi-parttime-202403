@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            toggleLikePost('Jorge', '66818e3c71ef25b1b82bed32', error => {
+            toggleLikePost('6689014036c5ff836afc8eb2', '66890621ba69ba714b3747f1', error => {
                 if (error) {
                     console.error(error)
 

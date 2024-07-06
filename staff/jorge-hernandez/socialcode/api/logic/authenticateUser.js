@@ -9,7 +9,7 @@ const authenticateUser = (username, password, callback) => {
     validate.password(password)
     validate.callback(callback)
 
-    User.findOne({ username })
+    User.findOne({ username }).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
@@ -30,7 +30,7 @@ const authenticateUser = (username, password, callback) => {
                     return
                 }
 
-                callback(null)
+                callback(null, user._id.toString())
             })
         })
         .catch(error => callback(new SystemError(error.message)))

@@ -1,6 +1,6 @@
-/* .View {
+.View {
     display: flex;
-} */
+}
 
 .View.column {
     flex-direction: column;
@@ -8,14 +8,9 @@
 
 .View.row {
     flex-direction: row;
-    gap: 1rem;
+    gap: -1rem;
 }
 
 .View.center {
-    display: flex;
     align-items: center;
-    justify-content: center;
-}
-.View.left{
-    align-items: left;
 }

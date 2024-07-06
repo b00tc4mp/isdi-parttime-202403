@@ -5,7 +5,7 @@ function View({
   className,
   children,
   direction = 'column',
-  align = '',
+  align = 'center',
 }) {
   return (
     <Tag

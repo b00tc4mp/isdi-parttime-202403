@@ -67,8 +67,8 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
   return (
     <article className='Post'>
       <div className='header-post'>
-        <Text>{post.author}</Text>
-        {post.author === logic.getUserUsername() && (
+        <Text>{post.author.username}</Text>
+        {post.author.id === logic.getUserId() && (
           <Button
             className='Button delete'
             title='Delete Post'
@@ -83,31 +83,36 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
       <Text>{post.description}</Text>
       <div className='button-container'>
         <time className='Time'>{formattedDate}</time>
-
-        <View>
-          {showLikes && (
-            <LikeUsers>
-              {
-                <ul>
-                  {post.likes.map((like) => (
-                    <li key={like}>{like}</li>
-                  ))}
-                </ul>
-              }
-            </LikeUsers>
-          )}
-          <Button
-            className='likes-Button'
-            onClick={handleToggleLikePost}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            {`${post.likes.includes(logic.getUserUsername()) ? '❤️' : '💔'} ${
-              post.likes.length
-            }`}
-          </Button>
-        </View>
       </div>
+
+      <View direction='row'>
+        <Button className='likes-Button' onClick={handleToggleLikePost}>
+          {`${post.likes.includes(logic.getUserId()) ? '❤️' : '💔'} ${
+            post.likes.length
+          }`}
+        </Button>
+        <Button
+          className={'likes-people'}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {`${post.likes[0]} y ${post.likes.length - 1} personas más les gusta
+            esto `}
+        </Button>
+      </View>
+
+      {showLikes && (
+        <LikeUsers>
+          {
+            <ul>
+              {post.likes.map((like) => (
+                <li key={like}>{like}</li>
+              ))}
+            </ul>
+          }
+        </LikeUsers>
+      )}
+
       <hr className='custom-hr' />
     </article>
   )

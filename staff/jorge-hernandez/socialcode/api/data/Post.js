@@ -1,9 +1,12 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
+
+const { ObjectId } = Types
 
 const post = new Schema({
     author: {
-        type: String,
-        required: true
+        type: ObjectId,
+        required: true,
+        ref: 'User'
     },
     title: {
         type: String,
@@ -22,9 +25,10 @@ const post = new Schema({
         required: true,
         default: Date.now
     },
-    likes: {
-        type: Array
-    }
+    likes: [{
+        type: ObjectId,
+        ref: 'User'
+    }]
 })
 
 const Post = model('Post', post)

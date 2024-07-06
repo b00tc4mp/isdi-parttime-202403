@@ -47,14 +47,14 @@ mongoose.connect(MONGODB_URL)
             const { username, password } = req.body
 
             try {
-                logic.authenticateUser(username, password, error => {
+                logic.authenticateUser(username, password, (error, userId) => {
                     if (error) {
                         res.status(500).json({ error: error.constructor.name, message: error.message })
 
                         return
                     }
 
-                    jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
+                    jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -69,7 +69,7 @@ mongoose.connect(MONGODB_URL)
             }
         })
 
-        api.get('/users/:targetUsername', (req, res) => {
+        api.get('/users/:targetUserId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
 
@@ -80,11 +80,11 @@ mongoose.connect(MONGODB_URL)
                         return
                     }
 
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
-                    const { targetUsername } = req.params
+                    const { targetUserId } = req.params
 
-                    logic.getUserName(username, targetUsername, (error, name) => {
+                    logic.getUserName(userId, targetUserId, (error, name) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -114,9 +114,9 @@ mongoose.connect(MONGODB_URL)
                         return
                     }
 
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
-                    logic.getAllPosts(username, (error, posts) => {
+                    logic.getAllPosts(userId, (error, posts) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -145,11 +145,11 @@ mongoose.connect(MONGODB_URL)
                         return
                     }
 
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
                     const { title, image, description } = req.body
 
-                    logic.createPost(username, title, image, description, error => {
+                    logic.createPost(userId, title, image, description, error => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -178,11 +178,11 @@ mongoose.connect(MONGODB_URL)
                         return
                     }
 
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
                     const { postId } = req.params
 
-                    logic.deletePost(username, postId, error => {
+                    logic.deletePost(userId, postId, error => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -211,11 +211,11 @@ mongoose.connect(MONGODB_URL)
                         return
                     }
 
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
                     const { postId } = req.params
 
-                    logic.toggleLikePost(username, postId, error => {
+                    logic.toggleLikePost(userId, postId, error => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 

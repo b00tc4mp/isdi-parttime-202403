@@ -1,13 +1,14 @@
-.LikesList{
-    display:flex;
+.LikesList {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position:absolute;
-    margin-left: 100px;
+    position: absolute; /* Posición absoluta respecto al contenedor .post */
+    left: 50%;
+    transform: translateX(-50%); 
+    bottom: 6.5rem;
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 0 0 10px black;
     background: linear-gradient(to bottom, #1e5f91, #3f9bd8);
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
-
