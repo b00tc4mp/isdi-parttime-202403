@@ -8,7 +8,7 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
 
         try {
-            deletePost("Mongo", "66852320df75d9b14a6367c4", error => {
+            deletePost("66863f2bea3bed4dd5940a5a", "668640e839d97916e8f3f342", error => {
                 if (error) {
                     console.error(error)
                     return
@@ -20,6 +20,3 @@ mongoose.connect(MONGODB_URL)
         }
     })
     .catch(error => console.error(error))
-
-
-//TODO modificar id post

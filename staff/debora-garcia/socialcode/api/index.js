@@ -10,7 +10,7 @@ const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
-   
+
         const { JsonWebTokenError, TokenEpiredError } = jwt
 
         const api = express()
@@ -52,8 +52,8 @@ mongoose.connect(MONGODB_URL)
 
             const { username, password } = req.body
 
-            try {
-                logic.authenticateUser(username, password, error => {
+            try {//hacemos que devuelva userId
+                logic.authenticateUser(username, password, (error, userId) => {
                     if (error) {
                         res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -61,7 +61,7 @@ mongoose.connect(MONGODB_URL)
                     }
                     // SYNCROconst token = jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' })
                     // ASYNCRO 
-                    jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '7d' }, (error, token) => {
+                    jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '7d' }, (error, token) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -75,7 +75,7 @@ mongoose.connect(MONGODB_URL)
             }
         })
 
-        api.get("/users/:targetUsername", (req, res) => {
+        api.get("/users/:targetUserId", (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7) //a partir del caracter 6 de la cabecera
 
@@ -93,11 +93,11 @@ mongoose.connect(MONGODB_URL)
 
                         return
                     }
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
-                    const { targetUsername } = req.params
+                    const { targetUserId } = req.params
 
-                    logic.getUsername(username, targetUsername, (error, username) => {
+                    logic.getUsername(userId, targetUserId, (error, username) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -128,9 +128,9 @@ mongoose.connect(MONGODB_URL)
 
                         return
                     }
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
-                    logic.getPosts(username, (error, posts) => {
+                    logic.getPosts(userId, (error, posts) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -161,11 +161,11 @@ mongoose.connect(MONGODB_URL)
 
                         return
                     }
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
                     const { title, image, description } = req.body
 
-                    logic.createPost(username, title, image, description, (error) => {
+                    logic.createPost(userId, title, image, description, (error) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -193,11 +193,11 @@ mongoose.connect(MONGODB_URL)
 
                         return
                     }
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
                     const { postId } = req.params
 
-                    logic.deletePost(username, postId, error => {
+                    logic.deletePost(userId, postId, error => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -224,11 +224,11 @@ mongoose.connect(MONGODB_URL)
 
                         return
                     }
-                    const { sub: username } = payload
+                    const { sub: userId } = payload
 
                     const { postId } = req.params
 
-                    logic.toggleLikePost(username, postId, error => {
+                    logic.toggleLikePost(userId, postId, error => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 

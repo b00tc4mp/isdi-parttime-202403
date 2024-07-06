@@ -7,7 +7,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            createPost("Mongo", "Test", "http---", "description", (error) => {
+            createPost("66863f2bea3bed4dd5940a5a", "MONGO", "http---", "description", (error) => {
                 if (error) {
                     console.error(error)
                     return

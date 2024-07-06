@@ -1,9 +1,12 @@
-import { Schema, model } from "mongoose"
+import { Schema, model, Types } from "mongoose"
+const { ObjectId } = Types
 
 const post = new Schema({
+    // cambiamos el author a objeto con id de mongo
     author: {
-        type: String,
-        required: true
+        type: ObjectId,
+        required: true,
+        ref: "User" // que traiga todos los posts con todos la data de la coleccion users: (populate)
     },
     title: {
         type: String,
@@ -23,7 +26,8 @@ const post = new Schema({
         default: Date.now // cuando se cree un objeto de post insertara automaticamente la fecha actual
     },
     likes: [{
-        type: String
+        type: ObjectId,
+        ref: "User"
     }],
     /*   coments: [{
           type: {

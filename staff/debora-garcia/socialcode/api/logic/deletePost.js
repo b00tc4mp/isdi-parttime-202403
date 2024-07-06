@@ -4,12 +4,12 @@ import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import { ObjectId } from "mongodb"
 
-const deletePost = (username, postId, callback) => {
-    validate.username(username)
+const deletePost = (userId, postId, callback) => {
+    validate.id(userId, userId)
     validate.id(postId, "postId")
     validate.callback(callback)
 
-    User.findOne({ username }).lean()
+    User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError("user not found"))
@@ -22,8 +22,8 @@ const deletePost = (username, postId, callback) => {
                         callback(new MatchError("post not found"))
 
                         return
-                    }
-                    if (post.author !== username) {
+                    }//el autor es ubn Object Id por lo que lo convertimos a estring para poder comparar
+                    if (post.author.toString() !== userId) {
                         callback(new MatchError("post author does not match user"))
 
                         return

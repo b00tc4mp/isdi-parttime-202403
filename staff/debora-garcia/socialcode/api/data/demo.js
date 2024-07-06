@@ -20,21 +20,20 @@ const user = new Schema({ name: String })
 
  */
 
-// mongoose.connect("mongodb://localhost:27017/test")
-//     .then(() => {
-//         User.create({ email: "mongoose@gmail.com", username: "mongoose", password: "1234" })
-//             .then(() => console.log("created"))
-//             .catch(error => console.error(error))
-//     })
-
-//     .catch(error => console.error(error))
-
-    mongoose.connect("mongodb://localhost:27017/test")
+mongoose.connect("mongodb://localhost:27017/test")
     .then(() => {
-        Post.create({ author: "mongo", title: "mongooseTest", image: "http:nose", description:"blah" })
-            .then(() => console.log("created"))
+        // User.create({ email: "mongoose@gmail.com", username: "mongoose", password: "1234" })
+        //     .then(() => console.log("created"))
+        //     .catch(error => console.error(error))
+
+        // Post.create({ author: "mongo", title: "mongooseTest", image: "http:nose", description: "blah" })
+        //     .then(() => console.log("created"))
+        //     .catch(error => console.error(error))
+
+        Post.find({}).populate("author", "username") // te permite traerte informacion del usuario y seleccionar los campos. 
+            //Populate sabe que tiene que ir a buscar la data a Users y lo copia en author
+            .then((posts) => console.log("retrieved", posts))
             .catch(error => console.error(error))
     })
 
     .catch(error => console.error(error))
-
