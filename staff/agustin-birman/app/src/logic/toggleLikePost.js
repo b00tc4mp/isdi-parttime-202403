@@ -5,26 +5,30 @@ const toggleLikePost = (postId, callback) => {
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    const xhr = new XMLHttpRequest
-
-    xhr.onload = () => {
-        if (xhr.status === 204) {
-            callback(null)
-
-            return
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/likes`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`
         }
+    })
+        .then(response => {
+            if (response.status === 204) {
+                callback(null)
 
-        const { error, message } = JSON.parse(xhr.response)
+                return
+            }
 
-        const constructor = errors[error]
+            return response.json()
+                .then(body => {
+                    const { error, message } = body
 
-        callback(new constructor(message))
-    }
+                    const constructor = errors[error]
 
-    xhr.open('PATCH', `${import.meta.env.VITE_API_URL}/posts/${postId}/likes`)
-
-    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
-    xhr.send()
+                    callback(new constructor(message))
+                })
+                .catch(error => callback(new SystemError(error.message)))
+        })
+        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default toggleLikePost

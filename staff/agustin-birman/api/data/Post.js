@@ -5,8 +5,9 @@ const { ObjectId } = Types
 
 const post = new Schema({
     author: {
-        type: String,
-        required: true
+        type: ObjectId,
+        required: true,
+        ref: 'User'
     },
     title: {
         type: String,

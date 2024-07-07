@@ -79,30 +79,29 @@ mongoose.connect(MONGODB_URL)
 
                 jwt.verify(token, JWT_SECRET, (error, payload) => {
                     if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+
+                    const { sub: userId } = payload
+
+                    const { targetUserId } = req.params
+
+                    logic.getUserName(userId, targetUserId, (error, name) => {
                         if (error) {
-                            if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
-                                res.status(500).json({ error: SystemError.name, message: error.message })
-                            else
-                                res.status(500).json({ error: error.constructor.name, message: error.message })
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
 
                             return
                         }
 
-                        const { sub: userId } = payload
-
-                        const { targetUserId } = req.params
-
-                        logic.getUserName(userId, targetUserId, (error, name) => {
-                            if (error) {
-                                res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                                return
-                            }
-
-                            res.json(name)
-                        })
-                    }
+                        res.json(name)
+                    })
                 })
+
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
