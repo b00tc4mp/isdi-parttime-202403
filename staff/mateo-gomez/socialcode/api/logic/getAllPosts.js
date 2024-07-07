@@ -15,7 +15,7 @@ const getAllPosts = (username, callback) => {
                 return
             }
 
-            data.posts.find({}).toArray()
+            data.posts.find({}).sort({ date: -1 }).toArray()
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()

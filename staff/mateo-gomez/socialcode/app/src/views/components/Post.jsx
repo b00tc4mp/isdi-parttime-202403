@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+
 import Heading from "../../components/core/Heading"
 import Text from "../../components/core/Text"
 import Image from "../../components/core/Image"
@@ -8,7 +9,6 @@ import Time from "../../components/core/Time"
 import logic from "../../logic"
 
 import './Post.css'
-import getLoggedInUsername from "../../logic/getLoggedInUsername"
 
 function Post({ post, onPostDeleted }) {
     console.log('Post -> render')
@@ -18,12 +18,12 @@ function Post({ post, onPostDeleted }) {
 
     useEffect(() => {
         setLike(includeUserLike())
-        setLikeNum(post.liked.length)
+        setLikeNum(post.liked ? post.liked.length : 0)
     }, [])
 
     const includeUserLike = () => {
-        const username = getLoggedInUsername()
-        return post.liked.includes(username)
+        const username = logic.getUserId()
+        return Array.isArray(post.liked) && post.liked.includes(username)
     }
 
     const handleDeletePost = () => {
@@ -67,7 +67,7 @@ function Post({ post, onPostDeleted }) {
 
 
     return <article className="Post">
-        <Text className="AuthorTitle">{post.author}</Text>
+        <Text className="AuthorTitle">{post.author.username}</Text>
 
         <Heading level='2' className="PostTitle">{post.title}</Heading>
 
@@ -93,7 +93,7 @@ function Post({ post, onPostDeleted }) {
 
         </div>
 
-        {post.author === logic.getLoggedInUsername() && <Button className="DeleteButton" onClick={handleDeletePost}>Delete</Button>}
+        {post.author.id === logic.getUserId() && <Button className="DeleteButton" onClick={handleDeletePost}>Delete</Button>}
 
     </article>
 }
