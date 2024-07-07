@@ -32,7 +32,6 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
                 if (error) {
                     console.error(error)
 
-                    //alert(error.message)
                     setMessage(error.message)
 
                     return
@@ -43,7 +42,6 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         } catch (error) {
             console.error(error)
 
-            //alert(error.message)
             setMessage(error.message)
         }
     }

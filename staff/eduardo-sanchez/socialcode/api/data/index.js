@@ -1,23 +1,11 @@
-const data = {}
+import User from './User.js'
+import Post from './Post.js'
 
-export default data
+export {
+    User,
+    Post
+}
 
-
-// import findUser from './findUser.js'
-// import insertUser from './insertUser.js'
-// import findPosts from './findPosts.js'
-// import findPost from './findPost.js'
-// import insertPost from './insertPost.js'
-// import deletePost from './deletePost.js'
-
-// const data = {
-//     findUser,
-//     insertUser,
-
-//     findPosts,
-//     findPost,
-//     insertPost,
-//     deletePost
-// }
+// const data = {}
 
 // export default data

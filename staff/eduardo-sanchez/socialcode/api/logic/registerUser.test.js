@@ -1,24 +1,16 @@
 import 'dotenv/config'
-import { MongoClient } from 'mongodb'
-import data from '../data/index.js'
+import mongoose from 'mongoose'
 
-import logic from './index.js'
+import registerUser from './registerUser.js'
 
 const { MONGODB_URL } = process.env
 
-const client = new MongoClient(MONGODB_URL)
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('test')
-
-        const users = db.collection('users')
-
-        data.users = users
-
+mongoose.connect(MONGODB_URL)
+    .then(() => {
         try {
-            //logic.registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123', error => {
-            logic.registerUser('Ramo', 'Nin', 'ramo@nin.com', 'ramonin', 'Hola1234', 'Hola1234', error => {
+
+            // registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123', error => {
+            registerUser('Ramo', 'Nin', 'ramo@nin.com', 'ramonin', 'Hola1234', 'Hola1234', error => {
                 if (error) {
                     console.error(error)
 
@@ -32,34 +24,3 @@ client.connect()
         }
     })
     .catch(error => console.error(error))
-
-
-
-
-
-
-
-
-
-
-/*
-import logic from './index.js'
-
-try {
-    // logic.registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123', error => {
-    
-    // logic.registerUser('Wendy', 'Darling', 'wendy@darling.com', 'wendydarling', '123123123', '123123123', error => {
-    
-    logic.registerUser('Pablo', 'Picasso', 'pablo@picasso.com', 'PabloP', 'Hola1234', 'Hola1234', error => {
-        if (error) {
-            console.error(error)
-
-            return
-        }
-
-        console.log('user registered')
-    })
-} catch (error) {
-    console.error(error)
-}
-*/
