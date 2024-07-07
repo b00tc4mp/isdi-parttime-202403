@@ -1,4 +1,4 @@
-import errors from "com/errors"
+import errors, { SystemError } from "com/errors"
 import validate from "com/validate"
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
@@ -10,31 +10,29 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.passwordsMatch(password, passwordRepeat)
     validate.callback(callback)
 
-    const xhr = new XMLHttpRequest
+    fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, surname, email, username, password, passwordRepeat, callback })
+    })
+        .then(response => {
+            if (response.status === 201) {
+                callback(null)
 
-    xhr.onload = () => {
-        if (xhr.status === 201) {
-            callback(null)
+                return
+            }
 
-            return
-        }
+            return response.json()
+                .then(({ error, message }) => {
+                    const constructor = errors[error]
 
-        const { error, message } = JSON.parse(xhr.response)
+                    callback(new constructor(message))
+                })
 
-        const constructor = errors[error]
-
-        callback(new constructor(message))
-    }
-
-    xhr.open('POST', `${import.meta.env.VITE_API_URL}/users`)
-
-    const body = { name, surname, email, username, password, passwordRepeat }
-
-    const json = JSON.stringify(body)
-
-    xhr.setRequestHeader('Content-Type', 'application/json')
-
-    xhr.send(json)
+                .catch(error => callback(new SystemError(error.message)))
+        })
+        .catch(error => callback(new SystemError(error)))
 }
+
 
 export default registerUser

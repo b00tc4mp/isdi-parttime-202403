@@ -16,7 +16,7 @@ function toggleLikePost(userId, postId, callback) {
                 return
             }
 
-            Post.findById((postId))
+            Post.findById(postId)
                 .then(post => {
                     if (!post) {
                         callback(new MatchError('post not found'))

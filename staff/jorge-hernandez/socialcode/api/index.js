@@ -54,7 +54,7 @@ mongoose.connect(MONGODB_URL)
                         return
                     }
 
-                    jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
+                    jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1d' }, (error, token) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 

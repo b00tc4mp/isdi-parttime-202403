@@ -34,3 +34,4 @@ const post = new Schema({
 const Post = model('Post', post)
 
 export default Post
+

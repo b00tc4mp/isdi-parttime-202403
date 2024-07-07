@@ -14,7 +14,7 @@ const getAllPosts = (userId, callback) => {
                 return
             }
 
-            Post.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
+            Post.find({}).populate('author', 'username',).select('-__v').sort({ date: -1 }).lean()
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
@@ -27,9 +27,7 @@ const getAllPosts = (userId, callback) => {
                             delete post.author._id
                         }
 
-                        post.likes = post.likes.map(userObjectId => {
-                            userObjectId.toString()
-                        })
+                        post.likes = post.likes.map(objectLike => objectLike.toString())
                     })
 
                     callback(null, posts)
