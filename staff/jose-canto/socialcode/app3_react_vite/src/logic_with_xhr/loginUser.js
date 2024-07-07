@@ -29,6 +29,10 @@ const loginUser = (username, password, callback) => {
     callback(new constructor(message))
   }
 
+  xhr.onerror = () => {
+    callback(new SystemError("Network error"))
+  }
+
   xhr.open("POST", `${import.meta.env.VITE_API_URL}/users/auth`)
   const body = { username, password }
 

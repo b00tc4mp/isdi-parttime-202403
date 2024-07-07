@@ -5,7 +5,6 @@ const getPostComments = (postId, callback) => {
   validate.id(postId, "postId")
   validate.callback(callback)
 
-
   const xhr = new XMLHttpRequest()
 
   xhr.onload = () => {
@@ -22,11 +21,13 @@ const getPostComments = (postId, callback) => {
     const constructor = errors[error]
 
     callback(new constructor(message))
-
   }
+
+  xhr.onerror = () => {
+    callback(new SystemError("Network error"))
+  }
+
   const url = new URL(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`)
-
-
   xhr.open("GET", url)
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
   xhr.send()

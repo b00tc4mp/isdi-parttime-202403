@@ -29,6 +29,10 @@ const getUserName = (callback) => {
     callback(new constructor(message))
   }
 
+  xhr.onerror = () => {
+    callback(new SystemError("Network error"))
+  }
+
   xhr.open("GET", `${import.meta.env.VITE_API_URL}/users/${userId}`)
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
 

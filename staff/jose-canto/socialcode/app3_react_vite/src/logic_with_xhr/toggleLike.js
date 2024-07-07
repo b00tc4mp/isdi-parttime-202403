@@ -17,7 +17,11 @@ const toggleLike = (postId, callback) => {
     const { error, message } = JSON.parse(xhr.response);
     const constructor = errors[error];
     callback(new constructor(message));
-  };
+  }
+
+  xhr.onerror = () => {
+    callback(new SystemError("Network error"))
+  }
 
   xhr.open('PATCH', `${import.meta.env.VITE_API_URL}/posts/like/${postId}`);
   xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`);

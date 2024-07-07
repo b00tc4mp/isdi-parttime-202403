@@ -21,6 +21,9 @@ const getAllPosts = (page, limit, callback) => {
     callback(new constructor(message))
   }
 
+  xhr.onerror = () => {
+    callback(new SystemError("Network error"))
+  }
 
   const url = new URL(`${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`)
   // url.searchParams.append("page", page)

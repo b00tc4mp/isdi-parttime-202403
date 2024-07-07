@@ -22,6 +22,10 @@ const createPostComment = (postId, textComment, callback) => {
     callback(new constructor(message))
   }
 
+  xhr.onerror = () => {
+    callback(new SystemError("Network error"))
+  }
+
   xhr.open("PATCH", `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`)
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
   xhr.setRequestHeader("Content-Type", "application/json")

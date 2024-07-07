@@ -23,6 +23,10 @@ const createPost = (title, image, description, callback) => {
     callback(new constructor(message))
   }
 
+  xhr.onerror = () => {
+    callback(new SystemError("Network error"))
+  }
+
   xhr.open("POST", `${import.meta.env.VITE_API_URL}/posts`)
   xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
   xhr.setRequestHeader("Content-Type", "application/json")
