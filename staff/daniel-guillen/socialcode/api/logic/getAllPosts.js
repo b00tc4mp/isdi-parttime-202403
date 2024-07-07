@@ -21,7 +21,7 @@ const getAllPosts = (userId, callback) => {
                         delete post._id
 
                         if (post.author._id) {
-                            // { _id, username }
+
                             post.author.id = post.author._id.toString()
 
                             delete post.author._id

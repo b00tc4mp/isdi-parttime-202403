@@ -1,39 +1,38 @@
-import errors from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 const loginUser = (username, password, callback) => {
-    validate.username(username)
-    validate.password(password)
-    validate.callback(callback)
-
-    const xhr = new XMLHttpRequest
-
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            const token = JSON.parse(xhr.response)
-
-            sessionStorage.token = token
-
-            callback(null)
-
-            return
-        }
-
-        const { error, message } = JSON.parse(xhr.response)
-
-        const constructor = errors[error]
-
-        callback(new constructor(message))
+    try {
+        validate.username(username);
+        validate.password(password);
+        validate.callback(callback);
+    } catch (error) {
+        callback(new SystemError(error.message));
+        return;
     }
 
-    xhr.open('POST', `${import.meta.env.VITE_API_URL}/users/auth`)
+fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ username, password })
+})
+.then(response => {
+    if (response.status === 200) {
+        return response.json().then(token => {
+            sessionStorage.token = token;
+            callback(null);
+        });
+    }
 
-    const body = { username, password }
+            return response.json().then(body => {
+                const { error, message } = body;
+                const constructor = errors[error] || SystemError;
+                callback(new constructor(message));
+            });
+        })
+        .catch(error => callback(new SystemError(error.message)));
+};
 
-    const json = JSON.stringify(body)
-
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.send(json)
-}
-
-export default loginUser
+export default loginUser;
