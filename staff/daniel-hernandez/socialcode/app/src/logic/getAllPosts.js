@@ -1,34 +1,32 @@
-import errors from "com/errors";
+import errors, { SystemError } from "com/errors";
 import validate from "com/validate";
 
 const getAllPosts = (page, limit, callback) => {
+  validate.number(page, "Page");
+  validate.number(limit, "Limit");
   validate.callback(callback);
 
-  const xhr = new XMLHttpRequest();
+  fetch(`${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`, {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.token}`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        return res.json().then((postInfo) => callback(null, postInfo));
+      }
 
-  xhr.onload = () => {
-    if (xhr.status === 200) {
-      const response = JSON.parse(xhr.response);
-      callback(null, response);
+      return res
+        .json()
+        .then((body) => {
+          const { error, message } = body;
+          const constructor = errors[error];
 
-      return;
-    }
-
-    const { error, message } = JSON.parse(xhr.response);
-
-    const constructor = errors[error];
-
-    callback(new constructor(message));
-  };
-
-  xhr.open(
-    "GET",
-    `${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`,
-  );
-
-  xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`);
-
-  xhr.send();
+          callback(new constructor(message));
+        })
+        .catch((error) => callback(new SystemError(error.message)));
+    })
+    .catch((error) => callback(new SystemError(error.message)));
 };
 
 export default getAllPosts;

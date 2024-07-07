@@ -61,6 +61,12 @@ function validateId(id, reason = "Id") {
   }
 }
 
+function validateNumber(num, reason = "Input") {
+  if (typeof num !== "number" || isNaN(num)) {
+    throw new ContentError(`${reason} is not a number`);
+  }
+}
+
 const validate = {
   name: validateName,
   username: validateUsername,
@@ -71,6 +77,7 @@ const validate = {
   text: validateText,
   url: validateUrl,
   id: validateId,
+  number: validateNumber,
 };
 
 export default validate;

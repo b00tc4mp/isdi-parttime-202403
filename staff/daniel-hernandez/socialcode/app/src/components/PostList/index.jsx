@@ -27,7 +27,7 @@ function PostList({ refreshTimeStamp, mainRef }) {
 
   const loadPosts = (page) => {
     try {
-      logic.getAllPosts(page, 10, (error, response) => {
+      logic.getAllPosts(page, 10, (error, { posts, total }) => {
         if (error) {
           console.error(error);
           // TODO: show feedback in a more user-friendly way
@@ -35,8 +35,6 @@ function PostList({ refreshTimeStamp, mainRef }) {
 
           return;
         }
-
-        const { posts, total } = response;
 
         if (!Array.isArray(posts)) {
           console.error("Expected an array, but got: ", posts);

@@ -20,7 +20,7 @@ function Header() {
           return;
         }
 
-        setName(name.name);
+        setName(name);
       });
     } catch (error) {
       console.error(error);
