@@ -2,7 +2,7 @@ import registerUser from "./registerUser";
 import loginUser from "./loginUser";
 import getUsersName from "./getUsersName";
 import isUserLoggedIn from "./isUserLoggedIn";
-import getUsername from "./getUsername";
+import getUserId from "./getUserId";
 import logoutUser from "./logoutUser";
 
 import getAllPosts from "./getAllPosts";
@@ -15,7 +15,7 @@ const logic = {
   loginUser,
   getUsersName,
   isUserLoggedIn,
-  getUsername,
+  getUserId,
   logoutUser,
 
   getAllPosts,

@@ -14,10 +14,10 @@ const testCreateUser = async () => {
 
   try {
     await createUser(
-      "Mr",
-      "Purple",
-      "mr@purple.com",
-      "MrPurple",
+      "testerTwoName",
+      "testerTwoSurname",
+      "test2@email.com",
+      "tester2",
       "123123123",
       "123123123",
     );

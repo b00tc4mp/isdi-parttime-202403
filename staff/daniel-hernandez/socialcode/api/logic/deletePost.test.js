@@ -13,7 +13,7 @@ const testDeletePost = async () => {
   }
 
   try {
-    await deletePost("tester", "66857f3a1c1f08e7f5935f26");
+    await deletePost("66877d12b1faa9184be8cf9c", "66877e38a32edd800d7c72a2");
     console.log("post deleted");
   } catch (error) {
     console.error(error);

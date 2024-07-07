@@ -2,8 +2,8 @@ import { User, Post } from "../data/index.js";
 import { SystemError, MatchError } from "com/errors.js";
 import validate from "com/validate.js";
 
-const createPost = (username, title, image, description) => {
-  validate.username(username);
+const createPost = (userId, title, image, description) => {
+  validate.id(userId, "User ID");
   validate.text(title, "Title", 50);
   validate.url(image, "Image");
   validate.text(description, "Description", 200);
@@ -12,7 +12,7 @@ const createPost = (username, title, image, description) => {
     let user;
 
     try {
-      user = await User.findOne({ username }).lean();
+      user = await User.findById(userId).lean();
     } catch (error) {
       throw new SystemError(`failed to create post: ${error.message}`);
     }
@@ -22,7 +22,7 @@ const createPost = (username, title, image, description) => {
     }
 
     const post = {
-      author: username,
+      author: userId,
       title,
       image,
       description,
@@ -38,14 +38,15 @@ const createPost = (username, title, image, description) => {
   })();
 
   /* return User
-    .findOne({ username }).lean()
+    .findById(userId)
+    .lean()
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
       }
 
       const post = {
-        author: username,
+        author: userId,
         title,
         image,
         description,

@@ -14,7 +14,7 @@ const testCreatePost = async () => {
 
   try {
     await createPost(
-      "tester",
+      "66877d12b1faa9184be8cf9c",
       "this is a test post title",
       "https://imgs.search.brave.com/DHxbw6MrtUk2o-cyqdu0gDJwWPgHm2WH4yJzTSfCDvs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuZnJlZWltYWdl/cy5jb20vaW1hZ2Vz/L2xhcmdlLXByZXZp/ZXdzLzllOS90ZXN0/LTEtMTQ4NjQ1OC5q/cGc_Zm10",
       "this is a test post description",

@@ -9,10 +9,10 @@ import Button from "../Button.jsx";
 import Container from "../Container.jsx";
 
 function Post({ post, onDelete, onLiked }) {
-  let username;
+  let userId;
 
   try {
-    username = logic.getUsername();
+    userId = logic.getUserId();
   } catch (error) {
     alert(error);
   }
@@ -24,7 +24,7 @@ function Post({ post, onDelete, onLiked }) {
       <Heading level={2} className={styles.postTitle}>
         {post.title}
       </Heading>
-      <Text className={styles.author}>{post.author}</Text>
+      <Text className={styles.author}>{post.author.username}</Text>
       <Image
         source={post.image}
         alternative={post.title}
@@ -32,7 +32,7 @@ function Post({ post, onDelete, onLiked }) {
       />
       <Container className={styles.buttonContainer}>
         <Button className={styles.likeButton} onClick={handleLike}>
-          {post.likes.includes(username) ? (
+          {post.likes.includes(userId) ? (
             <>
               <svg
                 fill="currentColor"
@@ -60,7 +60,7 @@ function Post({ post, onDelete, onLiked }) {
             </>
           )}
         </Button>
-        {post.author === username && (
+        {post.author.id === userId && (
           <Button
             className={styles.removePostButton}
             onClick={() => onDelete(post.id)}

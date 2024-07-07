@@ -11,11 +11,11 @@ import {
 } from "../controllers/data.js";
 
 router.route("/posts").get(getPosts).post(createPost);
-router.route("/posts/:postID").delete(deletePost);
-router.route("/posts/:postID/likes").patch(likePost);
+router.route("/posts/:postId").delete(deletePost);
+router.route("/posts/:postId/likes").patch(likePost);
 
 router.route("/users").post(createUser);
 router.route("/users/auth").post(authUser);
-router.route("/users/:targetUsername").get(getUser);
+router.route("/users/:targetUserId").get(getUser);
 
 export { router as datarouter };

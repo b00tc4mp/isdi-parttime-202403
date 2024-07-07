@@ -13,7 +13,7 @@ const testGetPosts = async () => {
   }
 
   try {
-    const posts = await getPosts("tester");
+    const posts = await getPosts("66877d12b1faa9184be8cf9c");
     console.log(posts);
   } catch (error) {
     console.error(error);

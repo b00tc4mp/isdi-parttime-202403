@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./index.module.css";
 import logic from "../../logic/index";
 import ViewContext from "../../ViewContext.jsx";
@@ -8,13 +8,25 @@ import Button from "../atomic/Button.jsx";
 
 function Header() {
   const { setView } = useContext(ViewContext);
-  let username;
+  const [name, setName] = useState("");
 
-  try {
-    username = logic.getUsername();
-  } catch (error) {
-    alert(error);
-  }
+  useEffect(() => {
+    try {
+      logic.getUsersName((error, name) => {
+        if (error) {
+          console.error(error);
+          alert(error);
+
+          return;
+        }
+
+        setName(name.name);
+      });
+    } catch (error) {
+      console.error(error);
+      alert(error);
+    }
+  }, []);
 
   const handleLogout = () => {
     logic.logoutUser();
@@ -23,7 +35,7 @@ function Header() {
 
   return (
     <Container className={styles.header}>
-      <Text className={styles.username}>{username}</Text>
+      <Text className={styles.username}>{name}</Text>
       <Button className={styles.logoutButton} onClick={handleLogout}>
         logout
       </Button>

@@ -29,29 +29,9 @@ const authenticateUser = (username, password) => {
     if (!match) {
       throw new MatchError("wrong password");
     }
+
+    return user._id.toString();
   })();
-
-  /* return User
-    .findOne({ username })
-    .then((user) => {
-      if (!user) {
-        throw new MatchError("user not found");
-      }
-
-      return bcrypt.compare(password, user.password);
-    })
-    .then((match) => {
-      if (!match) {
-        throw new MatchError("wrong password");
-      }
-    })
-    .catch((error) => {
-      if (error instanceof MatchError) {
-        throw error;
-      }
-
-      throw new SystemError(`failed to authenticate user: ${error.message}`);
-    }); */
 };
 
 export default authenticateUser;

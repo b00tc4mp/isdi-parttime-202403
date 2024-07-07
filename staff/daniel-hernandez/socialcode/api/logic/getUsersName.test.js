@@ -13,7 +13,10 @@ const testGetUsersName = async () => {
   }
 
   try {
-    const usersName = await getUsersName("tester", "tester2");
+    const usersName = await getUsersName(
+      "6689d7a2c1cc123de17f7b63",
+      "66877d12b1faa9184be8cf9c",
+    );
     console.log(usersName);
   } catch (error) {
     console.error(error);

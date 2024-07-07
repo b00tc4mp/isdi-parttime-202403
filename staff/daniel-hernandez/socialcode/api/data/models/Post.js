@@ -1,11 +1,12 @@
-import { Schema, model } from "mongoose";
-import { USERNAME_REGEX } from "com/validate.js";
+import { Schema, model, Types } from "mongoose";
+
+const { ObjectId } = Types;
 
 const postSchema = new Schema({
   author: {
-    type: String,
+    type: ObjectId,
     required: true,
-    match: [USERNAME_REGEX, "Invalid Username"],
+    ref: "User",
     trim: true,
   },
   title: {
@@ -13,7 +14,6 @@ const postSchema = new Schema({
     required: [true, "Please provide a title"],
     trim: true,
   },
-
   image: {
     type: String,
     required: [true, "Please provide a image"],
@@ -29,7 +29,8 @@ const postSchema = new Schema({
   },
   likes: [
     {
-      type: String,
+      type: ObjectId,
+      ref: "User",
     },
   ],
 });

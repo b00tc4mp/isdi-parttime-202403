@@ -16,10 +16,10 @@ The verbose option (`-v`) and piping to "`jq`" (`| jq .`) are optional and can b
 ### Register a user
 
 ```sh
-» curl -X POST "http://localhost:9010/users" \
--H "Content-Type: application/json" \
--d '{ "name":"Mr", "surname":"Green", "email":"mr@green.com", "username":"MrGreen", "password":"123123123", "repeatedPassword":"123123123" }' \
--v | jq .
+» curl "http://localhost:9010/users" \
+	-H "Content-Type: application/json" \
+	-d '{ "name":"Mr", "surname":"Green", "email":"mr@green.com", "username":"MrGreen", "password":"123123123", "repeatedPassword":"123123123" }' \
+	-v | jq .
 ```
 
 or execute `test/createUser.sh` within the api directory
@@ -31,10 +31,10 @@ or execute `test/createUser.sh` within the api directory
 ### Authenticate a user
 
 ```sh
-» curl -X POST "http://localhost:9010/users/auth" \
--H "Content-Type: application/json" \
--d '{ "username":"MrGreen", "password":"123123123" }' \
--v | jq .
+» curl "http://localhost:9010/users/auth" \
+	-H "Content-Type: application/json" \
+	-d '{ "username":"MrGreen", "password":"123123123" }' \
+	-v | jq .
 ```
 
 or execute `test/authUser.sh` within the api directory
@@ -43,16 +43,16 @@ or execute `test/authUser.sh` within the api directory
 
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNckdyZWVuIiwiaWF0IjoxNzE5MTc5OTgwLCJleHAiOjE3MTkxODM1ODB9.X7wmZ-kBwb1Jv8fWyBMO9HODvVf0IkQLMuvZSetbcvI"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg5ZGQyMTkxOTM5MWU5M2VmNTdmZGYiLCJpYXQiOjE3MjAzMTEzODEsImV4cCI6MTcyMjkwMzM4MX0.S9tdFls6sK5PxXRcqmC62Bk9YC6Yvhrh6MbOW2TeAfA"
 }
 ```
 
 ### Get a user's name
 
 ```sh
-» curl -X GET "http://localhost:9010/users/MrGreen" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNckdyZWVuIiwiaWF0IjoxNzE5ODYxMDg4LCJleHAiOjE3MTk4ODk4ODh9.VhY0mxtHGNk3A6rFCTWk0KhSMvX7eNUy4vOEfLpLPIQ" \
--v | jq .
+» curl "http://localhost:9010/users/66877d12b1faa9184be8cf9c" \
+	-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg5ZGQyMTkxOTM5MWU5M2VmNTdmZGYiLCJpYXQiOjE3MjAzMTE5NDUsImV4cCI6MTcyMjkwMzk0NX0.07JU5qKqWi4rGt2lTGwGsENvMxtCwfO8Q5b9JuXxGRI" \
+	-v | jq .
 ```
 
 or execute `test/getUsersName.sh` within the api directory
@@ -61,16 +61,16 @@ or execute `test/getUsersName.sh` within the api directory
 
 ```json
 {
-  "name": "Mr"
+  "name": "testerName"
 }
 ```
 
 ### Get all post's
 
 ```sh
-» curl -X GET "http://localhost:9010/posts" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNckdyZWVuIiwiaWF0IjoxNzE5ODYxMDg4LCJleHAiOjE3MTk4ODk4ODh9.VhY0mxtHGNk3A6rFCTWk0KhSMvX7eNUy4vOEfLpLPIQ" \
--v | jq .
+» curl "http://localhost:9010/posts" \
+	-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg5ZGQyMTkxOTM5MWU5M2VmNTdmZGYiLCJpYXQiOjE3MjAzMTE5NDUsImV4cCI6MTcyMjkwMzk0NX0.07JU5qKqWi4rGt2lTGwGsENvMxtCwfO8Q5b9JuXxGRI" \
+	-v | jq .
 ```
 
 or execute `test/getPosts.sh` within the api directory
@@ -83,28 +83,30 @@ or execute `test/getPosts.sh` within the api directory
   "limit": 10,
   "posts": [
     {
-      "author": "tester",
+      "author": {
+        "username": "tester",
+        "id": "66877d12b1faa9184be8cf9c"
+      },
       "title": "this is a test post title",
       "image": "https://imgs.search.brave.com/DHxbw6MrtUk2o-cyqdu0gDJwWPgHm2WH4yJzTSfCDvs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuZnJlZWltYWdl/cy5jb20vaW1hZ2Vz/L2xhcmdlLXByZXZp/ZXdzLzllOS90ZXN0/LTEtMTQ4NjQ1OC5q/cGc_Zm10",
       "description": "this is a test post description",
-      "date": "2024-07-01T18:49:09.849Z",
-      "likes": ["tester2"],
-      "id": "6682fa252730f888ec932134"
+      "date": "2024-07-06T23:42:27.821Z",
+      "likes": ["6689d7a2c1cc123de17f7b63"],
+      "id": "6689d6632178522b8434a930"
     }
-    ...
   ],
-  "total": ...
+  "total": 1
 }
 ```
 
 ### Create a post
 
 ```sh
-» curl -X POST "http://localhost:9010/posts" \
--H "Content-Type: application/json" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNckdyZWVuIiwiaWF0IjoxNzE5ODYxMDg4LCJleHAiOjE3MTk4ODk4ODh9.VhY0mxtHGNk3A6rFCTWk0KhSMvX7eNUy4vOEfLpLPIQ" \
--d '{ "title":"I'\''m MrGreen !", "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Color_icon_green.png/640px-Color_icon_green.png", "description":"I'\''m an ordinary guy; except... I'\''m green !" }' \
--v | jq .
+» curl "http://localhost:9010/posts" \
+	-H "Content-Type: application/json" \
+	-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg5ZGQyMTkxOTM5MWU5M2VmNTdmZGYiLCJpYXQiOjE3MjAzMTE5NDUsImV4cCI6MTcyMjkwMzk0NX0.07JU5qKqWi4rGt2lTGwGsENvMxtCwfO8Q5b9JuXxGRI" \
+	-d '{ "title":"I'\''m MrGreen !", "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Color_icon_green.png/640px-Color_icon_green.png", "description":"I'\''m an ordinary guy; except... I'\''m green !" }' \
+	-v | jq .
 ```
 
 or execute `test/createPost.sh` within the api directory
@@ -116,9 +118,9 @@ or execute `test/createPost.sh` within the api directory
 ### Delete a post
 
 ```sh
-» curl -X DELETE "http://localhost:9010/posts/668309efa976e50c39900f0e" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNckdyZWVuIiwiaWF0IjoxNzE5ODYxMDg4LCJleHAiOjE3MTk4ODk4ODh9.VhY0mxtHGNk3A6rFCTWk0KhSMvX7eNUy4vOEfLpLPIQ" \
--v | jq .
+» curl -X DELETE "http://localhost:9010/posts/6689e255919391e93ef57ff0" \
+	-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg5ZGQyMTkxOTM5MWU5M2VmNTdmZGYiLCJpYXQiOjE3MjAzMTE5NDUsImV4cCI6MTcyMjkwMzk0NX0.07JU5qKqWi4rGt2lTGwGsENvMxtCwfO8Q5b9JuXxGRI" \
+	-v | jq .
 ```
 
 or execute `test/deletePost.sh` within the api directory
@@ -130,9 +132,9 @@ or execute `test/deletePost.sh` within the api directory
 ### Like a post
 
 ```sh
-» curl -X PATCH "http://localhost:9010/posts/6682fa252730f888ec932134/likes" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0ZXIzIiwiaWF0IjoxNzE5ODcwODU4LCJleHAiOjE3MTk4OTk2NTh9.RHoQlCshCE0wm0IzHl8DQZC8B181IjKlYtaCUH-wgiM" \
--v | jq .
+» curl -X PATCH "http://localhost:9010/posts/6689d6632178522b8434a930/likes" \
+	-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg5ZGQyMTkxOTM5MWU5M2VmNTdmZGYiLCJpYXQiOjE3MjAzMTE5NDUsImV4cCI6MTcyMjkwMzk0NX0.07JU5qKqWi4rGt2lTGwGsENvMxtCwfO8Q5b9JuXxGRI" \
+	-v | jq .
 ```
 
 or execute `test/likePost.sh` within the api directory

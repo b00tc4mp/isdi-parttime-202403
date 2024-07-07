@@ -13,7 +13,7 @@ const testLikePost = async () => {
   }
 
   try {
-    await likePost("tester2", "668580c514cd0c74444073fe");
+    await likePost("6689d7a2c1cc123de17f7b63", "6689d6632178522b8434a930");
     console.log("post liked");
   } catch (error) {
     console.error(error);

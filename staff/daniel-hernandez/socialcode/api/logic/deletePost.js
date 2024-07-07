@@ -4,15 +4,15 @@ import validate from "com/validate.js";
 import { Types } from "mongoose";
 const { ObjectId } = Types;
 
-const deletePost = (username, id) => {
-  validate.username(username);
+const deletePost = (userId, id) => {
+  validate.id(userId, "User ID");
   validate.id(id, "Post ID");
 
   return (async () => {
     let user, post;
 
     try {
-      user = await User.findOne({ username }).lean();
+      user = await User.findById(userId).lean();
     } catch {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
@@ -31,7 +31,7 @@ const deletePost = (username, id) => {
       throw new MatchError("post not found");
     }
 
-    if (post.author !== username) {
+    if (post.author.toString() !== userId) {
       throw new MatchError("post author does not match user");
     }
 
@@ -43,7 +43,8 @@ const deletePost = (username, id) => {
   })();
 
   /* return User
-    .findOne({ username })
+    .findById(userId)
+    .lean()
     .then((user) => {
       if (!user) {
         throw new MatchError("user not found");
@@ -56,7 +57,7 @@ const deletePost = (username, id) => {
         throw new MatchError("post not found");
       }
 
-      if (post.author !== username) {
+      if (post.author.toString() !== userId) {
         throw new MatchError("post author does not match user");
       }
 

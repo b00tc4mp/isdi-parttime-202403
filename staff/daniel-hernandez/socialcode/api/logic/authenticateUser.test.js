@@ -13,8 +13,8 @@ const testAuthenticateUser = async () => {
   }
 
   try {
-    await authenticateUser("MrGreen", "123123123");
-    console.log("user authenticated");
+    const userId = await authenticateUser("tester", "123123123");
+    console.log("user authenticated", userId);
   } catch (error) {
     console.error(error);
   } finally {
