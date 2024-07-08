@@ -1,5 +1,4 @@
-import errors from "com/errors"
-
+import errors, { SystemError } from "com/errors"
 import validate from "com/validate"
 
 const loginUser = (username, password, callback) => {
@@ -7,35 +6,34 @@ const loginUser = (username, password, callback) => {
     validate.password(password)
     validate.callback(callback)
 
-    //autentificacion la hace la api
-    const xhr = new XMLHttpRequest
-    // se configura pero no se ejecuta
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            //sessionStorage.username = username
+    fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+    })
+        .then(response => {
+            if (response.status === 200) {
+                return response.json()
+                    .then(token => {
+                        sessionStorage.token = token
 
-            const token = JSON.parse(xhr.response)
-            sessionStorage.token = token
+                        callback(null)
+                    })
+            }
 
-            callback(null)
+            return response.json()
+                .then(body => {
+                    const { error, message } = body
 
-            return
-        }
-        const { error, message } = JSON.parse(xhr.response)
+                    const constructor = errors[error]
 
-        const constructor = errors[error]
-
-        callback(new constructor(message))
-    }
-    //conectamos la app con la api
-    xhr.open("POST", `${import.meta.env.VITE_API_URL}/users/auth`)
-
-    const user = { username, password }
-
-    const json = JSON.stringify(user)
-
-    xhr.setRequestHeader("Content-type", "application/json")
-    xhr.send(json)
+                    callback(new constructor(message))
+                })
+                .catch(error => callback(new SystemError(error.message)))
+        })
+        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default loginUser

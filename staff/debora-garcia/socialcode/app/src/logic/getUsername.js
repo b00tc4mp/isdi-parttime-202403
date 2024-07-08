@@ -7,29 +7,30 @@ const getUsername = callback => {
 
     const { sub: userId } = extractPayloadFormJWT(sessionStorage.token)
 
-    const xhr = new XMLHttpRequest
-
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            const username = JSON.parse(xhr.response)
-
-            callback(null, username)
-
-            return
+    fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`
         }
+    })
+        .then(response => {
+            if (response.status === 200) {
 
-        const { error, message } = JSON.parse(xhr.response)
+                return response.json()
+                    .then(username => callback(null, username))
 
-        const constructor = errors[error]
+            }
+            return response.json()
+                .then(body => {
+                    const { error, message } = body
 
-        callback(new constructor(message))
-    }
+                    const constructor = errors[error]
 
-    xhr.open("GET", `${import.meta.env.VITE_API_URL}/users/${userId}`)
+                    callback(new constructor(message))
+                })
+                .catch(error => callback(new SystemError(error.message)))
+        })
+        .catch(error => callback(new SystemError(error.message)))
 
-    xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.token}`)
-
-    xhr.send()
 }
 
 export default getUsername
