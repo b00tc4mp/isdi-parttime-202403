@@ -1,14 +1,17 @@
-import data from "./index.js";
+import data from './index.js'
 
-data.findUser(user => user.surname === 'Grillo', (error, user) => {
+data.findUser(
+  (user) => user.surname === 'Grillo',
+  (error, user) => {
     if (error) {
-        console.error(error)
+      console.error(error)
 
-        return
+      return
     }
 
     console.log(user)
-})
+  }
+)
 
 // data.insertUser({ name: 'Jorge', surname: 'Moreno', email: 'test@gmail.com', username: 'Jorgem', password: '123123' }, error => {
 //     if (error) {

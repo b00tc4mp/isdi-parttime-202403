@@ -8,14 +8,14 @@ import deletePost from './deletePost.js'
 import toggleLikePost from './toggleLikePost.js'
 
 const logic = {
-    registerUser,
-    authenticateUser,
-    getUserName,
+  registerUser,
+  authenticateUser,
+  getUserName,
 
-    getAllPosts,
-    createPost,
-    deletePost,
-    toggleLikePost
+  getAllPosts,
+  createPost,
+  deletePost,
+  toggleLikePost,
 }
 
 export default logic

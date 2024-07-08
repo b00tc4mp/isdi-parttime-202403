@@ -42,8 +42,8 @@ const deletePost = (postId, callback) => {
             }
             return response.json()
                 .then(({ error, message }) => {
-                    const constructor = errors[error];
-                    callback(new constructor(message));
+                    const constructor = errors[error]
+                    callback(new constructor(message))
                 });
 
         })

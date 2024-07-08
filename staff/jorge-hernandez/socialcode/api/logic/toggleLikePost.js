@@ -4,40 +4,49 @@ import { MatchError, SystemError } from 'com/errors.js'
 import { ObjectId } from 'mongodb'
 
 function toggleLikePost(userId, postId, callback) {
-    validate.id(userId, 'userId')
-    validate.id(postId, 'postId')
-    validate.callback(callback)
+  validate.id(userId, 'userId')
+  validate.id(postId, 'postId')
+  validate.callback(callback)
 
-    User.findById(userId).lean()
-        .then(user => {
-            if (!user) {
-                callback(new MatchError('user not found'))
+  User.findById(userId)
+    .lean()
+    .then((user) => {
+      if (!user) {
+        callback(new MatchError('user not found'))
 
-                return
-            }
+        return
+      }
 
-            Post.findById(postId)
-                .then(post => {
-                    if (!post) {
-                        callback(new MatchError('post not found'))
+      Post.findById(postId)
+        .then((post) => {
+          if (!post) {
+            callback(new MatchError('post not found'))
 
-                        return
-                    }
+            return
+          }
 
-                    const index = post.likes.indexOf(userId)
+          const included = post.likes.some((id) => id.toString() === userId)
 
-                    if (index < 0)
-                        post.likes.push(userId)
-                    else
-                        post.likes.splice(index, 1)
-
-                    post.save()
-                        .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
-                })
-                .catch(error => callback(new SystemError(error.message)))
+          Post.updateOne(
+            { _id: post._id },
+            included
+              ? {
+                  $pull: {
+                    likes: new ObjectId(userId),
+                  },
+                }
+              : {
+                  $push: {
+                    likes: new ObjectId(userId),
+                  },
+                }
+          )
+            .then(() => callback(null))
+            .catch((error) => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
+        .catch((error) => callback(new SystemError(error.message)))
+    })
+    .catch((error) => callback(new SystemError(error.message)))
 }
 
 export default toggleLikePost

@@ -3,44 +3,52 @@ import { DuplicityError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
-    validate.name(name)
-    validate.name(surname, 'surname')
-    validate.email(email)
-    validate.username(username)
-    validate.password(password)
-    validate.passwordsMatch(password, passwordRepeat)
-    validate.callback(callback)
+const registerUser = (
+  name,
+  surname,
+  email,
+  username,
+  password,
+  passwordRepeat,
+  callback
+) => {
+  validate.name(name)
+  validate.name(surname, 'surname')
+  validate.email(email)
+  validate.username(username)
+  validate.password(password)
+  validate.passwordsMatch(password, passwordRepeat)
+  validate.callback(callback)
 
-    User.findOne({ $or: [{ email }, { username }] })
-        .then(user => {
-            if (user) {
-                callback(new DuplicityError('user already exists'))
+  User.findOne({ $or: [{ email }, { username }] })
+    .then((user) => {
+      if (user) {
+        callback(new DuplicityError('user already exists'))
 
-                return
-            }
+        return
+      }
 
-            bcrypt.hash(password, 8, (error, hash) => {
-                if (error) {
-                    callback(new SystemError(error.message))
+      bcrypt.hash(password, 8, (error, hash) => {
+        if (error) {
+          callback(new SystemError(error.message))
 
-                    return
-                }
+          return
+        }
 
-                const newUser = {
-                    name: name,
-                    surname: surname,
-                    email: email,
-                    username: username,
-                    password: hash
-                }
+        const newUser = {
+          name: name,
+          surname: surname,
+          email: email,
+          username: username,
+          password: hash,
+        }
 
-                User.create(newUser)
-                    .then(() => callback(null))
-                    .catch(error => callback(new SystemError(error.message)))
-            })
-        })
-        .catch(error => callback(new SystemError(error.message)))
+        User.create(newUser)
+          .then(() => callback(null))
+          .catch((error) => callback(new SystemError(error.message)))
+      })
+    })
+    .catch((error) => callback(new SystemError(error.message)))
 }
 
 export default registerUser
