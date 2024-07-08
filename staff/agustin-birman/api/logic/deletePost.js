@@ -1,7 +1,9 @@
 import { User, Post } from '../data/index.js'
 import { ContentError, MatchError, SystemError, } from 'com/errors.js'
 import validate from 'com/validate.js'
-import { ObjectId } from 'mongodb'
+import { Types } from 'mongoose'
+
+const { ObjectId } = Types
 
 
 const deletePost = (userId, postId, callback) => {

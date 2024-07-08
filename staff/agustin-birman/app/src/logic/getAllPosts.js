@@ -14,6 +14,7 @@ const getAllPosts = callback => {
 
                 return response.json()
                     .then(posts => callback(null, posts))
+                    .catch(error => callback(new SystemError(error.message)))
             }
 
             return response.json()
