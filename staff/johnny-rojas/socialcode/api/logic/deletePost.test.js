@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            deletePost('wendydarling', '66844f262095abc229e74cdd', error => {
+            deletePost('66858da8e391d77d4ba5fd0a', '66844f262095abc229e74cdd', error => {
                 if (error) {
                     console.error(error)
 

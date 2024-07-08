@@ -30,7 +30,7 @@ const authenticateUser = (username, password, callback) => {
                 return
             }
 
-            callback(null)
+            callback(null, user._id.toString())
         })
     })
     .catch(error => callback(new SystemError(error.message)))

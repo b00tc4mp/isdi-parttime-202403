@@ -1,14 +1,16 @@
 import { User, Post } from '../data/index.js'
 import validate from 'com/validate.js'
 import { MatchError, SystemError } from 'com/errors.js'
-import { ObjectId } from 'mongodb'
+import { Types } from 'mongoose'
 
-const deletePost = (username, postId, callback) => {
-    validate.username(username)
+const {ObjectId} = Types
+
+const deletePost = (userId, postId, callback) => {
+    validate.id(userId, 'userId')
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    User.findOne({ username }).lean()
+    User.findById(userId).lean()
     .then(user => {
         if (!user) {
             callback(new MatchError('user not found'))
@@ -24,14 +26,14 @@ const deletePost = (username, postId, callback) => {
                     return
                 }
 
-                if (post.author !== username) {
+                if (post.author.toString() !== userId) {
                     callback(new MatchError('post author does not match user'))
 
                     return
                 }
 
                 Post.deleteOne({ _id: new ObjectId(postId) })
-                    .then(() => callback(null))
+                    .then(() => callback(null, postId))
                     .catch(error => callback(new SystemError(error.message)))
             })
             .catch(error => callback(new SystemError(error.message)))

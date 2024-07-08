@@ -36,11 +36,11 @@ function PostList({refreshStamp}) {
       }
   }
 
-  const handlePostDeleted = () => loadPosts()
+    const handlePostDeleted = () => loadPosts()
 
 
   return <View tag="section" className="PostList">
-  {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
+  {posts.map(post => <Post key={post.id} post={post} onPostLikeToggled={loadPosts} onPostDeleted={handlePostDeleted} />)}
 </View>
 }
 

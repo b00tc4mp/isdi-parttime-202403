@@ -1,32 +1,38 @@
-import errors from 'com/errors'
+import errors, { SystemError } from "com/errors"
 import validate from 'com/validate'
 
 const getAllPosts = callback => {
     validate.callback(callback)
 
-    const xhr = new XMLHttpRequest
-
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            const posts = JSON.parse(xhr.response)
-
-            callback(null, posts)
-
-            return
+    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`
         }
 
-        const { error, message } = JSON.parse(xhr.response)
+    }).then(response => {
+        if (response.status === 200) {
 
-        const constructor = errors[error]
+            return response.json()
+                .then(post => callback(null, post))
+        }
 
-        callback(new constructor(message))
-    }
+        return response.json().then(({ error, message }) => {
+            const constructor = errors[error]
 
-    xhr.open('GET', `${import.meta.env.VITE_API_URL}/posts`)
+            // return response.json()
+            // .then(body => {
+            //     const { error, message } = body
 
-    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
+            //     const constructor = errors[error]
 
-    xhr.send()
+            callback(new constructor(message))
+        })
+            .catch(error => callback(new SystemError(error.message)))
+
+    })
+        .catch(error => callback(new SystemError(error.message)))
+
 }
 
 export default getAllPosts
