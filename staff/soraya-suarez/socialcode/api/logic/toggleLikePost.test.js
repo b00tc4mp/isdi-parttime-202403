@@ -1,22 +1,21 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import registerUser from './registerUser.js'
+import toggleLikePost from './toggleLikePost.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            //registerUser('Wendy', 'Darling', 'wendy@darling.com', 'wendydarling', '123123123', '123123123', error => {
-            registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123', error => {
+            toggleLikePost('66859f3b6ef36441e7efcd0d', '66859db639a51a44e7c3900c', error => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
 
-                console.log('user registered')
+                console.log('user toggled like')
             })
         } catch (error) {
             console.error(error)
