@@ -1,8 +1,0 @@
-.View {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 18rem;
-    background: linear-gradient(to bottom right, rgba(218, 163, 13, 1), rgba(218, 163, 13, 0.3));
-}
