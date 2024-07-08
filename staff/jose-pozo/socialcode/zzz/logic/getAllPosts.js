@@ -1,4 +1,4 @@
-import { User, Post } from '../dataMongoose/index.js'
+import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
@@ -6,7 +6,7 @@ const getAllPosts = (username, callback) => {
     validate.username(username)
     validate.callback(callback)
 
-    User.findOne({ username }).lean()
+    data.users.findOne({ username })
         .then(user => {
 
             if (!user) {
@@ -15,7 +15,7 @@ const getAllPosts = (username, callback) => {
                 return
             }
 
-            Post.find({}).select('-__v').sort({ date: -1 }).lean()
+            data.posts.find({}).toArray()
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
@@ -23,7 +23,7 @@ const getAllPosts = (username, callback) => {
                         delete post._id
                     })
 
-                    callback(null, posts)
+                    callback(null, posts.reverse())
                 })
         })
         .catch(error => callback(new SystemError(error.message)))

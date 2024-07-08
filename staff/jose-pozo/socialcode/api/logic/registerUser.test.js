@@ -1,21 +1,16 @@
-import logic from './index.js'
 import 'dotenv/config'
-import { MongoClient } from 'mongodb'
-import data from '../data/index.js'
+import mongoose from 'mongoose'
+
+import registerUser from './registerUser.js'
 
 const { MONGODB_URL } = process.env
 
-const client = new MongoClient(MONGODB_URL)
-
-client.connect()
+mongoose.connect(MONGODB_URL)
     .then(connection => {
-        const db = connection.db('test')
-        const users = db.collection('users')
-
-        data.users = users
-
         try {
-            logic.registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123', error => {
+            logic.registerUser('Jack', 'Sparrow', 'jack@sparrow.com', 'JackSparrow', '1234', '1234', error => {
+                //registerUser('Jon', 'Snow', 'jon@snow.com', 'JonSnow', '1234', '1234', error => {
+                //registerUser('Daenerys', 'Targaryen', 'daenerys@targaryen.com', 'DaenerysTargaryen', '1234', '1234', error => {
                 if (error) {
                     console.error(error)
 

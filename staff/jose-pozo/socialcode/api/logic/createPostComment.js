@@ -1,22 +1,23 @@
-import { User, Post } from '../dataMongoose/index.js'
+import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getAllComments = (username, postId, callback) => {
-    validate.username(username)
+import { ObjectId } from 'mongodb'
+
+const createComment = (userId, postId, comment, callback) => {
+    validate.id(userId, 'userId')
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    User.findOne({ username }).lean()
+    User.findById(userId).lean()
         .then(user => {
-
             if (!user) {
                 callback(new MatchError('user not found'))
 
                 return
             }
 
-            Post.findById(postId).sort({ date: -1 }).lean() // el -1 no era como un reverse???
+            Post.findById(postId)
                 .then(post => {
                     if (!post) {
                         callback(new MatchError('post not found'))
@@ -24,13 +25,19 @@ const getAllComments = (username, postId, callback) => {
                         return
                     }
 
-                    const comments = post.comments.reverse()
-
-                    callback(null, comments)
+                    Post.updateOne({ _id: new ObjectId(postId) }, { $push: { comments: { author: userId, comment: comment, date: new Date().toLocaleString(), likes: [] } } })
+                        .then(() => callback(null))
+                        .catch(error => callback(new SystemError(error.message)))
                 })
+
                 .catch(error => callback(new SystemError(error.message)))
+
+
         })
         .catch(error => callback(new SystemError(error.message)))
+
+
+
 }
 
-export default getAllComments
+export default createComment

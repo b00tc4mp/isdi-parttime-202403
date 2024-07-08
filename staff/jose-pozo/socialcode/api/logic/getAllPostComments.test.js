@@ -1,21 +1,21 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import getUserName from './getUserName.js'
+import getAllComments from './getAllPostComments.js'
 
 const { MONGODB_URL } = process.env
 
-mongoose.connect()
-    .then(connection => {
+mongoose.connect(MONGODB_URL)
+    .then(() => {
         try {
-            getUserName('peterpan', 'DaenerysTargaryen', (error, name) => {
+            getAllComments('DaenerysTargaryen', '668498c1816188d7c642eeec', (error, comments) => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
 
-                console.log('name retrieved', name)
+                console.log('comments retrieved', comments)
             })
         } catch (error) {
             console.error(error)

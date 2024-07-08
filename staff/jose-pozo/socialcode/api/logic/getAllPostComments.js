@@ -1,14 +1,13 @@
-import { User, Post } from '../data/index.js'
+import { User, Post } from '../dataMongoose/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
-import { ObjectId } from 'mongodb'
 
-const deletePost = (userId, postId, callback) => {
-    validate.id(userId, 'userId')
+const getAllComments = (userId, postId, callback) => {
+    validate.id(userId)
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    User.findById(userId).lean()
+    User.findOne(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
@@ -24,21 +23,13 @@ const deletePost = (userId, postId, callback) => {
                         return
                     }
 
-                    if (post.author.toString() !== userId) {
-                        callback(new MatchError('post author does not match user'))
+                    const comments = post.comments.reverse()
 
-                        return
-                    }
-
-                    Post.deleteOne({ _id: new ObjectId(postId) })
-                        .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
+                    callback(null, comments)
                 })
                 .catch(error => callback(new SystemError(error.message)))
-
         })
         .catch(error => callback(new SystemError(error.message)))
 }
 
-
-export default deletePost
+export default getAllComments

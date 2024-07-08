@@ -3,20 +3,18 @@ import validate from 'com/validate'
 
 
 
-const createComment = (postId, description, callback) => {
+const createPostComment = (postId, comment, callback) => {
     validate.id(postId, 'postId')
-    validate.text(description, 'description', 200)
+    validate.text(comment, 'comment', 200)
     validate.callback(callback)
 
     const xhr = new XMLHttpRequest
-
-
 
     xhr.onload = () => {
         if (xhr.status === 201) {
             const comments = JSON.parse(xhr.response)
 
-            callback(null, comments)
+            callback(null, comment)
 
             return
         }
@@ -32,9 +30,7 @@ const createComment = (postId, description, callback) => {
 
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
 
-    const body = {
-        description: description
-    }
+    const body = { comment: comment }
 
     const json = JSON.stringify(body)
 
@@ -42,4 +38,4 @@ const createComment = (postId, description, callback) => {
     xhr.send(json)
 }
 
-export default createComment
+export default createPostComment

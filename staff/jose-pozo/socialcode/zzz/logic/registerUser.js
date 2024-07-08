@@ -1,4 +1,4 @@
-import { User, Post } from '../dataMongoose/index.js'
+import data from '../data/index.js'
 import { DuplicityError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
@@ -9,10 +9,10 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.email(email)
     validate.username(username)
     validate.password(password)
-    validate.passwordsMatch(password, passwordRepeat)
+    validate.passowrdsMatch(password, passwordRepeat)
     validate.callback(callback)
 
-    User.findOne({ $or: [{ email }, { username }] })
+    data.users.findOne({ $or: [{ email }, { username }] })
         .then(user => {
             if (user) {
                 callback(new DuplicityError('user already exists'))
@@ -35,11 +35,16 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
                     password: hash
                 }
 
-                User.create(newUser)
+                data.users.insertOne(newUser)
                     .then(() => callback(null))
 
                     .catch(error => callback(error))
+
             })
+
+
+
+
         })
         .catch(error => callback(error))
 }

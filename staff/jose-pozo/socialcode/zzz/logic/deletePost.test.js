@@ -1,14 +1,24 @@
+import logic from './index.js'
 import 'dotenv/config'
-import mongoose from 'mongoose'
-
-import deletePost from './deletePost.js'
+import { MongoClient } from 'mongodb'
+import data from '../data/index.js'
 
 const { MONGODB_URL } = process.env
 
-mongoose.connect(MONGODB_URL)
+const client = new MongoClient(MONGODB_URL)
+
+
+client.connect()
     .then(connection => {
+        const db = connection.db('test')
+        const users = db.collection('users')
+        const posts = db.collection('posts')
+
+        data.posts = posts
+        data.users = users
+
         try {
-            deletePost("peterpan", "66847825e3502bc94fd34cb6",
+            logic.deletePost("peterpan", "667ee0fe3d00307186b5b0e1",
                 error => {
                     if (error) {
                         console.error(error)

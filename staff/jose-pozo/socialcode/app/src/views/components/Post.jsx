@@ -34,7 +34,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
             }
     }
 
-    const userHasLiked = post.likes.includes(logic.getUserUsername());
+    const userHasLiked = post.likes.includes(logic.getUserId());
 
     const handleToggleLikePost = () => {
         try {
@@ -58,28 +58,10 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         }
     }
 
-    const handleCreatePostComment = () => {
-        try {
-            logic.createComment(postId, description, error => {
-                if (error) {
-                    console.error(error)
-
-                    alert(error.message)
-
-                    return
-                }
-            })
-        } catch (error) {
-            console.error(error)
-
-            alert(error.message)
-        }
-    }
-
 
     return <View tag="article" className='Post' align="">
         <View>
-            <Text>{post.author}</Text>
+            <Text>{post.author.username}</Text>
 
             <Heading level="2" >{post.title}</Heading>
         </View>
@@ -91,11 +73,11 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         <View className='PostFooter' direction='row'>
             <Time>{post.date}</Time>
 
-            {post.author === logic.getUserUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
+            {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}
         </View>
 
         <View direction='row' className='IconBox'>
-            <Button className='IconButton' onClick={handleCreatePostComment}>
+            <Button className='IconButton'>
                 <Image className='IconImage' src={'../../../public/IconComment.png'} />
             </Button>
 
@@ -109,7 +91,6 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         </View>
 
         <Button className='CommentText' >View comments...</Button>
-
 
     </View >
 }

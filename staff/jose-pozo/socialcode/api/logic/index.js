@@ -7,7 +7,7 @@ import deletePost from './deletePost.js'
 import getAllPosts from './getAllPosts.js'
 import toggleLikePost from './toggleLikePost.js'
 
-import createComment from './createComment.js'
+import createPostComment from './createPostComment.js'
 
 
 
@@ -21,7 +21,7 @@ const logic = {
     getAllPosts,
     toggleLikePost,
 
-    createComment
+    createPostComment
 }
 
 

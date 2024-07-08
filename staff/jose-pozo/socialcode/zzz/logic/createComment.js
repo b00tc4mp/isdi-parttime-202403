@@ -1,15 +1,15 @@
-import { User, Post } from '../dataMongoose/index.js'
+import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 import { ObjectId } from 'mongodb'
 
-const createComment = (username, postId, comment, callback) => {
+const createComment = (username, postId, description, callback) => {
     validate.username(username)
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    User.findOne({ username })
+    data.users.findOne({ username })
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
@@ -17,7 +17,7 @@ const createComment = (username, postId, comment, callback) => {
                 return
             }
 
-            Post.findOne({ _id: new ObjectId(postId) })
+            data.posts.findOne({ _id: new ObjectId(postId) })
                 .then(post => {
 
                     if (!post) {
@@ -28,7 +28,14 @@ const createComment = (username, postId, comment, callback) => {
 
                     console.log(post._id)
 
-                    Post.updateOne({ _id: new ObjectId(postId) }, { $push: { comments: { author: username, comment: comment, date: new Date().toLocaleDateString(), likes: [] } } })
+                    const comment = {
+                        author: username,
+                        description,
+                        date: new Date().toLocaleDateString(),
+                        likes: []
+                    }
+
+                    data.posts.updateOne({ _id: new ObjectId(postId) }, { $push: { comments: { comment } } })
                         .then(() => callback(null))
                         .catch(error => callback(new SystemError(error.message)))
                 })
