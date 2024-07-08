@@ -1,4 +1,7 @@
+import { useState } from 'react'
+
 import logic from '../../logic'
+
 import Field from '../core/Field'
 import SubmitButton from '../core/SubmitButton'
 import FormWithFeedback from '../library/FormWithFeedback'
@@ -9,6 +12,9 @@ import View from '../library/View'
 import MyIcon from '/SocialCode.svg'
 
 function Login({ onUserLoggedIn, onRegisterLinkClick }) {
+  console.log('Login -> render')
+
+  const [message, setMessage] = useState('')
 
   const handleLoginSubmit = event => {
     event.preventDefault()
@@ -23,7 +29,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
         if (error) {
           console.log(error)
 
-          alert(error.message)
+          setMessage(error.message)
 
           return
         }
@@ -33,7 +39,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     } catch (error) {
       console.log(error)
 
-      alert(error.message)
+      setMessage(error.message)
     }
   }
 
@@ -49,7 +55,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
 
     <Title className='TitlePrincipal'>Login</Title>
 
-    <FormWithFeedback className="Form FormWithFeedback" onSubmit={handleLoginSubmit}>
+    <FormWithFeedback className="Form FormWithFeedback" onSubmit={handleLoginSubmit} message={message}>
 
       <Field id='username' type='text' placeholder='Username'></Field>
 

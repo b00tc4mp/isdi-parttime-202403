@@ -1,3 +1,3 @@
-const isUserLoggedIn = () => !!sessionStorage.username
+const isUserLoggedIn = () => !!sessionStorage.token
 
 export default isUserLoggedIn

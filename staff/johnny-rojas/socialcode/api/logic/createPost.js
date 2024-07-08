@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { MatchError } from 'com/errors.js'
+import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const createPost = (userId, title, image, description, callback) => {
@@ -8,6 +8,7 @@ const createPost = (userId, title, image, description, callback) => {
     validate.url(image, 'image')
     validate.text(description, 'description', 200)
     validate.callback(callback)
+
 
     User.findById(userId).lean()
         .then(user => {
@@ -23,7 +24,8 @@ const createPost = (userId, title, image, description, callback) => {
                 image,
                 description,
                 date: new Date,
-                likes: []
+                likes: [],
+                comments: []
             }
 
             Post.create(post)

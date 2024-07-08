@@ -74,8 +74,8 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
                 </div>
                 <div className='post-icons'>
 
-                    <div direction>
-                        <button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '💜' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</button>
+                    <div>
+                        <button className='toggleLike' onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '💜' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</button>
                     </div>
                     <div className='icon'>🗣️</div>
                     <div className='icon'>💬</div>
