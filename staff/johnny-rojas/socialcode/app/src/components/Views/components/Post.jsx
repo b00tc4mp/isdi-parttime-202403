@@ -77,7 +77,6 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
                     <div>
                         <button className='toggleLike' onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '💜' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</button>
                     </div>
-                    <div className='icon'>🗣️</div>
                     <div className='icon'>💬</div>
                 </div>
             </div>
