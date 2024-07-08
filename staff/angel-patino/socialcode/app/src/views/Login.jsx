@@ -2,14 +2,17 @@ import { useState } from "react"
 
 import logic from "../logic"
 
-import Field from "../components/core/Field.jsx"
-import SubmitButton from "../components/core/SubmitButton.jsx"
-import FormWithFeedback from "../components/library/FormWithFeedback.jsx"
-import Link from "../components/core/Link.jsx"
-import Title from "../components/core/Title.jsx"
-import View from "../components/library/View.jsx"
+import Field from "../components/core/Field"
+import SubmitButton from "../components/core/SubmitButton"
+import Link from "../components/core/Link"
+import Title from "../components/core/Title"
+
+import FormWithFeedback from "../components/library/FormWithFeedback"
+import View from "../components/library/View"
 
 function Login({ onUserLoggedIn, onRegisterLinkClick }) {
+  console.log("Login -> render")
+
   const [message, setMessage] = useState("")
 
   const handleLoginSubmit = (event) => {
@@ -44,6 +47,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
 
     onRegisterLinkClick()
   }
+
   return (
     <View tag="main">
       <Title>Login</Title>

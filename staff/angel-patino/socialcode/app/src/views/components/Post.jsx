@@ -8,6 +8,8 @@ import View from "../../components/library/View"
 import logic from "../../logic"
 
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
+  console.log("Post -> render")
+
   const handleDeletePost = () => {
     if (confirm("Delete post?"))
       try {
@@ -50,9 +52,9 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
   }
 
   return (
-    <View tag="aticle" align="">
+    <View tag="article" align="">
       <View direction="row">
-        <Text>{post.author}</Text>
+        <Text>{post.author.username}</Text>
 
         <Heading level="2">{post.title}</Heading>
       </View>
@@ -60,23 +62,24 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
       <Image src={post.image} />
 
       <Text>{post.description}</Text>
+
       <View direction="row">
-        <Button onClick={handleToggleLikePost}>
-          {`
-          ${post.likes.includes(logic.getUserUsername()) ? "❤️‍🔥" : "🤍"} ${
-            post.likes.length
-          } like${post.likes.length === 1 ? "" : "s"}`}
-        </Button>
+        <Button onClick={handleToggleLikePost}>{`${
+          post.likes.includes(logic.getUserId()) ? "❤️" : "🤍"
+        } ${post.likes.length} like${
+          post.likes.length === 1 ? "" : "s"
+        }`}</Button>
       </View>
 
       <View direction="row">
         <Time>{post.date}</Time>
 
-        {post.author === logic.getUserName() && (
+        {post.author.id === logic.getUserId() && (
           <Button onClick={handleDeletePost}>Delete</Button>
         )}
       </View>
     </View>
   )
 }
+
 export default Post

@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react"
 
-import PostList from "./components/PostList.jsx"
-import View from "../components/library/View.jsx"
-import Header from "./components/Header.jsx"
-import Button from "../components/core/Button.jsx"
-import Heading from "../components/core/Heading.jsx"
-import Footer from "./components/Footer.jsx"
+import View from "../components/library/View"
+
+import Header from "./components/Header"
+import PostList from "./components/PostList"
+import Footer from "./components/Footer"
 import CreatePostForm from "./components/CreatePostForm"
+
+import Button from "../components/core/Button"
+import Heading from "../components/core/Heading"
 
 import logic from "../logic"
 
 function Home({ onUserLoggedOut }) {
+  console.log("Home -> render")
+
   const [name, setName] = useState("")
   const [view, setView] = useState("")
   const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
@@ -22,6 +26,8 @@ function Home({ onUserLoggedOut }) {
   }
 
   useEffect(() => {
+    console.log("Home -> useEffect")
+    // setTimeout(() => {
     try {
       logic.getUserName((error, name) => {
         if (error) {
@@ -31,6 +37,9 @@ function Home({ onUserLoggedOut }) {
 
           return
         }
+
+        console.log("Home -> setName")
+
         setName(name)
       })
     } catch (error) {
@@ -38,6 +47,7 @@ function Home({ onUserLoggedOut }) {
 
       alert(error.message)
     }
+    // }, 10000)
   }, [])
 
   const handleCreatePostClick = () => setView("create-post")

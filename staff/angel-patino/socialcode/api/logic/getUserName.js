@@ -1,13 +1,13 @@
-import data from "../data/index.js"
+import { User } from '../data/models/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getUserName = (username, targetUsername, callback) => {
-    validate.username(username)
-    validate.targetUsername(targetUsername, 'targetUsername')
+const getUserName = (userId, targetUserId, callback) => {
+    validate.id(userId, 'userId')
+    validate.id(targetUserId, 'targetUserId')
     validate.callback(callback)
 
-    data.users.findOne({ username })
+    User.findById(userId).lean()
         //primero me busco (username)
         .then((user) => {
             if (!user) {
@@ -16,7 +16,7 @@ const getUserName = (username, targetUsername, callback) => {
                 return
             }
             //busco otro usuario (targetUsername)
-            data.users.findOne({ username: targetUsername })
+            User.findById(targetUserId).lean()
                 .then(user => {
                     if (!user) {
                         callback(new MatchError('targetUser not found'))

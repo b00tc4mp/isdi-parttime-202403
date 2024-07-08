@@ -1,14 +1,14 @@
-import data from '../data/index.js'
+import { User, Post } from '../data/models/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import { ObjectId } from 'mongodb'
 
-const deletePost = (username, postId, callback) => {
-    validate.username(username)
+const deletePost = (userId, postId, callback) => {
+    validate.id(userId, 'userId')
     validate.id(postId, 'postId')
     validate.callback(callback)
     //buscamos al usuario
-    data.users.findOne({ username })
+    User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
@@ -16,7 +16,7 @@ const deletePost = (username, postId, callback) => {
                 return
             }
             //pasamos el string de mongodb (postId)
-            data.posts.findOne({ _id: new ObjectId(postId) })
+            Post.findById(postId).lean()
                 .then(post => {
                     if (!post) {
                         callback(new MatchError('post not found'))
@@ -24,13 +24,13 @@ const deletePost = (username, postId, callback) => {
                         return
                     }
                     //soy yo?(username) el author del post?
-                    if (post.author !== username) {
+                    if (post.author.toString() !== userId) {
                         callback(new MatchError('post author does not match user'))
 
                         return
                     }
 
-                    data.posts.deleteOne({ _id: new ObjectId(postId) })
+                    Post.deleteOne({ _id: new ObjectId(postId) })
                         .then(() => callback(null))
                         .catch(error => callback(new SystemError(error.message)))
                 })

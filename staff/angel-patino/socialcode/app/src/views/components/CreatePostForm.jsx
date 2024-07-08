@@ -1,8 +1,9 @@
 import { useState } from "react"
 
-import "./createPostForm.css"
+import "./CreatePostForm.css"
 
 import logic from "../../logic"
+
 import Field from "../../components/core/Field"
 import Button from "../../components/core/Button"
 import SubmitButton from "../../components/core/SubmitButton"

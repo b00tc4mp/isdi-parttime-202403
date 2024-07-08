@@ -1,12 +1,13 @@
 import { useState } from "react"
-import Register from "./views/Register.jsx"
-import Login from "./views/Login.jsx"
-import Home from "./views/Home.jsx"
 
 import logic from "./logic"
 
+import Register from "./views/Register"
+import Login from "./views/Login"
+import Home from "./views/Home"
+
 function App() {
-  console.log("App -> paint")
+  console.log("App -> render")
 
   const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login")
 
@@ -24,12 +25,14 @@ function App() {
           onLoginLinkClick={handleGoToLogin}
         />
       )}
+
       {view === "login" && (
         <Login
           onUserLoggedIn={handleGoToHome}
           onRegisterLinkClick={handleGoToRegister}
         />
       )}
+
       {view === "home" && <Home onUserLoggedOut={handleGoToLogin} />}
     </>
   )

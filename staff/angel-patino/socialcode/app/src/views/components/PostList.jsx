@@ -6,7 +6,6 @@ import View from "../../components/library/View"
 import Post from "./Post"
 
 import logic from "../../logic"
-import toggleLikePost from "../../logic/toggleLikePost"
 
 function PostList({ refreshStamp }) {
   console.log("PostList -> render")
@@ -42,7 +41,9 @@ function PostList({ refreshStamp }) {
   }
 
   const handlePostDeleted = () => loadPosts()
+
   const handlePostLikeToggled = () => loadPosts()
+
   return (
     <View tag="section" className="PostList">
       {posts.map((post) => (
