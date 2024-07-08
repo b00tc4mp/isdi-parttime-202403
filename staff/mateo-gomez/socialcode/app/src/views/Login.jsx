@@ -22,7 +22,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
                 if (error) {
                     console.log(error)
 
-                    alert(error.message)
+                    setMessage(error.message)
 
                     return
                 }

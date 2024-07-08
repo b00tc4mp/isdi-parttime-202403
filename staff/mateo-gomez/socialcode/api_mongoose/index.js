@@ -287,6 +287,49 @@ mongoose.connect(MONGODB_URL)
             }
         })
 
+        api.patch('/posts/:postId/comments', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+
+                jwt.verify(token, JWT_SECRET, (error, payload) => {
+                    if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+
+
+                        } else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+
+                    const { sub: userId } = payload
+
+                    const { postId } = req.params
+
+                    const { comment } = req.body
+
+                    logic.createPostComment(userId, postId, comment, (error) => {
+                        if (error) {
+                            if (error) {
+                                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+
+                                return
+                            }
+                        }
+
+
+                        res.status(201).send()
+                    })
+                })
+
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+
+        })
+
         /*function jsonBodyParser(req, res, next) {
             const contentType = req.headers['Content-Type']
          

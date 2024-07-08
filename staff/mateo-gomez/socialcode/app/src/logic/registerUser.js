@@ -1,4 +1,4 @@
-import errors from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 
@@ -12,6 +12,8 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.passwordMatch(password, passwordRepeat)
     validate.callback(callback)
 
+    //Aquí lo haciamos con xhr pero lo cambiamos a getch() para poder hacer uso de las promesas
+    /* 
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {
@@ -22,12 +24,21 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
             return
         }
 
-        const { error, message } = JSON.parse(xhr.response)
+        try {
+            const { error, message } = JSON.parse(xhr.response)
 
-        const constructor = errors[error]
+            const constructor = errors[error]
 
-        callback(new constructor(message))
+            callback(new constructor(message))
+
+        } catch (error) {
+            callback(new SystemError(error.message))
+        }
+
+
     }
+
+    xhr.onerror = () => callback(new SystemError('network error')) // Este error se coloca aquí para prevenir un posible error surgido de un error de internet, o que la api se haya caído 
 
     xhr.open('POST', `${import.meta.env.VITE_API_URL}/users`)
 
@@ -37,6 +48,38 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
 
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.send(json)
+
+    */
+
+
+    //Ahora utilizamso la lógica con fetch() para utilizar las promesas
+
+    fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify({ name, surname, email, username, password, passwordRepeat })
+    })
+        .then(response => { // respuesta de la api
+            if (response.status === 201) {
+                callback(null)
+
+                return
+            }
+
+            return response.json()
+                .then(body => {           // respuesta en forma de objeto porque lo transformamos a json(). (({error es el nombre de la constructora de error y message es el mensaje de error}))
+                    const { error, message } = body
+
+                    const constructor = errors[error]           //A partir del nombre de la constructora traemos la constructora a const constructor puesto que errors[error] es un objeto en el que están todas las constructoras de error
+
+                    callback(new constructor(message))          // reconstruyo el error con el mensaje que me viene de la api
+                })
+                .catch(error => callback(new SystemError(error.message))) // si la respuesta response.json() falla
+        })
+        .catch(error => callback(new SystemError(error.message)))
 }
 
 
