@@ -8,7 +8,7 @@ const post = new Schema({
         required: true,
         ref: 'User'
     },
-    titles: {
+    title: {
         type: String,
         require: true
     },
@@ -25,6 +25,24 @@ const post = new Schema({
         require: true,
         default: Date.now
     },
+    comments: [{
+        type: {
+            author: {
+                type: ObjectId,
+                required: true,
+                ref: 'User'
+            },
+            date: {
+                type: Date,
+                require: true,
+                default: Date.now
+            },
+            comment: {
+                type: String,
+                require: true
+            },
+        }
+    }],
     likes: [{
         type: ObjectId,
         ref: 'User'

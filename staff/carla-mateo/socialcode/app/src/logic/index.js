@@ -9,6 +9,7 @@ import getAllPosts from './getAllPosts'
 import createPost from './createPost'
 import deletePost from './deletePost'
 import toggleLikePost from './toggleLikePost'
+import createPostComment from './createPostComment'
 
 const logic = {
     registerUser,
@@ -21,7 +22,8 @@ const logic = {
     getAllPosts,
     createPost,
     deletePost,
-    toggleLikePost
+    toggleLikePost,
+    createPostComment
 }
 
 export default logic

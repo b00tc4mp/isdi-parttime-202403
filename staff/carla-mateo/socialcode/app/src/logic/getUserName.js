@@ -1,4 +1,4 @@
-import errors from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 import validate from 'com/validate'
@@ -8,28 +8,30 @@ const getUserName = callback => {
 
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
-    const xhr = new XMLHttpRequest
-
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            const name = JSON.parse(xhr.response)
-
-            callback(null, name)
-
-            return
+    fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`
         }
+    })
 
-        const { error, message } = JSON.parse(xhr.response)
+        .then(response => {
+            if (response.status === 200) {
 
-        const constructor = errors[error]
+                return response.json()
+                    .then(name => callback(null, name))
+            }
 
-        callback(new constructor(message))
-    }
+            return response.json()
+                .then(body => {
+                    const { error, message } = body
 
-    xhr.open('GET', `${import.meta.env.VITE_API_URL}/users/${userId}`)
+                    const constructor = errors[error]
 
-    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
-    xhr.send()
+                    callback(new constructor(message))
+                })
+                .catch(error => callback(new SystemError(error.message)))
+        })
+        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default getUserName

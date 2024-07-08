@@ -51,7 +51,7 @@ mongoose.connect(MONGODB_URL)
                         return
                     }
 
-                    jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
+                    jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '7d' }, (error, token) => {
                         if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
@@ -233,6 +233,44 @@ mongoose.connect(MONGODB_URL)
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
+        })
+
+        api.patch('/posts/:postId/comments', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+
+                jwt.verify(token, JWT_SECRET, (error, payload) => {
+                    if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                        return
+                    }
+
+                    const { sub: userId } = payload
+
+                    const { postId } = req.params
+
+                    const { comment } = req.body
+
+                    logic.createPostComment(userId, postId, comment, (error) => {
+                        if (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+
+                            return
+                        }
+
+                        res.status(201).send()
+                    })
+                })
+
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+
+
         })
 
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))

@@ -6,7 +6,7 @@ const createPost = (userId, title, image, description, callback) => {
     validate.id(userId, 'userId')
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
-    validate.text(description, 'description', 2000)
+    validate.text(description, 'description', 200)
     validate.callback(callback)
 
     User.findById(userId).lean()
@@ -23,6 +23,7 @@ const createPost = (userId, title, image, description, callback) => {
                 image,
                 description,
                 date: new Date,
+                comments: [],
                 likes: []
             }
 

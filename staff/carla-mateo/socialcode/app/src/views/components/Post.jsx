@@ -70,7 +70,9 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         <View direction="row">
             <Time>{post.date}</Time>
 
-            {post.author === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}
+            <Text>{post.comment}</Text>
+
+            {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}
         </View>
     </View>
 }
