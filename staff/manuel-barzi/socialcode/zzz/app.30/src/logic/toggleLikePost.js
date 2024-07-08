@@ -1,20 +1,21 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const getAllPosts = callback => {
+const toggleLikePost = (postId, callback) => {
+    validate.id(postId, 'postId')
     validate.callback(callback)
 
-    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/likes`, {
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
         .then(response => {
-            if (response.status === 200) {
+            if (response.status === 204) {
+                callback(null)
 
-                return response.json()
-                    .then(posts => callback(null, posts))
-                    .catch(error => callback(new SystemError(error.message)))
+                return
             }
 
             return response.json()
@@ -30,4 +31,4 @@ const getAllPosts = callback => {
         .catch(error => callback(new SystemError(error.message)))
 }
 
-export default getAllPosts
+export default toggleLikePost

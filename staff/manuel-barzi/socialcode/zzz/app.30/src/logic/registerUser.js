@@ -1,27 +1,27 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const loginUser = (username, password, callback) => {
+const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
+    validate.name(name)
+    validate.name(surname, 'surname')
+    validate.email(email)
     validate.username(username)
     validate.password(password)
+    validate.passwordsMatch(password, passwordRepeat)
     validate.callback(callback)
 
-    fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+    fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ name, surname, email, username, password, passwordRepeat })
     })
         .then(response => {
-            if (response.status === 200) {
-                return response.json()
-                    .then(token => {
-                        sessionStorage.token = token
+            if (response.status === 201) {
+                callback(null)
 
-                        callback(null)
-                    })
-                    .catch(error => callback(new SystemError(error.message)))
+                return
             }
 
             return response.json()
@@ -37,4 +37,4 @@ const loginUser = (username, password, callback) => {
         .catch(error => callback(new SystemError(error.message)))
 }
 
-export default loginUser
+export default registerUser
