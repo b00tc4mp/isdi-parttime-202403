@@ -26,6 +26,24 @@ const post = new Schema({
         required: true,
         default: Date.now
     },
+    comment: [{
+        type: {
+            author: {
+                type: ObjectId,
+                required: true,
+                ref: 'User'
+            },
+            text: {
+                type: String,
+                required: true
+            },
+            date: {
+                type: Date,
+                required: true,
+                default: Date.now
+            }
+        }
+    }],
     liked: [{
         type: ObjectId,
         ref: 'User'

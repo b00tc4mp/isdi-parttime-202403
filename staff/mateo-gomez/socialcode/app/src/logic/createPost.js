@@ -9,6 +9,8 @@ const createPost = (title, image, description, callback) => {
     validate.callback(callback)
 
 
+
+    /*
     const xhr = new XMLHttpRequest
 
     xhr.onload = () => {
@@ -39,6 +41,36 @@ const createPost = (title, image, description, callback) => {
 
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.send(json)
+
+    */
+
+    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, image, description })
+    })
+
+        .then(response => {
+            if (resonse.status === 201) {
+                callback(null)
+
+                return
+            }
+
+            return response.json()
+                .then(body => {
+                    const { error, message } = body
+
+                    const constructor = errors[error]
+
+                    callback(new constructor(message))
+                })
+                .catch(error => callback(new SystemError(error.message)))
+        })
+        .catch(error => callback(new SystemError(error.message)))
 }
 
 

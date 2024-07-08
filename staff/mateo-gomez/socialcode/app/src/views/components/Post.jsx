@@ -15,10 +15,12 @@ function Post({ post, onPostDeleted }) {
 
     const [like, setLike] = useState(false)
     const [likeNum, setLikeNum] = useState(0)
+    const [showAddComment, setShowAddComments] = useState(false)
 
     useEffect(() => {
         setLike(includeUserLike())
         setLikeNum(post.liked ? post.liked.length : 0)
+        setComments(post.comments)
     }, [])
 
     const includeUserLike = () => {
@@ -65,6 +67,10 @@ function Post({ post, onPostDeleted }) {
         })
     }
 
+    const handleShowComment = () => {
+        setShowAddComments(!showAddComment)
+    }
+
 
     return <article className="Post">
         <Text className="AuthorTitle">{post.author.username}</Text>
@@ -91,7 +97,13 @@ function Post({ post, onPostDeleted }) {
             <Text className="PostDescription">
                 {post.description}</Text>
 
+            <Button onClick={handleShowComment}>mostrar comentario</Button>
+
+            {showAddComment} && (
+            <CreatePostComment postId={post.id} onCommentPostSubmitted={handleCreatePostComment}></CreatePostComment>
+            )
         </div>
+
 
         {post.author.id === logic.getUserId() && <Button className="DeleteButton" onClick={handleDeletePost}>Delete</Button>}
 

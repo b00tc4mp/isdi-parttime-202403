@@ -26,6 +26,7 @@ const createPost = (userId, title, image, description, callback) => {
                 image,
                 description,
                 date: new Date,
+                comment: [],
                 liked: []
             }
             Post.create(post)

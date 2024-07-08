@@ -7,12 +7,10 @@ const createPostComment = (postId, comment, callback) => {
     validate.text(comment, 'comment', 150)
     validate.callback(callback)
 
-    fetch(`${import.meta.env.VITE_API_URL
-        } / posts / comment`, {
+    fetch(`${import.meta.env.VITE_API_URL} / posts / comment`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
-
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ postId, comment })
