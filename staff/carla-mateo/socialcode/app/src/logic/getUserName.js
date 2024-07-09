@@ -1,37 +1,36 @@
 import errors, { SystemError } from 'com/errors'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
-import validate from 'com/validate'
 
-const getUserName = callback => {
-    validate.callback(callback)
 
+const getUserName = () => {
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
-    fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
-
+        .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 200) {
+            if (response.status === 200)
 
                 return response.json()
-                    .then(name => callback(null, name))
-            }
+                    .catch(() => { throw new SystemError('server error') })
+                    .then(name => { return name })
+
 
             return response.json()
+                .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
 
                     const constructor = errors[error]
 
-                    callback(new constructor(message))
+                    throw new constructor(message)
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
+
 }
 
 export default getUserName

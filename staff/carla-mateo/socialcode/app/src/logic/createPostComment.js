@@ -1,12 +1,11 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const createPostComment = (postId, comment, callback) => {
+const createPostComment = (postId, comment) => {
     validate.id(postId, 'postId')
     validate.text(comment, 'comment', 100)
-    validate.callback(callback)
 
-    fetch(`${import.meta.env.VITE_API_URL}/posts/comments`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
@@ -15,25 +14,20 @@ const createPostComment = (postId, comment, callback) => {
         body: JSON.stringify({ postId, comment })
 
     })
+        .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 201) {
-                callback(null)
-
-                return
-            }
+            if (response.status === 201) return
 
             return response.json()
+                .catch(() => { throw new SystemError('srver error') })
                 .then(body => {
                     const { error, message } = body
 
                     const constructor = errors[error]
 
-                    callback(new constructor(message))
+                    throw new constructor(message)
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
-
 }
 
 export default createPostComment

@@ -24,7 +24,7 @@ const createPostComment = (userId, postId, comment, callback) => {
                         return
                     }
 
-                    Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, date: new Date(), comment: comment } } })
+                    Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, date: new Date, comment: comment } } })
                         .then(() => callback(null))
                         .catch(error => callback(new SystemError(error.message)))
                 })
