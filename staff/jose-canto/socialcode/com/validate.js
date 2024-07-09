@@ -56,7 +56,7 @@ function validateUrl(url, explain = 'url') {
 }
 function validateId(id, explain = 'id') {
   if (!ID_REGEX.test(id)) {
-    throw new ContentError(`${explain} is not valid`)
+    throw new ContentError(`${explain} is not valid, maximum of caracters`)
   }
 }
 

@@ -7,6 +7,9 @@ time {
 
 .TimeLike {
   display: flex;
+  width: auto;
+  user-select: none;
+
 }
 
 .fa-heart {

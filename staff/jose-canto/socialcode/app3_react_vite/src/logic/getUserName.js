@@ -20,6 +20,8 @@ const getUserName = (callback) => {
 
         return response.json()
           .then(name => callback(null, name))
+          .catch(error => callback(new SystemError(error.message)))
+
       }
 
       return response.json()

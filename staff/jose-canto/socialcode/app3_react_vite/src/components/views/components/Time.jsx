@@ -1,6 +1,6 @@
 import "./Time.css"
 
-function Time({ children: time }) {
+function Time({ children: time, className }) {
 	console.log("Time --> render")
 	const date = new Date(time)
 	const options = {
@@ -12,7 +12,7 @@ function Time({ children: time }) {
 	}
 	const formattedTime = new Intl.DateTimeFormat("es-ES", options).format(date)
 
-	return <time>{formattedTime}</time>
+	return <time className={className}>{formattedTime}</time>
 }
 
 export default Time

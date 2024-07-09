@@ -76,7 +76,7 @@ function Post({ post, onPostDeleted }) {
 	}
 
 	const handleCommentPostSubmitted = () => {
-		//TODO logic getPostComments (post.id), setComments(comments)
+		//TODO logic getPostComments (post.id), setComments(comments) DONE
 		try {
 			logic.getPostComments(post.id, (error, comments) => {
 				if (error) {
@@ -109,15 +109,7 @@ function Post({ post, onPostDeleted }) {
 				</div>
 
 				<div className="DivImage">
-					<Image className="Image" src={post.image}>
-						{showAddComment && (
-							<CreateComment
-								onCommentPostSubmitted={handleCommentPostSubmitted}
-								postId={post.id}
-								onCancelCreatedCommentClick={handleShowComment}
-							/>
-						)}
-					</Image>
+					<Image className="Image" src={post.image}></Image>
 					{showAddComment && (
 						<CreateComment
 							onCommentPostSubmitted={handleCommentPostSubmitted}
@@ -135,7 +127,9 @@ function Post({ post, onPostDeleted }) {
 					<i className={`Likes ${like ? "fa-solid fa-heart" : "fa-regular fa-heart"}`} onClick={handleLike}>
 						<sub>{likeNum}</sub>
 					</i>
-					<i className="fa-regular fa-comments" onClick={handleShowComment}></i>
+					<span className="IconComment">
+						<i className="fa-regular fa-comments" onClick={handleShowComment}></i>
+					</span>
 				</div>
 
 				<CommentList comments={comments} />

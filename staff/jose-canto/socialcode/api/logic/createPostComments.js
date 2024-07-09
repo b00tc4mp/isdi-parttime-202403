@@ -5,10 +5,10 @@ import validate from "com/validate.js"
 const createPostComment = (userId, postId, textComment, callback) => {
   validate.id(userId, "userId")
   validate.id(postId, "postId")
-  validate.text(textComment, "description", 150)
+  validate.text(textComment, "textComment", 150)
   validate.callback(callback)
 
-  User.findById(userId).lean()
+  User.findById(userId)
     .then(user => {
       if (!user) {
 

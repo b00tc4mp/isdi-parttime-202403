@@ -14,6 +14,7 @@ const getAllPosts = (page, limit, callback) => {
       if (response.status === 200) {
         return response.json()
           .then(posts => callback(null, posts))
+          .catch(error => callback(new SystemError(error)))
       }
 
       return response.json()

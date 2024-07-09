@@ -20,6 +20,8 @@ const loginUser = (username, password, callback) => {
             sessionStorage.token = token
             callback(null)
           })
+          .catch(error => callback(new SystemError(error.message)))
+
       }
 
       return response.json()

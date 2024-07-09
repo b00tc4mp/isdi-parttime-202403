@@ -26,10 +26,10 @@ const toggleLike = (postId, callback) => {
 
           callback(new constructor(message))
         })
-        .catch(error => callback(new SystemError(error)))
+        .catch(error => callback(new SystemError(error.message)))
 
     })
-    .catch(error => callback(new SystemError(error)))
+    .catch(error => callback(new SystemError(error.message)))
 }
 
 export default toggleLike;

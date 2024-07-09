@@ -3,8 +3,57 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 0.5rem;
+  width: auto;
+  height: auto;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 .CommentList>p {
-  color: black;
+  color: whitesmoke;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.CommentList {
+  color: white;
+}
+
+
+.Comment-author {
+  color: blanchedalmond;
+  letter-spacing: 0.2rem;
+}
+
+.Comment-date {
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+}
+
+fieldset {
+  width: 100%;
+  margin: 0;
+  border-radius: 10px;
+}
+
+fieldset>legend {
+  margin: -1.5rem 0 -1.5rem 0;
+}
+
+fieldset>legend>h2 {
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  margin: 0 0.5rem 0 0.5rem;
+  color: blanchedalmond;
+}
+
+legend {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #461b1b;
 }

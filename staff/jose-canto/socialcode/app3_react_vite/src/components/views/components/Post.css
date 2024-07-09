@@ -52,9 +52,13 @@
   color: black;
 }
 
-.fa-comments {
-  display: flex;
+.IconComment {
   width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.fa-comments {
   margin-right: 1rem;
   justify-content: end;
   color: black;
@@ -64,4 +68,27 @@
 
 .fa-comments:hover {
   color: whitesmoke;
+}
+
+
+@keyframes show {
+  from {
+    opacity: 0;
+    scale: 95%
+  }
+
+  to {
+    opacity: 1;
+    scale: 100%
+  }
+}
+
+.Article {
+  view-timeline-name: --reveal;
+
+  animation-name: show;
+  animation-fill-mode: both;
+
+  animation-timeline: --reveal;
+  animation-range: entry 10% cover 50%;
 }

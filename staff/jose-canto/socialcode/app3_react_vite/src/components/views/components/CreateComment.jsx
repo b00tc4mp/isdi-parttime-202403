@@ -38,7 +38,7 @@ function CreateComment({ postId, onCancelCreatedCommentClick, onCommentPostSubmi
 			console.error(error.message)
 			//alert(error.message)
 
-			setMessage(error.message)
+			setMessage(`${error.message} max of characters`)
 			setTimeout(() => setMessage(""), 2000)
 		}
 	}
