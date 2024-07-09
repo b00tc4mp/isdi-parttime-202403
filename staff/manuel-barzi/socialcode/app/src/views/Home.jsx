@@ -27,27 +27,25 @@ function Home({ onUserLoggedOut }) {
 
     useEffect(() => {
         console.log('Home -> useEffect')
-        // setTimeout(() => {
+
         try {
-            logic.getUserName((error, name) => {
-                if (error) {
+            logic.getUserName()
+                .then(name => {
+                    console.log('Home -> setName')
+
+                    setName(name)
+                })
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
+                })
 
-                    return
-                }
-
-                console.log('Home -> setName')
-
-                setName(name)
-            })
         } catch (error) {
             console.error(error)
 
             alert(error.message)
         }
-        // }, 10000)
     }, [])
 
     const handleCreatePostClick = () => setView('create-post')
