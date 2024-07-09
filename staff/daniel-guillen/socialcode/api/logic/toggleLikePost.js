@@ -1,14 +1,13 @@
 import { User, Post } from '../data/index.js'
 import validate from 'com/validate.js'
 import { MatchError, SystemError } from 'com/errors.js'
-import { ObjectId } from 'mongodb'
 
 function toggleLikePost(userId, postId, callback) {
     validate.id(userId, 'userId')
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    User.findById(userId).lean()
+User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))
@@ -24,14 +23,14 @@ function toggleLikePost(userId, postId, callback) {
                         return
                     }
 
-                    const index = post.likes.indexOf(userId)
+                    const included = post.likes.some(userObjectId => userObjectId.toString() === userId)
 
-                    if (index < 0)
-                        post.likes.push(userId)
-                    else
-                        post.likes.splice(index, 1)
-
-                    post.save()
+                    Post.updateOne({ _id: post._id },
+                        included ?
+                            { $pull: { likes: user._id } }
+                            :
+                            { $push: { likes: user._id } }
+                    )
                         .then(() => callback(null))
                         .catch(error => callback(new SystemError(error.message)))
                 })

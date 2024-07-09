@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const getAllPosts = callback => {
     validate.callback(callback)
 
-     fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
@@ -14,6 +14,7 @@ const getAllPosts = callback => {
 
                 return response.json()
                     .then(posts => callback(null, posts))
+                    .catch(error => callback(new SystemError(error.message)))
             }
 
             return response.json()

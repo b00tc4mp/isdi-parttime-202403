@@ -28,17 +28,14 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         const passwordRepeat = form.passwordRepeat.value
 
         try {
-            logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
-                if (error) {
-                    console.log(error)
-
-                    setMessage(error.message)
-
-                    return
-                }
-
-                onUserRegistered()
+            logic.registerUser(name, surname, email, username, password, passwordRepeat)
+            .then(() => {
+                onUserRegistered();
                 alert('Registration completed! 🎉')
+            })
+            .catch(error => {
+                console.log(error)
+                setMessage(error.message)
             })
         } catch (error) {
             console.error(error)
