@@ -6,6 +6,8 @@ import Image from "../../components/core/Image"
 import Button from "../../components/core/Button"
 import Time from "../../components/core/Time"
 import CreatePostComment from "./CreatePostComment"
+import ConfirmDelete from "./ConfirmDelete"
+
 import logic from "../../logic"
 
 import './Post.css'
@@ -13,6 +15,7 @@ import './Post.css'
 function Post({ post, onPostDeleted }) {
     console.log('Post -> render')
 
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false)
     const [like, setLike] = useState(false)
     const [likeNum, setLikeNum] = useState(0)
     const [showAddComment, setShowAddComments] = useState(false)
@@ -29,24 +32,31 @@ function Post({ post, onPostDeleted }) {
         return Array.isArray(post.liked) && post.liked.includes(username)
     }
 
-    const handleDeletePost = () => {
-        if (confirm('Delete post?'))
-            try {
-                logic.deletePost(post.id)
-                    .then(() => onPostDeleted())
-                    .catch((error) => {
-                        console.error(error)
+    const handleDeletePost = () => setShowConfirmDelete(true)
 
-                        alert(error.message)
+    const confirmDeletePost = () => {
+        try {
+            logic.deletePost(post.id)
+                .then(() => onPostDeleted())
+                .catch((error) => {
+                    console.error(error)
 
-                        return
-                    })
+                    alert(error.message)
 
-            } catch (error) {
-                console.error(error)
+                    return
+                })
 
-                alert(error.message)
-            }
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+        onPostDeleted()
+        setShowConfirmDelete(false)
+    }
+
+    const cancelDeletePost = () => {
+        setShowConfirmDelete(false)
     }
 
     const handleLike = () => {
@@ -109,6 +119,12 @@ function Post({ post, onPostDeleted }) {
 
         {post.author.id === logic.getUserId() && <Button className="DeleteButton" onClick={handleDeletePost}>Delete</Button>}
 
+        {showConfirmDelete && (
+            <ConfirmDelete
+                onConfirmDeletePost={confirmDeletePost}
+                onCancelDeletePost={cancelDeletePost}
+            />
+        )}
     </article>
 }
 
