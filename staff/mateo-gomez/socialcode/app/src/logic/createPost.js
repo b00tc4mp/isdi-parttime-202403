@@ -2,11 +2,11 @@ import errors from 'com/errors'
 import validate from 'com/validate.js'
 
 
-const createPost = (title, image, description, callback) => {
+const createPost = (title, image, description) => {
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
     validate.text(description, 'description', 300)
-    validate.callback(callback)
+
 
 
 
@@ -44,7 +44,7 @@ const createPost = (title, image, description, callback) => {
 
     */
 
-    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
@@ -52,25 +52,24 @@ const createPost = (title, image, description, callback) => {
         },
         body: JSON.stringify({ title, image, description })
     })
-
+        .catch(error => { throw new SystemError(error.message) })
         .then(response => {
             if (resonse.status === 201) {
-                callback(null)
 
                 return
             }
 
             return response.json()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
                     const { error, message } = body
 
                     const constructor = errors[error]
 
-                    callback(new constructor(message))
+                    { throw new constructor(message) }
                 })
-                .catch(error => callback(new SystemError(error.message)))
+
         })
-        .catch(error => callback(new SystemError(error.message)))
 }
 
 

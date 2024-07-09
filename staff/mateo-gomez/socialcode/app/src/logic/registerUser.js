@@ -2,7 +2,7 @@ import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 
-const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
+const registerUser = (name, surname, email, username, password, passwordRepeat) => {
     //Input validation
     validate.name(name)
     validate.surname(surname)
@@ -10,7 +10,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.username(username)
     validate.password(password)
     validate.passwordMatch(password, passwordRepeat)
-    validate.callback(callback)
+
 
     //Aquí lo haciamos con xhr pero lo cambiamos a getch() para poder hacer uso de las promesas
     /* 
@@ -54,7 +54,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
 
     //Ahora utilizamso la lógica con fetch() para utilizar las promesas
 
-    fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -62,25 +62,25 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
         },
         body: JSON.stringify({ name, surname, email, username, password, passwordRepeat })
     })
+        .catch(() => { throw new SystemError('connection error') })
         .then(response => { // respuesta de la api
             if (response.status === 201) {
-                callback(null)
 
                 return
             }
 
             return response.json()
+                .catch(error => { throw new SystemError(error.message) }) // si la respuesta response.json() falla
                 .then(body => {           // respuesta en forma de objeto porque lo transformamos a json(). (({error es el nombre de la constructora de error y message es el mensaje de error}))
                     const { error, message } = body
 
                     const constructor = errors[error]           //A partir del nombre de la constructora traemos la constructora a const constructor puesto que errors[error] es un objeto en el que están todas las constructoras de error
 
-                    callback(new constructor(message))          // reconstruyo el error con el mensaje que me viene de la api
+                    throw new constructor(message)
                 })
-                .catch(error => callback(new SystemError(error.message))) // si la respuesta response.json() falla
-        })
-        .catch(error => callback(new SystemError(error.message)))
-}
 
+        })
+
+}
 
 export default registerUser

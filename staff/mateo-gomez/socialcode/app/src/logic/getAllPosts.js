@@ -1,9 +1,7 @@
 import errors, { SystemError } from 'com/errors'
-import validate from 'com/validate'
 
 
-const getAllPosts = callback => {
-    validate.callback(callback)
+const getAllPosts = () => {
 
 
     /*
@@ -31,31 +29,34 @@ const getAllPosts = callback => {
     xhr.send()
     */
 
-    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         headers: {
             method: 'GET',
             Authorization: `Bearer ${sessionStorage.token}`
 
         }
     })
+        .catch(error => { throw new SystemError(error.message) })
         .then(response => {
             if (response.status === 200) {
 
                 return response.json()
-                    .then(posts => callback(null, posts))
+                    .catch(error => { throw new SystemError(error.message) })
+                    .then(posts => { return posts })
+
             }
 
             return response.json()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
                     const { error, message } = body
 
                     const constructor = errors[error]
 
-                    callback(new constructor(message))
+                    throw new constructor(message)
                 })
-                .catch(error => callback(new SystemError(error.message)))
+
         })
-        .catch(error => callback(new SystemError(error.message)))
 }
 
 

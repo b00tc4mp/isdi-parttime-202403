@@ -1,9 +1,9 @@
 import errors from "com/errors.js"
 import validate from "com/validate.js"
 
-const toggleLike = (postId, callback) => {
+const toggleLike = (postId) => {
     validate.id(postId)
-    validate.callback(callback)
+
 
 
     /*
@@ -27,30 +27,31 @@ const toggleLike = (postId, callback) => {
 
     */
 
-    fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/likes`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/likes`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         },
     })
+        .catch(error => { throw new SystemError(error) })
         .then(response => {
             if (response.status === 204) {
-                callback(null)
+
 
                 return
             }
 
             return response.json()
+                .catch(error => { throw new SystemError(error) })
                 .then(body => {
                     const { error, message } = body
 
                     const constructor = errors[error]
 
-                    callback(new constructor(message))
+                    throw new constructor(message)
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
+
 }
 
 export default toggleLike

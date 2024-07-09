@@ -5,7 +5,7 @@ import Text from "../../components/core/Text"
 import Image from "../../components/core/Image"
 import Button from "../../components/core/Button"
 import Time from "../../components/core/Time"
-
+import CreatePostComment from "./CreatePostComment"
 import logic from "../../logic"
 
 import './Post.css'
@@ -17,10 +17,11 @@ function Post({ post, onPostDeleted }) {
     const [likeNum, setLikeNum] = useState(0)
     const [showAddComment, setShowAddComments] = useState(false)
 
+
     useEffect(() => {
         setLike(includeUserLike())
         setLikeNum(post.liked ? post.liked.length : 0)
-        setComments(post.comments)
+
     }, [])
 
     const includeUserLike = () => {
@@ -31,17 +32,15 @@ function Post({ post, onPostDeleted }) {
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
             try {
-                logic.deletePost(post.id, error => {
-                    if (error) {
+                logic.deletePost(post.id)
+                    .then(() => onPostDeleted())
+                    .catch((error) => {
                         console.error(error)
 
                         alert(error.message)
 
                         return
-                    }
-
-                    onPostDeleted()
-                })
+                    })
 
             } catch (error) {
                 console.error(error)
@@ -51,25 +50,28 @@ function Post({ post, onPostDeleted }) {
     }
 
     const handleLike = () => {
-        logic.toggleLike(post.id, (error) => {
-            if (error) {
+        logic.toggleLike(post.id)
+            .then(() => {
+                if (like) {
+                    setLike(false)
+                    setLikeNum(likeNum - 1)
+                } else {
+                    setLike(true)
+                    setLikeNum(likeNum + 1)
+                }
+            })
+            .catch((error) => {
                 console.error(error)
                 return
-            }
-
-            if (like) {
-                setLike(false)
-                setLikeNum(likeNum - 1)
-            } else {
-                setLike(true)
-                setLikeNum(likeNum + 1)
-            }
-        })
+            })
     }
 
     const handleShowComment = () => {
         setShowAddComments(!showAddComment)
     }
+
+
+
 
 
     return <article className="Post">
@@ -99,9 +101,9 @@ function Post({ post, onPostDeleted }) {
 
             <Button onClick={handleShowComment}>mostrar comentario</Button>
 
-            {showAddComment} && (
-            <CreatePostComment postId={post.id} onCommentPostSubmitted={handleCreatePostComment}></CreatePostComment>
-            )
+            {showAddComment && (
+                <CreatePostComment postId={post.id}></CreatePostComment>
+            )}
         </div>
 
 

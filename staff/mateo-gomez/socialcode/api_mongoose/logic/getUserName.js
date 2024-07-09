@@ -7,7 +7,7 @@ const getUserName = (userId, targetUserId, callback) => {
     validate.username(targetUserId, 'targetUserId')
     validate.callback(callback)
 
-    User.findById({ userId }).lean()
+    User.findById(userId).lean()
         .then(user => {
             if (!user) {
                 callback(new MatchError('user not found'))

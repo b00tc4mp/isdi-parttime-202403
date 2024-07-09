@@ -276,7 +276,7 @@ mongoose.connect(MONGODB_URL)
                         }
 
 
-                        res.status(200).send()
+                        res.status(204).send()
                     })
                 })
             } catch (error) {
