@@ -1,4 +1,4 @@
-import errors from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
@@ -19,12 +19,18 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
             return
         }
 
-        const { error, message } = JSON.parse(xhr.response)
+        try {
+            const { error, message } = JSON.parse(xhr.response)
 
-        const constructor = errors[error]
+            const constructor = errors[error]
 
-        callback(new constructor(message))
+            callback(new constructor(message))
+        } catch (error) {
+            callback(new SystemError(error.message))
+        }
     }
+
+    xhr.onerror = () => callback(new SystemError('netword error'))
 
     xhr.open('POST', `${import.meta.env.VITE_API_URL}/users`)
 
