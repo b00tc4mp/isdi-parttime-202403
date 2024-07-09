@@ -17,7 +17,7 @@ const getUserName = () => {
 
                 return response.json()
                     .catch(() => { throw new SystemError('server error') })
-                    .then(name => { return name })
+                    .then(name => name)
 
 
             return response.json()

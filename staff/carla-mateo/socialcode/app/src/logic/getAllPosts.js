@@ -10,10 +10,9 @@ const getAllPosts = () => {
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
             if (response.status === 200)
-
                 return response.json()
                     .catch(() => { throw new SystemError('server error') })
-                    .then(posts => { return posts })
+                    .then(posts => posts)
 
 
             return response.json()

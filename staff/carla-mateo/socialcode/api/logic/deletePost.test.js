@@ -8,16 +8,10 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            deletePost("6686bf50f808e1baba4afcc8", "6686c1b60c2968fc5ea60cca",
-                error => {
-                    if (error) {
-                        console.error(error)
+            deletePost("6686c3e1dd24eb84190d4818", "668d5abbdd8e530167594543")
+                .then(() => console.log('post deleted'))
+                .catch((error) => console.error(error))
 
-                        return
-                    }
-
-                    console.log('post deleted')
-                })
         } catch (error) {
             console.error(error)
         }

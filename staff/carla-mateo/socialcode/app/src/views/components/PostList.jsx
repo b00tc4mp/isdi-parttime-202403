@@ -21,7 +21,7 @@ function PostList({ refreshStamp
 
     const loadPosts = () => {
         try {
-            logic.getAllPosts(posts)
+            logic.getAllPosts()
                 .then((posts) => setPosts(posts))
                 .catch(error => {
                     console.error(error)

@@ -8,15 +8,9 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getAllPosts('6686c3e1dd24eb84190d4818', (error, posts) => {
-                if (error) {
-                    console.error(error)
-
-                    return
-                }
-
-                console.log('posts retrieved', posts)
-            })
+            getAllPosts('6686c3e1dd24eb84190d4818')
+                .then(posts => console.log('posts retrieved', posts))
+                .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
         }

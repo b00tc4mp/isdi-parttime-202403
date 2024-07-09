@@ -2,21 +2,17 @@ import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const createPost = (userId, title, image, description, callback) => {
+const createPost = (userId, title, image, description) => {
     validate.id(userId, 'userId')
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
     validate.text(description, 'description', 200)
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(() => { throw new SystemError('server error') })
         .then(user => {
-            if (!user) {
-                callback(new MatchError('❌ User not found'))
+            if (!user) throw new MatchError('❌ User not found')
 
-                return
-
-            }
             const post = {
                 author: userId,
                 title,
@@ -27,11 +23,11 @@ const createPost = (userId, title, image, description, callback) => {
                 likes: []
             }
 
-            Post.create(post)
-                .then(() => callback(null))
-                .catch(error => callback(new SystemError(error.message)))
+            return Post.create(post)
+                .catch(() => { throw new SystemError('server error') })
+                .then(() => { })
         })
-        .catch(error => callback(new SystemError(error.message)))
+
 }
 
 export default createPost
