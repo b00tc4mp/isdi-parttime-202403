@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
 import Button from "../../Components/Core/Button";
-import Title from "../../Components/Core/Title";
 import View from "../../Components/Library/View";
 import Header from "./components/Header";
 import Heading from "../../Components/Core/Heading";

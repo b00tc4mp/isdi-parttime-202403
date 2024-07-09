@@ -1,26 +1,8 @@
-import mongodb  from 'mongodb'
+import mongoose from 'mongoose'
+import {User  } from './index.js'
 
-const {MongoClient, ObjectId} = mongodb
-
-const client = new MongoClient('mongodb://localhost:27017')
-
-client.connect ()
-    .then(connection => {
-
-        const db= connection.db('test')
-
-        const users = db.collection('users')
-
-        // users.insertOne({ name: 'Capitan', surname: 'Garfio', email: 'Capitan@garfio.com', username: 'CapitanGarfio', password: '123123123' })
-        // .then(result => console.log(result))
-        // .cath(error => console.error(error))
-
-        users.deleteOne({ _id: new ObjectId('667c5c1d8c6a219cd869c0cb')})
-            .then(result => console.log(result))
-            .cath(error => console.error(error))
-
-        // users.find({}).toArray()
-        //     .then(result => console.log(result))
-        //     .catch(error => console.error(error))
+mongoose.connect(`${MONGO_URL}/test`)
+    .then(() =>{
+        User.create({ name: 'Super', surname: 'Woman', email:'super@Woman.com'})
     })
     .catch(error => console.error(error))

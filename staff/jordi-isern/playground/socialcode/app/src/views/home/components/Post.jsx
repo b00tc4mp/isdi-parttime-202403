@@ -1,3 +1,5 @@
+import './Post.css'
+
 import Image from '../../../Components/Core/Image'
 import Heading from '../../../Components/Core/Heading'
 import Button from '../../../Components/Core/Button'
@@ -11,7 +13,7 @@ import logic from '../../../logic'
 
 function Post({ post, onPostDeleted, onPostLikeToggled, onPostCommented }) {
     console.log('Post -> render')
-
+    
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
             try {
@@ -53,9 +55,9 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onPostCommented }) {
         }
     }
 
-    return <View tag="article" align="">
-        <View direction='row'>
-            <Text>{post.author}</Text>
+    return <View tag="article" align="" className={'post'}>
+        <View direction='row' className={'header'}>
+            <Text>{post.author.username}</Text>
 
             <Heading level="2">{post.title}</Heading>
         </View>
@@ -64,16 +66,16 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onPostCommented }) {
 
         <Text>{post.description}</Text>
 
-        <View direction='row'>
-            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
+        <View direction='row' className={'likesAndComments '}>
+            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
             <CommentList comments={post.comments}/>
             <CommentPostForm onPostCommented = {onPostCommented} postid={post._id}/>
         </View>
 
-        <View direction='row'>
+        <View direction='row' className={'dateAndDelete'}>
             <Time>{post.date}</Time>
 
-            {post.author === logic.getUserUsername() && <Button onClick={handleDeletePost}>Delete</Button>}
+            {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost} className={'DeleteButton'}>Delete</Button>}
         </View>
     </View >
 }

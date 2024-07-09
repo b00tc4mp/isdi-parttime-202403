@@ -17,17 +17,9 @@ function Login ({onUserLoggedin, onClickRegister}){
         const password = form.password.value
       
           try{
-            logic.loginUser(username, password, error =>{
-              if (error) {
-                console.log(error)
-      
-                alert(error.message)
-      
-                return
-              }
-      
-              onUserLoggedin()
-            })
+            logic.loginUser(username, password)      
+              .then(() =>onUserLoggedin())
+              .catch()
           }catch (error) {
             console.log(error)
       

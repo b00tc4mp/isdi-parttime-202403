@@ -12,13 +12,12 @@ function CommentPostForm({postid, onPostCommented}){
 
     const handlePostComment = event =>{
         event.preventDefault()
-        console.log('event', event)
 
         const form = event.target
 
         const comment = form.comment.value
         try{
-            logic.createComment(postid, comment, error => {
+            logic.createPostComment(postid, comment, error => {
                 if(error) {
                     console.log(error)
 
@@ -35,7 +34,7 @@ function CommentPostForm({postid, onPostCommented}){
         }
     }
 
-    return <Form onSubmit = {handlePostComment}>
+    return <Form onSubmit = {handlePostComment} className='CommentPostForm'>
         <textarea className='textArea' rows={4} cols={30} id="comment"></textarea>
         <SubmitButton>Comment</SubmitButton>
     </Form>

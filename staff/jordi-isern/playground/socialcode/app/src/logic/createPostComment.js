@@ -1,7 +1,7 @@
-import errors from 'com/errors'
+import errors, {SystemError} from 'com/errors'
 import validate from 'com/validate'
 
-const createComment = (postId, comment, callback) => {
+const createPostComment = (postId, comment, callback) => {
     validate.text(comment, 'comment', 150)
     validate.id(postId)
     validate.callback(callback)
@@ -31,4 +31,4 @@ const createComment = (postId, comment, callback) => {
     xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
     xhr.send(json)
 }
-export default createComment
+export default createPostComment

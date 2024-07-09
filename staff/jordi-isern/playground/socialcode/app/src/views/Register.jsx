@@ -23,29 +23,26 @@ function Register ({onUserRegistered ,onLoginLinkClick}){
         const passwordRepeat = form.passwordRepeat.value
     
         try{
-          logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
-            if(error) {
-              console.error(error)
-              
-              alert(error.message)
-              
-              return
-            }
-            onUserRegistered()
-          })
-        }catch(error) {
-          console.error(error)
-    
-          alert(error.message)
-        }
+          logic.registerUser(name, surname, email, username, password, passwordRepeat)
+            .then(() => onUserRegistered ())
+            .catch(error => {
+              console.log(error)
+
+              setMessage(error.message)
+            })
+    }catch(error) {
+      console.error(error)
+
+      setMessage(error.message)
     }
+  }
     
     const handleLoginClick = event =>{
       event.preventDefault()
     
       onLoginLinkClick()
-    
     }
+
 
     return (<View tag='main'>
         <Title>Register</Title>
