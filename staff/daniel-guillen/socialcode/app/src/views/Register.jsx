@@ -30,7 +30,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         try {
             logic.registerUser(name, surname, email, username, password, passwordRepeat)
             .then(() => {
-                onUserRegistered();
+                onUserRegistered()
                 alert('Registration completed! 🎉')
             })
             .catch(error => {

@@ -28,21 +28,15 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         const description = form.description.value
 
         try {
-            logic.createPost(title, image, description, error => {
-                if (error) {
-                    console.error(error)
-
-                    setMessage(error.message)
-
-                    return
-                }
-
+            logic.createPost(title, image, description)
+                .then(() => {
                 onPostCreated()
-
                 window.scrollTo(top)
-                
-
                 alert('Post created! 🎉')
+            })
+            .catch(error => {
+                console.log(error)
+                setMessage(error.message)
             })
         } catch (error) {
             console.error(error)

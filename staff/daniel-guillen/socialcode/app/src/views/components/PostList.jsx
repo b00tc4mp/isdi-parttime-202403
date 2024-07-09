@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import './PostList.css'
 
 import View from '../../components/library/View'
-
 import Post from './Post'
 
 import logic from '../../logic'
@@ -20,21 +19,18 @@ function PostList({ refreshStamp }) {
     }, [refreshStamp])
 
     const loadPosts = () => {
-
         try {
-            logic.getAllPosts((error, posts) => {
-                if (error) {
+            logic.getAllPosts()
+                .then(posts => {
+                    console.log('PostList -> setPosts')
+
+                    setPosts(posts)
+                })
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                console.log('PostList -> setPosts')
-
-                setPosts(posts)
-            })
+                })
         } catch (error) {
             console.error(error)
 
@@ -43,7 +39,7 @@ function PostList({ refreshStamp }) {
     }
 
     const handlePostDeleted = () => loadPosts()
-    
+
     const handlePostLikeToggled = () => loadPosts()
 
     return <View tag="section" className="PostList">
