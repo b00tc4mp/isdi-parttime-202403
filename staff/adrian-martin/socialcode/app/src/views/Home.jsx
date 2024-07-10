@@ -27,7 +27,7 @@ function Home({ onUserLoggedOut }) {
     useEffect(() => {
         try {
             logic.getUserName()
-                .then(() => setName(name))
+                .then(name => setName(name))
                 
                 .catch(error => {
                     console.error(error)
