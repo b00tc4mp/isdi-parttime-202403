@@ -1,8 +1,8 @@
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
-import jwt from 'jsonwebtoken'
-import { SystemError } from 'com/error.js'
+import jwt from './utils/jsonwebtoken-promised.js'
+import error, { SystemError } from 'com/error.js'
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
@@ -26,15 +26,9 @@ mongoose.connect(MONGODB_URL)
             const { name, surname, email, username, password, passwordRepeat } = req.body
 
             try {
-                logic.registerUser(name, surname, email, username, password, passwordRepeat, error => {
-                    if (error) {
-                        res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                        return
-                    }
-
-                    res.status(201).send()
-                })
+                logic.registerUser(name, surname, email, username, password, passwordRepeat)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
@@ -45,57 +39,49 @@ mongoose.connect(MONGODB_URL)
             const { username, password } = req.body
 
             try {
-                logic.authenticateUser(username, password, error => {
-                    if (error) {
-                        res.status(500).json({ error: error.constructor.name, message: error.message })
+                logic.authenticateUser(username, password)
+                    .then(userId => {
+                        return jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
+                            .then(token => {
+                                console.log(`User ${username} authenticated`)
 
-                        return
-                    }
-                    jwt.sign({ sub: username }, JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
-                        if (error) {
-                            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                            return
-                        }
-                        console.log(`User ${username} authenticated`)
-
-                        res.json(token)
+                                res.json(token)
+                            })
+                            .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
                     })
-                })
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
-        api.get('/users/:targetUsername', (req, res) => {
+        api.get('/users/:targetUserId', (req, res) => {
 
             try {
                 const token = req.headers.authorization.slice(7)
 
-                jwt.verify(token, JWT_SECRET, (error, payload) => {
-                    if (error) {
+                jwt.verify(token, JWT_SECRET)
+                    .then(payload => {
+                        const { sub: userId } = payload
+
+                        const { targetUserId } = req.params
+
+                        try {
+                            logic.getUserName(userId, targetUserId)
+                                .then(name => res.json(name))
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                        } catch (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        }
+                    })
+                    .catch(error => {
                         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
                             res.status(500).json({ error: SystemError.name, message: error.message })
                         else
-
-                        res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                        return
-                    }
-                    const { sub: username } = payload
-
-                    const { targetUsername } = req.params
-
-                    logic.getUserName(username, targetUsername, (error, name) => {
-                        if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                            return
-                        }
-                        res.json(name)
+                        return
                     })
-                })
-
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
@@ -107,29 +93,29 @@ mongoose.connect(MONGODB_URL)
             try {
                 const token = req.headers.authorization.slice(7)
 
-                jwt.verify(token, JWT_SECRET, (error, payload) => {
-                    if (error) {
+                jwt.verify(token, JWT_SECRET)
+                    .then(payload => {
+                        const { sub: userId } = payload
+
+                        try {
+                            logic.getAllPosts(userId)
+                                .then(posts => res.json(posts))
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                        } catch (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        }
+
+                    })
+                    .catch(error => {
                         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
                             res.status(500).json({ error: SystemError.name, message: error.message })
                         else
-                        res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                        return
-                    }
-                    const { sub: username } = payload
-
-                    logic.getAllPosts(username, (error, posts) => {
-                        if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                            return
-                        }
-                        res.json(posts)
+                        return
                     })
-                })
-
             } catch (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -139,31 +125,31 @@ mongoose.connect(MONGODB_URL)
             try {
                 const token = req.headers.authorization.slice(7)
 
-                jwt.verify(token, JWT_SECRET, (error, payload) => {
-                    if (error) {
+                jwt.verify(token, JWT_SECRET)
+                    .then(payload => {
+                        const { sub: userId } = payload
+
+                        const { title, image, description } = req.body
+
+                        try {
+                            logic.createPost(userId, title, image, description)
+                                .then(() => res.status(201).send())
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                        } catch (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        }
+
+                    })
+                    .catch(error => {
                         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
                             res.status(500).json({ error: SystemError.name, message: error.message })
                         else
-                        res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                        return
-                    }
-                    const { sub: username } = payload
-
-                    const { title, image, description } = req.body
-
-                    logic.createPost(username, title, image, description, error => {
-                        if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                            return
-                        }
-
-                        res.status(201).send()
+                        return
                     })
-                })
             } catch (error) {
-                    res.status(500).json({ error: error.constructor.name, message: error.message })
+                res.status(500).json({ error: error.constructor.name, message: error.message })
 
             }
         })
@@ -173,29 +159,29 @@ mongoose.connect(MONGODB_URL)
             try {
                 const token = req.headers.authorization.slice(7)
 
-                jwt.verify(token, JWT_SECRET, (error, payload) => {
-                    if (error) {
+                jwt.verify(token, JWT_SECRET)
+                    .then(payload => {
+                        const { sub: userId } = payload
+
+                        const { postId } = req.params
+
+                        try {
+                            logic.deletePost(userId, postId)
+                                .then(() => res.status(204).send())
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                        } catch (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        }
+
+                    })
+                    .catch(error => {
                         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
                             res.status(500).json({ error: SystemError.name, message: error.message })
                         else
-                        res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                        return
-                    }
-                    const { sub: username } = payload
-
-                    const { postId } = req.params
-
-                    logic.deletePost(username, postId, error => {
-                        if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                            return
-                        }
-
-                        res.status(204).send()
+                        return
                     })
-                })
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
@@ -205,29 +191,29 @@ mongoose.connect(MONGODB_URL)
             try {
                 const token = req.headers.authorization.slice(7)
 
-                jwt.verify(token, JWT_SECRET, (error, payload) => {
-                    if (error) {
+                jwt.verify(token, JWT_SECRET)
+                    .then(payload => {
+                        const { sub: userId } = payload
+
+                        const { postId } = req.params
+
+                        try {
+                            logic.toggleLikePost(userId, postId)
+                                .then(() => res.status(204).send())
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                        } catch (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        }
+
+                    })
+                    .catch(error => {
                         if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
                             res.status(500).json({ error: SystemError.name, message: error.message })
                         else
-                        res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                        return
-                    }
-                    const { sub: username } = payload
-
-                    const { postId } = req.params
-
-                    logic.toggleLikePost(username, postId, error => {
-                        if (error) {
                             res.status(500).json({ error: error.constructor.name, message: error.message })
 
-                            return
-                        }
-
-                        res.status(204).send()
+                        return
                     })
-                })
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }

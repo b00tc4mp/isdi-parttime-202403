@@ -20,16 +20,13 @@ function PostList({ refreshStamp }) {
 
     const loadPost = () => {
         try {
-            logic.getAllPosts((error, posts) => {
-                if (error) {
+            logic.getAllPosts()
+                .then(posts => setPost(posts))
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-                    return
-                }
-
-                setPost(posts)
-            })
+                })
         } catch (error) {
             console.error(error)
 

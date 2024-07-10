@@ -14,16 +14,12 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
             try {
-                logic.deletePost(post.id, error => {
-                    if (error) {
+                logic.deletePost(post.id)
+                    .then(() => onPostDeleted())
+                    .catch(error => {
                         console.error(error)
 
                         alert(error)
-
-                        return
-                    }
-
-                    onPostDeleted()
                 })
             } catch (error) {
                 console.error(error)
@@ -34,17 +30,13 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
     const handleToggleLikePost = () => {
         try {
-            logic.toggleLikePost(post.id, error => {
-                if (error) {
+            logic.toggleLikePost(post.id)
+                .then(() => onPostLikeToggled())
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                onPostLikeToggled()
-            })
+                })
         } catch (error) {
             console.error(error)
 
@@ -55,7 +47,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
     return <View className='Post' tag='article' align=''>
 
-        <Text>{post.author}</Text>
+        <Text>{post.author.username}</Text>
 
         <Heading level='2'>{post.title}</Heading>
 
@@ -64,13 +56,13 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         <Text>{post.description}</Text>
 
         <View direction='row'>
-            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getLoggedInUsername()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? 's' : 's'}`}</Button>
+            <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? 's' : 's'}`}</Button>
         </View>
 
         <View direction='row'>
             <Time>{post.date}</Time>
 
-            {post.author === logic.getLoggedInUsername() && <Button className="Button deleteButton" onClick={handleDeletePost}>Delete</Button>}
+            {post.author.id === logic.getUserId() && <Button className="Button deleteButton" onClick={handleDeletePost}>Delete</Button>}
         </View>
 
     </View>

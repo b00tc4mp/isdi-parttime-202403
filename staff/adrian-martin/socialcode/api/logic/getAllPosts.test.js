@@ -8,15 +8,9 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
 
         try {
-            getAllPosts("AdrianGon", (error, posts) => {
-                if (error) {
-                    console.error(error)
-
-                    return
-                }
-
-                console.log('posts retrived', posts)
-            })
+            getAllPosts("668682e840eba57bc03f5d59")
+                .then(posts => console.log('posts retrived', posts))
+                .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
         }

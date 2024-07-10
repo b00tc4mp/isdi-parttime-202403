@@ -2,55 +2,36 @@ import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/error.js'
 import validate from 'com/validate.js'
 
-const getAllPosts = (username, callback) => { // page, limit
-    validate.username(username)
-    validate.callback(callback)
+const getAllPosts = (userId) => {
+    validate.id(userId, 'userId')
 
-    User.findOne({ username })
+
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
-
-                return
+                throw new MatchError('user not found')
             }
 
-            Post.find({}).select('-__v').sort({date: -1}).lean()
+            return Post.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
-
                         delete post._id
+
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
+
+                            delete post.author._id
+                        }
+
+                        post.likes = post.likes.map(userObjectId => userObjectId.toString())
                     })
 
-                    callback(null, posts)
+                    return posts
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
-
-    // data.findUser(user => user.username === username, (error, user) => {
-    //     if (error) {
-    //         callback(error)
-
-    //         return
-    //     }
-
-    //     if (!user) {
-    //         callback(new MatchError('user not found'))
-
-    //         return
-    //     }
-
-    //     data.findPosts(() => true, (error, posts) => {
-
-    //         if (error) {
-    //             callback(error)
-
-    //             return
-    //         }
-    //         callback(null, posts.reverse())
-    //     })
-    // })
 }
 
 export default getAllPosts

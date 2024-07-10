@@ -1,87 +1,38 @@
+import { User, Post } from '../data/index.js'
+import { MatchError, SystemError } from 'com/error.js'
 import validate from 'com/validate.js'
-import { Post, User } from '../data/index.js'
-import { MatchError } from 'com/error.js'
-import { ObjectId } from 'mongodb'
+import { Types } from 'mongoose'
 
-const deletePost = (username, postId, callback) => {
-    validate.username(username)
+const { ObjectId } = Types
+
+const deletePost = (userId, postId) => {
+    validate.id(userId, 'userId')
     validate.id(postId, 'postId')
-    validate.callback(callback)
 
-   User.findOne({ username })
+
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
-
-                return
+                throw new MatchError('user not found')
             }
 
-            Post.findById(postId)
+            return Post.findById(postId).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
                     if (!post) {
-                        callback(new MatchError('posts not found'))
-        
-                        return
-                    }
-        
-                    if (post.author !== username) {
-                        callback(new MatchError('post author does not match user'))
-        
-                        return
+                        throw new MatchError('post not found')
                     }
 
-                    Post.deleteOne({_id: new ObjectId(postId)})
-                        .then(() => callback(null))
-                        .catch(error => callback(error))
+                    if (post.author.toString() !== userId) {
+                        throw new MatchError('post author does not match user')
+                    }
+
+                    return Post.deleteOne({ _id: new ObjectId(postId) })
+                        .catch(error => {throw new SystemError(error.message)})
+                        .then(() => { } )
                 })
-                .catch(error => callback(error))
         })
-        .catch(error => console.error(error))
-
-
-    // data.findUser(user => user.username === username, (error, user) => {
-    //     if (error) {
-    //         callback(error)
-
-    //         return
-    //     }
-
-    //     if (!user) {
-    //         callback(new MatchError('user not found'))
-
-    //         return
-    //     }
-
-    //     data.findPost(post => post.id === postId, (error, post) => {
-    //         if (error) {
-    //             callback(error)
-
-    //             return
-    //         }
-
-    //         if (!post) {
-    //             callback(new MatchError('posts not found'))
-
-    //             return
-    //         }
-
-    //         if (post.author !== username) {
-    //             callback(new MatchError('post author does not match user'))
-
-    //             return
-    //         }
-
-    //         data.deletePost(post => post.id === postId, error => {
-    //             if (error) {
-    //                 callback(error)
-
-    //                 return
-    //             }
-
-    //             callback(null)
-    //         })
-    //     })
-    // })
 }
 
 export default deletePost

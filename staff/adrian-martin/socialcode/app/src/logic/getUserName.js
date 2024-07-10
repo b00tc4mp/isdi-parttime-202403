@@ -1,36 +1,60 @@
-import errors from "com/error"
-import validate from "com/validate"
+import errors, { SystemError } from "com/error"
 
 import extractPayloadFromJWT from "../utils/extractPayloadFromJWT"
 
-const getUserName = callback => {
-    validate.callback(callback)
+const getUserName = () => {
 
-    const { sub: username } = extractPayloadFromJWT(sessionStorage.token)
+    const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
-    const xhr = new XMLHttpRequest
+    // const xhr = new XMLHttpRequest
 
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            const name = JSON.parse(xhr.response)
+    // xhr.onload = () => {
+    //     if (xhr.status === 200) {
+    //         const name = JSON.parse(xhr.response)
 
-            callback(null, name)
+    //         callback(null, name)
 
-            return
+    //         return
+    //     }
+
+    //     const { error, message } = JSON.parse(xhr.response)
+
+    //     const constructor = errors[error]
+
+    //     callback(new constructor(message))
+    // }
+
+    // xhr.open('GET', `${import.meta.env.VITE_API_URL}/users/${userId}`)
+
+    // xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
+
+    // xhr.send()
+
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`
         }
+    })
+        .catch(() => { throw new SystemError('server error') })
+        .then(response => {
+            if (response.status === 200) {
 
-        const { error, message } = JSON.parse(xhr.response)
+                return response.json()
+                    .catch(() => { throw new SystemError('server error') })
+                    .then(name => name)
+            }
 
-        const constructor = errors[error]
+            return response.json()
+                .catch(() => { throw new SystemError('server error') })
+                .then(body => {
+                    const { error, message } = body
 
-        callback(new constructor(message))
-    }
+                    const constructor = errors[error]
 
-    xhr.open('GET', `${import.meta.env.VITE_API_URL}/users/${username}`)
+                    throw new constructor(message)
+                })
 
-    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
-
-    xhr.send()
+        })
 }
 
 export default getUserName

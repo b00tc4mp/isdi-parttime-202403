@@ -3,62 +3,26 @@ import { MatchError } from 'com/error.js'
 import validate from 'com/validate.js'
 
 
-const getUserName = (username, targetUsername, callback) => {
-    validate.username(username)
-    validate.username(targetUsername, 'targetUsername')
-    validate.callback(callback)
+const getUserName = (userId, targetUserId) => {
+    validate.id(userId, 'userId')
+    validate.id(targetUserId, 'targetUserId')
 
-    User.findOne({ username })
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
-
-                return
+                throw new MatchError('user not found')
             }
 
-            User.findOne({ username: targetUsername })
+            return User.findById(targetUserId).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
                     if (!user) {
-                        callback(new MatchError('targetUsername not found'))
-
-                        return
+                        throw new MatchError('targetUsername not found')
                     }
-                    callback(null, user.name)
-
+                    return user.name
                 })
-                .catch(error => callback(error))
         })
-        .catch(error => callback(error))
-
-    // data.findUser(user => user.username === username, (error, user) => {
-    //     if (error) {
-    //         callback(error)
-
-    //         return
-    //     }
-
-    //     if (!user) {
-    //         callback(new MatchError('user not found'))
-
-    //         return
-    //     }
-
-    //     data.findUser(user => user.username === targetUsername, (error, targetUsername) => {
-    //         if (error) {
-    //             callback(error)
-
-    //             return
-    //         }
-
-    //         if (!targetUsername) {
-    //             callback(new MatchError('targetUsername not found'))
-
-    //             return
-    //         }
-
-    //         callback(null, targetUsername.name)
-    //     })
-    // })
 }
 
 export default getUserName

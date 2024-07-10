@@ -26,48 +26,46 @@ function Home({ onUserLoggedOut }) {
 
     useEffect(() => {
         try {
-            logic.getUserName((error, name) => {
-                if (error) {
+            logic.getUserName()
+                .then(() => setName(name))
+                
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
+    })
+} catch (error) {
+    console.error(error)
 
-                    return
-                }
-                setName(name)
-            })
-        } catch (error) {
-            console.error(error)
-
-            alert(error.message)
-        }
+    alert(error.message)
+}
     }, [])
 
-    const handleCreatePostClick = () => setView('create-post')
+const handleCreatePostClick = () => setView('create-post')
 
-    const handleCancelCreatePostClick = () => setView('')
+const handleCancelCreatePostClick = () => setView('')
 
-    const handlePostCreated = () => {
-        setPostListRefreshStamp(Date.now())
+const handlePostCreated = () => {
+    setPostListRefreshStamp(Date.now())
 
-        setView('')
-    }
+    setView('')
+}
 
 
-    return <View>
-        <Header>
-            <Heading level='3'>{name}</Heading>
-            <Button onClick={handleLogout}>Logout</Button>
-        </Header>
+return <View>
+    <Header>
+        <Heading level='3'>{name}</Heading>
+        <Button onClick={handleLogout}>Logout</Button>
+    </Header>
 
-        <View tag='main'>
-            <PostList refreshStamp={postListRefreshStamp} />
+    <View tag='main'>
+        <PostList refreshStamp={postListRefreshStamp} />
 
-            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
-        </View>
-
-        <Footer onCreatePostClick={handleCreatePostClick} />
+        {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
     </View>
+
+    <Footer onCreatePostClick={handleCreatePostClick} />
+</View>
 }
 
 export default Home

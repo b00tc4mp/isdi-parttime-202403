@@ -24,17 +24,14 @@ function Login({ onUserLoggin, onRegisterLinkClick }) {
         const password = form.password.value
 
         try {
-            logic.loginUser(username, password, error => {
-                if (error) {
+            logic.loginUser(username, password)
+                .then(() => onUserLoggin())
+                .catch(error => {
                     console.error(error)
 
                     setMessage(error.message)
+                })
 
-                    return
-                }
-                console.log('Funciona bien :)')
-                onUserLoggin()
-            })
         } catch (error) {
             console.error(error)
             setMessage(error.message)
