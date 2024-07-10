@@ -60,6 +60,9 @@ function Home({ onUserLoggedOut }) {
 
         setView('')
     }
+    const scrollTop = () => {
+        window.scrollTo(0, 0)
+    }
 
     return <View>
         <Header>
@@ -74,7 +77,8 @@ function Home({ onUserLoggedOut }) {
         {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
         
-        <Footer onCreatePostClick={handleCreatePostClick} />
+        
+        <Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop} />
         <footer></footer>
     </View>
 }

@@ -16,12 +16,12 @@ const registerUser = (name, surname, email, username, password, passwordRepeat) 
         },
         body: JSON.stringify({ name, surname, email, username, password, passwordRepeat })
     })
-        .catch(() => { throw new SystemError('server error') })
+        .catch(() => { throw new SystemError('server error :(') })
         .then(response => {
             if (response.status === 201) return
 
             return response.json()
-                .catch(() => { throw new SystemError('server error') })
+                .catch(() => { throw new SystemError('server error :(') })
                 .then(body => {
                     const { error, message } = body
 

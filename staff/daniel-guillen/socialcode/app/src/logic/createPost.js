@@ -14,13 +14,13 @@ const createPost = (title, image, description) => {
         },
         body: JSON.stringify({ title, image, description })
     })
-        .catch(() => { throw new SystemError('server error') })
+        .catch(() => { throw new SystemError('server error :(') })
         .then(response => {
             if (response.status === 201)
                 return
 
             return response.json()
-                .catch(() => { throw new SystemError('server error') })
+                .catch(() => { throw new SystemError('server error :(') })
                 .then(body => {
                     const { error, message } = body
 
