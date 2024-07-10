@@ -22,23 +22,20 @@ function Home({ onUserLoggedOut }) {
 
   useEffect(() => {
     try {
-      logic.getUserName((error, name) => {
-        if (error) {
-
+      logic.getUserName()
+        .then((name) => { setName(name) })
+        .catch(error => {
           alert(error.message)
 
           return
-        }
+        })
 
-        setName(name)
-
-      })
     } catch (error) {
       console.error(error)
 
       alert(error.message)
     }
-  }, [])
+  }, []) 
 
   const handleCreatePostClick = () => setView('create-post')
 
@@ -54,18 +51,18 @@ function Home({ onUserLoggedOut }) {
     <PrincipalBar name={name} onClick={handleLogout} children={"Logout"}></PrincipalBar>
 
     <View tag="main">
-      
+
       <PostList refreshStamp={postListRefreshStamp} />
-      {view === 'create-post' && ( <>
-            <div className="modal-backdrop" onClick={handleCancelCreatePostClick}></div>
-            <div className="modal">
-              <CreatePostView 
-                onCancelCreatePostClick={handleCancelCreatePostClick} 
-                onPostCreated={handlePostCreated} 
-              />
-            </div>
-          </>
-        )}
+      {view === 'create-post' && (<>
+        <div className="modal-backdrop" onClick={handleCancelCreatePostClick}></div>
+        <div className="modal">
+          <CreatePostView
+            onCancelCreatePostClick={handleCancelCreatePostClick}
+            onPostCreated={handlePostCreated}
+          />
+        </div>
+      </>
+      )}
     </View>
     <Footer onCreatePostClick={handleCreatePostClick}></Footer>
   </View>

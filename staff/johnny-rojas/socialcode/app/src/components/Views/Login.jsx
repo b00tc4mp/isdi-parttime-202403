@@ -25,49 +25,46 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     const password = form.password.value
 
     try {
-      logic.loginUser(username, password, error => {
-        if (error) {
+      logic.loginUser(username, password)
+        .then(() => onUserLoggedIn())
+        .catch(error => {
           console.log(error)
 
           setMessage(error.message)
 
-          return
-        }
-
-        onUserLoggedIn()
-      })
+        })
     } catch (error) {
-      console.log(error)
+    console.log(error)
 
-      setMessage(error.message)
-    }
+    setMessage(error.message)
   }
+}
 
-  const handleRegisterClick = event => {
-    event.preventDefault()
+const handleRegisterClick = event => {
+  event.preventDefault()
 
-    onRegisterLinkClick()
-  }
+  onRegisterLinkClick()
+}
 
-  return <View tag="main">
+return <View tag="main">
 
-    <img className="LogoLogin" src={MyIcon} alt="SocialCodeLogo"></img>
+  <img className="LogoLogin" src={MyIcon} alt="SocialCodeLogo"></img>
 
-    <Title className='TitlePrincipal'>Login</Title>
+  <Title className='TitlePrincipal'>Login</Title>
 
-    <FormWithFeedback className="Form FormWithFeedback" onSubmit={handleLoginSubmit} message={message}>
+  <FormWithFeedback className="Form FormWithFeedback" onSubmit={handleLoginSubmit} message={message}>
 
-      <Field id='username' type='text' placeholder='Username'></Field>
+    <Field id='username' type='text' placeholder='Username'></Field>
 
-      <ShowPassword className="Field" id="password" placeholder="Password"></ShowPassword>
+    <ShowPassword className="Field" id="password" placeholder="Password"></ShowPassword>
 
-      <SubmitButton>Login</SubmitButton>
-    </FormWithFeedback>
+    <SubmitButton>Login</SubmitButton>
+  </FormWithFeedback>
 
 
-    <Link onClick={handleRegisterClick} className='anchorLink'>Register</Link>
+  <Link onClick={handleRegisterClick} className='anchorLink'>Register</Link>
 
-  </View>
+</View>
 }
 
 

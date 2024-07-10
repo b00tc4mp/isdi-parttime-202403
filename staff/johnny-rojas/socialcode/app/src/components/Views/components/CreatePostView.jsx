@@ -12,7 +12,7 @@ import FormWithFeedback from '../../library/FormWithFeedback'
 import View from '../../library/View'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
-    
+
     const [message, setMessage] = useState('')
 
     const handleCancelCreatePostClick = () => onCancelCreatePostClick()
@@ -27,38 +27,37 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         const description = form.description.value
 
         try {
-            logic.createPost(title, image, description, error => {
-                if (error) {
+            logic.createPost(title, image, description)
+                .then(() => onPostCreated())
+                .catch(error => {
                     console.error(error)
 
                     setMessage(error.message)
-
+    
                     return
-                }
+                    
+                })
 
-                onPostCreated()
-                
-            })
-        } catch (error) {
-            console.error(error)
+    } catch (error) {
+        console.error(error)
 
-            setMessage(error.message)
-        }
-        
+        setMessage(error.message)
     }
 
-    return <View className="CreatePostForm">
-        <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
-            <Field id="title" placeholder={'Title'}></Field>
-            <Field id="image" placeholder={'Image'}></Field>
-            <Field id="description" placeholder={'Description'}></Field>
+}
 
-            <div className='optionsNewPost'>
-                <SubmitButton className="ButtonConfirm">Create</SubmitButton>
-                <Button className="ButtonCancel" onClick={handleCancelCreatePostClick}>Cancel</Button>
-            </div>
-        </FormWithFeedback>
-    </View>
+return <View className="CreatePostForm">
+    <FormWithFeedback onSubmit={handleCreatePostSubmit} message={message}>
+        <Field id="title" placeholder={'Title'}></Field>
+        <Field id="image" placeholder={'Image'}></Field>
+        <Field id="description" placeholder={'Description'}></Field>
+
+        <div className='optionsNewPost'>
+            <SubmitButton className="ButtonConfirm">Create</SubmitButton>
+            <Button className="ButtonCancel" onClick={handleCancelCreatePostClick}>Cancel</Button>
+        </div>
+    </FormWithFeedback>
+</View>
 }
 
 export default CreatePostForm
