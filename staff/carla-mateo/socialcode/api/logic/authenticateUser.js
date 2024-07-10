@@ -17,7 +17,8 @@ const authenticateUser = (username, password) => {
                 .catch(error => { throw new SystemError(error.message) })
                 .then((match) => {
                     if (!match) throw new MatchError('❌wrong password')
-                    user._id.toString()
+
+                    return user._id.toString()
 
                 })
         })

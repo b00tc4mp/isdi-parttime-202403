@@ -53,19 +53,33 @@ function Home({ onUserLoggedOut }) {
         setView('')
     }
 
+    const scrollTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        })
+    }
+
     return <View>
         <Header>
-            <Heading level="3">{name}</Heading>
-            <Button onClick={handleLogout}>Logout</Button>
+            <div className='ContainerTitle'><Heading className="SocialTitle" level="1">SOCIAL CODE</Heading></div>
+            <Heading className="Username" level="3">{name}</Heading>
+            <Button className="LogoutButton" onClick={handleLogout}>Logout</Button>
         </Header>
 
-        <View tag="main">
+        <View className="View">
             <PostList refreshStamp={postListRefreshStamp} />
 
-            {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
+            {view === 'create-post' &&
+                <CreatePostForm
+                    onCancelCreatePostClick={handleCancelCreatePostClick}
+                    onPostCreated={handlePostCreated}
+                    onClickScrollTop={scrollTop}
+                />
+            }
         </View>
 
-        <Footer onCreatePostClick={handleCreatePostClick} />
+        <Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop} />
     </View>
 }
 

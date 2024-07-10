@@ -15,13 +15,15 @@ const getUserName = (userId, targetUserId) => {
 
             return User.findById(targetUserId).lean()
                 .catch(error => { throw new SystemError(error.message) })
-
                 .then(user => {
-                    if (!user) throw new MatchError('targetUser not found')
+                    if (!user) {
+                        throw new MatchError('targetUser not found')
+
+                        return
+                    }
 
                     return user.name
                 })
-
         })
 
 }

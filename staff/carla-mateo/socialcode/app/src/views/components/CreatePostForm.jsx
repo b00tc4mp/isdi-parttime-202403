@@ -11,7 +11,7 @@ import SubmitButton from '../../components/core/SubmitButton'
 import FormWithFeedback from '../../components/library/FormWithFeedback'
 import View from '../../components/library/View'
 
-function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
+function CreatePostForm({ onCancelCreatePostClick, onPostCreated, onClickScrollTop }) {
     console.log('CreatePostForm -> render')
 
     const [message, setMessage] = useState('')
@@ -29,7 +29,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
 
         try {
             logic.createPost(title, image, description)
-                .then(() => onPostCreated())
+                .then(() => onPostCreated(), onClickScrollTop())
                 .catch(error => {
                     console.error(error)
 

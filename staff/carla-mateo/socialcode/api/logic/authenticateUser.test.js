@@ -9,7 +9,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            authenticateUser('malefica', '1234')
+            authenticateUser('anabana', '1234')
                 .then(() => console.log('user authenticated'))
                 .catch(error => {
                     console.error(error)
