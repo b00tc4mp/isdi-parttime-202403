@@ -7,19 +7,16 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      registerUser("Bruce", "Wayne", "Batman@dc.com", "Batman", "1234", "1234", (error) => {
-        if (error) {
+      registerUser("Pepito", "Grillo", "pepito@grillo.es", "pepitogrillo", "1234", "1234")
+        .then(() => {
+          console.log("User created")
+        })
+        .catch(() => {
           console.error(error)
-
           return
-        }
-
-        console.log("User created")
-      })
-
+        })
     } catch (error) {
       console.error(error)
     }
-
   })
   .catch(error => console.error(error))

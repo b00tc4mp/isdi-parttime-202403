@@ -7,19 +7,15 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      getAllPosts("668698726b9bbf5c26a74888", 1, 2, (error, posts) => {
-
-        if (error) {
+      getAllPosts("668d0dce22a4d7ecd962b170", 1, 2)
+        .then((posts) => {
+          console.log("posts retrieved", posts)
+        })
+        .catch((error) => {
           console.error(error)
-
           return
-        }
-
-        console.log("posts retrieved", posts)
-      })
-
+        })
     } catch (error) {
-
       console.error(error)
     }
   })

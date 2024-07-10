@@ -3,38 +3,30 @@ import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import bcrypt from "bcryptjs"
 
-const authenticateUser = (username, password, callback) => {
+const authenticateUser = (username, password) => {
   validate.username(username)
   validate.password(password)
-  validate.callback(callback)
 
-  User.findOne({ username }).lean()
+  return User.findOne({ username }).lean()
+    .catch(() => { throw new SystemError("connection error") })
     .then(userFound => {
-
       if (!userFound) {
-        callback(new MatchError("❌ User not found ❌"))
-        return
+        throw new MatchError("❌ User not found ❌")
       }
 
       console.log(`User found: ${userFound.username}`)
       console.log(`Password hash: ${userFound.password}`)
 
-      bcrypt.compare(password, userFound.password, (error, match) => {
-        if (error) {
-          callback(new SystemError(error.message))
-          return
-        }
+      return bcrypt.compare(password, userFound.password)
+        .catch((error) => { console.error(error) })
+        .then((match) => {
+          if (!match) {
+            throw new MatchError(error.message)
+          }
+          console.log(`Password match: ${match}`)
+          return userFound._id.toString()
+        })
 
-        console.log(`Password match: ${match}`)
-
-        if (!match) {
-          callback(new MatchError(error.message))
-          return
-        }
-
-        callback(null, userFound._id.toString())
-      })
     })
-    .catch(error => callback(error))
 }
 export default authenticateUser

@@ -2,39 +2,29 @@ import { User, Post } from "../data/index.js"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 
-const createPostComment = (userId, postId, textComment, callback) => {
+const createPostComment = (userId, postId, textComment) => {
   validate.id(userId, "userId")
   validate.id(postId, "postId")
   validate.text(textComment, "textComment", 150)
-  validate.callback(callback)
 
-  User.findById(userId)
+  return User.findById(userId)
+    .catch(() => { throw new SystemError("server error") })
     .then(user => {
       if (!user) {
-
-        callback(new MatchError("❌ User not found ❌"))
-
-        return
+        throw new MatchError("❌ User not found ❌")
       }
 
-      Post.findById(postId)
+      return Post.findById(postId)
+        .catch(() => { throw new SystemError("server error") })
         .then(post => {
           if (!post) {
-
-            callback(new MatchError("❌ Post not found ❌"))
-
-            return
+            throw new MatchError("❌ Post not found ❌")
           }
 
-          Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, text: textComment, date: new Date() } } })
-            .then(() => callback(null))
-            .catch(error => callback(new SystemError(error.message)))
-
+          return Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, text: textComment, date: new Date() } } })
+            .catch(() => { throw new SystemError("server error") })
+            .then(() => { })
         })
-        .catch(error => callback(new SystemError(error.message)))
-
     })
-    .catch(error => callback(new SystemError(error.message)))
 }
-
 export default createPostComment

@@ -7,21 +7,17 @@ const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
   .then(() => {
-
     try {
-      getPostComments("668698726b9bbf5c26a74888", "6686a31f86430bf971fba0a7", (error, comments) => {
+      getPostComments("6686aac02f7668c202a5f97f", "668d4687899458f8a1f7ffc8")
+        .then((comments) => {
 
-        if (error) {
+          console.log("comments retrieved", JSON.stringify(comments))
+        })
+        .catch((error) => {
           console.error(error)
-
           return
-        }
-
-        console.log("comments retrieved", JSON.stringify(comments))
-      })
-
+        })
     } catch (error) {
-
       console.error(error)
     }
   })

@@ -2,28 +2,27 @@ import { User, Post } from '../data/index.js'
 import validate from 'com/validate.js'
 import { MatchError, SystemError } from 'com/errors.js'
 
-function toggleLikePost(userId, postId, callback) {
+function toggleLikePost(userId, postId) {
   // Validación de los IDs y el callback
   validate.id(userId, 'userId')
   validate.id(postId, 'postId')
-  validate.callback(callback)
 
   // Buscar al usuario por su ID
-  User.findById(userId).lean()
+  return User.findById(userId).lean()
+    .catch(() => { throw new SystemError("connection error") })
     .then(user => {
       // Verificar si el usuario no existe
       if (!user) {
-        callback(new MatchError('user not found'))
-        return
+        throw new MatchError('user not found')
       }
 
       // Buscar el post por su ID
-      Post.findById(postId)
+      return Post.findById(postId)
+        .catch(() => { throw new SystemError("connection error") })
         .then(post => {
           // Verificar si el post no existe
           if (!post) {
-            callback(new MatchError('post not found'))
-            return
+            throw new MatchError('post not found')
           }
 
           // Verificar si el usuario ya dio like en el post
@@ -36,13 +35,11 @@ function toggleLikePost(userId, postId, callback) {
             { $push: { liked: user._id } }  // Agregar el like
 
           // Actualizar el post con la operación correspondiente
-          Post.updateOne({ _id: post._id }, update)
-            .then(() => callback(null))
-            .catch(error => callback(new SystemError(error.message)))
+          return Post.updateOne({ _id: post._id }, update)
+            .catch(() => { throw new SystemError("connection error") })
+            .then(() => { return !included })
         })
-        .catch(error => callback(new SystemError(error.message)))
     })
-    .catch(error => callback(new SystemError(error.message)))
 }
 
 export default toggleLikePost

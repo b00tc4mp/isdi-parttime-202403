@@ -2,20 +2,17 @@ import { User, Post } from "../data/index.js"
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 
-const createPost = (userId, title, image, description, callback) => {
+const createPost = (userId, title, image, description) => {
   validate.id(userId, "userId")
   validate.text(title, "title", 30)
   validate.url(image, "image")
   validate.text(description, "description", 500)
-  validate.callback(callback)
 
-  User.findById(userId).lean()
+  return User.findById(userId).lean()
+    .catch(() => { throw new SystemError("connection error") })
     .then(user => {
       if (!user) {
-
-        callback(new MatchError("❌ User not found ❌"))
-
-        return
+        throw new MatchError("❌ User not found ❌")
       }
 
       const post = {
@@ -28,11 +25,10 @@ const createPost = (userId, title, image, description, callback) => {
         comments: []
       }
 
-      Post.create(post)
-        .then(() => callback(null))
-        .catch(error => callback(new SystemError(error.message)))
+      return Post.create(post)
+        .catch(() => { throw new SystemError("connection error") })
+        .then(() => { })
     })
-    .catch(error => callback(new SystemError(error.message)))
 
 }
 

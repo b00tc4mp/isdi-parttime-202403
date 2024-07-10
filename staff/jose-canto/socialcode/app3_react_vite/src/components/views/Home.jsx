@@ -19,76 +19,77 @@ import "../core/Field.css"
 import "../core/TextArea.css"
 
 function Home() {
-	const { setView } = useContext(ViewContext)
+  const { setView } = useContext(ViewContext)
 
-	console.log("Home --> render")
+  console.log("Home --> render")
 
-	const [name, setName] = useState("")
-	const [viewCreatePostForm, setViewCreatePostForm] = useState("")
-	const [postListRefresh, setPostListRefresh] = useState(0)
+  const [name, setName] = useState("")
+  const [viewCreatePostForm, setViewCreatePostForm] = useState("")
+  const [postListRefresh, setPostListRefresh] = useState(0)
 
-	const handleLogout = () => {
-		logic.logoutUser()
+  const handleLogout = () => {
+    logic.logoutUser()
 
-		setView("login")
-	}
+    setView("login")
+  }
 
-	useEffect(() => {
-		console.log("Home --> UseEffect")
-		try {
-			logic.getUserName((error, name) => {
-				if (error) {
-					console.error(error.message)
+  useEffect(() => {
+    console.log("Home --> UseEffect")
+    try {
+      // prettier-ignore
+      logic.getUserName(name)
+        .then((name) => {
+          console.log("Home --> setName")
+          setName(name)
+        })
+        .catch((error) => {
+          console.error(error.message)
 
-					alert(error.message)
-				}
-				console.log("Home --> setName")
+          alert(error.message)
+        })
+    } catch (error) {
+      console.error(error.message)
 
-				setName(name)
-			})
-		} catch (error) {
-			console.error(error.message)
+      alert(error.message)
+    }
+  }, [])
 
-			alert(error.message)
-		}
-	}, [])
+  const handleCreatePostClick = () => setViewCreatePostForm("create-post")
+  const handleCancelCreatePost = () => setViewCreatePostForm("")
+  const handleCreatePost = () => {
+    setPostListRefresh(Date.now())
+    setViewCreatePostForm("")
+  }
 
-	const handleCreatePostClick = () => setViewCreatePostForm("create-post")
-	const handleCancelCreatePost = () => setViewCreatePostForm("")
-	const handleCreatePost = () => {
-		setPostListRefresh(Date.now())
-		setViewCreatePostForm("")
-	}
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }
 
-	const scrollTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		})
-	}
+  return (
+    <>
+      <Header>
+        <Heading level="3">{name}</Heading>
+        <Button onClick={handleLogout}>Logout</Button>
+      </Header>
 
-	return (
-		<>
-			<Header>
-				<Heading level="3">{name}</Heading>
-				<Button onClick={handleLogout}>Logout</Button>
-			</Header>
+      <View className="View">
+        <PostList refreshStamp={postListRefresh} />
 
-			<View className="View">
-				<PostList refreshStamp={postListRefresh} />
+        {viewCreatePostForm === "create-post" && (
+          <CreatePostForm
+            onCancelCreatedPostClick={handleCancelCreatePost}
+            onPostCreated={handleCreatePost}
+            onClickScrollTop={scrollTop}
+          />
+        )}
+      </View>
 
-				{viewCreatePostForm === "create-post" && (
-					<CreatePostForm
-						onCancelCreatedPostClick={handleCancelCreatePost}
-						onPostCreated={handleCreatePost}
-						onClickScrollTop={scrollTop}
-					/>
-				)}
-			</View>
-
-			<Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop} />
-		</>
-	)
+      <Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop} />
+    </>
+  )
 }
 
 export default Home

@@ -5,39 +5,31 @@ import { Types } from "mongoose"
 
 const { ObjectId } = Types
 
-const deletePost = (userId, postId, callback) => {
+const deletePost = (userId, postId) => {
   validate.id(userId, "userId")
   validate.id(postId, "postId")
-  validate.callback(callback)
 
-  User.findById(userId).lean()
+  return User.findById(userId).lean()
+    .catch(error => { throw new SystemError("server error") })
     .then(user => {
       if (!user) {
-
-        callback(new MatchError("❌ User not found ❌"))
-
-        return
+        throw new MatchError("❌ User not found ❌")
       }
 
-      Post.findById(postId).lean()
+      return Post.findById(postId).lean()
+        .catch(error => { throw new SystemError("server error") })
         .then(post => {
           if (!post) {
-            callback(new MatchError("❌ Post not found ❌"))
-            return
+            throw new MatchError("❌ Post not found ❌")
           }
-
           if (post.author.toString() !== userId) {
-            callback(new MatchError("❌ You can't delete this post ❌"))
-            return
+            throw new MatchError("❌ You can't delete this post ❌")
           }
 
-          Post.deleteOne({ _id: new ObjectId(postId) })
-            .then(() => callback(null, postId))
-            .catch(error => callback(new SystemError(error.message)))
+          return Post.deleteOne({ _id: new ObjectId(postId) })
+            .catch(() => { throw new SystemError("server error") })
+            .then(() => postId)
         })
-        .catch(error => callback(new SystemError(error.message)))
     })
-    .catch(error => callback(new SystemError(error.message)))
 }
-
 export default deletePost

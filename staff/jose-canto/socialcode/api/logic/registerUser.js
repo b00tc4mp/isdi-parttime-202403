@@ -3,42 +3,38 @@ import { User } from "../data/index.js"
 import bcrypt from "bcryptjs"
 import { DuplicityError, SystemError } from "com/errors.js"
 
-const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
+const registerUser = (name, surname, email, username, password, passwordRepeat) => {
   validate.name(name)
   validate.name(surname, "surname")
   validate.email(email)
   validate.username(username)
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
-  validate.callback(callback)
 
-  User.findOne({ $or: [{ email }, { username }] })
+  return User.findOne({ $or: [{ email }, { username }] })
+    .catch(() => { throw new SystemError("connection error") })
     .then(user => {
       if (user) {
-        callback(new DuplicityError("❌ Users already exists ❌"))
-
-        return
+        throw new DuplicityError("❌ Users already exists ❌")
       }
 
-      bcrypt.hash(password, 8, (error, hash) => {
-        if (error) {
-          callback(new SystemError(error.message))
-          return
-        }
+      return bcrypt.hash(password, 8)
+        .catch(() => { throw (new SystemError("connection error")) })
+        .then((hash) => {
+          const newUser = {
+            name: name,
+            surname: surname,
+            email: email,
+            username: username,
+            password: hash,
+          }
 
-        const newUser = {
-          name: name,
-          surname: surname,
-          email: email,
-          username: username,
-          password: hash,
-        }
-        User.create(newUser)
-          .then(() => callback(null))
-          .catch(error => callback(error))
-      })
+          return User.create(newUser)
+            .catch(() => { throw new SystemError("connection error") })
+            .then(() => {
+              return
+            })
+        })
     })
-    .catch(error => callback(new SystemError(error.message)))
 }
-
 export default registerUser

@@ -13,85 +13,85 @@ import SubmitButton from "../core/SubmitButton"
 import ViewContext from "../../ViewContext"
 
 function Register() {
-	console.log("Register --> render")
+  console.log("Register --> render")
 
-	const { setView } = useContext(ViewContext)
-	const [message, setMessage] = useState("")
+  const { setView } = useContext(ViewContext)
+  const [message, setMessage] = useState("")
 
-	const handleRegisterSubmit = (event) => {
-		event.preventDefault()
+  const handleRegisterSubmit = (event) => {
+    event.preventDefault()
 
-		const target = event.target
+    const target = event.target
 
-		const name = target.name.value
-		const surname = target.surname.value
-		const email = target.email.value
-		const username = target.username.value
-		const password = target.password.value
-		const passwordRepeat = target.passwordRepeat.value
+    const name = target.name.value
+    const surname = target.surname.value
+    const email = target.email.value
+    const username = target.username.value
+    const password = target.password.value
+    const passwordRepeat = target.passwordRepeat.value
 
-		try {
-			logic.registerUser(name, surname, email, username, password, passwordRepeat, (error) => {
-				if (error) {
-					console.log(error)
+    try {
+      // prettier-ignore
+      logic.registerUser(name, surname, email, username, password, passwordRepeat)
+        .then(() => {
+          setView("login")
 
-					setMessage(error.message)
-					setTimeout(() => setMessage(""), 2000)
+          console.log("user registered")
+        })
+        .catch((error) => {
+          console.log(error)
 
-					return
-				}
+          setMessage(error.message)
+          setTimeout(() => setMessage(""), 2000)
+          return
+        })
+    } catch (error) {
+      setMessage(error.message)
+      setTimeout(() => setMessage(""), 2000)
+      console.error(error.message)
+    }
+  }
 
-				setView("login")
+  const handleLoginClick = (event) => {
+    event.preventDefault()
 
-				console.log("user registered")
-			})
-		} catch (error) {
-			setMessage(error.message)
-			setTimeout(() => setMessage(""), 2000)
-			console.error(error.message)
-		}
-	}
+    setView("login")
+  }
+  return (
+    <>
+      <View className="View RegisterForm" tag="main">
+        <Title>REGISTER</Title>
+        <FormWithFeedback className="RegisterForm" onSubmit={handleRegisterSubmit} message={message}>
+          <Field id="name" placeholder="name">
+            Name
+          </Field>
 
-	const handleLoginClick = (event) => {
-		event.preventDefault()
+          <Field id="surname" placeholder="surname">
+            Surname
+          </Field>
 
-		setView("login")
-	}
-	return (
-		<>
-			<View className="View RegisterForm" tag="main">
-				<Title>REGISTER</Title>
-				<FormWithFeedback className="RegisterForm" onSubmit={handleRegisterSubmit} message={message}>
-					<Field id="name" placeholder="name">
-						Name
-					</Field>
+          <Field id="email" placeholder="email">
+            Email
+          </Field>
 
-					<Field id="surname" placeholder="surname">
-						Surname
-					</Field>
+          <Field id="username" placeholder="username">
+            Username
+          </Field>
 
-					<Field id="email" placeholder="email">
-						Email
-					</Field>
+          <CheckPasswordField id="password" placeholder="Password">
+            Password
+          </CheckPasswordField>
 
-					<Field id="username" placeholder="username">
-						Username
-					</Field>
+          <CheckPasswordField id="passwordRepeat" placeholder="Password Repeat">
+            Password Repeat
+          </CheckPasswordField>
 
-					<CheckPasswordField id="password" placeholder="Password">
-						Password
-					</CheckPasswordField>
-
-					<CheckPasswordField id="passwordRepeat" placeholder="Password Repeat">
-						Password Repeat
-					</CheckPasswordField>
-
-					<SubmitButton type="submit">Register</SubmitButton>
-				</FormWithFeedback>
-				<Link onClick={handleLoginClick}>Have already an account? Login</Link>
-			</View>
-		</>
-	)
+          <SubmitButton type="submit">Register</SubmitButton>
+        </FormWithFeedback>
+        <Link onClick={handleLoginClick}>Have already an account? Login</Link>
+      </View>
+    </>
+  )
 }
 
 export default Register

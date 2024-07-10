@@ -1,22 +1,23 @@
 import errors, { SystemError } from "com/errors"
 import validate from "com/validate"
 
-const getPostComments = (postId, callback) => {
+const getPostComments = (postId) => {
   validate.id(postId, "postId")
-  validate.callback(callback)
 
-  fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`, {
     mehtod: "GET",
     headers: {
       "Authorization": `Bearer ${sessionStorage.token}`
     },
   })
-
+    .catch(() => { throw new SystemError("connection error") })
     .then(response => {
+
       if (response.status === 200) {
         return response.json()
-          .then(comments => callback(null, comments))
-          .catch(error => callback(error))
+
+          .catch(() => { throw new SystemError("connection error") })
+          .then(comments => comments)
       }
 
       return response.json()
@@ -25,11 +26,9 @@ const getPostComments = (postId, callback) => {
 
           const constructor = errors[error]
 
-          callback(new constructor(message))
+          throw new constructor(message)
         })
     })
-    .catch(error => callback(new SystemError(error)))
-
 }
 
 export default getPostComments

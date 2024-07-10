@@ -3,21 +3,18 @@ import { SystemError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
 
 
-const getAllPosts = (userId, page, limit, callback) => {
-
+const getAllPosts = (userId, page, limit) => {
   validate.id(userId, "userId")
-  validate.callback(callback)
 
-  User.findById(userId).lean()
+  return User.findById(userId).lean()
+    .catch(error => { throw new SystemError("server error") })
     .then(user => {
       if (!user) {
-
-        callback(new MatchError("❌ User not found ❌"))
-
-        return
+        throw new MatchError("❌ User not found ❌")
       }
 
-      Post.find({}).populate("author", "username").select("-__v").populate("comments.author", "username").sort({ date: -1 }).lean()
+      return Post.find({}).populate("author", "username").select("-__v").populate("comments.author", "username").sort({ date: -1 }).lean()
+        .catch(() => { throw new SystemError("server error") })
         .then(posts => {
           posts.forEach(post => {
             post.id = post._id.toString() // sobreescribimos el id en objeto para cambiarlo a un string y asi evitar que no se sepa que se usa mongo por debajo. Sanear datos.
@@ -28,7 +25,6 @@ const getAllPosts = (userId, page, limit, callback) => {
               post.author.id = post.author._id.toString()
               delete post.author._id
             }
-
             post.liked = post.liked.map(userObjectId => userObjectId = userObjectId.toString())
 
             post.comments.forEach(comment => {
@@ -45,11 +41,9 @@ const getAllPosts = (userId, page, limit, callback) => {
 
           const paginatedPost = posts.slice(startIndex, endIndex)
 
-          callback(null, paginatedPost);
+          return paginatedPost
         })
-        .catch(error => callback(new SystemError(error.message)))
     })
-    .catch(error => callback(error))
 }
 
 export default getAllPosts

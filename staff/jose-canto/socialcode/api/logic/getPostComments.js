@@ -5,18 +5,16 @@ import validate from "com/validate.js"
 const getPostComments = (userId, postId, callback) => {
   validate.id(userId, "userId")
   validate.id(postId, "postId")
-  validate.callback(callback)
 
-  User.findById(userId).lean()
+  return User.findById(userId).lean()
+    .catch(() => { throw new SystemError("server error") })
     .then(user => {
       if (!user) {
-
-        callback(new MatchError("❌ User not found ❌"))
-
-        return
+        throw new MatchError("❌ User not found ❌")
       }
 
-      Post.findById((postId)).populate("comments.author", "username").lean()
+      return Post.findById((postId)).populate("comments.author", "username").lean()
+        .catch(() => { throw new SystemError(error.message) })
         .then(post => {
           if (!post) {
             callback(new MatchError("❌ Post not found ❌"))
@@ -28,22 +26,16 @@ const getPostComments = (userId, postId, callback) => {
             delete comment._id
           })
 
-
           post.comments.forEach(comment => {
-
             if (comment.author._id) {
               comment.author.id = comment.author._id.toString()
               delete comment.author._id
             }
-
           })
-
-          callback(null, post.comments)
+          return post.comments
         })
-        .catch(error => callback(new SystemError(error.message)))
 
     })
-    .catch(error => callback(error))
 }
 
 export default getPostComments

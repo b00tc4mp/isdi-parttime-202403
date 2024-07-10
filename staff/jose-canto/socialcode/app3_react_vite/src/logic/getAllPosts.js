@@ -1,33 +1,30 @@
 import errors, { SystemError } from "com/errors"
-import validate from "com/validate"
 
-const getAllPosts = (page, limit, callback) => {
-  validate.callback(callback)
+const getAllPosts = (page, limit) => {
 
-  fetch(`${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${sessionStorage.token}`
     }
   })
+    .catch(() => callback(new SystemError("connection error")))
     .then(response => {
       if (response.status === 200) {
         return response.json()
-          .then(posts => callback(null, posts))
-          .catch(error => callback(new SystemError(error)))
+          .then(posts => { return posts })
+          .catch(() => { throw new SystemError("connection error") })
       }
 
       return response.json()
+        .catch(() => { throw new SystemError("connection error") })
         .then(body => {
           const { error, message } = body
 
           const constructor = errors[error]
 
-          callback(new constructor(message))
-
+          throw new constructor(message)
         })
-        .catch(error => callback(new SystemError(error)))
     })
-    .catch(error => callback(new SystemError(error)))
 }
 export default getAllPosts

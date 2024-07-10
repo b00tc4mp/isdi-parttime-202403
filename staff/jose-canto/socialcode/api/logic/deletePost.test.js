@@ -9,21 +9,17 @@ mongoose.connect(MONGODB_URL)
   .then(() => {
 
     try {
-      deletePost("6686980096815ae00d1ad34f", "668698996b9bbf5c26a7488c", error => {
-
-        if (error) {
+      deletePost("668d0dce22a4d7ecd962b170", "668d847e75cd7dfc6c5dbb39")
+        .then(() => {
+          console.log("posts deleted")
+        })
+        .catch((error) => {
           console.error(error)
-
           return
-        }
-
-        console.log("posts deleted")
-      })
-
+        })
     } catch (error) {
-
       console.error(error)
-    }
 
+    }
   })
   .catch(error => console.error(error))
