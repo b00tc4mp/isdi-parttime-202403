@@ -1,5 +1,5 @@
 import { User } from "../data/index.js"
-import { MatchError, SystemError } from "com/errors.js"
+import { CredentialsError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import bcrypt from "bcryptjs"
 
@@ -8,10 +8,10 @@ const authenticateUser = (username, password) => {
   validate.password(password)
 
   return User.findOne({ username }).lean()
-    .catch(() => { throw new SystemError("connection error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(userFound => {
       if (!userFound) {
-        throw new MatchError("❌ User not found ❌")
+        throw new CredentialsError("❌ User not found ❌")
       }
 
       console.log(`User found: ${userFound.username}`)
@@ -21,7 +21,7 @@ const authenticateUser = (username, password) => {
         .catch((error) => { console.error(error) })
         .then((match) => {
           if (!match) {
-            throw new MatchError(error.message)
+            throw new CredentialsError("❌ Wrong password ❌")
           }
           console.log(`Password match: ${match}`)
           return userFound._id.toString()
