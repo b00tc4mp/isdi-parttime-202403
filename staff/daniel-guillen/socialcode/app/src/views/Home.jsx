@@ -68,11 +68,18 @@ function Home({ onUserLoggedOut }) {
     }
 
     return <View>
-        <Header>
-            <div className="Home"><Title>SocialCode</Title></div>
-            <div className="UserName"><Heading level="3">👋🏻 Welcome {name} ! !</Heading></div>
-            <div className="Logout"><Button onClick={handleLogout}>Bye Bye 😴</Button></div>
-        </Header>
+        <div className='Title'><Header>
+        <div className="Home"><Title>SocialCode</Title></div>
+        </Header></div>
+
+        <div className='Welcome'><Header>
+        <div className="UserName"><Heading level="3">👋 Welcome {name} !!</Heading></div>
+        </Header></div>
+
+        <div className='Fixed'><Header>
+        <div className="Logout"><Button onClick={handleLogout}>😴</Button></div>
+        </Header></div>
+
 
         <View tag="main">
         <PostList refreshStamp={postListRefreshStamp} />
