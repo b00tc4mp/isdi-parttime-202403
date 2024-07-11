@@ -1,6 +1,7 @@
 .View {
     display: flex;
     padding: 1rem;
+
 }
 
 .View.column {

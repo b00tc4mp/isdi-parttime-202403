@@ -58,7 +58,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCreatePostComment }) {
         setShowAddComment(!showAddComment)
     }
 
-    return <View tag="article" aling="">
+    return <View tag="article" className="Article" aling="">
         <View direction="row">
             <Text>{post.author.username}</Text>
 
@@ -76,7 +76,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCreatePostComment }) {
         <View direction="row">
             <Time>{post.date}</Time>
 
-            <Button onClick={handleShowComment}>mostrar comment</Button>
+            <Button onClick={handleShowComment}>Comment</Button>
 
             {showAddComment && (
                 <CreatePostComment

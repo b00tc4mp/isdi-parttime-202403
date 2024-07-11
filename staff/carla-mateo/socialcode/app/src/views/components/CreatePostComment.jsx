@@ -1,6 +1,8 @@
 import { useState } from "react"
 import FormWithFeedback from '../../components/library/FormWithFeedback'
 import Button from "../../components/core/Button"
+import Label from "../../components/core/Label"
+import Text from "../../components/core/Text"
 
 import logic from "../../logic"
 
@@ -33,8 +35,8 @@ function CreatePostComment({ postId, onCommentPostSubmitted }) {
     return (
         <>
             <FormWithFeedback className="CreatePostComment" onSubmit={handleCreateCommentSubmit} message={message}>
-                <label>Write a comment</label>
-                <text className="Text" placeholder="bla... bla..." id="comment"></text>
+                <Label>Write a comment</Label>
+                <Text className="Text" placeholder="bla... bla..." id="comment"></Text>
                 <Button className="Button SubmitButton" type="submit">
                     Add Comment
                 </Button>
