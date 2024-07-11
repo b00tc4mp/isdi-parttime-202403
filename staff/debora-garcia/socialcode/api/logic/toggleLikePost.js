@@ -1,42 +1,42 @@
 import { User, Post } from "../data/index.js"
 import validate from "com/validate.js"
 import { MatchError, SystemError } from "com/errors.js"
-import { ObjectId } from "mongodb"
 
-function toggleLikePost(userId, postId, callback) {
+function toggleLikePost(userId, postId) {
     validate.id(userId, "userId")
     validate.id(postId, "postId")
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new MatchError("user not found"))
+            if (!user) throw new MatchError("user not found")
 
-                return
-            }
-            Post.findById(postId)
+            return Post.findById(postId)
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
-                    if (!post) {
-                        callback(new MatchError("post not found"))
+                    if (!post)
+                        throw new MatchError("post not found")
 
-                        return
-                    }
-                    const index = post.likes.indexOf(userId) //** 
+                    // const index = post.likes.indexOf(userId) //** 
 
-                    if (index < 0)
-                        post.likes.push(userId)
-                    else
-                        post.likes.splice(index, 1)
+                    // if (index < 0)
+                    //     post.likes.push(userId)
+                    // else
+                    //     post.likes.splice(index, 1)
                     //mongoose salva un post nuevo despues de manipularlo y cambia la version.
-                    post.save()
-                        .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
+                    //Usamos some por que es un object Id y includes usa solo primitivos
+                    //el some mira dentro de los elementos de un array (objectIds) si uno de esos objetos corresponde con la condicion que le pasamos en el callback dentro del array de likes.
+                    const included = post.likes.some((userObjectId) => userObjectId.toString() === userId)
 
+                    return Post.updateOne({ _id: post._id }, included ?
+                        { $pull: { likes: user._id } }
+                        :
+                        { $push: { likes: user._id } }
+                    )
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
 }
 
 //** Buscamos si el usuario le ha dado like, si no lo encuentra se añade en el array likes, sino lo elimina en la posicion index

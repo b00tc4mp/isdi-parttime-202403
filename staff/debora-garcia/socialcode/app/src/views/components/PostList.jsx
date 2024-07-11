@@ -21,19 +21,21 @@ function PostList({ refreshStamp }) {
 
     const loadPosts = () => {
         try {
-            logic.getPosts((error, posts) => {
-                if (error) {
+            logic.getPosts()
+                .then(posts => {
+                    console.log("PostList -> setPosts")
+
+                    setPosts(posts)
+                })
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
 
                     return
-                }
 
-                console.log("PostList -> setPosts")
+                })
 
-                setPosts(posts)
-            })
         } catch (error) {
             console.error(error)
 
@@ -45,10 +47,10 @@ function PostList({ refreshStamp }) {
     const handlePostDeleted = () => loadPosts()
 
     const handlePostLikeToggled = () => loadPosts()
-    
+
     // usamos key como identificador para react ya que al devolver un array, en caso de que un post cambiara, se repintaria unicamente el post modificado.
     return <View tag="section" className="PostList">
-    {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} onPostLikeToggled={handlePostLikeToggled} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} onPostLikeToggled={handlePostLikeToggled} />)}
     </View>
 }
 

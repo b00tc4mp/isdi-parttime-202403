@@ -32,19 +32,17 @@ function Home({ onUserLoggedOut }) {
         console.log("Home -> useEffect")
         // setTimeout(() => {
         try {
-            logic.getUsername((error, username) => {
-                if (error) {
+            logic.getUsername()
+                .then((username) => {
+                    console.log("Home -> setUsername")
+
+                    setUsername(username)
+                })
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                console.log("Home -> setUsername")
-
-                setUsername(username)
-            })
+                })
         } catch (error) {
             console.error(error)
 

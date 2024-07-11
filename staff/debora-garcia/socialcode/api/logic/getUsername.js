@@ -3,33 +3,26 @@ import validate from "com/validate.js"
 import { MatchError, SystemError } from "com/errors.js"
 
 
-const getUsername = (userId, targetUserId, callback) => {
+const getUsername = (userId, targetUserId) => {
     //se pasan los paramentros demusuario y quien pide el usuario 
-    validate.id(userId)
+    validate.id(userId, "userId")
     validate.id(targetUserId, "targetUserId")
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new MatchError("user not found"))
+            if (!user) throw new MatchError("user not found")
 
-                return
-            }
-
-            User.findById(targetUserId).lean()
+            return User.findById(targetUserId).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
-                    if (!user) {
-                        callback(new MatchError("targetUsername not found"))
+                    if (!user)
+                        throw new MatchError("targetUsername not found")
 
-                        return
-                    }
-                    callback(null, user.username)
+
+                    return user.username
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
-
 }
 
 export default getUsername

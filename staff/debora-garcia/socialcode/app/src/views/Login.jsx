@@ -22,18 +22,13 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
         const password = form.password.value
 
         try {
-            logic.loginUser(username, password, error => {
-                if (error) {
+            logic.loginUser(username, password)
+                .then(() => onUserLoggedIn())
+                .catch(error => {
                     console.error(error.message + ", please, correct it")
 
                     setMessage(error.message)
-
-                    return
-                }
-
-                //setView("home")
-                onUserLoggedIn()
-            })
+                })
 
         } catch (error) {
             console.error(error)

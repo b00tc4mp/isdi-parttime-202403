@@ -24,20 +24,14 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         const passwordRepeat = form.passwordRepeat.value
 
         try {
-            logic.registerUser(email, username, password, passwordRepeat, error => {
-                if (error) {
-                    console.log(error)
-
+            logic.registerUser(email, username, password, passwordRepeat)
+                .then(() => onUserRegistered())
+                .catch(error => {
+                    console.error(error)
+                    
                     setMessage(error.message)
+                })
 
-                    return
-                }
-
-                //setView("login") (sustituimos por callbacks para informar a la app)
-                //mediante el uso de callbacks (props) que recibimos desde la app, que es la que se encargara de manejar la respuests
-
-                onUserRegistered()
-            })
         } catch (error) {
             console.error(error)
 

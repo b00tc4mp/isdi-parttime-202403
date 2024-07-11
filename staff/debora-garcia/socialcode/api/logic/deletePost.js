@@ -2,41 +2,33 @@ import { User } from "../data/index.js" // importamos el objeto data
 import { Post } from "../data/index.js" // importamos el objeto data
 import { MatchError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
-import { ObjectId } from "mongodb"
+import { Types } from "mongoose"
+const { ObjectId } = Types
 
-const deletePost = (userId, postId, callback) => {
+const deletePost = (userId, postId) => {
     validate.id(userId, userId)
     validate.id(postId, "postId")
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new MatchError("user not found"))
+            if (!user)
+                throw new MatchError("user not found")
 
-                return
-            }
-            Post.findById(postId)
+            return Post.findById(postId)
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
-                    if (!post) {
-                        callback(new MatchError("post not found"))
+                    if (!post)
+                        throw new MatchError("post not found")
+                    //el autor es ubn Object Id por lo que lo convertimos a estring para poder comparar
+                    if (post.author.toString() !== userId)
+                        throw new MatchError("post author does not match user")
 
-                        return
-                    }//el autor es ubn Object Id por lo que lo convertimos a estring para poder comparar
-                    if (post.author.toString() !== userId) {
-                        callback(new MatchError("post author does not match user"))
-
-                        return
-                    }
-                    Post.deleteOne({ _id: new ObjectId(postId) })
-                        .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
-
+                    return Post.deleteOne({ _id: new ObjectId(postId) })
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
-
 }
 
 export default deletePost
