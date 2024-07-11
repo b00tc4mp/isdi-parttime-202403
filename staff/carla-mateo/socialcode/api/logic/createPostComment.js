@@ -1,6 +1,6 @@
 import { User, Post } from '../data/index.js'
 import validate from 'com/validate.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 const createPostComment = (userId, postId, comment) => {
     validate.id(userId, 'userId')
@@ -10,14 +10,14 @@ const createPostComment = (userId, postId, comment) => {
     return User.findById(userId)
         .catch(() => { throw new SystemError('server error') })
         .then(user => {
-            if (!user) throw new MatchError('❌ User not found')
+            if (!user) throw new NotFoundError('❌ User not found')
 
 
             return Post.findById(postId)
                 .catch(() => { throw new SystemError('server error') })
                 .then(post => {
                     if (!post)
-                        throw new MatchError('❌ Post not found')
+                        throw new NotFoundError('❌ Post not found')
 
                     return Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, date: new Date, comment: comment } } })
                         .then(() => { return })

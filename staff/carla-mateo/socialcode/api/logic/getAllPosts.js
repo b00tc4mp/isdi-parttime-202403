@@ -1,6 +1,6 @@
 import validate from 'com/validate.js'
 import { User, Post } from '../data/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 const getAllPosts = (userId) => {
     validate.id(userId, 'userId')
@@ -8,7 +8,7 @@ const getAllPosts = (userId) => {
     return User.findById(userId).lean()
         .catch(() => { throw new SystemError('server error') })
         .then(user => {
-            if (!user) throw new MatchError('❌user not found')
+            if (!user) throw new NotFoundError('❌user not found')
 
             return Post.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
                 .catch(() => { throw new SystemError('server error') })
