@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { CredentialsError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
@@ -11,13 +11,13 @@ const authenticateUser = (username, password) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new MatchError('user not found :(')
+                throw new CredentialsError('user not found 😵‍💫')
 
             return bcrypt.compare(password, user.password)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(match => {
                     if (!match)
-                        throw new MatchError('wrong password :(')
+                        throw new CredentialsError('wrong password 😖')
 
                     return user._id.toString()
                 })

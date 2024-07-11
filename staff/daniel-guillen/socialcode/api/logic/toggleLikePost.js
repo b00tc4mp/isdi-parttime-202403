@@ -9,12 +9,12 @@ function toggleLikePost(userId, postId) {
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new MatchError('user not found :(')
+            if (!user) throw new MatchError('user not found 😭')
 
             return Post.findById(postId)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
-                    if (!post) throw new MatchError('post not found :(')
+                    if (!post) throw new MatchError('post not found 😵‍💫')
 
                     const included = post.likes.some(userObjectId => userObjectId.toString() === userId)
 

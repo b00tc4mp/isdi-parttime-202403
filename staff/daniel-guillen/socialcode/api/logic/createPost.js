@@ -11,7 +11,7 @@ const createPost = (userId, title, image, description) => {
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new MatchError('user not found :(')
+            if (!user) throw new MatchError('user not found 😓')
 
             const post = {
                 author: userId,
