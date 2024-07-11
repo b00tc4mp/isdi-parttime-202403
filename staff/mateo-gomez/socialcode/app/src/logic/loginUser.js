@@ -47,12 +47,12 @@ const loginUser = (username, password) => {
         },
         body: JSON.stringify({ username, password })
     })
-        .catch(() => { throw new SystemError('connection error') })
+        .catch(() => { throw new SystemError('server error') })
         .then(response => { // respuesta de la api
             if (response.status === 200) {
 
                 return response.json()      //La respuesta la convertmos de json a objeto, es decir, a JavaScript
-                    .catch(error => { throw new SystemError(error.message) })
+                    .catch(error => { throw new SystemError('server error') })
                     .then(token => {
                         sessionStorage.token = token
 

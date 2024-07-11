@@ -2,20 +2,19 @@ import { User } from '../data/models/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getUserName = (userId, targetUserId, callback) => {
+const getUserName = (userId, targetUserId) => {
     validate.id(userId, 'userId')
     validate.username(targetUserId, 'targetUserId')
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
-
-                return
+                throw new MatchError('user not found')
             }
 
-            User.findById(targetUserId).lean()
+            return User.findById(targetUserId).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
                     if (!user) {
                         callback(new MatchError('targetUser not found'))
@@ -23,11 +22,11 @@ const getUserName = (userId, targetUserId, callback) => {
                         return
                     }
 
-                    callback(null, user.name)
+                    return user.name
                 })
-                .catch(error => callback(new SystemError(error.message)))
+
         })
-        .catch(error => callback(new SystemError(error.message)))
+
 
 
 

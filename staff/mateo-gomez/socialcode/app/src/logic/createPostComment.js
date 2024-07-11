@@ -30,9 +30,9 @@ const createPostComment = (postId, comment, callback) => {
 
                     callback(new constructor(message))          // reconstruyo el error con el mensaje que me viene de la api
                 })
-                .catch(error => callback(new SystemError(error.message))) // si la respuesta response.json() falla
+                .catch(error => callback(new SystemError('server error'))) // si la respuesta response.json() falla
         })
-        .catch(error => callback(new SystemError(error.message)))
+        .catch(error => callback(new SystemError('server error')))
 }
 
 export default createPostComment

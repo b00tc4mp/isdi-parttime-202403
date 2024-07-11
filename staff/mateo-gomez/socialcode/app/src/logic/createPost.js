@@ -52,15 +52,15 @@ const createPost = (title, image, description) => {
         },
         body: JSON.stringify({ title, image, description })
     })
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(error => { throw new SystemError('server error') })
         .then(response => {
-            if (resonse.status === 201) {
+            if (response.status === 201) {
 
                 return
             }
 
             return response.json()
-                .catch(error => { throw new SystemError(error.message) })
+                .catch(error => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
 

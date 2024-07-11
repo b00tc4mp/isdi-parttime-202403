@@ -33,7 +33,7 @@ const toggleLike = (postId) => {
             Authorization: `Bearer ${sessionStorage.token}`
         },
     })
-        .catch(error => { throw new SystemError(error) })
+        .catch(error => { throw new SystemError('server error') })
         .then(response => {
             if (response.status === 204) {
 
@@ -42,7 +42,7 @@ const toggleLike = (postId) => {
             }
 
             return response.json()
-                .catch(error => { throw new SystemError(error) })
+                .catch(error => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
 

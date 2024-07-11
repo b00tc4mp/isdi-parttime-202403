@@ -9,15 +9,11 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
 
         try {
-            registerUser('Jason', 'Tatum', 'tatum@celtics.com', 'jasontatum', '123123123', '123123123', error => {
-                if (error) {
-                    console.error(error)
+            //registerUser('Jason', 'Tatum', 'tatum@celtics.com', 'jasontatum', '123123123', '123123123')
+            registerUser('Lamine', 'Yamal', 'lamine@yamal.com', 'lamineyamal', '123123123', '123123123')
+                .then(() => console.log('user registered'))
+                .catch(error => console.error(error))
 
-                    return
-                }
-
-                console.log('user registered')
-            })
         } catch (error) {
             console.error(error)
         }

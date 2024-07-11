@@ -36,11 +36,11 @@ const createPostComment = (userId, postId, comment, callback) => {
                         }
                     })
                         .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
+                        .catch(error => { throw new SystemError(error.message) })
                 })
-                .catch(error => callback(new SystemError(error.message)))
+                .catch(error => { throw new SystemError(error.message) })
         })
-        .catch(error => callback(new SystemError(error.message)))
+        .catch(error => { throw new SystemError(error.message) })
 
 }
 

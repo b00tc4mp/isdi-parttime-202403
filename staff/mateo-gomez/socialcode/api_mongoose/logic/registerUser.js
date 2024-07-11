@@ -4,7 +4,7 @@ import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
 
-const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
+const registerUser = (name, surname, email, username, password, passwordRepeat) => {
     //Input validation
     validate.name(name)
     validate.surname(surname)
@@ -12,42 +12,34 @@ const registerUser = (name, surname, email, username, password, passwordRepeat, 
     validate.username(username)
     validate.password(password)
     validate.passwordMatch(password, passwordRepeat)
-    validate.callback(callback)
 
-    User.findOne({ $or: [{ email }, { username }] })
+    return User.findOne({ $or: [{ email }, { username }] })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user) {
-                callback(new DuplicityError('username already exists'))
+                throw new DuplicityError('username already exists')
 
-                return
             }
 
-            bcrypt.hash(password, 8, (error, hash) => {
-                if (error) {
-                    callback(new SystemError(error.message))
+            return bcrypt.hash(password, 8)
+                .catch(error => { throw new SystemError(error.message) })
+                .then(hash => {
+                    const newUser = {
+                        name: name,
+                        surname: surname,
+                        email: email,
+                        username: username,
+                        password: hash,
+                    }
 
-                    return
-                }
+                    User.create(newUser)
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
 
-                const newUser = {
-                    name: name,
-                    surname: surname,
-                    email: email,
-                    username: username,
-                    password: hash,
-                }
-
-                User.create(newUser)
-                    .then(result => callback(null))
-                    .catch(error => callback(new SystemError(error.message)))
-            })
+                })
         })
-        .catch(error => callback(new SystemError(error.message)))
-
 
 }
-
-
 
 export default registerUser
 

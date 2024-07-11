@@ -40,7 +40,7 @@ const deletePost = (postId) => {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(error => { throw new SystemError('server error') })
         .then(response => {
             if (response.status === 204) {
 
@@ -48,7 +48,7 @@ const deletePost = (postId) => {
             }
 
             return response.json()
-                .catch(error => { throw new SystemError(error.message) })
+                .catch(error => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
 

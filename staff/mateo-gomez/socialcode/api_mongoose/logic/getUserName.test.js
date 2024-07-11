@@ -8,16 +8,10 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getUserName('668bb1b3a8796a3c7044e7ca', '668bb1b3a8796a3c7044e7ca', (error, name) => {
-                if (error) {
-                    console.error(error)
+            getUserName('668bb1b3a8796a3c7044e7ca', '668bb1b3a8796a3c7044e7ca')
+                .then(name => console.log('user name retrieved', name))
+                .catch(error => console.error(error))
 
-                    return
-                }
-
-                console.log('user name retrieved', name)
-
-            })
         } catch (error) {
             console.error(error)
         }

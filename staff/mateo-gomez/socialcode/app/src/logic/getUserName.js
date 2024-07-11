@@ -45,13 +45,13 @@ const getUserName = () => {
             Authorization: `Bearer ${sessionStorage.token}`         //Authorization no hace falta que vayta entre comillas porque no tiene guion en medio
         }
     })
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(error => { throw new SystemError('server error') })
         .then(response => { // respuesta de la api
             if (response.status === 200) {
 
 
                 return response.json()      //La respuesta la convertmos de json a objeto, es decir, a JavaScript
-                    .catch(error => { throw new SystemError(error.message) })
+                    .catch(error => { throw new SystemError('server error') })
                     .then(name => {             //Esperamos como respuesta el name
                         { return name }
                     })
@@ -60,7 +60,7 @@ const getUserName = () => {
 
 
             return response.json()
-                .catch(error => { throw new SystemError(error.message) }) // si la respuesta response.json() falla
+                .catch(error => { throw new SystemError('server error') }) // si la respuesta response.json() falla
                 .then(body => {           // respuesta en forma de objeto porque lo transformamos a json(). (({error es el nombre de la constructora de error y message es el mensaje de error}))
                     const { error, message } = body
 

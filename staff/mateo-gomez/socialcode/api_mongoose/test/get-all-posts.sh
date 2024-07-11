@@ -1,1 +1,1 @@
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjhhODkyMzI3YjM5ZDdiMTliNGUyNTQiLCJpYXQiOjE3MjAzNjY5NzYsImV4cCI6MTcyMDM3MDU3Nn0.OONpGx2LIUnTtNGVxdxUGnucoxuzg6qZ0zdDoiRm8PY" http://localhost:8080/posts -v
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjhiYjFiM2E4Nzk2YTNjNzA0NGU3Y2EiLCJpYXQiOjE3MjA2MjEwNDIsImV4cCI6MTcyMDYyNDY0Mn0.lKvAHo-GLmWF1y1acmcsetb-fBstYgwNfmehoULKloU" http://localhost:8080/posts -v

@@ -4,22 +4,19 @@ import validate from 'com/validate.js'
 
 
 
-const createPost = (userId, title, image, description, callback) => {
+const createPost = (userId, title, image, description) => {
     validate.id(userId)
     validate.text(title, 'title', 50)
     validate.url(image, 'image')
     validate.text(description, 'description', 300)
-    validate.callback(callback)
 
-
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
+                throw new MatchError('user not found')
 
-                return
             }
-
             const post = {
                 author: userId,
                 title,
@@ -29,11 +26,11 @@ const createPost = (userId, title, image, description, callback) => {
                 comment: [],
                 liked: []
             }
-            Post.create(post)
-                .then(() => callback(null))
-                .catch(error => callback(new SystemError(error.message)))
+            return Post.create(post)
+                .catch(error => { throw new SystemError(error.message) })
+                .then(() => { })
+
         })
-        .catch(error => callback(new SystemError(error.message)))
 
 
 }

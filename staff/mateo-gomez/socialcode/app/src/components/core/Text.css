@@ -21,3 +21,13 @@
     height: auto;
 
 }
+
+.ConfirmDeleteText {
+    display: flex;
+    justify-content: top;
+    font-size: 1.5rem;
+    height: auto;
+    width: auto;
+    padding-bottom: 4rem;
+    text-align: center;
+}

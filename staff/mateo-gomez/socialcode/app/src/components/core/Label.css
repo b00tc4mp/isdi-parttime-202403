@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Permanent+Marker&family=Tac+One&family=Zeyada&display=swap');
+
+
 .Label {
+    font-family: Payton One;
     margin-bottom: .5rem;
     size: 3rem;
 }

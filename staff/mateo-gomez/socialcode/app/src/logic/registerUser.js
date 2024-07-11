@@ -62,7 +62,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat) 
         },
         body: JSON.stringify({ name, surname, email, username, password, passwordRepeat })
     })
-        .catch(() => { throw new SystemError('connection error') })
+        .catch(() => { throw new SystemError('server error') })
         .then(response => { // respuesta de la api
             if (response.status === 201) {
 
@@ -70,7 +70,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat) 
             }
 
             return response.json()
-                .catch(error => { throw new SystemError(error.message) }) // si la respuesta response.json() falla
+                .catch(error => { throw new SystemError('server error') }) // si la respuesta response.json() falla
                 .then(body => {           // respuesta en forma de objeto porque lo transformamos a json(). (({error es el nombre de la constructora de error y message es el mensaje de error}))
                     const { error, message } = body
 
