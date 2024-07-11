@@ -19,17 +19,13 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmit }) {
 
     const handleDeletePost = () => {
         try {
-            logic.deletePost(post.id, error => {
-                if (error) {
+            logic.deletePost(post.id)
+                .then(() => onPostDeleted())
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                onPostDeleted()
-            })
+                })
         } catch (error) {
             console.error(error)
 
@@ -39,17 +35,13 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmit }) {
 
     const handleToggleLikePost = () => {
         try {
-            logic.toggleLikePost(post.id, error => {
-                if (error) {
+            logic.toggleLikePost(post.id)
+                .then(() => onPostLikeToggled())
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                onPostLikeToggled()
-            })
+                })
         } catch (error) {
             console.error(error)
 

@@ -18,17 +18,13 @@ function CreateCommentPost({ onCancelCommentPost, onCommentPostSubmit, postID })
         const textComment = form.textComment.value
 
         try {
-            logic.createComment(textComment, postID, (error) => {
-                if (error) {
+            logic.createComment(textComment, postID)
+                .then(() => onCommentPostSubmit())
+                .catch(error => {
                     console.error(error.message)
 
                     setMessage(error.message)
-
-                    return
-                }
-
-                onCommentPostSubmit()
-            })
+                })
         } catch (error) {
             console.error(error.message)
 

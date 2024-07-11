@@ -1,20 +1,17 @@
 import validate from 'com/validate.js'
 import { User, Post } from '../data/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
-const getAllPosts = (userId, callback) => {
+const getAllPosts = userId => {
     validate.id(userId, 'userId')
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new MatchError('User not found'))
+            if (!user) throw new NotFoundError('user not found')
 
-                return
-            }
-
-            Post.find({}).populate('author', 'username').sort({ date: -1 }).lean()
+            return Post.find({}).populate('author', 'username').sort({ date: -1 }).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
@@ -28,11 +25,11 @@ const getAllPosts = (userId, callback) => {
 
                         post.likes = post.likes.map(userObjectId => userObjectId.toString())
                     })
-                    callback(null, posts)
+                    return posts
                 })
-                .catch(error => callback(new SystemError(error.message)))
+
         })
-        .catch(error => callback(new SystemError(error.message)))
+
 }
 
 

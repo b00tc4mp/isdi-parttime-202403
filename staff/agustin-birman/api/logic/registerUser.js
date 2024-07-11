@@ -3,44 +3,37 @@ import { User } from '../data/index.js'
 import { SystemError, DuplicityError } from 'com/errors.js'
 import bcrypt from 'bcryptjs'
 
-const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
+const registerUser = (name, surname, email, username, password, passwordRepeat) => {
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
     validate.username(username)
     validate.password(password)
     validate.passowrdsMatch(password, passwordRepeat)
-    validate.callback(callback)
 
-    User.findOne({ $or: [{ email }, { username }] })
+    return User.findOne({ $or: [{ email }, { username }] })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user) {
-                callback(new DuplicityError('user already exists'))
-
-                return
+                throw new DuplicityError('user already exists')
             }
 
-            bcrypt.hash(password, 8, (error, hash) => {
-                if (error) {
-                    callback(new SystemError(error.message))
+            return bcrypt.hash(password, 8)
+                .catch(error => { throw new SystemError(error.message) })
+                .then(hash => {
+                    const newUser = {
+                        name,
+                        surname,
+                        email,
+                        username,
+                        password: hash
+                    }
 
-                    return
-                }
-                const newUser = {
-                    name,
-                    surname,
-                    email,
-                    username,
-                    password: hash
-                }
-
-                User.create(newUser)
-                    .then(() => callback(null))
-                    .catch(error => callback(error))
-
-            })
+                    return User.create(newUser)
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
+                })
         })
-        .catch(error => callback(error))
 }
 
 export default registerUser
