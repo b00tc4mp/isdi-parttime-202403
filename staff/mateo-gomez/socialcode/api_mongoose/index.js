@@ -3,7 +3,7 @@ import express from 'express'
 //import fs from 'fs'
 import logic from './logic/index.js'
 import cors from 'cors'
-import { SystemError } from 'com/errors.js'
+import { ContentError, DuplicityError, SystemError, MatchError, CredentialsError, NotFoundError } from 'com/errors.js'
 import mongoose from 'mongoose'
 
 import jwt from './util/jsonwebtoken-promised.js'
@@ -26,24 +26,45 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/', (req, res) => res.send('Hello, World!'))
 
+        function handleErrorResponse(error, res) {
+            let status = 500
+
+            if (error instanceof DuplicityError)
+                status = 409
+
+            else if (error instanceof ContentError)
+                status = 400
+
+            else if (error instanceof MatchError)
+                status = 412
+
+            else if (error instanceof CredentialsError)
+                status = 401
+
+            else if (error instanceof NotFoundError)
+                status = 404
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+
+        }
+
         api.post('/users', jsonBodyParser, (req, res) => {
             const { name, surname, email, username, password, passwordRepeat } = req.body
 
             try {
                 logic.registerUser(name, surname, email, username, password, passwordRepeat)
                     .then(() => res.status(201).send())
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+                        handleErrorResponse(error, res)
+
+                    })
 
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                handleErrorResponse(error, res)
             }
 
         })
 
-        api.options('users/auth', jsonBodyParser, (req, res) => {
-
-            res.send()
-        })
 
 
         api.post('/users/auth', jsonBodyParser, (req, res) => {
@@ -52,22 +73,20 @@ mongoose.connect(MONGODB_URL)
             try {
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        return jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
+                        jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
                             .then(token => res.json(token))
-                            .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                            .catch(error => handleErrorResponse(new SystemError(error.message), res))
 
                     })
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => handleErrorResponse(error, res))
 
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                handleErrorResponse(error, res)
             }
 
         })
 
         api.get('/users/:targetUserId', (req, res) => {
-
-
             try {
                 const token = req.headers.authorization.slice(7)
 
@@ -80,26 +99,16 @@ mongoose.connect(MONGODB_URL)
                         try {
                             logic.getUserName(userId, targetUserId)
                                 .then(name => res.json(name))
-                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                                .catch(error => handleErrorResponse(error, res))
 
                         } catch (error) {
-                            res.status(500).json({ error: error.constructor.name, message: error.message })
-
+                            handleErrorResponse(new CredentialsError(error.message), res)
                         }
                     })
-                    .catch(error => {
-                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-                            res.status(500).json({ error: SystemError.name, message: error.message })
-
-
-                        } else
-                            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                    })
+                    .catch(error => handleErrorResponse(error, res))
 
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
-
+                handleErrorResponse(error, res)
 
             }
         })

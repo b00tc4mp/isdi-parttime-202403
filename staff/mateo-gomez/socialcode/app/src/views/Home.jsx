@@ -65,8 +65,10 @@ function Home({ onUserLoggedOut }) {
     return <View>
         <Header>
             <Heading className='SocialCodeTitle' level='1'>SocialCode</Heading>
-            <Heading level="3">{name}</Heading>
-            <Button onClick={handleLogout}>Logout</Button>
+            <div className='HeaderRight'>
+                <Heading level="3">{name}</Heading>
+                <Button onClick={handleLogout}>Logout</Button>
+            </div>
         </Header>
 
         <View tag='main'>
