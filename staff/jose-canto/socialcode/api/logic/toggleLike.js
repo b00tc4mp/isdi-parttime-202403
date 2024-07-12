@@ -1,6 +1,6 @@
 import { User, Post } from '../data/index.js'
 import validate from 'com/validate.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 function toggleLikePost(userId, postId) {
   // Validación de los IDs y el callback
@@ -13,7 +13,7 @@ function toggleLikePost(userId, postId) {
     .then(user => {
       // Verificar si el usuario no existe
       if (!user) {
-        throw new MatchError('user not found')
+        throw new NotFoundError('user not found')
       }
 
       // Buscar el post por su ID
@@ -22,7 +22,7 @@ function toggleLikePost(userId, postId) {
         .then(post => {
           // Verificar si el post no existe
           if (!post) {
-            throw new MatchError('post not found')
+            throw new NotFoundError('post not found')
           }
 
           // Verificar si el usuario ya dio like en el post

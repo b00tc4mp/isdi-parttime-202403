@@ -1,5 +1,5 @@
 import { User, Post } from "../data/index.js"
-import { SystemError, MatchError } from "com/errors.js"
+import { SystemError, NotFoundError } from "com/errors.js"
 import validate from "com/validate.js"
 
 
@@ -7,10 +7,10 @@ const getAllPosts = (userId, page, limit) => {
   validate.id(userId, "userId")
 
   return User.findById(userId).lean()
-    .catch(error => { throw new SystemError("server error") })
+    .catch(() => { throw new SystemError("server error") })
     .then(user => {
       if (!user) {
-        throw new MatchError("❌ User not found ❌")
+        throw new NotFoundError("❌ User not found ❌")
       }
 
       return Post.find({}).populate("author", "username").select("-__v").populate("comments.author", "username").sort({ date: -1 }).lean()

@@ -1,5 +1,5 @@
 import { User, Post } from "../data/index.js"
-import { SystemError, MatchError } from "com/errors.js"
+import { SystemError, NotFoundError } from "com/errors.js"
 import validate from "com/validate.js"
 
 const getPostComments = (userId, postId, callback) => {
@@ -10,14 +10,14 @@ const getPostComments = (userId, postId, callback) => {
     .catch(() => { throw new SystemError("server error") })
     .then(user => {
       if (!user) {
-        throw new MatchError("❌ User not found ❌")
+        throw new NotFoundError("❌ User not found ❌")
       }
 
       return Post.findById((postId)).populate("comments.author", "username").lean()
         .catch(() => { throw new SystemError(error.message) })
         .then(post => {
           if (!post) {
-            callback(new MatchError("❌ Post not found ❌"))
+            callback(new NotFoundError("❌ Post not found ❌"))
             return
           }
 
