@@ -16,3 +16,5 @@ function handleErrorResponse(error, res) {
 
     res.status(status).json({ error: error.constructor.name, message: error.message })
 }
+
+export default handleErrorResponse

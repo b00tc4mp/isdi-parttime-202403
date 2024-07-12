@@ -20,7 +20,7 @@ const createPostComment = (userId, postId, comment) => {
                         throw new NotFoundError('❌ Post not found')
 
                     return Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, date: new Date, comment: comment } } })
-                        .then(() => { return })
+                        .then(() => { })
                         .catch(() => { throw new SystemError('server error') })
                 })
 

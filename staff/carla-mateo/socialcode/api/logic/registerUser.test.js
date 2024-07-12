@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
 
-            registerUser('ana', 'bana', 'ana@bana.com', 'anabana', '1234', '1234')
+            registerUser('odin', 'chi', 'odin@chi.com', 'odinchi', '1234', '1234')
                 .then(() => console.log('user registered'))
                 .catch(error => console.error(error))
         } catch (error) {
