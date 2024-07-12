@@ -1,39 +1,70 @@
-import errors from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const loginUser = (username, password, callback) => {
+const loginUser = (username, password) => {
     validate.username(username)
     validate.password(password)
-    validate.callback(callback)
 
-    const xhr = new XMLHttpRequest
+    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    })
 
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            const token = JSON.parse(xhr.response)
+        .catch(() => { throw new SystemError('connection error') })
+        .then(response => {
+            if (response.status === 200) {
+                return response.json()
+                    .catch(() => { throw new SystemError(error.message) })
+                    .then(token => sessionStorage.token = token)
+            }
 
-            sessionStorage.token = token
+            return response.json()
+                .catch(() => { throw new SystemError(error.message) })
+                .then(body => {
+                    const { error, message } = body
 
-            callback(null)
+                    const constructor = errors[error]
 
-            return
-        }
-
-        const { error, message } = JSON.parse(xhr.response)
-
-        const constructor = errors[error]
-
-        callback(new constructor(message))
-    }
-
-    xhr.open('POST', `${import.meta.env.VITE_API_URL}/users/auth`)
-
-    const body = { username, password }
-
-    const json = JSON.stringify(body)
-
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.send(json)
+                    throw (new constructor(message))
+                })
+        })
 }
-
 export default loginUser
+
+
+
+
+
+
+
+// const xhr = new XMLHttpRequest
+
+// xhr.onload = () => {
+//     if (xhr.status === 200) {
+//         const token = JSON.parse(xhr.response)
+
+//         sessionStorage.token = token
+
+//         callback(null)
+
+//         return
+//     }
+
+//     const { error, message } = JSON.parse(xhr.response)
+
+//     const constructor = errors[error]
+
+//     callback(new constructor(message))
+// }
+
+// xhr.open('POST', `${import.meta.env.VITE_API_URL}/users/auth`)
+
+// const body = { username, password }
+
+// const json = JSON.stringify(body)
+
+// xhr.setRequestHeader('Content-Type', 'application/json')
+// xhr.send(json)

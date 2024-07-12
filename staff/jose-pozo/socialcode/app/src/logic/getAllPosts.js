@@ -1,32 +1,61 @@
-import errors from 'com/errors'
-import validate from 'com/validate'
+import errors, { SystemError } from 'com/errors'
 
-const getAllPosts = callback => {
+
+const getAllPosts = () => {
     validate.callback(callback)
 
-    const xhr = new XMLHttpRequest
-
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            const posts = JSON.parse(xhr.response)
-
-            callback(null, posts)
-
-            return
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`
         }
+    })
+        .catch(() => { throw new SystemError('server error') })
+        .then(response => {
+            if (response.status === 200)
 
-        const { error, message } = JSON.parse(xhr.response)
+                return response.json()
+                    .catch(() => { throw new SystemError('server error') })
+                    .then(posts => posts)
 
-        const constructor = errors[error]
 
-        callback(new constructor(message))
-    }
+            return response.json()
+                .catch(() => { throw new SystemError('server error') })
+                .then(body => {
+                    const { error, message } = body
 
-    xhr.open('GET', `${import.meta.env.VITE_API_URL}/posts`)
+                    const constructor = errors[error]
 
-    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
-
-    xhr.send()
+                    throw new constructor(message)
+                })
+        })
 }
 
 export default getAllPosts
+
+
+
+
+
+const xhr = new XMLHttpRequest
+
+// xhr.onload = () => {
+//     if (xhr.status === 200) {
+//         const posts = JSON.parse(xhr.response)
+
+//         callback(null, posts)
+
+//         return
+//     }
+
+//     const { error, message } = JSON.parse(xhr.response)
+
+//     const constructor = errors[error]
+
+//     callback(new constructor(message))
+// }
+
+// xhr.open('GET', `${import.meta.env.VITE_API_URL}/posts`)
+
+// xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
+
+// xhr.send()

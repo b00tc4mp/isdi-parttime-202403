@@ -58,6 +58,12 @@ Time {
 
 }
 
+.LikeIconText {
+    margin-left: 0.5rem;
+    font-family: "Sigmar", sans-serif;
+    font-size: large;
+}
+
 .Button.CommentText {
     margin-top: 0.5rem;
     margin-bottom: 0rem;
@@ -71,6 +77,8 @@ Time {
     width: fit-content;
 }
 
+
+/* 
 .Button.CommentText:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -80,3 +88,4 @@ Time {
 /* .Button.CommentText:active {
     scale: 0.9;
 } */
+*/

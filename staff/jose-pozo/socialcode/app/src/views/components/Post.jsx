@@ -38,23 +38,18 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
     const handleToggleLikePost = () => {
         try {
-            logic.toggleLikePost(post.id, error => {
-                if (error) {
+            logic.toggleLikePost(post.id)
+                .then(() => onPostLikeToggled())
+                .catch((error) => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                onPostLikeToggled()
-            })
+                })
 
         } catch (error) {
             console.error(error)
 
             alert(error.message)
-
         }
     }
 
@@ -83,6 +78,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
             <Button onClick={handleToggleLikePost} className='IconButton'>
                 <Image className='IconImage' src={userHasLiked ? '../../../public/IconHeartF.png' : '../../../public/IconHeart.png'} />
+                <p className='LikeIconText'>+{post.likes.length}</p>
             </Button>
 
             <Button className='IconButton'>
