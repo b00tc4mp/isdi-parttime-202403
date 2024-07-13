@@ -42,7 +42,7 @@ function PostList({ refreshStamp }) {
     }
   }
 
-  const handlePostDeleted = () => {
+  const handlePostLoadDeleted = () => {
     setPage(1)
     setPosts([])
     loadPosts(1, limit)
@@ -58,12 +58,7 @@ function PostList({ refreshStamp }) {
     <>
       <View tag="section" className="Section">
         {posts.map((post) => (
-          <Post
-            post={post}
-            key={post.id}
-            onPostDeleted={handlePostDeleted}
-            onCommentPostSubmitted={handlePostDeleted}
-          ></Post>
+          <Post post={post} key={post.id} onPostDeleted={handlePostLoadDeleted}></Post>
         ))}
       </View>
     </>

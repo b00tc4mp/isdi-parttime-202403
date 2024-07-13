@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 65%;
+  width: 70%;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
@@ -91,4 +91,11 @@
 
   animation-timeline: --reveal;
   animation-range: entry 5% cover 50%;
+}
+
+/* media queries */
+@media (max-width: 425px) {
+  .Article {
+    width: 95%;
+  }
 }

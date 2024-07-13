@@ -47,12 +47,14 @@ function CreateComment({ postId, onCancelCreatedCommentClick, onCommentPostSubmi
   return (
     <>
       <FormWithFeedback className="CreateComment" onSubmit={handleCreateCommentSubmit} message={message}>
-        <label>Write a comment</label>
+        <span className="CreateComment-header">
+          <label>Write a comment</label>
+          <i className="fa-regular fa-rectangle-xmark" onClick={handleCancelCommentClick}></i>
+        </span>
         <textarea className="TextArea" placeholder="bla... bla... bla..." id="textComment"></textarea>
         <Button className="Button SubmitButton" type="submit">
           Add Comment
         </Button>
-        <i className="fa-regular fa-rectangle-xmark" onClick={handleCancelCommentClick}></i>
       </FormWithFeedback>
     </>
   )
