@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { NotFoundError, MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const createPost = (userId, title, image, description) => {

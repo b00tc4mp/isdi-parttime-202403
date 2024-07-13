@@ -1,6 +1,6 @@
 import { User, Post } from '../data/index.js'
 import validate from 'com/validate.js'
-import { NotFoundError, MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError,  SystemError } from 'com/errors.js'
 
 function toggleLikePost(userId, postId) {
     validate.id(userId, 'userId')

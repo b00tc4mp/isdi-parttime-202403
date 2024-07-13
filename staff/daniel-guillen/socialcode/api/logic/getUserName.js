@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const getUserName = (userId, targetUserId) => {
