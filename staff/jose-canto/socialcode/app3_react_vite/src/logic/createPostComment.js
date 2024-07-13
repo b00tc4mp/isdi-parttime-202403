@@ -14,14 +14,14 @@ const createPostComment = (postId, textComment) => {
     body: JSON.stringify({ postId, text: textComment })
 
   })
-    .catch(error => { throw new SystemError(error) })
+    .catch(() => { throw new SystemError("connection error") })
     .then(response => {
       if (response.status === 201) {
         return
       }
 
       return response.json()
-        .catch(error => { throw new SystemError(error) })
+        .catch(() => { throw new SystemError("connection error") })
         .then(body => {
           const { error, message } = body
 

@@ -8,7 +8,7 @@ const getAllPosts = (page, limit) => {
       "Authorization": `Bearer ${sessionStorage.token}`
     }
   })
-    .catch(() => callback(new SystemError("connection error")))
+    .catch(() => { throw new SystemError("connection error") })
     .then(response => {
       if (response.status === 200) {
         return response.json()
