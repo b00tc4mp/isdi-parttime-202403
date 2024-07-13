@@ -1,4 +1,4 @@
-import { MatchError, SystemError } from "com/errors.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import { User, Post } from '../data/models/index.js'
 
@@ -11,7 +11,7 @@ function toggleLike(userId, postId) {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new MatchError('user not found')
+                throw new NotFoundError('user not found')
 
             }
 
@@ -20,7 +20,7 @@ function toggleLike(userId, postId) {
                 .then(post => {
 
                     if (!post) {
-                        throw new MatchError('post not found')
+                        throw new NotFoundError('post not found')
 
                     }
 

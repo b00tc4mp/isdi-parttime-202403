@@ -1,5 +1,5 @@
 import { User, Post } from '../data/models/index.js'
-import { SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 
@@ -14,7 +14,7 @@ const createPost = (userId, title, image, description) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new NotFounfError('user not found')
+                throw new NotFoundError('user not found')
 
             }
             const post = {

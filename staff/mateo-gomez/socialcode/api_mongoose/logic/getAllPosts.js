@@ -1,6 +1,6 @@
 import validate from 'com/validate.js'
 import { User, Post } from '../data/models/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 
 const getAllPosts = (userId) => {
@@ -10,7 +10,7 @@ const getAllPosts = (userId) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new MatchError('user not found')
+                throw new NotFoundError('user not found')
 
             }
 

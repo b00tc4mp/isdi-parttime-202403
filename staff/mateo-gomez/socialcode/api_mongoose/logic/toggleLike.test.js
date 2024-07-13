@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
 
         try {
-            toggleLike('668a739a50df84d483367be9', '668e9d4c0c347f08b5781df7')
+            toggleLike('668a892327b39d7b19b4e254', '668f9e232be9a16b2dfaf979')
                 .then(() => console.log('user toggled like'))
                 .catch(error => console.error(error))
 

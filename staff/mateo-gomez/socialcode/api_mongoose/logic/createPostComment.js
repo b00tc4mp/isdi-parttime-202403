@@ -1,30 +1,29 @@
-import { MatchError, SystemError } from "com/errors.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 import { User, Post } from "../data/models/index.js"
 import validate from "com/validate.js"
 
-const createPostComment = (userId, postId, comment, callback) => {
+const createPostComment = (userId, postId, comment) => {
     validate.id(userId, 'userId')
     validate.id(postId, 'postId')
     validate.text(comment, 'comment', 150)
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
+                throw new NotFoundError('user not found')
 
-                return
             }
 
-            Post.findById(postId)
+            return Post.findById(postId)
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
                     if (!post) {
-                        callback(new MatchError('post not found'))
+                        throw new NotFoundError('post not found')
 
-                        return
                     }
 
-                    Post.findByIdAndUpdate((postId), {
+                    return Post.findByIdAndUpdate((postId), {
                         $push: {
                             comment: {
                                 author: userId,
@@ -35,12 +34,11 @@ const createPostComment = (userId, postId, comment, callback) => {
 
                         }
                     })
-                        .then(() => callback(null))
                         .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
                 })
-                .catch(error => { throw new SystemError(error.message) })
         })
-        .catch(error => { throw new SystemError(error.message) })
+
 
 }
 

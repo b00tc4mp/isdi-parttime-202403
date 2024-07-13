@@ -1,6 +1,6 @@
 import validate from 'com/validate.js'
 import { Types } from 'mongoose'
-import { MatchError, SystemError } from 'com/errors.js'
+import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
 import { User, Post } from '../data/models/index.js'
 
 const { ObjectId } = Types
@@ -14,7 +14,7 @@ const deletePost = (userId, postId) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new MatchError('user not found')
+                throw new NotFoundError('user not found')
 
             }
 
@@ -23,7 +23,7 @@ const deletePost = (userId, postId) => {
                 .then(post => {
 
                     if (!post) {
-                        throw new MatchError('post not found')
+                        throw new NotFoundError('post not found')
 
                     }
 

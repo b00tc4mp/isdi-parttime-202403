@@ -3,8 +3,9 @@ import express from 'express'
 //import fs from 'fs'
 import logic from './logic/index.js'
 import cors from 'cors'
-import { ContentError, DuplicityError, SystemError, MatchError, CredentialsError, NotFoundError } from 'com/errors.js'
+import { SystemError, CredentialsError } from 'com/errors.js'
 import mongoose from 'mongoose'
+import handleErrorResponse from './helper/handleErrorResponse.js'
 
 import jwt from './util/jsonwebtoken-promised.js'
 
@@ -14,7 +15,6 @@ const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
-        const { JsonWebTokenError, TokenExpiredError } = jwt
 
         const api = express()
 
@@ -26,27 +26,7 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/', (req, res) => res.send('Hello, World!'))
 
-        function handleErrorResponse(error, res) {
-            let status = 500
 
-            if (error instanceof DuplicityError)
-                status = 409
-
-            else if (error instanceof ContentError)
-                status = 400
-
-            else if (error instanceof MatchError)
-                status = 412
-
-            else if (error instanceof CredentialsError)
-                status = 401
-
-            else if (error instanceof NotFoundError)
-                status = 404
-
-            res.status(status).json({ error: error.constructor.name, message: error.message })
-
-        }
 
         api.post('/users', jsonBodyParser, (req, res) => {
             const { name, surname, email, username, password, passwordRepeat } = req.body
