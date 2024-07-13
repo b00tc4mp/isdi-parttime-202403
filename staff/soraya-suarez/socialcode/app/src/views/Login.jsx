@@ -6,6 +6,7 @@ import Field from '../components/core/Field'
 import SubmitButton from '../components/core/SubmitButton'
 import Link from '../components/core/Link'
 import Title from '../components/core/Title'
+
 import FormWithFeedback from '../components/library/FormWithFeedback'
 import View from '../components/library/View'
 
@@ -23,17 +24,13 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
         const password = form.password.value
 
         try {
-            logic.loginUser(username, password, error => {
-                if (error) {
+            logic.loginUser(username, password)
+                .then(() => onUserLoggedIn())
+                .catch(error => {
                     console.log(error)
 
                     setMessage(error.message)
-
-                    return
-                }
-
-                onUserLoggedIn()
-            })
+                })
         } catch (error) {
             console.log(error)
 

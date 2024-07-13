@@ -27,17 +27,13 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
         const description = form.description.value
 
         try {
-            logic.createPost(title, image, description, error => {
-                if (error) {
+            logic.createPost(title, image, description)
+                .then(() => onPostCreated())
+                .catch(error => {
                     console.error(error)
 
                     setMessage(error.message)
-
-                    return
-                }
-
-                onPostCreated()
-            })
+                })
         } catch (error) {
             console.error(error)
 

@@ -1,40 +1,32 @@
 import { User, Post } from '../data/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
-import { ObjectId } from 'mongodb'
+import { Types } from 'mongoose'
 
-const deletePost = (userId, postId, callback) => {
+const { ObjectId } = Types
+
+const deletePost = (userId, postId) => {
     validate.id(userId, 'userId')
     validate.id(postId, 'postId')
-    validate.callback(callback)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new MatchError('user not found'))
+            if (!user) throw new NotFoundError('user not found')
 
-                return
-            }
-
-            Post.findById(postId).lean()
+            return Post.findById(postId).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
-                    if (!post) {
-                        callback(new MatchError('post not found'))
-                        return
-                    }
+                    if (!post) throw new NotFoundError('post not found')
+                    
+                    if (post.author.toString() !== userId)
+                        throw new MatchError('post author does not match user')
 
-                    if (post.author.toString() !== userId) {
-                        callback(new MatchError('post author does not match user'))
-                        return
-                    }
-
-                    Post.deleteOne({ _id: new ObjectId(postId) })
-                        .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
+                    return Post.deleteOne({ _id: new ObjectId(postId) })
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default deletePost

@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
+
 import View from '../components/library/View'
+
 import Header from './components/Header'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
+
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
 
@@ -24,27 +27,25 @@ function Home({ onUserLoggedOut }) {
 
     useEffect(() => {
         console.log('Home -> useEffect')
-        // setTimeout(() => {
+
         try {
-            logic.getUserName((error, name) => {
-                if (error) {
+            logic.getUserName()
+                .then(name => {
+                    console.log('Home -> setName')
+
+                    setName(name)
+                })
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
+                })
 
-                    return
-                }
-
-                console.log('Home -> setName')
-
-                setName(name)
-            })
         } catch (error) {
             console.error(error)
 
             alert(error.message)
         }
-        // }, 10000)
     }, [])
 
     const handleCreatePostClick = () => setView('create-post')
@@ -65,6 +66,7 @@ function Home({ onUserLoggedOut }) {
 
         <View tag="main">
             <PostList refreshStamp={postListRefreshStamp} />
+
             {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
 
