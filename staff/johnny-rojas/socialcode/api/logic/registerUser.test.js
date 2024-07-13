@@ -8,9 +8,9 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            registerUser('Wendy', 'Darling', 'wendy@darling.com', 'wendydarling', '123123123', '123123123')
+             registerUser('Wendy', 'Darling', 'wendy@darling.com', 'wendydarling', '123123123', '123123123')
             // registerUser('Peter', 'Pan', 'peter@pan.com', 'peterpan', '123123123', '123123123')
-            //registerUser('Coco', 'Drilo', 'coco@drilo.com', 'cocodrilo', '123123123', '123123123')
+            // registerUser('Coco', 'Drilo', 'coco@drilo.com', 'cocodrilo', '123123123', '123123123')
                 .then(() => console.log('user registered'))
                 .catch(error => console.error(error))
         } catch (error) {

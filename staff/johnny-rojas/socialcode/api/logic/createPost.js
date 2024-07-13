@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const createPost = (userId, title, image, description) => {
@@ -11,7 +11,7 @@ const createPost = (userId, title, image, description) => {
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new MatchError('user not found')
+            if (!user) throw new NotFoundError('user not found')
 
             const post = {
                 author: userId,
