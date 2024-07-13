@@ -1,30 +1,31 @@
-import errors from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 const toggleLikePost = (postId, callback) => {
     validate.id(postId, 'postId')
     validate.callback(callback)
 
-    const xhr = new XMLHttpRequest
-
-    xhr.onload = () => {
-        if (xhr.status === 204) {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/likes`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`
+        }
+    })
+    .then(response => {
+        if (response.status === 204) {
             callback(null)
-
             return
         }
+        return response.json()
+                .then(body => {
+                    const { error, message } = body
+                    const constructor = errors[error]
 
-        const { error, message } = JSON.parse(xhr.response)
-
-        const constructor = errors[error]
-
-        callback(new constructor(message))
-    }
-
-    xhr.open('PATCH', `${import.meta.env.VITE_API_URL}/posts/${postId}/likes`)
-
-    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.token}`)
-    xhr.send()
+                    callback(new constructor(message))
+                })
+                .catch(error => callback(new SystemError(error.message)))
+        })
+        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default toggleLikePost
