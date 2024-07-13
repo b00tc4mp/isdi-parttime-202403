@@ -14,12 +14,12 @@ const createPostComment = (postId, comment) => {
         body: JSON.stringify({ postId, comment })
 
     })
-        .catch(() => { throw new SystemError('server error') })
+        .catch(() => { throw new SystemError('1 error') })
         .then(response => {
-            if (response.status === 201) return
+            if (response.status === 201) { return comment }
 
             return response.json()
-                .catch(() => { throw new SystemError('srver error') })
+                .catch(() => { throw new SystemError('2 error') })
                 .then(body => {
                     const { error, message } = body
 

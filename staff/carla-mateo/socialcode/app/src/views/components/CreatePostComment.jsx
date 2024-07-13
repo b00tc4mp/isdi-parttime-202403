@@ -2,7 +2,6 @@ import { useState } from "react"
 import FormWithFeedback from '../../components/library/FormWithFeedback'
 import Button from "../../components/core/Button"
 import Label from "../../components/core/Label"
-import Text from "../../components/core/Text"
 
 import logic from "../../logic"
 
@@ -20,7 +19,7 @@ function CreatePostComment({ postId, onCommentPostSubmitted }) {
 
         try {
             logic.createPostComment(postId, comment)
-                .then(() => onCommentPostSubmitted())
+                .then((newComment) => onCommentPostSubmitted(newComment))
                 .catch(error => {
                     console.error(error.message)
 
@@ -36,7 +35,7 @@ function CreatePostComment({ postId, onCommentPostSubmitted }) {
         <>
             <FormWithFeedback className="CreatePostComment" onSubmit={handleCreateCommentSubmit} message={message}>
                 <Label>Write a comment</Label>
-                <Text className="Text" placeholder="bla... bla..." id="comment"></Text>
+                <textarea className="Text" placeholder="bla... bla..." id="comment"></textarea>
                 <Button className="Button SubmitButton" type="submit">
                     Add Comment
                 </Button>

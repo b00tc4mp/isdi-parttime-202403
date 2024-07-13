@@ -20,7 +20,7 @@ const createPostCommentHandler = (req, res) => {
 
                 try {
                     logic.createPostComment(userId, postId, comment)
-                        .then(() => res.status(204).send())
+                        .then(newComment => res.status(201).send(newComment)) // Retornar el nuevo comentario
                         .catch(error => handleErrorResponse(error, res))
                 } catch (error) {
                     handleErrorResponse(error, res)

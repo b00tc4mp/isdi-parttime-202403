@@ -10,7 +10,7 @@ import CreatePostComment from './CreatePostComment'
 import logic from '../../logic'
 
 
-function Post({ post, onPostDeleted, onPostLikeToggled, onCreatePostComment }) {
+function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted }) {
     console.log('Post -> render')
 
     const [showAddComment, setShowAddComment] = useState(false)
@@ -18,7 +18,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCreatePostComment }) {
 
     useEffect(() => {
         setComments(post.comments)
-    }, [])
+    }, [post.comments])
 
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
@@ -57,6 +57,11 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCreatePostComment }) {
     const handleShowComment = () => {
         setShowAddComment(!showAddComment)
     }
+    const handleCommentPostSubmitted = (comment) => {
+        setComments(prevComments => [...prevComments, comment])// Añadir el nuevo comentario al estado
+        onCommentPostSubmitted()
+        setShowAddComment(false)
+    }
 
     return <View tag="article" className="Article" aling="">
         <View direction="row">
@@ -69,23 +74,33 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCreatePostComment }) {
 
         <Text>{post.description}</Text>
 
+        {showAddComment && (
+            <CreatePostComment
+                postId={post.id}
+                onCommentPostSubmitted={handleCommentPostSubmitted}
+            />
+        )}
+
         <View direction='row'>
             <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
         </View>
+
 
         <View direction="row">
             <Time>{post.date}</Time>
 
             <Button onClick={handleShowComment}>Comment</Button>
 
-            {showAddComment && (
-                <CreatePostComment
-                    postId={post.id}
-                />
-            )}
-
             {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}
         </View>
+
+        <View tag='section' className="comment">
+            {comments.map((comment, index) => (
+                <p key={index}> {comment.author} : {comment.comment} </p>
+            ))}
+        </View>
+
+
     </View>
 }
 

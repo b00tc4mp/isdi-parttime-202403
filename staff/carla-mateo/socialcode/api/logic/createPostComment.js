@@ -23,13 +23,7 @@ const createPostComment = (userId, postId, comment) => {
                         .then(() => { })
                         .catch(() => { throw new SystemError('server error') })
                 })
-
-
         })
-
-
-
-
 }
 
 export default createPostComment

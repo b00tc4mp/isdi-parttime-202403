@@ -12,7 +12,7 @@ const registerUserHandler = (req, res) => {
                 handleErrorResponse(error, res)
             })
     } catch (error) {
-        handleErrorResponse(error, res)
+        handleErrorResponse(error)
     }
 }
 

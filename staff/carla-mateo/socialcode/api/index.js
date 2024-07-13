@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import routeHandler from './handlers/index.js'
+import handleErrorResponse from './helper/handleErrorResponse.js'
 
 const { MONGODB_URL, PORT } = process.env
 
@@ -33,6 +34,13 @@ mongoose.connect(MONGODB_URL)
         api.patch('/posts/:postId/likes', routeHandler.toggleLikePostHandler)
 
         api.patch('/posts/:postId/comments', jsonBodyParser, routeHandler.createPostCommentHandler)
+
+        api.get('/force-error', (req, res, next) => {
+            next(new Error('Forzando error para pruebas'))
+        })
+        api.use((error, req, res, next) => {
+            handleErrorResponse(error, res)
+        })
 
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
 

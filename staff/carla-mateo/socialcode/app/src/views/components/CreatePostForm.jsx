@@ -31,7 +31,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated, onClickScrollT
             logic.createPost(title, image, description)
                 .then(() => onPostCreated(), onClickScrollTop())
                 .catch(error => {
-                    console.error(error)
+                    console.error(error.message)
 
                     setMessage(error.message)
                 })
