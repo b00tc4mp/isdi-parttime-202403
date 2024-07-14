@@ -22,31 +22,17 @@ function CreatePostForm({ onPostCreated, onCancel }) {
     const description = form.description.value;
 
     try {
-      logic.createPost(title, image, description, (error) => {
-        if (error) {
-          if (error instanceof ContentError) {
-            setFeedback(`${error.message}`);
-            setTimeout(() => setFeedback(""), 5000);
-          } else {
-            setFeedback("Error. please try again later");
-            setTimeout(() => setFeedback(""), 5000);
-          }
-
-          return;
-        }
-
-        onPostCreated();
-      });
-    } catch (error) {
-      if (error) {
-        if (error instanceof ContentError) {
+      logic
+        .createPost(title, image, description)
+        .then(() => onPostCreated())
+        .catch((error) => {
+          console.error(error);
           setFeedback(`${error.message}`);
           setTimeout(() => setFeedback(""), 5000);
-        } else {
-          setFeedback("Error. please try again later");
-          setTimeout(() => setFeedback(""), 5000);
-        }
-      }
+        });
+    } catch (error) {
+      setFeedback(`${error.message}`);
+      setTimeout(() => setFeedback(""), 5000);
     }
   };
 

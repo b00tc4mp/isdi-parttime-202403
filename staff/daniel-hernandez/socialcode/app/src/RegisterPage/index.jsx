@@ -45,28 +45,26 @@ function RegisterPage() {
     const repeatedPassword = form.repeatedPassword.value;
 
     try {
-      logic.registerUser(
-        name,
-        surname,
-        email,
-        username,
-        password,
-        repeatedPassword,
-        (error) => {
-          if (error) {
-            setWarnMessage(`${error.message}`);
-            handleShake();
-
-            return;
-          }
-
+      logic
+        .registerUser(
+          name,
+          surname,
+          email,
+          username,
+          password,
+          repeatedPassword,
+        )
+        .then(() => {
           setSuccessMessage("Registered successfully, thank you!");
           setTimeout(() => {
             setSuccessMessage("");
             setView("login");
           }, 1000);
-        },
-      );
+        })
+        .catch((error) => {
+          setWarnMessage(`${error.message}`);
+          handleShake();
+        });
     } catch (error) {
       setWarnMessage(`${error.message}`);
       handleShake();

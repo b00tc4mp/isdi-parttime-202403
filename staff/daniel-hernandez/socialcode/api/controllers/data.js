@@ -1,5 +1,5 @@
 import logic from "../logic/index.js";
-import jwt from "jsonwebtoken";
+import jwt from "../util/jsonwebtoken-promisified.js";
 const { JsonWebTokenError, TokenExpiredError } = jwt;
 import { SystemError } from "com/errors.js";
 const { JWT_SECRET } = process.env;
@@ -8,7 +8,7 @@ const { JWT_SECRET } = process.env;
 const getPosts = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+    const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
 
     const page = Number(req.query.page || 1);
     const limit = Number(req.query.limit) || 10;
@@ -41,7 +41,7 @@ const getPosts = async (req, res) => {
 const createPost = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+    const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
     const { title, image, description } = req.body;
 
     await logic.createPost(userId, title, image, description);
@@ -90,7 +90,7 @@ const createUser = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+    const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
     const { targetUserId } = req.params;
 
     const name = await logic.getUsersName(userId, targetUserId);
@@ -117,7 +117,7 @@ const getUser = async (req, res) => {
 const deletePost = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+    const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
     const { postId } = req.params;
 
     await logic.deletePost(userId, postId);
@@ -143,7 +143,7 @@ const authUser = async (req, res) => {
 
   try {
     const userId = await logic.authenticateUser(username, password);
-    const token = jwt.sign({ sub: userId }, JWT_SECRET, {
+    const token = await jwt.sign({ sub: userId }, JWT_SECRET, {
       expiresIn: "30d",
     });
 
@@ -159,7 +159,7 @@ const authUser = async (req, res) => {
 const likePost = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+    const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
     const { postId } = req.params;
 
     await logic.likePost(userId, postId);

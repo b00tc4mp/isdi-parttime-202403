@@ -1,33 +1,33 @@
 import errors, { SystemError } from "com/errors";
 import validate from "com/validate";
 
-const likePost = (id, callback) => {
+const likePost = (id) => {
   validate.id(id, "Post ID");
-  validate.callback(callback);
 
-  fetch(`${import.meta.env.VITE_API_URL}/posts/${id}/likes`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/posts/${id}/likes`, {
     method: "PATCH",
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,
     },
   })
+    .catch(() => {
+      throw new SystemError("Server error");
+    })
     .then((res) => {
-      if (res.status === 204) {
-        callback(null);
-        return;
-      }
+      if (res.status === 204) return;
 
       return res
         .json()
+        .catch(() => {
+          throw new SystemError("Server error");
+        })
         .then((body) => {
           const { error, message } = body;
           const constructor = errors[error];
 
-          callback(new constructor(message));
-        })
-        .catch((error) => callback(new SystemError(error.message)));
-    })
-    .catch((error) => callback(new SystemError(error.message)));
+          throw new constructor(message);
+        });
+    });
 };
 
 export default likePost;

@@ -29,16 +29,25 @@ const likePost = (userId, postId) => {
       throw new MatchError("post not found");
     }
 
-    const index = post.likes.indexOf(userId);
-
-    if (index < 0) {
-      post.likes.push(userId);
-    } else {
-      post.likes.splice(index, 1);
-    }
+    const includes = post.likes.some(
+      (userObjectId) => userObjectId.toString() === userId,
+    );
 
     try {
-      await post.save();
+      await Post.updateOne(
+        { _id: post._id },
+        includes
+          ? {
+              $pull: {
+                likes: user._id,
+              },
+            }
+          : {
+              $push: {
+                likes: user._id,
+              },
+            },
+      );
     } catch (error) {
       throw new SystemError(`failed to like post: ${error.message}`);
     }

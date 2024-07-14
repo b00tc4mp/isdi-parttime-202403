@@ -12,16 +12,13 @@ function Header() {
 
   useEffect(() => {
     try {
-      logic.getUsersName((error, name) => {
-        if (error) {
+      logic
+        .getUsersName()
+        .then((name) => setName(name))
+        .catch((error) => {
           console.error(error);
           alert(error);
-
-          return;
-        }
-
-        setName(name);
-      });
+        });
     } catch (error) {
       console.error(error);
       alert(error);

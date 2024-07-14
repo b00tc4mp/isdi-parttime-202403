@@ -41,35 +41,6 @@ const deletePost = (userId, id) => {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
   })();
-
-  /* return User
-    .findById(userId)
-    .lean()
-    .then((user) => {
-      if (!user) {
-        throw new MatchError("user not found");
-      }
-
-      return Post.findById(id).lean();
-    })
-    .then((post) => {
-      if (!post) {
-        throw new MatchError("post not found");
-      }
-
-      if (post.author.toString() !== userId) {
-        throw new MatchError("post author does not match user");
-      }
-
-      return Post.deleteOne({ _id: new ObjectId(id) });
-    })
-    .catch((error) => {
-      if (error instanceof MatchError) {
-        throw error;
-      } else {
-        throw new SystemError(`failed to delete post: ${error.message}`);
-      }
-    }); */
 };
 
 export default deletePost;

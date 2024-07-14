@@ -36,32 +36,6 @@ const createPost = (userId, title, image, description) => {
       throw new SystemError(`failed to create post: ${error.message}`);
     }
   })();
-
-  /* return User
-    .findById(userId)
-    .lean()
-    .then((user) => {
-      if (!user) {
-        throw new MatchError("user not found");
-      }
-
-      const post = {
-        author: userId,
-        title,
-        image,
-        description,
-        data: new Date(),
-      };
-
-      return Post.create(post);
-    })
-    .catch((error) => {
-      if (error instanceof MatchError) {
-        throw error;
-      } else {
-        throw new SystemError(`failed to create post: ${error.message}`);
-      }
-    }); */
 };
 
 export default createPost;

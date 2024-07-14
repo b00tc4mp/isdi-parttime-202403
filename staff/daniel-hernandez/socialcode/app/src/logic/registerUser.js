@@ -1,6 +1,5 @@
-import errors, { SystemError } from "com/errors";
+import errors, { SystemError, ContentError } from "com/errors";
 import validate from "com/validate";
-const { ContentError } = errors;
 
 const registerUser = (
   name,
@@ -9,7 +8,6 @@ const registerUser = (
   username,
   password,
   repeatedPassword,
-  callback,
 ) => {
   if (
     !name ||
@@ -28,9 +26,8 @@ const registerUser = (
   validate.username(username);
   validate.password(password);
   validate.matchingPasswords(password, repeatedPassword);
-  validate.callback(callback);
 
-  fetch(`${import.meta.env.VITE_API_URL}/users`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -44,23 +41,24 @@ const registerUser = (
       repeatedPassword,
     }),
   })
+    .catch(() => {
+      throw new SystemError("Server error");
+    })
     .then((res) => {
-      if (res.status === 201) {
-        callback(null);
-        return;
-      }
+      if (res.status === 201) return;
 
       return res
         .json()
+        .catch(() => {
+          throw new SystemError("server error");
+        })
         .then((body) => {
           const { error, message } = body;
           const constructor = errors[error];
 
-          callback(new constructor(message));
-        })
-        .catch((error) => callback(new SystemError(error.message)));
-    })
-    .catch((error) => callback(new SystemError(error.message)));
+          throw new constructor(message);
+        });
+    });
 };
 
 export default registerUser;

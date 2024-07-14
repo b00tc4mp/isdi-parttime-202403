@@ -36,19 +36,22 @@ function LoginPage() {
     const password = form.password.value;
 
     try {
-      logic.loginUser(username, password, (error) => {
-        if (error) {
+      logic
+        .loginUser(username, password)
+        .then(() => {
+          setSuccessMessage("Logged in successfully");
+          setTimeout(() => {
+            setSuccessMessage("");
+            setView("home");
+          }, 1000);
+        })
+        .catch((error) => {
           shakeButton();
-          console.error(`error. please fix it or try again later.`);
-          return;
-        }
-
-        setSuccessMessage("Logged in successfully");
-        setTimeout(() => {
-          setSuccessMessage("");
-          setView("home");
-        }, 1000);
-      });
+          console.error(
+            `error. please fix it or try again later.`,
+            error.message,
+          );
+        });
     } catch (error) {
       shakeButton();
       setTimeout(() => setShake(false), 400);

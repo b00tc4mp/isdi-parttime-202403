@@ -64,34 +64,6 @@ const createUser = (
       throw new SystemError(`failed to create user: ${error.message}`);
     }
   })();
-
-  /* return User
-    .findOne({ $or: [{ email }, { username }] })
-    .then((existingUser) => {
-      if (existingUser) {
-        throw new DuplicityError("Username or email already exist");
-      }
-
-      return bcrypt.hash(password, 8);
-    })
-    .then((hash) => {
-      const userData = {
-        name,
-        surname,
-        email,
-        username,
-        password: hash,
-      };
-
-      return User.create(userData);
-    })
-    .catch((error) => {
-      if (error instanceof DuplicityError) {
-        throw error;
-      } else {
-        throw new SystemError(`failed to create user: ${error.message}`);
-      }
-    }); */
 };
 
 export default createUser;

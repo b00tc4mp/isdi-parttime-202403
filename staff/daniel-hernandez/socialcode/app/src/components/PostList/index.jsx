@@ -27,24 +27,23 @@ function PostList({ refreshTimeStamp, mainRef }) {
 
   const loadPosts = (page) => {
     try {
-      logic.getAllPosts(page, 10, (error, { posts, total }) => {
-        if (error) {
+      // TODO: show feedback in a more user-friendly way
+      logic
+        .getAllPosts(page, 10)
+        .then(({ posts, total }) => {
+          if (!Array.isArray(posts)) {
+            console.error("Expected an array but got: ", posts);
+            alert("An error occurred while loading the posts.");
+            return;
+          }
+
+          setPosts(posts);
+          setTotalPages(Math.ceil(total / 10));
+        })
+        .catch((error) => {
           console.error(error);
-          // TODO: show feedback in a more user-friendly way
           alert(error.message);
-
-          return;
-        }
-
-        if (!Array.isArray(posts)) {
-          console.error("Expected an array, but got: ", posts);
-          alert("An error occurred while loading posts.");
-          return;
-        }
-
-        setPosts(posts);
-        setTotalPages(Math.ceil(total / 10));
-      });
+        });
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -57,18 +56,17 @@ function PostList({ refreshTimeStamp, mainRef }) {
 
   const confirmDelete = () => {
     try {
-      logic.deletePost(postToDelete, (error) => {
-        if (error) {
-          console.log(error.message);
-          alert(error.message);
+      logic
+        .deletePost(postToDelete)
+        .then(() => {
+          loadPosts(page);
+          setPostToDelete(null);
+        })
+        .catch((error) => {
           // TODO: show errors more gracefully
-
-          return;
-        }
-
-        loadPosts(page);
-        setPostToDelete(null);
-      });
+          console.error(error);
+          alert(error.message);
+        });
     } catch (error) {
       console.error(error.message);
       alert(error.message);
@@ -95,17 +93,14 @@ function PostList({ refreshTimeStamp, mainRef }) {
 
   const handleLiked = (postId) => {
     try {
-      logic.likePost(postId, (error) => {
-        if (error) {
+      logic
+        .likePost(postId)
+        .then(() => loadPosts(page))
+        .catch((error) => {
           // TODO: show error more gracefully
           console.error(error);
           alert(error.message);
-
-          return;
-        }
-
-        loadPosts(page);
-      });
+        });
     } catch (error) {
       // TODO: show error more gracefully
       console.error(error);
