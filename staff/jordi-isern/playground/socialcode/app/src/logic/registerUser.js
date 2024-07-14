@@ -1,36 +1,35 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerUser = (name, surname, email, username, password, passwordRepeat, callback) => {
+const registerUser = (name, surname, email, username, password, passwordRepeat) => {
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
     validate.username(username)
     validate.password(password)
     validate.passwordMatch(password, passwordRepeat)
-    validate.callback(callback)
 
-    fetch(`${import.meta.env.VITE_API_URL}/users`,{
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
-        headers:{
-        'Content-Type': 'application/json'
+        headers: {
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({ name, surname, email, username, password, passwordRepeat })
     })
+        .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if(response.status === 201){
-                callback(null)
-                return
-            }
+            if (response.status === 201) return
+
             return response.json()
-                .then((body) => {
-                    const {error, message} = body
+                .catch(() => { throw new SystemError('server error') })
+                .then(body => {
+                    const { error, message } = body
+
                     const constructor = errors[error]
-                    callback(new constructor(message))
-                } )
-                .catch(error => callback(new SystemError(error.message)))
+
+                    throw new constructor(message)
+                })
         })
-        .catch(error => callback(new SystemError('network error')))
 
 }
 

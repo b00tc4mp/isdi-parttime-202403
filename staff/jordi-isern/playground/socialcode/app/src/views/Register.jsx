@@ -8,42 +8,43 @@ import Title from '../Components/Core/Title.jsx'
 import View from '../Components/Library/View.jsx'
 
 
-function Register ({onUserRegistered ,onLoginLinkClick}){
+function Register({ onUserRegistered, onLoginLinkClick }) {
+  console.log('Register -> render')
 
-    const  handleRegisterSubmit = event => {
-        event.preventDefault()
-    
-        const form = event.target
-    
-        const name = form.name.value
-        const surname = form.surname.value
-        const email = form.email.value
-        const username = form.username.value
-        const password = form.password.value
-        const passwordRepeat = form.passwordRepeat.value
-    
-        try{
-          logic.registerUser(name, surname, email, username, password, passwordRepeat)
-            .then(() => onUserRegistered ())
-            .catch(error => {
-              console.log(error)
+  const [message, setMessage] = useState('')
 
-              setMessage(error.message)
-            })
-    }catch(error) {
-      console.error(error)
-
-      setMessage(error.message)
-    }
-  }
-    
-    const handleLoginClick = event =>{
+  const handleRegisterSubmit = event => {
       event.preventDefault()
-    
+
+      const form = event.target
+
+      const name = form.name.value
+      const surname = form.surname.value
+      const email = form.email.value
+      const username = form.username.value
+      const password = form.password.value
+      const passwordRepeat = form.passwordRepeat.value
+
+      try {
+          logic.registerUser(name, surname, email, username, password, passwordRepeat)
+              .then(() => onUserRegistered())
+              .catch(error => {
+                  console.log(error)
+
+                  setMessage(error.message)
+              })
+      } catch (error) {
+          console.error(error)
+
+          setMessage(error.message)
+      }
+  }
+
+  const handleLoginClick = event => {
+      event.preventDefault()
+
       onLoginLinkClick()
-    }
-
-
+  }
     return (<View tag='main'>
         <Title>Register</Title>
         <FormWithFeedback onSubmit={handleRegisterSubmit}>

@@ -5,6 +5,7 @@ import View from "../../../Components/Library/View";
 import logic from "../../../logic";
 import Comment from "./Comment";
 
+
 function CommentList ({comments}){
     console.log('commentList -> render')
 

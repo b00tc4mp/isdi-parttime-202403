@@ -1,10 +1,7 @@
 import './PostList.css'
 import { useEffect, useState } from 'react'
 
-import Heading from '../../../Components/Core/Heading'
-import Image from'../../../Components/Core/Image'
 import View from '../../../Components/Library/View'
-import Button from '../../../Components/Core/Button'
 
 import logic from '../../../logic'
 import Post from './Post'
@@ -22,19 +19,17 @@ function PostList({ refreshStamp }) {
 
     const loadPosts = () => {
         try {
-            logic.getAllPosts((error, posts) => {
-                if (error) {
+            logic.getAllPosts()
+                .then(posts => {
+                    console.log('PostList -> setPosts')
+
+                    setPosts(posts)
+                })
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                console.log('PostList -> setPosts')
-
-                setPosts(posts)
-            })
+                })
         } catch (error) {
             console.error(error)
 
@@ -44,12 +39,12 @@ function PostList({ refreshStamp }) {
 
     const handlePostDeleted = () => loadPosts()
 
-    const handleToggleLikePost = () => loadPosts()
+    const handlePostLikeToggled = () => loadPosts()
 
-    const handlePostComented = () => loadPosts()
+    const handlePostCommented = () => loadPosts()
 
     return <View tag="section" className="PostList">
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} onPostLikeToggled={handleToggleLikePost} onPostCommented={handlePostComented}/>)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} onPostLikeToggled={handlePostLikeToggled} onPostCommented={handlePostCommented} />)}
     </View>
 }
 

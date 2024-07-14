@@ -1,1 +1,1 @@
-curl http://localhost:9010/users/pepitogrillo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXBpdG9ncmlsbG8iLCJpYXQiOjE3MTk1MTA5NTIsImV4cCI6MTcxOTUxNDU1Mn0.ee8qg81fCjIXYqgiDU5tA3ILo7r9BBimpCbnMPK9yiI" -v
+curl http://localhost:8080/users/jordi1094 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg2ZDUwNDk2NWZlNDZhNDFiMGQ3YTIiLCJpYXQiOjE3MjA5Njg5ODYsImV4cCI6MTcyMDk3MjU4Nn0.dmp6qzlliGOmwpBQ9GkcggH4qoy6dRrShcLxf6uiqu4" -v

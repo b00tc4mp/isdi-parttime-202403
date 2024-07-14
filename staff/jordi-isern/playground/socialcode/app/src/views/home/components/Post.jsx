@@ -15,40 +15,33 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onPostCommented }) {
     console.log('Post -> render')
     
     const handleDeletePost = () => {
-        if (confirm('Delete post?'))
+        if (confirm('Delete post?')){
             try {
-                logic.deletePost(post._id, error => {
-                    if (error) {
+                logic.deletePost(post.id)
+                    .then(() => onPostDeleted())
+                    .catch(error => {
                         console.error(error)
 
                         alert(error.message)
-
-                        return
-                    }
-
-                    onPostDeleted()
-                })
-            } catch (error) {
+                    })
+                }catch (error) {
                 console.error(error)
 
                 alert(error.message)
             }
+        }
     }
 
     const handleToggleLikePost = () => {
         try {
-            logic.toggleLikePost(post._id, error => {
-                if (error) {
+            logic.toggleLikePost(post.id)
+                .then(()=> onPostLikeToggled())
+                .catch(error => {
                     console.error(error)
 
                     alert(error.message)
-
-                    return
-                }
-
-                onPostLikeToggled()
-            })
-        } catch (error) {
+                })
+            }catch (error) {
             console.error(error)
 
             alert(error.message)
@@ -69,7 +62,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onPostCommented }) {
         <View direction='row' className={'likesAndComments '}>
             <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
             <CommentList comments={post.comments}/>
-            <CommentPostForm onPostCommented = {onPostCommented} postid={post._id}/>
+            <CommentPostForm onPostCommented = {onPostCommented} post={post}/>
         </View>
 
         <View direction='row' className={'dateAndDelete'}>

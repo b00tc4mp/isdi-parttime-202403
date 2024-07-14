@@ -20,7 +20,7 @@ const [view, setView] = useState(logic.isUserLoggedIn()?'home' : 'login')
   const handleGoRegister = () => setView('register')
  
     return( <>{
-      view ==='login' && <Login onUserLoggedin={handleGoHome} onClickRegister={handleGoRegister}></Login>
+      view ==='login' && <Login onUserLoggedIn={handleGoHome} onClickRegister={handleGoRegister}></Login>
     }
     {view ==='register' && <Register onUserRegistered={handleGoToLogin} onLoginLinkClick={handleGoToLogin}/>
   }

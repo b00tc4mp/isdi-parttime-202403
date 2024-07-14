@@ -1,33 +1,29 @@
-import errors, {SystemError} from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const toggleLikePost = (postId, callback) => {
+const toggleLikePost = postId => {
     validate.id(postId, 'postId')
-    validate.callback(callback)
 
-    fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/likes`,{
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/likes`, {
         method: 'PATCH',
-        headers:{
+        headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
+        .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if(response.status === 204){
-                callback(null)
-                return
-            }
+            if (response.status === 204) return
 
             return response.json()
-                .then(body =>{
-                    const {error, message} = body
+                .catch(() => { throw new SystemError('server error') })
+                .then(body => {
+                    const { error, message } = body
 
                     const constructor = errors[error]
-                    
-                    callback(new constructor(message))
+
+                    throw new constructor(message)
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default toggleLikePost

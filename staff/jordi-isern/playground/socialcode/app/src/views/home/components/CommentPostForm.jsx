@@ -1,13 +1,11 @@
 import './CommentPostForm.css'
 
 import SubmitButton from "../../../Components/Core/SubmitButton";
-import Text from "../../../Components/Core/Text";
-import View from "../../../Components/Library/View";
 import Form from "../../../Components/Core/Form";
 
 import logic from "../../../logic";
 
-function CommentPostForm({postid, onPostCommented}){
+function CommentPostForm({post, onPostCommented}){
     console.log('CommentPost -> render')
 
     const handlePostComment = event =>{
@@ -17,16 +15,13 @@ function CommentPostForm({postid, onPostCommented}){
 
         const comment = form.comment.value
         try{
-            logic.createPostComment(postid, comment, error => {
-                if(error) {
-                    console.log(error)
+            logic.createCommentPost(post.id, comment)
+                .then(()=> onPostCommented())
+                .catch(error => {
+                    console.error(error)
 
                     alert(error.message)
-                }
-                onPostCommented()
-
-                form.reset()
-            })
+                })
         }catch(error){
             console.error(error)
 

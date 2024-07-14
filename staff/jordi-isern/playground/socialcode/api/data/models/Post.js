@@ -30,19 +30,18 @@ const post = new Schema({
         ref: 'User'
     }],
     comments:[{
-        type:{
-            author: {
-                type: ObjectId,
-                required: true,
-                ref: 'User'
-
-            },
-            comment:{
-                type: String,
-                required: true
-            }
+        type: {
+          author: {
+            type: ObjectId,
+            required: true,
+            ref: "User"
+          },
+          comment: {
+            type: String,
+            required: true
+          }
         }
-    }]
+      }]
 })
 
 const Post = model('Post' ,post)
