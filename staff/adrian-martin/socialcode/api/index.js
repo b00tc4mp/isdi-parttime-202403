@@ -2,7 +2,7 @@ import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from './utils/jsonwebtoken-promised.js'
-import error, { SystemError } from 'com/error.js'
+import { ContentError, CredentialError, DuplicityError, MatchError, NotFoundError, SystemError } from 'com/error.js'
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
@@ -22,15 +22,36 @@ mongoose.connect(MONGODB_URL)
 
         const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
+        function handleErrorResponse(error, res) {
+
+            let status = 500
+
+            if (error instanceof DuplicityError)
+                status = 409
+            else if (error instanceof ContentError)
+                status = 400
+            else if (error instanceof MatchError)
+                status = 412
+            else if (error instanceof CredentialError)
+                status = 401
+            else if (error instanceof NotFoundError)
+                status = 404
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+        }
+
         api.post('/users', jsonBodyParser, (req, res) => {
             const { name, surname, email, username, password, passwordRepeat } = req.body
 
             try {
                 logic.registerUser(name, surname, email, username, password, passwordRepeat)
                     .then(() => res.status(201).send())
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+                        handleErrorResponse(error, res)
+
+                    })
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                handleErrorResponse(error, res)
             }
         })
 
@@ -47,11 +68,11 @@ mongoose.connect(MONGODB_URL)
 
                                 res.json(token)
                             })
-                            .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                            .catch(error => handleErrorResponse(new SystemError(error.message), res))
                     })
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => handleErrorResponse(error, res))
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                handleErrorResponse(error, res)
             }
         })
 
@@ -69,21 +90,14 @@ mongoose.connect(MONGODB_URL)
                         try {
                             logic.getUserName(userId, targetUserId)
                                 .then(name => res.json(name))
-                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                                .catch(error => handleErrorResponse(error, res))
                         } catch (error) {
-                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                            handleErrorResponse(error, res)
                         }
                     })
-                    .catch(error => {
-                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
-                            res.status(500).json({ error: SystemError.name, message: error.message })
-                        else
-                            res.status(500).json({ error: error.constructor.name, message: error.message })
-
-                        return
-                    })
+                    .catch(error => handleErrorResponse(new CredentialError(error.message), res))
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                handleErrorResponse(error, res)
             }
         })
 
