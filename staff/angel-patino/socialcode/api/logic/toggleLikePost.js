@@ -1,45 +1,37 @@
 import { User, Post } from '../data/models/index.js'
 import validate from 'com/validate.js'
-import { MatchError, SystemError } from 'com/errors.js'
-import { ObjectId } from 'mongodb'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
-function toggleLikePost(userId, postId, callback) {
+function toggleLikePost(userId, postId) {
     validate.id(userId, 'userId')
     validate.id(postId, 'postId')
-    validate.callback(callback)
+
 
     //si el usuario existe...
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new MatchError('user not found'))
-
-                return
-            }
+            if (!user)
+                throw new NotFoundError('user not found')
             //buscar el post(ObjectId)
-            Post.findById(postId)
+            return Post.findById(postId)
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
-                    if (!post) {
-                        callback(new MatchError('post not found'))
+                    if (!post)
+                        throw new NotFoundError('user not found')
 
-                        return
-                    }
-                    //para mirar si el usuario está
-                    const index = post.likes.indexOf(userId)
-                    //indexOf devuelve 1 si está o 0 si no está
-                    if (index < 0)
-                        post.likes.push(userId)
-                    else
-                        post.likes.splice(index, 1)
-                    //indicamos el dato a meter
-                    post.save()
-                        .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
+                    const included = post.likes.some(userObjectId => userObjectId.toString() === userId)
+
+                    return Post.updateOne({ _id: post._id },
+                        included ?
+                            { $pull: { likes: user._id } }
+                            :
+                            { $push: { likes: user._id } }
+                    )
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
                 })
-                .catch(error => callback(new SystemError(error.message)))
-
         })
-        .catch(error => callback(new SystemError(error.message)))
 }
 
 export default toggleLikePost

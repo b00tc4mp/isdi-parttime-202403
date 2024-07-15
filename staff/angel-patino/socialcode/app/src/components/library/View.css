@@ -2,7 +2,7 @@
     display: flex;
 }
 
-.View.colum {
+.View.column {
     flex-direction: column;
 }
 

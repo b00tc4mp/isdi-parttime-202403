@@ -1,26 +1,24 @@
 import { User, Post } from '../data/models/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getAllPosts = (userId, callback) => {
+const getAllPosts = (userId) => {
     validate.id(userId, 'userId')
-    validate.callback(callback)
     //encuentrame los posts de este usuario (username)
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new MatchError('user not found'))
+            if (!user)
+                throw new NotFoundError('user not found')
 
-                return
-            }
             //devuelveme todos los posts
             //lean() devuelve el documento que viene da la bd
-            Post.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
+            return Post.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
+                .catch((error) => { throw new SystemError(error.message) })
                 .then(posts => {
                     //borrar _id, para sanear la logia de mongo. asi convertimos a string, para que la app lo reconozca.
                     posts.forEach((post) => {
                         post.id = post._id.toString()
-
                         delete post._id
 
                         if (post.author._id) {
@@ -32,11 +30,9 @@ const getAllPosts = (userId, callback) => {
                         post.likes = post.likes.map(userObjectId => userObjectId.toString())
 
                     })
-                        (callback(null, posts))
-                })
-                .catch(error => callback(new SystemError(error.message)))
-        })
-        .catch(error => callback(new SystemError(error.message)))
-}
+                    return posts
 
+                })
+        })
+}
 export default getAllPosts
