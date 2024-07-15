@@ -1,0 +1,10 @@
+.Input {
+    text-align: center;
+
+    border-radius: 5px 5px 5px 5px;
+
+    height: 2rem;
+    width: 15rem;
+
+    margin: 1rem;
+}
