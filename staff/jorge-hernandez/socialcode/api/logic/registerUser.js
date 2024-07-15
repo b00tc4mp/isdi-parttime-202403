@@ -9,8 +9,7 @@ const registerUser = (
   email,
   username,
   password,
-  passwordRepeat,
-  callback
+  passwordRepeat
 ) => {
   validate.name(name)
   validate.name(surname, 'surname')
@@ -18,37 +17,34 @@ const registerUser = (
   validate.username(username)
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
-  validate.callback(callback)
 
-  User.findOne({ $or: [{ email }, { username }] })
+  return User.findOne({ $or: [{ email }, { username }] })
+    .catch((error) => callback(new SystemError(error.message)))
+
     .then((user) => {
       if (user) {
-        callback(new DuplicityError('user already exists'))
-
-        return
+        throw new DuplicityError('user already exists')
       }
 
-      bcrypt.hash(password, 8, (error, hash) => {
-        if (error) {
-          callback(new SystemError(error.message))
+      return bcrypt
+        .hash(password, 8)
+        .catch((error) => {
+          throw new SystemError(error.message)
+        })
+        .then((hash) => {
+          const newUser = {
+            name: name,
+            surname: surname,
+            email: email,
+            username: username,
+            password: hash,
+          }
 
-          return
-        }
-
-        const newUser = {
-          name: name,
-          surname: surname,
-          email: email,
-          username: username,
-          password: hash,
-        }
-
-        User.create(newUser)
-          .then(() => callback(null))
-          .catch((error) => callback(new SystemError(error.message)))
-      })
+          return User.create(newUser)
+            .catch((error) => callback(new SystemError(error.message)))
+            .then(() => {})
+        })
     })
-    .catch((error) => callback(new SystemError(error.message)))
 }
 
 export default registerUser

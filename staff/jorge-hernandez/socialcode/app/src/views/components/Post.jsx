@@ -17,36 +17,36 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
   }
   const formattedDate = date.toLocaleDateString(undefined, options)
 
-  const handleDeletePost = (postId) => {
-    if (confirm('Are you sure you want to delete this post?'))
+  const handleDeletePost = () => {
+    if (confirm('Delete post?'))
       try {
-        logic.deletePost(postId, (error) => {
-          if (error) {
+        logic
+          .deletePost(post.id)
+          .then(() => onPostDeleted())
+          .catch((error) => {
             console.error(error)
+
             alert(error.message)
-            return
-          }
-          onPostDeleted()
-        })
+          })
       } catch (error) {
         console.error(error)
+
         alert(error.message)
       }
   }
 
   const handleToggleLikePost = () => {
     try {
-      logic.toggleLikePost(post.id, (error) => {
-        if (error) {
+      logic
+        .toggleLikePost(post.id)
+        .then(() => {
+          onPostLikeToggled()
+        })
+        .catch((error) => {
           console.error(error)
 
           alert(error.message)
-
-          return
-        }
-
-        onPostLikeToggled()
-      })
+        })
     } catch (error) {
       console.error(error)
 

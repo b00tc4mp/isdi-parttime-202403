@@ -27,20 +27,20 @@ function Home({ onUserLoggedOut }) {
 
   useEffect(() => {
     console.log('Home -> useEffect')
+
     try {
-      logic.getUserName((error, name) => {
-        if (error) {
+      logic
+        .getUserName()
+        .then((name) => {
+          console.log('Home -> setName')
+
+          setName(name)
+        })
+        .catch((error) => {
           console.error(error)
 
           alert(error.message)
-
-          return
-        }
-
-        console.log('Home -> setName')
-
-        setName(name)
-      })
+        })
     } catch (error) {
       console.error(error)
 

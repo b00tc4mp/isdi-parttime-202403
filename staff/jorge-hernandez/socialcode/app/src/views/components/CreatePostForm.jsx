@@ -12,7 +12,7 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     onCancelCreatePostClick()
   }
 
-  const handleCreatePostSubmit = () => {
+  const handleCreatePostSubmit = (event) => {
     event.preventDefault()
 
     const form = event.target
@@ -22,17 +22,14 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     const description = form.description.value
 
     try {
-      logic.createPost(title, image, description, (error) => {
-        if (error) {
+      logic
+        .createPost(title, image, description)
+        .then(() => {
+          onPostCreated()
+        })
+        .catch((error) => {
           console.error(error)
-
-          alert(error.message)
-
-          return
-        }
-
-        onPostCreated()
-      })
+        })
     } catch (error) {
       console.error(error)
 

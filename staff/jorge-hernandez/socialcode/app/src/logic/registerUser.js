@@ -28,27 +28,25 @@ const registerUser = (
       username,
       password,
       passwordRepeat,
-      callback,
     }),
   })
+    .catch((error) => callback(new SystemError(error)))
     .then((response) => {
       if (response.status === 201) {
-        callback(null)
-
         return
       }
 
       return response
         .json()
+        .catch((error) => {
+          throw new SystemError(error.message)
+        })
         .then(({ error, message }) => {
           const constructor = errors[error]
 
-          callback(new constructor(message))
+          throw new constructor(message)
         })
-
-        .catch((error) => callback(new SystemError(error.message)))
     })
-    .catch((error) => callback(new SystemError(error)))
 }
 
 export default registerUser

@@ -20,16 +20,14 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     const password = form.password.value
 
     try {
-      logic.loginUser(username, password, (error) => {
-        if (error) {
-          console.error(error)
-
+      logic
+        .loginUser(username, password)
+        .then(() => {
+          onUserLoggedIn()
+        })
+        .catch((error) => {
           setMessage(error.message)
-
-          return
-        }
-        onUserLoggedIn()
-      })
+        })
     } catch (error) {
       console.error(error)
 

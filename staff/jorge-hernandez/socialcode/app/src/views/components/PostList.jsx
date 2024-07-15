@@ -14,20 +14,15 @@ function PostList({ refreshStamp }) {
   }, [refreshStamp])
 
   const loadPosts = () => {
-    try {
-      logic.getAllPosts((error, posts) => {
-        if (error) {
-          console.error(error)
-
-          alert(error.message)
-
-          return
-        }
+    logic
+      .getAllPosts()
+      .then((posts) => {
         setPosts(posts)
       })
-    } catch (error) {
-      console.error(error)
-    }
+      .catch((error) => {
+        console.error(error)
+        alert(error.message)
+      })
   }
 
   const handlePostDeleted = () => loadPosts()

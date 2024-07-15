@@ -3,31 +3,26 @@ import validate from 'com/validate.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import { ObjectId } from 'mongodb'
 
-function toggleLikePost(userId, postId, callback) {
+function toggleLikePost(userId, postId) {
   validate.id(userId, 'userId')
   validate.id(postId, 'postId')
-  validate.callback(callback)
 
-  User.findById(userId)
+  return User.findById(userId)
     .lean()
     .then((user) => {
       if (!user) {
-        callback(new MatchError('user not found'))
-
-        return
+        throw new MatchError('user not found')
       }
 
-      Post.findById(postId)
+      return Post.findById(postId)
         .then((post) => {
           if (!post) {
-            callback(new MatchError('post not found'))
-
-            return
+            throw new MatchError('post not found')
           }
 
           const included = post.likes.some((id) => id.toString() === userId)
 
-          Post.updateOne(
+          return Post.updateOne(
             { _id: post._id },
             included
               ? {
@@ -41,12 +36,18 @@ function toggleLikePost(userId, postId, callback) {
                   },
                 }
           )
-            .then(() => callback(null))
-            .catch((error) => callback(new SystemError(error.message)))
+            .catch((error) => {
+              throw new SystemError(error.message)
+            })
+            .then(() => {})
         })
-        .catch((error) => callback(new SystemError(error.message)))
+        .catch((error) => {
+          throw new SystemError(error.message)
+        })
     })
-    .catch((error) => callback(new SystemError(error.message)))
+    .catch((error) => {
+      throw new SystemError(error.message)
+    })
 }
 
 export default toggleLikePost

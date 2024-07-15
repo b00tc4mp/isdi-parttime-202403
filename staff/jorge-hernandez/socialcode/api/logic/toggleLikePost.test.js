@@ -9,19 +9,11 @@ mongoose
   .connect(MONGODB_URL)
   .then(() => {
     try {
-      toggleLikePost(
-        '6689014036c5ff836afc8eb2',
-        '66890621ba69ba714b3747f1',
-        (error) => {
-          if (error) {
-            console.error(error)
-
-            return
-          }
-
+      toggleLikePost('6689014036c5ff836afc8eb2', '66890621ba69ba714b3747f1')
+        .then(() => {
           console.log('user toggled like')
-        }
-      )
+        })
+        .catch((error) => console.error(error))
     } catch (error) {
       console.error(error)
     }
