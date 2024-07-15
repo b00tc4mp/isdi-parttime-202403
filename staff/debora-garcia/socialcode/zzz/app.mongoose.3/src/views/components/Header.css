@@ -1,0 +1,12 @@
+.Header {
+    background-color: rgb(160, 135, 184);
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: right;
+    position: fixed;
+    top: 0;
+    padding: 0.25rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--first-color);
+}

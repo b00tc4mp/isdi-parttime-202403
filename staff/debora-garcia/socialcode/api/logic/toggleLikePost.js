@@ -1,6 +1,6 @@
 import { User, Post } from "../data/index.js"
 import validate from "com/validate.js"
-import { MatchError, SystemError } from "com/errors.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 
 function toggleLikePost(userId, postId) {
     validate.id(userId, "userId")
@@ -9,13 +9,13 @@ function toggleLikePost(userId, postId) {
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new MatchError("user not found")
+            if (!user) throw new NotFoundError("user not found")
 
             return Post.findById(postId)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
                     if (!post)
-                        throw new MatchError("post not found")
+                        throw new NotFoundError("post not found")
 
                     // const index = post.likes.indexOf(userId) //** 
 

@@ -1,6 +1,6 @@
 import { User } from "../data/index.js"
 import validate from "com/validate.js"
-import { MatchError, SystemError } from "com/errors.js"
+import { SystemError, NotFoundError } from "com/errors.js"
 
 
 const getUsername = (userId, targetUserId) => {
@@ -11,13 +11,13 @@ const getUsername = (userId, targetUserId) => {
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new MatchError("user not found")
+            if (!user) throw new NotFoundError("user not found")
 
             return User.findById(targetUserId).lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
                     if (!user)
-                        throw new MatchError("targetUsername not found")
+                        throw new NotFoundError("targetUsername not found")
 
 
                     return user.username

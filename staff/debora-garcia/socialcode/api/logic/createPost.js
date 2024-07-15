@@ -1,6 +1,6 @@
 import { User } from "../data/index.js"
 import { Post } from "../data/index.js"
-import { MatchError, SystemError } from "com/errors.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 
 //enviamos el usuario que es lo que identifica de forma unica al usuario, luego usaremos id
@@ -15,7 +15,7 @@ const createPost = (userId, title, image, description) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new MatchError("user not found")
+                throw new NotFoundError("user not found")
 
             const post = {
                 author: userId,
