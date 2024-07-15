@@ -27,38 +27,41 @@ const registerUser = (
   validate.password(password);
   validate.matchingPasswords(password, repeatedPassword);
 
-  return fetch(`${import.meta.env.VITE_API_URL}/users`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      surname,
-      email,
-      username,
-      password,
-      repeatedPassword,
-    }),
-  })
-    .catch(() => {
+  return (async () => {
+    let res, body;
+
+    try {
+      res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          surname,
+          email,
+          username,
+          password,
+          repeatedPassword,
+        }),
+      });
+    } catch {
       throw new SystemError("Server error");
-    })
-    .then((res) => {
-      if (res.status === 201) return;
+    }
 
-      return res
-        .json()
-        .catch(() => {
-          throw new SystemError("server error");
-        })
-        .then((body) => {
-          const { error, message } = body;
-          const constructor = errors[error];
+    if (res.status === 201) return;
 
-          throw new constructor(message);
-        });
-    });
+    try {
+      body = await res.json();
+    } catch {
+      throw new SystemError("Server error");
+    }
+
+    const { error, message } = body;
+    const constructor = errors[error];
+
+    throw new constructor(message);
+  })();
 };
 
 export default registerUser;

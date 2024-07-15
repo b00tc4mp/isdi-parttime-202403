@@ -25,25 +25,19 @@ function PostList({ refreshTimeStamp, mainRef }) {
     loadPosts(page);
   }, [refreshTimeStamp, page]);
 
-  const loadPosts = (page) => {
+  const loadPosts = async (page) => {
+    // TODO: show feedback in a more user-friendly way
     try {
-      // TODO: show feedback in a more user-friendly way
-      logic
-        .getAllPosts(page, 10)
-        .then(({ posts, total }) => {
-          if (!Array.isArray(posts)) {
-            console.error("Expected an array but got: ", posts);
-            alert("An error occurred while loading the posts.");
-            return;
-          }
+      const { posts, total } = await logic.getAllPosts(page, 10);
 
-          setPosts(posts);
-          setTotalPages(Math.ceil(total / 10));
-        })
-        .catch((error) => {
-          console.error(error);
-          alert(error.message);
-        });
+      if (!Array.isArray(posts)) {
+        console.error("Expected an array but got: ", posts);
+        alert("An error occurred while loading the posts.");
+        return;
+      }
+
+      setPosts(posts);
+      setTotalPages(Math.ceil(total / 10));
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -54,20 +48,13 @@ function PostList({ refreshTimeStamp, mainRef }) {
     setPostToDelete(postId);
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     try {
-      logic
-        .deletePost(postToDelete)
-        .then(() => {
-          loadPosts(page);
-          setPostToDelete(null);
-        })
-        .catch((error) => {
-          // TODO: show errors more gracefully
-          console.error(error);
-          alert(error.message);
-        });
+      await logic.deletePost(postToDelete);
+      loadPosts(page);
+      setPostToDelete(null);
     } catch (error) {
+      // TODO: show errors more gracefully
       console.error(error.message);
       alert(error.message);
     }
@@ -91,16 +78,10 @@ function PostList({ refreshTimeStamp, mainRef }) {
     }
   };
 
-  const handleLiked = (postId) => {
+  const handleLiked = async (postId) => {
     try {
-      logic
-        .likePost(postId)
-        .then(() => loadPosts(page))
-        .catch((error) => {
-          // TODO: show error more gracefully
-          console.error(error);
-          alert(error.message);
-        });
+      await logic.likePost(postId);
+      loadPosts(page);
     } catch (error) {
       // TODO: show error more gracefully
       console.error(error);

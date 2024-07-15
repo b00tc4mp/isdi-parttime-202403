@@ -5,38 +5,44 @@ const loginUser = (username, password) => {
   validate.username(username, "Username");
   validate.password(password);
 
-  return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, password }),
-  })
-    .catch(() => {
-      throw new SystemError("Server error");
-    })
-    .then((res) => {
-      if (res.status === 200) {
-        return res
-          .json()
-          .catch(() => {
-            throw new SystemError("Server error");
-          })
-          .then(({ token }) => (sessionStorage.token = token));
+  return (async () => {
+    let res, tokenObj, body;
+
+    try {
+      res = await fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+    } catch {
+      throw new SystemError("Server errror");
+    }
+
+    if (res.status === 200) {
+      try {
+        tokenObj = await res.json();
+      } catch {
+        throw new SystemError("Server error");
       }
 
-      return res
-        .json()
-        .catch(() => {
-          throw new SystemError("Server error");
-        })
-        .then((body) => {
-          const { error, message } = body;
-          const constructor = errors[error];
+      const { token } = tokenObj;
+      sessionStorage.token = token;
+      return;
+    }
 
-          throw new constructor(message);
-        });
-    });
+    try {
+      body = await res.json();
+    } catch {
+      throw new SystemError("Server error");
+    }
+
+    const { error, message } = body;
+    const constructor = errors[error];
+
+    throw new constructor(message);
+  })();
 };
 
 export default loginUser;

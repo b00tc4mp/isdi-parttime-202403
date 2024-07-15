@@ -26,7 +26,7 @@ function LoginPage() {
     }, 400);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isShaking) return;
@@ -36,23 +36,16 @@ function LoginPage() {
     const password = form.password.value;
 
     try {
-      logic
-        .loginUser(username, password)
-        .then(() => {
-          setSuccessMessage("Logged in successfully");
-          setTimeout(() => {
-            setSuccessMessage("");
-            setView("home");
-          }, 1000);
-        })
-        .catch((error) => {
-          shakeButton();
-          console.error(
-            `error. please fix it or try again later.`,
-            error.message,
-          );
-        });
+      await logic.loginUser(username, password);
+      setSuccessMessage("Logged in successfully");
+      setTimeout(() => {
+        setSuccessMessage("");
+        setView("home");
+      }, 1000);
     } catch (error) {
+      console.error(
+        `error. please fix it or try again later. ${error.message}`,
+      );
       shakeButton();
       setTimeout(() => setShake(false), 400);
     }

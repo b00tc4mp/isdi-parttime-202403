@@ -6,36 +6,39 @@ const createPost = (title, image, description) => {
   validate.url(image, "Image");
   validate.text(description, "Description", 200);
 
-  return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${sessionStorage.token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title,
-      image,
-      description,
-    }),
-  })
-    .catch(() => {
+  return (async () => {
+    let res, body;
+
+    try {
+      res = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          image,
+          description,
+        }),
+      });
+    } catch {
       throw new SystemError("Server error");
-    })
-    .then((res) => {
-      if (res.status === 201) return;
+    }
 
-      return res
-        .json()
-        .catch(() => {
-          throw new SystemError("Server error");
-        })
-        .then((body) => {
-          const { error, message } = body;
-          const constructor = errors[error];
+    if (res.status === 201) return;
 
-          throw new constructor(message);
-        });
-    });
+    try {
+      body = await res.json();
+    } catch {
+      throw new SystemError("Server error");
+    }
+
+    const { error, message } = body;
+    const constructor = errors[error];
+
+    throw new constructor(message);
+  })();
 };
 
 export default createPost;

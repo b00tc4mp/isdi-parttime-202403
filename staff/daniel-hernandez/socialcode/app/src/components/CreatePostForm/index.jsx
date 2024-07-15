@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
 import logic from "../../logic/index";
-import errors from "com/errors";
-const { ContentError } = errors;
 import Container from "../atomic/Container.jsx";
 import FeedbackForm from "../FeedbackForm.jsx";
 import Field from "../atomic/Field.jsx";
@@ -12,7 +10,7 @@ import SubmitButton from "../atomic/SubmitButton.jsx";
 function CreatePostForm({ onPostCreated, onCancel }) {
   const [feedback, setFeedback] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -22,15 +20,10 @@ function CreatePostForm({ onPostCreated, onCancel }) {
     const description = form.description.value;
 
     try {
-      logic
-        .createPost(title, image, description)
-        .then(() => onPostCreated())
-        .catch((error) => {
-          console.error(error);
-          setFeedback(`${error.message}`);
-          setTimeout(() => setFeedback(""), 5000);
-        });
+      await logic.createPost(title, image, description);
+      onPostCreated();
     } catch (error) {
+      console.error(error);
       setFeedback(`${error.message}`);
       setTimeout(() => setFeedback(""), 5000);
     }

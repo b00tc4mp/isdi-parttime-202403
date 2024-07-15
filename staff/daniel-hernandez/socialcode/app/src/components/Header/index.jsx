@@ -11,19 +11,21 @@ function Header() {
   const [name, setName] = useState("");
 
   useEffect(() => {
+    setUsersName();
+  }, []);
+
+  const setUsersName = async () => {
+    let usersName;
+
     try {
-      logic
-        .getUsersName()
-        .then((name) => setName(name))
-        .catch((error) => {
-          console.error(error);
-          alert(error);
-        });
+      usersName = await logic.getUsersName();
     } catch (error) {
       console.error(error);
-      alert(error);
+      alert(error.message);
     }
-  }, []);
+
+    setName(usersName);
+  };
 
   const handleLogout = () => {
     logic.logoutUser();

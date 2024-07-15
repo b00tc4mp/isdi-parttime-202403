@@ -30,7 +30,7 @@ function RegisterPage() {
     }, 1000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isShaking) return;
@@ -45,26 +45,19 @@ function RegisterPage() {
     const repeatedPassword = form.repeatedPassword.value;
 
     try {
-      logic
-        .registerUser(
-          name,
-          surname,
-          email,
-          username,
-          password,
-          repeatedPassword,
-        )
-        .then(() => {
-          setSuccessMessage("Registered successfully, thank you!");
-          setTimeout(() => {
-            setSuccessMessage("");
-            setView("login");
-          }, 1000);
-        })
-        .catch((error) => {
-          setWarnMessage(`${error.message}`);
-          handleShake();
-        });
+      await logic.registerUser(
+        name,
+        surname,
+        email,
+        username,
+        password,
+        repeatedPassword,
+      );
+      setSuccessMessage("Registered successfully, thank you!");
+      setTimeout(() => {
+        setSuccessMessage("");
+        setView("login");
+      }, 1000);
     } catch (error) {
       setWarnMessage(`${error.message}`);
       handleShake();
