@@ -32,9 +32,9 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/users/:targetUserId', getUserNameHandler)
 
-        api.get('/posts', createPostHandler)
+        api.get('/posts', getAllPostsHandler)
 
-        api.post('/posts', jsonBodyParser, getAllPostsHandler)
+        api.post('/posts', jsonBodyParser, createPostHandler)
 
         api.delete('/posts/:postId', deletePostHandler)
 

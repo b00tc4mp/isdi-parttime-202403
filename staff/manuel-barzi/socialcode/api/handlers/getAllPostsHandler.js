@@ -14,11 +14,9 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const { title, image, description } = req.body
-
                 try {
-                    logic.createPost(userId, title, image, description)
-                        .then(() => res.status(201).send())
+                    logic.getAllPosts(userId)
+                        .then(posts => res.json(posts))
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
