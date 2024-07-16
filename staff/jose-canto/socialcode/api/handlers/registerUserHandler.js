@@ -1,16 +1,15 @@
-import handleErrorResponse from "../helper/handleErrorResponse.js"
+import errorResponse from "../helper/errorResponse.js"
 import logic from "../logic/index.js"
 
-const registerUserHandler = ((req, res) => {
+export default ((req, res) => {
   try {
     const { name, surname, email, username, password, passwordRepeat } = req.body
 
     logic.registerUser(name, surname, email, username, password, passwordRepeat)
       .then(() => res.status(201).send())
-      .catch((error) => handleErrorResponse(error, res))
+      .catch((error) => errorResponse(error, res))
   } catch (error) {
-    handleErrorResponse(error, res)
+    errorResponse(error, res)
   }
 })
 
-export default registerUserHandler

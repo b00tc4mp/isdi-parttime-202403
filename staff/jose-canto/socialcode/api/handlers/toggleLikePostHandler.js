@@ -1,12 +1,12 @@
 import "dotenv/config"
 import logic from "../logic/index.js"
-import handleErrorResponse from "../helper/handleErrorResponse.js"
+import errorResponse from "../helper/errorResponse.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
 import { CredentialsError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
 
-const toggleLikePostHandler = (req, res) => {
+export default (req, res) => {
   try {
     const token = req.headers.authorization.slice(7)
 
@@ -21,15 +21,13 @@ const toggleLikePostHandler = (req, res) => {
             .then(() => {
               res.status(204).send()
             })
-            .catch((error) => handleErrorResponse(error, res))
+            .catch((error) => errorResponse(error, res))
         } catch {
-          handleErrorResponse(error, res)
+          errorResponse(error, res)
         }
       })
-      .catch((error) => handleErrorResponse(new CredentialsError(error.message), res))
+      .catch((error) => errorResponse(new CredentialsError(error.message), res))
   } catch (error) {
-    handleErrorResponse(error, res)
+    errorResponse(error, res)
   }
 }
-
-export default toggleLikePostHandler

@@ -1,14 +1,14 @@
 import "dotenv/config"
+import errorResponse from "../helper/errorResponse.js"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
-
+import { SystemError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
 
-const authenticaterUserHandler = (req, res, next) => {
+export default (req, res) => {
   try {
     const { username, password } = req.body
-
 
     logic.authenticateUser(username, password)
       .then((userId) => {
@@ -17,12 +17,11 @@ const authenticaterUserHandler = (req, res, next) => {
             res.json(token)
             console.log(`User ${username} authenticated`)
           })
-          .catch((error) => next(error))
+          .catch((error) => errorResponse(new SystemError(error.message), res))
       })
-      .catch((error) => next(error))
+      .catch((error) => errorResponse(error, res))
   } catch (error) {
-    next(error)
+    errorResponse(error, res)
   }
 }
 
-export default authenticaterUserHandler

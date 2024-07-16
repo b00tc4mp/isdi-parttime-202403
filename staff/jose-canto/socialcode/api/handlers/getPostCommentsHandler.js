@@ -1,12 +1,12 @@
 import "dotenv/config"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
-import handleErrorResponse from "../helper/handleErrorResponse.js"
+import errorResponse from "../helper/errorResponse.js"
 import { CredentialsError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
 
-const getPostCommentsHandler = (req, res) => {
+export default (req, res) => {
 
   try {
     const token = req.headers.authorization.slice(7)
@@ -23,16 +23,15 @@ const getPostCommentsHandler = (req, res) => {
               res.json(comments)
             })
             .catch((error) => {
-              handleErrorResponse(error, res)
+              errorResponse(error, res)
             })
         } catch (error) {
-          handleErrorResponse(error, res)
+          errorResponse(error, res)
         }
       })
-      .catch((error) => handleErrorResponse(new CredentialsError(error.message), res))
+      .catch((error) => errorResponse(new CredentialsError(error.message), res))
   } catch (error) {
-    handleErrorResponse(error, res)
+    errorResponse(error, res)
   }
 }
 
-export default getPostCommentsHandler

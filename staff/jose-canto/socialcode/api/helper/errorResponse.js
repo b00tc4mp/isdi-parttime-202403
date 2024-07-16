@@ -1,7 +1,7 @@
 
 import { DuplicityError, ContentError, MatchError, CredentialsError, NotFoundError } from "com/errors.js"
 
-const handleErrorResponse = (error, res) => {
+export default (error, res) => {
   let status = 500
 
   if (error instanceof DuplicityError) {
@@ -18,5 +18,3 @@ const handleErrorResponse = (error, res) => {
 
   res.status(status).json({ error: error.constructor.name, message: error.message })
 }
-
-export default handleErrorResponse
