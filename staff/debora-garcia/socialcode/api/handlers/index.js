@@ -1,6 +1,7 @@
 import authenticateUserHandler from "./authenticateUserHandler.js";
 import createPostHandler from "./createPostHandler.js";
 import deletePostHandler from "./deletePostHandler.js";
+import editPostHandler from "./editPostHandler.js";
 import getPostsHandler from "./getPostsHandler.js";
 import getUsernameHandler from "./getUsernameHandler.js";
 import registerUserHandler from "./registerUserHandler.js";
@@ -13,7 +14,8 @@ const routeHandler = {
     getPostsHandler,
     createPostHandler,
     deletePostHandler,
-    toggleLikePostHandler
+    toggleLikePostHandler,
+    editPostHandler
 }
 
 export default routeHandler

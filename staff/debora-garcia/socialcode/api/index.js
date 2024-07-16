@@ -41,6 +41,8 @@ mongoose.connect(MONGODB_URL)
 
         api.patch("/posts/:postId/likes", routeHandler.toggleLikePostHandler)
 
+        api.patch("/posts/:postId/edit", jsonBodyParser, routeHandler.editPostHandler)
+
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
 
     })
