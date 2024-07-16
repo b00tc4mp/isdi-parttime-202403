@@ -10,7 +10,7 @@ const getAllPosts = (userId) => {
         .then(user => {
             if (!user) throw new NotFoundError('❌user not found')
 
-            return Post.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
+            return Post.find({}).populate('author', 'username').select('-__v').populate('comments.author', 'username').sort({ date: -1 }).lean()
                 .catch(() => { throw new SystemError('server error') })
                 .then(posts => {
                     posts.forEach(post => {
@@ -25,6 +25,15 @@ const getAllPosts = (userId) => {
                         }
 
                         post.likes = post.likes.map(userObjectId => userObjectId.toString())
+
+                        post.comments.forEach(comment => {
+                            if (comment.author._id) {
+                                comment.id = comment._id.toString()
+
+                                delete comment._id
+                            }
+
+                        })
                     })
 
                     return posts

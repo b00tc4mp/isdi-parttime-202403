@@ -7,6 +7,7 @@ import createPost from './createPost.js'
 import deletePost from './deletePost.js'
 import toggleLikePost from './toggleLikePost.js'
 import createPostComment from './createPostComment.js'
+import editPostTitle from './editPostTitle.js'
 
 
 const logic = {
@@ -18,7 +19,8 @@ const logic = {
     createPost,
     deletePost,
     toggleLikePost,
-    createPostComment
+    createPostComment,
+    editPostTitle
 }
 
 export default logic

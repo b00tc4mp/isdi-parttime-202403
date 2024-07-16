@@ -12,16 +12,16 @@ const createPostComment = (userId, postId, comment) => {
         .then(user => {
             if (!user) throw new NotFoundError('❌ User not found')
 
-
             return Post.findById(postId)
                 .catch(() => { throw new SystemError('server error') })
                 .then(post => {
                     if (!post)
                         throw new NotFoundError('❌ Post not found')
 
-                    return Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, date: new Date, comment: comment } } })
-                        .then(() => { })
+                    return Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, date: new Date, comment: comment } } }).populate('comments.author', 'username').lean()
+
                         .catch(() => { throw new SystemError('server error') })
+                        .then(() => { })
                 })
         })
 }

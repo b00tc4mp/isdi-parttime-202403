@@ -6,6 +6,7 @@ import Text from '../../components/core/Text'
 import Time from '../../components/core/Time'
 import View from '../../components/library/View'
 import CreatePostComment from './CreatePostComment'
+import EditPostForm from './EditPostForm'
 
 import logic from '../../logic'
 
@@ -14,7 +15,9 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted }
     console.log('Post -> render')
 
     const [showAddComment, setShowAddComment] = useState(false)
+    const [showEdittedPost, setShowEdittedPost] = useState(false)
     const [comments, setComments] = useState([])
+
 
     useEffect(() => {
         setComments(post.comments)
@@ -57,10 +60,28 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted }
     const handleShowComment = () => {
         setShowAddComment(!showAddComment)
     }
-    const handleCommentPostSubmitted = (comment) => {
-        setComments(prevComments => [...prevComments, comment])// Añadir el nuevo comentario al estado
+    const handleCommentPostSubmitted = (newComment) => {
+        setComments(prevComments => [...prevComments, ...newComment])// Añadir el nuevo comentario al estado
         onCommentPostSubmitted()
         setShowAddComment(false)
+    }
+
+    const handleCancelCreateCommentClick = () => {
+        setShowAddComment(false)
+
+    }
+    const handleCancelEditPostClick = () => {
+        setShowEdittedPost(false)
+
+    }
+
+    const handleShowEditted = () => {
+        setShowEdittedPost(!showEdittedPost)
+    }
+
+    const handleEditPostSubmitted = () => {
+        onPostEditted()
+        setShowEdittedPost(false)
     }
 
     return <View tag="article" className="Article" aling="">
@@ -74,10 +95,20 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted }
 
         <Text>{post.description}</Text>
 
+        {showEdittedPost && (
+            <EditPostForm
+                postId={post.id}
+                onPostEditted={handleEditPostSubmitted}
+                onCancelEditPostClick={handleCancelEditPostClick}
+
+            />
+        )}
+
         {showAddComment && (
             <CreatePostComment
                 postId={post.id}
                 onCommentPostSubmitted={handleCommentPostSubmitted}
+                onCancelCreateCommentClick={handleCancelCreateCommentClick}
             />
         )}
 
@@ -92,11 +123,13 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted }
             <Button onClick={handleShowComment}>Comment</Button>
 
             {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}
+
+            {post.author.id === logic.getUserId() && <Button onClick={handleShowEditted}>Edite</Button>}
         </View>
 
         <View tag='section' className="comment">
-            {comments.map((comment, index) => (
-                <p key={index}> {comment.author} : {comment.comment} </p>
+            {post.comments.map((comment, index) => (
+                <p key={index}> {comment.author.username} : {comment.comment} <Time>{comment.date}</Time> </p>
             ))}
         </View>
 

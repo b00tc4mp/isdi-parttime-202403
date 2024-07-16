@@ -6,9 +6,11 @@ import createPostHandler from "./createPostHandler.js"
 import deletePostHandler from "./deletePostHandler.js"
 import toggleLikePostHandler from "./toggleLikePostsHandler.js"
 import createPostCommentHandler from "./createPostCommentHandler.js"
+import errorHandler from "./errorHandler.js"
+import editPostTitleHandler from "./editPostTitleHandler.js"
 
 
-const routeHandler = {
+export default {
     registerUserHandler,
     authenticateUserHandler,
     getUsernameHandler,
@@ -16,7 +18,8 @@ const routeHandler = {
     createPostHandler,
     deletePostHandler,
     toggleLikePostHandler,
-    createPostCommentHandler
+    createPostCommentHandler,
+    editPostTitleHandler,
+    errorHandler
 }
 
-export default routeHandler

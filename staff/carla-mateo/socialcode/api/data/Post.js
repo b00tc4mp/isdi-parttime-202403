@@ -25,29 +25,28 @@ const post = new Schema({
         require: true,
         default: Date.now
     },
+    likes: [{
+        type: ObjectId,
+        ref: 'User'
+    }],
     comments: [{
         type: {
             author: {
                 type: ObjectId,
                 required: true,
-                ref: 'User'
-            },
-            date: {
-                type: Date,
-                require: true,
-                default: Date.now
+                ref: "User"
             },
             comment: {
                 type: String,
-                require: true
+                required: true
             },
+            date: {
+                type: Date,
+                required: true,
+                default: Date.now
+            }
         }
-    }],
-    likes: [{
-        type: ObjectId,
-        ref: 'User'
     }]
-
 })
 
 const Post = model('Post', post)
