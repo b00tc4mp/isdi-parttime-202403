@@ -4,17 +4,19 @@ import Image from "../../core/Image"
 import Heading from "../../core/Heading"
 import Text from "../../core//Text"
 import Time from "../../views/components/Time"
-import ConfirmDelete from "./ConfirmDelete"
+import Confirm from "./Confirm"
 import Navbar from "./Navbar"
 import CreateComment from "./CreateComment"
 
 import logic from "../../../logic"
 import CommentList from "./CommentList"
 
+import EditPostForm from "./EditPostForm"
+
 function Post({ post, onPostDeleted }) {
   console.log("Post --> render")
 
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false)
+  const [showConfirm, setShowConfirm] = useState("")
   const [like, setLike] = useState(false)
   const [likeNum, setLikeNum] = useState(0)
   const [showAddComment, setShowAddComment] = useState(false)
@@ -31,7 +33,7 @@ function Post({ post, onPostDeleted }) {
     return post.liked.includes(username)
   }
 
-  const handleDeletePost = () => setShowConfirmDelete(true)
+  const handleDeletePost = () => setShowConfirm("Delete")
 
   const confirmDeletePost = () => {
     try {
@@ -39,7 +41,7 @@ function Post({ post, onPostDeleted }) {
       logic.deletePost(post.id)
         .then(() => {
           onPostDeleted()
-          setShowConfirmDelete(false)
+          setShowConfirm("Delete")
         })
         .catch((error) => {
           console.error(error)
@@ -50,9 +52,8 @@ function Post({ post, onPostDeleted }) {
       alert(error.message)
     }
   }
-
   const cancelDeletePost = () => {
-    setShowConfirmDelete(false)
+    setShowConfirm("")
   }
 
   const handleLike = () => {
@@ -79,7 +80,6 @@ function Post({ post, onPostDeleted }) {
   }
 
   const handleCommentPostSubmitted = () => {
-    //TODO logic getPostComments (post.id), setComments(comments) DONE
     try {
       //prettier-ignore
       logic.getPostComments(post.id)
@@ -98,12 +98,21 @@ function Post({ post, onPostDeleted }) {
     }
   }
 
+  const onClickEditPost = () => setShowConfirm("EditPost")
+
+  const handleEditPost = () => {
+    setShowConfirm("")
+  }
+  const handleCancelEditPost = () => {
+    setShowConfirm("")
+  }
+
   return (
     <>
       <article className="Article">
         <div className="Author_navbar">
           <Text className="AuthorTitle">{post.author.username}</Text>
-          <Navbar post={post} handleDeletePost={handleDeletePost} />
+          <Navbar post={post} handleDeletePost={handleDeletePost} onClickEditPost={onClickEditPost} />
         </div>
 
         <Heading level="2" className="PostTitle">
@@ -122,8 +131,16 @@ function Post({ post, onPostDeleted }) {
               onCancelCreatedCommentClick={handleShowComment}
             />
           )}
-          {showConfirmDelete && (
-            <ConfirmDelete post={post} onConfirmDeletePost={confirmDeletePost} onCancelDeletePost={cancelDeletePost} />
+          {showConfirm === "Delete" && (
+            <Confirm
+              action="Delete"
+              post={post}
+              onConfirmDeletePost={confirmDeletePost}
+              onCancelDeletePost={cancelDeletePost}
+            />
+          )}
+          {showConfirm === "EditPost" && (
+            <EditPostForm postId={post.id} onPostEdited={handleEditPost} onCancelEditPost={handleCancelEditPost} />
           )}
         </div>
 

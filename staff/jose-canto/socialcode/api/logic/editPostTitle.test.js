@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
   .then(() => {
 
     try {
-      editPostTitle("6686f76feede6666644a273b", "668fb1585b1daab7462270a4", "OUHHhhh yeah")
+      editPostTitle("6686f76feede6666644a273b", "668fb1585b1daab7462270a4", "TEST TITLE")
         .then(() => {
           console.log("Post title edited")
         })

@@ -1,9 +1,6 @@
 import { User, Post } from "../data/index.js"
 import { MatchError, NotFoundError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
-import { Types } from "mongoose"
-
-const { ObjectId } = Types
 
 const deletePost = (userId, postId) => {
   validate.id(userId, "userId")
@@ -26,7 +23,7 @@ const deletePost = (userId, postId) => {
             throw new MatchError("❌ You can't delete this post ❌")
           }
 
-          return Post.deleteOne({ _id: new ObjectId(postId) })
+          return Post.findByIdAndDelete(postId).lean()
             .catch(() => { throw new SystemError("server error") })
             .then(() => postId)
         })

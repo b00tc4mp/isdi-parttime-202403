@@ -1,0 +1,41 @@
+.EditPostForm {
+  position: fixed;
+  bottom: 0;
+  gap: 0.1rem;
+  margin-bottom: 8rem;
+  width: 50vw;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(22, 22, 22, 0.22) 0px 15px 12px;
+  border-radius: 15px;
+  padding: 10px;
+  background-image: linear-gradient(to right top, #f97c16, #d25a2c, #a54031, #742c2e, #441c22, #2f161b, #1c0e11, #1b1b1b, #1b1b1b, #1b1b1b, #000000, #000000);
+  letter-spacing: 2px;
+}
+
+.EditPostForm.Textarea {
+  height: 1rem;
+}
+
+.EditPostForm input {
+  width: 20vw;
+}
+
+.EditPostForm input#image {
+  width: 40vw;
+}
+
+.EditPostForm i {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  transition: 0.35s ease-in;
+  color: var(--first-color);
+}
+
+.EditPostForm i:hover {
+  color: wheat;
+}

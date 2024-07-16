@@ -2,7 +2,7 @@ import { User, Post } from "../data/index.js"
 import { SystemError, NotFoundError } from "com/errors.js"
 import validate from "com/validate.js"
 
-const getPostComments = (userId, postId, callback) => {
+const getPostComments = (userId, postId) => {
   validate.id(userId, "userId")
   validate.id(postId, "postId")
 
@@ -17,8 +17,7 @@ const getPostComments = (userId, postId, callback) => {
         .catch(() => { throw new SystemError(error.message) })
         .then(post => {
           if (!post) {
-            callback(new NotFoundError("❌ Post not found ❌"))
-            return
+            throw new NotFoundError("❌ Post not found ❌")
           }
 
           post.comments.forEach(comment => {

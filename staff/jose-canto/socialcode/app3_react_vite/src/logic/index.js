@@ -13,6 +13,7 @@ import getPostComments from "./getPostComments"
 import getAllPosts from "./getAllPosts"
 import createPost from "./createPost"
 import deletePost from "./deletePost"
+import editPostTitle from "./editPostTitle"
 
 
 const logic = {
@@ -31,6 +32,7 @@ const logic = {
   getAllPosts,
   createPost,
   deletePost,
+  editPostTitle,
 
 }
 

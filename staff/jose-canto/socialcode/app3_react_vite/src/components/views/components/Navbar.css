@@ -6,34 +6,46 @@
 }
 
 .Navbar {
-  display: inline-flex;
+  position: absolute;
+  display: flex;
   flex-direction: column;
   align-items: end;
-  width: 5rem;
+  width: 90%;
   height: auto;
-
+  top: 0.5rem;
+  right: 1rem;
+  gap: 0.3rem
 }
 
-.Delete_Container {
+.Navbar_Container {
   display: flex;
-  width: 100%;
-  justify-content: end;
+  position: relative;
+  gap: 0.5rem
 }
 
 .DeleteButton {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 3rem;
-  height: 1.5rem;
+  height: 1.6rem;
+  margin-top: 0.5rem;
+}
+
+.EditButton {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 1.6rem;
   margin-top: 0.5rem;
 }
 
 .NavButton {
   font-size: 1.5rem;
   cursor: pointer;
-
 }
 
 .NavButton:hover {
