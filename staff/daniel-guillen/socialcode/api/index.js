@@ -3,11 +3,6 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-//import logic from './logic/index.js'
-//import { CredentialsError, SystemError } from 'com/errors.js'
-//import handleErrorResponse from './helper/handleErrorResponse.js'
-//import jwt from './util/jwt-promised.js'
-
 import {
     registerUserHandler,
     authenticateUserHandler,
@@ -37,9 +32,9 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/users/:targetUserId', getUserNameHandler)
 
-        api.get('/posts', createPostHandler)
+        api.get('/posts', getAllPostsHandler)
 
-        api.post('/posts', jsonBodyParser, getAllPostsHandler)
+        api.post('/posts', jsonBodyParser, createPostHandler)
 
         api.delete('/posts/:postId', deletePostHandler)
 

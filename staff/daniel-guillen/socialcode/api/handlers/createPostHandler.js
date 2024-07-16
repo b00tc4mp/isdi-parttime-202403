@@ -1,6 +1,5 @@
 import jwt from '../util/jwt-promised.js'
 
-
 import logic from '../logic/index.js'
 
 import { CredentialsError } from 'com/errors.js'
@@ -15,9 +14,11 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
+                const { title, image, description } = req.body
+
                 try {
-                    logic.getAllPosts(userId)
-                        .then(posts => res.json(posts))
+                    logic.createPost(userId, title, image, description)
+                        .then(() => res.status(201).send())
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
