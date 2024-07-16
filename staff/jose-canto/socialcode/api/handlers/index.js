@@ -10,6 +10,8 @@ import getPostCommentsHandler from "./getPostCommentsHandler.js"
 import createPostCommentHandler from "./createPostCommentHandler.js"
 import editPostTitleHandler from "./editPostTitleHandler.js"
 
+import errorHandler from "./errorHandler.js"
+
 
 export default {
   registerUserHandler,
@@ -23,5 +25,6 @@ export default {
   getPostCommentsHandler,
   createPostCommentHandler,
   editPostTitleHandler,
+  errorHandler,
 }
 

@@ -1,7 +1,7 @@
 
 import { DuplicityError, ContentError, MatchError, CredentialsError, NotFoundError } from "com/errors.js"
 
-export default (error, res) => {
+export default (error, req, res, next) => {
   let status = 500
 
   if (error instanceof DuplicityError) {

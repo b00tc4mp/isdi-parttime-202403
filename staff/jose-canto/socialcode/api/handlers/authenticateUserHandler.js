@@ -1,12 +1,11 @@
 import "dotenv/config"
-import errorResponse from "../helper/errorResponse.js"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
 import { SystemError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
 
-export default (req, res) => {
+export default (req, res, next) => {
   try {
     const { username, password } = req.body
 
@@ -17,11 +16,11 @@ export default (req, res) => {
             res.json(token)
             console.log(`User ${username} authenticated`)
           })
-          .catch((error) => errorResponse(new SystemError(error.message), res))
+          .catch((error) => next(new SystemError(error.message)))
       })
-      .catch((error) => errorResponse(error, res))
+      .catch((error) => next(error))
   } catch (error) {
-    errorResponse(error, res)
+    next(error)
   }
 }
 

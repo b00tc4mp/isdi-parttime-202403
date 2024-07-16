@@ -2,11 +2,10 @@ import "dotenv/config"
 import logic from "../logic/index.js"
 import { CredentialsError } from "com/errors.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
-import errorResponse from "../helper/errorResponse.js"
 
 const { JWT_SECRET } = process.env
 
-export default (req, res) => {
+export default (req, res, next) => {
   try {
     const token = req.headers.authorization.slice(7)
 
@@ -23,15 +22,15 @@ export default (req, res) => {
               res.json(posts)
             })
             .catch((error) => {
-              errorResponse(error, res)
+              next(error)
             })
         } catch (error) {
-          errorResponse(error, res)
+          next(error)
         }
       })
-      .catch((error) => errorResponse(new CredentialsError(error.message), res))
+      .catch((error) => next(new CredentialsError(error.message)))
 
   } catch (error) {
-    errorResponse(error, res)
+    next(error)
   }
 }
