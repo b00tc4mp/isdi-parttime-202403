@@ -20,6 +20,8 @@ mongoose.connect(MONGODB_URL)
 
         api.use(cors())
 
+        // api.use(express.json())
+
         api.get('/', (req, res) => res.send('Hello, World!'))
 
         const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
@@ -208,6 +210,64 @@ mongoose.connect(MONGODB_URL)
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
+
+        api.patch("/posts/:postId/comments", jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+
+                jwt.verify(token, JWT_SECRET)
+                    .then(payload => {
+                        const { sub: userId } = payload
+                        const { postId } = req.params
+                        const { text } = req.body
+
+                        logic.createPostComment(userId, postId, text)
+                            .then(() => res.status(201).send())
+                            .catch(error => handleErrorResponse(error, res))
+                    })
+                    .catch(error => {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(401).json({ error: CredentialsError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                handleErrorResponse(error, res)
+            }
+        })
+
+        /*
+        api.patch("/posts/:postId/comments", jsonBodyParser, (req, res) => {
+
+            try {
+                const token = req.headers.authorization.slice(7)
+                jwt.verify(token, JWT_SECRET, (error, payload) => {
+                    if (error) {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        } else {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        }
+                        return
+                    }
+                    const { sub: username } = payload
+                    const { postId } = req.params
+                    const { text } = req.body
+
+
+                    logic.createPostComment(username, postId, text, (error) => {
+                        if (error) {
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                            return
+                        }
+                        res.status(201).send()
+                    })
+                })
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        */
 
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
     })

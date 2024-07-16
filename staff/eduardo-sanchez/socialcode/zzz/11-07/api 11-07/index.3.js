@@ -15,11 +15,33 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
         const api = express()
 
-        api.use(express.static('public'))
+        // api.use(express.static('public')) // no hace falta xq no tenemos nada en la carpeta public (archivos estaticos). 
+        // express.static actúa como un middleware en tu aplicación Express que intercepta las solicitudes HTTP para archivos estáticos y los sirve automáticamente
 
         api.use(cors())
 
+        // api.use(express.json())
+        // express.json() es un middleware incorporado en Express que analiza los cuerpos de las solicitudes entrantes que contienen datos en formato JSON. Este middleware convierte el cuerpo de la solicitud en un objeto JavaScript accesible a través de req.body, que luego puedes usar en tus rutas y controladores para manejar los datos de la solicitud.
+
         api.get('/', (req, res) => res.send('Hello, World!'))
+
+        /*
+
+        const errorHandler = (error, req, res, next) => {
+            console.log(error)
+
+            res.status(400).json({ error: error.constructor.name, message: error.message })
+            res.send('end')
+        }
+
+        api.get('/test', (req, res, next) => {
+            next(new TypeError('hola type error'))
+        })
+        
+        api.use(errorHandler)
+        */
+
+        // llamariamos a esta ruta con: curl -v http://localhost:9010/test
 
         const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
@@ -171,6 +193,7 @@ mongoose.connect(MONGODB_URL)
                 handleErrorResponse(error, res)
             }
         })
+        // api.use(errorHandler)
 
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
     })

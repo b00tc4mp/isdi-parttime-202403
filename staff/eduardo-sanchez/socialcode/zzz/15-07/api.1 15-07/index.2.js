@@ -2,17 +2,17 @@ import 'dotenv/config'
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
-import { CredentialsError, SystemError } from 'com/errors.js'
+import { ContentError, DuplicityError, MatchError, SystemError } from 'com/errors.js'
 import mongoose from 'mongoose'
 
 import jwt from './util/jsonwebtoken-promised.js'
-
-import handleErrorResponse from './helper/handleErrorResponse.js'
 
 const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
+        const { JsonWebTokenError, TokenExpiredError } = jwt
+
         const api = express()
 
         api.use(express.static('public'))
@@ -23,7 +23,6 @@ mongoose.connect(MONGODB_URL)
 
         const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
-        // TODO api.post('/users', jsonBodyParser, registerUserHandler)
         api.post('/users', jsonBodyParser, (req, res) => {
             const { name, surname, email, username, password, passwordRepeat } = req.body
 
@@ -31,10 +30,22 @@ mongoose.connect(MONGODB_URL)
                 logic.registerUser(name, surname, email, username, password, passwordRepeat)
                     .then(() => res.status(201).send())
                     .catch(error => {
-                        handleErrorResponse(error, res)
+                        let status = 500
+
+                        if (error instanceof DuplicityError)
+                            status = 409
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
-                handleErrorResponse(error, res)
+                let status
+
+                if (error instanceof ContentError)
+                    status = 400
+                else if (error instanceof MatchError)
+                    status = 412
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -46,11 +57,11 @@ mongoose.connect(MONGODB_URL)
                     .then(userId =>
                         jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
                             .then(token => res.json(token))
-                            .catch(error => handleErrorResponse(new SystemError(error.message), res))
+                            .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
                     )
-                    .catch(error => handleErrorResponse(error, res))
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
             } catch (error) {
-                handleErrorResponse(error, res)
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -67,14 +78,19 @@ mongoose.connect(MONGODB_URL)
                         try {
                             logic.getUserName(userId, targetUserId)
                                 .then(name => res.json(name))
-                                .catch(error => handleErrorResponse(error, res))
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
                         } catch (error) {
-                            handleErrorResponse(error, res)
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
                         }
                     })
-                    .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+                    .catch(error => {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                    })
             } catch (error) {
-                handleErrorResponse(error, res)
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -89,14 +105,19 @@ mongoose.connect(MONGODB_URL)
                         try {
                             logic.getAllPosts(userId)
                                 .then(posts => res.json(posts))
-                                .catch(error => handleErrorResponse(error, res))
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
                         } catch (error) {
-                            handleErrorResponse(error, res)
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
                         }
                     })
-                    .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+                    .catch(error => {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                    })
             } catch (error) {
-                handleErrorResponse(error, res)
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -113,14 +134,19 @@ mongoose.connect(MONGODB_URL)
                         try {
                             logic.createPost(userId, title, image, description)
                                 .then(() => res.status(201).send())
-                                .catch(error => handleErrorResponse(error, res))
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
                         } catch (error) {
-                            handleErrorResponse(error, res)
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
                         }
                     })
-                    .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+                    .catch(error => {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                    })
             } catch (error) {
-                handleErrorResponse(error, res)
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -137,14 +163,19 @@ mongoose.connect(MONGODB_URL)
                         try {
                             logic.deletePost(userId, postId)
                                 .then(() => res.status(204).send())
-                                .catch(error => handleErrorResponse(error, res))
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
                         } catch (error) {
-                            handleErrorResponse(error, res)
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
                         }
                     })
-                    .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+                    .catch(error => {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                    })
             } catch (error) {
-                handleErrorResponse(error, res)
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -161,14 +192,19 @@ mongoose.connect(MONGODB_URL)
                         try {
                             logic.toggleLikePost(userId, postId)
                                 .then(() => res.status(204).send())
-                                .catch(error => handleErrorResponse(error, res))
+                                .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
                         } catch (error) {
-                            handleErrorResponse(error, res)
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
                         }
                     })
-                    .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+                    .catch(error => {
+                        if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                            res.status(500).json({ error: SystemError.name, message: error.message })
+                        else
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                    })
             } catch (error) {
-                handleErrorResponse(error, res)
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
