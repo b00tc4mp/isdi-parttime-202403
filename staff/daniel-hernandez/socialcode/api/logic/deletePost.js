@@ -1,5 +1,5 @@
 import { User, Post } from "../data/index.js";
-import { SystemError, MatchError } from "com/errors.js";
+import { SystemError, MatchError, NotFoundError } from "com/errors.js";
 import validate from "com/validate.js";
 import { Types } from "mongoose";
 const { ObjectId } = Types;
@@ -18,7 +18,7 @@ const deletePost = (userId, id) => {
     }
 
     if (!user) {
-      throw new MatchError("user not found");
+      throw new NotFoundError("user not found");
     }
 
     try {
@@ -28,7 +28,7 @@ const deletePost = (userId, id) => {
     }
 
     if (!post) {
-      throw new MatchError("post not found");
+      throw new NotFoundError("post not found");
     }
 
     if (post.author.toString() !== userId) {

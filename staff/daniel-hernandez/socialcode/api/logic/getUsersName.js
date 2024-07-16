@@ -1,5 +1,5 @@
 import { User } from "../data/index.js";
-import { SystemError, MatchError } from "com/errors.js";
+import { SystemError, NotFoundError } from "com/errors.js";
 import validate from "com/validate.js";
 
 const getUsersName = (userId, targetUserId) => {
@@ -15,7 +15,9 @@ const getUsersName = (userId, targetUserId) => {
       throw new SystemError(`failed to get user's name: ${error.message}`);
     }
 
-    if (!user) throw new MatchError("user not found");
+    if (!user) {
+      throw new NotFoundError("user not found");
+    }
 
     try {
       targetUser = await User.findById(targetUserId).lean();
@@ -23,7 +25,9 @@ const getUsersName = (userId, targetUserId) => {
       throw new SystemError(`failed to get user's name: ${error.message}`);
     }
 
-    if (!targetUser) throw new MatchError("target user was not found");
+    if (!targetUser) {
+      throw new NotFoundError("target user was not found");
+    }
 
     return targetUser.name;
   })();

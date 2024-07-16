@@ -1,5 +1,5 @@
 import { User, Post } from "../data/index.js";
-import { SystemError, MatchError } from "com/errors.js";
+import { SystemError, NotFoundError } from "com/errors.js";
 import validate from "com/validate.js";
 
 const createPost = (userId, title, image, description) => {
@@ -18,7 +18,7 @@ const createPost = (userId, title, image, description) => {
     }
 
     if (!user) {
-      throw new MatchError("user not found");
+      throw new NotFoundError("user not found");
     }
 
     const post = {

@@ -1,6 +1,6 @@
 import { User, Post } from "../data/index.js";
 import validate from "com/validate.js";
-import { SystemError, MatchError } from "com/errors.js";
+import { SystemError, MatchError, NotFoundError } from "com/errors.js";
 
 const likePost = (userId, postId) => {
   validate.id(userId, "User ID");
@@ -16,7 +16,7 @@ const likePost = (userId, postId) => {
     }
 
     if (!user) {
-      throw new MatchError("user not found");
+      throw new NotFoundError("user not found");
     }
 
     try {
@@ -26,7 +26,7 @@ const likePost = (userId, postId) => {
     }
 
     if (!post) {
-      throw new MatchError("post not found");
+      throw new NotFoundError("post not found");
     }
 
     const includes = post.likes.some(

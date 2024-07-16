@@ -1,11 +1,9 @@
 import logic from "../logic/index.js";
 import jwt from "../util/jsonwebtoken-promisified.js";
-const { JsonWebTokenError, TokenExpiredError } = jwt;
-import { SystemError } from "com/errors.js";
 const { JWT_SECRET } = process.env;
 // TODO: async wrapper
 
-const getPosts = async (req, res) => {
+const getPosts = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
@@ -21,24 +19,11 @@ const getPosts = async (req, res) => {
 
     res.status(200).json({ page, limit, posts, total: allPosts.length });
   } catch (error) {
-    if (
-      error instanceof JsonWebTokenError ||
-      error instanceof TokenExpiredError
-    ) {
-      res.status(500).json({
-        error: SystemError.name,
-        message: error.message,
-      });
-    } else {
-      res.status(500).json({
-        error: error.constructor.name,
-        message: error.message,
-      });
-    }
+    next(error);
   }
 };
 
-const createPost = async (req, res) => {
+const createPost = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
@@ -48,24 +33,11 @@ const createPost = async (req, res) => {
 
     res.status(201).send();
   } catch (error) {
-    if (
-      error instanceof JsonWebTokenError ||
-      error instanceof TokenExpiredError
-    ) {
-      res.status(500).json({
-        error: SystemError.name,
-        message: error.message,
-      });
-    } else {
-      res.status(500).json({
-        error: error.constructor.name,
-        message: error.message,
-      });
-    }
+    next(error);
   }
 };
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
   const { name, surname, email, username, password, repeatedPassword } =
     req.body;
 
@@ -80,14 +52,11 @@ const createUser = async (req, res) => {
     );
     res.status(201).send();
   } catch (error) {
-    res.status(500).json({
-      error: error.constructor.name,
-      message: error.message,
-    });
+    next(error);
   }
 };
 
-const getUser = async (req, res) => {
+const getUser = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
@@ -97,24 +66,11 @@ const getUser = async (req, res) => {
 
     res.status(200).json({ name });
   } catch (error) {
-    if (
-      error instanceof JsonWebTokenError ||
-      error instanceof TokenExpiredError
-    ) {
-      res.status(500).json({
-        error: SystemError.name,
-        message: error.message,
-      });
-    } else {
-      res.status(500).json({
-        error: error.constructor.name,
-        message: error.message,
-      });
-    }
+    next(error);
   }
 };
 
-const deletePost = async (req, res) => {
+const deletePost = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
@@ -124,21 +80,11 @@ const deletePost = async (req, res) => {
 
     res.status(204).send();
   } catch (error) {
-    if (
-      error instanceof JsonWebTokenError ||
-      error instanceof TokenExpiredError
-    ) {
-      res.status(500).json({ error: SystemError.name, message: error.message });
-    } else {
-      res.status(500).json({
-        error: error.constructor.name,
-        message: error.message,
-      });
-    }
+    next(error);
   }
 };
 
-const authUser = async (req, res) => {
+const authUser = async (req, res, next) => {
   const { username, password } = req.body;
 
   try {
@@ -149,14 +95,11 @@ const authUser = async (req, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({
-      error: error.constructor.name,
-      message: error.message,
-    });
+    next(error);
   }
 };
 
-const likePost = async (req, res) => {
+const likePost = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const { sub: userId } = await jwt.verify(token, JWT_SECRET, {});
@@ -165,17 +108,7 @@ const likePost = async (req, res) => {
     await logic.likePost(userId, postId);
     res.status(204).send();
   } catch (error) {
-    if (
-      error instanceof JsonWebTokenError ||
-      error instanceof TokenExpiredError
-    ) {
-      res.status(500).json({ error: SystemError.name, message: error.message });
-    } else {
-      res.status(500).json({
-        error: error.constructor.name,
-        message: error.message,
-      });
-    }
+    next(error);
   }
 };
 

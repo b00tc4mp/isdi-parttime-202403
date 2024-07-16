@@ -30,13 +30,38 @@ class SystemError extends Error {
   }
 }
 
-export { ContentError, MatchError, DuplicityError, SystemError };
+class CredentialError extends Error {
+  constructor(message) {
+    super(message);
+
+    this.name = this.constructor.name;
+  }
+}
+
+class NotFoundError extends Error {
+  constructor(message) {
+    super(message);
+
+    this.name = this.constructor.name;
+  }
+}
+
+export {
+  ContentError,
+  MatchError,
+  DuplicityError,
+  SystemError,
+  CredentialError,
+  NotFoundError,
+};
 
 const errors = {
   ContentError,
   MatchError,
   DuplicityError,
   SystemError,
+  CredentialError,
+  NotFoundError,
 };
 
 export default errors;

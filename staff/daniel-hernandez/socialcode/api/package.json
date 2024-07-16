@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon .",
+    "dev": "node --watch .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --inspect-brk ."
   },
@@ -21,8 +21,5 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.4"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.3"
   }
 }
