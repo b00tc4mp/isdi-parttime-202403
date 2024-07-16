@@ -9,6 +9,8 @@ import toggleLikePost from "./toggleLikePost.js"
 import createPostComment from "./createPostComments.js"
 import getPostComments from "./getPostComments.js"
 
+import editPostTitle from "./editPostTitle.js"
+
 const logic = {
   authenticateUser,
   getUserName,
@@ -21,7 +23,8 @@ const logic = {
   createPost,
   deletePost,
   getAllPosts,
-  getPostComments
+  getPostComments,
+  editPostTitle
 }
 
 export default logic
