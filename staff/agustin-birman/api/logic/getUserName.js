@@ -2,10 +2,8 @@ import validate from 'com/validate.js'
 import { User } from '../data/index.js'
 import { SystemError, NotFoundError } from 'com/errors.js'
 
-
-
 const getUserName = (userId, targetUserId) => {
-    validate.id(userId)
+    validate.id(userId, 'userId')
     validate.id(targetUserId, 'targetUserId')
 
     return User.findById(userId).lean()
