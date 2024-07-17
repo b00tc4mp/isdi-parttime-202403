@@ -5,7 +5,7 @@ export const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 export const USERNAME_REGEX = /^[\w-]+$/
 export const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-export const ID_REGEX = /^[0-9a-z]+$/
+export const ID_REGEX = /^[0-9a-z-_]+$/i;
 
 function validateName(name, explain = "name") {
   if (typeof name !== "string" || !NAME_REGEX.test(name)) {
@@ -14,13 +14,13 @@ function validateName(name, explain = "name") {
 }
 
 function validateUsername(username, explain = "username") {
-  if (!USERNAME_REGEX.test(username)) {
-    throw new ContentError(`❌ ${explain}  is not valid ❌`)
+  if (typeof username !== "string" || !USERNAME_REGEX.test(username)) {
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
   }
 }
 
 function validatePassword(password) {
-  if (!PASSWORD_REGEX.test(password)) {
+  if (typeof password !== "string" || !PASSWORD_REGEX.test(password)) {
     throw new ContentError("❌ Password is not valid ❌")
   }
 }
@@ -55,8 +55,8 @@ function validateUrl(url, explain = 'url') {
   }
 }
 function validateId(id, explain = 'id') {
-  if (!ID_REGEX.test(id)) {
-    throw new ContentError(`${explain} is not valid, maximum of caracters`)
+  if (typeof id !== "string" || !ID_REGEX.test(id)) {
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 
