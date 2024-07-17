@@ -1,12 +1,16 @@
 import "dotenv/config"
 import express from "express"
+import logic from "./logic/index.js"
 import cors from "cors"
+import { CredentialsError, SystemError } from 'com/errors.js'
 import mongoose from "mongoose"
+import handleErrorResponse from "./helper/handlerErrorResponse.js"
 import routeHandler from "./handlers/index.js"
-import errorHandler from "./handlers/errorHandler.js"
 
 
-const { MONGODB_URL, PORT } = process.env
+import jwt from "./utils/jsonwebtoken-promised.js"
+
+const { MONGODB_URL, PORT, JWT_SECRET } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
@@ -38,8 +42,6 @@ mongoose.connect(MONGODB_URL)
         api.patch("/posts/:postId/likes", routeHandler.toggleLikePostHandler)
 
         api.patch("/posts/:postId/edit", jsonBodyParser, routeHandler.editPostHandler)
-
-        api.use(errorHandler)
 
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
 

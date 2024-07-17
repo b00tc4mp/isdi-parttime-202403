@@ -1,11 +1,11 @@
 import "dotenv/config"
-import handleErrorResponse from "../helper/handlerErrorResponse.js"
+//import handleErrorResponse from "../helper/handlerErrorResponse.js"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
 import { CredentialsError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
-const deletePostHandler = (req, res) => {
+const deletePostHandler = (req, res, next) => {
     try {
         const token = req.headers.authorization.slice(7)
 
@@ -18,14 +18,14 @@ const deletePostHandler = (req, res) => {
                 try {
                     logic.deletePost(userId, postId)
                         .then(() => res.status(204).send())
-                        .catch(error => handleErrorResponse(error, res))
+                        .catch(error => next(error))
                 } catch (error) {
-                    handleErrorResponse(error, res)
+                    next(error)
                 }
             })
-            .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+            .catch(error => next(new CredentialsError(error.message)))
     } catch (error) {
-        handleErrorResponse(error, res)
+        next(error)
     }
 }
 

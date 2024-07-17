@@ -1,12 +1,12 @@
 import "dotenv/config"
-//import handleErrorResponse from "../helper/handlerErrorResponse.js"
+import handleErrorResponse from "../helper/handlerErrorResponse.js"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
 import { CredentialsError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
 
-const getPostsHandler = (req, res, next) => {
+const getPostsHandler = (req, res) => {
     try {
         //añadimos que pida username para poder accedir a los posts
         const token = req.headers.authorization.slice(7)
@@ -17,14 +17,14 @@ const getPostsHandler = (req, res, next) => {
                 try {
                     logic.getPosts(userId)
                         .then(posts => res.json(posts))
-                        .catch(error => next(error))
+                        .catch(error => handleErrorResponse(error, res))
                 } catch (error) {
-                    next(error)
+                    handleErrorResponse(error, res)
                 }
             })
-            .catch(error => next(new CredentialsError(error.message)))
+            .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
     } catch (error) {
-        next(error)
+        handleErrorResponse(error, res)
     }
 }
 
