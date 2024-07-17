@@ -14,8 +14,6 @@ import {
     errorHandler,
 } from './handlers/index.js'
 
-import createPostHandler from './handlers/createPostHandler.js'
-
 const { MONGODB_URL, PORT } = process.env
 
 mongoose.connect(MONGODB_URL)

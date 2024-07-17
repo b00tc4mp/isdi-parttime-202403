@@ -1,4 +1,6 @@
-import jwt, {JsonWebTokenError, TokenExpiredError} from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
+
+const { JsonWebTokenError, TokenExpiredError } = jwt
 
 function sign(payload, secret, options) {
     return new Promise((resolve, reject) => {
@@ -17,7 +19,7 @@ function sign(payload, secret, options) {
 function verify(token, secret) {
     return new Promise((resolve, reject) => {
         jwt.verify(token, secret, (error, payload) => {
-            if(error){
+            if (error) {
                 reject(error)
 
                 return

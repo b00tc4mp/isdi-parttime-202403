@@ -4,7 +4,7 @@ import jwt from '../utils/jsonwebtoken-promised.js'
 
 import { CredentialError } from "com/error.js"
 
-import { JWT_SECRET } from process.env
+const { JWT_SECRET } = process.env
 
 export default (req, res, next) => {
 
