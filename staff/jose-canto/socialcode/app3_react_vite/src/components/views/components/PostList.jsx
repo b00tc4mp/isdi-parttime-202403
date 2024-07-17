@@ -13,6 +13,7 @@ function PostList({ refreshStamp }) {
   const [posts, setPosts] = useState([])
   const [page, setPage] = useState(1)
   const [limit] = useState(2)
+  const [scrollPosition, setScrollPosition] = useState(0)
 
   useEffect(() => {
     console.log("PostList --> useEffect")
@@ -29,6 +30,7 @@ function PostList({ refreshStamp }) {
           console.log("cargando posts...")
           console.log(newPosts)
           setPosts((prevPosts) => [...prevPosts, ...newPosts])
+          
         })
         .catch((error) => {
           console.error(error)
@@ -47,6 +49,11 @@ function PostList({ refreshStamp }) {
     setPosts([])
     loadPosts(1, limit)
   }
+  const handlePostEdited = () => {
+    setPage(1)
+    setPosts([])
+    loadPosts(1, limit)
+  }
 
   useInfiniteScroll(() => {
     const nextPage = page + 1
@@ -58,7 +65,7 @@ function PostList({ refreshStamp }) {
     <>
       <View tag="section" className="Section">
         {posts.map((post) => (
-          <Post post={post} key={post.id} onPostDeleted={handlePostLoadDeleted}></Post>
+          <Post post={post} key={post.id} onPostDeleted={handlePostLoadDeleted} onPostEdited={handlePostEdited}></Post>
         ))}
       </View>
     </>

@@ -13,7 +13,7 @@ import CommentList from "./CommentList"
 
 import EditPostForm from "./EditPostForm"
 
-function Post({ post, onPostDeleted }) {
+function Post({ post, onPostDeleted, onPostEdited }) {
   console.log("Post --> render")
 
   const [showConfirm, setShowConfirm] = useState("")
@@ -101,6 +101,7 @@ function Post({ post, onPostDeleted }) {
   const onClickEditPost = () => setShowConfirm("EditPost")
 
   const handleEditPost = () => {
+    onPostEdited()
     setShowConfirm("")
   }
   const handleCancelEditPost = () => {
@@ -118,6 +119,9 @@ function Post({ post, onPostDeleted }) {
         <Heading level="2" className="PostTitle">
           {post.title}
         </Heading>
+        {showConfirm === "EditPost" && (
+          <EditPostForm postId={post.id} onPostEdited={handleEditPost} onCancelEditPost={handleCancelEditPost} />
+        )}
         <div className="TextContainer">
           <Text className="PostText">{post.description}</Text>
         </div>
@@ -138,9 +142,6 @@ function Post({ post, onPostDeleted }) {
               onConfirmDeletePost={confirmDeletePost}
               onCancelDeletePost={cancelDeletePost}
             />
-          )}
-          {showConfirm === "EditPost" && (
-            <EditPostForm postId={post.id} onPostEdited={handleEditPost} onCancelEditPost={handleCancelEditPost} />
           )}
         </div>
 
