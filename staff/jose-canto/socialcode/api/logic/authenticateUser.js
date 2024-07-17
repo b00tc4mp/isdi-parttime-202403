@@ -4,7 +4,7 @@ import validate from "com/validate.js"
 import bcrypt from "bcryptjs"
 
 const authenticateUser = (username, password) => {
-  validate.username(username)
+  validate.username(username, "Username")
   validate.password(password)
 
   return User.findOne({ username }).lean()
@@ -14,8 +14,8 @@ const authenticateUser = (username, password) => {
         throw new CredentialsError("❌ User not found ❌")
       }
 
-      console.log(`User found: ${userFound.username}`)
-      console.log(`Password hash: ${userFound.password}`)
+      // console.log(`User found: ${userFound.username}`)
+      // console.log(`Password hash: ${userFound.password}`)
 
       return bcrypt.compare(password, userFound.password)
         .catch((error) => { console.error(error) })
@@ -26,7 +26,6 @@ const authenticateUser = (username, password) => {
           console.log(`Password match: ${match}`)
           return userFound._id.toString()
         })
-
     })
 }
 export default authenticateUser

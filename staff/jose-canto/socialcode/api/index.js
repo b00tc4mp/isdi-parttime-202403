@@ -17,6 +17,7 @@ mongoose.connect(MONGODB_URL)
     api.get("/", (req, res) => {
       res.send("Hello World")
     })
+
     api.use("/", router)
 
     api.use(errorHandler)
