@@ -1,7 +1,7 @@
 import { ContentError, DuplicityError, SystemError, MatchError, CredentialsError, NotFoundError } from 'com/errors.js'
 
 
-function handleErrorResponse(error, res) {
+function errorHandler(error, req, res, next) {
     let status = 500
 
     if (error instanceof DuplicityError)
@@ -23,4 +23,4 @@ function handleErrorResponse(error, res) {
 
 }
 
-export default handleErrorResponse
+export default errorHandler

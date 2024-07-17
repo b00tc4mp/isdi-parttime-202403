@@ -1,16 +1,17 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import authenticateUser from './authenticateUser.js'
+import editPostTitle from './editPostTitle.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            authenticateUser('doncic', '123123123')
-                .then(userId => console.log('user authenticated', userId))
+            editPostTitle("668a739a50df84d483367be9", "668e9d4c0c347f08b5781df7", "Nuevo titulo")
+                .then(() => console.log('post title edited'))
                 .catch(error => console.error(error))
+
         } catch (error) {
             console.error(error)
         }
