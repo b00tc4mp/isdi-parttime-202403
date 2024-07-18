@@ -28,13 +28,16 @@ describe('authenticateUser', () => {
             })
     )
 
-    it('fails on non-existing user', () =>
+    it('fails on non-existing user', () => {
+        let errorThrown
+        
         authenticateUser('meloinvento', '123123123')
-            .catch(error => {
-                expect(error).to.be.instanceOf(CredentialsError)
-                expect(error.message).to.equal('user not found')
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.instanceOf(CredentialsError)
+                expect(errorThrown.message).to.equal('user not found')
             })
-    )
+    })
 
     it('fails on existing user by wrong password', () => {
         let errorThrown
