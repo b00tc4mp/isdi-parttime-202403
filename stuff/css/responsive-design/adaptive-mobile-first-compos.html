@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h1 {
+            font-size: 4vh;
+        }
+
+        .posts {
+            border: 2px solid dodgerblue;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .post {
+            min-height: 100px;
+            border: 2px solid tomato;
+        }
+
+        @media screen and (min-width: 300px) {
+            h1 {
+                font-size: 6vh;
+            }
+
+            .posts {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media screen and (min-width: 400px) {
+            .posts {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        @media screen and (min-width: 500px) {
+            .posts {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media screen and (min-width: 600px) {
+            .posts {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hola, Mundo!</h1>
+
+    <section class="posts">
+        <article class="post">1</article>
+        <article class="post">2</article>
+        <article class="post">3</article>
+        <article class="post">4</article>
+        <article class="post">5</article>
+        <article class="post">6</article>
+        <article class="post">7</article>
+        <article class="post">8</article>
+        <article class="post">9</article>
+        <article class="post">10</article>
+        <article class="post">11</article>
+        <article class="post">12</article>
+    </section>
+</body>
+
+</html>
