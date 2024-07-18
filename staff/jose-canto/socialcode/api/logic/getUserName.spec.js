@@ -3,10 +3,9 @@ import mongoose, { Types } from "mongoose"
 
 import bcrypt from "bcryptjs"
 
-
 import getUserName from "./getUserName.js"
 import { User } from "../data/index.js"
-import { CredentialsError, NotFoundError, SystemError, ContentError } from "com/errors.js"
+import { NotFoundError, ContentError } from "com/errors.js"
 
 import { expect } from "chai"
 
@@ -20,9 +19,6 @@ describe("getUserName", () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
   beforeEach(() => User.deleteMany())
-
-
-
 
   it("succeeds get userName from existing user", () =>
     bcrypt.hash("1234", 8)
@@ -46,13 +42,12 @@ describe("getUserName", () => {
       })
   )
 
-
   it("fails on non-existing user", () => {
     let errorThrown
 
     return bcrypt.hash("1234", 8)
       .then(hash => User.create({ name: "Mocha", surname: "Chai", email: "mocha@chai.es", username: "mochachai", password: hash }))
-      .then(user => getUserName(new ObjectId().toString(), user.id))
+      .then(targetUserId => getUserName(new ObjectId().toString(), targetUserId.id))
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -65,7 +60,7 @@ describe("getUserName", () => {
 
     return bcrypt.hash("1234", 8)
       .then(hash => User.create({ name: "Mocha", surname: "Chai", email: "mocha@chai.es", username: "mochachai", password: hash }))
-      .then(targetUser => getUserName(targetUser.id, new ObjectId().toString()))
+      .then(user => getUserName(user.id, new ObjectId().toString()))
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -83,10 +78,9 @@ describe("getUserName", () => {
 
     } finally {
       expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal("userId is not valid")
+      expect(errorThrown.message).to.equal("❌ userId is not valid ❌")
     }
   })
-
 
   it("fails on invalid targetUserId", () => {
     let errorThrown
@@ -98,7 +92,7 @@ describe("getUserName", () => {
 
     } finally {
       expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal("targetUserId is not valid")
+      expect(errorThrown.message).to.equal("❌ targetUserId is not valid ❌")
     }
   })
 

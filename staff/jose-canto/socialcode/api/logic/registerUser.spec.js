@@ -7,7 +7,7 @@ import { expect } from "chai"
 import { User } from "../data/index.js"
 
 import registerUser from "./registerUser.js"
-import { ContentError, CredentialsError, DuplicityError, MatchError } from "com/errors.js"
+import { ContentError, DuplicityError, MatchError } from "com/errors.js"
 
 const { MONGODB_URL_TEST } = process.env
 

@@ -29,7 +29,6 @@ const createPost = (userId, title, image, description) => {
         .catch(() => { throw new SystemError("connection error") })
         .then(() => { })
     })
-
 }
 
 export default createPost
