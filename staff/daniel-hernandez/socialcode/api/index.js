@@ -7,19 +7,20 @@ import cors from "cors";
 const api = express();
 const { PORT, MONGO_URI } = process.env;
 
+// TODO: async wrapper
 //middleware
 api.use([express.static("public"), express.json(), cors()]);
 
-// TODO: fix routing ( separate further, fix naming aswell ~ controllers => handlers)
 // routes
-import { datarouter } from "./routes/data.js";
+import router from "./routes/index.js";
 import notFound from "./middleware/not-found.js";
 
-api.use("/", datarouter);
+api.use("/users", router.userRouter);
+api.use("/posts", router.postRouter);
 api.use(notFound);
 api.use(errorHandler);
 
-const start = async () => {
+(async () => {
   try {
     await connectDB(MONGO_URI);
 
@@ -27,6 +28,4 @@ const start = async () => {
   } catch (error) {
     console.error(error);
   }
-};
-
-start();
+})();

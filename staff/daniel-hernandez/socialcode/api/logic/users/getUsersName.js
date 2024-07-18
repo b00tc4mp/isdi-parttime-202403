@@ -1,4 +1,4 @@
-import { User } from "../data/index.js";
+import { User } from "../../data/index.js";
 import { SystemError, NotFoundError } from "com/errors.js";
 import validate from "com/validate.js";
 

@@ -1,6 +1,6 @@
-import { User, Post } from "../data/index.js";
+import { User, Post } from "../../data/index.js";
 import validate from "com/validate.js";
-import { SystemError, MatchError, NotFoundError } from "com/errors.js";
+import { SystemError, NotFoundError } from "com/errors.js";
 
 const likePost = (userId, postId) => {
   validate.id(userId, "User ID");

@@ -1,4 +1,4 @@
-import { User } from "../data/index.js";
+import { User } from "../../data/index.js";
 import { SystemError, CredentialError } from "com/errors.js";
 import validate from "com/validate.js";
 import bcrypt from "bcryptjs";
