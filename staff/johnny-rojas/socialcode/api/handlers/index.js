@@ -8,6 +8,8 @@ import deletePostHandler from "./deletePostHandler.js"
 import toggleLikePostHandler from "./toggleLikePostHandler.js"
 import createPostCommentHandler from "./createPostCommentHandler.js"
 
+import errorHandler from './errorHandler.js'
+
 const handlers = {
   registerUserHandler,
   authenticateUserHandler,
@@ -17,7 +19,9 @@ const handlers = {
   createPostHandler,
   deletePostHandler,
   toggleLikePostHandler,
-  createPostCommentHandler
+  createPostCommentHandler,
+
+  errorHandler
 }
 
 export default handlers

@@ -1,12 +1,11 @@
 import 'dotenv/config'
 import logic from '../logic/index.js'
-import handleErrorResponse from '../helper/handleErrorResponse.js'
 import jwt from '../util/jsonwebtoken-promised.js'
 import { CredentialsError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
 
-const createPostHandler = (req, res) => {
+const createPostHandler = (req, res, next) => {
     try {
         const token = req.headers.authorization.slice(7)
 
@@ -19,15 +18,15 @@ const createPostHandler = (req, res) => {
                 try {
                     logic.createPost(userId, title, image, description)
                         .then(() => res.status(201).send())
-                        .catch(error => handleErrorResponse(error, res))
+                        .catch(error => next(error, res))
                 } catch (error) {
-                    handleErrorResponse(error, res)
+                    next(error, res)
                 }
             })
-            .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+            .catch(error => next(new CredentialsError(error.message), res))
 
     } catch (error) {
-        handleErrorResponse(error, res)
+        next(error, res)
     }
 }
 
