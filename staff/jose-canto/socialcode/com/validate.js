@@ -45,18 +45,18 @@ function validateCallback(callback) {
 
 function validateText(text, explain = 'text', maxLength = Infinity) {
   if (typeof text !== 'string' || !text.length || text.length > maxLength) {
-    throw new ContentError(`${explain} is not valid`)
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
   }
 }
 
 function validateUrl(url, explain = 'url') {
   if (typeof url !== 'string' || !url.startsWith('http')) {
-    throw new ContentError(`${explain} is not valid`)
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
   }
 }
 function validateId(id, explain = 'id') {
   if (typeof id !== "string" || !ID_REGEX.test(id)) {
-    throw new ContentError(`${explain} is not valid`)
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
   }
 }
 
