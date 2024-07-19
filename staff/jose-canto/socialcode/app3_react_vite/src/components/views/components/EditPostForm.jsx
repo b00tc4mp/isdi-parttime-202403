@@ -5,6 +5,8 @@ import FormWithFeedback from "../../library/FormWithFeedback"
 import Field from "../../core/Field"
 import Button from "../../core/Button"
 
+import "./EditPostForm.css"
+
 function EditPostForm({ postId, onPostEdited, onCancelEditPost }) {
   const [message, setMessage] = useState("")
 
