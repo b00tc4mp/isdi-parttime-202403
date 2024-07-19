@@ -2,42 +2,34 @@ import { User, Post } from '../data/index.js'
 import { MatchError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-import { ObjectId } from 'mongodb'
+import { Types } from 'mongoose'
 
-const createComment = (userId, postId, comment, callback) => {
+const { ObjectId } = Types
+
+const createComment = (userId, postId, comment) => {
     validate.id(userId, 'userId')
     validate.id(postId, 'postId')
-    validate.callback(callback)
+    validate.text(comment, 'comment', 200)
 
-    User.findById(userId).lean()
+    return User.findById(userId).lean()
+        .catch(error => { throw SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
-
-                return
+                throw new MatchError('user not found')
             }
 
-            Post.findById(postId)
+            return Post.findById(postId).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
                     if (!post) {
-                        callback(new MatchError('post not found'))
-
-                        return
+                        throw new MatchError('post not found')
                     }
 
-                    Post.updateOne({ _id: new ObjectId(postId) }, { $push: { comments: { author: userId, comment: comment, date: new Date().toLocaleString(), likes: [] } } })
-                        .then(() => callback(null))
-                        .catch(error => callback(new SystemError(error.message)))
+                    return Post.updateOne({ _id: post._id }, { $push: { comments: { author: userId, comment: comment, date: new Date() } } })
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
                 })
-
-                .catch(error => callback(new SystemError(error.message)))
-
-
         })
-        .catch(error => callback(new SystemError(error.message)))
-
-
-
 }
 
 export default createComment

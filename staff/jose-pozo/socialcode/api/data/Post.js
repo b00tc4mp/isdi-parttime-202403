@@ -2,27 +2,6 @@ import { Schema, model, Types } from 'mongoose'
 
 const { ObjectId } = Types
 
-const comment = new Schema({
-    author: {
-        type: ObjectId,
-        required: true,
-        ref: 'User'
-    },
-    comment: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true,
-        default: Date.now
-    },
-    likes: [{
-        type: String,
-        ref: 'User'
-    }]
-})
-
 const post = new Schema({
     author: {
         type: ObjectId,
@@ -51,8 +30,24 @@ const post = new Schema({
         required: true,
         ref: 'User'
     }],
-    comments: [comment]
+    comments: [{
+        author: {
+            type: ObjectId,
+            required: true,
+            ref: 'User'
+        },
+        comment: {
+            type: String,
+            required: true
+        },
+        date: {
+            type: Date,
+            required: true,
+            default: Date.now
+        }
+    }]
 })
+
 
 const Post = model('Post', post)
 

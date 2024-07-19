@@ -3,7 +3,6 @@ import errors, { SystemError } from 'com/errors'
 
 const getAllPosts = () => {
     validate.callback(callback)
-
     return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`

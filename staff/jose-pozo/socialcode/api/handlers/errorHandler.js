@@ -1,4 +1,4 @@
-import { ContentError, CredentialsErrors, DuplicityError, MatchError, NotFoundError, SystemError } from 'com/errors.js'
+import { ContentError, CredentialsError, DuplicityError, MatchError, NotFoundError, SystemError } from 'com/errors.js'
 
 function handleErrorResponse(error, res) {
     let status = 500
@@ -12,7 +12,7 @@ function handleErrorResponse(error, res) {
     else if (error instanceof MatchError)
         status = 412
 
-    else if (error instanceof CredentialsErrors)
+    else if (error instanceof CredentialsError)
         status = 401
 
     else if (error instanceof NotFoundError)

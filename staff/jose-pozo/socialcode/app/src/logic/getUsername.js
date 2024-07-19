@@ -4,8 +4,6 @@ import validate from 'com/validate'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
 const getUserName = () => {
-    validate.callback(callback)
-
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
     return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
@@ -29,7 +27,7 @@ const getUserName = () => {
 
                     const constructor = errors[error]
 
-                    callback(new constructor(message))
+                    throw new constructor(message)
                 })
         })
 

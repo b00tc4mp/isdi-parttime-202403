@@ -1,35 +1,30 @@
-import { User, Post } from '../dataMongoose/index.js'
-import { MatchError, SystemError } from 'com/errors.js'
+import { User, Post } from '../data/index.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getAllComments = (userId, postId, callback) => {
+const getAllPostComments = (userId, postId) => {
     validate.id(userId)
     validate.id(postId, 'postId')
-    validate.callback(callback)
 
-    User.findOne(userId).lean()
+    return User.findOne(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                callback(new MatchError('user not found'))
-
-                return
+                throw new NotFoundError('user not found')
             }
 
-            Post.findById(postId).lean()
+            return Post.findById(postId).lean()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
                     if (!post) {
-                        callback(new MatchError('post not found'))
-
-                        return
+                        { throw new NotFoundError('post not found') }
                     }
 
                     const comments = post.comments.reverse()
 
-                    callback(null, comments)
+                    return comments
                 })
-                .catch(error => callback(new SystemError(error.message)))
         })
-        .catch(error => callback(new SystemError(error.message)))
 }
 
-export default getAllComments
+export default getAllPostComments

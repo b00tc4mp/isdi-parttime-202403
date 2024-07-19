@@ -8,7 +8,7 @@ import getAllPosts from './getAllPosts.js'
 import toggleLikePost from './toggleLikePost.js'
 
 import createPostComment from './createPostComment.js'
-
+import getAllPostComments from './getAllPostComments.js'
 
 
 const logic = {
@@ -21,7 +21,8 @@ const logic = {
     getAllPosts,
     toggleLikePost,
 
-    createPostComment
+    createPostComment,
+    getAllPostComments
 }
 
 
