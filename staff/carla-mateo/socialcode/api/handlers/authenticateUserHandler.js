@@ -1,6 +1,7 @@
-import 'dotenv/config'
 import logic from '../logic/index.js'
+
 import jwt from '../util/jsonwebtoken-promised.js'
+
 import { SystemError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env

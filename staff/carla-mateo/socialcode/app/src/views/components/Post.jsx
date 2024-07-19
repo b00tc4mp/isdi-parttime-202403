@@ -11,7 +11,7 @@ import EditPostForm from './EditPostForm'
 import logic from '../../logic'
 
 
-function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted }) {
+function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted, onPostEditted }) {
     console.log('Post -> render')
 
     const [showAddComment, setShowAddComment] = useState(false)

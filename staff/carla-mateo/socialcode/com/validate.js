@@ -1,23 +1,23 @@
 import { ContentError, MatchError } from "./errors.js"
 
-const USERNAME_REGEX = /^[a-zA-Z0-9-_]+$/
+const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
+const USERNAME_REGEX = /^[\w-]+$/
+const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
-const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{2,}$/
 const ID_REGEX = /^[0-9a-z]+$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
-        throw new ContentError(`${explain} is not valid`)
+        throw new ContentError(`❌ ${explain} is not valid`)
 }
 
 function validateUsername(username, explain = 'username') {
-    if (!USERNAME_REGEX.test(username))
+    if (typeof username !== 'string' || !USERNAME_REGEX.test(username))
         throw new ContentError(`❌ ${explain} is not valid`)
 }
 
 function validatePassword(password) {
-    if (!PASSWORD_REGEX.test(password))
+    if (typeof password !== 'string' || !PASSWORD_REGEX.test(password))
         throw new ContentError('❌ Password is not valid')
 }
 
@@ -27,28 +27,29 @@ function validatePasswordsMatch(password, passwordRepeat) {
 }
 
 function validateEmail(email) {
-    if (!EMAIL_REGEX.test(email))
+    if (typeof email !== 'string' || !EMAIL_REGEX.test(email))
         throw new ContentError('❌ Email is not valid')
 }
 
 function validateCallback(callback) {
     if (typeof callback !== 'function')
-        throw new TypeError('callback is not a fnction')
+        throw new TypeError('Callback is not a fnction')
 }
 
 function validateText(text, explain = 'text', maxLength = Infinity) {
     if (typeof text !== 'string' || !text.length || text.length > maxLength)
-        throw new ContentError(`${explain} is not valid`)
+        throw new ContentError(`❌ ${explain} is not valid`)
 }
 
 function validateUrl(url, explain = 'url') {
     if (typeof url !== 'string' || !url.startsWith('http'))
-        throw new ContentError(`${explain} is not valid`)
+        throw new ContentError(`❌ ${explain} is not valid`)
 }
 
 function validateId(id, explain = 'id') {
-    if (!ID_REGEX.test(id))
-        throw new ContentError(`${explain} is not valid`)
+    if (typeof id !== "string" || !ID_REGEX.test(id)) {
+        throw new ContentError(`❌ ${explain} is not valid`)
+    }
 }
 
 

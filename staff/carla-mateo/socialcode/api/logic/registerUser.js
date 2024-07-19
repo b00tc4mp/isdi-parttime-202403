@@ -16,7 +16,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat) 
         .then(user => {
             if (user) throw new DuplicityError('❌user already exists')
 
-            return bcrypt.hash(password, 4)
+            return bcrypt.hash(password, 8)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(hash => {
 
@@ -32,12 +32,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat) 
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })
-
-
         })
-
 }
-
-
 
 export default registerUser
