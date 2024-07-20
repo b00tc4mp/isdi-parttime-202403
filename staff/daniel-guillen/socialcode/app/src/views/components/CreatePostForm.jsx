@@ -1,7 +1,4 @@
 import { useState } from 'react'
-
-import './CreatePostForm.css'
-
 import logic from '../../logic'
 
 import Field from '../../components/core/Field'
@@ -10,6 +7,8 @@ import SubmitButton from '../../components/core/SubmitButton'
 
 import FormWithFeedback from '../../components/library/FormWithFeedback'
 import View from '../../components/library/View'
+
+//import './CreatePostForm.css'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     console.log('CreatePostForm -> render')

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 
-import './PostList.css'
-
 import View from '../../components/library/View'
 import Post from './Post'
 
 import logic from '../../logic'
+
+//import './PostList.css'
 
 function PostList({ refreshStamp }) {
     console.log('PostList -> render')

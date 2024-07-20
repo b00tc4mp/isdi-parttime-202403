@@ -1,6 +1,6 @@
-import './Footer.css'
-
 import Button from '../../components/core/Button'
+
+//import './Footer.css'
 
 function Footer({ onCreatePostClick, onClickScrollTop }) {
     const handleCreatePostClick = () => onCreatePostClick()

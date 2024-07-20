@@ -47,8 +47,8 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     }
 
     return <View tag="main">
-        <Title>Login</Title>
-
+        <div className="Titles"><Title>Login - Welcome to SocialCode 👋</Title></div>
+    
         <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
             <Field id="username" placeholder="username">Username</Field>
 
@@ -57,7 +57,8 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
             <SubmitButton>Login</SubmitButton>
         </FormWithFeedback>
 
-        <Link onClick={handleRegisterClick}>Register</Link>
+        <div className='Link'><Link onClick={handleRegisterClick}>...Go to register</Link></div>
+        
     </View>
 }
 

@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --first-color: black;
     --second-color: grey;
@@ -12,6 +16,124 @@
 }
 
 body {
-    background-color: rgb(212, 201, 201);
+    background-color:rgb(255, 255, 255);
     margin: 0 auto;
 }
+
+@layer components {
+
+    /* core */
+
+    .Button {
+        @apply p-[1rem] m-1 bg-transparent bg-gradient-to-t from-cyan-200 to-teal-300 text-lg rounded-xl cursor-pointer;
+      }
+
+    .Field {
+        @apply flex flex-col m-[.25rem_0];
+      }
+  
+    .Form {
+      @apply flex flex-col marker:items-center rounded-xl bg-transparent bg-gradient-to-b from-teal-200 to-transparent;
+    }
+
+    .Image {
+        @apply w-full w-[1920px] rounded-xl;
+    }
+
+    .Input {
+        @apply p-[.4rem] bg-transparent font-[1rem] rounded-xl bg-transparent border-2;
+      }
+
+    .Label {
+      @apply mb-[1rem];
+    }
+  
+    .SubmitButton {
+      @apply m-[1];
+    }
+  
+    .Text {
+      @apply text-[dodgerblue];
+    }
+  
+    .Time {
+      @apply pl-28 text-pink-300;
+    }
+  
+    /* library */
+  
+    .FormWithFeedback {
+      @apply mt-20 pb-20 p-[2rem];
+    }
+  
+    .FormWithFeedback .Feedback.error {
+      @apply text-[tomato];
+    }
+  
+    .FormWithFeedback .Feedback.success {
+      @apply text-[greenyellow];
+    }
+  
+    .View {
+      @apply flex;
+    }
+  
+    .View.column {
+      @apply flex-col;
+    }
+  
+    .View.row {
+      @apply flex-row;
+    }
+  
+    .View.center {
+      @apply items-center justify-center;
+    }
+  
+    /* components */
+  
+    .CreatePostForm {
+      @apply fixed bottom-[4rem] bg-transparent w-full left-0 box-border;
+    }
+  
+    .Footer {
+      @apply w-full flex justify-center fixed bottom-0 p-[.5rem_0] bg-gradient-to-t from-cyan-200 to-transparent;
+    }
+    
+    .Fixed {
+        @apply flex justify-end w-full fixed top-0 box-border bg-gradient-to-b from-teal-200 to-transparent;
+    }
+
+    .Logout {
+        @apply p-1;
+      }
+
+    
+    .Title {
+        @apply flex justify-start w-full text-5xl p-2 h-0 z-[999];
+      }
+    
+    .Welcome {
+        @apply flex justify-center w-full text-3xl p-0 h-0 z-[999];
+      }
+
+    .Post {
+        @apply w-full;
+    }
+
+    .ContainerImg {
+        @apply w-11/12 h-auto m-auto;
+    }
+    
+    .PostList {
+      @apply flex-col text-xl p-3 m-[70px_50px_80px] rounded-2xl bg-gradient-to-b from-cyan-100 to-pink-100;
+    }
+
+    .Link {
+        @apply text-black w-full h-16 flex justify-start fixed bottom-0 p-[.5rem_0] bg-gradient-to-t from-teal-200 to-transparent;
+    }
+
+    .Titles {
+        @apply text-black text-4xl w-full h-20 flex justify-center fixed top-0 p-[.5rem_0] bg-gradient-to-b from-cyan-200 to-transparent;
+    }
+  }

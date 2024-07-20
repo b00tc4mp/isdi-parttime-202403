@@ -51,7 +51,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
     }
 
     return <View tag="main">
-        <Title>Register</Title>
+        <div className='Titles'><Title>Register - Welcome to SocialCode 👋</Title></div>
 
         <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
             <Field id="name" placeholder="name">Name</Field>
@@ -69,7 +69,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
             <SubmitButton>Register</SubmitButton>
         </FormWithFeedback>
 
-        <Link onClick={handleLoginClick}>Login</Link>
+        <div className='Link'><Link onClick={handleLoginClick}>...Back to login</Link></div>
     </View>
 }
 

@@ -72,8 +72,8 @@ function Home({ onUserLoggedOut }) {
         <div className="Home"><Title>SocialCode</Title></div>
         </Header></div>
 
-        <div className='Welcome'><Header>
-        <div className="UserName"><Heading level="3">👋 Welcome {name} !!</Heading></div>
+        <div className="Welcome"><Header>
+        <Heading level="3">👋 Welcome {name} !!</Heading>
         </Header></div>
 
         <div className='Fixed'><Header>

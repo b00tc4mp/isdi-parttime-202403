@@ -4,10 +4,9 @@ import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
 import Time from '../../components/core/Time'
 import View from '../../components/library/View'
-
-import './Post.css'
-
 import logic from '../../logic'
+
+//import './Post.css'
 
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log('Post -> render')
@@ -50,21 +49,21 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
     }
 
     return <View tag="article" align="">
-        <View direction='row'>
+        <View direction='center'>
         <Text>{post.author.username}</Text>
 
-        <Heading level="1">{post.title}</Heading>
+        <Heading level="3">{post.title}</Heading>
         </View>
 
         <div className='ContainerImg'><Image src={post.image} /></div>
 
         <Text>{post.description}</Text>
         
-        <View direction='row'>
+        <View direction='center'>
             <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '😍' : '🤍'} ${post.likes.length} laic${post.likes.length === 1 ? '' : 's'}`}</Button>
         </View>
 
-        <View direction='row'>
+        <View direction='center'>
             <Time>{post.date}</Time>
 
             {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>🗑️</Button>}
