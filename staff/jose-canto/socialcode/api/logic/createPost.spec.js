@@ -37,6 +37,8 @@ describe("createPost", () => {
           expect(post.title).to.equal("Hello Title")
           expect(post.image).to.equal("https://media.giphy.com/media/2kXOYTdyGPbIBISFn5/giphy.gif?cid=6c09b9525munegsuq607a67vn2oks57tip5c8ptumlx95ba7&ep=v1_gifs_trending&rid=giphy.gif&ct=g")
           expect(post.description).to.equal("hello description")
+          expect(post.liked).to.be.an("array")
+          expect(post.comments).to.be.an("array")
         })
       )
   )

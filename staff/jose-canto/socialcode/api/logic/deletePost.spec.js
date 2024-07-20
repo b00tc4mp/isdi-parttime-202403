@@ -33,7 +33,8 @@ describe("deletePost", () => {
           title: "Hello Title",
           image: "https://media.giphy.com/media/2kXOYTdyGPbIBISFn5/giphy.gif?cid=6c09b9525munegsuq607a67vn2oks57tip5c8ptumlx95ba7&ep=v1_gifs_trending&rid=giphy.gif&ct=g",
           description: "hello description",
-          liked: []
+          liked: [],
+          comments: [],
         })
           .then((post) => ({ user, post }))
       )
@@ -57,13 +58,12 @@ describe("deletePost", () => {
       description: "hello description",
       liked: []
     })
-      .then((post) => {
-        deletePost(1234, post.id)
-      })
+      .then((post) => deletePost(new ObjectId().toString(), post.id)
+      )
       .catch(error => errorThrown = error)
       .finally(() => {
-        expect(errorThrown).to.be.an.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal("❌ userId is not valid ❌")
+        expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal("❌ User not found ❌")
       })
   })
 

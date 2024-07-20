@@ -23,7 +23,7 @@ const createPostComment = (userId, postId, textComment) => {
 
           return Post.findByIdAndUpdate((postId), { $push: { comments: { author: userId, text: textComment, date: new Date() } } })
             .catch(() => { throw new SystemError("server error") })
-            .then(() => { })
+            .then(() => post)
         })
     })
 }

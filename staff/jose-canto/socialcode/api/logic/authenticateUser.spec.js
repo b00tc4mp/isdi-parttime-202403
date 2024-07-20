@@ -18,7 +18,13 @@ describe("authenticateUser", () => {
 
   it("succeeds on existing user", () =>
     bcrypt.hash("1234", 8)
-      .then(hash => User.create({ name: "Mocha", surname: "Chai", email: "Mocha@Chai.com", username: "MochaChai", password: hash }))
+      .then(hash => User.create({
+        name: "Mocha",
+        surname: "Chai",
+        email: "Mocha@Chai.com",
+        username: "MochaChai",
+        password: hash
+      }))
       .then(() => authenticateUser("MochaChai", "1234"))
       .then(userId => {
         expect(userId).to.be.a.string
@@ -42,7 +48,13 @@ describe("authenticateUser", () => {
     let errorThrown
 
     return bcrypt.hash("1234", 8)
-      .then(hash => User.create({ name: "Mocha", surname: "Chai", email: "Mocha@Chai.com", username: "MochaChai", password: hash }))
+      .then(hash => User.create({
+        name: "Mocha",
+        surname: "Chai",
+        email: "Mocha@Chai.com",
+        username: "MochaChai",
+        password: hash
+      }))
       .then(() => authenticateUser("MochaChai", "passwordDiferente"))
       .catch(error => errorThrown = error)
       .finally(() => {
@@ -68,7 +80,7 @@ describe("authenticateUser", () => {
     let errorThrown
 
     try {
-      authenticateUser("somebody", "123")
+      authenticateUser("somebody", "123") // password menor de 4 caracteres para que sea invalido
     } catch (error) {
       errorThrown = error
     } finally {

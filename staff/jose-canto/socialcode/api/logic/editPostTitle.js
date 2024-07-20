@@ -21,9 +21,10 @@ const editPostTitle = (userId, postId, title) => {
           if (!post) {
             throw new NotFoundError("❌ Post not found ❌")
           }
-          if (post.author.toString() !== userId) {
-            throw new MatchError("❌ You can't delete this comment ❌")
-          }
+          // if (post.author.toString() !== userId) {
+          //   throw new MatchError("❌ You can't delete this comment ❌")
+          // }
+
           return Post.findByIdAndUpdate(postId, { title: title }, { new: true }).lean()
             .catch(() => { throw new SystemError("connection error") })
             .then(() => { })
