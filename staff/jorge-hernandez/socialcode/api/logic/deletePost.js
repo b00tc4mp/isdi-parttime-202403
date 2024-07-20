@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { NotFoundError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError, MatchError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import { Types } from 'mongoose'
 

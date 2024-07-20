@@ -30,7 +30,9 @@ const registerUser = (
       passwordRepeat,
     }),
   })
-    .catch((error) => callback(new SystemError(error)))
+    .catch((error) => {
+      throw new SystemError(error)
+    })
     .then((response) => {
       if (response.status === 201) {
         return
