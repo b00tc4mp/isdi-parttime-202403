@@ -5,7 +5,7 @@ export const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 export const USERNAME_REGEX = /^[\w-]+$/
 export const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-export const ID_REGEX = /^[0-9a-z-_]+$/i;
+export const ID_REGEX = /^[0-9a-z-_]+$/i
 
 function validateName(name, explain = "name") {
   if (typeof name !== "string" || !NAME_REGEX.test(name)) {
