@@ -8,11 +8,9 @@ import { Post, User } from '../data/index.js'
 
 import createPost from './createPost.js'
 
-import { ContentError } from 'com/error.js'
-
 const { MONGODB_URL_TEST } = process.env
 
-debugger
+// npm run test-inspect
 
 describe('createPost', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([Post.deleteMany(), User.deleteMany()])))

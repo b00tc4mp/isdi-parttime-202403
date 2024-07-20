@@ -10,6 +10,8 @@ import { ContentError, CredentialError } from 'com/error.js'
 
 const { MONGODB_URL_TEST } = process.env
 
+// npm run test-inspect
+
 describe('authenticateUser', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
@@ -57,6 +59,20 @@ describe('authenticateUser', () => {
             expect(errorThrown).to.be.instanceOf(ContentError)
             expect(errorThrown.message).to.equal('username is not valid')
         }
+    })
+
+    it('fails on invalid password', () => {
+        let errorThrown
+
+        try {
+            authenticateUser('Colacao', '1231231')
+        } catch (error) {
+            errorThrown = error
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError)
+            expect(errorThrown.message).to.equal('password is not valid')
+        }
+
     })
 
     after(() => User.deleteMany().then(() => mongoose.disconnect()))

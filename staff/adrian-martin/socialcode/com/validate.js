@@ -6,7 +6,7 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+")
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 const ID_REGEX = /^[0-9a-z]+$/
 
-function validateName(name, explain = 'name'){
+function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
         throw new ContentError(`${explain} is not valid`)
 }
@@ -20,12 +20,12 @@ function validatePassword(password) {
     if (typeof password !== 'string' || !PASSWORD_REGEX.test(password))
         throw new ContentError('password is not valid')
 }
-function validatePasswordsMatch(password, passwordRepeat){
+function validatePasswordsMatch(password, passwordRepeat) {
     if (password !== passwordRepeat)
         throw new MatchError('password don\'t match')
 }
 
-function validateEmail(email){
+function validateEmail(email) {
     if (typeof email !== 'string' || !EMAIL_REGEX.test(email))
         throw new ContentError('email is not valid')
 }
@@ -35,30 +35,30 @@ function validateCallback(callback) {
         throw new TypeError('callback is not a function')
 }
 
-function validateText(text, explain = 'text', maxLength = Infinity){
+function validateText(text, explain = 'text', maxLength = Infinity) {
     if (typeof text !== 'string' || !text.length || text.length > maxLength)
         throw new ContentError(`${explain} is not valid`)
 }
 
-function validateUrl(url, explain = 'url'){
+function validateUrl(url, explain = 'url') {
     if (typeof url !== 'string' || !url.startsWith('http'))
         throw new ContentError(`${explain} is not valid`)
 }
 
-function validateId(id, explain = 'id'){
+function validateId(id, explain = 'id') {
     if (!ID_REGEX.test(id))
         throw new ContentError(`${explain} is not a string`)
 }
 
 const validate = {
-    name:           validateName,
-    username:       validateUsername,
-    password:       validatePassword,
+    name: validateName,
+    username: validateUsername,
+    password: validatePassword,
     passwordsMatch: validatePasswordsMatch,
-    email:          validateEmail,
-    callback:       validateCallback,
-    text:           validateText,
-    url:            validateUrl,
+    email: validateEmail,
+    callback: validateCallback,
+    text: validateText,
+    url: validateUrl,
     id: validateId
 }
 
