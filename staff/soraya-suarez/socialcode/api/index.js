@@ -122,6 +122,33 @@ mongoose.connect(MONGODB_URL)
             }
         })
 
+        //Try to update
+        api.patch('/posts/:postId/modify', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+
+                jwt.verify(token, JWT_SECRET)
+                    .then(payload => {
+                        const { sub: userId } = payload
+
+                        const { postId } = req.params
+
+                        const { title, image, description } = req.body
+
+                        try {
+                            logic.modifyPost(userId, postId, title, image, description)
+                                .then(() => res.status(200).send())
+                                .catch(error => handleErrorResponse(error, res))
+                        } catch (error) {
+                            handleErrorResponse(error, res)
+                        }
+                    })
+                    .catch(error => handleErrorResponse(new CredentialsError(error.message), res))
+            } catch (error) {
+                handleErrorResponse(error, res)
+            }
+        })
+
         api.delete('/posts/:postId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
