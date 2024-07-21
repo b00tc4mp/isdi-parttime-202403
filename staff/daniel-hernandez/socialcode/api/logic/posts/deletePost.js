@@ -4,16 +4,16 @@ import validate from "com/validate.js";
 import { Types } from "mongoose";
 const { ObjectId } = Types;
 
-const deletePost = (userId, id) => {
+const deletePost = (userId, postId) => {
   validate.id(userId, "User ID");
-  validate.id(id, "Post ID");
+  validate.id(postId, "Post ID");
 
   return (async () => {
     let user, post;
 
     try {
       user = await User.findById(userId).lean();
-    } catch {
+    } catch (error) {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
 
@@ -22,7 +22,7 @@ const deletePost = (userId, id) => {
     }
 
     try {
-      post = await Post.findById(id).lean();
+      post = await Post.findById(postId).lean();
     } catch (error) {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }
@@ -36,7 +36,7 @@ const deletePost = (userId, id) => {
     }
 
     try {
-      await Post.deleteOne({ _id: new ObjectId(id) });
+      await Post.deleteOne({ _id: new ObjectId(postId) });
     } catch (error) {
       throw new SystemError(`failed to delete post: ${error.message}`);
     }

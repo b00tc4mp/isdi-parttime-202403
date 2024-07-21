@@ -7,7 +7,6 @@ import createPost from "./posts/createPost.js";
 import deletePost from "./posts/deletePost.js";
 import likePost from "./posts/likePost.js";
 
-// TODO: implement testing with mocha and chai
 const logic = {
   createUser,
   authenticateUser,

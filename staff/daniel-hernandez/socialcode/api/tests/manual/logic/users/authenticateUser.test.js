@@ -1,20 +1,20 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import deletePost from "./deletePost.js";
+import authenticateUser from "../../../../logic/users/authenticateUser.js";
 
-const { MONGO_URI } = process.env;
+const { MONGO_TEST_URI } = process.env;
 
-const testDeletePost = async () => {
+const testAuthenticateUser = async () => {
   try {
-    await mongoose.connect(MONGO_URI);
+    await mongoose.connect(MONGO_TEST_URI);
     console.log("connected to database");
   } catch (error) {
     console.error(`failed to connect to db: ${error}`);
   }
 
   try {
-    await deletePost("66877d12b1faa9184be8cf9c", "66877e38a32edd800d7c72a2");
-    console.log("post deleted");
+    const userId = await authenticateUser("tester", "123123123");
+    console.log("user authenticated", userId);
   } catch (error) {
     console.error(error);
   } finally {
@@ -23,4 +23,4 @@ const testDeletePost = async () => {
   }
 };
 
-testDeletePost();
+testAuthenticateUser();

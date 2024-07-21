@@ -22,7 +22,7 @@ The verbose option (`-v`) and piping to "`jq`" (`| jq .`) are optional and can b
 	-v | jq .
 ```
 
-or execute `test/createUser.sh` within the api directory
+or execute `scripts/createUser.sh` within the api directory
 
 ##### Successful Response Example
 
@@ -37,7 +37,7 @@ or execute `test/createUser.sh` within the api directory
 	-v | jq .
 ```
 
-or execute `test/authUser.sh` within the api directory
+or execute `scripts/authUser.sh` within the api directory
 
 ##### Successful Response Example
 
@@ -55,7 +55,7 @@ or execute `test/authUser.sh` within the api directory
 	-v | jq .
 ```
 
-or execute `test/getUsersName.sh` within the api directory
+or execute `scripts/getUsersName.sh` within the api directory
 
 ##### Successful Response Example
 
@@ -73,7 +73,7 @@ or execute `test/getUsersName.sh` within the api directory
 	-v | jq .
 ```
 
-or execute `test/getPosts.sh` within the api directory
+or execute `scripts/getPosts.sh` within the api directory
 
 ##### Successful Response Example
 
@@ -109,7 +109,7 @@ or execute `test/getPosts.sh` within the api directory
 	-v | jq .
 ```
 
-or execute `test/createPost.sh` within the api directory
+or execute `scripts/createPost.sh` within the api directory
 
 ##### Successful Response Example
 
@@ -123,7 +123,7 @@ or execute `test/createPost.sh` within the api directory
 	-v | jq .
 ```
 
-or execute `test/deletePost.sh` within the api directory
+or execute `scripts/deletePost.sh` within the api directory
 
 ##### Successful Response Example
 
@@ -137,7 +137,7 @@ or execute `test/deletePost.sh` within the api directory
 	-v | jq .
 ```
 
-or execute `test/likePost.sh` within the api directory
+or execute `scripts/likePost.sh` within the api directory
 
 ##### Successful Response Example
 

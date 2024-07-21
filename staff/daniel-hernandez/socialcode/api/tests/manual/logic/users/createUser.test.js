@@ -1,12 +1,12 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import createUser from "./createUser.js";
+import createUser from "../../../../logic/users/createUser.js";
 
-const { MONGO_URI } = process.env;
+const { MONGO_TEST_URI } = process.env;
 
 const testCreateUser = async () => {
   try {
-    await mongoose.connect(MONGO_URI);
+    await mongoose.connect(MONGO_TEST_URI);
     console.log("connected to database");
   } catch (error) {
     console.error(`failed to connect to db: ${error}`);
@@ -14,10 +14,10 @@ const testCreateUser = async () => {
 
   try {
     await createUser(
-      "testerTwoName",
-      "testerTwoSurname",
-      "test2@email.com",
-      "tester2",
+      "testerName",
+      "testerSurname",
+      "test@email.com",
+      "tester",
       "123123123",
       "123123123",
     );
