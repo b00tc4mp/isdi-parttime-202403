@@ -7,6 +7,7 @@ import logoutUser from './logoutUser'
 
 import getAllPosts from './getAllPosts'
 import createPost from './createPost'
+import modifyPost from './modifyPost'
 import deletePost from './deletePost'
 import toggleLikePost from './toggleLikePost'
 
@@ -20,6 +21,7 @@ const logic = {
 
     getAllPosts,
     createPost,
+    modifyPost,
     deletePost,
     toggleLikePost
 }

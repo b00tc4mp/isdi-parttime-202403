@@ -10,6 +10,34 @@ import logic from '../../logic'
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log('Post -> render')
 
+    /*const handleModifyPostClick = () => setView('modify-post')
+
+    const handleCancelModifyPostClick = () => setView('')
+
+    const handlePostModified = () => {
+        setPostListRefreshStamp(Date.now())
+        setView('')
+    }*/
+
+    /*const handleModifyPost = () => {
+        if (confirm('Modify post?'))
+            try {
+                logic.modifyPost(id, title, image, description)
+                    .then(() => onPostModified())
+                    .catch(error => {
+                        console.error(error)
+                        
+                        alert(error.message)
+                    })
+            } catch (error) {
+                console.error(error)
+                
+                alert(error.message)
+            }
+    }*/
+
+    /*const handleModifyPost = () => {}*/
+
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
             try {
@@ -25,17 +53,17 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
                 
                 alert(error.message)
             }
-        }
+    }
 
-        const handleToggleLikePost = () => {
-            try {
-                logic.toggleLikePost(post.id)
-                .then(() => onPostLikeToggled())
-                .catch(error => {
-                        console.error(error)
-    
-                        alert(error.message)
-                })
+    const handleToggleLikePost = () => {
+        try {
+            logic.toggleLikePost(post.id)
+            .then(() => onPostLikeToggled())
+            .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+            })
         } catch (error) {
             console.error(error)
             alert(error.message)
@@ -55,6 +83,8 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         <View direction='row'>
             <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
         </View>
+
+        
 
         <View direction='row'>
             <Time>{post.date}</Time>
