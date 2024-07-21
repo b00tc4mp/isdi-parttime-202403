@@ -34,7 +34,7 @@ function CreateCommentPost({ onCancelCommentPost, onCommentPostSubmit, postID })
 
     return (
         <>
-            <FormWithFeedback className="CreateComment" onSubmit={handleCommentPostSubmit} message={message}>
+            <FormWithFeedback className='CreateComment' onSubmit={handleCommentPostSubmit} message={message}>
                 <FieldWithTextArea id='textComment' type='text' placeholder='Comment...'>Add comment</FieldWithTextArea>
                 <SubmitButton>Add Comment</SubmitButton>
                 <Button onClick={handleCancelCommentPost}>Cancel</Button>

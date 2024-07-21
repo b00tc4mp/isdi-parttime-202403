@@ -42,7 +42,7 @@ footer.addClass('Footer')
 view.add(footer)
 
 const addPostButton = new Button
-addPostButton.setText("+")
+addPostButton.setText('+')
 footer.add(addPostButton)
 
 const scrollTop = new Component('i')

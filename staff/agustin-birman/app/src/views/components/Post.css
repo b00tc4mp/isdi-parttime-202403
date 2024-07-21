@@ -1,83 +1,27 @@
-.Post {
-    position: relative;
-    height: auto;
-    width: 100%;
-    background-color: #aaa6;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    padding: 15px;
-    margin: 10px 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Post {
+        @apply relative h-auto w-[90%] rounded-[20px] p-[15px] m-[10px_0];
+        background-color: #aaa6;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .PostHeader {
+        @apply flex justify-between items-center;
+    }
+
+    .PostHeader .Button {
+        @apply m-[10px]
+    }
+
+    .PostFooter {
+        @apply mt-[20px] flex justify-between items-center
+    }
+
+    .Image {
+        @apply rounded-[20px] mb-[15px]
+    }
 }
-
-.PostHeader {
-    display: flex;
-    justify-content: space-between;
-}
-
-.PostHeader .Button {
-    margin: 10px;
-}
-
-.PostFooter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.Image {
-    border-radius: 20px;
-}
-
-/* p.Author {
-    position: relative;
-    padding-right: 1rem;
-    padding-bottom: 0.4rem;
-
-}
-
-
-
-
-.Image {
-    max-width: 90%;
-    height: auto;
-    border-radius: 20px;
-    margin-left: 0.9rem;
-}
-
-p.Description {
-    position: relative;
-    padding: 0 0.7rem;
-}
-
-Time {
-    position: relative;
-    top: 2.7rem;
-    padding-left: 0.7rem;
-}
-
-i.fa-bars {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgba(175, 222, 238, 0.959);
-    padding: 0 15px;
-    border: 1px solid black;
-    border-radius: 0 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    z-index: 00;
-}
-
-.fa-bars Button {
-    border-radius: 0 20px;
-    padding: 2px;
-    margin: 4px;
-}
-
-.EditButton,
-.DeleteButton {
-    z-index: 500;
-} */

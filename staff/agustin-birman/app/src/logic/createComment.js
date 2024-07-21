@@ -1,5 +1,5 @@
-import errors from "com/errors"
-import validate from "com/validate"
+import errors from 'com/errors'
+import validate from 'com/validate'
 
 const createComment = (textComment, postId, callback) => {
     validate.text(textComment, 'textComment', 200)

@@ -1,42 +1,27 @@
-.CreatePostForm {
-    display: block;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 85%;
-    background-color: rgba(175, 222, 238, 0.959);
-    height: auto;
-    border: 1px solid black;
-    border-radius: 20px;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.CreatePostForm .Input {
-    background-color: transparent;
-    font-size: 1rem;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0;
-    border-bottom: 1px solid black;
-    border-radius: 20px;
-    padding-left: 10px;
-    margin: 15px;
-}
+@layer components {
+    .CreatePostForm {
+        @apply block fixed top-1/2 left-1/2 w-[85%] h-auto border border-black rounded-[20px] translate-x-[-50%] translate-y-[-50%] z-[1000];
+        background-color: rgba(175, 222, 238, 0.959);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+    }
 
-.CreatePostForm .FieldWithTextArea {
-    display: flex;
-    justify-content: center;
-}
+    .CreatePostForm .Input {
+        @apply bg-transparent border-t-0 border-l-0 border-r-0 border-b border-black border-b-[1px] rounded-[20px] pl-[10px] m-[15px];
+    }
 
-.CreatePostForm textarea {
-    margin-top: 30px;
-}
+    .CreatePostForm .FieldWithTextArea {
+        @apply flex justify-center
+    }
 
-.divButton {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    flex-direction: column;
+    .CreatePostForm textarea {
+        @apply mt-[30px]
+    }
+
+    .divButton {
+        @apply flex flex-wrap items-center flex-col
+    }
 }

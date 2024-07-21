@@ -1,4 +1,4 @@
-.Header {
+/* .Header {
     display: flex;
     gap: 1rem;
     width: 100%;
@@ -10,7 +10,7 @@
     background-color: rgba(175, 222, 238, 0.603);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-}
+} */
 
 /* .Header .Button {
     background-color: transparent;

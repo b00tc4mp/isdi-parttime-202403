@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import Post from "./Post"
-import View from "../../components/library/View"
-import logic from "../../logic";
+import Post from './Post'
+import View from '../../components/library/View'
+import logic from '../../logic';
 
 function PostList({ onRefreshStamp }) {
 

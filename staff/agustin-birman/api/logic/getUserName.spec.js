@@ -21,9 +21,6 @@ describe('getUserName', () => {
 
     beforeEach(() => User.deleteMany())
 
-
-
-
     it('succeeds get userName from existing user', () =>
         bcrypt.hash('1234', 8)
             .then(hash => Promise.all([User.create({
@@ -42,10 +39,9 @@ describe('getUserName', () => {
             .then(([user, targetUser]) => getUserName(user.id, targetUser.id))
             .then(name => {
                 expect(name).to.be.a.string
-                expect(name).to.be.equal('Mocha')
+                expect(name).to.be.equal('Test')
             })
     )
-
 
     it('fails on non-existing user', () => {
         let errorThrown
@@ -69,7 +65,7 @@ describe('getUserName', () => {
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal('user not found')
+                expect(errorThrown.message).to.equal('targetUser not found')
             })
     })
 
@@ -86,7 +82,6 @@ describe('getUserName', () => {
             expect(errorThrown.message).to.equal('userId is not valid')
         }
     })
-
 
     it('fails on invalid targetUserId', () => {
         let errorThrown

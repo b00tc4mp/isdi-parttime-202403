@@ -46,7 +46,7 @@ mongoose.connect(MONGODB_URL)
 
         api.patch('/posts/:postId/likes', toggleLikePostHandler)
 
-        api.patch("/posts/:postId/comments", jsonBodyParser, createCommentPostHandler)
+        api.patch('/posts/:postId/comments', jsonBodyParser, createCommentPostHandler)
 
         api.use(errorHandler)
 

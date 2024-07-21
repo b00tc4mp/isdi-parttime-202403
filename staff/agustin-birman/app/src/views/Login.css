@@ -1,37 +1,28 @@
-main {
-    margin-top: 90px;
-    margin-bottom: 60px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.LoginForm {
-    padding: 1rem;
-    margin-bottom: 10px;
-    width: 300px;
-    height: auto;
-    border-radius: 20px;
-    border: 1px solid black;
-    border-bottom-right-radius: 30%;
-    background-color: rgba(175, 222, 238, 0.603);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-}
 
-.LoginForm .Input {
-    background-color: transparent;
-    font-size: 1rem;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0;
-    border-bottom: 1px solid black;
-    border-radius: 20px;
-    padding-left: 10px;
-    margin: 15px
-}
+@layer components {
+    main {
+        @apply mt-[90px] mb-[60px]
+    }
 
-.LoginForm .Button {
-    background-color: transparent;
-    font-size: 17px;
-    border-radius: 20px 0;
-    width: 60px;
-    padding: 5px;
-    border: 1px solid black;
+    h1 {
+        @apply text-[26px] font-bold
+    }
+
+    .LoginForm {
+        @apply p-[1rem] mb-[10px] w-[300px] h-auto rounded-[20px] p-[1rem] border border-black rounded-br-[30%];
+        background-color: rgba(175, 222, 238, 0.603);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .LoginForm .Input {
+        @apply bg-transparent border-t-0 border-l-0 border-r-0 border-b-black border-b-[1px] rounded-[20px] pl-[10px] m-[15px];
+    }
+
+    .LoginForm .Button {
+        @apply bg-transparent text-lg rounded-tl-[20px] rounded-br-none rounded-tr-none rounded-br-[20px] w-[60px] p-[5px] border border-black;
+    }
 }

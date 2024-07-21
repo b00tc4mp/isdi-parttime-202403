@@ -28,13 +28,13 @@ describe('authenticateUser', () => {
             })
     )
 
-    it("fails on non-existing user", () => {
+    it('fails on non-existing user', () => {
         let errorThrown
-        authenticateUser("RandomName", "12345678")
+        authenticateUser('RandomName', '12345678')
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(error).to.be.instanceOf(CredentialsError)
-                expect(error.message).to.equal("user not found")
+                expect(error.message).to.equal('user not found')
             })
     }
     )

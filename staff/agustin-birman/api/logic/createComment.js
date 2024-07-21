@@ -1,6 +1,6 @@
-import { ObjectId } from "mongodb"
-import { MatchError, SystemError } from "com/errors.js"
-import validate from "com/validate.js"
+import { ObjectId } from 'mongodb'
+import { MatchError, SystemError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const createComment = (username, textComment, postId, callback) => {
     validate.username(username)

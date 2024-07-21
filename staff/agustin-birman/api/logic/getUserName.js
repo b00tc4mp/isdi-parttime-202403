@@ -14,7 +14,8 @@ const getUserName = (userId, targetUserId) => {
 
                 return
             }
-            return User.findById(userId).lean()
+
+            return User.findById(targetUserId).lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
                     if (!user)
@@ -22,10 +23,7 @@ const getUserName = (userId, targetUserId) => {
 
                     return user.name
                 })
-
-
         })
-
 }
 
 export default getUserName
