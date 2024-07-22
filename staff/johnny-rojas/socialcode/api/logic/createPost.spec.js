@@ -32,13 +32,15 @@ describe('createPost', () => {
       }))
 
       .then(user =>
-        createPost(user.id, 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [])
+        createPost(user.id, 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [], [])
           .then(() => Post.findOne())
           .then(post => {
             expect(post.author.toString()).to.equal(user.id)
             expect(post.title).to.equal('SaxoGuy')
             expect(post.image).to.equal('https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g')
             expect(post.description).to.equal('PlaySomeMusic')
+            expect(post.likes).to.be.an('array')
+            expect(post.likes).to.be.an('array')
           })
       )
   )
@@ -46,7 +48,7 @@ describe('createPost', () => {
   it('fails on non-existing user', () => {
     let errorThrown
 
-    return createPost(new ObjectId().toString(), 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [])
+    return createPost(new ObjectId().toString(), 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [], [])
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -58,7 +60,7 @@ describe('createPost', () => {
     let errorThrown
 
     try {
-      createPost(1111, 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [])
+      createPost(1111, 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [], [])
     } catch (error) {
       errorThrown = error
     } finally {
@@ -71,7 +73,7 @@ describe('createPost', () => {
     let errorThrown
 
     try {
-      createPost(new ObjectId().toString(), 1234, 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [])
+      createPost(new ObjectId().toString(), 1234, 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 'PlaySomeMusic', [], [])
     } catch (error) {
       errorThrown = error
     } finally {
@@ -84,7 +86,7 @@ describe('createPost', () => {
     let errorThrown
 
     try {
-      createPost(new ObjectId().toString(), 'SaxoGuy', 1234, 'PlaySomeMusic', [])
+      createPost(new ObjectId().toString(), 'SaxoGuy', 1234, 'PlaySomeMusic', [], [])
     } catch (error) {
       errorThrown = error
     } finally {
@@ -97,7 +99,7 @@ describe('createPost', () => {
     let errorThrown
 
     try {
-      createPost(new ObjectId().toString(), 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 981687, [])
+      createPost(new ObjectId().toString(), 'SaxoGuy', 'https://media.giphy.com/media/7vAwVEdJS5cKxediyK/giphy.gif?cid=82a1493bp3k0u2y3xvspwzh4uvd8j21fsl4ursis3uruy526&ep=v1_gifs_trending&rid=giphy.gif&ct=g', 981687, [], [])
     } catch (error) {
       errorThrown = error
     } finally {

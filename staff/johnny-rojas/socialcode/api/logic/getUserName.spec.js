@@ -80,31 +80,31 @@ describe('getUserName', () => {
       })
   })
 
-  it('fails on invalid userId'), () => {
+  it('fails on invalid userId', () => {
     let errorThrown
 
     try {
-      getUserName(8969, 'Get')
+      getUserName(8969, new ObjectId().toString())
     } catch (error) {
       errorThrown = error
     } finally {
-      expect(errorThrown).to.be.an.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal('user not found')
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('userId is not valid')
     }
-  }
+  })
 
-  it('fails on invalid targetUser'), () => {
+  it('fails on invalid targetUser', () => {
     let errorThrown
 
     try {
-      getUserName('Mocha', 98675)
+      getUserName(new ObjectId().toString(), 98675)
     } catch (error) {
       errorThrown = error
     } finally {
-      expect(errorThrown).to.be.an.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal('targetUser not found')
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('targetUserId is not valid')
     }
-  }
+  })
 
   after(() => Promise.all([User.deleteMany()]).then(() => mongoose.disconnect()))
 })
