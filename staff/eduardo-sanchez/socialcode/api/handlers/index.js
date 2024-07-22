@@ -5,6 +5,7 @@ import createPostHandler from './createPostHandler.js'
 import getAllPostsHandler from './getAllPostsHandler.js'
 import deletePostHandler from './deletePostHandler.js'
 import toggleLikePostHandler from './toggleLikePostHandler.js'
+import createPostCommentHandler from './createPostCommentHandler.js'
 import errorHandler from './errorHandler.js'
 
 export {
@@ -15,5 +16,6 @@ export {
     getAllPostsHandler,
     deletePostHandler,
     toggleLikePostHandler,
+    createPostCommentHandler,
     errorHandler
 }

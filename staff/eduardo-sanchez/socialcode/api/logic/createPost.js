@@ -20,7 +20,8 @@ const createPost = (userId, title, image, description) => {
                 image,
                 description,
                 date: new Date,
-                likes: []
+                likes: [],
+                postcomments: []
             }
 
             return Post.create(post)

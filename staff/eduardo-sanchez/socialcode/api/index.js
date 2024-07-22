@@ -11,7 +11,8 @@ import {
     getAllPostsHandler,
     deletePostHandler,
     toggleLikePostHandler,
-    errorHandler
+    errorHandler,
+    createPostCommentHandler
 } from './handlers/index.js'
 
 const { MONGODB_URL, PORT } = process.env
@@ -39,6 +40,8 @@ mongoose.connect(MONGODB_URL)
         api.delete('/posts/:postId', deletePostHandler)
 
         api.patch('/posts/:postId/likes', toggleLikePostHandler)
+
+        api.patch('/posts/:postId/comments', jsonBodyParser, createPostCommentHandler)
 
         api.use(errorHandler)
 

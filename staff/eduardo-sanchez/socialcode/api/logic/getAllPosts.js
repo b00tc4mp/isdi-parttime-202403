@@ -26,6 +26,22 @@ const getAllPosts = userId => {
                         }
 
                         post.likes = post.likes.map(userObjectId => userObjectId.toString())
+
+                        if (post.postcomments && post.postcomments.length > 0) {
+
+                            post.postcomments = post.postcomments.map(comment => {
+
+                                comment.author = comment.author.toString()
+
+                                delete comment._id
+
+                                return comment
+
+                            })
+
+
+                        }
+
                     })
 
                     return posts
