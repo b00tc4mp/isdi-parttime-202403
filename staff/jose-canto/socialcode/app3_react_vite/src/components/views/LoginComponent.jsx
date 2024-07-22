@@ -58,12 +58,12 @@ function Login() {
           <Field id="username" placeholder="Username">
             Username
           </Field>
-          <CheckPasswordField id="password" placeholder="Password">
+          <CheckPasswordField className="PasswordForm" id="password" placeholder="Password">
             Password
           </CheckPasswordField>
           <SubmitButton type="submit">Login</SubmitButton>
         </FormWithFeedback>
-        <Link onClick={handleRegisterClick}> Don't have an account? Register </Link>
+        <Link onClick={handleRegisterClick}> Don´t have an account? Register </Link>
       </View>
     </>
   )

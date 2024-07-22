@@ -1,19 +1,18 @@
-time {
-  display: flex;
-  font-size: 1.3rem;
-  color: black;
-  min-width: 8rem;
-}
+@tailwind components;
+@tailwind utilities;
 
-.TimeLike {
-  display: flex;
-  width: auto;
-  user-select: none;
 
-}
+@layer components {
 
-.fa-heart {
-  color: red;
-  font-size: 1rem;
-  cursor: pointer;
+  time {
+    @apply flex text-[1.1rem] text-black min-w-fit mr-2
+  }
+
+  .TimeLike {
+    @apply flex cursor-pointer select-none
+  }
+
+  .fa.heart {
+    @apply text-red-500
+  }
 }

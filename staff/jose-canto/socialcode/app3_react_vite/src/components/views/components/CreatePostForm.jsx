@@ -59,9 +59,9 @@ function CreatePostForm({ onCancelCreatedPostClick, onPostCreated, onClickScroll
           Image
         </Field>
 
-        <label>Description</label>
+        <label className="DescriptionForm">Description</label>
         <textarea className="TextArea" placeholder="description....." id="description"></textarea>
-        <Button className="Button SubmitButton" type="submit">
+        <Button className="SubmitButton" type="submit">
           Create
         </Button>
         <i className="fa-regular fa-rectangle-xmark" onClick={handleCancelCreatePostClick}></i>

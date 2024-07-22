@@ -1,78 +1,33 @@
-.Logo {
-  width: auto;
-  position: absolute;
-  font-size: 3vw;
-  color: blanchedalmond;
-  left: 0;
-  margin-left: 2rem;
-  border-radius: 10px;
-}
+@tailwind components;
+@tailwind utilities;
 
-.Header>Button {
-  margin-right: 2rem;
-}
-
-.Main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-.Section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5.2rem;
-  margin-bottom: 5rem;
-  gap: 2rem;
-  width: 80%
-}
-
-.Footer {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  position: fixed;
-  bottom: 0;
-  padding: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.8)
-}
-
-.Footer .Button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  width: 2rem;
-  height: 2.2rem;
-}
-
-.Footer i {
-  position: relative;
-  font-size: 2rem;
-  color: whitesmoke;
-  cursor: pointer;
-  transition: 0.25s ease-in;
-}
-
-.Footer i:hover {
-  color: var(--first-color);
-}
-
-@media (max-width: 768px) {
+@layer components {
 
   .Logo {
-    font-size: 1.8rem;
+    @apply relative w-full left-0 ml-6 text-[1.5rem] md:text-[4vw] lg:text-[2.5rem] text-blanchedalmond rounded-lg
   }
-}
 
-@media (max-width: 425px) {
+  .Header>Button {
+    @apply mr-8
+  }
 
-  .Logo {
-    font-size: 1.4rem;
+  .Section {
+    @apply flex flex-col items-center my-16 gap-6 w-[90%]
+  }
+
+  .Footer {
+    @apply w-full flex justify-evenly fixed bottom-0 p-2 bg-black bg-opacity-80
+  }
+
+  .Footer .Button {
+    @apply relative flex items-center justify-center text-3xl mb-2 w-8 h-9
+  }
+
+  .Footer i {
+    @apply relative text-2xl text-blanchedalmond cursor-pointer transition ease-in duration-200
+  }
+
+  .Footer i:hover {
+    @apply text-[var(--first-color)]
   }
 }

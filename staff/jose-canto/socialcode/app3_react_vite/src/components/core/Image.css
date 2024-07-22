@@ -1,18 +1,13 @@
-.Image {
-  max-width: 70%;
-  height: auto;
-  border-radius: 0.5rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px 10px;
+@tailwind components;
+@tailwind utilities;
 
-}
+@layer components {
+  .Image {
+    @apply w-2/4 h-auto rounded-lg shadow-custom-shadow
+  }
 
-.DivImage {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 0.5rem 0 1rem 0;
+  .DivImage {
+    @apply w-full flex flex-col justify-center items-center my-4
+  }
 
 }

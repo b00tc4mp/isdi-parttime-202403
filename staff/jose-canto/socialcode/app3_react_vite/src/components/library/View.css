@@ -1,15 +1,16 @@
-.View {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@tailwind components;
+@tailwind utilities;
 
-}
+@layer components {
+  .View {
+    @apply flex flex-col items-center justify-center
+  }
 
-.View.LoginForm {
-  height: 100vh;
-}
+  .View.LoginForm {
+    @apply h-screen
+  }
 
-.View.RegisterForm {
-  height: 100vh;
+  .View.RegisterForm {
+    @apply h-screen
+  }
 }

@@ -72,7 +72,9 @@ function Home() {
     <>
       <Header>
         <Heading level="3">{name}</Heading>
-        <Button onClick={handleLogout}>Logout</Button>
+        <Button onClick={handleLogout} className="LogoutButton">
+          Logout
+        </Button>
       </Header>
 
       <View className="View">

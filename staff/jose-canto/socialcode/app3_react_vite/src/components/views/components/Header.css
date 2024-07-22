@@ -1,13 +1,8 @@
-.Header {
-  z-index: 1;
-  position: fixed;
-  display: flex;
-  gap: 1rem;
-  width: 100%;
-  padding: 0.5rem;
-  justify-content: end;
-  align-items: center;
-  letter-spacing: .3rem;
-  background-color: rgba(0, 0, 0, 0.8);
+@tailwind components;
+@tailwind utilities;
 
+@layer components {
+  .Header {
+    @apply z-10 fixed flex gap-4 w-full p-2 justify-end items-center tracking-wider bg-black bg-opacity-80;
+  }
 }

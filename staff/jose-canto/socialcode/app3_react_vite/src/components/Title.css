@@ -1,5 +1,10 @@
-.HeaderLoginRegister {
-  font-size: 3.5rem;
-  margin: 0;
-  padding: 1rem;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .HeaderLoginRegister {
+    @apply text-5xl text-blanchedalmond mb-2
+  }
+
 }

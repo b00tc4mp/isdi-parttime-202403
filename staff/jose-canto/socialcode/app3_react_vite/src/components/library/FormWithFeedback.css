@@ -1,17 +1,13 @@
-.FormWithFeedback {
-  margin: 0;
-  color: white;
-  font-size: 1.2rem;
-  position: relative;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  height: auto;
-  padding: 0 1rem 1rem 1rem;
-}
+@tailwind components;
+@tailwind utilities;
 
+@layer components {
+  .FormWithFeedback {
+    @apply relative flex justify-center w-[18rem] h-auto text-lg text-blanchedalmond
+  }
 
-.error {
-  color: rgb(255, 187, 0);
-  top: 26rem
+  .error {
+    @apply text-[var(--second-color)] text-[0.6rem] text-blanchedalmond
+  }
+
 }

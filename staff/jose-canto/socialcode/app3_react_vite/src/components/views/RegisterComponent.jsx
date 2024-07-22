@@ -78,11 +78,11 @@ function Register() {
             Username
           </Field>
 
-          <CheckPasswordField id="password" placeholder="Password">
+          <CheckPasswordField className="PasswordForm" id="password" placeholder="Password">
             Password
           </CheckPasswordField>
 
-          <CheckPasswordField id="passwordRepeat" placeholder="Password Repeat">
+          <CheckPasswordField className="PasswordRepeatForm" id="passwordRepeat" placeholder="Password Repeat">
             Password Repeat
           </CheckPasswordField>
 
