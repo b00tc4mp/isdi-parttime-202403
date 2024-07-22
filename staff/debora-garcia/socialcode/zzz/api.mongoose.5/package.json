@@ -6,9 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node .",
-    "watch": "node —watch .",
     "debug": "node --inspect-brk .",
-    "test": "mocha logic/*.spec.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -22,9 +21,5 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.4"
-  },
-  "devDependencies": {
-    "chai": "^5.1.1",
-    "mocha": "^10.6.0"
   }
 }
