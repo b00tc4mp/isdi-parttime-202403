@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+  time {
+    @apply flex text-[1.1rem] text-black min-w-fit mr-2;
+  }
+
+  .TimeLike {
+    @apply flex cursor-pointer select-none;
+  }
+
+  .fa.heart {
+    @apply text-red-500;
+  }
+}

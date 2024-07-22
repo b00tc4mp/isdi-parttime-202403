@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .HeaderLoginRegister {
+    @apply text-5xl text-blanchedalmond mb-2;
+  }
+}

@@ -1,0 +1,31 @@
+@tailwind components;
+
+@layer components {
+  .Logo {
+    @apply relative w-full left-0 ml-6 text-[1.5rem] md:text-[4vw] lg:text-[2.5rem] text-blanchedalmond rounded-lg;
+  }
+
+  .Header > Button {
+    @apply mr-8;
+  }
+
+  .Section {
+    @apply flex flex-col items-center my-16 gap-6 w-[90%];
+  }
+
+  .Footer {
+    @apply w-full flex justify-evenly fixed bottom-0 p-2 bg-black bg-opacity-80;
+  }
+
+  .Footer .Button {
+    @apply relative flex items-center justify-center text-3xl mb-2 w-8 h-9;
+  }
+
+  .Footer i {
+    @apply relative text-2xl text-blanchedalmond cursor-pointer transition ease-in duration-200;
+  }
+
+  .Footer i:hover {
+    @apply text-[var(--first-color)];
+  }
+}

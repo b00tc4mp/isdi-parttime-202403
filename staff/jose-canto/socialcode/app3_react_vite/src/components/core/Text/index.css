@@ -1,0 +1,23 @@
+@tailwind components;
+
+@layer components {
+  .Text {
+    @apply text-black text-[1.1rem] font-semibold p-2 font-sans;
+  }
+
+  .TextContainer {
+    @apply flex flex-col justify-center items-center gap-4;
+  }
+
+  @media (max-width: 768px) {
+    .Text {
+      @apply text-[1rem];
+    }
+  }
+
+  @media (max-width: 425px) {
+    .Text {
+      @apply text-[0.8rem];
+    }
+  }
+}

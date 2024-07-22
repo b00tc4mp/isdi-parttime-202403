@@ -1,8 +1,0 @@
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .Button.SubmitButton {
-    @apply z-0 relative text-base mb-4 px-2 outline-none border-none text-blanchedalmond transition duration-400 ease-in-out rounded-md tracking-widest mt-2
-  }
-}

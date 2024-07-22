@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import "./Post.css"
 
 import View from "../../library/View"
 import Post from "./Post"
@@ -13,7 +12,6 @@ function PostList({ refreshStamp }) {
   const [posts, setPosts] = useState([])
   const [page, setPage] = useState(1)
   const [limit] = useState(2)
-  const [scrollPosition, setScrollPosition] = useState(0)
 
   useEffect(() => {
     console.log("PostList --> useEffect")

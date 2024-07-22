@@ -6,29 +6,29 @@ import logic from "./logic"
 
 import Register from "./components/views/RegisterComponent"
 import Login from "./components/views/LoginComponent"
-import Home from "./components/views/Home"
+import Home from "./components/views/components/Home"
 
 import ViewContext from "./ViewContext"
 
 function App() {
-	const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login") // Vemos si el usuario ya ha iniciado sesión y lo redirijimos a la vista home o al login
+  const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login") // Vemos si el usuario ya ha iniciado sesión y lo redirijimos a la vista home o al login
 
-	// const handleGoToLogin = () => setView("login")
+  // const handleGoToLogin = () => setView("login")
 
-	// const handleGoToHome = () => setView("home")
+  // const handleGoToHome = () => setView("home")
 
-	// const handleGoToRegister = () => setView("register")
+  // const handleGoToRegister = () => setView("register")
 
-	return (
-		<>
-			<ViewContext.Provider value={{ view, setView }}>
-				{view === "register" && <Register />}
+  return (
+    <>
+      <ViewContext.Provider value={{ view, setView }}>
+        {view === "register" && <Register />}
 
-				{view === "login" && <Login />}
+        {view === "login" && <Login />}
 
-				{view === "home" && <Home />}
-			</ViewContext.Provider>
-		</>
-	)
+        {view === "home" && <Home />}
+      </ViewContext.Provider>
+    </>
+  )
 }
 export default App

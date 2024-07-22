@@ -1,0 +1,43 @@
+@tailwind components;
+
+@layer components {
+  .CreateComment {
+    @apply flex relative w-[95%] bottom-0 text-blanchedalmond shadow-custom-shadow rounded-lg p-2 mt-5;
+    background-image: linear-gradient(
+      to right top,
+      #f97c16,
+      #d25a2c,
+      #a54031,
+      #742c2e,
+      #441c22,
+      #2f161b,
+      #1c0e11,
+      #1b1b1b,
+      #1b1b1b,
+      #1b1b1b,
+      #000000,
+      #000000
+    );
+  }
+
+  .CreateComment-header {
+    @apply flex w-[90%] gap-3 justify-between;
+  }
+
+  .CreateComment .TextArea {
+    @apply h-14;
+  }
+
+  .CreateComment-header > label {
+    @apply text-2xl;
+  }
+
+  .CreateComment i {
+    @apply relative cursor-pointer text-2xl rounded-lg text-[var(--first-color)];
+    transition: 0.35s ease-in;
+  }
+
+  .CreateComment i:hover {
+    @apply text-blanchedalmond;
+  }
+}

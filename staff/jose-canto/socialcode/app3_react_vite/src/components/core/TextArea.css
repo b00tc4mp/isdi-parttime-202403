@@ -1,9 +1,7 @@
 @tailwind components;
-@tailwind utilities;
-
 
 @layer components {
   .TextArea {
-    @apply p-1 rounded-md bg-[#eeeaea21] text-blanchedalmond w-[90%] text-[1rem]
+    @apply p-1 rounded-md bg-[#eeeaea21] text-blanchedalmond w-[90%] text-[1rem];
   }
 }

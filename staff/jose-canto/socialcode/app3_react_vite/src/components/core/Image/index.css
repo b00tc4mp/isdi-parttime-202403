@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+  .Image {
+    @apply w-2/3 max-w-60 rounded-lg shadow-custom-shadow;
+  }
+
+  .DivImage {
+    @apply w-full flex flex-col justify-center items-center my-4;
+  }
+}

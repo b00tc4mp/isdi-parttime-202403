@@ -1,8 +1,0 @@
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .Header {
-    @apply z-10 fixed flex gap-4 w-full p-2 justify-end items-center tracking-wider bg-black bg-opacity-80;
-  }
-}
