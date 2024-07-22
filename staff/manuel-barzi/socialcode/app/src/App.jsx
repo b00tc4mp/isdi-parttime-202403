@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import logic from './logic'
 
 import Register from './views/Register'
