@@ -75,31 +75,31 @@ describe('getUserName', () => {
             })
     })
 
-    // it('fails on invalid userId', () => {
-    //     let errorThrown
+    it('fails on invalid userId', () => {
+        let errorThrown
 
-    //     try {
-    //         getUserName(123456789, new ObjectId().toString())
-    //     } catch (error) {
-    //         errorThrown = error
-    //     } finally {
-    //         expect(errorThrown).to.be.instanceOf(ContentError)
-    //         expect(errorThrown.message).to.equal('userId is not valid')
-    //     }
-    // })
+        try {
+            getUserName(123456789, new ObjectId().toString())
+        } catch (error) {
+            errorThrown = error
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError)
+            expect(errorThrown.message).to.equal('userId is not valid')
+        }
+    })
 
-    // it('fails on invalid targetUserid', () => {
-    //     let errorThrown
+    it('fails on invalid targetUserid', () => {
+        let errorThrown
 
-    //     try {
-    //         getUserName(new ObjectId().toString(), 123456789)
-    //     } catch (error) {
-    //         errorThrown = error
-    //     } finally {
-    //         expect(errorThrown).to.be.instanceOf(ContentError)
-    //         expect(errorThrown.message).to.equal('targetUserId is not valid')
-    //     }
-    // })
+        try {
+            getUserName(new ObjectId().toString(), 123456789)
+        } catch (error) {
+            errorThrown = error
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError)
+            expect(errorThrown.message).to.equal('targetUserId is not valid')
+        }
+    })
 
     after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

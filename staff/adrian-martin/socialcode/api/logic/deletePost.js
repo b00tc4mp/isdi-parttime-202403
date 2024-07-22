@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { MatchError, SystemError } from 'com/error.js'
+import { MatchError, NotFoundError, SystemError } from 'com/error.js'
 import validate from 'com/validate.js'
 import { Types } from 'mongoose'
 
@@ -14,14 +14,14 @@ const deletePost = (userId, postId) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new MatchError('user not found')
+                throw new NotFoundError('user not found')
             }
 
             return Post.findById(postId).lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
                     if (!post) {
-                        throw new MatchError('post not found')
+                        throw new NotFoundError('post not found')
                     }
 
                     if (post.author.toString() !== userId) {
@@ -29,8 +29,8 @@ const deletePost = (userId, postId) => {
                     }
 
                     return Post.deleteOne({ _id: new ObjectId(postId) })
-                        .catch(error => {throw new SystemError(error.message)})
-                        .then(() => { } )
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => { })
                 })
         })
 }

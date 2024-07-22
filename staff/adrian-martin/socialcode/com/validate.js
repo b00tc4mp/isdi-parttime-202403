@@ -46,8 +46,9 @@ function validateUrl(url, explain = 'url') {
 }
 
 function validateId(id, explain = 'id') {
-    if (!ID_REGEX.test(id))
-        throw new ContentError(`${explain} is not a string`)
+    if (typeof id !== "string" || !ID_REGEX.test(id)) {
+        throw new ContentError(`${explain} is not valid`)
+    }
 }
 
 const validate = {

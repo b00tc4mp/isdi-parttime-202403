@@ -1,6 +1,6 @@
 import { User, Post } from '../data/index.js'
 import validate from 'com/validate.js'
-import { MatchError } from 'com/error.js'
+import { NotFoundError } from 'com/error.js'
 
 
 
@@ -11,10 +11,10 @@ const createPost = (userId, title, image, description) => {
     validate.text(description, 'description', 200)
 
     return User.findById(userId).lean()
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(() => { throw new SystemError("connection error") })
         .then(user => {
             if (!user) {
-                throw new MatchError('user not found')
+                throw new NotFoundError('user not found')
             }
 
             const post = {
@@ -27,7 +27,7 @@ const createPost = (userId, title, image, description) => {
             }
 
             return Post.create(post)
-                .catch(error => { throw new SystemError(error.message) })
+                .catch(() => { throw new SystemError("connection error") })
                 .then(() => { })
         })
 }
