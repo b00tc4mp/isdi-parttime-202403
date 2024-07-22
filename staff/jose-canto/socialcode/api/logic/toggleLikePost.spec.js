@@ -11,7 +11,7 @@ const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = Types
 
 describe("toggleLikePost", () => {
-  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
+  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()).then(() => Post.deleteMany()))
 
   beforeEach(() => Promise.all([User.deleteMany(), Post.deleteMany()]))
 

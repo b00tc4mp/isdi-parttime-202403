@@ -119,6 +119,36 @@ describe("deletePost", () => {
   })
 
 
+  it("fails on invalid userId", () => {
+    let errorThrown
+
+    try {
+      deletePost(7777, new ObjectId().toString())
+    } catch (error) {
+      errorThrown = error
+
+    } finally {
+      expect(errorThrown).to.be.an.instanceof(ContentError)
+      expect(errorThrown.message).to.equal("❌ userId is not valid ❌")
+    }
+  })
+
+  it("fails on invalid postId", () => {
+    let errorThrown
+
+    try {
+      deletePost(new ObjectId().toString(), 7777)
+    } catch (error) {
+      errorThrown = error
+
+    } finally {
+      expect(errorThrown).to.be.an.instanceof(ContentError)
+      expect(errorThrown.message).to.equal("❌ postId is not valid ❌")
+    }
+  })
+
+
+
   after(() => Post.deleteMany().then(() => User.deleteMany().then(() => mongoose.disconnect())))
 })
 
