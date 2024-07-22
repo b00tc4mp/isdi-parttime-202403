@@ -1,0 +1,17 @@
+.View {
+    display: flex;
+    background-color: var(--second-color);
+}
+
+.View.column{
+    flex-direction: column;
+}
+
+.View.row{
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.View.center {
+    align-items: center;
+}

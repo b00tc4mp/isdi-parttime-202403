@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+
+
+:root {
+    --first-color:dodgerblue;
+    --second-color: black;
+    --third-color: darkblue;
+    --fourth-color: #03050c;
+}
+
+*{
+    /* font-family: Indie Flower; */
+    font-family: Workbench;
+    font-size: 20px;
+    color: var(--first-color);
+
+}
+
+body{
+  background-color: var(--second-color);
+  margin: 0;
+}

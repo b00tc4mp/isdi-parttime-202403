@@ -1,0 +1,6 @@
+.Post{
+    border: 15px double rgb(30, 79, 255);
+    border-radius: 45px;
+    margin-top: 2rem;
+    padding: 2rem;
+}

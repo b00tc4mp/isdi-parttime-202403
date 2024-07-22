@@ -1,0 +1,6 @@
+.Input{
+    border: 1px solid var(--first-color);
+    margin-top: .3rem;
+    padding: .45rem;
+    text-align: center;
+}
