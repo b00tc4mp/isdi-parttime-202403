@@ -33,7 +33,7 @@ body {
       }
   
     .Form {
-      @apply flex flex-col marker:items-center rounded-xl bg-transparent bg-gradient-to-b from-teal-200 to-transparent;
+      @apply flex flex-col marker:items-center rounded-xl bg-transparent bg-gradient-to-b from-teal-200 to-red-50;
     }
 
     .Image {
@@ -57,21 +57,21 @@ body {
     }
   
     .Time {
-      @apply pl-28 text-pink-300;
+      @apply flex justify-center text-pink-300;
     }
   
     /* library */
   
     .FormWithFeedback {
-      @apply mt-20 pb-20 p-[2rem];
+      @apply  mt-20 pb-20 p-[2rem];
     }
   
     .FormWithFeedback .Feedback.error {
-      @apply text-[tomato];
+      @apply flex justify-center text-[tomato];
     }
   
     .FormWithFeedback .Feedback.success {
-      @apply text-[greenyellow];
+      @apply flex justify-center text-[greenyellow];
     }
   
     .View {
@@ -93,7 +93,7 @@ body {
     /* components */
   
     .CreatePostForm {
-      @apply fixed bottom-[4rem] bg-transparent w-full left-0 box-border;
+      @apply fixed bottom-[5rem] bg-transparent w-full left-0 box-border;
     }
   
     .Footer {
@@ -121,12 +121,16 @@ body {
         @apply w-full;
     }
 
+    .Description {
+      @apply flex justify-center;
+    }
+
     .ContainerImg {
-        @apply w-11/12 h-auto m-auto;
+        @apply w-10/12 h-auto m-auto;
     }
     
     .PostList {
-      @apply flex-col text-xl p-3 m-[70px_50px_80px] rounded-2xl bg-gradient-to-b from-cyan-100 to-pink-100;
+      @apply flex-col text-xl p-5 m-[60px_90px_80px] rounded-2xl bg-gradient-to-b from-cyan-100 to-pink-100;
     }
 
     .Link {

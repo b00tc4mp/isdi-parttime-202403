@@ -57,7 +57,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
         <div className='ContainerImg'><Image src={post.image} /></div>
 
-        <Text>{post.description}</Text>
+        <div className='Description'><Text>{post.description}</Text></div>
         
         <View direction='center'>
             <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '😍' : '🤍'} ${post.likes.length} laic${post.likes.length === 1 ? '' : 's'}`}</Button>
