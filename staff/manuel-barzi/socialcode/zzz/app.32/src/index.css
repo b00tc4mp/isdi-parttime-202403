@@ -29,6 +29,10 @@
     @apply flex flex-col items-center;
   }
 
+  .Button {
+    @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
+  }
+
   .Field {
     @apply flex flex-col m-[.25rem_0];
   }
@@ -98,7 +102,7 @@
   }
 
   .Header {
-    @apply flex gap-[1rem] w-full justify-between fixed top-0 p-[.5rem] box-border border-b-[1px] border-b-[var(--first-color)] bg-[var(--second-color)] items-center;
+    @apply flex gap-[1rem] w-full justify-end fixed top-0 p-[.5rem] box-border border-b-[1px] border-b-[var(--first-color)] bg-[var(--second-color)] items-center;
   }
 
   .PostList {
