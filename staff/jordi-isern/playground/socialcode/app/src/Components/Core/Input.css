@@ -1,0 +1,10 @@
+.Input {
+    border: 0 solid;
+    border-radius: .3rem;
+    width: 10rem;
+    background-color: transparent;
+    padding: .5rem 
+}
+.Input:focus{
+    outline: none;
+}

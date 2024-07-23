@@ -1,0 +1,16 @@
+.CommentPostForm {
+    margin-bottom: 4px;
+    background-color: white;
+
+}
+
+.textArea{
+    resize: none;
+    background-color: white;
+    border: none;
+    
+}
+
+.textArea:focus{
+    outline: none;
+}

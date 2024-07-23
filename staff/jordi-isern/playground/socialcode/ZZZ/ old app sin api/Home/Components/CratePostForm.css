@@ -1,0 +1,26 @@
+.createPostForm{
+    position: fixed;
+    bottom: 25vh;
+    margin: 0%;
+    width: 40rem;
+    height: 28rem;
+    align-items: flex-start;
+    background-color:var(--color1)
+}
+
+
+.createPostForm div{
+    width: 40rem;
+}
+.createPostForm input{
+    width: 39.8rem;
+}
+
+.createPostForm textarea{
+    height: 10rem;
+}
+
+.cancelButton {
+    border: 1px solid var(--color3);
+    border-radius: .3rem;
+}

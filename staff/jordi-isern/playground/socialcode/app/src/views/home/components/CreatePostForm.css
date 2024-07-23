@@ -1,0 +1,17 @@
+.BackgorundCreatePostForm{
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: grey 10%;
+    border: 3px solid red;
+  }
+
+.CreatePostForm{
+    position: fixed;
+    bottom: 3rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+
+}

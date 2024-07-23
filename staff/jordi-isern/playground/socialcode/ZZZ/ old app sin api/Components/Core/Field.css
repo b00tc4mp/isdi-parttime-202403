@@ -1,0 +1,16 @@
+.FieldInput {
+    display: flex;
+    flex-direction: column;
+    margin: .7rem 0;
+}
+
+.divInput{
+    width: 12rem;
+    background-color: whitesmoke;
+    border: 0 transparent;
+    border-radius: .3rem;
+}
+
+.input{
+    color: var(--color3);
+}

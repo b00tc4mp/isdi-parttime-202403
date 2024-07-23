@@ -1,0 +1,1 @@
+curl http://localhost:8080/users/jordi1094 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg2ZDUwNDk2NWZlNDZhNDFiMGQ3YTIiLCJpYXQiOjE3MjA5Njg5ODYsImV4cCI6MTcyMDk3MjU4Nn0.dmp6qzlliGOmwpBQ9GkcggH4qoy6dRrShcLxf6uiqu4" -v
