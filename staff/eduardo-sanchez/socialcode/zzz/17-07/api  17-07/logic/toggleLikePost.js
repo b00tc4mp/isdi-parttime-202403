@@ -1,11 +1,8 @@
 import { User, Post } from '../data/index.js'
-import { NotFoundError, SystemError, MatchError } from 'com/errors.js'
 import validate from 'com/validate.js'
-import { Types } from 'mongoose'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
-const { ObjectId } = Types
-
-const deletePost = (userId, postId) => {
+function toggleLikePost(userId, postId) {
     validate.id(userId, 'userId')
     validate.id(postId, 'postId')
 
@@ -14,19 +11,23 @@ const deletePost = (userId, postId) => {
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
-            return Post.findById(postId).lean()
+            return Post.findById(postId)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
                     if (!post) throw new NotFoundError('post not found')
 
-                    if (post.author.toString() !== userId)
-                        throw new MatchError('post author does not match user & cannot be deleted')
+                    const included = post.likes.some(userObjectId => userObjectId.toString() === userId)
 
-                    return Post.deleteOne({ _id: new ObjectId(postId) })
+                    return Post.updateOne({ _id: post._id },
+                        included ?
+                            { $pull: { likes: user._id } }
+                            :
+                            { $push: { likes: user._id } }
+                    )
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })
         })
 }
 
-export default deletePost
+export default toggleLikePost

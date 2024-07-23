@@ -37,6 +37,7 @@ const createPostComment = (postId, userId, text) => {
 }
 export default createPostComment
 
+
 // return Post.findByIdAndUpdate((postId), { $push: { comments: textComment } })
 //     .catch(() => { throw new SystemError(error.message) })
 //     .then(() => { })

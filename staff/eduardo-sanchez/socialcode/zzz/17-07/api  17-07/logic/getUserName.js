@@ -18,6 +18,7 @@ const getUserName = (userId, targetUserId) => {
                     if (!user) {
                         throw new NotFoundError('targetUser not found')
 
+                        //return (no deberia haber un return after a throw)
                     }
 
                     return user.name

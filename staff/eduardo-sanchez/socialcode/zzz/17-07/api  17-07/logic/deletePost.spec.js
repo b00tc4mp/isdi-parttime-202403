@@ -115,5 +115,38 @@ describe('deletePost', () => {
             })
     })
 
+
+    // it("fails on non-match user", () => {
+    //     let errorThrown
+
+    //     return bcrypt.hash("1234", 8)
+    //         .then(hash => {
+    //             const user = new User({
+    //                 name: "Mocha",
+    //                 surname: "Chai",
+    //                 email: "Mocha@Chai.com",
+    //                 username: "MochaChai",
+    //                 password: hash
+    //             })
+    //             const post = new Post({
+    //                 author: new ObjectId().toString(),
+    //                 title: "Hello world",
+    //                 image: "https://media.giphy.com/media/2kXOYTdyGPbIBISFn5/giphy.gif?cid=6c09b9525munegsuq607a67vn2oks57tip5c8ptumlx95ba7&ep=v1_gifs_trending&rid=giphy.gif&ct=g",
+    //                 description: "hello description",
+    //                 liked: []
+    //             })
+    //             return Promise.all([user.save(), post.save()])
+    //                 .then(([savedUser, savedPost]) => {
+    //                     return deletePost(savedUser.id.toString(), savedPost.id.toString())
+    //                 })
+    //                 .catch(error => errorThrown = error)
+    //         })
+    //         .finally(() => {
+    //             expect(errorThrown).to.be.an.instanceOf(MatchError)
+    //             expect(errorThrown.message).to.equal("You can't delete this post")
+    //         })
+    // })
+
+
     after(() => Promise.all([User.deleteMany(), Post.deleteMany()]).then(() => mongoose.disconnect()))
 })
