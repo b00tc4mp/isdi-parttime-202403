@@ -1,6 +1,11 @@
 @import url(https://db.onlinewebfonts.com/c/1e820607bea3968e00731ad939b60eea?family=Alycidon-Condensed);
 @import url('https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 :root {    
     --color1: #cdd9eb;
     --color2: #4267B3;
@@ -9,6 +14,7 @@
     --color5: #616771;
 
 }
+
 
 
 *{

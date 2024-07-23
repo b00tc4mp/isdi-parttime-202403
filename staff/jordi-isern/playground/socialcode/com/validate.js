@@ -2,19 +2,19 @@ import { ContentError, MatchError } from "./errors.js"
 
 const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w$%&=\[\]\{\}\<\>\(\)]{8,}$/
-const ID_REGEX = /^[0-9a-z]+$/
+const ID_REGEX = /^[0-9a-z-_]+$/i
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 
 function validateUsername(username, explain = 'username'){
-    if(!USERNAME_REGEX.test(username)){
+    if(typeof username !=='string' || !USERNAME_REGEX.test(username)){
         throw new ContentError(`${explain} is not valid`)
     }
 }
 
 function validatePasword(password){
-    if(!PASSWORD_REGEX.test(password)){
+    if(!PASSWORD_REGEX.test(password)|| typeof password !== 'string'){
         throw new ContentError('password is not valid')
     }
 }
@@ -24,9 +24,9 @@ function validatePasswordsMatch(password, passwordRepeat) {
         throw new MatchError('passwords don\'t match')
 }
 
-function validateIDpost(postId){
-    if(!ID_REGEX.test(postId)){
-        throw new ContentError('postID is not valid')
+function validateID(id, explain = 'id'){
+    if(!ID_REGEX.test(id) || typeof id !== 'string'){
+        throw new ContentError(`${explain} is not valid`)
     }
 }
 
@@ -63,7 +63,7 @@ const validate = {
     passwordMatch: validatePasswordsMatch,
     callback: validateCallback,
     name: validateName,
-    id: validateIDpost,
+    id: validateID,
     email: validateEmail,
     text: validateText,
     url: validateURL

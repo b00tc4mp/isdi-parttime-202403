@@ -1,7 +1,7 @@
 import './CommentPostForm.css'
 
 import SubmitButton from "../../../Components/Core/SubmitButton";
-import Form from "../../../Components/Core/Form";
+import Form from "../../../Components/Core/Form/Form";
 
 import logic from "../../../logic";
 

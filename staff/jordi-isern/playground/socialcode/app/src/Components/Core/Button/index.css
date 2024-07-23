@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .button{
+        @apply 
+        rounded-lg
+        border-[1px]
+        py-2
+        px-3
+        text-base
+        bg-[#646cff]
+        cursor-pointer
+        text-white;
+    ;
+  }
+} 
+
+b_utton {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #646cff;    cursor: pointer;
+  color: white;
+  transition: border-color 0.25s;
+}
+b_utton:hover {
+  border-color: #646cff;
+}
+b_utton:focus,
+b_utton:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

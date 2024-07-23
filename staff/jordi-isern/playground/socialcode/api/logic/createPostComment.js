@@ -1,6 +1,9 @@
 import {User, Post} from '../data/models/index.js'
 import validate from "com/validate.js";
-import { MatchError, NotFoundError, SystemError } from "com/errors.js";
+import {NotFoundError, SystemError } from "com/errors.js";
+import {Types} from 'mongoose'
+
+const {ObjectId} = Types
 
 function createPostComment(userId, postId, comment) {
     validate.id(userId)
@@ -19,8 +22,8 @@ function createPostComment(userId, postId, comment) {
                         throw new NotFoundError('Post not found')
                     }
 
-                    return Post.findByIdAndUpdate({_id: post.id},{
-                        push: {comments: {author: user._id, comment: comment}}
+                    return Post.updateOne({_id: new ObjectId(postId)},{
+                        $push: {comments: {author: user.id, comment: comment}}
                     })
                         .catch(error => {throw new SystemError(error.message) })
                         .then(() => { })

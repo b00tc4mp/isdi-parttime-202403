@@ -5,7 +5,7 @@ import validate from 'com/validate.js'
 
 const getUserName = (userId, targetUserId) => {
     validate.id(userId, 'userId')
-    validate.id(targetUserId, 'targetUsername')
+    validate.id(targetUserId, 'targetUser')
 
     return User.findById(userId).lean()
         .catch(error => {throw new SystemError(error.message)})

@@ -1,4 +1,4 @@
-import Form from "../Core/Form.jsx";
+import Form from "../Core/Form/Form.jsx";
 
 import "./FormWithFeedback.css"
 

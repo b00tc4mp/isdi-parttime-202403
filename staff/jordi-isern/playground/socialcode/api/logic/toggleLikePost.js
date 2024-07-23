@@ -19,10 +19,10 @@ function toggleLikePost(userId, postId){
                     const included = post.likes.some(userObjectId => userObjectId.toString() === userId)
 
                     return Post.updateOne({_id: post._id},
-                        included ?
-                        {$pull: { likes: user._id} }
-                        :
-                        {$push: {likes : user._id} }
+                        included ? 
+                        { $pull: {likes: user._id.toString()} }
+                        : 
+                        { $push: {likes: user._id.toString()} }
                     )
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })

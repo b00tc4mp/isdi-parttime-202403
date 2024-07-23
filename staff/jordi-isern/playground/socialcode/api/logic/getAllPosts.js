@@ -9,7 +9,7 @@ const getAllPosts = userId => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw NotFoundError('user not found')
+                throw new NotFoundError('user not found')
 
             return Post.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
                 .catch(error => { throw new SystemError(error.message) })
