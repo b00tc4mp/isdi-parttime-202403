@@ -1,21 +1,18 @@
 import errors, { SystemError } from 'com/errors'
+import validate from 'com/validate'
 
-import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
+const deletePost = postId => {
+    validate.id(postId, 'postId')
 
-const getUserName = () => {
-    const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
-
-    return fetch(`${import.meta.env.VITE_API_URL}__/users/${userId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
+        method: 'DELETE',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 200)
-                return response.json()
-                    .catch(() => { throw new SystemError('server error') })
-                    .then(name => name)
+            if (response.status === 204) return
 
             return response.json()
                 .catch(() => { throw new SystemError('server error') })
@@ -29,4 +26,4 @@ const getUserName = () => {
         })
 }
 
-export default getUserName
+export default deletePost
