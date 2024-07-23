@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jersey+10&display=swap");
 
 :root {
   --first-color: tomato;
@@ -15,7 +15,21 @@
 }
 
 body {
-  background-image: linear-gradient(to right top, #f97c16, #d25a2c, #a54031, #742c2e, #441c22, #2f161b, #1c0e11, #1b1b1b, #1b1b1b, #1b1b1b, #000000, #000000);
+  background-image: linear-gradient(
+    to right top,
+    #f97c16,
+    #d25a2c,
+    #a54031,
+    #742c2e,
+    #441c22,
+    #2f161b,
+    #1c0e11,
+    #1b1b1b,
+    #1b1b1b,
+    #1b1b1b,
+    #000000,
+    #000000
+  );
   display: flex;
   justify-content: center;
   flex-direction: column;

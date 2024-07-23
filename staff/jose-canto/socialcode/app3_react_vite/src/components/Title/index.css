@@ -2,6 +2,6 @@
 
 @layer components {
   .HeaderLoginRegister {
-    @apply text-5xl text-blanchedalmond mb-2;
+    @apply mb-2 text-3xl text-blanchedalmond;
   }
 }

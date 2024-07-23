@@ -2,10 +2,10 @@
 
 @layer components {
   .Field {
-    @apply flex items-center flex-col;
+    @apply flex flex-col items-center;
   }
 
   .Field > label {
-    @apply w-auto my-1 text-xl;
+    @apply my-1 w-auto text-2xl;
   }
 }

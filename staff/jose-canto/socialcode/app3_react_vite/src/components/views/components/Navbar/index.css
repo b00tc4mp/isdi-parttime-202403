@@ -1,62 +1,34 @@
-.Author_navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
+@tailwind components;
+@layer components {
+  .Author_navbar {
+    @apply flex w-full items-center justify-between;
+  }
 
-.Navbar {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  width: 90%;
-  height: auto;
-  top: 0.5rem;
-  right: 1rem;
-  gap: 0.3rem
-}
+  .Navbar {
+    @apply absolute right-4 top-2 flex h-auto w-[90%] flex-col items-end gap-1;
+  }
 
-.Navbar_Container {
-  display: flex;
-  position: relative;
-  gap: 0.5rem
-}
+  .Navbar_container {
+    @apply realative flex gap-2;
+  }
 
-.DeleteButton {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 1.6rem;
-  margin-top: 0.5rem;
-}
+  .DeleteButton {
+    @apply relative flex h-8 items-center justify-center;
+  }
 
-.EditButton {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 1.6rem;
-  margin-top: 0.5rem;
-}
+  .EditButton {
+    @apply relative mt-2 flex h-8 items-center justify-center;
+  }
 
-.NavButton {
-  font-size: 1.5rem;
-  cursor: pointer;
-}
+  .NavButton {
+    @apply cursor-pointer text-2xl;
+  }
 
-.NavButton:hover {
-  color: var(--second-color);
-}
+  .fa-solid.fa-bars {
+    @apply text-blanchedalmond;
+  }
 
-.fa-solid.fa-bars {
-  color: white;
-}
-
-.fa-bars-staggered {
-  color: black;
-
+  .fa-solid.fa-bars-staggered {
+    @apply text-black;
+  }
 }

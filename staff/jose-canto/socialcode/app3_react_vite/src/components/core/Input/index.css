@@ -2,6 +2,6 @@
 
 @layer components {
   .Input {
-    @apply p-1 rounded-sm bg-[#eeeaea21] text-blanchedalmond text-[1.1rem] tracking-wide w-64 text-center;
+    @apply w-60 rounded-sm bg-[#eeeaea21] p-1 text-center text-[1.1rem] tracking-wide text-blanchedalmond;
   }
 }

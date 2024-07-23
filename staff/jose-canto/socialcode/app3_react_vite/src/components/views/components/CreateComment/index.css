@@ -2,7 +2,7 @@
 
 @layer components {
   .CreateComment {
-    @apply flex relative w-[95%] bottom-0 text-blanchedalmond shadow-custom-shadow rounded-lg p-2 mt-5;
+    @apply relative bottom-0 mt-5 flex rounded-lg p-2 text-blanchedalmond shadow-custom-shadow;
     background-image: linear-gradient(
       to right top,
       #f97c16,
@@ -21,7 +21,7 @@
   }
 
   .CreateComment-header {
-    @apply flex w-[90%] gap-3 justify-between;
+    @apply flex w-[90%] justify-between gap-3;
   }
 
   .CreateComment .TextArea {
@@ -33,11 +33,23 @@
   }
 
   .CreateComment i {
-    @apply relative cursor-pointer text-2xl rounded-lg text-[var(--first-color)];
+    @apply relative cursor-pointer rounded-lg text-2xl text-[var(--first-color)];
     transition: 0.35s ease-in;
   }
 
   .CreateComment i:hover {
     @apply text-blanchedalmond;
+  }
+
+  .IconComment {
+    @apply flex w-full justify-end;
+  }
+
+  .fa-comments {
+    @apply mr-4 justify-end text-lg text-blanchedalmond;
+  }
+
+  .fa-comments:hover {
+    color: whitesmoke;
   }
 }

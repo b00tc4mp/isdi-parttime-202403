@@ -6,11 +6,11 @@
   }
 
   .PasswordForm {
-    @apply mt-1 -mb-3;
+    @apply -mb-3 mt-1;
   }
 
   .ShowPasswordField.PasswordForm > label {
-    @apply mb-1;
+    @apply mb-1 text-2xl;
   }
 
   .PasswordForm > label {
@@ -18,14 +18,14 @@
   }
 
   .ShowPasswordFieldIcon {
-    @apply relative cursor-pointer bottom-6 left-[7rem] text-blanchedalmond;
+    @apply relative bottom-6 left-[6.5rem] cursor-pointer text-blanchedalmond;
   }
 
   .PasswordRepeatForm {
-    @apply mt-1 -mb-3;
+    @apply -mb-3 mt-1;
   }
 
   .PasswordRepeatForm > label {
-    @apply mb-1;
+    @apply mb-1 text-2xl;
   }
 }

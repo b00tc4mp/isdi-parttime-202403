@@ -1,99 +1,52 @@
-.Article {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 70%;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-}
-
-.Article .AuthorTitle {
-  font-size: 1.2rem;
-  font-weight: 900;
-  margin: 0;
-  padding: 0;
-}
-
-.Article .PostTitle {
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-  font-size: 2rem;
-  color: whitesmoke;
-  width: 100%;
-  border-bottom: 2px solid white;
-}
-
-.Article .Likes > sub {
-  font-size: 1.2rem;
-  margin-left: 0.3rem;
-  color: rgb(156, 221, 57);
-}
-
-.Article .Likes {
-  transition: transform 0.5s ease-out;
-  text-shadow: 3px 1px 4px rgba(0, 0, 0, 0.7);
-}
-
-.Article .Likes:hover {
-  color: greenyellow;
-  transform: translateY(7px);
-}
-
-.Comments {
-  color: black;
-  border-top: 2px solid black;
-  margin-top: 0.4rem;
-}
-
-.Comments p {
-  margin-top: 0.3rem;
-  color: black;
-}
-
-.IconComment {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-}
-
-.fa-comments {
-  margin-right: 1rem;
-  justify-content: end;
-  color: black;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-
-.fa-comments:hover {
-  color: whitesmoke;
-}
-
-@keyframes show {
-  from {
-    opacity: 0;
-    scale: 50%;
-  }
-
-  to {
-    opacity: 1;
-    scale: 100%;
-  }
-}
-
-.Article {
-  view-timeline-name: --reveal;
-
-  animation-name: show;
-  animation-fill-mode: both;
-
-  animation-timeline: --reveal;
-  animation-range: entry 5% cover 30%;
-}
-
-/* media queries */
-@media (max-width: 425px) {
+@tailwind components;
+@layer components {
   .Article {
-    width: 95%;
+    @apply flex w-4/5 flex-col justify-center rounded-lg bg-[#929292] p-4;
+  }
+
+  .Article .AuthorTitle {
+    @apply m-0 p-0 text-lg font-extrabold;
+  }
+
+  .Article .PostTitle {
+    @apply mb-3 mt-2 w-full text-3xl text-blanchedalmond;
+    border-bottom: 2px solid white;
+  }
+
+  .Article .Likes > sub {
+    @apply ml-1 text-lg text-blanchedalmond;
+  }
+
+  .Article .Likes {
+    @apply transition-transform duration-400;
+    text-shadow: 3px 1px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .Article .Likes:hover {
+    @apply text-second-color;
+    transform: translateY(7px);
+  }
+
+  /*Movimiento de posts */
+  @keyframes show {
+    from {
+      opacity: 0;
+      scale: 50%;
+    }
+
+    to {
+      opacity: 1;
+      scale: 100%;
+    }
+  }
+
+  .Article {
+    view-timeline-name: --reveal;
+
+    animation-name: show;
+    animation-fill-mode: both;
+
+    animation-timeline: --reveal;
+    animation-range: entry 5% cover 30%;
   }
 }

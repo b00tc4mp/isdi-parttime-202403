@@ -2,7 +2,7 @@
 
 @layer components {
   .CreatePostForm {
-    @apply fixed w-[80vw] max-w-[40rem] bottom-0 gap-1 mb-28 px-3 shadow-custom-shadow;
+    @apply fixed bottom-0 mb-28 w-[80vw] max-w-[40rem] gap-1 shadow-custom-shadow;
 
     background-image: linear-gradient(
       to right top,
@@ -22,7 +22,7 @@
   }
 
   .CreatePostForm i {
-    @apply absolute cursor-pointer top-[0.2rem] right-[0.8rem] text-xl;
+    @apply absolute right-[0.8rem] top-[0.2rem] cursor-pointer text-xl;
   }
 
   .CreatePostForm i:hover {

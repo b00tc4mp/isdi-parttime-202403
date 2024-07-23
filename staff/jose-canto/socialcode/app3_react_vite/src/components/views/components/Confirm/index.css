@@ -2,7 +2,7 @@
 
 @layer components {
   .Confirm {
-    @apply absolute bg-blanchedalmond rounded-2xl p-4 w-56 flex justify-center text-center flex-wrap;
+    @apply absolute top-36 flex w-56 flex-wrap justify-center rounded-2xl bg-blanchedalmond p-4 text-center;
   }
 
   .Confirm .Text {

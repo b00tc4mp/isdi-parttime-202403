@@ -9,6 +9,9 @@ export default {
       colors: {
         blanchedalmond: '#ffebcd',
         'custom-orange': 'hsl(27, 84%, 37%)',
+        "first-color": "var(--first-color)",
+        "second-color": "var(--second-color)",
+
       },
       boxShadow: {
         'custom-shadow': '0px 5px 10px 5px rgba(0, 0, 0, 0.35)',

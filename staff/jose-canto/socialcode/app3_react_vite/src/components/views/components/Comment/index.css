@@ -2,7 +2,7 @@
 
 @layer components {
   .Comment {
-    @apply flex flex-col justify-center w-full h-auto m-2 bg-[#00000020] shadow-custom-shadow rounded-lg;
+    @apply flex flex-col justify-center w-full h-auto m-2 shadow-custom-shadow rounded-lg;
   }
 
   .Comment-author {
@@ -10,10 +10,10 @@
   }
 
   .Comment-date {
-    @apply text-blanchedalmond text-sm;
+    @apply text-sm;
   }
 
   .Comment .Text {
-    @apply text-[0.8rem];
+    @apply text-[0.8rem] text-white;
   }
 }
