@@ -6,24 +6,27 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --first-color: black;
-    --second-color: rgb(105, 228, 228);
-    background: linear-gradient(to bottom right, rgba(0, 0, 255, 0.63), rgba(42, 42, 255, 0.788), rgba(0, 255, 255, 0.788), rgba(105, 228, 228, 0.76)) no-repeat;
-    background-size: cover;
-}
 
-* {
-    font-family: catamaran;
-    color: var(--first-color);
-}
-
-html,
-body {
-    min-height: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
+@layer base {
+    :root {
+        --first-color: black;
+        --second-color: rgb(105, 228, 228);
+        background: linear-gradient(to bottom right, rgba(0, 0, 255, 0.63), rgba(42, 42, 255, 0.788), rgba(0, 255, 255, 0.788), rgba(105, 228, 228, 0.76)) no-repeat;
+        background-size: cover;
+    }
+    
+    * {
+        font-family: catamaran;
+        color: var(--first-color);
+    }
+    
+    html,
+    body {
+        min-height: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 @layer components {
