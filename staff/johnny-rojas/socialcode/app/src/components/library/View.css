@@ -1,9 +1,12 @@
-.View {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@tailwind components;
+@tailwind utilities;
 
-.Logo {
-  width: 100px;
+@layer components{
+  .View{
+    @apply flex flex-col items-center
+  }
+
+  .Logo{
+    @apply w-full
+  }
 }

@@ -1,26 +1,28 @@
-.FormWithFeedback {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@tailwind components;
+@tailwind utilities;
 
-.FormWithFeedback .Feedback {
-  color: tomato;
-}
+@layer components{
+  .Field{
+    @apply m-0
+  }
+  .FormWithFeedback{
+    @apply flex flex-col items-center
+  }
 
-.FormWithFeedback .Feedback.success {
-  color: greenyellow;
-}
+  .FormWithFeedback .Feedback{
+    @apply text-red-400 mt-3 font-semibold
+  }
 
-.FormWithFeedback .Field {
-  margin-bottom: 0px;
-  height: 46px;
-}
+  .FormWithFeedback .Feedback.success{
+    @apply text-green-400 mt-3 font-semibold
+  }
+  
+  .FormWithFeedback.Field{
+    @apply mb-0 h-12
+  }
 
-.FormWithFeedback .EyeIcon {
-  position: relative;
-  left: 154px;
-  top: -30px;
-  width: fit-content;
-  padding: 0px;
+  .FormWithFeedback .EyeIcon{
+    @apply relative left-[174px] top-[-30px] m-0
+
+  }
 }

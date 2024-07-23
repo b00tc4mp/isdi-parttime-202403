@@ -1,8 +1,14 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .Footer{
+    @apply flex w-full justify-center fixed 
+  }
+}
+
+
 .Footer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: fixed;
   bottom: 0;
   padding: .5rem;
   background-color: var(--second-color);

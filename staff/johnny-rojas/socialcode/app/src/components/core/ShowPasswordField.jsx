@@ -1,8 +1,6 @@
 import Label from './Label'
 import Input from './Input'
 
-import './ShowPasswordField.css'
-
 import { useState } from 'react'
 
 function ShowPasswordField({ id, placeholder, children }) {

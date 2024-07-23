@@ -1,35 +1,28 @@
-.modal {
-  position: fixed; 
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  background-color: rgba(255, 255, 255, 0.877); 
-  padding: 20px; 
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-  border-radius: 8px; 
-  z-index: 1000; 
-}
+@tailwind components;
+@tailwind utilities;
 
-.Field{
-  margin: 10px;
-}
+@layer components {
+  .modal {
+    @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90 p-5 shadow-lg rounded-lg z-50;
+  }
 
-.optionsNewPost{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: .5rem;
-}
+  .field {
+    @apply m-2.5;
+  }
 
-.optionsNewPost>.ButtonCancel{
-  margin: 0rem;
-  margin-top: .5rem;
-  width: 100px;
-  margin-bottom: 15px;
-  justify-self: center;
-  border-radius: 20px;
-  border: 1px solid #272727;
-  color: #272727;
-  background-color: #d9d9d900;
+  .optionsNewPost {
+    @apply flex flex-col justify-center items-center mt-2;
+  }
+
+  .optionsNewPost .buttonCancel {
+    @apply mt-2 w-24 mb-4 self-center rounded-2xl border border-gray-800 text-gray-800 bg-transparent;
+  }
+
+  .ButtonSubmit {
+    @apply w-32 rounded-3xl bg-[var(--third-color)] text-white
+  }
+
+  .ButtonConfirm{
+    @apply w-32 justify-center rounded-3xl border border-black
+  }
 }

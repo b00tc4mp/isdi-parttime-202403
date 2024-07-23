@@ -16,7 +16,9 @@ function PrincipalBar({ name, onClick, children }) {
 
   return <Header>
     <Heading level="3">{name}</Heading>
-    <img className="Logo" src={MyIcon} alt="SocialCodeLogo" onClick={scrollTop}></img>
+    <div className='ContentLogo'>
+      <img className="Logo" src={MyIcon} alt="SocialCodeLogo" onClick={scrollTop}></img>
+    </div>
     <Button className="LogoutButton" onClick={onClick}>{children}</Button>
 </Header>
 }

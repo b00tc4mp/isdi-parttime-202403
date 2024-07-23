@@ -1,27 +1,20 @@
-.Confirm{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .Confirm{
+    @apply flex flex-col justify-center text-center 
+  }
+  .opcions{
+    @apply space-x-0
+  }
+
+  .ButtonCancel {
+    @apply w-32 rounded-3xl bg-[var(--third-color)] text-white
+  }
+
+  .ButtonConfirm{
+    @apply w-32 justify-center rounded-3xl border border-black
+  }
 }
 
-.ButtonCancel{
-  margin: 0rem;
-  margin-top: .5rem;
-  width: 100px;
-  border-radius: 20px;
-  background-color: #444FB6;
-  color: #D9D9D9;
-  border: 0px
-}
-
-.ButtonConfirm{
-  margin: 0rem;
-  margin-top: .5rem;
-  width: 100px;
-  margin-bottom: 15px;
-  justify-self: center;
-  border-radius: 20px;
-  border: 1px solid #272727;
-  color: #272727;
-}

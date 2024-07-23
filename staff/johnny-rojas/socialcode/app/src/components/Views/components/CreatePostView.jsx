@@ -60,4 +60,13 @@ return <View className="CreatePostForm">
 </View>
 }
 
+<div className="options">
+				<SubmitButton className="ButtonSubmit" onClick={onCancelDeletePost}>
+					Cancel
+				</SubmitButton>
+				<Button className="ButtonConfirm" onClick={onConfirmDeletePost}>
+					Confirm
+				</Button>
+			</div>
+
 export default CreatePostForm

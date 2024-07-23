@@ -1,9 +1,8 @@
-.Field {
-  display: flex;
-  flex-direction: column;
-  margin: .25rem 0;
-}
+@tailwind components;
+@tailwind utilities;
 
-#PasswordView {
-  margin-bottom: 0px;
+@layer components{
+  .Field{
+    @apply flex flex-col m-1
+  }
 }
