@@ -1,4 +1,4 @@
-import "./View.css"
+//import "./View.css"
 
 //parametrizamos View para que admite diferentes tags. Por defecto sera un div salgo si lo queremos cambiar
 //personalizamos para cambiar el layout. Por defecto es column, sino lo cambia a row

@@ -1,6 +1,6 @@
 import Label from "./Label";
 import Input from "./Input";
-import "./Field.css"
+//import "./Field.css"
 
 
 function Field({ id, type, placeholder, children }) {

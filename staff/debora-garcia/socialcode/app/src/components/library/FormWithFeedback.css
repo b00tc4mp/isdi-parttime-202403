@@ -6,7 +6,7 @@
   }
   
   
-  .FormWithFeedback .Feedback.error {
+  .FormWithFeedback .Feedback.error_ {
     display: flex;
     text-align: center;
     max-width: 15rem;

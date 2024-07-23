@@ -1,4 +1,4 @@
-import "./Time.css"
+//import "./Time.css"
 //:time personalizamos el nombre de children para darle semantica
 function Time({ children: time }) {
     const formattedDate = new Date(time).toLocaleString()

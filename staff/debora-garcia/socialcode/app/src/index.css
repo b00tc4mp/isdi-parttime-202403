@@ -1,25 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-    --first-color: rgb(131, 13, 96);
-    --second-color: rgb(234, 200, 243);
+  --first-color: rgb(131, 13, 96);
+  --second-color: rgb(234, 200, 243);
 }
 
 * {
-    font-family: 'Courier New', Courier, monospace;
-    font-style: normal;
-    color: var(--first-color);
-   
-    
+  font-family: "Courier New", Courier, monospace;
+  font-style: normal;
+  color: var(--first-color);
 }
-
 
 body {
-    /*     background-color: var(--second-color);*/
-    background-image: url("../shapes/images/koala2.jpeg");
-    margin:0;
-
-
+  /*     background-color: var(--second-color);*/
+  background-image: url("../shapes/images/koala2.jpeg");
+  margin: 0;
 }
+
+@layer components {
+  /* core */
+  .Form {
+    @apply flex flex-col items-center;
+  }
+
+  .Button {
+    @apply m-[.5rem_0] p-[.4rem] bg-white font-[1rem] rounded-[5px];
+  }
+  .SubmitButton {
+    @apply m-[0.5rem_0];
+  }
+
+  .Field {
+    @apply flex flex-col m-[0.25rem_0];
+  }
+
+  .Image {
+    @apply w-full;
+  }
+
+  .Label {
+    @apply mb-[.5rem];
+  }
+  .Text {
+    @apply text-[#beaf24] font-[600];
+  }
+  .Time {
+    @apply text-black;
+  }
+
+  .Input {
+    @apply p-[.4rem] bg-white text-[1rem] rounded-[5px];
+  }
+  /* library */
+  .FormWithFeedback {
+    @apply p-[1rem] bg-[#DECAA9CC] rounded-[15px] shadow-[5px_5px_6px_2px] shadow-[#0000004D];
+  }
+
+  .FormWithFeedback .Feedback.error {
+    @apply flex justify-center w-[15rem] text-[tomato] ;
+  }
+
+  .FormWithFeedback .Feedback.success {
+    @apply flex justify-center w-[15rem] text-[green] ;
+  }
+
+  .View {
+    @apply flex;
+  }
+
+  .View.column {
+    @apply flex-col;
+  }
+
+  .View.row {
+    @apply flex-row gap-[1rem];
+  }
+
+  .View.center {
+    @apply items-center;
+  }
+  /* components */
+
+  .CreatePostForm {
+    @apply fixed bottom-[4.5rem] p-[0.5rem] w-full left-0 box-border bg-[white];
+  }
+
+  .Footer {
+    @apply w-full flex justify-center fixed bottom-0 p-[0.5rem_0]  border-t-[var(--first-color)] bg-[#A087B8];
+  }
+
+  .Header {
+    @apply flex gap-[1rem] w-full justify-end fixed top-0 p-[.2rem]  bg-[#A087B8] items-center;
+  }
+
+  .PostList {
+    @apply m-[60px_10px];
+  }
+}
+
+a {
+  position: relative;
+  top: 30px;
+  padding: 0.4rem 0.9rem 0.4rem .9rem;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 900;
+  font-style: normal;
+}
+h1{
+  font-size: 30px;
+  font-family: "Abril Fatface";
+  font-style: normal;
+}
+

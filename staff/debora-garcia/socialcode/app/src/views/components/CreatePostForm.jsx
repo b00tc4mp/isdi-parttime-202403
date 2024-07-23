@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import logic from "../../logic"
 
-import "./CreatePostForm.css"
+//import "./CreatePostForm.css"
 
 import Field from "../../components/core/Field"
 import Button from "../../components/core/Button"
