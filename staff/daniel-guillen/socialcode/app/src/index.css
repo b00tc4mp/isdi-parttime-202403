@@ -16,8 +16,7 @@
 }
 
 body {
-    background-color:rgb(255, 255, 255);
-    margin: 0 auto;
+    background-color:white;
 }
 
 @layer components {
@@ -25,7 +24,7 @@ body {
     /* core */
 
     .Button {
-        @apply p-[1rem] m-1 bg-transparent bg-gradient-to-t from-cyan-200 to-teal-300 text-lg rounded-xl cursor-pointer;
+        @apply p-[0.5rem] mt-2 mr-2 ml-2 mb-3 bg-transparent bg-gradient-to-t from-zinc-300 to-pink-200 text-lg rounded-xl cursor-pointer;
       }
 
     .Field {
@@ -33,15 +32,15 @@ body {
       }
   
     .Form {
-      @apply flex flex-col marker:items-center rounded-xl bg-transparent bg-gradient-to-b from-teal-200 to-red-50;
+      @apply flex flex-col marker:items-center rounded-xl bg-transparent bg-gradient-to-b from-zinc-300 to-red-100;
     }
 
     .Image {
-        @apply w-full w-[1920px] rounded-xl;
+        @apply w-[1920px] rounded-xl;
     }
 
     .Input {
-        @apply p-[.4rem] bg-transparent font-[1rem] rounded-xl bg-transparent border-2;
+        @apply p-[.4rem] bg-transparent font-[1rem] rounded-xl border-2;
       }
 
     .Label {
@@ -52,13 +51,21 @@ body {
       @apply m-[1];
     }
   
-    .Text {
-      @apply text-[dodgerblue];
+     .Text {
+      @apply text-pink-500;
     }
+
+    .Titles {
+      @apply text-black text-4xl w-full h-20 flex justify-center fixed top-0 p-[.5rem_0] bg-gradient-to-b from-red-100 to-transparent;
+  }
   
     .Time {
-      @apply flex justify-center text-pink-300;
+      @apply flex justify-center text-black;
     }
+
+    .Link {
+      @apply text-black w-full h-16 flex justify-start fixed bottom-0 p-[.5rem_0] bg-gradient-to-t from-red-100 to-transparent;
+  }
   
     /* library */
   
@@ -75,7 +82,7 @@ body {
     }
   
     .View {
-      @apply flex;
+      @apply flex flex-col justify-center;
     }
   
     .View.column {
@@ -97,11 +104,11 @@ body {
     }
   
     .Footer {
-      @apply w-full flex justify-center fixed bottom-0 p-[.5rem_0] bg-gradient-to-t from-cyan-200 to-transparent;
+      @apply w-full flex justify-center fixed bottom-0 p-[.5rem_0] bg-gradient-to-t from-red-100 to-transparent;
     }
     
     .Fixed {
-        @apply flex justify-end w-full fixed top-0 box-border bg-gradient-to-b from-teal-200 to-transparent;
+        @apply flex justify-end w-full fixed top-0 box-border bg-gradient-to-b from-red-100 to-transparent;
     }
 
     .Logout {
@@ -110,19 +117,25 @@ body {
 
     
     .Title {
-        @apply flex justify-start w-full text-5xl p-2 h-0 z-[999];
+        @apply flex justify-start w-full text-5xl ml-6 h-0 z-[999];
       }
     
     .Welcome {
-        @apply flex justify-center w-full text-3xl p-0 h-0 z-[999];
+        @apply flex justify-center w-full text-3xl mt-2 h-0 z-[999];
       }
 
     .Post {
-        @apply w-full;
+        @apply flex flex-col w-full;
     }
 
+    .AuthorPost {
+      @apply text-2xl;
+    }
+    .TitlePost {
+      @apply text-5xl;
+    }
     .Description {
-      @apply flex justify-center;
+      @apply flex justify-center text-black text-5xl ;
     }
 
     .ContainerImg {
@@ -130,14 +143,10 @@ body {
     }
     
     .PostList {
-      @apply flex-col text-xl p-5 m-[60px_90px_80px] rounded-2xl bg-gradient-to-b from-cyan-100 to-pink-100;
-    }
-
-    .Link {
-        @apply text-black w-full h-16 flex justify-start fixed bottom-0 p-[.5rem_0] bg-gradient-to-t from-teal-200 to-transparent;
-    }
-
-    .Titles {
-        @apply text-black text-4xl w-full h-20 flex justify-center fixed top-0 p-[.5rem_0] bg-gradient-to-b from-cyan-200 to-transparent;
+      @apply flex-col text-xl p-5 m-[60px_90px_80px] rounded-2xl bg-gradient-to-b from-zinc-100 to-pink-100;
     }
   }
+
+    .About {
+      @apply z-[999];
+    }

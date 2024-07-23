@@ -50,10 +50,12 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
     return <View tag="article" align="">
         <View direction='center'>
-        <Text>{post.author.username}</Text>
-
-        <Heading level="3">{post.title}</Heading>
+        <div className='AuthorPost'><Text>{post.author.username}</Text></div>
         </View>
+        
+        <View direction='center'>
+        <div className='TitlePost'><Heading level="3">{post.title}</Heading>
+        </div></View>
 
         <div className='ContainerImg'><Image src={post.image} /></div>
 

@@ -58,7 +58,7 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
         </FormWithFeedback>
 
         <div className='Link'><Link onClick={handleRegisterClick}>...Go to register</Link></div>
-        
+              
     </View>
 }
 

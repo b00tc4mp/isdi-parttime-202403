@@ -1,7 +1,1 @@
-//import './Link.css'
-
-function Link({ onClick, children }) {
-    return <a href="" onClick={onClick}>{children}</a>
-}
-
-export default Link
+export default ({ onClick, children, to = "" }) => <a href={to} onClick={onClick}>{children}</a>

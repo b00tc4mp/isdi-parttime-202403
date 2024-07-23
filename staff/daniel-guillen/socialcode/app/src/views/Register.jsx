@@ -68,7 +68,6 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 
             <SubmitButton>Register</SubmitButton>
         </FormWithFeedback>
-
         <div className='Link'><Link onClick={handleLoginClick}>...Back to login</Link></div>
     </View>
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import { Routes, Route, useNavigate, Link } from 'react-router-dom'
+
 import View from '../components/library/View'
 
 import Header from './components/Header'
@@ -7,12 +9,14 @@ import Title from '../components/core/Title'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
+import Hello from './components/Hello'
+import Search from './components/Search'
 
 import Button from '../components/core/Button'
-
 import Heading from '../components/core/Heading'
 
 import logic from '../logic'
+import About from './components/About'
 
 function Home({ onUserLoggedOut }) {
     console.log('Home -> render')
@@ -21,6 +25,8 @@ function Home({ onUserLoggedOut }) {
     const [view, setView] = useState('')
     const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
+    const navigate = useNavigate()
+    
     const handleLogout = () => {
         logic.logoutUser()
 
@@ -69,7 +75,7 @@ function Home({ onUserLoggedOut }) {
 
     return <View>
         <div className='Title'><Header>
-        <div className="Home"><Title>SocialCode</Title></div>
+        <div className="Home"><Heading level="1"><Link to="/">SocialCode</Link></Heading></div>
         </Header></div>
 
         <div className="Welcome"><Header>
@@ -82,15 +88,22 @@ function Home({ onUserLoggedOut }) {
 
 
         <View tag="main">
-        <PostList refreshStamp={postListRefreshStamp} />
+        <Routes>
+                <Route path="/" element={<PostList refreshStamp={postListRefreshStamp} />} />
+
+                <Route path="/about" element={<About />} />
+
+                <Route path="/hello/:to" element={<Hello />} />
+
+                <Route path="/search" element={<Search />} />
+            </Routes>
 
         {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
-        
-        
-        <Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop} />
-        <footer></footer>
-    </View>
+            
+        <Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop}/>
+        <div className='About'><Link to="/about">About</Link></div>
+        </View>
 }
 
 export default Home
