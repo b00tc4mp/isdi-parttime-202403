@@ -11,17 +11,17 @@ import deletePost from "./deletePost";
 import likePost from "./likePost";
 
 const logic = {
-  registerUser,
-  loginUser,
-  getUsersName,
-  isUserLoggedIn,
-  getUserId,
-  logoutUser,
+   registerUser,
+   loginUser,
+   getUsersName,
+   isUserLoggedIn,
+   getUserId,
+   logoutUser,
 
-  getAllPosts,
-  createPost,
-  deletePost,
-  likePost,
+   getAllPosts,
+   createPost,
+   deletePost,
+   likePost
 };
 
 export default logic;

@@ -1,5 +1,5 @@
 function Section({ className, children }) {
-  return <section className={className}>{children}</section>;
+   return <section className={className}>{children}</section>;
 }
 
 export default Section;

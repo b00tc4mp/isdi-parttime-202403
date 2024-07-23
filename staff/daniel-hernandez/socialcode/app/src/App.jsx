@@ -6,17 +6,17 @@ import HomePage from "./HomePage/index.jsx";
 import ViewContext from "./ViewContext.jsx";
 
 function App() {
-  const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login");
+   const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login");
 
-  return (
-    <>
-      <ViewContext.Provider value={{ view, setView }}>
-        {view === "login" && <LoginPage />}
-        {view === "register" && <RegisterPage />}
-        {view === "home" && <HomePage />}
-      </ViewContext.Provider>
-    </>
-  );
+   return (
+      <>
+         <ViewContext.Provider value={{ view, setView }}>
+            {view === "login" && <LoginPage />}
+            {view === "register" && <RegisterPage />}
+            {view === "home" && <HomePage />}
+         </ViewContext.Provider>
+      </>
+   );
 }
 
 export default App;

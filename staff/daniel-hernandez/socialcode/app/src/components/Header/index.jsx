@@ -7,39 +7,38 @@ import Text from "../atomic/Text.jsx";
 import Button from "../atomic/Button.jsx";
 
 function Header() {
-  const { setView } = useContext(ViewContext);
-  const [name, setName] = useState("");
+   const { setView } = useContext(ViewContext);
+   const [name, setName] = useState("");
 
-  useEffect(() => {
-    setUsersName();
-  }, []);
+   useEffect(() => {
+      setUsersName();
+   }, []);
 
-  const setUsersName = async () => {
-    let usersName;
+   const setUsersName = async () => {
+      let usersName;
 
-    try {
-      usersName = await logic.getUsersName();
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
-    }
+      try {
+         usersName = await logic.getUsersName();
+      } catch (error) {
+         console.error(error.message);
+      }
 
-    setName(usersName);
-  };
+      setName(usersName);
+   };
 
-  const handleLogout = () => {
-    logic.logoutUser();
-    setView("login");
-  };
+   const handleLogout = () => {
+      logic.logoutUser();
+      setView("login");
+   };
 
-  return (
-    <Container className={styles.header}>
-      <Text className={styles.username}>{name}</Text>
-      <Button className={styles.logoutButton} onClick={handleLogout}>
-        logout
-      </Button>
-    </Container>
-  );
+   return (
+      <Container className={styles.header}>
+         <Text className={styles.username}>{name}</Text>
+         <Button className={styles.logoutButton} onClick={handleLogout}>
+            logout
+         </Button>
+      </Container>
+   );
 }
 
 export default Header;

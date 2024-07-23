@@ -2,46 +2,43 @@ import errors, { SystemError } from "com/errors";
 import validate from "com/validate";
 
 const getAllPosts = (page, limit) => {
-  validate.number(page, "Page");
-  validate.number(limit, "Limit");
+   validate.number(page, "Page");
+   validate.number(limit, "Limit");
 
-  return (async () => {
-    let res, postInfo, body;
+   return (async () => {
+      let res, postInfo, body;
 
-    try {
-      res = await fetch(
-        `${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`,
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.token}`,
-          },
-        },
-      );
-    } catch {
-      throw new SystemError("Server error");
-    }
-
-    if (res.status === 200) {
       try {
-        postInfo = await res.json();
+         res = await fetch(`${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}`, {
+            headers: {
+               Authorization: `Bearer ${sessionStorage.token}`
+            }
+         });
       } catch {
-        throw new SystemError("Server error");
+         throw new SystemError("Server error");
       }
 
-      return postInfo;
-    }
+      if (res.status === 200) {
+         try {
+            postInfo = await res.json();
+         } catch {
+            throw new SystemError("Server error");
+         }
 
-    try {
-      body = await res.json();
-    } catch {
-      throw new SystemError("Server error");
-    }
+         return postInfo;
+      }
 
-    const { error, message } = body;
-    const constructor = errors[error];
+      try {
+         body = await res.json();
+      } catch {
+         throw new SystemError("Server error");
+      }
 
-    throw new constructor(message);
-  })();
+      const { error, message } = body;
+      const constructor = errors[error];
+
+      throw new constructor(message);
+   })();
 };
 
 export default getAllPosts;
