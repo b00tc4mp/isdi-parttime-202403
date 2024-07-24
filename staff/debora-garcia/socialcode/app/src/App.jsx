@@ -1,30 +1,28 @@
-import { useState } from "react"
-
 import logic from "./logic"
 
 import Register from "./views/Register"
 import Login from "./views/Login"
 import Home from "./views/Home"
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 
 //utilizamos compo de tipo funcion usando hooks
 function App() {
   console.log("App -> render")
 
-  //si se refresca pagina se cargara la pagina de home en lugar de login
-  const [view, setView] = useState(logic.isUserLoggedIn() ? "home" : "login")
+  const navigate = useNavigate()
 
-  const handleGoToLogin = () => setView("login")
-  const handleGoToRegister = () => setView("register")
-  const handleGoToHome = () => setView("home")
-  return <>
+  const handleGoToLogin = () => navigate("/login")
+  const handleGoToRegister = () => navigate("/register")
+  const handleGoToHome = () => navigate("/")
+  return <Routes>
 
-    {view === "register" && <Register onUserRegistered={handleGoToLogin} onLoginLinkClick={handleGoToLogin} />}
+    <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register onUserRegistered={handleGoToLogin} onLoginLinkClick={handleGoToLogin} />} />
 
-    {view === "login" && <Login onUserLoggedIn={handleGoToHome} onRegisterLinkClick={handleGoToRegister} />}
+    <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login onUserLoggedIn={handleGoToHome} onRegisterLinkClick={handleGoToRegister} />} />
 
-    {view === "home" && <Home onUserLoggedOut={handleGoToLogin} />}
+    <Route path="/*" element={logic.isUserLoggedIn() ? <Home onUserLoggedOut={handleGoToLogin} /> : <Navigate to="/login" />} />
 
-  </>
+  </Routes>
 }
 
 export default App

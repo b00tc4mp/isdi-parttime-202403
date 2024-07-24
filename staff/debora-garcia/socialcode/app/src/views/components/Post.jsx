@@ -4,13 +4,21 @@ import Button from "../../components/core/Button"
 import Text from "../../components/core/Text"
 import Time from "../../components/core/Time"
 import View from '../../components/library/View'
+import Confirm from "./Confirm"
 
 import logic from "../../logic"
+import { useState } from 'react'
+
 
 // post recive dos props, post y un callback que avisa cuando se ha borrado un post, ya que inicialmente se usaba loadPosts, pero esta funcion esta fuera del compo
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log("Post -> render")
-    const handleDeletePost = () => {
+
+    const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
+
+    const handleDeletePost = () => setConfirmDeleteVisible(true)
+
+    const handleToggleLikePost = () => {
         try {
             if (confirm("Delete post?"))
                 logic.deletePost(post.id)
@@ -27,7 +35,7 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         }
     }
 
-    const handleToggleLikePost = () => {
+    const handleDeletePostAccepted = () => {
         try {
             logic.toggleLikePost(post.id)
                 .then(() => onPostLikeToggled())
@@ -42,6 +50,9 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
             alert(error.message)
         }
     }
+
+    const handleDeletePostCancelled = () => setConfirmDeleteVisible(false)
+
     return <View tag="article" align="">
         <View direction="row">
             <Text>{post.author.username}</Text>
@@ -62,6 +73,8 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
             <Time>{post.date}</Time>
             {post.author.id === logic.getUserId() && <Button className="Button" onClick={handleDeletePost}>Delete</Button>}
         </View>
+
+        {confirmDeleteVisible && <Confirm message="Delete post?" onAccept={handleDeletePostAccepted} onCancel={handleDeletePostCancelled} />}
 
     </View>
 }

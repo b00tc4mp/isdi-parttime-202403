@@ -64,11 +64,11 @@ body {
   }
 
   .FormWithFeedback .Feedback.error {
-    @apply flex justify-center w-[15rem] text-[tomato] ;
+    @apply flex justify-center w-[15rem] text-[tomato];
   }
 
   .FormWithFeedback .Feedback.success {
-    @apply flex justify-center w-[15rem] text-[green] ;
+    @apply flex justify-center w-[15rem] text-[green];
   }
 
   .View {
@@ -97,27 +97,61 @@ body {
   }
 
   .Header {
-    @apply flex gap-[1rem] w-full justify-end fixed top-0 p-[.2rem]  bg-[#A087B8] items-center;
+    @apply flex gap-[1rem] w-full justify-between fixed top-0 p-[.2rem_1rem]  bg-[#A087B8] items-center;
   }
 
   .PostList {
     @apply m-[60px_10px];
   }
+
+  .Alert {
+    @apply fixed top-0 left-0 w-full h-full flex justify-center items-center;
+  }
+
+  .AlertBox {
+    @apply p-[.4rem] bg-[var(--second-color)] text-[1rem] border-[1px] border-[var(--first-color)] w-[200px] h-[200px];
+  }
+
+  .AlertBox--warn {
+    @apply bg-yellow-300;
+  }
+
+  .AlertBox--error {
+    @apply bg-red-500;
+  }
+
+  .Confirm {
+    @apply fixed top-0 left-0 w-full h-full flex justify-center items-center;
+  }
+
+  .ConfirmBox {
+    @apply p-[.4rem] bg-[var(--second-color)] text-[1rem] border-[1px] border-[var(--first-color)] w-[200px] h-[200px];
+  }
+  .Confirm_ {
+    padding: 0.4rem;
+    background-color: var(--second-color);
+    font-size: 1rem;
+    border: 1px solid var(--first-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100px;
+  }
 }
 
-a {
+a_ {
   position: relative;
   top: 30px;
-  padding: 0.4rem 0.9rem 0.4rem .9rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.9rem;
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
   box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.3);
   font-weight: 900;
   font-style: normal;
 }
-h1{
+h1 {
   font-size: 30px;
   font-family: "Abril Fatface";
   font-style: normal;
 }
-
