@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster&display=swap');
+:root {
+    --first-color: rgb(131, 13, 96);
+    --second-color: rgb(234, 200, 243);
+}
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+    font-style: normal;
+    color: var(--first-color);
+   
+    
+}
+
+
+body {
+    /*     background-color: var(--second-color);*/
+/*     background-image: url("../shapes/images/koala2.jpeg");
+ */    margin:0;
+
+
+}
