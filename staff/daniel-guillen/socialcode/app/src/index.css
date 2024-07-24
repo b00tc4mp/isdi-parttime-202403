@@ -100,28 +100,56 @@ body {
     /* components */
   
     .CreatePostForm {
-      @apply fixed bottom-[5rem] bg-transparent w-full left-0 box-border;
+      @apply backdrop-blur-sm fixed top-0 left-0 w-full h-full flex justify-center items-center z-[999];
     }
-  
+    .About {
+      @apply z-[999];
+    }
+
+    .Alert {
+      @apply backdrop-blur-sm fixed top-0 left-0 w-full h-full flex justify-center items-center z-[999];
+  }
+
+    .AlertBox {
+      @apply flex flex-col p-3 w-[150px] h-[100px] rounded-xl bg-gradient-to-b from-zinc-300 to-red-100;
+  }
+
+    .AlertBox--warn {
+      @apply bg-yellow-300;
+  }
+
+    .AlertBox--error {
+      @apply bg-red-500;
+  }
+    .Confirm {
+      @apply backdrop-blur-sm fixed top-0 left-0 w-full h-full flex justify-center items-center z-[999];
+    }
+    .ConfirmBox {
+      @apply p-3 flex flex-col text-base w-[130px] h-[170px] rounded-xl bg-gradient-to-b from-zinc-300 to-red-100;
+    }
+
     .Footer {
       @apply w-full flex justify-center fixed bottom-0 p-[.5rem_0] bg-gradient-to-t from-red-100 to-transparent;
     }
     
     .Fixed {
-        @apply flex justify-end w-full fixed top-0 box-border bg-gradient-to-b from-red-100 to-transparent;
+        @apply flex justify-start w-full fixed top-0 box-border bg-gradient-to-b from-red-100 to-transparent;
     }
 
     .Logout {
         @apply p-1;
       }
 
-    
+    .Top {
+      @apply flex z-[998];
+    }
+  
     .Title {
-        @apply flex justify-start w-full text-5xl ml-6 h-0 z-[999];
-      }
+      @apply justify-center text-5xl;
+    }
     
     .Welcome {
-        @apply flex justify-center w-full text-3xl mt-2 h-0 z-[999];
+        @apply justify-end text-xl;
       }
 
     .Post {
@@ -143,10 +171,8 @@ body {
     }
     
     .PostList {
-      @apply flex-col text-xl p-5 m-[60px_90px_80px] rounded-2xl bg-gradient-to-b from-zinc-100 to-pink-100;
+      @apply flex-col text-xl m-[0px_90px_45px] rounded-2xl bg-gradient-to-b from-zinc-100 to-pink-100;
     }
   }
 
-    .About {
-      @apply z-[999];
-    }
+   

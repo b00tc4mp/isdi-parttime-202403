@@ -5,8 +5,6 @@ import Post from './Post'
 
 import logic from '../../logic'
 
-//import './PostList.css'
-
 function PostList({ refreshStamp }) {
     console.log('PostList -> render')
 

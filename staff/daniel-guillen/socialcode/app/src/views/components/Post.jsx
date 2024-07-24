@@ -4,33 +4,17 @@ import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
 import Time from '../../components/core/Time'
 import View from '../../components/library/View'
+import Confirm from './Confirm'
 import logic from '../../logic'
 
-//import './Post.css'
+import { useState } from 'react'
 
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log('Post -> render')
 
-    const handleDeletePost = () => {
-        if (confirm('Delete post? 😫'))
-            try {
-                logic.deletePost(post.id)
-                    .then(() => {
+    const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
 
-                        onPostDeleted()
-                        alert('Delete Post! 😵')
-                        console.error(error)
-                    })
-                    .catch(error => {
-                        console.log(error)
-                        setMessage(error.message)
-                    })
-            } catch (error) {
-                console.error(error)
-
-                alert(error.message)
-            }
-    }
+    const handleDeletePost = () => setConfirmDeleteVisible(true)
 
     const handleToggleLikePost = () => {
         try {
@@ -47,6 +31,24 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
             alert(error.message)
         }
     }
+
+    const handleDeletePostAccepted = () => {
+        try {
+            logic.deletePost(post.id)
+                .then(() => onPostDeleted())
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
+    const handleDeletePostCancelled = () => setConfirmDeleteVisible(false)
 
     return <View tag="article" align="">
         <View direction='center'>
@@ -70,7 +72,8 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
             {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>🗑️</Button>}
         </View>
-    </View>
+        {confirmDeleteVisible && <Confirm message="Delete post?" onAccept={handleDeletePostAccepted} onCancel={handleDeletePostCancelled} />}
+        </View>
 }
 
 export default Post

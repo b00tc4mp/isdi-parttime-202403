@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 
-import { Routes, Route, useNavigate, Link } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 
 import View from '../components/library/View'
 
 import Header from './components/Header'
-import Title from '../components/core/Title'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
-import Hello from './components/Hello'
-import Search from './components/Search'
+import Alert from './components/Alert'
+// import Hello from './components/Hello'
+// import Search from './components/Search'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
@@ -25,7 +25,7 @@ function Home({ onUserLoggedOut }) {
     const [view, setView] = useState('')
     const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
-    const navigate = useNavigate()
+    const [message, setMessage] = useState(null)
     
     const handleLogout = () => {
         logic.logoutUser()
@@ -47,7 +47,7 @@ function Home({ onUserLoggedOut }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    setMessage(error.message)
                 })
 
         } catch (error) {
@@ -72,20 +72,19 @@ function Home({ onUserLoggedOut }) {
           behavior: "smooth",
         })
     }
+    const handleAlertAccepted = () => setMessage(null)
 
     return <View>
-        <div className='Title'><Header>
-        <div className="Home"><Heading level="1"><Link to="/">SocialCode</Link></Heading></div>
-        </Header></div>
 
-        <div className="Welcome"><Header>
-        <Heading level="3">👋 Welcome {name} !!</Heading>
-        </Header></div>
-
-        <div className='Fixed'><Header>
+        <div className="Fixed"><Header>
         <div className="Logout"><Button onClick={handleLogout}>😴</Button></div>
         </Header></div>
-
+        <div className="Top"><Header>
+        <div className="Title"><Heading level="1"><Link to="/">SocialCode</Link></Heading></div>
+        </Header></div>
+        <div className="Top"><Header>
+        <div className="Welcome"><Heading level="3">👋 Welcome {name} !!</Heading></div>
+        </Header></div>      
 
         <View tag="main">
         <Routes>
@@ -93,16 +92,19 @@ function Home({ onUserLoggedOut }) {
 
                 <Route path="/about" element={<About />} />
 
-                <Route path="/hello/:to" element={<Hello />} />
+                {/* <Route path="/hello/:to" element={<Hello />} /> */}
 
-                <Route path="/search" element={<Search />} />
+                {/* <Route path="/search" element={<Search />} /> */}
             </Routes>
 
         {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
             
         <Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop}/>
+        
         <div className='About'><Link to="/about">About</Link></div>
+        
+        {message && <Alert message={message} onAccept={handleAlertAccepted} />}
         </View>
 }
 

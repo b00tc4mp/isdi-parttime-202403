@@ -8,8 +8,6 @@ import SubmitButton from '../../components/core/SubmitButton'
 import FormWithFeedback from '../../components/library/FormWithFeedback'
 import View from '../../components/library/View'
 
-//import './CreatePostForm.css'
-
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     console.log('CreatePostForm -> render')
 
