@@ -1,39 +1,57 @@
-# Cool Steps
+# FactuClient APP
 
-An app for renting and lending ladders.
+## Application to store completed work and generate client invoices.
 
-![](https://media.giphy.com/media/m9pvbkBJzOY9Mt0dSm/giphy.gif?cid=790b761118teuaz0ojtj0vsytuoevmgff91t460gpic3jk80&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3R3MmRvcDR3Znd5N3RoczF4MjV1ZWJrc2t6Y2tuNWt6eWU0ZzV3NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FAEEL82CUc1JPBas1V/giphy.webp)
 
 ## Functional
 
 ### Use Cases
 
-User | Admin | Root
+- Crate user
+  - Edit user profile
+    - user logo.
+    - full name.
+    - company name.
+    - company adress.
+    - tax identification number.
+    - email.
+    - phone number.
+    - bank account number.
+  
+- Add Clients / Delete Clients
+  - Edit client profile.
+    - client logo.
+    - full name or company name.
+    - company adress.
+    - tax identification number.
+    - email.
+    - phone number.
 
-- publish a ladder (for renting or selling)
-- search ladders (with filter)
-- rent a ladder (by day, period, ...)
-- buy a ladder
-- chat with ladder owner
-- report a ladder owner
-- see owner reviews (by rating)
-- see ladder reviews (by rating)
+- List Clients
+  - Access each client.
+    - See all invoices
+      - Share invoices.
+    - See all delivery notes
+      - Share delivery notes.
 
-Admin | Root
-
-- list latest reportings (from users)
-- view a report
-- reply to a report
-- deactivate a user
-- ...
-
-Root
-
-- list admin users
-- view admin user
-- deactivate admin user
-- register new admin user
-- ...
+- Add work done for each client
+  - Client data
+    - number delivery note.
+    - delivery note date.
+    - concept.
+    - quantity of work done.
+    - date of work performed.
+    - unit price.
+    - total price.
+    - customer signature.
+  
+- Generate invoice from work performed.
+  - Select client to invoice.
+  - Invoice date.
+  - Invoice number.
+  - Select Billing period.
+  - Generate invoice button
 
 ### UI Design
 
