@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { Routes, Route, useNavigate, Link } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 
 import View from '../components/library/View'
 
@@ -10,26 +10,23 @@ import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
 import Hello from './components/Hello'
 import Search from './components/Search'
-import Alert from './components/Alert'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
-// import Link from '../components/core/Link'
-
 
 import logic from '../logic'
 import About from './components/About'
 
+import useContext from '../useContext'
+
 function Home({ onUserLoggedOut }) {
     console.log('Home -> render')
+
+    const { alert } = useContext()
 
     const [name, setName] = useState('')
     const [view, setView] = useState('')
     const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
-
-    const [message, setMessage] = useState(null)
-
-    // const navigate = useNavigate()
 
     const handleLogout = () => {
         logic.logoutUser()
@@ -50,9 +47,7 @@ function Home({ onUserLoggedOut }) {
                 .catch(error => {
                     console.error(error)
 
-                    //alert(error.message)
-
-                    setMessage(error.message)
+                    alert(error.message)
                 })
 
         } catch (error) {
@@ -72,22 +67,12 @@ function Home({ onUserLoggedOut }) {
         setView('')
     }
 
-    // const handleAboutClick = event => {
-    //     event.preventDefault()
-
-    //     navigate('/about')
-    // }
-
-    const handleAlertAccepted = () => setMessage(null)
-
     return <View>
         <Header>
             <Heading level="1"><Link to="/">SocialCode</Link></Heading>
 
             <View direction="row">
                 <Heading level="3">{name}</Heading>
-
-                {/* <Link onClick={handleAboutClick}>About</Link> */}
 
                 <Link to="/about">About</Link>
 
@@ -110,8 +95,6 @@ function Home({ onUserLoggedOut }) {
         </View>
 
         <Footer onCreatePostClick={handleCreatePostClick} />
-
-        {message && <Alert message={message} onAccept={handleAlertAccepted} />}
     </View>
 }
 

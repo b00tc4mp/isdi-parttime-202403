@@ -10,8 +10,12 @@ import Confirm from './Confirm'
 import logic from '../../logic'
 import { useState } from 'react'
 
+import useContext from '../../useContext'
+
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log('Post -> render')
+
+    const { alert } = useContext()
 
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
 
