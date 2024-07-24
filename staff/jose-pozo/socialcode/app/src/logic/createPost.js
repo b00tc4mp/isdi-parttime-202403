@@ -7,7 +7,7 @@ const createPost = (title, image, description) => {
     validate.text(description, 'description', 200)
 
 
-    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,

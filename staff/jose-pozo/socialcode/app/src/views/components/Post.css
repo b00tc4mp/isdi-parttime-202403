@@ -76,16 +76,3 @@ Time {
     border: none;
     width: fit-content;
 }
-
-
-/* 
-.Button.CommentText:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    /* scale: 1.1; */
-}
-
-/* .Button.CommentText:active {
-    scale: 0.9;
-} */
-*/

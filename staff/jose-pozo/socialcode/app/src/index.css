@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -36,4 +40,12 @@ body {
   margin: 0 auto;
   padding: 2rem;
   /* text-align: center; */
+}
+
+
+@layer components {
+
+  .Button {
+    @apply w-7
+  }
 }

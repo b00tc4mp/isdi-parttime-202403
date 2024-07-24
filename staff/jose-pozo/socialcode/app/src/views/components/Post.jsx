@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import './Post.css'
+// import './Post.css'
 
 import Image from '../../components/core/Image'
 import Heading from '../../components/core/Heading'
@@ -12,21 +12,16 @@ import View from '../../components/library/View'
 import logic from '../../logic/index'
 
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
-
     const handleDeletePost = () => {
         if (confirm('Delete post?'))
             try {
-                logic.deletePost(post.id, error => {
-                    if (error) {
+                logic.deletePost(post.id)
+                    .then(() => onPostDeleted())
+                    .catch(error => {
                         console.error(error)
 
                         alert(error.message)
-
-                        return
-                    }
-
-                    onPostDeleted()
-                })
+                    })
             } catch (error) {
                 console.error(error)
 

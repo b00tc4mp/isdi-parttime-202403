@@ -27,7 +27,7 @@ function Login({ onUsserLoggedIn, onRegisterLinkClick }) {
         try {
             logic.loginUser(username, password)
                 .then(() => onUsserLoggedIn())
-                .catch((error) => {
+                .catch(error => {
                     console.log(error)
 
                     setMessage(error.message)
