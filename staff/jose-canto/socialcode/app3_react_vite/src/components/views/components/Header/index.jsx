@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import "./index.css"
 
 function Header({ children }) {
@@ -5,7 +7,12 @@ function Header({ children }) {
   return (
     <>
       <header className="Header">
-        <div className="Logo"> SOCIAL CODE</div>
+        <div className="Container-Logo">
+          <Link className="Logo" to="/">
+            <div className="Logo">SOCIAL CODE 🏘</div>
+          </Link>
+        </div>
+
         {children}
       </header>
     </>

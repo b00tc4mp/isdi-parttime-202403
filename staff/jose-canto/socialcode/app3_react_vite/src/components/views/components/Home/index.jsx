@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
+import { Routes, Route, useNavigate, Link } from "react-router-dom"
 
 import logic from "../../../../logic"
 
@@ -9,8 +10,7 @@ import Button from "../../../core/Button"
 import PostList from "../PostList"
 import Footer from "../../../core/Footer"
 import CreatePostForm from "../CreatePostForm"
-
-import ViewContext from "../../../../ViewContext"
+import About from "../About"
 
 import "./index.css"
 import "../CreatePostForm"
@@ -18,7 +18,7 @@ import "../CreatePostForm"
 import "../../../core/TextArea.css"
 
 function Home() {
-  const { setView } = useContext(ViewContext)
+  const navigate = useNavigate()
 
   console.log("Home --> render")
 
@@ -29,7 +29,7 @@ function Home() {
   const handleLogout = () => {
     logic.logoutUser()
 
-    setView("login")
+    navigate("/login")
   }
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function Home() {
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: "smooth"
     })
   }
 
@@ -71,13 +71,17 @@ function Home() {
     <>
       <Header>
         <Heading level="3">{name}</Heading>
+        <Link to="/about">About</Link>
         <Button onClick={handleLogout} className="LogoutButton">
           Logout
         </Button>
       </Header>
 
       <View className="View">
-        <PostList refreshStamp={postListRefresh} />
+        <Routes>
+          <Route path="/" element={<PostList refreshStamp={postListRefresh} />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
 
         {viewCreatePostForm === "create-post" && (
           <CreatePostForm

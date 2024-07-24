@@ -3,15 +3,15 @@ import Text from "../../../core/Text"
 
 import "./index.css"
 
-function Confirm({ action, onConfirmDeletePost, onCancelDeletePost, onConfirmEditPost, onCancelEditPost }) {
+function Confirm({ action, onConfirmDeletePost, onCancelDeletePost }) {
   return (
     <>
       <div className="Confirm">
         <Text>{action} the post?</Text>
-        <Button className="Button" onClick={onCancelDeletePost || onCancelEditPost}>
+        <Button className="Button" onClick={onCancelDeletePost}>
           Cancel
         </Button>
-        <Button className="Button" onClick={onConfirmDeletePost || onConfirmEditPost}>
+        <Button className="Button" onClick={onConfirmDeletePost}>
           Confirm
         </Button>
       </div>

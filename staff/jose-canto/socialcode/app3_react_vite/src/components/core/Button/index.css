@@ -2,7 +2,7 @@
 
 @layer components {
   .Button {
-    @apply relative z-0 m-0 min-w-[4rem] overflow-hidden rounded-md border-none bg-custom-orange p-2 text-base text-white shadow-custom-shadow outline-none transition-colors duration-400 ease-in-out;
+    @apply relative z-0 m-0 min-w-[4rem] overflow-hidden rounded-md border-none bg-custom-orange p-2 text-[1rem] text-white shadow-custom-shadow outline-none transition-colors duration-400 ease-in-out;
   }
 
   .Button:hover {

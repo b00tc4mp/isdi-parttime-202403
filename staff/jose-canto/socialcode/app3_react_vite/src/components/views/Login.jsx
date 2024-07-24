@@ -1,4 +1,5 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import logic from "../../logic"
 
@@ -10,12 +11,11 @@ import CheckPasswordField from "../core/ShowPasswordField"
 import Link from "../core/Link"
 import SubmitButton from "../core/SubmitButton"
 
-import ViewContext from "../../ViewContext"
-
 function Login() {
   console.log("Login --> render")
 
-  const { setView } = useContext(ViewContext)
+  const navigate = useNavigate()
+
   const [message, setMessage] = useState("")
 
   const handleLoginSubmit = (event) => {
@@ -30,7 +30,7 @@ function Login() {
       // prettier-ignore
       logic.loginUser(username, password)
         .then(() => {
-          setView("home")
+          navigate("/")
           console.log("user logged in")
         })
         .catch((error) => {
@@ -48,7 +48,7 @@ function Login() {
   const handleRegisterClick = (event) => {
     event.preventDefault()
 
-    setView("register")
+    navigate("/register")
   }
   return (
     <>
