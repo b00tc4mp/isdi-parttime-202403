@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import styles from "./index.module.css";
+import "./index.css";
 import logic from "../logic/index";
 import ViewContext from "../ViewContext.jsx";
 import Container from "../components/atomic/Container.jsx";
@@ -50,27 +50,27 @@ function LoginPage() {
    };
 
    return (
-      <>
-         <Container className={styles.container}>
-            <Title className={styles.title}>Login</Title>
+      <Container className="flexCol">
+         <Container className="loginPageContainer">
+            <Title className="loginTitle">Login</Title>
             <FeedbackForm
-               formClassName={styles.loginForm}
+               formClassName="loginForm"
                level="success"
-               successClassName={styles.success}
+               successClassName="loginSuccess"
                onSubmit={handleSubmit}
                successMessage={successMessage}
             >
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="username" type="text">
+               <Field fieldClassName="loginField" inputClassName="loginInput" id="username" type="text">
                   Username
                </Field>
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="password" type="password">
+               <Field fieldClassName="loginField" inputClassName="loginInput" id="password" type="password">
                   Password
                </Field>
-               <SubmitButton className={`${styles.submitButton} ${shake ? styles.error : ""}`}>Login</SubmitButton>
+               <SubmitButton className={`loginSubmitButton ${shake ? "loginError" : ""}`}>Login</SubmitButton>
             </FeedbackForm>
          </Container>
          <Link
-            className={styles.link}
+            className="loginLink"
             onClick={e => {
                e.preventDefault();
                setView("register");
@@ -78,7 +78,7 @@ function LoginPage() {
          >
             Register
          </Link>
-      </>
+      </Container>
    );
 }
 

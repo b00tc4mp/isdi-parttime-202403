@@ -1,14 +1,14 @@
-import styles from "./index.module.css";
+import "./index.css";
 import Container from "../atomic/Container.jsx";
 import Button from "../atomic/Button.jsx";
 
 function Footer({ onAddPost, onScroll }) {
    return (
-      <Container className={styles.footer}>
-         <Button className={styles.createPostButton} onClick={onAddPost}>
+      <Container className="footer">
+         <Button className="createPostButton" onClick={onAddPost}>
             ＋
          </Button>
-         <Button className={styles.scrollUpButton} onClick={onScroll}>
+         <Button className="scrollUpButton" onClick={onScroll}>
             ⇧
          </Button>
       </Container>

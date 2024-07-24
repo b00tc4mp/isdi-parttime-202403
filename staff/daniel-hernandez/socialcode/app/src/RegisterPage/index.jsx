@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import styles from "./index.module.css";
+import "./index.css";
 import logic from "../logic/index";
 import ViewContext from "../ViewContext.jsx";
 import Container from "../components/atomic/Container.jsx";
@@ -58,41 +58,46 @@ function RegisterPage() {
    };
 
    return (
-      <>
-         <Container className={styles.container}>
-            <Title className={styles.title}>Register</Title>
+      <Container className="flexCol">
+         <Container className="registerContainer">
+            <Title className="registerTitle">Register</Title>
             <FeedbackForm
-               formClassName={styles.registerForm}
+               formClassName="registerForm"
                level="both"
                onSubmit={handleSubmit}
-               successClassName={styles.success}
+               successClassName="registerSuccess"
                successMessage={successMessage}
-               errorClassName={styles.warn}
+               errorClassName="registerWarn"
                errorMessage={warnMessage}
             >
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="name" type="text">
+               <Field fieldClassName="registerField" inputClassName="registerInput" id="name" type="text">
                   Name
                </Field>
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="surname" type="text">
+               <Field fieldClassName="registerField" inputClassName="registerInput" id="surname" type="text">
                   Surname
                </Field>
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="email" type="email">
+               <Field fieldClassName="registerField" inputClassName="registerInput" id="email" type="email">
                   Email
                </Field>
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="username" type="text">
+               <Field fieldClassName="registerField" inputClassName="registerInput" id="username" type="text">
                   Username
                </Field>
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="password" type="password">
+               <Field fieldClassName="registerField" inputClassName="registerInput" id="password" type="password">
                   Password
                </Field>
-               <Field fieldClassName={styles.field} inputClassName={styles.input} id="repeatedPassword" type="password">
+               <Field
+                  fieldClassName="registerField"
+                  inputClassName="registerInput"
+                  id="repeatedPassword"
+                  type="password"
+               >
                   Confirm Password
                </Field>
-               <SubmitButton className={`${styles.submitButton} ${shake ? styles.shake : ""}`}>Register</SubmitButton>
+               <SubmitButton className={`registerSubmitButton ${shake ? "registerShake" : ""}`}>Register</SubmitButton>
             </FeedbackForm>
          </Container>
          <Link
-            className={styles.link}
+            className="registerLink"
             onClick={e => {
                e.preventDefault();
                setView("login");
@@ -100,7 +105,7 @@ function RegisterPage() {
          >
             Login
          </Link>
-      </>
+      </Container>
    );
 }
 

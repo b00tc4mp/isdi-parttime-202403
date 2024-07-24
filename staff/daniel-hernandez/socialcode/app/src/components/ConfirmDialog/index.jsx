@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
-import styles from "./index.module.css";
+import "./index.css";
 import Button from "../atomic/Button.jsx";
+import Text from "../atomic/Text.jsx";
 
 function ConfirmDialog({ dialog, onConfirm, onCancel }) {
    const dialogRef = useRef(null);
@@ -19,13 +20,13 @@ function ConfirmDialog({ dialog, onConfirm, onCancel }) {
    }, []);
 
    return (
-      <div className={styles.dialogOverlay}>
-         <dialog className={styles.confirmDialog} ref={dialogRef}>
-            <p className={styles.dialogParagraph}>{dialog}</p>
-            <Button className={styles.cancelButton} onClick={onCancel}>
+      <div className="dialogOverlay">
+         <dialog className="confirmDialog" ref={dialogRef}>
+            <Text className="dialogParagraph">{dialog}</Text>
+            <Button className="cancelButton" onClick={onCancel}>
                Cancel
             </Button>
-            <Button className={styles.okButton} onClick={onConfirm}>
+            <Button className="okButton" onClick={onConfirm}>
                OK
             </Button>
          </dialog>

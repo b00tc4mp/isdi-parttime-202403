@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
+import "./index.css";
 import Header from "../components/Header/index.jsx";
 import PostList from "../components/PostList/index.jsx";
 import CreatePostForm from "../components/CreatePostForm/index.jsx";
 import Footer from "../components/Footer/index.jsx";
-import styles from "./index.module.css";
 import Container from "../components/atomic/Container.jsx";
 import Main from "../components/atomic/Main.jsx";
 
@@ -33,9 +33,9 @@ function HomePage() {
    };
 
    return (
-      <Container className={styles.container}>
+      <Container className="container">
          <Header />
-         <Main className={styles.mainContent} ref={mainRef}>
+         <Main className="mainContent" ref={mainRef}>
             <PostList refreshTimeStamp={refreshTimeStamp} mainRef={mainRef} />
             {showCreatePostForm && <CreatePostForm onPostCreated={handlePostCreated} onCancel={handleCancel} />}
          </Main>

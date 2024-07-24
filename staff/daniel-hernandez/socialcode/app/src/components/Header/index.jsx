@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import styles from "./index.module.css";
+import "./index.css";
 import logic from "../../logic/index";
 import ViewContext from "../../ViewContext.jsx";
 import Container from "../atomic/Container.jsx";
@@ -32,9 +32,9 @@ function Header() {
    };
 
    return (
-      <Container className={styles.header}>
-         <Text className={styles.username}>{name}</Text>
-         <Button className={styles.logoutButton} onClick={handleLogout}>
+      <Container className="header">
+         <Text className="username">{name}</Text>
+         <Button className="logoutButton" onClick={handleLogout}>
             logout
          </Button>
       </Container>

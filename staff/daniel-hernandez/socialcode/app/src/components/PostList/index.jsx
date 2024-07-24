@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./index.module.css";
+import "./index.css";
 import logic from "../../logic/index";
 import Section from "../atomic/Section.jsx";
 import Post from "../atomic/Post/index.jsx";
@@ -90,7 +90,7 @@ function PostList({ refreshTimeStamp, mainRef }) {
    // TODO: move pagination to its own component
    return (
       <>
-         <Section className={styles.postList}>
+         <Section className="postList">
             {posts.map(post => (
                <Post key={post.id} post={post} onDelete={handleDelete} onLiked={handleLiked} />
             ))}
@@ -102,12 +102,12 @@ function PostList({ refreshTimeStamp, mainRef }) {
                onCancel={cancelDelete}
             />
          )}
-         <Container className={styles.pagination}>
-            <DisableableButton className={styles.button} onClick={handlePreviousPage} condition={page === 1}>
+         <Container className="pagination">
+            <DisableableButton className="button" onClick={handlePreviousPage} condition={page === 1}>
                ❮
             </DisableableButton>
-            <Text className={styles.text}>Page {page}</Text>
-            <DisableableButton className={styles.button} onClick={handleNextPage} condition={page === totalPages}>
+            <Text className="text">Page {page}</Text>
+            <DisableableButton className="button" onClick={handleNextPage} condition={page === totalPages}>
                ❯
             </DisableableButton>
          </Container>

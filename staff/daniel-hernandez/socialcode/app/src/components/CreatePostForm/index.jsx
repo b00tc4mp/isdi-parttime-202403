@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./index.module.css";
+import "./index.css";
 import logic from "../../logic/index";
 import Container from "../atomic/Container.jsx";
 import FeedbackForm from "../FeedbackForm.jsx";
@@ -30,27 +30,27 @@ function CreatePostForm({ onPostCreated, onCancel }) {
    };
 
    return (
-      <Container className={styles.createPostFormOverlay}>
+      <Container className="createPostFormOverlay">
          <FeedbackForm
-            formClassName={styles.createPostForm}
+            formClassName="createPostForm"
             level="error"
             onSubmit={handleSubmit}
-            errorClassName={styles.feedback}
+            errorClassName="feedback"
             errorMessage={feedback}
          >
-            <Field fieldClassName={styles.field} inputClassName={styles.input} id="title" type="text">
+            <Field fieldClassName="field" inputClassName="input" id="title" type="text">
                Title
             </Field>
-            <Field fieldClassName={styles.field} inputClassName={styles.input} id="image" type="text">
+            <Field fieldClassName="field" inputClassName="input" id="image" type="text">
                Image
             </Field>
-            <Field fieldClassName={styles.field} inputClassName={styles.input} id="description" type="text">
+            <Field fieldClassName="field" inputClassName="input" id="description" type="text">
                Description
             </Field>
-            <Button className={styles.cancelPostButton} onClick={onCancel}>
+            <Button className="cancelPostFormButton" onClick={onCancel}>
                Cancel
             </Button>
-            <SubmitButton className={styles.createPostButton}>Create</SubmitButton>
+            <SubmitButton className="createPostFormButton">Create</SubmitButton>
          </FeedbackForm>
       </Container>
    );
