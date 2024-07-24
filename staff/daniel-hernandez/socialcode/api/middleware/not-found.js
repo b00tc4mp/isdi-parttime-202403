@@ -1,5 +1,5 @@
 const notFound = (_, res, __) => {
-  const asciiArt = `
+   const asciiArt = `
              _   _     _               _                            __ ___ _____    _____  
             | | | |   (_)             | |                          / //   |  _  |  /   \\ \\ 
  _ __   ___ | |_| |__  _ _ __   __ _  | |__   ___ _ __ ___        | |/ /| | |/' | / /| || |
@@ -9,7 +9,7 @@ const notFound = (_, res, __) => {
                                 __/ |                              \\_\\                 /_/ 
                                |___/                                                       `;
 
-  res.status(404).send(`<pre>${asciiArt}</pre>`);
+   res.status(404).send(`<pre>${asciiArt}</pre>`);
 };
 
 export default notFound;

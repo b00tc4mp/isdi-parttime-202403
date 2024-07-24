@@ -1,21 +1,21 @@
-import createUser from "./users/createUser.js";
-import authenticateUser from "./users/authenticateUser.js";
-import getUsersName from "./users/getUsersName.js";
+import createUser from './users/createUser.js';
+import authenticateUser from './users/authenticateUser.js';
+import getUsersName from './users/getUsersName.js';
 
-import getPosts from "./posts/getPosts.js";
-import createPost from "./posts/createPost.js";
-import deletePost from "./posts/deletePost.js";
-import likePost from "./posts/likePost.js";
+import getPosts from './posts/getPosts.js';
+import createPost from './posts/createPost.js';
+import deletePost from './posts/deletePost.js';
+import likePost from './posts/likePost.js';
 
 const logic = {
-  createUser,
-  authenticateUser,
-  getUsersName,
+   createUser,
+   authenticateUser,
+   getUsersName,
 
-  getPosts,
-  createPost,
-  deletePost,
-  likePost,
+   getPosts,
+   createPost,
+   deletePost,
+   likePost
 };
 
 export default logic;

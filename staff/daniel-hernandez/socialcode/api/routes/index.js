@@ -1,9 +1,9 @@
-import userRouter from "./users.js";
-import postRouter from "./posts.js";
+import userRouter from './users.js';
+import postRouter from './posts.js';
 
 const router = {
-  userRouter,
-  postRouter,
+   userRouter,
+   postRouter
 };
 
 export default router;
