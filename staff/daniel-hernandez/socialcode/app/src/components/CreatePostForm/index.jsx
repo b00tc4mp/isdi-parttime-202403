@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import "./index.css";
-import logic from "../../logic/index";
-import Container from "../atomic/Container.jsx";
-import FeedbackForm from "../FeedbackForm.jsx";
-import Field from "../atomic/Field.jsx";
-import Button from "../atomic/Button.jsx";
-import SubmitButton from "../atomic/SubmitButton.jsx";
+import { useState } from 'react';
+import './index.css';
+import logic from '../../logic';
+import Container from '../atomic/Container';
+import FeedbackForm from '../FeedbackForm';
+import Field from '../atomic/Field';
+import Button from '../atomic/Button';
+import SubmitButton from '../atomic/SubmitButton';
 
 function CreatePostForm({ onPostCreated, onCancel }) {
-   const [feedback, setFeedback] = useState("");
+   const [feedback, setFeedback] = useState('');
 
    const handleSubmit = async e => {
       e.preventDefault();
@@ -25,7 +25,7 @@ function CreatePostForm({ onPostCreated, onCancel }) {
       } catch (error) {
          console.error(error);
          setFeedback(`${error.message}`);
-         setTimeout(() => setFeedback(""), 5000);
+         setTimeout(() => setFeedback(''), 5000);
       }
    };
 

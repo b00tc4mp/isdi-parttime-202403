@@ -1,4 +1,4 @@
-import Container from "./Container.jsx";
+import Container from './Container';
 
 function Field({ fieldClassName, inputClassName, id, type, name, children, placeholder }) {
    return (

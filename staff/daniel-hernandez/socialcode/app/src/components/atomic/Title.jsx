@@ -1,4 +1,4 @@
-import Heading from "./Heading.jsx";
+import Heading from './Heading';
 
 function Title({ className, children }) {
    return (

@@ -1,14 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import "./index.css";
-import logic from "../../logic/index";
-import ViewContext from "../../ViewContext.jsx";
-import Container from "../atomic/Container.jsx";
-import Text from "../atomic/Text.jsx";
-import Button from "../atomic/Button.jsx";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './index.css';
+import logic from '../../logic';
+import Container from '../atomic/Container';
+import Text from '../atomic/Text';
+import Button from '../atomic/Button';
 
 function Header() {
-   const { setView } = useContext(ViewContext);
-   const [name, setName] = useState("");
+   const navigate = useNavigate();
+   const [name, setName] = useState('');
 
    useEffect(() => {
       setUsersName();
@@ -28,7 +28,7 @@ function Header() {
 
    const handleLogout = () => {
       logic.logoutUser();
-      setView("login");
+      navigate('/login');
    };
 
    return (

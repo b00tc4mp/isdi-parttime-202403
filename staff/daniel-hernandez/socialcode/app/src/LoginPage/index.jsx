@@ -1,19 +1,19 @@
-import React, { useState, useContext } from "react";
-import "./index.css";
-import logic from "../logic/index";
-import ViewContext from "../ViewContext.jsx";
-import Container from "../components/atomic/Container.jsx";
-import Title from "../components/atomic/Title.jsx";
-import FeedbackForm from "../components/FeedbackForm.jsx";
-import Field from "../components/atomic/Field.jsx";
-import SubmitButton from "../components/atomic/SubmitButton.jsx";
-import Link from "../components/atomic/Link.jsx";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './index.css';
+import logic from '../logic';
+import Container from '../components/atomic/Container';
+import Title from '../components/atomic/Title';
+import FeedbackForm from '../components/FeedbackForm';
+import Field from '../components/atomic/Field';
+import SubmitButton from '../components/atomic/SubmitButton';
+import Link from '../components/atomic/Link';
 
 function LoginPage() {
-   const { setView } = useContext(ViewContext);
+   const navigate = useNavigate();
    const [shake, setShake] = useState(false);
    const [isShaking, setIsShaking] = useState(false);
-   const [successMessage, setSuccessMessage] = useState("");
+   const [successMessage, setSuccessMessage] = useState('');
 
    const shakeButton = () => {
       if (isShaking) return;
@@ -37,10 +37,10 @@ function LoginPage() {
 
       try {
          await logic.loginUser(username, password);
-         setSuccessMessage("Logged in successfully");
+         setSuccessMessage('Logged in successfully');
          setTimeout(() => {
-            setSuccessMessage("");
-            setView("home");
+            setSuccessMessage('');
+            navigate('/home');
          }, 1000);
       } catch (error) {
          console.error(`error. please fix it or try again later. ${error.message}`);
@@ -66,14 +66,14 @@ function LoginPage() {
                <Field fieldClassName="loginField" inputClassName="loginInput" id="password" type="password">
                   Password
                </Field>
-               <SubmitButton className={`loginSubmitButton ${shake ? "loginError" : ""}`}>Login</SubmitButton>
+               <SubmitButton className={`loginSubmitButton ${shake ? 'loginError' : ''}`}>Login</SubmitButton>
             </FeedbackForm>
          </Container>
          <Link
             className="loginLink"
             onClick={e => {
                e.preventDefault();
-               setView("register");
+               navigate('/register');
             }}
          >
             Register

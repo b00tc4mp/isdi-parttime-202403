@@ -1,12 +1,12 @@
-import "./index.css";
-import logic from "../../../logic/index";
-import Article from "../Article.jsx";
-import Heading from "../Heading.jsx";
-import Text from "../Text.jsx";
-import Image from "../Image.jsx";
-import Time from "../Time.jsx";
-import Button from "../Button.jsx";
-import Container from "../Container.jsx";
+import './index.css';
+import logic from '../../../logic';
+import Article from '../Article';
+import Heading from '../Heading';
+import Text from '../Text';
+import Image from '../Image';
+import Time from '../Time';
+import Button from '../Button';
+import Container from '../Container';
 
 function Post({ post, onDelete, onLiked }) {
    let userId;

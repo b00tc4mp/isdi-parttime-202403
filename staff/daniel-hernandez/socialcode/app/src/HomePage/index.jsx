@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
-import "./index.css";
-import Header from "../components/Header/index.jsx";
-import PostList from "../components/PostList/index.jsx";
-import CreatePostForm from "../components/CreatePostForm/index.jsx";
-import Footer from "../components/Footer/index.jsx";
-import Container from "../components/atomic/Container.jsx";
-import Main from "../components/atomic/Main.jsx";
+import { useState, useRef } from 'react';
+import './index.css';
+import Header from '../components/Header';
+import PostList from '../components/PostList';
+import CreatePostForm from '../components/CreatePostForm';
+import Footer from '../components/Footer';
+import Container from '../components/atomic/Container';
+import Main from '../components/atomic/Main';
 
 function HomePage() {
    const mainRef = useRef(null);
@@ -14,7 +14,7 @@ function HomePage() {
 
    const scrollToTop = () => {
       if (mainRef.current) {
-         mainRef.current.scrollTo({ top: 0, behavior: "smooth" });
+         mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
       }
    };
 

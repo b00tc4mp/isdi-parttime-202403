@@ -1,20 +1,20 @@
-import React, { useState, useContext } from "react";
-import "./index.css";
-import logic from "../logic/index";
-import ViewContext from "../ViewContext.jsx";
-import Container from "../components/atomic/Container.jsx";
-import Title from "../components/atomic/Title.jsx";
-import FeedbackForm from "../components/FeedbackForm.jsx";
-import Field from "../components/atomic/Field.jsx";
-import SubmitButton from "../components/atomic/SubmitButton.jsx";
-import Link from "../components/atomic/Link.jsx";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './index.css';
+import logic from '../logic';
+import Container from '../components/atomic/Container';
+import Title from '../components/atomic/Title';
+import FeedbackForm from '../components/FeedbackForm';
+import Field from '../components/atomic/Field';
+import SubmitButton from '../components/atomic/SubmitButton';
+import Link from '../components/atomic/Link';
 
 function RegisterPage() {
-   const { setView } = useContext(ViewContext);
+   const navigate = useNavigate();
    const [shake, setShake] = useState(false);
    const [isShaking, setIsShaking] = useState(false);
-   const [successMessage, setSuccessMessage] = useState("");
-   const [warnMessage, setWarnMessage] = useState("");
+   const [successMessage, setSuccessMessage] = useState('');
+   const [warnMessage, setWarnMessage] = useState('');
 
    const handleShake = () => {
       if (isShaking) return;
@@ -26,7 +26,7 @@ function RegisterPage() {
       }, 400);
       setTimeout(() => {
          setIsShaking(false);
-         setWarnMessage("");
+         setWarnMessage('');
       }, 1000);
    };
 
@@ -46,10 +46,10 @@ function RegisterPage() {
 
       try {
          await logic.registerUser(name, surname, email, username, password, repeatedPassword);
-         setSuccessMessage("Registered successfully, thank you!");
+         setSuccessMessage('Registered successfully, thank you!');
          setTimeout(() => {
-            setSuccessMessage("");
-            setView("login");
+            setSuccessMessage('');
+            navigate('/login');
          }, 1000);
       } catch (error) {
          setWarnMessage(`${error.message}`);
@@ -93,14 +93,14 @@ function RegisterPage() {
                >
                   Confirm Password
                </Field>
-               <SubmitButton className={`registerSubmitButton ${shake ? "registerShake" : ""}`}>Register</SubmitButton>
+               <SubmitButton className={`registerSubmitButton ${shake ? 'registerShake' : ''}`}>Register</SubmitButton>
             </FeedbackForm>
          </Container>
          <Link
             className="registerLink"
             onClick={e => {
                e.preventDefault();
-               setView("login");
+               navigate('/login');
             }}
          >
             Login

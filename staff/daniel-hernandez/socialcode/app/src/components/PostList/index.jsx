@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import "./index.css";
-import logic from "../../logic/index";
-import Section from "../atomic/Section.jsx";
-import Post from "../atomic/Post/index.jsx";
-import ConfirmDialog from "../ConfirmDialog/index.jsx";
-
-import Container from "../atomic/Container.jsx";
-import Text from "../atomic/Text.jsx";
-import DisableableButton from "../atomic/DisableableButton.jsx";
+import { useState, useEffect } from 'react';
+import './index.css';
+import logic from '../../logic';
+import Section from '../atomic/Section';
+import Post from '../atomic/Post';
+import ConfirmDialog from '../ConfirmDialog';
+import Container from '../atomic/Container';
+import Text from '../atomic/Text';
+import DisableableButton from '../atomic/DisableableButton';
 
 // TODO: revise
 function PostList({ refreshTimeStamp, mainRef }) {
@@ -31,8 +30,8 @@ function PostList({ refreshTimeStamp, mainRef }) {
          const { posts, total } = await logic.getAllPosts(page, 10);
 
          if (!Array.isArray(posts)) {
-            console.error("Expected an array but got: ", posts);
-            alert("An error occurred while loading the posts.");
+            console.error('Expected an array but got: ', posts);
+            alert('An error occurred while loading the posts.');
             return;
          }
 
@@ -65,14 +64,14 @@ function PostList({ refreshTimeStamp, mainRef }) {
    const handleNextPage = () => {
       if (page < totalPages) {
          setPage(p => p + 1);
-         mainRef.current.scrollTo({ top: 0, behavior: "auto" });
+         mainRef.current.scrollTo({ top: 0, behavior: 'auto' });
       }
    };
 
    const handlePreviousPage = () => {
       if (page > 1) {
          setPage(p => p - 1);
-         mainRef.current.scrollTo({ top: 0, behavior: "auto" });
+         mainRef.current.scrollTo({ top: 0, behavior: 'auto' });
       }
    };
 

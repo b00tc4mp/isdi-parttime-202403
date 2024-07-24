@@ -1,4 +1,4 @@
-import Text from "./atomic/Text.jsx";
+import Text from './atomic/Text';
 
 function FeedbackForm({
    formClassName,
@@ -12,11 +12,11 @@ function FeedbackForm({
 }) {
    const paintMessage = () => {
       switch (level) {
-         case "error":
+         case 'error':
             return errorMessage ? <Text className={errorClassName}>{errorMessage}</Text> : null;
-         case "success":
+         case 'success':
             return successMessage ? <Text className={successClassName}>{successMessage}</Text> : null;
-         case "both":
+         case 'both':
             return (
                <>
                   {errorMessage && <Text className={errorClassName}>{errorMessage}</Text>}
