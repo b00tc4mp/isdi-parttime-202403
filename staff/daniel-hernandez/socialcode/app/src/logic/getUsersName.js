@@ -1,5 +1,5 @@
-import errors, { SystemError } from "com/errors";
-import extractPayload from "../utils/extractPayload";
+import errors, { SystemError } from 'com/errors';
+import extractPayload from '../utils/extractPayload';
 
 const getUsersName = () => {
    const { sub: userId } = extractPayload(sessionStorage.token);
@@ -14,14 +14,14 @@ const getUsersName = () => {
             }
          });
       } catch {
-         throw new SystemError("Server error");
+         throw new SystemError('Server error');
       }
 
       if (res.status === 200) {
          try {
             nameObj = await res.json();
          } catch {
-            throw new SystemError("Server error");
+            throw new SystemError('Server error');
          }
 
          const { name } = nameObj;
@@ -31,7 +31,7 @@ const getUsersName = () => {
       try {
          body = await res.json();
       } catch {
-         throw new SystemError("Server error");
+         throw new SystemError('Server error');
       }
 
       const { error, message } = body;

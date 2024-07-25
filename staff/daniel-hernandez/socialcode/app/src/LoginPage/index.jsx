@@ -43,7 +43,7 @@ function LoginPage() {
             navigate('/home');
          }, 1000);
       } catch (error) {
-         console.error(`error. please fix it or try again later. ${error.message}`);
+         console.error(`error. please fix it or try again later.`);
          shakeButton();
          setTimeout(() => setShake(false), 400);
       }

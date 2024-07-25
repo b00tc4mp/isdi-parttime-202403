@@ -15,7 +15,7 @@
 
    .cancelButton,
    .okButton {
-      @apply w-full p-[10px] bg-secondary text-primary3 rounded-[4px] cursor-pointer text-[16px] font-ubuntu transition-all mt-[20px];
+      @apply w-full text-primary3 bg-secondary p-[10px] rounded-[4px] cursor-pointer text-[16px] font-ubuntu mt-[10px] transition-colors duration-[500ms];
    }
 
    .cancelButton {
@@ -23,7 +23,7 @@
    }
 
    .okButton {
-      @apply border-[1px] border-[#56d77d] text-[#56d77d];
+      @apply border border-[#56d77d] text-[#56d77d];
    }
 
    .cancelButton:hover {
@@ -31,7 +31,7 @@
    }
 
    .okButton:hover {
-      @apply bg-[#56d77d] text-primary3 border-dark;
+      @apply border-dark text-primary3 bg-[#56d77d];
    }
 
    .cancelButton:active {
@@ -39,6 +39,6 @@
    }
 
    .okButton:active {
-      @apply bg-[#81e39d] text-[#56d77d];
+      @apply text-[#56d77d] bg-[#81e39d];
    }
 }

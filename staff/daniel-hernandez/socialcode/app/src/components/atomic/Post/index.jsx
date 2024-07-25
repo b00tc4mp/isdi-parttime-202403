@@ -1,5 +1,6 @@
 import './index.css';
 import logic from '../../../logic';
+import useContext from '../../../useContext.jsx';
 import Article from '../Article';
 import Heading from '../Heading';
 import Text from '../Text';
@@ -9,12 +10,14 @@ import Button from '../Button';
 import Container from '../Container';
 
 function Post({ post, onDelete, onLiked }) {
+   const { alert } = useContext();
    let userId;
 
    try {
       userId = logic.getUserId();
    } catch (error) {
       console.error(error.message);
+      alert(error.message);
    }
 
    const handleLike = () => onLiked(post.id);

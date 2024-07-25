@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './index.css';
 import logic from '../../logic';
+import useContext from '../../useContext';
 import Section from '../atomic/Section';
 import Post from '../atomic/Post';
 import ConfirmDialog from '../ConfirmDialog';
@@ -10,6 +11,7 @@ import DisableableButton from '../atomic/DisableableButton';
 
 // TODO: revise
 function PostList({ refreshTimeStamp, mainRef }) {
+   const { alert } = useContext();
    const [posts, setPosts] = useState([]);
    const [postToDelete, setPostToDelete] = useState(null);
 
@@ -25,13 +27,12 @@ function PostList({ refreshTimeStamp, mainRef }) {
    }, [refreshTimeStamp, page]);
 
    const loadPosts = async page => {
-      // TODO: show feedback in a more user-friendly way
       try {
          const { posts, total } = await logic.getAllPosts(page, 10);
 
          if (!Array.isArray(posts)) {
             console.error('Expected an array but got: ', posts);
-            alert('An error occurred while loading the posts.');
+            alert('An error occurred while loading the posts');
             return;
          }
 
@@ -39,6 +40,7 @@ function PostList({ refreshTimeStamp, mainRef }) {
          setTotalPages(Math.ceil(total / 10));
       } catch (error) {
          console.error(error.message);
+         alert(error.message);
       }
    };
 
@@ -52,8 +54,8 @@ function PostList({ refreshTimeStamp, mainRef }) {
          setPostToDelete(null);
          await loadPosts(page);
       } catch (error) {
-         // TODO: show errors more gracefully
          console.error(error.message);
+         alert(error.message);
       }
    };
 
@@ -80,8 +82,8 @@ function PostList({ refreshTimeStamp, mainRef }) {
          await logic.likePost(postId);
          await loadPosts(page);
       } catch (error) {
-         // TODO: show error more gracefully
          console.error(error.message);
+         alert(error.message);
       }
    };
 

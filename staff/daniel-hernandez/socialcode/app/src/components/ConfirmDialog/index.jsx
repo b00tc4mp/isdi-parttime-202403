@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import './index.css';
+import Container from '../atomic/Container';
 import Button from '../atomic/Button';
 import Text from '../atomic/Text';
 
@@ -20,7 +21,7 @@ function ConfirmDialog({ dialog, onConfirm, onCancel }) {
    }, []);
 
    return (
-      <div className="dialogOverlay">
+      <Container className="dialogOverlay">
          <dialog className="confirmDialog" ref={dialogRef}>
             <Text className="dialogParagraph">{dialog}</Text>
             <Button className="cancelButton" onClick={onCancel}>
@@ -30,7 +31,7 @@ function ConfirmDialog({ dialog, onConfirm, onCancel }) {
                OK
             </Button>
          </dialog>
-      </div>
+      </Container>
    );
 }
 
