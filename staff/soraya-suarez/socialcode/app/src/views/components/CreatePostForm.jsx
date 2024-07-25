@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import './CreatePostForm.css'
-
 import logic from '../../logic'
 
 import Field from '../../components/core/Field'

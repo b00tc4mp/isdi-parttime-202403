@@ -84,8 +84,6 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
             <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
         </View>
 
-        
-
         <View direction='row'>
             <Time>{post.date}</Time>
             {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}
