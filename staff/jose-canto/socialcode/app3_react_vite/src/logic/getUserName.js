@@ -23,7 +23,7 @@ const getUserName = () => {
       }
 
       return response.json()
-        .catch(() => callback(new SystemError("connection error")))
+        .catch(() => { throw new SystemError("connection error") })
         .then(body => {
 
           const { error, message } = body

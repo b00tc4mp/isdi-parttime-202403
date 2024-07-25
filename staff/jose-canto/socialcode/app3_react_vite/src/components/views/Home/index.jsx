@@ -11,10 +11,10 @@ import PostList from "../components/PostList"
 import Footer from "../../core/Footer"
 import CreatePostForm from "../components/CreatePostForm"
 import About from "../components/About"
+import Alert from "../components/Alert"
 
 import "./index.css"
 import "../components/CreatePostForm"
-
 import "../../core/TextArea.css"
 
 function Home() {
@@ -25,10 +25,10 @@ function Home() {
   const [name, setName] = useState("")
   const [viewCreatePostForm, setViewCreatePostForm] = useState("")
   const [postListRefresh, setPostListRefresh] = useState(0)
+  const [message, setMessage] = useState(null)
 
   const handleLogout = () => {
     logic.logoutUser()
-
     navigate("/login")
   }
 
@@ -44,12 +44,14 @@ function Home() {
         .catch((error) => {
           console.error(error.message)
 
-          alert(error.message)
+          //alert(error.message)
+          setMessage(error.message)
         })
     } catch (error) {
       console.error(error.message)
 
-      alert(error.message)
+      //alert(error.message)
+      setMessage(error.message)
     }
   }, [])
 
@@ -66,6 +68,8 @@ function Home() {
       behavior: "smooth"
     })
   }
+
+  const handleAlertAccepted = () => setMessage(null)
 
   return (
     <>
@@ -93,6 +97,8 @@ function Home() {
       </View>
 
       <Footer onCreatePostClick={handleCreatePostClick} onClickScrollTop={scrollTop} />
+
+      {message && <Alert message={message} onAccept={handleAlertAccepted} />}
     </>
   )
 }

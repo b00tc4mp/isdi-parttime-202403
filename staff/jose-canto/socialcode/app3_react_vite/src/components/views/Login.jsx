@@ -16,7 +16,7 @@ function Login() {
 
   const navigate = useNavigate()
 
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState(null)
 
   const handleLoginSubmit = (event) => {
     event.preventDefault()
@@ -50,6 +50,7 @@ function Login() {
 
     navigate("/register")
   }
+
   return (
     <>
       <View className="View LoginForm" tag="main">
