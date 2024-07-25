@@ -58,20 +58,20 @@ function Home({ onUserLoggedOut }) {
         setView('')
     }
 
-    return <View>
+    return <>
         <Header>
             <Heading level="3">{name}</Heading>
             <Button onClick={handleLogout}>Logout</Button>
         </Header>
 
-        <View tag="main">
+        <View className="Main" tag="main">
             <PostList refreshStamp={postListRefreshStamp} />
 
             {view === 'create-post' && <CreatePostForm onCancelCreatePostClick={handleCancelCreatePostClick} onPostCreated={handlePostCreated} />}
         </View>
 
         <Footer onCreatePostClick={handleCreatePostClick} />
-    </View>
+    </>
 }
 
 export default Home

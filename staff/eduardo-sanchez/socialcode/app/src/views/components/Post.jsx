@@ -43,22 +43,22 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
         }
     }
 
-    return <View tag="article" align="">
-        <View direction='row'>
-            <Text>{post.author.username}</Text>
+    return <View className="Post" tag="article" align="">
+        <View className="Post-Header">
+            <Text className="Author">{post.author.username}</Text>
 
             <Heading level="2">{post.title}</Heading>
         </View>
 
-        <Image src={post.image} />
+        <div className='Image-Container'><Image src={post.image} /></div>
 
-        <Text>{post.description}</Text>
+        <Text className="Post-Description">{post.description}</Text>
 
         <View direction='row'>
             <Button onClick={handleToggleLikePost}>{`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}</Button>
         </View>
 
-        <View direction='row'>
+        <View className="Date">
             <Time>{post.date}</Time>
 
             {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}

@@ -46,7 +46,11 @@
   }
 
   .Image {
-    @apply w-full;
+    @apply min-w-fit;
+  }
+
+  .Image-Container {
+    @apply flex justify-center w-4/5;
   }
 
   .SubmitButton {
@@ -75,34 +79,13 @@
     @apply text-green-500;
   }
 
-  /* .View {
-    @apply flex flex-col items-center;
-  } */
-
   .View {
     @apply flex gap-[1rem];
-  }
-
-  .View.column {
-    @apply flex-col;
-  }
-
-  .View.row {
-    @apply flex-row gap-[1rem];
-  }
-
-  .View.center {
-    @apply items-center;
   }
 
   .View h2 {
     @apply text-[blue]
   }
-
-  /* 
-  .View button {
-    @apply flex justify-center;
-  } */
 
   .CreatePostForm {
     @apply fixed bottom-[3rem] w-full left-0 box-border bg-[var(--second-color)];
@@ -117,7 +100,27 @@
   }
 
   .PostList {
-    @apply m-[60px_10px];
+    @apply flex flex-col justify-center items-center m-20 w-4/6;
+  }
+
+  .Post {
+    @apply flex flex-col w-[22rem] justify-start items-center;
+  }
+
+  .Post-Header {
+    @apply flex w-[100%] justify-between;
+  }
+
+  .Post-Description {
+    @apply flex w-full justify-start;
+  }
+
+  .Main {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .Date {
+    @apply flex justify-between w-full;
   }
 
 
