@@ -52,6 +52,7 @@
   - Invoice number.
   - Select Billing period.
   - Generate invoice button
+  - Share email/Whatsapp pdf
 
 ### UXUI Design
 
@@ -97,19 +98,33 @@
 - Price (number, required)
 - Total Price (auto, number)
 - Total Delivery Note (auto, number)
+- Observations(string)
 
 ### Invoice
 
-- Id(auto)
-- Invoice Date (auto, string)
-- Invoice Number (auto, string)
-- Client name (string, auto)
-- Client tax identification number (string, auto)
-- Client address (string, auto)
-- Client Phone number(string, auto)
-- Client Email (string, auto)
-- User Name (string, auto)
-- User tax identification number(string, auto)
-- User adress (string, auto)
-- User Phone number(string, auto)
-- User Email (string, auto)
+- Invoice Section
+  - Id(auto)
+  - Invoice Date (auto, string)
+  - Invoice Number (auto, string)
+  - Invoice Description: (auto, string)
+    - Date delivery note(auto, string)
+    - Concept delivery note (auto, string)
+    - Price concept deilvery note (auto, number)
+    - Total Price (auto, number)
+    - Total price + tax(auto, number)
+    - Payment type(auto), string
+
+- Client Section
+  - Client name (string, auto)
+  - Client tax identification number (string, auto)
+  - Client address (string, auto)
+  - Client Phone number(string, auto)
+  - Client Email (string, auto)
+
+- User Section
+  - User Name (string, auto)
+  - User tax identification number(string, auto)
+  - User adress (string, auto)
+  - User Phone number(string, auto)
+  - User Email (string, auto)
+  
