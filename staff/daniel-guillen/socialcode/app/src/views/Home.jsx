@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-
 import { Routes, Route, Link } from 'react-router-dom'
 
 import View from '../components/library/View'
@@ -8,19 +7,18 @@ import Header from './components/Header'
 import PostList from './components/PostList'
 import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
-import Alert from './components/Alert'
-// import Hello from './components/Hello'
-// import Search from './components/Search'
+//import Alert from './components/Alert'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
 
 import logic from '../logic'
 import About from './components/About'
+import useContext from '../useContext'
 
 function Home({ onUserLoggedOut }) {
     console.log('Home -> render')
-
+    const { alert } = useContext()
     const [name, setName] = useState('')
     const [view, setView] = useState('')
     const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
@@ -47,7 +45,7 @@ function Home({ onUserLoggedOut }) {
                 .catch(error => {
                     console.error(error)
 
-                    setMessage(error.message)
+                    alert(error.message)
                 })
 
         } catch (error) {

@@ -7,10 +7,12 @@ import SubmitButton from '../../components/core/SubmitButton'
 
 import FormWithFeedback from '../../components/library/FormWithFeedback'
 import View from '../../components/library/View'
+import { SystemError } from 'com/errors'
+import useContext from '../../useContext'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     console.log('CreatePostForm -> render')
-
+    const { alert } = useContext()
     const [message, setMessage] = useState('')
 
     const handleCancelCreatePostClick = () => onCancelCreatePostClick()
@@ -33,6 +35,11 @@ function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
             })
             .catch(error => {
                 console.log(error)
+                if (error instanceof SystemError) {
+                    alert(error.message)
+
+                    return
+                }
                 setMessage(error.message)
             })
         } catch (error) {

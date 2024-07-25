@@ -107,11 +107,11 @@ body {
     }
 
     .Alert {
-      @apply backdrop-blur-sm fixed top-0 left-0 w-full h-full flex justify-center items-center z-[999];
+      @apply flex justify-center backdrop-blur-sm fixed top-0 left-0 w-full h-full items-center z-[999];
   }
 
     .AlertBox {
-      @apply flex flex-col p-3 w-[150px] h-[100px] rounded-xl bg-gradient-to-b from-zinc-300 to-red-100;
+      @apply  flex flex-col justify-center p-8 w-[210px] h-[130px] rounded-xl bg-gradient-to-b from-zinc-300 to-red-100;
   }
 
     .AlertBox--warn {

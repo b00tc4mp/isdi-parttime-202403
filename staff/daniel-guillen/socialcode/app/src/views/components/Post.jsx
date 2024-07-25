@@ -6,12 +6,12 @@ import Time from '../../components/core/Time'
 import View from '../../components/library/View'
 import Confirm from './Confirm'
 import logic from '../../logic'
-
+import useContext from '../../useContext'
 import { useState } from 'react'
 
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log('Post -> render')
-
+    const { alert } = useContext()
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
 
     const handleDeletePost = () => setConfirmDeleteVisible(true)

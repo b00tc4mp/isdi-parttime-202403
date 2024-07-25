@@ -1,6 +1,6 @@
-export default ({ message, onAccept, level = 'warn' }) => <div class="Alert">
-    <div class={`AlertBox AlertBox-${level}`}>
+export default ({ message, onAccept, level = 'warn' }) => <div className="Alert">
+    <div className={`AlertBox AlertBox-${level}`}>
         <p>{message}</p>
-        <button class="Button" onClick={onAccept}>Accept</button>
+        <button className="Button" onClick={onAccept}>Accept</button>
     </div>
 </div>
