@@ -6,7 +6,7 @@ import logic from "./logic"
 
 import Register from "./components/views/Register"
 import Login from "./components/views/Login"
-import Home from "./components/views/components/Home"
+import Home from "./components/views/Home"
 
 function App() {
   return (

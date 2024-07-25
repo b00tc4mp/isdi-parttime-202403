@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react"
 import { Routes, Route, useNavigate, Link } from "react-router-dom"
 
-import logic from "../../../../logic"
+import logic from "../../../logic"
 
-import View from "../../../library/View"
-import Heading from "../../../core/Heading"
-import Header from "../Header"
-import Button from "../../../core/Button"
-import PostList from "../PostList"
-import Footer from "../../../core/Footer"
-import CreatePostForm from "../CreatePostForm"
-import About from "../About"
+import View from "../../library/View"
+import Heading from "../../core/Heading"
+import Header from "../components/Header"
+import Button from "../../core/Button"
+import PostList from "../components/PostList"
+import Footer from "../../core/Footer"
+import CreatePostForm from "../components/CreatePostForm"
+import About from "../components/About"
 
 import "./index.css"
-import "../CreatePostForm"
+import "../components/CreatePostForm"
 
-import "../../../core/TextArea.css"
+import "../../core/TextArea.css"
 
 function Home() {
   const navigate = useNavigate()
