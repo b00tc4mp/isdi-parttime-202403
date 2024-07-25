@@ -55,7 +55,8 @@
 
 ### UXUI Design
 
-[Figma](https://www.figma.com/design/FtmTtX9cZewWlv6yqsj4nu/demo-app?node-id=0-1&t=tNho9NZQl4l4RETJ-0)
+[Figma Design prototype](https://www.figma.com/proto/fxphzzY7aubtHDbX4zHKbf/Project?t=EH1h31BHQYbxyRVR-1)
+![alt text](Figma-prototype-design.PNG)
 
 ## <span style="color:cyan;">Technical</span>
 
@@ -63,25 +64,52 @@
 
 ### User
 
-- id (auto)
-- Full name
-- Company name
-- User address
-- tax identification number
-- Email
-- Phone number
-- Bank account number
+- Id (auto)
+- Full name (string, required)
+- Company name(string, required)
+- User address(string, required)
+- tax identification number(string, required)
+- Email(string, required)
+- Phone number(string, required)
+- Bank account number(string, required)
 - Company logo?
 
 ### Client
 
-- id (auto)
-- Client name
-- tax identification number
-- Client address
-- Email
+- Id (auto)
+- Client name (string, required)
+- tax identification number (string, required)
+- Client address (string, required)
+- Email (string, required)
+- Phone number(string, required)
 
 ### Delivery Note
 
+- Id (auto)
+- Deilvery Note Date(auto,string)
+- Delivery Note Number (auto, string)
+- Client name (string, auto)
+- tax identification number (string, auto)
+- Client address (string, auto)
+- Phone number(string, auto)
+- Concept (string, required)
+- Quantity (string, required)
+- Price (number, required)
+- Total Price (auto, number)
+- Total Delivery Note (auto, number)
 
-...
+### Invoice
+
+- Id(auto)
+- Invoice Date (auto, string)
+- Invoice Number (auto, string)
+- Client name (string, auto)
+- Client tax identification number (string, auto)
+- Client address (string, auto)
+- Client Phone number(string, auto)
+- Client Email (string, auto)
+- User Name (string, auto)
+- User tax identification number(string, auto)
+- User adress (string, auto)
+- User Phone number(string, auto)
+- User Email (string, auto)
