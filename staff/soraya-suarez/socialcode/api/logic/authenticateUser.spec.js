@@ -1,17 +1,12 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
-
 import { expect } from 'chai'
-
 import { User } from '../data/index.js'
-
 import authenticateUser from './authenticateUser.js'
 import { ContentError, CredentialsError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
-
-debugger
 
 describe('authenticateUser', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
@@ -20,7 +15,13 @@ describe('authenticateUser', () => {
 
     it('succeeds on existing user', () =>
         bcrypt.hash('123123123', 8)
-            .then(hash => User.create({ name: 'Mac', surname: 'Book', email: 'mac@book.com', username: 'macbook', password: hash }))
+            .then(hash => User.create({ 
+                name: 'Mac', 
+                surname: 'Book', 
+                email: 'mac@book.com', 
+                username: 'macbook', 
+                password: hash 
+            }))
             .then(() => authenticateUser('macbook', '123123123'))
             .then(userId => {
                 expect(userId).to.be.a.string
@@ -28,19 +29,28 @@ describe('authenticateUser', () => {
             })
     )
 
-    it('fails on non-existing user', () =>
-        authenticateUser('meloinvento', '123123123')
-            .catch(error => {
-                expect(error).to.be.instanceOf(CredentialsError)
-                expect(error.message).to.equal('user not found')
+    it('fails on non-existing user', () => {
+        let errorThrown
+
+        return authenticateUser('pocahontas', '123123123')
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.instanceOf(CredentialsError)
+                expect(errorThrown.message).to.equal('user not found')
             })
-    )
+    })
 
     it('fails on existing user by wrong password', () => {
         let errorThrown
 
         return bcrypt.hash('234234234', 8)
-            .then(hash => User.create({ name: 'Mac', surname: 'Book', email: 'mac@book.com', username: 'macbook', password: hash }))
+            .then(hash => User.create({ 
+                name: 'Mac', 
+                surname: 'Book', 
+                email: 'mac@book.com', 
+                username: 'macbook', 
+                password: hash 
+            }))
             .then(() => authenticateUser('macbook', '123123123'))
             .catch(error => errorThrown = error)
             .finally(() => {
