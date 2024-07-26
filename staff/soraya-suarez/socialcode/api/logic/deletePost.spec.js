@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import mongoose, { Types } from 'mongoose'
-import bcrypt, { hash } from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 import { expect } from 'chai'
 import { Post, User } from '../data/index.js'
 import deletePost from './deletePost.js'
