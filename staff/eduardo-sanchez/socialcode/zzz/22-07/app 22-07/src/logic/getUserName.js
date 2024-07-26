@@ -10,17 +10,16 @@ const getUserName = () => {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
-        .catch(() => { throw new SystemError('server error') })
+        .catch(() => { throw new SystemError('server is not available') })
         .then(response => {
             if (response.status === 200)
 
                 return response.json()
-                    .catch(() => { throw new SystemError('server error') })
                     .then(name => name)
+                    .catch(() => { throw new SystemError('server is not available') })
 
 
             return response.json()
-                .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
 
