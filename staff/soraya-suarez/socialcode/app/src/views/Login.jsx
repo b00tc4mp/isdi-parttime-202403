@@ -9,8 +9,13 @@ import Link from '../components/core/Link'
 import FormWithFeedback from '../components/library/FormWithFeedback/index'
 import View from '../components/library/View/index'
 
+import { SystemError } from 'com/errors'
+import useContext from '../useContext'
+
 function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     console.log('Login -> render')
+
+    const { alert } = useContext()
 
     const [message, setMessage] = useState('')
 
@@ -27,6 +32,12 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
                 .then(() => onUserLoggedIn())
                 .catch(error => {
                     console.log(error)
+
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+
+                        return
+                    }
 
                     setMessage(error.message)
                 })
