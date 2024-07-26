@@ -1,0 +1,26 @@
+{
+  "name": "apifactuclient",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch .",
+    "inspect": "node --inspect-brk"
+  },
+  "keywords": [],
+  "author": "Jose A. Canto",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "chai": "^4.5.0",
+    "mocha": "^10.7.0"
+  }
+}
