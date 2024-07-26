@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import logic from "../../logic"
 
 import View from "../library/View"
@@ -17,6 +20,7 @@ function Login() {
   const navigate = useNavigate()
 
   const [message, setMessage] = useState(null)
+  const { alert } = useContext()
 
   const handleLoginSubmit = (event) => {
     event.preventDefault()
@@ -35,8 +39,14 @@ function Login() {
         })
         .catch((error) => {
           console.log(error)
+          if(error instanceof SystemError){
+            alert(error.message)
+            return
+          }
+          
           setMessage(error.message)
           setTimeout(() => setMessage(""), 2000)
+
         })
     } catch (error) {
       setMessage(error.message)

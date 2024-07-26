@@ -3,11 +3,15 @@ import { useState, useEffect } from "react"
 import View from "../../library/View"
 import Post from "./Post"
 
+import useContext from "../../../useContext"
+
 import logic from "../../../logic"
 import useInfiniteScroll from "../../../utils/useInfiniteScroll"
 
 function PostList({ refreshStamp }) {
   console.log("Postlist --> render")
+
+  const { alert } = useContext()
 
   const [posts, setPosts] = useState([])
   const [page, setPage] = useState(1)

@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import logic from "../../logic"
 
 import View from "../library/View"
@@ -17,6 +20,7 @@ function Register() {
   const navigate = useNavigate()
 
   const [message, setMessage] = useState("")
+  const { alert } = useContext()
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault()
@@ -40,6 +44,11 @@ function Register() {
         })
         .catch((error) => {
           console.log(error)
+
+          if (error instanceof SystemError) {
+            alert(error.message)
+            return
+          }
 
           setMessage(error.message)
           setTimeout(() => setMessage(""), 2000)

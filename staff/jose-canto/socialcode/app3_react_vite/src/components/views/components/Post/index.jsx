@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+import useContext from "../../../../useContext"
+
 import Image from "../../../core/Image"
 import Heading from "../../../core/Heading"
 import Text from "../../../core/Text"
@@ -16,6 +18,8 @@ import "./index.css"
 
 function Post({ post, onPostDeleted, onPostEdited }) {
   console.log("Post --> render")
+
+  const { alert } = useContext()
 
   const [showConfirm, setShowConfirm] = useState("")
   const [like, setLike] = useState(false)
@@ -58,22 +62,27 @@ function Post({ post, onPostDeleted, onPostEdited }) {
   }
 
   const handleLike = () => {
-    //prettier-ignore
-    logic.toggleLike(post.id)
-      .then(() => {
-        
-        if (like) {
-          setLike(false)
-          setLikeNum(likeNum - 1)
-        } else {
-          setLike(true)
-          setLikeNum(likeNum + 1)
-        }
-      })
-      .catch((error) => {
-        console.error(error)
-        return
-      })
+    try {
+      //prettier-ignore
+      logic.toggleLike(post.id)
+        .then(() => {
+          
+          if (like) {
+            setLike(false)
+            setLikeNum(likeNum - 1)
+          } else {
+            setLike(true)
+            setLikeNum(likeNum + 1)
+          }
+        })
+        .catch((error) => {
+          console.error(error)
+          alert(error.message)
+        })
+    } catch (error) {
+      console.error(error)
+      alert(error.message)
+    }
   }
 
   const handleShowComment = () => {
