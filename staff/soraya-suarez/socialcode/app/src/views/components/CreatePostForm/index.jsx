@@ -1,12 +1,14 @@
 import { useState } from 'react'
 
-import logic from '../../logic'
+import logic from '../../../logic'
 
-import Field from '../../components/core/Field'
-import Button from '../../components/core/Button'
-import SubmitButton from '../../components/core/SubmitButton'
-import FormWithFeedback from '../../components/library/FormWithFeedback'
-import View from '../../components/library/View'
+import Field from '../../../components/core/Field'
+import Button from '../../../components/core/Button'
+import SubmitButton from '../../../components/core/SubmitButton'
+import FormWithFeedback from '../../../components/library/FormWithFeedback'
+import View from '../../../components/library/View'
+
+import './index.css'
 
 function CreatePostForm({ onCancelCreatePostClick, onPostCreated }) {
     console.log('CreatePostForm -> render')

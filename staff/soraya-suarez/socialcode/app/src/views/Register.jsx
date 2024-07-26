@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import logic from '../logic'
 
-import Field from '../components/core/Field'
-import SubmitButton from '../components/core/SubmitButton'
+import Field from '../components/core/Field/index'
+import SubmitButton from '../components/core/SubmitButton/index'
 import Link from '../components/core/Link'
 import Title from '../components/core/Title'
-import FormWithFeedback from '../components/library/FormWithFeedback'
-import View from '../components/library/View'
+import FormWithFeedback from '../components/library/FormWithFeedback/index'
+import View from '../components/library/View/index'
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
     console.log('Register -> render')

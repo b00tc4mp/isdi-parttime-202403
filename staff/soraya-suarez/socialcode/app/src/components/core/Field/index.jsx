@@ -1,5 +1,7 @@
-import Label from './Label'
-import Input from './Input'
+import Label from '../Label'
+import Input from '../Input'
+
+import './index.css'
 
 function Field({ id, type, placeholder, children }) {
     return <div className="Field">
