@@ -6,7 +6,9 @@
 
 ## <span style="color:cyan;">Functional</span>
 
-### Use Cases
+### ***Use Cases***
+
+### User
 
 - Create user
   - Edit user profile
@@ -18,7 +20,9 @@
     - Email.
     - Phone number.
     - Bank account number.
-  
+
+### Client
+
 - Add Clients / Delete Clients
   - Edit client profile.
     - Client logo.
@@ -35,6 +39,8 @@
     - See all delivery notes
       - Share delivery notes.
 
+### Delivery note work
+
 - Add work done for each client
   - Client data
     - Delivery note number.
@@ -46,6 +52,8 @@
     - Total price.
     - Customer signature.
   
+### Invoice Client
+
 - Generate invoice from work performed.
   - Select client to invoice.
   - Invoice date.
@@ -61,72 +69,44 @@
 
 ## <span style="color:cyan;">Technical</span>
 
-### Data Model
+### ***Data Model***
 
 ### User
 
-- Id (auto)
-- Full name (string, required)
-- Company name (string, required)
-- User address (string, required)
-- Tax identification number (string, required)
-- Email (string, required)
-- Phone number (string, required)
-- Bank account number (string, required)
-- Company logo (optional)
+- id (auto)
+- fullName (string, required)
+- companyName (string, required if company)
+- address (string, required)
+- taxId (string, required)
+- email (string, required)
+- phone (string, required)
+- bankAccount(string, required if company)
+- companyLogo (optional)
+- role (string, customer / company)
 
-### Client
+### DeliveryNote
 
-- Id (auto)
-- Client name (string, required)
-- Tax identification number (string, required)
-- Client address (string, required)
-- Email (string, required)
-- Phone number (string, required)
+- id (auto)
+- date (string)
+- number (string)
+- company (User.id)
+- customer (User.id)
+- works ([Work.id])
+- observations (string, input, optional)
 
-### Delivery Note
+### Work
 
-- Id (auto)
-- Delivery Note Date (auto, string)
-- Delivery Note Number (auto, string)
-- Client name (string, auto)
-- Tax identification number (string, auto)
-- Client address (string, auto)
-- Phone number (string, auto)
-- Concept (string, required)
-- Quantity (string, required)
-- Price (number, required)
-- Total Price (auto, number)
-- Total Delivery Note (auto, number)
-- Observations (string, optional)
+- id(auto)
+- concept(string)
+- price(number)
+- quantity(number)
 
-### Invoice
+#### Invoice
 
-#### Invoice Section
-
-- Id (auto)
-- Invoice Date (auto, string)
-- Invoice Number (auto, string)
-- Invoice Description (auto, string)
-  - Delivery note date (auto, string)
-  - Delivery note concept (auto, string)
-  - Delivery note price (auto, number)
-  - Total price (auto, number)
-  - Total price + tax (auto, number)
-  - Payment type (auto, string)
-
-#### Client Section
-
-- Client name (string, auto)
-- Client tax identification number (string, auto)
-- Client address (string, auto)
-- Client phone number (string, auto)
-- Client email (string, auto)
-
-#### User Section
-
-- User name (string, auto)
-- User tax identification number (string, auto)
-- User address (string, auto)
-- User phone number (string, auto)
-- User email (string, auto)
+- id (auto)
+- date (string)
+- number (string)
+- customer(User.id)
+- company(User.id)
+- deliveryNotes([DeliveryNote.id])
+- paymentType (string, bank transfer, credit, cash)
