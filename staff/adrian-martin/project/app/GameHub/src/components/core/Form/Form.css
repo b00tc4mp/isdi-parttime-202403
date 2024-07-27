@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Form {
+        @apply flex flex-col items-center mt-24
+    }
+}

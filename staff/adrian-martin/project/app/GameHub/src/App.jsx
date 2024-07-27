@@ -1,36 +1,27 @@
 import { useState } from 'react'
 
-import Form from './components/core/Form'
-import Title from './components/core/Title'
-import Field from './components/core/Field'
-import SubmitButton from './components/core/SubmitButton'
-import Link from './components/core/Link'
+import Register from './views/Register'
+
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { Context } from './useContext'
+
 
 import './App.css'
 
-
 function App() {
-    const [view, setView] = useState('register')
+    console.log('App -> render')
+
+    const [message, setMessage] = useState(null)
+
+    const navigate = useNavigate()
+
+    const handleGoToLogin = () => navigate('/login')
 
     return <>
-        {view === 'register' && <Form>
-            <Title>Game Hub</Title>
+        <Routes>
+            <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register onUserRegistered={handleGoToLogin} onLoginLinkClick={handleGoToLogin} />} />
+        </Routes>
 
-            <Field id='Username' placeholder='NAME'></Field>
-
-            <Field id='Username' placeholder='USERNAME'></Field>
-
-            <Field id='Username' placeholder='E-MAIL'></Field>
-
-            <Field id='Username' placeholder='PASSWORD'></Field>
-
-            <Field id='Username' placeholder='REPEAT PASSWORD'></Field>
-
-            <SubmitButton>REGISTER</SubmitButton>
-
-            <Link>LOGIN</Link>
-
-        </Form>}
     </>
 }
 

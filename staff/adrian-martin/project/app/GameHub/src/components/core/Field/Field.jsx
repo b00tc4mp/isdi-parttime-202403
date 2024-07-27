@@ -1,5 +1,5 @@
-import Label from './Label'
-import Input from './Input'
+import Label from '../Label/Label'
+import Input from '../Input/Input'
 
 import './Field.css'
 
