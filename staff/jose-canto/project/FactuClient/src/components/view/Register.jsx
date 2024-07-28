@@ -1,24 +1,72 @@
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
+import logic from "../../../logic/index"
+
 import "./Register.css"
 
+import Title from "../Title"
+import Field from "../core/Field"
+import Button from "../core/Button"
+
 export default function Register() {
+  const navigate = useNavigate()
+
+  const handleRegisterSubmit = (event) => {
+    event.preventDefault()
+
+    const target = event.target
+    const fullName = target.fullName.value
+    const username = target.username.value
+    const email = target.email.value
+    const password = target.password.value
+    const confirmPassword = target.confirmPassword.value
+
+    try {
+      // prettier-ignore
+      logic.registerUser(fullName, username, email, password, confirmPassword)
+        .then(() => {
+          navigate("/login")
+        })
+        .catch((error) => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return (
     <>
-      <div className="RegisterForm">
-        <h3>Register</h3>
-        <label htmlFor="username">Username</label>
-        <input type="text" placeholder="username" id="username" required></input>
-        <label htmlFor="email">Email</label>
-        <input type="email" placeholder="email" id="email" required></input>
-        <label htmlFor="password">Password</label>
-        <input type="password" placeholder="password" id="password" required></input>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input type="password" placeholder="confirm password" id="confirmPassword" required></input>
+      <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
+        <Title>Register</Title>
 
-        <button type="submit">Register</button>
-      </div>
+        <Field id="fullName" type="text" placeholder="full name">
+          Full Name
+        </Field>
 
-      <Link to="/login">Login</Link>
+        <Field id="username" type="text" placeholder="username">
+          Username
+        </Field>
+
+        <Field id="email" type="email" placeholder="email">
+          Email
+        </Field>
+
+        <Field id="password" type="password" placeholder="password">
+          Password
+        </Field>
+
+        <Field id="confirmPassword" type="password" placeholder="confirm password">
+          Confirm Password
+        </Field>
+
+        <Button type="submit">Register</Button>
+      </form>
+
+      <Link className="Link" to="/login">
+        Login
+      </Link>
     </>
   )
 }

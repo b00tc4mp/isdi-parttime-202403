@@ -4,4 +4,8 @@
   body {
     @apply flex h-screen w-full items-center justify-center bg-gray-300;
   }
+
+  .Link {
+    @apply text-blue-600 underline;
+  }
 }

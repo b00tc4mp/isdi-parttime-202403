@@ -4,8 +4,4 @@
   .LoginForm {
     @apply flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-400 p-2;
   }
-
-  .LoginForm > button {
-    @apply rounded-md bg-blue-500 p-2 text-white;
-  }
 }

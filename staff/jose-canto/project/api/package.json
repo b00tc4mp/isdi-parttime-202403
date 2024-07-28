@@ -1,8 +1,9 @@
 {
   "name": "apifactuclient",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "api for FactuCliente app",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node --watch .",
     "inspect": "node --inspect-brk"
@@ -11,7 +12,8 @@
   "author": "Jose A. Canto",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "com": "file:../com",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",

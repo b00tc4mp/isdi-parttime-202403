@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .Button {
+    @apply rounded-lg bg-orange-400 p-2;
+  }
+}

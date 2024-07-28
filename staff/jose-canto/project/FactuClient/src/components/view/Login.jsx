@@ -2,22 +2,30 @@ import { Link } from "react-router-dom"
 
 import "./Login.css"
 
+import Title from "../Title"
+import Button from "../core/Button"
+import Field from "../core/Field"
+
 export default function Login() {
   return (
     <>
       <div className="LoginForm">
-        <h3>Login</h3>
+        <Title>Login</Title>
 
-        <label htmlFor="username">Username</label>
-        <input type="text" placeholder="username" id="username" required></input>
+        <Field id="username" type="text" placeholder="username">
+          Username
+        </Field>
 
-        <label htmlFor="password">Password</label>
-        <input type="password" placeholder="password" id="password" required></input>
+        <Field id="password" type="password" placeholder="password">
+          Password
+        </Field>
 
-        <button type="submit">Login</button>
+        <Button type="submit">Login</Button>
       </div>
 
-      <Link to="/register">Register</Link>
+      <Link className="Link" to="/register">
+        Register
+      </Link>
     </>
   )
 }

@@ -75,6 +75,7 @@
 
 - id (auto)
 - fullName (string, required)
+- username (string, required)
 - companyName (string, required if company)
 - address (string, required)
 - taxId (string, required)
@@ -83,6 +84,7 @@
 - bankAccount(string, required if company)
 - companyLogo (optional)
 - role (string, customer / company)
+- password (string, required)
 
 ### DeliveryNote
 
@@ -109,4 +111,5 @@
 - customer(User.id)
 - company(User.id)
 - deliveryNotes([DeliveryNote.id])
+- observations (string, input, optional)
 - paymentType (string, bank transfer, credit, cash)
