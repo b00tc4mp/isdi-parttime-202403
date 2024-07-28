@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-    .Input {
-        @apply text-center rounded-lg h-1 w-[70] my-4 border-2 border-solid p-5 text-xl border-[--second-color] 
-    }
-}

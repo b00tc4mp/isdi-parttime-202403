@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Field {
+        @apply flex flex-col
+    }
+}
+
+/* .Field {
+    display: flex;
+    flex-direction: column;
+} */

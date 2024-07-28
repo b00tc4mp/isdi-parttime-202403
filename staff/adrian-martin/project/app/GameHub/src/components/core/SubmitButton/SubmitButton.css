@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-    .SubmitButton {
-        @apply flex flex-col border-2 rounded-lg bg-[--second-color] text-[--fifth-color] p-3 my-10 text-2xl
-    }
-}
