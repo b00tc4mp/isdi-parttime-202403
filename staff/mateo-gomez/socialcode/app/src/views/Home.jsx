@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import View from '../components/library/View'
 
 import Header from './components/Header'
-import Button from '../components/core/Button'
+import Button from '../components/core/Button/Button'
 
 import Heading from '../components/core/Heading'
 import PostList from './components/PostList'

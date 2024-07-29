@@ -1,4 +1,4 @@
-.Button {
+/*.Button {
     padding: .4rem 0;
     background-color: transparent;
     font-size: 1.3rem;
@@ -11,7 +11,7 @@
 
 .CancelButton {
     border: 2px solid red;
-    background: rgba(255, 0, 0, 0.179);
+    background: #ff00002e;
     border-radius: 5%;
     cursor: pointer;
 
@@ -19,7 +19,7 @@
 
 .DeleteButton {
     border: 2px solid red;
-    background: rgba(255, 0, 0, 0.179);
+    background: #ff00002e;
     border-radius: 5%;
     cursor: pointer;
 }
@@ -49,4 +49,4 @@
     border: 2px solid red;
     background: rgba(255, 0, 0, 0.179);
 
-}
+}*/

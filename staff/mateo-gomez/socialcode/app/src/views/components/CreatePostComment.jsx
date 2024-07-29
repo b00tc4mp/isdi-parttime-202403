@@ -2,7 +2,7 @@ import { useState } from "react";
 import logic from "../../logic"
 
 import FormWithFeedback from '../../components/library/FormWithFeedBack'
-import Button from "../../components/core/Button";
+import Button from "../../components/core/Button/Button";
 
 function CreatePostComment({ postId, onCancelCreatedCommentClick, onCommentPostSubmitted }) {
     console.log("CreatePostComment --> render")

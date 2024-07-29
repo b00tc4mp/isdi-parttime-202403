@@ -1,6 +1,6 @@
 import './FormWithFeedback.css'
 import Form from '../core/Form'
-import '../core/Form.css'
+
 import Text from '../core/Text'
 
 function FormWithFeedBack({ children, onSubmit, message, level = 'error' }) {

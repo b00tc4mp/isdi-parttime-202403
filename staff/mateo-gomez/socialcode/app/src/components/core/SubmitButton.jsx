@@ -1,6 +1,6 @@
 import './SubmitButton.css'
-import './Button.css'
-import Button from './Button'
+import './Button/index.css'
+import Button from './Button/Button'
 
 
 function SubmitButton({ children }) {

@@ -6,7 +6,7 @@ import './CreatePostForm.css'
 import Field from '../../components/core/Field'
 
 import FormWithFeedback from '../../components/library/FormWithFeedBack'
-import Button from '../../components/core/Button'
+import Button from '../../components/core/Button/Button'
 import SubmitButton from '../../components/core/SubmitButton'
 import View from '../../components/library/View'
 

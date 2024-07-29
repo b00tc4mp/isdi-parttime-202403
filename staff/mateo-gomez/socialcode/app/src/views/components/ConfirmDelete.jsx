@@ -1,4 +1,4 @@
-import Button from "../../components/core/Button"
+import Button from "../../components/core/Button/Button"
 import Text from "../../components/core/Text"
 
 import './ConfirmDelete.css'

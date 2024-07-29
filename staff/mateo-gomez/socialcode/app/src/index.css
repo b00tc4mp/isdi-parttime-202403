@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Permanent+Marker&family=Tac+One&family=Zeyada&display=swap');
 
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer component {}
+
 :root {
   --first-color: rgb(135, 56, 4);
   --second-color: black;
