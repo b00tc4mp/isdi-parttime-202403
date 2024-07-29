@@ -7,9 +7,35 @@ import '../components/core/Link/Link'
 import FormWithFeedback from '../components/library/FormWithFeedback/FormWithFeedback'
 import View from '../components/library/View/View'
 
-function Register() {
+import logic from '../../logic/index.js';
+import { useNavigate } from 'react-router-dom';
 
-    return <View tag="main">
+function Register() {
+    const navigate = useNavigate()
+
+    const handleRegisterSubmit = event => {
+        event.preventDefault()
+
+        const target = event.target
+        const name = target.name.value
+        const username = target.username.value
+        const email = target.email.value
+        const password = target.password.value
+
+        try {
+            logic.registerUser(name, username, email, password)
+                .then(() => {
+                    navigate('/login')
+                })
+                .catch(error => {
+                    alert(error.message)
+                })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    return <View tag="main" onSubmit={handleRegisterSubmit}>
         <Title>Register</Title>
 
         <FormWithFeedback>

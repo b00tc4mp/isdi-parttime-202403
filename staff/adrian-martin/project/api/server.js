@@ -3,8 +3,12 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-import logic from './logic/index.js'
 import errorHandler from './handlers/errorHandler.js'
+
+import {
+    registerUserHandler,
+    errorHandler,
+} from './handlers/index.js'
 
 const { PORT, MONGODB_URL } = process.env
 
@@ -19,17 +23,7 @@ mongoose.connect(MONGODB_URL)
             res.send('hello world')
         })
 
-        api.post('/users', jsonBodyParser, (req, res, next) => {
-            try {
-                const { name, username, email, password } = req.body
-
-                logic.registerUser(name, username, email, password)
-                    .then(() => res.status(201).send())
-                    .catch(error => next(error))
-            } catch (error) {
-                next(error)
-            }
-        })
+        api.post('/users', jsonBodyParser, registerUserHandler)
 
         api.use(errorHandler)
 
