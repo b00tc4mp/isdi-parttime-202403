@@ -1,18 +1,13 @@
-import validate from "com/validate.js"
-import errors, { SystemError } from "com/errors.js"
+import errors, { SystemError } from "com/errors"
+import validate from "com/validate"
 
-
-const registerUser = (fullname, username, email, password, passwordRepeat) => {
-
-  validate.name(fullname, "full name")
+const loginUser = (username, password) => {
   validate.username(username)
-  validate.email(email)
   validate.password(password)
-  validate.passwordsMatch(password, passwordRepeat)
 
-  const body = { fullname, username, email, password, passwordRepeat }
+  const body = { username, password }
 
-  return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -22,11 +17,13 @@ const registerUser = (fullname, username, email, password, passwordRepeat) => {
 
     .catch(() => { throw new SystemError("connection error") })
     .then(response => {
-      if (response.status === 201) {
-        console.log("user registered")
-        return
+      if (response.status === 200) {
+        return response.json()
+          .catch(() => { throw new SystemError("connection error") })
+          .then(token => {
+            sessionStorage.token = token
+          })
       }
-
       return response.json()
         .catch(() => { throw new SystemError("connection error") })
         .then(body => {
@@ -35,6 +32,8 @@ const registerUser = (fullname, username, email, password, passwordRepeat) => {
           throw new constructor(message)
         })
     })
+
 }
 
-export default registerUser
+export default loginUser
+

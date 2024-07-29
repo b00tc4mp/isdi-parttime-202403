@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-import logic from "../../../logic/index"
+import logic from "../../logic/index"
 
 import "./Register.css"
 
@@ -16,7 +15,6 @@ export default function Register() {
     event.preventDefault()
 
     const target = event.target
-    const fullName = target.fullName.value
     const username = target.username.value
     const email = target.email.value
     const password = target.password.value
@@ -24,7 +22,7 @@ export default function Register() {
 
     try {
       // prettier-ignore
-      logic.registerUser(fullName, username, email, password, confirmPassword)
+      logic.registerUser( username, email, password, confirmPassword)
         .then(() => {
           navigate("/login")
         })
@@ -40,10 +38,6 @@ export default function Register() {
     <>
       <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
         <Title>Register</Title>
-
-        <Field id="fullName" type="text" placeholder="full name">
-          Full Name
-        </Field>
 
         <Field id="username" type="text" placeholder="username">
           Username
