@@ -1,14 +1,15 @@
-import { User } from "../model/index.js"
 import validate from "com/validate.js"
+import { User } from "../model/index.js"
 import bcrypt from "bcryptjs"
 import { SystemError, CredentialsError, NotFoundError } from "com/errors.js"
+
 
 const authenticateUser = (username, password) => {
   validate.username(username)
   validate.password(password)
 
   return User.findOne({ username }).lean()
-    .catch(() => { throw new SystemError("connection error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(userFound => {
       if (!userFound) {
         throw new NotFoundError("User not found")

@@ -1,6 +1,6 @@
-import { Schema, Types, model } from "mongoose"
+import { Schema, model } from "mongoose"
 
-const { ObjectId } = Types
+const { ObjectId } = Schema.Types
 
 const deliveryNote = new Schema({
   date: {
