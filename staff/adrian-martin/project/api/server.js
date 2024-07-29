@@ -3,10 +3,9 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-import errorHandler from './handlers/errorHandler.js'
-
 import {
     registerUserHandler,
+    authenticateUserHandler,
     errorHandler,
 } from './handlers/index.js'
 
@@ -24,6 +23,8 @@ mongoose.connect(MONGODB_URL)
         })
 
         api.post('/users', jsonBodyParser, registerUserHandler)
+
+        api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
 
         api.use(errorHandler)
 

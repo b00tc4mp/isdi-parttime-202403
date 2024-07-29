@@ -7,16 +7,19 @@ import '../components/core/Link/Link'
 import FormWithFeedback from '../components/library/FormWithFeedback/FormWithFeedback'
 import View from '../components/library/View/View'
 
-import logic from '../../logic/index.js';
+import logic from '../logic/index.js';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
+    console.log('Register -> render')
+
     const navigate = useNavigate()
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
 
         const target = event.target
+
         const name = target.name.value
         const username = target.username.value
         const email = target.email.value
@@ -26,6 +29,8 @@ function Register() {
             logic.registerUser(name, username, email, password)
                 .then(() => {
                     navigate('/login')
+
+                    console.log('Usuario creado')
                 })
                 .catch(error => {
                     alert(error.message)
@@ -35,17 +40,17 @@ function Register() {
         }
     }
 
-    return <View tag="main" onSubmit={handleRegisterSubmit}>
+    return <View tag="main">
         <Title>Register</Title>
 
-        <FormWithFeedback>
-            <Field id='Username' placeholder='NAME'></Field>
+        <FormWithFeedback onSubmit={handleRegisterSubmit}>
+            <Field id='name' placeholder='NAME'></Field>
 
-            <Field id='Username' placeholder='USERNAME'></Field>
+            <Field id='username' placeholder='USERNAME'></Field>
 
-            <Field id='Username' type='email' placeholder='E-MAIL'></Field>
+            <Field id='email' type='email' placeholder='E-MAIL'></Field>
 
-            <Field id='Username' placeholder='PASSWORD'></Field>
+            <Field id='password' placeholder='PASSWORD'></Field>
 
             <SubmitButton>REGISTER</SubmitButton>
 

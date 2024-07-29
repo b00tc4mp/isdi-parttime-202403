@@ -11,14 +11,14 @@ const registerUser = (name, username, email, password) => {
     validate.password(password)
 
     return User.findOne({ $or: [{ username }, { email }] })
-        .catch(() => { throw new SystemError('Connection error') })
+        .catch(() => { throw new SystemError('Server error') })
         .then(user => {
             if (user)
                 throw new DuplicityError('User already exists')
 
 
             return bcrypt.hash(password, 8)
-                .catch(() => { throw new SystemError('Connection Error') })
+                .catch(() => { throw new SystemError('Server error') })
                 .then(hash => {
                     const newUser = {
                         name,
