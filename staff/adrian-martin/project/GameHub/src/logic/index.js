@@ -1,7 +1,10 @@
-import registerUser from "./registerUser.js";
+import registerUser from "./registerUser.js"
+import loginUser from "./loginUser.js"
+
 
 const logic = {
-    registerUser
+    registerUser,
+    loginUser
 }
 
 export default logic

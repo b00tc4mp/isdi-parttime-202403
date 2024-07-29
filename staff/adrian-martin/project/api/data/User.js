@@ -26,10 +26,6 @@ const user = new Schema({
     gameList: [{
         type: ObjectId,
         ref: 'Game'
-    }],
-    averageGrade: [{
-        type: ObjectId,
-        ref: 'User'
     }]
 })
 

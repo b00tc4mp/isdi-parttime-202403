@@ -29,60 +29,21 @@ User
 
 #### User
 
-- id (auto)                    identificador para cada usuario
+- id (auto)                    identificador 
 - name (string, required)      nombre de usuario
 - username (string, required)  nombre de usuario unico
 - email (string, required)     direccion de correo electronico
 - password(string, required)   contraseña del usuario
 
-- profilePicture               image de perfil del usuario
-- Average_grade                nota media de la lista de juegos del usuario
+- profilePicture (string)      image de perfil del usuario
+- gameList (game.id)           id de cada juego
 
-// profile
+#### Game
 
-#### FileVideoGame
-
-- id (auto)                              identificador unico para cada videojuego
+- id (auto)                              identificador 
+- author (user.id)                       id del usuario         
 - titleVideoGame (string, required)      titulo del videojuego
 - imageGame (string, required)           image del videojuego
-- rating (integer, required)             nota asignada al videojuego por el usuario
-- hours_in_the_game (integer, required)  cantidad de horas que el usuario ha jugado
+- rating (number, required)              nota asignada al videojuego por el usuario
+- hoursInTheGame (number, required)      cantidad de horas que el usuario ha jugado
 
-#### GameList
-
-- id (auto)                           identificador para cada entrada
-- user_id (string, required)     identificador del usuario que creó la entrada
-- video_game_id                       identificador del videojuego que esta en la lista
-
-//fileVideoGame
-
-
-
-#### PlayerFileList
-
-<!-- - id (auto)                         identificador unico para cada tarjeta de cada jugador -->
-<!-- - profile_picture (string)          image de perfil del usuario -->
-<!-- - userId (string)              identificador del usuario al que pertenece el perfil -->
-<!-- - Average_grade(integer, required)  nota media de la lista de juegos del usuario -->
-
-#### PlayerList
-
-- id (auto)                        identificador para cada entrada
-- userId (string, required)  identificador de la ficha del usuario 
-
-
-<!-- #### CreateFileVideoGame
-
-- id (auto)
-- title_videoGame (string, required)
-- rating (integer, required)
-- hours_in_the_game (integer, required) -->
-
-<!-- #### Profile
-
-- id (auto)                      identificador unico para cada perfil
-- profile_picture (string)       image de perfil del usuario
-- userId (string)                identificador del usuario al que pertenece el perfil
-- username (string, required):   Nombre de usuario único.
-- link_gamelist                  url que redirige a la lista de jeugos del usuario del perfil
-- Average_grade                  nota media de la lista de juegos del usuario -->

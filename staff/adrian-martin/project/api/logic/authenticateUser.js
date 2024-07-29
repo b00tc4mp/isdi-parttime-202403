@@ -10,9 +10,9 @@ const authenticateUser = (username, password) => {
     return User.findOne({ username }).lean()
         .catch(() => { throw new SystemError('Server error') })
         .then(user => {
-            if (!user) {
+            if (!user)
                 throw new CredentialError('User not found')
-            }
+
 
             return bcrypt.compare(password, user.password)
                 .catch(() => { throw new SystemError('Server error') })
