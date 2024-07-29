@@ -18,7 +18,7 @@ const authenticateUser = (username, password) => {
       // console.log(`Password hash: ${userFound.password}`)
 
       return bcrypt.compare(password, userFound.password)
-        .catch((error) => { console.error(error) })
+        .catch((error) => { throw new SystemError(error.message) })
         .then((match) => {
           if (!match) {
             throw new CredentialsError("❌ Wrong password ❌")

@@ -12,14 +12,14 @@ const registerUser = (name, surname, email, username, password, passwordRepeat) 
   validate.passwordsMatch(password, passwordRepeat)
 
   return User.findOne({ $or: [{ email }, { username }] })
-    .catch(() => { throw new SystemError("connection error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(user => {
       if (user) {
         throw new DuplicityError("❌ Users already exists ❌")
       }
 
       return bcrypt.hash(password, 8)
-        .catch(() => { throw (new SystemError("connection error")) })
+        .catch((error) => { throw (new SystemError(error.message)) })
         .then((hash) => {
           const newUser = {
             name: name,
@@ -30,7 +30,7 @@ const registerUser = (name, surname, email, username, password, passwordRepeat) 
           }
 
           return User.create(newUser)
-            .catch(() => { throw new SystemError("connection error") })
+            .catch((error) => { throw new SystemError(error.message) })
             .then(() => {
               return
             })

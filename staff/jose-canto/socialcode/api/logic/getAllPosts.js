@@ -7,14 +7,14 @@ const getAllPosts = (userId, page, limit) => {
   validate.id(userId, "userId")
 
   return User.findById(userId).lean()
-    .catch(() => { throw new SystemError("server error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
         throw new NotFoundError("❌ User not found ❌")
       }
 
       return Post.find({}).populate("author", "username").select("-__v").populate("comments.author", "username").sort({ date: -1 }).lean()
-        .catch(() => { throw new SystemError("server error") })
+        .catch((error) => { throw new SystemError(error.message) })
         .then(posts => {
           posts.forEach(post => {
             post.id = post._id.toString() // sobreescribimos el id en objeto para cambiarlo a un string y asi evitar que no se sepa que se usa mongo por debajo. Sanear datos.

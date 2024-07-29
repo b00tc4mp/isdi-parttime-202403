@@ -9,7 +9,7 @@ function toggleLikePost(userId, postId) {
 
   // Buscar al usuario por su ID
   return User.findById(userId).lean()
-    .catch(() => { throw new SystemError("connection error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(user => {
       // Verificar si el usuario no existe
       if (!user) {
@@ -18,7 +18,7 @@ function toggleLikePost(userId, postId) {
 
       // Buscar el post por su ID
       return Post.findById(postId)
-        .catch(() => { throw new SystemError("connection error") })
+        .catch((error) => { throw new SystemError(error.message) })
         .then(post => {
           // Verificar si el post no existe
           if (!post) {
@@ -36,7 +36,7 @@ function toggleLikePost(userId, postId) {
 
           // Actualizar el post con la operación correspondiente
           return Post.updateOne({ _id: post._id }, update)
-            .catch(() => { throw new SystemError("connection error") })
+            .catch((error) => { throw new SystemError(error.message) })
             .then(() => { return !included })
         })
     })

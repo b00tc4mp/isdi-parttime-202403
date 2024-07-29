@@ -9,14 +9,14 @@ const editPostTitle = (userId, postId, title) => {
   validate.text(title, "title", 30)
 
   return User.findById(userId).lean()
-    .catch(() => { throw new SystemError("connection error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
         throw new NotFoundError("❌ User not found ❌")
       }
 
       return Post.findById(postId).lean()
-        .catch(() => { throw new SystemError("connection error") })
+        .catch((error) => { throw new SystemError(error.message) })
         .then(post => {
           if (!post) {
             throw new NotFoundError("❌ Post not found ❌")
@@ -26,7 +26,7 @@ const editPostTitle = (userId, postId, title) => {
           // }
 
           return Post.findByIdAndUpdate(postId, { title: title }, { new: true }).lean()
-            .catch(() => { throw new SystemError("connection error") })
+            .catch((error) => { throw new SystemError(error.message) })
             .then(() => { })
         })
     })

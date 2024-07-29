@@ -9,7 +9,7 @@ const createPost = (userId, title, image, description) => {
   validate.text(description, "description", 500)
 
   return User.findById(userId).lean()
-    .catch(() => { throw new SystemError("connection error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
         throw new NotFoundError("❌ User not found ❌")
@@ -26,7 +26,7 @@ const createPost = (userId, title, image, description) => {
       }
 
       return Post.create(post)
-        .catch(() => { throw new SystemError("connection error") })
+        .catch((error) => { throw new SystemError(error.message) })
         .then(() => { })
     })
 }

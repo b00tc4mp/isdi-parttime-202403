@@ -7,14 +7,14 @@ const getPostComments = (userId, postId) => {
   validate.id(postId, "postId")
 
   return User.findById(userId).lean()
-    .catch(() => { throw new SystemError("server error") })
+    .catch((error) => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
         throw new NotFoundError("❌ User not found ❌")
       }
 
       return Post.findById((postId)).populate("comments.author", "username").lean()
-        .catch(() => { throw new SystemError(error.message) })
+        .catch((error) => { throw new SystemError(error.message) })
         .then(post => {
           if (!post) {
             throw new NotFoundError("❌ Post not found ❌")
