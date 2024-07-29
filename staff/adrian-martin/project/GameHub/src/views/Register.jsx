@@ -57,7 +57,6 @@ function Register() {
             <Link className='Link' to='/login'>LOGIN</Link>
         </FormWithFeedback>
     </View>
-
 }
 
 export default Register

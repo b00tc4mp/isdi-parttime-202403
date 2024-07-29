@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import logic from "../logic/index.js"
 import jwt from '../util/jsonwebtoken-promised.js'
 
