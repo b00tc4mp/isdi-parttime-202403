@@ -9,9 +9,13 @@ import Title from "../components/core/Title"
 
 import FormWithFeedback from "../components/library/FormWithFeedback"
 import View from "../components/library/View"
+import { SystemError } from "com/errors"
+import useContext from "../useContext"
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
   console.log("Register -> render")
+
+  const { alert } = useContext()
 
   const [message, setMessage] = useState("")
 
@@ -33,6 +37,12 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
         .then(() => onUserRegistered())
         .catch((error) => {
           console.log(error)
+
+          if (error instanceof SystemError) {
+            alert(error.message)
+
+            return
+          }
 
           setMessage(error.message)
         })

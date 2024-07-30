@@ -1,7 +1,7 @@
-    function Heading({ level, children }) {
-        const Tag = `h${level}`
+function Heading({ level, children, className }) {
+  const Tag = `h${level}`
 
-        return <Tag>{children}</Tag>
-    }
+  return <Tag className={className}>{children}</Tag>
+}
 
-    export default Heading
+export default Heading

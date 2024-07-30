@@ -1,5 +1,3 @@
-import "./View.css"
-
 function View({
   tag: Tag = "div",
   className,
