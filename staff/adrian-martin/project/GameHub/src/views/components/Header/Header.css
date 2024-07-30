@@ -1,11 +1,8 @@
 .Header {
-    display: flex;
-    gap: 1rem;
     width: 100%;
-    height: 100px;
-    justify-content: right;
-    position: fixed;
-    top: 0;
-    box-sizing: border-box;
-    background-color: var(--second-color);
+    height: 5em;
+    background-color: var(--first-color);
+    display: flex;
+    justify-content: flex-start;
+
 }

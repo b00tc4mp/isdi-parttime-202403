@@ -7,11 +7,17 @@ import Home from './views/Home'
 import './App.css'
 
 function App() {
+
+    const handleUserLoggedOut = () => {
+        console.log('User has logged out')
+    }
+
     return <>
         <Routes>
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home onUserLoggedOut={handleUserLoggedOut} />} />
+            //add routes profile, sociallist
         </Routes>
     </>
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Burguer.css'
 
-const Burguer = () => {
+function Burguer({ children }) {
 
     // cambiar clases del burguer
     const [burguer_class, setBurguerClass] = useState('burger-bar unclicked')
@@ -22,21 +22,20 @@ const Burguer = () => {
     }
 
     return (
-        <div style={{ width: '100%', height: '100vh' }}>
-            <nav>
+        <div>
+            <div>
                 <div className='burger-menu' onClick={updateMenu}>
                     <div className={burguer_class} ></div>
                     <div className={burguer_class} ></div>
                     <div className={burguer_class} ></div>
                 </div>
-            </nav>
+            </div>
 
             <div className={menu_class}>
                 <div>
-                    <div>Game List</div>
-                    <div>Profile</div>
-                    <div>Social List</div>
-                    <div>Log Out</div>
+                    {React.Children.map(children, (child) => (
+                        <div>{child}</div>
+                    ))}
                 </div>
             </div>
         </div>
