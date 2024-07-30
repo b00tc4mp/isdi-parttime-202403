@@ -4,4 +4,8 @@
   .LoginForm {
     @apply flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-400 p-2;
   }
+
+  .Header {
+    @apply mb-5 flex w-full flex-col bg-[#754A00] p-1 text-center;
+  }
 }

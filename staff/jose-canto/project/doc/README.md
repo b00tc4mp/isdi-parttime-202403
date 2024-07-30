@@ -113,3 +113,16 @@
 - deliveryNotes([DeliveryNote.id])
 - observations (string, input, optional)
 - paymentType (string, bank transfer, credit, cash)
+
+### Blocks
+
+- API
+- APP
+- DB
+
+### Modules
+
+- api
+- app
+- db
+- doc

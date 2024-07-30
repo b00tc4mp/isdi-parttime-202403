@@ -5,7 +5,7 @@ import "./Login.css"
 import Title from "../Title"
 import Button from "../core/Button"
 import Field from "../core/Field"
-import logic from "../../../../api/logic"
+import logic from "../../logic"
 
 export default function Login() {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ export default function Login() {
 
     try {
       // prettier-ignore
-      logic.authenticateUser(username, password)
+      logic.loginUser(username, password)
         .then(() => {
           navigate("/")
         })
@@ -30,9 +30,12 @@ export default function Login() {
 
   return (
     <>
-      <form className="LoginForm" onSubmit={handleLoginSubmit}>
-        <Title>Login</Title>
+      <div className="Header">
+        <Title>FACTUCLIENT</Title>
+        <Title>WELCOME</Title>
+      </div>
 
+      <form className="LoginForm" onSubmit={handleLoginSubmit}>
         <Field id="username" type="text" placeholder="username">
           Username
         </Field>
