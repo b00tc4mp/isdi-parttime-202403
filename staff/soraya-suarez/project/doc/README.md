@@ -6,7 +6,7 @@
 
 ### Use Cases
 
-#### User | Admin
+User | Admin
 
 - Manage tasks
   - Add task
@@ -17,42 +17,33 @@
   - Available tasks
   - Private tasks
   - Completed tasks
-- Sign
 - Edit profile
-- Request vacation
-- Request resignation
-- See all employees and availables
-  - Profile picture
+- See all employees and only availables employees
+  - Profile avatar
   - Email
   - Name
   - Surname
+  - Phone number
 
-#### Admin
+Admin
 
-- Manage tasks
-  - Add task
-  - Modify task
-  - Delete task
-  - Assign task
-- View tasks
-  - Available tasks
-  - Private tasks
-  - Completed tasks
-- Sign
-- Edit profile
-- Request vacation
-- Request resignation
-- See all employees and availables
-  - Profile picture
-  - Email
-  - Name
-  - Surname
-  - Statistics
-  - Tasks
+- View an employee's tasks
 - Enroll employee
+- Unsubscribe employee
+
+#### Version 0.1
+
+User | Admin
+
+- Sign
+- Request vacation
+- Request resignation
+
+Admin
+
+- View an employee's statistics
 - Manage vacations
 - Manage sick leave
-- Unsubscribe employee
 
 ### UI Design
 
@@ -70,10 +61,11 @@
 - name (string, required)
 - surname (string, required)
 - phoneNumber (number, optional)
-- email (string, required)
-- password (string, required)
-- role (string, required, default regular, enum: regular|admin)
-- available (boolean, required, default true)
+- avatar (string)
+- email (string, unique, required)
+- password (string, required, hashed)
+- role (string, required, default user, enum: user|admin)
+- available (boolean, default true)
 - tasks ([Task.id])
 
 #### Task
