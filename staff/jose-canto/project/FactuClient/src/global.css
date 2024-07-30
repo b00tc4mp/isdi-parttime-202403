@@ -1,11 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @tailwind base;
 
 @layer base {
   body {
-    @apply w-full items-center justify-center bg-yellow-50;
+    @apply flex min-h-screen w-full flex-col bg-gradient-to-b from-white via-gray-200 to-gray-500;
+  }
+  .Main {
+    @apply flex w-full flex-grow flex-col items-center justify-center;
+  }
+
+  a {
+    @apply flex w-full flex-col items-center justify-center;
   }
 
   .Link {
-    @apply text-blue-600 underline;
+    @apply mt-4 font-black text-black;
   }
 }

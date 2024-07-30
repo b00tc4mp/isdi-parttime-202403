@@ -2,14 +2,21 @@
 
 @layer components {
   .Field {
-    @apply flex flex-col items-center justify-center bg-slate-400;
+    @apply flex flex-col items-center justify-center;
+  }
+
+  .Field > input {
+    @apply h-auto w-[18rem] rounded-2xl border-[2px] border-black bg-[#dbd6d0] p-2 text-center text-xl font-medium shadow-custom-shadow;
   }
 
   .Field > input::placeholder {
-    @apply text-red-400;
+    @apply text-center text-2xl text-gray-600;
   }
 
-  .Field > label {
-    @apply text-white;
+  .Container-icon {
+    @apply relative left-[-7.3rem] top-[2.1rem];
+  }
+  .Icon {
+    @apply text-2xl;
   }
 }

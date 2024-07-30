@@ -14,24 +14,29 @@ const loginUser = (username, password) => {
     },
     body: JSON.stringify(body)
   })
-
-    .catch(() => { throw new SystemError("connection error") })
-    .then(response => {
+    .catch(() => {
+      throw new SystemError("connection error")
+    })
+    .then((response) => {
       if (response.status === 200) {
-        return response.json()
-          .catch(() => { throw new SystemError("connection error") })
-          .then(token => sessionStorage.token = token)
+        return response
+          .json()
+          .catch(() => {
+            throw new SystemError("connection error")
+          })
+          .then((token) => (sessionStorage.token = token))
       }
-      return response.json()
-        .catch(() => { throw new SystemError("connection error") })
-        .then(body => {
+      return response
+        .json()
+        .catch(() => {
+          throw new SystemError("connection error")
+        })
+        .then((body) => {
           const { error, message } = body
           const constructor = errors[error]
           throw new constructor(message)
         })
     })
-
 }
 
 export default loginUser
-

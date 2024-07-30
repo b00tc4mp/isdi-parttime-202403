@@ -2,6 +2,14 @@
 
 @layer components {
   .Title {
-    @apply text-5xl text-orange-700;
+    @apply text-5xl text-black;
+  }
+
+  .FactuClient {
+    @apply text-5xl text-black;
+  }
+
+  .Welcome {
+    @apply text-5xl text-white;
   }
 }

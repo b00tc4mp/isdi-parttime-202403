@@ -1,19 +1,65 @@
 import { Link } from "react-router-dom"
 
-import Title from "../Title"
+import { FaUserEdit } from "react-icons/fa"
+import { IoListOutline } from "react-icons/io5"
+import { LiaFileInvoiceSolid } from "react-icons/lia"
+import { GoNote } from "react-icons/go"
+import { GiPapers } from "react-icons/gi"
+
+import Button from "../core/Button"
+import Footer from "../core/Footer"
+import Header from "../Header"
+
+import "./Home.css"
 
 export default function Home() {
   return (
     <>
-      <Title>Home</Title>
+      <Header>
+        <FaUserEdit />
+      </Header>
 
-      <Link className="Link" to="/login">
-        Login
-      </Link>
-      <br />
-      <Link className="Link" to="/register">
-        Register
-      </Link>
+      <main className="Home">
+        <Link to="/clients">
+          <Button>
+            <span className="Icon">
+              <IoListOutline />
+            </span>
+            Listado Clientes
+          </Button>
+        </Link>
+
+        <Link to="lastInvoices">
+          <Button>
+            <span className="Icon">
+              <GiPapers />
+            </span>
+            Ultimas Facturas
+          </Button>
+        </Link>
+
+        <Link to="createDelivery">
+          <Button>
+            <span className="Icon">
+              <GoNote />
+            </span>
+            Crear Albarán
+          </Button>
+        </Link>
+
+        <Link>
+          <Button>
+            <span className="Icon">
+              <LiaFileInvoiceSolid />{" "}
+            </span>
+            Crear Factura
+          </Button>
+        </Link>
+      </main>
+
+      <div className="ContainerFooter">
+        <Footer>FactuClient</Footer>
+      </div>
     </>
   )
 }

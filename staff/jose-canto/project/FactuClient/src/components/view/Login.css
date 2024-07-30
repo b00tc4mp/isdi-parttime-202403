@@ -2,10 +2,14 @@
 
 @layer components {
   .LoginForm {
-    @apply flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-400 p-2;
+    @apply relative top-4 flex w-full flex-col items-center justify-center gap-10 rounded-lg p-2;
   }
 
-  .Header {
-    @apply mb-5 flex w-full flex-col bg-[#754A00] p-1 text-center;
+  .Link {
+    @apply -mt-7 font-black text-black;
+  }
+
+  .Link-RegisterLogin {
+    @apply text-xl text-[#7f5003] underline;
   }
 }

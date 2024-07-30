@@ -1,9 +1,13 @@
 import "./index.css"
 
-export default function Title({ children }) {
+import Heading from "../core/Heading"
+
+export default function Title({ children, className, level }) {
   return (
     <>
-      <h1 className="Title">{children}</h1>
+      <Heading level={level} className={`"Title" ${className}`}>
+        {children}
+      </Heading>
     </>
   )
 }

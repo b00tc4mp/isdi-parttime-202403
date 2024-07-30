@@ -1,0 +1,29 @@
+@tailwind components;
+
+@layer components {
+  .Header {
+    @apply mb-5 flex h-32 w-full flex-col justify-center gap-2 bg-custom-gradient p-1 text-center;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .EditUsername {
+    @apply relative top-11 flex w-full flex-col items-center;
+  }
+
+  .EditIcon {
+    @apply text-[5rem];
+  }
+
+  .EditUsername p {
+    @apply text-xl;
+  }
+
+  .IconExit {
+    @apply relative bottom-16 flex w-full justify-end text-8xl;
+  }
+}

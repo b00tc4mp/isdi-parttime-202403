@@ -16,17 +16,21 @@ const registerUser = (username, email, password, passwordRepeat) => {
     },
     body: JSON.stringify(body)
   })
-
-    .catch(() => { throw new SystemError("connection error") })
-    .then(response => {
+    .catch(() => {
+      throw new SystemError("connection error")
+    })
+    .then((response) => {
       if (response.status === 201) {
         console.log("user registered")
         return
       }
 
-      return response.json()
-        .catch(() => { throw new SystemError("connection error") })
-        .then(body => {
+      return response
+        .json()
+        .catch(() => {
+          throw new SystemError("connection error")
+        })
+        .then((body) => {
           const { error, message } = body
           const constructor = errors[error]
           throw new constructor(message)

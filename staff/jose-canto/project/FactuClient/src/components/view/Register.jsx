@@ -7,6 +7,7 @@ import "./Register.css"
 import Title from "../Title"
 import Field from "../core/Field"
 import Button from "../core/Button"
+import Footer from "../core/Footer"
 
 export default function Register() {
   const navigate = useNavigate()
@@ -36,31 +37,34 @@ export default function Register() {
 
   return (
     <>
+      <div className="Header">
+        <Title level={1} className="FactuClient">
+          FACTUCLIENT
+        </Title>
+        <Title level={2} className="Welcome">
+          Bienvenido
+        </Title>
+      </div>
+
       <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
-        <Title>Register</Title>
+        <Field id="username" type="text" placeholder="username"></Field>
 
-        <Field id="username" type="text" placeholder="username">
-          Username
-        </Field>
+        <Field id="email" type="email" placeholder="email"></Field>
 
-        <Field id="email" type="email" placeholder="email">
-          Email
-        </Field>
+        <Field id="password" type="password" placeholder="password"></Field>
 
-        <Field id="password" type="password" placeholder="password">
-          Password
-        </Field>
+        <Field id="confirmPassword" type="password" placeholder="confirm password"></Field>
 
-        <Field id="confirmPassword" type="password" placeholder="confirm password">
-          Confirm Password
-        </Field>
+        <Button type="submit">Registrate</Button>
 
-        <Button type="submit">Register</Button>
+        <Link className="Link" to="/login">
+          Tienes cuenta? <span className="Link-RegisterLogin">Login</span>
+        </Link>
       </form>
 
-      <Link className="Link" to="/login">
-        Login
-      </Link>
+      <div className="ContainerFooter">
+        <Footer></Footer>
+      </div>
     </>
   )
 }

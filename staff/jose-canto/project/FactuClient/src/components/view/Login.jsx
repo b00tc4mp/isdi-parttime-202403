@@ -6,6 +6,7 @@ import Title from "../Title"
 import Button from "../core/Button"
 import Field from "../core/Field"
 import logic from "../../logic"
+import Footer from "../core/Footer"
 
 export default function Login() {
   const navigate = useNavigate()
@@ -31,25 +32,29 @@ export default function Login() {
   return (
     <>
       <div className="Header">
-        <Title>FACTUCLIENT</Title>
-        <Title>WELCOME</Title>
+        <Title level={1} className="FactuClient">
+          FACTUCLIENT
+        </Title>
+        <Title level={2} className="Welcome">
+          Bienvenido
+        </Title>
       </div>
 
       <form className="LoginForm" onSubmit={handleLoginSubmit}>
-        <Field id="username" type="text" placeholder="username">
-          Username
-        </Field>
+        <Field id="username" type="text" placeholder="Username"></Field>
 
-        <Field id="password" type="password" placeholder="password">
-          Password
-        </Field>
+        <Field id="password" type="password" placeholder="Password"></Field>
 
         <Button type="submit">Login</Button>
+
+        <Link className="Link" to="/register">
+          No tienes cuenta? <span className="Link-RegisterLogin">Registrate</span>
+        </Link>
       </form>
 
-      <Link className="Link" to="/register">
-        Register
-      </Link>
+      <div className="ContainerFooter">
+        <Footer></Footer>
+      </div>
     </>
   )
 }
