@@ -2,118 +2,117 @@
 
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
-Las aplicaciones personalizadas son herramientas diseñadas específicamente para satisfacer las necesidades particulares de una empresa. Estas aplicaciones pueden ofrecer una amplia gama de beneficios que pueden mejorar la eficiencia, la productividad y la competitividad. Algunas de las principales razones por las que son útiles: Adaptación a NECESIDADES Específicas, INTEGRACION con Sistemas Existentes, Mejora de la EFICIENCIA Operativa, SEGURIDAD y Recopilación y Análisis de Datos.
+Custom applications are tools designed specifically to meet the particular needs of a company. These applications can offer a wide range of benefits that can improve efficiency, productivity and competitiveness. Some of the main reasons why they are useful: Adaptation to Specific NEEDS, INTEGRATION with Existing Systems, Improvement of Operational EFFICIENCY, SECURITY and Data Collection and Analysis.
 
-### Registro y lista de Usuarios
+### Registration and list of Users
 
-### Casos de Usuario
+### User Cases
 
-### Administador
+### Administrator
 
-- Crear usuario
-- Eliminar usuario
-- Asignar sección
-- Acceso y uso de todas las secciones
+- Create user (name, password and assign section)
+- Delete user
+- Access and use of all sections
 
-### Usuario
+### User
 
-- Acceso y uso de la seccion asignada
+- Access and use of the assigned section
 
 ![Login - Registro de usuarios y listado de usuarios](usuarios.png)
 
-### Almacen e Inventario
+### Warehouse and Inventory
 
-El inventario sera un registro detallado de los residuos que la empresa almacena, y es fundamental para la gestión eficiente de los recursos. 
+The inventory will be a detailed record of the waste that the company stores, and is essential for the efficient management of resources. 
 
-Aquí tienes algunas razones clave por las cuales es necesario mantener un inventario: control real de existencias, optimizar recursos, evitar accidentes y ayudar en la planificacion y toma de decisiones.
+Here are some key reasons why it is necessary to maintain an inventory: real stock control, optimize resources, avoid accidents and help in planning and decision making.
 
 ![Almacen](https://media2.giphy.com/media/VnKkglxCbWsg6CLHtR/giphy.webp?cid=790b76116t7fael4s77gqms15dct1h0c9t39ei9f3yafdk04&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
-## Almacen
+## Store
 
-Solo podra acceder el usuario que tenga asignada esta seccion (almacen:inventario, estancados, datos y buscar)
+Only the user assigned to this section will be able to access it (warehouse: inventory, stagnant, data and search).
 
-## Inventario
+## Inventory
 
-El usuario podra hacer registro de los residuos:
+The user will be able to register the waste:
 
-    - LER: Desplegable y filtro de listado Europeo de Residuos.
-    - Acondicionamiento o almacenado en: GRG, Palet, Big Bag, Bidones de 200 o de inferior tamaño.
-    - Peso: indicado en kilogramos.
-    - Estancado: marcar cuando el residuo se encuentra almacenado (minimo un mes) durante un periodo prolongado.
+    - LER: European Waste list drop-down and filter.
+    - Conditioning or stored in: GRG, Pallet, Big Bag, Drums of 200 or smaller size.
+    - Weight: indicated in kilograms.
+    - Stagnant: mark when the waste is stored (minimum one month) for a long period.
 
-En el inventario el usuario podra ver los residuos registrados donde se mostraran agrupados por LER y diferenciados por su acondicionamiento e indicando su peso en kg.
+In the inventory the user will be able to see the registered waste where they will be grouped by LER and differentiated by their packaging and indicating their weight in kg.
 
-## Estancados
+## Stagnant
 
-Usuario pueden consultar cuales son los residuos se encuentra almacenados (minimo un mes) durante un periodo prolongado.
+Users can consult which waste is stored (minimum one month) for an extended period.
 
-## Datos
+## Data
 
-- Trabajores pueden consultar resumen de los datos registrados en inventario:
-    - Grafica horizontal
-    - Cantidad total en kg por LER (residuo)
+- Workers can consult a summary of the data recorded in inventory:
+    - Horizontal graph
+    - Total amount in kg per LER (residue)
 
-## Buscar
+## Look for
 
-El usuario puede buscar todos los residuos registrados con un LER especifico:
-    - Introducir un LER en el buscador
-    - Eliminar un registro insertado
+The user can search for all waste registered with a specific LER:
+    - Enter an LER in the search engine
+    - Delete an inserted record
 
 ![Almacen - Inventario, estancados, separados y buscar](inventario.png)
 
-### Salidas y Cargas de Trailer
+### Trailer Departures and Loads
 
-Preparar una lista de la carga de un camión es fundamental por varias razones, tanto logísticas como de seguridad y eficiencia operativa. algunas de las razones más importantes: optimizar espacio, seguridad o evitar accidentes, seguimiento o trazabilidad y ayudar en la planificacion y toma de decisiones.
+Preparing a truck load list is essential for several reasons, both logistical, safety and operational efficiency. some of the most important reasons: optimize space, safety or avoid accidents, monitoring or traceability and help in planning and decision making.
 
 ![Carga](https://media3.giphy.com/media/QTFhZj677ZnuSvVwt7/200.webp?cid=ecf05e47lg08yr00zqqvzb39tew2hr02vai2anwyi3oyq1rp&ep=v1_gifs_search&rid=200.webp&ct=g)
 
-## Salidas
+## Departures
 
-Solo podra acceder el usuario que tenga asignada esta seccion (salidas:trailer1, trailer2, trailer3 y buscar)
+Only the user assigned to this section will be able to access it (outputs: trailer1, trailer2, trailer3 and search)
 
-## Trailer 1,2 y 3
+## Trailer 1,2 and 3
 
-El usuario podra hacer un registro de los residuos que se cargaran en el trailer, podra indicar:
+The user will be able to make a record of the waste that will be loaded into the trailer, and will be able to indicate:
 
-    - LER: Desplegable y filtro de listado Europeo de Residuos.
-    - Acondicionamiento del residuo: GRG, Palet, Big Bag, Bidones de 200 o de inferior tamaño.
-    - Peso: indicado en kilogramos.
+    - LER: European Waste list drop-down and filter.
+    - Waste packaging: GRG, Pallet, Big Bag, Drums of 200 or smaller size.
+    - Weight: indicated in kilograms.
 
-## Buscar
+## Look for
 
-El usuario puede buscar todos los residuos registrados para cargar en los trailers con un LER especifico:
-    - Introducir un LER en el buscador
-    - Eliminar un registro insertado
-    - Se mostrara diferenciado por TRAILER1-3
+The user can search for all waste registered to load on trailers with a specific LER:
+    - Enter an LER in the search engine
+    - Delete an inserted record
+    - It will be shown differentiated by TRAILER1-3
 
 ![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](salidas.png)
 
-### Vehiculo y Mantenimiento
+### Vehicle and Maintenance
 
-Hacer un seguimiento del estado de los vehículos es crucial por varias razones que abarcan la seguridad, el rendimiento operativo, la economía y el cumplimiento normativo. Algunas de las razones que justifican hacerlo: seguridad de todos, optiminar uso y evitar inactividad, económica, cumplir las leyes, por el medio ambiente y ayudar en la planificacion y toma de decisiones.
+Tracking vehicle health is crucial for several reasons spanning safety, operational performance, economics and regulatory compliance. Some of the reasons that justify doing so: everyone's safety, optimizing use and avoiding downtime, economic, complying with laws, for the environment and helping in planning and decision-making.
 
 ![Mantenimiento](https://media0.giphy.com/media/O6gydbyHcE9YQ/200.webp?cid=790b7611djdgjbyq56q6swvjde2j6u2l5kbr3bpwagzy3758&ep=v1_gifs_search&rid=200.webp&ct=g)
 
-## Vehiculos
+## Vehicles
 
-Solo podra acceder el usuario que tenga asignada de esta seccion, un vehiculo especifico (furgo1, furgo2, camion1, camion2, camion3,camion4 y buscar)
+Only the user assigned to this section will be able to access a specific vehicle (van1, van2, truck1, truck2, truck3, truck4 and search).
 
-## Furgo1 (ejemplo)
+## Van1 (example)
 
-El usuario podra hacer un seguimiento o revision del estado del vehiculo asignado, mediante un checklist o un formulario.
+The user will be able to track or review the status of the assigned vehicle, using a checklist or a form.
 
-Partes que hay que vigilar o revisar:
-    - Documentacion
-    - Luces
-    - Motor
-    - Freno
-    - Neumaticos
-    - Transmision
-    - Zona del conductor
-    - Zona de la carga
-    - Carroceria
-    - Accesorios basicos
-    - Accesorios ADR
+Parts to monitor or review:
+    - Documentation
+    - Lights
+    - Engine
+    - Brake
+    - Tires
+    - Transmission
+    - Driver's area
+    - Cargo area
+    - Bodywork
+    - Basic accessories
+    - ADR accessories
 
 ![Vehiculos - Furgo 1, Furgo 2, Camion 1...](vehiculos.png)
