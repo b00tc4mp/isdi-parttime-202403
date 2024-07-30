@@ -6,7 +6,7 @@ RecipeBox is a modern recipe management application built with React, Tailwind C
 
 ## Functional
 
-### Use case
+### Use cases
 
 ### User
 
@@ -41,6 +41,7 @@ RecipeBox is a modern recipe management application built with React, Tailwind C
 
 - id (auto)
 - name (string, required)
+- surname (string, required)
 - username (string, required)
 - email (string, required)
 - password(string, required)
@@ -51,10 +52,13 @@ RecipeBox is a modern recipe management application built with React, Tailwind C
 
 - id (auto)
 - author (user.id)
-- titleRecipes (string, required)
-- imageRecipes (string, required)
-- recipeIngredients (string, required)
-- recipesInstructions (string, required)
+- link(string)
+- source(string)
+- title (string, required)
+- thumbnail (string, required)
+- date(date, required)
+- Ingredients (string, required)
+- Instructions (string, required)
 - rating (number, required)
 - cookTime (number, required)
 
