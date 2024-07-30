@@ -1,7 +1,6 @@
 import Field from '../../components/core/Field'
 import Heading from '../../components/core/Heading'
 import logic from '../../logic'
-import './CreatePostForm.css'
 import Button from '../../components/core/Button'
 import FormWithFeedback from '../../components/library/FormWithFeedback'
 

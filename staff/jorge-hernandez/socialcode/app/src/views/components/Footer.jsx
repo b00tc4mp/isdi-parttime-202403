@@ -1,5 +1,3 @@
-import './Footer.css'
-
 import Button from '../../components/core/Button'
 
 function Footer({ onCreatePostClick }) {

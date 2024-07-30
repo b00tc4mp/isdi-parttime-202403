@@ -2,7 +2,6 @@ import Image from '../../components/core/Image'
 import Heading from '../../components/core/Heading'
 import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
-import './Post.css'
 import logic from '../../logic'
 import View from '../../components/library/View'
 
