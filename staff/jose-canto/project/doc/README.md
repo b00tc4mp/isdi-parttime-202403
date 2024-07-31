@@ -85,6 +85,7 @@
 - companyLogo (optional)
 - role (string, customer / company)
 - password (string, required)
+- manager (User.id)
 
 ### DeliveryNote
 
