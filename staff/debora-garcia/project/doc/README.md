@@ -26,8 +26,8 @@ Level Up allows users to generate and customize workouts, track personal bests a
     - Save workouts with results
     - Optionally share workouts on the feed
 - **Achievements**
-    - **Activity**: View all recorded workouts
-    - **Analytics**: Calculate and estimate weights and repetitions based on personal bests
+    - Activity: View all recorded workouts
+    - Analytics: Calculate and estimate weights and repetitions based on personal bests
 
 
 - Add friends to circle ??
