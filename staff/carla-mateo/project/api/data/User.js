@@ -1,4 +1,6 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
+
+const { ObjectId } = Types
 
 const user = new Schema({
     name: {
@@ -17,7 +19,19 @@ const user = new Schema({
     password: {
         type: String,
         require: true
-    }
+    },
+    avatar: {
+        type: String
+    },
+    role: {
+        type: String,
+        enum: ['admin', 'user'],
+
+    },
+    parent: {
+        type: ObjectId,
+        ref: 'User',
+    },
 })
 
 const User = model('User', user)

@@ -1,12 +1,12 @@
-import { User } from '../data/index.js'
+import { User } from '../data/idex.js'
 import { DuplicityError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const registerUser = (name, email, username, password, passwordRepeat) => {
+const registerAdmin = (name, username, email, password, passwordRepeat) => {
     validate.name(name)
-    validate.email(email)
     validate.username(username)
+    validate.email(email)
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
@@ -21,9 +21,13 @@ const registerUser = (name, email, username, password, passwordRepeat) => {
 
                     const newUser = {
                         name: name,
-                        email: email,
                         username: username,
-                        password: hash
+                        email: email,
+                        password: hash,
+                        avatar: " ",
+                        role: "admin"
+
+
                     }
 
                     return User.create(newUser)
@@ -33,4 +37,4 @@ const registerUser = (name, email, username, password, passwordRepeat) => {
         })
 }
 
-export default registerUser
+export default registerAdmin

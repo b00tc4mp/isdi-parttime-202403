@@ -1,0 +1,1 @@
+curl -X POST http://localhost:9090/users -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmFhMWE0YmFjM2NjM2I3NGM0ZGJlYjciLCJpYXQiOjE3MjI0MjQwMjIsImV4cCI6MTcyMzAyODgyMn0.g8P6o8LOqgT8Kpxb9gcDhuf5ITQrwzA2HMQJVNARa_Y " -d '{"username":"odin", "email":"odin@email.com", "password":"1234"}' -v

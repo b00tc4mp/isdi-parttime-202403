@@ -8,26 +8,37 @@ An application to share tasks, calendar, shopping list and more, between members
 
 ## <span style="color:green;">Functional</span>
 
-### Use Case
+### Use Cases
 
 Admin
 
-- create group 
-- choose the avatar
-- create different prfoiles
-- delete profiles
-- delete group
+- set avatar
+- create user
+- edit user
+- delete user
+- edit task
 - delete task
-- delete events
-- delete things to the shopping list
 
 
-Admin | Profile
+Admin | User
+ 
+- view timed tasks(calendar)
+- create task
+- mark task
+- view tasks
 
-- create events in the calendar
-- create check list
-- check off the task
-- add things to the shopping list
+
+#### version 0.1
+Admin 
+
+- delete item from shopping list
+
+
+
+Admin | User
+
+- add item to shopping list
+- view shopping list
 
 
 ### UI Design
@@ -51,30 +62,24 @@ Admin | Profile
 
 ### Data Model
 
-Admin
+User
 
 - id (auto)
-- name (string, require)
-- username (string, require)
-- email (string, require, unique)
+- name (string, required)
+- username (string, required)
+- email (string, unique)
 - password (string, required, hashed)
-- name home(string)
-- avatar ([string])
-- profile(string)
+- avatar (string)
+- role(string, enum: admin | user)
+- parent(User.id)
 
 
-To do
+Task
 
-- profile(string)
-- description(string)
-- check(string)
-
-Shopping List
-
-- title(string)
-
-Event
-
-- profile(string)
-- title(string)
+- id (auto)
+- title(string, required)
+- done(boolean, default false)
 - date(Date)
+- parent(User.id)
+
+
