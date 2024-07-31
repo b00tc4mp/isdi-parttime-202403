@@ -51,20 +51,20 @@ Admin
 
 #### Search for Artists by Autonomous Community
 
-Filtros de Búsqueda:
+Search Filters:
 
-- Tipo de Artista: [Músicos, Pintores, Magos, etc.]
-- Ciudad del evento
-- Fecha del evento
+- Type of Artist: [Musicians, Painters, Magicians, etc.]
+- Event City
+- Event Date
 
-Resultados de la Búsqueda:
+Search Results:
 
-- Nombre del Artista
-- Especialidad
-- Experiencia: [Descripción de la Experiencia del Artista]
-- Imágen
-- Botón Contacto
-- Media de sus valoraciones
+- Artist Name
+- Specialty
+- Experience: [Artist's Experience Description]
+- Image
+- Contact Button
+- Average Rating
 
 ## Technical
 

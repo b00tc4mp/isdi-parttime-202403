@@ -1,0 +1,175 @@
+import Field from '../components/Field'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+import logic from '../logic/index'
+
+function Register({ onLoginClick }) {
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault()
+
+    const form = e.target
+
+    const name = form.name.value
+    const artisticName = form.artisticName.value
+    const discipline = form.discipline.value
+    const description = form.description.value
+    const email = form.email.value
+    const city = form.city.value
+    const images = form.images.value
+    const video = form.video.value
+    const password = form.password.value
+    const passwordRepeat = form.passwordRepeat.value
+
+    try {
+      logic.registerUser(
+        name,
+        artisticName,
+        discipline,
+        city,
+        description,
+        email,
+        images,
+        video,
+        password,
+        passwordRepeat
+      )
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+  const handleLoginClick = (e) => {
+    e.preventDefault()
+
+    onLoginClick()
+  }
+  return (
+    <>
+      <Header
+        isArtistHomeVisible={false}
+        onClick={handleLoginClick}
+        loginButtonChildren={'Login'}
+      >
+        Registro{' '}
+      </Header>
+
+      <form
+        onSubmit={handleRegisterSubmit}
+        className='flex flex-col gap-5'
+        action=''
+      >
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          labelChildren='Nombre completo'
+          htmlFor='name'
+          id='name'
+          type='text'
+          inputClass='h-8 rounded p-2'
+          placeholder='Nombre y Apellidos'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelChildren='Nombre artístico'
+          labelClass='text-white'
+          htmlFor='artisticName'
+          inputClass='h-8 rounded p-2'
+          type='text'
+          id='artisticName'
+          placeholder='Nombre artístico, nombre del grupo...'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='email'
+          labelChildren='E-mail'
+          inputClass='h-8 rounded p-2'
+          type='email'
+          id='email'
+          placeholder='ejemplo@ejemplo.com'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='city'
+          labelChildren='Ciudad'
+          inputClass='h-8 rounded p-2'
+          type='text'
+          id='city'
+          placeholder='Madrid, Barcelona'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='discipline'
+          labelChildren='Disciplina'
+          inputClass='h-8 rounded p-2'
+          type='text'
+          id='discipline'
+          placeholder='mago, músico...'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='description'
+          labelChildren='Describe tu espectáculo'
+          inputClass='h-8 rounded p-2'
+          type='text'
+          id='description'
+          placeholder='describe tu espectáculo'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='images'
+          labelChildren='Imágen'
+          inputClass='h-8 rounded p-2'
+          type='text'
+          id='images'
+          placeholder='Link de foto'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='video'
+          labelChildren='Video'
+          inputClass='h-8 rounded p-2'
+          type='text'
+          id='video'
+          placeholder='link de youtube'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='password'
+          labelChildren='Contraseña'
+          inputClass='h-8 rounded p-2'
+          type='password'
+          id='password'
+          placeholder='Escribe una contraseña'
+        ></Field>
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='passwordRepeat'
+          labelChildren='Repite la Contraseña'
+          inputClass='h-8 rounded p-2'
+          type='password'
+          id='passwordRepeat'
+          placeholder='Repite la contraseña'
+        ></Field>
+
+        <Footer>Registrar</Footer>
+      </form>
+    </>
+  )
+}
+export default Register
