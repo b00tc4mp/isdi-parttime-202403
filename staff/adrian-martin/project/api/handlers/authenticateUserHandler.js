@@ -11,7 +11,7 @@ export default (req, res, next) => {
     try {
         logic.authenticateUser(username, password)
             .then(userId => {
-                jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
+                jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '10d' })
                     .then(token => {
                         console.log(`User ${username} authenticated`)
 

@@ -2,9 +2,9 @@ import 'dotenv/config'
 import authenticateUser from './authenticateUser.js'
 import mongoose from 'mongoose'
 
-const { MONGODB_URL_TEST } = process.env
+const { MONGODB_URL } = process.env
 
-mongoose.connect(MONGODB_URL_TEST)
+mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
             authenticateUser('AdrianGon', '123123')

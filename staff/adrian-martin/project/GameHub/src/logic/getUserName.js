@@ -11,6 +11,21 @@ const getUserName = () => {
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(response => {
+            if (response.status === 200)
+                return response.json()
+                    .catch(() => { throw new SystemError('Connection error') })
+                    .then(username => username)
 
+            return response.json()
+                .catch(() => { throw new SystemError('Connection error') })
+                .then(body => {
+                    const { error, message } = body
+
+                    const constructor = errors[error]
+
+                    throw new constructor(message)
+                })
         })
 }
+
+export default getUserName

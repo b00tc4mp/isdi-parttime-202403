@@ -3,18 +3,24 @@ const { JWT_SECRET } = process.env
 import logic from '../logic/index.js'
 import { CredentialError } from 'com/errors.js'
 
-export default (req, res, next) => {
+export default ((req, res, next) => {
     try {
         const token = req.headers.authorization.slice(7)
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
+                console.log('Payload', payload)
+
                 const { sub: userId } = payload
                 const { targetUserId } = req.params
 
                 try {
                     logic.getUserName(userId, targetUserId)
-                        .then(name => res.json(name))
+                        .then(username => {
+                            console.log('Username found:', username)
+
+                            res.json(username)
+                        })
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
@@ -24,4 +30,4 @@ export default (req, res, next) => {
     } catch (error) {
         next(error)
     }
-}
+})

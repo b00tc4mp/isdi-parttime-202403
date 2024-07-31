@@ -6,8 +6,8 @@ import mongoose from 'mongoose'
 import {
     registerUserHandler,
     authenticateUserHandler,
-    getUserNameHandler,
     errorHandler,
+    getUserNameHandler,
 } from './handlers/index.js'
 
 const { PORT, MONGODB_URL } = process.env
@@ -27,7 +27,7 @@ mongoose.connect(MONGODB_URL)
 
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
 
-        api.get('./users/:targetUserId', getUserNameHandler)
+        api.get('/users/:targetUserId', getUserNameHandler)
 
         api.use(errorHandler)
 

@@ -1,14 +1,14 @@
 import 'dotenv/config'
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 
 import getUserName from './getUserName.js'
-const { MONGODB_URL_TEST } = process.env
+const { MONGODB_URL } = process.env
 
-mongoose.connect(MONGODB_URL_TEST)
+mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getUserName('66a756d17578edb80eb6834e', '66a93ff3e13670e3860d273d')
-                .then(name => console.log('user name retrieved', name))
+            getUserName('66a9e32f031b287a5e80a77a', '66a9e33d6fc36f64e9967e22')
+                .then(username => console.log('username retrieved', username))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
