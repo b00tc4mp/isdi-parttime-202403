@@ -25,8 +25,7 @@ const registerUser = (username, email, password, passwordRepeat) => {
         return
       }
 
-      return response
-        .json()
+      return response.json()
         .catch(() => {
           throw new SystemError("connection error")
         })

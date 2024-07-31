@@ -5,10 +5,6 @@
     @apply relative flex w-full flex-col items-center justify-center gap-3 rounded-lg p-7;
   }
 
-  .Link {
-    @apply -mt-7 font-black text-black;
-  }
-
   .Link-RegisterLogin {
     @apply text-xl text-[#7f5003] underline;
   }

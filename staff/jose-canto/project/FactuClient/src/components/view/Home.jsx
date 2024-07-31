@@ -15,12 +15,10 @@ import "./Home.css"
 export default function Home() {
   return (
     <>
-      <Header>
-        <FaUserEdit />
-      </Header>
+      <Header icon={<FaUserEdit />}>Nombre de Usuario</Header>
 
       <main className="Home">
-        <Link to="/clients">
+        <Link to="/customers">
           <Button>
             <span className="Icon">
               <IoListOutline />

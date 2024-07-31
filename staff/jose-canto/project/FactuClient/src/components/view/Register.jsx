@@ -42,7 +42,7 @@ export default function Register() {
           FACTUCLIENT
         </Title>
         <Title level={2} className="Welcome">
-          Bienvenido
+          ¡¡Bienvenido!!
         </Title>
       </div>
 
@@ -57,8 +57,12 @@ export default function Register() {
 
         <Button type="submit">Registrate</Button>
 
-        <Link className="Link" to="/login">
-          Tienes cuenta? <span className="Link-RegisterLogin">Login</span>
+        <Link to="/login">
+          <div className="Link">
+            <p>
+              ¿Tienes cuenta? <span className="Link-RegisterLogin">Login</span>
+            </p>
+          </div>
         </Link>
       </form>
 

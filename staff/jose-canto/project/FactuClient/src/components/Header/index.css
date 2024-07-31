@@ -12,7 +12,7 @@
   }
 
   .EditUsername {
-    @apply relative top-11 flex w-full flex-col items-center;
+    @apply relative flex w-full flex-col items-center;
   }
 
   .EditIcon {
@@ -24,6 +24,6 @@
   }
 
   .IconExit {
-    @apply relative bottom-16 flex w-full justify-end text-8xl;
+    @apply absolute right-2 top-2 flex text-7xl;
   }
 }

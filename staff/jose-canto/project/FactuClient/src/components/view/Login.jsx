@@ -36,7 +36,7 @@ export default function Login() {
           FACTUCLIENT
         </Title>
         <Title level={2} className="Welcome">
-          Bienvenido
+          ¡¡Bienvenido!!
         </Title>
       </div>
 
@@ -47,8 +47,12 @@ export default function Login() {
 
         <Button type="submit">Login</Button>
 
-        <Link className="Link" to="/register">
-          No tienes cuenta? <span className="Link-RegisterLogin">Registrate</span>
+        <Link to="/register">
+          <div className="Link">
+            <p>
+              ¿No tienes cuenta? <span className="Link-RegisterLogin">Registrate</span>
+            </p>
+          </div>
         </Link>
       </form>
 
