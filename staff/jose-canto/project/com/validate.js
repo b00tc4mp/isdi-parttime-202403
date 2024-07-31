@@ -1,4 +1,3 @@
-
 import { ContentError, MatchError } from "./errors.js";
 
 export const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\) ]{1,}$/
@@ -6,6 +5,11 @@ export const USERNAME_REGEX = /^[\w-]+$/
 export const PASSWORD_REGEX = /^[a-zA-Z0-9-_$%&=\[\]\{\}\<\>\(\)]{4,}$/
 export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 export const ID_REGEX = /^[0-9a-z-_]+$/i
+export const NIF_CIF_REGEX = /^[0-9]{8}[A-Z]|^[A-HJ-NP-SUVW][0-9]{7}[0-9A-J]?$/
+export const PHONE_REGEX = /^(6|7|8|9)\d{8}$/
+export const COMPANY_NAME_REGEX = /^[a-zA-Z0-9 ,.&]+$/
+export const ADDRESS_REGEX = /^[a-zA-Z0-9 ,.]+$/
+
 
 function validateName(name, explain = "name") {
   if (typeof name !== "string" || !NAME_REGEX.test(name)) {
@@ -53,6 +57,28 @@ function validateId(id, explain = 'id') {
     throw new ContentError(`❌ ${explain} is not valid ❌`)
   }
 }
+function validateTaxId(taxId, explain = "NIF/CIF") {
+  if (typeof taxId !== "string" || !NIF_CIF_REGEX.test(taxId)) {
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
+  }
+}
+
+function validatePhoneNumber(phone, explain = "phone number") {
+  if (typeof phone !== "string" || !PHONE_REGEX.test(phone)) {
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
+  }
+}
+
+function validateCompanyName(companyName, explain = "company name") {
+  if (typeof companyName !== "string" || !COMPANY_NAME_REGEX.test(companyName)) {
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
+  }
+}
+function validateAddress(address, explain = "address") {
+  if (typeof address !== "string" || !ADDRESS_REGEX.test(address)) {
+    throw new ContentError(`❌ ${explain} is not valid ❌`)
+  }
+}
 
 const validate = {
   name: validateName,
@@ -62,7 +88,11 @@ const validate = {
   email: validateEmail,
   text: validateText,
   url: validateUrl,
-  id: validateId
+  id: validateId,
+  taxId: validateTaxId,
+  phone: validatePhoneNumber,
+  companyName: validateCompanyName,
+  address: validateAddress,
 }
 
 export default validate
