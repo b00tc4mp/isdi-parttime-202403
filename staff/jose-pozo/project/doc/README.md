@@ -1,23 +1,28 @@
-# Cool Steps
+# DAILY PLANNER 📆
 
-An app for renting and lending ladders.
+Daily Planner is an application designed for professionals who need to efficiently manage their appointment schedules. This tool not only allows you to schedule and organize appointments with clients but also maintain a detailed database of each one, including their history and specific treatments.
 
-![](https://media.giphy.com/media/m9pvbkBJzOY9Mt0dSm/giphy.gif?cid=790b761118teuaz0ojtj0vsytuoevmgff91t460gpic3jk80&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+![Texto alternativo](../public/images/daily-planner-gif.webp)
 
 ## Functional
 
 ### Use Cases
 
-User | Admin | Root
+Provider
 
-- publish a ladder (for renting or selling)
-- search ladders (with filter)
-- rent a ladder (by day, period, ...)
-- buy a ladder
-- chat with ladder owner
-- report a ladder owner
-- see owner reviews (by rating)
-- see ladder reviews (by rating)
+- Create client
+- Delete client
+- Edit client
+- Make an appointment
+- Delete appointment
+- Edit appointment
+- Create service
+- Delete service
+- Edit service
+- Send messages
+- Create profile
+- configure app
+- Send mails (remainders, info, etc...)
 
 Admin | Root
 
@@ -46,41 +51,38 @@ Root
 User
 
 - id (auto)
-- name (string, required)
-- surname (string, required)
-- email (string, required)
-- password (string, required)
-- role (string, required, default regular, enum: regular|admin|root)
+- name (string)
+- surname (string)
+- email (string)
+- password (string)
+- role (string, enum: customer|provider)
+- phone (string, optional)
 
-Ladder
-
-- id (auto)
-- owner (User.id, required)
-- title (string, required)
-- description (string, required)
-- type (string, required, default plain, enum: plain|angular|extensible|...|other)
-- height (number, required)
-- weight (number, required)
-- maxLoad (number, required)
-- age (number, required)
-- material (string, required, enum: wood|aluminium|...|other)
-- brand (string)
-- model (string)
-- price (number, required)
-- kind (string, required, enum: renting|sale)
-- address (string, required)
-
-Deal
+Service
 
 - id (auto)
-- provider (User.id, required)
-- customer (User.id, required)
-- ladder (Ladder.id, required)
-- type (string, required, enum: renting|sale)
-- date (date, required)
-- price (number, required)
-- fromDate (date)
-- toDate (date)
-- deposit (number)
+- title (string)
+- duration (number)
+- price (number)
+- description (string)
+- provider (User.id)
 
-...
+Booking
+
+- id (auto)
+- service (Service.id)
+- date (Date)
+- user (User.id)
+
+Provider
+
+- id (auto)
+- user (User.id)
+- customers ([User.id])
+
+Note
+
+- id (auto)
+- provider (User.id)
+- customer (User.id)
+- text (string)

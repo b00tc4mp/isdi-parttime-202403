@@ -1,0 +1,42 @@
+@tailwind base;
+
+@layer base {
+  * {
+    @apply font-inherit min-w-0;
+  }
+
+  *,
+  ::before,
+  ::after {
+    @apply box-border;
+  }
+
+  img,
+  video,
+  svg {
+    @apply block h-auto max-w-full;
+  }
+
+  body {
+    @apply h-min-dvh m-0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-wrap-balance;
+  }
+
+  p {
+    @apply text-wrap-pretty;
+  }
+}
+
+:root {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}

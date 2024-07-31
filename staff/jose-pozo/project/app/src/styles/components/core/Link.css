@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .Link {
+    @apply m-2 rounded border-2 border-solid border-black p-2;
+  }
+}

@@ -1,0 +1,33 @@
+@tailwind utilities;
+
+/* Utilidades personalizadas */
+
+@layer utilities {
+  .font-inherit {
+    font: inherit; /* el elemento hereda todas las propiedades de su elemento padre */
+  }
+
+  .h-dvh {
+    height: 100dvh; /* 100% del Dynamic View Height */
+  }
+
+  .w-dvw {
+    width: 100dvw; /* 100% del Dynamic View Width */
+  }
+
+  .h-min-dvh {
+    min-height: 100dvh; /* Mínimo del 100% del Dynamic View Height */
+  }
+
+  .w-min-dvw {
+    min-width: 100dvw; /* Mínimo del 100% del Dynamic View Width */
+  }
+
+  .text-wrap-balance {
+    text-wrap: balance; /* Agrega soporte para text-wrap: balance */
+  }
+
+  .text-wrap-pretty {
+    text-wrap: pretty; /* Agrega soporte para text-wrap: pretty */
+  }
+}
