@@ -1,27 +1,27 @@
-import jwt from '../util/jsonwebtoken-promised.js'
-const { JWT_SECRET } = process.env
-import logic from '../logic/index.js'
-import { CredentialError } from 'com/errors.js'
+import "dotenv/config"
+import logic from "../logic/index.js"
+import jwt from "../util/jsonwebtoken-promised.js"
+import { CredentialError } from "com/errors.js"
 
-export default ((req, res, next) => {
+const { JWT_SECRET } = process.env
+
+export default (req, res, next) => {
     try {
         const token = req.headers.authorization.slice(7)
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
-                // console.log('Payload', payload)
-
                 const { sub: userId } = payload
-                const { targetUserId } = req.params
 
+                const { username } = req.body
                 try {
-                    logic.getUserName(userId, targetUserId)
-                        .then(username => {
-                            // console.log('Username found:', username)
 
-                            res.json(username)
+                    logic.editUsername(userId, username)
+                        .then(() => {
+                            res.status(200).send()
                         })
                         .catch(error => next(error))
+
                 } catch (error) {
                     next(error)
                 }
@@ -30,4 +30,4 @@ export default ((req, res, next) => {
     } catch (error) {
         next(error)
     }
-})
+}

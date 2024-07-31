@@ -46,13 +46,22 @@ class NotFoundError extends Error {
     }
 }
 
+class ValidateError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
 export {
     ContentError,
     MatchError,
     DuplicityError,
     SystemError,
     CredentialError,
-    NotFoundError
+    NotFoundError,
+    ValidateError
 }
 
 const errors = {
@@ -61,7 +70,8 @@ const errors = {
     DuplicityError,
     SystemError,
     CredentialError,
-    NotFoundError
+    NotFoundError,
+    ValidateError
 }
 
 export default errors

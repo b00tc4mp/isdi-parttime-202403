@@ -8,6 +8,7 @@ import {
     authenticateUserHandler,
     errorHandler,
     getUserNameHandler,
+    editUsernameHandler,
 } from './handlers/index.js'
 
 const { PORT, MONGODB_URL } = process.env
@@ -28,6 +29,8 @@ mongoose.connect(MONGODB_URL)
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
 
         api.get('/users/:targetUserId', getUserNameHandler)
+
+        api.path('profile/:userId/editUsername', jsonBodyParser, editUsernameHandler)
 
         api.use(errorHandler)
 
