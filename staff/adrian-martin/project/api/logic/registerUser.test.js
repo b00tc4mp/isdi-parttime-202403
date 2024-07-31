@@ -7,12 +7,20 @@ const { MONGODB_URL_TEST } = process.env
 mongoose.connect(MONGODB_URL_TEST)
     .then(() => {
         try {
-            registerUser('Adrian', 'AdrianGon', 'adrian@gon.com', '123123')
+            registerUser('Inaki', 'Barrera', 'inaki@barrera.com', '123123')
                 .then(() => console.log('User created'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
         }
+
+        // try {
+        //     registerUser('Adrian', 'AdrianGon', 'adrian@gon.com', '123123')
+        //         .then(() => console.log('User created'))
+        //         .catch(error => console.error(error))
+        // } catch (error) {
+        //     console.error(error)
+        // }
 
     })
     .catch(error => console.error(error))

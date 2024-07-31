@@ -4,6 +4,8 @@ import Register from './views/Register'
 import Login from './views/Login'
 import Home from './views/Home'
 
+import Profile from './views/components/Profile'
+
 import './App.css'
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/' element={<Home onUserLoggedOut={handleUserLoggedOut} />} />
-            //add routes profile, sociallist
+            <Route path='/profile' element={<Profile />} />
         </Routes>
     </>
 }
