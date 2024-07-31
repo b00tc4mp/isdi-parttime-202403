@@ -30,10 +30,9 @@ const registerUser = (username, email, password, passwordRepeat) => {
             taxId: "",
             phone: "",
             bankAccount: "",
-            role: "",
+            role: "user",
             companyLogo: ""
           }
-
           return User.create(newUser)
             .catch((error) => { throw new SystemError(error.message) })
             .then(() => { })

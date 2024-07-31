@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose"
+const { ObjectId } = Schema.Types
 
 const user = new Schema({
   username: {
@@ -39,6 +40,10 @@ const user = new Schema({
   role: {
     type: String,
   },
+  manager: {
+    type: ObjectId,
+    ref: "User"
+  }
 })
 
 const User = model("User", user)

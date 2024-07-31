@@ -1,10 +1,15 @@
-import errorHandler from "./errorHandler.js"
 import registerUserHandler from "./registerUserHandler.js"
 import authenticateUserHandler from "./authenticateUserHandler.js"
 
-export default {
-  errorHandler,
+import registerCustomHandler from "./registerCustomerHandler.js"
+import getAllCustomersHandlers from "./getAllCustomersHandler.js"
 
+
+export default {
   registerUserHandler,
   authenticateUserHandler,
+
+  registerCustomHandler,
+  getAllCustomersHandlers,
+
 }
