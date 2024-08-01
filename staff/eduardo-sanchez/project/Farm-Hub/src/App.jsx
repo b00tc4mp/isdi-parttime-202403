@@ -6,6 +6,7 @@ import Login from './views/Login'
 import './App.css'
 
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import Home from './views/Home'
 
 function App() {
   console.log('App -> render')
@@ -18,14 +19,22 @@ function App() {
 
   // const handleGoToRegister = () => navigate('/register')
 
-  return <Routes>
+  const onUserRegistered = () => {
+    // navigate('/')
+  }
+  const onLoginClick = () => {
+    // navigate('/login') 
+  }
 
-    <Route path="/register" element={<Register />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/" element={<Home />} />
-  </Routes>
-
+  return (
+    <Routes>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Home />} />
+    </Routes>
+  )
 }
+
 export default App
 
 
