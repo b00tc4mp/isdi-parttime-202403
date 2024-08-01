@@ -3,7 +3,7 @@
 
 @layer components {
   .ContainerFooter {
-    @apply absolute bottom-0 flex w-full justify-center;
+    @apply fixed bottom-0 flex w-full justify-center;
   }
 
   .Footer {

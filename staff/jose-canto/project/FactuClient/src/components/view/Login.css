@@ -2,7 +2,7 @@
 
 @layer components {
   .LoginForm {
-    @apply relative top-4 flex w-full flex-col items-center justify-center gap-10 rounded-lg p-2;
+    @apply relative top-40 flex w-full flex-col items-center justify-center gap-10 rounded-lg p-2;
   }
 
   .Link {

@@ -15,7 +15,7 @@ import "./Home.css"
 export default function Home() {
   return (
     <>
-      <Header icon={<FaUserEdit />}>Nombre de Usuario</Header>
+      <Header iconUser={<FaUserEdit />}>Nombre de Usuario</Header>
 
       <main className="Home">
         <Link to="/customers">

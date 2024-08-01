@@ -47,13 +47,13 @@ export default function Register() {
       </div>
 
       <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
-        <Field id="username" type="text" placeholder="username"></Field>
+        <Field id="username" type="text" placeholder="Username"></Field>
 
-        <Field id="email" type="email" placeholder="email"></Field>
+        <Field id="email" type="email" placeholder="Email"></Field>
 
-        <Field id="password" type="password" placeholder="password"></Field>
+        <Field id="password" type="password" placeholder="Password"></Field>
 
-        <Field id="confirmPassword" type="password" placeholder="confirm password"></Field>
+        <Field id="confirmPassword" type="password" placeholder="Confirm password"></Field>
 
         <Button type="submit">Registrate</Button>
 

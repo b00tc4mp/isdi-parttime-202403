@@ -6,15 +6,15 @@
   }
 
   .Field > input {
-    @apply h-auto w-[18rem] rounded-2xl border-[2px] border-black bg-[#dbd6d0] p-2 text-center text-xl font-medium shadow-custom-shadow;
+    @apply h-auto w-[18rem] rounded-2xl border-[2px] border-black bg-[#dbd6d0] p-2 text-center text-lg font-medium shadow-custom-shadow;
   }
 
   .Field > input::placeholder {
-    @apply text-center text-2xl text-gray-600;
+    @apply text-center text-xl text-gray-600;
   }
 
   .Container-icon {
-    @apply relative left-[-7.3rem] top-[2.1rem];
+    @apply relative left-[-7.7rem] top-[2.2rem];
   }
   .Icon {
     @apply text-2xl;

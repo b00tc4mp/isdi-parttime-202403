@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react"
 import { PiUserListBold } from "react-icons/pi"
+import { PiUserCirclePlusBold } from "react-icons/pi"
 
 import Header from "../Header"
 import Footer from "../core/Footer"
 
 import logic from "../../logic/index"
 
+import "./CustomerList.css"
+
 export default function CustomerList() {
   const [customers, setCustomers] = useState([])
+  const [refresh, setRefresh] = useState(0)
 
   const loadCustomers = () => {
     try {
       //prettier-ignore
       logic.getAllCustomers()
         .then((customers) => {
-          console.log(`Customers list obtained ${customers}`)
-          setCustomers((prevCustomers)=> [...prevCustomers, ...customers])
+          setCustomers(customers)
         })
         .catch((error) => {
           console.error(error)
@@ -29,16 +32,27 @@ export default function CustomerList() {
 
   useEffect(() => {
     loadCustomers()
-  }, [])
+  }, [refresh])
 
+  const handleRegisterCustomerSubmitted = () => {
+    setRefresh(Date.now())
+  }
   return (
     <>
-      <Header icon={<PiUserListBold />}>Listado Clientes</Header>
+      <Header
+        iconAddUser={<PiUserCirclePlusBold />}
+        iconUser={<PiUserListBold />}
+        onRegisterCustomer={handleRegisterCustomerSubmitted}
+      >
+        Listado Clientes
+      </Header>
 
-      <main>
-        <ul>
+      <main className="MainList">
+        <ul className="CustomerList">
           {customers.map((customer, index) => (
-            <li key={index}>{customer.companyName}</li>
+            <li className="Customer" key={index}>
+              {customer.companyName}
+            </li>
           ))}
         </ul>
       </main>

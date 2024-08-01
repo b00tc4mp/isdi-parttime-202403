@@ -34,7 +34,6 @@ const registerCustomer = (username, companyName, email, password, taxId, address
           const constructor = errors[error]
           throw new constructor(message)
         })
-
     })
 }
 

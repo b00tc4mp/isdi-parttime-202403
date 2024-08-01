@@ -2,7 +2,7 @@
 
 @layer components {
   .Header {
-    @apply mb-5 flex h-32 w-full flex-col justify-center gap-2 bg-custom-gradient p-1 text-center;
+    @apply fixed mb-5 flex h-32 w-full flex-col justify-center gap-2 bg-custom-gradient p-1 text-center;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
 
@@ -11,19 +11,21 @@
     font-style: normal;
   }
 
-  .EditUsername {
-    @apply relative flex w-full flex-col items-center;
-  }
-
-  .EditIcon {
+  .IconUser {
     @apply text-[5rem];
   }
-
-  .EditUsername p {
+  .Title {
+    @apply relative flex w-full flex-col items-center;
+  }
+  .Title p {
     @apply text-xl;
   }
 
   .IconExit {
-    @apply absolute right-2 top-2 flex text-7xl;
+    @apply absolute right-2 top-2 flex cursor-pointer text-7xl;
+  }
+
+  .IconAddCustomer {
+    @apply absolute left-2 top-2 z-10 flex cursor-pointer text-7xl;
   }
 }
