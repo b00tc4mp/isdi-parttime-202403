@@ -56,41 +56,11 @@ The client is the user who searches for and books accommodation. This profile ha
 	- View and Edit Profile: Access and update your personal information, such as name, email address, phone number, etc.
 	- Booking History: View a history of all bookings made in the past.
 
-  Root
-
-
-
-  Root (DOC FOR API)
-
-- Routes for the Administrator:
-	- POST /rooms (Create room OJO)
-	- GET /rooms (View rooms)
-	- PUT /rooms/:id (Update room)
-	- DELETE /rooms/:id (Delete room)
-	- GET /reservations (View all reservations)
-	- PUT /reservations/:id (Update reservation)
-	- DELETE /reservations/:id (Cancel reservation)
-	- POST /invoices (Generate invoice WIP STRIPE)
-	- GET /invoices (View invoices WIP STRIPE)
-	- PUT /invoices/:id (Confirm payment WIP STRIPE)
-	- GET /reports (Generate reports)
-	- GET /users (Manage customer profiles)
-- Customer Routes:
-	- GET /rooms (Search rooms)
-	- GET /rooms/:id (View room details)
-	- POST /reservations (Create reservation)
-	- GET /reservations/my_reservations (View my reservations)
-	- PUT /reservations/:id (Modify my reservation)
-	- DELETE /reservations/:id (Cancel my reservation)
-	- GET /invoices/my_invoices (View my invoices WIP STRIPE)
-	- POST /payments (Make payment WIP STRIPE)
-	- GET /profile (View my profile)
-	- PUT /profile (Update my profile)
-	- GET /booking_history (View booking history)
-
   ### UI Design
 
   ##Technical
+
+	FIGMA
 
   ### Data Model
 
@@ -101,15 +71,24 @@ The client is the user who searches for and books accommodation. This profile ha
   - email (string, required, email)
 	- phone (number, required)
   - password (string, required, password)
-  - role (string, required, default regular, enum: regular|admin|root)
+  - role (string, required, default guest, enum: guest|host)
+
 - Room:
-	- id (auto)
-  - region (string, required)
-  - number (array, required)
-  - type (string, required)
-  - price (string, required)
-  - availability (Bookings)
-	- location (string, required) 
+  - id: (auto-generado)
+  - name: (string, requerido)
+  - region: (string, requerido)
+  - type: (array, requerido)
+  - price: (string, requerido)
+  - availability: (referencia a `Booking`)
+  - location: (string, requerido; Mongoose Geo Point Schema, Leaflet compatible)
+    - type:
+      - type: String
+      - enum: ['Point']
+      - required: true
+    - coordinates:
+      - type: [Number]
+      - required: true
+
 - Booking:
 	- id (auto)
 	- user (string, required)
@@ -117,7 +96,9 @@ The client is the user who searches for and books accommodation. This profile ha
 	- startDate (date, required)
 	- endDate (date. required)
 	- status (string, required)
-- Invoices (WIP STRIPE):
+
+
+- Invoices (WIP STRIPE V1.5):
 	- id (auto)
 	- bookingId
 	- amount

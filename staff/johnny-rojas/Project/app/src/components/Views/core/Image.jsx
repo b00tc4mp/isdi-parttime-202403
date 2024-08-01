@@ -1,9 +1,7 @@
-import './Image.css'
-
 function Image({ src }) {
   return <div className='contentImage'>
     <img className='Image' src={src} />
   </div>
 }
 
-export default Image
+export default Imagex
