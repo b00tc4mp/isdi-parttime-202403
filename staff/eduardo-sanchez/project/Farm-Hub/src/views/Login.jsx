@@ -5,14 +5,8 @@ export const Login = () => {
         console.log("Welcome ", `${username} with password ${password}`)
     }
 
-
-    const handlePassword = (event) => {
-        console.log(`Password: -> ${event.target.value}`)
-        event.preventDefault()
-    }
-
-
     const [userName, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     return <>
 
@@ -25,10 +19,13 @@ export const Login = () => {
         ></input>
         <input
             placeholder="password"
-            onChange={handlePassword}
+            id="password"
+            onChange={(newText) => {
+                setPassword(newText.target.value)
+            }}
         ></input>
 
-        <button onClick={() => onLoginClick({ username: userName, password: '' })}>Login</button>
+        <button onClick={() => onLoginClick({ username: userName, password: password })}>Login</button>
     </>
 }
 
