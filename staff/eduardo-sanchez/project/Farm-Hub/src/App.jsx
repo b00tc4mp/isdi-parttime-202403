@@ -7,6 +7,7 @@ import './App.css'
 
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import Home from './views/Home'
+import { Notfound } from './views/Notfound'
 
 function App() {
   console.log('App -> render')
@@ -31,6 +32,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Home />} />
+      <Route path="/*" element={<Notfound />} />
     </Routes>
   )
 }

@@ -1,6 +1,6 @@
 
 function Title({ children }) {
-    return <>{children}</>
+    return <h1>{children}</h1>
 }
 
 

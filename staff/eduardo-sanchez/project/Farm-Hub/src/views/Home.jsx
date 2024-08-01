@@ -1,5 +1,15 @@
+import { Link } from "react-router-dom"
+import Title from "../components/core/Title"
+
 function Home() {
-    return <>{"Hola"}</>
+    return <>
+        <Title>Farm-Hub</Title>
+        <Link to="/register">Register</Link>
+        <p></p>
+        <Link to="/login">Login</Link>
+
+
+    </>
 }
 
 
