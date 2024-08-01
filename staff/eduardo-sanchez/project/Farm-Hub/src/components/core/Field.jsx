@@ -1,5 +1,5 @@
-function Field() {
-    return <>{"soy field"}</>
+function Field({ id, placeholder }) {
+    return <input id={id} placeholder={placeholder}>{ }</input>
 }
 
 

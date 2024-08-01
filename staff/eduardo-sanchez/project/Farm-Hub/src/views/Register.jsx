@@ -26,21 +26,11 @@ function Register({ onUserRegistered, onLoginClick }) {
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
 
-        // try {
-        //     logic.registerUser(name, surname, email, username, password, passwordRepeat)
-        //         .then(() => onUserRegistered())
-        //         .catch(error => {
-        //             console.error(error)
-        //             setMessage(error.message)
-        //         })
-        // } catch (error) {
-        //     console.error(error)
-        //     setMessage(error.message)
-        // }
+
 
         try {
             // prettier-ignore
-            logic.registerUser(username, email, password, confirmPassword)
+            logic.registerUser(name, surname, username, email, password, passwordRepeat)
                 .then(() => {
                     navigate("/login")
                 })
@@ -78,7 +68,7 @@ function Register({ onUserRegistered, onLoginClick }) {
                 <Field id="passwordRepeat" type="password" placeholder="password repeat">Password Repeat</Field>
 
 
-                <Button type="submit">Register</Button>
+                <button type="submit">Register</button>
             </form>
             <p>{message}</p>
             <Link onClick={handleLoginClick}>Login</Link>
