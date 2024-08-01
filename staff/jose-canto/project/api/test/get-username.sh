@@ -1,0 +1,1 @@
+curl -X GET http://localhost:7070/users/66ab9387e2e5e2ef52b61603 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmFiOTM4N2UyZTVlMmVmNTJiNjE2MDMiLCJpYXQiOjE3MjI1MjI1OTAsImV4cCI6MTcyMzEyNzM5MH0.h2wAHYSx9us-DLwKO_lJGCYBpfncMviK6RdoRsxGdgY" -v

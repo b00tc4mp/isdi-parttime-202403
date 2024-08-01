@@ -4,7 +4,6 @@ import { MdOutlineEmail } from "react-icons/md"
 import { MdOutlinePhoneAndroid } from "react-icons/md"
 import { FaRegAddressCard } from "react-icons/fa"
 import { HiOutlineIdentification } from "react-icons/hi"
-import { FaUserTag } from "react-icons/fa"
 import { MdWorkOutline } from "react-icons/md"
 
 import "./index.css"
