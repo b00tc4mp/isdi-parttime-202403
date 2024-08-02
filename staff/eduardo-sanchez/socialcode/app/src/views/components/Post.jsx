@@ -3,29 +3,37 @@ import Heading from '../../components/core/Heading'
 import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
 import Time from '../../components/core/Time'
+
 import View from '../../components/library/View'
+import Confirm from './Confirm'
 
 import logic from '../../logic'
+import { useState } from 'react'
 
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log('Post -> render')
 
-    const handleDeletePost = () => {
-        if (confirm('Delete post?'))
-            try {
-                logic.deletePost(post.id)
-                    .then(() => onPostDeleted())
-                    .catch(error => {
-                        console.error(error)
+    const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
 
-                        alert(error.message)
-                    })
-            } catch (error) {
-                console.error(error)
+    const handleDeletePost = () => setConfirmDeleteVisible(true)
 
-                alert(error.message)
-            }
-    }
+
+    // const handleDeletePost = () => {
+    //     if (confirm('Delete post?'))
+    //         try {
+    //             logic.deletePost(post.id)
+    //                 .then(() => onPostDeleted())
+    //                 .catch(error => {
+    //                     console.error(error)
+
+    //                     alert(error.message)
+    //                 })
+    //         } catch (error) {
+    //             console.error(error)
+
+    //             alert(error.message)
+    //         }
+    // }
 
     const handleToggleLikePost = () => {
         try {
@@ -42,6 +50,25 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
             alert(error.message)
         }
     }
+
+    const handleDeletePostAccept = () => {
+        try {
+            logic.deletePost(post.id)
+                .then(() => onPostDeleted())
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
+    const handleDeletePostCancel = () => setConfirmDeleteVisible(false)
+
 
     return <View className="Post" tag="article" align="">
         <View className="Post-Header">
@@ -63,6 +90,8 @@ function Post({ post, onPostDeleted, onPostLikeToggled }) {
 
             {post.author.id === logic.getUserId() && <Button onClick={handleDeletePost}>Delete</Button>}
         </View>
+        {confirmDeleteVisible && <Confirm message="Delete this post?" onAccept={handleDeletePostAccept} onCancel={handleDeletePostCancel} />}
+
     </View >
 }
 

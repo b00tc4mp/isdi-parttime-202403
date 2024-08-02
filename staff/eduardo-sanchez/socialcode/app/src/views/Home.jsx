@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
 import Hello from './components/Hello'
 import Search from './components/Search'
+import Alert from './components/Alert'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
@@ -26,7 +27,9 @@ function Home({ onUserLoggedOut }) {
     const [view, setView] = useState('')
     const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+
+    const [message, setMessage] = useState(null)
 
     const handleLogout = () => {
         logic.logoutUser()
@@ -47,7 +50,9 @@ function Home({ onUserLoggedOut }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    // alert(error.message + " " + "HELL")
+
+                    setMessage(error.message)
                 })
 
         } catch (error) {
@@ -72,6 +77,8 @@ function Home({ onUserLoggedOut }) {
 
     //     navigate('/about')
     // }
+
+    const handleAlertAccept = () => setMessage(null)
 
     return <View>
         <Header>
@@ -110,6 +117,8 @@ function Home({ onUserLoggedOut }) {
         </View>
 
         <Footer onCreatePostClick={handleCreatePostClick} />
+
+        {message && <Alert message={message} onAccept={handleAlertAccept} />}
     </View>
 }
 
