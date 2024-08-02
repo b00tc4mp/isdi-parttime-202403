@@ -4,6 +4,7 @@ import getUserName from "./getUserName.js"
 
 import registerCustomer from "./registerCustomer.js"
 import getAllCustomers from "./getAllCustomers.js"
+import getCustomer from "./getCustomer.js"
 
 
 const logic = {
@@ -13,6 +14,7 @@ const logic = {
 
   registerCustomer,
   getAllCustomers,
+  getCustomer,
 }
 
 export default logic

@@ -4,6 +4,7 @@ import getUserNameHandler from "./getUserNameHandler.js"
 
 import registerCustomHandler from "./registerCustomerHandler.js"
 import getAllCustomersHandlers from "./getAllCustomersHandler.js"
+import getCustomerHandler from "./getCustomerHandler.js"
 
 
 export default {
@@ -11,6 +12,7 @@ export default {
   authenticateUserHandler,
   getUserNameHandler,
 
+  getCustomerHandler,
   registerCustomHandler,
   getAllCustomersHandlers,
 

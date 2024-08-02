@@ -3,7 +3,6 @@ import { User } from "../model/index.js"
 import bcrypt from "bcryptjs"
 import { SystemError, DuplicityError } from "com/errors.js"
 
-
 const registerUser = (username, email, password, passwordRepeat) => {
   validate.username(username)
   validate.email(email)
