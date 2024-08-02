@@ -1,22 +1,19 @@
-import errors, { SystemError } from "com/errors.js"
+import errors, { SystemError } from "com/errors"
 
-const getAllCustomers = () => {
+const getCustomer = (customerId) => {
 
-  return fetch(`${import.meta.env.VITE_API_URL}/customers`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/customers/${customerId}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`
     }
   })
-
     .catch(() => { throw new SystemError("connection error") })
     .then((response) => {
       if (response.status === 200) {
         return response.json()
-          .then(customers => customers)
-          .catch(() => { throw new SystemError("connection error") })
+          .then((customer) => customer)
       }
-
       return response.json()
         .catch(() => { throw new SystemError("connection error") })
         .then(body => {
@@ -25,6 +22,7 @@ const getAllCustomers = () => {
           throw new constructor(message)
         })
     })
+    .catch(() => { throw new SystemError("connection error") })
 }
 
-export default getAllCustomers
+export default getCustomer

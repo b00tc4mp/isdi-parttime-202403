@@ -1,11 +1,13 @@
 import { Link, useNavigate } from "react-router-dom"
 
+import logic from "../../logic"
+
 import "./Login.css"
 
 import Title from "../Title"
 import Button from "../core/Button"
 import Field from "../core/Field"
-import logic from "../../logic"
+import Main from "../core/Main"
 import Footer from "../core/Footer"
 
 export default function Login() {
@@ -40,25 +42,25 @@ export default function Login() {
         </Title>
       </div>
 
-      <form className="LoginForm" onSubmit={handleLoginSubmit}>
-        <Field id="username" type="text" placeholder="Username"></Field>
+      <Main className="LoginMain">
+        <form className="LoginForm" onSubmit={handleLoginSubmit}>
+          <Field id="username" type="text" placeholder="Username"></Field>
 
-        <Field id="password" type="password" placeholder="Password"></Field>
+          <Field id="password" type="password" placeholder="Password"></Field>
 
-        <Button type="submit">Login</Button>
+          <Button type="submit">Login</Button>
 
-        <Link to="/register">
-          <div className="Link">
-            <p>
-              ¿No tienes cuenta? <span className="Link-RegisterLogin">Registrate</span>
-            </p>
-          </div>
-        </Link>
-      </form>
+          <Link to="/register">
+            <div className="Link">
+              <p>
+                ¿No tienes cuenta? <span className="Link-RegisterLogin">Registrate</span>
+              </p>
+            </div>
+          </Link>
+        </form>
+      </Main>
 
-      <div className="ContainerFooter">
-        <Footer></Footer>
-      </div>
+      <Footer></Footer>
     </>
   )
 }

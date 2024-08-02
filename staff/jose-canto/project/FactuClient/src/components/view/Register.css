@@ -2,7 +2,10 @@
 
 @layer components {
   .RegisterForm {
-    @apply relative top-32 flex w-full flex-col items-center justify-center gap-3 rounded-lg p-7;
+    @apply relative flex w-full flex-col items-center justify-center gap-3 rounded-lg p-7;
+  }
+  .RegisterMain {
+    @apply relative bottom-8;
   }
 
   .Link-RegisterLogin {

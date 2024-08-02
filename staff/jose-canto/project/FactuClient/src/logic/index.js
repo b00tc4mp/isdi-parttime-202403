@@ -5,6 +5,7 @@ import logoutUser from "./logoutUser.js"
 
 import getAllCustomers from "./getAllCustomers.js"
 import registerCustomer from "./registerCustomer.js"
+import getCustomer from "./getCustomer.js"
 
 
 const logic = {
@@ -15,6 +16,7 @@ const logic = {
 
   registerCustomer,
   getAllCustomers,
+  getCustomer,
 }
 
 export default logic

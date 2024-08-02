@@ -9,9 +9,10 @@ import { LiaFileInvoiceSolid } from "react-icons/lia"
 import { GoNote } from "react-icons/go"
 import { GiPapers } from "react-icons/gi"
 
-import Button from "../core/Button"
-import Footer from "../core/Footer"
 import Header from "../Header"
+import Button from "../core/Button"
+import Main from "../core/Main"
+import Footer from "../core/Footer"
 
 import "./Home.css"
 import { useEffect } from "react"
@@ -36,7 +37,7 @@ export default function Home() {
     <>
       <Header iconUser={<FaUserEdit />}>{userName}</Header>
 
-      <main className="Home">
+      <Main className="MainHome">
         <Link to="/customers">
           <Button>
             <span className="Icon">
@@ -67,16 +68,14 @@ export default function Home() {
         <Link>
           <Button>
             <span className="Icon">
-              <LiaFileInvoiceSolid />{" "}
+              <LiaFileInvoiceSolid />
             </span>
             Crear Factura
           </Button>
         </Link>
-      </main>
+      </Main>
 
-      <div className="ContainerFooter">
-        <Footer>FactuClient</Footer>
-      </div>
+      <Footer>FactuClient</Footer>
     </>
   )
 }

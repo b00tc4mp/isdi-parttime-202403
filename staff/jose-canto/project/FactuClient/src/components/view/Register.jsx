@@ -7,6 +7,7 @@ import "./Register.css"
 import Title from "../Title"
 import Field from "../core/Field"
 import Button from "../core/Button"
+import Main from "../core/Main"
 import Footer from "../core/Footer"
 
 export default function Register() {
@@ -46,29 +47,29 @@ export default function Register() {
         </Title>
       </div>
 
-      <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
-        <Field id="username" type="text" placeholder="Nombre de Usuario"></Field>
+      <Main className="RegisterMain">
+        <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
+          <Field id="username" type="text" placeholder="Nombre de Usuario"></Field>
 
-        <Field id="email" type="email" placeholder="Email"></Field>
+          <Field id="email" type="email" placeholder="Email"></Field>
 
-        <Field id="password" type="password" placeholder="Password"></Field>
+          <Field id="password" type="password" placeholder="Password"></Field>
 
-        <Field id="confirmPassword" type="password" placeholder="Confirmar password"></Field>
+          <Field id="confirmPassword" type="password" placeholder="Confirmar password"></Field>
 
-        <Button type="submit">Registrate</Button>
+          <Button type="submit">Registrate</Button>
 
-        <Link to="/login">
-          <div className="Link">
-            <p>
-              ¿Tienes cuenta? <span className="Link-RegisterLogin">Login</span>
-            </p>
-          </div>
-        </Link>
-      </form>
+          <Link to="/login">
+            <div className="Link">
+              <p>
+                ¿Tienes cuenta? <span className="Link-RegisterLogin">Login</span>
+              </p>
+            </div>
+          </Link>
+        </form>
+      </Main>
 
-      <div className="ContainerFooter">
-        <Footer></Footer>
-      </div>
+      <Footer></Footer>
     </>
   )
 }
