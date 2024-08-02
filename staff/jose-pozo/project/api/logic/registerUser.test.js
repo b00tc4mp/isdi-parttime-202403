@@ -6,7 +6,7 @@ import registerUser from './registerUser.js'
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
-    .then(connection => {
+    .then(() => {
         try {
             registerUser('DaenerysTargaryen', 'daenerys@targaryen.com', '1234', '1234')
 

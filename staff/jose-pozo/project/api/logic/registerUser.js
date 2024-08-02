@@ -1,6 +1,6 @@
 import { User } from '../data/index.js'
 import { DuplicityError, SystemError } from 'com/errors.js'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import validate from 'com/validate.js'
 
 const registerUser = (username, email, password, passwordRepeat) => {

@@ -1,9 +1,9 @@
 import jwt from '../util/jsonwebtoken-promised.js'
-import logic from '../logic/authenticateUser.js'
+import logic from '../logic/index.js'
 import { SystemError } from 'com/errors.js'
 const { JWT_SECRET } = process.env
 
-export default (req, res, next) => {
+export default ((req, res, next) => {
     const { username, password } = req.body
 
     try {
@@ -17,7 +17,7 @@ export default (req, res, next) => {
     } catch (error) {
         next(error)
     }
-}
+})
 
 
 
