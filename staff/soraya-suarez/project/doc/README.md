@@ -35,7 +35,8 @@ Admin
 
 User | Admin
 
-- Sign
+- Sign in
+- Sign out
 - Request vacation
 - Request resignation
 
@@ -60,24 +61,22 @@ Admin
 - id (auto)
 - name (string, required)
 - surname (string, required)
-- phoneNumber (number, optional)
+- phone (number, optional)
 - avatar (string)
 - email (string, unique, required)
 - password (string, required, hashed)
 - role (string, required, default user, enum: user|admin)
 - available (boolean, default true)
-- tasks ([Task.id])
+- manager (User.id)
 
 #### Task
 
 - id (auto)
 - name (string, required)
 - description (string, required)
-- state (string, required, default toDo, enum: toDo|inProgress|finished)
+- status (string, required, default toDo, enum: toDo|inProgress|finished|canceled)
 - priority (string, required, default low, enum: low|medium|high)
 - owner (User.id, default the creator)
 - completionTime (number, required if state is finished)
-- visibility (boolean, default true)
+- visible (boolean, default true)
 - observations (string, optional)
-- incidence (boolean, default false)
-- vacation ([date])
