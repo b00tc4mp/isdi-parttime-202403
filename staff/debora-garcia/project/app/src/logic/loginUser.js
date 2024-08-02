@@ -1,31 +1,33 @@
 import errors, { SystemError } from "com/errors"
 import validate from "com/validate"
 
-const registerUser = (name, surname, email, username, password, passwordRepeat) => {
-    validate.name(name)
-    validate.name(surname, "surname")
-    validate.email(email)
+const loginUser = (username, password) => {
     validate.username(username)
     validate.password(password)
-    validate.passwordsMatch(password, passwordRepeat)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ name, surname, email, username, password, passwordRepeat })
+        body: JSON.stringify({ username, password })
     })
         .catch(() => { throw new SystemError("server error") })
         .then(response => {
-            if (response.status === 201) return
+            if (response.status === 200) {
+                return response.json()
+                    .catch(() => { throw new SystemError("server error") })
+                    .then(token => sessionStorage.token = token)
+            }
 
             return response.json()
                 .catch(() => { throw new SystemError("server error") })
-                .then((body) => {
+                .then(body => {
                     const { error, message } = body
+
                     const constructor = errors[error]
+
                     throw new constructor(message)
                 })
         })
 }
 
-export default registerUser
+export default loginUser

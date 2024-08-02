@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.Button {
+    @apply m-[.5rem_0] p-[.4rem] bg-white font-[1rem] rounded-[5px];
+  }

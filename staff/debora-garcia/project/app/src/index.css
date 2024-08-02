@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --first-color: rgb(0, 0, 0);
+    --second-color: rgba(164, 151, 158, 0.776);
+  }
+  
+  * {
+    font-family: "Courier New", Courier, monospace;
+    font-style: normal;
+    color: var(--first-color);
+  }
+  
+  body {
+    background-color: var(--second-color);
+    margin: 0;
+  }
+
+  .registerForm{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+  }
+
+  
