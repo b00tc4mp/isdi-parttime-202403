@@ -20,7 +20,7 @@ mongoose.connect(MONGODB_URL)
 
         api.use(errorHandler)
 
-        api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
+        api.listen(PORT, () => console.log(`API running on PORT http://localhost:${PORT}`))
 
     })
     .catch(error => console.error(error))

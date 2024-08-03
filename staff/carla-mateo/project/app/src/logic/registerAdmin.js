@@ -1,12 +1,12 @@
-import { SystemError } from 'com/errors'
 import errors, { SystemError } from 'com/errors'
+import validate from 'com/validate'
 
 const registerAdmin = (name, username, email, password, passwordRepeat) => {
     validate.name(name)
     validate.username(username)
     validate.email(email)
     validate.password(password)
-    validate.passwordMatch(password, passwordRepeat)
+    validate.passwordsMatch(password, passwordRepeat)
 
     return fetch(`${import.meta.env.VITE_API_URL}/admin`, {
         method: 'POST',
@@ -18,7 +18,7 @@ const registerAdmin = (name, username, email, password, passwordRepeat) => {
 
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 2001) return
+            if (response.status === 201) return
 
             return response.json()
                 .catch(() => { throw new SystemError('server error') })

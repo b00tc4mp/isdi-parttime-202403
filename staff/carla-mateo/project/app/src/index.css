@@ -1,0 +1,21 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wght@100..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@tailwind base;
+@tailwind utilities;
+
+@layer utilities {
+    /* .Roboto{
+        font-family: "Roboto Mono", monospace;
+    }*/
+    .font-kal {
+        font-family: "Kalnia Glaze", serif;
+    }
+}
+
+@layer base {
+    * {
+        @apply font-kal
+    }
+}
+

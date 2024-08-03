@@ -35,7 +35,6 @@ const registerUser = (userId, username, email, password) => {
                                 avatar: " ",
                                 role: "user",
                                 parent: userId
-
                             }
 
                             return User.create(newUser)

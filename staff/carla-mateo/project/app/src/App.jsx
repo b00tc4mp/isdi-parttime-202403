@@ -1,11 +1,19 @@
-import React from 'react'
-import Calendar from './views/components/calendar/Calendar'
+import { Routes, Route } from 'react-router-dom'
+
+import Register from './views/Register'
+import Home from './views/Home'
+import Login from './views/Login'
+
 
 function App() {
   return (
-    <div className="App">
-      <Calendar />
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
+    </>
   )
 }
 

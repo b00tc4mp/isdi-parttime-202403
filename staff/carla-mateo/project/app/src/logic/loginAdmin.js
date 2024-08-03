@@ -1,6 +1,5 @@
-import errors from "com/errors"
-import validate from "com/validate"
-import { SystemError } from "../../../com/errors"
+import errors, { SystemError } from 'com/errors'
+import validate from 'com/validate'
 
 const loginAdmin = (username, password) => {
     validate.username(username)
@@ -17,6 +16,7 @@ const loginAdmin = (username, password) => {
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
             if (response.status === 200) {
+
                 return response.json()
                     .catch(() => { throw new SystemError('server error') })
                     .then(token => sessionStorage.token = token)
