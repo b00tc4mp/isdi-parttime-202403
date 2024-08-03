@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import getUserName from './getUserName.js'
+import getUserName from '../getUserName.js'
 
 const { MONGODB_URL } = process.env
 

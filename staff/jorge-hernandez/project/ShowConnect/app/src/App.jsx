@@ -6,6 +6,7 @@ import Login from './views/Login'
 import ArtistHome from './views/ArtistHome'
 
 import logic from './logic'
+import ArtistsList from './components/ArtistsList'
 
 function App() {
   const [view, setView] = useState(
@@ -38,6 +39,8 @@ function App() {
       {view === 'ArtistHome' && (
         <ArtistHome onUserLoggedOut={handleGoToSearch} />
       )}
+
+      {view === 'ArtistList' && <ArtistsList />}
     </>
   )
 }

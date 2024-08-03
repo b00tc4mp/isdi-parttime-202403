@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import authenticateUser from './authenticateUser.js'
+import authenticateUser from '../authenticateUser.js'
 
 const { MONGODB_URL } = process.env
 

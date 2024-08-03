@@ -15,7 +15,7 @@ const registerUser = (
 ) => {
   validate.name(name)
   validate.name(artisticName, 'surname')
-  //   validate.email(email)
+  validate.email(email)
   validate.text(discipline, 'discipline')
   validate.text(city, 'city')
   validate.text(description, 'description')

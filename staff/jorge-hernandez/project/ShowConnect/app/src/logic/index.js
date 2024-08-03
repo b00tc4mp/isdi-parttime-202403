@@ -1,3 +1,4 @@
+import getArtistsByCity from './getArtistsByCity'
 import getUserName from './getUserName'
 import isUserLoggedIn from './isUserLoggedIn'
 import loginUser from './loginUser'
@@ -10,6 +11,7 @@ const logic = {
   getUserName,
   logoutUser,
   isUserLoggedIn,
+  getArtistsByCity,
 }
 
 export default logic

@@ -7,6 +7,7 @@ import registerUserHandler from './handlers/registerUserHandler.js'
 import authenticateUserHandler from './handlers/authenticateUserHandler.js'
 import getUserNameHandler from './handlers/getUserNameHandler.js'
 import createChatHandler from './handlers/createChatHandler.js'
+import getArtistsByCityHandler from './handlers/getArtistsByCityHandler.js'
 
 const { MONGODB_URL, PORT } = process.env
 
@@ -36,6 +37,8 @@ mongoose
     api.post('/users/auth', jsonbodyparser, authenticateUserHandler)
 
     api.get('/users/:targetUserId', getUserNameHandler)
+
+    api.get('/users/city/:city/discipline/:discipline', getArtistsByCityHandler)
 
     api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
   })

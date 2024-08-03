@@ -14,11 +14,6 @@ function Search({ onRegisterClick, onLoginClick }) {
     onLoginClick()
   }
 
-  const handleSearchClick = (e) => {
-    e.preventDefault()
-    console.log('searchClick')
-  }
-
   return (
     <>
       <Header
@@ -29,10 +24,8 @@ function Search({ onRegisterClick, onLoginClick }) {
       >
         ¿Eres artista? Regístrate{' '}
       </Header>
-
       <Main handleSearchClick />
-
-      <Footer onSearchclick={handleSearchClick}> Buscar </Footer>
+      <Footer> Buscar </Footer>{' '}
     </>
   )
 }
