@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
 import logic from '../logic'
 
@@ -9,9 +10,15 @@ import Title from '../components/core/Title'
 
 import FormWithFeedback from '../components/library/FormWithFeedback'
 import View from '../components/library/View'
+import { SystemError } from 'com/errors'
+import useContext from '../useContext'
 
-function Login({ onUserLoggedIn, onRegisterLinkClick }) {
+function Login() {
     console.log('Login -> render')
+
+    const { alert } = useContext()
+
+    const navigate = useNavigate()
 
     const [message, setMessage] = useState('')
 
@@ -25,9 +32,18 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
 
         try {
             logic.loginUser(username, password)
-                .then(() => onUserLoggedIn())
+                .then(() => {
+                    navigate('/')
+                    console.log('User Login -> success')
+                })
                 .catch(error => {
                     console.log(error)
+
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+
+                        return
+                    }
 
                     setMessage(error.message)
                 })
@@ -38,10 +54,10 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
         }
     }
 
-    const handleRegisterClick = event => {
+    const handleRegisterClick = (event) => {
         event.preventDefault()
 
-        onRegisterLinkClick()
+        navigate('/register')
     }
 
     return <View className="Login" tag="main">

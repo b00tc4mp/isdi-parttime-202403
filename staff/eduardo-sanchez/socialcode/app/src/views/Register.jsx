@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
 import logic from '../logic'
 
@@ -9,11 +10,19 @@ import Title from '../components/core/Title'
 
 import FormWithFeedback from '../components/library/FormWithFeedback'
 import View from '../components/library/View'
+import { SystemError } from 'com/errors'
 
-function Register({ onUserRegistered, onLoginLinkClick }) {
+import useContext from "../useContext"
+
+function Register() {
     console.log('Register -> render')
 
     const [message, setMessage] = useState('')
+
+    const navigate = useNavigate()
+
+    const { alert } = useContext()
+
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -29,9 +38,18 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
 
         try {
             logic.registerUser(name, surname, email, username, password, passwordRepeat)
-                .then(() => onUserRegistered())
+                .then(() => {
+                    navigate('/login')
+                    console.log('User Register -> success')
+                })
                 .catch(error => {
                     console.error(error)
+
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+
+                        return
+                    }
 
                     setMessage(error.message)
                 })
@@ -45,7 +63,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
     const handleLoginClick = event => {
         event.preventDefault()
 
-        onLoginLinkClick()
+        navigate('/login')
     }
 
     return <View className="Register" tag="main">
@@ -67,7 +85,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
             <SubmitButton>Register</SubmitButton>
         </FormWithFeedback>
 
-        <Link onClick={handleLoginClick}>Login</Link>
+        <Link onClick={handleLoginClick}>If you already have an account -> Go to Login</Link>
     </View>
 }
 

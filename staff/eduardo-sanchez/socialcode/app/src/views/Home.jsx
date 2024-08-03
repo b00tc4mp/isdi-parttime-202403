@@ -10,31 +10,35 @@ import Footer from './components/Footer'
 import CreatePostForm from './components/CreatePostForm'
 import Hello from './components/Hello'
 import Search from './components/Search'
-import Alert from './components/Alert'
 
 import Button from '../components/core/Button'
 import Heading from '../components/core/Heading'
-// import Link from '../components/core/Link'
-
 
 import logic from '../logic'
 import About from './components/About'
 
-function Home({ onUserLoggedOut }) {
+import useContext from '../useContext'
+
+function Home() {
+
+    const { alert } = useContext()
+
+    const navigate = useNavigate()
+
     console.log('Home -> render')
 
     const [name, setName] = useState('')
     const [view, setView] = useState('')
     const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
-    // const navigate = useNavigate()
 
-    const [message, setMessage] = useState(null)
 
     const handleLogout = () => {
         logic.logoutUser()
 
-        onUserLoggedOut()
+        // onUserLoggedOut()
+
+        navigate('/login')
     }
 
     useEffect(() => {
@@ -50,9 +54,7 @@ function Home({ onUserLoggedOut }) {
                 .catch(error => {
                     console.error(error)
 
-                    // alert(error.message + " " + "HELL")
-
-                    setMessage(error.message)
+                    alert(error.message + " " + "HELL")
                 })
 
         } catch (error) {
@@ -72,14 +74,6 @@ function Home({ onUserLoggedOut }) {
         setView('')
     }
 
-    // const handleAboutClick = event => {
-    //     event.preventDefault()
-
-    //     navigate('/about')
-    // }
-
-    const handleAlertAccept = () => setMessage(null)
-
     return <View>
         <Header>
 
@@ -89,8 +83,6 @@ function Home({ onUserLoggedOut }) {
 
                 <Heading level="3">{name}</Heading>
 
-                {/* <Link onClick={handleAboutClick}>About</Link> */}
-
                 <Link to='/about'>About</Link>
 
                 <Button onClick={handleLogout}>Logout</Button>
@@ -99,7 +91,6 @@ function Home({ onUserLoggedOut }) {
         </Header>
 
         <View className="Main" tag="main">
-            {/* <PostList refreshStamp={postListRefreshStamp} /> */}
 
             <Routes>
 
@@ -118,7 +109,6 @@ function Home({ onUserLoggedOut }) {
 
         <Footer onCreatePostClick={handleCreatePostClick} />
 
-        {message && <Alert message={message} onAccept={handleAlertAccept} />}
     </View>
 }
 

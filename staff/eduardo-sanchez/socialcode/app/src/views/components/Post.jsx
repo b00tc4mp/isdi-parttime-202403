@@ -10,30 +10,16 @@ import Confirm from './Confirm'
 import logic from '../../logic'
 import { useState } from 'react'
 
+import useContext from '../../useContext'
+
 function Post({ post, onPostDeleted, onPostLikeToggled }) {
     console.log('Post -> render')
+
+    const { alert } = useContext()
 
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
 
     const handleDeletePost = () => setConfirmDeleteVisible(true)
-
-
-    // const handleDeletePost = () => {
-    //     if (confirm('Delete post?'))
-    //         try {
-    //             logic.deletePost(post.id)
-    //                 .then(() => onPostDeleted())
-    //                 .catch(error => {
-    //                     console.error(error)
-
-    //                     alert(error.message)
-    //                 })
-    //         } catch (error) {
-    //             console.error(error)
-
-    //             alert(error.message)
-    //         }
-    // }
 
     const handleToggleLikePost = () => {
         try {

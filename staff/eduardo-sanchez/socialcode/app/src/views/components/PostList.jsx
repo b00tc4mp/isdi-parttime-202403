@@ -5,8 +5,12 @@ import Post from './Post'
 
 import logic from '../../logic'
 
+import useContext from '../../useContext'
+
 function PostList({ refreshStamp }) {
     console.log('PostList -> render')
+
+    const { alert } = useContext()
 
     const [posts, setPosts] = useState([])
 
