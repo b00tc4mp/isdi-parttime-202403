@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
 import logic from '../logic'
 
@@ -6,13 +7,21 @@ import Field from '../components/core/Field'
 import Link from '../components/core/Link'
 import Title from '../components/core/Title'
 
+import { SystemError } from 'com/errors'
+
+// import useContext from "../useContext"
+
 import './Register.css'
 
-function Register({ onUserRegistered, onLoginClick }) {
+function Register() {
+
+    const navigate = useNavigate()
 
     console.log('Register -> render')
 
     const [message, setMessage] = useState('')
+
+    // const { alert } = useContext()
 
     const handleRegisterSubmit = (event) => {
         event.preventDefault()
@@ -26,27 +35,31 @@ function Register({ onUserRegistered, onLoginClick }) {
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
 
-
-
         try {
-            // prettier-ignore
-            logic.registerUser(name, surname, username, email, password, passwordRepeat)
+            logic.registerUser(name, surname, email, username, password, passwordRepeat)
                 .then(() => {
                     navigate("/login")
+                    console.log('User Register -> success')
                 })
                 .catch((error) => {
-                    alert(error.message)
+                    console.error(error)
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+
+                        return
+                    }
+                    setMessage(error.message)
                 })
         } catch (error) {
-            alert(error.message)
+            setMessage(error.message)
+            console.error(error)
         }
     }
-
 
     const handleLoginClick = event => {
         event.preventDefault()
 
-        onLoginClick()
+        navigate('/login')
     }
 
     return (

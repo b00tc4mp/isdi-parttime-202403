@@ -1,0 +1,3 @@
+.Login {
+    @apply flex flex-col justify-center items-center mt-3;
+}
