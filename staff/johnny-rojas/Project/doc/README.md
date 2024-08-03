@@ -1,4 +1,4 @@
-# IZI 🇻🇪🧳
+### IZI 🇻🇪🧳
 
 This app is a PMS (Property Managment System) oriented for hotels and lodges in Venezuela to improve the reservation service and management of the same. 
 
@@ -71,10 +71,16 @@ The client is the user who searches for and books accommodation. This profile ha
   - email (string, required, email)
 	- phone (number, required)
   - password (string, required, password)
-  - role (string, required, default guest, enum: guest|host)
+  - role (string, required, default guest, enum: guest|host|root)
+
+- Host: 
+  - id (auto)
+  - rif:(string, required)
+	- booking()
+
 
 - Room:
-  - id: (auto-generado)
+  - id: (auto)
   - name: (string, requerido)
   - region: (string, requerido)
   - type: (array, requerido)
@@ -91,11 +97,11 @@ The client is the user who searches for and books accommodation. This profile ha
 
 - Booking:
 	- id (auto)
-	- user (string, required)
+	- user (string, required, array)
 	- room (string, required)
 	- startDate (date, required)
 	- endDate (date. required)
-	- status (string, required)
+	- status (string, required, true-false)
 
 
 - Invoices (WIP STRIPE V1.5):

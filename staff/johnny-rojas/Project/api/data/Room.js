@@ -1,7 +1,14 @@
-import { Schema, model } from 'mongoose'
-import { NAME_REGEX } from '../../com/validate.js'
+import { Schema, model, Types } from 'mongoose';
+import { NAME_REGEX, REGION_REGEX } from '../../com/validate.js';
+
+const { ObjectId } = Types
 
 const room = new Schema({
+  author: {
+    type: ObjectId,
+    required: true,
+    ref: 'User'
+  },
   name: {
     type: String,
     required: true,
@@ -9,10 +16,15 @@ const room = new Schema({
   },
   region: {
     type: String,
+    required: true,
+    match: REGION_REGEX
+  },
+  image: {
+    type: String,
     required: true
   },
-  type: {
-    type: [String],
+  description: {
+    type: String,
     required: true
   },
   price: {
@@ -20,10 +32,13 @@ const room = new Schema({
     required: true
   },
   availability: {
-    type: Schema.Types.ObjectId,
-    ref: 'Booking',
+    type: String,
     required: true
   },
+  likes: [{
+    type: ObjectId,
+    ref: 'User'
+  }],
   location: {
     type: {
       type: String,
@@ -37,7 +52,7 @@ const room = new Schema({
   }
 });
 
-const Room = model('Room', room)
 
-export default Room
+const Room = model('Room', room);
 
+export default Room;

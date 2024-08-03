@@ -5,7 +5,9 @@ import FormWithPanel from '../core/FormWithPanel'
 import ShowHidePassword from '../core/ShowHidePassword'
 import SubmitButton from '../core/SubmitButton'
 
-// import Register from './Register.css'
+import logic from '../../../logic'
+
+import './Register.css'
 
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -13,29 +15,49 @@ import { Link, useNavigate } from 'react-router-dom'
 function Register() {
   const navigate = useNavigate()
 
-  navigate('/login')
+  const handleRegisterSubmit = event => {
+    event.preventDefault()
 
-  return <View tag='main'>
+    const target = event.target
+
+    const name = target.name.value
+    const surname = target.surname.value
+    const email = target.email.value
+    const phone = target.phone.value
+    const password = target.password.value
+    const repeatPassword = target.repeatPassword.value
+
+    try {
+      logic.registerUser(name, surname, email, phone, password, repeatPassword)
+        .then(() => navigate('/login'))
+        .catch(error => alert(error.message))
+    } catch (error) {
+      alert(error.message)
+    }
+
+  }
+
+  return <View className='RegisterForm' tag='main'>
     
-    <Title className='TitlePrincipalRegister'>Regístrate</Title>
+    <Title id='TitleRegister' className='TitlePrincipalRegister'>Regístrate</Title>
 
-    <FormWithPanel className="RegisterForm" >
-      
+    <FormWithPanel onSubmit={handleRegisterSubmit}>
+
       <Field id='name' type='text' placeholder='Nombre'></Field>
 
       <Field id='surname' type='text' placeholder='Apellidos'></Field>
 
       <Field id='email' type='email' placeholder='Email'></Field>
-      
-      <Field id='email' type='email' placeholder='Email'></Field>
+
+      <Field id='phone' type='string' placeholder='Teléfono'></Field>
 
       <ShowHidePassword id='password' type='password' placeholder='Contraseña'></ShowHidePassword>
 
       <ShowHidePassword id='repeatPassword' type='password' placeholder='Repetir contraseña'></ShowHidePassword>
 
-    </FormWithPanel>
+      <SubmitButton>Regístrate</SubmitButton>
 
-    <SubmitButton>Regístrate</SubmitButton>
+    </FormWithPanel>
 
     <p>¿Ya tienes cuenta?</p>
 

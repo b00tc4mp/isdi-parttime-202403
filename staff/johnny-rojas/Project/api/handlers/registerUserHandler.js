@@ -2,10 +2,10 @@ import logic from '../logic/index.js'
 
 
 const registerUserHandler = (req, res, next) => {
-    const { name, surname, email, password, passwordRepeat } = req.body
+    const { name, surname, email, phone, password, repeatPassword } = req.body
 
     try {
-        logic.registerUser(name, surname, email, password, passwordRepeat)
+        logic.registerUser(name, surname, email, phone, password, repeatPassword)
             .then(() => res.status(201).send())
             .catch(error => {
                 next(error, res)

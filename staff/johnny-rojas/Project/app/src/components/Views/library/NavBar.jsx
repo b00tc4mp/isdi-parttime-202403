@@ -1,5 +1,9 @@
-function NavBar() {
-  return <View tag='main'>
+import { Link } from "react-router-dom"
 
-  </View>
+
+
+function Menu() {
+
 }
+
+export default Menu

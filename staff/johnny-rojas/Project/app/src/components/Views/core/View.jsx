@@ -1,5 +1,5 @@
-function View({ tag: Tag = 'div', children }) {
-    return <Tag className="View">{children}</Tag>
+function View({ tag: Tag = 'div', children, className }) {
+    return <Tag className={className}>{children}</Tag>
 }
 
 export default View

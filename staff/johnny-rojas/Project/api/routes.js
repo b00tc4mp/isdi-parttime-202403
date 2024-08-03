@@ -7,4 +7,10 @@ const router = express.Router()
 
 router.post('/users', jsonBodyParser, routes.registerUserHandler)
 
+router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)
+
+router.get('/users/:targetUserId', routes.getUserNameHandler)
+
+router.use('/bookings', routes.booking )
+
 export default router

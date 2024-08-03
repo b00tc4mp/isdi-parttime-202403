@@ -1,4 +1,4 @@
-import { NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX } from '../../com/validate.js'
+import { NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONE_REGEX } from '../../com/validate.js'
 import { Schema, model } from 'mongoose'
 
 const user = new Schema({
@@ -21,6 +21,7 @@ const user = new Schema({
     phone: {
         type: String,
         unique: true,
+        match:PHONE_REGEX
     },
     password: {
         type: String,

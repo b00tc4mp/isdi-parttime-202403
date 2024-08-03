@@ -21,7 +21,6 @@ const booking = new Schema({
     type: String,
     required: true,
     enum: ['available', 'not available'], 
-    default: 'pending' 
   }
 });
 

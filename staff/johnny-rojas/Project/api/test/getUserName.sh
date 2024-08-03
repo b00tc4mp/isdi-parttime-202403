@@ -1,0 +1,1 @@
+curl http://localhost:8080/users/66acf97115e545a4d2f06a3e -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmFjZjk3MTE1ZTU0NWE0ZDJmMDZhM2UiLCJpYXQiOjE3MjI2MzA5MTIsImV4cCI6MTcyMjk3NjUxMn0.VZnxDs-cLZvM_T7n4F4-iFhcJI8y87_seof5tgdpOgU" -v
