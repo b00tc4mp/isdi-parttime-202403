@@ -1,8 +1,7 @@
 import "dotenv/config"
-// import handleErrorResponse from "../helper/handlerErrorResponse.js"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
-import { SystemError } from 'com/errors.js'
+import { SystemError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
 

@@ -20,7 +20,7 @@ export default function Login() {
 
         try {
             logic.loginUser(username, password)
-                .then(() => navigate("/home"))
+                .then(() => navigate("/workouts"))
                 .catch(error => {
                     console.error(error)
                     alert(error.message)

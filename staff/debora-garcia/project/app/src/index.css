@@ -3,25 +3,38 @@
 @tailwind utilities;
 
 :root {
-    --first-color: rgb(0, 0, 0);
-    --second-color: rgba(164, 151, 158, 0.776);
-  }
-  
-  * {
-    font-family: "Courier New", Courier, monospace;
-    font-style: normal;
-    color: var(--first-color);
-  }
-  
-  body {
-    background-color: var(--second-color);
-    margin: 0;
-  }
+  --first-color: rgb(0, 0, 0);
+  --second-color: rgba(164, 151, 158, 0.776);
+  --third-color: rgb(136, 128, 136);
+}
 
-  .registerForm{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-  }
+* {
+  font-family: "Courier New", Courier, monospace;
+  font-style: normal;
+  color: var(--first-color);
+}
 
-  
+body {
+  background-color: var(--second-color);
+  margin: 0;
+}
+
+form {
+  @apply flex flex-col justify-center min-h-[100vh];
+}
+
+.registerForm {
+  @apply flex flex-col items-center;
+}
+
+.button-container {
+  @apply flex flex-col justify-center items-center gap-4;
+}
+
+.button-container Button {
+  @apply p-[10px_20px] rounded-[5px] bg-[--second-color] text-[white] cursor-pointer w-[300px];
+}
+
+.button-container Button:hover {
+  @apply bg-[#65524d];
+}

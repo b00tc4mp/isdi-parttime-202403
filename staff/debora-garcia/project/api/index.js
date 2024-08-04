@@ -23,6 +23,7 @@ mongoose.connect(MONGODB_URL)
         api.get("/", (req, res) => res.send("Hello world"))
         api.post("/users", jsonBodyParser, routeHandler.registerUserHandler)
         api.post("/users/auth", jsonBodyParser, routeHandler.authenticateUserHandler)
+        api.get("/users/:targetUserId", routeHandler.getUsernameHandler)
         api.use(errorHandler)
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
 

@@ -1,4 +1,3 @@
-//import handleErrorResponse from "../helper/handlerErrorResponse.js"
 import logic from "../logic/index.js"
 
 const registerUserHandler = (req, res, next) => {
