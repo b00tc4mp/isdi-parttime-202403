@@ -61,7 +61,7 @@ Admin
 - id (auto)
 - name (string, required)
 - surname (string, required)
-- phone (number, optional)
+- phone (string, optional)
 - avatar (string)
 - email (string, unique, required)
 - password (string, required, hashed)
