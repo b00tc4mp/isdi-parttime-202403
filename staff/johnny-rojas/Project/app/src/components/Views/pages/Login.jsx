@@ -4,6 +4,8 @@ import FormWithPanel from '../core/FormWithPanel'
 import Field from '../core/Field'
 import ShowHidePassword from '../core/ShowHidePassword'
 import SubmitButton from '../core/SubmitButton'
+import TopBar from '../library/TopBar'
+import Header from '../core/Header'
 
 import logic from '../../../logic'
 
@@ -32,26 +34,29 @@ function Login() {
     }
   }
 
-  return <View className='LoginForm' tag='main'>
-    
-    <Link className='Link' to='/'>Home</Link>
+  return <div>
+    <Header>
+      <TopBar></TopBar>
+    </Header>
+    <View className='LoginForm' tag='main'>
 
-    <Title className='TitlePrincipalLogin'>Inicia sesión</Title>
+      <Title className='TitlePrincipalLogin'>Inicia sesión</Title>
 
-    <FormWithPanel className="LoginForm" onSubmit={handlerLoginSubmit}>
+      <FormWithPanel className="LoginForm" onSubmit={handlerLoginSubmit}>
 
-      <Field id='email' type='email' placeholder='Email'></Field>
+        <Field id='email' type='email' placeholder='Email'></Field>
 
-      <ShowHidePassword id='password' type='password' placeholder='Contraseña'></ShowHidePassword>
+        <ShowHidePassword id='password' type='password' placeholder='Contraseña'></ShowHidePassword>
 
-      <SubmitButton>Inicia sesión</SubmitButton>
+        <SubmitButton>Inicia sesión</SubmitButton>
 
-    </FormWithPanel>
+      </FormWithPanel>
 
-    <p>¿No tienes cuenta?</p>
+      <p>¿No tienes cuenta?</p>
 
-    <Link className='Link' to='/register'>Regístrate</Link>
-  </View>
+      <Link className='Link' to='/register'>Regístrate</Link>
+    </View>
+  </div>
 }
 
 export default Login

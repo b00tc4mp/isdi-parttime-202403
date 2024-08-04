@@ -11,6 +11,6 @@ router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)
 
 router.get('/users/:targetUserId', routes.getUserNameHandler)
 
-router.use('/bookings', routes.booking )
+router.post('/room', jsonBodyParser, routes.createRoomHandler)
 
 export default router

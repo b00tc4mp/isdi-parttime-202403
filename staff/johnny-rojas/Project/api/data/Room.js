@@ -1,5 +1,5 @@
 import { Schema, model, Types } from 'mongoose';
-import { NAME_REGEX, REGION_REGEX } from '../../com/validate.js';
+import { NAMEROOM_REGEX, REGION_REGEX } from '../../com/validate.js';
 
 const { ObjectId } = Types
 
@@ -9,15 +9,21 @@ const room = new Schema({
     required: true,
     ref: 'User'
   },
-  name: {
+  nameRoom: {
     type: String,
     required: true,
-    match: NAME_REGEX
+    match: NAMEROOM_REGEX
   },
   region: {
     type: String,
     required: true,
     match: REGION_REGEX
+  },
+  contact: { 
+    name: String,
+    surname: String,
+    email: String,
+    phone: String
   },
   image: {
     type: String,
@@ -34,9 +40,10 @@ const room = new Schema({
   availability: {
     type: String,
     required: true
+    //TODO Dates Strat-End
   },
   likes: [{
-    type: ObjectId,
+    type: [],
     ref: 'User'
   }],
   location: {
@@ -56,3 +63,4 @@ const room = new Schema({
 const Room = model('Room', room);
 
 export default Room;
+

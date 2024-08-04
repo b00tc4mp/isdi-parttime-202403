@@ -10,6 +10,8 @@ import logic from '../../../logic'
 import './Register.css'
 
 import { Link, useNavigate } from 'react-router-dom'
+import TopBar from '../library/TopBar'
+import Header from '../core/Header'
 
 
 function Register() {
@@ -37,33 +39,40 @@ function Register() {
 
   }
 
-  return <View className='RegisterForm' tag='main'>
+  return <div>
     
-    <Title id='TitleRegister' className='TitlePrincipalRegister'>Regístrate</Title>
+    <Header>
+      <TopBar></TopBar>
+    </Header>
 
-    <FormWithPanel onSubmit={handleRegisterSubmit}>
+    <View className='RegisterForm' tag='main'>
 
-      <Field id='name' type='text' placeholder='Nombre'></Field>
+      <Title id='TitleRegister' className='TitlePrincipalRegister'>Regístrate</Title>
 
-      <Field id='surname' type='text' placeholder='Apellidos'></Field>
+      <FormWithPanel onSubmit={handleRegisterSubmit}>
 
-      <Field id='email' type='email' placeholder='Email'></Field>
+        <Field id='name' type='text' placeholder='Nombre'></Field>
 
-      <Field id='phone' type='string' placeholder='Teléfono'></Field>
+        <Field id='surname' type='text' placeholder='Apellidos'></Field>
 
-      <ShowHidePassword id='password' type='password' placeholder='Contraseña'></ShowHidePassword>
+        <Field id='email' type='email' placeholder='Email'></Field>
 
-      <ShowHidePassword id='repeatPassword' type='password' placeholder='Repetir contraseña'></ShowHidePassword>
+        <Field id='phone' type='string' placeholder='Teléfono'></Field>
 
-      <SubmitButton>Regístrate</SubmitButton>
+        <ShowHidePassword id='password' type='password' placeholder='Contraseña'></ShowHidePassword>
 
-    </FormWithPanel>
+        <ShowHidePassword id='repeatPassword' type='password' placeholder='Repetir contraseña'></ShowHidePassword>
 
-    <p>¿Ya tienes cuenta?</p>
+        <SubmitButton>Regístrate</SubmitButton>
 
-    <Link className='Link' to='/login'>Inicia sesión</Link>
+      </FormWithPanel>
 
-  </View>
+      <p>¿Ya tienes cuenta?</p>
+
+      <Link className='Link' to='/login'>Inicia sesión</Link>
+
+    </View>
+  </div >
 }
 
 export default Register

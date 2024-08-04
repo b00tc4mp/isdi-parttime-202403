@@ -1,23 +1,21 @@
 import './Home.css'
+import Header from '../core/Header'
+import TopBar from '../library/TopBar'
 
 import logic from '../../../logic/index'
 import { useNavigate } from 'react-router-dom'
 
-function Home({ onUserLoggedOut }) {
+function Home() {
 
   const navigate = useNavigate()
 
-  const handleLogout = () => {
-    logic.logoutUser()
-
-    navigate('/')
-  }
-
   return <div>
+    
+    <Header>
+      <TopBar></TopBar>
+    </Header>
 
-    <h3>HELLO</h3>
 
-    <button className="LogoutButton" onClick={handleLogout}>Logout</button>
 
 
   </div>

@@ -2,8 +2,8 @@
 
 This app is a PMS (Property Managment System) oriented for hotels and lodges in Venezuela to improve the reservation service and management of the same. 
 
-![](https://www.vtv.gob.ve/wp-content/uploads/2024/03/PAISA.png)
-![](https://posadamacondo.com/wp-content/uploads/2020/05/posadamacondo-posada-macondo-los-roques-vista-dal-aereo-venezuela-vacanze-caraibi-book-now.jpg)
+![](https://media.giphy.com/media/MvcSVgUqz1yuBQktVr/giphy.gif?cid=790b7611w4tqrdwlo5cni3on5242389ega8jif7s67uszv8h&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+
 
 (The suitcases are not for leaving, they are for getting to know)
 

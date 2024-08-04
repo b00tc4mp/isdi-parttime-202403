@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128pt" height="128pt" viewBox="0 0 128 128" version="1.1">
+<defs>
+<g>
+<symbol overflow="visible" id="glyph0-0">
+<path style="stroke:none;" d=""/>
+</symbol>
+<symbol overflow="visible" id="glyph0-1">
+<path style="stroke:none;" d=""/>
+</symbol>
+</g>
+<filter id="alpha" filterUnits="objectBoundingBox" x="0%" y="0%" width="100%" height="100%">
+  <feColorMatrix type="matrix" in="SourceGraphic" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+</filter>
+<clipPath id="clip1">
+  <rect width="128" height="128"/>
+</clipPath>
+<g id="surface11" clip-path="url(#clip1)">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 0 20 C 0 8.953125 8.953125 0 20 0 L 108 0 C 119.046875 0 128 8.953125 128 20 L 128 108 C 128 119.046875 119.046875 128 108 128 L 20 128 C 8.953125 128 0 119.046875 0 108 Z M 0 20 "/>
+</g>
+<mask id="mask0">
+  <g filter="url(#alpha)">
+<use xlink:href="#surface11"/>
+  </g>
+</mask>
+<clipPath id="clip2">
+  <rect width="128" height="128"/>
+</clipPath>
+<g id="surface5" clip-path="url(#clip2)">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 0 20 C 0 8.953125 8.953125 0 20 0 L 108 0 C 119.046875 0 128 8.953125 128 20 L 128 108 C 128 119.046875 119.046875 128 108 128 L 20 128 C 8.953125 128 0 119.046875 0 108 Z M 0 20 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 9.0625 96.5 Z M 26.6875 28.25 L 26.6875 96.5 L 17.640625 96.5 L 17.640625 28.25 Z M 35.21875 96.5 Z M 88.9375 89.140625 L 88.9375 96.5 L 42.71875 96.5 L 42.71875 89.140625 Z M 87.4375 34.8125 L 44.875 96.5 L 39.296875 96.5 L 39.296875 89.75 L 81.8125 28.25 L 87.4375 28.25 Z M 83.59375 28.25 L 83.59375 35.65625 L 39.90625 35.65625 L 39.90625 28.25 Z M 92.78125 96.5 Z M 110.40625 28.25 L 110.40625 96.5 L 101.359375 96.5 L 101.359375 28.25 Z M 110.40625 28.25 "/>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-0" x="9.0625" y="96.5"/>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-1" x="35.171908" y="96.5"/>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-0" x="92.687524" y="96.5"/>
+</g>
+</g>
+</defs>
+<g id="surface1">
+<use xlink:href="#surface5" mask="url(#mask0)"/>
+</g>
+</svg>

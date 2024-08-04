@@ -5,7 +5,7 @@
 
 @layer base{
   body{
-    @apply min-h-screen w-full flex flex-col items-center justify-center
+    @apply min-h-screen w-full flex flex-col items-center justify-center 
   }
 }
 
