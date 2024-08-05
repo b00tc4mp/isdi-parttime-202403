@@ -17,11 +17,11 @@ const game = new Schema({
         required: true
     },
     rating: {
-        type: String,
+        type: Number,
         required: true
     },
     hours: {
-        type: String,
+        type: Number,
         required: true
     }
 })
