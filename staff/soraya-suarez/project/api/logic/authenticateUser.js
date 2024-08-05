@@ -4,7 +4,7 @@ import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
 const authenticateUser = (email, password) => {
-    validate.username(email)
+    validate.email(email)
     validate.password(password)
 
     return User.findOne({ email }).lean()

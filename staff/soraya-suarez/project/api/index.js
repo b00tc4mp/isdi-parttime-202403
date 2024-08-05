@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 
 import {
     enrollUserHandler,
+    authenticateUserHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -21,6 +22,7 @@ mongoose.connect(MONGODB_URL)
         const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 
         api.post('/users', jsonBodyParser, enrollUserHandler)
+        api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
 
         api.use(errorHandler)
 
