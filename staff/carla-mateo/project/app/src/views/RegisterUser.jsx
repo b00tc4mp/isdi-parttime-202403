@@ -2,8 +2,6 @@ import { Link, useNavigate } from "react-router-dom"
 
 import logic from '../logic/index'
 
-import View from './library/View'
-
 import Button from '../components/core/button/Button'
 import Field from '../components/core/field/Field'
 import Heading from '../components/core/heading/Heading'
@@ -11,10 +9,10 @@ import Header from "./components/header/Header"
 
 import './Register.css'
 
-function Register() {
+function RegisterUser() {
     const navigate = useNavigate()
 
-    const handleRegisterSubmit = event => {
+    const handleRegisterUserSubmit = event => {
         event.preventDefault()
 
         const form = event.target
@@ -37,15 +35,14 @@ function Register() {
     }
 
 
-    return <View>
+    return <>
         <Header>
-            <Heading level={1}  >
+            <Heading level={1} className="Register">
                 Register
             </Heading>
         </Header>
 
-        <form className="Register" onSubmit={handleRegisterSubmit}>
-            <Field id="name" placeholder="name" />
+        <form className="Register User" onSubmit={handleRegisterUserSubmit}>
             <Field id="username" placeholder="username" />
             <Field id="email" placeholder="name@example.com" />
             <Field id="password" placeholder="password" />
@@ -56,8 +53,8 @@ function Register() {
 
             <Link to="/login">Login</Link>
         </form>
-    </View>
+    </>
 
 }
 
-export default Register
+export default RegisterUser

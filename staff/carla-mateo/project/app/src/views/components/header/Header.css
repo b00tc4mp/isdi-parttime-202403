@@ -1,0 +1,16 @@
+@tailwind components;
+/* @tailwind utilities;
+
+@layer utilities {
+    .bg-color {
+        background-color: rgb(200 87 115);
+    }
+} */
+
+@layer components {
+    .Header {
+        @apply flex gap-4 w-full top-0 p-4 box-border bg-red-200 
+    }
+    
+}
+

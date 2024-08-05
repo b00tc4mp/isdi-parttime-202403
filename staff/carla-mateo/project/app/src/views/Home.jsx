@@ -1,6 +1,12 @@
 import Button from '../components/core/button/Button'
 import logic from '../logic/index'
 import { useNavigate } from "react-router-dom"
+
+import './Home.css'
+import Header from './components/header/Header'
+import Heading from '../components/core/heading/Heading'
+import View from './library/View'
+
 function Home({ }) {
     const navigate = useNavigate()
 
@@ -9,12 +15,17 @@ function Home({ }) {
 
         navigate('/login')
     }
-    return <>
+    return <View>
 
-        <h1 >Hola!</h1>
+        <Header>
+            <Heading className="FamilySync" level={1}>Family Sync</Heading>
+            <Button className="LogoutButton" onClick={handleLogout}>Logout</Button>
+        </Header>
 
-        <Button className="LogoutButton" onClick={handleLogout}>Logout</Button>
-    </>
+    </View>
+
+
+
 }
 
 export default Home

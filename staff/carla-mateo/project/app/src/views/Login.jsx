@@ -3,9 +3,14 @@ import { Link, useNavigate } from "react-router-dom"
 
 import logic from '../logic/index'
 
+import View from "./library/View"
+
 import Button from '../components/core/button/Button'
 import Field from '../components/core/field/Field'
 import Heading from '../components/core/heading/Heading'
+import Header from "./components/header/Header"
+
+import './Login.css'
 
 
 function Login() {
@@ -30,20 +35,20 @@ function Login() {
         }
     }
 
-    return <>
-        <div>
-            <Heading level={1} className="Login">
+    return <View>
+        <Header>
+            <Heading level={1}>
                 Login
             </Heading>
-        </div>
+        </Header>
 
         <form className="Login" onSubmit={handleLoginSubmit}>
-            <Field id="username" placeholder="username">Username</Field>
-            <Field id="password" type="password" placeholder="password">Password</Field>
+            <Field id="username" placeholder="username" />
+            <Field id="password" type="password" placeholder="password" />
             <Button type="submit">Login</Button>
             <Link to="/register">Register</Link>
         </form>
-    </>
+    </View>
 }
 
 export default Login
