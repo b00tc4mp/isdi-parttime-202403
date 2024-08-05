@@ -1,0 +1,101 @@
+.StoredSelect {
+  display: flex;
+  justify-content: center;
+}
+
+.GRG {
+  background: purple;
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.GRG:hover {
+  background: indigo;
+}
+.GRG:focus {
+  background: indigo;
+}
+
+.Palet {
+  background: royalblue;
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Palet:hover {
+  background: midnightblue;
+}
+.Palet:focus {
+  background: midnightblue;
+}
+
+.BigBag {
+  background: green;
+  color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.BigBag:hover {
+  background: darkgreen;
+}
+.BigBag:focus {
+  background: darkgreen;
+}
+
+.B200 {
+  height: 60px;
+  width: 60px;
+  background: orange;
+  border-radius: 10px;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.B200:hover {
+  background: orangered;
+}
+.B200:focus {
+  background: orangered;
+}
+
+.B-200 {
+  height: 60px;
+  width: 60px;
+  background: tomato;
+  border-radius: 10px;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.B-200:hover {
+  background: red;
+}
+.B-200:focus {
+  background: red;
+}

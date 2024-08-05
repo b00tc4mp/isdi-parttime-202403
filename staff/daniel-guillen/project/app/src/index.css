@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --first-color: black;
+  --second-color: white;
+}
+
+body {
+  background-color: rgb(222, 244, 222);
+  font-family: Arial, Helvetica, sans-serif;
+}

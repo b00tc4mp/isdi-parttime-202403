@@ -1,5 +1,7 @@
 # DEMO - CDR
 
+![Logo Universal](logo.jpg)
+
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
 Custom applications are tools designed specifically to meet the particular needs of a company. These applications can offer a wide range of benefits that can improve efficiency, productivity and competitiveness. Some of the main reasons why they are useful: Adaptation to Specific NEEDS, INTEGRATION with Existing Systems, Improvement of Operational EFFICIENCY, SECURITY and Data Collection and Analysis.

@@ -1,5 +1,7 @@
 # DEMO - CDR
 
+![Logo Universal](logo.jpg)
+
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
 Las aplicaciones personalizadas son herramientas diseñadas específicamente para satisfacer las necesidades particulares de una empresa. Estas aplicaciones pueden ofrecer una amplia gama de beneficios que pueden mejorar la eficiencia, la productividad y la competitividad. Algunas de las principales razones por las que son útiles: Adaptación a NECESIDADES Específicas, INTEGRACION con Sistemas Existentes, Mejora de la EFICIENCIA Operativa, SEGURIDAD y Recopilación y Análisis de Datos.

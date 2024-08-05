@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "waste": "150110",
+        "stored": "GRG",
+        "weight": 89,
+        "stagnant": "false"
+    },
+    {
+        "id": 2,
+        "waste": "150110",
+        "stored": "BigBag",
+        "weight": 56,
+        "stagnant": "false"
+    },
+    {
+        "id": 3,
+        "waste": "150202",
+        "stored": "B-200",
+        "weight": 122,
+        "stagnant": "true"
+    },
+    {
+        "id": 4,
+        "waste": "150202",
+        "stored": "BigBag",
+        "weight": 300,
+        "stagnant": "true"
+    },
+    {
+        "id": 5,
+        "waste": "080111",
+        "stored": "B200",
+        "weight": 700,
+        "stagnant": "false"
+    },
+    {
+        "id": 6,
+        "waste": "080111",
+        "stored": "Palet",
+        "weight": 800,
+        "stagnant": "false"
+    }
+]

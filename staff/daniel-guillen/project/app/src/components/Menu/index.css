@@ -1,0 +1,44 @@
+.Nav {
+  display: flex;
+  padding: 0.5rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-sizing: border-box;
+  background: white;
+}
+.logo {
+  margin-top: 5px;
+}
+.menu {
+  margin-top: 0px;
+  display: flex;
+  justify-content: end;
+  list-style-type: none;
+  padding: 0.5rem;
+  border-bottom: 3px solid green;
+  background: linear-gradient(white, transparent);
+}
+.menu-link-center {
+  padding: 0.5rem;
+  text-decoration: none;
+  color: black;
+}
+.menu-link-start {
+  padding: 0.5rem;
+  border-top-left-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+.menu-link-end {
+  padding: 0.5rem;
+  border-top-right-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.menu-link-start:hover,
+.menu-link-center:hover,
+.menu-link-end:hover {
+  background: green;
+  color: white;
+}
