@@ -1,35 +1,21 @@
 import { useState } from 'react'
 import Field from './Field'
-
-function Main({ onSearchClick }) {
+import Footer from './Footer'
+import ArtistsList from './ArtistsList'
+import disciplines from '../assets/disciplines'
+//TODO input validates
+function Main({}) {
   const [inputValue, setInputValue] = useState('')
   const [suggestions, setSuggestions] = useState([])
+  const [artist, setArtist] = useState('')
+  const [city, setCity] = useState('')
 
-  const allSuggestions = [
-    'Magos',
-    'Músicos',
-    'Musicos',
-    'Humoristas',
-    'Bailarines',
-    'Pintores',
-    'Malabaristas',
-    'Zancudos',
-    'Lanzafuegos',
-    'Cantantes',
-    'Grupos musicales',
-    'Fotografos',
-    'Tatuadores',
-    'Maquilladores',
-    'Payasos',
-    'Clowns',
-  ]
-
-  const handleInputChange = (event) => {
-    const value = event.target.value
+  const handleInputChange = (e) => {
+    const value = e.target.value
     setInputValue(value)
 
     if (value.length > 0) {
-      const filteredSuggestions = allSuggestions.filter((suggestion) =>
+      const filteredSuggestions = disciplines.filter((suggestion) =>
         suggestion.toLowerCase().startsWith(value.toLowerCase())
       )
       setSuggestions(filteredSuggestions)
@@ -42,6 +28,20 @@ function Main({ onSearchClick }) {
     setInputValue(suggestion)
     setSuggestions([])
   }
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+
+    const form = e.target
+
+    const artist = form.artista.value.toLowerCase()
+    const city = form.ciudad.value.toLowerCase()
+    const date = form.fecha.value
+
+    setArtist(artist)
+    setCity(city)
+  }
+
   return (
     <main className='flex flex-col gap-5'>
       <p className='text-white mt-5 mx-2 text-center'>
@@ -51,7 +51,7 @@ function Main({ onSearchClick }) {
         voluptatem porro sit?
       </p>
 
-      <form className='flex flex-col gap-5' action=''>
+      <form onSubmit={handleOnSubmit} className='flex flex-col gap-5' action=''>
         <Field
           labelClass='text-white'
           labelChildren='Artista'
@@ -99,7 +99,10 @@ function Main({ onSearchClick }) {
           inputClass='h-8 rounded p-2'
           divClass='Field flex flex-col gap-1 mx-2'
         ></Field>
+        <Footer>Buscar</Footer>
       </form>
+
+      <ArtistsList artist={artist} city={city} />
     </main>
   )
 }

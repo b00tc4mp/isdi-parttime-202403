@@ -1,6 +1,6 @@
+import ArtistsList from '../components/ArtistsList'
 import Header from '../components/Header'
 import Main from '../components/Main'
-import Footer from '../components/Footer'
 
 function Search({ onRegisterClick, onLoginClick }) {
   const handleRegisterClick = (e) => {
@@ -22,10 +22,9 @@ function Search({ onRegisterClick, onLoginClick }) {
         onRegisterClick={handleRegisterClick}
         isArtistHomeVisible={false}
       >
-        ¿Eres artista? Regístrate{' '}
+        ¿Eres artista? Regístrate
       </Header>
-      <Main handleSearchClick />
-      <Footer> Buscar </Footer>{' '}
+      <Main />
     </>
   )
 }

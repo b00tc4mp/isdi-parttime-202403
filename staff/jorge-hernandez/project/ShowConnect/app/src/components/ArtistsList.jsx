@@ -3,19 +3,20 @@ import logic from '../logic'
 import { useState, useEffect } from 'react'
 
 import ArtistResult from './ArtistResult'
-import Header from './Header'
 
-function ArtistsList({ refreshStamp }) {
+function ArtistsList({ artist, city }) {
   const [artists, setArtists] = useState([])
 
   useEffect(() => {
-    loadArtists()
-  }, [refreshStamp])
+    if (artist && city) {
+      loadArtists(artist, city)
+    }
+  }, [artist, city])
 
-  const loadArtists = () => {
+  const loadArtists = (artist, city) => {
     try {
       logic
-        .getArtistsByCity('madrid', 'humorista')
+        .getArtistsByCity(city, artist)
         .then((artists) => {
           setArtists(artists)
         })
@@ -33,13 +34,15 @@ function ArtistsList({ refreshStamp }) {
 
   return (
     <>
-      <Header isArtistHomeVisible={true} loginButtonChildren='volver'>
-        Artistas
-      </Header>
+      {artist && city && (
+        <h1 className='text-white m-auto text-2xl'>
+          Resultados de la búsqueda
+        </h1>
+      )}
       <div>
-        {artists.map((artist) => (
+        {artists.map((artist, index) => (
           <ArtistResult
-            key={artist.id}
+            key={index}
             artisticName={artist.artisticName}
             description={artist.description}
             images={artist.images}

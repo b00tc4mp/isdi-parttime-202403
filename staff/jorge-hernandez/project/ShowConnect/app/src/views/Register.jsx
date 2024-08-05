@@ -11,10 +11,10 @@ function Register({ onLoginClick }) {
 
     const name = form.name.value
     const artisticName = form.artisticName.value
-    const discipline = form.discipline.value
+    const discipline = form.discipline.value.toLowerCase()
     const description = form.description.value
     const email = form.email.value
-    const city = form.city.value
+    const city = form.city.value.toLowerCase()
     const images = form.images.value
     const video = form.video.value
     const password = form.password.value
