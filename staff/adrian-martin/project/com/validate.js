@@ -5,6 +5,9 @@ const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{5,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const ID_REGEX = /^[0-9a-z]+$/
+const HOURS_REGEX = /^(?:[1-9][0-9]{0,3}|99999)$/
+const RATING_REGEX = /^(?:[1-9]|10)$/
+
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -41,6 +44,18 @@ function validateId(id, explain = 'id') {
         throw new ContentError(`${explain} is not valid`)
 }
 
+function validateHours(number, explain = 'number') {
+    if (typeof number !== 'number' || !HOURS_REGEX.test(String(number))) {
+        throw new ContentError(`${explain} is not valid`);
+    }
+}
+
+function validateRating(number, explain = 'number') {
+    if (typeof number !== 'number' || !RATING_REGEX.test(String(number))) {
+        throw new ContentError(`${explain} is not valid`);
+    }
+}
+
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -48,7 +63,9 @@ const validate = {
     email: validateEmail,
     text: validateText,
     url: validateUrl,
-    id: validateId
+    id: validateId,
+    hours: validateHours,
+    rating: validateRating
 }
 
 export default validate

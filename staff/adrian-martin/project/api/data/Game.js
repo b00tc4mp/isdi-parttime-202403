@@ -8,20 +8,20 @@ const game = new Schema({
         required: true,
         ref: 'User'
     },
-    titleVideogame: {
+    title: {
         type: String,
         required: true
     },
-    imageGame: {
+    image: {
         type: String,
         required: true
     },
     rating: {
-        type: Number,
+        type: String,
         required: true
     },
-    hoursInTheGame: {
-        type: Number,
+    hours: {
+        type: String,
         required: true
     }
 })
