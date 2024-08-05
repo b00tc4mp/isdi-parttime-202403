@@ -6,15 +6,19 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Heading from "../components/Heading"
 import Button from "../components/Button"
+import GoBackButton from "../components/GoBackButton"
 
-export default function Workouts() {
+//TODO alert & use context
+//TODO usar Link de react-router-dom para reacer los botones del footer
+export default function Workouts({ onUserLoggedOut }) {
     console.log("Workouts ->render")
     const [username, setUsername] = useState("")
     const navigate = useNavigate()
+    const [message, setMessage] = useState(null)
+
 
     useEffect(() => {
         console.log("Home -> useEffect")
-        // setTimeout(() => {
         try {
             logic.getUsername()
                 .then((username) => {
@@ -32,7 +36,6 @@ export default function Workouts() {
 
             alert(error.message)
         }
-        // }, 10000)
     }, [])
 
     const handleGoToFeedClick = () => {
@@ -47,13 +50,29 @@ export default function Workouts() {
         navigate("/achievements")
     }
 
+    const handleLogout = () => {
+        logic.logoutUser()
+        //navigate("/login")
+        onUserLoggedOut()
+
+    }
+    const handlePrintInitialLetter = (username) => {
+        return username.charAt(0).toUpperCase()
+    }
+
     return <form>
         <Header>
             <Heading level="1">WORKOUT</Heading>
-            <Heading level="1">{username}</Heading>
+            <div>
+                <div className="flex flex-wrap items-center justify-center w-12 h-12 bg-gray-300 rounded-full text-white text-xl font-bold">
+                    {handlePrintInitialLetter(username)}
+                </div>
+            </div>
+            <Button onClick={handleLogout}>Logout</Button>
         </Header>
+        <GoBackButton />
         <div className="button-container">
-            <Button>EMOM</Button>
+            <Button onClick={handleGoToAchievementClick}>EMOM</Button>
             <Button>FOR TIME</Button>
             <Button>AMRAP</Button>
             <Button>BENCHMARK</Button>

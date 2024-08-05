@@ -7,12 +7,13 @@ import Heading from "../components/Heading"
 
 import logic from "../logic"
 
+//TODO alert & use context
 export default function Register() {
     console.log("Register->render")
 
     const navigate = useNavigate()
 
-    //const [message, setMessage] = useState("")
+    const [message, setMessage] = useState("")
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -30,13 +31,13 @@ export default function Register() {
                 .then(() => navigate("/login"))
                 .catch(error => {
                     console.error(error)
-                    alert(error.message)
 
+                    setMessage(error.message)
                 })
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            setMessage(error.message)
         }
 
     }

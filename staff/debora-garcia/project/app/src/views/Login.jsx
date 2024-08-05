@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 import logic from "../logic"
 
@@ -6,9 +7,11 @@ import Button from "../components/Button"
 import Field from "../components/Field"
 import Heading from "../components/Heading"
 
+//TODO alert & use context
 export default function Login() {
     console.log("Login ->render")
     const navigate = useNavigate()
+    const [message, setMessage] = useState("")
 
 
     const handleLoginSubmit = event => {
@@ -23,13 +26,14 @@ export default function Login() {
                 .then(() => navigate("/workouts"))
                 .catch(error => {
                     console.error(error)
-                    alert(error.message)
 
+                    setMessage(error.message)
                 })
 
         } catch (error) {
             console.error(error)
-            alert(error.message)
+
+            setMessage(error.message)
         }
     }
 
