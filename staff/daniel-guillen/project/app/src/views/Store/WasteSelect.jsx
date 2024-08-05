@@ -6,6 +6,7 @@ import data from './wasteList.json'
 const WasteSelect = () => {
 
   const [options, setOptions] = useState([]);
+  const [selectedWaste, setSelectedWaste] = useState(null)
 
   useEffect(() => {
     const formattedData = data.map(item => ({
@@ -15,13 +16,18 @@ const WasteSelect = () => {
     setOptions(formattedData);
   }, []);
 
+  const handleChange = (selectedWaste) => {
+    setSelectedWaste(selectedWaste) 
+    console.log("Selected option:", selectedWaste)
+  }
   return (
-    <div>
-        <Select
+    <div className='WasteSelectDiv'>
+        <Select className='WasteSelect'
+          value={selectedWaste}
+          onChange={handleChange}
           options={options}
-        placeholder="Selecciona un tipo de residuo"
+          placeholder="Escriba LER y seleccione un tipo de residuo"
         />
-        <hr></hr>
     </div>
   )
 }

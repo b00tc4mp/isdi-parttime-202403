@@ -1,6 +1,62 @@
+.StoreTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: center;
+  color: darkgreen;
+}
+
+.WasteWeight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: center;
+}
+
+.StoredStagnantSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: center;
+}
+
+.SubmitButtonWaste {
+  margin-left: 10px;
+  font-size: 60px;
+  background: transparent;
+  border: 0px;
+}
+
+.SubmitButtonWaste:hover {
+  font-size: 55px;
+  border: green solid;
+  border-radius: 10px;
+}
+
 .StoredSelect {
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+.StoredSelectButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.StoredTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.WasteSelect {
+  width: 400px;
+  border: solid green;
+  border-radius: 10px;
 }
 
 .GRG {
@@ -65,6 +121,7 @@
 .B200 {
   height: 60px;
   width: 60px;
+  color: white;
   background: orange;
   border-radius: 10px;
   margin: 3px;
@@ -84,6 +141,7 @@
 .B-200 {
   height: 60px;
   width: 60px;
+  color: white;
   background: tomato;
   border-radius: 10px;
   margin: 3px;
@@ -98,4 +156,48 @@
 }
 .B-200:focus {
   background: red;
+}
+
+.ButtonStagnan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.StagnantTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SwitchStagnant {
+  height: 60px;
+  width: 250px;
+  background: greenyellow;
+  border-radius: 10px;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SwitchStagnant.false {
+  background: tomato;
+  color: white;
+}
+
+.InputWeightDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.InputWeight {
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 11px;
+  border-radius: 10px;
+  border: solid green;
 }
