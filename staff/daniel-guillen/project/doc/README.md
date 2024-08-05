@@ -4,9 +4,9 @@
 
 Custom applications are tools designed specifically to meet the particular needs of a company. These applications can offer a wide range of benefits that can improve efficiency, productivity and competitiveness. Some of the main reasons why they are useful: Adaptation to Specific NEEDS, INTEGRATION with Existing Systems, Improvement of Operational EFFICIENCY, SECURITY and Data Collection and Analysis.
 
-### Registration and list of Users
+# Registration and list of Users
 
-### User Cases
+## User Cases
 
 ### Administrator
 
@@ -18,9 +18,9 @@ Custom applications are tools designed specifically to meet the particular needs
 
 - Access and use of the assigned section
 
-![Login - Registro de usuarios y listado de usuarios](usuarios.png)
+![Login - Registro de usuarios y listado de usuarios](users.png)
 
-### Warehouse and Inventory
+# Warehouse and Inventory
 
 The inventory will be a detailed record of the waste that the company stores, and is essential for the efficient management of resources. 
 
@@ -32,7 +32,7 @@ Here are some key reasons why it is necessary to maintain an inventory: real sto
 
 Only the user assigned to this section will be able to access it (warehouse: inventory, stagnant, data and search).
 
-## Inventory
+### Inventory
 
 The user will be able to register the waste:
 
@@ -43,25 +43,25 @@ The user will be able to register the waste:
 
 In the inventory the user will be able to see the registered waste where they will be grouped by LER and differentiated by their packaging and indicating their weight in kg.
 
-## Stagnant
+### Stagnant
 
 Users can consult which waste is stored (minimum one month) for an extended period.
 
-## Data
+### Data
 
-- Workers can consult a summary of the data recorded in inventory:
+Workers can consult a summary of the data recorded in inventory:
     - Horizontal graph
     - Total amount in kg per LER (residue)
 
-## Look for
+### Search
 
 The user can search for all waste registered with a specific LER:
     - Enter an LER in the search engine
     - Delete an inserted record
 
-![Almacen - Inventario, estancados, separados y buscar](inventario.png)
+![Almacen - Inventario, estancados, separados y buscar](stored.png)
 
-### Trailer Departures and Loads
+# Trailer Departures and Loads
 
 Preparing a truck load list is essential for several reasons, both logistical, safety and operational efficiency. some of the most important reasons: optimize space, safety or avoid accidents, monitoring or traceability and help in planning and decision making.
 
@@ -71,7 +71,7 @@ Preparing a truck load list is essential for several reasons, both logistical, s
 
 Only the user assigned to this section will be able to access it (outputs: trailer1, trailer2, trailer3 and search)
 
-## Trailer 1,2 and 3
+### Trailer 1,2 and 3
 
 The user will be able to make a record of the waste that will be loaded into the trailer, and will be able to indicate:
 
@@ -79,26 +79,26 @@ The user will be able to make a record of the waste that will be loaded into the
     - Waste packaging: GRG, Pallet, Big Bag, Drums of 200 or smaller size.
     - Weight: indicated in kilograms.
 
-## Look for
+### Search
 
 The user can search for all waste registered to load on trailers with a specific LER:
     - Enter an LER in the search engine
     - Delete an inserted record
     - It will be shown differentiated by TRAILER1-3
 
-![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](salidas.png)
+![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](departures.png)
 
-### Vehicle and Maintenance
+# Vehicle and Maintenance
 
 Tracking vehicle health is crucial for several reasons spanning safety, operational performance, economics and regulatory compliance. Some of the reasons that justify doing so: everyone's safety, optimizing use and avoiding downtime, economic, complying with laws, for the environment and helping in planning and decision-making.
 
 ![Mantenimiento](https://media0.giphy.com/media/O6gydbyHcE9YQ/200.webp?cid=790b7611djdgjbyq56q6swvjde2j6u2l5kbr3bpwagzy3758&ep=v1_gifs_search&rid=200.webp&ct=g)
 
-## Vehicles
+# Vehicles
 
 Only the user assigned to this section will be able to access a specific vehicle (van1, van2, truck1, truck2, truck3, truck4 and search).
 
-## Van1 (example)
+### Van1 (example)
 
 The user will be able to track or review the status of the assigned vehicle, using a checklist or a form.
 
@@ -115,4 +115,4 @@ Parts to monitor or review:
     - Basic accessories
     - ADR accessories
 
-![Vehiculos - Furgo 1, Furgo 2, Camion 1...](vehiculos.png)
+![Vehiculos - Furgo 1, Furgo 2, Camion 1...](fleet.png)

@@ -18,7 +18,7 @@ Las aplicaciones personalizadas son herramientas diseñadas específicamente par
 
 - Acceso y uso de la seccion asignada
 
-![Login - Registro de usuarios y listado de usuarios](usuarios.png)
+![Login - Registro de usuarios y listado de usuarios](users.png)
 
 ### Almacen e Inventario
 
@@ -59,7 +59,7 @@ El usuario puede buscar todos los residuos registrados con un LER especifico:
     - Introducir un LER en el buscador
     - Eliminar un registro insertado
 
-![Almacen - Inventario, estancados, separados y buscar](inventario.png)
+![Almacen - Inventario, estancados, separados y buscar](stored.png)
 
 ### Salidas y Cargas de Trailer
 
@@ -86,7 +86,7 @@ El usuario puede buscar todos los residuos registrados para cargar en los traile
     - Eliminar un registro insertado
     - Se mostrara diferenciado por TRAILER1-3
 
-![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](salidas.png)
+![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](departures.png)
 
 ### Vehiculo y Mantenimiento
 
@@ -115,4 +115,4 @@ Partes que hay que vigilar o revisar:
     - Accesorios basicos
     - Accesorios ADR
 
-![Vehiculos - Furgo 1, Furgo 2, Camion 1...](vehiculos.png)
+![Vehiculos - Furgo 1, Furgo 2, Camion 1...](fleet.png)
