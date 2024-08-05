@@ -30,7 +30,7 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/users/:targetUserId', getUserNameHandler)
 
-        api.path('profile/:userId/editUsername', jsonBodyParser, editUsernameHandler)
+        api.patch('/profile/:userId/editUsername', jsonBodyParser, editUsernameHandler)
 
         api.use(errorHandler)
 

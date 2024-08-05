@@ -14,11 +14,12 @@ export default (req, res, next) => {
                 const { sub: userId } = payload
 
                 const { username } = req.body
-                try {
 
+                try {
                     logic.editUsername(userId, username)
-                        .then(() => {
-                            res.status(200).send()
+                        .then(user => {
+                            res.status(200).send(user)
+                            console.log(user)
                         })
                         .catch(error => next(error))
 

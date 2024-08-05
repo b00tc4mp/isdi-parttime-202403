@@ -6,7 +6,7 @@ const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
-        editUsername('66a9e33d6fc36f64e9967e22', 'AdrianGon')
+        editUsername('66a9e33d6fc36f64e9967e22', 'Jackychan')
             .then(updatedUser => console.log('Username updated', updatedUser))
             .catch(error => console.error(error))
     })
