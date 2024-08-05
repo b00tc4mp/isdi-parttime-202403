@@ -1,9 +1,7 @@
-import { useState } from "react"
-
 import Field from "../core/Field"
 import Button from "../core/Button"
 
-import "./RegisterCustomer.css"
+import "./index.css"
 
 import logic from "../../logic/index"
 

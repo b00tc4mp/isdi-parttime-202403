@@ -1,8 +1,10 @@
 import errors, { SystemError } from "com/errors"
+import validate from "com/validate"
 
-const getCustomer = (customerId) => {
+const getProfileUser = (targetUserId) => {
+  validate.id(targetUserId, "targetUserId")
 
-  return fetch(`${import.meta.env.VITE_API_URL}/customers/${customerId}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/users/${targetUserId}/profile`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`
@@ -12,7 +14,7 @@ const getCustomer = (customerId) => {
     .then((response) => {
       if (response.status === 200) {
         return response.json()
-          .then((customer) => customer)
+          .then((targetUser) => targetUser)
       }
       return response.json()
         .catch(() => { throw new SystemError("connection error") })
@@ -25,4 +27,4 @@ const getCustomer = (customerId) => {
     .catch(() => { throw new SystemError("connection error") })
 }
 
-export default getCustomer
+export default getProfileUser

@@ -19,11 +19,8 @@ const loginUser = (username, password) => {
     })
     .then((response) => {
       if (response.status === 200) {
-        return response
-          .json()
-          .catch(() => {
-            throw new SystemError("connection error")
-          })
+        return response.json()
+          .catch(() => { throw new SystemError("connection error") })
           .then((token) => (sessionStorage.token = token))
       }
       return response

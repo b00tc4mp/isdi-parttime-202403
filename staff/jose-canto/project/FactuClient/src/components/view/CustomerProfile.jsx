@@ -18,7 +18,7 @@ export default function CustomerProfile() {
   useEffect(() => {
     try {
       //prettier-ignore
-      logic.getCustomer(customerId)
+      logic.getProfileUser(customerId)
         .then((customer) => { 
           setCustomer(customer) 
         })
@@ -43,7 +43,6 @@ export default function CustomerProfile() {
               <span className="SpanColor">Nombre Empresa</span>: {customer.companyName}
             </p>
           )}
-
           {customer?.email && (
             <p>
               <span className="SpanColor">Email</span>: {customer.email}
@@ -59,7 +58,6 @@ export default function CustomerProfile() {
               <span className="SpanColor">Nº Teléfono</span>: {customer.phone}
             </p>
           )}
-
           {customer?.address && (
             <p>
               <span className="SpanColor"> Dirección</span>: {customer.address}

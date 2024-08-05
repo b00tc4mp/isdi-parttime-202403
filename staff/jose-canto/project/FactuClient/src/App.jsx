@@ -5,6 +5,7 @@ import Register from "./components/view/Register"
 import Home from "./components/view/Home"
 import CustomerList from "./components/view/CustomerList"
 import CustomerProfile from "./components/view/CustomerProfile"
+import UsersProfile from "./components/view/UserProfile"
 
 import logic from "./logic/index"
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" element={<RenderRegister />} />
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/customers/profile/:customerId" element={<CustomerProfile />} />
+        <Route path="/users/profile/" element={<UsersProfile />} />
       </Routes>
     </>
   )

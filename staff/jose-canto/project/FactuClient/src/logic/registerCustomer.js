@@ -16,7 +16,7 @@ const registerCustomer = (username, companyName, email, password, taxId, address
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${sessionStorage.token}`
+      Authorization: `Bearer ${sessionStorage.token}`
     },
     body: JSON.stringify(body)
   })

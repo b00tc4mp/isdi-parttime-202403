@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { PiUserListBold } from "react-icons/pi"
 import { PiUserCirclePlusBold } from "react-icons/pi"
 
@@ -12,7 +12,6 @@ import logic from "../../logic/index"
 import "./CustomerList.css"
 
 export default function CustomerList() {
-  const navigate = useNavigate()
   const [customers, setCustomers] = useState([])
   const [refresh, setRefresh] = useState(0)
 
@@ -43,7 +42,7 @@ export default function CustomerList() {
   return (
     <>
       <Header
-        iconAddUser={<PiUserCirclePlusBold />}
+        iconLeftHeader={<PiUserCirclePlusBold />}
         iconUser={<PiUserListBold />}
         onRegisterCustomer={handleRegisterCustomerSubmitted}
       >
@@ -53,10 +52,8 @@ export default function CustomerList() {
       <Main className="MainList">
         <ul className="CustomerList">
           {customers.map((customer) => (
-            <Link to={`/customers/profile/${customer.id}`}>
-              <li className="Customer" key={customer.id}>
-                {customer.companyName}
-              </li>
+            <Link to={`/customers/profile/${customer.id}`} key={customer.id}>
+              <li className="Customer">{customer.companyName}</li>
             </Link>
           ))}
         </ul>

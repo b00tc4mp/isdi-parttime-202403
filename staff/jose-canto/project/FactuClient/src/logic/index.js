@@ -6,7 +6,9 @@ import logoutUser from "./logoutUser.js"
 
 import getAllCustomers from "./getAllCustomers.js"
 import registerCustomer from "./registerCustomer.js"
-import getCustomer from "./getCustomer.js"
+
+import editProfile from "./EditProfile.js"
+import getProfileUser from "./getProfileUser.js"
 
 
 const logic = {
@@ -18,7 +20,8 @@ const logic = {
 
   registerCustomer,
 
-  getCustomer,
+  editProfile,
+  getProfileUser,
   getAllCustomers
 }
 

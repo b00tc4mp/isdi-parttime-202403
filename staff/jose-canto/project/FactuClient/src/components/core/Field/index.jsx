@@ -8,7 +8,7 @@ import { MdWorkOutline } from "react-icons/md"
 
 import "./index.css"
 
-export default function Field({ id, type, placeholder }) {
+export default function Field({ id, type, placeholder, required = true }) {
   return (
     <>
       <div className="Field">
@@ -31,7 +31,7 @@ export default function Field({ id, type, placeholder }) {
             ) : null}
           </span>
         </div>
-        <input type={type} placeholder={placeholder} id={id} required></input>
+        <input type={type} placeholder={placeholder} id={id} required={required}></input>
       </div>
     </>
   )

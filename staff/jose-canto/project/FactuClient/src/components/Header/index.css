@@ -14,18 +14,18 @@
   .IconUser {
     @apply text-[5rem];
   }
-  .Title {
-    @apply relative flex w-full flex-col items-center;
+  .ContainerHeader {
+    @apply absolute flex w-full flex-col items-center;
   }
-  .Title p {
-    @apply text-xl;
+  .ContainerHeader .Children {
+    @apply text-2xl;
   }
 
   .IconExit {
     @apply absolute right-2 top-2 flex cursor-pointer text-7xl;
   }
 
-  .IconAddCustomer {
-    @apply absolute left-2 top-2 z-10 flex cursor-pointer text-7xl;
+  .IconLeftHeader {
+    @apply absolute bottom-0 left-2 z-10 flex cursor-pointer text-7xl;
   }
 }
