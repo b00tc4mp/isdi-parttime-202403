@@ -14,7 +14,7 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
                 try {
-                    logic.registerUser(userId, username, email, username, password)
+                    logic.registerUser(userId, username, email, password)
                         .then(() => res.status(201).send())
                         .catch(error => {
                             next(error)
