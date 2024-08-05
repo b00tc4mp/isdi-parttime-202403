@@ -9,23 +9,24 @@ export const NIF_CIF_REGEX = /^[0-9]{8}[A-Z]|^[A-HJ-NP-SUVW][0-9]{7}[0-9A-J]?$/
 export const PHONE_REGEX = /^(6|7|8|9)\d{8}$/
 export const COMPANY_NAME_REGEX = /^[a-zA-Z0-9 ,.&]+$/
 export const ADDRESS_REGEX = /^[a-zA-Z0-9 ,.]+$/
+export const IBANREGEX = /^[A-Z]{2}\d{2}\s?\d{4}\s?\d{4}\s?\d{2}\s?\d{10}$/i
 
 
 function validateName(name, explain = "name") {
   if (typeof name !== "string" || !NAME_REGEX.test(name)) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 
 function validateUsername(username, explain = "username") {
   if (typeof username !== "string" || !USERNAME_REGEX.test(username)) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid `)
   }
 }
 
 function validatePassword(password) {
   if (typeof password !== "string" || !PASSWORD_REGEX.test(password)) {
-    throw new ContentError("❌ Password is not valid ❌")
+    throw new ContentError("Password is not valid")
   }
 }
 
@@ -43,40 +44,46 @@ function validateEmail(email) {
 
 function validateText(text, explain = 'text', maxLength = Infinity) {
   if (typeof text !== 'string' || !text.length || text.length > maxLength) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 
 function validateUrl(url, explain = 'url') {
   if (typeof url !== 'string' || !url.startsWith('http')) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 function validateId(id, explain = 'id') {
   if (typeof id !== "string" || !ID_REGEX.test(id)) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 function validateTaxId(taxId, explain = "NIF/CIF") {
   if (typeof taxId !== "string" || !NIF_CIF_REGEX.test(taxId)) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 
 function validatePhoneNumber(phone, explain = "phone number") {
   if (typeof phone !== "string" || !PHONE_REGEX.test(phone)) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 
 function validateCompanyName(companyName, explain = "company name") {
   if (typeof companyName !== "string" || !COMPANY_NAME_REGEX.test(companyName)) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 function validateAddress(address, explain = "address") {
   if (typeof address !== "string" || !ADDRESS_REGEX.test(address)) {
-    throw new ContentError(`❌ ${explain} is not valid ❌`)
+    throw new ContentError(`${explain} is not valid`)
+  }
+}
+
+function validateIban(iban, explain = "IBAN") {
+  if (typeof iban !== "string" || !IBANREGEX.test(iban.replace(/\s+/g, ''))) {
+    throw new ContentError(`${explain} is not valid`);
   }
 }
 
@@ -93,6 +100,7 @@ const validate = {
   phone: validatePhoneNumber,
   companyName: validateCompanyName,
   address: validateAddress,
+  iban: validateIban,
 }
 
 export default validate
