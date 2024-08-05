@@ -3,11 +3,17 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic/index'
 
-function Register({ onLoginClick }) {
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault()
+import { SystemError } from 'com/errors'
 
-    const form = e.target
+import { useState } from 'react'
+
+function Register({ onLoginClick, onLogoClick }) {
+  const [message, setMessage] = useState('')
+
+  const handleRegisterSubmit = (event) => {
+    event.preventDefault()
+
+    const form = event.target
 
     const name = form.name.value
     const artisticName = form.artisticName.value
@@ -21,35 +27,52 @@ function Register({ onLoginClick }) {
     const passwordRepeat = form.passwordRepeat.value
 
     try {
-      logic.registerUser(
-        name,
-        artisticName,
-        discipline,
-        city,
-        description,
-        email,
-        images,
-        video,
-        password,
-        passwordRepeat
-      )
+      logic
+        .registerUser(
+          name,
+          artisticName,
+          discipline,
+          city,
+          description,
+          email,
+          images,
+          video,
+          password,
+          passwordRepeat
+        )
+        .then(() => onUserRegistered())
+        .catch((error) => {
+          console.log(error)
+
+          if (error instanceof SystemError) {
+            alert(error.message)
+
+            return
+          }
+
+          setMessage(error.message)
+        })
     } catch (error) {
-      console.error(error.message)
+      console.error(error)
+
+      setMessage(error.message)
     }
   }
+
   const handleLoginClick = (e) => {
     e.preventDefault()
-
     onLoginClick()
   }
+
   return (
     <>
       <Header
         isArtistHomeVisible={false}
         onClick={handleLoginClick}
         loginButtonChildren={'Login'}
+        onLogoClick={onLogoClick}
       >
-        Registro{' '}
+        Registro
       </Header>
 
       <form
@@ -66,7 +89,7 @@ function Register({ onLoginClick }) {
           type='text'
           inputClass='h-8 rounded p-2'
           placeholder='Nombre y Apellidos'
-        ></Field>
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -77,7 +100,7 @@ function Register({ onLoginClick }) {
           type='text'
           id='artisticName'
           placeholder='Nombre artístico, nombre del grupo...'
-        ></Field>
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -88,18 +111,7 @@ function Register({ onLoginClick }) {
           type='email'
           id='email'
           placeholder='ejemplo@ejemplo.com'
-        ></Field>
-
-        <Field
-          divClass='Field flex flex-col gap-1 mx-2'
-          labelClass='text-white'
-          htmlFor='city'
-          labelChildren='Ciudad'
-          inputClass='h-8 rounded p-2'
-          type='text'
-          id='city'
-          placeholder='Madrid, Barcelona'
-        ></Field>
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -110,7 +122,18 @@ function Register({ onLoginClick }) {
           type='text'
           id='discipline'
           placeholder='mago, músico...'
-        ></Field>
+        />
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          htmlFor='city'
+          labelChildren='Ciudad'
+          inputClass='h-8 rounded p-2'
+          type='text'
+          id='city'
+          placeholder='Madrid, Barcelona'
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -121,7 +144,7 @@ function Register({ onLoginClick }) {
           type='text'
           id='description'
           placeholder='describe tu espectáculo'
-        ></Field>
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -132,7 +155,7 @@ function Register({ onLoginClick }) {
           type='text'
           id='images'
           placeholder='Link de foto'
-        ></Field>
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -143,7 +166,7 @@ function Register({ onLoginClick }) {
           type='text'
           id='video'
           placeholder='link de youtube'
-        ></Field>
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -154,7 +177,7 @@ function Register({ onLoginClick }) {
           type='password'
           id='password'
           placeholder='Escribe una contraseña'
-        ></Field>
+        />
 
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
@@ -165,11 +188,14 @@ function Register({ onLoginClick }) {
           type='password'
           id='passwordRepeat'
           placeholder='Repite la contraseña'
-        ></Field>
+        />
+
+        <p className='text-red-600 text-lg m-auto'>{message}</p>
 
         <Footer>Registrar</Footer>
       </form>
     </>
   )
 }
+
 export default Register

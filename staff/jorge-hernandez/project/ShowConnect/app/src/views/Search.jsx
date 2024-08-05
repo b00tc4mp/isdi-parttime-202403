@@ -1,6 +1,5 @@
-import ArtistsList from '../components/ArtistsList'
 import Header from '../components/Header'
-import Main from '../components/Main'
+import Form from '../components/Form'
 
 function Search({ onRegisterClick, onLoginClick }) {
   const handleRegisterClick = (e) => {
@@ -24,7 +23,7 @@ function Search({ onRegisterClick, onLoginClick }) {
       >
         ¿Eres artista? Regístrate
       </Header>
-      <Main />
+      <Form />
     </>
   )
 }

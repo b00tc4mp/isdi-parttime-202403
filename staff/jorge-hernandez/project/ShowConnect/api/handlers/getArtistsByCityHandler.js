@@ -1,14 +1,14 @@
 import logic from '../logic/index.js'
 
 export default (req, res, next) => {
-  const { city, discipline } = req.params // Extrae el parámetro `city` de la URL
+  const { city, discipline } = req.params
 
   logic
-    .getArtistsByCity(city, discipline) // Llama a la función lógica
+    .getArtistsByCity(city, discipline)
     .then((artistsList) => {
-      res.json(artistsList) // Envía la lista de artistas como respuesta
+      res.json(artistsList)
     })
     .catch((error) => {
-      next(error) // Pasa el error al manejador de errores de Express
+      next(error)
     })
 }

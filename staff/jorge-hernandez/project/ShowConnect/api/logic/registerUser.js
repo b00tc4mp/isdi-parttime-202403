@@ -22,7 +22,7 @@ const registerUser = (
     })
     .then((user) => {
       if (user) {
-        throw new DuplicityError('Usuario ya registrado')
+        throw new DuplicityError('User already exists')
       }
 
       return bcrypt

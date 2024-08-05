@@ -4,6 +4,7 @@ function Header({
   children,
   loginButtonChildren,
   isArtistHomeVisible,
+  onLogoClick,
 }) {
   return (
     <div className='Header'>
@@ -17,7 +18,10 @@ function Header({
           </button>
         )}
         <div className='flex justify-between m-2 items-center'>
-          <h1 className='text-white text-[40px] mx-1 text-transparent bg-gradient-to-r from-white to-yellow-50 bg-clip-text'>
+          <h1
+            onClick={onLogoClick}
+            className='text-white text-[40px] mx-1 text-transparent bg-gradient-to-r from-white to-yellow-50 bg-clip-text'
+          >
             ShowConnect
           </h1>
           <button

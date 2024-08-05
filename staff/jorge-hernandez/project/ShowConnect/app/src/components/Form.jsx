@@ -4,7 +4,7 @@ import Footer from './Footer'
 import ArtistsList from './ArtistsList'
 import disciplines from '../assets/disciplines'
 //TODO input validates
-function Main({}) {
+function Form({}) {
   const [inputValue, setInputValue] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [artist, setArtist] = useState('')
@@ -37,9 +37,12 @@ function Main({}) {
     const artist = form.artista.value.toLowerCase()
     const city = form.ciudad.value.toLowerCase()
     const date = form.fecha.value
-
+    //TODO aplicate logic to date
     setArtist(artist)
     setCity(city)
+
+    form.reset()
+    setInputValue('')
   }
 
   return (
@@ -107,4 +110,4 @@ function Main({}) {
   )
 }
 
-export default Main
+export default Form

@@ -1,8 +1,3 @@
-// import { useEffect, useState } from 'react'
-// import logic from '../../logic'
-
-import Header from './Header'
-
 function ArtistResult(artist) {
   return (
     <>
@@ -22,7 +17,7 @@ function ArtistResult(artist) {
         </div>
         <div className='flex justify-center my-3'>
           <button className="h-10  text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md shadow-md'">
-            Contacta
+            Ver Perfil
           </button>
         </div>
       </div>

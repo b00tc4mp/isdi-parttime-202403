@@ -27,10 +27,16 @@ function App() {
         />
       )}
 
-      {view === 'Register' && <Register onLoginClick={handleGoToLogin} />}
+      {view === 'Register' && (
+        <Register
+          onLogoClick={handleGoToSearch}
+          onLoginClick={handleGoToLogin}
+        />
+      )}
 
       {view === 'Login' && (
         <Login
+          onLogoClick={handleGoToSearch}
           onUserLoggedIn={handleGoToArtistHome}
           onRegisterClick={handleGoToRegister}
         />
@@ -40,7 +46,7 @@ function App() {
         <ArtistHome onUserLoggedOut={handleGoToSearch} />
       )}
 
-      {view === 'ArtistList' && <ArtistsList />}
+      {/* {view === 'ArtistList' && <ArtistsList />} */}
     </>
   )
 }
