@@ -8,7 +8,7 @@ import Button from '../../../components/core/Button/Button'
 
 import './PanelEditUsername.css'
 
-function PanelEditUsername({ onClose, setStamp }) {
+function PanelEditUsername({ onClose, onUsernameUpdated }) {
     const [username, setUsername] = useState('')
 
     const handleCancelCreatePostClick = () => onClose()
@@ -35,7 +35,7 @@ function PanelEditUsername({ onClose, setStamp }) {
         logic.editUsername(userId, username)
             .then(username => {
                 setUsername(username)
-                setStamp(Date.now())
+                onUsernameUpdated()
                 onClose()
             })
             .catch(error => {

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faHouseChimney, faUser, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faHouseChimney, faUser, faUsers, faArrowRightFromBracket, faRefresh } from '@fortawesome/free-solid-svg-icons'
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -17,15 +17,13 @@ import PanelEditUsername from './panelEditUsername/PanelEditUsername';
 
 import './Profile.css'
 
-function Profile({ }) {
+function Profile() {
     console.log('Profile -> render')
 
     const navigate = useNavigate()
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState(null)
     const [isEditingUsername, setIsEditingUsername] = useState(false)
-
-    const [stamp, setStamp] = useState(Date.now())
-
+    const [refresh, setRefresh] = useState(Date.now());
 
     useEffect(() => {
         logic.getUserName()
@@ -36,7 +34,11 @@ function Profile({ }) {
                 console.error(error)
                 alert(error.message)
             })
-    }, [stamp])
+    }, [refresh])
+
+    const handleRefresh = () => {
+        setRefresh(Date.now())
+    }
 
     const handleLogOut = () => {
         logic.logOutUser();
@@ -89,13 +91,8 @@ function Profile({ }) {
 
             {isEditingUsername && (
                 <PanelEditUsername
-                    // setStamp={setStamp}
-                    // username={username}
-                    // setUsername={setUsername}
-                    // onClose={handleClosePanel}
-
-                    setStamp={setStamp}
                     onClose={handleClosePanel}
+                    onUsernameUpdated={handleRefresh}
                 />
             )}
 
