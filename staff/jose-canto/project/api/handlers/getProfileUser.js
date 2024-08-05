@@ -13,11 +13,11 @@ export default ((req, res, next) => {
     jwt.verify(token, JWT_SECRET)
       .then(payload => {
         const { sub: userId } = payload
-        const { customerId } = req.params
+        const { targetUserId } = req.params
 
         try {
-          logic.getCustomer(userId, customerId)
-            .then((customers) => { res.send(customers) })
+          logic.getProfileUser(userId, targetUserId)
+            .then((targetUser) => { res.send(targetUser) })
             .catch(error => next(error))
 
         } catch (error) {

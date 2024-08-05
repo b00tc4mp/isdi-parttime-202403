@@ -2,9 +2,11 @@ import registerUser from "./registerUser.js"
 import authenticateUser from "./authenticateUser.js"
 import getUserName from "./getUserName.js"
 
+import editProfile from "./editProfile.js"
+
 import registerCustomer from "./registerCustomer.js"
 import getAllCustomers from "./getAllCustomers.js"
-import getCustomer from "./getCustomer.js"
+import getProfileUser from "./getProfileUser.js"
 
 
 const logic = {
@@ -12,9 +14,11 @@ const logic = {
   authenticateUser,
   getUserName,
 
+  editProfile,
+
   registerCustomer,
   getAllCustomers,
-  getCustomer,
+  getProfileUser,
 }
 
 export default logic
