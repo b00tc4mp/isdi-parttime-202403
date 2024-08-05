@@ -3,11 +3,11 @@ import { CredentialsError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const authenticateUser = (username, password) => {
-    validate.username(username)
+const authenticateUser = (email, password) => {
+    validate.email(email)
     validate.password(password)
 
-    return User.findOne({ username }).lean()
+    return User.findOne({ email }).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)

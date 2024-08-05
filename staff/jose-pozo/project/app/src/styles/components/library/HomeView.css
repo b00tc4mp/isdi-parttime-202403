@@ -1,0 +1,43 @@
+@tailwind components;
+
+@layer components {
+  .HomeView {
+    @apply bg-size-fit grid h-dvh w-dvw grid-cols-6 grid-rows-[min-content_repeat(5,_1fr)_auto] gap-4 bg-transparent bg-[url("../../public/janbg.webp")] p-2;
+  }
+
+  .HomeHeader {
+    @apply col-span-6 flex w-full justify-between rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-1 align-middle opacity-100 shadow-lg;
+  }
+
+  .HomeSidebar {
+    @apply col-start-1 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+
+  .HomeContent {
+    @apply col-span-2 col-start-5 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+
+  .HomeDaily {
+    @apply col-span-3 col-start-2 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+
+  .HomeCalendar {
+    @apply col-span-2 col-start-5 row-span-2 row-start-3 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+
+  .HomeMiniContent {
+    @apply col-start-1 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+
+  .HomeContent1 {
+    @apply col-span-2 col-start-2 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+
+  .HomeContent2 {
+    @apply col-span-3 col-start-4 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+
+  .HomeFooter {
+    @apply col-span-6 col-start-1 row-start-6 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  }
+}

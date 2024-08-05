@@ -12,7 +12,7 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
         const api = express()
 
-        // api.use(express.static('public'))
+        api.use(express.static('public'))
 
         api.use(cors())
 

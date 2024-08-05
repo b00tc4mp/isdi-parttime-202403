@@ -1,4 +1,4 @@
-import { Routes, Route, navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import logic from './logic/index.js'
 
@@ -24,6 +24,6 @@ function App() {
 
 export default App
 
-const RenderHome = () => (logic.isUserLoggedIn() ? <Home /> : <Login />)
-const RenderLogin = () => (logic.isUserLoggedIn() ? <navigate to='/' /> : <Login />)
-const RenderRegister = () => (logic.isUserLoggedIn() ? <navigate to='/' /> : <Register />)
+const RenderHome = () => (logic.isUserLoggedIn() ? <Home /> : <Navigate to='/login' />)
+const RenderLogin = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Login />)
+const RenderRegister = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Register />)

@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .SubmitButton {
+    @apply my-2 w-full;
+  }
+}

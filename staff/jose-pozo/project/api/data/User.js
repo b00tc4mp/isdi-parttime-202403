@@ -1,10 +1,14 @@
 import { Schema, model } from 'mongoose'
 
 const user = new Schema({
-    username: {
+    name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
+    },
+
+    surname: {
+        type: String,
+        required: true
     },
 
     email: {
@@ -19,16 +23,10 @@ const user = new Schema({
 
     },
 
-    name: {
-        type: String
-    },
-
-    surname: {
-        type: String
-    },
-
     role: {
         type: String,
+        enum: ['provider', 'customer'],
+        default: 'provider'
     },
 
     phone: {

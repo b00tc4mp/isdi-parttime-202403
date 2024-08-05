@@ -1,19 +1,15 @@
 @tailwind components;
 
 @layer components {
-  .Box {
-    @apply m-1 flex w-96 flex-col items-center rounded border-2 border-solid border-black px-8 py-4;
-  }
-
-  .Box.Login {
+  .Login {
     @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform;
   }
 
-  .Box.Register {
+  .Register {
     @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform;
   }
 
-  .Box.Home {
-    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform border-none text-3xl;
+  .Profile {
+    @apply inline-flex;
   }
 }

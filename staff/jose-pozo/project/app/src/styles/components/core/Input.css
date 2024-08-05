@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+  .Input {
+    @apply bg-soft-gray rounded-md p-1;
+  }
+
+  .Input:focus {
+    @apply outline-none;
+  }
+}

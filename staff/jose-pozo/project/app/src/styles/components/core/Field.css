@@ -2,6 +2,6 @@
 
 @layer components {
   .Field {
-    @apply flex flex-col;
+    @apply my-6 flex flex-col py-2;
   }
 }

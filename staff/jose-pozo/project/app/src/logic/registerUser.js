@@ -1,8 +1,9 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerUser = (username, email, password, passwordRepeat) => {
-    validate.username(username)
+const registerUser = (name, surname, email, password, passwordRepeat) => {
+    validate.name(name)
+    validate.name(surname, 'surname')
     validate.email(email)
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
@@ -13,22 +14,24 @@ const registerUser = (username, email, password, passwordRepeat) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            username,
+            name,
+            surname,
             email,
             password,
             passwordRepeat
         })
     })
-        .catch(() => { throw new SystemError('connection error') })
+        .catch(() => { throw new SystemError('server error') })
         .then(response => {
             if (response.status === 201) {
                 return
             }
 
             return response.json()
-                .catch(() => { throw new SystemError('connection error') })
+                .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
+
                     const constructor = errors[error]
 
                     throw new constructor(message)

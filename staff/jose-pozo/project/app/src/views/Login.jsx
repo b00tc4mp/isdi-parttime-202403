@@ -22,11 +22,11 @@ function Login() {
 
         const form = event.target
 
-        const username = form.username.value
+        const email = form.email.value
         const password = form.password.value
 
         try {
-            logic.loginUser(username, password)
+            logic.loginUser(email, password)
                 .then(() => navigate('/'))
                 .catch(error => {
                     console.log(error)
@@ -49,15 +49,15 @@ function Login() {
 
     return <>
         <ViewBox className={'Login'} tag='main' >
-            <FormWithFeedback onSubmit={handlerLoginSubmit}>
-                <Field id='username' type='text' placeholder='username'>Username</Field>
+            <FormWithFeedback onSubmit={handlerLoginSubmit} message={message}>
+                <Field id='email' type='email' placeholder='Email'></Field>
 
-                <Field id='password' type='password' placeholder='password'>Password</Field>
+                <Field id='password' type='password' placeholder='Password'></Field>
 
                 <SubmitButton>Login</SubmitButton>
             </FormWithFeedback>
 
-            <Link className='Link' to='/register'>Register</Link>
+            <Link className='LinkLoginRegister' to='/register'>Register</Link>
         </ViewBox>
     </>
 }

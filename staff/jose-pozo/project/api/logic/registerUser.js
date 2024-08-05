@@ -3,13 +3,14 @@ import { DuplicityError, SystemError } from 'com/errors.js'
 import bcrypt from 'bcryptjs'
 import validate from 'com/validate.js'
 
-const registerUser = (username, email, password, passwordRepeat) => {
-    validate.username(username)
+const registerUser = (name, surname, email, password, passwordRepeat) => {
+    validate.name(name)
+    validate.name(surname, 'surname')
     validate.email(email)
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
-    return User.findOne({ $or: [{ username }, { email }] })
+    return User.findOne({ $or: [{ email }] })
         .then(user => {
             if (user) {
                 throw new DuplicityError('User already exists')
@@ -19,13 +20,12 @@ const registerUser = (username, email, password, passwordRepeat) => {
                 .catch(error => { throw new SystemError(error.message) })
                 .then(hash => {
                     const newUser = {
-                        username,
+                        name,
+                        surname,
                         email,
                         password: hash,
-                        name: '',
-                        surname: '',
                         role: 'provider',
-                        phone: ''
+                        phone: '',
                     }
 
                     return User.create(newUser)

@@ -19,13 +19,14 @@ function Register() {
 
         const form = event.target
 
-        const username = form.username.value
+        const name = form.name.value
+        const surname = form.surname.value
         const email = form.email.value
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
 
         try {
-            logic.registerUser(username, email, password, passwordRepeat)
+            logic.registerUser(name, surname, email, password, passwordRepeat)
                 .then(() => navigate('/login'))
                 .catch(error => {
                     console.log(error)
@@ -47,18 +48,21 @@ function Register() {
     return <>
         <ViewBox className={'Register'} tag='main' >
             <FormWithFeedback onSubmit={handlerRegisterSubmit} message={message} >
-                <Field id='username' type='text' placeholder='username'> Username</Field>
 
-                <Field id='email' type='email' placeholder='email'> Email</Field>
+                <Field id='name' type='text' placeholder='name'></Field>
 
-                <Field id='password' type='text' placeholder='password'> Password</Field>
+                <Field id='surname' type='text' placeholder='Surname'></Field>
 
-                <Field id='passwordRepeat' type='text' placeholder='password repeat'> Password Repeat</Field>
+                <Field id='email' type='email' placeholder='Email'></Field>
+
+                <Field id='password' type='text' placeholder='Password'></Field>
+
+                <Field id='passwordRepeat' type='text' placeholder='Confirm Password'></Field>
 
                 <SubmitButton>Register</SubmitButton>
             </FormWithFeedback>
 
-            <Link className='Link' to='/login'>Login</Link>
+            <Link className='LinkLoginRegister' to='/login'>Login</Link>
         </ViewBox>
     </>
 }
