@@ -5,6 +5,7 @@ import FormWithPanel from '../core/FormWithPanel'
 import ShowHidePassword from '../core/ShowHidePassword'
 import SubmitButton from '../core/SubmitButton'
 
+
 import logic from '../../../logic'
 
 import './Register.css'
@@ -47,7 +48,7 @@ function Register() {
 
     <View className='RegisterForm' tag='main'>
 
-      <Title id='TitleRegister' className='TitlePrincipalRegister'>Regístrate</Title>
+      <Title className='TitlePrincipalRegister'>Regístrate</Title>
 
       <FormWithPanel onSubmit={handleRegisterSubmit}>
 

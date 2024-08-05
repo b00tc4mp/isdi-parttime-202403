@@ -1,19 +1,43 @@
-@tailwind base;
 @tailwind components;
 
-@layer base {
-  body {
-    @apply min-h-screen w-full flex flex-col items-center justify-center bg-white text-gray-900;
-  }
-}
 
 @layer components {
-.TitlePrincipalRegister{
-  @apply text-3xl font-semibold mb-6;
-}
+  .information-section {
+    @apply text-center m-8;
+  }
+
+  .instrucciones {
+    @apply mt-4;
+  }
+
+  .show-form-button {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200;
+  }
+
+  .TitleCreateRoom {
+    @apply text-3xl font-semibold mb-6;
+  }
+
+  .instructions-content {
+    @apply text-left mt-8 max-w-3xl mx-auto;
+  }
+
+  .instructions-heading {
+    @apply text-xl font-semibold mt-6 mb-2;
+  }
+
+  .instructions-list {
+    @apply list-disc list-inside mb-4;
+  }
+
+  .instructions-list ol {
+    @apply list-decimal ml-6;
+  }
+
   .RegisterForm {
     @apply text-center flex flex-col justify-center items-center w-full max-w-md px-4 py-6 mt-6 mb-6 pt-6 pb-6;
   }
+
   .RegisterForm input,
   .RegisterForm select,
   .RegisterForm textarea {
@@ -32,4 +56,3 @@
     @apply text-blue-500 hover:underline;
   }
 }
-

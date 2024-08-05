@@ -1,46 +1,32 @@
-import { ContentError, MatchError } from "./errors.js"
+# Regular Expressions for Validation
 
-// Regex para nombre (permitiendo letras y algunos caracteres especiales)
-export const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
-// Acepta nombres con al menos un carácter, incluyendo letras mayúsculas y minúsculas, y caracteres especiales como =, [], {}, <>, ().
+```javascript
+// Validates names containing letters and certain special characters (brackets, parentheses).
+export const NAME_REGEX = /^[a-zA-Z=$begin:math:display$$end:math:display$\{\}\<\>$begin:math:text$$end:math:text$]{1,}$/;
 
-// Regex para nombre de sala (permitiendo letras, números y algunos caracteres especiales, con un espacio en el medio, y una longitud total de hasta 20 caracteres)
-export const NAMEROOM_REGEX = /^[\w\-_\@\.]{1,10}\s[\w\-_\@\.]{1,10}$/
-// Acepta nombres con hasta 10 caracteres antes y después de un espacio, permitiendo letras, números, guiones, guiones bajos, arrobas y puntos.
+// Validates room names allowing letters, numbers, spaces, dashes, underscores, `@`, and dots. The length can be between 1 and 100 characters.
+export const NAMEROOM_REGEX = /^[\w\s\-\_\@\.]{1,100}$/;
 
-// Regex para contraseña (letras, números, y algunos caracteres especiales, mínimo 4 caracteres)
-export const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
-// Acepta contraseñas con al menos 4 caracteres, permitiendo letras, números y caracteres especiales como -, $, %, &, =, [], {}, <>, ().
+// Validates passwords that contain alphanumeric characters and specific symbols, with a minimum length of 4 characters.
+export const PASSWORD_REGEX = /^[\w-$%&=$begin:math:display$$end:math:display$\{\}\<\>$begin:math:text$$end:math:text$]{4,}$/;
 
-// Regex para correo electrónico
-export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-// Valida correos electrónicos con el formato estándar, incluyendo nombres locales y dominios con TLDs (dominios de nivel superior).
+// Validates email addresses according to common email format standards.
+export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(($begin:math:display$[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$end:math:display$)|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-// Regex para teléfono (opcionalmente con prefijo internacional, varios formatos para Venezuela y España)
-export const PHONE_REGEX = /^(?:\+58\s(?:2[0-9]{1,2}|4[0-9]{1,2}|[0-9]{3})\s\d{7,8}|\+34\s(?:[6-9]\d{2}\s\d{6}|[2-9]\d{8}))$/
-// Acepta números de teléfono con prefijo internacional para Venezuela (+58) y España (+34), permitiendo varios formatos de números de teléfono locales.
+// Validates phone numbers, allowing an optional leading plus sign followed by 1 to 15 digits.
+export const PHONE_REGEX = /^\+?[1-9]\d{1,14}$/;
 
-// Regex para ID (solo números y letras en minúsculas)
-export const ID_REGEX = /^[0-9a-z]+$/
-// Acepta identificadores que solo contienen números y letras en minúsculas, sin espacios ni caracteres especiales.
+// Validates IDs consisting of lowercase alphanumeric characters.
+export const ID_REGEX = /^[0-9a-z]+$/;
 
-// Regex para región (solo Norte, Sur, Este, Oeste en mayúsculas y minúsculas)
-export const REGION_REGEX = /^(Norte|Sur|Este|Oeste|norte|sur|este|oeste)$/
-// Acepta los nombres de región "Norte", "Sur", "Este" y "Oeste" en mayúsculas o minúsculas, sin otros caracteres.
+// Validates region names, permitting specific names in both uppercase and lowercase.
+export const REGION_REGEX = /^(Norte|Sur|Este|Oeste|norte|sur|este|oeste)$/;
 
+// Validates prices with optional decimal values and currency units (USD, EUR, VES), ensuring that the value is not zero.
+export const PRICE_REGEX = /^(?!0$)(?:[1-9]\d*\.?\d*|\.\d+)\s*(USD|EUR|VES)$/;
 
-// Regex para precio mayor que 0 y divisa (USD, EUR, VES)
-export const PRICE_REGEX = /^(?!0$)(?:[1-9]\d*\.?\d*|\.\d+)\s*(USD|EUR|VES)$/
-// Acepta precios mayores que 0 con decimales opcionales, seguido de un espacio y una divisa, donde las divisas permitidas son USD, EUR o VES.
+// Validates availability status, allowing either "Disponible" or "No disponible".
+export const AVAILABILITY_REGEX = /^(Disponible|No disponible)$/;
 
-// Regex para disponibilidad (solo Disponible o No disponible)
-export const AVAILABILITY_REGEX = /^(Disponible|No disponible)$/
-// Acepta los estados de disponibilidad "Disponible" o "No disponible" en español, sin otros valores.
-
-// Regex para coordenadas (longitud)
-export const LONGITUDE_REGEX = /^-?([1-9]?\d(\.\d+)?|1[0-7]\d(\.\d+)?|180(\.0+)?)$/
-// Acepta coordenadas de longitud entre -180 y 180 grados, con hasta 6 decimales opcionales.
-
-// Regex para coordenadas (latitud)
-export const LATITUDE_REGEX = /^-?([1-8]?\d(\.\d+)?|90(\.0+)?)$/
-// Acepta coordenadas de latitud entre -90 y 90 grados, con hasta 6 decimales opcionales.
+// Validates geographic coordinates in the format `[longitude, latitude]`, ensuring values are within valid ranges.
+export const COORDINATES_REGEX = /^\s*$begin:math:display$\\s*(-?([1-9]?\\d(\\.\\d+)?|1[0-7]\\d(\\.\\d+)?|180(\\.0+)?))\\s*,\\s*(-?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?))\\s*$end:math:display$\s*$/;

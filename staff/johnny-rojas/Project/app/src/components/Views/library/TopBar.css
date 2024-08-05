@@ -4,7 +4,7 @@
 
 /* Contenedor principal de la barra superior */
 .top-bar {
-  @apply flex flex-col items-center p-4 w-full;
+  @apply flex flex-col items-center pl-4 w-full;
 }
 
 /* Contenedor para los elementos superiores (en línea horizontal) */
@@ -14,7 +14,7 @@
 
 /* Estilo para el icono de inicio */
 .top-bar .home-icon {
-  @apply text-black text-2xl mr-6; /* Mayor margen a la derecha para mayor separación */
+  @apply text-black text-2xl mr-24; /* Mayor margen a la derecha para mayor separación */
 }
 
 /* Estilo para el logo de la página */
@@ -27,12 +27,3 @@
   @apply w-full h-full object-cover;
 }
 
-/* Estilo para el ícono del menú desplegable */
-.top-bar .dropdown-menu {
-  @apply text-black text-2xl ml-6; /* Mayor margen a la izquierda para mayor separación */
-}
-
-/* Estilo para la barra de búsqueda */
-.top-bar .search-bar {
-  @apply w-full max-w-screen-lg mx-auto border border-gray-300 rounded-md px-4 py-2;
-}

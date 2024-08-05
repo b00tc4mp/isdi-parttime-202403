@@ -2,8 +2,9 @@ import './Home.css'
 import Header from '../core/Header'
 import TopBar from '../library/TopBar'
 
-import logic from '../../../logic/index'
+
 import { useNavigate } from 'react-router-dom'
+
 
 function Home() {
 
@@ -14,8 +15,6 @@ function Home() {
     <Header>
       <TopBar></TopBar>
     </Header>
-
-
 
 
   </div>

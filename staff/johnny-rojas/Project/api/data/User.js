@@ -1,5 +1,5 @@
 import { NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONE_REGEX } from '../../com/validate.js'
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 
 const user = new Schema({
     name: {
@@ -21,18 +21,22 @@ const user = new Schema({
     phone: {
         type: String,
         unique: true,
-        match:PHONE_REGEX
+        // match:PHONE_REGEX
     },
     password: {
         type: String,
         required: true,
     },
-    // role: {
-    //     type: String,
-    //     required: true,
-    //     default: 'guest',
-    //     enum: ['guest', 'host']
-    //   }
+    role: {
+        type: String,
+        required: true,
+        default: 'guest',
+        enum: ['guest', 'host'],
+    },
+    rooms: [{
+        type: Types.ObjectId,
+        ref: 'Room'
+    }],
 })
 
 const User = model('User', user)

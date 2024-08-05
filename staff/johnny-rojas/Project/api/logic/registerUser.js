@@ -7,7 +7,7 @@ const registerUser = (name, surname, email, phone, password, repeatPassword) => 
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
-    validate.phone(phone)
+    // validate.phone(phone)
     validate.password(password)
     validate.passwordsMatch(password, repeatPassword)
 

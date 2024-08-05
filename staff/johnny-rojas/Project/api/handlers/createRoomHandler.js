@@ -1,18 +1,13 @@
 import 'dotenv/config'
 import jwt from '../util/jwtoken-promised.js'
 import logic from '../logic/index.js'
-import { CredentialsError, NotFoundError } from "com/errors.js"
-import { User } from '../data/index.js'
+import { CredentialsError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
 
-const createRoomHandler = (req, res, next) => {
+const createRoomHandler = ((req, res, next) => {
   try {
-    const token = req.headers.authorization?.slice(7)
-
-    if (!token) {
-      throw new CredentialsError('Authorization token is missing')
-    }
+    const token = req.headers.authorization.slice(7)
 
     jwt.verify(token, JWT_SECRET)
       .then(payload => {
@@ -20,23 +15,18 @@ const createRoomHandler = (req, res, next) => {
 
         const { nameRoom, region, image, description, price, availability, likes, coordinates } = req.body
 
-        if (!nameRoom || !region || !image || !description || !price || !availability || !coordinates) {
-          throw new Error('Missing required fields in request body');
+        try {
+          logic.createRoom(userId, nameRoom, region, image, description, price, availability, likes, coordinates)
+            .then((room) => { res.status(201).send(room) })
+            .catch(error => next(error))
+        } catch (error) {
+          next(error)
         }
-            try {
-              logic.createRoom(userId, nameRoom, region, image, description, price, availability, likes, coordinates)
-                .then(() => res.status(201).send({ message: 'createRoom done' }))
-                .catch(error => next(error))
-            } catch (error) {
-              next(error)
-            }
-        
-        
       })
       .catch(error => next(new CredentialsError(error.message)))
   } catch (error) {
     next(error)
   }
-}
+})
 
 export default createRoomHandler

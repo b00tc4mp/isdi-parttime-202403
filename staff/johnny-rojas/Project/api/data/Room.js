@@ -1,7 +1,7 @@
 import { Schema, model, Types } from 'mongoose';
 import { NAMEROOM_REGEX, REGION_REGEX } from '../../com/validate.js';
 
-const { ObjectId } = Types
+const { ObjectId } = Types;
 
 const room = new Schema({
   author: {
@@ -38,29 +38,31 @@ const room = new Schema({
     required: true
   },
   availability: {
-    type: String,
-    required: true
-    //TODO Dates Strat-End
+    startDate: {
+      type: Date,
+      required: true
+    },
+    endDate: {
+      type: Date,
+      required: true
+    }
   },
   likes: [{
-    type: [],
+    type: ObjectId,
     ref: 'User'
   }],
   location: {
-    type: {
-      type: String,
-      enum: ['Point'],
+    lat: {
+      type: Number,
       required: true
     },
-    coordinates: {
-      type: [Number],
+    lng: {
+      type: Number,
       required: true
     }
-  }
+  },
 });
-
 
 const Room = model('Room', room);
 
 export default Room;
-

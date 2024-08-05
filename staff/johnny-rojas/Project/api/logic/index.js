@@ -3,6 +3,7 @@ import authenticateUser from './authenticateUser.js'
 import getUserName from './getUserName.js'
 
 import createRoom from './createRoom.js'
+import getAllRooms from './getAllRooms.js'
 
 const logic = {
   registerUser,
@@ -10,7 +11,7 @@ const logic = {
   getUserName,
 
   createRoom,
-  
+  getAllRooms,
 }
 
 export default logic

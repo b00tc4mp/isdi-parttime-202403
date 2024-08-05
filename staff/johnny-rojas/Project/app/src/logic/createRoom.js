@@ -1,1 +1,38 @@
-//TODO Fech e index logic
+import errors, { SystemError } from "com/errors";
+import validate from "com/validate";
+
+const createRoom = (nameRoom, region, image, description, price, availability, likes, coordinates) => {
+  validate.id(userId, 'userId');
+  validate.nameRoom(nameRoom, 'name room');
+  validate.region(region, 'region');
+  validate.url(image, 'image');
+  validate.text(description, 'description');
+  validate.price(price, 'price');
+  validate.availability(availability, 'availability');
+
+  return fetch(`${import.meta.env.VITE_API_URL}/rooms`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${sessionStorage.token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ nameRoom, region, image, description, price, availability, likes, coordinates })
+  })
+
+    .catch(() => { throw new SystemError('network error') })
+    .then(response => {
+      if (response.status === 201) return
+
+      return response.json()
+        .catch(() => { throw new SystemError('network error') })
+        .then(body => {
+          const { error, message } = body
+
+          const constructor = errors[error]
+
+          throw new constructor(message)
+        })
+    })
+}
+
+export default createRoom

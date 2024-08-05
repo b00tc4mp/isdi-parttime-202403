@@ -1,16 +1,18 @@
-import express from 'express'
-import routes from './handlers/index.js'
+import express from 'express';
+import routes from './handlers/index.js';
 
-const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' });
 
-const router = express.Router()
+const router = express.Router();
 
-router.post('/users', jsonBodyParser, routes.registerUserHandler)
+router.post('/users', jsonBodyParser, routes.registerUserHandler);
 
-router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)
+router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler);
 
-router.get('/users/:targetUserId', routes.getUserNameHandler)
+router.get('/users/:targetUserId', routes.getUserNameHandler);
 
-router.post('/room', jsonBodyParser, routes.createRoomHandler)
+router.get('/rooms', routes.getAllRoomsHandler);
 
-export default router
+router.post('/rooms', jsonBodyParser, routes.createRoomHandler);
+
+export default router;

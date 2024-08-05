@@ -1,10 +1,11 @@
+import 'dotenv/config'
 import logic from '../logic/index.js'
 import { CredentialsError } from 'com/errors.js'
 import jwt from '../util/jwtoken-promised.js'
 
 const { JWT_SECRET } = process.env
 
-const getUserNameHandler = (req, res, next) => {
+const getAllRoomsHandler = (req, res, next) => {
   try {
     const token = req.headers.authorization.slice(7)
 
@@ -12,13 +13,10 @@ const getUserNameHandler = (req, res, next) => {
       .then(payload => {
         const { sub: userId } = payload
 
-        const { targetUserId } = req.params
-
         try {
-          logic.getUserName(userId, targetUserId)
-            .then(name => res.json(name))
+          logic.getAllRooms(userId)
+            .then(rooms => res.json(rooms))
             .catch(error => next(error))
-
         } catch (error) {
           next(error)
         }
@@ -30,4 +28,4 @@ const getUserNameHandler = (req, res, next) => {
   }
 }
 
-export default getUserNameHandler
+export default getAllRoomsHandler
