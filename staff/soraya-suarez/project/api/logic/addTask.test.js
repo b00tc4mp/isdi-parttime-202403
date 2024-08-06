@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
 
         try {
-            addTask('66afc674cc8e7c4304f65b8d', 'AÑADIR OTRA TAREA', 'DESCRIBIENDO', 'toDo', 'low', true, '', error => {
+            addTask('66afc674cc8e7c4304f65b8d', '66afc674cc8e7c4304f65b8d', 'AÑADIR  con mismo creador y propietario', 'DESCRIBIENDO', 'toDo', 'low', true, '', error => {
                 if (error) {
                     console.error(error)
 

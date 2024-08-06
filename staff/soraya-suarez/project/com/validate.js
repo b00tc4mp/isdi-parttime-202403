@@ -37,7 +37,7 @@ function validateUrl(url, explain = 'url') {
 }
 
 function validateId(id, explain = 'id') {
-    if (typeof id !== 'string' || !ID_REGEX.test(id))
+    if ((typeof id !== 'string' || !ID_REGEX.test(id)) && id !== null)
         throw new ContentError(`${explain} is not valid`)
 }
 

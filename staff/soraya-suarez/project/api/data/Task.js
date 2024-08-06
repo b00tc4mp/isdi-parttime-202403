@@ -3,10 +3,14 @@ import { Schema, model, Types } from 'mongoose'
 const { ObjectId } = Types
 
 const task = new Schema({
-    owner: {
+    creator: {
         type: ObjectId,
         ref: "User",
         required: true
+    },
+    owner: {
+        type: ObjectId,
+        ref: "User"
     },
     name: {
         type: String,
@@ -25,7 +29,8 @@ const task = new Schema({
         required: true
     },
     visible: {
-        type: Boolean
+        type: Boolean,
+        required: true
     },
     observations: {
         type: String

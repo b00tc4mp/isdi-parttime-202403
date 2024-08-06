@@ -12,14 +12,13 @@ export default (req, res, next) => {
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
+                const { sub: userId } = payload
 
-                const { sub: creator } = payload
-
-                const { owner, name, description, status, priority, visible, observations } = req.body
+                const { taskId } = req.params
 
                 try {
-                    logic.addTask(creator, owner, name, description, status, priority, visible, observations)
-                        .then(() => res.status(201).send())
+                    logic.deleteTask(userId, postId)
+                        .then(() => res.status(204).send())
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
