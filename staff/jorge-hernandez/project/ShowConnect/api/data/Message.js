@@ -22,6 +22,6 @@ const messageSchema = new Schema({
   },
 })
 
-const Chat = model('Chat', chatSchema)
+const Chat = model('Message', messageSchema)
 
-export default Chat
+export default messageSchema

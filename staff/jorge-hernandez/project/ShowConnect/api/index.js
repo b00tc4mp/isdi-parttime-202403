@@ -13,7 +13,7 @@ import errorHandler from './handlers/errorHandler.js'
 const { MONGODB_URL, PORT } = process.env
 
 mongoose
-  .connect(MONGODB_URL)
+  .connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     const api = express()
 
@@ -41,7 +41,6 @@ mongoose
 
     api.get('/users/city/:city/discipline/:discipline', getArtistsByCityHandler)
 
-    // Middleware global para manejo de errores
     api.use(errorHandler)
 
     api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
