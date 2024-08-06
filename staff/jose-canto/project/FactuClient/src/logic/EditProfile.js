@@ -4,15 +4,15 @@ import validate from "com/validate"
 const editProfile = (userId, updates) => {
   validate.id(userId, "userId")
 
-  if (updates.username) validate.username(updates.username, "username")
-  if (updates.email) validate.email(updates.email, "email")
-  if (updates.fullName) validate.name(updates.fullName, "fullName")
-  if (updates.companyName) validate.companyName(updates.companyName, "companyName")
-  if (updates.address) validate.address(updates.address, "address")
-  if (updates.taxId) validate.taxId(updates.taxId, "taxId")
-  if (updates.phone) validate.phone(updates.phone, "phone")
-  if (updates.bankAccount) validate.iban(updates.bankAccount, "bankAccount")
-  if (updates.companyLogo) validate.url(updates.companyLogo)
+  if (updates.username) validate.username(updates.username)
+  if (updates.email) validate.email(updates.email)
+  if (updates.fullName) validate.name(updates.fullName, "full Name")
+  if (updates.companyName) validate.companyName(updates.companyName)
+  if (updates.address) validate.address(updates.address)
+  if (updates.taxId) validate.taxId(updates.taxId)
+  if (updates.phone) validate.phone(updates.phone)
+  if (updates.bankAccount) validate.iban(updates.bankAccount)
+  if (updates.companyLogo) validate.url(updates.companyLogo, "companyLogo")
 
   return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/edit`, {
     method: "PATCH",
@@ -24,11 +24,7 @@ const editProfile = (userId, updates) => {
   })
     .catch(() => { throw new SystemError("connection error") })
     .then(response => {
-      if (response.status === 200) {
-        console.log("user edited")
-        return
-      }
-
+      if (response.status === 200) return
       return response.json()
         .catch(() => { throw new SystemError("connection error") })
         .then((body) => {
