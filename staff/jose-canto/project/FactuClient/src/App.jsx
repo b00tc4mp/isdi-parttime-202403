@@ -6,6 +6,9 @@ import Home from "./components/view/Home"
 import CustomerList from "./components/view/CustomerList"
 import CustomerProfile from "./components/view/CustomerProfile"
 import UsersProfile from "./components/view/UserProfile"
+import InvoiceList from "./components/view/InvoiceList"
+import DeliveryNoteList from "./components/view/DeliveryNotesList"
+import DeliveryInfo from "./components/view/DeliveryInfo"
 
 import logic from "./logic/index"
 
@@ -18,9 +21,16 @@ function App() {
         <Route path="/" element={<RenderHome />} />
         <Route path="/login" element={<RenderLogin />} />
         <Route path="/register" element={<RenderRegister />} />
+
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/customers/profile/:customerId" element={<CustomerProfile />} />
+
         <Route path="/users/profile/" element={<UsersProfile />} />
+
+        <Route path="/invoices" element={<InvoiceList />} />
+
+        <Route path="/delivery-notes" element={<DeliveryNoteList />} />
+        <Route path="/delivery-notes/:deliveryNoteId" element={<DeliveryInfo />} />
       </Routes>
     </>
   )
