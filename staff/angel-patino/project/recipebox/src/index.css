@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --first-color: black;
+        --second-color: rgba(237, 219, 219, 0.914);
+        font-family: Crimson Text;
+    }
+
+    * {
+        color: var(--first-color);
+    }
+
+    body {
+        background-color: var(--second-color);
+    }
+}
+
+@layer components {
+
+
+}

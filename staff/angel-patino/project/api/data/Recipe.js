@@ -3,15 +3,15 @@ import { Schema, model, Types } from "mongoose"
 const { ObjectId } = Types
 
 const recipe = new Schema({
+    author: {
+        type: ObjectId,
+        required: true,
+        ref: 'User'
+    },
 
     title: {
         type: String,
         required: true,
-    },
-
-    link: {
-        type: String,
-        required: false,
     },
 
     source: {
@@ -48,15 +48,11 @@ const recipe = new Schema({
     rating: {
         type: Number,
         required: false
-    },
+    }
 
-    author: {
-        type: ObjectId,
-        required: true,
-        ref: 'User'
-    },
+
 })
 
 const Recipe = model('Recipe', recipe)
 
-export default recipe
+export default Recipe
