@@ -32,35 +32,41 @@ export default function CustomerProfile() {
     <>
       {customer?.companyName && <Header iconUser={<RiFileUserLine />}>{customer.companyName}</Header>}
       <Main className="CustomerProfile">
-        <div>
+        <div className="CustomerInfo">
           {customer?.username && (
             <p>
-              <span className="SpanColor">Nombre de Usuario</span>: {customer.username}
+              <span className="SpanColor">Nombre de Usuario</span>
+              <br /> {customer.username}
             </p>
           )}
           {customer?.companyName && (
             <p>
-              <span className="SpanColor">Nombre Empresa</span>: {customer.companyName}
+              <span className="SpanColor">Nombre Empresa</span>
+              <br /> {customer.companyName}
             </p>
           )}
           {customer?.email && (
             <p>
-              <span className="SpanColor">Email</span>: {customer.email}
+              <span className="SpanColor">Email</span>
+              <br /> {customer.email}
             </p>
           )}
           {customer?.taxId && (
             <p>
-              <span className="SpanColor">CIF/NIF</span>: {customer.taxId}
+              <span className="SpanColor">CIF/NIF</span>
+              <br /> {customer.taxId}
             </p>
           )}
           {customer?.phone && (
             <p>
-              <span className="SpanColor">Nº Teléfono</span>: {customer.phone}
+              <span className="SpanColor">Nº Teléfono</span>
+              <br /> {customer.phone}
             </p>
           )}
           {customer?.address && (
             <p>
-              <span className="SpanColor"> Dirección</span>: {customer.address}
+              <span className="SpanColor"> Dirección</span>
+              <br /> {customer.address}
             </p>
           )}
         </div>

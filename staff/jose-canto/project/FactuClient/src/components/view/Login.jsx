@@ -50,13 +50,14 @@ export default function Login() {
 
           <Button type="submit">Login</Button>
 
-          <Link to="/register">
-            <div className="Link">
-              <p>
-                ¿No tienes cuenta? <span className="Link-RegisterLogin">Registrate</span>
-              </p>
-            </div>
-          </Link>
+          <div className="Link">
+            <p>
+              ¿No tienes cuenta?{" "}
+              <Link to="/register">
+                <span className="Link-RegisterLogin">Registrate</span>
+              </Link>
+            </p>
+          </div>
         </form>
       </Main>
 

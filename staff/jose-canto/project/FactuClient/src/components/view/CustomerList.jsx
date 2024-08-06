@@ -59,9 +59,7 @@ export default function CustomerList() {
         </ul>
       </Main>
 
-      <div className="ContainerFooter">
-        <Footer>FactuClient</Footer>
-      </div>
+      <Footer>FactuClient</Footer>
     </>
   )
 }

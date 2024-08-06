@@ -59,13 +59,14 @@ export default function Register() {
 
           <Button type="submit">Registrate</Button>
 
-          <Link to="/login">
-            <div className="Link">
-              <p>
-                ¿Tienes cuenta? <span className="Link-RegisterLogin">Login</span>
-              </p>
-            </div>
-          </Link>
+          <div className="Link">
+            <p>
+              ¿Tienes cuenta?
+              <Link to="/login">
+                <span className="Link-RegisterLogin">Login</span>
+              </Link>
+            </p>
+          </div>
         </form>
       </Main>
 

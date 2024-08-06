@@ -5,6 +5,9 @@ import { MdOutlinePhoneAndroid } from "react-icons/md"
 import { FaRegAddressCard } from "react-icons/fa"
 import { HiOutlineIdentification } from "react-icons/hi"
 import { MdWorkOutline } from "react-icons/md"
+import { FaRegUser } from "react-icons/fa"
+import { CiBank } from "react-icons/ci"
+import { TiImage } from "react-icons/ti"
 
 import "./index.css"
 
@@ -28,6 +31,12 @@ export default function Field({ id, type, placeholder, required = true }) {
               <HiOutlineIdentification />
             ) : id === "companyName" ? (
               <MdWorkOutline />
+            ) : id === "fullName" ? (
+              <FaRegUser />
+            ) : id === "bankAccount" ? (
+              <CiBank />
+            ) : id === "companyLogo" ? (
+              <TiImage />
             ) : null}
           </span>
         </div>

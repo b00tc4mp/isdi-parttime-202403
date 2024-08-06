@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 import logic from "../../logic/index"
@@ -8,6 +8,7 @@ import { IoListOutline } from "react-icons/io5"
 import { LiaFileInvoiceSolid } from "react-icons/lia"
 import { GoNote } from "react-icons/go"
 import { GiPapers } from "react-icons/gi"
+import { AiOutlineUnorderedList } from "react-icons/ai"
 
 import Header from "../Header"
 import Button from "../core/Button"
@@ -15,7 +16,6 @@ import Main from "../core/Main"
 import Footer from "../core/Footer"
 
 import "./Home.css"
-import { useEffect } from "react"
 
 export default function Home() {
   const [userName, setUserName] = useState("")
@@ -47,7 +47,7 @@ export default function Home() {
           </Button>
         </Link>
 
-        <Link to="lastInvoices">
+        <Link to="invoices">
           <Button>
             <span className="Icon">
               <GiPapers />
@@ -56,10 +56,17 @@ export default function Home() {
           </Button>
         </Link>
 
+        <Link to="delivery-notes">
+          <Button>
+            <span className="Icon">{<GoNote />}</span>
+            Ultimos Albaranes
+          </Button>
+        </Link>
+
         <Link to="createDelivery">
           <Button>
             <span className="Icon">
-              <GoNote />
+              <AiOutlineUnorderedList />
             </span>
             Crear Albarán
           </Button>
