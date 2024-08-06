@@ -5,8 +5,12 @@
     @apply text-xl font-extrabold;
   }
 
-  .CustomerProfile > div {
-    @apply flex w-[90%] flex-col gap-8 rounded-2xl bg-[#0000002a] p-3 shadow-custom-shadow;
+  .CustomerInfo {
+    @apply flex w-[90%] flex-col gap-4 rounded-2xl bg-[#0000002a] p-3 shadow-custom-shadow;
+  }
+
+  .CustomerInfo > p {
+    @apply inline;
   }
 
   .SpanColor {

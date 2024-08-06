@@ -26,6 +26,6 @@
   }
 
   .IconLeftHeader {
-    @apply absolute bottom-0 left-2 z-10 flex cursor-pointer text-7xl;
+    @apply absolute left-2 top-0 z-10 flex cursor-pointer text-7xl;
   }
 }

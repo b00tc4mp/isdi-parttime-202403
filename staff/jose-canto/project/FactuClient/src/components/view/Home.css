@@ -2,7 +2,7 @@
 
 @layer components {
   .MainHome {
-    @apply relative top-32 mt-12 flex w-full flex-col items-center justify-center gap-10;
+    @apply relative top-28 mt-12 flex w-full flex-col items-center justify-center gap-6;
   }
 
   .MainHome .Button {
