@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 import logic from "../logic"
 
 import Field from '../components/core/Field'
-import Link from '../components/core/Link'
+// import Link from '../components/core/Link'
 import Title from '../components/core/Title'
 
 import { SystemError } from 'com/errors'
@@ -51,28 +51,33 @@ export const Login = () => {
         }
     }
 
-    const handleResisterClick = (event) => {
-        event.preventDefault()
+    // const handleResisterClick = (event) => {
+    //     event.preventDefault()
 
-        navigate("/register")
-    }
+    //     navigate("/register")
+    // }
 
-    return <>
+    return (
         <div>
-            <h1>Login</h1>
 
             <form className="LoginForm" onSubmit={handleLoginSubmit}>
                 <Title>Login</Title>
 
-                <Field id="username" placeholder="username">Username</Field>
+                <Field id="username" type="text" placeholder="username">Username</Field>
 
                 <Field id="password" type="password" placeholder="password">Password</Field>
 
                 <button type="submit">Login</button>
 
             </form>
-            <p>{message}</p>
-            <Link onClick={handleResisterClick}>Register</Link>
+            {message && <p className="ErrorMessage">{message}</p>}
+            <Link className="Link" to="/register">Register</Link>
+
+            {/* <div className="Link">
+
+
+                <Link onClick={handleResisterClick}>Register</Link>
+            </div> */}
         </div>
-    </>
+    )
 }

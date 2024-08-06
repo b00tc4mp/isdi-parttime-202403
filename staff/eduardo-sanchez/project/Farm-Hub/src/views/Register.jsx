@@ -64,27 +64,27 @@ function Register() {
 
     return (
         <div>
-            <h1>Register</h1>
             <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
                 <Title>Register</Title>
 
-                <Field id="name" placeholder="name">Name</Field>
+                <Field id="name" type="text" placeholder="name">Name</Field>
 
-                <Field id="surname" placeholder="surname">Surname</Field>
+                <Field id="surname" type="text" placeholder="surname">Surname</Field>
 
                 <Field id="email" type="email" placeholder="name@example.com">E-mail</Field>
 
-                <Field id="username" placeholder="username">Username</Field>
+                <Field id="username" type="text" placeholder="username">Username</Field>
 
                 <Field id="password" type="password" placeholder="password">Password</Field>
 
                 <Field id="passwordRepeat" type="password" placeholder="password repeat">Password Repeat</Field>
 
-
                 <button type="submit">Register</button>
+
             </form>
-            <p>{message}</p>
-            <Link onClick={handleLoginClick}>Login</Link>
+            <p className="ErrorMessage">{message}</p>
+            <Link className="Link" onClick={handleLoginClick}>Login</Link>
+
         </div>
     )
 }
