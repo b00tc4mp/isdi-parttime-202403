@@ -5,15 +5,22 @@
     @apply w-20 rounded-2xl;
   }
 
-  .MainProfile {
-    @apply gap-3;
-  }
-
   .Profile {
-    @apply flex flex-col items-center gap-3;
+    @apply relative bottom-3 flex w-[95%] flex-col items-center gap-2;
   }
 
-  .Profile > p {
-    @apply w-[90%] text-xl font-bold;
+  .ProfileInfo {
+    @apply inline w-full;
+  }
+  .SpanText {
+    @apply w-auto text-sm font-bold text-orange-800;
+  }
+
+  .ProfileInfo {
+    @apply w-full text-xl font-bold;
+  }
+
+  .HeaderProfile .IconLeftHeader {
+    @apply -top-5;
   }
 }

@@ -51,46 +51,42 @@ export default function UserProfile() {
 
       <Main className="MainProfile">
         <div className="Profile">
-          {user?.username && (
-            <p>
-              <span className="SpanColor">Nombre de Usuario</span>: {user.username}
-            </p>
-          )}
-          {user?.email && (
-            <p>
-              <span className="SpanColor">Email</span>: {user.email}
-            </p>
-          )}
-          {user?.fullName && (
-            <p>
-              <span className="SpanColor">Nombre y Apellidos</span>: {user.fullName}
-            </p>
-          )}
-          {user?.companyName && (
-            <p>
-              <span className="SpanColor">Nombre de Empresa</span>: {user.companyName}
-            </p>
-          )}
-          {user?.companyName && (
-            <p>
-              <span className="SpanColor">Dirección</span>: {user.address}
-            </p>
-          )}
-          {user?.companyName && (
-            <p>
-              <span className="SpanColor">CIF/NIF</span>: {user.taxId}
-            </p>
-          )}
-          {user?.companyName && (
-            <p>
-              <span className="SpanColor">Nº Móvil</span>: {user.phone}
-            </p>
-          )}
-          {user?.companyName && (
-            <p>
-              <span className="SpanColor">Nº Cuenta IBAN</span>: {user.bankAccount}
-            </p>
-          )}
+          <div className="ProfileInfo">
+            <p className="SpanText">Nombre de Usuario</p>
+            {user?.username && <p className="ProfileInfo">{user.username}</p>}
+          </div>
+
+          <div className="ProfileInfo">
+            <p className="SpanText">Email</p> {user?.email && <p className="ProfileInfo">{user.email}</p>}
+          </div>
+
+          <div className="ProfileInfo">
+            <p className="SpanText">Nombre y Apellidos</p>
+            {user?.fullName && <p className="ProfileInfo">{user.fullName}</p>}
+          </div>
+
+          <div className="ProfileInfo">
+            <p className="SpanText">Nombre de Empresa</p>
+            {user?.companyName && <p className="ProfileInfo">{user.companyName}</p>}
+          </div>
+
+          <div className="ProfileInfo">
+            <p className="SpanText">Dirección</p>
+            {user?.address && <p className="ProfileInfo">{user.address}</p>}
+          </div>
+
+          <div className="ProfileInfo">
+            <p className="SpanText">CIF/NIF</p> {user?.taxId && <p className="ProfileInfo">{user.taxId}</p>}
+          </div>
+
+          <div className="ProfileInfo">
+            <p className="SpanText">Nº Móvil</p>
+            {user?.phone && <p className="ProfileInfo">{user.phone}</p>}
+          </div>
+
+          <div className="ProfileInfo">
+            <p className="SpanText">IBAN</p> {user?.bankAccount && <p className="ProfileInfo">{user.bankAccount}</p>}
+          </div>
         </div>
       </Main>
       <Footer>FactuClient</Footer>
