@@ -10,9 +10,9 @@ This app is a PMS (Property Managment System) oriented for hotels and lodges in 
 ## Functional
 
 ### Use Cases
-Admin | User | Root
+Guest | Host 
 
-The administrator is the person who manages the hosting. This profile has full access to the system and can perform the following actions:
+The Host is the person who manages the hosting. This profile has full access to the system and can perform the following actions:
 
 - Room Management:
 	- Create Room: Add new rooms with details such as number, type (single, double, suite), price per night, and availability.
@@ -37,9 +37,9 @@ The administrator is the person who manages the hosting. This profile has full a
 - User Management:
 	- Manage Customer Profiles: View and modify basic customer information if necessary.
 
-User | Root
+Guest
 
-The client is the user who searches for and books accommodation. This profile has access to the following functionalities:
+The Guest is the user who searches for and books accommodation. This profile has access to the following functionalities:
 
 - Browse and Search Rooms:
 	- Search Rooms: Filter rooms by type, price, availability, etc.
@@ -67,17 +67,14 @@ The client is the user who searches for and books accommodation. This profile ha
 - User:
   - id (auto)
   - name (string, required)
-	- lastName (string, required)
+	- surname (string, required)
   - email (string, required, email)
 	- phone (number, required)
   - password (string, required, password)
-  - role (string, required, default guest, enum: guest|host|root)
+  - role (string, required, default guest, enum: guest|host)
 
 - Host: 
-  - id (auto)
-  - rif:(string, required)
-	- booking()
-
+  - Rooms (Array)
 
 - Room:
   - id: (auto)
@@ -90,15 +87,14 @@ The client is the user who searches for and books accommodation. This profile ha
     - type:
       - type: String
       - enum: ['Point']
-      - required: true
     - coordinates:
       - type: [Number]
       - required: true
 
 - Booking:
 	- id (auto)
-	- user (string, required, array)
-	- room (string, required)
+	- userId (string, required, array)
+	- roomId (string, required)
 	- startDate (date, required)
 	- endDate (date. required)
 	- status (string, required, true-false)

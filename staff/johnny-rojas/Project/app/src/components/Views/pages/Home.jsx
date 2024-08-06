@@ -4,6 +4,8 @@ import TopBar from '../library/TopBar'
 
 
 import { useNavigate } from 'react-router-dom'
+import RoomList from '../library/RoomList'
+
 
 
 function Home() {
@@ -15,6 +17,8 @@ function Home() {
     <Header>
       <TopBar></TopBar>
     </Header>
+
+    <RoomList></RoomList>
 
 
   </div>

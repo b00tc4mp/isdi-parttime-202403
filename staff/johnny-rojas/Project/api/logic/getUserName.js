@@ -12,7 +12,7 @@ const getUserName = (userId, targetUserId) => {
         throw new NotFoundError('user not found')
       }
 
-      return User.findById(targetUserId).lean()
+      return User.findById(targetUserId).select('-__v').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
           if (!user) {

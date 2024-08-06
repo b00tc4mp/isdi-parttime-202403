@@ -1,14 +1,16 @@
 import errors, { SystemError } from "com/errors";
 import validate from "com/validate";
 
-const createRoom = (nameRoom, region, image, description, price, availability, likes, coordinates) => {
-  validate.id(userId, 'userId');
+const createRoom = (nameRoom, region, city, image, description, price, availability, coordinates) => {
   validate.nameRoom(nameRoom, 'name room');
   validate.region(region, 'region');
+  validate.text(city, 'city')
   validate.url(image, 'image');
   validate.text(description, 'description');
   validate.price(price, 'price');
-  validate.availability(availability, 'availability');
+  // validate.availability(availability, 'availability');
+
+  const { lat, lng } = coordinates
 
   return fetch(`${import.meta.env.VITE_API_URL}/rooms`, {
     method: 'POST',
@@ -16,7 +18,7 @@ const createRoom = (nameRoom, region, image, description, price, availability, l
       Authorization: `Bearer ${sessionStorage.token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ nameRoom, region, image, description, price, availability, likes, coordinates })
+    body: JSON.stringify({ nameRoom, region, city, image, description, price, availability, coordinates: { lat, lng } })
   })
 
     .catch(() => { throw new SystemError('network error') })

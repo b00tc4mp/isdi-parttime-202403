@@ -8,30 +8,41 @@ import SubmitButton from '../core/SubmitButton';
 import Field from '../core/Field';
 import Title from '../core/Title';
 import ServicesSelect from '../library/ServicesSelect';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import logic from '../../../logic';
 
 import './CreateRoom.css'
 
 
 function CreateRoom() {
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false)
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
   const navigate = useNavigate()
-
 
   const handleCreateRoomSubmit = event => {
     event.preventDefault()
 
-    const target = event.traget
+    const target = event.target
 
     const nameRoom = target.nameRoom.value
     const region = target.region.value
+    const city = target.city.value
     const img = target.img.value
     const description = target.description.value
     const price = target.price.value
+    const availability = {
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString()
+    };
+    const coordinates = { lat: parseFloat(target.lat.value), lng: parseFloat(target.lng.value) };
 
     try {
-      logic.CreateRoom(nameRoom, region, img, description, price)
-        .then(() => navigate('/rooms/:userId'))
-        .ctach(error => alert(error.message))
+      logic.createRoom(nameRoom, region, city, img, description, price, availability, coordinates)
+        .then(() => navigate('/'))
+        .catch(error => alert(error.message))
 
     } catch (error) {
       alert(error.message)
@@ -79,7 +90,17 @@ function CreateRoom() {
                   <li><strong>Región Oeste:</strong> Táchira, Mérida, Trujillo, Barinas, Lara, Portuguesa, Cojedes, Guárico.</li>
                 </ul>
 
-                <h3 className='instructions-heading'>3. Imagen (Link)</h3>
+                <h3 className='instructions-heading'>3. Ciudad</h3>
+                <p>
+                  Para determinar la ubicación en la cual se localiza tu habitación, debes ingresar el nombre del estado y la ciudad:
+                </p>
+                <ul className='instructions-list'>
+                  <li>Anzoátegui, Puerto La Cruz.</li>
+                  <li>Bolivar, Cuidad Bolivar</li>
+                  <li>Nueva Esparte, El Valle</li>
+                </ul>
+
+                <h3 className='instructions-heading'>4. Imagen (Link)</h3>
                 <p>
                   Debes proporcionar un enlace a una imagen en formato JPG que comience con “http”. Por ejemplo:
                 </p>
@@ -87,7 +108,7 @@ function CreateRoom() {
                   <li>http://example.com/imagen1.jpg</li>
                 </ul>
 
-                <h3 className='instructions-heading'>4. Descripción</h3>
+                <h3 className='instructions-heading'>5. Descripción</h3>
                 <p>
                   Aquí debes resumir las características principales de la habitación. Ejemplos:
                 </p>
@@ -96,7 +117,7 @@ function CreateRoom() {
                   <li>Habitación con 2 literas para máximo 4 personas, sin baño.</li>
                 </ul>
 
-                <h3 className='instructions-heading'>5. Servicios</h3>
+                <h3 className='instructions-heading'>6. Servicios</h3>
                 <p>
                   Selecciona los servicios que ofrece tu alojamiento. Las opciones disponibles son:
                 </p>
@@ -110,7 +131,7 @@ function CreateRoom() {
                   <li>Atención 24/7</li>
                 </ul>
 
-                <h3 className='instructions-heading'>6. Precio por Noche</h3>
+                <h3 className='instructions-heading'>7. Precio por Noche</h3>
                 <p>
                   Indica el precio por noche junto con la moneda. Ejemplos:
                 </p>
@@ -120,12 +141,12 @@ function CreateRoom() {
                   <li>20409 VES</li>
                 </ul>
 
-                <h3 className='instructions-heading'>7. Disponibilidad</h3>
+                <h3 className='instructions-heading'>8. Disponibilidad</h3>
                 <p>
                   Para seleccionar la disponibilidad, selecione una fecha de inicio y una fecha de cierre.
                 </p>
 
-                <h3 className='instructions-heading'>8. Coordenadas (Latitud y Longitud)</h3>
+                <h3 className='instructions-heading'>9. Coordenadas (Latitud y Longitud)</h3>
                 <p>
                   Para obtener las coordenadas (latitud y longitud) de la ubicación de tu habitación, sigue estos pasos:
                 </p>
@@ -145,26 +166,42 @@ function CreateRoom() {
           <div>
             <View className='RegisterForm' tag='main'>
 
-                <Title className='TitleCreateRoom'>Hazte anfitrión</Title>
-                
+              <Title className='TitleCreateRoom'>Hazte anfitrión</Title>
+
               <FormWithPanel onSubmit={handleCreateRoomSubmit}>
 
                 <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' />
 
                 <Field id='region' type='text' placeholder='Región' />
 
-                <Field id='img' type='email' placeholder='Imagen link' />
+                <Field id='city' type='text' placeholder='Estado y ciudad' />
+
+                <Field id='img' type='string' placeholder='Imagen principal (link)' />
 
                 <Field id='description' type='string' placeholder='Descripción del alojamiento' />
 
                 <ServicesSelect></ServicesSelect>
 
                 <Field id='price' type='string' placeholder='Precio por noche' />
+                <div>
+                  <label htmlFor='startDate'>Fecha de Inicio </label>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    dateFormat='yyyy-MM-dd'
+                  />
+                </div>
+                <div>
+                  <label htmlFor='endDate'>Fecha de Cierre </label>
+                  <DatePicker
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                    dateFormat='yyyy-MM-dd'
+                  />
+                </div>
 
-                <Field id='availability' type='string' placeholder='Disponibilidad' />
-
-                <Field id='coordinates' type='string' placeholder='Latitud y Longitud' />
-
+                <Field id='lat' type='string' placeholder='Latitud' />
+                <Field id='lng' type='string' placeholder='Longitud' />
                 <SubmitButton>Ofrecer</SubmitButton>
 
               </FormWithPanel>

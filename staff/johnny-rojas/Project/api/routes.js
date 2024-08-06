@@ -6,13 +6,11 @@ const jsonBodyParser = express.json({ strict: true, type: 'application/json' });
 const router = express.Router();
 
 router.post('/users', jsonBodyParser, routes.registerUserHandler);
-
 router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler);
-
 router.get('/users/:targetUserId', routes.getUserNameHandler);
 
 router.get('/rooms', routes.getAllRoomsHandler);
-
 router.post('/rooms', jsonBodyParser, routes.createRoomHandler);
+router.get('/rooms/:roomId', routes.getRoomHandler);
 
 export default router;

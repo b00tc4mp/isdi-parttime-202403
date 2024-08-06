@@ -1,1 +1,1 @@
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmFjOWZmYjE1ZTU0NWE0ZDJmMDZhMzgiLCJpYXQiOjE3MjI3OTYwNTgsImV4cCI6MTcyMzE0MTY1OH0.fI9LpuCF7nnYE7QUpX9uzzLm-Y6nfD5Rgolf1fF_AaA" http://localhost:8080/rooms -v
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmFjZjhhMzE1ZTU0NWE0ZDJmMDZhM2IiLCJpYXQiOjE3MjI4NTk3MjYsImV4cCI6MTcyMzIwNTMyNn0.2IIv9xf9_jkLJHn5_pfwNWuiK9mEBOVNecmCqW1B-30" http://localhost:8080/rooms -v

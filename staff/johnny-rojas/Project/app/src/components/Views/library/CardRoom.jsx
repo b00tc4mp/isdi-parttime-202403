@@ -1,9 +1,31 @@
-import logic from '../../../logic';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import logic from '../../../logic/index';
 import Image from '../core/Image';
 
 
+
 function CardRoom({ Room }) {
+  const { roomId } = useParams()
+  const [room, setRoom] = useState(null)
+
+  useEffect(() => {
+    try {
+      logic.getRoom(roomId)
+        .then((room) => { setRoom(room) })
+        .catch(error => {
+          alert(error.message)
+
+          return
+        })
+
+    } catch (error) {
+      console.error(error)
+      alert(error.message)
+    }
+  })
+
+
   return <article className="CardRoom">
     <div className='Img'>
       <Image src={Room.image}></Image>
@@ -30,6 +52,7 @@ function CardRoom({ Room }) {
       <p>{Room.contact}</p>
     </div>
   </article>
+
 }
 
 export default CardRoom

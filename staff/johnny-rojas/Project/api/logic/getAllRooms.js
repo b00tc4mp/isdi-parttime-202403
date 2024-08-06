@@ -13,13 +13,19 @@ const getAllRooms = (userId) => {
       throw new NotFoundError('user not found')
       }
       
-      return Room.find({}).lean()
+      return Room.find({}).select('-__v').populate('nameRoom').lean()
         .catch(error => { throw new SystemError(error.message) })
-        .then(room => {
-          if (!room) {
-            throw new NotFoundError('room not found')
+        .then(rooms => {
+          if (!rooms) {
+            throw new NotFoundError('rooms not found')
           }
-          return room
+
+          rooms.forEach(room => {
+            room.id = room._id.toString()
+            delete room._id
+          })
+
+          return rooms
         })
       })
 }

@@ -5,6 +5,7 @@ import logoutUser from './logoutUser';
 
 import createRoom from './createRoom';
 import getAllRooms from './getAllRooms';
+import getRoom from './getRoom'
 
 const logic = {
   registerUser,
@@ -14,6 +15,7 @@ const logic = {
 
   createRoom,
   getAllRooms,
+  getRoom,
 }
 
 export default logic

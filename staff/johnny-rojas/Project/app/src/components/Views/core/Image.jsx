@@ -4,4 +4,4 @@ function Image({ src }) {
   </div>
 }
 
-export default Imagex
+export default Image

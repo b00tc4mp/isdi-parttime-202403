@@ -42,7 +42,7 @@ function ServicesSelect() {
   return (
     <div className='ServiceSelect'>
       <h2 className='TitleService'>Servicios</h2>
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ display: 'flex', gap: '25px' }}>
         {services.map(({ name, icon }) => (
           <ServiceIcon
             key={name}

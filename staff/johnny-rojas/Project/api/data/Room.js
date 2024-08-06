@@ -14,12 +14,16 @@ const room = new Schema({
     required: true,
     match: NAMEROOM_REGEX
   },
+  city: {
+    type: String,
+    required: true
+  },
   region: {
     type: String,
     required: true,
     match: REGION_REGEX
   },
-  contact: { 
+  contact: {
     name: String,
     surname: String,
     email: String,
@@ -52,16 +56,18 @@ const room = new Schema({
     ref: 'User'
   }],
   location: {
-    lat: {
-      type: Number,
-      required: true
+    type: {
+      type: String,
+      default: 'Point'
     },
-    lng: {
-      type: Number,
+    coordinates: {
+      type: [Number],
       required: true
     }
   },
 });
+
+room.index({ location: '2dsphere' });
 
 const Room = model('Room', room);
 

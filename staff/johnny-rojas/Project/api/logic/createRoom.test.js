@@ -34,6 +34,7 @@ User.findById(userId)
       userId, 
       'RoomName', 
       'Norte', 
+      'Puerto La Cruz, Anzoategui',
       'https://images.unsplash.com/photo-1529290130-4ca3753253ae?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg', 
       'Habitación doble para 2 personas', 
       '3000 VES', 

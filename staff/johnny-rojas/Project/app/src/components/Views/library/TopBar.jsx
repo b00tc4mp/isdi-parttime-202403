@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { IoHomeOutline } from 'react-icons/io5'; 
 import Input from '../core/Input'; 
 import DropdownMenu from './DropdownMenu'; 
-import { IoSearchOutline } from "react-icons/io5";
 import MyIcon from '../../../../public/IZI.svg'
 
 import './TopBar.css'; 

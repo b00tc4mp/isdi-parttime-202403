@@ -19,14 +19,14 @@ const changeUserRole = (userId, newRole) => {
     });
 };
 
-const createRoom = (userId, nameRoom, region, image, description, price, availability, likes, coordinates) => {
+const createRoom = (userId, nameRoom, region, city, image, description, price, availability, likes, coordinates) => {
   validate.id(userId, 'userId');
   validate.nameRoom(nameRoom, 'name room');
   validate.region(region, 'region');
+  validate.text(city, 'city');
   validate.url(image, 'image');
   validate.text(description, 'description');
   validate.price(price, 'price');
-  // validate.availability(availability, 'availability');
 
   const { startDate, endDate } = availability;
 
@@ -56,6 +56,7 @@ const createRoom = (userId, nameRoom, region, image, description, price, availab
         author: userId,
         nameRoom,
         region,
+        city,
         contact,
         image,
         description,
@@ -66,8 +67,8 @@ const createRoom = (userId, nameRoom, region, image, description, price, availab
         },
         likes,
         location: {
-          lat: coordinates.lat,
-          lng: coordinates.lng
+          type: 'Point',
+          coordinates: [coordinates.lng, coordinates.lat]
         }
       });
 
