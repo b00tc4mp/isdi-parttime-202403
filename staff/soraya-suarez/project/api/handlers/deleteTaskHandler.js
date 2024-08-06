@@ -17,7 +17,7 @@ export default (req, res, next) => {
                 const { taskId } = req.params
 
                 try {
-                    logic.deleteTask(userId, postId)
+                    logic.deleteTask(userId, taskId)
                         .then(() => res.status(204).send())
                         .catch(error => next(error))
                 } catch (error) {
