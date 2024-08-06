@@ -25,7 +25,10 @@ const registerUser = (name, surname, email, phone, password, repeatPassword) => 
                         surname: surname,
                         email: email,
                         phone: phone,
-                        password: hash
+                        password: hash,
+                        guest: [],
+                        host: [],
+                        room:[]
                     }
 
                     return User.create(newUser)

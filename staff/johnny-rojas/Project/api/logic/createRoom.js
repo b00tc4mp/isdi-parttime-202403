@@ -19,7 +19,7 @@ const changeUserRole = (userId, newRole) => {
     });
 };
 
-const createRoom = (userId, nameRoom, region, city, image, description, price, availability, likes, coordinates) => {
+const createRoom = (userId, nameRoom, region, city, image, description, services, price, availability, likes, coordinates) => {
   validate.id(userId, 'userId');
   validate.nameRoom(nameRoom, 'name room');
   validate.region(region, 'region');
@@ -60,6 +60,7 @@ const createRoom = (userId, nameRoom, region, city, image, description, price, a
         contact,
         image,
         description,
+        services,
         price,
         availability: {
           startDate: new Date(startDate),

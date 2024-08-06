@@ -37,6 +37,11 @@ const room = new Schema({
     type: String,
     required: true
   },
+  services: {
+    type: [String],  // Cambiado de ObjectId a String para guardar los nombres de los servicios
+    enum: ['wifi', 'parking', 'pool', 'pets', 'foodBank', 'handicap', 'atention'], // Opciones válidas
+    default: [] // Valor por defecto si no se especifica
+  },
   price: {
     type: String,
     required: true
@@ -65,6 +70,8 @@ const room = new Schema({
       required: true
     }
   },
+}, {
+  timestamps: true
 });
 
 room.index({ location: '2dsphere' });

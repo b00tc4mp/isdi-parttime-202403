@@ -1,3 +1,5 @@
-const logoutUser = () => delete sessionStorage.email
-
+const logoutUser = () => {
+  sessionStorage.removeItem('token'); 
+  sessionStorage.removeItem('email');
+}
 export default logoutUser

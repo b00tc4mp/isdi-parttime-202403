@@ -34,7 +34,6 @@ function RoomList() {
               <p className="nameRoom">{room.nameRoom}</p>
               <p className="city">{room.city}</p>
               <p className="descriptionRoom">{room.description}</p>
-              <p className="availabilityRoom">{room.availibility}</p>
             </div>
 
             <div className="InfoCardRight">

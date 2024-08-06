@@ -33,6 +33,14 @@ const user = new Schema({
         default: 'guest',
         enum: ['guest', 'host'],
     },
+    guest: [{
+        type: Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    host: [{
+        type: Schema.Types.ObjectId,
+        ref:'User'
+    }],
     rooms: [{
         type: Types.ObjectId,
         ref: 'Room'

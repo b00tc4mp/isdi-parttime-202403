@@ -1,14 +1,13 @@
 import errors, { SystemError } from "com/errors";
 import validate from "com/validate";
 
-const createRoom = (nameRoom, region, city, image, description, price, availability, coordinates) => {
+const createRoom = (nameRoom, region, city, image, description, services, price, availability, coordinates) => {
   validate.nameRoom(nameRoom, 'name room');
   validate.region(region, 'region');
   validate.text(city, 'city')
   validate.url(image, 'image');
   validate.text(description, 'description');
   validate.price(price, 'price');
-  // validate.availability(availability, 'availability');
 
   const { lat, lng } = coordinates
 
@@ -18,7 +17,7 @@ const createRoom = (nameRoom, region, city, image, description, price, availabil
       Authorization: `Bearer ${sessionStorage.token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ nameRoom, region, city, image, description, price, availability, coordinates: { lat, lng } })
+    body: JSON.stringify({ nameRoom, region, city, image, description, services, price, availability, coordinates: { lat, lng } })
   })
 
     .catch(() => { throw new SystemError('network error') })

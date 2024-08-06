@@ -58,7 +58,7 @@ function Register() {
 
         <Field id='email' type='email' placeholder='Email'></Field>
 
-        <Field id='phone' type='string' placeholder='Teléfono'></Field>
+        <Field id='phone' type='string' placeholder='Teléfono +58'></Field>
 
         <ShowHidePassword id='password' type='password' placeholder='Contraseña'></ShowHidePassword>
 

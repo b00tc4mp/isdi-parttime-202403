@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoWifi } from "react-icons/io5";
 import { FaParking } from "react-icons/fa";
 import { MdPool } from "react-icons/md";
@@ -20,8 +20,9 @@ function ServiceIcon({ Icon, name, isSelected, toggleSelect }) {
   );
 }
 
-function ServicesSelect() {
-  const [selectedServices, setSelectedServices] = useState([]);
+function ServicesSelect({ onSelectionChange }) {
+  const [selectedServices, setSelectedServices] = useState([])
+  const [selectedIcons, setSelectedIcons] = useState([])
 
   const services = [
     { name: 'wifi', icon: IoWifi },
@@ -33,11 +34,20 @@ function ServicesSelect() {
     { name: 'atention', icon: MdOutlineRoomService }
   ];
 
-  const toggleSelect = (service) => {
+  const toggleSelect = (service , Icon) => {
     setSelectedServices(prev =>
       prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service]
-    );
+    )
+    setSelectedIcons(prev => 
+      prev.includes(Icon) ? prev.filter(icon => icon !== Icon) : [...prev, Icon]
+      )
   };
+
+  useEffect(() => {
+    if (onSelectionChange) {
+      onSelectionChange(selectedIcons);
+    }
+  }, [selectedIcons, onSelectionChange]);
 
   return (
     <div className='ServiceSelect'>
