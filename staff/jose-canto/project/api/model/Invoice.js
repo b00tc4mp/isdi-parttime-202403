@@ -33,6 +33,6 @@ const invoice = new Schema({
   }
 })
 
-const Invoice = model("Inovice", invoice)
+const Invoice = model("Invoice", invoice)
 
 export default Invoice

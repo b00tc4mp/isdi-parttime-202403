@@ -8,6 +8,8 @@ import registerCustomer from "./registerCustomer.js"
 import getAllCustomers from "./getAllCustomers.js"
 import getProfileUser from "./getProfileUser.js"
 
+import getAllDeliveryNotes from "./getAllDeliveryNotes.js"
+
 
 const logic = {
   registerUser,
@@ -19,6 +21,8 @@ const logic = {
   registerCustomer,
   getAllCustomers,
   getProfileUser,
+
+  getAllDeliveryNotes,
 }
 
 export default logic
