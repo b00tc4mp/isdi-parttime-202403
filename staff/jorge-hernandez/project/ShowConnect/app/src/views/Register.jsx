@@ -7,7 +7,7 @@ import { SystemError } from 'com/errors'
 
 import { useState } from 'react'
 
-function Register({ onLoginClick, onLogoClick }) {
+function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
   const [message, setMessage] = useState('')
 
   const handleRegisterSubmit = (event) => {

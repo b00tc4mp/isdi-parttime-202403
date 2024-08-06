@@ -36,7 +36,7 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
           setMessage(error.message)
         })
     } catch (error) {
-      console.log(error)
+      console.error(error)
 
       setMessage(error.message)
     }
@@ -52,7 +52,7 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
       >
         Login
       </Header>
-
+      {/* TODO sustituir por field */}
       <form onSubmit={handleLoginSubmit}>
         <div className='Field flex flex-col gap-1 mx-2'>
           <label className='text-white' htmlFor='email'>
@@ -80,7 +80,9 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
           />
         </div>
 
-        {message && <p className='text-red-600 text-lg m-auto'>{message}</p>}
+        {message && (
+          <p className='text-red-600 text-lg text-center mt-2'>{message}</p>
+        )}
         <Footer>Iniciar Sesión</Footer>
       </form>
     </>

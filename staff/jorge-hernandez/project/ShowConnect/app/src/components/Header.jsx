@@ -20,7 +20,7 @@ function Header({
         <div className='flex justify-between m-2 items-center'>
           <h1
             onClick={onLogoClick}
-            className='text-white text-[40px] mx-1 text-transparent bg-gradient-to-r from-white to-yellow-50 bg-clip-text'
+            className='text-white text-[40px] mx-1 text-transparent bg-gradient-to-r from-white to-yellow-50 bg-clip-text cursor-pointer'
           >
             ShowConnect
           </h1>

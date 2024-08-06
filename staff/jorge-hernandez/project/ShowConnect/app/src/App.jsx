@@ -31,6 +31,7 @@ function App() {
         <Register
           onLogoClick={handleGoToSearch}
           onLoginClick={handleGoToLogin}
+          onUserRegistered={handleGoToLogin}
         />
       )}
 
@@ -45,8 +46,6 @@ function App() {
       {view === 'ArtistHome' && (
         <ArtistHome onUserLoggedOut={handleGoToSearch} />
       )}
-
-      {/* {view === 'ArtistList' && <ArtistsList />} */}
     </>
   )
 }

@@ -3,9 +3,11 @@ import logic from '../logic'
 import { useState, useEffect } from 'react'
 
 import ArtistResult from './ArtistResult'
+import ArtistProfile from './ArtistProfile'
 
 function ArtistsList({ artist, city }) {
   const [artists, setArtists] = useState([])
+  const [selectedArtist, setSelectedArtist] = useState(null)
 
   useEffect(() => {
     if (artist && city) {
@@ -32,6 +34,13 @@ function ArtistsList({ artist, city }) {
     }
   }
 
+  const handleArtistClick = (artist) => {
+    setSelectedArtist(artist)
+    console.log(artist)
+  }
+  const handleCloseProfile = () => {
+    setSelectedArtist(null)
+  }
   return (
     <>
       {artist && city && (
@@ -46,9 +55,16 @@ function ArtistsList({ artist, city }) {
             artisticName={artist.artisticName}
             description={artist.description}
             images={artist.images}
+            onClickProfile={() => handleArtistClick(artist)}
           />
         ))}
       </div>
+
+      {selectedArtist && (
+        <div>
+          <ArtistProfile artist={selectedArtist} onClose={handleCloseProfile} />
+        </div>
+      )}
     </>
   )
 }
