@@ -46,14 +46,34 @@ function validateRole(role, explain = 'role') {
         throw new ContentError(`${explain} is not valid`)
 }
 
-/*function validateCallback(callback) {
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
-}
-
 function validateText(text, explain = 'text', maxLength = Infinity) {
     if (typeof text !== 'string' || !text.length || text.length > maxLength)
         throw new ContentError(`${explain} is not valid`)
+}
+
+function validateObservations(observations, explain = 'observations', maxLength = Infinity) {
+    if (typeof observations !== 'string' || observations.length > maxLength)
+        throw new ContentError(`${explain} is not valid`)
+}
+
+function validateStatus(status, explain = 'status') {
+    if (typeof status !== 'string' || status !== 'toDo' && status !== 'inProgress' && status !== 'finished' && status !== 'canceled')
+        throw new ContentError(`${explain} is not valid`)
+}
+
+function validatePriority(priority, explain = 'priority') {
+    if (typeof priority !== 'string' || priority !== 'low' && priority !== 'medium' && priority !== 'high')
+        throw new ContentError(`${explain} is not valid`)
+}
+
+function validateBoolean(boolean) {
+    if (typeof boolean !== 'boolean')
+        throw new ContentError('is not boolean')
+}
+
+/*function validateCallback(callback) {
+    if (typeof callback !== 'function')
+        throw new TypeError('callback is not a function')
 }*/
 
 const validate = {
@@ -64,9 +84,12 @@ const validate = {
     phone: validatePhone,
     url: validateUrl,
     role: validateRole,
-    /*callback: validateCallback,
     text: validateText,
-    */
+    observations: validateObservations,
+    status: validateStatus,
+    priority: validatePriority,
+    boolean: validateBoolean,
+    //callback: validateCallback,
     id: validateId
 }
 

@@ -6,6 +6,7 @@ import mongoose from 'mongoose'
 import {
     enrollUserHandler,
     authenticateUserHandler,
+    addTaskHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -23,6 +24,7 @@ mongoose.connect(MONGODB_URL)
 
         api.post('/users', jsonBodyParser, enrollUserHandler)
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
+        api.post('/tasks', jsonBodyParser, addTaskHandler)
 
         api.use(errorHandler)
 

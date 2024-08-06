@@ -72,11 +72,11 @@ Admin
 #### Task
 
 - id (auto)
+- owner (User.id, , required, default the creator)
 - name (string, required)
 - description (string, required)
 - status (string, required, default toDo, enum: toDo|inProgress|finished|canceled)
 - priority (string, required, default low, enum: low|medium|high)
-- owner (User.id, default the creator)
-- completionTime (number, required if state is finished)
 - visible (boolean, default true)
 - observations (string, optional)
+- completionTime (number, required if state is finished)
