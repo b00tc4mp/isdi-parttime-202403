@@ -10,7 +10,7 @@ export const PHONE_REGEX = /^(6|7|8|9)\d{8}$/
 export const COMPANY_NAME_REGEX = /^[a-zA-Z0-9 ,.&]+$/
 export const ADDRESS_REGEX = /^[a-zA-Z0-9 ,.]+$/
 export const IBANREGEX = /^[A-Z]{2}\d{2}\s?\d{4}\s?\d{4}\s?\d{2}\s?\d{10}$/i
-
+export const NUMBERREGEX = /^\d+(\.\d{1,2})?$/
 
 function validateName(name, explain = "name") {
   if (typeof name !== "string" || !NAME_REGEX.test(name)) {
@@ -20,7 +20,7 @@ function validateName(name, explain = "name") {
 
 function validateUsername(username, explain = "username") {
   if (typeof username !== "string" || !USERNAME_REGEX.test(username)) {
-    throw new ContentError(`${explain} is not valid `)
+    throw new ContentError(`${explain} is not valid`)
   }
 }
 
@@ -87,6 +87,12 @@ function validateIban(iban, explain = "IBAN") {
   }
 }
 
+function validateNumber(number, explain = "Number") {
+  if (typeof number !== "number" || !NUMBERREGEX.test(number)) {
+    throw new ContentError(`${explain} is not valid`)
+  }
+}
+
 const validate = {
   name: validateName,
   username: validateUsername,
@@ -101,6 +107,7 @@ const validate = {
   companyName: validateCompanyName,
   address: validateAddress,
   iban: validateIban,
+  number: validateNumber
 }
 
 export default validate
