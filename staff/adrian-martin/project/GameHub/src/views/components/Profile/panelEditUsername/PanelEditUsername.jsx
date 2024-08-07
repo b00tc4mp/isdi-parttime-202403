@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 
-import extractPayloadFromJWT from '../../../util/extractPayloadFromJWT'
+import extractPayloadFromJWT from '../../../../util/extractPayloadFromJWT'
 
-import logic from '../../../logic'
-import FormWithFeedback from '../../../components/library/FormWithFeedback/FormWithFeedback'
-import Button from '../../../components/core/Button/Button'
+import logic from '../../../../logic/index'
+import FormWithFeedback from '../../../../components/library/FormWithFeedback/FormWithFeedback'
+import Button from '../../../../components/core/Button/Button'
 
 import './PanelEditUsername.css'
 

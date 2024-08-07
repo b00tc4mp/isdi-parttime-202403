@@ -5,18 +5,25 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
 import logic from '../logic'
+import { useState } from 'react';
 
 import View from '../components/library/View/View'
 import Header from "./components/Header/Header"
 import Footer from './components/Footer/Footer'
-import Burguer from './components/Burguer/Burguer'
+import Burger from './components/Burger/Burger'
 
 import Button from '../components/core/Button/Button'
+
+import CreateGame from './components/CreateGame/CreateGame';
 
 import './Home.css'
 
 function Home({ }) {
     console.log('Home -> render')
+
+    const [view, setView] = useState('')
+    const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
+
     const navigate = useNavigate()
 
     const handleLogOut = () => {
@@ -25,9 +32,19 @@ function Home({ }) {
         navigate('/login')
     };
 
+    const handleCreateGameClick = () => {
+        setView(view => (view === 'create-game' ? '' : 'create-game'))
+    }
+
+    const handleGameCreated = () => {
+        setPostListRefreshStamp(Date.now())
+
+        setView('')
+    }
+
     return <View>
         <Header>
-            <Burguer>
+            <Burger>
                 <div className='Link-menu-burguer'>
                     <div className='Icon'><FontAwesomeIcon icon={faHouseChimney} /></div>
                     <Link to='/' >Game List</Link>
@@ -44,10 +61,13 @@ function Home({ }) {
                     <div className='Icon'><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
                     <Button onClick={handleLogOut} >Log Out</Button>
                 </div>
-            </Burguer>
+            </Burger>
+
+            {view === 'create-game' && <CreateGame onGameCreated={handleGameCreated} />}
+
         </Header>
 
-        <Footer />
+        <Footer onCreateGame={handleCreateGameClick} />
     </View>
 }
 

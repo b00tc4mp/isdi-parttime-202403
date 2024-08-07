@@ -1,0 +1,63 @@
+.TagGame {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.Game {
+    background-color: var(--first-color);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.Grade-hours {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Input-grade-hours {
+    width: 70px;
+    text-align: center;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.Text-game {
+    text-align: center;
+    color: aliceblue;
+    font-size: 20px;
+
+    margin-top: 15px;
+
+}
+
+.Button-game {
+    width: 100px;
+    border: 1px solid aliceblue;
+    margin-top: 35px;
+    background: aliceblue;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.Input-write {
+    text-align: center;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.Button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

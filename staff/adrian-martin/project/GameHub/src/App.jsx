@@ -4,7 +4,7 @@ import Register from './views/Register'
 import Login from './views/Login'
 import Home from './views/Home'
 
-import Profile from './views/components/Profile'
+import Profile from './views/components/Profile/Profile'
 
 import './App.css'
 

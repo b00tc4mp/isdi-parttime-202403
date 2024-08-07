@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import logic from '../../logic';
-import View from '../../components/library/View/View';
-import Header from './Header/Header';
-import Button from '../../components/core/Button/Button';
-import Footer from './Footer/Footer';
-import Text from '../../components/core/Text/Text';
+import logic from '../../../logic/index';
+import View from '../../../components/library/View/View';
+import Header from '../Header/Header';
+import Button from '../../../components/core/Button/Button';
+import Footer from '../Footer/Footer';
+import Text from '../../../components/core/Text/Text';
 
-import Burguer from './Burguer/Burguer';
+import Burger from '../Burger/Burger';
 import PanelEditUsername from './panelEditUsername/PanelEditUsername';
 
 import './Profile.css'
@@ -55,7 +55,7 @@ function Profile() {
 
     return <View>
         <Header>
-            <Burguer>
+            <Burger>
                 <div className='Link-menu-burguer'>
                     <div className='Icon'><FontAwesomeIcon icon={faHouseChimney} /></div>
                     <Link to='/' >Game List</Link>
@@ -72,7 +72,7 @@ function Profile() {
                     <div className='Icon'><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
                     <Button onClick={handleLogOut} >Log Out</Button>
                 </div>
-            </Burguer>
+            </Burger>
         </Header>
 
         <div className='Profile'>

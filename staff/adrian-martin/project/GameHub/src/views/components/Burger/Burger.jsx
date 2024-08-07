@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Burguer.css'
+import './Burger.css'
 
 function Burguer({ children }) {
 

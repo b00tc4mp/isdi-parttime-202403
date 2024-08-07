@@ -32,4 +32,4 @@ const createGame = (title, image, rating, hours) => {
         })
 }
 
-export default createPost
+export default createGame
