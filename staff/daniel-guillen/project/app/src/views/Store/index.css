@@ -1,203 +1,50 @@
+.StoreDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: 0px;
+}
 .StoreTitle {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: center;
   color: darkgreen;
 }
 
-.WasteWeight {
+.StoreSelectWaste {
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: center;
 }
 
-.StoredStagnantSubmit {
+.StoreSelectOptions {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: center;
 }
 
-.SubmitButtonWaste {
-  margin-left: 10px;
-  font-size: 60px;
-  background: transparent;
-  border: 0px;
-}
-
-.SubmitButtonWaste:hover {
-  font-size: 55px;
-  border: green solid;
-  border-radius: 10px;
-}
-
-.StoredSelect {
+.StoreSelectedContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.WeightStatus {
+  display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
-.StoredSelectButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
-
-.StoredTitle {
+.SubmitButton {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.WasteSelect {
-  width: 400px;
-  border: solid green;
-  border-radius: 10px;
-}
-
-.GRG {
-  background: purple;
-  color: white;
-  height: 60px;
+  height: 100px;
   width: 60px;
-  border-radius: 10px;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.GRG:hover {
-  background: indigo;
-}
-.GRG:focus {
-  background: indigo;
-}
-
-.Palet {
-  background: royalblue;
-  color: white;
-  height: 60px;
-  width: 60px;
-  border-radius: 10px;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.Palet:hover {
-  background: midnightblue;
-}
-.Palet:focus {
-  background: midnightblue;
-}
-
-.BigBag {
-  background: green;
-  color: white;
-  height: 60px;
-  width: 60px;
-  border-radius: 10px;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.BigBag:hover {
-  background: darkgreen;
-}
-.BigBag:focus {
-  background: darkgreen;
-}
-
-.B200 {
-  height: 60px;
-  width: 60px;
-  color: white;
-  background: orange;
-  border-radius: 10px;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.B200:hover {
-  background: orangered;
-}
-.B200:focus {
-  background: orangered;
-}
-
-.B-200 {
-  height: 60px;
-  width: 60px;
-  color: white;
-  background: tomato;
-  border-radius: 10px;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.B-200:hover {
-  background: red;
-}
-.B-200:focus {
-  background: red;
-}
-
-.ButtonStagnan {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.StagnantTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.SwitchStagnant {
-  height: 60px;
-  width: 250px;
-  background: greenyellow;
-  border-radius: 10px;
-  margin: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.SwitchStagnant.false {
-  background: tomato;
-  color: white;
-}
-
-.InputWeightDiv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.InputWeight {
-  font-size: 15px;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 11px;
-  border-radius: 10px;
-  border: solid green;
+  font-size: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  border: thistle solid 0.5px;
+  cursor: pointer;
 }

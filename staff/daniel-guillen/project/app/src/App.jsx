@@ -13,7 +13,7 @@ import Store from './views/Store'
 function App() {
 
   return (
-<div>
+<div className='App'>
   <BrowserRouter>
     
     <Menu />

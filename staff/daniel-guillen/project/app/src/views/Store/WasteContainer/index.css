@@ -1,0 +1,59 @@
+.WasteContainerDiv {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 3px;
+}
+
+.WasteContainerStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  padding-bottom: 0px;
+  height: full;
+  width: full;
+  background: white;
+  border-radius: 5px;
+  border: thistle solid 0.5px;
+}
+
+.ContainerOptions {
+  display: flex;
+}
+
+.WasteContainerStatus.GRG {
+  background: lightcoral;
+  border: coral solid 1px;
+}
+
+.WasteContainerStatus.PALET {
+  background: lightgreen;
+  border: mediumseagreen solid 1px;
+}
+
+.WasteContainerStatus.BIGBAG {
+  background: lightgoldenrodyellow;
+  border: yellow solid 1px;
+}
+
+.WasteContainerStatus.B200 {
+  background: lightskyblue;
+  border: cornflowerblue solid 1px;
+}
+
+.WasteContainerStatus.B-200 {
+  background: lightpink;
+  border: palevioletred solid 1px;
+}
+
+.Radio {
+  cursor: pointer;
+}
+
+img {
+  cursor: pointer;
+}

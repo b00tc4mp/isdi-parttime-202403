@@ -1,0 +1,29 @@
+.InputWeightDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: full;
+  width: 210px;
+  background: white;
+  border-radius: 5px;
+  border: thistle solid 0.5px;
+  margin: 3px;
+  margin-bottom: 0px;
+}
+
+.InputWeight {
+  text-align: center;
+  font-size: 35px;
+  border: 0px;
+  cursor: cell;
+}
+.InputWeight:focus {
+  border: 0px;
+}
+.InputWeight:active {
+  border: 0px;
+}
+
+.UnitWeight {
+  color: darkgray;
+}

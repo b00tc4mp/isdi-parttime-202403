@@ -1,0 +1,11 @@
+.WasteSelectDiv {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.WasteSelect {
+  width: 810px;
+  font-size: 35px;
+  line-height: 30px;
+  text-align: center;
+}

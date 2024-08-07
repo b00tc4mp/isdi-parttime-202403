@@ -1,0 +1,43 @@
+.StatusDiv {
+  line-height: 0px;
+  margin: 5px;
+}
+
+.StatusTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.WasteStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 75px;
+  width: 210px;
+  background: greenyellow;
+  border: green solid 0.5px;
+  border-radius: 5px;
+}
+
+.WasteStatus.ESTANCADO {
+  color: white;
+  background: tomato;
+  border: red solid 0.5px;
+}
+
+.Status {
+  display: flex;
+  justify-content: center;
+}
+
+.Radio {
+  cursor: pointer;
+}
+
+label {
+  font-size: 25px;
+  cursor: pointer;
+}
