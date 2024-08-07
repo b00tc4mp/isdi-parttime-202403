@@ -1,4 +1,52 @@
 @tailwind components;
 
 @layer components {
+  .MainDeliveryInfo {
+    @apply relative bottom-7;
+  }
+  .DeliveryInfoCustomer {
+    @apply flex w-full flex-col items-center;
+  }
+  .DeliveryWork {
+    @apply relative bottom-5 flex w-[95%] flex-col;
+  }
+  .DeliveryTitleInfo {
+    @apply flex justify-between rounded-md border border-gray-400 bg-slate-300 p-1;
+  }
+  .DeliveryTitleQuantityPrice {
+    @apply mr-1 flex gap-4;
+  }
+
+  .DeliveryWork > time {
+    @apply w-full;
+  }
+
+  .DeliveryWorkInfo {
+    @apply flex justify-between;
+  }
+  .DeliveryWorkConcept {
+    @apply ml-1;
+  }
+  .DeliveryQuantityPrice {
+    @apply mr-1 flex gap-3;
+  }
+  .TotalContainer {
+    @apply w-[3rem] text-right;
+  }
+
+  .PriceContainer {
+    @apply w-[3rem] text-right;
+  }
+
+  .QuantityContainer {
+    @apply flex w-[3rem];
+  }
+
+  .DeliveryTotal {
+    @apply flex w-full justify-end p-1;
+  }
+
+  .DeliveryDate {
+    @apply font-black;
+  }
 }

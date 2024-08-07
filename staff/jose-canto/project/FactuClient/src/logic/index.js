@@ -10,6 +10,9 @@ import registerCustomer from "./registerCustomer.js"
 import editProfile from "./EditProfile.js"
 import getProfileUser from "./getProfileUser.js"
 
+import getAllDeliveryNotes from "./getAllDeliveryNotes.js"
+import getDeliveryNote from "./getDeliveryNote.js"
+
 
 const logic = {
   isUserLoggedIn,
@@ -22,7 +25,10 @@ const logic = {
 
   editProfile,
   getProfileUser,
-  getAllCustomers
+  getAllCustomers,
+
+  getAllDeliveryNotes,
+  getDeliveryNote,
 }
 
 export default logic

@@ -57,7 +57,8 @@ export default function UserProfile() {
           </div>
 
           <div className="ProfileInfo">
-            <p className="SpanText">Email</p> {user?.email && <p className="ProfileInfo">{user.email}</p>}
+            <p className="SpanText">Email</p>
+            {user?.email && <p className="ProfileInfo">{user.email}</p>}
           </div>
 
           <div className="ProfileInfo">
@@ -76,7 +77,8 @@ export default function UserProfile() {
           </div>
 
           <div className="ProfileInfo">
-            <p className="SpanText">CIF/NIF</p> {user?.taxId && <p className="ProfileInfo">{user.taxId}</p>}
+            <p className="SpanText">CIF/NIF</p>
+            {user?.taxId && <p className="ProfileInfo">{user.taxId}</p>}
           </div>
 
           <div className="ProfileInfo">

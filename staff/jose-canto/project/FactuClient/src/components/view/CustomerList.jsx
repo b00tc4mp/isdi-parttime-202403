@@ -53,7 +53,7 @@ export default function CustomerList() {
         <ul className="CustomerList">
           {customers.map((customer) => (
             <Link to={`/customers/profile/${customer.id}`} key={customer.id}>
-              <li className="Customer">{customer.companyName}</li>
+              {customer?.companyName && <li className="Customer">{customer.companyName}</li>}
             </Link>
           ))}
         </ul>

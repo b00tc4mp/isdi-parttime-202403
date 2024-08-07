@@ -25,7 +25,9 @@ export default function RegisterCustomer({ onCloseRegisterCustomer }) {
         .then(() => {
           onCloseRegisterCustomer()     
         })
-        .catch(() => {})
+        .catch((error) => {
+          alert(error.message)
+        })
     } catch (error) {
       alert(error.message)
     }

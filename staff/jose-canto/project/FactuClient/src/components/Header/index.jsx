@@ -37,7 +37,8 @@ export default function Header({ className, iconUser, children, iconLeftHeader, 
     setShowEditProfile(!showEditProfile)
   }
 
-  const isCustomerProfilePath = matchPath("/customers/profile/:customerId", location.pathname)
+  const isCustomerProfilePathCustomerId = matchPath("/customers/profile/:customerId", location.pathname)
+  const isCustomerProfilePathDeliveryNoteId = matchPath("/delivery-notes/:deliveryNoteId", location.pathname)
 
   return (
     <>
@@ -85,7 +86,14 @@ export default function Header({ className, iconUser, children, iconLeftHeader, 
           </div>
         )}
 
-        {isCustomerProfilePath && (
+        {isCustomerProfilePathCustomerId && (
+          <div className="ContainerHeader">
+            <div className="IconUser">{iconUser}</div>
+            <div className="Children">{children}</div>
+          </div>
+        )}
+
+        {isCustomerProfilePathDeliveryNoteId && (
           <div className="ContainerHeader">
             <div className="IconUser">{iconUser}</div>
             <div className="Children">{children}</div>

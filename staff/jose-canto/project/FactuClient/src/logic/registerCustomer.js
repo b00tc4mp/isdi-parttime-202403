@@ -22,10 +22,8 @@ const registerCustomer = (username, companyName, email, password, taxId, address
   })
     .catch(() => { throw new SystemError("connection error") })
     .then(response => {
-      if (response.status === 201) {
-        console.log("customer registered")
-        return
-      }
+      if (response.status === 201) return
+
 
       return response.json()
         .catch(() => { throw new SystemError("connection error") })
