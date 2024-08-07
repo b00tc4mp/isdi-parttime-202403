@@ -1,21 +1,28 @@
+import validate from "com/validate.js";
 import { Work, User, DeliveryNote } from "../model/index.js";
 import { NotFoundError, SystemError } from "com/errors.js"
 
 
 const createWork = (userId, deliveryNoteId, concept, quantity, price) => {
+  validate.id(userId, "userId")
+  validate.id(deliveryNoteId, "deliveryNoteId")
+  validate.text(concept, "concept")
+  validate.number(quantity, "quantity")
+  validate.number(price, "price")
+
 
   return User.findById(userId).lean()
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
-        throw new NotFoundError("user not found")
+        throw new NotFoundError("User not found")
       }
 
       return DeliveryNote.findById(deliveryNoteId)
         .catch(error => { throw new SystemError(error.message) })
         .then((deliveryNote) => {
           if (!deliveryNote) {
-            throw new NotFoundError("deliveryNote not found")
+            throw new NotFoundError("Delivery note not found")
           }
 
           const work = {

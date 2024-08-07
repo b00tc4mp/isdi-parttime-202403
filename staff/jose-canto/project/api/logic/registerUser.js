@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs"
 import { SystemError, DuplicityError } from "com/errors.js"
 
 const registerUser = (username, email, password, passwordRepeat) => {
-  validate.username(username)
+  validate.username(username, "Username")
   validate.email(email)
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)

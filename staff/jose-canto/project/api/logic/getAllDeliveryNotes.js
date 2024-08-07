@@ -12,10 +12,7 @@ const getAllDeliveryNotes = (userId) => {
         throw new NotFoundError("user not found")
       }
 
-      return DeliveryNote.find({})
-        .populate("customer", "username companyName")
-        .select("-__v")
-        .lean()
+      return DeliveryNote.find({ company: userId }).populate("customer", "username companyName").select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(deliveryNotes => deliveryNotes.map(deliveryNote => {
           deliveryNote.id = deliveryNote._id.toString()

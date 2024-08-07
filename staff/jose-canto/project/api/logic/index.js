@@ -9,6 +9,7 @@ import getAllCustomers from "./getAllCustomers.js"
 import getProfileUser from "./getProfileUser.js"
 
 import getAllDeliveryNotes from "./getAllDeliveryNotes.js"
+import getDeliveryNote from "./getDeliveryNote.js"
 
 
 const logic = {
@@ -23,6 +24,7 @@ const logic = {
   getProfileUser,
 
   getAllDeliveryNotes,
+  getDeliveryNote,
 }
 
 export default logic

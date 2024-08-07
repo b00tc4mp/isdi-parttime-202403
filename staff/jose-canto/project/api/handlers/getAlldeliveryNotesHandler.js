@@ -16,7 +16,7 @@ export default ((req, res, next) => {
 
         try {
           logic.getAllDeliveryNotes(userId)
-            .then((deliveryNotes) => { res.json(deliveryNotes) })
+            .then((deliveryNotes) => { res.send(deliveryNotes) })
             .catch(error => next(error))
 
         } catch (error) {

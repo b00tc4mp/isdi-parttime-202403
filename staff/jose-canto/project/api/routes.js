@@ -16,5 +16,6 @@ router.get("/customers", routes.getAllCustomersHandler)
 router.get("/users/:targetUserId/profile", routes.getProfileUserHandler)
 
 router.get("/delivery-notes", routes.getAllDeliveryNotesHandler)
+router.get("/delivery-notes/:deliveryNoteId", routes.getDeliveryNoteHandler)
 
 export default router

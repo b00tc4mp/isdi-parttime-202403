@@ -7,7 +7,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      createDeliveryNote("66b1237dd5adf0eb620e97bc", "66b12778d5adf0eb621213a7")
+      createDeliveryNote("66b27b9b89b90b8bc6b3c2fd", "66b27d9b89b90b8bc6b573e6")
         .then((deliveryNote) => {
           console.log(deliveryNote)
         })

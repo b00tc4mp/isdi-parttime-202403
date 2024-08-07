@@ -1,21 +1,27 @@
 import registerUserHandler from "./registerUserHandler.js"
 import authenticateUserHandler from "./authenticateUserHandler.js"
 import getUserNameHandler from "./getUserNameHandler.js"
-import editProfile from "./editProfile.js"
+import editProfileHandler from "./editProfileHandler.js"
 
 import registerCustomHandler from "./registerCustomerHandler.js"
-import getAllCustomersHandlers from "./getAllCustomersHandler.js"
-import getProfileUser from "./getProfileUser.js"
+import getAllCustomersHandler from "./getAllCustomersHandler.js"
+import getProfileUserHandler from "./getProfileUserHandler.js"
+
+import getAllDeliveryNotesHandler from "./getAlldeliveryNotesHandler.js"
+import getDeliveryNoteHandler from "./getDeliveryNoteHandler.js"
 
 
 export default {
   registerUserHandler,
   authenticateUserHandler,
   getUserNameHandler,
-  editProfile,
+  editProfileHandler,
 
-  getProfileUser,
+  getProfileUserHandler,
   registerCustomHandler,
-  getAllCustomersHandlers,
+  getAllCustomersHandler,
+
+  getAllDeliveryNotesHandler,
+  getDeliveryNoteHandler,
 
 }

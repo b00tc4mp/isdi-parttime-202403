@@ -5,22 +5,19 @@ import { CredentialsError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
 
+
 export default ((req, res, next) => {
   try {
-
     const token = req.headers.authorization.slice(7)
 
-    const updates = req.body
-
     jwt.verify(token, JWT_SECRET)
-      .then(payload => {
+      .then((payload) => {
         const { sub: userId } = payload
+        const { deliveryNoteId } = req.params
+
         try {
-          logic.editProfile(userId, updates)
-            .then((userId) => {
-              console.log(userId)
-              res.status(200).json()
-            })
+          logic.getDeliveryNote(userId, deliveryNoteId)
+            .then((deliveryNote) => { res.send(deliveryNote) })
             .catch(error => next(error))
 
         } catch (error) {
@@ -28,8 +25,7 @@ export default ((req, res, next) => {
         }
       })
       .catch(error => next(new CredentialsError(error.message)))
-
   } catch (error) {
-    next(error)
+    console.error(error)
   }
 })
