@@ -72,14 +72,23 @@ Level Up allows users to generate and customize workouts, track personal bests a
 - author (User.id)
 - image (string,optional)
 - workout (Workout.id)
-- result (Result)
+- result (Result.id)
 - date (date)
 - likes ([User.id)]
-- comments ([Comment.id])
+
+**Comment**
+
+- id
+- post (Post.id)
+- author (User.id)
+- text
+- date (date)
 
 **Result**
 
 - id (string)
+- workout (Workout.id)
+- athlete (User.id)
 - repetitions (number, optional)
 - time (number, optional)
 - weight (number, optional)
@@ -94,10 +103,10 @@ Level Up allows users to generate and customize workouts, track personal bests a
 **Movement**
 
 - id (string)
-- name (string)
-- weight (number)
-- repetitions (number)
-
+- name (string,required)
+- weight (number, optional)
+- repetitions (number, required)
+- units (string)
 
 **v0.1**
 
