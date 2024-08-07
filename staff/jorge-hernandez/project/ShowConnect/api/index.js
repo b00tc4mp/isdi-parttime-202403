@@ -5,9 +5,10 @@ import mongoose from 'mongoose'
 
 import registerUserHandler from './handlers/registerUserHandler.js'
 import authenticateUserHandler from './handlers/authenticateUserHandler.js'
-import getUserNameHandler from './handlers/getUserNameHandler.js'
+import getArtistDataHandler from './handlers/getArtistDataHandler.js'
 import createChatHandler from './handlers/createChatHandler.js'
 import getArtistsByCityHandler from './handlers/getArtistsByCityHandler.js'
+import updateArtistHandler from './handlers/updateArtistHandler.js'
 
 import errorHandler from './handlers/errorHandler.js'
 const { MONGODB_URL, PORT } = process.env
@@ -37,9 +38,11 @@ mongoose
 
     api.post('/users/auth', jsonbodyparser, authenticateUserHandler)
 
-    api.get('/users/:targetUserId', getUserNameHandler)
+    api.get('/users/:targetUserId', getArtistDataHandler)
 
     api.get('/users/city/:city/discipline/:discipline', getArtistsByCityHandler)
+
+    api.put('/users/:targetUserId', jsonbodyparser, updateArtistHandler)
 
     api.use(errorHandler)
 

@@ -1,15 +1,15 @@
-import { ContentError, MatchError } from './errors.js'
+import { ContentError, CredentialsError, MatchError } from './errors.js'
 
 const NAME_REGEX = /^[a-zA-Z ]+$/
 // const ARTISTIC_NAME_REGEX = /^[a-zA-Z ]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{3,}$/
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const ID_REGEX = /^[0-9a-z]+$/
+const ID_REGEX = /^[a-fA-F0-9]{24}$/
 
 function validateName(name, explain = 'name') {
   if (typeof name !== 'string' || !NAME_REGEX.test(name))
-    throw new ContentError(`${explain} is not valid`)
+    throw new CredentialsError(`${explain} is not valid`)
 }
 
 // function validateArtisticName(artisticName, explain = 'artisticName') {
@@ -28,7 +28,7 @@ function validatePasswordsMatch(password, passwordRepeat) {
 
 function validateEmail(email) {
   if (typeof email !== 'string' || !EMAIL_REGEX.test(email))
-    throw new ContentError('email is not valid')
+    throw new CredentialsError('email is not valid')
 }
 
 function validateCallback(callback) {

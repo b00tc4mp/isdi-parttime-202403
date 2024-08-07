@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic'
 import { SystemError } from 'com/errors'
+import Field from '../components/Field'
 
 function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
   const [message, setMessage] = useState('')
@@ -52,33 +53,29 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
       >
         Login
       </Header>
-      {/* TODO sustituir por field */}
-      <form onSubmit={handleLoginSubmit}>
-        <div className='Field flex flex-col gap-1 mx-2'>
-          <label className='text-white' htmlFor='email'>
-            Email
-          </label>
-          <input
-            className='h-8 rounded p-2'
-            type='email'
-            id='email'
-            name='email'
-            placeholder='ejemplo@ejemplo.com'
-          />
-        </div>
 
-        <div className='Field flex flex-col gap-1 mx-2'>
-          <label className='text-white' htmlFor='password'>
-            Contraseña
-          </label>
-          <input
-            className='h-8 rounded p-2'
-            type='password'
-            id='password'
-            name='password'
-            placeholder='contraseña'
-          />
-        </div>
+      <form onSubmit={handleLoginSubmit}>
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          labelChildren='Email'
+          htmlFor='email'
+          id='email'
+          type='email'
+          inputClass='h-8 rounded p-2'
+          placeholder='ejemplo@ejemplo.com'
+        />
+
+        <Field
+          divClass='Field flex flex-col gap-1 mx-2'
+          labelClass='text-white'
+          labelChildren='password'
+          htmlFor='password'
+          id='password'
+          type='password'
+          inputClass='h-8 rounded p-2'
+          placeholder='password'
+        />
 
         {message && (
           <p className='text-red-600 text-lg text-center mt-2'>{message}</p>

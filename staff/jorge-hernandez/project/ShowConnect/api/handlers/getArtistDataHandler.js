@@ -19,7 +19,7 @@ export default (req, res, next) => {
 
         try {
           logic
-            .getUserName(userId, targetUserId)
+            .getArtistData(userId, targetUserId)
             .then((name) => res.json(name))
             .catch((error) => next(error))
         } catch (error) {

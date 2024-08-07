@@ -2,7 +2,7 @@ import { User } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getUserName = (userId, targetUserId) => {
+const getArtistData = (userId, targetUserId) => {
   validate.id(userId, 'userId')
   validate.id(targetUserId, 'targetUserId')
 
@@ -12,7 +12,7 @@ const getUserName = (userId, targetUserId) => {
       throw new SystemError(error.message)
     })
     .then((user) => {
-      if (!user) throw new NotFoundError('user not found')
+      if (!user) throw new NotFoundError('User not found')
 
       return User.findById(targetUserId)
         .lean()
@@ -23,10 +23,18 @@ const getUserName = (userId, targetUserId) => {
           if (!user) {
             throw new NotFoundError('targetUser not found')
           }
-
-          return user.artisticName
+          //TODO review
+          return {
+            artisticName: user.artisticName,
+            description: user.description,
+            image: user.images,
+            video: user.video,
+            email: user.email,
+            id: user._id.toString(),
+          }
+          // return user.artisticName
         })
     })
 }
 
-export default getUserName
+export default getArtistData

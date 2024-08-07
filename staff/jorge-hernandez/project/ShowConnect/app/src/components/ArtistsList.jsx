@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'
 import ArtistResult from './ArtistResult'
 import ArtistProfile from './ArtistProfile'
 
+//TODO mostrar mensaje cuando no se encuentran artistas
+
 function ArtistsList({ artist, city }) {
   const [artists, setArtists] = useState([])
   const [selectedArtist, setSelectedArtist] = useState(null)
