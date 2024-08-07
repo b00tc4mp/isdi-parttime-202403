@@ -12,7 +12,7 @@ const authenticateUser = (email, password) => {
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
-        throw new CredentialsError('user not found')
+        throw new CredentialsError('email not found')
       }
       return bcrypt.compare(password, user.password)
         .catch(error => { throw new SystemError(error.message) })

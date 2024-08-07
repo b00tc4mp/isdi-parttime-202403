@@ -12,5 +12,6 @@ router.get('/users/:targetUserId', routes.getUserNameHandler);
 router.get('/rooms', routes.getAllRoomsHandler);
 router.post('/rooms', jsonBodyParser, routes.createRoomHandler);
 router.get('/rooms/:roomId', routes.getRoomHandler);
+router.get('/rooms/:userId/rooms', routes.getAllUserRoomsHandler);
 
 export default router;

@@ -75,8 +75,13 @@ const createRoom = (userId, nameRoom, region, city, image, description, services
 
       return room.save()
         .catch(error => { throw new SystemError(error.message); })
-        .then(createdRoom => ({ room: createdRoom }));
-    });
+        .then(createdRoom => {
+
+          return User.findByIdAndUpdate(userId, { $push: { rooms: createdRoom._id } }, { new: true })
+            .catch(error => { throw new SystemError(error.message) })
+            .then(() => ({ room: createdRoom }))
+        });
+    })
 };
 
 export default createRoom;

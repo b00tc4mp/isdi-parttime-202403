@@ -1,9 +1,10 @@
-import { NotFoundError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from "com/errors.js";
 import { User, Room } from '../data/index.js'
-import validate from 'com/validate.js'
+import validate from "com/validate.js";
 
 
-const getAllRooms = (userId) => {
+
+const getAllUserRooms = (userId) => {
   validate.id(userId, 'userId')
 
   return User.findById(userId).lean()
@@ -13,23 +14,21 @@ const getAllRooms = (userId) => {
         throw new NotFoundError('user not found')
       }
 
-      return Room.find({}).select('-__v').sort({ price: -1 }).lean()
+      return Room.find({ author: userId }).select('-__v').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(rooms => {
           if (!rooms) {
             throw new NotFoundError('rooms not found')
           }
-
-          rooms.forEach(room => {
-            room.id = room._id.toString()
-            delete room._id
+          rooms.forEach(rooms => {
+            rooms.id = rooms._id.toString()
+            delete rooms._id
           })
-
           return rooms
         })
     })
 }
 
-export default getAllRooms
+export default getAllUserRooms
 
-//TODO location: { type: 'Point', coordinates: [Array] } OTRA LOGICA SIN USER ID
+//TODO Quiero que con esta logica puedas ir a tus habitaciones y desde ahi poder eliminarlas y editarlas 

@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmIzMmIzM2I2OGMwMmQ2YTU4ZWJmNDEiLCJpYXQiOjE3MjMwMjMyMjYsImV4cCI6MTcyMzM2ODgyNn0.jCAzHJM8THgarCPL7ZjfxFwZ5ZLE4vm3QGtZoOs1hJU" http://localhost:8080/rooms/66b32b33b68c02d6a58ebf41/rooms -v

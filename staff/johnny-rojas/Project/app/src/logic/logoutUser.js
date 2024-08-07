@@ -1,5 +1,4 @@
 const logoutUser = () => {
-  sessionStorage.removeItem('token'); 
-  sessionStorage.removeItem('email');
+  sessionStorage.removeItem('token')
 }
 export default logoutUser

@@ -21,7 +21,7 @@ const user = new Schema({
     phone: {
         type: String,
         unique: true,
-        // match:PHONE_REGEX
+        match:PHONE_REGEX
     },
     password: {
         type: String,
@@ -45,6 +45,10 @@ const user = new Schema({
         type: Types.ObjectId,
         ref: 'Room'
     }],
+    bookings: [{
+        type: Types.ObjectId,
+        ref:'Room'
+    }]
 })
 
 const User = model('User', user)

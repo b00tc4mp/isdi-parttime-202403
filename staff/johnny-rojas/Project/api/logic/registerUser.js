@@ -7,11 +7,11 @@ const registerUser = (name, surname, email, phone, password, repeatPassword) => 
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
-    // validate.phone(phone)
+    validate.phone(phone)
     validate.password(password)
     validate.passwordsMatch(password, repeatPassword)
 
-    return User.findOne({ email })
+    return User.findOne({ email }, { phone })
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user)
@@ -28,7 +28,7 @@ const registerUser = (name, surname, email, phone, password, repeatPassword) => 
                         password: hash,
                         guest: [],
                         host: [],
-                        room:[]
+                        room: []
                     }
 
                     return User.create(newUser)
