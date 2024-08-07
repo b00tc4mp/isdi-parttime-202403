@@ -9,7 +9,8 @@ import {
     errorHandler,
     getUserNameHandler,
     editUsernameHandler,
-    createGameHandler
+    createGameHandler,
+    getAllGamesHandler
 } from './handlers/index.js'
 
 const { PORT, MONGODB_URL } = process.env
@@ -34,6 +35,8 @@ mongoose.connect(MONGODB_URL)
         api.patch('/profile/:userId/editUsername', jsonBodyParser, editUsernameHandler)
 
         api.post('/games', jsonBodyParser, createGameHandler)
+
+        api.get('/games', getAllGamesHandler)
 
         api.use(errorHandler)
 

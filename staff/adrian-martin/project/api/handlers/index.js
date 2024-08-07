@@ -3,6 +3,7 @@ import authenticateUserHandler from "./authenticateUserHandler.js";
 import getUserNameHandler from "./getUserNameHandler.js"
 import editUsernameHandler from "./editUsernameHandler.js";
 import createGameHandler from "./createGameHandler.js";
+import getAllGamesHandler from "./getAllGamesHandler.js";
 import errorHandler from './errorHandler.js'
 
 export {
@@ -11,5 +12,6 @@ export {
     getUserNameHandler,
     editUsernameHandler,
     createGameHandler,
+    getAllGamesHandler,
     errorHandler
 }

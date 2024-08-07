@@ -26,7 +26,13 @@ const createGame = (userId, title, image, rating, hours) => {
 
             return Game.create(game)
                 .catch(() => { throw new SystemError('Connection error') })
-                .then(() => { })
+                .then(createdGame => {
+                    return User.findByIdAndUpdate(userId, {
+                        $push: { gameList: createdGame._id }
+                    }).catch(() => {
+                        throw new SystemError(('Error update user game list'))
+                    }).then(() => createdGame)
+                })
         })
 }
 
