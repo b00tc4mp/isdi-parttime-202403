@@ -1,25 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
 
-  body {
-    @apply w-full items-center justify-center align-middle bg-green-50;
+
+  :root {
+    @apply max-w-screen-xl mx-auto p-8 text-center flex justify-center items-center text-green-500 bg-orange-100;
   }
+
+  * {
+    font-family: Workbench;
+    color: var(--first-color);
+
+  }
+
+  body {
+    @apply flex h-screen w-full items-center justify-center align-middle;
+
+    /* @apply m-0 flex justify-center items-center; */
+
+    /* @apply flex h-screen w-full items-center justify-center */
+    /* bg-yellow-100 */
+    /* bg-green-50 */
+  }
+
+  /* h1 {
+    @apply text-3xl font-bold text-black mb-4;
+
+  } */
 
   .Link {
     @apply text-black underline;
+
   }
 
   .ErrorMessage {
     @apply flex justify-center text-red-500;
   }
 
+
 }
 
 
+/* :root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-justify: center;
+    display: flex center;
+    justify-content: center;
+    align-items: center;
+    --first-color: yellowgreen;
+    --second-color: white;
+  } */
 
+
+/* body {
+    background-color: var(--second-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-justify: center;
+  } */
+
+
+/*///////////////////////////////*/
 
 
 /* :root {

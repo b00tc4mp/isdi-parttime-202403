@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import logic from './logic'
 
-import Register from './views/Register'
-import './App.css'
+import './global.css'
 
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+
+import Register from './views/Register'
 import Home from './views/Home'
 import { Notfound } from './views/Notfound'
 import { Login } from './views/Login'
@@ -19,8 +20,6 @@ function App() {
   // const handleGoToHome = () => navigate('/')
 
   // const handleGoToRegister = () => navigate('/register')
-
-
 
   return (
     <Routes>

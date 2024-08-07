@@ -3,7 +3,7 @@
 @layer components {
 
     .Link {
-        @apply w-full flex justify-center text-black underline;
+        @apply flex justify-center text-2xl font-medium text-black underline mt-5;
     }
 
 }

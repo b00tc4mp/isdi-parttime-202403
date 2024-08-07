@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 import logic from "../logic"
 
 import Field from '../components/core/Field'
+import Button from '../components/core/Button'
 // import Link from '../components/core/Link'
 import Title from '../components/core/Title'
 
@@ -34,6 +35,7 @@ export const Login = () => {
                 .then(() => {
                     navigate("/")
                     console.log('User Login -> success')
+                    alert("Welcome " + `${username}`)
                 })
                 .catch((error) => {
                     console.error(error)
@@ -57,6 +59,11 @@ export const Login = () => {
     //     navigate("/register")
     // }
 
+    // const onLoginClick = (username) => {
+    //     console.log("Welcome " + `${username}`)
+    //     navigate("/")
+    // }
+
     return (
         <div>
 
@@ -67,7 +74,7 @@ export const Login = () => {
 
                 <Field id="password" type="password" placeholder="password">Password</Field>
 
-                <button type="submit">Login</button>
+                <Button type="submit">Login</Button>
 
             </form>
             {message && <p className="ErrorMessage">{message}</p>}

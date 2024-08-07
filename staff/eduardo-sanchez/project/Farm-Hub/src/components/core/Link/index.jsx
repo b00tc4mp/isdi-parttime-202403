@@ -1,14 +1,8 @@
 import './index.css';
 
-function Link({ onClick, children, to = "", className = "" }) {
+export default function Link({ onClick, children, to = "", className = "" }) {
     return <a href={to} onClick={onClick} className={className}>{children}</a>;
 }
-
-export default Link;
-
-
-
-
 
 // import './index.css'
 
