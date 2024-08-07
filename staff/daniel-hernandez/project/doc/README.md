@@ -8,6 +8,7 @@ BMP is a minimalistic music player made in react native.
 
 -  Search tracks
 -  Like track
+-  Dislike track
 -  Create track
 -  Edit track
 -  Remove track
@@ -24,11 +25,22 @@ BMP is a minimalistic music player made in react native.
 -  Add track to playlist
 -  Remove track from playlist
 -  Follow user
+-  Unfollow user
+-  Follow playlist
+-  Unfollow playlist
+-  Follow album
+-  Unfollow album
 -  Sync offline tracks
 -  Manage offline storage
 -  Share tracks
 -  Share playlists
--  View users playlists
+-  View user's playlists
+-  View user's followers
+-  View user's following
+-  View user's liked tracks
+-  View user's created playlists
+-  View user's created tracks
+-  View user's created albums
 
 **Anonymous user**
 
@@ -117,19 +129,23 @@ BMP is a minimalistic music player made in react native.
 -  passwordHash: String
 -  bio: String
 -  profileImage: String
--  createdAt: Date
--  updatedAt: Date
 -  likedTracks: [Track.id] // References to Track
--  following: [User.id]
+-  likedAlbums: [Album.id] // References to album
+-  followingPlaylists: [Playlist.id] // References to Playlist
+-  following: [User.id] // References to User
+-  followers: [User.id] // References to User
 -  settings:
    -  theme: String
    -  notifications: Boolean
+-  createdAt: Date
+-  updatedAt: Date
 
 #### Track
 
 -  id: UUID
--  title: String
--  artist: User.id // Reference to User \*\* Additional Feature
+-  name: String
+-  addedBy: User.id // References to User
+-  artists: [User.id] // References to User \*\* Additional Feature
 -  album: Album.id // Reference to Album \*\* Additional Feature
 -  duration: Number
 -  genre: String
@@ -139,26 +155,35 @@ BMP is a minimalistic music player made in react native.
 -  createdAt: Date
 -  updatedAt: Date
 
+#### TrackStatus
+
+-  id: UUID
+-  user: User.id // References to User
+-  isLocal: Boolean
+-  tags: [String]
+-  note: String
+
 #### Playlist
 
 -  id: UUID
 -  name: String
 -  description: String
--  createdBy: User.id // Reference to User
+-  public: Boolean
+-  owner: User.id // Reference to User
 -  tracks: [Track.id] // References to Tracks
+-  followers: [User.id] // References to User
 -  createdAt: Date
 -  updatedAt: Date
 
 #### Album
 
 -  id: UUID
--  title: String
--  artist: User.id // Reference to User
+-  name: String
+-  artists: [User.id] // Reference to User
 -  releaseDate: Date
 -  coverArt: String
 -  createdAt: Date
 -  updatedAt: Date
--  tracks: [Track.id] // References to Track
 
 #### Log
 
@@ -166,4 +191,7 @@ BMP is a minimalistic music player made in react native.
 -  user: User.id // Reference to User
 -  type: String // e.g, played, liked, shared
 -  track: Track.id // Reference to Track (if applicable)
+-  playlist: Playlist.id // Reference to Playlist
+-  album: Album.id // Reference to Album
+-  query: String
 -  createdAt: Date
