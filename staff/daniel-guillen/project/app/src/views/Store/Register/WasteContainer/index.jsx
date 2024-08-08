@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React from "react"
 import './index.css'
 import grg from './grg.png'
 import palet from './palet.png'
@@ -12,7 +12,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
     <div className="WasteContainerDiv">
       <div className={`WasteContainerStatus ${optionsContainer}`}>
         <div className="ContainerOptions">
-        <input className='Radio'
+        <input required className='Radio'
           type="radio"
           name="wasteContainer"
           value="GRG"
@@ -20,7 +20,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
           checked={optionsContainer === "GRG"}
           onChange={handleOptionsContainer}
         />
-        <label htmlFor="grg"><img src={grg} /></label>
+        <label htmlFor="grg"><img className="Img" src={grg} /></label>
 
         <input className='Radio'
           type="radio"
@@ -30,7 +30,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
           checked={optionsContainer === "PALET"}
           onChange={handleOptionsContainer}
         />
-        <label htmlFor="palet"><img src={palet} /></label>
+        <label htmlFor="palet"><img className="Img" src={palet} /></label>
 
         <input className='Radio'
           type="radio"
@@ -40,7 +40,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
           checked={optionsContainer === "BIGBAG"}
           onChange={handleOptionsContainer}
         />
-        <label htmlFor="bigbag"><img src={bigbag} /></label>
+        <label htmlFor="bigbag"><img className="Img" src={bigbag} /></label>
 
         <input className='Radio'
           type="radio"
@@ -50,7 +50,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
           checked={optionsContainer === "B200"}
           onChange={handleOptionsContainer}
         />
-        <label htmlFor="b200"><img src={b200} /></label>
+        <label htmlFor="b200"><img className="Img" src={b200} /></label>
 
         <input className='Radio'
           type="radio"
@@ -60,7 +60,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
           checked={optionsContainer === "B-200"}
           onChange={handleOptionsContainer}
         />
-        <label htmlFor="b-200"><img src={bm200} /></label>
+        <label htmlFor="b-200"><img className="Img" src={bm200} /></label>
         </div>
         <p>
           Residuo acondicionado en:<strong>{optionsContainer}</strong>

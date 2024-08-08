@@ -1,44 +1,59 @@
 .Nav {
   display: flex;
-  padding: 0.5rem;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  box-sizing: border-box;
-  background: white;
+  max-width: 800px;
+  margin: 0.5rem auto 0.5rem auto;
+  justify-content: center;
+  flex-direction: column;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background: linear-gradient(white 30%, transparent);
 }
+
 .logo {
-  margin-top: 5px;
-}
-.menu {
-  margin-top: 0px;
   display: flex;
-  justify-content: end;
+  margin: 1rem auto 0.5rem auto;
+  justify-content: center;
+  width: 100%;
+}
+.MenuButtons {
+  display: flex;
+  margin: 0.5rem auto 1rem auto;
+  justify-content: center;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size: small;
   list-style-type: none;
-  padding: 0.5rem;
-  border-bottom: 3px solid green;
-  background: linear-gradient(white, transparent);
 }
 .menu-link-center {
   padding: 0.5rem;
+  background: green;
+  border: darkgreen 1px solid;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .menu-link-start {
   padding: 0.5rem;
+  background: green;
+  border: darkgreen 1px solid;
   border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .menu-link-end {
   padding: 0.5rem;
+  background: green;
+  border: darkgreen 1px solid;
   border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .menu-link-start:hover,
 .menu-link-center:hover,
 .menu-link-end:hover {
-  background: green;
-  color: white;
+  background: lightgreen;
+  border: greenyellow 1px solid;
+  color: black;
 }

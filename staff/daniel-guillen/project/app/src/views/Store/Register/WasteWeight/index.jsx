@@ -5,13 +5,13 @@ const WasteWeight = ( { weight, handleWeightChange} ) => {
 
   return (
     <div className='InputWeightDiv'>
-    <input
+    <input required
     className='InputWeight'
     value={weight}
     id='InputWeight'
     type='number'
     min="15"
-    max="1999"
+    max="1499"
     name='weight'
     placeholder='Peso'
     onChange={handleWeightChange}

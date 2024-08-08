@@ -2,11 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .image {
-  border-radius: 10px;
+  width: 100%;
+  border-radius: 5px;
+  filter: grayscale(80%);
 }
 .image:hover {
-  border: 2px solid green;
+  filter: none;
 }

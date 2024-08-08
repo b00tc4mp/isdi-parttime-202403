@@ -19,12 +19,12 @@ const WasteSelect = ({ selectedWaste, handleWasteChange }) => {
 
   return (
     <div className='WasteSelectDiv'>
-        <Select
+        <Select required
           className='WasteSelect'
           value={selectedOption}
           onChange={(selected) => handleWasteChange(selected.value)}
           options={options}
-          placeholder="Escriba LER y seleccione un tipo de residuo"
+          placeholder="CODIGO LER"
         />
     </div>
   )

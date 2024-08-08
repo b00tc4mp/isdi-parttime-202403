@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   height: full;
-  width: 210px;
+  width: 150px;
   background: white;
   border-radius: 5px;
   border: thistle solid 0.5px;
@@ -12,18 +12,21 @@
 }
 
 .InputWeight {
-  text-align: center;
-  font-size: 35px;
+  width: 80px;
+  height: 58px;
+  text-align: end;
+  font-size: 28px;
   border: 0px;
   cursor: cell;
 }
 .InputWeight:focus {
-  border: 0px;
+  border: none;
 }
 .InputWeight:active {
-  border: 0px;
+  border: none;
 }
 
 .UnitWeight {
+  font-size: 25px;
   color: darkgray;
 }

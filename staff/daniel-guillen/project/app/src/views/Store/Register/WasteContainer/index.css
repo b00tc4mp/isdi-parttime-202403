@@ -54,6 +54,7 @@
   cursor: pointer;
 }
 
-img {
+.Img {
   cursor: pointer;
+  max-width: 50px;
 }

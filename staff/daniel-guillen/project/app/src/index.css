@@ -7,11 +7,12 @@
   --second-color: white;
 }
 
+html,
 body {
-  background-color: rgb(222, 244, 222);
+  min-height: 100%;
+}
+
+body {
+  background-color: rgb(243, 203, 147);
   font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh;
-  margin-top: 2rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
 }

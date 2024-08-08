@@ -1,0 +1,1302 @@
+[
+  {
+    "id":"020101",
+    "code":"020101",
+    "name":"LODOS LAVADO LIMPIEZA"
+  },
+  {
+    "id":"020203",
+    "code":"020203",
+    "name":"MATERIALES INADECUADOS PARA EL CONSUMO-ALIMENTOS"
+  },
+  {
+    "id":"020204",
+    "code":"020204",
+    "name":"LODOS TRATAMIENTO IN SITU AFLUENTES"
+  },
+  {
+    "id":"020301",
+    "code":"020301",
+    "name":"LODOS LAVADO LIMPIEZA PELADO CENTRIFUGACION SEPARACION-ALIMENTOS"
+  },
+  {
+    "id":"020304",
+    "code":"020304",
+    "name":"MATERIALES INADECUADOS PARA EL CONSUMO ADITIVOS PIENSO"
+  },
+  {
+    "id":"020305",
+    "code":"020305",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES"
+  },
+  {
+    "id":"020704",
+    "code":"020704",
+    "name":"MATERIALES INADECUADOS PARA EL CONSUMO O LA ELABORACION"
+  },
+  {
+    "id":"020799",
+    "code":"020799",
+    "name":"GLUCOSA CON AGUA"
+  },
+  {
+    "id":"030104",
+    "code":"030104",
+    "name":"SERRIN VIRUTAS RECORTES MADERA TABLEROS PARTICULAS"
+  },
+  {
+    "id":"030105",
+    "code":"030105",
+    "name":"SERRIN VIRUTAS RECORTES MADERA TABLEROS PARTICULAS DISTINTO AL 030104"
+  },
+  {
+    "id":"040106",
+    "code":"040106",
+    "name":"LODOS PROCEDENTES TRATAMIENTO IN SITU EFLUENTES CON CROMO"
+  },
+  {
+    "id":"040214",
+    "code":"040214",
+    "name":"RESIDUO ACABADO CON DISOLVENTES ORGANICOS-NO HALOGENADO"
+  },
+  {
+    "id":"040219",
+    "code":"040219",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES"
+  },
+  {
+    "id":"040220",
+    "code":"040220",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES DISTINTO AL 040219"
+  },
+  {
+    "id":"040222",
+    "code":"040222",
+    "name":"R FIBRAS TEXTILES PROCESADAS"
+  },
+  {
+    "id":"060101",
+    "code":"060101",
+    "name":"ACIDO SULFURICO ACIDO SULFUROSO"
+  },
+  {
+    "id":"060102",
+    "code":"060102",
+    "name":"ACIDO CLORHIDRICO"
+  },
+  {
+    "id":"060104",
+    "code":"060104",
+    "name":"ACIDO FOSFORICO"
+  },
+  {
+    "id":"060105",
+    "code":"060105",
+    "name":"ACIDO NITRICO"
+  },
+  {
+    "id":"060106",
+    "code":"060106",
+    "name":"OTROS ACIDOS"
+  },
+  {
+    "id":"060201",
+    "code":"060201",
+    "name":"HIDROXIDO CALCICO"
+  },
+  {
+    "id":"060204",
+    "code":"060204",
+    "name":"HIDROXIDO POTASICO E HIDROXIDO SODICO"
+  },
+  {
+    "id":"060205",
+    "code":"060205",
+    "name":"OTRAS BASES CON FICHA SEGURIDAD"
+  },
+  {
+    "id":"060311",
+    "code":"060311",
+    "name":"SALES SOLIDAS"
+  },
+  {
+    "id":"060313",
+    "code":"060313",
+    "name":"SALES SOLIDAS SOLUCIONES CON METALES PESADOS"
+  },
+  {
+    "id":"060314",
+    "code":"060314",
+    "name":"SALES SOLIDAS SOLUCIONES  DISTINTO AL 060311 060313"
+  },
+  {
+    "id":"060316",
+    "code":"060316",
+    "name":"AGUAS TRATAMIENTO GASES"
+  },
+  {
+    "id":"060404",
+    "code":"060404",
+    "name":"RESIDUO QUE CONTIENEN MERCURIO"
+  },
+  {
+    "id":"060502",
+    "code":"060502",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES CON METALES PESADOS"
+  },
+  {
+    "id":"060503",
+    "code":"060503",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES DISTINTO AL 060502"
+  },
+  {
+    "id":"061302",
+    "code":"061302",
+    "name":"CARBON ACTIVO USADO EXCEPTO LA CATEGORIA 060702"
+  },
+  {
+    "id":"070101",
+    "code":"070101",
+    "name":"LIQUIDOS LIMPIEZA"
+  },
+  {
+    "id":"070104",
+    "code":"070104",
+    "name":"OTROS DISOLVENTES LIQUIDOS LIMPIEZA LICORES MADRE ORGANICOS"
+  },
+  {
+    "id":"070108",
+    "code":"070108",
+    "name":"FERTILIZANTES"
+  },
+  {
+    "id":"070111",
+    "code":"070111",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES"
+  },
+  {
+    "id":"070112",
+    "code":"070112",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES DISTINTO AL 070111"
+  },
+  {
+    "id":"070208",
+    "code":"070208",
+    "name":"OTROS RESIDUOS REACCION DESTILACION RESINAS"
+  },
+  {
+    "id":"070214",
+    "code":"070214",
+    "name":"RESIDUO PROCEDENTES ADITIVOS CON SUSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"070301",
+    "code":"070301",
+    "name":"LIQUIDOS LIMPIEZA LICORES MADRE ACUOSOS"
+  },
+  {
+    "id":"070303",
+    "code":"070303",
+    "name":"DISOLVENTES HALOGENADOS"
+  },
+  {
+    "id":"070304",
+    "code":"070304",
+    "name":"AGUAS LABORATORIO ACUOSO"
+  },
+  {
+    "id":"070401",
+    "code":"070401",
+    "name":"LIQUIDOS LIMPIEZA LICORES MADRE ACUOSOS"
+  },
+  {
+    "id":"070404",
+    "code":"070404",
+    "name":"DISOLVENTES NO HALOGENADOS"
+  },
+  {
+    "id":"070407",
+    "code":"070407",
+    "name":"RESIDUO REACCION DESTILACION HALOGENADOS"
+  },
+  {
+    "id":"070408",
+    "code":"070408",
+    "name":"OTROS RESIDUO REACCION DESTILACION-NO HALOGENADO"
+  },
+  {
+    "id":"070411",
+    "code":"070411",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES"
+  },
+  {
+    "id":"070412",
+    "code":"070412",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES DISTINTO AL 070411"
+  },
+  {
+    "id":"070413",
+    "code":"070413",
+    "name":"R SOLIDOS CON SUSTANCIAS PELIGROSAS PLAGUICIDAS RATICIDAS"
+  },
+  {
+    "id":"070501",
+    "code":"070501",
+    "name":"LIQUIDOS LIMPIEZA LICORES MADRE ACUOSOS"
+  },
+  {
+    "id":"070504",
+    "code":"070504",
+    "name":"DISOLVENTES NO HALOGENADOS"
+  },
+  {
+    "id":"070512",
+    "code":"070512",
+    "name":"AGUAS LIMPIEZA ALIMENTACION PREVIA MUESTRA"
+  },
+  {
+    "id":"070601",
+    "code":"070601",
+    "name":"LIQUIDOS LIMPIEZA LICORES MADRE ACUOSOS-LIMPIEZA REACTOR"
+  },
+  {
+    "id":"070603",
+    "code":"070603",
+    "name":"DISOLVENTES LIQUIDOS LIMPIEZA LICORES MADRE ORGANOHALOGENADOS-HALOGENADO"
+  },
+  {
+    "id":"070604",
+    "code":"070604",
+    "name":"OTROS DISOLVENTES LIQUIDOS LIMPIEZA LICORES MADRE ORGANICOS-NO HALOGENADO"
+  },
+  {
+    "id":"070608",
+    "code":"070608",
+    "name":"OTROS RESIDUOS REACCION DESTILACION"
+  },
+  {
+    "id":"070611",
+    "code":"070611",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES"
+  },
+  {
+    "id":"070699",
+    "code":"070699",
+    "name":"COSMETICOS NO ESPECIAL"
+  },
+  {
+    "id":"070701",
+    "code":"070701",
+    "name":"LIQUIDOS LIMPIEZA LICORES MADRE ACUOSOS-SIN DISOLVENTE"
+  },
+  {
+    "id":"070703",
+    "code":"070703",
+    "name":"DISOLVENTES LIQUIDOS LIMPIEZA LICORES MADRE ORGANOHALOGENADOS"
+  },
+  {
+    "id":"070704",
+    "code":"070704",
+    "name":"OTROS DISOLVENTES LIMPIEZA LICORES MADRE ORGANICOS HALOGENADO"
+  },
+  {
+    "id":"070711",
+    "code":"070711",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES"
+  },
+  {
+    "id":"070712",
+    "code":"070712",
+    "name":"LODOS TRATAMIENTO IN SITU EFLUENTES DISTINTO AL 070711"
+  },
+  {
+    "id":"080111",
+    "code":"080111",
+    "name":"R PINTURA BARNIZ CON DISOLVENTES ORGANICOS"
+  },
+  {
+    "id":"080112",
+    "code":"080112",
+    "name":"RESIDUO PINTURA BARNIZ  DISTINTO AL 080111"
+  },
+  {
+    "id":"080113",
+    "code":"080113",
+    "name":"LODOS PINTURA BARNIZ CON DISOLVENTES ORGANICOS-NO HALOGENADO"
+  },
+  {
+    "id":"080114",
+    "code":"080114",
+    "name":"LODOS PINTURA BARNIZ DISTINTO AL 080113"
+  },
+  {
+    "id":"080117",
+    "code":"080117",
+    "name":"POLVO PINTURA POLVO LIJADO"
+  },
+  {
+    "id":"080118",
+    "code":"080118",
+    "name":"DECAPADO O ELIMINACION PINTURA BARNIZ DISTINTO AL 080117"
+  },
+  {
+    "id":"080119",
+    "code":"080119",
+    "name":"SUSPENSIONES ACUOSAS CON PINTURA O BARNIZ CON DISOLVENTES ORGANICOS"
+  },
+  {
+    "id":"080120",
+    "code":"080120",
+    "name":"SUSPENSIONES ACUOSAS CON PINTURA O BARNIZ  DISTINTO AL 080119"
+  },
+  {
+    "id":"080307",
+    "code":"080307",
+    "name":"LODOS ACUOSOS CON TINTA-SIN DISOLVENTE"
+  },
+  {
+    "id":"080308",
+    "code":"080308",
+    "name":"RESIDUO ACUOSOS RESTOS RESIDUO"
+  },
+  {
+    "id":"080312",
+    "code":"080312",
+    "name":"RESIDUO TINTAS LODO BARRO TINTAS"
+  },
+  {
+    "id":"080313",
+    "code":"080313",
+    "name":"LODOS TINTAS"
+  },
+  {
+    "id":"080314",
+    "code":"080314",
+    "name":"LODOS BARRO TINTAS AL AGUA "
+  },
+  {
+    "id":"080315",
+    "code":"080315",
+    "name":"RESIDUO TINTAS  DISTINTO AL 080314"
+  },
+  {
+    "id":"080317",
+    "code":"080317",
+    "name":"POLVO TONER"
+  },
+  {
+    "id":"080318",
+    "code":"080318",
+    "name":"CINTAS IMPRESORA"
+  },
+  {
+    "id":"080409",
+    "code":"080409",
+    "name":"R ADHESIVOS SELLANTES CON DISOLVENTES ENVASES LATAS"
+  },
+  {
+    "id":"080410",
+    "code":"080410",
+    "name":"REDIDUOS ADHESIVOS SELLANTES DIFER.DEL CER 080409"
+  },
+  {
+    "id":"080411",
+    "code":"080411",
+    "name":"LODOS ADHESIVOS SELLANTES CON DISOLVENTES ORGANICOS U OTRAS SUSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"080414",
+    "code":"080414",
+    "name":"LODOS ACUOSOS CON ADHESIVOS O SELLANTES -SILICONA RESINA ETC .."
+  },
+  {
+    "id":"080416",
+    "code":"080416",
+    "name":"R LIQUIDOS ACUOSOS CON ADHESIVOS O SELLANTES LIQUIDO"
+  },
+  {
+    "id":"080501",
+    "code":"080501",
+    "name":"ISOCIONATOS RESIDUALES ENVASES MAX 40KG"
+  },
+  {
+    "id":"090101",
+    "code":"090101",
+    "name":"SOLUCIONES REVELADO SOLUCIONES ACTIVADORAS AL AGUA-PLANCHAS"
+  },
+  {
+    "id":"090102",
+    "code":"090102",
+    "name":"SOLUCIONES REVELADO-PELICULA"
+  },
+  {
+    "id":"090104",
+    "code":"090104",
+    "name":"SOLUCIONES FIJADO-FIJADOR"
+  },
+  {
+    "id":"090105",
+    "code":"090105",
+    "name":"SOLUCIUONES BLANQUEO SOLUCIONES BLANQUEO-FIJADOR"
+  },
+  {
+    "id":"090107",
+    "code":"090107",
+    "name":"FOTOLITOS O CLICHES FOTOGRAFICOS"
+  },
+  {
+    "id":"090108",
+    "code":"090108",
+    "name":"PELICULAS PAPEL FOTOGRAFICO-FOTOLITOS"
+  },
+  {
+    "id":"100101",
+    "code":"100101",
+    "name":"CENIZAS HOGAR ESCORIAS POLVO CALDERA-CENIZAS"
+  },
+  {
+    "id":"100103",
+    "code":"100103",
+    "name":"CENIZAS VOLANTES TURBA MADERA-CENIZAS MADERA"
+  },
+  {
+    "id":"100118",
+    "code":"100118",
+    "name":"RESIDUO PROCEDENTEE DEPURACION GASES CON SUSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"100321",
+    "code":"100321",
+    "name":"OTRAS PARTICULAS POLVO INCLUIDO EL POLVO MOLIENDA-POLVO"
+  },
+  {
+    "id":"100322",
+    "code":"100322",
+    "name":"OTRAS PARTICULAS  DISTINTO AL 100321"
+  },
+  {
+    "id":"100405",
+    "code":"100405",
+    "name":"OTRAS PARTICULAS POLVO"
+  },
+  {
+    "id":"100505",
+    "code":"100505",
+    "name":"RESIDUO SOLIDOS TRATAMIENTO GASES OXIDO ZINC"
+  },
+  {
+    "id":"101105",
+    "code":"101105",
+    "name":"PARTICULAS POLVO"
+  },
+  {
+    "id":"101112",
+    "code":"101112",
+    "name":"RESIDUO VIDRIO  DISTINTO AL 101111"
+  },
+  {
+    "id":"101114",
+    "code":"101114",
+    "name":"POLVO VIDRIO"
+  },
+  {
+    "id":"110105",
+    "code":"110105",
+    "name":"SOLUCIONES ACIDAS DECAPANTES-NO HALOGENADO"
+  },
+  {
+    "id":"110106",
+    "code":"110106",
+    "name":"ACIDOS NO ESPECIFICADOS EN OTRA CATEGORIA -NO HALOGENADO"
+  },
+  {
+    "id":"110109",
+    "code":"110109",
+    "name":"LODOS TORTAS FILTRACION CON SUSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"110110",
+    "code":"110110",
+    "name":"LODOS TORTAS FILTRACION DIFERERENTE AL 110109"
+  },
+  {
+    "id":"110111",
+    "code":"110111",
+    "name":"LIQUIDOS ACUOSOS ENJUAGUE -NO HALOGENADO LIQUIDO"
+  },
+  {
+    "id":"110113",
+    "code":"110113",
+    "name":"R DESENGRASADO CON SUSTANCIAS PELIGROSAS-NO HALOGENADO"
+  },
+  {
+    "id":"120101",
+    "code":"120101",
+    "name":"LIMADURAS VIRUTAS METALES FERREOS-POLVO"
+  },
+  {
+    "id":"120102",
+    "code":"120102",
+    "name":"POLVO PARTICULAS METALES FERREOS-METALICO"
+  },
+  {
+    "id":"120103",
+    "code":"120103",
+    "name":"LIMADURAS VIRUTAS METALES NO FERREOS"
+  },
+  {
+    "id":"120104",
+    "code":"120104",
+    "name":"POLVO PARTICULAS METALES NO FERREOS"
+  },
+  {
+    "id":"120105",
+    "code":"120105",
+    "name":"VIRUTAS REBABAS ETC ..."
+  },
+  {
+    "id":"120107",
+    "code":"120107",
+    "name":"ACEITES MINERALES MECANIZADO SIN HALOGENOS ACEITES DIELECTRICOS"
+  },
+  {
+    "id":"120109",
+    "code":"120109",
+    "name":"ACEITE GRAFITADO"
+  },
+  {
+    "id":"120110",
+    "code":"120110",
+    "name":"ACEITES SINTETICOS MECANIZADO"
+  },
+  {
+    "id":"120112",
+    "code":"120112",
+    "name":"CERAS GRASAS USADAS"
+  },
+  {
+    "id":"120114",
+    "code":"120114",
+    "name":"LODOS MECANIZACION QUE CONTIENEN SUSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"120115",
+    "code":"120115",
+    "name":"LODOS MECANIZACION LODO SECO"
+  },
+  {
+    "id":"120116",
+    "code":"120116",
+    "name":"RESIDUO GRANALLADO O CHORREADO"
+  },
+  {
+    "id":"120117",
+    "code":"120117",
+    "name":"R GRANALLADO O CHORREADO CORINDON"
+  },
+  {
+    "id":"120121",
+    "code":"120121",
+    "name":"MUELAS MATERIALES ESMERILADO USADOS -DISCOS RADIAL MUELAS"
+  },
+  {
+    "id":"120199",
+    "code":"120199",
+    "name":"JABON TREFILADO"
+  },
+  {
+    "id":"120301",
+    "code":"120301",
+    "name":"LIQUIDOS ACUOSOS LIMPIEZA"
+  },
+  {
+    "id":"130110",
+    "code":"130110",
+    "name":"ACEITES HIDRAULICOS MINERALES NO CLORADOS-HIDRAULICO"
+  },
+  {
+    "id":"130113",
+    "code":"130113",
+    "name":"OTROS ACEITES HIDRAULICOS-HIDRAULICO"
+  },
+  {
+    "id":"130204",
+    "code":"130204",
+    "name":"ACEITES MINERALES CLORADOS MOTOR TRANSMISION MECANICA LUBRICANTES"
+  },
+  {
+    "id":"130205",
+    "code":"130205",
+    "name":"ACEITES MINERALES NO CLORADOS"
+  },
+  {
+    "id":"130206",
+    "code":"130206",
+    "name":"ACEITES SINTETICOS MOTOR TRANSMISION MECANICA LUBRICANTES-GRAFITADO"
+  },
+  {
+    "id":"130301",
+    "code":"130301",
+    "name":"ACEITE AISLAMIENTO TRANSMISIÓN CALOR QUE CONTIENEN PCB."
+  },
+  {
+    "id":"130307",
+    "code":"130307",
+    "name":"ACEITES MINERALES NO CLORADOS AISLAMIENTO TRANSMISION CALOR-CALEFACCION"
+  },
+  {
+    "id":"130506",
+    "code":"130506",
+    "name":"ACEITES PROCEDENTES SEPARADORES AGUA SUSTANCIAS ACEITOSAS"
+  },
+  {
+    "id":"130507",
+    "code":"130507",
+    "name":"AGUA ACEITOSA PROCEDENTE SEPARADORES AGUA SUSTANCIAS ACEITOSAS LIQUIDAS"
+  },
+  {
+    "id":"130508",
+    "code":"130508",
+    "name":"MEZCLA PROCEDENTE DESARENADORES SEPARADORES AGUA CON SUSTANCIAS ACEITOSAS"
+  },
+  {
+    "id":"130701",
+    "code":"130701",
+    "name":"FUEL OIL GASOIL"
+  },
+  {
+    "id":"130703",
+    "code":"130703",
+    "name":"OTROS COMBUSTIBLES INCLUIDAS MEZCLAS"
+  },
+  {
+    "id":"130802",
+    "code":"130802",
+    "name":"OTRAS EMULSIONES"
+  },
+  {
+    "id":"140601",
+    "code":"140601",
+    "name":"CLOROFLUOROCARBUROS HCFC HFC"
+  },
+  {
+    "id":"140602",
+    "code":"140602",
+    "name":"OTROS DISOLVENTES ENVASES LATAS CON RESTOS"
+  },
+  {
+    "id":"140603",
+    "code":"140603",
+    "name":"OTROS DISOLVENTES LATAS CON RESTOS"
+  },
+  {
+    "id":"140604",
+    "code":"140604",
+    "name":"LODOS O R SOLIDOS CON DISOLVENTES HALOGENADOS"
+  },
+  {
+    "id":"140605",
+    "code":"140605",
+    "name":"LODOS O R SOLIDOS CON DISOLVENTES-ACETONA"
+  },
+  {
+    "id":"150101",
+    "code":"150101",
+    "name":"ENVASES PAPEL CARTON-PAPEL"
+  },
+  {
+    "id":"150102",
+    "code":"150102",
+    "name":"ENVASES PLASTICO"
+  },
+  {
+    "id":"150103",
+    "code":"150103",
+    "name":"ENVASES MADERA-CAJAS MADERA ENVASES MADERA"
+  },
+  {
+    "id":"150104",
+    "code":"150104",
+    "name":"ENVASES METALICOS"
+  },
+  {
+    "id":"150105",
+    "code":"150105",
+    "name":"ENVASES COMPUESTOS GRG DESTRUCCION"
+  },
+  {
+    "id":"150106",
+    "code":"150106",
+    "name":"ENVASES MEZCLADOS-PLASTICO VALORIZABLE"
+  },
+  {
+    "id":"150107",
+    "code":"150107",
+    "name":"ENVASES VIDRIO"
+  },
+  {
+    "id":"150109",
+    "code":"150109",
+    "name":"ENVASES TEXTILES-TEXTIL"
+  },
+  {
+    "id":"150110",
+    "code":"150110",
+    "name":"ENVASES CONTAMINADOS"
+  },
+  {
+    "id":"150111",
+    "code":"150111",
+    "name":"AEROSOLES VACIOS EXCEPTO POLIURETANO"
+  },
+  {
+    "id":"150202",
+    "code":"150202",
+    "name":"ABSORBENTES CONTAMINADOS"
+  },
+  {
+    "id":"150203",
+    "code":"150203",
+    "name":"ABSORBENTES ALUMINA SILICAGEL"
+  },
+  {
+    "id":"160103",
+    "code":"160103",
+    "name":"NEUMATICOS"
+  },
+  {
+    "id":"160107",
+    "code":"160107",
+    "name":"FILTROS ACEITE"
+  },
+  {
+    "id":"160110",
+    "code":"160110",
+    "name":"COMPONENTES EXPLOSIVOS POR EJEMPLO AIR BAGS."
+  },
+  {
+    "id":"160112",
+    "code":"160112",
+    "name":"ZAPATAS FRENO"
+  },
+  {
+    "id":"160113",
+    "code":"160113",
+    "name":"LIQUIDO FRENOS"
+  },
+  {
+    "id":"160114",
+    "code":"160114",
+    "name":"ANTICONGELANTE"
+  },
+  {
+    "id":"160115",
+    "code":"160115",
+    "name":"ANTICONGELANTE NE"
+  },
+  {
+    "id":"160117",
+    "code":"160117",
+    "name":"METALES FERROSOS-CHATARRA VARIADA"
+  },
+  {
+    "id":"160118",
+    "code":"160118",
+    "name":"METALES NO FERROSOS-CHATARRA NO FERRICA"
+  },
+  {
+    "id":"160119",
+    "code":"160119",
+    "name":"OPTICAS PARACHOQUES SIN METAL"
+  },
+  {
+    "id":"160120",
+    "code":"160120",
+    "name":"CRISTAL PLANO"
+  },
+  {
+    "id":"160121",
+    "code":"160121",
+    "name":"CATALIZADOR COCHES"
+  },
+  {
+    "id":"160209",
+    "code":"160209",
+    "name":"TRANSFORMADORES CONDENSADORES CON PCB"
+  },
+  {
+    "id":"160210",
+    "code":"160210",
+    "name":"GRANDES APARATOS CON COMPONENTES PELIGROSOS"
+  },
+  {
+    "id":"160211",
+    "code":"160211",
+    "name":"APARATOS AIRE ACONDICIONADO"
+  },
+  {
+    "id":"160212",
+    "code":"160212",
+    "name":"GRANDES APARATOS CON COMPONENTES PELIGROSOS"
+  },
+  {
+    "id":"160213",
+    "code":"160213",
+    "name":"APARATOS CON ACEITE EN CIRCUITOS O CONDENSADORES"
+  },
+  {
+    "id":"160214",
+    "code":"160214",
+    "name":"APARATOS INFORMATICA TELECOMUNICACION "
+  },
+  {
+    "id":"160216",
+    "code":"160216",
+    "name":"MATERIAL CERÁMICO AISLANTE"
+  },
+  {
+    "id":"160303",
+    "code":"160303",
+    "name":"OXICLORURO FOSFATO"
+  },
+  {
+    "id":"160304",
+    "code":"160304",
+    "name":"RESIDUO INORGANICOS DISTINTO AL 160303"
+  },
+  {
+    "id":"160305",
+    "code":"160305",
+    "name":"COSMETICOS MATERIAS PRIMAS INFLAMABLES HALOGENADOS"
+  },
+  {
+    "id":"160306",
+    "code":"160306",
+    "name":"COSMETICOS MUESTROTECA CON CERTIFICADO"
+  },
+  {
+    "id":"160307",
+    "code":"160307",
+    "name":"MERCURIO METALICO"
+  },
+  {
+    "id":"160504",
+    "code":"160504",
+    "name":"AEROSOLES"
+  },
+  {
+    "id":"160505",
+    "code":"160505",
+    "name":"BOMBONAS OXIGENO"
+  },
+  {
+    "id":"160506",
+    "code":"160506",
+    "name":"PERMANGANATO POTASIO"
+  },
+  {
+    "id":"160507",
+    "code":"160507",
+    "name":"PRODUCTOS QUIMICOS INORGANICOS"
+  },
+  {
+    "id":"160508",
+    "code":"160508",
+    "name":"PRODUCTOS QUIMICOS ORGANICOS CRUDO PETROLEO"
+  },
+  {
+    "id":"160509",
+    "code":"160509",
+    "name":"PRODUCTOS QUIMICOS DESECHADOS POLVO EXTINTOR"
+  },
+  {
+    "id":"160601",
+    "code":"160601",
+    "name":"BATERIAS PLOMO-INDUSTRIA"
+  },
+  {
+    "id":"160602",
+    "code":"160602",
+    "name":"ACUMULADORES NI-CD"
+  },
+  {
+    "id":"160603",
+    "code":"160603",
+    "name":"PILAS BOTON"
+  },
+  {
+    "id":"160604",
+    "code":"160604",
+    "name":"PILAS BASTON"
+  },
+  {
+    "id":"160605",
+    "code":"160605",
+    "name":"OTRAS PILAS ACUMULADORES"
+  },
+  {
+    "id":"160607",
+    "code":"160607",
+    "name":"ACUMULADORES PILAS O BATERÍAS EN CUYA COMPOSICIÓN SE ENCUENTRE EL LITIO"
+  },
+  {
+    "id":"160708",
+    "code":"160708",
+    "name":"RESIDUO CON HIDROCARBUROS"
+  },
+  {
+    "id":"160709",
+    "code":"160709",
+    "name":"RESIDUO CON SUSTANCIAS PELIGROSAS-NO HALOGENADO"
+  },
+  {
+    "id":"160806",
+    "code":"160806",
+    "name":"LIQUIDO CATALIZADOR"
+  },
+  {
+    "id":"160901",
+    "code":"160901",
+    "name":"PERMANGANATOS POR EJEMPLO PERMANGANATO POTASICO"
+  },
+  {
+    "id":"160903",
+    "code":"160903",
+    "name":"PEROXIDOS POR EJEMPLO PEROXIDO HIDROGENO"
+  },
+  {
+    "id":"161001",
+    "code":"161001",
+    "name":"RESIDUO ACUOSOS FLOCULANTE"
+  },
+  {
+    "id":"161002",
+    "code":"161002",
+    "name":"AIGÜES PROCEDENTS LA PURGA COMPRESOR"
+  },
+  {
+    "id":"161003",
+    "code":"161003",
+    "name":"CONCENTRADOS ACUOSOS QUE CONTIENEN SUSTANCIAS PELIGROSAS-NO ACIDAS"
+  },
+  {
+    "id":"161004",
+    "code":"161004",
+    "name":"CONCENTRADOS ACUOSOS DISTINTO AL 161003"
+  },
+  {
+    "id":"161105",
+    "code":"161105",
+    "name":"REVESTIMIENTOS REFRACTARIOS PROCEDENTES PROCESOS NO METALURGICOS CON SUSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"161106",
+    "code":"161106",
+    "name":"REVESTIMIENTOS REFRACTARIOS PROCEDENTES PROCESOS NO METALURGICOS  DISTINTO AL 161105"
+  },
+  {
+    "id":"170103",
+    "code":"170103",
+    "name":"TEJAS MATERIALES CERAMICOS"
+  },
+  {
+    "id":"170107",
+    "code":"170107",
+    "name":"MEZCLA HORMIGON LADRILLOS TEJAS MATERIALES CERÁMICOS"
+  },
+  {
+    "id":"170201",
+    "code":"170201",
+    "name":"MADERA"
+  },
+  {
+    "id":"170203",
+    "code":"170203",
+    "name":"PLASTICO POLIETILENO"
+  },
+  {
+    "id":"170204",
+    "code":"170204",
+    "name":"VIRUTAS PLASTICAS CONTAMINADAS"
+  },
+  {
+    "id":"170401",
+    "code":"170401",
+    "name":"COBRE BRONCE LATON"
+  },
+  {
+    "id":"170402",
+    "code":"170402",
+    "name":"ALUMINIO"
+  },
+  {
+    "id":"170405",
+    "code":"170405",
+    "name":"HIERRO ACERO-CHATARRA"
+  },
+  {
+    "id":"170407",
+    "code":"170407",
+    "name":"METALES MEZCLADOS"
+  },
+  {
+    "id":"170411",
+    "code":"170411",
+    "name":"CABLE COBRE 30 X 70"
+  },
+  {
+    "id":"170503",
+    "code":"170503",
+    "name":"TIERRAS PIEDRAS QUE CONTIENEN SUSTANCIAS PELIGROSAS-CLASE III C ANALITICA"
+  },
+  {
+    "id":"170504",
+    "code":"170504",
+    "name":"TIERRAS PIEDRAS  DISTINTO AL 170503"
+  },
+  {
+    "id":"170601",
+    "code":"170601",
+    "name":"MATERIALES AISLAMIENTO QUE CONTIENEN AMIANTO"
+  },
+  {
+    "id":"170603",
+    "code":"170603",
+    "name":"MATERIALES AISLAMIENTO QUE SON O TIENEN SUSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"170604",
+    "code":"170604",
+    "name":"FIBRA VIDRIO"
+  },
+  {
+    "id":"170605",
+    "code":"170605",
+    "name":"FIBROCEMENTO CON BIG-BAG ESPECIFICO"
+  },
+  {
+    "id":"170904",
+    "code":"170904",
+    "name":"R MEZCLADOS CONSTRUCCION DEMOLICION DISTINTO AL 170901 170902 170903"
+  },
+  {
+    "id":"180101",
+    "code":"180101",
+    "name":"OBJETOS PUNZANTES NO CONTAMINADOS BIOLOGICAMENTE"
+  },
+  {
+    "id":"180103",
+    "code":"180103",
+    "name":"RESIDUOS DE CLASE III"
+  },
+  {
+    "id":"180106",
+    "code":"180106",
+    "name":"PRODUCTOS QUIMICOS SANITARIO CLASE III"
+  },
+  {
+    "id":"180108",
+    "code":"180108",
+    "name":"MEDICAMENTOS CITOTOXICOS CITOSTATICOS"
+  },
+  {
+    "id":"180109",
+    "code":"180109",
+    "name":"MEDICAMENTOS DISTINTO AL 180108"
+  },
+  {
+    "id":"180202",
+    "code":"180202",
+    "name":"RESIDUO CLASE III VETERINARIO TRANSPORTE NO INCLUIDO"
+  },
+  {
+    "id":"180203",
+    "code":"180203",
+    "name":"RESIDUO CON REQUISITOS ESPECIALES PARA PREVENIR INFECCIONES-VACUNAS VETERINARIA"
+  },
+  {
+    "id":"180205",
+    "code":"180205",
+    "name":"PRODUCTOS QUIMICOS-VACUNAS VETERINARIA"
+  },
+  {
+    "id":"180207",
+    "code":"180207",
+    "name":"MEDICAMENTOS CITOTOXICOS CITOSTATICOS"
+  },
+  {
+    "id":"190205",
+    "code":"190205",
+    "name":"LODOS TRATAMIENTO FISICO-QUIMICO"
+  },
+  {
+    "id":"190813",
+    "code":"190813",
+    "name":"LODOS PROCEDENTES OTROS TRATAMIENTOS AGUAS RESIDUALES"
+  },
+  {
+    "id":"190814",
+    "code":"190814",
+    "name":"LODOS  DISTINTO AL 190813"
+  },
+  {
+    "id":"190904",
+    "code":"190904",
+    "name":"CARBON ACTIVO USADO"
+  },
+  {
+    "id":"190905",
+    "code":"190905",
+    "name":"RESINA INTERCAMBIADORAS IONES SATURADAS O USADAS"
+  },
+  {
+    "id":"191201",
+    "code":"191201",
+    "name":"PAPEL CARTON-PAPEL"
+  },
+  {
+    "id":"191202",
+    "code":"191202",
+    "name":"FILTROS METALICOS NO ESPECIAL"
+  },
+  {
+    "id":"191203",
+    "code":"191203",
+    "name":"METALES NO FERREOS ALUMINIO CARTER"
+  },
+  {
+    "id":"191204",
+    "code":"191204",
+    "name":"PLASTICO CAUCHO"
+  },
+  {
+    "id":"191211",
+    "code":"191211",
+    "name":"PLASTICO TRITURADO"
+  },
+  {
+    "id":"200101",
+    "code":"200101",
+    "name":"PAPEL CARTON-VACIADO"
+  },
+  {
+    "id":"200102",
+    "code":"200102",
+    "name":"CRISTAL PLANO DOMÉSTICO LAMINADO"
+  },
+  {
+    "id":"200110",
+    "code":"200110",
+    "name":"ROPA"
+  },
+  {
+    "id":"200111",
+    "code":"200111",
+    "name":"TEJIDOS"
+  },
+  {
+    "id":"200113",
+    "code":"200113",
+    "name":"DISOLVENTES NO HALOGENADOS"
+  },
+  {
+    "id":"200119",
+    "code":"200119",
+    "name":"NO USAR------------------------------------FOSFORO ALUMINIO"
+  },
+  {
+    "id":"200121",
+    "code":"200121",
+    "name":"LAMPARAS LED ORIGEN DOMESTICO"
+  },
+  {
+    "id":"200123",
+    "code":"200123",
+    "name":"APARATOS AIRE ACONDICIONADO"
+  },
+  {
+    "id":"200125",
+    "code":"200125",
+    "name":"ACEITES GRASAS COMESTIBLES"
+  },
+  {
+    "id":"200126",
+    "code":"200126",
+    "name":"ACEITES GRASAS DISTINTO AL 200125"
+  },
+  {
+    "id":"200129",
+    "code":"200129",
+    "name":"DETERGENTES QUE CONTIENEN SUBSTANCIAS PELIGROSAS"
+  },
+  {
+    "id":"200133",
+    "code":"200133",
+    "name":"BATERIAS PILAS ACUMULADORES SIN CLASIFICAR"
+  },
+  {
+    "id":"200134",
+    "code":"200134",
+    "name":"BATERÍAS ACUMULADORES DISTINTO AL 200133"
+  },
+  {
+    "id":"200135",
+    "code":"200135",
+    "name":"APARATOS CON ACEITE EN CIRCUITOS O CONDENSADORES"
+  },
+  {
+    "id":"200136",
+    "code":"200136",
+    "name":"GRANDES APARATOS RESTO"
+  },
+  {
+    "id":"200137",
+    "code":"200137",
+    "name":"PALETAS CAJAS MADERAS"
+  },
+  {
+    "id":"200138",
+    "code":"200138",
+    "name":"MADERAS TROQUELES"
+  },
+  {
+    "id":"200139",
+    "code":"200139",
+    "name":"PLASTICOS POLIAMIDA"
+  },
+  {
+    "id":"200140",
+    "code":"200140",
+    "name":"CHAPAS ALUMINIO CON OBTURADORES"
+  },
+  {
+    "id":"200199",
+    "code":"200199",
+    "name":"OTRAS FRACCIONES NO ESPECIFICADAS EN OTRA CATEGORIA"
+  },
+  {
+    "id":"200201",
+    "code":"200201",
+    "name":"RESIDUO BIODEGRADABLES"
+  },
+  {
+    "id":"200301",
+    "code":"200301",
+    "name":"POLVO FIBRA VIDRIO"
+  },
+  {
+    "id":"200304",
+    "code":"200304",
+    "name":"LODOS FOSAS SEPTICAS"
+  },
+  {
+    "id":"200307",
+    "code":"200307",
+    "name":"RESIDUO VOLUMINOSOS"
+  },
+  {
+    "id":"200399",
+    "code":"200399",
+    "name":"R MUNICIPALES FRACCION ORGANICA"
+  }
+]

@@ -1,4 +1,3 @@
-
 import './index.css'
 import React from 'react'
 const WasteStatus = ( { statusOptions, handleStatusOptions }) => {
@@ -30,7 +29,7 @@ const WasteStatus = ( { statusOptions, handleStatusOptions }) => {
 
         </div>
         <p>
-          Residuo:<strong>{statusOptions}</strong>
+          ESTADO <strong>{statusOptions}</strong>
           </p>
       </div>
     </div>

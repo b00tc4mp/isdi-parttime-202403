@@ -1,0 +1,43 @@
+.StoreWasteForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: 0px;
+}
+
+.StoreSelectWaste {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.StoreSelectWeightStatusSubmit {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.WeightStatus {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.SubmitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  width: 42px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 30px;
+  border-radius: 5px;
+  border: thistle solid 0.5px;
+  cursor: pointer;
+}
+
+.SubmitButton:hover {
+  background: grey;
+  border: black 1px solid;
+}
