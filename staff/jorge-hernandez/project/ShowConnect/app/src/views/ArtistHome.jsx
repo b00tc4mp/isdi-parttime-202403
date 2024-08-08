@@ -3,13 +3,16 @@ import logic from '../logic'
 import Header from '../components/Header'
 import EditableArtisticName from '../components/EditableArtisticName'
 import EditableImage from '../components/EditableImage'
+import EditableDescription from '../components/EditableDescription'
 
 function ArtistHome({ onUserLoggedOut }) {
   const [artist, setArtist] = useState(null)
   const [isEditingName, setIsEditingName] = useState(false)
   const [isEditingImage, setIsEditingImage] = useState(false)
+  const [isEditingDescription, setIsEditingDescription] = useState(false)
   const [newArtisticName, setNewArtisticName] = useState('')
   const [newImage, setNewImage] = useState('')
+  const [newDescription, setNewDescription] = useState('')
 
   useEffect(() => {
     logic
@@ -57,12 +60,6 @@ function ArtistHome({ onUserLoggedOut }) {
     setNewArtisticName(event.target.value)
   }
 
-  const handleLogout = () => {
-    logic.logoutUser()
-
-    onUserLoggedOut()
-  }
-
   const handleNameSave = () => {
     const updatedData = { artisticName: newArtisticName }
 
@@ -77,8 +74,40 @@ function ArtistHome({ onUserLoggedOut }) {
       })
   }
 
+  const handleDescriptionCancel = () => {
+    setIsEditingDescription(false)
+  }
+
+  const handleDescriptionClick = () => {
+    setIsEditingDescription(true)
+  }
+
+  const handleDescriptionChange = (event) => {
+    setNewDescription(event.target.value)
+  }
+
+  const handleDescriptionSave = () => {
+    const updatedData = { description: newDescription }
+
+    logic
+      .updateArtistData(artist.id, updatedData)
+      .then(() => {
+        setArtist({ ...artist, description: newDescription })
+        setIsEditingDescription(false)
+      })
+      .catch((error) => {
+        console.error('Error updating artist data:', error)
+      })
+  }
+
   const handleNameCancel = () => {
     setIsEditingName(false)
+  }
+
+  const handleLogout = () => {
+    logic.logoutUser()
+
+    onUserLoggedOut()
   }
 
   if (!artist) {
@@ -117,13 +146,22 @@ function ArtistHome({ onUserLoggedOut }) {
               label={artist.images}
             />
 
-            <p className='text-white text-sm m-6 text-center'>
+            <EditableDescription
+              isEditing={isEditingDescription}
+              value={newDescription}
+              onChange={handleDescriptionChange}
+              onSave={handleDescriptionSave}
+              onCancel={handleDescriptionCancel}
+              onClick={handleDescriptionClick}
+              label={artist.description}
+            />
+            {/* <p className='text-white text-sm m-6 text-center'>
               {artist.description}
-            </p>
+            </p> */}
 
-            <div className='youtube-video flex justify-center my-6'>
+            <div className='flex justify-center my-3'>
               <iframe
-                className='w-full max-w-xl h-72 md:h-96'
+                // className='w-full max-w-xl h-72 md:h-96'
                 width='560'
                 height='315'
                 src={artist.video}

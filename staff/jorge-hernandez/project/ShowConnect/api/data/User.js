@@ -43,7 +43,9 @@ const user = new Schema({
     required: true,
   },
   role: {
+    type: String,
     enum: ['artist', 'client'],
+    default: 'artist',
   },
 })
 

@@ -1,6 +1,4 @@
-import React from 'react'
-
-function EditableImage({
+function EditableDescription({
   isEditing,
   value,
   onChange,
@@ -31,13 +29,13 @@ function EditableImage({
       </button>
     </div>
   ) : (
-    <img
-      className='w-40 h-40 m-5 object-cover shadow-black shadow-md border border-spacing-2 border-white cursor-pointer'
-      src={label}
+    <p
       onClick={onClick}
-      alt='imágen de perfil'
-    />
+      className='text-white text-sm m-6 text-center cursor-pointer'
+    >
+      {label}
+    </p>
   )
 }
 
-export default EditableImage
+export default EditableDescription
