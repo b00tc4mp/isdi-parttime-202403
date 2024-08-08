@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            enrollUser('Agustin', 'Suarez', 'agustin2@suarez.com', 'admin', '66859a59d54c3bf8f5e205da', '123123123', '123123123',  error => {
+            enrollUser('Soraya', 'Suarez', 'soraya@suarez.com', 'admin', '66b4af595e592d857b4fb90d', '123123123', '123123123',  error => {
                 if (error) {
                     console.error(error)
 

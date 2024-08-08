@@ -19,7 +19,6 @@ const deleteTask = (userId, taskId) => {
                 .then(task => {
                     if (!task) throw new NotFoundError('task not found')
 
-                    //if (task.owner.toString() !== owner)
                     if (task.creator.toString() !== userId)
                         throw new MatchError('task creator does not match userId')
 

@@ -62,7 +62,7 @@ Admin
 - name (string, required)
 - surname (string, required)
 - phone (string, optional)
-- avatar (string)
+- avatar (string, optional)
 - email (string, unique, required)
 - password (string, required, hashed)
 - role (string, required, default user, enum: user|admin)

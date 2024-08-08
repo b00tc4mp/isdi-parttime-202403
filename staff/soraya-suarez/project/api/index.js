@@ -8,6 +8,7 @@ import {
     authenticateUserHandler,
     addTaskHandler,
     deleteTaskHandler,
+    getMyTasksHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -26,6 +27,7 @@ mongoose.connect(MONGODB_URL)
         api.post('/users', jsonBodyParser, enrollUserHandler)
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
         api.post('/tasks', jsonBodyParser, addTaskHandler)
+        api.get('/tasks/myTasks', getMyTasksHandler)
         api.delete('/tasks/:taskId', deleteTaskHandler)
 
         api.use(errorHandler)
