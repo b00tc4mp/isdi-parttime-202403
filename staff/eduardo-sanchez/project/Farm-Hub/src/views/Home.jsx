@@ -28,7 +28,20 @@ function Home() {
         <Title>Farm-Hub</Title>
 
         <div>
-            {ads}
+            {ads.length > 0 ? (
+                ads.map((ad, index) => (
+                    <div key={index}>
+                        <h2><strong>Title:</strong>{ad.title}</h2>
+                        <p><strong>Author:</strong> {ad.author.username}</p> {/* Mostrar el nombre del autor */}
+                        <p><strong>Description:</strong> {ad.description}</p>
+                        <p><strong>Price:</strong> {ad.price}</p>
+                        <p><strong>Date:</strong> {ad.date}</p>
+                        {/* Renderiza más propiedades del anuncio si es necesario */}
+                    </div>
+                ))
+            ) : (
+                <p>No ads available</p>
+            )}
         </div>
 
     </>

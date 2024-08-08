@@ -15,7 +15,7 @@ const getAllAds = () => {
             if (response.status === 200) {
                 return response.json()
                     .catch(() => { throw new errors.SystemError('server connection problem') })
-                    .then(ads => { ads })
+                    .then(ads => ads)
             }
 
             return response.json()
