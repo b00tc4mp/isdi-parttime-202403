@@ -7,14 +7,23 @@ const workout = new Schema({
         enum: ["emom", "amrap", "for-time", "benchmark"],
         required: true
     },
+    title: {
+        type: String,
+    },
+    rounds: {
+        type: Number
+    },
     movements: [{
         type: ObjectId,
         ref: "Movement"
     }],
     duration: {
         type: Number,
-        required: true
+    },
+    description: {
+        type: String
     }
+
 })
 
 const Workout = model("Workout", workout)

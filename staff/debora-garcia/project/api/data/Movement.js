@@ -8,7 +8,7 @@ const movement = new Schema({
     weight: {
         type: Number
     },
-    repetitions: {
+    quantity: {
         type: Number,
         required: true
     },
