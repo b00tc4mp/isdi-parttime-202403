@@ -27,7 +27,7 @@ const getArtistData = (userId, targetUserId) => {
           return {
             artisticName: user.artisticName,
             description: user.description,
-            image: user.images,
+            images: user.images,
             video: user.video,
             email: user.email,
             id: user._id.toString(),

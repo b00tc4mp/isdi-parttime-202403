@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import logic from '../logic'
 import Header from '../components/Header'
+import EditableArtisticName from '../components/EditableArtisticName'
+import EditableImage from '../components/EditableImage'
 
-function ArtistHome() {
+function ArtistHome({ onUserLoggedOut }) {
   const [artist, setArtist] = useState(null)
-  const [isEditing, setIsEditing] = useState(false)
+  const [isEditingName, setIsEditingName] = useState(false)
+  const [isEditingImage, setIsEditingImage] = useState(false)
   const [newArtisticName, setNewArtisticName] = useState('')
+  const [newImage, setNewImage] = useState('')
 
   useEffect(() => {
     logic
@@ -19,31 +23,62 @@ function ArtistHome() {
       })
   }, [])
 
+  const handleImageClick = () => {
+    setIsEditingImage(true)
+  }
+
+  const handleImageChange = (event) => {
+    setNewImage(event.target.value)
+  }
+
+  const handleImageSave = () => {
+    const updatedData = { images: newImage }
+
+    logic
+      .updateArtistData(artist.id, updatedData)
+      .then(() => {
+        setArtist({ ...artist, images: newImage })
+        setIsEditingImage(false)
+      })
+      .catch((error) => {
+        console.error('Error updating artist data:', error)
+      })
+  }
+
+  const handleImageCancel = () => {
+    setIsEditingImage(false)
+  }
+
   const handleNameClick = () => {
-    setIsEditing(true)
+    setIsEditingName(true)
   }
 
   const handleNameChange = (event) => {
     setNewArtisticName(event.target.value)
   }
 
-  const handleNameSave = () => {
-    // if (!artist || !artist.id) {
-    //   console.error('Artist ID is not defined')
-    //   return
-    // }
+  const handleLogout = () => {
+    logic.logoutUser()
 
+    onUserLoggedOut()
+  }
+
+  const handleNameSave = () => {
     const updatedData = { artisticName: newArtisticName }
 
     logic
       .updateArtistData(artist.id, updatedData)
       .then(() => {
         setArtist({ ...artist, artisticName: newArtisticName })
-        setIsEditing(false)
+        setIsEditingName(false)
       })
       .catch((error) => {
         console.error('Error updating artist data:', error)
       })
+  }
+
+  const handleNameCancel = () => {
+    setIsEditingName(false)
   }
 
   if (!artist) {
@@ -52,41 +87,36 @@ function ArtistHome() {
 
   return (
     <>
-      <Header isArtistHomeVisible={true} loginButtonChildren='logout'>
+      <Header
+        isArtistHomeVisible={true}
+        loginButtonChildren='logout'
+        onClick={handleLogout}
+      >
         ShowConnect
       </Header>
 
       <div className='flex items-center justify-center bg-black bg-opacity-60'>
         <div className='bg-gray-700 text-white rounded-lg p-6 w-full max-w-4xl relative'>
           <div className='flex flex-col justify-center items-center'>
-            {isEditing ? (
-              <div>
-                <input
-                  type='text'
-                  value={newArtisticName}
-                  onChange={handleNameChange}
-                  className='text-black p-2 rounded'
-                />
-                <button
-                  className='ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 rounded-md shadow-md'
-                  onClick={handleNameSave}
-                >
-                  Save
-                </button>
-              </div>
-            ) : (
-              <h1
-                className='text-white text-3xl m-6 cursor-pointer'
-                onClick={handleNameClick}
-              >
-                {artist.artisticName}
-              </h1>
-            )}
-            <img
-              className='w-40 h-40 object-cover shadow-black shadow-md border border-spacing-2 border-white'
-              src={artist.image}
-              alt='imágen de perfil'
+            <EditableArtisticName
+              isEditing={isEditingName}
+              value={newArtisticName}
+              onChange={handleNameChange}
+              onSave={handleNameSave}
+              onCancel={handleNameCancel}
+              onClick={handleNameClick}
+              label={artist.artisticName}
             />
+            <EditableImage
+              isEditing={isEditingImage}
+              value={newImage}
+              onChange={handleImageChange}
+              onSave={handleImageSave}
+              onCancel={handleImageCancel}
+              onClick={handleImageClick}
+              label={artist.images}
+            />
+
             <p className='text-white text-sm m-6 text-center'>
               {artist.description}
             </p>

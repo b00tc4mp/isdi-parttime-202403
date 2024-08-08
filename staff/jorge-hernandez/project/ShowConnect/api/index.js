@@ -25,7 +25,7 @@ mongoose
 
     api.use(
       cors({
-        origin: 'http://localhost:5173',
+        origin: '*',
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       })
     )
@@ -42,7 +42,7 @@ mongoose
 
     api.get('/users/city/:city/discipline/:discipline', getArtistsByCityHandler)
 
-    api.put('/users/:targetUserId', jsonbodyparser, updateArtistHandler)
+    api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 
     api.use(errorHandler)
 
