@@ -10,6 +10,10 @@ import getProfileUserHandler from "./getProfileUserHandler.js"
 import getAllDeliveryNotesHandler from "./getAlldeliveryNotesHandler.js"
 import getDeliveryNoteHandler from "./getDeliveryNoteHandler.js"
 
+import createDeliveryNoteHandler from "./createDeliveryNoteHandler.js"
+
+import createWorkHandler from "./createWorkHandler.js"
+
 
 export default {
   registerUserHandler,
@@ -23,5 +27,9 @@ export default {
 
   getAllDeliveryNotesHandler,
   getDeliveryNoteHandler,
+
+  createDeliveryNoteHandler,
+
+  createWorkHandler,
 
 }

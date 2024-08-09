@@ -39,6 +39,7 @@ export default function Header({ className, iconUser, children, iconLeftHeader, 
 
   const isCustomerProfilePathCustomerId = matchPath("/customers/profile/:customerId", location.pathname)
   const isCustomerProfilePathDeliveryNoteId = matchPath("/delivery-notes/:deliveryNoteId", location.pathname)
+  const isCustomerProfilePathCreateDeliveryNoteId = matchPath("/create/delivery-notes/:customerId", location.pathname)
 
   return (
     <>
@@ -86,6 +87,13 @@ export default function Header({ className, iconUser, children, iconLeftHeader, 
           </div>
         )}
 
+        {location.pathname === "/create/delivery-notes" && (
+          <div className="ContainerHeader">
+            <div className="IconUser">{iconUser}</div>
+            <div className="Children">{children}</div>
+          </div>
+        )}
+
         {isCustomerProfilePathCustomerId && (
           <div className="ContainerHeader">
             <div className="IconUser">{iconUser}</div>
@@ -94,6 +102,13 @@ export default function Header({ className, iconUser, children, iconLeftHeader, 
         )}
 
         {isCustomerProfilePathDeliveryNoteId && (
+          <div className="ContainerHeader">
+            <div className="IconUser">{iconUser}</div>
+            <div className="Children">{children}</div>
+          </div>
+        )}
+
+        {isCustomerProfilePathCreateDeliveryNoteId && (
           <div className="ContainerHeader">
             <div className="IconUser">{iconUser}</div>
             <div className="Children">{children}</div>

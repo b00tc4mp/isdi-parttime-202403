@@ -26,7 +26,7 @@ const createDeliveryNote = (userId, customerId) => {
       return DeliveryNote.create(deliveryNote)
         .catch(error => { throw new SystemError(error.message) })
         .then((deliveryNote) => {
-          return deliveryNote
+          return DeliveryNote.findById(deliveryNote._id).populate("customer").populate("company").populate("works").select("-__v").lean()
         })
     })
 }

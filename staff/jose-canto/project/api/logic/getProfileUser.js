@@ -1,7 +1,8 @@
 import validate from "com/validate.js"
 import { User } from "../model/index.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 
-function getTargetUser(userId, targetUserId) {
+function getProfileUser(userId, targetUserId) {
   validate.id(userId, "userId")
   validate.id(targetUserId, "targetUserId")
 
@@ -16,7 +17,7 @@ function getTargetUser(userId, targetUserId) {
         .catch(error => { throw new SystemError(error.message) })
         .then(targetUser => {
           if (!targetUser) {
-            throw new NotFoundError("targetUser not found")
+            throw new NotFoundError("TargetUser not found")
           }
           targetUser.id = targetUser._id.toString()
           delete targetUser._id
@@ -29,4 +30,4 @@ function getTargetUser(userId, targetUserId) {
     })
 }
 
-export default getTargetUser
+export default getProfileUser

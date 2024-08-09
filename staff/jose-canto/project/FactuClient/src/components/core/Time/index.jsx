@@ -1,7 +1,6 @@
 import "./index.css"
 
 function Time({ children: time, className }) {
-  console.log("Time --> render")
   const date = new Date(time)
   const options = {
     year: "numeric",

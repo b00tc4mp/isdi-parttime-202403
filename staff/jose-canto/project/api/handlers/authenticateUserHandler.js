@@ -13,7 +13,6 @@ export default ((req, res, next) => {
       .then((userId) => {
         jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: "7d" })
           .then((token) => {
-            console.log(`User ${username} authenticated`)
             res.json(token)
           })
           .catch((error) => next(new SystemError(error.message)))

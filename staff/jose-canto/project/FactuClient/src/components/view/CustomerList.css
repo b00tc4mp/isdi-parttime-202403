@@ -6,7 +6,7 @@
   }
 
   .Customer {
-    @apply cursor-pointer rounded-2xl p-1 text-[2rem] font-medium;
+    @apply cursor-pointer rounded-2xl p-1 text-[1.5rem] font-medium;
     text-shadow: 1px 1px 5px rgba(255, 132, 0, 0.5);
   }
 }

@@ -13,6 +13,9 @@ import getProfileUser from "./getProfileUser.js"
 import getAllDeliveryNotes from "./getAllDeliveryNotes.js"
 import getDeliveryNote from "./getDeliveryNote.js"
 
+import createDeliveryNote from "./createDeliveryNote.js"
+import createWork from "./createWork.js"
+
 
 const logic = {
   isUserLoggedIn,
@@ -29,6 +32,9 @@ const logic = {
 
   getAllDeliveryNotes,
   getDeliveryNote,
+
+  createDeliveryNote,
+  createWork,
 }
 
 export default logic

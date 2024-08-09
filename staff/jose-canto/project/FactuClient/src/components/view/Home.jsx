@@ -63,7 +63,7 @@ export default function Home() {
           </Button>
         </Link>
 
-        <Link to="createDelivery">
+        <Link to="create/delivery-notes">
           <Button>
             <span className="Icon">
               <AiOutlineUnorderedList />

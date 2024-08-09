@@ -18,4 +18,8 @@ router.get("/users/:targetUserId/profile", routes.getProfileUserHandler)
 router.get("/delivery-notes", routes.getAllDeliveryNotesHandler)
 router.get("/delivery-notes/:deliveryNoteId", routes.getDeliveryNoteHandler)
 
+router.post("/create/delivery-notes/:customerId", jsonBodyParser, routes.createDeliveryNoteHandler)
+router.patch("/create/work/delivery-notes/:deliveryNoteId", jsonBodyParser, routes.createWorkHandler)
+
+
 export default router

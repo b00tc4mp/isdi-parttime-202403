@@ -18,7 +18,7 @@ const createWork = (userId, deliveryNoteId, concept, quantity, price) => {
         throw new NotFoundError("User not found")
       }
 
-      return DeliveryNote.findById(deliveryNoteId)
+      return DeliveryNote.findById(deliveryNoteId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then((deliveryNote) => {
           if (!deliveryNote) {
@@ -35,10 +35,18 @@ const createWork = (userId, deliveryNoteId, concept, quantity, price) => {
             .catch(error => { throw new SystemError(error.message) })
             .then((work) => {
 
-              return DeliveryNote.findByIdAndUpdate(deliveryNoteId, { $push: { works: work._id } })
+              return DeliveryNote.findByIdAndUpdate(deliveryNoteId, { $push: { works: work._id } }, { new: true }).populate("works").select("-__v").lean()
                 .catch(error => { throw new SystemError(error.message) })
-                .then(() => {
-                  return work
+                .then((deliveryNote) => {
+                  deliveryNote.id = deliveryNote._id.toString()
+                  delete deliveryNote._id
+
+                  deliveryNote.works.forEach((work) => {
+                    work.id = work._id.toString()
+                    delete work._id
+                  })
+
+                  return deliveryNote
                 })
             })
         })

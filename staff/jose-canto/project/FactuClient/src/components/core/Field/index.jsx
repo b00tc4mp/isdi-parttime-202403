@@ -11,10 +11,10 @@ import { TiImage } from "react-icons/ti"
 
 import "./index.css"
 
-export default function Field({ id, type, placeholder, required = true }) {
+export default function Field({ className, id, type, placeholder, required = true }) {
   return (
     <>
-      <div className="Field">
+      <div className={`Field ${className ? className : ""}`}>
         <div className="Container-icon">
           <span className="Icon">
             {id === "username" ? (
