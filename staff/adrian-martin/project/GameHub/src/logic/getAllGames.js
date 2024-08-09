@@ -11,7 +11,7 @@ const getAllGames = () => {
             if (response.status === 200)
                 return response.json()
                     .catch(() => { throw new SystemError('server error') })
-                    .then(posts => posts)
+                    .then(games => games)
 
             return response.json()
                 .catch(() => { throw new SystemError('server error') })
@@ -24,3 +24,5 @@ const getAllGames = () => {
                 })
         })
 }
+
+export default getAllGames

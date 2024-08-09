@@ -8,12 +8,13 @@
 
 .Game {
     background-color: var(--first-color);
-    padding: 50px;
+    padding: 25px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     box-sizing: border-box;
+    height: 370px;
 }
 
 .Grade-hours {
@@ -27,21 +28,19 @@
     text-align: center;
     height: 30px;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 .Text-game {
     text-align: center;
     color: aliceblue;
     font-size: 20px;
-
-    margin-top: 15px;
-
 }
 
 .Button-game {
     width: 100px;
     border: 1px solid aliceblue;
-    margin-top: 35px;
+    margin-top: 25px;
     background: aliceblue;
     align-items: center;
     justify-content: center;
@@ -51,9 +50,12 @@
 }
 
 .Input-write {
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
     height: 30px;
     border-radius: 10px;
+    width: 100%;
 }
 
 .Button-container {

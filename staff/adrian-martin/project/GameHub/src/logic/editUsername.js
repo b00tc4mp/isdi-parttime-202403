@@ -20,12 +20,6 @@ const editUsername = (userId, username) => {
             return response.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
-                    // const { error, message } = body
-
-                    // const constructor = errors[error]
-
-                    // throw new error(error.message)
-
                     console.log(body)
                 })
         })

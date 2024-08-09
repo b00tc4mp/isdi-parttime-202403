@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faHouseChimney, faUser, faUsers, faArrowRightFromBracket, faRefresh } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faHouseChimney, faUser, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
