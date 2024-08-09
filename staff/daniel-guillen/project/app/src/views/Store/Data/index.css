@@ -1,0 +1,46 @@
+.DataStoreWasteDiv {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  margin-top: 5px;
+  grid-template-columns: 63px 63px 63px 63px 63px;
+  grid-template-rows: 63px 63px 63px 63px;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+
+.DataWasteDiv {
+  line-height: 2px;
+  border-radius: 5px;
+}
+
+.DataWasteDiv.GRG {
+  background: lightcoral;
+  border: coral solid 1px;
+}
+
+.DataWasteDiv.PALET {
+  background: lightgreen;
+  border: mediumseagreen solid 1px;
+}
+
+.DataWasteDiv.BIGBAG {
+  background: lightgoldenrodyellow;
+  border: yellow solid 1px;
+}
+
+.DataWasteDiv.B200 {
+  background: lightskyblue;
+  border: cornflowerblue solid 1px;
+}
+
+.DataWasteDiv.B-200 {
+  background: lightpink;
+  border: palevioletred solid 1px;
+}
+
+.DataWasteDiv.ESTANCADO {
+  color: white;
+  background: RED;
+  border: tomato solid 1px;
+}
