@@ -10,7 +10,8 @@ import {
     getUserNameHandler,
     editUsernameHandler,
     createGameHandler,
-    getAllGamesHandler
+    getAllGamesHandler,
+    deleteGameHandler
 } from './handlers/index.js'
 
 const { PORT, MONGODB_URL } = process.env
@@ -37,6 +38,8 @@ mongoose.connect(MONGODB_URL)
         api.post('/games', jsonBodyParser, createGameHandler)
 
         api.get('/games', getAllGamesHandler)
+
+        api.delete('games/:gameId', deleteGameHandler)
 
         api.use(errorHandler)
 

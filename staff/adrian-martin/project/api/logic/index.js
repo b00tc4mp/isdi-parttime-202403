@@ -4,6 +4,7 @@ import getUserName from './getUserName.js'
 import editUsername from './editUsername.js'
 import createGame from './createGame.js'
 import getAllGames from './getAllGames.js'
+import deleteGameHandler from '../handlers/deleteGameHandler.js'
 
 const logic = {
     registerUser,
@@ -11,7 +12,8 @@ const logic = {
     getUserName,
     editUsername,
     createGame,
-    getAllGames
+    getAllGames,
+    deleteGameHandler
 }
 
 export default logic
