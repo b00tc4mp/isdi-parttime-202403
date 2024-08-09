@@ -57,7 +57,7 @@ function Form({}) {
       <form onSubmit={handleOnSubmit} className='flex flex-col gap-5' action=''>
         <Field
           labelClass='text-white'
-          labelChildren='Artista'
+          labelChildren='¿Qué tipo de artista buscas?'
           htmlFor='artista'
           id='artista'
           type='text'

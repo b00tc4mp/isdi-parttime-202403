@@ -4,15 +4,20 @@ import Header from '../components/Header'
 import EditableArtisticName from '../components/EditableArtisticName'
 import EditableImage from '../components/EditableImage'
 import EditableDescription from '../components/EditableDescription'
+import EditableVideo from '../components/EditableVideo'
+import ArtistMessage from '../components/ArtistMessage'
 
 function ArtistHome({ onUserLoggedOut }) {
   const [artist, setArtist] = useState(null)
   const [isEditingName, setIsEditingName] = useState(false)
   const [isEditingImage, setIsEditingImage] = useState(false)
   const [isEditingDescription, setIsEditingDescription] = useState(false)
+  const [isEditingVideo, setIsEditingVideo] = useState(false)
   const [newArtisticName, setNewArtisticName] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newDescription, setNewDescription] = useState('')
+  const [newVideo, setNewVideo] = useState('')
+  const [messages, setMessages] = useState(false)
 
   useEffect(() => {
     logic
@@ -74,6 +79,10 @@ function ArtistHome({ onUserLoggedOut }) {
       })
   }
 
+  const handleNameCancel = () => {
+    setIsEditingName(false)
+  }
+
   const handleDescriptionCancel = () => {
     setIsEditingDescription(false)
   }
@@ -100,14 +109,44 @@ function ArtistHome({ onUserLoggedOut }) {
       })
   }
 
-  const handleNameCancel = () => {
-    setIsEditingName(false)
+  const handleVideoCancel = () => {
+    setIsEditingDescription(false)
+  }
+
+  const handleVideoClick = () => {
+    setIsEditingVideo(true)
+  }
+
+  const handleVideoChange = (event) => {
+    setNewVideo(event.target.value)
+  }
+
+  const handleVideoSave = () => {
+    const updatedData = { Video: newVideo }
+
+    logic
+      .updateArtistData(artist.id, updatedData)
+      .then(() => {
+        setArtist({ ...artist, video: newVideo })
+        setIsEditingVideo(false)
+      })
+      .catch((error) => {
+        console.error('Error updating artist data:', error)
+      })
+  }
+
+  const handleClickMessages = () => {
+    setMessages(true)
   }
 
   const handleLogout = () => {
     logic.logoutUser()
 
     onUserLoggedOut()
+  }
+
+  const handleClickOnCloseMessages = () => {
+    setMessages(null)
   }
 
   if (!artist) {
@@ -124,9 +163,14 @@ function ArtistHome({ onUserLoggedOut }) {
         ShowConnect
       </Header>
 
-      <div className='flex items-center justify-center bg-black bg-opacity-60'>
-        <div className='bg-gray-700 text-white rounded-lg p-6 w-full max-w-4xl relative'>
-          <div className='flex flex-col justify-center items-center'>
+      <div className='flex items-center justify-center bg-black bg-opacity-60 m-2 mt-10 border rounded-md shadow-md'>
+        <div className='bg-gray-700 text-white rounded-lg p-2 w-full max-w-4xl relative'>
+          <i
+            onClick={handleClickMessages}
+            className='cursor-pointer fa-regular fa-message text-2xl ml-2 mt-2'
+          ></i>
+
+          <div className='flex flex-col items-center'>
             <EditableArtisticName
               isEditing={isEditingName}
               value={newArtisticName}
@@ -136,41 +180,37 @@ function ArtistHome({ onUserLoggedOut }) {
               onClick={handleNameClick}
               label={artist.artisticName}
             />
-            <EditableImage
-              isEditing={isEditingImage}
-              value={newImage}
-              onChange={handleImageChange}
-              onSave={handleImageSave}
-              onCancel={handleImageCancel}
-              onClick={handleImageClick}
-              label={artist.images}
-            />
+            <div className='flex items-center mb-3'>
+              <EditableImage
+                isEditing={isEditingImage}
+                value={newImage}
+                onChange={handleImageChange}
+                onSave={handleImageSave}
+                onCancel={handleImageCancel}
+                onClick={handleImageClick}
+                label={artist.images}
+              />
 
-            <EditableDescription
-              isEditing={isEditingDescription}
-              value={newDescription}
-              onChange={handleDescriptionChange}
-              onSave={handleDescriptionSave}
-              onCancel={handleDescriptionCancel}
-              onClick={handleDescriptionClick}
-              label={artist.description}
-            />
-            {/* <p className='text-white text-sm m-6 text-center'>
-              {artist.description}
-            </p> */}
-
-            <div className='flex justify-center my-3'>
-              <iframe
-                // className='w-full max-w-xl h-72 md:h-96'
-                width='560'
-                height='315'
-                src={artist.video}
-                frameBorder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowFullScreen
-                title='YouTube video'
-              ></iframe>
+              <EditableDescription
+                isEditing={isEditingDescription}
+                value={newDescription}
+                onChange={handleDescriptionChange}
+                onSave={handleDescriptionSave}
+                onCancel={handleDescriptionCancel}
+                onClick={handleDescriptionClick}
+                label={artist.description}
+              />
             </div>
+            <EditableVideo
+              isEditing={isEditingVideo}
+              value={newVideo}
+              onChange={handleVideoChange}
+              onSave={handleVideoSave}
+              onCancel={handleVideoCancel}
+              onClick={handleVideoClick}
+              label={artist.video}
+            />
+            {messages && <ArtistMessage onClose={handleClickOnCloseMessages} />}
           </div>
         </div>
       </div>

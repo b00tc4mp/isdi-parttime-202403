@@ -17,22 +17,22 @@ function EditableImage({
         onChange={onChange}
         className='text-black p-2 rounded'
       />
-      <button
-        className='ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 rounded-md shadow-md'
-        onClick={onSave}
-      >
-        Save
-      </button>
-      <button
-        className='ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 rounded-md shadow-md'
-        onClick={onCancel}
-      >
-        Cancel
-      </button>
+
+      <div className='flex justify-center'>
+        <i
+          onClick={onSave}
+          className='fa-solid fa-check m-3 text-green-500 text-2xl'
+        ></i>
+
+        <i
+          onClick={onCancel}
+          class='fa-solid fa-xmark m-3 text-red-500 text-2xl'
+        ></i>
+      </div>
     </div>
   ) : (
     <img
-      className='w-40 h-40 m-5 object-cover shadow-black shadow-md border border-spacing-2 border-white cursor-pointer'
+      className='w-20 h-20 m-2 object-cover shadow-black shadow-md border border-spacing-2 border-white cursor-pointer'
       src={label}
       onClick={onClick}
       alt='imágen de perfil'
