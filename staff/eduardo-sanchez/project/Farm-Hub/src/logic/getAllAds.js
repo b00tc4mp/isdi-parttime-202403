@@ -1,4 +1,4 @@
-import errors from "com/errors";
+import errors, { SystemError } from 'com/errors';
 
 const getAllAds = () => {
     return fetch(`${import.meta.env.VITE_API_URL}/ads`, {

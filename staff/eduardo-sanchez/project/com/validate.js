@@ -5,6 +5,7 @@ const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const ID_REGEX = /^[0-9a-z]+$/
+const PRICE_REGEX = /^\d+(\.\d{1,2})? €\/Kg$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -41,6 +42,17 @@ function validateId(id, explain = 'id') {
         throw new ContentError(`${explain} is not valid`)
 }
 
+function validatePrice(price, explain = 'price') {
+    if (typeof price !== 'string' || !PRICE_REGEX.test(price))
+        throw new ContentError(`${explain} is not valid. It must be in the format "number €/Kg", e.g., "3.20 €/Kg".`)
+}
+
+// function validatePrice(price, explain = 'price') {
+//     if (typeof price !== 'string' || !/^\d+(\.\d{1,2})? €\/Kg$/.test(price)) {
+//         throw new ContentError(`${explain} is not valid. It must be in the format "number €/Kg", e.g., "3.20 €/Kg".`);
+//     }
+// }
+
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -48,7 +60,8 @@ const validate = {
     passwordsMatch: validatePasswordsMatch,
     email: validateEmail,
     text: validateText,
-    id: validateId
+    id: validateId,
+    price: validatePrice
 }
 
 export default validate

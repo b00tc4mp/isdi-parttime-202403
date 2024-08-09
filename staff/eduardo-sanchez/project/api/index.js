@@ -6,6 +6,7 @@ import mongoose from 'mongoose'
 import {
     registerUserHandler,
     authenticateUserHandler,
+    createAdHandler,
     getAllAdsHandler,
     errorHandler
 } from './handlers/index.js'
@@ -25,6 +26,8 @@ mongoose.connect(MONGODB_URL)
         api.post('/users', jsonBodyParser, registerUserHandler)
 
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
+
+        api.post('/ads', jsonBodyParser, createAdHandler)
 
         api.get('/ads', getAllAdsHandler)
 
