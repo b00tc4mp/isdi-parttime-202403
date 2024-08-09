@@ -1,11 +1,14 @@
+import { Routes, Route } from 'react-router-dom'
 import Home from './components/Views/pages/Home'
 import Login from './components/Views/pages/Login'
 import Register from './components/Views/pages/Register'
 import CreateRoom from './components/Views/pages/CreateRoom'
-import { Routes, Route } from 'react-router-dom'
+import HostRooms from './components/Views/pages/HostRooms'
+
 
 import './App.css'
-import RoomList from './components/Views/library/RoomList'
+
+
 
 function App() {
 
@@ -14,7 +17,8 @@ function App() {
     <Route path='/login' element={<Login />} />
     <Route path='/register' element={<Register />} />
     <Route path='/rooms' element={<CreateRoom />} />
-    <Route path='/rooms/roomslist' element={<RoomList />} />
+    <Route path='/users/:userId/rooms' element={<HostRooms />} />
+    {/* <Route path='/users/:userId/rooms/:roomId' element={<Booking />} /> */}
   </Routes>
 
 }

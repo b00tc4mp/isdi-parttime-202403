@@ -1,7 +1,8 @@
 import errors, { SystemError } from "com/errors";
 import validate from "com/validate";
+import extractPayloadFromJWT from "../../utils/extractPayloadFromJWT";
 
-const createRoom = (nameRoom, region, city, image, description, services, price, availability, coordinates) => {
+const createRoom = (nameRoom, region, city, image, description, price) => {
   validate.nameRoom(nameRoom, 'name room');
   validate.region(region, 'region');
   validate.text(city, 'city')
@@ -9,15 +10,13 @@ const createRoom = (nameRoom, region, city, image, description, services, price,
   validate.text(description, 'description');
   validate.price(price, 'price');
 
-  const { lat, lng } = coordinates
-
   return fetch(`${import.meta.env.VITE_API_URL}/rooms`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ nameRoom, region, city, image, description, services, price, availability, coordinates: { lat, lng } })
+    body: JSON.stringify({ nameRoom, region, city, image, description, price})
   })
 
     .catch(() => { throw new SystemError('network error') })

@@ -12,22 +12,15 @@ const room = new Schema({
   nameRoom: {
     type: String,
     required: true,
-    match: NAMEROOM_REGEX
-  },
-  city: {
-    type: String,
-    required: true
+
   },
   region: {
     type: String,
     required: true,
-    match: REGION_REGEX
   },
-  contact: {
-    name: String,
-    surname: String,
-    email: String,
-    phone: String
+  city: {
+    type: String,
+    required: true
   },
   image: {
     type: String,
@@ -37,41 +30,18 @@ const room = new Schema({
     type: String,
     required: true
   },
-  services: {
-    type: [String],  // Cambiado de ObjectId a String para guardar los nombres de los servicios
-    enum: ['wifi', 'parking', 'pool', 'pets', 'foodBank', 'handicap', 'atention'], // Opciones válidas
-    default: [] // Valor por defecto si no se especifica
-  },
   price: {
     type: String,
     required: true
-  },
-  availability: {
-    startDate: {
-      type: Date,
-      required: true
-    },
-    endDate: {
-      type: Date,
-      required: true
-    }
   },
   likes: [{
     type: ObjectId,
     ref: 'User'
   }],
-  location: {
-    type: {
-      type: String,
-      default: 'Point'
-    },
-    coordinates: {
-      type: [Number],
-      required: true
-    }
-  },
-}, {
-  timestamps: true
+  manager: {
+    type: ObjectId,
+    ref:'User'
+  }
 });
 
 room.index({ location: '2dsphere' });

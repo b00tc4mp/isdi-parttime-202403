@@ -15,8 +15,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import logic from '../../../logic';
 
 import './CreateRoom.css'
-import { SystemError } from 'com/errors';
-
 
 
 function CreateRoom() {

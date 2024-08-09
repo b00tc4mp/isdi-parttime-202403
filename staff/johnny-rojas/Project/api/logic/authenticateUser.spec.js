@@ -28,9 +28,16 @@ describe('authenticateUser', () => {
         password: hash
       }))
     .then(() => authenticateUser('rey@leon.com', '1234'))
-      .then(id => {
-        expect(id).to.be.a.string
-        expect(id).to.have.lengthOf(24)
+      .then(user => {
+        expect(user).to.be.an('object')
+        expect(user).to.have.property('id')
+        expect(user).to.have.property('role')
+
+
+        expect(user.id).to.be.a('string');
+        expect(user.id).to.have.lengthOf(24);
+
+        expect(user.role).to.be.a('string')
       })
   )
   it('fails on non existing email', () => {

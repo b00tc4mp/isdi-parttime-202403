@@ -1,17 +1,7 @@
 import { NotFoundError, SystemError } from 'com/errors.js'
-import { User, Room } from '../data/index.js'
-import validate from 'com/validate.js'
+import { Room } from '../data/index.js'
 
-
-const getAllRooms = (userId) => {
-  validate.id(userId, 'userId')
-
-  return User.findById(userId).lean()
-    .catch((error) => { throw new SystemError(error.message) })
-    .then(user => {
-      if (!user) {
-        throw new NotFoundError('user not found')
-      }
+const getAllRooms = () => {
 
       return Room.find({}).select('-__v').sort({ price: -1 }).lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -27,8 +17,7 @@ const getAllRooms = (userId) => {
 
           return rooms
         })
-    })
-}
+    }
 
 export default getAllRooms
 

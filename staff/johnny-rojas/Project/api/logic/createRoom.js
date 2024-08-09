@@ -1,87 +1,44 @@
-import { User, Room } from "../data/index.js";
-import validate from "com/validate.js";
-import { NotFoundError, SystemError } from "com/errors.js";
+import { NotFoundError, SystemError } from 'com/errors.js'
+import { User, Room } from '../data/index.js'
+import validate from 'com/validate.js'
 
-const changeUserRole = (userId, newRole) => {
-  return User.findById(userId)
-    .then(user => {
-      if (!user) {
-        throw new NotFoundError('User not found');
-      }
-      user.role = newRole;
-      return user.save();
-    })
-    .then(() => {
-      console.log(`User role updated to ${newRole}`);
-    })
-    .catch(error => {
-      throw new SystemError(`Error updating user role: ${error.message}`);
-    });
-};
-
-const createRoom = (userId, nameRoom, region, city, image, description, services, price, availability, likes, coordinates) => {
-  validate.id(userId, 'userId');
-  validate.nameRoom(nameRoom, 'name room');
-  validate.region(region, 'region');
-  validate.text(city, 'city');
-  validate.url(image, 'image');
-  validate.text(description, 'description');
-  validate.price(price, 'price');
-
-  const { startDate, endDate } = availability;
+const createRoom = (userId, nameRoom, region, city, image, description, price) => {
+  validate.id(userId, 'userId')
+  validate.nameRoom(nameRoom, 'Room name',)
+  validate.region(region, 'region')
+  validate.text(city, 'city')
+  validate.url(image, 'imagen')
+  validate.text(description, 'description')
+  validate.price(price, 'price')
 
   return User.findById(userId)
-    .catch(error => { throw new SystemError(error.message); })
+    .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
-        throw new NotFoundError('userId not found');
+        throw new NotFoundError('user not found')
       }
 
-      if (user.role === 'guest') {
-        const newRole = 'host';
-        return changeUserRole(userId, newRole).then(() => user);
-      }
-
-      return user;
+      user.role = "host"
+      return user.save()
     })
-    .then(user => {
-      const contact = {
-        name: user.name,
-        surname: user.surname,
-        email: user.email,
-        phone: user.phone
-      };
+    .then(() =>{
 
-      const room = new Room({
+      const room = {
         author: userId,
         nameRoom,
         region,
         city,
-        contact,
         image,
         description,
-        services,
         price,
-        availability: {
-          startDate: new Date(startDate),
-          endDate: new Date(endDate)
-        },
-        likes,
-        location: {
-          type: 'Point',
-          coordinates: [coordinates.lng, coordinates.lat]
-        }
-      });
+        likes: [],
+        manager: userId
+      }
+      return Room.create(room)    
+    })  
+    .then(room => room)
+    .catch(error => { throw new SystemError(error.message) })
+}
 
-      return room.save()
-        .catch(error => { throw new SystemError(error.message); })
-        .then(createdRoom => {
+export default createRoom
 
-          return User.findByIdAndUpdate(userId, { $push: { rooms: createdRoom._id } }, { new: true })
-            .catch(error => { throw new SystemError(error.message) })
-            .then(() => ({ room: createdRoom }))
-        });
-    })
-};
-
-export default createRoom;

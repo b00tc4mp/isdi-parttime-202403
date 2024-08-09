@@ -4,26 +4,23 @@
 
 /* Contenedor principal de la barra superior */
 .top-bar {
-  @apply flex flex-col items-center pl-4 w-full;
+  @apply flex flex-col items-center pl-4 w-full bg-white 
 }
 
-/* Contenedor para los elementos superiores (en línea horizontal) */
 .top-bar .top-content {
   @apply flex items-center justify-between w-full max-w-screen-lg mb-4 px-4;
 }
 
-/* Estilo para el icono de inicio */
 .top-bar .home-icon {
-  @apply text-black text-2xl mr-24; /* Mayor margen a la derecha para mayor separación */
-}
+  @apply text-black text-2xl mr-24; 
 
-/* Estilo para el logo de la página */
+
 .top-bar .page-logo {
   @apply w-16 h-16 overflow-hidden flex items-center justify-center;
 }
 
-/* Asegura que el logo de la página esté bien dimensionado */
 .top-bar .page-logo img {
   @apply w-full h-full object-cover;
 }
 
+}

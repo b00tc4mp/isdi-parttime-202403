@@ -1,1 +1,0 @@
-//TODO con getAllRoom

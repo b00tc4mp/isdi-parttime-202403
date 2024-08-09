@@ -4,12 +4,12 @@ import SubmitButton from "../core/SubmitButton";
 
 import './RoomList.css'
 
-function RoomList() {
+function UserRooms() {
   const [rooms, setRooms] = useState([])
 
   useEffect(() => {
     try {
-      logic.getAllRooms()
+      logic.getAllUserRooms()
         .then((rooms) => { setRooms(rooms) })
         .catch(error => {
           alert(error.message)
@@ -27,7 +27,7 @@ function RoomList() {
       <ul className="Grid">
         {rooms.map(room => <li className='Card' key={room.id}>
           <div className="Img">
-            <img src={room.image} alt='ImgRoom' className='Image' />
+            <img src={room.image} alt='Room' className='Image' />
           </div>
           <div className='InfoCard'>
             <div className="InfoCardLeft">
@@ -42,7 +42,7 @@ function RoomList() {
                 <p className="priceRoom">{room.price}</p>
               </div>
             </div>
-            <SubmitButton>Reservar</SubmitButton>
+            <SubmitButton>Editar</SubmitButton>
           </div>
         </li>)}
       </ul>
@@ -51,4 +51,6 @@ function RoomList() {
 
 }
 
-export default RoomList
+export default UserRooms
+
+//TODO 

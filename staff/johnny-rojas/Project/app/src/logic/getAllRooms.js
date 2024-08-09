@@ -1,11 +1,11 @@
 import errors, { SystemError } from 'com/errors'
 
+
+
 const getAllRooms = () => {
+
   return fetch(`${import.meta.env.VITE_API_URL}/rooms`, {
     method: 'GET',
-    headers: {
-      Authorization: `Bearer ${sessionStorage.token}`
-    }
   })
 
     .catch(() => { throw new SystemError('network error') })

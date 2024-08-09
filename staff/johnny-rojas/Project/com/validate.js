@@ -2,7 +2,7 @@ import { ContentError, MatchError } from "./errors.js"
 
 export const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 
-export const NAMEROOM_REGEX = /^[\w\s\-\_\@\.]{1,100}$/
+export const NAMEROOM_REGEX = /^[\w\s\-\_\@\.]{1,40}$/
 
 export const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 
@@ -41,14 +41,14 @@ function validatePasswordsMatch(password, repeatPassword) {
     throw new MatchError('passwords don\'t match')
 }
 
-function validatePhone(phone) {
-  if (typeof phone !== 'string' || !PHONE_REGEX.test(phone))
-    throw new ContentError('phone number is not valid')
-}
-
 function validateEmail(email) {
   if (typeof email !== 'string' || !EMAIL_REGEX.test(email))
     throw new ContentError('email is not valid')
+}
+
+function validatePhone(phone) {
+  if (typeof phone !== 'string' || !PHONE_REGEX.test(phone))
+    throw new ContentError('phone number is not valid')
 }
 
 function validateCallback(callback) {
@@ -83,18 +83,6 @@ function validatePrice(price, explain = 'price') {
   }
 }
 
-function validateAvailability(availability, explain = 'availability') {
-  if (typeof availability !== 'string' || !AVAILABILITY_REGEX.test(availability)) {
-    throw new ContentError(`${explain} is not valid`);
-  }
-}
-
-function validateCoordinates(coordinates, explain = 'coordinates') {
-  if (typeof coordinates !== 'string' || !COORDINATES_REGEX.test(coordinates)) {
-    throw new ContentError(`${explain} is not valid`);
-  }
-}
-
 const validate = {
   name: validateName,
   nameRoom: validateNameRoom,
@@ -108,8 +96,7 @@ const validate = {
   id: validateId,
   region: validateRegion,
   price: validatePrice,
-  availability: validateAvailability,
-  coordinates: validateCoordinates
+
 }
 
 export default validate

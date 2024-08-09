@@ -17,7 +17,7 @@ const getRoom = (userId, roomId) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(room => {
           if (!room) {
-            throw new NotFoundError('room not foun')
+            throw new NotFoundError('room not found')
           }
 
           room.id = room._id.toString()

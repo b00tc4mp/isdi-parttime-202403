@@ -18,18 +18,18 @@
     @apply block px-4 py-3 text-gray-700 hover:bg-gray-100;
   }
 
-  /* Estilo para el ícono del menú desplegable dentro de .top-bar */
+
   .top-bar .dropdown-menu {
     @apply text-black text-xl ml-24 relative; 
   }
 
-  /* El contenido del menú desplegable en .top-bar */
+
   .top-bar .dropdown-content {
     @apply absolute bg-white border border-gray-300 rounded-md shadow-lg;
-    @apply top-full -left-24 z-10; /* Coloca el menú justo debajo del ícono y alineado a la izquierda */
+    @apply top-full -left-24 z-10; 
   }
 
-  /* Muestra el menú cuando se activa */
+
   .top-bar .dropdown-menu:hover .dropdown-content {
     @apply block;
   }

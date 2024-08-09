@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
+import Header from "../core/Header";
+import TopBar from "../library/TopBar";
 
-function HostRooms() {
-  const [rooms, setRooms] = useState([])
+import UserRooms from "../library/UserRooms";
 
-  useEffect(() => {
-    try {
-      logic.getAllRoom(userId)
-      .then((rooms) => {setRooms})
-      
-    } catch (erro) {
-      console.error(error.message)
-      alert(error)
-    }
-  })
+
+function HostProfile() {
+
+
+  return <div>
+    <div>
+    <Header>
+      <TopBar></TopBar>
+    </Header>
+    </div>
+
+    <UserRooms></UserRooms>
+
+
+  </div>
 }
+
+export default HostProfile

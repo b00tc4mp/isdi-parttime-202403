@@ -16,7 +16,7 @@ const getRoomHandler = (req, res, next) => {
 
         try {
           logic.getRoom(userId, roomId)
-            .then(rooms => res.json(rooms))
+            .then(room => res.json(room))
           .catch(error => next(error))
           
         } catch (error) {
