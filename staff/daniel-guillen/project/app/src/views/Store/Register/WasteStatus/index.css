@@ -1,6 +1,6 @@
 .StatusDiv {
   line-height: 0px;
-  margin: 5px;
+  margin-left: 3px;
 }
 
 .StatusTitle {
@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 75px;
+  height: 70px;
   width: 210px;
   background: greenyellow;
   border: green solid 0.5px;

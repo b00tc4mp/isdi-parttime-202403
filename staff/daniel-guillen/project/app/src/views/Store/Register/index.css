@@ -33,8 +33,9 @@
   margin-right: 5px;
   font-size: 30px;
   border-radius: 5px;
-  border: thistle solid 0.5px;
+  border: grey solid 1px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .SubmitButton:hover {

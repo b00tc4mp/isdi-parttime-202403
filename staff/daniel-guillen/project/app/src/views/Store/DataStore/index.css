@@ -1,0 +1,93 @@
+.DataStoreWasteDiv {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.DataStoreTitle {
+  margin: 0px;
+}
+
+.NewWaste {
+  width: full;
+  height: full;
+  font-size: 20px;
+  line-height: 0px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.NewWaste.PALET {
+  background: rgb(247, 247, 149);
+  border: gold solid 1px;
+  color: black;
+}
+
+.NewWaste.PALET:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWaste.GRG {
+  background: lightgoldenrodyellow;
+  border: yellow solid 1px;
+  color: black;
+}
+
+.NewWaste.GRG:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWaste.BIGBAG {
+  background: lightgreen;
+  border: mediumseagreen solid 1px;
+  color: black;
+}
+
+.NewWaste.BIGBAG:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWaste.B200 {
+  background: rgb(116, 150, 251);
+  border: darkblue solid 1px;
+  color: black;
+}
+
+.NewWaste.B200:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWaste.B-200 {
+  background: rgb(171, 219, 249);
+  border: cornflowerblue solid 1px;
+  color: black;
+}
+
+.NewWaste.B-200:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWaste.ESTANCADO {
+  background: tomato;
+  border: red solid 1px;
+  color: white;
+}
+
+.NewWaste.ESTANCADO:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}

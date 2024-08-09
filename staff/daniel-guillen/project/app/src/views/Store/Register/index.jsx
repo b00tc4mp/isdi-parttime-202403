@@ -58,7 +58,7 @@ const Register = () => {
 
     addDoc(dataBaseStoreWaste, dataWaste)
     .then(() => {
-      alert('Residuo Registrado 🎉');
+      alert('Residuo Registrado 🎉 ' + selectedWaste.code + '-' + selectedWaste.description);
       window.location.reload()
     })
     .catch((error) => {

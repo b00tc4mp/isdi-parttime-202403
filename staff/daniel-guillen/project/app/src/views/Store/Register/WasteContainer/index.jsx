@@ -12,6 +12,16 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
     <div className="WasteContainerDiv">
       <div className={`WasteContainerStatus ${optionsContainer}`}>
         <div className="ContainerOptions">
+                <input className='Radio'
+          type="radio"
+          name="wasteContainer"
+          value="PALET"
+          id="palet"
+          checked={optionsContainer === "PALET"}
+          onChange={handleOptionsContainer}
+        />
+        <label htmlFor="palet"><img className="Img" src={palet} /></label>
+
         <input required className='Radio'
           type="radio"
           name="wasteContainer"
@@ -21,16 +31,6 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
           onChange={handleOptionsContainer}
         />
         <label htmlFor="grg"><img className="Img" src={grg} /></label>
-
-        <input className='Radio'
-          type="radio"
-          name="wasteContainer"
-          value="PALET"
-          id="palet"
-          checked={optionsContainer === "PALET"}
-          onChange={handleOptionsContainer}
-        />
-        <label htmlFor="palet"><img className="Img" src={palet} /></label>
 
         <input className='Radio'
           type="radio"

@@ -1,7 +1,7 @@
 import React from 'react'
 import Register from './Register'
 import './index.css'
-import DataStoreList from './Data'
+import DataStoreList from './DataStore'
 
 const Store = () => {
   return (

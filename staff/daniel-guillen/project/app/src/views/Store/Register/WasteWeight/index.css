@@ -3,17 +3,16 @@
   align-items: center;
   justify-content: center;
   height: full;
-  width: 150px;
+  width: 160px;
   background: white;
   border-radius: 5px;
   border: thistle solid 0.5px;
-  margin: 3px;
   margin-bottom: 0px;
 }
 
 .InputWeight {
-  width: 80px;
-  height: 58px;
+  width: 87px;
+  height: 70px;
   text-align: end;
   font-size: 28px;
   border: 0px;
