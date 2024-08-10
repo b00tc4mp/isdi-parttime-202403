@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import logic from '../../logic'
+import logic from '../../../logic'
 
-import './Ad.css'
+import './AdList.css'
+import { Ad } from '../Ad/Ad'
 
-function Ad({ }) {
+function AdList({ }) {
     const [ads, setAds] = useState([])
 
     useEffect(() => {
@@ -23,20 +24,27 @@ function Ad({ }) {
     console.log(ads)
 
     return (
-        <>
-            <ul>
-                {ads.map((ad) =>
+
+        <ul>
+            {ads.map((ad) =>
+                <>
                     <li key={ad.id} className='AdContainer'>
                         <p>{ad.author.username}</p>
                         <p>{ad.title}</p>
                         <p>{ad.description}</p>
                         <p>{ad.price}</p>
-                    </li>)
-                }
-            </ul>
 
-        </>
+                        <Ad ad={ad} onAdDeleted={() => { console.log(ad) }} />
+                    </li >
+
+                </>
+            )
+
+            }
+        </ul>
+
+
 
     )
 }
-export default Ad
+export default AdList

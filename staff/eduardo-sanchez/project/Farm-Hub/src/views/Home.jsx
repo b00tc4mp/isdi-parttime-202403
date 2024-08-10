@@ -5,7 +5,7 @@ import Button from "../components/core/Button"
 
 import logic from "../logic"
 import { useEffect, useState } from "react"
-import Ad from "./components/Ad"
+import AdList from "./components/AdList/AdList"
 
 function Home() {
 
@@ -14,7 +14,8 @@ function Home() {
 
         <Title>Farm-Hub</Title>
 
-        <Ad></Ad>
+        <AdList></AdList>
+
 
     </>
 }
