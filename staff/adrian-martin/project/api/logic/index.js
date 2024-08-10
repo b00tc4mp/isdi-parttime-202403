@@ -5,6 +5,7 @@ import editUsername from './editUsername.js'
 import createGame from './createGame.js'
 import getAllGames from './getAllGames.js'
 import deleteGame from './deleteGame.js'
+import editGame from './editGame.js'
 
 const logic = {
     registerUser,
@@ -13,6 +14,7 @@ const logic = {
     editUsername,
     createGame,
     getAllGames,
+    editGame,
     deleteGame
 }
 
