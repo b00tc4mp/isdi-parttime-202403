@@ -9,4 +9,6 @@ router.post('/users', jsonBodyParser, routes.registerUserHandler)
 router.post('/admin', jsonBodyParser, routes.registerAdminHandler)
 router.post('/users/auth', jsonBodyParser, routes.authenticateAdminHandler)
 
+router.get("/users/:targetUserId", routes.getUserNameHandler)
+
 export default router

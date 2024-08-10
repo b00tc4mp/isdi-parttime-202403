@@ -36,13 +36,11 @@ function Login() {
     }
 
     return <View>
-        <Header>
-            <Heading level={1}>
-                Login
-            </Heading>
-        </Header>
+
+        <Header></Header>
 
         <form className="Login" onSubmit={handleLoginSubmit}>
+            <Heading className="LoginTitle" level={1}>Login</Heading>
             <Field id="username" placeholder="username" />
             <Field id="password" type="password" placeholder="password" />
             <Button type="submit">Login</Button>

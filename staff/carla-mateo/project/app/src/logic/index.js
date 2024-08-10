@@ -1,15 +1,15 @@
+import getUserName from "./getUserName"
+import isUserLoggedIn from "./isUserLoggedIn"
 import loginAdmin from "./loginAdmin"
+import logoutUser from "./logoutUser"
 import registerAdmin from "./registerAdmin"
-import isAdminLoggedIn from "./isAdminLoggedIn"
-import logoutAdmin from "./logoutAdmin"
 
 const logic = {
-    loginAdmin,
     registerAdmin,
-    isAdminLoggedIn,
-    logoutAdmin
-
-
+    isUserLoggedIn,
+    logoutUser,
+    loginAdmin,
+    getUserName,
 }
 
 export default logic

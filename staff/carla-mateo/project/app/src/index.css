@@ -2,7 +2,7 @@
 
 @layer base {
     * {
-        @apply font-mono bg-red-300
+        @apply bg-gradient-bg  font-normal font-roboto text-first-color
     }
     
 }

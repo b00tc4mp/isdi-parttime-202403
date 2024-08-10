@@ -1,7 +1,4 @@
 @tailwind components;
 
 @layer components {
-    .View{
-        @apply bg-pink-100
-    }
 }

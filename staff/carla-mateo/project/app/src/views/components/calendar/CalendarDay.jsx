@@ -1,8 +1,8 @@
 import React from 'react'
 
-const CalendarDay = ({ day }) => {
+const CalendarDay = ({ day, className }) => {
     return (
-        <div className="calendar-day">
+        <div className={className}>
             {day}
         </div>
     )

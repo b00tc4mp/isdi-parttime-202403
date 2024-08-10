@@ -38,22 +38,17 @@ function Register() {
 
 
     return <View>
-        <Header>
-            <Heading level={1}  >
-                Register
-            </Heading>
-        </Header>
+
+        <Header></Header>
 
         <form className="Register" onSubmit={handleRegisterSubmit}>
-            <Field id="name" placeholder="name" />
-            <Field id="username" placeholder="username" />
-            <Field id="email" placeholder="name@example.com" />
-            <Field id="password" placeholder="password" />
-            <Field id="passwordRepeat" placeholder="password repeat" />
-
-
+            <Heading level={1} className="RegisterTitle">Register</Heading>
+            <Field id="name" type="text" placeholder="name" />
+            <Field id="username" type="text" placeholder="username" />
+            <Field id="email" type="email" placeholder="name@example.com" />
+            <Field id="password" type="password" placeholder="password" />
+            <Field id="passwordRepeat" type="password" placeholder="password repeat" />
             <Button type="submit">Register</Button>
-
             <Link to="/login">Login</Link>
         </form>
     </View>

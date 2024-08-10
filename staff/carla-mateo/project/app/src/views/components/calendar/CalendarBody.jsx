@@ -6,18 +6,44 @@ const CalendarBody = ({ currentDate }) => {
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth()
 
-    const firstDayOfMonth = new Date(year, month, 1).getDay()
+    // Calculamos el primer día del mes y cuántos días tiene el mes actual
+    const firstDayOfMonth = new Date(year, month, 0).getDay()
     const daysInMonth = new Date(year, month + 1, 0).getDate()
 
-    const days = [];
-    for (let i = 0; i < firstDayOfMonth; i++) {
-        days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>)
-    }
-    for (let i = 1; i <= daysInMonth; i++) {
-        days.push(<CalendarDay key={i} day={i} />)
-    }
+    // Calculamos cuántos días tiene el mes anterior
+    const daysInPreviousMonth = new Date(year, month, 0).getDate()
 
+    // Crear un array para los días del mes anterior
+    const prevMonthDays = Array.from({ length: firstDayOfMonth }, (_, index) => (
+        <CalendarDay
+            key={`prev-${index}`}
+            day={daysInPreviousMonth - firstDayOfMonth + index + 1}
+            className="calendar-day-other-month"
+        />
+    ))
 
+    // Crear un array para los días del mes actual
+    const monthDays = Array.from({ length: daysInMonth }, (_, index) => (
+        <CalendarDay
+            key={`current-${index}`}
+            day={index + 1}
+            className="calendar-day"
+        />
+    ))
+
+    // Calculamos cuántos días del próximo mes se necesitan para completar la última semana
+    const totalDays = firstDayOfMonth + daysInMonth
+    const nextMonthDaysCount = (totalDays % 7 !== 0) ? (7 - (totalDays % 7)) : 0
+    const nextMonthDays = Array.from({ length: nextMonthDaysCount }, (_, index) => (
+        <CalendarDay
+            key={`next-${index}`}
+            day={index + 1}
+            className="calendar-day-other-month"
+        />
+    ))
+
+    // Combinar los días del mes anterior, actual y siguiente en un solo array
+    const days = [...prevMonthDays, ...monthDays, ...nextMonthDays]
 
     return (
         <div className="calendar-body">
@@ -27,3 +53,4 @@ const CalendarBody = ({ currentDate }) => {
 }
 
 export default CalendarBody
+

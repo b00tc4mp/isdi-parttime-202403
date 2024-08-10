@@ -1,13 +1,7 @@
 @tailwind components;
 
 @layer components{
-    .FamilySync {
-        @apply flex justify-center
-    }
 
-    .LogoutButton {
-        @apply flex justify-center
-    }
 }
 
 
