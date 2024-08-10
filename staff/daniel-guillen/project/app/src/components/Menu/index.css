@@ -17,7 +17,7 @@
 }
 .MenuButtons {
   display: flex;
-  margin: 0.5rem auto 1rem auto;
+  margin: 1rem auto 1rem auto;
   justify-content: center;
   padding-left: 0px;
   padding-right: 0px;

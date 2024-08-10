@@ -10,6 +10,7 @@
   width: 100%;
   border-radius: 5px;
   filter: grayscale(80%);
+  margin-top: 8px;
 }
 .image:hover {
   filter: none;

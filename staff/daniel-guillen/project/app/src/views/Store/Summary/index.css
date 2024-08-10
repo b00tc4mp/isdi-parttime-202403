@@ -1,0 +1,28 @@
+.SummaryStoreDiv {
+  margin-bottom: 50px;
+}
+
+.SummaryStoreDiv,
+.SummaryWasteDataDiv,
+.SummaryStatusDiv {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.SummaryWasteDataDiv {
+  background: white;
+  font-size: large;
+  line-height: 0;
+  min-width: 370px;
+  border-bottom: grey 1px solid;
+}
+.StagnantWasteDiv {
+  background: tomato;
+  color: white;
+  font-size: large;
+  line-height: 0;
+  min-width: 370px;
+  border-bottom: grey 1px solid;
+}

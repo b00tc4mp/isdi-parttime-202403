@@ -7,7 +7,7 @@ const DataStoreList = () => {
 
   const [list, setList] = useState([])
 
-  //renderizamos lista de residuos
+  //solicitar y renderizamos lista de residuos
   useEffect(() => {
     const getList = async () => {
       try {
@@ -58,21 +58,30 @@ const DataStoreList = () => {
             // comparamos peso
             return b.weight - a.weight
           })
-          .map(list => {
-            // Limitamos la descripcion a 24 caracteres
-            const shortDescription = list.description.length > 24
-              ? list.description.substring(0, 24) + '...' 
-              : list.description
-    
+          .map((item, index, array) => {
+            // Limitamos la descripción a 34 caracteres
+            const shortDescription = item.description.length > 34
+              ? item.description.substring(0, 34) + '...'
+              : item.description;
+      
+            // Verificamos si el código es diferente al del elemento anterior
+            const isCodeDifferent = index === 0 || item.code !== array[index - 1].code;
+      
             return (
-              <button className={`NewWaste ${list.container} ${list.status}`} key={list.id}
-                onClick={() =>deleteWaste(list.id)} >
-                  <p>{list.code} - {list.container} - {list.weight} kg</p>
-                  <p>{shortDescription}</p>
-              </button>
-            )
-          })
-      }
+              <React.Fragment key={item.id}>
+                {isCodeDifferent && <div></div>}
+                <button 
+                  className={`NewWasteDiv ${item.container} ${item.status}`}
+                  onClick={() => deleteWaste(item.id)}
+                >
+                  <div className='NewWaste' >
+                  <p>{item.code} - {item.container} - {item.weight}kg</p>
+                  <p className='ShortDescription'>{shortDescription}</p>
+                  </div>
+                </button>
+              </React.Fragment>
+            );
+          })}
         </div>
   );
 };

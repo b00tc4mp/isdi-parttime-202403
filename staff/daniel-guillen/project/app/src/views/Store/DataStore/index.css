@@ -9,84 +9,90 @@
   margin: 0px;
 }
 
-.NewWaste {
-  width: full;
-  height: full;
+.NewWasteDiv {
+  display: flex;
+  min-width: 370px;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.2rem 0.2rem 0.2rem 0.2rem;
   font-size: 20px;
-  line-height: 0px;
   font-weight: bold;
+  line-height: 0;
   border-radius: 5px;
-  margin: 3px;
   cursor: pointer;
 }
 
-.NewWaste.PALET {
+.ShortDescription {
+  font-size: small;
+}
+
+.NewWasteDiv.PALET {
   background: rgb(247, 247, 149);
   border: gold solid 1px;
   color: black;
 }
 
-.NewWaste.PALET:hover {
+.NewWasteDiv.PALET:hover {
   background: grey;
   border: black solid 1px;
   color: white;
 }
 
-.NewWaste.GRG {
+.NewWasteDiv.GRG {
   background: lightgoldenrodyellow;
   border: yellow solid 1px;
   color: black;
 }
 
-.NewWaste.GRG:hover {
+.NewWasteDiv.GRG:hover {
   background: grey;
   border: black solid 1px;
   color: white;
 }
 
-.NewWaste.BIGBAG {
+.NewWasteDiv.BIGBAG {
   background: lightgreen;
   border: mediumseagreen solid 1px;
   color: black;
 }
 
-.NewWaste.BIGBAG:hover {
+.NewWasteDiv.BIGBAG:hover {
   background: grey;
   border: black solid 1px;
   color: white;
 }
 
-.NewWaste.B200 {
+.NewWasteDiv.B200 {
   background: rgb(116, 150, 251);
   border: darkblue solid 1px;
   color: black;
 }
 
-.NewWaste.B200:hover {
+.NewWasteDiv.B200:hover {
   background: grey;
   border: black solid 1px;
   color: white;
 }
 
-.NewWaste.B-200 {
+.NewWasteDiv.B-200 {
   background: rgb(171, 219, 249);
   border: cornflowerblue solid 1px;
   color: black;
 }
 
-.NewWaste.B-200:hover {
+.NewWasteDiv.B-200:hover {
   background: grey;
   border: black solid 1px;
   color: white;
 }
 
-.NewWaste.ESTANCADO {
+.NewWasteDiv.ESTANCADO {
   background: tomato;
   border: red solid 1px;
   color: white;
 }
 
-.NewWaste.ESTANCADO:hover {
+.NewWasteDiv.ESTANCADO:hover {
   background: grey;
   border: black solid 1px;
   color: white;

@@ -6,6 +6,7 @@ import './index.css'
 import Menu from './components/Menu'
 import Home from './views/Home'
 import Store from './views/Store'
+import Summary from './views/Store/Summary'
 // import Departures from './views/Departures'
 // import Fleet from './views/Fleet'
 // import Users from './views/Users'
@@ -20,9 +21,9 @@ function App() {
     
     <Routes>
       
-      {/* <Route path="/" element={<ItemListContainer />} /> */}
       <Route path="/" element={<Home />} />
       <Route path="/store" element={<Store />} />
+      <Route path="/Store/Summary" element={<Summary />} />
       {/* <Route path="/departures" element={<Departures />} />
       <Route path="/fleet" element={<Fleet />} />
       <Route path="/users" element={<Users />} /> */}
