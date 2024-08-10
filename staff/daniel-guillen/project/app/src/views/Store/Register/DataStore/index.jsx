@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs, deleteDoc, doc  } from 'firebase/firestore'
-import { db } from "../../../firebase/config"
+import { db } from "../../../../firebase/config"
 import './index.css'
 
 const DataStoreList = () => {
 
   const [list, setList] = useState([])
 
-  //solicitar y renderizamos lista de residuos
+  //solicitar y renderizamos lista de residuos guardados
   useEffect(() => {
     const getList = async () => {
       try {
@@ -64,7 +64,7 @@ const DataStoreList = () => {
               ? item.description.substring(0, 34) + '...'
               : item.description;
       
-            // Verificamos si el código es diferente al del elemento anterior
+            // Verificamos si cambia item.code para añadir un <div>
             const isCodeDifferent = index === 0 || item.code !== array[index - 1].code;
       
             return (

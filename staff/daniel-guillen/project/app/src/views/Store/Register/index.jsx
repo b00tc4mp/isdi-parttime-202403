@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import WasteSelect from './WasteSelect'
-import WasteContainer from './WasteContainer'
+import WasteSelect from '../../../components/WasteSelect'
+import WasteContainer from '../../../components/WasteContainer'
 import WasteStatus from './WasteStatus'
-import WasteWeight from './WasteWeight'
+import WasteWeight from '../../../components/WasteWeight'
 import './index.css'
 
 import { collection, addDoc } from "firebase/firestore";

@@ -1,0 +1,14 @@
+.SearchWasteDiv {
+  margin-bottom: 50px;
+}
+
+.SearchWasteDiv {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.DataWasteTitle {
+  margin: 0.5rem;
+}
