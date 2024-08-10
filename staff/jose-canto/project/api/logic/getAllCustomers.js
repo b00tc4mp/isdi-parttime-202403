@@ -1,6 +1,6 @@
 import validate from "com/validate.js"
 import { User } from "../model/index.js"
-import { SystemError } from "com/errors.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 
 const getAllCustomers = (userId) => {
   validate.id(userId);
@@ -9,7 +9,7 @@ const getAllCustomers = (userId) => {
     .catch((error) => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
-        throw new SystemError("user not found")
+        throw new NotFoundError("User not found")
       }
 
       return User.find({ manager: userId }).select("-__v").lean()

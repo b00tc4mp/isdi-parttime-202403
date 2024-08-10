@@ -33,7 +33,7 @@ export default function DeliveryNoteList() {
       <Main className={"MainDeliveryNotes"}>
         <ul className="DeliveryList">
           {deliveryNotes.map((deliveryNote) => (
-            <Link className="DeliveryLink" key={deliveryNote.id} to={`/delivery-notes/${deliveryNote.id}`}>
+            <Link className="DeliveryLink" to={`/delivery-notes/${deliveryNote.id}`} key={deliveryNote.id}>
               <li className="DeliveryNote">
                 {deliveryNote?.number && <p>A/Nº: {deliveryNote.number}</p>}
                 {deliveryNote?.customer && <p>&nbsp;{deliveryNote.customerName}</p>}

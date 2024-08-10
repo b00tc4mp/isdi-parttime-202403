@@ -2,7 +2,6 @@ import "dotenv/config"
 import { mongoose, Types } from "mongoose"
 import bcrypt from "bcryptjs"
 
-
 import { expect } from "chai"
 
 import { User, DeliveryNote } from "../model/index.js"
@@ -12,7 +11,6 @@ import { ContentError, NotFoundError } from "com/errors.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
-
 
 describe("createDeliveryNote", () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))

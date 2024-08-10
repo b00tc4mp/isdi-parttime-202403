@@ -26,7 +26,13 @@ const createDeliveryNote = (userId, customerId) => {
       return DeliveryNote.create(deliveryNote)
         .catch(error => { throw new SystemError(error.message) })
         .then((deliveryNote) => {
-          return DeliveryNote.findById(deliveryNote._id).populate("customer").populate("company").populate("works").select("-__v").lean()
+
+          return DeliveryNote.findById(deliveryNote.id).populate("customer").populate("company").populate("works").select("-__v").lean()
+            .then((deliveryNote) => {
+              deliveryNote.id = deliveryNote._id.toString()
+              delete deliveryNote._id
+              return deliveryNote
+            })
         })
     })
 }

@@ -16,7 +16,7 @@ const registerCustomer = (userId, username, companyName, email, password, taxId,
   validate.address(address)
   validate.phone(phone)
 
-  return User.findById({ _id: new ObjectId(userId) })
+  return User.findById(userId)
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {

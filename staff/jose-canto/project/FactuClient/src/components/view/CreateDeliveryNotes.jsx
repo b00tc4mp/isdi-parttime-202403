@@ -44,7 +44,7 @@ export default function CreateDeliveryNotes() {
 
     try {
       //prettier-ignore
-      logic.createWork(deliveryNote._id, concept, quantity, price)
+      logic.createWork(deliveryNote.id, concept, quantity, price)
         .then((deliveryNoteUpdated) => {
           setDeliveryNoteUpdated(deliveryNoteUpdated)
 
@@ -88,7 +88,7 @@ export default function CreateDeliveryNotes() {
           </div>
           {deliveryNoteUpdated?.works &&
             deliveryNoteUpdated.works.map((work) => (
-              <div className="DeliveryWorkInfo" key={work._id}>
+              <div className="DeliveryWorkInfo" key={work.id}>
                 <p className="DeliveryWorkConcept">{work.concept}</p>
                 <div className="DeliveryQuantityPrice">
                   <div className="QuantityContainer">

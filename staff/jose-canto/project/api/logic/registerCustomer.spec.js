@@ -194,8 +194,5 @@ describe("registerCustomer", () => {
       })
   })
 
-
-
-
   after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })
