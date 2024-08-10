@@ -17,7 +17,7 @@ const register = (email, password, username) => {
       try {
          existingUser = await User.findOne({
             $or: [{ email }, { username }]
-         });
+         }).lean();
       } catch (error) {
          throw new SystemError(`Register failed: ${error.message}`);
       }

@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import * as chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { Log, User, Track, Playlist, Album } from '../../../../data/index.js';
+import { Log, User, Track, Playlist, Album } from '../../../data/index.js';
 import { CredentialError, InvalidArgumentError, SystemError } from 'com/errors.js';
-import log from '../../../../services/log.js';
+import log from '../../../services/log.js';
 import constants from 'com/constants.js';
 
 const { MONGO_TEST_URI } = process.env;
@@ -19,10 +19,7 @@ describe('log', () => {
 
    it('succeeds when logging a valid action with a target user', async () => {
       const hash = await bcrypt.hash('Neon-Genesis02', 8);
-      const [user1, user2] = await Promise.all([
-         User.create({ username: 'eva01', email: 'shinji@ikari.com', passwordHash: hash }),
-         User.create({ username: 'eva02', email: 'asuka@soryu.com', passwordHash: hash })
-      ]);
+      const [user1, user2] = await Promise.all([User.create({ username: 'eva01', email: 'shinji@ikari.com', passwordHash: hash }), User.create({ username: 'eva02', email: 'asuka@soryu.com', passwordHash: hash })]);
 
       await expect(log(user1.id, constants.FOLLOWED_USER, user2.id, constants.types[0])).to.be.fulfilled;
 

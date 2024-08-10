@@ -7,9 +7,9 @@
    "scripts": {
       "start": "node .",
       "dev": "node --watch .",
-      "test": "mocha tests/automated/**/*.spec.js",
-      "debug": "node --inspect-brk",
-      "debug-test": "mocha --inspect-brk tests/automated/**/*.spec.js"
+      "test": "mocha tests/**/*.spec.js",
+      "debug": "node --inspect-brk .",
+      "debug-test": "mocha --inspect-brk tests/**/*.spec.js"
    },
    "keywords": [],
    "author": "",

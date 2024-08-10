@@ -5,6 +5,7 @@ export const USERNAME_REGEX = /^[a-zA-Z0-9](?!.*[._]{2})[a-zA-Z0-9._]{3,13}[a-zA
 export const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 export const PASSWORD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 export const OBJECT_ID_REGEX = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
+export const JWT_REGEX = /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/;
 
 function validateInputs(...args) {
    for (let i = 0; i < args.length; i++) {
@@ -97,12 +98,36 @@ function validateQuery(query) {
    }
 }
 
+function isBase64Url(str) {
+   const b64urlPattern = /^[A-Za-z0-9-_]+$/;
+   return b64urlPattern.test(str);
+}
+
+function validateToken(token) {
+   if (typeof token !== 'string' || !JWT_REGEX.test(token)) {
+      throw new InvalidArgumentError('Invalid token');
+   }
+
+   const parts = token.split('.');
+
+   if (parts.length !== 3) {
+      throw new InvalidArgumentError('Invalid token');
+   }
+
+   const [header, payload, signature] = parts;
+
+   if (!isBase64Url(header) || !isBase64Url(payload) || !isBase64Url(signature)) {
+      throw new InvalidArgumentError('Invalid token');
+   }
+}
+
 export default {
    inputs: validateInputs,
    objectId: validateObjectId,
    logType: validateLogType,
    targetType: validateTargetType,
    query: validateQuery,
+   token: validateToken,
    username: validateUsername,
    email: validateEmail,
    password: validatePassword

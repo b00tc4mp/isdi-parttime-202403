@@ -47,4 +47,19 @@ class TokenExpiredError extends Error {
    }
 }
 
-export { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError };
+class FetchError extends Error {
+   constructor(message) {
+      super(message);
+      this.name = this.constructor.name;
+   }
+}
+
+class ParseError extends Error {
+   constructor(message) {
+      super(message);
+      this.name = this.constructor.name;
+   }
+}
+
+export { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError, FetchError, ParseError };
+export default { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError, FetchError, ParseError };
