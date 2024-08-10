@@ -39,7 +39,7 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/games', getAllGamesHandler)
 
-        api.delete('games/:gameId', deleteGameHandler)
+        api.delete('/games/:gameId', deleteGameHandler)
 
         api.use(errorHandler)
 

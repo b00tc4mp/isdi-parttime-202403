@@ -1,6 +1,7 @@
 import jwt from '../util/jsonwebtoken-promised.js'
 import logic from '../logic/index.js'
 const { JWT_SECRET } = process.env
+import { CredentialError } from 'com/errors.js'
 
 export default (req, res, next) => {
     try {
@@ -20,7 +21,7 @@ export default (req, res, next) => {
                     next(error)
                 }
             })
-            .catch(error => next(new CredentialsError(error.message)))
+            .catch(error => next(new CredentialError(error.message)))
     } catch (error) {
         next(error)
     }
