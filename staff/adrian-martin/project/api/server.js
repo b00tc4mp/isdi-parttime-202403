@@ -11,7 +11,7 @@ import {
     editUsernameHandler,
     createGameHandler,
     getAllGamesHandler,
-    editUsernameHandler,
+    editGameHandler,
     deleteGameHandler
 } from './handlers/index.js'
 
@@ -42,7 +42,7 @@ mongoose.connect(MONGODB_URL)
 
         api.delete('/games/:gameId', deleteGameHandler)
 
-        api.path('/games/:gameId/edit', jsonBodyParser, editUsernameHandler)
+        api.patch('/games/:gameId/edit', jsonBodyParser, editGameHandler)
 
         api.use(errorHandler)
 

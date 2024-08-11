@@ -3,11 +3,14 @@
 }
 
 .GameTag {
-    border: 3px solid var(--second-color);
+    /* border: 3px solid var(--second-color); */
     display: flex;
     justify-content: space-between;
     margin: 20px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.739);
+    border-radius: 20px;
+    background-color: aliceblue;
+    border: 3px solid rgb(229, 204, 94);
 }
 
 .GameTag-description {
@@ -21,6 +24,8 @@
     display: block;
     border: 1px solid black;
     object-fit: cover;
+    border-radius: 20px 0px 0px 20px;
+
 }
 
 .GameTag-title {
@@ -45,12 +50,18 @@
 
 .GameTag-icon {
     position: absolute;
-    bottom: 10px;
-    right: 15px;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 0, 0);
     font-size: 30px;
     cursor: pointer;
 }
+
+.GameTag-hyi {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
 
 /* object-fit: cover;     
 object-fit: contain; 

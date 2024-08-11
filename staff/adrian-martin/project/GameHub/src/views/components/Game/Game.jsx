@@ -18,12 +18,15 @@ function Game({ game }) {
         <div className='GameTag'>
             <div className='GameTag-image'>
                 <Image className='ImageTag' src={game.image} />
-                {game.author.id === logic.getUserId() && <FontAwesomeIcon className='GameTag-icon' icon={faEllipsisVertical} />}
             </div>
             <div className='GameTag-description'>
                 <Text className='GameTag-title'>{game.title}</Text>
                 <p className='GameTag-rating'>{game.rating}</p>
-                <p className='GameTag-hours'>{game.hours}h</p>
+                <div className='GameTag-hyi'>
+                    {game.author.id === logic.getUserId() && <FontAwesomeIcon className='GameTag-icon' icon={faEllipsisVertical} />}
+                    <p className='GameTag-hours'>{game.hours}h</p>
+                </div>
+
             </div>
         </div>
     </div>

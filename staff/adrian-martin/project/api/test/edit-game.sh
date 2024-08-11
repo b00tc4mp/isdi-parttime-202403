@@ -1,1 +1,9 @@
-curl -X PATCH http://localhost:8080/users/66ab9387e2e5e2ef52b61603/edit -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmE5ZTMzZDZmYzM2ZjY0ZTk5NjdlMjIiLCJpYXQiOjE3MjMzMDMyNjksImV4cCI6MTcyNDE2NzI2OX0.9ddYrD5EqPDqcYwEmUK7qXx9UA-Lv9Oy9SL-zv-QHEU" -H "Content-type: application/json" -d '{"title":"Jack","image":"https://i.ytimg.com/vi/dcbTsDWjEhM/maxresdefault.jpg", "rating":6, "hours":15}' -v
+curl -v -X PATCH http://localhost:8080/games/66b811a84632cead45a0f3e4/edit \
+-H "Authorization: Bearer <token>" \
+-H "Content-type: application/json" \
+-d '{
+  "title": "New Game Title",
+  "image": "https://example.com/new-image.png",
+  "rating": 5,
+  "hours": 10
+}'
