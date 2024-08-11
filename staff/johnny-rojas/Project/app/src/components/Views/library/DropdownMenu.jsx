@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { IoMenuOutline } from 'react-icons/io5';
 import logic from '../../../logic/index';
 import './DropdownMenu.css';
+import { getUserId } from '../../../logic/getUserInfo';
 
 const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null)
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoggedIn(logic.isUserLoggedIn()); 
+    setIsLoggedIn(logic.isUserLoggedIn());
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setUserId(getUserId())
+    }
+  }, [isLoggedIn])
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleMenuItemClick = (path) => {
-    setIsOpen(false); 
+    setIsOpen(false);
     if (path === 'logout') {
       logic.logoutUser();
-      setIsLoggedIn(false); 
+      setIsLoggedIn(false);
       navigate('/');
     } else {
       navigate(path);
@@ -36,17 +44,17 @@ const DropdownMenu = () => {
         <div className="dropdown-content">
           {!isLoggedIn ? (
             <>
-              <button onClick={() => handleMenuItemClick('/register')}>Regístrate</button>
-              <button onClick={() => handleMenuItemClick('/login')}>Inicia sesión</button>
+              <Link to='/register'>Regístrate</Link>
+              <Link to='/login'>Inicia sesión</Link>
             </>
           ) : (
             <>
-              <button onClick={() => handleMenuItemClick('/perfil')}>Perfil</button>
-              <button onClick={() => handleMenuItemClick('/reservas')}>Reservas</button>
-              <button onClick={() => handleMenuItemClick('/favoritos')}>Favoritos</button>
-              <button onClick={() => handleMenuItemClick('/rooms')}>Ofrecer</button>
-              <button onClick={() => handleMenuItemClick('/rooms')}>Mis ofertas</button> 
-              <button onClick={() => handleMenuItemClick('logout')} className="LogoutButton">Cerrar sesión</button>
+              <Link to='/perfil'>Perfil</Link>
+              <Link to='/reservas'>Reservas</Link>
+              <Link to='/favoritos'>Favoritos</Link>
+              <Link to='/rooms'>Ofrecer</Link>
+              <Link to={`/users/${userId}/rooms`}>Mis ofertas</Link>
+              <Link to='logout' className="LogoutButton">Cerrar sesión</Link>
             </>
           )}
         </div>
@@ -57,4 +65,4 @@ const DropdownMenu = () => {
 
 export default DropdownMenu;
 
-//TODO /rooms/:userId
+//TODO /rooms/:userId LINK

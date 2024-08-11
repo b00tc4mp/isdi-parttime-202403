@@ -1,9 +1,13 @@
-import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
+import extractPayloadFromJWT from "../../utils/extractPayloadFromJWT"
 
-const getUserId = () => {
+export function getUserId() {
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
     return userId
 }
 
-export default getUserId
+export function getUserRole() {
+    const { role } = extractPayloadFromJWT(sessionStorage.token)
+
+    return role
+}

@@ -2,14 +2,14 @@ import errors, { SystemError } from "com/errors"
 import validate from 'com/validate'
 
 
-const registerUser = (name, surname, email, phone, password, repeatPassword) => {
+const registerUser = (name, surname, email, phone, password, passwordRepeat) => {
 
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
     validate.phone(phone)
     validate.password(password)
-    validate.passwordsMatch(password, repeatPassword)
+    validate.passwordsMatch(password, passwordRepeat)
 
 
     return fetch(`${import.meta.env.VITE_API_URL}/users`, {
@@ -17,7 +17,7 @@ const registerUser = (name, surname, email, phone, password, repeatPassword) => 
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, surname, email, phone, password, repeatPassword })
+        body: JSON.stringify({ name, surname, email, phone, password, passwordRepeat })
     })
         .catch(() => { throw new SystemError('network error') })
         .then(response => {

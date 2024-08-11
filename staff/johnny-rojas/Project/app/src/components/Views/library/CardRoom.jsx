@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import logic from '../../../logic/index';
 import Image from '../core/Image';
@@ -7,7 +7,6 @@ import Image from '../core/Image';
 
 function CardRoom({ Room }) {
   const { roomId } = useParams()
-  const [room, setRoom] = useState(null)
 
   useEffect(() => {
     try {
@@ -44,12 +43,6 @@ function CardRoom({ Room }) {
         <p className="ppp">Precio por noche</p>
         <p className="priceRoom">{Room.price}</p>
       </div>
-    </div>
-    <div className='leaflet'>
-      //coordinates leaflet
-    </div>
-    <div className='infoContact'>
-      <p>{Room.contact}</p>
     </div>
   </article>
 

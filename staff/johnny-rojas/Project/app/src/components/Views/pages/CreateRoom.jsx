@@ -8,20 +8,16 @@ import View from '../core/View';
 import SubmitButton from '../core/SubmitButton';
 import Field from '../core/Field';
 import Title from '../core/Title';
-import ServicesSelect from '../library/ServicesSelect'
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 import logic from '../../../logic';
 
 import './CreateRoom.css'
 
 
+
 function CreateRoom() {
   const [showForm, setShowForm] = useState(false)
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
-  const [selectedIcons, setSelectedIcons] = useState([])
+
   const navigate = useNavigate()
 
   const handleCreateRoomSubmit = event => {
@@ -34,16 +30,10 @@ function CreateRoom() {
     const city = target.city.value
     const img = target.img.value
     const description = target.description.value
-    const services = selectedIcons
     const price = target.price.value
-    const availability = {
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString()
-    };
-    const coordinates = { lat: parseFloat(target.lat.value), lng: parseFloat(target.lng.value) };
 
     try {
-      logic.createRoom(nameRoom, region, city, img, description, services, price, availability, coordinates)
+      logic.createRoom( nameRoom, region, city, img, description, price)
         .then(() => navigate('/'))
         .catch(error => alert(error.message))
 
@@ -79,29 +69,8 @@ function CreateRoom() {
 
                 <Field id='description' type='string' placeholder='Descripción del alojamiento' />
 
-                <ServicesSelect onSelectionChange={setSelectedIcons} />
-
                 <Field id='price' type='string' placeholder='Precio por noche' />
 
-                <div>
-                  <label htmlFor='startDate'>Fecha de Inicio </label>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    dateFormat='yyyy-dd-MM'
-                  />
-                </div>
-                <div>
-                  <label htmlFor='endDate'>Fecha de Cierre </label>
-                  <DatePicker
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date)}
-                    dateFormat='yyyy-dd-MM'
-                  />
-                </div>
-
-                <Field id='lat' type='string' placeholder='Latitud' />
-                <Field id='lng' type='string' placeholder='Longitud' />
                 <SubmitButton>Ofrecer</SubmitButton>
 
               </FormWithPanel>
@@ -115,5 +84,3 @@ function CreateRoom() {
 }
 
 export default CreateRoom;
-
-//TODO SERVICIOS

@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import logic from "../../../logic/index";
-import SubmitButton from "../core/SubmitButton";
+import {Link} from 'react-router-dom'
+import { getUserId } from "../../../logic/getUserInfo";
+
 
 import './RoomList.css'
 
 function UserRooms() {
   const [rooms, setRooms] = useState([])
 
+const userId = getUserId()
+  
   useEffect(() => {
     try {
-      logic.getAllUserRooms()
+      logic.getAllUserRooms(userId)
         .then((rooms) => { setRooms(rooms) })
         .catch(error => {
           alert(error.message)
@@ -42,7 +46,9 @@ function UserRooms() {
                 <p className="priceRoom">{room.price}</p>
               </div>
             </div>
-            <SubmitButton>Editar</SubmitButton>
+            <div className="LinkTo">
+            <Link to={`user/${userId}/rooms/${rooms}`}>Editar</Link>
+            </div>
           </div>
         </li>)}
       </ul>

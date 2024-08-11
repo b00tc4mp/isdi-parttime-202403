@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      getRoom('66b3ea71f947c93077ed0adb','66b3f5a64551a5b6dbe33cca')
+      getRoom('66b76351c316c71376f20b2f','66b873ff2e268693ac537cf8')
         .then(room => console.log(room))
         .catch(error => console.error(error))
     } catch (error) {

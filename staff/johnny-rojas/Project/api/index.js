@@ -10,15 +10,15 @@ const { MONGODB_URL, PORT } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     const api = express()
-    
+
     api.use(cors())
 
     api.get('/', (req, res) => res.send(''))
-    
+
     api.use('/', router)
 
     api.use(errorHandler)
 
     api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
   })
-.catch(error => console.error(error))
+  .catch(error => console.error(error))

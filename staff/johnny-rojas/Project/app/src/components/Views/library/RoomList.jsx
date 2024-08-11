@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import logic from "../../../logic/index";
-import SubmitButton from "../core/SubmitButton";
+
 
 import './RoomList.css'
+import { Link } from "react-router-dom";
 
 function RoomList() {
   const [rooms, setRooms] = useState([])
@@ -42,7 +43,9 @@ function RoomList() {
                 <p className="priceRoom">{room.price}</p>
               </div>
             </div>
-            <SubmitButton>Reservar</SubmitButton>
+            <div className="LinkTo">
+              <Link  to={`/rooms/${room.id}`}>Reservar</Link>
+              </div>
           </div>
         </li>)}
       </ul>

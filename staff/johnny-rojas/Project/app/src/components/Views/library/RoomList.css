@@ -50,7 +50,7 @@
     @apply flex flex-col gap-1 items-end
   }
 
-  .SubmitButton {
-    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200 
+  .LinkTo {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200 text-center
   }
 }
