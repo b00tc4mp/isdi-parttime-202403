@@ -44,7 +44,6 @@ function Register() {
     }
 
 
-
     return <>
         <ViewBox className={'Register'} tag='main' >
             <FormWithFeedback onSubmit={handlerRegisterSubmit} message={message} >

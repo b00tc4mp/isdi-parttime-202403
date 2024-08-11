@@ -1,7 +1,7 @@
 curl -X POST \
      -H "Content-Type: application/json" \
      -d '{
-           "username": "jon@snow.com",
+           "email": "daenerys@targaryen.com",
            "password": "1234"
          }' \
      -v \

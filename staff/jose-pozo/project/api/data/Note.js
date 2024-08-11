@@ -14,15 +14,19 @@ const note = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+
     relatedTo: {
         type: Schema.Types.ObjectId,
         refPath: 'relatedToModel'
     },
+
     relatedToModel: {
         type: String,
         enum: ['Appointment', 'Customer', 'Service'],
         required: true
     }
+}, {
+    timestamps: true
 })
 
 const Note = model('Note', note)

@@ -1,21 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { useUserProfileContext } from '../contexts/UserProfileProvider'
 
 import logic from '../logic/index'
 
 import Button from '../components/core/Button'
-import Picture from '../components/core/Picture';
-import Text from '../components/core/Text';
+import Picture from '../components/core/Picture'
+import Text from '../components/core/Text'
+import Box from '../components/core/Box'
 
 import ViewBox from '../components/library/ViewBox'
 
-import Dropdown from './components/DropDown';
+import CurrentTime from './components/CurrentTime'
+import CreateCustomerForm from './components/CreateCustomerForm'
+import CustomersList from './components/CustomersList'
+import UserProfile from './components/UserProfile'
+// import Dropdown from './components/DropDown'
 
 
 function Home() {
     const [name, setName] = useState('')
+    const [showCreateCustomerForm, setShowCreateCustomerForm] = useState(false)
+    const [showCustomersList, setShowCustomersList] = useState(false)
 
-    const navigate = useNavigate();
+    const { showCompoUserProfile, setShowCompoUserProfile } = useUserProfileContext()
+
+
+    const navigate = useNavigate()
 
     const handleLogout = () => {
         logic.logoutUser()
@@ -39,44 +51,84 @@ function Home() {
         }
     }, [])
 
+
+    const handleCreateCustomer = () => {
+        setShowCreateCustomerForm(!showCreateCustomerForm)
+        setShowCustomersList(false)
+        setShowCompoUserProfile(false)
+    }
+
+    const handleCloseCreateCustomerForm = () => {
+        setShowCreateCustomerForm(false)
+    }
+
+    const handleCustomersList = () => {
+        setShowCustomersList(!showCustomersList)
+        setShowCreateCustomerForm(false)
+        setShowCompoUserProfile(false)
+
+    }
+
+
+
     return <>
 
         <ViewBox className={'HomeView'}>
 
-            <ViewBox className={'HomeHeader'} tag={'header'}>
+            {showCreateCustomerForm && <CreateCustomerForm onClose={handleCloseCreateCustomerForm} />}
+
+            {showCustomersList && <CustomersList />}
+
+            {showCompoUserProfile && <UserProfile />}
+
+
+
+            <ViewBox tag={'header'} className={'HomeHeader'} >
 
                 <Text className={'DailyPlanner'}>DAILY PLANNER</Text>
 
-                <ViewBox className={'Profile'}>
+                <Box className={'Profile'}>
+
                     <Text className={'ExportName'}>{name}</Text>
+
                     <Button className={'Profile'}>
-                        <Dropdown></Dropdown>
+
+                        <Picture src={'../../public/profile-icon.webp'} alt={'profile icon'} />
+
                     </Button>
+
                     <Button className={'Logout'} onClick={handleLogout} >LogOut</Button>
-                </ViewBox>
+
+                </Box>
 
             </ViewBox>
 
-            <ViewBox className={'HomeSidebar'} tag={'aside'}>SIDEBAR</ViewBox>
+            <ViewBox tag={'aside'} className={'HomeSidebar'} >
 
-            <ViewBox className={'HomeContent'} tag={'section'}>CONTENT</ViewBox>
+                <Button className={'HomeSidebarButton'} onClick={handleCreateCustomer}>Create Customers</Button>
+                <Button className={'HomeSidebarButton'} onClick={handleCustomersList}>Customers List</Button>
 
-            <ViewBox className={'HomeDaily'} tag={'main'}>DAILY</ViewBox>
+            </ViewBox>
 
-            <ViewBox className={'HomeCalendar'} tag={'section'}>CALENDAR</ViewBox>
+            <ViewBox tag={'section'} className={'HomeCurrentTimeSection'}>
 
-            <ViewBox className={'HomeMiniContent'} tag={'section'}>MINI CONTENT</ViewBox>
+                <CurrentTime />
 
-            <ViewBox className={'HomeContent1'} tag={'section'}>CONTENT 1</ViewBox>
+            </ViewBox>
 
-            <ViewBox className={'HomeContent2'} tag={'section'}>CONTENT 2</ViewBox>
+            <ViewBox tag={'main'} className={'HomeDaily'} >DAILY</ViewBox>
 
-            <ViewBox className={'HomeFooter'} tag={'footer'}>FOOTER</ViewBox>
+            <ViewBox tag={'section'} className={'HomeCalendar'} >CALENDAR</ViewBox>
 
+            <ViewBox tag={'section'} className={'HomeMiniContent'} >MINI CONTENT</ViewBox>
+
+            <ViewBox tag={'section'} className={'HomeContent1'}>CONTENT 1</ViewBox>
+
+            <ViewBox tag={'section'} className={'HomeContent2'} >CONTENT 2</ViewBox>
+
+            <ViewBox tag={'footer'} className={'HomeFooter'} >FOOTER</ViewBox>
 
         </ViewBox >
-
-
 
     </>
 }

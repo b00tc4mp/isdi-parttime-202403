@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 
+import { UserProfileProvider } from './contexts/UserProfileProvider'
+
 import logic from './logic/index.js'
 
 import Login from './views/Login'
@@ -24,6 +26,6 @@ function App() {
 
 export default App
 
-const RenderHome = () => (logic.isUserLoggedIn() ? <Home /> : <Navigate to='/login' />)
+const RenderHome = () => (logic.isUserLoggedIn() ? <UserProfileProvider><Home /></UserProfileProvider> : <Navigate to='/login' />)
 const RenderLogin = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Login />)
 const RenderRegister = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Register />)

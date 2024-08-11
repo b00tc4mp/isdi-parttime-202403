@@ -2,42 +2,42 @@
 
 @layer components {
   .HomeView {
-    @apply bg-size-fit grid h-dvh w-dvw grid-cols-6 grid-rows-[min-content_repeat(5,_1fr)_auto] gap-4 bg-transparent bg-[url("../../public/janbg.webp")] p-2;
+    @apply bg-size-fit relative grid h-dvh w-dvw grid-cols-6 grid-rows-[min-content_repeat(5,_1fr)_auto] gap-4 bg-transparent bg-[url("../../public/janbg.webp")] p-2;
   }
 
   .HomeHeader {
-    @apply col-span-6 flex w-full justify-between rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-1 align-middle opacity-100 shadow-lg;
+    @apply col-span-6 flex w-full justify-between rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-1 align-middle opacity-100 shadow-xl;
   }
 
   .HomeSidebar {
-    @apply col-start-1 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+    @apply col-start-1 row-span-3 row-start-2 flex h-full w-full flex-col gap-2 rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-xl;
   }
 
-  .HomeContent {
-    @apply col-span-2 col-start-5 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+  .HomeCurrentTimeSection {
+    @apply col-span-2 col-start-5 row-start-2 h-full w-full flex-col rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-xl;
   }
 
   .HomeDaily {
-    @apply col-span-3 col-start-2 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+    @apply col-span-3 col-start-2 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
   }
 
   .HomeCalendar {
-    @apply col-span-2 col-start-5 row-span-2 row-start-3 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+    @apply col-span-2 col-start-5 row-span-2 row-start-3 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-xl;
   }
 
   .HomeMiniContent {
-    @apply col-start-1 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+    @apply col-start-1 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
   }
 
   .HomeContent1 {
-    @apply col-span-2 col-start-2 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+    @apply col-span-2 col-start-2 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
   }
 
   .HomeContent2 {
-    @apply col-span-3 col-start-4 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+    @apply col-span-3 col-start-4 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
   }
 
   .HomeFooter {
-    @apply col-span-6 col-start-1 row-start-6 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-lg;
+    @apply col-span-6 col-start-1 row-start-6 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
   }
 }

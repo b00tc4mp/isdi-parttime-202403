@@ -8,4 +8,12 @@
   .Button.Profile {
     @apply mx-5 my-1 h-14 w-14 rounded-full bg-fast-velvet p-2 text-black;
   }
+
+  .Button.HomeSidebarButton {
+    @apply w-full rounded bg-soft-gray p-1 text-left text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
+
+  .Button.CustomersButton {
+    @apply my-2 w-full rounded bg-soft-gray p-1 text-left text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
 }

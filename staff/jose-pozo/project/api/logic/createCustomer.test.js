@@ -1,16 +1,16 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import registerUser from './registerUser.js'
+import createCustomer from './createCustomer.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            registerUser('Antonio', 'Pascal', 'antonio@pascal.com', '1234', '1234')
+            createCustomer('66b3a6d7478462d12028066f', 'Empa', 'Nada', 'empa@nada.com')
 
-                .then(() => console.log('user registered'))
+                .then(() => console.log('customer registered'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

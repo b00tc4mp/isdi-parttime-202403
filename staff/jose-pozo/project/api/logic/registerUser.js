@@ -26,6 +26,11 @@ const registerUser = (name, surname, email, password, passwordRepeat) => {
                         password: hash,
                         role: 'provider',
                         phone: '',
+                        customers: [],
+                        providers: [],
+                        appointments: [],
+                        notes: [],
+                        services: []
                     }
 
                     return User.create(newUser)

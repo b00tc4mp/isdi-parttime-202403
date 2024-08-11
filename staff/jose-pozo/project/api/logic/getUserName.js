@@ -2,9 +2,9 @@ import { User } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getUserName = (userId, targetId) => {
+const getUserName = (userId, targetUserId) => {
     validate.id(userId, 'user id')
-    validate.id(targetId, 'target id')
+    validate.id(targetUserId, 'target id')
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -12,10 +12,10 @@ const getUserName = (userId, targetId) => {
             if (!user)
                 throw new NotFoundError('user not found')
 
-            return User.findById(targetId).lean()
+            return User.findById(userId).lean()
                 .catch(error => { throw new SystemError(error.message) })
-                .then(user => {
-                    if (!user)
+                .then(userId => {
+                    if (!userId)
                         throw new NotFoundError('targetUser not found')
 
                     return user.name

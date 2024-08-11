@@ -19,19 +19,44 @@ const user = new Schema({
 
     password: {
         type: String,
-        required: true
-
     },
 
     role: {
         type: String,
         enum: ['provider', 'customer'],
-        default: 'provider'
+        required: true
     },
 
     phone: {
         type: String
     },
+
+    customers: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+
+    providers: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+
+    appointments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Appointment'
+    }],
+
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Note'
+    }],
+
+    services: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Service'
+    }]
+}, {
+    timestamps: true
 })
 
 const User = model('User', user)

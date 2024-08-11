@@ -2,6 +2,6 @@
 
 @layer components {
   .FormWithFeedback {
-    @apply w-80;
+    @apply w-full;
   }
 }

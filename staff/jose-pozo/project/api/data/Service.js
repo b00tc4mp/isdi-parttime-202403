@@ -30,6 +30,8 @@ const service = new Schema({
         ref: 'User',
         required: true
     }
+}, {
+    timestamps: true
 })
 
 const Service = model('Service', service)

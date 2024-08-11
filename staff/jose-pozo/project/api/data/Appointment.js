@@ -19,7 +19,7 @@ const appointment = new Schema({
 
     customer: {
         type: Schema.Types.ObjectId,
-        ref: 'Customer',
+        ref: 'User',
         required: true
     },
 
@@ -39,6 +39,8 @@ const appointment = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Note'
     }]
+}, {
+    timestamps: true
 })
 
 const Appointment = model('Appointment', appointment)
