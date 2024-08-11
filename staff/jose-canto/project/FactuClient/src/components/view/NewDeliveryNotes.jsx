@@ -6,7 +6,6 @@ import Main from "../core/Main"
 import Footer from "../core/Footer"
 
 import logic from "../../logic/index"
-import Title from "../Title"
 
 import "./NewDeliveryNotes.css"
 

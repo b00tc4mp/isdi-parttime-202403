@@ -13,4 +13,8 @@
     @apply flex cursor-pointer p-1 text-[1.2rem] font-medium;
     text-shadow: 1px 1px 5px rgba(255, 132, 0, 0.5);
   }
+
+  .DeliveryNote:hover {
+    @apply text-orange-500;
+  }
 }

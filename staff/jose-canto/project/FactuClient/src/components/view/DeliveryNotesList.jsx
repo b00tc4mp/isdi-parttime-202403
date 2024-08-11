@@ -30,7 +30,7 @@ export default function DeliveryNoteList() {
   return (
     <>
       <Header iconUser={<GoNote />}>Albaranes</Header>
-      <Main className={"MainDeliveryNotes"}>
+      <Main>
         <ul className="DeliveryList">
           {deliveryNotes.map((deliveryNote) => (
             <Link className="DeliveryLink" to={`/delivery-notes/${deliveryNote.id}`} key={deliveryNote.id}>
