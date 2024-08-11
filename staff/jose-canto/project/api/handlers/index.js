@@ -14,6 +14,9 @@ import createDeliveryNoteHandler from "./createDeliveryNoteHandler.js"
 
 import createWorkHandler from "./createWorkHandler.js"
 
+import getAllInvoicesHandler from "./getAllInvoicesHandler.js"
+import getInvoiceHandler from "./getInvoiceHandler.js"
+
 
 export default {
   registerUserHandler,
@@ -32,4 +35,6 @@ export default {
 
   createWorkHandler,
 
+  getAllInvoicesHandler,
+  getInvoiceHandler,
 }

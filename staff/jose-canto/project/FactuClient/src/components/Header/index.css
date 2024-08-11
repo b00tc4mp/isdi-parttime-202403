@@ -22,7 +22,7 @@
   }
 
   .IconExit {
-    @apply absolute right-2 top-2 flex cursor-pointer text-7xl;
+    @apply fixed right-2 top-2 flex cursor-pointer text-7xl;
   }
 
   .IconLeftHeader {

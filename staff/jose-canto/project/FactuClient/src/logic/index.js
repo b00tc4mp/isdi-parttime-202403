@@ -16,6 +16,8 @@ import getDeliveryNote from "./getDeliveryNote.js"
 import createDeliveryNote from "./createDeliveryNote.js"
 import createWork from "./createWork.js"
 
+import getAllInvoices from "./getAllInvoices.js"
+import getInvoice from "./getInvoice.js"
 
 const logic = {
   isUserLoggedIn,
@@ -35,6 +37,9 @@ const logic = {
 
   createDeliveryNote,
   createWork,
+
+  getAllInvoices,
+  getInvoice,
 }
 
 export default logic

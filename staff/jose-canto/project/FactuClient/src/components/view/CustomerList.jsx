@@ -49,7 +49,7 @@ export default function CustomerList() {
         Listado Clientes
       </Header>
 
-      <Main className="MainList">
+      <Main>
         <ul className="CustomerList">
           {customers.map((customer) => (
             <Link to={`/customers/profile/${customer.id}`} key={customer.id}>

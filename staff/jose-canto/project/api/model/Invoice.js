@@ -19,17 +19,15 @@ const invoice = new Schema({
     type: ObjectId,
     ref: "User",
   },
-  DeliveryNote: {
+  deliveryNotes: [{
     type: ObjectId,
     ref: "DeliveryNote",
-  },
+  }],
   observations: {
     type: String,
-    required: false
   },
   paymentType: {
     type: String,
-    required: true
   }
 })
 

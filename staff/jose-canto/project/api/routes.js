@@ -21,5 +21,8 @@ router.get("/delivery-notes/:deliveryNoteId", routes.getDeliveryNoteHandler)
 router.post("/create/delivery-notes/:customerId", jsonBodyParser, routes.createDeliveryNoteHandler)
 router.patch("/create/work/delivery-notes/:deliveryNoteId", jsonBodyParser, routes.createWorkHandler)
 
+router.get("/invoices", routes.getAllInvoicesHandler)
+router.get("/invoices/:invoiceId", routes.getInvoiceHandler)
+
 
 export default router

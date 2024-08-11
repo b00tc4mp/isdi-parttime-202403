@@ -2,13 +2,13 @@ import { Link, useNavigate } from "react-router-dom"
 
 import logic from "../../logic/index"
 
-import "./Register.css"
-
 import Title from "../Title"
 import Field from "../core/Field"
 import Button from "../core/Button"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
+
+import "./Register.css"
 
 export default function Register() {
   const navigate = useNavigate()

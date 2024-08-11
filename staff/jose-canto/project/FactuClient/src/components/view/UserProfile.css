@@ -21,6 +21,6 @@
   }
 
   .HeaderProfile .IconLeftHeader {
-    @apply -top-5;
+    @apply -top-7;
   }
 }

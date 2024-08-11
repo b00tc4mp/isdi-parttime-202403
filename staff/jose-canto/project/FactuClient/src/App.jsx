@@ -11,6 +11,7 @@ import DeliveryNoteList from "./components/view/DeliveryNotesList"
 import DeliveryInfo from "./components/view/DeliveryInfo"
 import NewDeliveryNotes from "./components/view/NewDeliveryNotes"
 import CreateDeliveryNotes from "./components/view/CreateDeliveryNotes"
+import InvoiceInfo from "./components/view/InvoiceInfo"
 
 import logic from "./logic/index"
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/users/profile" element={<UsersProfile />} />
 
         <Route path="/invoices" element={<InvoiceList />} />
+        <Route path="/invoices/:invoiceId" element={<InvoiceInfo />} />
 
         <Route path="/create/delivery-notes" element={<NewDeliveryNotes />} />
         <Route path="/create/delivery-notes/:customerId" element={<CreateDeliveryNotes />} />

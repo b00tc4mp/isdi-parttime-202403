@@ -1,0 +1,9 @@
+@tailwind components;
+
+@tailwind components;
+
+@layer components {
+  .TitleInvoice {
+    @apply text-2xl;
+  }
+}
