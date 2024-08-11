@@ -24,15 +24,11 @@ const DropdownMenu = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const handleMenuItemClick = (path) => {
+  const handleLogout = () => {
+    logic.logoutUser();
+    setIsLoggedIn(false);
     setIsOpen(false);
-    if (path === 'logout') {
-      logic.logoutUser();
-      setIsLoggedIn(false);
-      navigate('/');
-    } else {
-      navigate(path);
-    }
+    navigate('/');
   };
 
   return (
@@ -54,8 +50,7 @@ const DropdownMenu = () => {
               <Link to='/favoritos'>Favoritos</Link>
               <Link to='/rooms'>Ofrecer</Link>
               <Link to={`/users/${userId}/rooms`}>Mis ofertas</Link>
-              <Link to='logout' className="LogoutButton">Cerrar sesión</Link>
-            </>
+              <button onClick={handleLogout} className="LogoutButton">Cerrar sesión</button>            </>
           )}
         </div>
       )}

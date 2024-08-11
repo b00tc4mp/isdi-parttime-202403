@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import logic from "../../../logic/index";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getUserId } from "../../../logic/getUserInfo";
 
 
@@ -9,8 +9,8 @@ import './RoomList.css'
 function UserRooms() {
   const [rooms, setRooms] = useState([])
 
-const userId = getUserId()
-  
+  const userId = getUserId()
+
   useEffect(() => {
     try {
       logic.getAllUserRooms(userId)
@@ -47,7 +47,7 @@ const userId = getUserId()
               </div>
             </div>
             <div className="LinkTo">
-            <Link to={`user/${userId}/rooms/${rooms}`}>Editar</Link>
+              <Link to={`user/${userId}/rooms/${rooms}`}>Editar</Link>
             </div>
           </div>
         </li>)}

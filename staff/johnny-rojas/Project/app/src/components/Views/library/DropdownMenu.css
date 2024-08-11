@@ -18,6 +18,10 @@
     @apply block px-4 py-3 text-gray-700 hover:bg-gray-100;
   }
 
+  .LogoutButton{
+    @apply block px-4 py-3 text-gray-700 hover:bg-gray-100;
+  }
+
 
   .top-bar .dropdown-menu {
     @apply text-black text-xl ml-24 relative; 

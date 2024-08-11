@@ -4,20 +4,16 @@ import TopBar from "../library/TopBar";
 import UserRooms from "../library/UserRooms";
 
 
-function HostProfile() {
-
+function HostRooms() {
 
   return <div>
     <div>
-    <Header>
-      <TopBar></TopBar>
-    </Header>
+      <Header>
+        <TopBar></TopBar>
+      </Header>
     </div>
-
     <UserRooms></UserRooms>
-
-
   </div>
 }
 
-export default HostProfile
+export default HostRooms

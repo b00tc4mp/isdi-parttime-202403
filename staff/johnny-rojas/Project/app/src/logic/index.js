@@ -2,6 +2,7 @@ import registerUser from './registerUser';
 import isUserLoggedIn from './isUserLoggedIn';
 import loginUser from './loginUser'
 import logoutUser from './logoutUser';
+import { getUserId, getUserRole } from "./getUserInfo";
 
 import createRoom from './createRoom';
 import getAllRooms from './getAllRooms';
@@ -13,11 +14,14 @@ const logic = {
   isUserLoggedIn,
   loginUser,
   logoutUser,
+  getUserId,
+  getUserRole,
 
   createRoom,
   getAllRooms,
   getRoom,
   getAllUserRooms,
+
 }
 
 export default logic
