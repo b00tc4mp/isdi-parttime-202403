@@ -11,14 +11,14 @@ const createWork = (userId, deliveryNoteId, concept, quantity, price) => {
   validate.number(price, "price")
 
 
-  return User.findById(userId).lean()
+  return User.findById(userId).select("-__v").lean()
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
         throw new NotFoundError("User not found")
       }
 
-      return DeliveryNote.findById(deliveryNoteId).lean()
+      return DeliveryNote.findById(deliveryNoteId).select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
         .then((deliveryNote) => {
           if (!deliveryNote) {

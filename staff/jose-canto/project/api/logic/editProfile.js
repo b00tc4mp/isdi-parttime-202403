@@ -44,7 +44,7 @@ const editProfile = (userId, updates) => {
     updateFields.companyLogo = updates.companyLogo
   }
 
-  return User.findByIdAndUpdate(userId, updateFields, { new: true }).lean()
+  return User.findByIdAndUpdate(userId, updateFields, { new: true }).select("-__v").lean()
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
