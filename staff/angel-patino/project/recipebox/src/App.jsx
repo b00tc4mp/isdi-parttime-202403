@@ -1,29 +1,66 @@
 import { useState } from "react"
+import logic from "./logic"
 
-//import Register from "./views/Register"
 import Login from "./views/Login"
 import Register from "./views/Register"
 //import Home from "./views/Home"
 
-// import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 
 function App() {
   // console.log("App -> render")
 
-  // const [message, setMessage] = useState(null)
+  const navigate = useNavigate()
 
-  // const navigate = useNavigate()
+  const handleGoToLogin = () => navigate("/login")
 
-  // const handleGoToLogin = () => navigate("/login")
+  const handleGoToHome = () => navigate("/")
 
-  // const handleGoToHome = () => navigate("/")
-
-  // const handleGoToRegister = () => navigate("/register")
+  const handleGoToRegister = () => navigate("/register")
 
   return (
     <div className="flex w-full h-screen">
       <div className="w-full flex items-center justify-center">
-        <Register />
+        <Routes>
+          <Route
+            path="/register"
+            element={
+              logic.isUserLoggedIn() ? (
+                <Navigate to="/" />
+              ) : (
+                <Register
+                  onUserRegistered={handleGoToLogin}
+                  onLoginLinkClick={handleGoToLogin}
+                />
+              )
+            }
+          />
+
+          <Route
+            path="/login"
+            element={
+              logic.isUserLoggedIn() ? (
+                <Navigate to="/" />
+              ) : (
+                <Login
+                  onUserLoggedIn={handleGoToHome}
+                  onRegisterLinkClick={handleGoToRegister}
+                />
+              )
+            }
+          />
+
+          <Route
+            path="/*"
+            element={
+              logic.isUserLoggedIn() ? (
+                <Home onUserLoggedOut={handleGoToLogin} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+        </Routes>
       </div>
     </div>
   )

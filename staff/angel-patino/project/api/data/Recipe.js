@@ -25,14 +25,14 @@ const recipe = new Schema({
     },
 
     cookTime: {
-        type: String,
+        type: Number,
         required: true
     },
 
-    ingredients: {
+    ingredients: [{
         type: String,
         required: true
-    },
+    }],
 
     description: {
         type: String,
@@ -41,14 +41,18 @@ const recipe = new Schema({
 
     date: {
         type: Date,
-        required: true,
-        default: Date.nowº
+        default: Date.now
     },
 
     rating: {
         type: Number,
-        required: false
-    }
+        min: 1,
+        max: 5
+    },
+    likes: [{
+        type: ObjectId,
+        ref: 'User'
+    }]
 
 
 })

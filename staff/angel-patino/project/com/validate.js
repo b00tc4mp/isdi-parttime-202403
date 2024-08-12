@@ -11,7 +11,7 @@ function validateName(name, explain = 'name') {
         throw new ContentError(`${explain} is not valid`)
 }
 
-function validateUsername(username, explain = 'uernsame') {
+function validateUsername(username, explain = 'username') {
     if (typeof username !== 'string' || !USERNAME_REGEX.test(username))
         throw new ContentError(`${explain} is not valid`)
 }
@@ -21,7 +21,7 @@ function validatePassword(password) {
         throw new ContentError('password is not valid')
 }
 
-function validatePasswordMatch(password, passwordRepeat) {
+function validatePasswordsMatch(password, passwordRepeat) {
     if (password !== passwordRepeat)
         throw new MatchError('passwords don\'t match')
 }
@@ -33,7 +33,7 @@ function validateEmail(email) {
 
 function validateCallback(callback) {
     if (typeof callback !== 'function')
-        throw new TypeError('callback is noa function')
+        throw new TypeError('callback is not a function')
 }
 
 function validateText(text, explain = 'text', maxLength = Infinity) {
@@ -47,21 +47,33 @@ function validateUrl(url, explain = 'url') {
 }
 
 function validateId(id, explain = 'id') {
-    if (!ID_REGEX.test.apply(id))
+    if (!ID_REGEX.test(id))
         throw new ContentError(`${explain} is not valid`)
 }
+function validateNumber(number, explain = 'number', { min = -Infinity, max = Infinity } = {}) {
+    if (typeof number !== 'number' || isNaN(number) || number < min || number > max) {
+        throw new ContentError(`${explain} is not valid`)
+    }
+}
 
+function validateArrayOfString(array, explain = 'array') {
+    if (!Array.isArray(array) || array.some(item => typeof item !== 'string')) {
+        throw new ContentError(`${explain} is not valid`)
+    }
+}
 
 const validate = {
     name: validateName,
     username: validateUsername,
     password: validatePassword,
-    passwordsMatch: validatePasswordMatch,
+    passwordsMatch: validatePasswordsMatch,
     email: validateEmail,
     callback: validateCallback,
     text: validateText,
     url: validateUrl,
-    id: validateId
+    id: validateId,
+    number: validateNumber,
+    arrayOfString: validateArrayOfString
 }
 
 export default validate

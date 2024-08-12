@@ -1,4 +1,4 @@
-import logic from '../data/index.js'
+import logic from '../logic/index.js'
 import { CredentialsError } from '../../com/errors.js'
 import jwt from '../util/jsonwebtoken-promised.js'
 

@@ -2,14 +2,15 @@ import { User, Recipe } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const createRecipe = (userId, title, source, thumbnail, cookTime, ingredients, description) => {
+const createRecipe = (userId, title, source, thumbnail, cookTime, ingredients, description, rating) => {
     validate.id(userId, 'userId')
     validate.text(title, 'title', 25)
     validate.text(source, 'source', 25)
     validate.url(thumbnail, 'image')
-    validate.text(cookTime, 'cookTime')
-    validate.text(ingredients, 'ingredients')
+    validate.number(cookTime, 'cookTime')
+    validate.arrayOfString(ingredients, 'ingredients')
     validate.text(description, 'description')
+    validate.number(rating, 'rating', { min: 1, max: 5 })
 
 
 
@@ -27,7 +28,7 @@ const createRecipe = (userId, title, source, thumbnail, cookTime, ingredients, d
                 cookTime,
                 ingredients,
                 description,
-                date: new Date,
+                date: new Date(),
                 rating
             }
 

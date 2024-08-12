@@ -1,6 +1,6 @@
-import logic from "../logic/index.js"
-import { CredentialsError } from "com/errors.js"
-import jwt from "../util/jsonwebtoken-promised.js"
+import jwt from '../util/jsonwebtoken-promised.js'
+import { CredentialsError } from 'com/errors.js'
+import logic from '../logic/index.js'
 
 const { JWT_SECRET } = process.env
 
@@ -12,11 +12,11 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const { title, source, thumbnail, cookTime, ingredients, description, rating } = req.body
+                const { recipeId } = req.params
 
                 try {
-                    logic.createRecipe(userId, title, source, thumbnail, cookTime, ingredients, description, rating)
-                        .then(() => res.status(201).send())
+                    logic.rateRecipe(userId, recipeId,)
+                        .then(() => res.status(204).send())
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)

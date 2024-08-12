@@ -1,4 +1,4 @@
-import { ContentError, CredentialsError, DuplicityError, MatchError, NotFoundError } from "com/errors.js"
+import { ContentError, CredentialsError, DuplicityError, MatchError, NotFoundError } from 'com/errors.js'
 
 export default (error, req, res, next) => {
     let status = 500
@@ -14,5 +14,5 @@ export default (error, req, res, next) => {
     else if (error instanceof NotFoundError)
         status = 404
 
-    res.status(status.json({ error: error.constructor.name, message: error.name }))
+    res.status(status).json({ error: error.constructor.name, message: error.message })
 }

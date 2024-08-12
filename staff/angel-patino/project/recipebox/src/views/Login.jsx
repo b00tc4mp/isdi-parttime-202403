@@ -1,6 +1,48 @@
+import { useState } from "react"
 import View from "../components/library/View"
 
-function Login() {
+import logic from "../logic"
+import { SystemError } from "com/errors.js"
+
+function Login({ onUserLoggedIn, onRegisterLinkClick }) {
+  const [message, setMessage] = useState("")
+
+  const handleLoginSubmit = (event) => {
+    event.preventDefault()
+
+    const form = event.target
+
+    const username = form.username.value
+    const password = form.password.value
+
+    try {
+      logic
+        .loginUser(username, password)
+        .then(() => onUserLoggedIn())
+        .catch((error) => {
+          console.log(error)
+
+          if (error instanceof SystemError) {
+            alert(error.message)
+
+            return
+          }
+
+          setMessage(error.message)
+        })
+    } catch (error) {
+      console.log(error)
+
+      setMessage(error.message)
+    }
+  }
+
+  const handleRegisterClick = (event) => {
+    event.preventDefault()
+
+    onRegisterLinkClick()
+  }
+
   return (
     <View tag="main">
       <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
@@ -8,7 +50,7 @@ function Login() {
         <p className="font-medium text-lg text-gray-500 mt-4 ">
           Welcome to RecipesBox
         </p>
-        <div className="mt-8">
+        <form onSubmit={handleLoginSubmit} message={message}>
           <div>
             <label className="text-lg font-medium">Username</label>
             <input
@@ -30,6 +72,32 @@ function Login() {
             <button className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-500 text-white text-lg font-bold">
               LOGIN
             </button>
+          </div>
+        </form>
+
+        <div className="mt-8">
+          <div>
+            {/* <label className="text-lg font-medium">Username</label>
+            <input
+              className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+              placeholder="username"
+              id="username"
+            />
+          </div>
+          <div>
+            <label className="text-lg font-medium">Password</label>
+            <input
+              className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+              placeholder="password"
+              id="password"
+              type="password"
+            />
+          </div>
+          <div className="mt-8 flex flex-col gap-y-4">
+            <button className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-500 text-white text-lg font-bold">
+              LOGIN
+            </button> */}
+
             <div class="inline-flex items-center justify-center w-full">
               <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
               <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">
@@ -66,7 +134,10 @@ function Login() {
 
           <div className="my-8 flex justify-center items-center">
             <p className="font-medium text-base">Don´t have an account?</p>
-            <button className="text-blue-500 text-base font-medium ml-2">
+            <button
+              className="text-blue-500 text-base font-medium ml-2"
+              onClick={handleRegisterClick}
+            >
               Register Now
             </button>
           </div>

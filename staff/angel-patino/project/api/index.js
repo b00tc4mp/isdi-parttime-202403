@@ -7,7 +7,12 @@ import {
     registerUserHandler,
     authenticateUserHandler,
     getUserNameHandler,
-    errorHandler
+    errorHandler,
+    getAllRecipesHandler,
+    createRecipeHandler,
+    toggleLikeRecipeHandler,
+    editUsernameHandler,
+    deleteRecipeHandler
 } from './handlers/index.js'
 
 const { MONGODB_URL, PORT } = process.env
@@ -24,9 +29,19 @@ mongoose.connect(MONGODB_URL)
 
         api.post('/users', jsonBodyParser, registerUserHandler)
 
-        api.post('users/auth', jsonBodyParser, authenticateUserHandler)
+        api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
 
         api.get('/users/:targetUserId', getUserNameHandler)
+
+        api.patch('/profile/userId/editUsername', jsonBodyParser, editUsernameHandler)
+
+        api.get('/recipes', getAllRecipesHandler)
+
+        api.post('/recipes', jsonBodyParser, createRecipeHandler)
+
+        api.delete('/recipes/:recipeId', deleteRecipeHandler)
+
+        api.delete('/recipes/:recipesId/likes', toggleLikeRecipeHandler)
 
         api.use(errorHandler)
 

@@ -4,8 +4,9 @@ import bcrypt from 'bcryptjs'
 
 import { expect } from 'chai'
 
-import authenticateUser from './authenticateUser.js'
 import { User } from '../data/index.js'
+
+import authenticateUser from './authenticateUser.js'
 import { ContentError, CredentialsError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
@@ -41,16 +42,28 @@ describe('authenticateUser', () => {
             })
     })
 
-    it('fails on invalid usernarme', () => {
+    it('fails on existing user by wrong password', () => {
+        let errorThrown
+        return bcrypt.hash('098098098', 9)
+            .then(hash => User.create({ name: 'Angel', surname: 'Patiño', email: 'angel@patino.com', username: 'anxo', password: hash }))
+            .then(() => authenticateUser('anxo', '123123123'))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.instanceOf(CredentialsError)
+                expect(errorThrown.message).to.equal('wrong password')
+            })
+    })
+
+    it('fails on invalid username', () => {
         let errorThrown
 
         try {
-            authenticateUser(3333, '123123123')
+            authenticateUser(333, '123123123')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown).to.equal('username is not valid')
+            expect(errorThrown.message).to.equal('username is not valid')
         }
     })
 
@@ -58,12 +71,12 @@ describe('authenticateUser', () => {
         let errorThrown
 
         try {
-            authenticateUser('Angel', '000000000')
+            authenticateUser('somebody', '1231231')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown).to.equal('password is not valid')
+            expect(errorThrown.message).to.equal('password is not valid')
         }
     })
 
