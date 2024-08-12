@@ -16,7 +16,10 @@ router.post('/rooms', jsonBodyParser, routes.createRoomHandler)
 router.get('/rooms/:roomId', routes.getRoomHandler)
 router.get('/users/:userId/rooms', routes.getAllUserRoomsHandler)
 router.patch('/rooms/:roomId/manage',  jsonBodyParser, routes.editRoomHandler)
-router.delete('/rooms/:roomId/manage',  jsonBodyParser, routes.deleteRoomHandler)
-// router.delete('/rooms/:roomId/user/:userId', router.deleteRoomHandler)
+router.delete('/rooms/:roomId/manage', jsonBodyParser, routes.deleteRoomHandler)
+
+router.post('/create-booking/:roomId', jsonBodyParser, routes.createBookingHandler)
 
 export default router;
+
+

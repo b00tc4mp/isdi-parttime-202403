@@ -37,5 +37,4 @@ const createBooking = (userId, roomId, startDate, endDate) => {
 
 }
 
-
 export default createBooking

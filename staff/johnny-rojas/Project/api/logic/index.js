@@ -9,6 +9,8 @@ import getAllUserRooms from './getAllUserRooms.js'
 import editRoom from './editRoom.js'
 import deleteRoom from './deleteRoom.js'
 
+import createBooking from './createBooking.js'
+
 
 const logic = {
   registerUser,
@@ -20,7 +22,8 @@ const logic = {
   getRoom,
   getAllUserRooms,
   editRoom,
-  deleteRoom
+  deleteRoom,
+  createBooking
 }
 
 export default logic
