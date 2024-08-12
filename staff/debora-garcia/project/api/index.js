@@ -24,6 +24,7 @@ mongoose.connect(MONGODB_URL)
         api.post("/users", jsonBodyParser, routeHandler.registerUserHandler)
         api.post("/users/auth", jsonBodyParser, routeHandler.authenticateUserHandler)
         api.get("/users/:targetUserId", routeHandler.getUsernameHandler)
+        api.get("/workouts/:workoutType", routeHandler.getRandomWorkoutHandler)
         api.use(errorHandler)
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
 

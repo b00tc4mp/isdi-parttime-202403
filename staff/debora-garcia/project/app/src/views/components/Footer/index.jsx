@@ -1,25 +1,12 @@
 import "./index.css"
 import Button from "../../../components/Button"
+import { Link } from "react-router-dom"
 
-
-export default function Footer({ goToFeedClick, goToWorkoutClick, goToAchievementClick }) {
-
-
-    const handleGoToFeedClick = () => goToFeedClick()
-    const handleGoToWorkoutClick = () => goToWorkoutClick()
-    const handleGoToAchievementClick = () => goToAchievementClick()
-
+export default function Footer() {
+ 
     return <footer className="Footer">
-        <Button onClick={handleGoToFeedClick} className="FooterButton">
-            <i className="fa fa-house"></i>
-        </Button>
-        <Button onClick={handleGoToWorkoutClick} className="FooterButton">
-            <i className="fa fa-dumbbell"></i>
-        </Button>
-        <Button onClick={handleGoToAchievementClick} className="FooterButton">
-            <i className="fa fa-ranking-star"></i>
-        </Button>
+        <Link to="/feed"><Button className="FooterButton"><i className="fa fa-house"></i></Button></Link>
+        <Link to="/workouts"><Button className="FooterButton"><i className="fa fa-dumbbell"></i></Button></Link>
+        <Link to="/achievements"><Button className="FooterButton"><i className="fa fa-ranking-star"></i></Button></Link>
     </footer>
-
 }
-

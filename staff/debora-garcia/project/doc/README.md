@@ -97,15 +97,17 @@ Level Up allows users to generate and customize workouts, track personal bests a
 
 - id (string)
 - type (string, enum: emom|amrap|for-time|benchmark)
-- exercises ([Movement.id])
+- movements ([Movement.id])
+- rounds (number)
 - duration (number)
+- description (string)
 
 **Movement**
 
 - id (string)
 - name (string,required)
 - weight (number, optional)
-- repetitions (number, required)
+- quantity (number, required)
 - units (string)
 
 **v0.1**

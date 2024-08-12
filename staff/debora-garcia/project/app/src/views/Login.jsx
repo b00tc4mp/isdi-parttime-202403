@@ -37,14 +37,14 @@ export default function Login() {
         }
     }
 
-    return <form className="registerForm" onSubmit={handleLoginSubmit} >
-        <Heading level="1" className="Heading">WELLCOME BACK!</Heading>
-        <p>Be part of our team</p>
+    return (
+        <form className="registerForm" onSubmit={handleLoginSubmit} >
+            <Heading level="1" className="Heading">WELLCOME BACK!</Heading>
+            <p>Be part of our team</p>
 
-        <Field id="username" type="text" placeholder="Username"></Field>
-        <Field id="password" type="password" placeholder="Password"></Field>
-        <Button type="submit">Sign in</Button>
-
-
-    </form>
+            <Field id="username" type="text" placeholder="Username"></Field>
+            <Field id="password" type="password" placeholder="Password"></Field>
+            <Button type="submit">Sign in</Button>
+        </form>
+    )
 }

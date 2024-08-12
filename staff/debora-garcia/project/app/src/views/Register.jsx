@@ -49,17 +49,20 @@ export default function Register() {
 
     }
 
-    return <form className="registerForm" onSubmit={handleRegisterSubmit}>
-        <Heading level="1" className="Heading">NEW ACCOUNT</Heading>
-        <p>Be part of our team</p>
-        <Field id="name" type="text" placeholder="Name"></Field>
-        <Field id="surname" type="text" placeholder="Surname"></Field>
-        <Field id="username" type="text" placeholder="Username"></Field>
-        <Field id="email" type="email" placeholder="E-mail"></Field>
-        <Field id="password" type="password" placeholder="Password"></Field>
-        <Field id="passwordRepeat" type="password" placeholder="Confirm Password"></Field>
-        <Button type="submit">Sign up</Button>
-        <Link onClick={handleLoginClick}>Login</Link>
+    return (
 
-    </form>
+        <form className="registerForm" onSubmit={handleRegisterSubmit}>
+            <Heading level="1" className="Heading">NEW ACCOUNT</Heading>
+            <p>Be part of our team</p>
+            <Field id="name" type="text" placeholder="Name"></Field>
+            <Field id="surname" type="text" placeholder="Surname"></Field>
+            <Field id="username" type="text" placeholder="Username"></Field>
+            <Field id="email" type="email" placeholder="E-mail"></Field>
+            <Field id="password" type="password" placeholder="Password"></Field>
+            <Field id="passwordRepeat" type="password" placeholder="Confirm Password"></Field>
+            <Button type="submit">Sign up</Button>
+            <Link onClick={handleLoginClick}>Login</Link>
+
+        </form>
+    )
 }

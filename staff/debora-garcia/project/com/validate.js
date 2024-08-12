@@ -53,6 +53,10 @@ function validateId(id, explain = "id") {
     if (typeof id !== "string" || !ID_REGEX.test(id))
         throw new ContentError(`${explain} is not valid`)
 }
+function validateType(type, explain = "type") {
+    if (typeof type !== "string")
+        throw new ContentError(`${explain} is not valid`)
+}
 
 const validate = {
     name: validateName,
@@ -63,7 +67,8 @@ const validate = {
     email: validateEmail,
     text: validateText,
     url: validateUrl,
-    id: validateId
+    id: validateId,
+    type: validateType
 
 }
 

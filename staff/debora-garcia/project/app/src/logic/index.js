@@ -3,6 +3,7 @@ import isUserLoggedIn from "./isUserLoggedIn";
 import loginUser from "./loginUser";
 import logoutUser from "./logoutUser";
 import registerUser from "./registerUser";
+import getRandomWorkout from "./getRandomWorkout";
 
 const logic = {
     registerUser,
@@ -10,6 +11,7 @@ const logic = {
     getUsername,
     logoutUser,
     isUserLoggedIn,
+    getRandomWorkout,
 
 }
 
