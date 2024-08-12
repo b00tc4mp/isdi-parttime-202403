@@ -13,11 +13,8 @@ import logic from '../../../logic';
 
 import './CreateRoom.css'
 
-
-
 function CreateRoom() {
   const [showForm, setShowForm] = useState(false)
-
   const navigate = useNavigate()
 
   const handleCreateRoomSubmit = event => {

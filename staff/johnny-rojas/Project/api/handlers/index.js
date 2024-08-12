@@ -6,6 +6,7 @@ import getAllRoomsHandler from './getAllRoomsHandler.js';
 import getRoomHandler from './getRoomHandler.js';
 import getAllUserRoomsHandler from './getAllUserRoomsHandler.js';
 import editRoomHandler from './editRoomHandler.js'
+import deleteRoomHandler from './deleteRoomHandler.js'
 
 
 const handlers = {
@@ -18,6 +19,7 @@ const handlers = {
   getRoomHandler,
   getAllUserRoomsHandler,
   editRoomHandler,
+  deleteRoomHandler,
 }
 
 export default handlers

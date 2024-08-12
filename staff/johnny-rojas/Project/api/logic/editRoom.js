@@ -37,7 +37,7 @@ const editRoom = (userId, roomId, updates) => {
     .catch(error => { throw new SystemError(error.message) })
     .then(room => {
       if (!room) {
-      throw new NotFoundError('user not found')
+      throw new NotFoundError('room not found')
       }
       return room
   })

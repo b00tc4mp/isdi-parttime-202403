@@ -1,9 +1,6 @@
 import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
 import { User, Room } from '../data/index.js'
 import validate from 'com/validate.js'
-import { Types } from 'mongoose'
-
-const { ObjectId } = Types
 
 const deleteRoom = (userId, roomId) => {
   validate.id(userId, 'userId')

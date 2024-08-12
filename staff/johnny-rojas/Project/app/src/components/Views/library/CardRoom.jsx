@@ -33,7 +33,6 @@ function CardRoom({ Room }) {
       <p className="nameRoom">{Room.nameRoom}</p>
       <p className="regionRoom">{Room.region}</p>
       <p className="descriptionRoom">{Room.description}</p>
-      <p className="availabilityRoom">{Room.availibility}</p>
     </div>
     <div className='InfoCardRight'>
       <div>

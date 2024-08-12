@@ -7,6 +7,7 @@ import getAllRooms from './getAllRooms.js'
 import getRoom from './getRoom.js'
 import getAllUserRooms from './getAllUserRooms.js'
 import editRoom from './editRoom.js'
+import deleteRoom from './deleteRoom.js'
 
 
 const logic = {
@@ -18,7 +19,8 @@ const logic = {
   getAllRooms,
   getRoom,
   getAllUserRooms,
-  editRoom
+  editRoom,
+  deleteRoom
 }
 
 export default logic

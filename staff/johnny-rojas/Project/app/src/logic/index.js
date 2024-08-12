@@ -8,6 +8,8 @@ import createRoom from './createRoom';
 import getAllRooms from './getAllRooms';
 import getRoom from './getRoom'
 import getAllUserRooms from './getAllUserRooms'
+import editRoom from './editRoom';
+import deleteRoom from './deleteRoom';
 
 const logic = {
   registerUser,
@@ -21,7 +23,8 @@ const logic = {
   getAllRooms,
   getRoom,
   getAllUserRooms,
-
+  editRoom,
+  deleteRoom
 }
 
 export default logic

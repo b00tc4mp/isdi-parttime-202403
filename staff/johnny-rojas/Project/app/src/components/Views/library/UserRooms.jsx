@@ -3,12 +3,10 @@ import logic from "../../../logic/index";
 import { Link } from 'react-router-dom'
 import { getUserId } from "../../../logic/getUserInfo";
 
-
 import './RoomList.css'
 
 function UserRooms() {
   const [rooms, setRooms] = useState([])
-
   const userId = getUserId()
 
   useEffect(() => {
@@ -19,12 +17,12 @@ function UserRooms() {
           alert(error.message)
           return
         })
-
     } catch (error) {
       console.error(error.message)
       alert(error)
     }
-  }, [])
+  }, [userId])
+
 
   return <div className='Container'>
     <section className='SectionCard'>
@@ -47,7 +45,7 @@ function UserRooms() {
               </div>
             </div>
             <div className="LinkTo">
-              <Link to={`user/${userId}/rooms/${rooms}`}>Editar</Link>
+              <Link to={`/rooms/${room.id}/manage`}>Editar</Link>
             </div>
           </div>
         </li>)}
