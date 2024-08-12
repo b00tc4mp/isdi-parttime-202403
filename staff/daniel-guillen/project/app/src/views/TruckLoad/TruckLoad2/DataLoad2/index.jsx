@@ -3,15 +3,29 @@ import { collection, getDocs, deleteDoc, doc  } from 'firebase/firestore'
 import { db } from '../../../../components/firebase/config'
 import './index.css'
 
-const DataStoreList = () => {
+const DataTruckLoad2 = () => {
 
   const [list, setList] = useState([])
+  // const [week, setWeek] = useState("")
 
-  //solicitar y renderizamos lista de residuos guardados
+  // useEffect(() => {
+  //   const today = new Date()
+  //   setWeek(getWeekNumber(today))
+  // }, []);
+
+  //   // funcion para traer semana
+  //   const getWeekNumber = (date) => {
+  //     const startOfYear = new Date(date.getFullYear(), 0, 1);
+  //     const pastDaysOfYear = (date - startOfYear) / 86400000;
+  //     return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+  //   }
+
+
+  //solicitar para renderizar lista de residuos guardados
   useEffect(() => {
     const getList = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'dataStoreWaste'))
+        const querySnapshot = await getDocs(collection(db, 'dataTruck2Load'))
         const docs = []
         querySnapshot.forEach((doc) => {
           docs.push({ ...doc.data(), id: doc.id })
@@ -32,7 +46,7 @@ const DataStoreList = () => {
     const isConfirmed = window.confirm('¿Deseas eliminar este residuo? 🙈')
   
     if (isConfirmed) {
-      await deleteDoc(doc(db, 'dataStoreWaste', id))
+      await deleteDoc(doc(db, 'dataTruck2Load', id))
       alert("Residuo eliminado exitosamente 🎉")
       window.location.reload()
     } else {
@@ -41,8 +55,9 @@ const DataStoreList = () => {
   }
 
   return (
-        <div className='DataStoreWasteDiv'>
-          <h2 className='DataStoreTitle'>Lista de Residuos almacenados:</h2>
+        <div className='TruckLoadListDiv'>
+            <h2 className='DataTitle'>Lista de Residuos:</h2>
+            {/* <h2 className='DataTitle'>Carga para Acteco Semana {week}:</h2> */}
         {
         list
           //El metodo sort() ordenara los campos de un array localmente (localeComapre) y devuelve el arreglo ordenado
@@ -71,7 +86,7 @@ const DataStoreList = () => {
               <React.Fragment key={item.id}>
                 {isCodeDifferent && <div><p></p></div>}
                 <button 
-                  className={`NewWasteDiv ${item.container} ${item.status}`}
+                  className={`NewWasteDiv ${item.container}`}
                   onClick={() => deleteWaste(item.id)}
                 >
                   <div className='NewWaste' >
@@ -80,10 +95,10 @@ const DataStoreList = () => {
                   </div>
                 </button>
               </React.Fragment>
-            );
+            )
           })}
         </div>
-  );
-};
+  )
+}
 
-export default DataStoreList
+export default DataTruckLoad2

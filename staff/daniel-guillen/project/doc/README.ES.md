@@ -1,12 +1,11 @@
-# DEMO - CDR
-
+# DEMO - CDR - EMPRESA DE RESIDUOS
 ![Logo Universal](logo.jpg)
 
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
 Las aplicaciones personalizadas son herramientas diseñadas específicamente para satisfacer las necesidades particulares de una empresa. Estas aplicaciones pueden ofrecer una amplia gama de beneficios que pueden mejorar la eficiencia, la productividad y la competitividad. Algunas de las principales razones por las que son útiles: Adaptación a NECESIDADES Específicas, INTEGRACION con Sistemas Existentes, Mejora de la EFICIENCIA Operativa, SEGURIDAD y Recopilación y Análisis de Datos.
 
-### Registro y lista de Usuarios
+### Login, Registro y lista de Usuarios
 
 ### Casos de Usuario
 
@@ -22,13 +21,20 @@ Las aplicaciones personalizadas son herramientas diseñadas específicamente par
 
 ![Login - Registro de usuarios y listado de usuarios](users.png)
 
+### HOME
+
+![HOME](home.png)
+
+Solo podra acceder el ADMIN despues de completar login con sus credenciales personales, tendra en un primer vistazo acceso a las principales categorias(Incentario, Salidas, Vehiculos y Usuarios).
+
+
 ### Almacen e Inventario
 
 El inventario sera un registro detallado de los residuos que la empresa almacena, y es fundamental para la gestión eficiente de los recursos. 
 
 Aquí tienes algunas razones clave por las cuales es necesario mantener un inventario: control real de existencias, optimizar recursos, evitar accidentes y ayudar en la planificacion y toma de decisiones.
 
-![Almacen](https://media2.giphy.com/media/VnKkglxCbWsg6CLHtR/giphy.webp?cid=790b76116t7fael4s77gqms15dct1h0c9t39ei9f3yafdk04&ep=v1_gifs_search&rid=giphy.webp&ct=g)
+![Inventario](https://media2.giphy.com/media/VnKkglxCbWsg6CLHtR/giphy.webp?cid=790b76116t7fael4s77gqms15dct1h0c9t39ei9f3yafdk04&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
 ## Almacen
 
@@ -36,24 +42,24 @@ Solo podra acceder el usuario que tenga asignada esta seccion (almacen:inventari
 
 ## Inventario
 
+![Inventario](store.png)
+
 El usuario podra hacer registro de los residuos:
 
     - LER: Desplegable y filtro de listado Europeo de Residuos.
     - Acondicionamiento o almacenado en: GRG, Palet, Big Bag, Bidones de 200 o de inferior tamaño.
     - Peso: indicado en kilogramos.
-    - Estancado: marcar cuando el residuo se encuentra almacenado (minimo un mes) durante un periodo prolongado.
+    - Estado del residuo: correcto o estancado (marcar cuando el residuo se encuentra almacenado (minimo un mes) durante un periodo prolongado).
 
 En el inventario el usuario podra ver los residuos registrados donde se mostraran agrupados por LER y diferenciados por su acondicionamiento e indicando su peso en kg.
 
-## Estancados
+![Resumen](status.png)
 
-Usuario pueden consultar cuales son los residuos se encuentra almacenados (minimo un mes) durante un periodo prolongado.
+## Resumen y Estancados
 
-## Datos
+Usuario pueden consultar un resumen de los resudios almacenados (Cantidad total en kg por LER) y recordatorio de los que se encuentran estancados.
 
-- Trabajores pueden consultar resumen de los datos registrados en inventario:
-    - Grafica horizontal
-    - Cantidad total en kg por LER (residuo)
+![Buscar](search.png)
 
 ## Buscar
 
@@ -61,7 +67,6 @@ El usuario puede buscar todos los residuos registrados con un LER especifico:
     - Introducir un LER en el buscador
     - Eliminar un registro insertado
 
-![Almacen - Inventario, estancados, separados y buscar](stored.png)
 
 ### Salidas y Cargas de Trailer
 
@@ -71,9 +76,11 @@ Preparar una lista de la carga de un camión es fundamental por varias razones, 
 
 ## Salidas
 
-Solo podra acceder el usuario que tenga asignada esta seccion (salidas:trailer1, trailer2, trailer3 y buscar)
+Solo podra acceder el usuario que tenga asignada esta seccion (salidas:Acteco, trailer2, trailer3 y buscar)
 
-## Trailer 1,2 y 3
+![Salidas](truckload.png)
+
+## Acteco, 2a Carga y 3a Carga
 
 El usuario podra hacer un registro de los residuos que se cargaran en el trailer, podra indicar:
 
@@ -81,12 +88,15 @@ El usuario podra hacer un registro de los residuos que se cargaran en el trailer
     - Acondicionamiento del residuo: GRG, Palet, Big Bag, Bidones de 200 o de inferior tamaño.
     - Peso: indicado en kilogramos.
 
+Ademas, se guardaran datos automaticamente como: semana del año y año, para una facil futura busqueda.
+
 ## Buscar
 
 El usuario puede buscar todos los residuos registrados para cargar en los trailers con un LER especifico:
     - Introducir un LER en el buscador
-    - Eliminar un registro insertado
-    - Se mostrara diferenciado por TRAILER1-3
+    - Introducir semana del año
+    - Introducir año
+    - Introducir Acteco, 2a Carga o 3a Carga
 
 ![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](departures.png)
 

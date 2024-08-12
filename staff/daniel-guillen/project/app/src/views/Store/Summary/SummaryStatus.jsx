@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs  } from 'firebase/firestore'
-import { db } from "../../../firebase/config"
+import { db } from '../../../components/firebase/config'
 import './index.css'
 
 const SummaryStatus = () => {
@@ -32,7 +32,7 @@ const SummaryStatus = () => {
  .sort((a, b) => a.code.localeCompare(b.code)); // Ordenar por code
 
 return (
- <div className='SummaryStatusDiv'>
+ <div className='SummaryDiv'>
    <h2>Residuos estancados:</h2>
    {filteredList.map(item => {
      // Limitamos la descripción a 34 caracteres

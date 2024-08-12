@@ -1,10 +1,12 @@
 .SummaryStoreDiv {
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 }
 
-.SummaryStoreDiv,
-.SummaryWasteDataDiv,
-.SummaryStatusDiv {
+.SummaryDiv {
   display: flex;
   flex-direction: column;
   text-align: center;

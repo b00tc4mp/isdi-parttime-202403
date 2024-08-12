@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs, deleteDoc, doc  } from 'firebase/firestore'
-import { db } from "../../../firebase/config"
+import { db } from '../../../components/firebase/config'
 import WasteSelect from '../../../components/WasteSelect'
 import MenuStore from '../MenuStore'
 import './index.css'

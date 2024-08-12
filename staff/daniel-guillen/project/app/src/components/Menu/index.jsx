@@ -11,7 +11,7 @@ const Menu = () => {
           <div >
             <ul className='MenuButtons'>
               <li><a className='menu-link-start' href="/Store">INVENTRARIO</a></li>
-              <li><a className='menu-link-center' href="/Departures">SALIDAS</a></li>
+              <li><a className='menu-link-center' href="/Acteco">SALIDAS</a></li>
               <li><a className='menu-link-center' href="/Fleet">VEHICULOS</a></li>
               <li><a className='menu-link-end' href="/Users">USUARIOS</a></li>
             </ul>

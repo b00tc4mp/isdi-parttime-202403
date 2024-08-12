@@ -5,8 +5,8 @@ import WasteStatus from './WasteStatus'
 import WasteWeight from '../../../components/WasteWeight'
 import './index.css'
 
-import { collection, addDoc } from "firebase/firestore";
-import { db } from '../../../firebase/config';
+import { collection, addDoc } from "firebase/firestore"
+import { db } from '../../../components/firebase/config'
 
 const Register = () => {
 

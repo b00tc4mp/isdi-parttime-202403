@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
-import { db } from '../../../components/firebase/config'
+import { db } from '../../../../components/firebase/config'
 import './index.css'
 
-const SummaryWaste = () => {
+const SummaryLoad3 = () => {
 
     const [list, setList] = useState([])
+    const [week, setWeek] = useState("")
 
+    useEffect(() => {
+      const today = new Date()
+      setWeek(getWeekNumber(today))
+    }, [])
+  
+      // funcion para traer semana
+      const getWeekNumber = (date) => {
+        const startOfYear = new Date(date.getFullYear(), 0, 1)
+        const pastDaysOfYear = (date - startOfYear) / 86400000
+        return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7)
+      }
+    
     //solicitar y renderizamos lista de residuos
     useEffect(() => {
       const getList = async () => {
         try {
-          const querySnapshot = await getDocs(collection(db, 'dataStoreWaste'))
+          const querySnapshot = await getDocs(collection(db, 'dataTruck3Load'))
           const docs = []
           querySnapshot.forEach((doc) => {
             docs.push({ ...doc.data(), id: doc.id })
@@ -40,7 +53,7 @@ const SummaryWaste = () => {
 
   return (
     <div className='SummaryDiv' >
-        <h2>Datos resumidos de Residuos:</h2>
+        <h2 className='summaryTitle' >3a Carga de la Semana {week}:</h2>
       {groupedItemCode
         .sort((a, b) => a.code.localeCompare(b.code)) // Ordenar por code
         .map((item) => {
@@ -54,10 +67,10 @@ const SummaryWaste = () => {
               <p>{item.code} - Total: {item.totalWeight}kg</p>
               <p className='ShortDescription' >{shortDescription}</p>
             </div>
-          );
+          )
         })}
     </div>
   )
 }
 
-export default SummaryWaste
+export default SummaryLoad3
