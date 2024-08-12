@@ -7,20 +7,20 @@ import ArtistProfile from './ArtistProfile'
 
 //TODO mostrar mensaje cuando no se encuentran artistas
 
-function ArtistsList({ artist, city }) {
+function ArtistsList({ artist, city, excludedDate }) {
   const [artists, setArtists] = useState([])
   const [selectedArtist, setSelectedArtist] = useState(null)
 
   useEffect(() => {
     if (artist && city) {
-      loadArtists(artist, city)
+      loadArtists(artist, city, excludedDate)
     }
-  }, [artist, city])
+  }, [artist, city, excludedDate])
 
-  const loadArtists = (artist, city) => {
+  const loadArtists = (artist, city, excludedDate) => {
     try {
       logic
-        .getArtistsByCity(city, artist)
+        .getArtistsByCity(city, artist, excludedDate)
         .then((artists) => {
           setArtists(artists)
         })
@@ -38,7 +38,6 @@ function ArtistsList({ artist, city }) {
 
   const handleArtistClick = (artist) => {
     setSelectedArtist(artist)
-    console.log(artist)
   }
   const handleCloseProfile = () => {
     setSelectedArtist(null)

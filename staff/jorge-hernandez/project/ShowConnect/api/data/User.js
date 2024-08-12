@@ -38,6 +38,12 @@ const user = new Schema({
   //       type: String,
   //     },
   //   ],
+
+  dates: {
+    type: [String],
+    required: true,
+  },
+
   password: {
     type: String,
     required: true,

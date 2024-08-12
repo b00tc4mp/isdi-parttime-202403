@@ -2,7 +2,7 @@ import errors, { SystemError } from 'com/errors'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
-const getArtistData = () => {
+const getArtistData = (targetUserId) => {
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
   return fetch(`http://localhost:8080/users/${userId}`, {
@@ -15,12 +15,9 @@ const getArtistData = () => {
     })
     .then((response) => {
       if (response.status === 200)
-        return response
-          .json()
-          .catch(() => {
-            throw new SystemError('server error')
-          })
-          .then((name) => name)
+        return response.json().catch(() => {
+          throw new SystemError('server error')
+        })
 
       return response
         .json()

@@ -31,9 +31,12 @@ function EditableVideo({
       </button>
     </div>
   ) : (
-    <div onClick={onClick} className='flex justify-center my-1'>
+    <div
+      onClick={onClick}
+      className='flex justify-center my-1 relative w-full pb-[56.25%]'
+    >
       <iframe
-        className='w-full h-auto max-w-xl'
+        className='absolute inset-0 w-full h-full'
         src={label}
         frameBorder='0'
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

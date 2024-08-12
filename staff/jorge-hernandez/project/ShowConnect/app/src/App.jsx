@@ -4,29 +4,31 @@ import Register from './views/Register'
 import Search from './views/Search'
 import Login from './views/Login'
 import ArtistHome from './views/ArtistHome'
+import ArtistMessages from './views/ArtistMessages'
 
 import logic from './logic'
 
 function App() {
   const [view, setView] = useState(
-    logic.isUserLoggedIn() ? 'ArtistHome' : 'Search'
+    logic.isUserLoggedIn() ? 'artistHome' : 'search'
   )
 
-  const handleGoToRegister = () => setView('Register')
-  const handleGoToLogin = () => setView('Login')
-  const handleGoToArtistHome = () => setView('ArtistHome')
-  const handleGoToSearch = () => setView('Search')
+  const handleGoToRegister = () => setView('register')
+  const handleGoToLogin = () => setView('login')
+  const handleGoToArtistHome = () => setView('artistHome')
+  const handleGoToSearch = () => setView('search')
+  const handleGoToMessages = () => setView('messages')
 
   return (
     <>
-      {view === 'Search' && (
+      {view === 'search' && (
         <Search
           onRegisterClick={handleGoToRegister}
           onLoginClick={handleGoToLogin}
         />
       )}
 
-      {view === 'Register' && (
+      {view === 'register' && (
         <Register
           onLogoClick={handleGoToSearch}
           onLoginClick={handleGoToLogin}
@@ -34,7 +36,7 @@ function App() {
         />
       )}
 
-      {view === 'Login' && (
+      {view === 'login' && (
         <Login
           onLogoClick={handleGoToSearch}
           onUserLoggedIn={handleGoToArtistHome}
@@ -42,8 +44,14 @@ function App() {
         />
       )}
 
-      {view === 'ArtistHome' && (
-        <ArtistHome onUserLoggedOut={handleGoToSearch} />
+      {view === 'artistHome' && (
+        <ArtistHome
+          onShowMessage={handleGoToMessages}
+          onUserLoggedOut={handleGoToSearch}
+        />
+      )}
+      {view === 'messages' && (
+        <ArtistMessages onClickedBack={handleGoToArtistHome} />
       )}
     </>
   )

@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import User from './data/User.js'
 
 import registerUserHandler from './handlers/registerUserHandler.js'
 import authenticateUserHandler from './handlers/authenticateUserHandler.js'
@@ -40,7 +41,16 @@ mongoose
 
     api.get('/users/:targetUserId', getArtistDataHandler)
 
-    api.get('/users/city/:city/discipline/:discipline', getArtistsByCityHandler)
+    api.get(
+      '/users/city/:city/discipline/:discipline/dates/:excludedDate',
+      getArtistsByCityHandler
+    )
+
+    // api.get('/users', (req, res) => {
+    //   User.find()
+    //     .then((users) => res.json(users))
+    //     .catch((err) => res.status(500).json({ error: err.message }))
+    // })
 
     api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 

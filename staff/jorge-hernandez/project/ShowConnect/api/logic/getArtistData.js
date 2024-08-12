@@ -30,9 +30,9 @@ const getArtistData = (userId, targetUserId) => {
             images: user.images,
             video: user.video,
             email: user.email,
+            dates: user.dates,
             id: user._id.toString(),
           }
-          // return user.artisticName
         })
     })
 }

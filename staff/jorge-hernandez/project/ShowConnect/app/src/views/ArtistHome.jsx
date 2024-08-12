@@ -5,43 +5,36 @@ import EditableArtisticName from '../components/EditableArtisticName'
 import EditableImage from '../components/EditableImage'
 import EditableDescription from '../components/EditableDescription'
 import EditableVideo from '../components/EditableVideo'
-import ArtistMessage from '../components/ArtistMessage'
+import AddDate from '../components/AddDate'
 
-function ArtistHome({ onUserLoggedOut }) {
+function ArtistHome({ onUserLoggedOut, onShowMessage }) {
   const [artist, setArtist] = useState(null)
   const [isEditingName, setIsEditingName] = useState(false)
   const [isEditingImage, setIsEditingImage] = useState(false)
   const [isEditingDescription, setIsEditingDescription] = useState(false)
   const [isEditingVideo, setIsEditingVideo] = useState(false)
+  const [isAddingDate, setIsAddingDate] = useState(false)
   const [newArtisticName, setNewArtisticName] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newDescription, setNewDescription] = useState('')
   const [newVideo, setNewVideo] = useState('')
-  const [messages, setMessages] = useState(false)
+  const [newDate, setNewDate] = useState('')
 
   useEffect(() => {
     logic
       .getArtistData()
       .then((artistData) => {
         setArtist(artistData)
-        setNewArtisticName(artistData.artisticName)
       })
       .catch((error) => {
         console.error('Error fetching artist data:', error)
       })
   }, [])
 
-  const handleImageClick = () => {
-    setIsEditingImage(true)
-  }
-
-  const handleImageChange = (event) => {
-    setNewImage(event.target.value)
-  }
-
+  const handleImageClick = () => setIsEditingImage(true)
+  const handleImageChange = (event) => setNewImage(event.target.value)
   const handleImageSave = () => {
     const updatedData = { images: newImage }
-
     logic
       .updateArtistData(artist.id, updatedData)
       .then(() => {
@@ -52,22 +45,12 @@ function ArtistHome({ onUserLoggedOut }) {
         console.error('Error updating artist data:', error)
       })
   }
+  const handleImageCancel = () => setIsEditingImage(false)
 
-  const handleImageCancel = () => {
-    setIsEditingImage(false)
-  }
-
-  const handleNameClick = () => {
-    setIsEditingName(true)
-  }
-
-  const handleNameChange = (event) => {
-    setNewArtisticName(event.target.value)
-  }
-
+  const handleNameClick = () => setIsEditingName(true)
+  const handleNameChange = (e) => setNewArtisticName(e.target.value)
   const handleNameSave = () => {
     const updatedData = { artisticName: newArtisticName }
-
     logic
       .updateArtistData(artist.id, updatedData)
       .then(() => {
@@ -78,26 +61,13 @@ function ArtistHome({ onUserLoggedOut }) {
         console.error('Error updating artist data:', error)
       })
   }
+  const handleNameCancel = () => setIsEditingName(false)
 
-  const handleNameCancel = () => {
-    setIsEditingName(false)
-  }
-
-  const handleDescriptionCancel = () => {
-    setIsEditingDescription(false)
-  }
-
-  const handleDescriptionClick = () => {
-    setIsEditingDescription(true)
-  }
-
-  const handleDescriptionChange = (event) => {
+  const handleDescriptionClick = () => setIsEditingDescription(true)
+  const handleDescriptionChange = (event) =>
     setNewDescription(event.target.value)
-  }
-
   const handleDescriptionSave = () => {
     const updatedData = { description: newDescription }
-
     logic
       .updateArtistData(artist.id, updatedData)
       .then(() => {
@@ -108,22 +78,12 @@ function ArtistHome({ onUserLoggedOut }) {
         console.error('Error updating artist data:', error)
       })
   }
+  const handleDescriptionCancel = () => setIsEditingDescription(false)
 
-  const handleVideoCancel = () => {
-    setIsEditingDescription(false)
-  }
-
-  const handleVideoClick = () => {
-    setIsEditingVideo(true)
-  }
-
-  const handleVideoChange = (event) => {
-    setNewVideo(event.target.value)
-  }
-
+  const handleVideoClick = () => setIsEditingVideo(true)
+  const handleVideoChange = (event) => setNewVideo(event.target.value)
   const handleVideoSave = () => {
-    const updatedData = { Video: newVideo }
-
+    const updatedData = { video: newVideo }
     logic
       .updateArtistData(artist.id, updatedData)
       .then(() => {
@@ -134,19 +94,40 @@ function ArtistHome({ onUserLoggedOut }) {
         console.error('Error updating artist data:', error)
       })
   }
+  const handleVideoCancel = () => setIsEditingVideo(false)
 
-  const handleClickMessages = () => {
-    setMessages(true)
+  const handleClickMessages = () => onShowMessage()
+
+  const handleClickAddDate = () => setIsAddingDate(true)
+  const handleDateChange = (e) => setNewDate(e.target.value)
+  const handleDateSave = () => {
+    const updatedDates = [...artist.dates, newDate]
+    const updatedData = { dates: updatedDates }
+
+    logic
+      .updateArtistData(artist.id, updatedData)
+      .then(() => {
+        setArtist({ ...artist, dates: updatedDates })
+        setNewDate('')
+        setIsAddingDate(false)
+      })
+      .catch((error) => {
+        console.error('Error updating artist data:', error)
+      })
+  }
+
+  const handleDateCancel = () => {
+    setNewDate('')
+    setIsAddingDate(false)
+  }
+
+  const handleDeleteDate = (date) => {
+    console.log(date)
   }
 
   const handleLogout = () => {
     logic.logoutUser()
-
     onUserLoggedOut()
-  }
-
-  const handleClickOnCloseMessages = () => {
-    setMessages(null)
   }
 
   if (!artist) {
@@ -190,7 +171,6 @@ function ArtistHome({ onUserLoggedOut }) {
                 onClick={handleImageClick}
                 label={artist.images}
               />
-
               <EditableDescription
                 isEditing={isEditingDescription}
                 value={newDescription}
@@ -210,7 +190,16 @@ function ArtistHome({ onUserLoggedOut }) {
               onClick={handleVideoClick}
               label={artist.video}
             />
-            {messages && <ArtistMessage onClose={handleClickOnCloseMessages} />}
+            <AddDate
+              isEditing={isAddingDate}
+              value={newDate}
+              onChange={handleDateChange}
+              onSave={handleDateSave}
+              onCancel={handleDateCancel}
+              onClick={handleClickAddDate}
+              dates={artist.dates}
+              handleDeleteDate={handleDeleteDate}
+            />
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ function Form({}) {
   const [suggestions, setSuggestions] = useState([])
   const [artist, setArtist] = useState('')
   const [city, setCity] = useState('')
+  const [excludedDate, setExcludedDate] = useState('')
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -36,10 +37,11 @@ function Form({}) {
 
     const artist = form.artista.value.toLowerCase()
     const city = form.ciudad.value.toLowerCase()
-    const date = form.fecha.value
-    //TODO aplicate logic to date
+    const excludedDate = form.fecha.value
+
     setArtist(artist)
     setCity(city)
+    setExcludedDate(excludedDate)
 
     form.reset()
     setInputValue('')
@@ -54,7 +56,7 @@ function Form({}) {
         voluptatem porro sit?
       </p>
 
-      <form onSubmit={handleOnSubmit} className='flex flex-col gap-5' action=''>
+      <form onSubmit={handleOnSubmit} className='flex flex-col gap-5'>
         <Field
           labelClass='text-white'
           labelChildren='¿Qué tipo de artista buscas?'
@@ -105,7 +107,7 @@ function Form({}) {
         <Footer>Buscar</Footer>
       </form>
 
-      <ArtistsList artist={artist} city={city} />
+      <ArtistsList artist={artist} city={city} excludedDate={excludedDate} />
     </main>
   )
 }

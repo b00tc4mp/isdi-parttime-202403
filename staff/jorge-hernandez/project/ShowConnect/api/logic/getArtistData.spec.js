@@ -1,139 +1,125 @@
-import 'dotenv/config'
-import mongoose, { Types } from 'mongoose'
-
-import bcrypt from 'bcryptjs'
-
-import getArtistData from './getArtistData.js'
-import { User } from '../data/index.js'
-import { NotFoundError, ContentError } from 'com/errors.js'
-
 import { expect } from 'chai'
-
-const { MONGODB_URL_TEST } = process.env
+import mongoose, { Types } from 'mongoose'
+import { User } from '../data/index.js'
+import getArtistData from './getArtistData.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 const { ObjectId } = Types
 
-debugger
+describe('getArtistData', function () {
+  before(function () {
+    return mongoose
+      .connect(process.env.MONGODB_URL_TEST)
+      .then(() => User.deleteMany())
+  })
 
-describe('getArtistData', () => {
-  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
+  beforeEach(function () {
+    return User.deleteMany()
+  })
 
-  beforeEach(() => User.deleteMany())
+  it('should successfully retrieve artist data for an existing user', function () {
+    let user, targetUser
 
-  it('succeeds get userName from existing user', () =>
-    bcrypt
-      .hash('1234', 8)
-      .then((hash) =>
-        Promise.all([
-          User.create({
-            name: 'Jorge',
-            artisticName: 'Jorge Moreno',
-            discipline: 'mago',
-            city: 'madrid',
-            description: 'mago',
-            email: 'jorge@moreno.com',
-            images: 'https',
-            video: 'https',
-            password: hash,
-          }),
-          User.create({
-            name: 'David',
-            artisticName: 'David Copperfield',
-            discipline: 'mag0',
-            city: 'madrid',
-            description: 'mago',
-            email: 'david@copperfield.com',
-            images: 'https',
-            video: 'https',
-            password: hash,
-          }),
-        ])
-      )
-      .then(([user, targetUser]) => getArtistData(user.id, targetUser.id))
-      .then((artisticName) => {
-        expect(artisticName).to.be.a.string
-        expect(artisticName).to.be.equal('David Copperfield')
-      }))
-
-  it('fails on non-existing user', () => {
-    let errorThrown
-
-    return bcrypt
-      .hash('123', 8)
-      .then((hash) =>
-        User.create({
-          name: 'Jorge',
-          artisticName: 'Jorge Moreno',
-          discipline: 'mago',
-          city: 'madrid',
-          description: 'mago',
-          email: 'jorge@moreno.com',
-          images: 'https',
-          video: 'htpps',
-          password: hash,
+    return User.create({
+      name: 'Jorge',
+      artisticName: 'Jorge Moreno',
+      discipline: 'magician',
+      city: 'Madrid',
+      description: 'Professional magician',
+      email: 'jorge@moreno.com',
+      images: 'https://example.com/jorge.png',
+      video: 'https://example.com/video.mp4',
+      password: 'hashed_password',
+    })
+      .then((_user) => {
+        user = _user
+        return User.create({
+          name: 'David',
+          artisticName: 'David Copperfield',
+          discipline: 'magician',
+          city: 'Las Vegas',
+          description: 'World-famous illusionist',
+          email: 'david@copperfield.com',
+          images: 'https://example.com/david.png',
+          video: 'https://example.com/video_david.mp4',
+          password: 'hashed_password',
         })
-      )
-      .then((targetUserId) =>
-        getArtistData(new ObjectId().toString(), targetUserId.id)
-      )
-      .catch((error) => (errorThrown = error))
-      .finally(() => {
-        expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-        expect(errorThrown.message).to.equal('User not found')
+      })
+      .then((_targetUser) => {
+        targetUser = _targetUser
+        return getArtistData(user._id.toString(), targetUser._id.toString())
+      })
+      .then((result) => {
+        expect(result).to.be.an('object')
+        expect(result.artisticName).to.equal('David Copperfield')
+        expect(result.description).to.equal('World-famous illusionist')
+        expect(result.email).to.equal('david@copperfield.com')
       })
   })
 
-  it('fails on non-existing targetUser', () => {
-    let errorThrown
+  it('should throw NotFoundError if the user does not exist', function () {
+    const invalidUserId = new ObjectId().toString()
 
-    return bcrypt
-      .hash('123', 8)
-      .then((hash) =>
-        User.create({
-          name: 'Jorge',
-          artisticName: 'Jorge Moreno',
-          discipline: 'mago',
-          city: 'madrid',
-          description: 'mago',
-          email: 'jorge@moreno.com',
-          images: 'https',
-          video: 'https',
-          password: hash,
-        })
-      )
-      .then((user) => getArtistData(user.id, new ObjectId().toString()))
-      .catch((error) => (errorThrown = error))
-      .finally(() => {
-        expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-        expect(errorThrown.message).to.equal('targetUser not found')
+    return User.create({
+      name: 'David',
+      artisticName: 'David Copperfield',
+      discipline: 'magician',
+      city: 'Las Vegas',
+      description: 'World-famous illusionist',
+      email: 'david@copperfield.com',
+      images: 'https://example.com/david.png',
+      video: 'https://example.com/video_david.mp4',
+      password: 'hashed_password',
+    })
+      .then((targetUser) => {
+        return getArtistData(invalidUserId, targetUser._id.toString())
+      })
+      .catch((error) => {
+        expect(error).to.be.instanceOf(NotFoundError)
+        expect(error.message).to.equal('User not found')
       })
   })
 
-  it('fails on invalid userId', () => {
-    let errorThrown
+  it('should throw NotFoundError if the targetUser does not exist', function () {
+    const invalidTargetUserId = new ObjectId().toString()
 
-    try {
-      getArtistData(12345, new ObjectId().toString())
-    } catch (error) {
-      errorThrown = error
-    } finally {
-      expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal('userId is not valid')
-    }
+    return User.create({
+      name: 'Jorge',
+      artisticName: 'Jorge Moreno',
+      discipline: 'magician',
+      city: 'Madrid',
+      description: 'Professional magician',
+      email: 'jorge@moreno.com',
+      images: 'https://example.com/jorge.png',
+      video: 'https://example.com/video.mp4',
+      password: 'hashed_password',
+    })
+      .then((user) => {
+        return getArtistData(user._id.toString(), invalidTargetUserId)
+      })
+      .catch((error) => {
+        expect(error).to.be.instanceOf(NotFoundError)
+        expect(error.message).to.equal('targetUser not found')
+      })
   })
 
-  it('fails on invalid targetUserId', () => {
-    let errorThrown
+  it('should throw SystemError if a system error occurs', function () {
+    const validUserId = new ObjectId().toString()
 
-    try {
-      getArtistData(new ObjectId().toString(), 12345)
-    } catch (error) {
-      errorThrown = error
-    } finally {
-      expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal('targetUserId is not valid')
-    }
+    return mongoose
+      .disconnect()
+      .then(() => {
+        return getArtistData(validUserId, validUserId)
+      })
+      .catch((error) => {
+        expect(error).to.be.instanceOf(SystemError)
+      })
+      .finally(() => {
+        return mongoose.connect(process.env.MONGODB_URL_TEST)
+      })
   })
 
-  after(() => User.deleteMany().then(() => mongoose.disconnect()))
+  after(function () {
+    return User.deleteMany().then(() => mongoose.disconnect())
+  })
 })

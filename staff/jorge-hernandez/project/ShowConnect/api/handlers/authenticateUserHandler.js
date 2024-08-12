@@ -14,7 +14,7 @@ export default (req, res, next) => {
       .authenticateUser(email, password)
       .then((userId) =>
         jwt
-          .sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
+          .sign({ sub: userId }, JWT_SECRET, { expiresIn: '365d' })
           .then((token) => res.json(token))
           .catch((error) => next(new SystemError(error.message)))
       )
