@@ -1,5 +1,4 @@
 import { Schema, model, Types } from 'mongoose';
-import { NAMEROOM_REGEX, REGION_REGEX } from '../../com/validate.js';
 
 const { ObjectId } = Types;
 
@@ -12,7 +11,6 @@ const room = new Schema({
   nameRoom: {
     type: String,
     required: true,
-
   },
   region: {
     type: String,
@@ -43,8 +41,6 @@ const room = new Schema({
     ref:'User'
   }
 });
-
-room.index({ location: '2dsphere' });
 
 const Room = model('Room', room);
 

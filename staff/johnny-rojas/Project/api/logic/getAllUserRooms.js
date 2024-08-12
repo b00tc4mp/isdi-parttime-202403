@@ -28,5 +28,3 @@ const getAllUserRooms = (userId) => {
 }
 
 export default getAllUserRooms
-
-//TODO Quiero que con esta logica puedas ir a tus habitaciones y desde ahi poder eliminarlas y editarlas 

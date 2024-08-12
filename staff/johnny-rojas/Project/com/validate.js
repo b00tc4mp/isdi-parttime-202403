@@ -16,9 +16,6 @@ export const REGION_REGEX = /^(Norte|Sur|Este|Oeste|norte|sur|este|oeste)$/
 
 export const PRICE_REGEX = /^(?!0$)(?:[1-9]\d*\.?\d*|\.\d+)\s*(USD|EUR|VES)$/
 
-export const AVAILABILITY_REGEX = /^(Disponible|No disponible)$/
-
-export const COORDINATES_REGEX = /^\s*\[\s*(-?([1-9]?\d(\.\d+)?|1[0-7]\d(\.\d+)?|180(\.0+)?))\s*,\s*(-?([1-8]?\d(\.\d+)?|90(\.0+)?))\s*\]\s*$/;
 
 function validateName(name, explain = 'name') {
   if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -83,6 +80,7 @@ function validatePrice(price, explain = 'price') {
   }
 }
 
+
 const validate = {
   name: validateName,
   nameRoom: validateNameRoom,
@@ -96,7 +94,8 @@ const validate = {
   id: validateId,
   region: validateRegion,
   price: validatePrice,
-
 }
 
 export default validate
+
+//TODO Validate dates

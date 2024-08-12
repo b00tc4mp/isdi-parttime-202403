@@ -1,13 +1,17 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
+
+const { ObjectId } = Types
 
 const booking = new Schema({
   user: {
-    type: String,
-    required: true
+    type: ObjectId,
+    required: true,
+    ref: 'User'
   },
   room: {
-    type: String,
-    required: true
+    type: ObjectId,
+    required: true,
+    ref: 'Room'
   },
   startDate: {
     type: Date,
@@ -17,11 +21,6 @@ const booking = new Schema({
     type: Date,
     required: true
   },
-  status: {
-    type: String,
-    required: true,
-    enum: ['available', 'not available'], 
-  }
 });
 
 const Booking = model('Booking', booking);

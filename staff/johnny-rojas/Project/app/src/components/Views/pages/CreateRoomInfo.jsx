@@ -61,21 +61,7 @@ const CreateRoomInfo = ({ onClick }) => (
             <li>Habitación con 2 literas para máximo 4 personas, sin baño.</li>
           </ul>
 
-          <h3 className='instructions-heading'>6. Servicios</h3>
-          <p>
-            Selecciona los servicios que ofrece tu alojamiento. Las opciones disponibles son:
-          </p>
-          <ul className='instructions-list'>
-            <li>Wifi</li>
-            <li>Estacionamiento</li>
-            <li>Piscina</li>
-            <li>Pet friendly</li>
-            <li>Restaurante</li>
-            <li>Accesibilidad</li>
-            <li>Atención 24/7</li>
-          </ul>
-
-          <h3 className='instructions-heading'>7. Precio por Noche</h3>
+          <h3 className='instructions-heading'>6. Precio por Noche</h3>
           <p>
             Indica el precio por noche junto con la moneda. Ejemplos:
           </p>
@@ -85,21 +71,6 @@ const CreateRoomInfo = ({ onClick }) => (
             <li>20409 VES</li>
           </ul>
 
-          <h3 className='instructions-heading'>8. Disponibilidad</h3>
-          <p>
-            Para seleccionar la disponibilidad, selecciona una fecha de inicio y una fecha de cierre.
-          </p>
-
-          <h3 className='instructions-heading'>9. Coordenadas (Latitud y Longitud)</h3>
-          <p>
-            Para obtener las coordenadas (latitud y longitud) de la ubicación de tu habitación, sigue estos pasos:
-          </p>
-          <ol className='instructions-list'>
-            <li>Abre Google Maps.</li>
-            <li>Navega hasta la ubicación de tu habitación.</li>
-            <li>Haz clic derecho en la ubicación y selecciona “¿Qué hay aquí?”.</li>
-            <li>En la parte inferior, verás un cuadro con las coordenadas. Copia estas coordenadas.</li>
-          </ol>
         </div>
         <button className="show-form-button" onClick={onClick}>
           Ir al Formulario
