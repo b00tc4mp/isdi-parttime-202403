@@ -98,8 +98,6 @@ El usuario puede buscar todos los residuos registrados para cargar en los traile
     - Introducir año
     - Introducir Acteco, 2a Carga o 3a Carga
 
-![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](departures.png)
-
 ### Vehiculo y Mantenimiento
 
 Hacer un seguimiento del estado de los vehículos es crucial por varias razones que abarcan la seguridad, el rendimiento operativo, la economía y el cumplimiento normativo. Algunas de las razones que justifican hacerlo: seguridad de todos, optiminar uso y evitar inactividad, económica, cumplir las leyes, por el medio ambiente y ayudar en la planificacion y toma de decisiones.
