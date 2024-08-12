@@ -10,14 +10,8 @@ import AddDate from '../components/AddDate'
 function ArtistHome({ onUserLoggedOut, onShowMessage }) {
   const [artist, setArtist] = useState(null)
   const [isEditingName, setIsEditingName] = useState(false)
-  const [isEditingImage, setIsEditingImage] = useState(false)
-  const [isEditingDescription, setIsEditingDescription] = useState(false)
-  const [isEditingVideo, setIsEditingVideo] = useState(false)
   const [isAddingDate, setIsAddingDate] = useState(false)
   const [newArtisticName, setNewArtisticName] = useState('')
-  const [newImage, setNewImage] = useState('')
-  const [newDescription, setNewDescription] = useState('')
-  const [newVideo, setNewVideo] = useState('')
   const [newDate, setNewDate] = useState('')
 
   useEffect(() => {
@@ -27,81 +21,15 @@ function ArtistHome({ onUserLoggedOut, onShowMessage }) {
         setArtist(artistData)
       })
       .catch((error) => {
-        console.error('Error fetching artist data:', error)
+        console.error(error)
       })
   }, [])
-
-  const handleImageClick = () => setIsEditingImage(true)
-  const handleImageChange = (event) => setNewImage(event.target.value)
-  const handleImageSave = () => {
-    const updatedData = { images: newImage }
-    logic
-      .updateArtistData(artist.id, updatedData)
-      .then(() => {
-        setArtist({ ...artist, images: newImage })
-        setIsEditingImage(false)
-      })
-      .catch((error) => {
-        console.error('Error updating artist data:', error)
-      })
-  }
-  const handleImageCancel = () => setIsEditingImage(false)
-
-  const handleNameClick = () => setIsEditingName(true)
-  const handleNameChange = (e) => setNewArtisticName(e.target.value)
-  const handleNameSave = () => {
-    const updatedData = { artisticName: newArtisticName }
-    logic
-      .updateArtistData(artist.id, updatedData)
-      .then(() => {
-        setArtist({ ...artist, artisticName: newArtisticName })
-        setIsEditingName(false)
-      })
-      .catch((error) => {
-        console.error('Error updating artist data:', error)
-      })
-  }
-  const handleNameCancel = () => setIsEditingName(false)
-
-  const handleDescriptionClick = () => setIsEditingDescription(true)
-  const handleDescriptionChange = (event) =>
-    setNewDescription(event.target.value)
-  const handleDescriptionSave = () => {
-    const updatedData = { description: newDescription }
-    logic
-      .updateArtistData(artist.id, updatedData)
-      .then(() => {
-        setArtist({ ...artist, description: newDescription })
-        setIsEditingDescription(false)
-      })
-      .catch((error) => {
-        console.error('Error updating artist data:', error)
-      })
-  }
-  const handleDescriptionCancel = () => setIsEditingDescription(false)
-
-  const handleVideoClick = () => setIsEditingVideo(true)
-  const handleVideoChange = (event) => setNewVideo(event.target.value)
-  const handleVideoSave = () => {
-    const updatedData = { video: newVideo }
-    logic
-      .updateArtistData(artist.id, updatedData)
-      .then(() => {
-        setArtist({ ...artist, video: newVideo })
-        setIsEditingVideo(false)
-      })
-      .catch((error) => {
-        console.error('Error updating artist data:', error)
-      })
-  }
-  const handleVideoCancel = () => setIsEditingVideo(false)
 
   const handleClickMessages = () => onShowMessage()
 
   const handleClickAddDate = () => setIsAddingDate(true)
   const handleDateChange = (e) => setNewDate(e.target.value)
   const handleDateSave = () => {
-    const updatedDates = [...artist.dates, newDate]
     const updatedData = { dates: updatedDates }
 
     logic
@@ -153,43 +81,36 @@ function ArtistHome({ onUserLoggedOut, onShowMessage }) {
 
           <div className='flex flex-col items-center'>
             <EditableArtisticName
-              isEditing={isEditingName}
-              value={newArtisticName}
-              onChange={handleNameChange}
-              onSave={handleNameSave}
-              onCancel={handleNameCancel}
-              onClick={handleNameClick}
+              artistId={artist.id}
               label={artist.artisticName}
+              onArtisticNameUpdate={(newArtisticName) => {
+                setArtist({ ...artist, artisticName: newArtisticName })
+              }}
             />
             <div className='flex items-center mb-3'>
               <EditableImage
-                isEditing={isEditingImage}
-                value={newImage}
-                onChange={handleImageChange}
-                onSave={handleImageSave}
-                onCancel={handleImageCancel}
-                onClick={handleImageClick}
+                artistId={artist.id}
                 label={artist.images}
+                onImageUpdate={(newImage) => {
+                  setArtist({ ...artist, images: newImage })
+                }}
               />
               <EditableDescription
-                isEditing={isEditingDescription}
-                value={newDescription}
-                onChange={handleDescriptionChange}
-                onSave={handleDescriptionSave}
-                onCancel={handleDescriptionCancel}
-                onClick={handleDescriptionClick}
+                artistId={artist.id}
                 label={artist.description}
+                onDescriptionUpdate={(newDescription) =>
+                  setArtist({ ...artist, description: newDescription })
+                }
               />
             </div>
             <EditableVideo
-              isEditing={isEditingVideo}
-              value={newVideo}
-              onChange={handleVideoChange}
-              onSave={handleVideoSave}
-              onCancel={handleVideoCancel}
-              onClick={handleVideoClick}
+              artistId={artist.id}
               label={artist.video}
+              onVideoUpdate={(newVideo) =>
+                setArtist({ ...artist, video: newVideo })
+              }
             />
+
             <AddDate
               isEditing={isAddingDate}
               value={newDate}

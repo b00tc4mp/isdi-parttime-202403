@@ -23,7 +23,6 @@ const getArtistData = (userId, targetUserId) => {
           if (!user) {
             throw new NotFoundError('targetUser not found')
           }
-          //TODO review
           return {
             artisticName: user.artisticName,
             description: user.description,

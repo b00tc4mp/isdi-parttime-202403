@@ -5,23 +5,26 @@ import { useState, useEffect } from 'react'
 import ArtistResult from './ArtistResult'
 import ArtistProfile from './ArtistProfile'
 
-//TODO mostrar mensaje cuando no se encuentran artistas
-
 function ArtistsList({ artist, city, excludedDate }) {
   const [artists, setArtists] = useState([])
   const [selectedArtist, setSelectedArtist] = useState(null)
 
   useEffect(() => {
-    if (artist && city) {
+    if (artist && city && excludedDate) {
       loadArtists(artist, city, excludedDate)
     }
   }, [artist, city, excludedDate])
 
   const loadArtists = (artist, city, excludedDate) => {
+    //TODO modificar mensaje cuando no se encuentran artistas
     try {
       logic
         .getArtistsByCity(city, artist, excludedDate)
         .then((artists) => {
+          if (artists.length === 0) {
+            alert('No se encontraron artistas')
+          }
+
           setArtists(artists)
         })
         .catch((error) => {

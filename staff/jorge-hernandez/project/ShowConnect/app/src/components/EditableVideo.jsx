@@ -1,38 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
+import logic from '../logic'
 
-function EditableVideo({
-  isEditing,
-  value,
-  onChange,
-  onSave,
-  onCancel,
-  onClick,
-  label,
-}) {
+function EditableVideo({ artistId, label, onVideoUpdate }) {
+  const [isEditing, setIsEditing] = useState(false)
+  const [newVideo, setNewVideo] = useState(label)
+
+  const handleVideoClick = () => setIsEditing(true)
+
+  const handleVideoChange = (event) => setNewVideo(event.target.value)
+
+  const handleVideoSave = () => {
+    const updatedData = { video: newVideo }
+    logic
+      .updateArtistData(artistId, updatedData)
+      .then(() => {
+        onVideoUpdate(newVideo)
+        setIsEditing(false)
+      })
+      .catch((error) => {
+        console.error('Error updating artist data:', error)
+      })
+  }
+
+  const handleVideoCancel = () => {
+    setNewVideo(label)
+    setIsEditing(false)
+  }
+
   return isEditing ? (
     <div>
       <input
         type='text'
-        value={value}
-        onChange={onChange}
+        value={newVideo}
+        onChange={handleVideoChange}
         className='text-black p-2 rounded'
       />
-      <button
-        className='ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 rounded-md shadow-md'
-        onClick={onSave}
-      >
-        Save
-      </button>
-      <button
-        className='ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 rounded-md shadow-md'
-        onClick={onCancel}
-      >
-        Cancel
-      </button>
+      <i
+        onClick={handleVideoSave}
+        className='fa-solid fa-check m-3 text-green-500 text-2xl'
+      ></i>
+      <i
+        onClick={handleVideoCancel}
+        className='fa-solid fa-xmark m-3 text-red-500 text-2xl'
+      ></i>
     </div>
   ) : (
     <div
-      onClick={onClick}
+      onClick={handleVideoClick}
       className='flex justify-center my-1 relative w-full pb-[56.25%]'
     >
       <iframe
@@ -43,6 +57,7 @@ function EditableVideo({
         allowFullScreen
         title='YouTube video'
       ></iframe>
+      <div className='absolute inset-0 w-full h-full' style={{ zIndex: 1 }} />
     </div>
   )
 }

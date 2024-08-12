@@ -2,7 +2,7 @@ import errors, { SystemError } from 'com/errors'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
-const getArtistData = (targetUserId) => {
+const getArtistData = () => {
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
   return fetch(`http://localhost:8080/users/${userId}`, {
