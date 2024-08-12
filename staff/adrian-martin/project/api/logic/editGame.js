@@ -28,7 +28,7 @@ const editGame = (userId, gameId, updates) => {
         updateFields.hours = updates.hours
     }
 
-    return Game.findOneAndUpdate({ _id: gameId, userId: userId }, updateFields, { new: true }).lean()
+    return Game.findOneAndUpdate({ _id: gameId.toString() }, updateFields, { new: true }).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(game => {
             if (!game) {

@@ -15,8 +15,8 @@ export default (req, res, next) => {
                 const { sub: userId } = payload
                 try {
                     logic.editGame(userId, gameId, updates)
-                        .then(() => {
-                            res.status(200).send()
+                        .then(gameEdited => {
+                            res.status(200).send(gameEdited)
                         })
                         .catch(error => next(error))
 
