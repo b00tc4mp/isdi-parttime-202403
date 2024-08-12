@@ -1,7 +1,7 @@
-import './View.css'
 
-function View({ tag: Tag = 'div', className, children }) {
-    return <Tag className={`View ${className ? className : ''}`}>{children}</Tag>
+
+function View({ className, children }) {
+    return <div className={`flex-grow ${className}`}>{children}</div>
 }
 
 export default View

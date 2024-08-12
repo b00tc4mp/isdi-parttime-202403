@@ -1,4 +1,4 @@
-import { User } from '../data/idex.js'
+import { User } from '../data/index.js'
 import { DuplicityError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
@@ -10,7 +10,7 @@ const registerAdmin = (name, username, email, password, passwordRepeat) => {
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
-    return User.findOne({ $or: [{ email }, { username }] })
+    return User.findOne({ $or: [{ email }, { name }] })
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user) throw new DuplicityError('❌user already exists')
@@ -26,8 +26,6 @@ const registerAdmin = (name, username, email, password, passwordRepeat) => {
                         password: hash,
                         avatar: " ",
                         role: "admin"
-
-
                     }
 
                     return User.create(newUser)

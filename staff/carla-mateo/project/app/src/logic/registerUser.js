@@ -1,26 +1,25 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const loginAdmin = (name, password) => {
+const registerUser = (name, username, email, password) => {
     validate.name(name)
+    validate.username(username)
+    validate.email(email)
     validate.password(password)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${sessionStorage.token}`
         },
-        body: JSON.stringify({ name, password })
+        body: JSON.stringify({ name, username, email, password })
     })
 
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 200) {
-
-                return response.json()
-                    .catch(() => { throw new SystemError('server error') })
-                    .then(token => sessionStorage.token = token)
-            }
+            if (response.status === 201) return
 
             return response.json()
                 .catch(() => { throw new SystemError('server error') })
@@ -32,6 +31,6 @@ const loginAdmin = (name, password) => {
                     throw new constructor(message)
                 })
         })
-
 }
-export default loginAdmin
+
+export default registerUser

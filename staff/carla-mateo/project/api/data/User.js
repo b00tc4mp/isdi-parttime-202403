@@ -1,32 +1,32 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
-const { ObjectId } = Types
+const { ObjectId } = Schema.Types
 
 const user = new Schema({
     name: {
         type: String,
-
+        required: true,
+        unique: true
     },
     username: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     avatar: {
         type: String
     },
     role: {
         type: String,
-        enum: ['admin', 'user'],
-
+        enum: ['admin', 'user']
     },
     parent: {
         type: ObjectId,

@@ -1,8 +1,11 @@
-import authenticateAdminHandler from './authenticateAdminHandler.js'
 import errorHandler from './errorHandler.js'
-import getUserNameHandler from './getUserNameHandler.js'
-import registerAdminHandler from './registerAdminHandler.js'
+
 import registerUserHandler from './registerUserHandler.js'
+import registerAdminHandler from './registerAdminHandler.js'
+import authenticateAdminHandler from './authenticateAdminHandler.js'
+import getUserNameHandler from './getUserNameHandler.js'
+import createTaskHandler from './createTaskHandler.js'
+import deleteTaskHandler from './deleteTaskHandler.js'
 
 
 export default {
@@ -11,6 +14,8 @@ export default {
     registerUserHandler,
     registerAdminHandler,
     authenticateAdminHandler,
-    getUserNameHandler
+    getUserNameHandler,
+    createTaskHandler,
+    deleteTaskHandler
 
 }

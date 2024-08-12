@@ -4,7 +4,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node .",
+    "start": "node --watch .",
     "inspect": "node --inspect-brk .",
     "test": "mocha logic/*.spec.js",
     "test-inspect": "mocha --inspect-brk logic/*.spec.js"
@@ -21,6 +21,7 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.1",
+    "multer": "^1.4.5-lts.1",
     "react-router-dom": "^6.25.1"
   },
   "devDependencies": {

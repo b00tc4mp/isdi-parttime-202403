@@ -1,17 +1,16 @@
 
 import { Link, useNavigate } from "react-router-dom"
+import { TiArrowBack } from "react-icons/ti"
 
 import logic from '../logic/index'
 
 import View from "./library/View"
 
-import Button from '../components/core/button/Button'
-import Field from '../components/core/field/Field'
-import Heading from '../components/core/heading/Heading'
-import Header from "./components/header/Header"
-
-import './Login.css'
-
+import Button from '../components/core/Button'
+import Field from '../components/core/Field'
+import Heading from '../components/core/Heading'
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 function Login() {
     const navigate = useNavigate()
@@ -21,11 +20,11 @@ function Login() {
 
         const form = event.target
 
-        const username = form.username.value
+        const name = form.name.value
         const password = form.password.value
 
         try {
-            logic.loginAdmin(username, password)
+            logic.loginAdmin(name, password)
                 .then(() => navigate('/'))
                 .catch(error => {
                     alert(error.message)
@@ -37,15 +36,20 @@ function Login() {
 
     return <View>
 
-        <Header></Header>
+        <Header><Heading className="text-3xl" level={1}>FAMILY SYNC</Heading></Header>
 
-        <form className="Login" onSubmit={handleLoginSubmit}>
-            <Heading className="LoginTitle" level={1}>Login</Heading>
-            <Field id="username" placeholder="username" />
+        <form className=" p-8 " onSubmit={handleLoginSubmit}>
+            <Heading className="text-2xl" level={1}>Enter your home</Heading>
+            <Field id="name" type="text" placeholder="name" />
             <Field id="password" type="password" placeholder="password" />
             <Button type="submit">Login</Button>
-            <Link to="/register">Register</Link>
+
+            <Link to="/register">
+                <span className="absolute top-6 right-0 p-4">{<TiArrowBack size={32} />}</span>
+            </Link>
         </form>
+
+        <Footer></Footer>
     </View>
 }
 

@@ -1,8 +1,10 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-    * {
-        @apply bg-gradient-bg  font-normal font-roboto text-first-color
+    body {
+        @apply min-h-screen flex flex-col bg-gradient-bg
     }
     
 }

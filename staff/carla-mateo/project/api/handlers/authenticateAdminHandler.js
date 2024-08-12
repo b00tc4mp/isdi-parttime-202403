@@ -6,12 +6,12 @@ import { SystemError } from "com/errors.js"
 const { JWT_SECRET } = process.env
 
 export default (req, res, next) => {
-    const { username, password } = req.body
+    const { name, password } = req.body
 
     try {
-        logic.authenticateAdmin(username, password)
-            .then(userId =>
-                jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '10d' })
+        logic.authenticateAdmin(name, password)
+            .then(({ id }) =>
+                jwt.sign({ sub: id }, JWT_SECRET, { expiresIn: '15d' })
                     .then(token => res.json(token))
                     .catch(error => next(new SystemError(error.message)))
             )

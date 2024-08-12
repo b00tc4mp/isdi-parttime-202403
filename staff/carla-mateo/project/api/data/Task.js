@@ -3,24 +3,32 @@ import { Schema, model } from 'mongoose'
 const { ObjectId } = Schema.Types
 
 const task = new Schema({
+    parent: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+    assign: {
+        type: ObjectId,
+        ref: "User"
+    },
     title: {
         type: String,
         required: true
-    },
-    done: {
-        type: Boolean,
-        default: false
     },
     date: {
         type: Date,
         required: true,
         default: Date.now
     },
-    parent: {
+    done: [{
         type: ObjectId,
-        required: true,
         ref: 'User'
-    },
+    }],
+    role: {
+        type: String,
+        enum: ['admin', 'user']
+    }
 })
 
 const Task = model('Task', task)

@@ -2,7 +2,6 @@ import errors, { SystemError } from 'com/errors'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
-
 const getUserName = () => {
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
@@ -18,7 +17,7 @@ const getUserName = () => {
             if (response.status === 200) {
                 return response.json()
                     .catch(() => { throw new SystemError('conection error') })
-                    .then(name => name)
+                    .then(user => user)
             }
 
             return response.json()

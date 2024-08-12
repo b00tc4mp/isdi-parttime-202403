@@ -1,8 +1,0 @@
-@tailwind components;
-
-@layer components {
-
-    .Label {
-        @apply mb-[.5rem];
-    }
-}

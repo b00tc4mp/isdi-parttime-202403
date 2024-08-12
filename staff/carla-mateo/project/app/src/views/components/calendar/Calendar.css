@@ -2,18 +2,17 @@
 
 @layer components {
     .calendar-day{
-       @apply w-full h-full m-1 border-2 ps-5
+        @apply w-full h-full m-1 border-2 ps-5
     }
 
     .calendar-body{
-        @apply grid p-2 gap-2 grid-cols-7 grid-rows-6
-     }
-     .calendar-header {
-        @apply p-2
+        @apply grid p-2 gap-2 grid-cols-7 grid-rows-6 mt-4
+    }
+    .calendar-header {
+        @apply p-2 flex justify-between mt-10
     }
     .calendar-day-other-month {
-        @apply text-orange-400 w-full h-full m-1 border-2 ps-5
+        @apply text-gray-600 w-full h-full m-1 border-2 ps-5
 
     }
-     
 }

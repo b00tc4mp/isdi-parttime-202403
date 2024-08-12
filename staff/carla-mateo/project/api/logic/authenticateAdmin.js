@@ -1,14 +1,14 @@
 import validate from "com/validate.js"
-import { User } from "../data/idex.js"
+import { User } from "../data/index.js"
 import bcrypt from "bcryptjs"
 import { SystemError, CredentialsError, NotFoundError } from "com/errors.js"
 
 
-const authenticateAdmin = (username, password) => {
-    validate.username(username)
+const authenticateAdmin = (name, password) => {
+    validate.name(name)
     validate.password(password)
 
-    return User.findOne({ username }).lean()
+    return User.findOne({ name }).lean()
         .catch((error) => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
@@ -22,7 +22,7 @@ const authenticateAdmin = (username, password) => {
                         throw new CredentialsError("Wrong Password")
                     }
 
-                    return user._id.toString()
+                    return { id: user._id.toString(), role: user.role }
                 })
         })
 }

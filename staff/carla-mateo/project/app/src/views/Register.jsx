@@ -1,15 +1,16 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom'
+
+import { TiArrowForward } from "react-icons/ti"
 
 import logic from '../logic/index'
 
 import View from './library/View'
 
-import Button from '../components/core/button/Button'
-import Field from '../components/core/field/Field'
-import Heading from '../components/core/heading/Heading'
-import Header from "./components/header/Header"
-
-import './Register.css'
+import Button from '../components/core/Button'
+import Field from '../components/core/Field'
+import Heading from '../components/core/Heading'
+import Header from "./components/Header"
+import Footer from './components/Footer'
 
 function Register() {
     const navigate = useNavigate()
@@ -39,19 +40,26 @@ function Register() {
 
     return <View>
 
-        <Header></Header>
+        <Header><Heading className="text-3xl" level={1}>FAMILY SYNC</Heading></Header>
 
-        <form className="Register" onSubmit={handleRegisterSubmit}>
-            <Heading level={1} className="RegisterTitle">Register</Heading>
+        <form className="p-8" onSubmit={handleRegisterSubmit}>
+            <Heading level={1} className="text-2xl">Create user admin</Heading>
             <Field id="name" type="text" placeholder="name" />
             <Field id="username" type="text" placeholder="username" />
             <Field id="email" type="email" placeholder="name@example.com" />
             <Field id="password" type="password" placeholder="password" />
             <Field id="passwordRepeat" type="password" placeholder="password repeat" />
             <Button type="submit">Register</Button>
-            <Link to="/login">Login</Link>
+
+            <Link to="/login">
+                <span className="absolute top-6 right-0 p-4">{<TiArrowForward size={32} />}</span>
+            </Link>
         </form>
+
+        <Footer></Footer>
     </View>
+
+
 
 }
 

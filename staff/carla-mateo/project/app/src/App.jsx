@@ -8,6 +8,8 @@ import Calendar from '../src/views/components/calendar/Calendar'
 
 import logic from './logic'
 
+import './index.css'
+
 
 function App() {
   return (

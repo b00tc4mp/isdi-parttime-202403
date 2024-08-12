@@ -1,10 +1,12 @@
-import { User } from '../data/idex.js'
+import { User } from '../data/index.js'
 import validate from 'com/validate.js'
+import { Types } from 'mongoose'
 
 import { NotFoundError, SystemError } from 'com/errors.js'
 
-const getUserName = (userId, targetUserId) => {
+const { ObjectId } = Types
 
+const getUserName = (userId, targetUserId) => {
     validate.id(userId, 'userId')
     validate.id(targetUserId, 'targetUserId')
 
@@ -20,7 +22,7 @@ const getUserName = (userId, targetUserId) => {
                     if (!targetUser) {
                         throw new NotFoundError("User not found")
                     }
-                    return user.name
+                    return user
                 })
         })
 }

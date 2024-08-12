@@ -8,7 +8,9 @@ export default {
     extend: {
       colors: {
         'first-color': 'rgb(4, 65, 34)',
+        'color-footer': '#0b6f73'
       },
+
       fontFamily: {
         roboto: ['"Roboto Mono"', 'monospace'],
         jersey: ['"Jersey 10"', 'sans-serif'],

@@ -1,5 +1,5 @@
-import { User } from '../data/idex.js'
-import { DuplicityError, SystemError } from 'com/errors.js'
+import { User } from '../data/index.js'
+import { DuplicityError, SystemError, NotFoundError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
@@ -7,19 +7,21 @@ import mongoose from 'mongoose'
 
 const { ObjectId } = mongoose.Types
 
-const registerUser = (userId, username, email, password) => {
+const registerUser = (userId, name, username, email, password) => {
     validate.id(userId)
+    validate.name(name)
     validate.username(username)
     validate.email(email)
     validate.password(password)
 
-    return User.findById({ _id: new ObjectId(userId) })
+    return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new DuplicityError('❌user already exists')
+            if (!user) {
+                throw new NotFoundError('❌User not found')
+            }
 
-
-            return User.findOne({ $or: [{ email }, { username }] })
+            return User.findOne({ $or: [{ email }, { name }] })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
                     if (user) throw new DuplicityError('❌user already exists')
@@ -29,6 +31,7 @@ const registerUser = (userId, username, email, password) => {
                         .then(hash => {
 
                             const newUser = {
+                                name: name,
                                 username: username,
                                 email: email,
                                 password: hash,
@@ -42,11 +45,7 @@ const registerUser = (userId, username, email, password) => {
                                 .then(() => { })
                         })
                 })
-
-
         })
-
-
 }
 
 export default registerUser
