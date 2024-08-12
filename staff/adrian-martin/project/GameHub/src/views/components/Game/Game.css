@@ -10,7 +10,6 @@
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.739);
     border-radius: 20px;
     background-color: aliceblue;
-    border: 3px solid rgb(229, 204, 94);
 }
 
 .GameTag-description {
@@ -50,9 +49,10 @@
 
 .GameTag-icon {
     position: absolute;
-    color: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
     font-size: 30px;
     cursor: pointer;
+    left: 225px;
 }
 
 .GameTag-hyi {
