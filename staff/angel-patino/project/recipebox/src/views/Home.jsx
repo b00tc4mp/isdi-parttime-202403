@@ -5,25 +5,20 @@ import { Routes, Route, Link } from "react-router-dom"
 import View from "../components/library/View"
 
 import Header from "./components/Header"
-import PostList from "./components/PostList"
+import RecipeList from "./components/RecipeList"
 import Footer from "./components/Footer"
-import CreatePostForm from "./components/CreatePostForm"
-import Hello from "./components/Hello"
-import Search from "./components/Search"
+import CreateRecipeForm from "./components/CreateRecipeForm"
 
 import Button from "../components/core/Button"
 import Heading from "../components/core/Heading"
 
 import logic from "../logic"
+import About from "./components/About"
 
 function Home({ onUserLoggedOut }) {
-  console.log("Home -> render")
-
-  const { alert } = useContext()
-
   const [name, setName] = useState("")
   const [view, setView] = useState("")
-  const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
+  const [recipeListRefreshStamp, setRecipeListRefreshStamp] = useState(0)
 
   const handleLogout = () => {
     logic.logoutUser()
@@ -32,14 +27,10 @@ function Home({ onUserLoggedOut }) {
   }
 
   useEffect(() => {
-    console.log("Home -> useEffect")
-
     try {
       logic
         .getUserName()
         .then((name) => {
-          console.log("Home -> setName")
-
           setName(name)
         })
         .catch((error) => {
@@ -54,12 +45,12 @@ function Home({ onUserLoggedOut }) {
     }
   }, [])
 
-  const handleCreatePostClick = () => setView("create-post")
+  const handleCreateRecipeClick = () => setView("create-recipe")
 
-  const handleCancelCreatePostClick = () => setView("")
+  const handleCancelCreateRecipeClick = () => setView("")
 
-  const handlePostCreated = () => {
-    setPostListRefreshStamp(Date.now())
+  const handleRecipeCreated = () => {
+    setRecipeListRefreshStamp(Date.now())
 
     setView("")
   }
@@ -68,7 +59,7 @@ function Home({ onUserLoggedOut }) {
     <View>
       <Header>
         <Heading level="1">
-          <Link to="/">SocialCode</Link>
+          <Link to="/">RecipeBox</Link>
         </Heading>
 
         <View direction="row">
@@ -84,25 +75,25 @@ function Home({ onUserLoggedOut }) {
         <Routes>
           <Route
             path="/"
-            element={<PostList refreshStamp={postListRefreshStamp} />}
+            element={<RecipeList refreshStamp={recipeListRefreshStamp} />}
           />
 
           <Route path="/about" element={<About />} />
 
-          <Route path="/hello/:to" element={<Hello />} />
+          {/* <Route path="/hello/:to" element={<Hello />} />
 
-          <Route path="/search" element={<Search />} />
+          <Route path="/search" element={<Search />} /> */}
         </Routes>
 
         {view === "create-post" && (
-          <CreatePostForm
-            onCancelCreatePostClick={handleCancelCreatePostClick}
-            onPostCreated={handlePostCreated}
+          <CreateRecipeForm
+            onCancelCreateRecipeClick={handleCancelCreateRecipeClick}
+            onRecipeCreated={handleRecipeCreated}
           />
         )}
       </View>
 
-      <Footer onCreatePostClick={handleCreatePostClick} />
+      <Footer onCreateRecipeClick={handleCreateRecipeClick} />
     </View>
   )
 }

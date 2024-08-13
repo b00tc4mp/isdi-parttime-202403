@@ -1,9 +1,8 @@
-import { useState } from "react"
 import logic from "./logic"
 
 import Login from "./views/Login"
 import Register from "./views/Register"
-//import Home from "./views/Home"
+import Home from "./views/Home"
 
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 
