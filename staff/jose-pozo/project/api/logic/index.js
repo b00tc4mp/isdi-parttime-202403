@@ -7,6 +7,8 @@ import getUserProfile from './getUserProfile.js'
 
 import createCustomer from './createCustomer.js'
 
+import deleteCustomer from './deleteCustomer.js'
+
 
 const logic = {
     registerUser,
@@ -17,6 +19,8 @@ const logic = {
     getUserProfile,
 
     createCustomer,
+
+    deleteCustomer,
 }
 
 

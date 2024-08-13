@@ -1,10 +1,10 @@
 import errors, { SystemError } from 'com/errors'
 
 
-const getAllCustomers = () => {
+const deleteCustomer = (targetUserId) => {
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
-        method: 'GET',
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${targetUserId}`, {
+        method: 'DELETE',
 
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
@@ -13,11 +13,10 @@ const getAllCustomers = () => {
 
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 200) {
+            if (response.status === 200)
                 return response.json()
                     .catch(() => { throw new SystemError('server error') })
-                    .then(customers => customers)
-            }
+                    .then(targetUserId => targetUserId)
 
             return response.json()
                 .catch(() => { throw new SystemError('server error') })
@@ -30,5 +29,3 @@ const getAllCustomers = () => {
                 })
         })
 }
-
-export default getAllCustomers

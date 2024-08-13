@@ -9,6 +9,8 @@ import getUserProfileHandler from './getUserProfileHandler.js'
 
 import createCustomerHandler from './createCustomerHandler.js'
 
+import deleteCustomerHandler from './deleteCustomerHandler.js'
+
 
 export default {
     errorHandler,
@@ -21,4 +23,6 @@ export default {
     getUserProfileHandler,
 
     createCustomerHandler,
+
+    deleteCustomerHandler,
 }
