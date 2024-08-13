@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Field from './Field'
 import Footer from './Footer'
 import ArtistsList from './ArtistsList'
-import disciplines from '../assets/disciplines'
+import { disciplines } from '../assets/disciplines'
 //TODO input validates
 function Form({}) {
   const [inputValue, setInputValue] = useState('')

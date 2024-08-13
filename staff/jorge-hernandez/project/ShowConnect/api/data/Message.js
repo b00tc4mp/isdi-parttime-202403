@@ -10,18 +10,17 @@ const messageSchema = new Schema({
       ref: 'User',
     },
   ],
-  text: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
+  text: {
+    type: String,
+    required: true,
+  },
+
   date: {
     type: Date,
     default: Date.now,
   },
 })
 
-const Chat = model('Message', messageSchema)
+const Message = model('Message', messageSchema)
 
-export default messageSchema
+export default Message

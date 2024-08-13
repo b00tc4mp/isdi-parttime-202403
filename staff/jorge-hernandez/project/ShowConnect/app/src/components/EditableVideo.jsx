@@ -7,7 +7,7 @@ function EditableVideo({ artistId, label, onVideoUpdate }) {
 
   const handleVideoClick = () => setIsEditing(true)
 
-  const handleVideoChange = (event) => setNewVideo(event.target.value)
+  const handleVideoChange = (e) => setNewVideo(e.target.value)
 
   const handleVideoSave = () => {
     const updatedData = { video: newVideo }

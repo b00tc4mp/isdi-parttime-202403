@@ -13,11 +13,7 @@ const updateArtist = (userId, updateData) => {
       if (updateData.description) user.description = updateData.description
 
       if (updateData.dates) {
-        updateData.dates.forEach((date) => {
-          if (!user.dates.includes(date)) {
-            user.dates.push(date)
-          }
-        })
+        user.dates = updateData.dates
       }
 
       return user.save()

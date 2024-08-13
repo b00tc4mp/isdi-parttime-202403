@@ -6,13 +6,11 @@ import EditableImage from '../components/EditableImage'
 import EditableDescription from '../components/EditableDescription'
 import EditableVideo from '../components/EditableVideo'
 import AddDate from '../components/AddDate'
-
-function ArtistHome({ onUserLoggedOut, onShowMessage }) {
+import ArtistMessages from './ArtistMessages'
+//TODO EDIT BUTTON
+function ArtistHome({ onUserLoggedOut }) {
   const [artist, setArtist] = useState(null)
-  const [isEditingName, setIsEditingName] = useState(false)
-  const [isAddingDate, setIsAddingDate] = useState(false)
-  const [newArtisticName, setNewArtisticName] = useState('')
-  const [newDate, setNewDate] = useState('')
+  const [isMessages, setIsMessages] = useState(false)
 
   useEffect(() => {
     logic
@@ -25,37 +23,23 @@ function ArtistHome({ onUserLoggedOut, onShowMessage }) {
       })
   }, [])
 
-  const handleClickMessages = () => onShowMessage()
+  const handleClickMessages = () => setIsMessages(true)
 
-  const handleClickAddDate = () => setIsAddingDate(true)
-  const handleDateChange = (e) => setNewDate(e.target.value)
-  const handleDateSave = () => {
-    const updatedData = { dates: updatedDates }
-
-    logic
-      .updateArtistData(artist.id, updatedData)
-      .then(() => {
-        setArtist({ ...artist, dates: updatedDates })
-        setNewDate('')
-        setIsAddingDate(false)
-      })
-      .catch((error) => {
-        console.error('Error updating artist data:', error)
-      })
-  }
-
-  const handleDateCancel = () => {
-    setNewDate('')
-    setIsAddingDate(false)
-  }
-
-  const handleDeleteDate = (date) => {
-    console.log(date)
-  }
+  const handleClickBack = () => setIsMessages(false)
 
   const handleLogout = () => {
     logic.logoutUser()
     onUserLoggedOut()
+  }
+
+  const handleDateUpdate = (newDate) => {
+    const updatedDates = [...artist.dates, newDate]
+    setArtist({ ...artist, dates: updatedDates })
+  }
+
+  const handleDateDelete = (dateToDelete) => {
+    const updatedDates = artist.dates.filter((date) => date !== dateToDelete)
+    setArtist({ ...artist, dates: updatedDates })
   }
 
   if (!artist) {
@@ -72,58 +56,58 @@ function ArtistHome({ onUserLoggedOut, onShowMessage }) {
         ShowConnect
       </Header>
 
-      <div className='flex items-center justify-center bg-black bg-opacity-60 m-2 mt-10 border rounded-md shadow-md'>
-        <div className='bg-gray-700 text-white rounded-lg p-2 w-full max-w-4xl relative'>
-          <i
-            onClick={handleClickMessages}
-            className='cursor-pointer fa-regular fa-message text-2xl ml-2 mt-2'
-          ></i>
+      {isMessages ? (
+        <ArtistMessages onClickBack={handleClickBack} />
+      ) : (
+        <div className='flex items-center justify-center bg-black bg-opacity-60 m-2 mt-10 border rounded-md shadow-md'>
+          <div className='bg-gray-700 text-white rounded-lg p-2 w-full max-w-4xl relative'>
+            <i
+              onClick={handleClickMessages}
+              className=' cursor-pointer fa-regular fa-message text-2xl ml-2 mt-2'
+            ></i>
 
-          <div className='flex flex-col items-center'>
-            <EditableArtisticName
-              artistId={artist.id}
-              label={artist.artisticName}
-              onArtisticNameUpdate={(newArtisticName) => {
-                setArtist({ ...artist, artisticName: newArtisticName })
-              }}
-            />
-            <div className='flex items-center mb-3'>
-              <EditableImage
+            <div className='flex flex-col items-center'>
+              <EditableArtisticName
                 artistId={artist.id}
-                label={artist.images}
-                onImageUpdate={(newImage) => {
-                  setArtist({ ...artist, images: newImage })
+                label={artist.artisticName}
+                onArtisticNameUpdate={(newArtisticName) => {
+                  setArtist({ ...artist, artisticName: newArtisticName })
                 }}
               />
-              <EditableDescription
+              <div className='flex items-center mb-3'>
+                <EditableImage
+                  artistId={artist.id}
+                  label={artist.images}
+                  onImageUpdate={(newImage) => {
+                    setArtist({ ...artist, images: newImage })
+                  }}
+                />
+                <EditableDescription
+                  artistId={artist.id}
+                  label={artist.description}
+                  onDescriptionUpdate={(newDescription) =>
+                    setArtist({ ...artist, description: newDescription })
+                  }
+                />
+              </div>
+              <EditableVideo
                 artistId={artist.id}
-                label={artist.description}
-                onDescriptionUpdate={(newDescription) =>
-                  setArtist({ ...artist, description: newDescription })
+                label={artist.video}
+                onVideoUpdate={(newVideo) =>
+                  setArtist({ ...artist, video: newVideo })
                 }
               />
-            </div>
-            <EditableVideo
-              artistId={artist.id}
-              label={artist.video}
-              onVideoUpdate={(newVideo) =>
-                setArtist({ ...artist, video: newVideo })
-              }
-            />
 
-            <AddDate
-              isEditing={isAddingDate}
-              value={newDate}
-              onChange={handleDateChange}
-              onSave={handleDateSave}
-              onCancel={handleDateCancel}
-              onClick={handleClickAddDate}
-              dates={artist.dates}
-              handleDeleteDate={handleDeleteDate}
-            />
+              <AddDate
+                dates={artist.dates}
+                artistId={artist.id}
+                onDateUpdate={handleDateUpdate}
+                onDateDelete={handleDateDelete}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

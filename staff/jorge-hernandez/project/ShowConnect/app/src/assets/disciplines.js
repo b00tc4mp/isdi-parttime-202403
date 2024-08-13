@@ -1,4 +1,4 @@
-const disciplines = [
+export const disciplines = [
   'mago',
   'músico',
   'musico',
@@ -17,4 +17,6 @@ const disciplines = [
   'clown',
 ]
 
-export default disciplines
+// export default disciplines
+
+export const cities = []

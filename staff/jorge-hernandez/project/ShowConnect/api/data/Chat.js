@@ -11,9 +11,11 @@ const chatSchema = new Schema({
     },
   ],
   messages: [
+    //TODO ARRAY DE IDS DE MENSAJES
     {
       type: String,
       required: true,
+      ref: 'Message',
     },
   ],
   date: {
