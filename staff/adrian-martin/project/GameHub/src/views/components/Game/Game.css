@@ -65,13 +65,16 @@
     text-align: center;
     display: flex;
     justify-content: center;
+
 }
 
 .EditDeletePanel {
+    border-radius: 10px;
     border: 1px solid black;
     width: 300px;
     display: flex;
     justify-content: space-around;
+    background-color: aliceblue;
 }
 
 .Button-3point {

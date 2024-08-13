@@ -1,8 +1,7 @@
 import validate from "com/validate";
 import errors, { SystemError } from "com/errors";
 
-const editGame = (userId, gameId, updates) => {
-    validate.id(userId, 'userId')
+const editGame = (gameId, updates) => {
     validate.id(gameId, 'gameId')
 
     if (updates.title) validate.text(updates.title)
