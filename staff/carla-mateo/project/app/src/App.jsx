@@ -4,7 +4,9 @@ import Register from './views/Register'
 import Home from './views/Home'
 import Login from './views/Login'
 
-import Calendar from '../src/views/components/calendar/Calendar'
+import Calendar from './views/components/calendar/Calendar'
+import TasksList from './views/components/TasksList'
+import CreateTask from './views/components/CreateTask'
 
 import logic from './logic'
 
@@ -24,6 +26,8 @@ function App() {
         <Route path='/login' element={<Login />} />
 
         <Route path='/calendar' element={<Calendar />} />
+        <Route path='/taskslist' element={<TasksList />} />
+        <Route path='createtask' element={<CreateTask />} />
       </Routes>
     </>
   )

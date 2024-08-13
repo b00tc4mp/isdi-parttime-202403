@@ -6,6 +6,7 @@ import authenticateAdminHandler from './authenticateAdminHandler.js'
 import getUserNameHandler from './getUserNameHandler.js'
 import createTaskHandler from './createTaskHandler.js'
 import deleteTaskHandler from './deleteTaskHandler.js'
+import getAllUsersHandler from './getAllUsersHandler.js'
 
 
 export default {
@@ -16,6 +17,7 @@ export default {
     authenticateAdminHandler,
     getUserNameHandler,
     createTaskHandler,
-    deleteTaskHandler
+    deleteTaskHandler,
+    getAllUsersHandler
 
 }

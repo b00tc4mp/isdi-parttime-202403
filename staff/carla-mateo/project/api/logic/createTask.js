@@ -2,10 +2,11 @@ import { Task, User } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const createTask = (parent, assign, title) => {
+const createTask = (parent, assign, title, description) => {
     validate.id(parent, 'parent')
     validate.id(assign, 'assign')
     validate.text(title, 'title', 60)
+    validate.text(description, 'description', 200)
 
     return User.findById(parent).lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -16,7 +17,8 @@ const createTask = (parent, assign, title) => {
                 parent,
                 assign,
                 title,
-                date: new Date,
+                description,
+                date: new Date(),
                 done: []
             }
 

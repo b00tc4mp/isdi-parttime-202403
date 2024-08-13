@@ -36,7 +36,7 @@ function Login() {
 
     return <View>
 
-        <Header><Heading className="text-3xl" level={1}>FAMILY SYNC</Heading></Header>
+        <Header></Header>
 
         <form className=" p-8 " onSubmit={handleLoginSubmit}>
             <Heading className="text-2xl" level={1}>Enter your home</Heading>

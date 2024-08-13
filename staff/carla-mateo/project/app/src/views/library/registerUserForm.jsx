@@ -40,7 +40,7 @@ function RegisterUserForm({ onSuccess }) {
                 <Field id="username" type="text" placeholder="username" />
                 <Field id="email" type="email" placeholder="name@example.com" />
                 <Field id="password" type="password" placeholder="password" />
-                <Button type="submit">Register</Button>
+                <Button type="submit">Create User</Button>
             </form>
             {registrationMessage.length > 0 && <p className="text-black-500 text-2xl">{registrationMessage}</p>}
         </div>

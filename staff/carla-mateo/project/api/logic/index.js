@@ -4,6 +4,7 @@ import authenticateAdmin from './authenticateAdmin.js'
 import getUserName from './getUserName.js'
 import createTask from './createTask.js'
 import deleteTask from './deleteTask.js'
+import getAllUsers from './getAllUsers.js'
 
 const logic = {
     registerUser,
@@ -11,7 +12,8 @@ const logic = {
     authenticateAdmin,
     getUserName,
     createTask,
-    deleteTask
+    deleteTask,
+    getAllUsers
 }
 
 export default logic

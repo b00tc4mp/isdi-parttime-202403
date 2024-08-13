@@ -40,10 +40,10 @@ function Register() {
 
     return <View>
 
-        <Header><Heading className="text-3xl" level={1}>FAMILY SYNC</Heading></Header>
+        <Header></Header>
 
         <form className="p-8" onSubmit={handleRegisterSubmit}>
-            <Heading level={1} className="text-2xl">Create user admin</Heading>
+            <Heading level={1} className="text-2xl">Create admin</Heading>
             <Field id="name" type="text" placeholder="name" />
             <Field id="username" type="text" placeholder="username" />
             <Field id="email" type="email" placeholder="name@example.com" />
