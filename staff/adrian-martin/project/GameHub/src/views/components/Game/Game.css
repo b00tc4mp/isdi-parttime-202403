@@ -61,7 +61,22 @@
     align-items: center;
 }
 
+.EditDeletePanelContainer {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
 
+.EditDeletePanel {
+    border: 1px solid black;
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Button-3point {
+    width: 70px;
+}
 
 /* object-fit: cover;     
 object-fit: contain; 

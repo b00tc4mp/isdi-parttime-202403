@@ -1,18 +1,38 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 
+import { useState } from 'react'
+
+import FormWithFeedback from '../../../components/library/FormWithFeedback/FormWithFeedback'
+import Button from '../../../components/core/Button/Button'
 import Image from '../../../components/core/Image/Image'
 import Text from '../../../components/core/Text/Text'
 import logic from '../../../logic/index'
 
 import './Game.css'
 
-function Game({ game }) {
+function Game({ game, onGameDeleted }) {
     console.log('Game -> render')
+    const [isEditingGame, setIsEditingGame] = useState(false)
 
-    // TODO handleDeleteGame
+    const handleEditingGame = () => {
+        setIsEditingGame(!isEditingGame)
+    }
 
-    // TODO handleEditGame
+    const handleDeleteGame = () => {
+        try {
+            logic.deleteGame(game.id)
+                .then(() => onGameDeleted())
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
 
     return <div>
         <div className='GameTag'>
@@ -23,12 +43,31 @@ function Game({ game }) {
                 <Text className='GameTag-title'>{game.title}</Text>
                 <p className='GameTag-rating'>{game.rating}</p>
                 <div className='GameTag-hyi'>
-                    {game.author.id === logic.getUserId() && <FontAwesomeIcon className='GameTag-icon' icon={faEllipsisVertical} />}
+                    {game.author.id === logic.getUserId() && <FontAwesomeIcon
+                        className='GameTag-icon'
+                        icon={faEllipsisVertical}
+                        onClick={handleEditingGame} />}
                     <p className='GameTag-hours'>{game.hours}h</p>
                 </div>
-
             </div>
         </div>
+
+        {isEditingGame && (
+            <FormWithFeedback onSubmit={handleEditingGame} className='EditDeletePanelContainer'>
+                <div className='EditDeletePanel'>
+                    <Button
+                        className='Button-3point'
+                    >Edit</Button>
+
+                    <span>|</span>
+
+                    <Button
+                        className='Button-3point'
+                        onClick={handleDeleteGame}
+                    >Delete</Button>
+                </div>
+            </FormWithFeedback>
+        )}
     </div>
 }
 

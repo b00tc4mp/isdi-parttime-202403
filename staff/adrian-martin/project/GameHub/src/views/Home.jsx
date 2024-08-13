@@ -23,7 +23,6 @@ function Home() {
 
     const [view, setView] = useState('')
     const [gameListRefreshStamp, setGameListRefreshStamp] = useState(0)
-    const [games, setGames] = useState([])
 
     const navigate = useNavigate()
 

@@ -1,12 +1,12 @@
-import { } from 'dotenv/config'
 import validate from 'com/validate'
-import { SystemError } from 'com/errors'
+import errors, { SystemError } from 'com/errors'
 
-const deleteGame = (userId, gameId) => {
-    validate.id(userId, 'userId')
+const deleteGame = (gameId) => {
     validate.id(gameId, 'gameId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/games/${gameId}/edit`, {
+    if (!gameId) throw new SystemError('gameIs is undefined or null')
+
+    return fetch(`${import.meta.env.VITE_API_URL}/games/${gameId}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`

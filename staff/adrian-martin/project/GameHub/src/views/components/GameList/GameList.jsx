@@ -31,9 +31,11 @@ function GameList({ refreshStamp }) {
         }
     }
 
+    const handleGameDeleted = () => loadGames()
+
     return (
         <div>
-            {games.map(game => <Game key={game.id} game={game} />)}
+            {games.map(game => <Game key={game.id} game={game} onGameDeleted={handleGameDeleted} />)}
         </div>
     )
 }
