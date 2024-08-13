@@ -1,0 +1,1 @@
+curl -X GET "http://localhost:8080/create-booking/66b9cfcf7fa1ab9bd25e0444" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmI3NjMxOTA2MjEwMDY4NWJmZjI2NDUiLCJyb2xlIjoiZ3Vlc3QiLCJpYXQiOjE3MjM1NDI2MzMsImV4cCI6MTcyMzg4ODIzM30.rjewIMEMmppordL5y7yeRC0C2hr5L_B75Jt-okO7Sok", -v

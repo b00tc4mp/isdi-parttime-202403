@@ -19,7 +19,7 @@ const createBookingHandler = ((req, res, next) => {
 
         try {
           logic.createBooking(userId, roomId, startDate, endDate)
-            .then(() => { res.status(201).send() })
+            .then(blockedDates => res.status(201).json({ blockedDates }))
             .catch(error => next(error))
         } catch (error) {
           next(error)

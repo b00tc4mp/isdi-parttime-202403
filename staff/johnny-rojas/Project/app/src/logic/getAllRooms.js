@@ -1,7 +1,5 @@
 import errors, { SystemError } from 'com/errors'
 
-
-
 const getAllRooms = () => {
 
   return fetch(`${import.meta.env.VITE_API_URL}/rooms`, {

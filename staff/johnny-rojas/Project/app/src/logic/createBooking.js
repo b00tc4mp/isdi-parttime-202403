@@ -16,7 +16,11 @@ const createBooking = (userId, roomId, startDate, endDate) => {
 
     .catch(() => { throw new SystemError('network error') })
     .then(response => {
-      if (response.status === 201) return
+      if (response.status === 201) {
+        return response.json()
+          .catch(() => { throw new SystemError('network error') })
+          .then(blockedDates => blockedDates)
+      }
 
       return response.json()
         .catch(() => { throw new SystemError('network error') })

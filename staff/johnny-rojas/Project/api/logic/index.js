@@ -11,6 +11,8 @@ import deleteRoom from './deleteRoom.js'
 
 import createBooking from './createBooking.js'
 import getAllBookings from './getAllBookings.js'
+import getBlockedDatesByRoom from './getBlockedDatesByRoom.js'
+import getRoomBookings from './getRoomBookings.js'
 
 
 const logic = {
@@ -26,7 +28,9 @@ const logic = {
   deleteRoom,
 
   createBooking, 
-  getAllBookings
+  getAllBookings,
+  getBlockedDatesByRoom,
+  getRoomBookings
 }
 
 export default logic

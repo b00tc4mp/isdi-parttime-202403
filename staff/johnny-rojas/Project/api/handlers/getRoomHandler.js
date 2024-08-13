@@ -17,13 +17,13 @@ const getRoomHandler = (req, res, next) => {
         try {
           logic.getRoom(userId, roomId)
             .then(room => res.json(room))
-          .catch(error => next(error))
-          
+            .catch(error => next(error))
+
         } catch (error) {
           next(error)
         }
       })
-    .catch(error => next(new CredentialsError(error.message)))
+      .catch(error => next(new CredentialsError(error.message)))
 
   } catch (error) {
     next(error)

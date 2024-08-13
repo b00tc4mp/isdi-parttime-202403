@@ -8,8 +8,8 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      deleteRoom('66b76351c316c71376f20b2f', '66b873ff2e268693ac537cf8')
-        .then(() => console.log('room delete'))
+      deleteRoom('66bb93f629f8c00d8219baab', '66bb98d201b7633eacf7cfdc')
+        .then(() => console.log('room deleted'))
       .catch((error) => console.error(error))
     
     } catch (error) {

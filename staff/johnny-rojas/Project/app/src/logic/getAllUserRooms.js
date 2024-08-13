@@ -1,13 +1,12 @@
 import { SystemError } from 'com/errors'
 
-
-
 const getAllUserRooms = (user) => {
 
   return fetch(`${import.meta.env.VITE_API_URL}/users/${user.id}/rooms`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${sessionStorage.token}`
+      Authorization: `Bearer ${sessionStorage.token}`,
+      'Content-Type': 'application/json'
     }
   })
 

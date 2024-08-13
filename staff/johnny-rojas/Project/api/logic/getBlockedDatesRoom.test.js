@@ -1,18 +1,19 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import authenticateUser from './authenticateUser.js'
+import getBlockedDatesByRoom from './getBlockedDatesByRoom.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      authenticateUser('user@user.com', '1234')
-        .then(() => console.log('authenticated'))
+      getBlockedDatesByRoom('66bb9839a3b4be3d66985b62')
+        .then(bookings => console.log(bookings))
         .catch(error => console.error(error))
     } catch (error) {
       console.error(error)
     }
+
   })
   .catch(error => console.error(error))
