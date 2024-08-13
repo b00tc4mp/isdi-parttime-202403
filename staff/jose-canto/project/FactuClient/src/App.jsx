@@ -1,4 +1,6 @@
+import { useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
+import { Context } from "./useContext"
 
 import Login from "./components/view/Login"
 import Register from "./components/view/Register"
@@ -12,33 +14,42 @@ import DeliveryInfo from "./components/view/DeliveryInfo"
 import NewDeliveryNotes from "./components/view/NewDeliveryNotes"
 import CreateDeliveryNotes from "./components/view/CreateDeliveryNotes"
 import InvoiceInfo from "./components/view/InvoiceInfo"
+import Alert from "./components/Alert"
 
 import logic from "./logic/index"
 
 import "./global.css"
 
 function App() {
+  const [message, setMessage] = useState(null)
+
+  const handleMessage = (message) => setMessage(message)
+  const handleAlertAccepted = () => setMessage(null)
   return (
     <>
-      <Routes>
-        <Route path="/" element={<RenderHome />} />
-        <Route path="/login" element={<RenderLogin />} />
-        <Route path="/register" element={<RenderRegister />} />
+      <Context.Provider value={{ alert: handleMessage }}>
+        <Routes>
+          <Route path="/" element={<RenderHome />} />
+          <Route path="/login" element={<RenderLogin />} />
+          <Route path="/register" element={<RenderRegister />} />
 
-        <Route path="/customers" element={<CustomerList />} />
-        <Route path="/customers/profile/:customerId" element={<CustomerProfile />} />
+          <Route path="/customers" element={<CustomerList />} />
+          <Route path="/customers/profile/:customerId" element={<CustomerProfile />} />
 
-        <Route path="/users/profile" element={<UsersProfile />} />
+          <Route path="/users/profile" element={<UsersProfile />} />
 
-        <Route path="/invoices" element={<InvoiceList />} />
-        <Route path="/invoices/:invoiceId" element={<InvoiceInfo />} />
+          <Route path="/invoices" element={<InvoiceList />} />
+          <Route path="/invoices/:invoiceId" element={<InvoiceInfo />} />
 
-        <Route path="/create/delivery-notes" element={<NewDeliveryNotes />} />
-        <Route path="/create/delivery-notes/:customerId" element={<CreateDeliveryNotes />} />
+          <Route path="/create/delivery-notes" element={<NewDeliveryNotes />} />
+          <Route path="/create/delivery-notes/:customerId" element={<CreateDeliveryNotes />} />
 
-        <Route path="/delivery-notes" element={<DeliveryNoteList />} />
-        <Route path="/delivery-notes/:deliveryNoteId" element={<DeliveryInfo />} />
-      </Routes>
+          <Route path="/delivery-notes" element={<DeliveryNoteList />} />
+          <Route path="/delivery-notes/:deliveryNoteId" element={<DeliveryInfo />} />
+        </Routes>
+
+        {message && <Alert message={message} onAccept={handleAlertAccepted} />}
+      </Context.Provider>
     </>
   )
 }

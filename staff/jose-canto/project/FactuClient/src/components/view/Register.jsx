@@ -2,6 +2,9 @@ import { Link, useNavigate } from "react-router-dom"
 
 import logic from "../../logic/index"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import Title from "../Title"
 import Field from "../core/Field"
 import Button from "../core/Button"
@@ -11,6 +14,7 @@ import Footer from "../core/Footer"
 import "./Register.css"
 
 export default function Register() {
+  const { alert } = useContext()
   const navigate = useNavigate()
 
   const handleRegisterSubmit = (event) => {
@@ -29,7 +33,9 @@ export default function Register() {
           navigate("/login")
         })
         .catch((error) => {
-          alert(error.message)
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
         })
     } catch (error) {
       alert(error.message)

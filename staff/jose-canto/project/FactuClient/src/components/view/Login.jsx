@@ -1,5 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import logic from "../../logic"
 
 import "./Login.css"
@@ -11,7 +14,10 @@ import Main from "../core/Main"
 import Footer from "../core/Footer"
 
 export default function Login() {
+  const { alert } = useContext()
+
   const navigate = useNavigate()
+
   const handleLoginSubmit = (event) => {
     event.preventDefault()
 
@@ -25,7 +31,11 @@ export default function Login() {
         .then(() => {
           navigate("/")
         })
-        .catch((error) => alert(error.message))
+        .catch((error) => {
+          if(error instanceof SystemError) {
+            alert(error.message)
+          }
+        })
     } catch (error) {
       alert(error.message)
     }
