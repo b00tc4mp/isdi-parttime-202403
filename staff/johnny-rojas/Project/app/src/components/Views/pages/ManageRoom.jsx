@@ -9,8 +9,6 @@ import Title from '../core/Title';
 import { useNavigate, useParams } from "react-router-dom";
 import logic from "../../../logic/index"
 
-
-
 function ManageRoom() {
   const { roomId } = useParams()
   const userId = getUserId()

@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import logic from "../../../logic/index";
-
+import { Link } from "react-router-dom";
 
 import './RoomList.css'
-import { Link } from "react-router-dom";
 
 function RoomList() {
   const [rooms, setRooms] = useState([])
@@ -44,8 +43,8 @@ function RoomList() {
               </div>
             </div>
             <div className="LinkTo">
-              <Link  to={`/rooms/${room.id}`}>Reservar</Link>
-              </div>
+              <Link to={`/create-booking/${room.id}`}>Reservar</Link>
+            </div>
           </div>
         </li>)}
       </ul>

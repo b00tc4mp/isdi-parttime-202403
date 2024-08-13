@@ -8,6 +8,7 @@ import getAllUserRoomsHandler from './getAllUserRoomsHandler.js';
 import editRoomHandler from './editRoomHandler.js'
 import deleteRoomHandler from './deleteRoomHandler.js'
 import createBookingHandler from './createBookingHandler.js'
+import getAllBookingsHandler from './getAllBookingsHandler.js';
 
 
 const handlers = {
@@ -22,7 +23,8 @@ const handlers = {
   editRoomHandler,
   deleteRoomHandler,
 
-  createBookingHandler
+  createBookingHandler,
+  getAllBookingsHandler
 }
 
 export default handlers

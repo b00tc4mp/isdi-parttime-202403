@@ -5,7 +5,7 @@ import { DuplicityError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
 
-const createBookingHandler = (req, res, next) => {
+const createBookingHandler = ((req, res, next) => {
   try {
     const token = req.headers.authorization.slice(7)
 
@@ -30,7 +30,7 @@ const createBookingHandler = (req, res, next) => {
   } catch (error) {
     next(error)
   }
-}
+})
 
 
 export default createBookingHandler

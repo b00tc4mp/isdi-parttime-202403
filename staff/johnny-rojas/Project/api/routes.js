@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post('/users', jsonBodyParser, routes.registerUserHandler)
 
-
 router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)
 router.get('/users/:targetUserId', routes.getUserNameHandler)
 
@@ -19,6 +18,7 @@ router.patch('/rooms/:roomId/manage',  jsonBodyParser, routes.editRoomHandler)
 router.delete('/rooms/:roomId/manage', jsonBodyParser, routes.deleteRoomHandler)
 
 router.post('/create-booking/:roomId', jsonBodyParser, routes.createBookingHandler)
+router.get('/bookings', jsonBodyParser, routes.getAllBookingsHandler)
 
 export default router;
 

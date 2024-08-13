@@ -11,6 +11,8 @@ import getAllUserRooms from './getAllUserRooms'
 import editRoom from './editRoom';
 import deleteRoom from './deleteRoom';
 
+import createBooking from './createBooking'
+
 const logic = {
   registerUser,
   isUserLoggedIn,
@@ -24,7 +26,9 @@ const logic = {
   getRoom,
   getAllUserRooms,
   editRoom,
-  deleteRoom
+  deleteRoom,
+
+  createBooking,
 }
 
 export default logic
