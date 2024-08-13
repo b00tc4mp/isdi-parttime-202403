@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
+import ProfileInfoItem from "../ProfileItemInfo"
 
 import { LiaUserEditSolid } from "react-icons/lia"
 
@@ -50,45 +51,15 @@ export default function UserProfile() {
       </Header>
 
       <Main className="MainProfile">
-        <div className="Profile">
-          <div className="ProfileInfo">
-            <p className="SpanText">Nombre de Usuario</p>
-            {user?.username && <p className="ProfileInfo">{user.username}</p>}
-          </div>
-
-          <div className="ProfileInfo">
-            <p className="SpanText">Email</p>
-            {user?.email && <p className="ProfileInfo">{user.email}</p>}
-          </div>
-
-          <div className="ProfileInfo">
-            <p className="SpanText">Nombre y Apellidos</p>
-            {user?.fullName && <p className="ProfileInfo">{user.fullName}</p>}
-          </div>
-
-          <div className="ProfileInfo">
-            <p className="SpanText">Nombre de Empresa</p>
-            {user?.companyName && <p className="ProfileInfo">{user.companyName}</p>}
-          </div>
-
-          <div className="ProfileInfo">
-            <p className="SpanText">Dirección</p>
-            {user?.address && <p className="ProfileInfo">{user.address}</p>}
-          </div>
-
-          <div className="ProfileInfo">
-            <p className="SpanText">CIF/NIF</p>
-            {user?.taxId && <p className="ProfileInfo">{user.taxId}</p>}
-          </div>
-
-          <div className="ProfileInfo">
-            <p className="SpanText">Nº Móvil</p>
-            {user?.phone && <p className="ProfileInfo">{user.phone}</p>}
-          </div>
-
-          <div className="ProfileInfo">
-            <p className="SpanText">IBAN</p> {user?.bankAccount && <p className="ProfileInfo">{user.bankAccount}</p>}
-          </div>
+        <div className="ProfileInfoContainer">
+          <ProfileInfoItem label="Nombre de usuario" value={user?.username} />
+          <ProfileInfoItem label="Nombre y Apellidos" value={user?.fullName} />
+          <ProfileInfoItem label="Empresa" value={user?.companyName} />
+          <ProfileInfoItem label="Dirección" value={user?.address} />
+          <ProfileInfoItem label="CIF/NIF" value={user?.taxId} />
+          <ProfileInfoItem label="Nº Móvil" value={user?.phone} />
+          <ProfileInfoItem label="Email" value={user?.email} />
+          <ProfileInfoItem label="IBAN" value={user?.bankAccount} />
         </div>
       </Main>
       <Footer>FactuClient</Footer>

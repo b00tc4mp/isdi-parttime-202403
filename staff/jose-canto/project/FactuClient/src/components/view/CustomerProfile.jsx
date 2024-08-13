@@ -6,6 +6,7 @@ import { RiFileUserLine } from "react-icons/ri"
 import Header from "../Header"
 import Footer from "../core/Footer"
 import Main from "../core/Main"
+import ProfileInfoItem from "../ProfileItemInfo"
 
 import logic from "../../logic"
 
@@ -32,43 +33,13 @@ export default function CustomerProfile() {
     <>
       {customer?.companyName && <Header iconUser={<RiFileUserLine />}>{customer.companyName}</Header>}
       <Main className="CustomerProfile">
-        <div className="CustomerInfo">
-          {customer?.username && (
-            <p>
-              <span className="SpanColor">Nombre de Usuario</span>
-              <br /> {customer.username}
-            </p>
-          )}
-          {customer?.companyName && (
-            <p>
-              <span className="SpanColor">Nombre Empresa</span>
-              <br /> {customer.companyName}
-            </p>
-          )}
-          {customer?.email && (
-            <p>
-              <span className="SpanColor">Email</span>
-              <br /> {customer.email}
-            </p>
-          )}
-          {customer?.taxId && (
-            <p>
-              <span className="SpanColor">CIF/NIF</span>
-              <br /> {customer.taxId}
-            </p>
-          )}
-          {customer?.phone && (
-            <p>
-              <span className="SpanColor">Nº Teléfono</span>
-              <br /> {customer.phone}
-            </p>
-          )}
-          {customer?.address && (
-            <p>
-              <span className="SpanColor"> Dirección</span>
-              <br /> {customer.address}
-            </p>
-          )}
+        <div className="ProfileInfoContainer">
+          <ProfileInfoItem label="Nombre de usuario" value={customer?.username} />
+          <ProfileInfoItem label="Empresa" value={customer?.companyName} />
+          <ProfileInfoItem label="Email" value={customer?.email} />
+          <ProfileInfoItem label="CIF/NIF" value={customer?.taxId} />
+          <ProfileInfoItem label="Nº Móvil" value={customer?.phone} />
+          <ProfileInfoItem label="Dirección	" value={customer?.address} />
         </div>
       </Main>
 

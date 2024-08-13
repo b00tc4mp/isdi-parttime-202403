@@ -5,21 +5,6 @@
     @apply w-20 rounded-2xl;
   }
 
-  .Profile {
-    @apply relative bottom-3 flex w-[95%] flex-col items-center gap-2;
-  }
-
-  .ProfileInfo {
-    @apply inline w-full;
-  }
-  .SpanText {
-    @apply w-auto text-sm font-bold text-orange-800;
-  }
-
-  .ProfileInfo {
-    @apply w-full text-xl font-bold;
-  }
-
   .HeaderProfile .IconLeftHeader {
     @apply -top-7;
   }
