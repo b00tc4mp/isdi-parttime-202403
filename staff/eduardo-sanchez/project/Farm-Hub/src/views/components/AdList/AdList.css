@@ -1,8 +1,0 @@
-@tailwind components;
-
-@layer components {
-
-    .AdContainer {
-        @apply border border-black flex flex-col gap-2 mb-2;
-    }
-}
