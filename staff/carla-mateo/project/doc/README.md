@@ -81,5 +81,6 @@ Task
 - done(boolean, default false)
 - date(Date)
 - parent(User.id)
+- assignee(User.id)
 
 

@@ -1,6 +1,7 @@
 import { User, Task } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
+
 import { Types } from 'mongoose'
 
 const { ObjectId } = Types
@@ -22,7 +23,7 @@ const deleteTask = (userId, taskId) => {
                     if (task.parent.toString() !== userId)
                         throw new MatchError('task parent does not match user')
 
-                    return Task.findByIdAndDelete(taskId)
+                    return Task.deleteOne({ _id: new ObjectId(taskId) })
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })

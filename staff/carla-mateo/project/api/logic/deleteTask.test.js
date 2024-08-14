@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            deleteTask("66b9d14f63b2d4c0bba66349", "66ba4574fd364b27b7ba180d")
+            deleteTask("66bc4451da0a179576c54969", "66bce4c9fa804dc563c8a8d8")
                 .then(() => console.log('post deleted'))
                 .catch((error) => console.error(error))
 
