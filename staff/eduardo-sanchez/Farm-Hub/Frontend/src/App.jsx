@@ -9,6 +9,7 @@ import Register from './views/Register'
 import Home from './views/Home'
 import { Notfound } from './views/Notfound'
 import { Login } from './views/Login'
+import AdList from './views/components/AdList/AdList.jsx'
 
 function App() {
   console.log('App -> render')
@@ -25,6 +26,8 @@ function App() {
     <Routes>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/adlist" element={<AdList />} />
+
       <Route path="/" element={<Home />} />
       <Route path="/*" element={<Notfound />} />
     </Routes>

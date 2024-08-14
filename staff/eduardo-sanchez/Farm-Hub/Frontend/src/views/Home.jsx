@@ -5,8 +5,9 @@ import Button from "../components/core/Button"
 
 import logic from "../logic"
 import { useEffect, useState } from "react"
-import AdList from "./components/AdList/AdList"
 
+
+import './Home.css'
 function Home() {
 
 
@@ -14,9 +15,12 @@ function Home() {
 
         <Title>Farm-Hub</Title>
 
-        <AdList></AdList>
+        <div>
+            <Link to="/login">Login</Link>
 
+            <Link to="/register">Register</Link>
 
+        </div>
     </>
 }
 
