@@ -9,7 +9,14 @@ import logic from "../../logic"
 import RegisterCustomer from "../RegisterCustomerForm"
 import EditProfileForm from "../EditProfileForm"
 
-export default function Header({ className, iconUser, children, iconLeftHeader, onRegisterCustomer }) {
+export default function Header({
+  className,
+  iconUser,
+  children,
+  iconLeftHeader,
+  onRegisterCustomer,
+  onDeleteDeliveryNote
+}) {
   const navigate = useNavigate()
   const location = useLocation()
   const [showRegisterCustomer, setShowRegisterCustomer] = useState(false)
@@ -111,6 +118,9 @@ export default function Header({ className, iconUser, children, iconLeftHeader, 
 
         {isCustomerProfilePathDeliveryNoteId && (
           <div className="ContainerHeader">
+            <div onClick={onDeleteDeliveryNote} className="IconLeftHeader">
+              {iconLeftHeader}
+            </div>
             <div className="IconUser">{iconUser}</div>
             <div className="Children">{children}</div>
           </div>

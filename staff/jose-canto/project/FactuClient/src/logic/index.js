@@ -12,12 +12,14 @@ import getProfileUser from "./getProfileUser.js"
 
 import getAllDeliveryNotes from "./getAllDeliveryNotes.js"
 import getDeliveryNote from "./getDeliveryNote.js"
+import deleteDeliveryNote from "./deleteDeliveryNote.js"
 
 import createDeliveryNote from "./createDeliveryNote.js"
 import createWork from "./createWork.js"
 
 import getAllInvoices from "./getAllInvoices.js"
 import getInvoice from "./getInvoice.js"
+
 
 const logic = {
   isUserLoggedIn,
@@ -34,6 +36,7 @@ const logic = {
 
   getAllDeliveryNotes,
   getDeliveryNote,
+  deleteDeliveryNote,
 
   createDeliveryNote,
   createWork,

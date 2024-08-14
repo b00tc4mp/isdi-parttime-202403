@@ -4,6 +4,9 @@
   .MainDeliveryInfo {
     @apply relative bottom-7;
   }
+  .HeaderDeliveryInfo .IconLeftHeader {
+    @apply text-6xl;
+  }
   .DeliveryWork {
     @apply relative flex w-[90%] flex-col;
   }

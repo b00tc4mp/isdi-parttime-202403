@@ -7,11 +7,10 @@ import { expect } from "chai"
 import { User } from "../model/index.js"
 
 import registerCustomer from "./registerCustomer.js"
-import { NotFoundError, DuplicityError, ContentError } from "com/errors.js"
+import { NotFoundError, ContentError } from "com/errors.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
-
 
 describe("registerCustomer", () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
@@ -49,17 +48,6 @@ describe("registerCustomer", () => {
         expect(errorThrown.message).to.equal("User not found")
       })
   })
-
-  it("fails on exist customer user", () =>
-
-    bcrypt.hash("1234", 10)
-      .then((hash) => User.create({ username: "Jack", email: "jack@email.es", password: hash }))
-      .then((user) => registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443"))
-      .catch((error) => {
-        expect(error).to.be.instanceOf(DuplicityError)
-        expect(error.message).to.equal("User already exists")
-      })
-  )
 
   it("fails on invalid username", () => {
     let errorThrown

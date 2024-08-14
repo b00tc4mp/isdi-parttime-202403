@@ -20,11 +20,13 @@ const deleteDeliveryNote = (userId, deliveryNoteId) => {
             throw new NotFoundError("Delivery Note not found")
           }
 
+          if (deliveryNote.company.toString() !== userId) {
+            throw new NotFoundError("No puedes borrar una nota de entrega que no es tuya")
+          }
+
           return DeliveryNote.deleteOne({ _id: deliveryNoteId })
             .catch(error => { throw new SystemError(error.message) })
-            .then(() => {
-              return deliveryNote
-            })
+            .then(() => { })
         })
     })
 }

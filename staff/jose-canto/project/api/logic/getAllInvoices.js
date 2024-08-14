@@ -9,7 +9,7 @@ const getAllInvoices = (userId) => {
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
-        throw new NotFoundError("user not found")
+        throw new NotFoundError("User not found")
       }
 
       return Invoice.find({}).populate("company").populate("customer").sort({ date: -1 }).select("-__v").lean()

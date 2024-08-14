@@ -6,7 +6,7 @@
   }
 
   .DeliveryLink {
-    @apply flex items-start;
+    @apply flex items-center;
   }
 
   .DeliveryNote {
