@@ -3,6 +3,7 @@ import logic from '../logic'
 
 function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
   const [isAddingDate, setIsAddingDate] = useState(false)
+
   const [newDate, setNewDate] = useState(label || '')
 
   const handleClickAddDate = () => setIsAddingDate(true)
@@ -21,7 +22,7 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
         setIsAddingDate(false)
       })
       .catch((error) => {
-        console.error('Error updating artist data:', error)
+        console.error(error)
       })
   }
 
@@ -40,7 +41,7 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
         onDateDelete(date)
       })
       .catch((error) => {
-        console.error('Error deleting date:', error)
+        console.error(error)
       })
   }
 

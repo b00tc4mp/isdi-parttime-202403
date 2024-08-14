@@ -7,7 +7,6 @@ const user = new Schema({
   },
   artisticName: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -16,19 +15,15 @@ const user = new Schema({
   },
   city: {
     type: String,
-    required: true,
   },
   discipline: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
-    required: true,
   },
   images: {
     type: String,
-    required: true,
   },
   video: {
     type: String,

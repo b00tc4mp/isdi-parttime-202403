@@ -1,43 +1,22 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerUser = (
-  name,
-  artisticName,
-  discipline,
-  city,
-  description,
-  email,
-  images,
-  video,
-  password,
-  passwordRepeat
-) => {
+const registerClient = (name, email, message, password, passwordRepeat) => {
   validate.name(name)
-  validate.name(artisticName, 'artisticName')
   validate.email(email)
-  validate.text(discipline, 'discipline')
-  validate.text(city, 'city')
-  validate.text(description, 'description')
-  validate.url(images, 'images')
-  validate.url(video, 'video')
+  validate.text(message, 'message')
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
 
-  return fetch(`http://localhost:8080/users`, {
+  return fetch(`http://localhost:8080/clients`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       name,
-      artisticName,
-      discipline,
-      city,
-      description,
       email,
-      images,
-      video,
+      message,
       password,
       passwordRepeat,
     }),
@@ -63,4 +42,4 @@ const registerUser = (
     })
 }
 
-export default registerUser
+export default registerClient

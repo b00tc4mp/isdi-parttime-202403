@@ -1,22 +1,14 @@
-import { SystemError, ContentError } from 'com/errors.js'
+import { SystemError } from 'com/errors.js'
 import { Chat } from '../data/index.js'
 
-const createChat = (userId, message) => {
-  if (!userId || !message) {
-    return Promise.reject(new ContentError('userId y message required'))
-  }
+const createChat = (createdUser, artistId) => {
+  const newChat = new Chat({
+    participants: [createdUser._id, artistId],
+    messages: [],
+  })
 
-  const newChat = {
-    users: userId,
-    messages: message,
-    date: Date.now(),
-  }
-
-  return Chat.create(newChat)
-    .then((chat) => chat)
-    .catch((error) => {
-      throw new SystemError(error.message)
-    })
+  return newChat.save().catch((error) => {
+    throw new SystemError(error.message)
+  })
 }
-
 export default createChat

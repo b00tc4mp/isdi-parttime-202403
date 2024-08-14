@@ -3,6 +3,12 @@ import { Schema, model, Types } from 'mongoose'
 const { ObjectId } = Types
 
 const messageSchema = new Schema({
+  chatId: {
+    type: ObjectId,
+    required: true,
+    ref: 'Chat',
+  },
+
   sender: [
     {
       type: ObjectId,

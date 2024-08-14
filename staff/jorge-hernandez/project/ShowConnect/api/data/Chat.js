@@ -3,7 +3,7 @@ import { Schema, model, Types } from 'mongoose'
 const { ObjectId } = Types
 
 const chatSchema = new Schema({
-  users: [
+  participants: [
     {
       type: ObjectId,
       required: true,
@@ -11,10 +11,8 @@ const chatSchema = new Schema({
     },
   ],
   messages: [
-    //TODO ARRAY DE IDS DE MENSAJES
     {
-      type: String,
-      required: true,
+      type: ObjectId,
       ref: 'Message',
     },
   ],

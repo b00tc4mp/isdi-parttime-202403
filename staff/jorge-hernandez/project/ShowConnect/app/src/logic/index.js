@@ -5,6 +5,7 @@ import loginUser from './loginUser'
 import logoutUser from './logoutUser'
 import registerUser from './registerUser'
 import updateArtistData from './updateArtistData'
+import registerClient from './registerClient'
 
 const logic = {
   registerUser,
@@ -14,6 +15,7 @@ const logic = {
   isUserLoggedIn,
   getArtistsByCity,
   updateArtistData,
+  registerClient,
 }
 
 export default logic

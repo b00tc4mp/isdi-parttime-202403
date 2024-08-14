@@ -1,6 +1,6 @@
 import { User } from '../data/index.js'
 import { DuplicityError, SystemError } from 'com/errors.js'
-// import validate from 'com/validate.js'
+import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
 const registerUser = (
@@ -15,7 +15,17 @@ const registerUser = (
   password,
   passwordRepeat
 ) => {
-  // TODO validates
+  validate.name(name)
+  validate.name(artisticName, 'artisticName')
+  validate.email(email)
+  validate.text(discipline, 'discipline')
+  validate.text(city, 'city')
+  validate.text(description, 'description')
+  validate.url(images, 'images')
+  validate.url(video, 'video')
+  validate.password(password)
+  validate.passwordsMatch(password, passwordRepeat)
+
   return User.findOne({ email })
     .catch((error) => {
       throw new SystemError(error.message)

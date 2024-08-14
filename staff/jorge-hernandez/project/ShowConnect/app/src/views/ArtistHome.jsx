@@ -7,6 +7,7 @@ import EditableDescription from '../components/EditableDescription'
 import EditableVideo from '../components/EditableVideo'
 import AddDate from '../components/AddDate'
 import ArtistMessages from './ArtistMessages'
+import SendMessageAndRegister from '../components/SendMessageAndRegister'
 //TODO EDIT BUTTON
 function ArtistHome({ onUserLoggedOut }) {
   const [artist, setArtist] = useState(null)

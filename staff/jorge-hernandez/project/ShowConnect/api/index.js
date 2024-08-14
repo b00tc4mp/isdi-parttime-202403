@@ -10,8 +10,10 @@ import getArtistDataHandler from './handlers/getArtistDataHandler.js'
 import createChatHandler from './handlers/createChatHandler.js'
 import getArtistsByCityHandler from './handlers/getArtistsByCityHandler.js'
 import updateArtistHandler from './handlers/updateArtistHandler.js'
+import registerClientHandler from './handlers/registerClientHandler.js'
 
 import errorHandler from './handlers/errorHandler.js'
+
 const { MONGODB_URL, PORT } = process.env
 
 mongoose
@@ -35,6 +37,8 @@ mongoose
 
     api.post('/users', jsonbodyparser, registerUserHandler)
 
+    api.post('/clients', jsonbodyparser, registerClientHandler)
+
     api.post('/chats', jsonbodyparser, createChatHandler)
 
     api.post('/users/auth', jsonbodyparser, authenticateUserHandler)
@@ -45,12 +49,6 @@ mongoose
       '/users/city/:city/discipline/:discipline/dates/:excludedDate',
       getArtistsByCityHandler
     )
-
-    // api.get('/users', (req, res) => {
-    //   User.find()
-    //     .then((users) => res.json(users))
-    //     .catch((err) => res.status(500).json({ error: err.message }))
-    // })
 
     api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 

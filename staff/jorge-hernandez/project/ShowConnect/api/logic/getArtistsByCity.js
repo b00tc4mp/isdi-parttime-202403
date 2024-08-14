@@ -1,22 +1,22 @@
 import { User } from '../data/index.js'
 import { SystemError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const getArtistsByCity = (city, discipline, excludedDate) => {
+  //TODO VALIDATES TO DATE
   if (!city || !discipline || !excludedDate) {
     throw new SystemError('City, discipline, and excludedDate are required')
   }
-
-  const formattedExcludedDate = excludedDate.trim()
 
   return User.find({
     city: city,
     discipline: discipline,
     role: 'artist',
-    dates: { $not: { $elemMatch: { $eq: formattedExcludedDate } } },
+    dates: { $not: { $elemMatch: { $eq: excludedDate } } },
   })
     .lean()
     .catch((error) => {
-      throw new SystemError(`Database query failed: ${error.message}`)
+      throw new SystemError(error.message)
     })
     .then((artistsList) => {
       return artistsList

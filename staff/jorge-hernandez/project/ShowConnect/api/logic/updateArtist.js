@@ -11,16 +11,12 @@ const updateArtist = (userId, updateData) => {
       if (updateData.artisticName) user.artisticName = updateData.artisticName
       if (updateData.images) user.images = updateData.images
       if (updateData.description) user.description = updateData.description
-
-      if (updateData.dates) {
-        user.dates = updateData.dates
-      }
+      if (updateData.dates) user.dates = updateData.dates
 
       return user.save()
     })
     .catch((error) => {
-      console.error('Error in updateArtist:', error)
-      throw new SystemError('Server error while updating artist')
+      throw new SystemError(error.message)
     })
 }
 
