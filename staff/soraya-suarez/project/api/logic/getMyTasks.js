@@ -18,8 +18,29 @@ const getMyTasks = (userId) => {
                         task.id = task._id.toString()
                         delete task._id
                     })
-                    return tasks
+
+                    return Task.find({ owner: userId }).lean()
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(tasksOwner => {
+                            tasksOwner.forEach((taskOwner) => {
+                                taskOwner.id = taskOwner._id.toString()
+                                delete taskOwner._id
+
+                                const exist = tasks.some(task => task.id === taskOwner.id)
+
+                                if (!exist) {
+                                    tasks.push(taskOwner)
+                                }
+                            })
+                            return tasks
+
+                        })
+                    
+                    //tengo que unificar  tasks y tasksOwner y supuestamente estaría
+                    //return tasks
                 })
+
+                
         })
 }
 

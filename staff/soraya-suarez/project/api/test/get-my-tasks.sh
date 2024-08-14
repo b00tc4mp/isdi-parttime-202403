@@ -1,1 +1,1 @@
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmFmYzY5ZWNjOGU3YzQzMDRmNjViOTAiLCJpYXQiOjE3MjI5ODc5MTksImV4cCI6MTcyMjk5MTUxOX0.MWfeBqbpwrb53KpO3JV_nIX_kSWfU1uPHoUGEHHu2ws" http://localhost:9010/tasks/myTasks -v
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmI0YzAzMmQ1NDQ5N2VhZTcxOTVmMjIiLCJyb2xlIjoidXNlciIsImlhdCI6MTcyMzU4NDg0OSwiZXhwIjoxNzIzNjcxMjQ5fQ.LWTVpliVnX6OcfUgh_QvbP1PPyZxEF-z_8U_joJcJkM" http://localhost:9010/tasks/myTasks -v

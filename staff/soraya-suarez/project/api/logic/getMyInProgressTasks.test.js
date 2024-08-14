@@ -1,21 +1,21 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import getMyTasks from './getMyTasks.js'
+import getMyInProgressTasks from './getMyInProgressTasks.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getMyTasks('66b4c032d54497eae7195f22', (error, tasks) => {
+            getMyInProgressTasks('66b4c032d54497eae7195f22', (error, posts) => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
 
-                console.log('tasks retrieved', tasks)
+                console.log('tasks retrieved', posts)
             })
         } catch (error) {
             console.error(error)

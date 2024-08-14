@@ -3,6 +3,8 @@ import authenticateUserHandler from './authenticateUserHandler.js'
 import addTaskHandler from './addTaskHandler.js'
 import deleteTaskHandler from './deleteTaskHandler.js'
 import getMyTasksHandler from './getMyTasksHandler.js'
+import getMyPrivateTasksHandler from './getMyPrivateTasksHandler.js'
+import getMyInProgressTasksHandler from './getMyInProgressTasksHandler.js'
 
 
 import errorHandler from './errorHandler.js'
@@ -13,5 +15,7 @@ export {
     addTaskHandler,
     deleteTaskHandler,
     getMyTasksHandler,
+    getMyPrivateTasksHandler,
+    getMyInProgressTasksHandler,
     errorHandler
 }

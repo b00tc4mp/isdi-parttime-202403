@@ -27,7 +27,6 @@ User | Admin
 
 Admin
 
-- View an employee's tasks
 - Enroll employee
 - Unsubscribe employee
 
@@ -42,15 +41,12 @@ User | Admin
 
 Admin
 
+- View an employee's tasks
 - View an employee's statistics
 - Manage vacations
 - Manage sick leave
 
 ### UI Design
-
-[Figma prototype for Admin] https://www.figma.com/proto/ML5WwZsprS1luWh6XhCRPR/Daily-work?node-id=9-113&t=PTO82nbxySLVnhBm-1&scaling=min-zoom&content-scaling=fixed&page-id=9%3A100&starting-point-node-id=22%3A171
-
-[[Figma prototype for User]] https://www.figma.com/proto/ML5WwZsprS1luWh6XhCRPR/Daily-work?node-id=27-628&t=3tySBs1qxCV8deSr-1
 
 ## Technical
 

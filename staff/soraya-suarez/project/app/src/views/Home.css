@@ -1,0 +1,32 @@
+.bottom-navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  a, Link{
+    text-decoration: none;
+  }
+
+  .main-navbar {
+    position: fixed;
+    left: 4rem;
+    top: 4rem;
+    width: 80vw;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-evenly;
+  }

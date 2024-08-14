@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const enrollUser = (name, surname, email, role, manager, password, passwordRepeat) => {
+const enrollUser = (name, surname, email, role, password, passwordRepeat) => {
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
@@ -14,7 +14,7 @@ const enrollUser = (name, surname, email, role, manager, password, passwordRepea
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, surname, email, role, manager, password, passwordRepeat })
+        body: JSON.stringify({ name, surname, email, role, password, passwordRepeat })
     })
         .catch(() => { throw new SystemError('server error') })
         .then(response => {

@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .SubmitButton {
+        @apply m-[.5rem_0];
+    }
+}

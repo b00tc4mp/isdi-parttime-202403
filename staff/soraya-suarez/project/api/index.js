@@ -9,6 +9,8 @@ import {
     addTaskHandler,
     deleteTaskHandler,
     getMyTasksHandler,
+    getMyPrivateTasksHandler,
+    getMyInProgressTasksHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -28,6 +30,8 @@ mongoose.connect(MONGODB_URL)
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
         api.post('/tasks', jsonBodyParser, addTaskHandler)
         api.get('/tasks/myTasks', getMyTasksHandler)
+        api.get('/tasks/myInProgressTasks', getMyInProgressTasksHandler)
+        api.get('/tasks/myPrivateTasks', getMyPrivateTasksHandler)
         api.delete('/tasks/:taskId', deleteTaskHandler)
 
         api.use(errorHandler)
