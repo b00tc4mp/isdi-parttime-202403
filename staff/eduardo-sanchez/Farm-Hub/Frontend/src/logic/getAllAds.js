@@ -10,16 +10,16 @@ const getAllAds = () => {
         }
 
     })
-        .catch(() => { throw new errors.SystemError('server connection problem') })
+        .catch(() => { throw new SystemError('server connection problem') })
         .then(response => {
             if (response.status === 200) {
                 return response.json()
-                    .catch(() => { throw new errors.SystemError('server connection problem') })
+                    .catch(() => { throw new SystemError('server connection problem') })
                     .then(ads => ads)
             }
 
             return response.json()
-                .catch(() => { throw new errors.SystemError('server connection problem') })
+                .catch(() => { throw new SystemError('server connection problem') })
                 .then(body => {
                     const { error, message } = body
 
