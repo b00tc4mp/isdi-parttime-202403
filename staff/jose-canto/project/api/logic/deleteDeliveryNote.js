@@ -21,7 +21,7 @@ const deleteDeliveryNote = (userId, deliveryNoteId) => {
           }
 
           if (deliveryNote.company.toString() !== userId) {
-            throw new NotFoundError("No puedes borrar una nota de entrega que no es tuya")
+            throw new NotFoundError("Can not delete Delivery Note from another company")
           }
 
           return DeliveryNote.deleteOne({ _id: deliveryNoteId })

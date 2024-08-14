@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { PDFDownloadLink } from "@react-pdf/renderer"
+import { FaRegFilePdf } from "react-icons/fa6"
+import { FaSpinner } from "react-icons/fa"
 
 import { GiStabbedNote } from "react-icons/gi"
 import { MdDeleteForever } from "react-icons/md"
@@ -112,12 +114,14 @@ export default function DeliveryInfo() {
         {showConfirmDelete && (
           <Confirm handleDeleteDeliveryNote={handleDeleteDeliveryNote} setShowConfirmDelete={handleShowConfirmDelete} />
         )}
+
         {deliveryNote && (
           <PDFDownloadLink
+            className="PDFDownloadLink"
             document={<DeliveryNotePDF deliveryNote={deliveryNote} total={total} />}
             fileName={`delivery-note-${deliveryNote.number}.pdf`}
           >
-            {({ loading }) => (loading ? "Generando PDF..." : "Descargar PDF")}
+            {({ loading }) => (loading ? <FaSpinner /> : <FaRegFilePdf />)}
           </PDFDownloadLink>
         )}
       </Main>

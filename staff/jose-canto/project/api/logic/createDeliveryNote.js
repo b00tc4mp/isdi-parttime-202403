@@ -13,7 +13,7 @@ const createDeliveryNote = (userId, customerId) => {
         throw new NotFoundError("User not found")
       }
 
-      return DeliveryNote.findOne().sort({ number: -1 }).select("-__v").lean()
+      return DeliveryNote.findOne({ company: userId }).sort({ number: -1 }).select("-__v").lean()
         .then(lastDeliveryNote => {
           const currentYear = new Date().getFullYear()
           //const currentYear = 2025 // prueba con año 2025 para ver si modifica la nota de entrega
@@ -33,7 +33,7 @@ const createDeliveryNote = (userId, customerId) => {
 
           const deliveryNoteNumber = `${currentYear}/${String(nextDeliveryNoteNumber).padStart(3, '0')}`
 
-          return DeliveryNote.findOne({ number: deliveryNoteNumber }).select("-__v").lean()
+          return DeliveryNote.findOne({ number: deliveryNoteNumber, company: userId }).select("-__v").lean()
             .then((deliveryNote) => {
               if (deliveryNote) {
                 throw new DuplicityError("Delivery Note already exists")

@@ -59,4 +59,11 @@
   .DeliveryDate {
     @apply font-bold;
   }
+
+  .PDFDownloadLink {
+    @apply flex w-[85%] items-start text-4xl;
+  }
+  .PDFDownloadLink:hover {
+    @apply text-orange-500;
+  }
 }

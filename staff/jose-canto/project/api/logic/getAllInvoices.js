@@ -12,7 +12,7 @@ const getAllInvoices = (userId) => {
         throw new NotFoundError("User not found")
       }
 
-      return Invoice.find({}).populate("company").populate("customer").sort({ date: -1 }).select("-__v").lean()
+      return Invoice.find({ company: userId }).populate("company").populate("customer").sort({ date: -1 }).select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
         .then((invoices) => {
           invoices.forEach((invoice) => {
