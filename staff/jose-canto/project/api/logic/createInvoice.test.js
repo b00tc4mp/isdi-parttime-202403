@@ -7,7 +7,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      createInvoice("66b1237dd5adf0eb620e97bc", "66b230c7c25b4cce879aa804", ["66b799457ccc47f54c9f021e", "66b79a3b7ccc47f54c9f024a"])
+      createInvoice("66bb972f98051f33903e9a7c", "66bb97fe98051f33903f5e65", ["66bb9a3498051f33904105f1"])
         .then((invoice) => {
           console.log(invoice)
         })

@@ -13,7 +13,7 @@ function getInvoice(userId, invoiceid) {
         throw new NotFoundError("User not found")
       }
 
-      return Invoice.findById(invoiceid).populate("customer").populate("company").populate("deliveryNotes").select("-__v").lean()
+      return Invoice.findById(invoiceid).populate("customer").populate("company").populate({ path: "deliveryNotes", populate: { path: "works" } }).select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(invoice => {
           if (!invoice) {

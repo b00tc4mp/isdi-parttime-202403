@@ -47,7 +47,7 @@ const createInvoice = (userId, customerId, deliveryNoteIds) => {
                 customer: customerId,
                 deliveryNotes: deliveryNoteIds,
                 observations: "",
-                paymentType: "",
+                paymentType: "Transferencia",
               }
 
               return Invoice.create(newInvoice)
