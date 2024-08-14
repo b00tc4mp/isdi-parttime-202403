@@ -5,8 +5,8 @@ import Home from './views/Home'
 import Login from './views/Login'
 
 import Calendar from './views/components/calendar/Calendar'
-import TasksList from './views/components/TasksList'
-import CreateTask from './views/components/CreateTask'
+import TasksList from './views/components/task/TasksList'
+import CreateTask from './views/components/task/CreateTask'
 
 import logic from './logic'
 

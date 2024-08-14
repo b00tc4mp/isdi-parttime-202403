@@ -1,8 +1,8 @@
 import errors, { SystemError } from 'com/errors'
 
-const getAllUsers = () => {
+const getAllTasks = () => {
 
-    return fetch(`${import.meta.env.VITE_API_URL}/getallusers`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/getalltasks`, {
 
         method: "GET",
         headers: {
@@ -14,7 +14,7 @@ const getAllUsers = () => {
             if (response.status === 200) {
                 return response.json()
                     .catch(() => { throw new SystemError('conection error') })
-                    .then(users => users)
+                    .then(tasks => tasks)
             }
 
             return response.json()
@@ -29,4 +29,4 @@ const getAllUsers = () => {
         })
 }
 
-export default getAllUsers
+export default getAllTasks

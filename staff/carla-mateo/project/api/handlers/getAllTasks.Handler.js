@@ -15,9 +15,9 @@ export default ((req, res, next) => {
                 const { sub: parent } = payload
 
                 try {
-                    logic.getAllUsers(parent)
-                        .then((users) => {
-                            res.json(users)
+                    logic.getAllTasks(parent)
+                        .then((tasks) => {
+                            res.json(tasks)
                         })
                         .catch(error => next(error))
 

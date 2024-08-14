@@ -2,9 +2,9 @@
 import { User } from "../data/index.js"
 import { NotFoundError, SystemError } from "com/errors.js"
 
-const getAllUsers = () => {
+const getAllUsers = (parent) => {
 
-    return User.find({ role: 'user' }).lean()
+    return User.find({ parent }).lean()
         .catch((error) => { throw new SystemError(error.message) })
         .then(users => {
             if (!users) {

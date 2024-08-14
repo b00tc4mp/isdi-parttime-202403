@@ -32,6 +32,7 @@ const user = new Schema({
         type: ObjectId,
         ref: 'User',
     },
+
 })
 
 const User = model('User', user)

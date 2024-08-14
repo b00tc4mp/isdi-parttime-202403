@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react"
 
-import logic from "../../logic"
+import logic from "../../../logic"
 
-import View from "../library/View"
+import View from "../../library/View"
 
-import Button from "../../components/core/Button"
-import Field from "../../components/core/Field"
+import Button from "../../../components/core/Button"
+import Field from "../../../components/core/Field"
 
-function CreateTask() {
-
-    const [tasks, setTasks] = useState([])
+function CreateTask({ onTaskSuccess }) {
     const [users, setUsers] = useState([])
 
     const handleCreateTask = event => {
@@ -22,10 +20,9 @@ function CreateTask() {
         const assign = form.assign.value
 
         try {
-            logic.createTask(title, description, assign)
+            logic.createTask(assign, title, description)
                 .then(newTask => {
-                    setTasks(prevTasks => [...prevTasks, newTask])
-                    onSuccess()
+                    onTaskSuccess(newTask)
                 })
                 .catch((error) => alert(error.message))
         } catch (error) {
@@ -42,20 +39,26 @@ function CreateTask() {
         } catch (error) {
             alert(error.message)
         }
-    }), []
+    }, [])
+
+
 
     return <View>
 
-        <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg' >
-            <form className='mb-4' onSubmit={handleCreateTask}>
+        <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg ' >
+            <form className='mb-4 ' onSubmit={handleCreateTask}>
 
                 <Field id="title" type="text" placeholder="Task Title" />
                 <textarea className="bg-color-transparent" id="description" type="text" placeholder="Task Description" />
-                <select className="bg-color-transparent" id="assign" type="id">
+
+                <select id="assign" className="min-w-20 p-2 border rounded">
                     {users.map(user => (
                         <option key={user.id} value={user.id}>{user.name}</option>
+
                     ))}
                 </select>
+
+
                 <Button type="submit">Add Task</Button>
             </form>
 

@@ -25,7 +25,7 @@ const registerAdmin = (name, username, email, password, passwordRepeat) => {
                         email: email,
                         password: hash,
                         avatar: " ",
-                        role: "admin"
+                        role: "admin",
                     }
 
                     return User.create(newUser)

@@ -52,6 +52,19 @@ function validateId(id, explain = 'id') {
     }
 }
 
+function validateIdAssign(idAssign, explain = 'id') {
+    if (idAssign === null) {
+        // Si es null, permite pasar la validación
+        return;
+    } else if (typeof idAssign == "string" || ID_REGEX.test(idAssign)) {
+        // Si es una cadena de texto y cumple con el patrón, permite pasar la validación
+        return
+    } else {
+        // Si no cumple con ninguna de las condiciones, lanza un error
+        throw new ContentError(`❌ ${explain} is not valid`)
+    }
+}
+
 
 
 
@@ -65,6 +78,7 @@ const validate = {
     text: validateText,
     url: validateUrl,
     id: validateId,
+    idAssign: validateIdAssign
 
 }
 

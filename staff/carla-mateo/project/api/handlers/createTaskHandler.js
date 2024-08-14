@@ -15,9 +15,10 @@ export default (req, res, next) => {
 
                 const { title, description, assign } = req.body
 
+
                 try {
-                    logic.createTask(parent, title, description, assign)
-                        .then(() => res.status(201).send())
+                    logic.createTask(parent, assign, title, description)
+                        .then((task) => res.status(201).send(task))
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
