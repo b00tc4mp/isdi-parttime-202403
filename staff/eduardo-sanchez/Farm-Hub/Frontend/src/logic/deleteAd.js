@@ -27,7 +27,6 @@ function deleteAd(adId) {
                 })
         })
 
-
 }
 
 export default deleteAd

@@ -10,7 +10,6 @@ import { useEffect, useState } from "react"
 import './Home.css'
 function Home() {
 
-
     return <>
 
         <Title>Farm-Hub</Title>

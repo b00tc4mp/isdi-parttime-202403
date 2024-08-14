@@ -4,10 +4,16 @@ import logic from '../../../logic'
 import './AdList.css'
 import { Ad } from '../Ad/Ad'
 
-function AdList({ }) {
+function AdList({ refreshStamp }) {
     const [ads, setAds] = useState([])
 
     useEffect(() => {
+
+        loadAds()
+    }, [refreshStamp])
+
+
+    const loadAds = () => {
         try {
             logic.getAllAds()
                 .then((ads) => {
@@ -19,32 +25,26 @@ function AdList({ }) {
         } catch (error) {
             alert(error.message)
         }
-    }, [])
+    }
 
-    console.log(ads)
+    const handleAdDeleted = () => loadAds()
 
     return (
 
         <ul>
             {ads.map((ad) =>
-                <>
-                    <li key={ad.id} className='AdContainer'>
-                        <p>{ad.author.username}</p>
-                        <p>{ad.title}</p>
-                        <p>{ad.description}</p>
-                        <p>{ad.price}</p>
+                <li key={ad.id} className='AdContainer'>
+                    <p>{ad.author.username}</p>
+                    <p>{ad.title}</p>
+                    <p>{ad.description}</p>
+                    <p>{ad.price}</p>
 
-                        <Ad ad={ad} onAdDeleted={() => { console.log(ad) }} />
-                    </li >
-
-                </>
-            )
-
-            }
+                    <Ad ad={ad} onAdDeleted={handleAdDeleted} />
+                </li >
+            )}
         </ul>
-
-
-
     )
 }
 export default AdList
+
+// onAdDeleted = {() => { console.log(ad) }}
