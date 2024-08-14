@@ -12,7 +12,9 @@
   border-radius: 5px;
   filter: grayscale(80%);
   margin-top: 8px;
+  border: grey 2px solid;
 }
 .image:hover {
   filter: none;
+  border: green 2px solid;
 }

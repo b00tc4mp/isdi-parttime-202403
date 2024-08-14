@@ -1,7 +1,5 @@
 import React from 'react'
 import View from '../core/View'
-import Label from '../core/Label'
-import Image from '../core/Image'
 import './index.css'
 import grg from './img/grg.png'
 import palet from './img/palet.png'
@@ -27,7 +25,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
             checked={optionsContainer === "PALET"}
             onChange={handleOptionsContainer}
           />
-            <Label htmlFor="palet"><Image className="ImgOptions" src={palet} /></Label>
+            <label htmlFor="palet"><img className="ImgOptions" src={palet} /></label>
 
           <input required
             className='Radio'
@@ -38,7 +36,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
             checked={optionsContainer === "GRG"}
             onChange={handleOptionsContainer}
           />
-            <Label htmlFor="grg"><Image className="ImgOptions" src={grg} /></Label>
+            <label htmlFor="grg"><img className="ImgOptions" src={grg} /></label>
 
           <input required
             className='Radio'
@@ -49,7 +47,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
             checked={optionsContainer === "BIGBAG"}
             onChange={handleOptionsContainer}
           />
-            <Label htmlFor="bigbag"><Image className="ImgOptions" src={bigbag} /></Label>
+            <label htmlFor="bigbag"><img className="ImgOptions" src={bigbag} /></label>
 
           <input required
             className='Radio'
@@ -60,7 +58,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
             checked={optionsContainer === "B200"}
             onChange={handleOptionsContainer}
           />
-            <Label htmlFor="b200"><Image className="ImgOptions" src={b200} /></Label>
+            <label htmlFor="b200"><img className="ImgOptions" src={b200} /></label>
 
           <input required
             className='Radio'
@@ -71,7 +69,7 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
             checked={optionsContainer === "B-200"}
             onChange={handleOptionsContainer}
           />
-            <Label htmlFor="b-200"><Image className="ImgOptions" src={bm200} /></Label>
+            <label htmlFor="b-200"><img className="ImgOptions" src={bm200} /></label>
           
         </div>
       

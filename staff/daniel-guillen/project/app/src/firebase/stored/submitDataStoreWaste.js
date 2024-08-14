@@ -15,7 +15,8 @@ const submitDataStoreWaste = (selectedWaste, weight, optionsContainer, statusOpt
       weight: weight,
       container: optionsContainer,
       status: statusOptions,
-      date: `${day}/${month}/${year}`
+      month: month,
+      year: year
     }
     console.log(dataWaste)
 

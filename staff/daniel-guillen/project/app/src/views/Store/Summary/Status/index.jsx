@@ -9,9 +9,14 @@ const SummaryStatus = () => {
     //solicitar y renderizamos lista de residuos
     const { list, setList } = useFetchWasteList()
 
-    // Filtrar los residuos con status 'ESTANCADO'
+    const today = new Date()
+    const day = String(today.getDate()).padStart(2, '0')
+    const month = String(today.getMonth() + 1).padStart(2, '0')
+    const year = String(today.getFullYear())
+
+    // Filtrar los residuos con status 'ESTANCADO' con mes y año actual
     const filteredList = list
-    .filter(item => item.status === 'ESTANCADO')
+    .filter(item => item.status === 'ESTANCADO' && item.month === month && item.year === year)
     // Ordenar por code
     .sort((a, b) => a.code.localeCompare(b.code))
 

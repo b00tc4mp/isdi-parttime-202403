@@ -1,9 +1,9 @@
 import React from 'react'
 import './index.css'
-import store from './store.jpg'
-import departures from './departures.jpg'
-import fleet from './fleet.jpg'
-import users from './users.jpg'
+import store from './img/store.jpg'
+import departures from './img/departures.jpg'
+import fleet from './img/fleet.jpg'
+import users from './img/users.jpg'
 
 const Home = () => {
   return (

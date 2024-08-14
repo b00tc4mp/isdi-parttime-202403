@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import groupedItemActeco from '../../../../logic/groupedItemActeco'
 import View from '../../../../components/core/View'
 import GroupedWasteItem from '../../../../components/GroupedWasteItem'
+import useFetchActecoList from '../../../../firebase/acteco/useFetchActecoList'
+import groupedItemsWeek from '../../../../logic/groupedItemsWeek'
 import getWeekNumber from '../../../../logic/getWeekNumber'
 
 const SummaryActeco = () => {
 
-  const groupedItemCode = groupedItemActeco()
+  const { list } = useFetchActecoList()
+  const groupedItems = groupedItemsWeek(list)
   const [week, setWeek] = useState("")
 
   useEffect(() => {
@@ -18,7 +20,7 @@ const SummaryActeco = () => {
     <View>
       <div className='SummaryDiv' >
         <h2 className='summaryTitle' >Carga para Acteco Semana {week}:</h2>
-          {groupedItemCode.map(item => (
+          {groupedItems.map(item => (
               <GroupedWasteItem key={item.id} item={item} />
           ))}
       </div>

@@ -56,6 +56,6 @@
 
 .ImgOptions {
   cursor: pointer;
-  max-width: 30px;
-  border-radius: 2px;
+  width: 100%;
+  border-radius: 5px;
 }

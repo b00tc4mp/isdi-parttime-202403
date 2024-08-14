@@ -7,15 +7,24 @@ import WasteSelect from '../../../components/WasteSelect'
 import MenuStore from '../MenuStore'
 import View from '../../../components/core/View'
 import './index.css'
+import sortWasteItems from '../../../logic/sortWasteItems'
 
 const SearchWaste = () => {
 
     const { selectedWaste, handleWasteChange } = useWasteSelection()  
     const { list, setList } = useFetchWasteList()
     const { deleteWaste } = useDeleteWaste(list, setList)
+  
+    const today = new Date()
+    const day = String(today.getDate()).padStart(2, '0')
+    const month = String(today.getMonth() + 1).padStart(2, '0')
+    const year = String(today.getFullYear())
 
-    // Filtramos los residuos por selectedWaste.code
-    const filteredList = list.filter(item => item.code === selectedWaste.code)
+    // Filtramos por selectedWaste, por mes y año actual
+    const filteredList = list.filter(item => item.code === selectedWaste.code &&item.month === month && item.year === year)
+
+    // Ordenamos la lista filtrada
+    const sortedList = sortWasteItems(filteredList)
 
   return (
     <View>
@@ -23,26 +32,11 @@ const SearchWaste = () => {
       
       <WasteSelect selectedWaste={selectedWaste} handleWasteChange={handleWasteChange} />
       
-        <h2 className='DataWasteTitle' >
-        Resultados...
-        </h2>
-          {filteredList
-              .sort((a, b) => {
-
-                // ordenamos list primero por code
-                const codeComparison = a.code.localeCompare(b.code)
-                if (codeComparison !== 0) return codeComparison
-                
-                // despues por acondicionamiento
-                const containerComparison = b.container.localeCompare(a.container)
-                if (containerComparison !== 0) return containerComparison
-                
-                // y por ultimo por peso
-                return b.weight - a.weight
-              })
-              .map((item) => (
-                <WasteItem key={item.id} item={item} onDelete={deleteWaste} />
-              ))}
+        <h2 className='DataWasteTitle'>Resultados...</h2>
+      
+        {sortedList.map((item) => (
+          <WasteItem key={item.id} item={item} onDelete={deleteWaste} />
+        ))}
         <MenuStore />
     </div>
     </View>

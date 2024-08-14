@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import View from '../../../../components/core/View'
 import WasteItem from '../../../../components/WasteItem'
 import useFetchTruck2List from '../../../../firebase/truck2/useFetchTruck2List'
 import useDeleteTruck2 from '../../../../firebase/truck2/useDeleteTruck2'
 import sortWasteItems from '../../../../logic/sortWasteItems'
+import getWeekNumber from '../../../../logic/getWeekNumber'
 
 const DataTruckLoad2 = () => {
 
   const { list, setList } = useFetchTruck2List()
   const { deleteWaste } = useDeleteTruck2(list, setList)
-  const sortedList = sortWasteItems(list)
+  const [week, setWeek] = useState("")
+  const [year, setYear] = useState("")
+
+  useEffect(() => {
+    const today = new Date()
+    setWeek(getWeekNumber(today))
+    setYear(today.getFullYear().toString())
+  }, [])
+
+    // Filtramos los residuos por semana y año actual
+    const filteredList = list.filter(item => item.week === week && item.year === year)
+
+    // Ordenamos la lista filtrada
+    const sortedList = sortWasteItems(filteredList)
 
   return (
     <View>

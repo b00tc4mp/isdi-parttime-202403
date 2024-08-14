@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import './index.css'
-// import ItemListContainer from './components/ItemListContainer'
 import HeaderMenu from './components/HeaderMenu'
 import Home from './views/Home'
 import Store from './views/Store'
@@ -10,8 +9,8 @@ import Search from './views/Store/Search'
 import Acteco from './views/TruckLoad/Acteco'
 import TruckLoad2 from './views/TruckLoad/TruckLoad2'
 import TruckLoad3 from './views/TruckLoad/TruckLoad3'
+import Fleet from './views/Fleet'
 
-// import Fleet from './views/Fleet'
 // import Users from './views/Users'
 
 function App() {
@@ -32,8 +31,8 @@ function App() {
       <Route path="/Truckload2" element={<TruckLoad2 />} />
       <Route path="/Truckload3" element={<TruckLoad3 />} />
       {/* <Route path="/Truckload/Search" element={<Search />} /> */}
-      {/* <Route path="/fleet" element={<Fleet />} />
-      <Route path="/users" element={<Users />} /> */}
+      <Route path="/fleet" element={<Fleet />} />
+      {/* <Route path="/users" element={<Users />} /> */}
     
     </Routes>
 
