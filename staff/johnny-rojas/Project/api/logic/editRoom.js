@@ -1,6 +1,6 @@
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from '../../com/validate.js'
-import {  Room } from '../data/index.js'
+import { Room } from '../data/index.js'
 
 const editRoom = (userId, roomId, updates) => {
   validate.id(userId, 'userId')
@@ -9,38 +9,38 @@ const editRoom = (userId, roomId, updates) => {
   const updateFields = {}
 
   if (updates.nameRoom) {
-    validate.nameRoom(updates.nameRoom, 'nameRoom',)
+    validate.nameRoom(updates.nameRoom, 'nameRoom')
     updateFields.nameRoom = updates.nameRoom
   }
   if (updates.region) {
-    validate.region(updates.region, 'region',)
+    validate.region(updates.region, 'region')
     updateFields.region = updates.region
   }
   if (updates.city) {
-    validate.text(updates.city, 'city',)
+    validate.text(updates.city, 'city')
     updateFields.city = updates.city
   }
   if (updates.imge) {
-    validate.url(updates.image, 'image',)
+    validate.url(updates.image, 'image')
     updateFields.image = updates.image
   }
   if (updates.description) {
-    validate.text(updates.description, 'description',)
+    validate.text(updates.description, 'description')
     updateFields.description = updates.description
   }
   if (updates.price) {
-    validate.price(updates.price, 'price',)
+    validate.price(updates.price, 'price')
     updateFields.price = updates.price
   }
 
-  return Room.findByIdAndUpdate(roomId, updateFields, { new: true }).lean()
+  return Room.findByIdAndUpdate(roomId, updateFields, { new: true })
     .catch(error => { throw new SystemError(error.message) })
     .then(room => {
       if (!room) {
-      throw new NotFoundError('room not found')
+        throw new NotFoundError('room not found')
       }
       return room
-  })
+    })
 
-} 
+}
 export default editRoom

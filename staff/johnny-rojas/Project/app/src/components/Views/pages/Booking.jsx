@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Header from "../core/Header";
 import TopBar from "../library/TopBar";
-import createBooking from '../../../logic/createBooking'; 
+import createBooking from '../../../logic/createBooking';
 
 
 function Booking() {
@@ -72,9 +72,11 @@ function Booking() {
 
   return (
     <div>
-      <Header>
-        <TopBar />
-      </Header>
+      <div>
+        <Header>
+          <TopBar />
+        </Header>
+      </div>
 
       <article className="CardRoom">
         <div className='Img'>

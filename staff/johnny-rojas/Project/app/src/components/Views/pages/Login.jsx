@@ -35,9 +35,11 @@ function Login() {
   }
 
   return <div>
-    <Header>
-      <TopBar></TopBar>
-    </Header>
+    <div>
+      <Header>
+        <TopBar></TopBar>
+      </Header>
+    </div>
     <View className='LoginForm' tag='main'>
 
       <Title className='TitlePrincipalLogin'>Inicia sesión</Title>

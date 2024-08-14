@@ -30,7 +30,7 @@ function CreateRoom() {
     const price = target.price.value
 
     try {
-      logic.createRoom( nameRoom, region, city, img, description, price)
+      logic.createRoom(nameRoom, region, city, img, description, price)
         .then(() => navigate('/'))
         .catch(error => alert(error.message))
 
@@ -42,9 +42,11 @@ function CreateRoom() {
 
   return (
     <div>
-      <Header>
-        <TopBar />
-      </Header>
+      <div>
+        <Header>
+          <TopBar />
+        </Header>
+      </div>
       <View>
         {!showForm ? (
           <CreateRoomInfo onClick={() => setShowForm(true)} />

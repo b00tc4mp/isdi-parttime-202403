@@ -12,6 +12,7 @@ import editRoom from './editRoom';
 import deleteRoom from './deleteRoom';
 
 import createBooking from './createBooking'
+import getBlockedDatesByRoom from './getBlockedDatesByRoom';
 
 const logic = {
   registerUser,
@@ -29,6 +30,7 @@ const logic = {
   deleteRoom,
 
   createBooking,
+  getBlockedDatesByRoom
 }
 
 export default logic

@@ -9,9 +9,11 @@ import RoomList from '../library/RoomList'
 function Home() {
 
   return <div>
-    <Header>
-      <TopBar/>
-    </Header>
+    <div>
+      <Header>
+        <TopBar />
+      </Header>
+    </div>
     <RoomList></RoomList>
   </div>
 }

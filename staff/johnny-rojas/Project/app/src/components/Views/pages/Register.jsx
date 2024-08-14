@@ -41,10 +41,11 @@ function Register() {
   }
 
   return <div>
-    
+    <div>
     <Header>
       <TopBar></TopBar>
     </Header>
+    </div>
 
     <View className='RegisterForm' tag='main'>
 

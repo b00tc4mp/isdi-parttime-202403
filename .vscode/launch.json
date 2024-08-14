@@ -21,7 +21,7 @@
       "name": "Debug Tests",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/staff/johnny-rojas/project/node_modules/mocha/bin/_mocha",
+      "program": "${workspaceFolder}/staff/johnny-rojas/project/api/node_modules/mocha/bin/_mocha",
       "args": [
         "--timeout",
         "999999",

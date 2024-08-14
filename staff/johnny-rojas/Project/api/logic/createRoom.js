@@ -21,7 +21,7 @@ const createRoom = (userId, nameRoom, region, city, image, description, price) =
       user.role = "host"
       return user.save()
     })
-    .then(() =>{
+    .then(() => {
 
       const room = {
         author: userId,
@@ -34,8 +34,8 @@ const createRoom = (userId, nameRoom, region, city, image, description, price) =
         likes: [],
         manager: userId
       }
-      return Room.create(room)    
-    })  
+      return Room.create(room)
+    })
     .then(room => room)
     .catch(error => { throw new SystemError(error.message) })
 }

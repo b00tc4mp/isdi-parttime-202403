@@ -1,5 +1,5 @@
 import { Booking, Room } from '../data/index.js'
-import { CredentialsError, NotFoundError, SystemError, DuplicityError } from "com/errors.js"
+import { CredentialsError, NotFoundError, SystemError, DuplicityError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
 
 const createBooking = (userId, roomId, startDate, endDate) => {
@@ -31,7 +31,7 @@ const createBooking = (userId, roomId, startDate, endDate) => {
         throw new NotFoundError('room not found')
       }
       if (room.manager.toString() === userId) {
-        throw new CredentialsError('manager cannot book their own rooms')
+        throw new MatchError('manager cannot book their own rooms')
       }
       const newBooking = {
         user: userId,
