@@ -2,14 +2,19 @@ import Button from '../../../components/core/Button'
 
 import logic from '../../../logic'
 
-export const Ad = ({ ad, onAdDeleted }) => {
+import './Ad.css'
+
+export const Ad = ({ ad, onAdDeleted, setStamp }) => {
     console.log('Ad -> render')
 
     const handleDeleteAd = () => {
 
         try {
             logic.deleteAd(ad.id)
-                .then(() => onAdDeleted())
+                .then(() => {
+                    onAdDeleted()
+                    setStamp(Date.now())
+                })
                 .catch(error => {
                     console.log(error)
 
@@ -24,12 +29,12 @@ export const Ad = ({ ad, onAdDeleted }) => {
     }
 
     return (
-        <>
-            <div>
 
-                <Button type="button" onClick={handleDeleteAd}>Delete</Button>
+        <div>
 
-            </div>
-        </>
+            <Button className="DeleteButton" type="button" onClick={handleDeleteAd}>Delete</Button>
+
+        </div>
+
     )
 }
