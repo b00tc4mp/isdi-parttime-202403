@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import WasteSelect from '../../../../components/WasteSelect'
+import useWasteSelection from '../../../../handlers/useWasteSelection'
 import WasteContainer from '../../../../components/WasteContainer'
+import useWasteContainer from '../../../../handlers/useWasteContainer'
 import WasteWeight from '../../../../components/WasteWeight'
-import './index.css'
-
-import { collection, addDoc } from 'firebase/firestore'
-import { db } from '../../../../components/firebase/config'
+import useWasteWeight from '../../../../handlers/useWasteWeight'
+import getWeekNumber from '../../../../logic/getWeekNumber'
+import submitDataTruck3 from '../../../../firebase/truck3/submitDataTruck3'
+import View from '../../../../components/core/View'
 
 const RegisterTruckLoad3 = () => {
-  const [selectedWaste, setSelectedWaste] = useState("")
-  const [weight, setWeight] = useState("")
-  const [optionsContainer, setOptionsContainer] = useState("")
+
+  const { selectedWaste, handleWasteChange } = useWasteSelection()
+  const { weight, handleWeightChange } = useWasteWeight()
+  const { optionsContainer, handleOptionsContainer } = useWasteContainer()
+
+  const { saveData } = submitDataTruck3(selectedWaste, weight, optionsContainer)
+
   const [week, setWeek] = useState("")
   const [year, setYear] = useState("")
 
@@ -18,79 +24,40 @@ const RegisterTruckLoad3 = () => {
     const today = new Date()
     setWeek(getWeekNumber(today))
     setYear(today.getFullYear().toString())
-  }, []);
-
-  const handleWasteChange = (selectedOption) => {
-    setSelectedWaste(selectedOption)
-    console.log("Selected waste:", selectedOption)
-  }
-
-  const handleWeightChange = (event) => {
-    const { value } = event.target
-    setWeight(value) 
-    console.log("Input weight:", value)
-  }
-
-  const handleOptionsContainer = (event) => {
-    const { value } = event.target
-    setOptionsContainer(value)
-    console.log("Selected option:", value)
-  }
-
-  // funcion para traer semana
-  const getWeekNumber = (date) => {
-    const startOfYear = new Date(date.getFullYear(), 0, 1);
-    const pastDaysOfYear = (date - startOfYear) / 86400000;
-    return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
-  }
-
-  // estructura de datos
-  const saveData = () => {
-    const dataTruck3 = {
-      code: selectedWaste.code,
-      description: selectedWaste.description,
-      weight: weight,
-      container: optionsContainer,
-      week: week,
-      year: year,
-      trailer: "ACTECO"
-    }
-    console.log(dataTruck3)
-
-    // guardamos en base de datos
-
-    const dataTruck3Load = collection(db, "dataTruck3Load")
-
-    addDoc(dataTruck3Load, dataTruck3)
-      .then(() => {
-        alert('Residuo Registrado 🎉 ' + selectedWaste.code + '-' + selectedWaste.description)
-        window.location.reload()
-      })
-      .catch((error) => {
-        console.error("Error registrando el residuo: ", error)
-      });
-  }
+  }, [])
 
   return (
+    <View>
     <div className='TruckLoadDiv'>
       <form className='TruckLoadForm' onSubmit={(e) => { e.preventDefault(); saveData(); }}>
+        
         <div className='TruckLoadSelectWaste'>
+          
           <WasteSelect selectedWaste={selectedWaste} handleWasteChange={handleWasteChange} />
           <button className='SubmitButton' type='submit'>💾</button>
+       
         </div>
 
         <div className='TruckLoadSelectedContainer'>
+         
           <WasteContainer optionsContainer={optionsContainer} handleOptionsContainer={handleOptionsContainer} />
+        
         </div>
 
         <div className='WeightWeek'>
+          
           <WasteWeight weight={weight} handleWeightChange={handleWeightChange} />
+          
           <div className='WeekYearDiv'>
           <p>{week} / {year}</p>
+          
           </div>
+
         </div>
+
       </form>
     </div>
+    </View>
   )
 }
 

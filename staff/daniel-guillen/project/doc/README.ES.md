@@ -1,5 +1,5 @@
 # DEMO - CDR - EMPRESA DE RESIDUOS
-![Logo Universal](logo.jpg)
+![Logo Universal](img/logo.jpg)
 
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
@@ -23,7 +23,7 @@ Las aplicaciones personalizadas son herramientas diseñadas específicamente par
 
 ### HOME
 
-![HOME](home.png)
+![HOME](img/home.png)
 
 Solo podra acceder el ADMIN despues de completar login con sus credenciales personales, tendra en un primer vistazo acceso a las principales categorias(Incentario, Salidas, Vehiculos y Usuarios).
 
@@ -42,7 +42,7 @@ Solo podra acceder el usuario que tenga asignada esta seccion (almacen:inventari
 
 ## Inventario
 
-![Inventario](store.png)
+![Inventario](img/store.png)
 
 El usuario podra hacer registro de los residuos:
 
@@ -53,13 +53,13 @@ El usuario podra hacer registro de los residuos:
 
 En el inventario el usuario podra ver los residuos registrados donde se mostraran agrupados por LER y diferenciados por su acondicionamiento e indicando su peso en kg.
 
-![Resumen](status.png)
+![Resumen](img/status.png)
 
 ## Resumen y Estancados
 
 Usuario pueden consultar un resumen de los resudios almacenados (Cantidad total en kg por LER) y recordatorio de los que se encuentran estancados.
 
-![Buscar](search.png)
+![Buscar](img/search.png)
 
 ## Buscar
 
@@ -78,7 +78,7 @@ Preparar una lista de la carga de un camión es fundamental por varias razones, 
 
 Solo podra acceder el usuario que tenga asignada esta seccion (salidas:Acteco, trailer2, trailer3 y buscar)
 
-![Salidas](truckload.png)
+![Salidas](img/truckload.png)
 
 ## Acteco, 2a Carga y 3a Carga
 
@@ -125,4 +125,4 @@ Partes que hay que vigilar o revisar:
     - Accesorios basicos
     - Accesorios ADR
 
-![Vehiculos - Furgo 1, Furgo 2, Camion 1...](fleet.png)
+![Vehiculos - Furgo 1, Furgo 2, Camion 1...](img/fleet.png)

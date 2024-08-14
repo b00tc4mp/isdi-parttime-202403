@@ -1,6 +1,6 @@
 # DEMO - CDR
 
-![Logo Universal](logo.jpg)
+![Logo Universal](img/logo.jpg)
 
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
@@ -20,7 +20,7 @@ Custom applications are tools designed specifically to meet the particular needs
 
 - Access and use of the assigned section
 
-![Login - Registro de usuarios y listado de usuarios](users.png)
+![Login - Registro de usuarios y listado de usuarios](img/users.png)
 
 # Warehouse and Inventory
 
@@ -61,7 +61,7 @@ The user can search for all waste registered with a specific LER:
     - Enter an LER in the search engine
     - Delete an inserted record
 
-![Almacen - Inventario, estancados, separados y buscar](stored.png)
+![Almacen - Inventario, estancados, separados y buscar](img/stored.png)
 
 # Trailer Departures and Loads
 
@@ -88,7 +88,7 @@ The user can search for all waste registered to load on trailers with a specific
     - Delete an inserted record
     - It will be shown differentiated by TRAILER1-3
 
-![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](departures.png)
+![Salidas - Trailer 1, Trailer 2, Trailer 3 y buscar](img/departures.png)
 
 # Vehicle and Maintenance
 
@@ -117,4 +117,4 @@ Parts to monitor or review:
     - Basic accessories
     - ADR accessories
 
-![Vehiculos - Furgo 1, Furgo 2, Camion 1...](fleet.png)
+![Vehiculos - Furgo 1, Furgo 2, Camion 1...](img/fleet.png)

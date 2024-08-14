@@ -26,13 +26,13 @@
 }
 
 .WasteContainerStatus.PALET {
-  background: rgb(247, 247, 149);
-  border: gold solid 1px;
+  background: rgb(248, 214, 127);
+  border: orange solid 1px;
 }
 
 .WasteContainerStatus.GRG {
-  background: lightgoldenrodyellow;
-  border: yellow solid 1px;
+  background: rgb(247, 247, 149);
+  border: gold solid 1px;
 }
 
 .WasteContainerStatus.BIGBAG {
@@ -54,7 +54,8 @@
   cursor: pointer;
 }
 
-.Img {
+.ImgOptions {
   cursor: pointer;
-  max-width: 50px;
+  max-width: 30px;
+  border-radius: 2px;
 }

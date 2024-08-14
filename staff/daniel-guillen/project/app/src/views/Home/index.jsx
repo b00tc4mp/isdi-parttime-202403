@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className='homeOptions'>
       <a href="/Store"><img className='image' src={store} /> </a>
-      <a href="/Departures"><img className='image' src={departures} /> </a>
+      <a href="/Acteco"><img className='image' src={departures} /> </a>
       <a href="/Fleet"><img className='image' src={fleet} /> </a>
       <a href="/Users"><img className='image' src={users} /> </a>
     </div>

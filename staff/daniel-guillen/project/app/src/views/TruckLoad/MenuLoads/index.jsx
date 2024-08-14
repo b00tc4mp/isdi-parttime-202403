@@ -3,6 +3,7 @@ import './index.css'
 
 const MenuLoads = () => {
   return (
+
     <div className='MenuLoadsDiv' >
     <ul className='MenuLoads'>
       <li><a className='menu-loads-start' href="/Acteco">ACTECO</a></li>

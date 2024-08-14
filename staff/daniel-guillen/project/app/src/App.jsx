@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import './index.css'
 // import ItemListContainer from './components/ItemListContainer'
-import Menu from './components/Menu'
+import HeaderMenu from './components/HeaderMenu'
 import Home from './views/Home'
 import Store from './views/Store'
 import Summary from './views/Store/Summary'
@@ -20,7 +20,7 @@ function App() {
 <div className='App'>
   <BrowserRouter>
     
-    <Menu />
+    <HeaderMenu />
     
     <Routes>
       

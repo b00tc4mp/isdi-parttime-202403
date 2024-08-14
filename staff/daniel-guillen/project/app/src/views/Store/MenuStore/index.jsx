@@ -1,8 +1,10 @@
 import React from 'react'
 import './index.css'
+import View from '../../../components/core/View'
 
 const MenuStore = () => {
   return (
+
     <div className='MenuStoreDiv' >
     <ul className='MenuStore'>
       <li><a className='menu-store-start' href="/Store">INVENTRARIO</a></li>
