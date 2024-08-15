@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import View from '../../../components/library/View'
 import Task from '../Task'
@@ -12,14 +12,16 @@ import './index.css'
 function MyTaskList() {
     const { alert } = useContext()
 
-    
+    const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+        loadTasks()
+    })
 
     const loadTasks = () => {
-        console.log("llamada a load task")
         try {
             logic.getMyTasks()
                 .then(tasks => {
-                    console.log("llego", tasks)
                     setTasks(tasks)
                 })
                 .catch(error => {
@@ -32,14 +34,11 @@ function MyTaskList() {
             alert(error.message)
         }
     }
-
-    const [tasks, setTasks] = useState(()=>{
-        loadTasks()
-    })
-    const handleTasksDeleted = () => loadTasks()
+    
+    const handleTaskDeleted = () => loadTasks()
 
     return <View tag="section" className="TaskList">
-        {tasks? tasks.map(task => <Task key={task.id} task={task} onTaskDeleted={handleTasksDeleted} />):"No se han encontrado tareas"}
+        {tasks.map(task => <Task key={task.id} task={task} onTaskDeleted={handleTaskDeleted}/>)}
     </View>
 }
 

@@ -8,6 +8,7 @@ import addTask from './addTask'
 import getMyTasks from './getMyTasks'
 import getMyPrivateTasks from './getMyPrivateTasks'
 import getMyInProgressTasks from './getMyInProgressTasks'
+import getMyFinishedTasks from './getMyFinishedTasks'
 import deleteTask from './deleteTask'
 
 const logic = {
@@ -21,6 +22,7 @@ const logic = {
     getMyTasks,
     getMyInProgressTasks,
     getMyPrivateTasks,
+    getMyFinishedTasks,
     deleteTask
 }
 

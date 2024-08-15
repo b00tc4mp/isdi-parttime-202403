@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import View from '../../../components/library/View'
 import Task from '../Task'
@@ -13,6 +13,10 @@ function MyPrivateTaskList() {
     const { alert } = useContext()
 
     const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+        loadTasks()
+    })
 
     const loadTasks = () => {
         try {
@@ -31,10 +35,10 @@ function MyPrivateTaskList() {
         }
     }
 
-    const handleTasksDeleted = () => loadTasks()
+    const handleTaskDeleted = () => loadTasks()
 
     return <View tag="section" className="TaskList">
-        {tasks.map(task => <Task key={task.id} task={task} onTaskDeleted={handleTasksDeleted} />)}
+        {tasks.map(task => <Task key={task.id} task={task} onTaskDeleted={handleTaskDeleted}/>)}
     </View>
 }
 

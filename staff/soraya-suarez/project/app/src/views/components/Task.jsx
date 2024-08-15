@@ -58,14 +58,8 @@ function Task({ task, /*onTaskModified,*/ onTaskDeleted }) {
     return <View tag="article" align="">
         <View direction='row'>
             <Text>{task.name}</Text>
-        </View>
-
-
-        <Text>{task.description}</Text>
-
-        <View direction='row'>
-            {/*task.creator.id === logic.getUserId() && <Button onClick={handleModifyTask}>Modify</Button>*/}
-            {task.creator.id === logic.getUserId() && <Button onClick={handleDeleteTask}>Delete</Button>}
+            {task.creator === logic.getUserId() && <Button onClick={handleDeleteTask}>Delete</Button>}
+            {/*task.creator === logic.getUserId() && <Button onClick={handleModifyTask}>Modify</Button>*/}
         </View>
 
         {/*confirmModifyVisible && <Confirm message="Modify task?" onAccept={handleModifyTaskAccepted} onCancel={handleModifyTaskAccepted} />*/}

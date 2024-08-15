@@ -38,6 +38,7 @@ User | Admin
 - Sign out
 - Request vacation
 - Request resignation
+- Recover password
 
 Admin
 

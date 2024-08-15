@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import View from '../components/library/View'
 import Button from '../components/core/Button'
@@ -8,14 +9,18 @@ import MyTaskList from './components/MyTasksList'
 import MyInProgressTaskList from './components/MyInProgressTaskList'
 import MyPrivateTaskList from './components/MyPrivateTaskList'
 import MyFinishedTaskList from './components/MyFinishedTaskList'
+import Users from './Users'
 
 import logic from '../logic'
+
 import './Home.css'
 
 function Home({ onUserLoggedOut }) {
 
     const [view, setView] = useState(false)
     const [page, setPage] = useState('home')
+    
+    const navigate = useNavigate()
 
     const handleLogout = () => {
         logic.logout()
@@ -23,9 +28,9 @@ function Home({ onUserLoggedOut }) {
         onUserLoggedOut()
     }
 
-    const handleNavigateTo = (url) => setPage(url)
+    const handleGoToUsers = () => navigate('/users')
 
-    const handleHomeTaskClick = () => setView(view)
+    const handleNavigateTo = (url) => setPage(url)
 
     const handleAddTaskClick = () => setView(!view)
 
@@ -58,12 +63,16 @@ function Home({ onUserLoggedOut }) {
                 default: return null
             }
            }) () }
+
+           <Routes>
+                <Route path="/users" element={<Users/>} />
+            </Routes>
        </View>
 
         <footer>
-            <Button onClick={handleHomeTaskClick}>Home</Button>
+            <Button onClick={()=> handleNavigateTo('home')}>Home</Button>
             <Button onClick={handleAddTaskClick}>+</Button>
-            <Button onClick={handleAddTaskClick}>Users</Button>
+            <Button onClick={handleGoToUsers}>Users</Button>
         </footer>
     </>
 }

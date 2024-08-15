@@ -6,7 +6,7 @@ import deleteTaskHandler from './deleteTaskHandler.js'
 import getMyTasksHandler from './getMyTasksHandler.js'
 import getMyPrivateTasksHandler from './getMyPrivateTasksHandler.js'
 import getMyInProgressTasksHandler from './getMyInProgressTasksHandler.js'
-import getMyFinishedTasks from './getMyFinishedTasksHandler.js'
+import getMyFinishedTasksHandler from './getMyFinishedTasksHandler.js'
 
 
 import errorHandler from './errorHandler.js'
@@ -20,6 +20,6 @@ export {
     getMyTasksHandler,
     getMyPrivateTasksHandler,
     getMyInProgressTasksHandler,
-    getMyFinishedTasks,
+    getMyFinishedTasksHandler,
     errorHandler
 }

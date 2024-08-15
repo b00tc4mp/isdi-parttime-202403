@@ -25,7 +25,7 @@ function App() {
 
   return <Context.Provider value={{ alert: handleMessage }}>
     <Routes>
-      <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login onUserLoggedIn={handleGoToHome} />} />
+      <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/home" /> : <Login onUserLoggedIn={handleGoToHome} />} />
       <Route path="/*" element={logic.isUserLoggedIn() ? <Home onUserLoggedOut={handleGoToLogin} /> : <Navigate to="/login" />} />
     </Routes>
 

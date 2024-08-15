@@ -35,9 +35,6 @@ const getMyTasks = (userId) => {
                             return tasks
 
                         })
-                    
-                    //tengo que unificar  tasks y tasksOwner y supuestamente estaría
-                    //return tasks
                 })
 
                 
