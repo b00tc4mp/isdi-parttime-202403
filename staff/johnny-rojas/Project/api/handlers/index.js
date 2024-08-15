@@ -1,6 +1,5 @@
 import registerUserHandler from './registerUserHandler.js';
 import authenticateUserHandler from './authenticaUserHandler.js';
-import getUserNameHandler from '../handlers/getUserNameHandler.js';
 import editUserContact from './editUserContactHandler.js';
 import closeAccountHandler from './closeAccountHandler.js';
 
@@ -14,13 +13,13 @@ import deleteRoomHandler from './deleteRoomHandler.js'
 import createBookingHandler from './createBookingHandler.js'
 import getAllBookingsHandler from './getAllBookingsHandler.js';
 import getBlockedDatesByRoomHandler from './getBlockedDatesByRoomHandler.js';
+import getRoomBookingsHandler from './getRoomBookinsHandler.js'
 
 
 
 const handlers = {
   registerUserHandler,
   authenticateUserHandler,
-  getUserNameHandler,
   editUserContact,
   closeAccountHandler,
 
@@ -33,7 +32,8 @@ const handlers = {
 
   createBookingHandler,
   getAllBookingsHandler,
-  getBlockedDatesByRoomHandler
+  getBlockedDatesByRoomHandler,
+  getRoomBookingsHandler
 }
 
 export default handlers

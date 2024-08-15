@@ -8,11 +8,27 @@ import Field from '../core/Field';
 import Title from '../core/Title';
 import { useNavigate, useParams } from "react-router-dom";
 import logic from "../../../logic/index"
+import { useState, useEffect } from "react";
 
 function ManageRoom() {
+  const [bookings, setBookings] = useState([])
   const { roomId } = useParams()
   const userId = getUserId()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    try {
+      logic.getRoomBookings(roomId)
+        .then((bookings) => { setBookings(bookings) })
+        .catch(error => {
+          alert(error.message)
+          return
+        })
+    } catch (error) {
+      console.error(error.message)
+      alert(error)
+    }
+  }, [roomId])
 
   const handlerEditRoom = event => {
     event.preventDefault()
@@ -59,14 +75,30 @@ function ManageRoom() {
     }
   }
 
-
-
-
   return <div>
     <Header>
       <TopBar />
     </Header>
     <div>
+      
+    <div className='Container'>
+        <section className='SectionCard'>
+          <ul className="Grid">
+            {bookings.length > 0 ? (
+              bookings.map(booking => (
+                <li className='List' key={booking.id}>
+                  <p>Información de contacto: {booking.user}</p>
+                  <p>Entrada: {new Date(booking.startDate).toLocaleDateString()}</p>
+                  <p>Salida: {new Date(booking.endDate).toLocaleDateString()}</p>
+                </li>
+              ))
+            ) : (
+              <p>No hemos encontrado reservas.</p>
+            )}
+          </ul>
+        </section>
+      </div>
+
 
       <View className='RegisterForm' tag='main'>
 
@@ -100,4 +132,3 @@ function ManageRoom() {
 
 export default ManageRoom
 
-//TODO MEJORAR BOTON DELETE

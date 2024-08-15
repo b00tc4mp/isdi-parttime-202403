@@ -1,0 +1,33 @@
+@tailwind components;
+
+@layer components{
+  .CardRoom{
+    @apply flex flex-col items-center
+  }
+
+  .Image{
+    @apply w-full h-96 object-cover
+  }
+
+  .InfoCardLeft{
+    @apply flex flex-col gap-1 
+  }
+
+}
+
+/* Estilo para el datepicker */
+.react-datepicker__day--disabled {
+  opacity: 0.5; /* Cambia el valor para ajustar el nivel de opacidad */
+  pointer-events: none; /* Evita que las fechas opacas sean seleccionables */
+}
+
+/* Opcional: Cambiar el cursor a "not-allowed" para indicar que no se puede seleccionar */
+.react-datepicker__day--disabled:hover {
+  cursor: not-allowed;
+}
+
+/* Si quieres personalizar los bordes de las fechas opacas */
+.react-datepicker__day--disabled {
+  border: 1px solid #ccc; /* Ajusta el color y grosor del borde según tu diseño */
+  background-color: #f0f0f0; /* Fondo más claro para mejorar la visibilidad */
+}

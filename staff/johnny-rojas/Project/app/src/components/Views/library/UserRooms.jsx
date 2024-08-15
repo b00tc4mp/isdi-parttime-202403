@@ -45,7 +45,7 @@ function UserRooms() {
               </div>
             </div>
             <div className="LinkTo">
-              <Link to={`/rooms/${room.id}/manage`}>Editar</Link>
+              <Link to={`/rooms/${room.id}/manage`}>Ver habitación</Link>
             </div>
           </div>
         </li>)}

@@ -24,3 +24,6 @@ Root
 	- GET /profile (View my profile)
 	- PUT /profile (Update my profile)
 	- GET /booking_history (View booking history)
+
+
+	//TODO actualizar
