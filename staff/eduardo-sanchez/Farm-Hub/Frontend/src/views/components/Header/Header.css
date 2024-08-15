@@ -1,0 +1,9 @@
+ @tailwind components;
+
+ @layer components {
+
+     .Header {
+         @apply flex gap-[1rem] w-full justify-between p-[.5rem] box-border border-b-[1px] border-b-[var(--first-color)] bg-[var(--second-color)] items-center;
+     }
+
+ }

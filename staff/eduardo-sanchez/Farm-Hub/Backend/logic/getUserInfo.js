@@ -26,11 +26,7 @@ const getUserInfo = (userId, targetUserId) => {
                     return targetUser
 
                 })
-
         })
-
 }
 
 export default getUserInfo
-
-// getUserInfo

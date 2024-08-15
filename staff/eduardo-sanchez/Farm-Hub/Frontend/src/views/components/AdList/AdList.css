@@ -5,4 +5,8 @@
     .AdContainer {
         @apply border border-black flex flex-col gap-2 mb-2;
     }
+
+    .UsernameTitle {
+        @apply flex items-start justify-start gap-[0.5rem] font-bold;
+    }
 }

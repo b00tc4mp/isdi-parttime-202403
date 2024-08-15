@@ -10,25 +10,58 @@ import AdList from "./components/AdList/AdList"
 
 
 import './Home.css'
+import Header from "./components/Header/Header"
 function Home() {
 
+    const [user, setUser] = useState('')
     const navigate = useNavigate
+
+    useEffect(() => {
+        console.log('Home -> useEffect')
+
+        try {
+            logic.getUserInfo()
+                .then(user => {
+                    console.log('Home -> setUsername')
+
+                    setUser(user)
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message + " " + "HELL")
+                })
+
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }, [])
 
     return <>
 
-        <Title>Farm-Hub</Title>
+        {/* <Header>
 
-        <div>
-            <AdList />
+            <Title>Farm-Hub</Title>
+            <h1 className='UsernameTitle'>{user.username}</h1>
 
-        </div>
 
-        <div>
-            <Link to="/login">Login</Link>
+        </Header> */}
+        <main className="Home">
 
-            <Link to="/register">Register</Link>
+            <div>
+                <AdList />
 
-        </div>
+            </div>
+
+            {/* <div>
+                <Link to="/login">Login</Link>
+
+                <Link to="/register">Register</Link>
+
+            </div> */}
+        </main>
     </>
 }
 

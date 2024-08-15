@@ -2,7 +2,6 @@
 
 @layer components {
     .Home {
-        @apply mt-12 flex w-full flex-col items-center justify-center gap-10;
+        @apply mt-3 flex w-full flex-col items-center justify-center gap-2;
     }
-
 }

@@ -9,6 +9,7 @@ import Register from './views/Register'
 import Home from './views/Home'
 import { Notfound } from './views/Notfound'
 import { Login } from './views/Login'
+import Header from './views/components/Header/Header'
 // import AdList from './views/components/AdList/AdList.jsx'
 
 function App() {
@@ -23,19 +24,21 @@ function App() {
   // const handleGoToRegister = () => navigate('/register')
 
   return (
-    <Routes>
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      {/* <Route path="/adlist" element={<AdList />} /> */}
+    <>
+      <Header />
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="/adlist" element={<AdList />} /> */}
 
-      <Route path="/" element={<Home />} />
-      <Route path="/*" element={<Notfound />} />
-    </Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/*" element={<Notfound />} />
+      </Routes>
+    </>
   )
 }
 
 export default App
-
 
 // < Routes >
 //   <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register onUserRegistered={handleGoToLogin} onLoginLinkClick={handleGoToLogin} />} />

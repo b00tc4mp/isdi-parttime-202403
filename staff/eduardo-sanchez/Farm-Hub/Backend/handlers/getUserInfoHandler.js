@@ -19,8 +19,8 @@ export default (req, res, next) => {
                 try {
                     logic.getUserInfo(userId, targetUserId)
                         .then(user => {
-                            // res.send(user)
-                            res.status(200).send(user)
+                            res.json(user)
+                            // res.status(200).send(user)
                         })
                         .catch(error => next(error))
                 } catch (error) {
@@ -33,25 +33,3 @@ export default (req, res, next) => {
         next(error)
     }
 }
-
-
-
-
-//     jwt.verify(token, JWT_SECRET)
-//         .then(payload => {
-//             const { sub: userId } = payload
-
-//             const { targetUserId } = req.params
-
-//             try {
-//                 logic.getUserName(userId, targetUserId)
-//                     .then(name => res.json(name))
-//                     .catch(error => next(error))
-//             } catch (error) {
-//                 next(error)
-//             }
-//         })
-//         .catch(error => next(new CredentialsError(error.message)))
-// } catch (error) {
-//     next(error)
-// }

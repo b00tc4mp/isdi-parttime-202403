@@ -8,7 +8,7 @@
 
 
   :root {
-    @apply max-w-screen-xl mx-auto p-8 text-center flex justify-center items-center text-green-500 bg-orange-100;
+    @apply max-w-screen-xl mx-auto p-5 text-center flex justify-center items-center text-green-500 bg-orange-100;
   }
 
   * {
@@ -27,10 +27,10 @@
     /* bg-green-50 */
   }
 
-  /* h1 {
-    @apply text-3xl font-bold text-black mb-4;
+  h1 {
+    @apply text-xl font-bold text-black mb-4;
 
-  } */
+  }
 
   .Link {
     @apply text-black underline;

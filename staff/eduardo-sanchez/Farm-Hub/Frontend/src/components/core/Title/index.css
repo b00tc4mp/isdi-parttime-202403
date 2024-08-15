@@ -2,6 +2,6 @@
 
 @layer components {
     .Title {
-        @apply text-4xl font-bold mb-4 text-orange-700 text-center;
+        @apply text-4xl font-bold mb-1 text-orange-700 text-center;
     }
 }

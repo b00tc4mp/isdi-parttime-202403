@@ -33,7 +33,7 @@ export const Login = () => {
         try {
             logic.loginUser(username, password)
                 .then(() => {
-                    navigate("/adlist")
+                    navigate("/")
                     console.log('User Login -> success')
                     alert("Welcome " + `${username}`)
                 })
