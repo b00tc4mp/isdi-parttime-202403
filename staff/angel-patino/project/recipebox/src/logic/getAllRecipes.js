@@ -6,7 +6,6 @@ const getAllRecipes = () => {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
-
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
             if (response.status === 200)

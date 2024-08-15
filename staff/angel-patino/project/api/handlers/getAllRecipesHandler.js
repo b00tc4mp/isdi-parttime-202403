@@ -8,7 +8,7 @@ export default (req, res, next) => {
     try {
         const token = req.headers.authorization.slice(7)
 
-        jwt.verify(toke, JWT_SECRET)
+        jwt.verify(token, JWT_SECRET)
             .then(payload => {
                 const { sub: userId } = payload
 

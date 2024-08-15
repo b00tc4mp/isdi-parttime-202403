@@ -50,15 +50,39 @@ function validateId(id, explain = 'id') {
     if (!ID_REGEX.test(id))
         throw new ContentError(`${explain} is not valid`)
 }
-function validateNumber(number, explain = 'number', { min = -Infinity, max = Infinity } = {}) {
+
+function validateNumber(number, explain = 'number') {
+    const min = 0;
+    const max = 500;
+
     if (typeof number !== 'number' || isNaN(number) || number < min || number > max) {
-        throw new ContentError(`${explain} is not valid`)
+        throw new ContentError(`${explain} is not valid. It must be a number between ${min} and ${max}.`)
     }
 }
 
-function validateArrayOfString(array, explain = 'array') {
-    if (!Array.isArray(array) || array.some(item => typeof item !== 'string')) {
-        throw new ContentError(`${explain} is not valid`)
+function validateIngredientArray(ingredients, explain = 'ingredients') {
+    if (!Array.isArray(ingredients) || ingredients.length === 0) {
+        throw new ContentError(`${explain} must be a non-empty array.`)
+    }
+
+    ingredients.forEach(ingredient => {
+        if (typeof ingredient.name !== 'string' || ingredient.name.trim() === '') {
+            throw new ContentError(`Each ${explain} must have a valid 'name'.`)
+        }
+        if (typeof ingredient.quantity !== 'number' || ingredient.quantity <= 0) {
+            throw new ContentError(`Each ${explain} must have a valid 'quantity' greater than 0.`)
+        }
+        if (!['gr', 'ml', 'l', 'tsp', 'unit'].includes(ingredient.unit)) {
+            throw new ContentError(`Each ${explain} must have a valid 'unit' that is either 'grams' or 'ml'.`)
+        }
+    })
+}
+
+function validateRating(rating, explain = 'rating') {
+    const min = 1;
+    const max = 5;
+    if (typeof rating !== 'number' || isNaN(rating) || rating < min || rating > max) {
+        throw new ContentError(`${explain} must be a number between ${min} and ${max}.`);
     }
 }
 
@@ -73,7 +97,8 @@ const validate = {
     url: validateUrl,
     id: validateId,
     number: validateNumber,
-    arrayOfString: validateArrayOfString
+    ingredientArray: validateIngredientArray,
+    rating: validateRating
 }
 
 export default validate

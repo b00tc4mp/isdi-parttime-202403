@@ -20,7 +20,7 @@ function toggleLikeRecipe(userId, recipeId) {
 
                     const included = recipe.likes.some(userObjectId => userObjectId.toString() === userId)
 
-                    return Recipe.updateOne({ _id: postMessage._id },
+                    return Recipe.updateOne({ _id: recipe._id },
                         included ?
                             { $pull: { likes: user._id } }
                             :

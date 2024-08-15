@@ -15,7 +15,7 @@ export default (req, res, next) => {
                 const { recipeId } = req.params
 
                 try {
-                    logic.rateRecipe(userId, recipeId,)
+                    logic.rateRecipe(userId, recipeId)
                         .then(() => res.status(204).send())
                         .catch(error => next(error))
                 } catch (error) {

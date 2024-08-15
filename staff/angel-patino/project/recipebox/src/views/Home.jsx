@@ -79,13 +79,9 @@ function Home({ onUserLoggedOut }) {
           />
 
           <Route path="/about" element={<About />} />
-
-          {/* <Route path="/hello/:to" element={<Hello />} />
-
-          <Route path="/search" element={<Search />} /> */}
         </Routes>
 
-        {view === "create-post" && (
+        {view === "create-recipe" && (
           <CreateRecipeForm
             onCancelCreateRecipeClick={handleCancelCreateRecipeClick}
             onRecipeCreated={handleRecipeCreated}

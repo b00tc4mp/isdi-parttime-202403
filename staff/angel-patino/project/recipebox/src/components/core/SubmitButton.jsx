@@ -1,5 +1,11 @@
-function Text({ children, className }) {
-  return <p className={`Text ${className}`}>{children}</p>
+import Button from "./Button"
+
+function SubmitButton({ children }) {
+  return (
+    <Button className="SubmitButton" type="submit">
+      {children}
+    </Button>
+  )
 }
 
-export default Text
+export default SubmitButton

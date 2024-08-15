@@ -9,41 +9,57 @@ import SubmitButton from "../../components/core/SubmitButton"
 import FormWithFeedback from "../../components/library/FormWithFeedback"
 import View from "../../components/library/View"
 
-import { SystemError } from "com/errors"
-
 function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
   const [message, setMessage] = useState("")
+  const [ingredients, setIngredients] = useState([
+    { ingredient: "", unit: "grams" },
+  ])
 
   const handleCancelCreateRecipeClick = () => onCancelCreateRecipeClick()
 
+  const addIngredient = () => {
+    setIngredients([...ingredients, { ingredient: "", unit: "grams" }])
+  }
+
+  const removeIngredient = (index) => {
+    const newIngredients = ingredients.filter((_, i) => i !== index)
+    setIngredients(newIngredients)
+  }
+
+  const handleIngredientChange = (index, value) => {
+    const newIngredients = [...ingredients]
+    newIngredients[index].ingredient = value
+    setIngredients(newIngredients)
+  }
+
+  const handleUnitChange = (index, value) => {
+    const newIngredients = [...ingredients]
+    newIngredients[index].unit = value
+    setIngredients(newIngredients)
+  }
+
   const handleCreateRecipeSubmit = (event) => {
     event.preventDefault()
-
     const form = event.target
 
     const title = form.title.value
     const thumbnail = form.thumbnail.value
-    const cookTime = form.cookTime.value
-    const ingredients = form.ingredients.value
+    const cookTime = parseFloat(form.cookTime.value)
     const description = form.description.value
 
     try {
       logic
         .createRecipe(title, thumbnail, cookTime, ingredients, description)
-        .then(() => onRecipeCreated())
+        .then(() => {
+          onRecipeCreated()
+          setMessage("Recipe created successfully!")
+        })
         .catch((error) => {
           console.error(error)
-
-          if (error instanceof SystemError) {
-            alert(error.message)
-
-            return
-          }
           setMessage(error.message)
         })
     } catch (error) {
       console.error(error)
-
       setMessage(error.message)
     }
   }
@@ -54,7 +70,31 @@ function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
         <Field id="title">Title</Field>
         <Field id="thumbnail">Thumbnail</Field>
         <Field id="cookTime">Cook Time</Field>
-        <Field id="ingredients">Ingredients</Field>
+        {ingredients.map((ingredient, index) => (
+          <View key={index} className="ingredient-input">
+            <Field
+              id={`ingredient-${index}`}
+              name={`ingredient-${index}`}
+              label="Ingredient"
+              value={ingredient.ingredient}
+              onChange={(e) => handleIngredientChange(index, e.target.value)}
+            >
+              Ingredient
+            </Field>
+            <select
+              value={ingredient.unit}
+              onChange={(e) => handleUnitChange(index, e.target.value)}
+            >
+              <option value="grams">grams</option>
+              <option value="ml">ml</option>
+              <option value="l">l</option>
+              <option value="tsp">tsp</option>
+              <option value="unit">unit</option>
+            </select>
+            <Button onClick={() => removeIngredient(index)}>Remove</Button>
+          </View>
+        ))}
+        <Button onClick={addIngredient}>Add Ingredient</Button>
         <Field id="description">Description</Field>
 
         <View direction="row">

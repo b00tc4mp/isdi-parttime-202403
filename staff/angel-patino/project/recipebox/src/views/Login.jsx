@@ -77,27 +77,6 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
 
         <div className="mt-8">
           <div>
-            {/* <label className="text-lg font-medium">Username</label>
-            <input
-              className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-              placeholder="username"
-              id="username"
-            />
-          </div>
-          <div>
-            <label className="text-lg font-medium">Password</label>
-            <input
-              className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-              placeholder="password"
-              id="password"
-              type="password"
-            />
-          </div>
-          <div className="mt-8 flex flex-col gap-y-4">
-            <button className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-500 text-white text-lg font-bold">
-              LOGIN
-            </button> */}
-
             <div class="inline-flex items-center justify-center w-full">
               <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
               <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">

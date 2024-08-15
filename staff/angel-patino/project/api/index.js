@@ -17,6 +17,8 @@ import {
 
 const { MONGODB_URL, PORT } = process.env
 
+const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
+
 mongoose.connect(MONGODB_URL)
     .then(() => {
         const api = express()
@@ -25,23 +27,21 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/', (_, res) => res.send('Hello, RecipeBox'))
 
-        const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
-
         api.post('/users', jsonBodyParser, registerUserHandler)
 
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
 
         api.get('/users/:targetUserId', getUserNameHandler)
 
-        api.patch('/profile/userId/editUsername', jsonBodyParser, editUsernameHandler)
-
-        api.get('/recipes', getAllRecipesHandler)
+        api.patch('/profile/:userId/editUsername', jsonBodyParser, editUsernameHandler)
 
         api.post('/recipes', jsonBodyParser, createRecipeHandler)
 
+        api.get('/recipes', getAllRecipesHandler)
+
         api.delete('/recipes/:recipeId', deleteRecipeHandler)
 
-        api.delete('/recipes/:recipesId/likes', toggleLikeRecipeHandler)
+        api.delete('/recipes/:recipeId/likes', toggleLikeRecipeHandler)
 
         api.use(errorHandler)
 

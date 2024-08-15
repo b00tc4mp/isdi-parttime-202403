@@ -23,7 +23,7 @@ const editUsername = (userId, username) => {
                     .catch(error => { throw new SystemError(error.message) })
             }
             else {
-                throw new DuplicityError(error.message)
+                throw new DuplicityError('username already exists')
             }
         })
 }

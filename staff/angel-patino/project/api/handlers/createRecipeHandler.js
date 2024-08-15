@@ -12,10 +12,10 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const { title, source, thumbnail, cookTime, ingredients, description, rating } = req.body
+                const { title, thumbnail, cookTime, ingredients, description, rating } = req.body
 
                 try {
-                    logic.createRecipe(userId, title, source, thumbnail, cookTime, ingredients, description, rating)
+                    logic.createRecipe(userId, title, thumbnail, cookTime, ingredients, description, rating)
                         .then(() => res.status(201).send())
                         .catch(error => next(error))
                 } catch (error) {

@@ -6,7 +6,7 @@ const { JWT_SECRET } = process.env
 
 export default (req, res, next) => {
     try {
-        const toke = req.headers.authorization.slice(7)
+        const token = req.headers.authorization.slice(7)
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {

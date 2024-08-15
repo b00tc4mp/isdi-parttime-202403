@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import logic from "./logic"
 
 import Login from "./views/Login"
@@ -7,7 +9,7 @@ import Home from "./views/Home"
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 
 function App() {
-  // console.log("App -> render")
+  const [message, setMessage] = useState(null)
 
   const navigate = useNavigate()
 
@@ -16,6 +18,8 @@ function App() {
   const handleGoToHome = () => navigate("/")
 
   const handleGoToRegister = () => navigate("/register")
+
+  const handleMessage = (message) => setMessage(message)
 
   return (
     <div className="flex w-full h-screen">

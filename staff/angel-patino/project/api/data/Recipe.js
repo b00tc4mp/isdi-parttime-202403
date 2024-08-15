@@ -2,6 +2,16 @@ import { Schema, model, Types } from "mongoose"
 
 const { ObjectId } = Types
 
+const ingredientSchema = new Schema({
+    name: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    unit: {
+        type: String,
+        required: true,
+        enum: ['gr', 'ml', 'l', 'tsp', 'unit']
+    }
+})
+
 const recipe = new Schema({
     author: {
         type: ObjectId,
@@ -13,12 +23,6 @@ const recipe = new Schema({
         type: String,
         required: true,
     },
-
-    source: {
-        type: String,
-        required: true,
-    },
-
     thumbnail: {
         type: String,
         required: true
@@ -29,10 +33,11 @@ const recipe = new Schema({
         required: true
     },
 
-    ingredients: [{
-        type: String,
+    ingredients: {
+        type: [ingredientSchema],
         required: true
-    }],
+
+    },
 
     description: {
         type: String,

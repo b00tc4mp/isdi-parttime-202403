@@ -14,7 +14,7 @@ const getUserName = (userId, targetUserId) => {
                 throw new MatchError('user not found')
             }
             return User.findById(targetUserId).lean()
-                .catch((error) => { throw new SytemError(error.message) })
+                .catch((error) => { throw new SystemError(error.message) })
                 .then((user) => {
                     if (!user) {
                         throw new NotFoundError('targetUser not found')

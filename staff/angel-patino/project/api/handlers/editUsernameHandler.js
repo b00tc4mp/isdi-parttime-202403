@@ -7,11 +7,11 @@ const { JWT_SECRET } = process.env
 
 export default (req, res, next) => {
     try {
-        const token = req.headers.authorization.slic(7)
+        const token = req.headers.authorization.slice(7)
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
-                const { usb: userId } = payload
+                const { sub: userId } = payload
 
                 const { username } = req.body
 
@@ -26,7 +26,7 @@ export default (req, res, next) => {
                     next(error)
                 }
             })
-            .catch(error => next(new CredentialsError(error.mesaage)))
+            .catch(error => next(new CredentialsError(error.message)))
     } catch (error) {
         next(error)
     }

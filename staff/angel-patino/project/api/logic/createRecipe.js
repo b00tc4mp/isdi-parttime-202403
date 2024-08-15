@@ -2,15 +2,14 @@ import { User, Recipe } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const createRecipe = (userId, title, source, thumbnail, cookTime, ingredients, description, rating) => {
+const createRecipe = (userId, title, thumbnail, cookTime, ingredients, description, rating) => {
     validate.id(userId, 'userId')
     validate.text(title, 'title', 25)
-    validate.text(source, 'source', 25)
     validate.url(thumbnail, 'image')
     validate.number(cookTime, 'cookTime')
-    validate.arrayOfString(ingredients, 'ingredients')
+    validate.ingredientArray(ingredients, 'ingredients')
     validate.text(description, 'description')
-    validate.number(rating, 'rating', { min: 1, max: 5 })
+    validate.rating(rating, 'rating')
 
 
 
@@ -23,7 +22,6 @@ const createRecipe = (userId, title, source, thumbnail, cookTime, ingredients, d
             const recipe = {
                 author: userId,
                 title,
-                source,
                 thumbnail,
                 cookTime,
                 ingredients,
@@ -34,7 +32,13 @@ const createRecipe = (userId, title, source, thumbnail, cookTime, ingredients, d
 
             return Recipe.create(recipe)
                 .catch((error) => { throw new SystemError(error.message) })
-                .then(() => { })
+                .then(createdRecipe => {
+                    return User.findByIdAndUpdate(userId, {
+                        $push: { recipeList: createdRecipe._id }
+                    }).catch(() => {
+                        throw new SystemError((error.message))
+                    }).then(() => createdRecipe)
+                })
         })
 
 }

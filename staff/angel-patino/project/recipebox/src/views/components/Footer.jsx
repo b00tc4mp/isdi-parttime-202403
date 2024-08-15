@@ -5,10 +5,10 @@ function Footer({ onCreateRecipeClick }) {
 
   return (
     <footer className="Footer">
-      {/* <Button onClick={handleHomeClick}>⌂</Button> */}
+      <Button>⌂</Button>
       <Button onClick={handleCreateRecipeClick}>+</Button>
-      {/* <Button onClick={handleToggleLikeClick}>❤️</Button>
-      <Button onClick={handleSearchClick}>🔍</Button> */}
+      <Button>❤️</Button>
+      <Button>🔍</Button>
     </footer>
   )
 }

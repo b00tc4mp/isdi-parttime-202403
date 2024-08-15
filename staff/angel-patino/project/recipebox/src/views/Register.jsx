@@ -7,7 +7,7 @@ import { SystemError } from "com/errors"
 import Link from "./components/Link"
 
 function Register({ onUserRegistered, onLoginLinkClick }) {
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState(null)
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault()
@@ -51,7 +51,7 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
   return (
     <View tag="main">
       <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
-        <h1 className="text-5xl font-semibold">Login</h1>
+        <h1 className="text-5xl font-semibold">Register</h1>
         <p className="font-medium text-lg text-gray-500 mt-4 ">
           Hello! Register to get started{" "}
         </p>
