@@ -16,7 +16,7 @@ mongoose.connect(MONGODB_URL)
                     return
                 }
 
-                console.log('post created')
+                console.log('task created')
             })
         } catch (error) {
             console.error(error)

@@ -6,9 +6,11 @@ import mongoose from 'mongoose'
 import {
     enrollUserHandler,
     authenticateUserHandler,
+    getAllUsersHandler,
     
     addTaskHandler,
     deleteTaskHandler,
+    getAvailableTasksHandler,
     getMyTasksHandler,
     getMyPrivateTasksHandler,
     getMyInProgressTasksHandler,
@@ -30,7 +32,10 @@ mongoose.connect(MONGODB_URL)
 
         api.post('/users', jsonBodyParser, enrollUserHandler)
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
+        api.get('/users', getAllUsersHandler)
+        
         api.post('/tasks', jsonBodyParser, addTaskHandler)
+        api.get('/tasks/myAvailableTasks', getAvailableTasksHandler)
         api.get('/tasks/myTasks', getMyTasksHandler)
         api.get('/tasks/myInProgressTasks', getMyInProgressTasksHandler)
         api.get('/tasks/myPrivateTasks', getMyPrivateTasksHandler)
