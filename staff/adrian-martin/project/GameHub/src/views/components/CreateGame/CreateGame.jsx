@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 import logic from '../../../logic'
-import FormWithFeedback from '../../../components/library/FormWithFeedback/FormWithFeedback'
 import Button from '../../../components/core/Button/Button'
 
 import './CreateGame.css'
@@ -30,29 +29,19 @@ function CreateGame({ onGameCreated }) {
     }
 
     return (
-        <div className='TagGame'>
-            <FormWithFeedback className='Game' onSubmit={handleCreateGame}>
-                <p className='Text-game'>Write the video game</p>
-                <input name='title' className='Input-write' />
-
-                <p className='Text-game'>Url Image</p>
-                <input name='image' className='Input-write' />
-
-                <div className='Grade-hours'>
-                    <div className='All-grade'>
-                        <p className='Text-game'>Rating</p>
-                        <input name='rating' className='Input-grade-hours' />
-                    </div>
-                    <div className='All-grade'>
-                        <p className='Text-game'>Hours</p>
-                        <input name='hours' className='Input-grade-hours' />
-                    </div>
-                </div>
-                <div className='Button-container'>
-                    <Button type='submit' className='Button-game'>Create</Button>
-                </div>
-            </FormWithFeedback>
+        <div className='Container-Panel'>
+            <div className='TagGame'>
+                <form className='Game' onSubmit={handleCreateGame}>
+                    <input name='title' className='InputCreate' placeholder='Write the game' />
+                    <input name='image' className='InputCreate' placeholder='Url Image' />
+                    <input name='rating' className='InputCreate' placeholder='Rating 1-10' />
+                    <input name='hours' className='InputCreate' placeholder='Hours Played' />
+                    <Button type='submit' className='Button-game'>Create Game</Button>
+                </form>
+            </div>
         </div>
+
+
     )
 
 }

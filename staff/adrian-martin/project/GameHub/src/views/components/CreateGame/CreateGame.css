@@ -1,65 +1,41 @@
+.Container-Panel {
+    margin-top: -500px;
+    position: relative;
+}
+
 .TagGame {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+    background-color: var(--first-color);
+    width: 350px;
+    margin: auto;
+    border-radius: 10px;
+    z-index: 1;
+    padding: 10px;
 }
 
 .Game {
-    background-color: var(--first-color);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 300px;
-    box-sizing: border-box;
-    height: 370px;
-}
-
-.Grade-hours {
-    margin-top: 20px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
 }
 
-.Input-grade-hours {
-    width: 70px;
+.InputCreate {
+    align-items: center;
+    width: 300px;
     text-align: center;
     height: 30px;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-.Text-game {
-    text-align: center;
-    color: aliceblue;
-    font-size: 20px;
+    padding: 20px;
+    margin: 15px;
+    font-size: 18px;
 }
 
 .Button-game {
-    width: 100px;
-    border: 1px solid aliceblue;
-    margin-top: 25px;
-    background: aliceblue;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 20px;
-    font-size: 20px;
+    width: 120px;
+    height: 50px;
     border-radius: 10px;
-}
-
-.Input-write {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    background-color: aliceblue;
+    border: 2px solid beige;
     text-align: center;
-    height: 30px;
-    border-radius: 10px;
-    width: 100%;
-}
-
-.Button-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 20px;
 }
