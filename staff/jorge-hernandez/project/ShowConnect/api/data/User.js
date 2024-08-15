@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-const user = new Schema({
+const userSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -28,15 +28,9 @@ const user = new Schema({
   video: {
     type: String,
   },
-  //   ratings: [
-  //     {
-  //       type: String,
-  //     },
-  //   ],
 
   dates: {
     type: [String],
-    required: true,
   },
 
   password: {
@@ -50,6 +44,27 @@ const user = new Schema({
   },
 })
 
-const User = model('User', user)
+userSchema.pre('validate', function (next) {
+  if (this.role === 'artist') {
+    if (
+      !this.artisticName ||
+      !this.discipline ||
+      !this.city ||
+      !this.description ||
+      !this.images ||
+      !this.video ||
+      !this.dates
+    ) {
+      next(
+        new Error(
+          'Todos los campos requeridos para artistas deben ser completados.'
+        )
+      )
+    }
+  }
+  next()
+})
+
+const User = model('User', userSchema)
 
 export default User

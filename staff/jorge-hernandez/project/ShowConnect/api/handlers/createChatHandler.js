@@ -1,13 +1,17 @@
-import logic from '../logic/index.js'
+import createChat from '../logic/createChat.js'
 
-export default (req, res, next) => {
-  const { users, messages } = req.body
+export default async (req, res, next) => {
+  const { userId, artistId } = req.body
+
+  if (!userId || !artistId) {
+    return res
+      .status(400)
+      .json({ message: 'User ID and Artist ID are required.' })
+  }
 
   try {
-    logic
-      .createChat(users, messages)
-      .then(() => res.status(201).send())
-      .catch((error) => next(error))
+    const chat = await createChat(userId, artistId)
+    res.status(201).send()
   } catch (error) {
     next(error)
   }

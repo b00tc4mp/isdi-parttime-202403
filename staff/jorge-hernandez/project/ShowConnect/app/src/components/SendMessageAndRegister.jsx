@@ -1,14 +1,10 @@
 import Field from './Field'
-import logic from '../logic'
 import { useState } from 'react'
 import { SystemError } from 'com/errors'
+import logic from '../logic'
 
 function SendMessageAndRegister({ artistId }) {
   const [message, setMessage] = useState('')
-
-  const onUserRegistered = () => {
-    console.log('User registered successfully')
-  }
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -16,41 +12,30 @@ function SendMessageAndRegister({ artistId }) {
     const form = e.target
     const name = form.name.value
     const email = form.email.value
-    const message = form.message.value
+    const messageText = form.message.value
     const password = form.password.value
     const passwordRepeat = form.passwordRepeat.value
 
-    console.log(name, email, message, password, passwordRepeat, artistId)
-
-    try {
-      logic
-        .registerClient(
-          name,
-          email,
-          message,
-          password,
-          passwordRepeat,
-          artistId
-        )
-        .then(() => {
-          if (typeof onUserRegistered === 'function') {
-            onUserRegistered()
-          }
-        })
-        .catch((error) => {
-          console.log(error)
-
-          if (error instanceof SystemError) {
-            alert(error.message)
-            return
-          }
-
-          setMessage(error.message)
-        })
-    } catch (error) {
-      console.error(error)
-      setMessage(error.message)
-    }
+    logic
+      .registerClient(
+        name,
+        email,
+        messageText,
+        password,
+        passwordRepeat,
+        artistId
+      )
+      .then(() => {
+        setMessage('User registered successfully')
+      })
+      .catch((error) => {
+        console.log(error)
+        if (error instanceof SystemError) {
+          alert(error.message)
+          return
+        }
+        setMessage(error.message)
+      })
   }
 
   return (

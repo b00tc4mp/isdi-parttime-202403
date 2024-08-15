@@ -2,12 +2,13 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import User from './data/User.js'
 
 import registerUserHandler from './handlers/registerUserHandler.js'
 import authenticateUserHandler from './handlers/authenticateUserHandler.js'
 import getArtistDataHandler from './handlers/getArtistDataHandler.js'
 import createChatHandler from './handlers/createChatHandler.js'
+import createMessageHandler from './handlers/createMessageHandler.js'
+import updateChatWithMessageHandler from './handlers/updateChatWithMessageHandler.js'
 import getArtistsByCityHandler from './handlers/getArtistsByCityHandler.js'
 import updateArtistHandler from './handlers/updateArtistHandler.js'
 import registerClientHandler from './handlers/registerClientHandler.js'
@@ -39,8 +40,6 @@ mongoose
 
     api.post('/clients', jsonbodyparser, registerClientHandler)
 
-    api.post('/chats', jsonbodyparser, createChatHandler)
-
     api.post('/users/auth', jsonbodyparser, authenticateUserHandler)
 
     api.get('/users/:targetUserId', getArtistDataHandler)
@@ -51,6 +50,15 @@ mongoose
     )
 
     api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
+
+    // Nuevas rutas para chats y mensajes
+    api.post('/chats', jsonbodyparser, createChatHandler)
+    api.post('/messages', jsonbodyparser, createMessageHandler)
+    api.put(
+      '/chats/:chatId/messages/:messageId',
+      jsonbodyparser,
+      updateChatWithMessageHandler
+    )
 
     api.use(errorHandler)
 

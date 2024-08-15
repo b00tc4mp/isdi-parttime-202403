@@ -1,14 +1,16 @@
-import { SystemError } from 'com/errors.js'
 import { Chat } from '../data/index.js'
+import { SystemError } from 'com/errors.js'
 
-const createChat = (createdUser, artistId) => {
+const createChat = (userId, artistId) => {
   const newChat = new Chat({
-    participants: [createdUser._id, artistId],
-    messages: [],
+    participants: [userId, artistId],
+    date: new Date(),
   })
 
   return newChat.save().catch((error) => {
-    throw new SystemError(error.message)
+    console.error('Error creating chat:', error.message)
+    throw new SystemError('Failed to create chat: ' + error.message)
   })
 }
+
 export default createChat

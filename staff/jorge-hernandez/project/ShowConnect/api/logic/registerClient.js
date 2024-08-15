@@ -1,6 +1,5 @@
 import { User } from '../data/index.js'
 import { DuplicityError, SystemError } from 'com/errors.js'
-import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 import createChat from './createChat.js'
 import createMessage from './createMessage.js'
@@ -14,18 +13,10 @@ const registerClient = (
   passwordRepeat,
   artistId
 ) => {
-  validate.name(name)
-  validate.email(email)
-  validate.text(messageText, 'MessageText')
-  validate.password(password)
-  validate.passwordsMatch(password, passwordRepeat)
-  validate.id(artistId)
-
   return User.findOne({ email })
     .catch((error) => {
       throw new SystemError(error.message)
     })
-
     .then((user) => {
       if (user) {
         throw new DuplicityError('User already exists')
@@ -36,7 +27,6 @@ const registerClient = (
     .catch((error) => {
       throw new SystemError(error.message)
     })
-
     .then((hash) => {
       const newUser = new User({
         name,
@@ -51,12 +41,14 @@ const registerClient = (
       throw new SystemError(error.message)
     })
     .then((createdUser) => {
-      return createChat(createdUser, artistId).then((createdChat) => {
-        return createMessage(createdUser, messageText, createdChat).then(
-          (createdMessage) => {
-            return updateChatWithMessage(createdChat._id, createdMessage._id)
-          }
-        )
+      return createChat(createdUser._id, artistId).then((createdChat) => {
+        return createMessage(
+          createdUser._id,
+          messageText,
+          createdChat._id
+        ).then((createdMessage) => {
+          return updateChatWithMessage(createdChat._id, createdMessage._id)
+        })
       })
     })
 }

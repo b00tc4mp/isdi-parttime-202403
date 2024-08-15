@@ -1,10 +1,16 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerClient = (name, email, message, password, passwordRepeat) => {
+const registerClient = (
+  name,
+  email,
+  messageText,
+  password,
+  passwordRepeat,
+  artistId
+) => {
   validate.name(name)
   validate.email(email)
-  validate.text(message, 'message')
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
 
@@ -16,9 +22,10 @@ const registerClient = (name, email, message, password, passwordRepeat) => {
     body: JSON.stringify({
       name,
       email,
-      message,
+      messageText,
       password,
       passwordRepeat,
+      artistId,
     }),
   })
     .catch(() => {

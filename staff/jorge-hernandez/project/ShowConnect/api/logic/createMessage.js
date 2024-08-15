@@ -1,15 +1,18 @@
 import { Message } from '../data/index.js'
+import { Chat } from '../data/index.js'
 import { SystemError } from 'com/errors.js'
 
-const createMessage = (createdUser, messageText, createdChat) => {
+const createMessage = (userId, messageText, chatId) => {
   const newMessage = new Message({
-    sender: createdUser._id,
+    sender: userId,
     text: messageText,
-    chatId: createdChat._id, // TODO if is necessary to send chat id
+    chatId: chatId,
   })
 
   return newMessage.save().catch((error) => {
-    throw new SystemError(error.message)
+    console.error('Error creating message:', error.message)
+    throw new SystemError('Failed to create message: ' + error.message)
   })
 }
+
 export default createMessage

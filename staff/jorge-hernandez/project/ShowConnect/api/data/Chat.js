@@ -6,7 +6,6 @@ const chatSchema = new Schema({
   participants: [
     {
       type: ObjectId,
-      required: true,
       ref: 'User',
     },
   ],
