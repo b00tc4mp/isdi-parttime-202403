@@ -54,11 +54,7 @@ const createInvoice = (userId, customerId, deliveryNoteIds) => {
                 .catch(error => { throw new SystemError(error.message) })
                 .then((invoice) => {
                   return Invoice.findById(invoice.id).select("-__v").populate("customer").populate("company").populate("deliveryNotes").lean()
-                    .then((invoice) => {
-                      invoice.id = invoice._id.toString()
-                      delete invoice._id
-                      return invoice
-                    })
+                    .then(() => { })
                 })
             })
         })

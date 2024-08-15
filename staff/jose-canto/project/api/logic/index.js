@@ -7,6 +7,7 @@ import editProfile from "./editProfile.js"
 import registerCustomer from "./registerCustomer.js"
 import getAllCustomers from "./getAllCustomers.js"
 import getProfileUser from "./getProfileUser.js"
+import deleteCustomer from "./deleteCustomer.js"
 
 import getAllDeliveryNotes from "./getAllDeliveryNotes.js"
 import getDeliveryNote from "./getDeliveryNote.js"
@@ -29,10 +30,12 @@ const logic = {
   registerCustomer,
   getAllCustomers,
   getProfileUser,
+  deleteCustomer,
 
   getAllDeliveryNotes,
   getDeliveryNote,
   deleteDeliveryNote,
+
 
   createDeliveryNote,
   createWork,

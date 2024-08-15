@@ -6,6 +6,6 @@
   }
 
   .HeaderProfile .IconLeftHeader {
-    @apply top-[-0.6rem];
+    @apply top-[-1rem];
   }
 }

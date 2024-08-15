@@ -26,7 +26,7 @@ export default function InvoiceList() {
     } catch (error) {
       alert(error.message)
     }
-  })
+  }, [])
 
   return (
     <>

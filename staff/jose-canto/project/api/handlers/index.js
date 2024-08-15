@@ -6,6 +6,7 @@ import editProfileHandler from "./editProfileHandler.js"
 import registerCustomHandler from "./registerCustomerHandler.js"
 import getAllCustomersHandler from "./getAllCustomersHandler.js"
 import getProfileUserHandler from "./getProfileUserHandler.js"
+import deleteCustomerHandler from "./deleteCustomerHandler.js"
 
 import getAllDeliveryNotesHandler from "./getAlldeliveryNotesHandler.js"
 import getDeliveryNoteHandler from "./getDeliveryNoteHandler.js"
@@ -28,6 +29,7 @@ export default {
   getProfileUserHandler,
   registerCustomHandler,
   getAllCustomersHandler,
+  deleteCustomerHandler,
 
   getAllDeliveryNotesHandler,
   getDeliveryNoteHandler,

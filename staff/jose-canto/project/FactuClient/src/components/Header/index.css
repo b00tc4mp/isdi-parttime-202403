@@ -18,7 +18,7 @@
     @apply absolute flex w-full flex-col items-center;
   }
   .ContainerHeader .Children {
-    @apply text-2xl;
+    @apply h-[3rem] w-[6rem] text-2xl;
   }
 
   .IconExit {

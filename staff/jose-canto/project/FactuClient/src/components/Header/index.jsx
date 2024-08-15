@@ -15,7 +15,8 @@ export default function Header({
   children,
   iconLeftHeader,
   onRegisterCustomer,
-  onDeleteDeliveryNote
+  onDeleteDeliveryNote,
+  onDeleteCustomer
 }) {
   const navigate = useNavigate()
   const location = useLocation()
@@ -111,6 +112,9 @@ export default function Header({
 
         {isCustomerProfilePathCustomerId && (
           <div className="ContainerHeader">
+            <div onClick={onDeleteCustomer} className="IconLeftHeader">
+              {iconLeftHeader}
+            </div>
             <div className="IconUser">{iconUser}</div>
             <div className="Children">{children}</div>
           </div>

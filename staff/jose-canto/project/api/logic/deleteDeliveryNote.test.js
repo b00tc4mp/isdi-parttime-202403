@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
 
     try {
       deleteDeliveryNote("66b1237dd5adf0eb620e97bc", "66b8cbece4f3e5906c7f2f69")
-        .then((deliveryNote) => {
+        .then(() => {
           console.log(`Delivery note deleted`)
         })
         .catch(error => console.error(error))

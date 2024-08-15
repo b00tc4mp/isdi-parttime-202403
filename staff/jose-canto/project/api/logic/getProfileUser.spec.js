@@ -29,10 +29,10 @@ describe("getProfileUser", () => {
         password: hash
       })]))
       .then(([user, targetUser]) => getProfileUser(user.id, targetUser.id))
-      .then(username => {
-        expect(username).to.be.an.instanceOf(Object)
-        expect(username.username).to.be.equal("Jack")
-        expect(username.email).to.be.equal("jack@sparrow.com")
+      .then(user => {
+        expect(user).to.be.an.instanceOf(Object)
+        expect(user.username).to.be.equal("Jack")
+        expect(user.email).to.be.equal("jack@sparrow.com")
       })
   )
 

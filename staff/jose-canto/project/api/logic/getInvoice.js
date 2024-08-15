@@ -4,7 +4,7 @@ import { NotFoundError, SystemError } from "com/errors.js"
 
 function getInvoice(userId, invoiceid) {
   validate.id(userId, "userId")
-  validate.id(invoiceid, "invoiceid")
+  validate.id(invoiceid, "invoiceId")
 
   return User.findById(userId).lean()
     .catch(error => { throw new SystemError(error.message) })

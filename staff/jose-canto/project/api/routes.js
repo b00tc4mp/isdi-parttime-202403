@@ -14,6 +14,7 @@ router.patch("/users/:userId/edit", jsonBodyParser, routes.editProfileHandler)
 router.post("/customers", jsonBodyParser, routes.registerCustomHandler)
 router.get("/customers", routes.getAllCustomersHandler)
 router.get("/users/:targetUserId/profile", routes.getProfileUserHandler)
+router.delete("/customers/:customerId", routes.deleteCustomerHandler)
 
 router.get("/delivery-notes", routes.getAllDeliveryNotesHandler)
 router.get("/delivery-notes/:deliveryNoteId", routes.getDeliveryNoteHandler)

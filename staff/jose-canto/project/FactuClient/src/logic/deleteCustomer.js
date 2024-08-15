@@ -1,13 +1,14 @@
 import errors, { SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 
-const deleteDeliveryNote = (deliveryNoteId) => {
-  validate.id(deliveryNoteId, "deliveryNoteId")
+const deleteCustomer = (customerId) => {
+  validate.id(customerId, "customerId")
 
-  return fetch(`${import.meta.env.VITE_API_URL}/delivery-notes/${deliveryNoteId}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/customers/${customerId}`, {
     method: "DELETE",
     headers: {
-      "Authorization": `Bearer ${sessionStorage.token}`
+      Authorization: `Bearer ${sessionStorage.token}`
+
     }
   })
     .catch(() => { throw new SystemError("connection error") })
@@ -23,4 +24,5 @@ const deleteDeliveryNote = (deliveryNoteId) => {
         })
     })
 }
-export default deleteDeliveryNote
+
+export default deleteCustomer

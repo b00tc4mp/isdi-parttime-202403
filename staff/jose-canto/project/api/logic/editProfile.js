@@ -50,7 +50,7 @@ const editProfile = (userId, updates) => {
       if (!user) {
         throw new NotFoundError("User not found")
       }
-      return user
+      return
     })
 }
 
