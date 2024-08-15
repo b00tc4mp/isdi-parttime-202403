@@ -9,6 +9,7 @@ import {
     createAdHandler,
     getAllAdsHandler,
     deleteAdHandler,
+    getUserInfoHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -31,6 +32,8 @@ mongoose.connect(MONGODB_URL)
         api.post('/ads', jsonBodyParser, createAdHandler)
 
         api.get('/ads', getAllAdsHandler)
+
+        api.get('/users/:targetUserId', getUserInfoHandler)
 
         api.delete('/ads/:adId', deleteAdHandler)
 
