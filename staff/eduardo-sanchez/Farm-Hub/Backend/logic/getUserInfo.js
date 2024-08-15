@@ -23,10 +23,8 @@ const getUserInfo = (userId, targetUserId) => {
                         throw new NotFoundError('targetUser not found')
                     }
 
-                    return {
-                        name: targetUser.name,
-                        username: targetUser.username
-                    }
+                    return targetUser
+
                 })
 
         })

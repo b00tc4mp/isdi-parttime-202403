@@ -19,16 +19,13 @@ export default (req, res, next) => {
                 try {
                     logic.getUserInfo(userId, targetUserId)
                         .then(user => {
-                            res.json({
-                                name: user.name,
-                                username: user.username
-                            })
+                            // res.send(user)
+                            res.status(200).send(user)
                         })
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
                 }
-
 
             })
             .catch(error => next(new CredentialsError(error.message)))

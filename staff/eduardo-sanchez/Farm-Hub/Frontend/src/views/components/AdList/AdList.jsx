@@ -7,7 +7,11 @@ import { Ad } from '../Ad/Ad'
 function AdList({ refreshStamp }) {
     const [ads, setAds] = useState([])
 
+    const [user, setUser] = useState('')
+
+
     useEffect(() => {
+
 
         loadAds()
     }, [refreshStamp])
@@ -27,24 +31,47 @@ function AdList({ refreshStamp }) {
         }
     }
 
+    useEffect(() => {
+        console.log('Home -> useEffect')
+
+        try {
+            logic.getUserInfo()
+                .then(user => {
+                    console.log('Home -> setUsername')
+
+                    setUser(user)
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message + " " + "HELL")
+                })
+
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }, [])
+
     const handleAdDeleted = () => loadAds()
 
     return (
+        <>
+            <h1>{user.username}</h1>
+            <ul>
+                {ads.map((ad) =>
+                    <li key={ad.id} className='AdContainer'>
+                        <p>{ad.author.username}</p>
+                        <p>{ad.title}</p>
+                        <p>{ad.description}</p>
+                        <p>{ad.price}</p>
 
-        <ul>
-            {ads.map((ad) =>
-                <li key={ad.id} className='AdContainer'>
-                    <p>{ad.author.username}</p>
-                    <p>{ad.title}</p>
-                    <p>{ad.description}</p>
-                    <p>{ad.price}</p>
-
-                    <Ad ad={ad} onAdDeleted={handleAdDeleted} />
-                </li >
-            )}
-        </ul>
+                        <Ad ad={ad} onAdDeleted={handleAdDeleted} />
+                    </li >
+                )}
+            </ul>
+        </>
     )
 }
 export default AdList
-
-// onAdDeleted = {() => { console.log(ad) }}

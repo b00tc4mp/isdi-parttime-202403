@@ -16,7 +16,7 @@ const getUserInfo = () => {
 
                 return response.json()
                     .catch(() => { throw new SystemError('server error') })
-                    .then(name => name)
+                    .then(user => user)
 
 
             return response.json()
