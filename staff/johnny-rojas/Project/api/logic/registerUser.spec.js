@@ -8,6 +8,7 @@ import { expect } from 'chai'
 import { ContentError, DuplicityError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
+
 debugger
 
 describe('registerUser', () => {

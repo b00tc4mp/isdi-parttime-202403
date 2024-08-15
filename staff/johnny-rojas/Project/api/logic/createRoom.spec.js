@@ -4,11 +4,9 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import createRoom from '../logic/createRoom.js'
 import { NotFoundError, ContentError } from 'com/errors.js'
-
 import { expect } from 'chai'
 
 const { MONGODB_URL_TEST } = process.env
-
 const { ObjectId } = mongoose.Types
 
 debugger
@@ -27,7 +25,6 @@ describe('createRoom', () => {
         phone: '+58 414 455 7362',
         password: hash
       }))
-
       .then(user =>
         createRoom(user.id, 'Room', 'Este', 'Anzoategui, El tigre', 'https://miro.medium.com/vqW5DGh9CQS4hLY5FXzA.png', 'hab doble', '5344 USD')
           .then(() => Room.findOne())
@@ -40,13 +37,12 @@ describe('createRoom', () => {
             expect(room.description).to.equal('hab doble')
             expect(room.price).to.equal('5344 USD')
           })
-          .then(() => User.findOne())
-          .then((user) => {
-            expect(user.role).to.equal('host')
+          .then(() => User.findById(user.id))
+          .then(updatedUser => {
+            expect(updatedUser.role).to.equal('host')
           })
       )
   )
-
 
   it('fails on non-existing user', () => {
     let errorThrown
@@ -54,7 +50,7 @@ describe('createRoom', () => {
     return createRoom(new ObjectId().toString(), 'Room', 'Este', 'Anzoategui, El tigre', 'https://miro.medium.com/vqW5DGh9CQS4hLY5FXzA.png', 'hab doble', '5344 USD')
       .catch(error => errorThrown = error)
       .finally(() => {
-        expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+        expect(errorThrown).to.be.instanceOf(NotFoundError)
         expect(errorThrown.message).to.equal('user not found')
       })
   })

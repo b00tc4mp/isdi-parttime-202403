@@ -22,7 +22,7 @@ function ManageRoom() {
     const nameRoom = target.nameRoom.value
     const region = target.region.value
     const city = target.city.value
-    const img = target.img.value
+    const image = target.image.value
     const description = target.description.value
     const price = target.price.value
 
@@ -30,7 +30,7 @@ function ManageRoom() {
       nameRoom,
       region,
       city,
-      img,
+      image,
       description,
       price
     }
@@ -80,12 +80,11 @@ function ManageRoom() {
 
           <Field id='city' type='text' placeholder='Estado y ciudad' />
 
-          <Field id='img' type='string' placeholder='Imagen principal (link)' />
+          <Field id='image' type='string' placeholder='Imagen principal (link)' />
 
           <Field id='description' type='string' placeholder='Descripción del alojamiento' />
 
           <Field id='price' type='string' placeholder='Precio por noche' />
-
           <SubmitButton>Realizar cambios</SubmitButton>
 
           <div>

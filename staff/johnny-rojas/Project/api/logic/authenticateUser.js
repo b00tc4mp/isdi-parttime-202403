@@ -7,7 +7,7 @@ const authenticateUser = (email, password) => {
   validate.email(email)
   validate.password(password)
 
-  return User.findOne({ email })
+  return User.findOne({ email }).lean()
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {

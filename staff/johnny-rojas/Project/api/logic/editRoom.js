@@ -20,7 +20,7 @@ const editRoom = (userId, roomId, updates) => {
     validate.text(updates.city, 'city')
     updateFields.city = updates.city
   }
-  if (updates.imge) {
+  if (updates.image) {
     validate.url(updates.image, 'image')
     updateFields.image = updates.image
   }
@@ -33,7 +33,7 @@ const editRoom = (userId, roomId, updates) => {
     updateFields.price = updates.price
   }
 
-  return Room.findByIdAndUpdate(roomId, updateFields, { new: true })
+  return Room.findByIdAndUpdate(roomId, updateFields, { new: true }).lean()
     .catch(error => { throw new SystemError(error.message) })
     .then(room => {
       if (!room) {

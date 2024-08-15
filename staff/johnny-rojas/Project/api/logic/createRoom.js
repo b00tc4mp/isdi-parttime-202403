@@ -20,6 +20,7 @@ const createRoom = (userId, nameRoom, region, city, image, description, price) =
 
       user.role = "host"
       return user.save()
+        .catch(error => { throw new SystemError(error.message) }) //TODO Mejorar el control de roles (Poco uso)
     })
     .then(() => {
 
@@ -35,9 +36,9 @@ const createRoom = (userId, nameRoom, region, city, image, description, price) =
         manager: userId
       }
       return Room.create(room)
+      .catch(error => { throw new SystemError(error.message) })
     })
-    .then(room => room)
-    .catch(error => { throw new SystemError(error.message) })
+    .then(() => { })
 }
 
 export default createRoom

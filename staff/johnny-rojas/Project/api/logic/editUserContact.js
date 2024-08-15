@@ -17,7 +17,7 @@ const editUserContact = (userId, updates) => {
     updateFields.phone = updates.phone
   }
 
-  return User.findByIdAndUpdate(userId, updateFields, { new: true })
+  return User.findByIdAndUpdate(userId, updateFields, { new: true }).lean()
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {

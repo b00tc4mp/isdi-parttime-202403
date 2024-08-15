@@ -1,20 +1,17 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
-
 import { expect } from 'chai'
-
 import { User } from '../data/index.js'
-
 import authenticateUser from './authenticateUser.js'
 import { ContentError, CredentialsError } from 'com/errors.js'
 
-const { MONGODB_URL } = process.env
+const { MONGODB_URL_TEST } = process.env
 
 debugger
 
 describe('authenticateUser', () => {
-  before(() => mongoose.connect(MONGODB_URL).then(() => User.deleteMany()))
+  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
   beforeEach(() => User.deleteMany())
 
@@ -32,11 +29,8 @@ describe('authenticateUser', () => {
         expect(user).to.be.an('object')
         expect(user).to.have.property('id')
         expect(user).to.have.property('role')
-
-
         expect(user.id).to.be.a('string');
         expect(user.id).to.have.lengthOf(24);
-
         expect(user.role).to.be.a('string')
       })
   )

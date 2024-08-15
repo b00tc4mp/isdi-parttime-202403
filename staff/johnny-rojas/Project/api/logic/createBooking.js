@@ -1,5 +1,5 @@
 import { Booking, Room } from '../data/index.js'
-import { CredentialsError, NotFoundError, SystemError, DuplicityError, MatchError } from "com/errors.js"
+import { NotFoundError, SystemError, DuplicityError, MatchError } from "com/errors.js"
 import validate from "com/validate.js"
 
 const createBooking = (userId, roomId, startDate, endDate) => {

@@ -3,7 +3,7 @@ import { Room } from '../data/index.js'
 
 const getAllRooms = () => {
 
-      return Room.find({}).select('-__v').sort({ price: -1 }).lean()
+      return Room.find({}).select('-__v').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(rooms => {
           if (!rooms) {

@@ -18,3 +18,5 @@ const getUserId = (userId) => {
     }
 
 export default getUserId
+
+//TODO REVISAR
