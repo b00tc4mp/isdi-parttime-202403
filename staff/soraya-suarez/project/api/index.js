@@ -6,11 +6,13 @@ import mongoose from 'mongoose'
 import {
     enrollUserHandler,
     authenticateUserHandler,
+    
     addTaskHandler,
     deleteTaskHandler,
     getMyTasksHandler,
     getMyPrivateTasksHandler,
     getMyInProgressTasksHandler,
+    getMyFinishedTasksHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -32,6 +34,7 @@ mongoose.connect(MONGODB_URL)
         api.get('/tasks/myTasks', getMyTasksHandler)
         api.get('/tasks/myInProgressTasks', getMyInProgressTasksHandler)
         api.get('/tasks/myPrivateTasks', getMyPrivateTasksHandler)
+        api.get('/tasks/myFinishedTasks', getMyFinishedTasksHandler)
         api.delete('/tasks/:taskId', deleteTaskHandler)
 
         api.use(errorHandler)

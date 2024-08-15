@@ -9,14 +9,14 @@ import useContext from '../../../useContext'
 
 import './index.css'
 
-function MyFinishedTaskList() {
+function MyPrivateTaskList() {
     const { alert } = useContext()
 
     const [tasks, setTasks] = useState([])
 
     const loadTasks = () => {
         try {
-            logic.getMyFinishedTasks()
+            logic.getMyPrivateTasks()
                 .then(tasks => {
                     setTasks(tasks)
                 })
@@ -38,4 +38,4 @@ function MyFinishedTaskList() {
     </View>
 }
 
-export default MyFinishedTaskList
+export default MyPrivateTaskList

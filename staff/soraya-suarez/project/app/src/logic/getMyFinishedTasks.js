@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 
-const getMyInPrivateTasks = () => {
-    return fetch(`${import.meta.env.VITE_API_URL}/tasks/myPrivateTasks`, {
+const getMyFinishedTasks = () => {
+    return fetch(`${import.meta.env.VITE_API_URL}/tasks/myFinishedTasks`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
@@ -23,4 +23,4 @@ const getMyInPrivateTasks = () => {
         })
 }
 
-export default getMyInPrivateTasks
+export default getMyFinishedTasks

@@ -5,6 +5,9 @@ import getUserId from './getUserId'
 import logout from './logout'
 
 import addTask from './addTask'
+import getMyTasks from './getMyTasks'
+import getMyPrivateTasks from './getMyPrivateTasks'
+import getMyInProgressTasks from './getMyInProgressTasks'
 import deleteTask from './deleteTask'
 
 const logic = {
@@ -15,6 +18,9 @@ const logic = {
     logout,
 
     addTask,
+    getMyTasks,
+    getMyInProgressTasks,
+    getMyPrivateTasks,
     deleteTask
 }
 
