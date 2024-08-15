@@ -1,7 +1,9 @@
+import { SystemError } from 'com/errors.js'
 import { Booking } from '../data/index.js'
 
 const getBlockedDatesByRoom = (roomId) => {
   return Booking.find({ room: roomId }).lean()
+    .catch(error => {throw new SystemError(error.message)})
     .then(allBookings => {
       const blockedDates = allBookings.flatMap(booking => {
         const dates = []

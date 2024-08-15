@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import deleteRoom from '../logic/deleteRoom.js'
 import { expect } from 'chai'
-import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
+import { MatchError, NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types

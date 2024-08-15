@@ -1,18 +1,18 @@
 import 'dotenv/config'
+import { Booking, User, Room } from '../data/index.js'
 import mongoose from 'mongoose'
-import { User, Room, Booking } from '../data/index.js'
-import getAllBookings from './getAllBookings.js'
-import { expect } from 'chai'
+import getBlockedDatesByRoom from './getBlockedDatesByRoom.js'
 import bcrypt from 'bcryptjs'
+import { expect } from 'chai'
 
 const { MONGODB_URL_TEST } = process.env
+const {ObjectId} = mongoose.Types
 
-describe('getAllBookings', () => {
+describe('getBlockedDatesByRoom', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Booking.deleteMany()))
 
   beforeEach(() => Booking.deleteMany())
-
-  it('succeeds when bookings are retrieved successfully', () => {
+  it('succeed getting all the blocked dates from a room', () => {
     let user1, user2, room
 
     return bcrypt.hash('1234', 8)
@@ -52,36 +52,41 @@ describe('getAllBookings', () => {
         return Booking.create({
           user: user2.id.toString(),
           room: room.id.toString(),
-          startDate: new Date(),
-          endDate: new Date(new Date().setDate(new Date().getDate() + 1))
+          startDate: new Date(2024, 8, 10),
+          endDate: new Date(2024, 8, 12)
         })
       })
       .then(() => {
         return Booking.create({
           user: user2.id.toString(),
           room: room.id.toString(),
-          startDate: new Date(),
-          endDate: new Date(new Date().setDate(new Date().getDate() + 2))
+          startDate: new Date(2024, 7, 15),
+          endDate: new Date(2024, 7, 16) 
         })
       })
+
       .then(() => {
-        return getAllBookings()
+        return getBlockedDatesByRoom(room.id)
       })
-      .then(bookings => {
-        expect(bookings).to.be.an('array').that.has.lengthOf(2)
-        expect(bookings[0].user.toString()).to.equal(user2.id.toString())
-        expect(bookings[0].room.toString()).to.equal(room.id.toString())
-        expect(bookings[1].user.toString()).to.equal(user2.id.toString())
-        expect(bookings[1].room.toString()).to.equal(room.id.toString())
+      .then(blockedDates => {
+        const actualDates = blockedDates.map(date => new Date(date).toISOString())
+
+        expect(actualDates).to.include(new Date(2024, 8, 10).toISOString()) 
+        expect(actualDates).to.include(new Date(2024, 8, 11).toISOString()) 
+        expect(actualDates).to.include(new Date(2024, 8, 12).toISOString()) 
+        expect(actualDates).to.include(new Date(2024, 7, 15).toISOString()) 
+        expect(actualDates).to.include(new Date(2024, 7, 16).toISOString()) 
+
+        expect(actualDates).to.have.lengthOf(5)
       })
   })
 
-  it('succeeds returning empty array on no bookings', () => {
-    return getAllBookings()
-      .then(bookings => {
-        expect(bookings).to.be.an('array').that.is.empty
+  it('returns an empty array when there are no bookings for the room', () => {
+    return getBlockedDatesByRoom(new ObjectId())
+      .then(blockedDates => {
+        expect(blockedDates).to.be.an('array').that.is.empty
       })
   })
-
+  
   after(() => Booking.deleteMany().then(() => mongoose.disconnect()))
 })

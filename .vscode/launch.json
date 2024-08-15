@@ -5,7 +5,7 @@
       "name": "Debug App (src/index.js)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:5173", // Asegúrate de que este puerto coincida con el puerto de Vite
+      "url": "http://localhost:5173",
       "webRoot": "${workspaceFolder}/staff/johnny-rojas/project/src"
     },
     {

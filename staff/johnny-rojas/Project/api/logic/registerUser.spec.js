@@ -119,7 +119,7 @@ describe('registerUser', () => {
       } catch (error) {
         errorThrown = error
       } finally {
-        expect(erroThrown).to.be.instanceOf(ContentError)
+        expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown).to.equal('passwords don\'t match')
       }
     })

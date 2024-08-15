@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import createBooking from '../logic/createBooking.js'
 import { expect } from 'chai'
-import { CredentialsError, NotFoundError, SystemError, DuplicityError, MatchError } from 'com/errors.js'
+import { NotFoundError, DuplicityError, MatchError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types

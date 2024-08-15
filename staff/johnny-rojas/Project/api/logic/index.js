@@ -1,6 +1,5 @@
 import registerUser from './registerUser.js'
 import authenticateUser from './authenticateUser.js'
-import getUserId from './getUserId.js'
 import editUserContact from './editUserContact.js'
 import closeAccount from './closeAccount.js'
 
@@ -20,7 +19,6 @@ import getRoomBookings from './getRoomBookings.js'
 const logic = {
   registerUser,
   authenticateUser,
-  getUserId, //TODO donde se aplica?
   editUserContact,
   closeAccount,
 

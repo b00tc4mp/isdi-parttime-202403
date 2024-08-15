@@ -3,7 +3,7 @@ import { User, Room } from '../data/index.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import editRoom from '../logic/editRoom.js'
-import { NotFoundError, SystemError } from 'com/errors.js'
+import { NotFoundError } from 'com/errors.js'
 import { expect } from 'chai'
 
 const { MONGODB_URL_TEST } = process.env
@@ -34,7 +34,8 @@ describe('editRoom', () => {
           image: 'https://example.com/1-image.png',
           description: 'Old description',
           price: '50 USD',
-          author: user.id
+          author: user.id,
+          manager: user.id
         })
       })
       .then(createdRoom => {
