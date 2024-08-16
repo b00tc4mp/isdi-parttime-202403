@@ -10,6 +10,7 @@ import Home from './views/Home'
 import { Notfound } from './views/Notfound'
 import { Login } from './views/Login'
 import Header from './views/components/Header/Header'
+import { CreateAdForm } from './views/components/CreateAdForm/CreateAdForm'
 // import AdList from './views/components/AdList/AdList.jsx'
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         {/* <Route path="/adlist" element={<AdList />} /> */}
 
         <Route path="/" element={<Home />} />
+        <Route path="/createad" element={<CreateAdForm />}></Route>
         <Route path="/*" element={<Notfound />} />
       </Routes>
     </>

@@ -34,7 +34,7 @@ const ad = new Schema({
     },
     price: {
         type: String,
-        required: true
+        // required: true
     },
     date: {
         type: Date,

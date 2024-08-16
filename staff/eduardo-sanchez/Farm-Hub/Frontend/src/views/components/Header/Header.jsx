@@ -21,11 +21,15 @@ function Header({ }) {
 
     return <header className="Header">
 
-        <h1 className='UsernameTitle'>{user.username ? user.username : 'not logged in'}</h1>
+        <h1 className='UsernameTitle'>{user.username ? user.username : 'notloggedin'}</h1>
         <Title>Farm-Hub</Title>
-        <Button onClick={handleLogout}>Logout</Button>
+        <div className='LogoutButtonContainer'>
 
-    </header>
+            <button className='LogoutButton' onClick={handleLogout}>Logout</button>
+
+        </div>
+
+    </header >
 
 
 

@@ -4,6 +4,7 @@ import validate from 'com/validate.js'
 
 
 const createAd = (userId, title, description, price) => {
+    console.log({ userId, title, description, price })
     validate.id(userId, 'userId')
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)

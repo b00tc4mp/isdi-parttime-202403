@@ -6,9 +6,12 @@
 
 @layer base {
 
+  #root {
+    @apply h-screen w-full;
+  }
 
   :root {
-    @apply max-w-screen-xl mx-auto p-5 text-center flex justify-center items-center text-green-500 bg-orange-100;
+    @apply max-w-screen-xl mx-auto text-center flex justify-center items-center text-green-500 bg-orange-100;
   }
 
   * {
@@ -28,7 +31,7 @@
   }
 
   h1 {
-    @apply text-xl font-bold text-black mb-4;
+    @apply text-xl font-bold text-black;
 
   }
 
@@ -40,7 +43,6 @@
   .ErrorMessage {
     @apply flex justify-center text-red-500;
   }
-
 
 }
 
