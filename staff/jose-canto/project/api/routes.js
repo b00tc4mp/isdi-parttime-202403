@@ -16,6 +16,8 @@ router.get("/customers", routes.getAllCustomersHandler)
 router.get("/users/:targetUserId/profile", routes.getProfileUserHandler)
 router.delete("/customers/:customerId", routes.deleteCustomerHandler)
 
+router.get("/customers/:customerId/delivery-notes", routes.getAllDeliveryNotesCustomerHandler)
+
 router.get("/delivery-notes", routes.getAllDeliveryNotesHandler)
 router.get("/delivery-notes/:deliveryNoteId", routes.getDeliveryNoteHandler)
 router.delete("/delivery-notes/:deliveryNoteId", routes.deleteDeliveryNoteHandler)
@@ -25,6 +27,7 @@ router.patch("/create/work/delivery-notes/:deliveryNoteId", jsonBodyParser, rout
 
 router.get("/invoices", routes.getAllInvoicesHandler)
 router.get("/invoices/:invoiceId", routes.getInvoiceHandler)
+router.post("/create/invoices/:customerId", jsonBodyParser, routes.createInvoiceHandler)
 
 
 export default router

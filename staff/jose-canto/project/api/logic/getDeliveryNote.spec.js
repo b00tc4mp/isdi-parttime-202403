@@ -3,8 +3,8 @@ import mongoose, { Types } from "mongoose"
 
 import bcrypt from "bcryptjs"
 
-import getInvoice from "./getInvoice.js"
-import { User, Invoice } from "../model/index.js"
+import getDeliveryNote from "./getDeliveryNote.js"
+import { User, DeliveryNote } from "../model/index.js"
 import { NotFoundError, ContentError } from "com/errors.js"
 
 import { expect } from "chai"
@@ -12,11 +12,11 @@ import { expect } from "chai"
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
 
-describe("getInvoice", () => {
-  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany().then(() => Invoice.deleteMany())))
-  beforeEach(() => User.deleteMany().then(() => Invoice.deleteMany()))
+describe("getDeliveryNote", () => {
+  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany().then(() => DeliveryNote.deleteMany())))
+  beforeEach(() => User.deleteMany().then(() => DeliveryNote.deleteMany()))
 
-  it("succeeds on get invoice", () => {
+  it("succeeds on get delivery note", () => {
 
     return bcrypt.hash("1234", 8)
       .then(hash => User.create({
@@ -36,33 +36,32 @@ describe("getInvoice", () => {
           .then(customerUser => [companyUser, customerUser])
       })
       .then(([companyUser, customerUser]) => {
-        return Invoice.create({
+        return DeliveryNote.create({
           date: new Date,
           number: "1234",
           customer: customerUser.id,
           company: companyUser.id,
-          deliveryNotes: [new ObjectId(), new ObjectId()],
-          observations: "Observations",
-          paymentType: "Cash"
-        }).then(invoice => [companyUser, customerUser, invoice])
+          works: [new ObjectId(), new ObjectId()],
+          observations: "Observations"
+        })
+          .then(deliveryNote => ([companyUser, customerUser, deliveryNote]))
       })
-      .then(([companyUser, customerUser, invoice]) => getInvoice(companyUser.id.toString(), invoice.id.toString()))
-      .then(invoice => {
-        expect(invoice).to.be.an.instanceOf(Object)
-        expect(invoice.date).to.be.an.instanceOf(Date)
-        expect(invoice.number).to.be.equal("1234")
-        expect(invoice.customer).to.be.an.instanceOf(Object)
-        expect(invoice.company).to.be.an.instanceOf(Object)
-        expect(invoice.deliveryNotes).to.be.an.instanceOf(Array)
-        expect(invoice.observations).to.be.equal("Observations")
-        expect(invoice.paymentType).to.be.equal("Cash")
+      .then(([companyUser, customerUser, deliveryNote]) => getDeliveryNote(companyUser.id, deliveryNote.id))
+      .then(deliveryNote => {
+        expect(deliveryNote).to.be.an.instanceOf(Object)
+        expect(deliveryNote.date).to.be.an.instanceOf(Date)
+        expect(deliveryNote.number).to.be.equal("1234")
+        expect(deliveryNote.customer).to.be.an.instanceOf(Object)
+        expect(deliveryNote.company).to.be.an.instanceOf(Object)
+        expect(deliveryNote.works).to.be.an.instanceOf(Array)
+        expect(deliveryNote.observations).to.be.equal("Observations")
       })
   })
 
   it("fails on non-existing user", () => {
     let errorThrown
 
-    return getInvoice(new ObjectId().toString(), new ObjectId().toString())
+    return getDeliveryNote(new ObjectId().toString(), new ObjectId().toString())
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -70,7 +69,7 @@ describe("getInvoice", () => {
       })
   })
 
-  it("fails on non-existing invoice", () => {
+  it("fails on non-existing deliveryNote", () => {
     let errorThrown
 
     return bcrypt.hash("1234", 10)
@@ -79,11 +78,11 @@ describe("getInvoice", () => {
         email: "peter@email.es",
         password: hash,
       }))
-      .then(user => getInvoice(user.id.toString(), new ObjectId().toString()))
+      .then(user => getDeliveryNote(user.id.toString(), new ObjectId().toString()))
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-        expect(errorThrown.message).to.equal("Invoice not found")
+        expect(errorThrown.message).to.equal("DeliveryNote not found")
       })
   })
 
@@ -91,7 +90,7 @@ describe("getInvoice", () => {
     let errorThrown
 
     try {
-      getInvoice(12345, new ObjectId().toString())
+      getDeliveryNote(12345, new ObjectId().toString())
     } catch (error) {
       errorThrown = error
 
@@ -101,18 +100,19 @@ describe("getInvoice", () => {
     }
   })
 
-  it("fails on invalid userId", () => {
+  it("fails on invalid deliveryNoteId", () => {
     let errorThrown
 
     try {
-      getInvoice(new ObjectId().toString(), 12345)
+      getDeliveryNote(new ObjectId().toString(), 1234)
     } catch (error) {
       errorThrown = error
 
     } finally {
       expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal("invoiceId is not valid")
+      expect(errorThrown.message).to.equal("deliveryNoteId is not valid")
     }
   })
-  after(() => User.deleteMany().then(() => Invoice.deleteMany()).then(() => mongoose.disconnect()))
+
+  after(() => User.deleteMany().then(() => DeliveryNote.deleteMany()).then(() => mongoose.disconnect()))
 })

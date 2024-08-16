@@ -70,8 +70,5 @@ describe("getAllCUstomers", () => {
       })
   })
 
-
-
-
   after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

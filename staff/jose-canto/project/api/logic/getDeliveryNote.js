@@ -20,6 +20,7 @@ function getDeliveryNote(userId, deliveryNoteId) {
           if (!deliveryNote) {
             throw new NotFoundError("DeliveryNote not found")
           }
+
           deliveryNote.id = deliveryNote._id.toString()
           delete deliveryNote._id
 

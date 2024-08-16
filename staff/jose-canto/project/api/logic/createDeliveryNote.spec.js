@@ -29,7 +29,8 @@ describe("createDeliveryNote", () => {
         const customer = new User({
           username: "Clark",
           email: "clark@kent.es",
-          password: hash
+          password: hash,
+          manager: user.id,
         })
 
         return Promise.all([user.save(), customer.save()])

@@ -9,19 +9,26 @@ const getAllDeliveryNotes = (userId) => {
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
-        throw new NotFoundError("user not found")
+        throw new NotFoundError("User not found")
       }
 
       return DeliveryNote.find({ company: userId }).populate("customer", "username companyName").sort({ date: -1 }).select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
-        .then(deliveryNotes => deliveryNotes.map(deliveryNote => {
-          deliveryNote.id = deliveryNote._id.toString()
-          delete deliveryNote._id
+        .then(deliveryNotes => {
+          if (!deliveryNotes) {
+            throw new NotFoundError("DeliveryNotes not found")
+          }
 
-          deliveryNote.customerName = deliveryNote.customer?.companyName || deliveryNote.customer?.username
+          return deliveryNotes.map(deliveryNote => {
+            deliveryNote.id = deliveryNote._id.toString()
+            delete deliveryNote._id
 
-          return deliveryNote
-        }))
+            deliveryNote.customerName = deliveryNote.customer?.companyName || deliveryNote.customer?.username
+
+            return deliveryNote
+
+          })
+        })
     })
 }
 

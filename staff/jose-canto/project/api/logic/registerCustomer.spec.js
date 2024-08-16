@@ -38,7 +38,7 @@ describe("registerCustomer", () => {
       )
   )
 
-  it("fails on existing customer user", () => {
+  it("fails on non-existing customer user", () => {
     let errorThrown
 
     return registerCustomer(new ObjectId().toString(), "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443")
