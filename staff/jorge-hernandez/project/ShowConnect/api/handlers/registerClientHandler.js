@@ -14,7 +14,7 @@ export default (req, res, next) => {
         passwordRepeat,
         artistId
       )
-      .then((createdUser) => {
+      .then(() => {
         res.status(201).send()
       })
       .catch((error) => next(error))

@@ -22,7 +22,10 @@ const loginUser = (email, password) => {
           .catch(() => {
             throw new SystemError('server error')
           })
-          .then((token) => (sessionStorage.token = token))
+          .then(({ token, role }) => {
+            sessionStorage.token = token
+            sessionStorage.role = role
+          })
 
       return response
         .json()

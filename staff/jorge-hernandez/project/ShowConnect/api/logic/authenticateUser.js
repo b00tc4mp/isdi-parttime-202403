@@ -23,7 +23,10 @@ const authenticateUser = (email, password) => {
         .then((match) => {
           if (!match) throw new CredentialsError('wrong password')
 
-          return user._id.toString()
+          return {
+            userId: user._id.toString(),
+            role: user.role,
+          }
         })
     })
 }

@@ -12,10 +12,12 @@ export default (req, res, next) => {
   try {
     logic
       .authenticateUser(email, password)
-      .then((userId) =>
+      .then(({ userId, role }) =>
         jwt
-          .sign({ sub: userId }, JWT_SECRET, { expiresIn: '365d' })
-          .then((token) => res.json(token))
+          .sign({ sub: userId, role }, JWT_SECRET, {
+            expiresIn: '365d',
+          })
+          .then((token) => res.json({ token, role }))
           .catch((error) => next(new SystemError(error.message)))
       )
       .catch((error) => next(error))
