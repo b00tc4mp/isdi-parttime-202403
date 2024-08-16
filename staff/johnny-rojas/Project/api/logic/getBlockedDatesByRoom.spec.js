@@ -66,7 +66,7 @@ describe('getBlockedDatesByRoom', () => {
       })
 
       .then(() => {
-        return getBlockedDatesByRoom(room.id)
+        return getBlockedDatesByRoom(room.id.toString())
       })
       .then(blockedDates => {
         const actualDates = blockedDates.map(date => new Date(date).toISOString())
@@ -82,7 +82,7 @@ describe('getBlockedDatesByRoom', () => {
   })
 
   it('returns an empty array when there are no bookings for the room', () => {
-    return getBlockedDatesByRoom(new ObjectId())
+    return getBlockedDatesByRoom(new ObjectId().toString())
       .then(blockedDates => {
         expect(blockedDates).to.be.an('array').that.is.empty
       })

@@ -1,6 +1,9 @@
 import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
-import { User, Room } from '../data/index.js'
+import { User, Room, Booking } from '../data/index.js'
 import validate from 'com/validate.js'
+import mongoose from 'mongoose'
+
+const { ObjectId } = mongoose.Types
 
 const deleteRoom = (userId, roomId) => {
   validate.id(userId, 'userId')
@@ -16,19 +19,28 @@ const deleteRoom = (userId, roomId) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(room => {
           if (!room) {
-            throw new NotFoundError('room nor found')
+            throw new NotFoundError('room not found')
           }
 
           if (room.author.toString() !== userId) {
             throw new MatchError('room author do not match')
           }
 
-          return Room.deleteOne({ _id: new Object(roomId) })
-            .catch(error => new SystemError(error.message))
-            .then(() => { })
-        })
+          return Booking.findOne({ room: roomId }).lean()
+            .catch(error => { throw new SystemError(error.message) })
+            .then(booking => {
+              if (booking) {
+                throw new MatchError('you cannot delete a room with bookings')
+              }
 
+              return Room.deleteOne({ _id: new ObjectId(roomId) })
+                .catch(error => { throw new SystemError(error.message) })
+                .then(() => { })
+            })
+        })
     })
 }
 
 export default deleteRoom
+
+//TODO Error is not defined

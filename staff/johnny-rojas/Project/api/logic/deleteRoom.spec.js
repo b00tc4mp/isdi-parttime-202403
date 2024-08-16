@@ -1,10 +1,10 @@
 import 'dotenv/config'
-import { User, Room } from '../data/index.js'
+import { User, Room, Booking } from '../data/index.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import deleteRoom from '../logic/deleteRoom.js'
 import { expect } from 'chai'
-import { MatchError, NotFoundError } from 'com/errors.js'
+import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
@@ -85,7 +85,7 @@ describe('deleteRoom', () => {
         return deleteRoom(user.id, new ObjectId().toString())
           .catch(error => {
             expect(error).to.be.instanceOf(NotFoundError)
-            expect(error.message).to.equal('room nor found')
+            expect(error.message).to.equal('room not found')
           })
       })
   })
@@ -130,6 +130,60 @@ describe('deleteRoom', () => {
             expect(error.message).to.equal('room author do not match')
           })
       })
+  })
+
+  it('delete with booking cannot posible', () => {
+    let user1, user2, room
+
+    return bcrypt.hash('1234', 8)
+      .then(hash => User.create({
+        name: 'Mocha',
+        surname: 'One',
+        email: 'userone@chai.com',
+        phone: '+58 414 455 7364',
+        password: hash
+      }))
+      .then(createdUser => {
+        user1 = createdUser
+        return bcrypt.hash('5678', 8)
+      })
+      .then(hash => User.create({
+        name: 'Chai',
+        surname: 'Two',
+        email: 'usertwo@chai.com',
+        phone: '+58 414 455 7365',
+        password: hash
+      }))
+      .then(createdUser => {
+        user2 = createdUser
+        return Room.create({
+          nameRoom: 'Room 1',
+          region: 'Norte',
+          city: 'City',
+          image: 'https://example.com/anotherimage.png',
+          description: 'Another nice room',
+          price: '150 USD',
+          author: user1.id,
+          manager: user1.id
+        })
+      })
+      .then(createdRoom => {
+        room = createdRoom
+        return Booking.create({
+          user: user2.id.toString(),
+          room: room.id.toString(),
+          startDate: new Date(),
+          endDate: new Date(new Date().setDate(new Date().getDate() + 1))
+        })
+      })
+      .then(() => {
+        return deleteRoom(user1.id, room.id)
+        .catch(error => {
+          expect(error).to.be.instanceOf(MatchError)
+          expect(error.message).to.equal('you cannot delete a room with bookings')
+        })
+      })
+      
   })
 
   after(() => Promise.all([User.deleteMany(), Room.deleteMany()]).then(() => mongoose.disconnect()))

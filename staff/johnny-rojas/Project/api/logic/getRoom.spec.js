@@ -17,7 +17,6 @@ describe('getRoom', () => {
   beforeEach(() => Promise.all([User.deleteMany(), Room.deleteMany()]))
 
   it('succeed when room are retrieved successfully', () => {
-    let user
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -27,29 +26,27 @@ describe('getRoom', () => {
         phone: '+58 414 455 7362',
         password: hash
       }))
-      .then(createdUser => {
-        user = createdUser
+      .then(user => {
         return Room.create({
+          author: user.id,
           nameRoom: 'Room',
           region: 'Norte',
           city: 'City',
           image: 'https://example.com/1-image.png',
           description: 'Old description',
           price: '50 USD',
-          author: user.id,
-          manager: user.id
+          manager: user.id.toString()
         })
-      
           .then((room) => getRoom(user.id, room.id))
           .then(room => {
+            expect(room.author._i).to.equal(user.id.toString())
             expect(room.nameRoom).to.equal('Room')
             expect(room.region).to.equal('Norte')
             expect(room.city).to.equal('City')
             expect(room.image).to.equal('https://example.com/1-image.png')
             expect(room.description).to.equal('Old description')
             expect(room.price).to.equal('50 USD')
-            expect(room.author.toString()).to.equal(user.id)
-            expect(room.manager.toString()).to.equal(user.id)
+            expect(room.manager.toString()).to.equal(user.id.toString())
           })
       })
   })
@@ -102,7 +99,7 @@ describe('getRoom', () => {
     let errorThrown
 
     try {
-      getRoom('invalid-id', new ObjectId().toString())
+      getRoom(1111, new ObjectId().toString())
     } catch (error) {
       errorThrown = error
     } finally {
@@ -124,7 +121,7 @@ describe('getRoom', () => {
       }))
       .then(createdUser => {
         try {
-          getRoom(createdUser.id, 'invalid-id')
+          getRoom(createdUser.id, 1111)
         } catch (error) {
           errorThrown = error
         } finally {
