@@ -5,7 +5,7 @@ import { SystemError } from "com/errors.js"
 const getRoomBookings = (roomId) => {
   validate.id(roomId, 'roomId')
 
-  return Booking.find({ room: roomId }).lean()
+  return Booking.find({ room: roomId }).populate('user').lean()
     .catch((error) => { throw new SystemError(error.message) })
     .then(bookings => {
   

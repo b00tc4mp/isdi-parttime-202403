@@ -6,9 +6,10 @@ import { expect, } from 'chai'
 import bcrypt from 'bcryptjs'
 import { ContentError, NotFoundError } from 'com/errors.js'
 
-
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
+
+debugger
 
 describe('getRoom', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Room.deleteMany()])))

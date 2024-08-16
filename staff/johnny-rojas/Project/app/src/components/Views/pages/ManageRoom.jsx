@@ -30,6 +30,7 @@ function ManageRoom() {
     }
   }, [roomId])
 
+
   const handlerEditRoom = event => {
     event.preventDefault()
 
@@ -87,7 +88,11 @@ function ManageRoom() {
             {bookings.length > 0 ? (
               bookings.map(booking => (
                 <li className='List' key={booking.id}>
-                  <p>Información de contacto: {booking.user}</p>
+                  <p>Información de contacto:</p>
+                  <p>Nombre:{booking.user.name}</p>
+                  <p>Apellido: {booking.user.surname}</p>
+                  <p>Email: {booking.user.email}</p>
+                  <p>Teléfono: {booking.user.phone}</p>
                   <p>Entrada: {new Date(booking.startDate).toLocaleDateString()}</p>
                   <p>Salida: {new Date(booking.endDate).toLocaleDateString()}</p>
                 </li>

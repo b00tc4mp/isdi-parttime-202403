@@ -6,14 +6,14 @@ const getRoom = (userId, roomId) => {
   validate.id(userId, 'userId')
   validate.id(roomId, 'roomId')
 
-  return User.findById(userId).lean()
+  return User.findById(userId).lean()  //TODO revisar
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
         throw new NotFoundError('user not found')
       }
 
-      return Room.findById(roomId).select('-__v').lean()
+      return Room.findById(roomId).select('-__v').populate('author').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(room => {
           if (!room) {
