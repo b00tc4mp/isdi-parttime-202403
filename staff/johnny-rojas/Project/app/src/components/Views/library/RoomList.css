@@ -2,6 +2,9 @@
 
 @layer components{
 
+  body{
+    @apply pt-24
+  }
   #root{
     @apply flex flex-col items-center
   }

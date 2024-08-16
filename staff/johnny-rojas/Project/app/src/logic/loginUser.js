@@ -8,6 +8,7 @@ const loginUser = (email, password) => {
   return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
     method: 'POST',
     headers: {
+      Authorization: `Bearer${sessionStorage.token}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ email, password })

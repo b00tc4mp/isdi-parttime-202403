@@ -10,6 +10,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import logic from "../../../logic/index"
 import { useState, useEffect } from "react";
 
+import './ManageRoom.css'
+
 function ManageRoom() {
   const [bookings, setBookings] = useState([])
   const { roomId } = useParams()
@@ -82,27 +84,30 @@ function ManageRoom() {
     </Header>
     <div>
       
-    <div className='Container'>
-        <section className='SectionCard'>
-          <ul className="Grid">
+    <div className="container">
+      <section className="sectionCard">
+        <h2 className="sectionTitle">Reservas</h2>
+        <div className="bookingListContainer">
+          <ul className="gridList">
             {bookings.length > 0 ? (
-              bookings.map(booking => (
-                <li className='List' key={booking.id}>
-                  <p>Información de contacto:</p>
-                  <p>Nombre:{booking.user.name}</p>
-                  <p>Apellido: {booking.user.surname}</p>
-                  <p>Email: {booking.user.email}</p>
-                  <p>Teléfono: {booking.user.phone}</p>
-                  <p>Entrada: {new Date(booking.startDate).toLocaleDateString()}</p>
-                  <p>Salida: {new Date(booking.endDate).toLocaleDateString()}</p>
+              bookings.map((booking) => (
+                <li className="bookingItem" key={booking.id}>
+                  <p className="contactInfoTitle">Información de reserva:</p>
+                  <p><span className="infoLabel">Nombre:</span> {booking.user.name}</p>
+                  <p><span className="infoLabel">Apellido:</span> {booking.user.surname}</p>
+                  <p><span className="infoLabel">Email:</span> {booking.user.email}</p>
+                  <p><span className="infoLabel">Teléfono:</span> {booking.user.phone}</p>
+                  <p><span className="infoLabel">Entrada:</span> {new Date(booking.startDate).toLocaleDateString()}</p>
+                  <p><span className="infoLabel">Salida:</span> {new Date(booking.endDate).toLocaleDateString()}</p>
                 </li>
               ))
             ) : (
               <p>No hemos encontrado reservas.</p>
             )}
           </ul>
-        </section>
-      </div>
+        </div>
+      </section>
+    </div>
 
 
       <View className='RegisterForm' tag='main'>

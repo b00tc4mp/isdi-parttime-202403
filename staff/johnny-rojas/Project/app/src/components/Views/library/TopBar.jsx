@@ -31,8 +31,8 @@ const TopBar = () => {
         <DropdownMenu className="dropdown-menu" />
       </div>
 
-      <Input className="search-bar" placeholder="¿A dónde quieres ir ?" /> 
-      {/* TODO SearchBar */}
+      {/* <Input className="search-bar" placeholder="¿A dónde quieres ir ?" /> 
+      TODO SearchBar */}
     </div>
   );
 };

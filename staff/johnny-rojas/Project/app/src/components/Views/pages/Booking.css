@@ -1,8 +1,12 @@
 @tailwind components;
 
 @layer components{
+
+  .Info{
+    @apply pt-10
+  }
   .CardRoom{
-    @apply flex flex-col items-center
+    @apply flex flex-col items-center 
   }
 
   .Image{
@@ -11,6 +15,10 @@
 
   .InfoCardLeft{
     @apply flex flex-col gap-1 
+  }
+
+  .TitleDates{
+    @apply text-center font-black
   }
 
 }

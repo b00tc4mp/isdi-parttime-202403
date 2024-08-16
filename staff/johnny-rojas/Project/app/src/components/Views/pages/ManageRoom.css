@@ -1,0 +1,33 @@
+/* tailwind.css or within your Tailwind setup */
+
+.container {
+  @apply flex flex-col items-center pt-10
+}
+
+.sectionCard {
+  @apply w-full max-w-4xl bg-white rounded-lg shadow-lg p-6;
+}
+
+.sectionTitle {
+  @apply text-2xl font-bold mb-4;
+}
+
+.bookingListContainer {
+  @apply max-h-96 overflow-y-auto;
+}
+
+.gridList {
+  @apply space-y-6;
+}
+
+.bookingItem {
+  @apply bg-gray-50 p-4 rounded-lg shadow-md;
+}
+
+.contactInfoTitle {
+  @apply text-lg font-semibold mb-2;
+}
+
+.infoLabel {
+  @apply font-bold;
+}

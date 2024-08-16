@@ -6,9 +6,10 @@ const CreateRoomInfo = ({ onClick }) => (
   <div>
     <div className="information-section">
       <Title className='TitleInfo'><strong>Información Importante</strong></Title>
+      {/* TODO me puedo ahorrar esta info con un alert */}
       <div>
         <p>
-          Por favor, complete el siguiente formulario para crear una nueva habitación. Antes de comenzar, asegúrese de leer cuidadosamente las instrucciones proporcionadas a continuación para que toda la información sea precisa y esté actualizada.
+          Por favor, antes de comenzar, asegúrese de leer cuidadosamente las instrucciones proporcionadas a continuación para que toda la información sea precisa y esté actualizada.
         </p>
       </div>
       <div>
@@ -54,11 +55,11 @@ const CreateRoomInfo = ({ onClick }) => (
 
           <h3 className='instructions-heading'>5. Descripción</h3>
           <p>
-            Aquí debes resumir las características principales de la habitación. Ejemplos:
+            Aquí debes resumir las características principales de la habitación y los servicios que ofreces Ejemplos:
           </p>
           <ul className='instructions-list'>
-            <li>Habitación con cama doble para máximo 2 personas, baño, balcón y cocina.</li>
-            <li>Habitación con 2 literas para máximo 4 personas, sin baño.</li>
+            <li>Habitación con cama doble para máximo 2 personas, wifi, A/C baño, balcón y cocina.</li>
+            <li>Habitación con 2 literas para máximo 4 personas, sin baño, acesso a piscina y playa privada.</li>
           </ul>
 
           <h3 className='instructions-heading'>6. Precio por Noche</h3>
@@ -81,3 +82,5 @@ const CreateRoomInfo = ({ onClick }) => (
 );
 
 export default CreateRoomInfo;
+
+//TODO que La informacion importante sea un alert!

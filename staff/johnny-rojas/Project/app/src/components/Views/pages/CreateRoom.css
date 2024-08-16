@@ -6,6 +6,10 @@
     @apply text-center m-8;
   }
 
+  .TitleInfo{
+    @apply text-2xl
+  }
+
   .instrucciones {
     @apply mt-4;
   }
