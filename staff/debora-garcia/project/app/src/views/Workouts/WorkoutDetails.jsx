@@ -1,12 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import logic from "../logic"
-import Button from '../components/Button';
+import logic from "../../logic"
+import Button from '../../components/Button';
 import "./WorkoutDetails.css"
+import CreatePostForm from './CreatePostForm'
+import { useNavigate } from 'react-router-dom';
 
 export default function WorkoutDetail() {
     const [workout, setWorkout] = useState({})
     const { workoutType } = useParams()
+    const [view, setView] = useState("")
+    const navigate = useNavigate()
+
+    //const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
     const generateRandomWorkout = () => {
         console.log(`Generating ${workoutType} workout`);
@@ -27,8 +33,17 @@ export default function WorkoutDetail() {
         generateRandomWorkout();
     }, [workoutType])
 
+    const handleSaveClick = () => {
+        console.log("Saving post...");
+        setView("create-post");
+    }
+    const handlePostCreated = () => {
+        setView("")
+        navigate("/feed")
+
+    }
     return (
-        <div className="workout-details">
+        <div className="WorkoutDetails">
             {workout?.workoutType && (
                 <p>
                     {workout.workoutType.toUpperCase()}
@@ -36,15 +51,21 @@ export default function WorkoutDetail() {
                 </p>
             )}
             {workout?.title && <p>{workout.title}</p>}
-            
+
             {workout?.movements && workout.movements.map((movement, index) => (
                 <div key={index}>
                     <p> {movement.quantity} {movement.name} {movement.weight}{movement.units}</p>
                 </div>
             ))}
-            <Button onClick={generateRandomWorkout} type="button">Again!</Button>
+            <div className="buttons-container">
+                <Button onClick={generateRandomWorkout} type="button">Again!</Button>
+
+                <Button onClick={handleSaveClick} type="button">Save</Button>
+
+            </div>
+            {view === "create-post" && <CreatePostForm workoutId={workout.id} onPostCreated={handlePostCreated} />}
+
         </div>
     )
 
 }
- 

@@ -1,0 +1,9 @@
+@tailwind components;
+
+@layer components {
+  .Header {
+    @apply flex gap-[3rem] w-full justify-between fixed top-0 p-5  bg-[--third-color] items-center;
+  }
+
+  /*   @apply w-full flex justify-around fixed bottom-0 p-3 bg-[--third-color]; */
+}

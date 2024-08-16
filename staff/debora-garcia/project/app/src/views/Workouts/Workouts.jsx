@@ -1,23 +1,17 @@
-import { useNavigate, Link, Routes, Route, useParams} from "react-router-dom"
-import { useState, useEffect } from "react"
-import logic from "../logic"
-
-import Button from "../components/Button"
-import Emom from './Emom';
-import ForTime from './ForTime';
-import Amrap from './Amrap';
-import Benchmark from './Benchmark'
+import { useNavigate, Link, Routes, Route, useParams } from "react-router-dom"
+import Button from "../../components/Button"
 import WorkoutDetails from "./WorkoutDetails"
+import "./Workouts.css"
 
 //TODO alert & use context
 //TODO usar Link de react-router-dom para reacer los botones del footer
 export default function Workouts() {
     console.log("Workouts ->render")
     const { workoutType } = useParams(); // Captura el tipo de workout desde la URL
-    const workout = {};
+
 
     return (
-        <>
+        <div className="Workouts">
             {!workoutType ? (
                 <div className="button-container">
                     <Link to="/workouts/emom"><Button>EMOM</Button></Link>
@@ -26,10 +20,10 @@ export default function Workouts() {
                     <Link to="/workouts/benchmark"><Button>BENCHMARK</Button></Link>
                 </div>
             ) : (
-                <div className="workout-details">
-                    <WorkoutDetails workoutType={workoutType} workout={workout} />
+                <div>
+                    <WorkoutDetails />
                 </div>
             )}
-        </>
+        </div>
     );
 }

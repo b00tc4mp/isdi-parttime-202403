@@ -1,0 +1,25 @@
+@tailwind components;
+
+@layer components {
+  .CreatePostForm {
+    @apply flex flex-col items-center;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between; /* Opcional: Espacia los botones */
+    gap: 10px; /* Espacio entre los botones */
+    margin-top: 20px; /* Espacio superior para separar de los elementos anteriores */
+  }
+
+  .buttons-container Button {
+    flex: 1; /* Hace que los botones tengan el mismo ancho */
+    max-width: 150px; /* Limita el ancho máximo de los botones */
+  }
+  .form-buttons-container Button:hover {
+    @apply bg-[#65524d];
+  }
+  .CreatePostForm .Field {
+    @apply m-1 p-[.02rem] w-[300px];
+  }
+}

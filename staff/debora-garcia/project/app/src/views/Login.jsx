@@ -5,7 +5,6 @@ import logic from "../logic"
 
 import Button from "../components/Button"
 import Field from "../components/Field"
-import Heading from "../components/Heading"
 
 //TODO alert & use context
 export default function Login() {
@@ -37,14 +36,14 @@ export default function Login() {
         }
     }
 
-    return (
-        <form className="registerForm" onSubmit={handleLoginSubmit} >
-            <Heading level="1" className="Heading">WELLCOME BACK!</Heading>
+    return <>
+        <form className="loginForm" onSubmit={handleLoginSubmit} >
+            <h1>WELLCOME BACK!</h1>
             <p>Be part of our team</p>
 
             <Field id="username" type="text" placeholder="Username"></Field>
             <Field id="password" type="password" placeholder="Password"></Field>
             <Button type="submit">Sign in</Button>
         </form>
-    )
+    </>
 }

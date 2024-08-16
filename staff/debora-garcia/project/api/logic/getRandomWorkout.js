@@ -25,7 +25,14 @@ const getRandomWorkout = (userId, workoutType) => {
                     randomWorkout.id = randomWorkout._id.toString()
 
                     delete randomWorkout._id
-
+                    
+                    if (randomWorkout.movements) {
+                        randomWorkout.movements = randomWorkout.movements.map(movement => {
+                            movement.id = movement._id.toString()
+                            delete movement._id
+                            return movement
+                        })
+                    }
                     return randomWorkout
                 })
 

@@ -1,8 +1,0 @@
-
-.workout-details {
-    @apply flex flex-col justify-center items-center gap-1  p-0 mt-8 w-[350px] h-[420px] rounded-[7px]  
-  }
-  .workout-details Button {
-    @apply p-[10px_20px] rounded-[5px] bg-[--second-color] text-[white] cursor-pointer w-[100px] absolute bottom-[7.5rem];
-  }
-  

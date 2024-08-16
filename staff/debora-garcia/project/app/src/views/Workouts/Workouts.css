@@ -1,0 +1,17 @@
+@tailwind components;
+
+@layer components {
+  .View {
+    @apply flex;
+  }
+
+  .button-container {
+    @apply flex flex-col justify-center items-center gap-4;
+  }
+  .button-container Button {
+    @apply p-[10px_20px] rounded-[5px] bg-[--second-color] text-[white] cursor-pointer w-[300px];
+  }
+  .button-container Button:hover {
+    @apply bg-[#65524d];
+  }
+}

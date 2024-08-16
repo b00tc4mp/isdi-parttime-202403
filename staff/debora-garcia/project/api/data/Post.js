@@ -13,11 +13,16 @@ const post = new Schema({
     },
     workout: {
         type: ObjectId,
+        required: true,
         ref: "Workout"
     },
     result: {
         type: ObjectId,
+        required: true,
         ref: "Result"
+    },
+    description: {
+        type: String
     },
     date: {
         type: Date,
@@ -28,12 +33,12 @@ const post = new Schema({
         type: ObjectId,
         ref: "User"
     }],
-    
+
     coments: [{
         type: {
             author: {
                 type: String,
-                ref:"User",
+                ref: "User",
                 required: true
             },
             text: {

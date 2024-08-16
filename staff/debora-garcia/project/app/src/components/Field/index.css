@@ -1,7 +1,11 @@
-@tailwind base;
 @tailwind components;
-@tailwind utilities;
 
-.Field {
-    @apply p-[.3rem] bg-white text-[1rem] rounded-[5px] m-[1rem] w-[80%] ;
+@layer components {
+  .Field {
+    @apply p-[.3rem] bg-white text-[1rem] rounded-[5px] m-0 w-[80%] relative;
   }
+
+  .Field input {
+    @apply w-full h-full p-0 box-border;
+  }
+}
