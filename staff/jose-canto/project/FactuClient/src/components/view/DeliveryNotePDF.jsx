@@ -93,8 +93,11 @@ const DeliveryNotePDF = ({ deliveryNote, total }) => {
     <Document>
       <Page size="A5" orientation="landscape" style={styles.page}>
         <View style={styles.section}>
-          <Image style={styles.logo} src={deliveryNote.company.companyLogo} />
-
+          {deliveryNote.company && deliveryNote.company.companyLogo ? (
+            <Image style={styles.logo} src={deliveryNote.company.companyLogo} />
+          ) : (
+            <Text style={styles.header}>{deliveryNote.company.companyName}</Text>
+          )}
           <View style={styles.headerRow}>
             <Text style={styles.header}>Albarán nº: {deliveryNote.number}</Text>
             <Text style={styles.date}>Fecha: {formattedDate}</Text>

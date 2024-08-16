@@ -72,7 +72,7 @@ export default function Home() {
           </Button>
         </Link>
 
-        <Link>
+        <Link to="create/invoices">
           <Button>
             <span className="Icon">
               <LiaFileInvoiceSolid />

@@ -5,8 +5,13 @@
     @apply relative bottom-7;
   }
   .HeaderDeliveryInfo .IconLeftHeader {
-    @apply text-6xl;
+    @apply top-6 text-6xl;
   }
+
+  .HeaderDeliveryInfo .IconUser {
+    @apply relative top-5;
+  }
+
   .DeliveryWork {
     @apply relative flex w-[90%] flex-col;
   }

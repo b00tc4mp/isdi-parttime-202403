@@ -18,14 +18,17 @@
     @apply absolute flex w-full flex-col items-center;
   }
   .ContainerHeader .Children {
-    @apply h-[3rem] w-[6rem] text-2xl;
+    @apply h-[3rem] text-2xl;
+  }
+  .Children > h1 {
+    @apply text-4xl;
   }
 
   .IconExit {
-    @apply fixed right-2 top-2 flex cursor-pointer text-7xl;
+    @apply fixed right-2 top-2 z-10 flex cursor-pointer text-7xl;
   }
 
   .IconLeftHeader {
-    @apply absolute left-2 top-0 z-10 flex cursor-pointer text-7xl;
+    @apply absolute left-2 top-4 z-10 flex cursor-pointer text-6xl;
   }
 }

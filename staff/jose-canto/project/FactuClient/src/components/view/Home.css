@@ -9,6 +9,9 @@
     @apply flex h-auto w-4/5 justify-start gap-4 border-gray-500 bg-[#D2CBC2] bg-none text-gray-700;
   }
 
+  .MainHome .Button:hover {
+    @apply bg-orange-200;
+  }
   .MainHome span {
     @apply ml-4 mr-4 text-3xl;
   }

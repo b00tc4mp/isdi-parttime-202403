@@ -2,10 +2,10 @@
 
 @layer components {
   .Button {
-    @apply mt-4 flex h-12 w-3/4 cursor-pointer items-center justify-center rounded-2xl border-[2px] border-white bg-custom-gradient p-2 text-2xl font-bold shadow-custom-shadow;
+    @apply mt-4 flex h-12 w-3/4 cursor-pointer items-center justify-center rounded-2xl border-[2px] border-white bg-custom-gradient p-2 text-2xl font-bold shadow-custom-shadow transition duration-300;
   }
 
   .Button:hover {
-    @apply border-[3px] border-black bg-black text-white;
+    @apply border-r-black text-white;
   }
 }

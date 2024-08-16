@@ -11,6 +11,7 @@ import deleteCustomer from "./deleteCustomer.js"
 import editProfile from "./EditProfile.js"
 import getProfileUser from "./getProfileUser.js"
 
+import getAllDeliveryNotesCustomer from "./getAllDeliveryNotesCustomer.js"
 import getAllDeliveryNotes from "./getAllDeliveryNotes.js"
 import getDeliveryNote from "./getDeliveryNote.js"
 import deleteDeliveryNote from "./deleteDeliveryNote.js"
@@ -20,6 +21,7 @@ import createWork from "./createWork.js"
 
 import getAllInvoices from "./getAllInvoices.js"
 import getInvoice from "./getInvoice.js"
+import createInvoice from "./createInvoice.js"
 
 
 const logic = {
@@ -36,6 +38,7 @@ const logic = {
   getAllCustomers,
   deleteCustomer,
 
+  getAllDeliveryNotesCustomer,
   getAllDeliveryNotes,
   getDeliveryNote,
   deleteDeliveryNote,
@@ -46,6 +49,7 @@ const logic = {
 
   getAllInvoices,
   getInvoice,
+  createInvoice,
 }
 
 export default logic

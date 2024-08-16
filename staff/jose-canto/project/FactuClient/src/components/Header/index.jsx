@@ -110,6 +110,13 @@ export default function Header({
           </div>
         )}
 
+        {location.pathname === "/create/invoices" && (
+          <div className="ContainerHeader">
+            <div className="IconUser">{iconUser}</div>
+            <div className="Children">{children}</div>
+          </div>
+        )}
+
         {isCustomerProfilePathCustomerId && (
           <div className="ContainerHeader">
             <div onClick={onDeleteCustomer} className="IconLeftHeader">
