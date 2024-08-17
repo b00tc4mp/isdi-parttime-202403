@@ -91,6 +91,8 @@ describe("getDeliveryNotesCustomer", () => {
 
 
   it("fails on non-existing delivery notes", () => {
+    let errorThrown
+
     return bcrypt.hash("1234", 10)
       .then(hash => User.create({
         username: "Peter",
@@ -107,9 +109,10 @@ describe("getDeliveryNotesCustomer", () => {
           .then(customerUser => [companyUser, customerUser])
       })
       .then(([companyUser, customerUser]) => getAllDeliveryNotesCustomer(companyUser.id.toString(), customerUser.id.toString()))
-      .then(deliveryNotes => {
-        expect(deliveryNotes).to.be.an.instanceOf(Array)
-        expect(deliveryNotes).to.have.lengthOf(0)
+      .catch(error => errorThrown = error)
+      .finally(() => {
+        expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal("DeliveryNotes not found")
       })
   })
 

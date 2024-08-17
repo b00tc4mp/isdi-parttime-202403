@@ -16,7 +16,7 @@ describe("getAllCUstomers", () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
   beforeEach(() => User.deleteMany())
 
-  it("suceeds on get all customers", () =>
+  it("succeeds on get all customers", () =>
 
     bcrypt.hash("1234", 10)
       .then((hash) => {
@@ -58,6 +58,24 @@ describe("getAllCUstomers", () => {
           })
       })
   )
+
+  it("fails on non-existing customers", () => {
+    let errorThrown
+
+
+    return bcrypt.hash("1234", 10)
+      .then(hash => User.create({
+        username: "Peter",
+        email: "peter@email.es",
+        password: hash,
+      }))
+      .then((user) => getAllcustomers(user.id.toString())
+        .catch((error) => errorThrown = error)
+        .finally(() => {
+          expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+          expect(errorThrown.message).to.equal("Customers not found")
+        }))
+  })
 
   it("fails on non-existing user", () => {
     let errorThrown

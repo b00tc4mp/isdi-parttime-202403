@@ -1,6 +1,6 @@
 import validate from "com/validate.js"
 import { User } from "../model/index.js"
-import { NotFoundError, SystemError } from "com/errors.js"
+import { MatchError, NotFoundError, SystemError } from "com/errors.js"
 
 
 const deleteCustomer = (userId, customerId) => {
@@ -22,7 +22,7 @@ const deleteCustomer = (userId, customerId) => {
           }
 
           if (customer.manager.toString() !== userId) {
-            throw new NotFoundError("Can not delete Customer from another user")
+            throw new MatchError("Can not delete Customer from another user")
           }
 
           return User.deleteOne({ _id: customerId })

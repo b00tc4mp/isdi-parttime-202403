@@ -26,7 +26,7 @@ function getAllDeliveryNotesCustomer(userId, customerId) {
             .catch(error => { throw new SystemError(error.message) })
             .then(deliveryNotes => {
 
-              if (!deliveryNotes) {
+              if (!deliveryNotes.length) {
                 throw new NotFoundError("DeliveryNotes not found")
               }
 

@@ -1,6 +1,6 @@
 import validate from "com/validate.js"
 import { User, DeliveryNote } from "../model/index.js"
-import { NotFoundError, SystemError } from "com/errors.js"
+import { MatchError, NotFoundError, SystemError } from "com/errors.js"
 
 const deleteDeliveryNote = (userId, deliveryNoteId) => {
   validate.id(userId, "userId")
@@ -21,7 +21,7 @@ const deleteDeliveryNote = (userId, deliveryNoteId) => {
           }
 
           if (deliveryNote.company.toString() !== userId) {
-            throw new NotFoundError("Can not delete Delivery Note from another company")
+            throw new MatchError("Can not delete Delivery Note from another company")
           }
 
           return DeliveryNote.deleteOne({ _id: deliveryNoteId })

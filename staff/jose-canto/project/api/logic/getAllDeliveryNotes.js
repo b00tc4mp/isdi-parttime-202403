@@ -15,7 +15,7 @@ const getAllDeliveryNotes = (userId) => {
       return DeliveryNote.find({ company: userId }).populate("customer", "username companyName").sort({ date: -1 }).select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(deliveryNotes => {
-          if (!deliveryNotes) {
+          if (!deliveryNotes.length) {
             throw new NotFoundError("DeliveryNotes not found")
           }
 

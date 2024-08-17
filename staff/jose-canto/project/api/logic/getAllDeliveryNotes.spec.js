@@ -59,16 +59,20 @@ describe("getAllDeliveryNotes", () => {
   })
 
   it("fails on non-exisiting delivery notes", () => {
+    let errorThrown
+
     return bcrypt.hash("1234", 10)
       .then(hash => User.create({
         username: "Peter",
         email: "peter@email.es",
         password: hash,
       }))
-      .then(companyUser => getAllDeliveryNotes(companyUser._id.toString()))
-      .then(deliveryNotes => {
-        expect(deliveryNotes).to.be.an.instanceOf(Array)
-        expect(deliveryNotes).to.have.lengthOf(0)
+      .then(user => getAllDeliveryNotes(user.id.toString()))
+      .catch(error => errorThrown = error)
+      .finally(() => {
+        expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal("DeliveryNotes not found")
+
       })
   })
 
