@@ -1,6 +1,9 @@
 import enrollUserHandler from './enrollUserHandler.js'
 import authenticateUserHandler from './authenticateUserHandler.js'
 import getAllUsersHandler from './getAllUsersHandler.js'
+import getAvailableUsersHandler from './getAvailableUsersHandler.js'
+import modifyUserHandler from './modifyUserHandler.js'
+import modifyUserStatusHandler from './modifyUserStatusHandler.js'
 
 import addTaskHandler from './addTaskHandler.js'
 import deleteTaskHandler from './deleteTaskHandler.js'
@@ -17,6 +20,9 @@ export {
     enrollUserHandler,
     authenticateUserHandler,
     getAllUsersHandler,
+    getAvailableUsersHandler,
+    modifyUserHandler,
+    modifyUserStatusHandler,
     
     addTaskHandler,
     deleteTaskHandler,
