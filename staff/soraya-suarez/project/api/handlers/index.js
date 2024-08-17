@@ -3,7 +3,7 @@ import authenticateUserHandler from './authenticateUserHandler.js'
 import getAllUsersHandler from './getAllUsersHandler.js'
 import getAvailableUsersHandler from './getAvailableUsersHandler.js'
 import modifyUserHandler from './modifyUserHandler.js'
-import modifyUserStatusHandler from './modifyUserStatusHandler.js'
+import modifyUserAvailableHandler from './modifyUserAvailableHandler.js'
 
 import addTaskHandler from './addTaskHandler.js'
 import deleteTaskHandler from './deleteTaskHandler.js'
@@ -22,7 +22,7 @@ export {
     getAllUsersHandler,
     getAvailableUsersHandler,
     modifyUserHandler,
-    modifyUserStatusHandler,
+    modifyUserAvailableHandler,
     
     addTaskHandler,
     deleteTaskHandler,

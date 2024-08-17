@@ -1,22 +1,17 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const modifyUser = (name, surname, email, phone, avatar, password, passwordRepeat) => {
-    validate.name(name)
-    validate.name(surname, 'surname')
-    validate.email(email)
-    validate.phone(phone)
-    validate.url(avatar)
-    validate.password(password)
-    validate.passwordsMatch(password, passwordRepeat)
+const modifyUserAvailable = (userToModifyId, available) => {
+    validate.id(userToModifyId)
+    validate.boolean(available)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/modify`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${userToModifyId}`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, surname, email, phone, avatar, password, passwordRepeat })
+        body: JSON.stringify({ available })
     })
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
@@ -35,4 +30,4 @@ const modifyUser = (name, surname, email, phone, avatar, password, passwordRepea
         })
 }
 
-export default modifyUser
+export default modifyUserAvailable

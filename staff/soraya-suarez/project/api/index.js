@@ -9,7 +9,7 @@ import {
     getAllUsersHandler,
     getAvailableUsersHandler,
     modifyUserHandler,
-    modifyUserStatusHandler,
+    modifyUserAvailableHandler,
     
     addTaskHandler,
     deleteTaskHandler,
@@ -38,7 +38,7 @@ mongoose.connect(MONGODB_URL)
         api.get('/users', getAllUsersHandler)
         api.get('/users/availableUsers', getAvailableUsersHandler)
         api.patch('/users/modify', jsonBodyParser, modifyUserHandler)
-        api.patch('/users/:userId', jsonBodyParser, modifyUserStatusHandler)
+        api.patch('/users/:userToModifyId', jsonBodyParser, modifyUserAvailableHandler)
         
         api.post('/tasks', jsonBodyParser, addTaskHandler)
         api.get('/tasks/myAvailableTasks', getAvailableTasksHandler)

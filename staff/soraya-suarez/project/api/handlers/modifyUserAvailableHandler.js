@@ -20,7 +20,7 @@ export default (req, res, next) => {
                 const { available } = req.body
 
                 try {
-                    logic.modifyUserStatus(userId, userToModifyId, available)
+                    logic.modifyUserAvailable(userId, userToModifyId, available)
                         .then(() => res.status(200).send())
                         .catch(error => next(error))
                 } catch (error) {

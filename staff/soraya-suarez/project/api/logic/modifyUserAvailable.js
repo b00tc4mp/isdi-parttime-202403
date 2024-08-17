@@ -2,7 +2,7 @@ import { User } from '../data/index.js'
 import { DuplicityError, CredentialsError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const modifyUserStatus = (userId, userToModifyId, available) => {
+const modifyUserAvailable = (userId, userToModifyId, available) => {
     validate.id(userId)
     validate.id(userToModifyId)
     validate.boolean(available)
@@ -25,4 +25,4 @@ const modifyUserStatus = (userId, userToModifyId, available) => {
         })
 }
 
-export default modifyUserStatus
+export default modifyUserAvailable
