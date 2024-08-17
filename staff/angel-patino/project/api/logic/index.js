@@ -6,6 +6,7 @@ import getAllRecipes from './getAllRecipes.js'
 import createRecipe from './createRecipe.js'
 import deleteRecipe from './deleteRecipe.js'
 import editUsername from './editUsername.js'
+import editRecipe from './editRecipe.js'
 import rateRecipe from './rateRecipe.js'
 import toggleLikeRecipe from './toggleLikeRecipe.js'
 
@@ -18,6 +19,7 @@ const logic = {
     createRecipe,
     deleteRecipe,
     editUsername,
+    editRecipe,
     toggleLikeRecipe,
     rateRecipe
 }

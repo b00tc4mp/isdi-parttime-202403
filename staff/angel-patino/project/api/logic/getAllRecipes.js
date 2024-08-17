@@ -9,9 +9,9 @@ const getAllRecipes = userId => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new NotFoundError(error.message)
+                throw new NotFoundError('User not found')
 
-            return Recipe.find({}).populate('author', 'username').select('-_v').sort({ date: -1 }).lean()
+            return Recipe.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
                 .catch((error) => { throw new SystemError(error.message) })
                 .then(recipes => {
                     recipes.forEach((recipe) => {
