@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 import logic from "../../../logic/index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import './RoomList.css'
 
 function RoomList() {
   const [rooms, setRooms] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setIsLoggedIn(logic.isUserLoggedIn());
+  }, [])
 
   useEffect(() => {
     try {
@@ -21,6 +27,15 @@ function RoomList() {
       alert(error)
     }
   }, [])
+
+  const handleReserveClick = (roomId) => {
+    if (!isLoggedIn) {
+      navigate('/login')
+    } else {
+      navigate(`/create-booking/${roomId}`)
+
+    }
+  }
 
   return <div className='Container'>
     <section className='SectionCard'>
@@ -43,7 +58,9 @@ function RoomList() {
               </div>
             </div>
             <div className="LinkTo">
-              <Link to={`/create-booking/${room.id}`}>Reservar</Link>
+              <button onClick={() => handleReserveClick(room.id)}>
+                Reservar
+              </button>
             </div>
           </div>
         </li>)}

@@ -7,7 +7,7 @@
   }
 
   .TitleInfo{
-    @apply text-2xl
+    @apply text-4xl pt-4 
   }
 
   .instrucciones {
@@ -58,5 +58,17 @@
 
   .RegisterForm a {
     @apply text-blue-500 hover:underline;
+  }
+
+  .Acepted {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200 w-11/12 pt-2
+  }
+
+  .MessageContainer{
+    @apply flex flex-col text-center items-center
+  }
+
+  .TitleMessage{
+    @apply text-3xl font-semibold pb-2
   }
 }

@@ -46,7 +46,7 @@ const DropdownMenu = () => {
           ) : (
             <>
               <Link to='/perfil'>Perfil</Link>
-              <Link to='/reservas'>Reservas</Link>
+              <Link to={`/users/${userId}/bookings`}>Reservas</Link>
               <Link to='/favoritos'>Favoritos</Link>
               <Link to='/rooms'>Ofrecer</Link>
               <Link to={`/users/${userId}/rooms`}>Mis ofertas</Link>

@@ -5,7 +5,6 @@ import FormWithPanel from '../core/FormWithPanel'
 import ShowHidePassword from '../core/ShowHidePassword'
 import SubmitButton from '../core/SubmitButton'
 
-
 import logic from '../../../logic'
 
 import './Register.css'
