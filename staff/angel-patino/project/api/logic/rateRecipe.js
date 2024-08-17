@@ -5,19 +5,19 @@ import { NotFoundError, SystemError } from 'com/errors.js'
 function rateRecipe(userId, recipeId, rating) {
     validate.id(userId, 'userId')
     validate.id(recipeId, 'recipeId')
-    validate.number(rating, 'rating', { min: 1, max: 5 })
+    validate.rating(rating, 'rating')
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new NotFoundError('user not found')
+                throw new NotFoundError('User not found')
 
             return Recipe.findById(recipeId)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(recipe => {
                     if (!recipe)
-                        throw new NotFoundError('user not found')
+                        throw new NotFoundError('Recipe not found')
 
                     const userRating = recipe.rating.find(r => r.user.toString() === userId)
 

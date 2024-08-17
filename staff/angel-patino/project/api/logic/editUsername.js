@@ -1,6 +1,6 @@
 import { User } from '../data/index.js'
-import validate from '../../com/validate.js'
-import { DuplicityError, NotFoundError, SystemError } from '../../com/errors.js'
+import validate from 'com/validate.js'
+import { DuplicityError, NotFoundError, SystemError } from 'com/errors.js'
 
 
 const editUsername = (userId, username) => {
@@ -11,21 +11,20 @@ const editUsername = (userId, username) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new NotFoundError(error.message)
+                throw new NotFoundError('User not found')
             }
 
             return User.findOne({ username }).lean()
                 .catch(error => { throw new SystemError(error.message) })
         })
         .then(existUsername => {
-            if (!existUsername) {
-                return User.findByIdAndUpdate(userId, { username: username }, { new: true })
-                    .catch(error => { throw new SystemError(error.message) })
+            if (existUsername) {
+                throw new DuplicityError('Username already exist')
             }
-            else {
-                throw new DuplicityError('username already exists')
-            }
+            return User.findByIdAndUpdate(userId, { username }, { new: true })
+                .catch(error => { throw new SystemError(error.message) })
         })
+
 }
 
 export default editUsername

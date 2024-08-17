@@ -16,7 +16,7 @@ function toggleLikeRecipe(userId, recipeId) {
                 .catch(error => { throw new SystemError(error.message) })
                 .then(recipe => {
                     if (!recipe)
-                        throw new NotFoundError('user not found')
+                        throw new NotFoundError('Recipe not found')
 
                     const included = recipe.likes.some(userObjectId => userObjectId.toString() === userId)
 
