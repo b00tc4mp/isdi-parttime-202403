@@ -15,7 +15,7 @@ function SendMessageAndRegister({ artistId }) {
     const messageText = form.message.value
     const password = form.password.value
     const passwordRepeat = form.passwordRepeat.value
-
+    //TODO VALIDATES
     logic
       .registerClient(
         name,
@@ -98,7 +98,7 @@ function SendMessageAndRegister({ artistId }) {
           Enviar
         </button>
       </form>
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <p className='text-green-500'>{message}</p>}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import updateChatWithMessage from '../logic/updateChatWithMessage.js'
+import updateChatWithMessage from '../logic/index.js'
 
 export default async (req, res, next) => {
   const { chatId, messageId } = req.params
@@ -10,8 +10,14 @@ export default async (req, res, next) => {
   }
 
   try {
-    await updateChatWithMessage(chatId, messageId)
-    res.status(200).send()
+    logic
+      .updateChatWithMessage(chatId, messageId)
+      .then(() => {
+        res.status(200).send()
+      })
+      .catch((error) => {
+        next(error)
+      })
   } catch (error) {
     next(error)
   }

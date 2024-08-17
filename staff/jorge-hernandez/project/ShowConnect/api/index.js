@@ -12,6 +12,7 @@ import updateChatWithMessageHandler from './handlers/updateChatWithMessageHandle
 import getArtistsByCityHandler from './handlers/getArtistsByCityHandler.js'
 import updateArtistHandler from './handlers/updateArtistHandler.js'
 import registerClientHandler from './handlers/registerClientHandler.js'
+import getUserChatsAndMessagesHandler from './handlers/getUserChatsAndMessagesHandler.js'
 
 import errorHandler from './handlers/errorHandler.js'
 
@@ -51,14 +52,15 @@ mongoose
 
     api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 
-    // Nuevas rutas para chats y mensajes
-    api.post('/chats', jsonbodyparser, createChatHandler)
-    api.post('/messages', jsonbodyparser, createMessageHandler)
-    api.put(
-      '/chats/:chatId/messages/:messageId',
-      jsonbodyparser,
-      updateChatWithMessageHandler
-    )
+    // api.post('/chats', jsonbodyparser, createChatHandler)
+    // api.post('/messages', jsonbodyparser, createMessageHandler)
+    // api.put(
+    //   '/chats/:chatId/messages/:messageId',
+    //   jsonbodyparser,
+    //   updateChatWithMessageHandler
+    // )
+
+    api.get('/chats/:userId', jsonbodyparser, getUserChatsAndMessagesHandler)
 
     api.use(errorHandler)
 

@@ -11,12 +11,16 @@ export default (req, res, next) => {
   if (description) updateData.description = description
   if (dates) updateData.dates = dates
 
-  logic
-    .updateArtist(userId, updateData)
-    .then((updatedUser) => {
-      res.status(200).json(updatedUser)
-    })
-    .catch((error) => {
-      next(error)
-    })
+  try {
+    logic
+      .updateArtist(userId, updateData)
+      .then((updatedUser) => {
+        res.status(200).json(updatedUser)
+      })
+      .catch((error) => {
+        next(error)
+      })
+  } catch (error) {
+    next(error)
+  }
 }

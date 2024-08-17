@@ -6,7 +6,6 @@ import Login from './views/Login'
 import ArtistHome from './views/ArtistHome'
 import ClientHome from './views/ClientHome'
 import ArtistMessages from './views/ArtistMessages'
-
 import logic from './logic'
 
 function App() {

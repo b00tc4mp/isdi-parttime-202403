@@ -13,7 +13,9 @@ const updateArtist = (userId, updateData) => {
       if (updateData.description) user.description = updateData.description
       if (updateData.dates) user.dates = updateData.dates
 
-      return user.save()
+      return user.save().catch((error) => {
+        throw new SystemError(error.message)
+      })
     })
     .catch((error) => {
       throw new SystemError(error.message)

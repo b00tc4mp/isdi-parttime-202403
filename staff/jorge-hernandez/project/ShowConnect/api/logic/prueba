@@ -1,0 +1,98 @@
+[
+  {
+    "_id": "66be3117e81fbd30996e416e",
+    "participants": [
+      {
+        "_id": "66be3117e81fbd30996e416c",
+        "name": "Jorge Moreno",
+        "email": "jorge@moreno.com"
+      },
+      {
+        "_id": "66be30e9e81fbd30996e4168",
+        "name": "Juan Tamariz",
+        "artisticName": "Juan Tamariz",
+        "email": "juan@tamariz.com"
+      }
+    ],
+    "messages": [
+      {
+        "_id": "66be3117e81fbd30996e4170",
+        "sender": [
+          {
+            "_id": "66be3117e81fbd30996e416c",
+            "name": "Jorge Moreno",
+            "email": "jorge@moreno.com"
+          }
+        ],
+        "text": "hola buenas noches",
+        "date": "2024-08-15T16:47:19.125Z"
+      }
+    ],
+    "date": "2024-08-15T16:47:19.103Z",
+    "__v": 0
+  },
+  {
+    "_id": "66bf205eb5e9dbdc12d82cc4",
+    "participants": [
+      {
+        "_id": "66bf205db5e9dbdc12d82cc2",
+        "name": "malevica",
+        "email": "male@vica.com"
+      },
+      {
+        "_id": "66be30e9e81fbd30996e4168",
+        "name": "Juan Tamariz",
+        "artisticName": "Juan Tamariz",
+        "email": "juan@tamariz.com"
+      }
+    ],
+    "messages": [
+      {
+        "_id": "66bf205eb5e9dbdc12d82cc6",
+        "sender": [
+          {
+            "_id": "66bf205db5e9dbdc12d82cc2",
+            "name": "malevica",
+            "email": "male@vica.com"
+          }
+        ],
+        "text": "hola señor Juan Tamariz",
+        "date": "2024-08-16T09:48:14.008Z"
+      }
+    ],
+    "date": "2024-08-16T09:48:14.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "66bf39869d2df17826a061a9",
+    "participants": [
+      {
+        "_id": "66bf39869d2df17826a061a7",
+        "name": "Eva Ruiz",
+        "email": "eva@ruiz.com"
+      },
+      {
+        "_id": "66be30e9e81fbd30996e4168",
+        "name": "Juan Tamariz",
+        "artisticName": "Juan Tamariz",
+        "email": "juan@tamariz.com"
+      }
+    ],
+    "messages": [
+      {
+        "_id": "66bf39869d2df17826a061ab",
+        "sender": [
+          {
+            "_id": "66bf39869d2df17826a061a7",
+            "name": "Eva Ruiz",
+            "email": "eva@ruiz.com"
+          }
+        ],
+        "text": "hola buenas noches",
+        "date": "2024-08-16T11:35:34.620Z"
+      }
+    ],
+    "date": "2024-08-16T11:35:34.617Z",
+    "__v": 0
+  }
+]

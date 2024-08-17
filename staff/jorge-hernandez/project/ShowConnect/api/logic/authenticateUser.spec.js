@@ -18,7 +18,7 @@ describe('authenticateUser', () => {
 
   beforeEach(() => User.deleteMany())
 
-  it('succeeds on existing user', () =>
+  it('succeeds on existing user with correct password', () =>
     bcrypt
       .hash('123', 8)
       .then((hash) =>
@@ -35,11 +35,11 @@ describe('authenticateUser', () => {
         })
       )
       .then(() => authenticateUser('jorge@moreno.com', '123'))
-      .then((userId) => {
-        expect(userId).to.be.a.string
+      .then(({ userId, role }) => {
+        expect(userId).to.be.a('string')
         expect(userId).to.have.lengthOf(24)
+        expect(role).to.be.a('string')
       }))
-
   it('fails on non-existing user', () =>
     authenticateUser('test@test.com', '123').catch((error) => {
       expect(error).to.be.instanceOf(CredentialsError)

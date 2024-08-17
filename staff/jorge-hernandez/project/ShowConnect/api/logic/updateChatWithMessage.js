@@ -8,15 +8,13 @@ const updateChatWithMessage = (chatId, messageId) => {
   )
     .then((updatedChat) => {
       if (!updatedChat) {
-        throw new SystemError('Chat update failed')
+        throw new SystemError(error.message)
       }
       return { success: true, chat: updatedChat }
     })
     .catch((error) => {
-      console.error('Error updating chat with message:', error.message)
-      throw new SystemError(
-        'Failed to update chat with message: ' + error.message
-      )
+      console.error(error.message)
+      throw new SystemError(error.message)
     })
 }
 export default updateChatWithMessage

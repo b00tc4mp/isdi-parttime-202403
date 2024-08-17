@@ -3,7 +3,7 @@ import { SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const getArtistsByCity = (city, discipline, excludedDate) => {
-  //TODO VALIDATES TO DATE
+  //TODO VALIDATES
   if (!city || !discipline || !excludedDate) {
     throw new SystemError('City, discipline, and excludedDate are required')
   }

@@ -1,8 +1,13 @@
+import validate from 'com/validate.js'
 import { Message } from '../data/index.js'
-import { Chat } from '../data/index.js'
+
 import { SystemError } from 'com/errors.js'
 
 const createMessage = (userId, messageText, chatId) => {
+  validate.id(userId, 'userId')
+  validate.text(messageText, 'messageText')
+  validate.id(chatId, 'chatId')
+
   const newMessage = new Message({
     sender: userId,
     text: messageText,
@@ -10,8 +15,8 @@ const createMessage = (userId, messageText, chatId) => {
   })
 
   return newMessage.save().catch((error) => {
-    console.error('Error creating message:', error.message)
-    throw new SystemError('Failed to create message: ' + error.message)
+    console.error(error.message)
+    throw new SystemError(error.message)
   })
 }
 

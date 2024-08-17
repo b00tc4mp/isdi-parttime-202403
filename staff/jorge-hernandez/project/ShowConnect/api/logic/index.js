@@ -4,9 +4,9 @@ import getArtistData from './getArtistData.js'
 import getArtistsByCity from './getArtistsByCity.js'
 import updateArtist from './updateArtist.js'
 import registerClient from './registerClient.js'
-
 import createChat from './createChat.js'
 import createMessage from './createMessage.js'
+import getUserChatsAndMessages from './getUsersChatsAndMessages.js'
 
 const logic = {
   registerUser,
@@ -17,6 +17,7 @@ const logic = {
   updateArtist,
   registerClient,
   createMessage,
+  getUserChatsAndMessages,
 }
 
 export default logic
