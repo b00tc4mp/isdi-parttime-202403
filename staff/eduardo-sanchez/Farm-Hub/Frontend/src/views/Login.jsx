@@ -66,6 +66,7 @@ export const Login = () => {
 
     return (
         <div>
+            <Title className="text-4xl text-green-300">Farm-Hub</Title>
 
             <form className="LoginForm" onSubmit={handleLoginSubmit}>
                 <Title>Login</Title>

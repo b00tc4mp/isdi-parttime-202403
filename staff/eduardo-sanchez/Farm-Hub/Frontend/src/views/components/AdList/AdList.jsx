@@ -44,6 +44,7 @@ function AdList({ refreshStamp }) {
                         <p>{ad.title}</p>
                         <p>{ad.description}</p>
                         <p>{ad.price}</p>
+                        <p>{ad.date}</p>
 
                         <Ad ad={ad} onAdDeleted={handleAdDeleted} />
                     </li >

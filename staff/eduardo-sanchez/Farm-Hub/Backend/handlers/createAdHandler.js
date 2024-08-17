@@ -18,7 +18,12 @@ export default (req, res, next) => {
 
                 try {
                     logic.createAd(userId, title, description, price)
-                        .then(() => res.status(201).send())
+                        .then((data) => {
+                            console.log(data)
+                            res.status(201).send({ title, description, price })
+                        })
+
+
                         .catch(error => next(error))
 
                 } catch (error) {

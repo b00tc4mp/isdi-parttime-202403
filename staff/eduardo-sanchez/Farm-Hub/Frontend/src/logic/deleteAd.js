@@ -7,7 +7,8 @@ function deleteAd(adId) {
     return fetch(`${import.meta.env.VITE_API_URL}/ads/${adId}`, {
         method: 'DELETE',
         headers: {
-            'Authorization': `Bearer ${sessionStorage.token}`
+            'Authorization': `Bearer ${sessionStorage.token}`,
+            'Content-Type': 'application/json',
 
         }
     })

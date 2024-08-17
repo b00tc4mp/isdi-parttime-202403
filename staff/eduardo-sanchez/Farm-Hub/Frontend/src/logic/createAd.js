@@ -9,7 +9,8 @@ const createAd = (title, description, price) => {
     return fetch(`${import.meta.env.VITE_API_URL}/ads`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.token}`
         },
         body: JSON.stringify({ title, description, price })
     })

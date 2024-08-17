@@ -7,12 +7,12 @@ import Title from '../../../components/core/Title'
 import Button from '../../../components/core/Button'
 // import Link from '../../../components/core/Link'
 
-function Header({ }) {
+function Header({ user }) {
     console.log('Header -> render')
 
     const navigate = useNavigate()
 
-    const user = ''
+    // const user = ''
 
     const handleLogout = () => {
         logic.logoutUser()
@@ -30,10 +30,6 @@ function Header({ }) {
         </div>
 
     </header >
-
-
-
-
 
 }
 

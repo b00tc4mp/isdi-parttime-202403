@@ -9,30 +9,32 @@ import Register from './views/Register'
 import Home from './views/Home'
 import { Notfound } from './views/Notfound'
 import { Login } from './views/Login'
-import Header from './views/components/Header/Header'
+// import Header from './views/components/Header/Header'
 import { CreateAdForm } from './views/components/CreateAdForm/CreateAdForm'
 // import AdList from './views/components/AdList/AdList.jsx'
 
 function App() {
   console.log('App -> render')
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
-  //  const handleGoToLogin = () => navigate('/login')
+  const handleGoToLogin = () => navigate('/login')
 
-  // const handleGoToHome = () => navigate('/')
+  const handleGoToHome = () => navigate('/')
 
-  // const handleGoToRegister = () => navigate('/register')
+  const handleGoToRegister = () => navigate('/register')
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register />} />
+        <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login />} />
         {/* <Route path="/adlist" element={<AdList />} /> */}
 
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={logic.isUserLoggedIn() ? <Home /> : <Navigate to="/login" />} />
+
+
         <Route path="/createad" element={<CreateAdForm />}></Route>
         <Route path="/*" element={<Notfound />} />
       </Routes>

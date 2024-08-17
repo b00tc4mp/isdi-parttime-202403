@@ -41,9 +41,9 @@ function Home() {
 
     return <>
 
-        {/* <Header>
+        <Header user={user} />
 
-            <Title>Farm-Hub</Title>
+        {/* <Title>Farm-Hub</Title>
             <h1 className='UsernameTitle'>{user.username}</h1>
 
 
@@ -55,12 +55,7 @@ function Home() {
 
             </div>
 
-            {/* <div>
-                <Link to="/login">Login</Link>
 
-                <Link to="/register">Register</Link>
-
-            </div> */}
         </main>
     </>
 }

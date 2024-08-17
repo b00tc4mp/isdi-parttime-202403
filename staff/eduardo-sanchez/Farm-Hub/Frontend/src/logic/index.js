@@ -4,6 +4,7 @@ import getAllAds from './getAllAds'
 import createAd from './createAd'
 import getUserInfo from './getUserInfo'
 import logoutUser from './logoutUser'
+import isUserLoggedIn from './isUserLoggedIn'
 import deleteAd from './deleteAd'
 
 
@@ -14,6 +15,7 @@ const logic = {
     getAllAds,
     getUserInfo,
     logoutUser,
+    isUserLoggedIn,
     deleteAd
 }
 
