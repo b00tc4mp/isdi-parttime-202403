@@ -1,9 +1,12 @@
 @tailwind components;
 
-.Footer {
-  @apply w-full flex justify-around fixed bottom-0 p-3 bg-[--third-color];
-}
+@layer components {
+  .Footer {
+    @apply w-full flex justify-around fixed bottom-0 p-0 bg-[white] border-solid border-[--fourth-color] border-t-[1px];
+  }
 
+  
+}
 .FooterButton {
   @apply bg-transparent border-none cursor-pointer text-white;
 }
@@ -11,7 +14,6 @@
 .FooterButton:focus {
   @apply outline-none;
 }
-
-.FooterIcon {
-  @apply text-2xl;
+.FooterIcon i {
+  @apply text-2xl text-[--fourth-color];
 }

@@ -9,7 +9,7 @@
     @apply pt-[120px] pb-[90px]
   }
   .ResultsList article {
-    @apply flex flex-col w-full min-h-[60px] bg-white items-center pt-1 mb-5;
+    @apply flex flex-col w-full min-h-[60px] bg-white items-center pt-1 mb-5 rounded-[8px] border-solid border-[--fourth-color] border-[1px];;
   }
 
   .ResultsList .result-header {

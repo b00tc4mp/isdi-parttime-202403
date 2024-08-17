@@ -1,8 +1,8 @@
-@tailwind base;
 @tailwind components;
-@tailwind utilities;
 
-.GoBackButton {
-  @apply flex gap-[3rem] w-full bg-transparent fixed top-[100px] ml-[20px] cursor-pointer;
-
-  }
+@layer components{
+  .GoBackButton {
+    @apply flex gap-[3rem] w-full bg-transparent fixed top-[100px] ml-[20px] cursor-pointer;
+  
+    }
+}

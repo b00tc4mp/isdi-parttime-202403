@@ -18,8 +18,8 @@ export default function Header({ children, username, onLogout }) {
     return (
         <header className="Header">
             {children}
-            <div className="flex flex-wrap items-center space-x-4">
-                <div className="flex items-center justify-center w-12 h-12 bg-gray-300 rounded-full text-white text-xl font-bold">
+            <div className="user-logo">
+                <div className="user-initial">
                     {handlePrintInitialLetter(username)}
                 </div>
             </div>

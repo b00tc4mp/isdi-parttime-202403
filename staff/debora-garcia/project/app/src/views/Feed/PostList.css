@@ -9,7 +9,7 @@
     @apply pt-[90px] pb-[90px];
   }
   .PostList article {
-    @apply flex flex-col bg-white items-center p-[10px_0] mb-5;
+    @apply flex flex-col bg-white items-center p-[10px_0] mb-5 rounded-[8px];
   }
 
   .PostList .post-header {
