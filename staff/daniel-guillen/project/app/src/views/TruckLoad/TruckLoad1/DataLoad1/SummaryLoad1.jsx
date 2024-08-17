@@ -6,9 +6,9 @@ import GroupedWasteItem from '../../../../components/GroupedWasteItem'
 import groupedByCode from '../../../../logic/groupedByCode'
 import getWeekNumberYear from '../../../../logic/getWeekNumberYear'
 
-const SummaryLoad3 = () => {
+const SummaryLoad1 = () => {
 
-  const groupedItems = groupedByCode('dataTruck3Load')
+  const groupedItems = groupedByCode('dataTruck1Load')
   const { week, year } = getWeekNumberYear()
 
   // Filtramos los residuos por semana, año actual y ordenamos por codigo
@@ -19,13 +19,16 @@ const SummaryLoad3 = () => {
   return (
     <View>
       <div className='SummaryDiv' >
-        <h2 className='title' >Carga 3 Semana {week}:</h2>
+
+        <h2 className='title'>Carga 1 Semana {week}</h2>
+
           {filteredItems.map(item => (
               <GroupedWasteItem key={item.id} item={item} />
           ))}
+
       </div>
     </View>
   )
 }
 
-export default SummaryLoad3
+export default SummaryLoad1

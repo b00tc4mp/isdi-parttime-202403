@@ -8,10 +8,10 @@ import deleteItem from '../../../../logic/deleteItem'
 import getWeekNumberYear from '../../../../logic/getWeekNumberYear'
 import sortWasteItems from '../../../../logic/sortWasteItems'
 
-const DataTruckLoad3 = () => {
+const DataTruckLoad1 = () => {
 
-  const { list } = useFetchItemsList('dataTruck3Load')
-  const { deleteWaste  } = deleteItem('dataTruck3Load')
+  const { list } = useFetchItemsList('dataTruck1Load')
+  const { deleteWaste  } = deleteItem('dataTruck1Load')
   const { week, year } = getWeekNumberYear()
 
     // Filtramos los residuos por semana y año actual
@@ -32,4 +32,4 @@ const DataTruckLoad3 = () => {
   )
 }
 
-export default DataTruckLoad3
+export default DataTruckLoad1

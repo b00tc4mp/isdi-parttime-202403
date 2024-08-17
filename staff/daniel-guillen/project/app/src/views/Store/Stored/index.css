@@ -1,3 +1,11 @@
+.Store {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
 .StoreWasteForm {
   display: flex;
   align-items: center;
@@ -21,24 +29,4 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-}
-
-.SubmitButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 42px;
-  width: 42px;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 30px;
-  border-radius: 5px;
-  border: grey solid 1px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.SubmitButton:hover {
-  background: grey;
-  border: black 1px solid;
 }

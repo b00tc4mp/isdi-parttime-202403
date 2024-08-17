@@ -1,15 +1,15 @@
 import React from 'react'
-import ActecoTruckLoad from './Register'
-import DataActecoList from './DataActeco'
+import RegisterTruckLoad1 from './Register'
+import DataActecoList from './DataLoad1'
 import MenuLoads from '../MenuLoads'
-import SummaryActeco from './DataActeco/SummaryActeco'
+import SummaryActeco from './DataLoad1/SummaryLoad1'
 
 import '../index.css'
 
-const TruckLoad = () => {
+const TruckLoad1 = () => {
   return (
     <div className='TruckLoad'> 
-        <ActecoTruckLoad />
+        <RegisterTruckLoad1 />
         <SummaryActeco />
         <DataActecoList />
         <MenuLoads />
@@ -17,4 +17,4 @@ const TruckLoad = () => {
   )
 }
 
-export default TruckLoad
+export default TruckLoad1

@@ -1,16 +1,20 @@
 import React from 'react'
-import Register from './Register'
 import './index.css'
-import DataStoreList from './Register/DataStore'
-import MenuStore from '././MenuStore/'
+//components
+import View from '../../../components/core/View'
+import Register from './Register'
+import DataStoreList from './DataStore'
+import MenuStore from '../MenuStore'
 
 const Store = () => {
   return (
+    <View>
     <div className='Store'>
         <Register />
         <DataStoreList />
         <MenuStore />
     </div>
+    </View>
   )
 }
 

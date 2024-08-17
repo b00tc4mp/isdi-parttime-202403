@@ -1,11 +1,13 @@
 import React from 'react'
-import View from '../core/View'
 import './index.css'
-import grg from './img/grg.png'
-import palet from './img/palet.png'
-import bigbag from './img/bigbag.png'
-import b200 from './img/b200.png'
-import bm200 from './img/bm200.png'
+//components
+import View from '../core/View'
+//img
+import grg from '../img/grg.png'
+import palet from '../img/palet.png'
+import bigbag from '../img/bigbag.png'
+import b200 from '../img/b200.png'
+import bm200 from '../img/bm200.png'
 
 function WasteContainer( { optionsContainer, handleOptionsContainer }) {
 

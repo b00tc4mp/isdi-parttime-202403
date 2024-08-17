@@ -7,6 +7,8 @@ Las aplicaciones personalizadas son herramientas diseñadas específicamente par
 
 ### Login, Registro y lista de Usuarios
 
+![Login - Registro de usuarios y listado de usuarios](img/users.png)
+
 ### Casos de Usuario
 
 ### Administador
@@ -18,8 +20,6 @@ Las aplicaciones personalizadas son herramientas diseñadas específicamente par
 ### Usuario
 
 - Acceso y uso de la seccion asignada
-
-![Login - Registro de usuarios y listado de usuarios](users.png)
 
 ### HOME
 
@@ -42,7 +42,7 @@ Solo podra acceder el usuario que tenga asignada esta seccion (almacen:inventari
 
 ## Inventario
 
-![Inventario](img/store.png)
+![Inventario](img/inventario.png)
 
 El usuario podra hacer registro de los residuos:
 
@@ -53,15 +53,15 @@ El usuario podra hacer registro de los residuos:
 
 En el inventario el usuario podra ver los residuos registrados donde se mostraran agrupados por LER y diferenciados por su acondicionamiento e indicando su peso en kg.
 
-![Resumen](img/status.png)
-
 ## Resumen y Estancados
+
+![Resumen](img/status.png)
 
 Usuario pueden consultar un resumen de los resudios almacenados (Cantidad total en kg por LER) y recordatorio de los que se encuentran estancados.
 
-![Buscar](img/search.png)
-
 ## Buscar
+
+![Buscar](img/search.png)
 
 El usuario puede buscar todos los residuos registrados con un LER especifico:
     - Introducir un LER en el buscador

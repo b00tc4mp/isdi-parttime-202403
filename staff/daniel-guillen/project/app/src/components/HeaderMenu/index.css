@@ -1,7 +1,7 @@
 .Nav {
   display: flex;
   max-width: 800px;
-  margin: 0.5rem auto 0.5rem auto;
+  margin: 0.5rem auto 0 auto;
   justify-content: center;
   flex-direction: column;
   border-top-right-radius: 5px;

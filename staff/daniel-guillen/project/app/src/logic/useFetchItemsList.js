@@ -1,29 +1,30 @@
 import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
-import { db } from '../config'
+import { db } from '../firebase/config'
 
-const useFetchWasteList = () => {
-  
+// Pasaremos el nombre de la coleccion como parametro
+const useFetchItemsList = (collectionName) => {
   const [list, setList] = useState([])
 
   useEffect(() => {
     const getList = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'dataStoreWaste'))
+        // Usando la coleccion dinamiecamente
+        const querySnapshot = await getDocs(collection(db, collectionName))
         const docs = []
         querySnapshot.forEach((doc) => {
           docs.push({ ...doc.data(), id: doc.id })
         })
         setList(docs)
       } catch (error) {
-        console.log(error)
+        console.log('Error fetching data:', error)
       }
     }
 
     getList()
-  }, [])
+  }, [collectionName])
 
   return { list, setList }
 }
 
-export default useFetchWasteList
+export default useFetchItemsList

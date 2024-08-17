@@ -1,6 +1,8 @@
-import './index.css'
-import View from '../core/View'
 import React from 'react'
+import './index.css'
+//components
+import View from '../core/View'
+
 const WasteStatus = ( { statusOptions, handleStatusOptions }) => {
 
   return (

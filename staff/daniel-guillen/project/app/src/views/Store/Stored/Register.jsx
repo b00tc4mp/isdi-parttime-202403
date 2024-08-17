@@ -1,16 +1,19 @@
 import React from 'react'
-import WasteSelect from '../../../components/WasteSelect'
-import useWasteSelection from '../../../handlers/useWasteSelection'
-import WasteContainer from '../../../components/WasteContainer'
-import useWasteContainer from '../../../handlers/useWasteContainer'
-import WasteStatus from '../../../components/WasteStatus'
-import useWasteStatus from '../../../handlers/useWasteStatus'
-import WasteWeight from '../../../components/WasteWeight'
-import useWasteWeight from '../../../handlers/useWasteWeight'
-
-import submitDataStoreWaste from '../../../firebase/stored/submitDataStoreWaste'
-import View from '../../../components/core/View'
 import './index.css'
+//components
+import View from '../../../components/core/View'
+import michelangelo64 from '../../../components/img/michelangelo64.png'
+import WasteSelect from '../../../components/WasteSelect'
+import WasteContainer from '../../../components/WasteContainer'
+import WasteStatus from '../../../components/WasteStatus'
+import WasteWeight from '../../../components/WasteWeight'
+//handlers
+import useWasteSelection from '../../../handlers/useWasteSelection'
+import useWasteContainer from '../../../handlers/useWasteContainer'
+import useWasteStatus from '../../../handlers/useWasteStatus'
+import useWasteWeight from '../../../handlers/useWasteWeight'
+//logic
+import submitDataStoreWaste from '../../../firebase/stored/submitDataStoreWaste'
 
 const Register = () => {
 
@@ -24,6 +27,7 @@ const Register = () => {
   return (
     <View>
     <div className='StoreDiv'>
+      <h1 className='RouteTitle'>INVENTARIO</h1>
 
       <form className='StoreWasteForm' onSubmit={(e) => { e.preventDefault(); saveData(); }}>
 
@@ -31,7 +35,7 @@ const Register = () => {
 
         <WasteSelect selectedWaste={selectedWaste} handleWasteChange={handleWasteChange} />
 
-        <button className='SubmitButton' type='submit'>💾</button>
+        <button className='SubmitButton' type='submit'><img className='SubmitButtonImage' src={michelangelo64} /></button>
 
         </div>
         

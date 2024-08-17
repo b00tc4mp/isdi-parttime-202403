@@ -1,5 +1,5 @@
 import React from 'react'
-import '../index.css'
+import './index.css'
 
 const StagnantWasteItem = ({ item }) => {
   const shortDescription = item.description.length > 34
@@ -8,8 +8,10 @@ const StagnantWasteItem = ({ item }) => {
 
   return (
     <div className='StagnantWasteDiv'>
+
       <p>{item.code} - {item.container} - {item.weight}kg</p>
       <p className='ShortDescription'>{shortDescription}</p>
+      
     </div>
   )
 }

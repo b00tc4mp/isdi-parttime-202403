@@ -1,20 +1,10 @@
 import { collection, addDoc } from "firebase/firestore"
 import { db } from '../config'
-import { useState, useEffect } from 'react'
-
-import getWeekNumber from "../../logic/getWeekNumber"
-
+import getWeekNumberYear from '../../logic/getWeekNumberYear'
 
 const submitDataTruck2 = (selectedWaste, weight, optionsContainer ) => {
   
-  const [week, setWeek] = useState("")
-  const [year, setYear] = useState("")
-
-  useEffect(() => {
-    const today = new Date()
-    setWeek(getWeekNumber(today))
-    setYear(today.getFullYear().toString())
-  }, [])
+  const { week, year } = getWeekNumberYear()
 
   // estructura de datos
   const saveData = () => {

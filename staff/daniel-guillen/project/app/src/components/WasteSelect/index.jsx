@@ -1,8 +1,11 @@
-import Select from 'react-select'
-import View from '../core/View'
 import React, { useState, useEffect } from 'react'
-import data from './wasteList.json'
+import Select from 'react-select'
 import './index.css'
+//components
+import View from '../core/View'
+//data
+import data from './wasteList.json'
+
 
 const WasteSelect = ({ selectedWaste, handleWasteChange }) => {
   
