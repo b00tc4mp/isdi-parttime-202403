@@ -43,4 +43,3 @@ const deleteRoom = (userId, roomId) => {
 
 export default deleteRoom
 
-//TODO Error is not defined

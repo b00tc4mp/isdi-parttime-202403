@@ -1,4 +1,4 @@
-import { SystemError } from "com/errors";
+import errors, { SystemError } from "com/errors";
 import validate from "com/validate";
 
 const deleteRoom = (userId, roomId) => {

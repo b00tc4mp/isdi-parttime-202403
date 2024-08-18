@@ -5,7 +5,7 @@ const registerUserHandler = (req, res, next) => {
 
   try {
     logic.registerUser (name, surname, email, phone, password, passwordRepeat)
-      .then(() => res.status(201).send('created user'))
+      .then(() => res.status(201).send())
       .catch(error => {
         next(error)
       })

@@ -1,5 +1,5 @@
 import { NotFoundError, SystemError } from 'com/errors.js'
-import { User } from '../data/index.js'
+import { Room, User } from '../data/index.js'
 import validate from 'com/validate.js'
 
 
@@ -13,6 +13,8 @@ const closeAccount = (userId) => {
         throw new NotFoundError('user not found')
       }
 
+
+
       return User.deleteOne({ _id: userId })
         .catch(error => new SystemError(error.message))
         .then(() => { })
@@ -21,3 +23,6 @@ const closeAccount = (userId) => {
 
 
 export default closeAccount
+
+
+//TODO tienes que eliminar los bookinga hablando con el host

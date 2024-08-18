@@ -15,9 +15,6 @@ const getAllUserRooms = (userId) => {
       return Room.find({author: userId}).select('-__v').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(rooms => {
-          if (!rooms) {
-            throw new NotFoundError('rooms not found')
-          }
           rooms.forEach(rooms => {
             rooms.id = rooms._id.toString()
             delete rooms._id

@@ -74,11 +74,6 @@ function validateRegion(region, explain = 'region') {
   }
 }
 
-function validatePrice(price, explain = 'price') {
-  if (typeof price !== 'string' || !PRICE_REGEX.test(price)) {
-    throw new ContentError(`${explain} is not valid`);
-  }
-}
 
 
 const validate = {
@@ -93,9 +88,7 @@ const validate = {
   url: validateUrl,
   id: validateId,
   region: validateRegion,
-  price: validatePrice,
 }
 
 export default validate
 
-//TODO Validate dates

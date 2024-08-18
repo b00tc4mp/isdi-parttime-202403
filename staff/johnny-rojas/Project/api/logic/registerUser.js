@@ -11,7 +11,7 @@ const registerUser = (name, surname, email, phone, password, passwordRepeat) => 
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
-    return User.findOne({ email }, { phone })
+    return User.findOne({ $or: [{ email }, { phone }]})
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user) {

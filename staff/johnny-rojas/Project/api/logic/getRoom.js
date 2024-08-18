@@ -6,7 +6,7 @@ const getRoom = (userId, roomId) => {
   validate.id(userId, 'userId')
   validate.id(roomId, 'roomId')
 
-  return User.findById(userId).lean()  //TODO revisar
+  return User.findById(userId).lean()  
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {

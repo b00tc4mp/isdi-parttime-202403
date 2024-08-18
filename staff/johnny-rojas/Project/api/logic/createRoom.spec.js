@@ -17,6 +17,7 @@ describe('createRoom', () => {
   beforeEach(() => Promise.all([User.deleteMany(), Room.deleteMany()]))
 
   it('succeeds on new room', () =>
+    
     bcrypt.hash('1234', 8)
       .then(hash => User.create({
         name: 'Mocha',
@@ -25,6 +26,7 @@ describe('createRoom', () => {
         phone: '+58 414 455 7362',
         password: hash
       }))
+
       .then(user =>
         createRoom(user.id, 'Room', 'Este', 'Anzoategui, El tigre', 'https://miro.medium.com/vqW5DGh9CQS4hLY5FXzA.png', 'hab doble', '5344 USD')
           .then(() => Room.findOne())

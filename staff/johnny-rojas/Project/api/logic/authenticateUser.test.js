@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
       authenticateUser('user@user.com', '1234')
-        .then(() => console.log('authenticated'))
+        .then(() => {})
         .catch(error => console.error(error))
     } catch (error) {
       console.error(error)

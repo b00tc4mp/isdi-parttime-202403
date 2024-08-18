@@ -4,8 +4,10 @@ import { User, Room } from '../data/index.js'
 import getAllUserRooms from './getAllUserRooms.js'
 import { expect } from 'chai'
 import bcrypt from 'bcryptjs'
+import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
+const { ObjectId } = mongoose.Types
 
 describe('getAllUserRooms', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Room.deleteMany()])))
@@ -67,6 +69,17 @@ describe('getAllUserRooms', () => {
       })
       .then(rooms => {
         expect(rooms).to.be.an('array').that.is.empty
+      })
+  })
+
+  it('fails on non-existing user', () => {
+    let errorThrown
+
+    return getAllUserRooms(new ObjectId().toString())
+      .catch(error => errorThrown = error)
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal('user not found')
       })
   })
 
