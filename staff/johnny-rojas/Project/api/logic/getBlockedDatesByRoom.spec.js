@@ -87,6 +87,28 @@ describe('getBlockedDatesByRoom', () => {
         expect(blockedDates).to.be.an('array').that.is.empty
       })
   })
+
+  it('fails when room does not exist', () => {
+    let user
+
+    return bcrypt.hash('1234', 8)
+      .then(hash => User.create({
+        name: 'Mocha',
+        surname: 'Chai',
+        email: 'mocha@chai.com',
+        phone: '+58 414 455 7362',
+        password: hash
+      }))
+      .then(createdUser => {
+        user = createdUser
+        return getBlockedDatesByRoom(user.id, new ObjectId().toString())
+          .catch(error => {
+            expect(error).to.be.instanceOf(NotFoundError)
+            expect(error.message).to.equal('room not found')
+          })
+      })
+  })
+
   
   after(() => Booking.deleteMany().then(() => mongoose.disconnect()))
 })

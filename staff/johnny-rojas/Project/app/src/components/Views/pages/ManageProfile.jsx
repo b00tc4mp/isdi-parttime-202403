@@ -7,7 +7,7 @@ import Field from "../core/Field"
 import SubmitButton from "../core/SubmitButton";
 import logic from "../../../logic/index"
 import { getUserId } from "../../../logic/getUserInfo";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 function ManageProfile() {
@@ -58,7 +58,7 @@ function ManageProfile() {
       <div>
         <View className='RegisterForm' tag='main'>
 
-          <Title className='TitleCreateRoom'>Edita tu informacion de contactocontacto</Title>
+          <Title className='TitleCreateRoom'>Edita tu informacion de contacto</Title>
 
           <div>
             

@@ -87,5 +87,26 @@ describe('getRoomBookings', () => {
       })
   })
 
+  it('fails when room does not exist', () => {
+    let user
+
+    return bcrypt.hash('1234', 8)
+      .then(hash => User.create({
+        name: 'Mocha',
+        surname: 'Chai',
+        email: 'mocha@chai.com',
+        phone: '+58 414 455 7362',
+        password: hash
+      }))
+      .then(createdUser => {
+        user = createdUser
+        return getRoomBookings(user.id, new ObjectId().toString())
+          .catch(error => {
+            expect(error).to.be.instanceOf(NotFoundError)
+            expect(error.message).to.equal('room not found')
+          })
+      })
+  })
+
   after(() => Promise.all([User.deleteMany(), Room.deleteMany()]).then(() => mongoose.disconnect()))
 })

@@ -4,8 +4,10 @@ import { User, Room, Booking } from '../data/index.js'
 import getAllBookingsByGuest from './getAllBookingsByGuest.js'
 import { expect } from 'chai'
 import bcrypt from 'bcryptjs'
+import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
+const { ObjectId } = mongoose.Types
 
 describe('getAllBookingsByGuest', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()])))
@@ -116,9 +118,19 @@ describe('getAllBookingsByGuest', () => {
       .then(bookings => {
         expect(bookings).to.be.an('array').that.is.empty
       })
-
-
   })
+
+  it('fails on non-existing user', () => {
+    let errorThrown
+
+    return getAllBookingsByGuest(new ObjectId().toString())
+      .catch(error => errorThrown = error)
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal('user not found')
+      })
+  })
+
 
   after(() => Booking.deleteMany().then(() => mongoose.disconnect()))
 })

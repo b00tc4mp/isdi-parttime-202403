@@ -65,6 +65,7 @@ describe('createBooking', () => {
       })
   })
 
+
   it('fails manager cannot book their own rooms', () => {
 
     return bcrypt.hash('1234', 8)
@@ -130,7 +131,7 @@ describe('createBooking', () => {
         })
       })
       .then(() => {
-        return createBooking(user.id, room.id, new Date(), new Date(new Date().setDate(new Date().getDate() + 2)))
+        return createBooking(user.id, room.id, new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
           .catch(error => {
             expect(error).to.be.instanceOf(DuplicityError)
             expect(error.message).to.equal('unavailable dates')
@@ -164,7 +165,7 @@ describe('createBooking', () => {
       })
       .then(createdRoom => {
         room = createdRoom
-        return createBooking(user.id, room.id, new Date(), new Date(new Date().setDate(new Date().getDate() + 2)))
+        return createBooking(user.id, room.id, new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
           .catch(error => {
             expect(error).to.be.instanceOf(MatchError)
             expect(error.message).to.equal('manager cannot book their own rooms')
@@ -185,13 +186,25 @@ describe('createBooking', () => {
       }))
       .then(createdUser => {
         user = createdUser
-        return createBooking(user.id, new ObjectId().toString(), new Date(), new Date(new Date().setDate(new Date().getDate() + 2)))
+        return createBooking(user.id, new ObjectId().toString(), new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
           .catch(error => {
             expect(error).to.be.instanceOf(NotFoundError)
             expect(error.message).to.equal('room not found')
           })
       })
   })
+
+  it('fails on non-existing user', () => {
+    let errorThrown
+
+    return createBooking(new ObjectId().toString(), new ObjectId().toString(), new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
+      .catch(error => errorThrown = error)
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal('user not found')
+      })
+  })
+
 
   after(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()]).then(() => mongoose.disconnect()))
 })
