@@ -1,12 +1,12 @@
-# DEMO - CDR
-
-![Logo Universal](img/logo.jpg)
+# DEMO - MICHELANGELO
+![Logo Universal](img/logo.png)
 
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
 Custom applications are tools designed specifically to meet the particular needs of a company. These applications can offer a wide range of benefits that can improve efficiency, productivity and competitiveness. Some of the main reasons why they are useful: Adaptation to Specific NEEDS, INTEGRATION with Existing Systems, Improvement of Operational EFFICIENCY, SECURITY and Data Collection and Analysis.
 
 # Registration and list of Users
+![Login - Registro de usuarios y listado de usuarios](img/users.png)
 
 ## User Cases
 
@@ -20,7 +20,11 @@ Custom applications are tools designed specifically to meet the particular needs
 
 - Access and use of the assigned section
 
-![Login - Registro de usuarios y listado de usuarios](img/users.png)
+### HOME
+
+![HOME](img/home.png)
+
+Only the ADMIN will be able to access it after completing the login with their unique credentials, you will have at first glance access to the main categories (Incentario, Departures, Vehicles and Users).
 
 # Warehouse and Inventory
 
@@ -34,7 +38,9 @@ Here are some key reasons why it is necessary to maintain an inventory: real sto
 
 Only the user assigned to this section will be able to access it (warehouse: inventory, stagnant, data and search).
 
-### Inventory
+### Stored wastes
+
+![Inventario](img/inventario.png)
 
 The user will be able to register the waste:
 
@@ -45,17 +51,14 @@ The user will be able to register the waste:
 
 In the inventory the user will be able to see the registered waste where they will be grouped by LER and differentiated by their packaging and indicating their weight in kg.
 
-### Stagnant
+### Summary & Stagnant
 
-Users can consult which waste is stored (minimum one month) for an extended period.
+![Resumen](img/status.png)
 
-### Data
-
-Workers can consult a summary of the data recorded in inventory:
-    - Horizontal graph
-    - Total amount in kg per LER (residue)
+Users can consult a summary of the stored waste (Total amount in kg per LER) and a reminder of those that are stagnant.
 
 ### Search
+![Buscar](img/search.png)
 
 The user can search for all waste registered with a specific LER:
     - Enter an LER in the search engine
@@ -72,6 +75,8 @@ Preparing a truck load list is essential for several reasons, both logistical, s
 ## Departures
 
 Only the user assigned to this section will be able to access it (outputs: trailer1, trailer2, trailer3 and search)
+
+![Salidas](img/truckload.png)
 
 ### Trailer 1,2 and 3
 

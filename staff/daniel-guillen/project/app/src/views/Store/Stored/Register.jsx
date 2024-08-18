@@ -13,7 +13,7 @@ import useWasteContainer from '../../../handlers/useWasteContainer'
 import useWasteStatus from '../../../handlers/useWasteStatus'
 import useWasteWeight from '../../../handlers/useWasteWeight'
 //logic
-import submitDataStoreWaste from '../../../firebase/stored/submitDataStoreWaste'
+import useSubmitWaste from '../../../logic/useSubmitWaste'
 
 const Register = () => {
 
@@ -22,7 +22,7 @@ const Register = () => {
   const { optionsContainer, handleOptionsContainer } = useWasteContainer()
   const { statusOptions, handleStatusOptions } = useWasteStatus()
   
-  const { saveData } = submitDataStoreWaste(selectedWaste, weight, optionsContainer, statusOptions)
+  const { saveData } = useSubmitWaste('dataStoreWaste', selectedWaste, weight, optionsContainer, statusOptions)
 
   return (
     <View>

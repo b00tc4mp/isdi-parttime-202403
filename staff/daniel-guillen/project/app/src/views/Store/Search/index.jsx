@@ -9,7 +9,7 @@ import MenuStore from '../MenuStore'
 import useWasteSelection from '../../../handlers/useWasteSelection'
 //logic
 import useFetchItemsList from '../../../logic/useFetchItemsList'
-import deleteItem from '../../../logic/deleteItem'
+import useDeleteItem from '../../../logic/useDeleteItem'
 import filterByMonthYear from '../../../logic/filterByMonthYear'
 import sortWasteItems from '../../../logic/sortWasteItems'
 
@@ -17,8 +17,8 @@ const SearchWaste = () => {
 
     const { selectedWaste, handleWasteChange } = useWasteSelection()
 
-    const { list, setList } = useFetchItemsList('dataStoreWaste')
-    const { deleteWaste  } = deleteItem('dataStoreWaste')
+    const { list } = useFetchItemsList('dataStoreWaste')
+    const { deleteWaste  } = useDeleteItem('dataStoreWaste')
 
     const today = new Date();
     const month = String(today.getMonth() + 1).padStart(2, '0')

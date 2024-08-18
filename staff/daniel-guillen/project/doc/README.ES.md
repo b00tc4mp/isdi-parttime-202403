@@ -1,5 +1,5 @@
-# DEMO - CDR - EMPRESA DE RESIDUOS
-![Logo Universal](img/logo.jpg)
+# DEMO - MICHELANGELO
+![Logo Universal](img/logo.png)
 
 ![Aplicacion](https://media4.giphy.com/media/Zu9Dt0nOVYWTiQcvV6/giphy.webp?cid=ecf05e475j58b42vamctteexwavgy2o6np19ih5fmv5oeggd&ep=v1_gifs_search&rid=giphy.webp&ct=g)
 
@@ -25,7 +25,7 @@ Las aplicaciones personalizadas son herramientas diseñadas específicamente par
 
 ![HOME](img/home.png)
 
-Solo podra acceder el ADMIN despues de completar login con sus credenciales personales, tendra en un primer vistazo acceso a las principales categorias(Incentario, Salidas, Vehiculos y Usuarios).
+Solo podra acceder el ADMIN despues de completar login con sus credenciales unicas, tendra en un primer vistazo acceso a las principales categorias(Incentario, Salidas, Vehiculos y Usuarios).
 
 
 ### Almacen e Inventario
@@ -80,7 +80,7 @@ Solo podra acceder el usuario que tenga asignada esta seccion (salidas:Acteco, t
 
 ![Salidas](img/truckload.png)
 
-## Acteco, 2a Carga y 3a Carga
+## Trailer 1, Trailer 2 y Trailer 3
 
 El usuario podra hacer un registro de los residuos que se cargaran en el trailer, podra indicar:
 
@@ -96,7 +96,7 @@ El usuario puede buscar todos los residuos registrados para cargar en los traile
     - Introducir un LER en el buscador
     - Introducir semana del año
     - Introducir año
-    - Introducir Acteco, 2a Carga o 3a Carga
+    - Introducir 1a carga, 2a Carga o 3a Carga
 
 ### Vehiculo y Mantenimiento
 

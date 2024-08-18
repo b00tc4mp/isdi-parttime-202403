@@ -1,14 +1,11 @@
 import { collection, addDoc } from "firebase/firestore"
-import { db } from '../config'
-import getWeekNumberYear from '../../logic/getWeekNumberYear'
+import { db } from '../firebase/config'
 
-const submitDataActeco = (selectedWaste, weight, optionsContainer ) => {
-  
-  const { week, year } = getWeekNumberYear()
+const useSubmitLoad = (collectionName, selectedWaste, weight, optionsContainer, week, year ) => {
 
     // estructura de datos
     const saveData = () => {
-      const dataActeco = {
+      const dataItem = {
         code: selectedWaste.code,
         description: selectedWaste.description,
         weight: weight,
@@ -16,13 +13,13 @@ const submitDataActeco = (selectedWaste, weight, optionsContainer ) => {
         week: week,
         year: year
       }
-      console.log(dataActeco)
+      console.log(dataItem)
 
     // guardamos en base de datos
 
-    const dataActecoLoad = collection(db, "dataTruck1Load")
+    const dataItemLoad = collection(db, collectionName)
 
-    addDoc(dataActecoLoad, dataActeco)
+    addDoc(dataItemLoad, dataItem)
       .then(() => {
         alert('Residuo Registrado 🎉 ' + selectedWaste.code + '-' + selectedWaste.description)
         window.location.reload()
@@ -35,4 +32,4 @@ const submitDataActeco = (selectedWaste, weight, optionsContainer ) => {
   return { saveData }
 }
 
-export default submitDataActeco
+export default useSubmitLoad

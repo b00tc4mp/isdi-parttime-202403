@@ -1,7 +1,7 @@
 import { collection, addDoc } from "firebase/firestore"
-import { db } from '../config'
+import { db } from '../firebase/config'
 
-const submitDataStoreWaste = (selectedWaste, weight, optionsContainer, statusOptions) => {
+const submitDataStoreWaste = (collectionName, selectedWaste, weight, optionsContainer, statusOptions) => {
   
   const saveData = () => {
     const today = new Date()
@@ -20,7 +20,7 @@ const submitDataStoreWaste = (selectedWaste, weight, optionsContainer, statusOpt
     }
     console.log(dataWaste)
 
-    const dataBaseStoreWaste = collection(db, "dataStoreWaste")
+    const dataBaseStoreWaste = collection(db, collectionName)
 
     addDoc(dataBaseStoreWaste, dataWaste)
       .then(() => {

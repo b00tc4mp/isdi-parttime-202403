@@ -10,7 +10,7 @@ import useWasteSelection from '../../../../handlers/useWasteSelection'
 import useWasteContainer from '../../../../handlers/useWasteContainer'
 import useWasteWeight from '../../../../handlers/useWasteWeight'
 //logic
-import submitDataActeco from '../../../../firebase/acteco/submitDataActeco'
+import useSubmitLoad from '../../../../logic/useSubmitLoad'
 import getWeekNumberYear from '../../../../logic/getWeekNumberYear'
 
 
@@ -20,7 +20,7 @@ const RegisterTruckLoad1 = () => {
   const { weight, handleWeightChange } = useWasteWeight()
   const { optionsContainer, handleOptionsContainer } = useWasteContainer()
   const { week, year } = getWeekNumberYear()
-  const { saveData } = submitDataActeco(selectedWaste, weight, optionsContainer)
+  const { saveData } = useSubmitLoad('dataTruck1Load', selectedWaste, weight, optionsContainer, week, year)
 
   return (
     <View>
