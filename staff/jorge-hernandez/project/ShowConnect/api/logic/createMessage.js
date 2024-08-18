@@ -2,7 +2,7 @@ import validate from 'com/validate.js'
 import { Message } from '../data/index.js'
 
 import { SystemError } from 'com/errors.js'
-
+//TODO authenticate user
 const createMessage = (userId, messageText, chatId) => {
   validate.id(userId, 'userId')
   validate.text(messageText, 'messageText')

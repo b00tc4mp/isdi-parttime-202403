@@ -1,7 +1,6 @@
 import validate from 'com/validate.js'
 import { Chat } from '../data/index.js'
 import { SystemError } from 'com/errors.js'
-
 const createChat = (userId, artistId) => {
   validate.id(userId, 'userId')
   validate.id(artistId, 'artistId')

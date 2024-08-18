@@ -15,7 +15,6 @@ function SendMessageAndRegister({ artistId }) {
     const messageText = form.message.value
     const password = form.password.value
     const passwordRepeat = form.passwordRepeat.value
-    //TODO VALIDATES
     logic
       .registerClient(
         name,
@@ -25,8 +24,9 @@ function SendMessageAndRegister({ artistId }) {
         passwordRepeat,
         artistId
       )
+
       .then(() => {
-        setMessage('User registered successfully')
+        setMessage('User registered successfully and message sended')
       })
       .catch((error) => {
         console.log(error)

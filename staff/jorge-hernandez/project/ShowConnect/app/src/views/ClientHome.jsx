@@ -1,5 +1,6 @@
 import logic from '../logic'
 import Header from '../components/Header'
+import UserChatsAndMessagesList from '../components/UserChatsAndMessagesList'
 
 function ClientHome({ onUserLoggedOut }) {
   const handleLogout = () => {
@@ -15,7 +16,7 @@ function ClientHome({ onUserLoggedOut }) {
       >
         ShowConnect
       </Header>
-      <h2>Client Home</h2>
+      <UserChatsAndMessagesList />
     </>
   )
 }

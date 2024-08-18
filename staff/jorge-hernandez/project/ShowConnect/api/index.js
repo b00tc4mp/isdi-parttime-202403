@@ -6,8 +6,6 @@ import mongoose from 'mongoose'
 import registerUserHandler from './handlers/registerUserHandler.js'
 import authenticateUserHandler from './handlers/authenticateUserHandler.js'
 import getArtistDataHandler from './handlers/getArtistDataHandler.js'
-import createChatHandler from './handlers/createChatHandler.js'
-import createMessageHandler from './handlers/createMessageHandler.js'
 import updateChatWithMessageHandler from './handlers/updateChatWithMessageHandler.js'
 import getArtistsByCityHandler from './handlers/getArtistsByCityHandler.js'
 import updateArtistHandler from './handlers/updateArtistHandler.js'
@@ -34,7 +32,7 @@ mongoose
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       })
     )
-
+    //TODO CHANGE ROUTE USERS BY ARTISTS
     api.get('/', (_, res) => res.send('Hello World'))
 
     api.post('/users', jsonbodyparser, registerUserHandler)
@@ -52,13 +50,7 @@ mongoose
 
     api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 
-    // api.post('/chats', jsonbodyparser, createChatHandler)
-    // api.post('/messages', jsonbodyparser, createMessageHandler)
-    // api.put(
-    //   '/chats/:chatId/messages/:messageId',
-    //   jsonbodyparser,
-    //   updateChatWithMessageHandler
-    // )
+    api.post('/messages', jsonbodyparser, updateChatWithMessageHandler)
 
     api.get('/chats/:userId', jsonbodyparser, getUserChatsAndMessagesHandler)
 

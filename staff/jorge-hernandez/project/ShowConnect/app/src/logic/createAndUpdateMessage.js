@@ -1,40 +1,24 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerClient = (
-  name,
-  email,
-  messageText,
-  password,
-  passwordRepeat,
-  artistId
-) => {
-  validate.name(name)
-  validate.email(email)
-  validate.text(messageText)
-  validate.password(password)
-  validate.passwordsMatch(password, passwordRepeat)
-  validate.id(artistId)
-
-  return fetch(`http://localhost:8080/clients`, {
+const createAndUpdateMessage = (chatId, userId, messageText) => {
+  return fetch(`http://localhost:8080/messages`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.token}`,
     },
     body: JSON.stringify({
-      name,
-      email,
+      chatId,
+      userId,
       messageText,
-      password,
-      passwordRepeat,
-      artistId,
     }),
   })
     .catch(() => {
       throw new SystemError('server error')
     })
     .then((response) => {
-      if (response.status === 201) return
+      if (response.status === 200) return
 
       return response
         .json()
@@ -51,4 +35,4 @@ const registerClient = (
     })
 }
 
-export default registerClient
+export default createAndUpdateMessage

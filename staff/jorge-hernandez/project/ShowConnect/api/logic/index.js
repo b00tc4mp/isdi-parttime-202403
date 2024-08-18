@@ -7,7 +7,8 @@ import registerClient from './registerClient.js'
 import createChat from './createChat.js'
 import createMessage from './createMessage.js'
 import getUserChatsAndMessages from './getUsersChatsAndMessages.js'
-
+import updateChatWithMessage from './updateChatWithMessage.js'
+import createAndUpdateMessage from './createAndUpdateMessage.js'
 const logic = {
   registerUser,
   authenticateUser,
@@ -18,6 +19,8 @@ const logic = {
   registerClient,
   createMessage,
   getUserChatsAndMessages,
+  updateChatWithMessage,
+  createAndUpdateMessage,
 }
 
 export default logic

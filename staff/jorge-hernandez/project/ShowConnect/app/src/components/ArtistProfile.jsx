@@ -3,7 +3,6 @@ import SendMessageAndRegister from './SendMessageAndRegister'
 
 function ArtistProfile({ artist, onClose }) {
   const [sendMessage, setSendMessage] = useState(false)
-  console.log(artist._id)
 
   const handleClickContact = () => {
     setSendMessage(true)
