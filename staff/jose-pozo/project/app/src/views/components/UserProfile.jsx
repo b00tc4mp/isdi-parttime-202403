@@ -39,16 +39,22 @@ const UserProfile = () => {
 
         <ViewBox tag='section' className={`p-4 text-fast-velvet rounded-md shadow-2xl bg-light-pale-sage z-20 border-solid border-2 row-span-3 col-span-3 h-full w-full col-start-2 row-start-2`}  >
 
-            <Text>User Profile</Text>
+            <fieldset className='border-solid border-2 rounded-md border-fast-velvet' >
 
-            <hr className='border-1 border-fast-velvet' ></hr>
+                <legend className='ml-10' > User Profile </legend>
 
-            <Box>
-                <Text>{`Name: ${selectedUserProfile.name} `}</Text>
-                <Text>{`Surname: ${selectedUserProfile.surname}`} </Text>
-                <Text> {`Email: ${selectedUserProfile.email}`} </Text>
-                <Text> {`Phone: ${selectedUserProfile.phone}`} </Text>
-            </Box>
+                <Text>User Profile</Text>
+
+                <hr className='border-1 border-fast-velvet' ></hr>
+
+                <Box>
+                    <Text>{`Name: ${selectedUserProfile.name} `}</Text>
+                    <Text>{`Surname: ${selectedUserProfile.surname}`} </Text>
+                    <Text> {`Email: ${selectedUserProfile.email}`} </Text>
+                    <Text> {`Phone: ${selectedUserProfile.phone}`} </Text>
+                </Box>
+
+            </fieldset >
 
         </ViewBox>
 

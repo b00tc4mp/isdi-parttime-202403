@@ -14,7 +14,6 @@ const user = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
     },
 
     password: {
@@ -32,10 +31,10 @@ const user = new Schema({
         type: String
     },
 
-    customers: [{
+    manager: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }],
+    },
 
     providers: [{
         type: Schema.Types.ObjectId,

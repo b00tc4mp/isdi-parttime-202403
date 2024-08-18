@@ -1,18 +1,19 @@
 import { User } from '../data/index.js'
-import { DuplicityError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const createCustomer = (userId, name, surname, email) => {
-    validate.id(userId, 'user id')
+    validate.id(userId, 'userId')
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
 
-    return User.findOne({ $or: [{ email }] })
+    return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (user)
-                throw new DuplicityError('User already exists')
+            if (!user) {
+                throw new NotFoundError('User not found')
+            }
 
             const newCustomer = {
                 name,
@@ -21,7 +22,7 @@ const createCustomer = (userId, name, surname, email) => {
                 password: '',
                 role: 'customer',
                 phone: '',
-                customers: [],
+                manager: user.id,
                 providers: [],
                 appointments: [],
                 notes: [],
@@ -30,19 +31,15 @@ const createCustomer = (userId, name, surname, email) => {
 
             return User.create(newCustomer)
                 .catch(error => { throw new SystemError(error.message) })
-                .then(customerUser => {
-                    return User.findById(userId)
-                        .catch(error => { throw new SystemError(error.message) })
-                        .then(user => {
-                            user.customers.push(customerUser._id);
-
-                            return user.save()
-                                .catch(error => { throw new SystemError(error.message) })
-                                .then(() => customerUser)
-                        })
-                })
+                .then(() => newCustomer)
         })
+
 }
+
+
+
+
+
 
 
 export default createCustomer

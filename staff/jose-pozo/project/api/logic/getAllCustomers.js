@@ -5,21 +5,33 @@ import validate from 'com/validate.js'
 const getAllCustomers = (userId) => {
     validate.id(userId, 'userId')
 
-    return User.findById(userId).populate('customers', '-__v').lean()
+    return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new NotFoundError('user not found')
+            if (!user) throw new NotFoundError('User not found')
 
-            return user.customers.map(customer => {
-                customer.id = customer._id.toString()
 
-                delete customer._id
+            return User.find({ manager: userId }).select('-__v').lean()
+                .catch(error => { throw new SystemError(error.message) })
+                .then(customers => {
+                    if (!customers.length) throw new NotFoundError('Customers not found')
 
-                return customer
-            })
+                    customers.forEach(customer => {
+
+                        customer.id = customer._id.toString()
+
+                        delete customer._id
+
+                        // if (customer.manager) {
+                        //     customer.manager = customer.manager.toString()
+                        // }
+                    })
+
+                    return customers
+                })
+
         })
+
 }
-
-
 
 export default getAllCustomers

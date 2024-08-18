@@ -18,7 +18,7 @@
   }
 
   .HomeDaily {
-    @apply col-span-3 col-start-2 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
+    @apply col-span-3 col-start-2 row-span-3 row-start-2 h-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
   }
 
   .HomeCalendar {

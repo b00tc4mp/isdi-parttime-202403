@@ -9,12 +9,12 @@ const getUserProfile = (userId, targetUserId) => {
     return User.findById(userId).select('-__v').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new NotFoundError('user not found')
+            if (!user) throw new NotFoundError('User not found')
 
             return User.findById(targetUserId).select('-__v').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(targetUser => {
-                    if (!targetUser) throw new NotFoundError('targetUser not found')
+                    if (!targetUser) throw new NotFoundError('Target user not found')
 
                     targetUser.id = targetUser._id.toString()
 

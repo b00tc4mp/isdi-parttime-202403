@@ -18,7 +18,7 @@
   }
 
   .Text.CurrentTimeText {
-    @apply w-fit text-end text-2xl font-bold text-fast-velvet;
+    @apply w-fit text-2xl font-bold text-fast-velvet;
   }
 
   .Text.CurrentDateText {

@@ -10,7 +10,8 @@ const registerUser = (name, surname, email, password, passwordRepeat) => {
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
-    return User.findOne({ $or: [{ email }] })
+    return User.findOne({ $and: [{ email }, { role: 'provider' }] })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user) {
                 throw new DuplicityError('User already exists')
@@ -26,8 +27,6 @@ const registerUser = (name, surname, email, password, passwordRepeat) => {
                         password: hash,
                         role: 'provider',
                         phone: '',
-                        customers: [],
-                        providers: [],
                         appointments: [],
                         notes: [],
                         services: []
@@ -37,8 +36,11 @@ const registerUser = (name, surname, email, password, passwordRepeat) => {
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })
-
         })
+
+
+
+
 }
 
 export default registerUser

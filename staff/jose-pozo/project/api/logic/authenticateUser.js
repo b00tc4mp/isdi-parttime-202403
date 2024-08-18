@@ -11,13 +11,13 @@ const authenticateUser = (email, password) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new CredentialsError('user not found')
+                throw new CredentialsError('User not found')
 
             return bcrypt.compare(password, user.password)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(match => {
                     if (!match)
-                        throw new CredentialsError('wrong password')
+                        throw new CredentialsError('Wrong password')
 
                     return user._id.toString()
                 })

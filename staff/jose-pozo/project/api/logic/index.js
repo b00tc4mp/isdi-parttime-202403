@@ -20,7 +20,7 @@ const logic = {
 
     createCustomer,
 
-    deleteCustomer,
+    deleteCustomer
 }
 
 
