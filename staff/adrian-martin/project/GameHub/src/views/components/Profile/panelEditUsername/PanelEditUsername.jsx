@@ -53,7 +53,7 @@ function PanelEditUsername({ onClose, onUsernameUpdated }) {
                     placeholder='New Username'
                 />
 
-                <div className='Change-cancel'>
+                <div className='Chance-cancel'>
                     <Button className='Button-panel' onClick={handleCancelCreatePostClick} type='button' >
                         Cancel
                     </Button>

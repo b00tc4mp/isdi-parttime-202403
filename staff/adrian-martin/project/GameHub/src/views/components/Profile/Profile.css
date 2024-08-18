@@ -1,21 +1,13 @@
 .Profile {
     margin-top: 50px;
-}
-
-.Image {
-    height: 200px;
-    width: 200px;
-    /* background-color: blueviolet; */
-    margin: 0 auto;
-    border-radius: 15%;
-    border: 3px solid var(--second-color);
-    z-index: 1;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Username {
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     color: var(--second-color);
     margin-top: 30px;
     margin-bottom: 30px;
@@ -33,9 +25,9 @@
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     text-decoration: underline;
-    color: rgb(38, 0, 255);
+    color: rgb(0, 94, 255);
 }
 
 .Link-menu-burguer {
@@ -55,4 +47,28 @@
 
 .Icon-edit {
     margin-left: 15px;
+}
+
+.Image {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 15%;
+    border: 3px solid var(--second-color);
+    z-index: 1;
+
+}
+
+.Profile-ImageIcon {
+    position: relative;
+    display: inline-block;
+}
+
+.Rotate {
+    position: absolute;
+    top: 88%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import logic from '../../../logic'
 import Button from '../../../components/core/Button/Button'
@@ -6,6 +6,7 @@ import Button from '../../../components/core/Button/Button'
 import './CreateGame.css'
 
 function CreateGame({ onGameCreated }) {
+    const [isPanelOpen, setIsPanelOpen] = useState(true)
 
     const handleCreateGame = event => {
         event.preventDefault()
@@ -19,7 +20,10 @@ function CreateGame({ onGameCreated }) {
 
         try {
             logic.createGame(title, image, rating, hours)
-                .then(() => onGameCreated())
+                .then(() => {
+                    setIsPanelOpen(false)
+                    onGameCreated()
+                })
                 .catch(error => {
                     console.error(error)
                 })
@@ -27,6 +31,8 @@ function CreateGame({ onGameCreated }) {
             console.error(error)
         }
     }
+
+    if (!isPanelOpen) return null // No renderiza el compo si esta cerradop el panek
 
     return (
         <div className='Container-Panel'>
@@ -40,10 +46,7 @@ function CreateGame({ onGameCreated }) {
                 </form>
             </div>
         </div>
-
-
     )
-
 }
 
 export default CreateGame

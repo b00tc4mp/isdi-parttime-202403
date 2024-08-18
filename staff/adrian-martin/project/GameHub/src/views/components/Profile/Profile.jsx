@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faHouseChimney, faUser, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faHouseChimney, faUser, faUsers, faArrowRightFromBracket, faRotate } from '@fortawesome/free-solid-svg-icons'
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -19,6 +19,30 @@ import './Profile.css'
 
 function Profile() {
     console.log('Profile -> render')
+
+    const [currentImage, setCurrentImage] = useState(0)
+
+    const images = [
+        '/images/Icono1_Blanco.png',
+        '/images/Icono2_Verde.png',
+        '/images/Icono3_Rojo.png',
+        '/images/Icono4_Azul.png',
+        '/images/Icono5_Amarillo.png',
+        '/images/Icono6_Pink.png',
+    ]
+
+    useEffect(() => {
+        const savedImageIndex = localStorage.getItem('selectedImageIndex')
+        if (savedImageIndex !== null) {
+            setCurrentImage(parseInt(savedImageIndex, 10))
+        }
+    }, []);
+
+    const handleChangeImage = () => {
+        const nextImageIndex = currentImage < images.length - 1 ? currentImage + 1 : 0
+        setCurrentImage(nextImageIndex)
+        localStorage.setItem('selectedImageIndex', nextImageIndex)
+    };
 
     const navigate = useNavigate()
     const [username, setUsername] = useState(null)
@@ -44,6 +68,10 @@ function Profile() {
         logic.logOutUser();
         navigate('/login')
     };
+
+    const handleGoHome = () => {
+        navigate('/')
+    }
 
     const startEditingUsername = () => {
         setIsEditingUsername(true)
@@ -76,14 +104,21 @@ function Profile() {
         </Header>
 
         <div className='Profile'>
-            <div className='Image'></div>
+            <div className='Profile-ImageIcon'>
+                <img src={images[currentImage]} alt='Profile' className='Image' />
+                <FontAwesomeIcon
+                    className='Rotate'
+                    icon={faRotate}
+                    onClick={handleChangeImage}
+                />
+            </div>
             <div className='Username-edit'>
                 <Text className='Username'>{username}</Text>
                 <div className='Icon-edit'>
                     <FontAwesomeIcon
                         icon={faPen}
                         size='xl'
-                        style={{ color: "#235186", }}
+                        style={{ color: '#235186', }}
                         onClick={startEditingUsername}
                     />
                 </div>
@@ -97,7 +132,7 @@ function Profile() {
             )}
 
             <div className='Separator'></div>
-            <Text className='Game-List'>Game List</Text>
+            <Button onClick={handleGoHome} className='Game-List'>Game List</Button>
         </div>
 
         <Footer />

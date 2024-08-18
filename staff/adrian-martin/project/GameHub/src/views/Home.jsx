@@ -21,7 +21,7 @@ import './Home.css'
 function Home() {
     console.log('Home -> render')
 
-    const [view, setView] = useState('')
+    const [isPanelGame, setIsPanelGame] = useState(false);
     const [gameListRefreshStamp, setGameListRefreshStamp] = useState(0)
 
     const navigate = useNavigate()
@@ -32,14 +32,12 @@ function Home() {
         navigate('/login')
     };
 
-    const handleCreateGameClick = () => {
-        setView(view => (view === 'create-game' ? '' : 'create-game'))
-    }
+    const handleCreatePanelGame = () => {
+        setIsPanelGame(!isPanelGame);
+    };
 
     const handleGameCreated = () => {
         setGameListRefreshStamp(Date.now())
-
-        setView('')
     }
 
     return <View>
@@ -67,9 +65,9 @@ function Home() {
 
         {< GameList refreshStamp={gameListRefreshStamp} />}
 
-        {view === 'create-game' && <CreateGame onGameCreated={handleGameCreated} />}
+        {isPanelGame && <CreateGame onGameCreated={handleGameCreated} />}
 
-        <Footer onCreateGame={handleCreateGameClick} />
+        <Footer onCreateGame={handleCreatePanelGame} />
     </View>
 }
 

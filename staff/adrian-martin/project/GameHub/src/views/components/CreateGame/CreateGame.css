@@ -1,6 +1,6 @@
 .Container-Panel {
-    margin-top: -500px;
-    position: relative;
+    position: absolute;
+    margin-top: -800px;
 }
 
 .TagGame {
