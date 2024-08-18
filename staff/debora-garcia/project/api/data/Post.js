@@ -34,7 +34,7 @@ const post = new Schema({
         ref: "User"
     }],
 
-    coments: [{
+    comments: [{
         type: {
             author: {
                 type: String,

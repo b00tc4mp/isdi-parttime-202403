@@ -3,7 +3,6 @@ import { DuplicityError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import bcrypt from "bcryptjs"
 
-//añadimos el callback para poder trabajar en asincronia
 const registerUser = (name, surname, email, username, password, passwordRepeat) => {
     validate.name(name)
     validate.name(surname, "surname")

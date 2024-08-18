@@ -9,7 +9,7 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+")
 
 function validateName(name, explain = "name") {
     if (typeof name !== "string" || !NAME_REGEX.test(name))
-        throw new ContentError(` ${explain} is not valid`)
+        throw new ContentError(`${explain} is not valid`)
 }
 
 //como targetUsername y username validan lo mismo pero devuelven diferente mensaje de error usamos por defecto el valor username con el parametro explain.
@@ -45,7 +45,7 @@ function validateText(text, explain = "text", maxLength = Infinity) {
 
 //en la validacion de imagen usamos uno generico de url
 function validateUrl(url, explain = "url") {
-    if (typeof url !== "string" || !url.startsWith("http"))
+    if (url && typeof url !== "string" || !url.startsWith("http"))
         throw new ContentError(`${explain} is not valid`)
 }
 
@@ -58,6 +58,13 @@ function validateType(type, explain = "type") {
         throw new ContentError(`${explain} is not valid`)
 }
 
+function validateNumber(number, explain = "number") {
+    if (number && typeof number !== "number")
+        throw new ContentError(`${explain} is not valid`)
+}
+
+
+
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -68,7 +75,8 @@ const validate = {
     text: validateText,
     url: validateUrl,
     id: validateId,
-    type: validateType
+    type: validateType,
+    number: validateNumber
 
 }
 

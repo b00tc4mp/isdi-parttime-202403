@@ -1,12 +1,17 @@
 import { User, Post, Result } from "../data/index.js"
 import validate from "com/validate.js"
+import { NotFoundError, SystemError } from "com/errors.js"
+
 
 const createPost = (userId, workoutId, image, description, time, repetitions, weight) => {
     validate.id(userId, "userId")
     validate.id(workoutId, "workoutId")
     validate.url(image, "image")
     validate.text(description, "description", 150)
-    // validate.id(resultId, "resultId")
+    validate.number(time, "time")
+    validate.number(repetitions, "repetitions")
+    validate.number(weight, "weight")
+
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -26,7 +31,7 @@ const createPost = (userId, workoutId, image, description, time, repetitions, we
                     if (!result) throw new NotFoundError("result not found")
                     const post = {
                         author: userId,
-                        image:image,
+                        image: image,
                         workout: workoutId,
                         result: result._id,
                         description: description,
