@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMwYTRkOTBkMzRmMWI2NTEyNzE5OGIiLCJyb2xlIjoiZ3Vlc3QiLCJpYXQiOjE3MjM5MTE1OTEsImV4cCI6MTcyNDI1NzE5MX0.hUJithcYp3Wi8IAymGZ275a3I3OWHYCjxIQjJkhqZH4" http://localhost:8080/users/66c0a4d90d34f1b65127198b/bookings -v

@@ -6,7 +6,6 @@ const getAllUserRooms = (user) => {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,
-      'Content-Type': 'application/json'
     }
   })
 

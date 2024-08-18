@@ -3,10 +3,14 @@
 @layer components{
 
   body{
-    @apply pt-24
+    @apply pt-24 
   }
   #root{
     @apply flex flex-col items-center
+  }
+
+  .EmptyRooms{
+    @apply text-center font-semibold text-gray-500
   }
 
   .Container{

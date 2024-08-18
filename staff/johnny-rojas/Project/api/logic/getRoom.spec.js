@@ -39,7 +39,7 @@ describe('getRoom', () => {
         })
           .then((room) => getRoom(user.id, room.id))
           .then(room => {
-            expect(room.author._i).to.equal(user.id.toString())
+            expect(room.author._id.toString()).to.equal(user.id.toString())
             expect(room.nameRoom).to.equal('Room')
             expect(room.region).to.equal('Norte')
             expect(room.city).to.equal('City')

@@ -69,12 +69,12 @@ describe('getRoomBookings', () => {
       .then(bookings => {
         expect(bookings).to.be.an('array').length(2)
 
-        expect(bookings[0].user.toString()).to.equal(guest.id.toString())
+        expect(bookings[0].user._id.toString()).to.equal(guest._id.toString())
         expect(bookings[0].room.toString()).to.equal(room.id.toString())
         expect(new Date(bookings[0].startDate)).to.deep.equal(new Date(2024, 8, 10))
         expect(new Date(bookings[0].endDate)).to.deep.equal(new Date(2024, 8, 11))
 
-        expect(bookings[1].user.toString()).to.equal(guest.id.toString())
+        expect(bookings[1].user._id.toString()).to.equal(guest._id.toString())
         expect(bookings[1].room.toString()).to.equal(room.id.toString())
         expect(new Date(bookings[1].startDate)).to.deep.equal(new Date(2024, 7, 15))
         expect(new Date(bookings[1].endDate)).to.deep.equal(new Date(2024, 7, 16))

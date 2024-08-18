@@ -3,7 +3,7 @@
 @layer components{
 
   .Info{
-    @apply pt-10
+    @apply pt-8
   }
   .CardRoom{
     @apply flex flex-col items-center 
@@ -18,24 +18,45 @@
   }
 
   .TitleDates{
-    @apply text-center font-black
+    @apply text-center font-black pt-4 pb-4
   }
 
+  .Calendar{
+    @apply flex flex-col items-center 
+  }
+
+  .DateRight{
+    @apply items-start w-8/12 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4
+  }
+
+  .DateLeft{
+    @apply items-end  w-8/12 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4
+  }
+
+  .TitlePayment{
+    @apply text-center mt-4 text-2xl font-semibold
+  }
+  .RegisterFormPayment {
+    @apply text-center flex flex-col justify-center items-center w-full max-w-md px-4 py-6 mb-6 pt-6 pb-6;
+  }
+  .RegisterFormPayment input,
+  .RegisterFormPayment select,
+  .RegisterFormPayment textarea {
+    @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4;
+  }
+
+  .RegisterFormPayment button {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200;
+  }
+
+  .RegisterFormPayment p {
+    @apply mt-4 text-gray-600;
+  }
+
+  .RegisterFormPayment a {
+    @apply text-blue-500 hover:underline;
+  }
+  
 }
 
-/* Estilo para el datepicker */
-.react-datepicker__day--disabled {
-  opacity: 0.5; /* Cambia el valor para ajustar el nivel de opacidad */
-  pointer-events: none; /* Evita que las fechas opacas sean seleccionables */
-}
 
-/* Opcional: Cambiar el cursor a "not-allowed" para indicar que no se puede seleccionar */
-.react-datepicker__day--disabled:hover {
-  cursor: not-allowed;
-}
-
-/* Si quieres personalizar los bordes de las fechas opacas */
-.react-datepicker__day--disabled {
-  border: 1px solid #ccc; /* Ajusta el color y grosor del borde según tu diseño */
-  background-color: #f0f0f0; /* Fondo más claro para mejorar la visibilidad */
-}

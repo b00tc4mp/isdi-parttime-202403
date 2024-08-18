@@ -9,7 +9,6 @@ router.post('/users', jsonBodyParser, routes.registerUserHandler)
 router.patch('/users/:userId/manage', jsonBodyParser, routes.editUserContact)
 router.delete('/users/:userId/manage', jsonBodyParser, routes.closeAccountHandler)
 router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)
-// router.get('/users/:targetUserId', routes.getUserNameHandler)
 
 router.get('/rooms', routes.getAllRoomsHandler)
 router.post('/rooms', jsonBodyParser, routes.createRoomHandler)
@@ -21,6 +20,7 @@ router.delete('/rooms/:roomId/manage', jsonBodyParser, routes.deleteRoomHandler)
 router.post('/create-booking/:roomId', jsonBodyParser, routes.createBookingHandler)
 router.get('/create-booking/:roomId', routes.getBlockedDatesByRoomHandler)
 router.get('/bookings/:roomId', routes.getRoomBookingsHandler)
+router.get('/users/:userId/bookings', routes.getAllBookingsByGuestHandler)
 
 export default router;
 

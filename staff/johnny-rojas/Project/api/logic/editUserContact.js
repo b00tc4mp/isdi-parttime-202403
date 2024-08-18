@@ -5,26 +5,34 @@ import { NotFoundError, SystemError } from 'com/errors.js'
 const editUserContact = (userId, updates) => {
   validate.id(userId, 'userId')
 
-  const updateFields = {}
-
-  if (updates.email) {
-    validate.email(updates.email, 'email')
-    updateFields.email = updates.email
-  }
-
-  if (updates.phone) {
-    validate.phone(updates.phone, 'phone')
-    updateFields.phone = updates.phone
-  }
-
-  return User.findByIdAndUpdate(userId, updateFields, { new: true }).lean()
+  return User.findById(userId)
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
       if (!user) {
-      throw new NotFoundError('user not found')
+        throw new NotFoundError('user not found')
       }
-      return user
-  })
+      
+      const updateFields = {}
+
+      if (updates.email) {
+        validate.email(updates.email, 'email')
+        updateFields.email = updates.email
+      }
+
+      if (updates.phone) {
+        validate.phone(updates.phone, 'phone')
+        updateFields.phone = updates.phone
+      }
+
+      return User.findByIdAndUpdate(userId, updateFields, { new: true }).lean()
+        .catch(error => { throw new SystemError(error.message) })
+        .then(user => {
+          if (!user) {
+            throw new NotFoundError('user not found')
+          }
+          return user
+        })
+    })
 }
 
 export default editUserContact

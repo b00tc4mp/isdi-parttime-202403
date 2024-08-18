@@ -14,6 +14,7 @@ import createBooking from './createBooking.js'
 import getAllBookings from './getAllBookings.js'
 import getBlockedDatesByRoom from './getBlockedDatesByRoom.js'
 import getRoomBookings from './getRoomBookings.js'
+import getAllBookingsByGuest from './getAllBookingsByGuest.js'
 
 
 
@@ -34,6 +35,7 @@ const logic = {
   getAllBookings,
   getBlockedDatesByRoom,
   getRoomBookings,
+  getAllBookingsByGuest
 
 }
 

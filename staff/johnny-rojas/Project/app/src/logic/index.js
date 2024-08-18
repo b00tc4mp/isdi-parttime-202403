@@ -15,6 +15,7 @@ import createBooking from './createBooking'
 import getBlockedDatesByRoom from './getBlockedDatesByRoom';
 import getRoomBookings from './getRoomBookings'
 import getGuestInfo from './getGuestInfo'
+import getAllBookingsByGuest from './getAllBookingsByGuest'
 
 const logic = {
   registerUser,
@@ -34,7 +35,8 @@ const logic = {
   createBooking,
   getBlockedDatesByRoom,
   getRoomBookings,
-  getGuestInfo
+  getGuestInfo,
+  getAllBookingsByGuest
 }
 
 export default logic
