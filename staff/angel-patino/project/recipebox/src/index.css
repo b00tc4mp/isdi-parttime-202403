@@ -5,105 +5,302 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --first-color: black;
-        --second-color: rgba(237, 219, 219, 0.914);
-        font-family: Crimson Text;
-    }
+  :root {
+    --first-color: black;
+    --second-color: rgba(237, 219, 219, 0.914);
+    font-family: 'Crimson Text', serif;
+  }
 
-    * {
-        color: var(--first-color);
-    }
+  * {
+    color: var(--first-color);
+  }
 
-    body {
-        background-color: var(--second-color);
-    }
+  body {
+    background-color: var(--second-color);
+  }
 }
 
-
 @layer components {
+  /* core */
+  .Button {
+    @apply p-[0.4rem] bg-transparent text-[1rem] border border-[var(--first-color)] transition-all duration-200;
+  }
 
-    /* core */
-    .Button {
-      @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
+  .Button:hover {
+    @apply bg-gray-200;
   }
-    .Form {
-      @apply flex flex-col items-center;
-    }
-  
-    .Field {
-      @apply flex flex-col m-[.25rem_0];
-    }
-  
-    .Label {
-      @apply mb-[.5rem];
-    }
-  
-    .Input {
-      @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
-    }
-  
-    .Image {
-      @apply w-full;
-    }
-  
-    .SubmitButton {
-      @apply m-[.5rem_0];
-    }
-  
-    .Text {
-      @apply text-[tomato];
-    }
-  
-    .Time {
-      @apply text-[dodgerblue];
-    }
-  
-    /* library */
-  
-    .FormWithFeedback {
-      @apply p-[1rem];
-    }
-  
-    .FormWithFeedback .Feedback.error {
-      @apply text-[tomato];
-    }
-  
-    .FormWithFeedback .Feedback.success {
-      @apply text-[greenyellow];
-    }
-  
-    .View {
-      @apply flex;
-    }
-  
-    .View.column {
-      @apply flex-col;
-    }
-  
-    .View.row {
-      @apply flex-row gap-[1rem];
-    }
-  
-    .View.center {
-      @apply items-center;
-    }
-  
-    /* components */
-  
-    .CreatePostForm {
-      @apply fixed bottom-[3rem] w-full left-0 box-border bg-[var(--second-color)];
-    }
-  
-    .Footer {
-      @apply w-full flex justify-center fixed bottom-0 p-[.5rem_0] border-t-[1px] border-t-[var(--first-color)] bg-[var(--second-color)];
-    }
-  
-    .Header {
-      @apply flex gap-[1rem] w-full justify-between fixed top-0 p-[.5rem] box-border border-b-[1px] border-b-[var(--first-color)] bg-[var(--second-color)] items-center;
-    }
-  
-    .PostList {
-      @apply m-[60px_10px];
-    }
+
+  .Form {
+    @apply flex flex-col items-center;
   }
+
+  .Field {
+    @apply flex flex-col my-[0.25rem];
+  }
+
+  .Label {
+    @apply mb-[0.5rem];
+  }
+
+  .Input {
+    @apply p-[0.4rem] bg-transparent text-[1rem] border border-[var(--first-color)];
+  }
+
+  .Image {
+    @apply w-full object-cover;
+  }
+
+  .SubmitButton {
+    @apply my-[0.5rem];
+  }
+
+  .Text {
+    @apply text-tomato;
+  }
+
+  .Time {
+    @apply text-dodgerblue text-xs text-gray-500;
+  }
+
+  /* library */
+  .FormWithFeedback {
+    @apply p-[1rem];
+  }
+
+  .FormWithFeedback .Feedback.error {
+    @apply text-tomato;
+  }
+
+  .FormWithFeedback .Feedback.success {
+    @apply text-green-500;
+  }
+
+  .View {
+    @apply flex;
+  }
+
+  .View.column {
+    @apply flex-col;
+  }
+
+  .View.row {
+    @apply flex-row gap-[1rem];
+  }
+
+  .View.center {
+    @apply items-center;
+  }
+
+  /* Recipe Component */
+  .Recipe {
+    @apply border border-gray-300 rounded-lg mb-6 bg-white;
+  }
+
+  .Recipe .ProfileSection {
+    @apply flex items-center p-4;
+  }
+
+  .Recipe .ProfileImage {
+    @apply w-10 h-10 rounded-full mr-3;
+  }
+
+  .Recipe .Username {
+    @apply text-sm font-bold;
+  }
+
+  .Recipe .Thumbnail {
+    @apply w-full object-cover;
+  }
+
+  .Recipe .Actions {
+    @apply flex items-center p-4;
+  }
+
+  .Recipe .LikesCount {
+    @apply ml-2;
+  }
+
+  .Recipe .Content {
+    @apply px-4 pb-4;
+  }
+
+  .Recipe .Title {
+    @apply text-sm font-bold mb-2;
+  }
+
+  .Recipe .Description {
+    @apply text-sm;
+  }
+
+  .Recipe .Timestamp {
+    @apply block mt-2 text-xs text-gray-500;
+  }
+
+  .Recipe .DeleteButton {
+    @apply p-0 text-red-500;
+  }
+
+  /* components */
+  .CreatePostForm {
+    @apply fixed bottom-[3rem] w-full left-0 box-border bg-[var(--second-color)];
+  }
+
+  .Footer {
+    @apply w-full flex justify-center fixed bottom-0 p-[0.5rem] border-t border-t-[var(--first-color)] bg-[var(--second-color)];
+  }
+
+  .Header {
+    @apply flex gap-[1rem] w-full justify-between fixed top-0 p-[0.5rem] box-border border-b border-b-[var(--first-color)] bg-[var(--second-color)] items-center;
+  }
+
+  .PostList {
+    @apply m-[60px_10px];
+  }
+
+  /*Login*/
+  .login-view {
+    @apply flex justify-center items-center h-screen;
+  }
+
+  .login-container {
+    @apply bg-white px-10 py-20 rounded-3xl border-2 border-gray-100 shadow-lg;
+  }
+
+  .login-title {
+    @apply text-5xl font-semibold;
+  }
+
+  .login-welcome {
+    @apply font-medium text-lg text-gray-500 mt-4;
+  }
+
+  .login-field {
+    @apply mt-8;
+  }
+
+  .login-label {
+    @apply text-lg font-medium;
+  }
+
+  .login-input {
+    @apply w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent;
+  }
+
+  .login-error {
+    @apply text-red-500 mt-4 text-center;
+  }
+
+  .login-submit-container {
+    @apply mt-8 flex flex-col gap-y-4;
+  }
+
+  .login-submit-button {
+    @apply active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-500 text-white text-lg font-bold;
+  }
+
+  .login-alternative {
+    @apply mt-8;
+  }
+
+  .login-divider-container {
+    @apply inline-flex items-center justify-center w-full relative;
+  }
+
+  .login-divider {
+    @apply w-64 h-px bg-gray-200;
+  }
+
+  .login-divider-text {
+    @apply absolute px-3 font-medium text-gray-900 bg-white left-1/2 transform -translate-x-1/2;
+  }
+
+  .login-google-button {
+    @apply flex rounded-xl py-3 border-2 border-gray-100 items-center justify-center gap-3 active:scale-[.98] active:duration-75 hover:scale-[1.01] transition-all ease-in-out bg-google-button-blue hover:bg-google-button-blue-hover;
+  }
+
+  .login-register {
+    @apply my-8 flex justify-center items-center;
+  }
+
+  .login-register-text {
+    @apply font-medium text-base;
+  }
+
+  .login-register-link {
+    @apply text-blue-500 text-base font-medium ml-2;
+  }
+
+  /*Register*/
+
+  .register-view {
+    @apply flex justify-center items-center h-screen;
+  }
+
+  .register-container {
+    @apply bg-white px-10 py-20 rounded-3xl border-2 border-gray-100 shadow-lg;
+  }
+
+  .register-title {
+    @apply text-5xl font-semibold;
+  }
+
+  .register-welcome {
+    @apply font-medium text-lg text-gray-500 mt-4;
+  }
+
+  .register-field {
+    @apply mt-8;
+  }
+
+  .register-label {
+    @apply text-lg font-medium;
+  }
+
+  .register-input {
+    @apply w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent;
+  }
+
+  .register-error {
+    @apply text-red-500 mt-4 text-center;
+  }
+
+  .register-submit-container {
+    @apply mt-8 flex flex-col gap-y-4;
+  }
+
+  .register-submit-button {
+    @apply active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-slate-950 text-white text-lg font-bold;
+  }
+
+  .register-alternative {
+    @apply mt-8;
+  }
+
+  .register-divider-container {
+    @apply inline-flex items-center justify-center w-full relative;
+  }
+
+  .register-divider {
+    @apply w-64 h-px bg-gray-200;
+  }
+
+  .register-divider-text {
+    @apply absolute px-3 font-medium text-gray-900 bg-white left-1/2 transform -translate-x-1/2;
+  }
+
+  .register-google-button {
+    @apply flex rounded-xl py-3 border-2 border-gray-100 items-center justify-center gap-3 active:scale-[.98] active:duration-75 hover:scale-[1.01] transition-all ease-in-out bg-google-button-blue hover:bg-google-button-blue-hover;
+  }
+
+  .register-login {
+    @apply my-8 flex justify-center items-center;
+  }
+
+  .register-login-text {
+    @apply font-medium text-base;
+  }
+
+  .register-login-link {
+    @apply text-blue-500 text-base font-medium ml-2;
+  }
+}

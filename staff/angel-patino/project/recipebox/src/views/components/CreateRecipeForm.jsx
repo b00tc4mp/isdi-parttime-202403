@@ -12,13 +12,16 @@ import View from "../../components/library/View"
 function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
   const [message, setMessage] = useState("")
   const [ingredients, setIngredients] = useState([
-    { ingredient: "", unit: "grams" },
+    { ingredient: "", quantity: "", unit: "grams" },
   ])
 
   const handleCancelCreateRecipeClick = () => onCancelCreateRecipeClick()
 
   const addIngredient = () => {
-    setIngredients([...ingredients, { ingredient: "", unit: "grams" }])
+    setIngredients([
+      ...ingredients,
+      { ingredient: "", quantity: "", unit: "grams" },
+    ])
   }
 
   const removeIngredient = (index) => {
@@ -80,6 +83,15 @@ function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
               onChange={(e) => handleIngredientChange(index, e.target.value)}
             >
               Ingredient
+            </Field>
+            <Field
+              id={`quantity-${index}`}
+              name={`quantity-${index}`}
+              label="Quantity"
+              value={ingredient.quantity}
+              onChange={(e) => handleQuantityChange(index, e.target.value)}
+            >
+              Quantity
             </Field>
             <select
               value={ingredient.unit}

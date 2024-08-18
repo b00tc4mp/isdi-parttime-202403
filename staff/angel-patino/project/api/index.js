@@ -12,7 +12,9 @@ import {
     createRecipeHandler,
     toggleLikeRecipeHandler,
     editUsernameHandler,
-    deleteRecipeHandler
+    deleteRecipeHandler,
+    editRecipeHandler,
+    rateRecipeHandler
 } from './handlers/index.js'
 
 const { MONGODB_URL, PORT } = process.env
@@ -39,9 +41,13 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/recipes', getAllRecipesHandler)
 
+        api.patch('/recipes/:recipeId', editRecipeHandler)
+
         api.delete('/recipes/:recipeId', deleteRecipeHandler)
 
-        api.delete('/recipes/:recipeId/likes', toggleLikeRecipeHandler)
+        api.patch('/recipes/:recipeId/likes', toggleLikeRecipeHandler)
+
+        api.patch('/recipes/:recipeId/rate', rateRecipeHandler)
 
         api.use(errorHandler)
 

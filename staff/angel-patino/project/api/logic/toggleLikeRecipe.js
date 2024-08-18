@@ -10,7 +10,7 @@ function toggleLikeRecipe(userId, recipeId) {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new NotFoundError('user not found')
+                throw new NotFoundError('User not found')
 
             return Recipe.findById(recipeId)
                 .catch(error => { throw new SystemError(error.message) })
@@ -20,14 +20,13 @@ function toggleLikeRecipe(userId, recipeId) {
 
                     const included = recipe.likes.some(userObjectId => userObjectId.toString() === userId)
 
-                    return Recipe.updateOne({ _id: recipe._id },
-                        included ?
-                            { $pull: { likes: user._id } }
-                            :
-                            { $push: { likes: user._id } }
-                    )
+                    const updateOperation = included
+                        ? { $pull: { likes: user._id } }
+                        : { $push: { likes: user._id } };
+
+                    return Recipe.findByIdAndUpdate(recipe._id, updateOperation, { new: true })
                         .catch(error => { throw new SystemError(error.message) })
-                        .then(() => { })
+                        .then(updatedRecipe => updatedRecipe)
                 })
         })
 }

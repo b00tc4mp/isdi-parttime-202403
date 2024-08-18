@@ -3,7 +3,7 @@ import validate from 'com/validate'
 
 const rateRecipe = (recipeId, rating) => {
     validate.id(recipeId, 'recipeId')
-    validate.number(rating, 'rating', { min: 1, max })
+    validate.rating(rating, 'rating')
 
     return fetch(`${import.meta.env.VITE_API_URL}/recipes/${recipeId}/ratings`, {
         method: 'PATCH',

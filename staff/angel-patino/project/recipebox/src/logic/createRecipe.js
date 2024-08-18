@@ -1,4 +1,4 @@
-import { SystemError } from 'com/errors.js'
+import errors, { SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const createRecipe = (title, thumbnail, cookTime, ingredients, description) => {
@@ -28,7 +28,7 @@ const createRecipe = (title, thumbnail, cookTime, ingredients, description) => {
                     // console.log(body)
                     const { error, message } = body
 
-                    const constructor = error[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })
