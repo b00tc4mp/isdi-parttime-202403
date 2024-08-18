@@ -10,14 +10,18 @@ import {
     getAvailableUsersHandler,
     modifyUserHandler,
     modifyUserAvailableHandler,
+    deleteUserHandler,
     
     addTaskHandler,
-    deleteTaskHandler,
     getAvailableTasksHandler,
     getMyTasksHandler,
     getMyPrivateTasksHandler,
     getMyInProgressTasksHandler,
     getMyFinishedTasksHandler,
+    selectTaskHandler,
+    modifyTaskAsOwnerHandler,
+    modifyTaskAsCreatorHandler,
+    deleteTaskHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -39,6 +43,7 @@ mongoose.connect(MONGODB_URL)
         api.get('/users/availableUsers', getAvailableUsersHandler)
         api.patch('/users/modify', jsonBodyParser, modifyUserHandler)
         api.patch('/users/:userToModifyId', jsonBodyParser, modifyUserAvailableHandler)
+        api.delete('/users/:userToDeleteId', deleteUserHandler)
         
         api.post('/tasks', jsonBodyParser, addTaskHandler)
         api.get('/tasks/myAvailableTasks', getAvailableTasksHandler)
@@ -46,6 +51,9 @@ mongoose.connect(MONGODB_URL)
         api.get('/tasks/myInProgressTasks', getMyInProgressTasksHandler)
         api.get('/tasks/myPrivateTasks', getMyPrivateTasksHandler)
         api.get('/tasks/myFinishedTasks', getMyFinishedTasksHandler)
+        api.patch('/tasks/:taskId', selectTaskHandler)
+        api.patch('/tasks/:taskId/modifyAsOwner', jsonBodyParser, modifyTaskAsOwnerHandler)
+        api.patch('/tasks/:taskId/modifyAsCreator', jsonBodyParser, modifyTaskAsCreatorHandler)
         api.delete('/tasks/:taskId', deleteTaskHandler)
 
         api.use(errorHandler)

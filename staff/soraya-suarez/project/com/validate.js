@@ -71,11 +71,6 @@ function validateBoolean(boolean) {
         throw new ContentError('is not boolean')
 }
 
-/*function validateCallback(callback) {
-    if (typeof callback !== 'function')
-        throw new TypeError('callback is not a function')
-}*/
-
 const validate = {
     name: validateName,
     password: validatePassword,
