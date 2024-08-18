@@ -15,6 +15,8 @@ import getMyFinishedTasks from './getMyFinishedTasks.js'
 import selectTask from './selectTask.js'
 import modifyTaskAsOwner from './modifyTaskAsOwner.js'
 import modifyTaskAsCreator from './modifyTaskAsCreator.js'
+import releaseTask from './releaseTask.js'
+import finishTask from './finishTask.js'
 import deleteTask from './deleteTask.js'
 
 const logic = {
@@ -35,6 +37,8 @@ const logic = {
     selectTask,
     modifyTaskAsOwner,
     modifyTaskAsCreator,
+    finishTask,
+    releaseTask,
     deleteTask
 }
 

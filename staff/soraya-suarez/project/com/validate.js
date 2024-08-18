@@ -71,6 +71,11 @@ function validateBoolean(boolean) {
         throw new ContentError('is not boolean')
 }
 
+function validateNumber(number) {
+    if (typeof number != 'number')
+        throw new ContentError('is not a number')
+}
+
 const validate = {
     name: validateName,
     password: validatePassword,
@@ -84,8 +89,8 @@ const validate = {
     status: validateStatus,
     priority: validatePriority,
     boolean: validateBoolean,
-    //callback: validateCallback,
-    id: validateId
+    id: validateId,
+    number: validateNumber
 }
 
 export default validate

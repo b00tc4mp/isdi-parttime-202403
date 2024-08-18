@@ -7,16 +7,15 @@ const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
-
         try {
-            addTask('66afc674cc8e7c4304f65b8d', '66afc674cc8e7c4304f65b8d', 'AÑADIR  con mismo creador y propietario', 'DESCRIBIENDO', 'toDo', 'low', true, '', error => {
+            addTask('66c1b645fe842c9b2769c0c8', '66c1b645fe842c9b2769c0c8', 'Otra', ':)', 'toDo', 'medium', true,  error => {
                 if (error) {
                     console.error(error)
 
                     return
                 }
 
-                console.log('task created')
+                console.log('task added')
             })
         } catch (error) {
             console.error(error)

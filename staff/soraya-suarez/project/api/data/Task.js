@@ -34,6 +34,9 @@ const task = new Schema({
     },
     observations: {
         type: String
+    },
+    completionTime: {
+        type: Number
     }
 })
 

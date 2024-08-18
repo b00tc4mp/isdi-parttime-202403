@@ -21,6 +21,8 @@ import {
     selectTaskHandler,
     modifyTaskAsOwnerHandler,
     modifyTaskAsCreatorHandler,
+    finishTaskHandler,
+    releaseTaskHandler,
     deleteTaskHandler,
     errorHandler
 } from './handlers/index.js'
@@ -54,6 +56,8 @@ mongoose.connect(MONGODB_URL)
         api.patch('/tasks/:taskId', selectTaskHandler)
         api.patch('/tasks/:taskId/modifyAsOwner', jsonBodyParser, modifyTaskAsOwnerHandler)
         api.patch('/tasks/:taskId/modifyAsCreator', jsonBodyParser, modifyTaskAsCreatorHandler)
+        api.patch('/tasks/:taskId/finish', jsonBodyParser, finishTaskHandler)
+        api.patch('/tasks/:taskId/release', jsonBodyParser, releaseTaskHandler)
         api.delete('/tasks/:taskId', deleteTaskHandler)
 
         api.use(errorHandler)

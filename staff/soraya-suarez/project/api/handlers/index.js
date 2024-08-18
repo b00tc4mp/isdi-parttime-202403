@@ -15,6 +15,8 @@ import getMyFinishedTasksHandler from './getMyFinishedTasksHandler.js'
 import selectTaskHandler from './selectTaskHandler.js'
 import modifyTaskAsOwnerHandler from './modifyTaskAsOwnerHandler.js'
 import modifyTaskAsCreatorHandler from './modifyTaskAsCreatorHandler.js'
+import finishTaskHandler from './finishTaskHandler.js'
+import releaseTaskHandler from './releaseTaskHandler.js'
 import deleteTaskHandler from './deleteTaskHandler.js'
 
 
@@ -38,6 +40,8 @@ export {
     selectTaskHandler,
     modifyTaskAsOwnerHandler,
     modifyTaskAsCreatorHandler,
+    finishTaskHandler,
+    releaseTaskHandler,
     deleteTaskHandler,
     errorHandler
 }

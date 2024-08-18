@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:9010/tasks/66c1c136ae5cf17f567d8d82/release -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMxYjY0NWZlODQyYzliMjc2OWMwYzgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjM5NzIzMzAsImV4cCI6MTcyNDA1ODczMH0.-N1ckTx0ACtzkyK4L-wi8yt-1Kh-q5HL3YBn1t6MYXQ" -H "Content-Type: application/json" -d '{"observations":"la he tenido cancelado"}' -v

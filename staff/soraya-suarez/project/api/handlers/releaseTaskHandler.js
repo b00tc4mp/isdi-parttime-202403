@@ -7,19 +7,21 @@ import { CredentialsError } from 'com/errors.js'
 const { JWT_SECRET } = process.env
 
 export default (req, res, next) => {
+
     try {
         const token = req.headers.authorization.slice(7)
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
+                const { sub: userId } = payload
 
-                const { sub: creator } = payload
+                const { taskId } = req.params
 
-                const { owner, name, description, status, priority, visible } = req.body
+                const { observations } = req.body
 
                 try {
-                    logic.addTask(creator, owner, name, description, status, priority, visible)
-                        .then(() => res.status(201).send())
+                    logic.releaseTask(userId, taskId, observations)
+                        .then(() => res.status(200).send())
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
