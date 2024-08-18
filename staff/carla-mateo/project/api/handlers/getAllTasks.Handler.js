@@ -12,10 +12,10 @@ export default ((req, res, next) => {
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
-                const { sub: parent } = payload
+                const { sub: parentId } = payload
 
                 try {
-                    logic.getAllTasks(parent)
+                    logic.getAllTasks(parentId)
                         .then((tasks) => {
                             res.json(tasks)
                         })

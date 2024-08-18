@@ -25,9 +25,10 @@ function Register() {
         const email = form.email.value
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
+        const avatar = form.avatar.value
 
         try {
-            logic.registerAdmin(name, username, email, password, passwordRepeat)
+            logic.registerAdmin(name, username, email, password, passwordRepeat, avatar)
                 .then(() => navigate('/login'))
                 .catch(error => {
                     alert(error.message)
@@ -49,6 +50,17 @@ function Register() {
             <Field id="email" type="email" placeholder="name@example.com" />
             <Field id="password" type="password" placeholder="password" />
             <Field id="passwordRepeat" type="password" placeholder="password repeat" />
+
+            <label htmlFor="avatar">Select an avatar:</label>
+            <select id="avatar" name="avatar" className="form-select">
+                <option value="avatars/kiwi.jpg">kiwi</option>
+                <option value="avatars/cerezas.jpg">cerezas</option>
+                <option value="avatars/melon.jpg">melon</option>
+                <option value="avatars/pitahaya.jpg">pitahaya</option>
+                <option value="avatars/kumaquat.jpg">kumaquat</option>
+                <option value="avatars/aguacate.jpg">aguacate</option>
+            </select>
+
             <Button type="submit">Register</Button>
 
             <Link to="/login">

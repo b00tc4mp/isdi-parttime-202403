@@ -1,8 +1,8 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const createTask = (assign, title, description) => {
-    validate.idAssign(assign, 'assign')
+const createTask = (assignee, title, description) => {
+    validate.idAssignee(assignee, 'assignee')
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
 
@@ -12,22 +12,18 @@ const createTask = (assign, title, description) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${sessionStorage.token}`
         },
-        body: JSON.stringify({ assign, title, description })
+        body: JSON.stringify({ assignee, title, description })
     })
-        .catch(() => { throw new SystemError('conection error') })
+        .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 201) {
-                return response.json()
-                    .catch(() => { throw new SystemError("connection error") })
-                    .then((newTask) => newTask)
-            }
+            if (response.status === 201) return
 
             return response.json()
-                .catch(() => { throw new SystemError('conection error') })
+                .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = errors[error]
+                    const constructor = errors[error] || SystemError
 
                     throw new constructor(message)
                 })

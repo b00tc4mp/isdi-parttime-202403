@@ -6,7 +6,7 @@ const { JWT_SECRET } = process.env
 
 export default (req, res, next) => {
     try {
-        const { name, username, email, password } = req.body
+        const { name, username, email, password, avatar } = req.body
 
         const token = req.headers.authorization.slice(7)
 
@@ -14,7 +14,7 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
                 try {
-                    logic.registerUser(userId, name, username, email, password)
+                    logic.registerUser(userId, name, username, email, password, avatar)
                         .then(() => res.status(201).send())
                         .catch(error => {
                             next(error)

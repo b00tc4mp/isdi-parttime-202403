@@ -12,7 +12,7 @@ router.post('/createtask', jsonBodyParser, routes.createTaskHandler)
 
 router.delete('/task/:taskId', routes.deleteTaskHandler)
 
-router.get("/users/:targetUserId", routes.getUserNameHandler)
+router.get("/users/:targetUserId", routes.getUsernameHandler)
 router.get('/getallusers', routes.getAllUsersHandler)
 router.get('/getalltasks', routes.getAllTasksHandler)
 

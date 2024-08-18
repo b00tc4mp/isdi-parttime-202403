@@ -1,8 +1,8 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const loginAdmin = (name, password) => {
-    validate.name(name)
+const loginAdmin = (username, password) => {
+    validate.username(username)
     validate.password(password)
 
     return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
@@ -10,7 +10,7 @@ const loginAdmin = (name, password) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, password })
+        body: JSON.stringify({ username, password })
     })
 
         .catch(() => { throw new SystemError('server error') })

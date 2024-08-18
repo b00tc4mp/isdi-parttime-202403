@@ -15,9 +15,10 @@ function RegisterUserForm({ onSuccess }) {
         const username = form.username.value
         const email = form.email.value
         const password = form.password.value
+        const avatar = form.avatar.value
 
         try {
-            logic.registerUser(name, username, email, password)
+            logic.registerUser(name, username, email, password, avatar)
                 .then(() => {
                     setRegistrationMessage('User registered successfully')
                     setTimeout(() => {
@@ -40,6 +41,16 @@ function RegisterUserForm({ onSuccess }) {
                 <Field id="username" type="text" placeholder="username" />
                 <Field id="email" type="email" placeholder="name@example.com" />
                 <Field id="password" type="password" placeholder="password" />
+
+                <label htmlFor="avatar">Select an avatar:</label>
+                <select id="avatar" name="avatar" className="form-select">
+                    <option value="avatars/kiwi.jpg">kiwi</option>
+                    <option value="avatars/cerezas.jpg">cerezas</option>
+                    <option value="avatars/melon.jpg">melon</option>
+                    <option value="avatars/pitahaya.jpg">pitahaya</option>
+                    <option value="avatars/kumaquat.jpg">kumaquat</option>
+                    <option value="avatars/aguacate.jpg">aguacate</option>
+                </select>
                 <Button type="submit">Create User</Button>
             </form>
             {registrationMessage.length > 0 && <p className="text-black-500 text-2xl">{registrationMessage}</p>}

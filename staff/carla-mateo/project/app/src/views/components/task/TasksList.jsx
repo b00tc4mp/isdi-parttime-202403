@@ -3,40 +3,34 @@ import { useState, useEffect } from 'react'
 
 import { PiUsersThree } from "react-icons/pi"
 import { IoHome } from "react-icons/io5"
-import { MdOutlineAddTask } from "react-icons/md";
+import { MdOutlineAddTask } from "react-icons/md"
 
+import CreateTask from "./CreateTask"
+import Task from "./Task"
+
+import UserProvider from "../UserProvider"
 import Header from "../Header"
 import Footer from "../Footer"
 
 import Heading from "../../../components/core/Heading"
 import Button from "../../../components/core/Button"
 
+import Img from "../../../components/core/Img"
+
 import View from "../../library/View"
 
 import logic from '../../../logic/index'
-import CreateTask from "./CreateTask";
-import Task from "./Task";
+
 
 function TasksList({ refreshStamp }) {
     const navigate = useNavigate()
-    const [user, setUser] = useState(null)
     const [tasks, setTasks] = useState([])
     const [showForm, setShowForm] = useState(false)
 
     useEffect(() => {
-        try {
-            logic.getUserName()
-                .then(user => {
-                    setUser(user)
-                })
-                .catch((error) => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-
         loadTasks()
-    }, [refreshStamp])
 
+    }, [refreshStamp])
     const loadTasks = () => {
         try {
             logic.getAllTasks()
@@ -58,31 +52,38 @@ function TasksList({ refreshStamp }) {
     const handleCreateSuccess = (newTask) => {
         setTasks(prevTasks => [...prevTasks, newTask])
         setShowForm(false)
+        loadTasks()
     }
     const handleDeleteTask = () => loadTasks()
 
-    return <View>
-        <Header>
-            {user?.username && <Heading className="text-2xl" level="1">{user.username}</Heading>}
-            {user?.name && <Heading className="text-xl" level="3">{<PiUsersThree size={32} />} {user.name}</Heading>}
-        </Header>
+    return (
+        <UserProvider>
+            {({ user }) => (
+                < View >
+                    <Header>
+                        {user?.username && <Heading className="text-3xl mt-6 mr-10" level="1">{user.name}</Heading>}
+                        <div>
+                            {user?.avatar && <Img src={user.avatar} alt="user avatar" />}
+                            {user?.name && <Heading className="text-xl" level="3"> {user.username}</Heading>}
+                        </div>
+                    </Header>
 
-        {showForm && <CreateTask onTaskSuccess={handleCreateSuccess} />}
+                    {showForm && <CreateTask onTaskSuccess={handleCreateSuccess} />}
 
-        <Button onClick={handleCreateTask} >{<MdOutlineAddTask size={32} />}</Button>
+                    <Button onClick={handleCreateTask} >{<MdOutlineAddTask size={32} />}</Button>
 
-        <View>
-            {tasks.map(task => (
-                <Task key={task.id}
-                    task={task}
-                    onTaskDeleted={handleDeleteTask} />
-            ))}
-        </View>
-
-
-        <Footer><Button onClick={handleHomeClick}>{<IoHome size={32} />}</Button></Footer>
-
-    </View>
+                    <View>
+                        {tasks.map(task => (
+                            <Task key={task.id}
+                                task={task}
+                                onTaskDeleted={handleDeleteTask} />
+                        ))}
+                    </View>
+                    <Footer><Button onClick={handleHomeClick}>{<IoHome size={32} />}</Button></Footer>
+                </View>
+            )}
+        </UserProvider >
+    )
 }
 
 export default TasksList

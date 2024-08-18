@@ -17,10 +17,10 @@ function CreateTask({ onTaskSuccess }) {
 
         const title = form.title.value
         const description = form.description.value
-        const assign = form.assign.value
+        const assignee = form.assignee.value === "" ? null : form.assignee.value
 
         try {
-            logic.createTask(assign, title, description)
+            logic.createTask(assignee || null, title, description)
                 .then(newTask => {
                     onTaskSuccess(newTask)
                 })
@@ -41,29 +41,22 @@ function CreateTask({ onTaskSuccess }) {
         }
     }, [])
 
-
-
     return <View>
-
         <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg ' >
             <form className='mb-4 ' onSubmit={handleCreateTask}>
 
                 <Field id="title" type="text" placeholder="Task Title" />
                 <textarea className="bg-color-transparent" id="description" type="text" placeholder="Task Description" />
 
-                <select id="assign" className="min-w-20 p-2 border rounded">
+                <select id="assignee" className="min-w-20 p-2 border rounded">
+                    <option value="">Unassigned</option>
                     {users.map(user => (
-                        <option key={user.id} value={user.id}>{user.name}</option>
-
+                        <option key={user.id} value={user.id}>{user.username}</option>
                     ))}
                 </select>
-
-
                 <Button type="submit">Add Task</Button>
             </form>
-
         </div>
-
     </View>
 }
 

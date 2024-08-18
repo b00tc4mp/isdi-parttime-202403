@@ -11,14 +11,14 @@ export default (req, res, next) => {
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
-                const { sub: parent } = payload
+                const { sub: parentId } = payload
 
-                const { title, description, assign } = req.body
+                const { title, description, assignee } = req.body
 
 
                 try {
-                    logic.createTask(parent, assign, title, description)
-                        .then((task) => res.status(201).send(task))
+                    logic.createTask(parentId, assignee, title, description)
+                        .then(() => res.status(201).send())
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)

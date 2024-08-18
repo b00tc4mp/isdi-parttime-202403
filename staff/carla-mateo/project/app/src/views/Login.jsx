@@ -20,11 +20,11 @@ function Login() {
 
         const form = event.target
 
-        const name = form.name.value
+        const username = form.username.value
         const password = form.password.value
 
         try {
-            logic.loginAdmin(name, password)
+            logic.loginAdmin(username, password)
                 .then(() => navigate('/'))
                 .catch(error => {
                     alert(error.message)
@@ -40,7 +40,7 @@ function Login() {
 
         <form className=" p-8 " onSubmit={handleLoginSubmit}>
             <Heading className="text-2xl" level={1}>Enter your home</Heading>
-            <Field id="name" type="text" placeholder="name" />
+            <Field id="username" type="text" placeholder="username" />
             <Field id="password" type="password" placeholder="password" />
             <Button type="submit">Login</Button>
 

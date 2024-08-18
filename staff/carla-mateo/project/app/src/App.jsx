@@ -27,7 +27,7 @@ function App() {
 
         <Route path='/calendar' element={<Calendar />} />
         <Route path='/taskslist' element={<TasksList />} />
-        <Route path='createtask' element={<CreateTask />} />
+        <Route path='/createtask' element={<CreateTask />} />
       </Routes>
     </>
   )

@@ -8,7 +8,7 @@ const task = new Schema({
         ref: 'User',
         required: true
     },
-    assign: {
+    assignee: {
         type: ObjectId,
         ref: "User"
     },

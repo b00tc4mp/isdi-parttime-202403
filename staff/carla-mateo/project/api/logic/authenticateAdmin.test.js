@@ -10,7 +10,7 @@ mongoose.connect(MONGODB_URL)
 
             authenticateAdmin("carla", "1234")
                 .then((userId) => {
-                    console.log(`User ${userId} authenticated `)
+                    console.log(`User ${userId} authenticated with role ${role}`)
                 })
                 .catch(error => console.error(error))
 

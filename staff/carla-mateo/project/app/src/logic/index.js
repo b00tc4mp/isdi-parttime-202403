@@ -7,7 +7,6 @@ import registerUser from "./registerUser"
 import createTask from "./createTask"
 import getAllUsers from "./getAllUsers"
 import deleteTask from "./deleteTask"
-import getUserId from "./getUserId"
 import getAllTasks from "./getAllTasks"
 
 
@@ -21,7 +20,6 @@ const logic = {
     createTask,
     getAllUsers,
     deleteTask,
-    getUserId,
     getAllTasks
 
 }
