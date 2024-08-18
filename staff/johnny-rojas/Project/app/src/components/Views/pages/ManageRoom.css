@@ -1,5 +1,6 @@
-/* tailwind.css or within your Tailwind setup */
+@tailwind components;
 
+@layer components{
 .container {
   @apply flex flex-col items-center pt-10
 }
@@ -30,4 +31,5 @@
 
 .infoLabel {
   @apply font-bold;
+}
 }

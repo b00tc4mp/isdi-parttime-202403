@@ -65,4 +65,3 @@ const createBooking = (userId, roomId, startDate, endDate) => {
 
 export default createBooking
 
-//TODO IF no tienes userId no puedes reservar y te lleve a login 

@@ -20,7 +20,7 @@
     @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4;
   }
 
-  .RegisterForm button {
+  .RegisterForm .SubmitButton{
     @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200;
   }
 

@@ -1,5 +1,5 @@
-curl -X 'DELETE' http://localhost:8080/users/66bc552af7966c9814d0b792/manage \
+curl -X 'DELETE' http://localhost:8080/users/66c1b79f9e26b62b259c8040/manage \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmJjNTUyYWY3OTY2Yzk4MTRkMGI3OTIiLCJyb2xlIjoiZ3Vlc3QiLCJpYXQiOjE3MjM2MTg2NDEsImV4cCI6MTcyMzk2NDI0MX0._QQaqfWeJq5mruzWqH_Oqn1KqTsqlxWptS2YPpFJzR0" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMxYjc5ZjllMjZiNjJiMjU5YzgwNDAiLCJyb2xlIjoiZ3Vlc3QiLCJpYXQiOjE3MjM5NzE2MzksImV4cCI6MTcyNDMxNzIzOX0.3m2W38sWcHgwpFH8SKOyj_jTMWA1gt6xGGJSe5G8TBE" \
  -v
 

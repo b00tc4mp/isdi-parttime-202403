@@ -3,6 +3,8 @@ import isUserLoggedIn from './isUserLoggedIn';
 import loginUser from './loginUser'
 import logoutUser from './logoutUser';
 import { getUserId, getUserRole } from "./getUserInfo";
+import closeAccount from './closeAccount';
+import editUserContact from './editUserContact'
 
 import createRoom from './createRoom';
 import getAllRooms from './getAllRooms';
@@ -24,6 +26,8 @@ const logic = {
   logoutUser,
   getUserId,
   getUserRole,
+  editUserContact,
+  closeAccount,
 
   createRoom,
   getAllRooms,

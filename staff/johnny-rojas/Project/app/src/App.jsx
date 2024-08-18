@@ -7,6 +7,7 @@ import HostRooms from './components/Views/pages/HostRooms'
 import ManageRoom from './components/Views/pages/ManageRoom'
 import Booking from './components/Views/pages/Booking'
 import GuestBookings from './components/Views/pages/GuestBookings'
+import ManageProfile from './components/Views/pages/ManageProfile'
 
 
 import './App.css'
@@ -20,7 +21,8 @@ function App() {
     <Route path='/users/:userId/rooms' element={<HostRooms />} />
     <Route path='/rooms/:roomId/manage' element={<ManageRoom />} />
     <Route path='/create-booking/:roomId' element={<Booking />} />
-    <Route path='/users/:userId/bookings/' element={<GuestBookings />} />
+    <Route path='/users/:userId/bookings' element={<GuestBookings />} />
+    <Route path='/users/:userId/manage' element={<ManageProfile />} />
   </Routes>
 
 }

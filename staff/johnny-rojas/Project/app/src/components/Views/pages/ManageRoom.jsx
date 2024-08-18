@@ -9,6 +9,7 @@ import Title from '../core/Title';
 import { useNavigate, useParams } from "react-router-dom";
 import logic from "../../../logic/index"
 import { useState, useEffect } from "react";
+import ShowConfirm from "../core/ShowConfirm";
 
 import './ManageRoom.css'
 
@@ -39,16 +40,12 @@ function ManageRoom() {
     const target = event.target
 
     const nameRoom = target.nameRoom.value
-    const region = target.region.value
-    const city = target.city.value
     const image = target.image.value
     const description = target.description.value
     const price = target.price.value
 
     const updates = {
       nameRoom,
-      region,
-      city,
       image,
       description,
       price
@@ -118,19 +115,16 @@ function ManageRoom() {
 
           <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' />
 
-          <Field id='region' type='text' placeholder='Región' />
-
-          <Field id='city' type='text' placeholder='Estado y ciudad' />
-
-          <Field id='image' type='string' placeholder='Imagen principal (link)' />
+          <Field id='image' type='string' placeholder='Imagen (link)' />
 
           <Field id='description' type='string' placeholder='Descripción del alojamiento' />
 
           <Field id='price' type='string' placeholder='Precio por noche' />
+          
           <SubmitButton>Realizar cambios</SubmitButton>
 
-          <div>
-            <button id="DeleteButton" className="DeleteButton" onClick={handlerDeleteRoom}>Eliminar habitacion</button>
+          <div className="Delete">
+            <button onClick={handlerDeleteRoom}>Eliminar habitacion</button>
           </div>
 
         </FormWithPanel>
