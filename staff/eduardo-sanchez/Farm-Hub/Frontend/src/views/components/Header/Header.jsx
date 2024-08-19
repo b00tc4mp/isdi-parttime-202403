@@ -5,6 +5,10 @@ import logic from '../../../logic'
 import './Header.css'
 import Title from '../../../components/core/Title'
 import Button from '../../../components/core/Button'
+
+import LogoutIcon from '../../../icons/logout.png'
+import SearchIcon from '../../../icons/search.png'
+import InfoIcon from '../../../icons/info.png'
 // import Link from '../../../components/core/Link'
 
 function Header({ user }) {
@@ -25,7 +29,11 @@ function Header({ user }) {
         <Title>Farm-Hub</Title>
         <div className='LogoutButtonContainer'>
 
-            <button className='LogoutButton' onClick={handleLogout}>Logout</button>
+            {/* <button className='LogoutButton' onClick={handleLogout}>Logout</button> */}
+
+            <img src={InfoIcon} width={24} alt="Info" />
+            <img src={SearchIcon} width={24} alt="Search" />
+            <img src={LogoutIcon} width={24} alt="Logout" onClick={handleLogout} />
 
         </div>
 

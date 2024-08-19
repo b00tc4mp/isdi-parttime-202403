@@ -16,7 +16,7 @@
      }
 
      .LogoutButtonContainer {
-         @apply flex w-1/3 items-end justify-end;
+         @apply flex w-1/3 items-end justify-end gap-2;
 
      }
  }

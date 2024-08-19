@@ -3,6 +3,7 @@ import logic from '../../../logic'
 
 import './AdList.css'
 import { Ad } from '../Ad/Ad'
+import { Time } from '../../../components/core/Time/Time'
 
 function AdList({ refreshStamp }) {
     const [ads, setAds] = useState([])
@@ -44,7 +45,8 @@ function AdList({ refreshStamp }) {
                         <p>{ad.title}</p>
                         <p>{ad.description}</p>
                         <p>{ad.price}</p>
-                        <p>{ad.date}</p>
+
+                        <p>{Time(ad.date)}</p>
 
                         <Ad ad={ad} onAdDeleted={handleAdDeleted} />
                     </li >
