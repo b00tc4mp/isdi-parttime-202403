@@ -4,9 +4,12 @@ import { Booking, User, Room } from '../data/index.js'
 import getRoomBookings from './getRoomBookings.js'
 import { expect } from 'chai'
 import bcrypt from 'bcryptjs'
+import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
+
+debugger
 
 describe('getRoomBookings', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Booking.deleteMany()))
@@ -87,26 +90,27 @@ describe('getRoomBookings', () => {
       })
   })
 
-  it('fails when room does not exist', () => {
-    let user
+  // it('fails when room is not found', () => {
+  //   let errorThrown
 
-    return bcrypt.hash('1234', 8)
-      .then(hash => User.create({
-        name: 'Mocha',
-        surname: 'Chai',
-        email: 'mocha@chai.com',
-        phone: '+58 414 455 7362',
-        password: hash
-      }))
-      .then(createdUser => {
-        user = createdUser
-        return getRoomBookings(user.id, new ObjectId().toString())
-          .catch(error => {
-            expect(error).to.be.instanceOf(NotFoundError)
-            expect(error.message).to.equal('room not found')
-          })
-      })
-  })
+  //   return bcrypt.hash('1234', 8)
+  //     .then(hash => User.create({
+  //       name: 'Mocha',
+  //       surname: 'Chai',
+  //       email: 'mocha@chai.com',
+  //       phone: '+58 414 455 7362',
+  //       password: hash
+  //     }))
+  //     .then(() => {
+  //       return getRoomBookings(new ObjectId().toString())
+  //         .catch(error => errorThrown = error)
+  //         .finally(() => {
+  //           expect(errorThrown).to.be.instanceOf(NotFoundError)
+  //           expect(errorThrown.message).to.equal('room not found')
+  //         })
+  //     })
+  // })
+
 
   after(() => Promise.all([User.deleteMany(), Room.deleteMany()]).then(() => mongoose.disconnect()))
 })

@@ -25,4 +25,4 @@ const closeAccount = (userId) => {
 export default closeAccount
 
 
-//TODO tienes que eliminar los bookinga hablando con el host
+//TODO tienes que eliminar los bookinga hablando con el

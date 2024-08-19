@@ -4,17 +4,17 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import deleteRoom from '../logic/deleteRoom.js'
 import { expect } from 'chai'
-import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
+import { MatchError, NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
 
 describe('deleteRoom', () => {
-  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Room.deleteMany()])))
+  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()])))
 
-  beforeEach(() => Promise.all([User.deleteMany(), Room.deleteMany()]))
+  beforeEach(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()]))
 
-  it('succeeds when user is the author of the room', () => {
+  it('succeeds when host delete a room without bookings', () => {
     let user, room
 
     return bcrypt.hash('1234', 8)
@@ -29,7 +29,7 @@ describe('deleteRoom', () => {
         user = createdUser
         return Room.create({
           nameRoom: 'Room 1',
-          region: 'North',
+          region: 'Norte',
           city: 'City 1',
           image: 'https://example.com/image.png',
           description: 'Nice room',
@@ -48,29 +48,54 @@ describe('deleteRoom', () => {
   })
 
   it('fails when user does not exist', () => {
-    let room
+    let errorThrown
 
     return Room.create({
       nameRoom: 'Room 1',
-      region: 'North',
+      region: 'Norte',
       city: 'City 1',
       image: 'https://example.com/image.png',
       description: 'Nice room',
       price: '100 USD',
       author: new ObjectId()
     })
-      .then(createdRoom => {
-        room = createdRoom
+      .then(room => {
         return deleteRoom(new ObjectId().toString(), room.id)
-          .catch(error => {
-            expect(error).to.be.instanceOf(NotFoundError)
-            expect(error.message).to.equal('user not found')
-          })
+      })
+      .catch(error => {
+        errorThrown = error
+      })
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal('user not found')
       })
   })
 
   it('fails when room does not exist', () => {
-    let user
+    let errorThrown
+
+    return bcrypt.hash('1234', 8)
+      .then(hash => User.create({
+        name: 'Mocha',
+        surname: 'Chai',
+        email: 'mocha@chai.com',
+        phone: '+58 414 455 7362',
+        password: hash
+      }))
+      .then(user => {
+        return deleteRoom(user.id, new ObjectId().toString())
+      })
+      .catch(error => {
+        errorThrown = error
+      })
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(NotFoundError)
+        expect(errorThrown.message).to.equal('room not found')
+      })
+  })
+
+  it('fails when user is not the author of the room', () => {
+    let user1, user2, room, errorThrown
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -81,59 +106,44 @@ describe('deleteRoom', () => {
         password: hash
       }))
       .then(createdUser => {
-        user = createdUser
-        return deleteRoom(user.id, new ObjectId().toString())
-          .catch(error => {
-            expect(error).to.be.instanceOf(NotFoundError)
-            expect(error.message).to.equal('room not found')
-          })
+        user1 = createdUser
+        return bcrypt.hash('1234', 8)
       })
-  })
-
-  it('fails when user is not the author of the room', () => {
-    let user1, user2, room
-
-    return Promise.all([
-      bcrypt.hash('1234', 8).then(hash => User.create({
-        name: 'Mocha',
-        surname: 'Chai',
-        email: 'mocha@chai.com',
-        phone: '+58 414 455 7362',
-        password: hash
-      })),
-      bcrypt.hash('5678', 8).then(hash => User.create({
-        name: 'Java',
-        surname: 'Bean',
-        email: 'java@bean.com',
+      .then(hash => User.create({
+        name: 'Chai',
+        surname: 'Mocha',
+        email: 'chai@mocha.com',
         phone: '+58 414 455 7363',
         password: hash
       }))
-    ])
-      .then(([createdUser1, createdUser2]) => {
-        user1 = createdUser1
-        user2 = createdUser2
+      .then(createdUser => {
+        user2 = createdUser
         return Room.create({
+          author: user1.id,
           nameRoom: 'Room 1',
-          region: 'North',
+          region: 'Norte',
           city: 'City 1',
           image: 'https://example.com/image.png',
           description: 'Nice room',
           price: '100 USD',
-          author: user1.id
+          manager: user1.id
         })
       })
       .then(createdRoom => {
         room = createdRoom
         return deleteRoom(user2.id, room.id)
-          .catch(error => {
-            expect(error).to.be.instanceOf(MatchError)
-            expect(error.message).to.equal('room author do not match')
-          })
+      })
+      .catch(error => {
+        errorThrown = error
+      })
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(MatchError)
+        expect(errorThrown.message).to.equal('room author do not match')
       })
   })
 
-  it('delete with booking cannot posible', () => {
-    let user1, user2, room
+  it('fails when trying to delete a room with bookings', () => {
+    let user1, user2, room, errorThrown
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -178,13 +188,15 @@ describe('deleteRoom', () => {
       })
       .then(() => {
         return deleteRoom(user1.id, room.id)
-        .catch(error => {
-          expect(error).to.be.instanceOf(MatchError)
-          expect(error.message).to.equal('you cannot delete a room with bookings')
-        })
       })
+      .catch(error => errorThrown = error)
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(MatchError)
+        expect(errorThrown.message).to.equal('you cannot delete a room with bookings')
       
+    })
   })
 
-  after(() => Promise.all([User.deleteMany(), Room.deleteMany()]).then(() => mongoose.disconnect()))
+  after(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()]).then(() => mongoose.disconnect()))
+
 })

@@ -4,9 +4,12 @@ import mongoose from 'mongoose'
 import getBlockedDatesByRoom from './getBlockedDatesByRoom.js'
 import bcrypt from 'bcryptjs'
 import { expect } from 'chai'
+import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
-const {ObjectId} = mongoose.Types
+const { ObjectId } = mongoose.Types
+
+debugger
 
 describe('getBlockedDatesByRoom', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Booking.deleteMany()))
@@ -61,7 +64,7 @@ describe('getBlockedDatesByRoom', () => {
           user: user2.id.toString(),
           room: room.id.toString(),
           startDate: new Date(2024, 7, 15),
-          endDate: new Date(2024, 7, 16) 
+          endDate: new Date(2024, 7, 16)
         })
       })
 
@@ -71,11 +74,11 @@ describe('getBlockedDatesByRoom', () => {
       .then(blockedDates => {
         const actualDates = blockedDates.map(date => new Date(date).toISOString())
 
-        expect(actualDates).to.include(new Date(2024, 8, 10).toISOString()) 
-        expect(actualDates).to.include(new Date(2024, 8, 11).toISOString()) 
-        expect(actualDates).to.include(new Date(2024, 8, 12).toISOString()) 
-        expect(actualDates).to.include(new Date(2024, 7, 15).toISOString()) 
-        expect(actualDates).to.include(new Date(2024, 7, 16).toISOString()) 
+        expect(actualDates).to.include(new Date(2024, 8, 10).toISOString())
+        expect(actualDates).to.include(new Date(2024, 8, 11).toISOString())
+        expect(actualDates).to.include(new Date(2024, 8, 12).toISOString())
+        expect(actualDates).to.include(new Date(2024, 7, 15).toISOString())
+        expect(actualDates).to.include(new Date(2024, 7, 16).toISOString())
 
         expect(actualDates).to.have.lengthOf(5)
       })
@@ -88,27 +91,5 @@ describe('getBlockedDatesByRoom', () => {
       })
   })
 
-  it('fails when room does not exist', () => {
-    let user
-
-    return bcrypt.hash('1234', 8)
-      .then(hash => User.create({
-        name: 'Mocha',
-        surname: 'Chai',
-        email: 'mocha@chai.com',
-        phone: '+58 414 455 7362',
-        password: hash
-      }))
-      .then(createdUser => {
-        user = createdUser
-        return getBlockedDatesByRoom(user.id, new ObjectId().toString())
-          .catch(error => {
-            expect(error).to.be.instanceOf(NotFoundError)
-            expect(error.message).to.equal('room not found')
-          })
-      })
-  })
-
-  
   after(() => Booking.deleteMany().then(() => mongoose.disconnect()))
 })

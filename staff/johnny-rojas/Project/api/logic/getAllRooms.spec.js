@@ -7,6 +7,8 @@ import bcrypt from 'bcryptjs'
 
 const { MONGODB_URL_TEST } = process.env
 
+debugger
+
 describe('getAllRooms', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Room.deleteMany()])))
 

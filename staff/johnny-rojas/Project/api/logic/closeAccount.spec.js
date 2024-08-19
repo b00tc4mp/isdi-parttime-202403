@@ -9,6 +9,8 @@ import { NotFoundError } from 'com/errors.js'
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
 
+debugger
+
 describe('close account', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 

@@ -9,6 +9,8 @@ import { NotFoundError, DuplicityError, MatchError } from 'com/errors.js'
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
 
+debugger
+
 describe('createBooking', () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()])))
 
@@ -67,6 +69,7 @@ describe('createBooking', () => {
 
 
   it('fails manager cannot book their own rooms', () => {
+    let errorThrown
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -91,14 +94,15 @@ describe('createBooking', () => {
       .then(room => {
         return createBooking(room.manager.toString(), room.id, new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
       })
-      .catch(error => {
-        expect(error).to.be.instanceOf(MatchError)
-        expect(error.message).to.equal('manager cannot book their own rooms')
+      .catch(error => errorThrown = error)
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(MatchError)
+        expect(errorThrown.message).to.equal('manager cannot book their own rooms')
       })
-  })
 
+  })
   it('fails when dates overlap with existing booking', () => {
-    let user, room
+    let user, room, errorThrown
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -132,15 +136,16 @@ describe('createBooking', () => {
       })
       .then(() => {
         return createBooking(user.id, room.id, new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
-          .catch(error => {
-            expect(error).to.be.instanceOf(DuplicityError)
-            expect(error.message).to.equal('unavailable dates')
+          .catch(error => errorThrown = error)
+          .finally(() => {
+            expect(errorThrown).to.be.instanceOf(DuplicityError)
+            expect(errorThrown.message).to.equal('unavailable dates')
           })
       })
   })
 
   it('fails when the manager tries to book their own room', () => {
-    let user, room
+    let user, errorThrown
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -163,18 +168,18 @@ describe('createBooking', () => {
           manager: user.id
         })
       })
-      .then(createdRoom => {
-        room = createdRoom
+      .then(room => {
         return createBooking(user.id, room.id, new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
-          .catch(error => {
-            expect(error).to.be.instanceOf(MatchError)
-            expect(error.message).to.equal('manager cannot book their own rooms')
+          .catch(error => errorThrown = error)
+          .finally(() => {
+            expect(errorThrown).to.be.instanceOf(MatchError)
+            expect(errorThrown.message).to.equal('manager cannot book their own rooms')
           })
       })
   })
 
   it('fails when room is not found', () => {
-    let user
+    let errorThrown
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -184,12 +189,12 @@ describe('createBooking', () => {
         phone: '+58 414 455 7362',
         password: hash
       }))
-      .then(createdUser => {
-        user = createdUser
+      .then(user => {
         return createBooking(user.id, new ObjectId().toString(), new Date(), new Date(new Date().setDate(new Date().getDate() + 1)))
-          .catch(error => {
-            expect(error).to.be.instanceOf(NotFoundError)
-            expect(error.message).to.equal('room not found')
+          .catch(error => errorThrown = error)
+          .finally(() => {
+            expect(errorThrown).to.be.instanceOf(NotFoundError)
+            expect(errorThrown.message).to.equal('room not found')
           })
       })
   })
@@ -205,6 +210,9 @@ describe('createBooking', () => {
       })
   })
 
-
   after(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()]).then(() => mongoose.disconnect()))
 })
+
+
+
+
