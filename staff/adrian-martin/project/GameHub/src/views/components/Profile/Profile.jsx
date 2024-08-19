@@ -29,20 +29,15 @@ function Profile() {
         '/images/Icono4_Azul.png',
         '/images/Icono5_Amarillo.png',
         '/images/Icono6_Pink.png',
-    ]
-
-    useEffect(() => {
-        const savedImageIndex = localStorage.getItem('selectedImageIndex')
-        if (savedImageIndex !== null) {
-            setCurrentImage(parseInt(savedImageIndex, 10))
-        }
-    }, []);
+    ];
 
     const handleChangeImage = () => {
-        const nextImageIndex = currentImage < images.length - 1 ? currentImage + 1 : 0
-        setCurrentImage(nextImageIndex)
-        localStorage.setItem('selectedImageIndex', nextImageIndex)
-    };
+        if (currentImage < images.length - 1) {
+            setCurrentImage(currentImage + 1)
+        } else {
+            setCurrentImage(0)
+        }
+    }
 
     const navigate = useNavigate()
     const [username, setUsername] = useState(null)

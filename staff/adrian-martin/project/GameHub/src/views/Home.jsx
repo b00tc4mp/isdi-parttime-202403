@@ -67,7 +67,7 @@ function Home() {
 
         {isPanelGame && <CreateGame onGameCreated={handleGameCreated} />}
 
-        <Footer onCreateGame={handleCreatePanelGame} />
+        <Footer className='Footer' onCreateGame={handleCreatePanelGame} />
     </View>
 }
 

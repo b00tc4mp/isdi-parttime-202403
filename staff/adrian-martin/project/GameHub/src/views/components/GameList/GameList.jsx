@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import Game from '../Game/Game'
 import logic from '../../../logic/index'
 
+import './GameList.css'
+
 function GameList({ refreshStamp }) {
     console.log('GameList -> render')
 
@@ -36,7 +38,7 @@ function GameList({ refreshStamp }) {
     const handleGameEdited = () => loadGames()
 
     return (
-        <div>
+        <div className='List'>
             {games.map(game =>
                 <Game
                     key={game.id}

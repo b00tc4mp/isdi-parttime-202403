@@ -2,10 +2,10 @@ import './Footer.css'
 import Button from '../../../components/core/Button/Button'
 
 
-function Footer({ onCreateGame }) {
+function Footer({ className, onCreateGame }) {
     // const handleCreateGame = () => onCreateGame()
 
-    return <footer className='Footer'>
+    return <footer className={className}>
         <Button onClick={onCreateGame}>⊕</Button>
     </footer>
 }
