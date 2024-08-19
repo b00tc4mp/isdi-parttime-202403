@@ -45,15 +45,15 @@ function RegisterUserForm({ onSuccess }) {
                 <Field id="family" type="text" placeholder="family" />
 
                 <label htmlFor="avatar">Select an avatar:</label>
-                <select id="avatar" name="avatar" className="form-select">
+                <select id="avatar" name="avatar" className="right-0 mt-2 m-4 w-30 bg-green-100 border border-green-800 shadow-lg">
                     <option value="avatars/azul.png">azul</option>
                     <option value="avatars/rojo.png">rojo</option>
-                    <option value="avatars/anaranjado.png">anaranjado</option>
+                    <option value="avatars/amarillo.png">amarillo</option>
                     <option value="avatars/naranja.png">naranja</option>
                     <option value="avatars/morado.png">morado</option>
                     <option value="avatars/verde.png">verde</option>
                 </select>
-                <Button type="submit">Create User</Button>
+                <Button className="flex justify-between" type="submit">Create User</Button>
             </form>
             {registrationMessage.length > 0 && <p className="text-black-500 text-2xl">{registrationMessage}</p>}
         </div>

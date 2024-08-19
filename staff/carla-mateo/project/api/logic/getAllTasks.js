@@ -19,7 +19,7 @@ const getAllTasks = (userId) => {
 
                     tasks.forEach((task) => {
                         task.id = task._id.toString()
-                        task.assignee = task.assignee || ""
+                        task.assignee = task.assignee || null
                         delete task._id
 
                     })

@@ -13,11 +13,11 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const { family, assignee, title, description } = req.body
+                const { family, assignee, title, description, date } = req.body
 
 
                 try {
-                    logic.createTask(userId, family, assignee, title, description)
+                    logic.createTask(userId, family, assignee, title, description, date)
                         .then(() => res.status(201).send())
                         .catch(error => next(error))
                 } catch (error) {

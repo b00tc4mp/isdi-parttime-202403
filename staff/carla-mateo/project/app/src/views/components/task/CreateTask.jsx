@@ -17,11 +17,12 @@ function CreateTask({ onTaskSuccess }) {
 
         const title = form.title.value
         const description = form.description.value
-        const assignee = form.assignee.value === "" ? null : form.assignee.value
+        const assignee = form.assignee.value || null
         const family = form.family.value
+        const date = form.date.value || null
 
         try {
-            logic.createTask(family, assignee || null, title, description)
+            logic.createTask(family, assignee, title, description, date)
                 .then(newTask => {
                     onTaskSuccess(newTask)
                 })
@@ -47,9 +48,10 @@ function CreateTask({ onTaskSuccess }) {
             <form className='mb-4 ' onSubmit={handleCreateTask}>
                 <Field id="family" type="text" placeholder="Family" />
                 <Field id="title" type="text" placeholder="Task Title" />
-                <textarea className="bg-color-transparent" id="description" type="text" placeholder="Task Description" />
+                <textarea className="bg-green-100 border border-green-800 shadow-lg" id="description" type="text" placeholder="Task Description" />
+                <Field id="date" type="date" placeholder="Task Date" />
 
-                <select id="assignee" className="min-w-20 p-2 border rounded">
+                <select id="assignee" className="min-w-20 p-2  rounded  left-0 mt-2 w-48 bg-green-100 border border-green-800 shadow-lg">
                     <option value="">Unassigned</option>
                     {users.map(user => (
                         <option key={user.id} value={user.username}>{user.username}</option>

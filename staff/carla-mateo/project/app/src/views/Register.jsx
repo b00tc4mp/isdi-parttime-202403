@@ -54,16 +54,16 @@ function Register() {
             <Field id="family" type="text" placeholder="family" />
 
             <label htmlFor="avatar">Select an avatar:</label>
-            <select id="avatar" name="avatar" className="form-select">
+            <select id="avatar" name="avatar" className="right-0 mt-2 m-4 w-48 bg-green-100 border border-green-800 shadow-lg">
                 <option value="avatars/azul.png">azul</option>
                 <option value="avatars/rojo.png">rojo</option>
-                <option value="avatars/anaranjado.png">anaranjado</option>
+                <option value="avatars/amarillo.png">amarillo</option>
                 <option value="avatars/naranja.png">naranja</option>
                 <option value="avatars/morado.png">morado</option>
                 <option value="avatars/verde.png">verde</option>
             </select>
 
-            <Button type="submit">Register</Button>
+            <Button className="mb-4" type="submit">Register</Button>
 
             <Link to="/login">
                 <span className="absolute top-6 right-0 p-4">{<TiArrowForward size={32} />}</span>

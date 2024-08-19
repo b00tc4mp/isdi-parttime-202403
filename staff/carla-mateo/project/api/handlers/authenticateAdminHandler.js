@@ -10,11 +10,13 @@ export default (req, res, next) => {
 
     try {
         logic.authenticateAdmin(username, password)
-            .then(id =>
-                jwt.sign({ sub: id }, JWT_SECRET, { expiresIn: '15d' })
+            .then(user => {
+                const { id, role } = user
+
+                return jwt.sign({ sub: id, role }, JWT_SECRET, { expiresIn: '20d' })
                     .then(token => res.json(token))
                     .catch(error => next(new SystemError(error.message)))
-            )
+            })
             .catch(error => next(error))
     } catch (error) {
         next(error)

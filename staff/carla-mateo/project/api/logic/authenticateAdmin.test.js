@@ -8,10 +8,8 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
 
-            authenticateAdmin("carla", "1234")
-                .then((userId) => {
-                    console.log(`User ${userId} authenticated with role ${role}`)
-                })
+            authenticateAdmin("jordi", "1234")
+                .then(() => { })
                 .catch(error => console.error(error))
 
         } catch (error) {

@@ -6,15 +6,19 @@ function UserProvider({ children }) {
     const [isAdmin, setAdmin] = useState(false)
 
     useEffect(() => {
+
+        logic.getUserName()
+            .then(user => {
+                setUser(user)
+            })
+            .catch((error) => alert('Failed to get user name: ' + error.message))
+
+
         try {
-            logic.getUserName()
-                .then(user => {
-                    setUser(user)
-                    setAdmin(user?.role === 'admin')
-                })
-                .catch((error) => alert(error.message))
+            const role = logic.getUserRole()
+            setAdmin(role === 'admin')
         } catch (error) {
-            alert(error.message)
+            alert('Failed to get user role: ' + error.message)
         }
     }, [])
 
@@ -23,3 +27,4 @@ function UserProvider({ children }) {
 }
 
 export default UserProvider
+

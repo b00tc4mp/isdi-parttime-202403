@@ -1,12 +1,13 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const createTask = (family, assignee, title, description) => {
+const createTask = (family, assignee, title, description, date) => {
     validate.text(family, 'family')
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
 
-    const body = JSON.stringify({ family, assignee, title, description })
+
+    const body = JSON.stringify({ family, assignee, title, description, date })
 
     return fetch(`${import.meta.env.VITE_API_URL}/createtask`, {
         method: 'POST',

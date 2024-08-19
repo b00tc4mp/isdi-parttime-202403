@@ -13,7 +13,6 @@ const task = new Schema({
     },
     title: {
         type: String,
-        required: true
     },
     description: {
         type: String
@@ -21,8 +20,6 @@ const task = new Schema({
     },
     date: {
         type: Date,
-        required: true,
-        default: Date.now
     },
     done: [{
         type: ObjectId,
