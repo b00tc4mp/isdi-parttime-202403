@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMzN2VhM2RjZmVjMzM1ZDE4NDNiYTMiLCJpYXQiOjE3MjQwOTA4MTYsImV4cCI6MTcyNDk1NDgxNn0.pCvbrIUKv6PENVM_GdnWZ6L3u3zQcHQ8AB68oNLYpPQ" http://localhost:8080/games/66c37ea3dcfec335d1843ba3 -v

@@ -16,7 +16,7 @@ function GameList({ refreshStamp }) {
 
     const loadGames = () => {
         try {
-            logic.getAllGames()
+            logic.getAllGamesUser()
                 .then(games => {
                     console.log('GamesList -> setGames')
 
@@ -39,9 +39,9 @@ function GameList({ refreshStamp }) {
 
     return (
         <div className='List'>
-            {games.map(game =>
+            {games.map((game, index) =>
                 <Game
-                    key={game.id}
+                    key={index}
                     game={game}
                     onGameDeleted={handleGameDeleted}
                     onGameEdited={handleGameEdited} />)}

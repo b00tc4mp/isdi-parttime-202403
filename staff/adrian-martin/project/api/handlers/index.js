@@ -7,6 +7,7 @@ import getAllGamesHandler from "./getAllGamesHandler.js";
 import deleteGameHandler from "./deleteGameHandler.js";
 import editGameHandler from "./editGameHandler.js";
 import errorHandler from './errorHandler.js'
+import getAllGamesUserHandler from "./getAllGamesUserHandler.js";
 
 export {
     registerUserHandler,
@@ -17,5 +18,6 @@ export {
     getAllGamesHandler,
     deleteGameHandler,
     editGameHandler,
-    errorHandler
+    errorHandler,
+    getAllGamesUserHandler,
 }

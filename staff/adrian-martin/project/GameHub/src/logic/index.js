@@ -9,6 +9,7 @@ import getAllGames from "./getAllGames.js"
 import createGame from "./createGame.js"
 import deleteGame from "./deleteGame.js"
 import editGame from "./editGame.js"
+import getAllGamesUser from "./getAllGamesUser.js"
 
 
 const logic = {
@@ -22,7 +23,8 @@ const logic = {
     getAllGames,
     createGame,
     deleteGame,
-    editGame
+    editGame,
+    getAllGamesUser
 }
 
 export default logic
