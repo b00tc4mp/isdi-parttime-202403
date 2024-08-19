@@ -11,6 +11,7 @@ import AdList from "./components/AdList/AdList"
 
 import './Home.css'
 import Header from "./components/Header/Header"
+import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton"
 function Home() {
 
     const [user, setUser] = useState('')
@@ -49,6 +50,8 @@ function Home() {
 
         </Header> */}
         <main className="Home">
+
+            <CreateAdButton />
 
             <div>
                 <AdList />

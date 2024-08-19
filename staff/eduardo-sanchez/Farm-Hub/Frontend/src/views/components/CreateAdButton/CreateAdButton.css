@@ -1,0 +1,8 @@
+@tailwind components;
+
+@layer components {
+
+    .CreateAdButton {
+        @apply fixed left-8 font-black text-2xl bottom-8 p-[1rem] ps-5 pe-5 bg-white font-[1rem] border-[1px] border-blue-500 rounded-md mt-3;
+    }
+}

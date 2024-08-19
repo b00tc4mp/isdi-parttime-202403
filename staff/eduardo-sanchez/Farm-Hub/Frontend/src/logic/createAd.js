@@ -6,6 +6,8 @@ const createAd = (title, description, price) => {
     validate.text(description, 'description', 200)
     validate.price(price, 'price')
 
+    // throw new SystemError('not implemented')
+
     return fetch(`${import.meta.env.VITE_API_URL}/ads`, {
         method: 'POST',
         headers: {
