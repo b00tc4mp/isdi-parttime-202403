@@ -93,4 +93,8 @@
   .BankAccount {
     @apply font-semibold;
   }
+
+  .InvoiceHeader .IconLeftHeader {
+    @apply -top-5 text-6xl;
+  }
 }

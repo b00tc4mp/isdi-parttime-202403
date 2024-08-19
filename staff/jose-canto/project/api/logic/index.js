@@ -15,11 +15,12 @@ import getDeliveryNote from "./getDeliveryNote.js"
 import getAllDeliveryNotesCustomer from "./getAllDeliveryNotesCustomer.js"
 
 import createDeliveryNote from "./createDeliveryNote.js"
-
 import createWork from "./createWork.js"
+
 import getAllInvoices from "./getAllInvoices.js"
 import getInvoice from "./getInvoice.js"
 import createInvoice from "./createInvoice.js"
+import deleteInvoice from "./deleteInvoice.js"
 
 
 const logic = {
@@ -46,6 +47,7 @@ const logic = {
   getAllInvoices,
   getInvoice,
   createInvoice,
+  deleteInvoice,
 }
 
 export default logic

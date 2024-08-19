@@ -1,16 +1,18 @@
 import "dotenv/config"
 import mongoose from "mongoose"
-import deleteDeliveryNote from "./deleteDeliveryNote.js"
+import deleteInvoice from "./deleteInvoice.js"
 
 const { MONGODB_URL } = process.env
+
 
 mongoose.connect(MONGODB_URL)
   .then(() => {
 
     try {
-      deleteDeliveryNote("66bdd4c732fcba8cafde2520", "66c0e39605d77f3a6c2fdb8c")
+
+      deleteInvoice("66bdb9e2859c06c6535cfb14", "66bf45c2c7a4e1980b67af6d")
         .then(() => {
-          console.log(`Delivery note deleted`)
+          console.log(`Invoice deleted`)
         })
         .catch(error => console.error(error))
 

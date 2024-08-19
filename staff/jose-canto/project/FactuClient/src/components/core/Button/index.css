@@ -6,6 +6,6 @@
   }
 
   .Button:hover {
-    @apply border-r-black text-white;
+    @apply border-black text-white;
   }
 }

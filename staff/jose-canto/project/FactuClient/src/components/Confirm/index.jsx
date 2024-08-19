@@ -3,13 +3,21 @@ import Title from "../Title"
 
 import "./index.css"
 
-export default function Confirm({ setShowConfirmDelete, handleDeleteDeliveryNote, handleDeleteCustomer }) {
+export default function Confirm({
+  setShowConfirmDelete,
+  handleDeleteDeliveryNote,
+  handleDeleteCustomer,
+  handleDeleteInvoice
+}) {
   const handleDelete = () => {
     if (handleDeleteDeliveryNote) {
       handleDeleteDeliveryNote()
     }
     if (handleDeleteCustomer) {
       handleDeleteCustomer()
+    }
+    if (handleDeleteInvoice) {
+      handleDeleteInvoice()
     }
   }
 

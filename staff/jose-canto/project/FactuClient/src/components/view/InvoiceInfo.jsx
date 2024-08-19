@@ -1,10 +1,14 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState, Fragment } from "react"
+import { useNavigate } from "react-router-dom"
+
+import { MdDeleteForever } from "react-icons/md"
 
 import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
 import Title from "../Title"
+import Confirm from "../Confirm"
 
 import logic from "../../logic/index"
 
@@ -12,9 +16,12 @@ import "./InvoiceInfo.css"
 import Time from "../core/Time"
 
 export default function InvoiceInfo() {
+  const navigate = useNavigate()
+
   const { invoiceId } = useParams()
   const [invoice, setInvoice] = useState(null)
   const [total, setTotal] = useState(0)
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false)
 
   useEffect(() => {
     try {
@@ -37,9 +44,28 @@ export default function InvoiceInfo() {
     }
   }, [invoiceId])
 
+  const handleDeleteInvoice = () => {
+    try {
+      //prettier-ignore
+      logic.deleteInvoice(invoiceId)
+        .then(() => {
+          navigate(-1)
+        })
+        .catch((error) => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const handleShowConfirmDelete = () => {
+    setShowConfirmDelete(!showConfirmDelete)
+  }
+
   return (
     <>
-      <Header className="InvoiceHeader">
+      <Header iconLeftHeader={<MdDeleteForever />} className="InvoiceHeader" onDeleteInvoice={handleShowConfirmDelete}>
         <Title className="TitleInvoice" level={2}>
           Factura Nº: {invoice?.number && invoice.number}
           {invoice?.customer && <p>{invoice.customer.companyName}</p>}
@@ -112,6 +138,10 @@ export default function InvoiceInfo() {
           {invoice?.paymentType && <p>Forma de pago: {invoice.paymentType} </p>}
           {invoice?.company && <p>{invoice.company.bankAccount}</p>}
         </div>
+
+        {showConfirmDelete && (
+          <Confirm handleDeleteInvoice={handleDeleteInvoice} setShowConfirmDelete={handleShowConfirmDelete} />
+        )}
       </Main>
 
       <Footer>FactuClient</Footer>

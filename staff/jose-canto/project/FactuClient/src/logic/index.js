@@ -22,6 +22,7 @@ import createWork from "./createWork.js"
 import getAllInvoices from "./getAllInvoices.js"
 import getInvoice from "./getInvoice.js"
 import createInvoice from "./createInvoice.js"
+import deleteInvoice from "./deleteInvoice.js"
 
 
 const logic = {
@@ -50,6 +51,7 @@ const logic = {
   getAllInvoices,
   getInvoice,
   createInvoice,
+  deleteInvoice
 }
 
 export default logic

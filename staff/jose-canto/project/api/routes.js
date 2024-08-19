@@ -28,6 +28,7 @@ router.patch("/create/work/delivery-notes/:deliveryNoteId", jsonBodyParser, rout
 router.get("/invoices", routes.getAllInvoicesHandler)
 router.get("/invoices/:invoiceId", routes.getInvoiceHandler)
 router.post("/create/invoices/:customerId", jsonBodyParser, routes.createInvoiceHandler)
+router.delete("/invoices/:invoiceId", routes.deleteInvoiceHandler)
 
 
 export default router
