@@ -12,6 +12,14 @@ import "./InvoiceList.css"
 
 export default function InvoiceList() {
   const [invoices, setInvoices] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const filterInvoices = () =>
+    invoices.filter(
+      (invoice) =>
+        invoice.number.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        invoice.customer.companyName.toLowerCase().includes(searchTerm.toLowerCase())
+    )
 
   useEffect(() => {
     try {
@@ -34,8 +42,15 @@ export default function InvoiceList() {
         Facturas
       </Header>
       <Main>
+        <input
+          className="-mb-5 -mt-2 w-[21rem] rounded-md border border-gray-500 p-2"
+          type="text"
+          placeholder="Buscar por número o nombre de Factura"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
         <ul className="InvoiceList">
-          {invoices.map((invoice) => (
+          {filterInvoices().map((invoice) => (
             <Link className="InvoiceLink" key={invoice.id} to={`/invoices/${invoice.id}`}>
               <li className="Invoice" key={invoice.id}>
                 {invoice?.number && <p>F/Nº: {invoice.number}</p>}
