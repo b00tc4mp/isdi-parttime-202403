@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 import registerUser from './registerUser.js'
 import { User } from '../data/index.js'
 import { expect } from 'chai'
-import { ContentError, DuplicityError } from 'com/errors.js'
+import { ContentError, DuplicityError, MatchError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 
@@ -46,83 +46,84 @@ describe('registerUser', () => {
         expect(errorThrown.message).to.equal('user already exists')
       })
 
-    it('fails on valid name', () => {
-      let errorThrown
-
-      try {
-        registerUser(9879, 'Chai', 'mocha@chai.com', '+58 414 455 7362', '1234', '1234')
-      } catch (error) {
-        errorThrown = error
-      } finally {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal('name is not valid')
-      }
-    })
-
-    it('fails on valid surname', () => {
-      let errorThrown
-
-      try {
-        registerUser('Mocha', 9639, 'mocha@chai.com', '+58 414 455 7362', '1234', '1234')
-      } catch (error) {
-        errorThrown = error
-      } finally {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown).to.equal('surname is not valid')
-      }
-    })
-
-    it('fails on valid email', () => {
-      let errorThrown
-
-      try {
-        registerUser('Mocha', 'Chai', 436, '+58 414 455 7362', '1234', '1234')
-      } catch (error) {
-        errorThrown = error
-      } finally {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown).to.equal('email is not valid')
-      }
-    })
-
-    it('fails on valid phone', () => {
-      let errorThrown
-
-      try {
-        registerUser('Mocha', 'Chai', 'mocha@chai.com', +58, '1234', '1234')
-      } catch (error) {
-        errorThrown = error
-      } finally {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown).to.equal('phone is not valid')
-      }
-    })
-
-    it('fails on valid password', () => {
-      let errorThrown
-
-      try {
-        registerUser('Mocha', 'Chai', 'mocha@chai.com', '+58 414 455 7362', 1234, '1234')
-      } catch (error) {
-        errorThrown = error
-      } finally {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown).to.equal('password is not valid')
-      }
-    })
-
-    it('fails on valid passwordRepeat', () => {
-      let errorThrown
-
-      try {
-        registerUser('Mocha', 'Chai', 'mocha@chai.com', '+58 414 455 7362', '1234', 1234)
-      } catch (error) {
-        errorThrown = error
-      } finally {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown).to.equal('passwords don\'t match')
-      }
-    })
-    after(() => User.deleteMany().then(() => mongoose.disconnect()))
   })
+
+  it('fails on valid name', () => {
+    let errorThrown
+
+    try {
+      registerUser(9879, 'Chai', 'mocha@chai.com', '+58 414 455 7362', '1234', '1234')
+    } catch (error) {
+      errorThrown = error
+    } finally {
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('name is not valid')
+    }
+  })
+
+  it('fails on valid surname', () => {
+    let errorThrown
+
+    try {
+      registerUser('Mocha', 998, 'mocha@chai.com', '+58 414 455 7362', '1234', '1234')
+    } catch (error) {
+      errorThrown = error
+    } finally {
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('surname is not valid')
+    }
+  })
+
+  it('fails on valid email', () => {
+    let errorThrown
+
+    try {
+      registerUser('Mocha', 'Chai', 987987, '+58 414 455 7362', '1234', '1234')
+    } catch (error) {
+      errorThrown = error
+    } finally {
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('email is not valid')
+    }
+  })
+
+  it('fails on valid phone number', () => {
+    let errorThrown
+
+    try {
+      registerUser('Mocha', 'Chai', 'mocha@chai.com', 4544, '1234', '1234')
+    } catch (error) {
+      errorThrown = error
+    } finally {
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('phone number is not valid')
+    }
+  })
+  it('fails on valid password', () => {
+    let errorThrown
+
+    try {
+      registerUser('Mocha', 'Chai', 'mocha@chai.com', '+58 414 455 7362', 1234, '1234')
+    } catch (error) {
+      errorThrown = error
+    } finally {
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('password is not valid')
+    }
+  })
+  it('fails on valid phone number', () => {
+    let errorThrown
+
+    try {
+      registerUser('Mocha', 'Chai', 'mocha@chai.com', '+58 414 455 7362', '1234', 1234)
+    } catch (error) {
+      errorThrown = error
+    } finally {
+      expect(errorThrown).to.be.instanceOf(MatchError)
+      expect(errorThrown.message).to.equal('passwords don\'t match')
+    }
+  })
+
+  
+  after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })
