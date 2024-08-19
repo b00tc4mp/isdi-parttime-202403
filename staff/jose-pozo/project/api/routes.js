@@ -10,11 +10,11 @@ router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)
 
 router.post('/users/customers', jsonBodyParser, routes.createCustomerHandler)
 
-router.delete('/users/:targetUserId', routes.deleteCustomerHandler)
+router.delete('/users/:customerId', routes.deleteCustomerHandler)
 
 router.get('/users/:targetUserId', routes.getUserNameHandler)
 router.get('/users/:targetUserId/profile', routes.getUserProfileHandler)
-router.get('/users', routes.getAllCustomersHandler)
+router.get('/customers', routes.getAllCustomersHandler)
 
 
 export default router

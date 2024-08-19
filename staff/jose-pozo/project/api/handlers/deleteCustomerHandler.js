@@ -2,7 +2,7 @@ import jwt from '../util/jsonwebtoken-promised.js'
 
 import logic from '../logic/index.js'
 
-import { CredentialsError, SystemError } from 'com/errors.js'
+import { CredentialsError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
 
@@ -15,11 +15,11 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const { targetUserId } = req.params
+                const { customerId } = req.params
 
                 try {
-                    logic.deleteCustomer(userId, targetUserId)
-                        .then(user => res.json(user))
+                    logic.deleteCustomer(userId, customerId)
+                        .then(() => res.status(204).send())
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)

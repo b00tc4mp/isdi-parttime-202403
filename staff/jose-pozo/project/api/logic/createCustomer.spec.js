@@ -6,7 +6,7 @@ const { ObjectId } = Types
 
 import bcrypt from 'bcryptjs'
 
-import { ContentError, NotFoundError } from 'com/errors.js'
+import { ContentError, NotFoundError, DuplicityError } from 'com/errors.js'
 
 import { expect } from 'chai'
 
@@ -67,6 +67,38 @@ describe('create customer', () => {
             })
     })
 
+    it('fails on duplicity customer', () => {
+        let errorThrown
+
+        return bcrypt.hash('1234', 8)
+            .then(hash => {
+                return User.create({
+                    name: 'Jon',
+                    surname: 'Snow',
+                    email: 'jon@snow.com',
+                    password: hash,
+                    role: 'provider'
+                })
+                    .then(user => {
+                        return User.create({
+                            name: 'Alfa',
+                            surname: 'Beto',
+                            email: 'alfa@beto.com',
+                            role: 'customer',
+                            manager: user.id
+                        })
+                    })
+                    .then((user) => createCustomer(user.id, 'Alfa', 'Beto', 'alfa@beto.com'))
+                    .catch(error => {
+                        errorThrown = error
+                    })
+                    .finally(() => {
+                        expect(errorThrown).to.be.an.instanceOf(DuplicityError)
+                        expect(errorThrown.message).to.equal('Customer already exists')
+                    })
+            })
+    })
+
     it('fails on invalid userId', () => {
         let errorThrown
 
@@ -120,8 +152,8 @@ describe('create customer', () => {
     })
 
     after(() => User.deleteMany().then(() => mongoose.disconnect()))
-})
 
+})
 
 
 

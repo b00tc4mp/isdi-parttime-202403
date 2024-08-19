@@ -37,10 +37,10 @@ describe('delete customer', () => {
                 email: 'alfa@beto',
                 role: 'customer'
             })]))
-            .then(([user, targetUser]) => deleteCustomer(user.id, targetUser.id))
-            .then(targetUserIdDeleted => User.findById(targetUserIdDeleted))
-            .then((targetUserIDeleted) => {
-                expect(targetUserIDeleted).to.be.null
+            .then(([user, customer]) => deleteCustomer(user.id, customer.id))
+            .then(customerIdDeleted => User.findById(customerIdDeleted))
+            .then((customerIdDeleted) => {
+                expect(customerIdDeleted).to.be.null
             })
     )
 
@@ -55,7 +55,7 @@ describe('delete customer', () => {
             })
     })
 
-    it('fails on non-existing targetUserId', () => {
+    it('fails on non-existing customer', () => {
         let errorThrown
 
         return bcrypt.hash('1234', 8)
@@ -70,7 +70,7 @@ describe('delete customer', () => {
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceof(NotFoundError)
-                expect(errorThrown.message).to.equal('TargetUser not found')
+                expect(errorThrown.message).to.equal('Customer not found')
             })
     })
 
@@ -87,7 +87,7 @@ describe('delete customer', () => {
         }
     })
 
-    it('fails on invalid targetUserId', () => {
+    it('fails on invalid customerId', () => {
         let errorThrown
 
         try {
@@ -96,7 +96,7 @@ describe('delete customer', () => {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.an.instanceof(ContentError)
-            expect(errorThrown.message).to.equal('targetUserId is not valid')
+            expect(errorThrown.message).to.equal('Customer is not valid')
         }
     })
 

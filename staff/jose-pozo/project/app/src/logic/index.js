@@ -11,6 +11,8 @@ import getUserProfile from './getUserProfile'
 
 import createCustomer from './createCustomer'
 
+import deleteCustomer from './deleteCustomer'
+
 
 const logic = {
     registerUser,
@@ -25,7 +27,7 @@ const logic = {
 
     createCustomer,
 
-
+    deleteCustomer,
 }
 
 export default logic

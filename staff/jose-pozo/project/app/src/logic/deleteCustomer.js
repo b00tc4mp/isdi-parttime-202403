@@ -2,11 +2,11 @@ import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 
-const deleteCustomer = (targetUserId) => {
+const deleteCustomer = (customerId) => {
 
-    validate.id(targetUserId, 'targetUserId')
+    validate.id(customerId, 'customerId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${targetUserId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${customerId}`, {
         method: 'DELETE',
 
         headers: {
@@ -16,10 +16,10 @@ const deleteCustomer = (targetUserId) => {
 
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 204)
-                return response.json()
-                    .catch(() => { throw new SystemError('server error') })
-                    .then(targetUserId => targetUserId)
+            if (response.status === 204) return
+            // return response.json()
+            //     .catch(() => { throw new SystemError('server error') })
+            //     .then(customerId => customerId)
 
             return response.json()
                 .catch(() => { throw new SystemError('server error') })
@@ -32,3 +32,6 @@ const deleteCustomer = (targetUserId) => {
                 })
         })
 }
+
+
+export default deleteCustomer

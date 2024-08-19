@@ -28,12 +28,11 @@ function CreateCustomerForm({ onClose }) {
                 .then(() => {
                     setMessage('¡Customer created!')
 
-
                     setTimeout(() => {
 
-                        onClose();
+                        onClose()
 
-                    }, 5000);
+                    }, 1500)
                 })
 
                 .catch(error => {

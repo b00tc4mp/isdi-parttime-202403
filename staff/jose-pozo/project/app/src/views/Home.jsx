@@ -66,7 +66,6 @@ function Home() {
         setShowCustomersList(!showCustomersList)
         setShowCreateCustomerForm(false)
         setShowCompoUserProfile(false)
-
     }
 
 

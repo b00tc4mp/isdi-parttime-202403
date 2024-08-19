@@ -16,4 +16,12 @@
   .Button.CustomersButton {
     @apply my-2 w-full rounded bg-soft-gray p-1 text-left text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
   }
+
+  .Button.DeleteProfileButton {
+    @apply mb-2 ml-2 w-2/4 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
+
+  .Button.EditProfileButton {
+    @apply mb-2 mr-2 w-2/4 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
 }

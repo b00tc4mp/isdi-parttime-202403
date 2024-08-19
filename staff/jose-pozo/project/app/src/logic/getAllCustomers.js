@@ -3,7 +3,7 @@ import errors, { SystemError } from 'com/errors'
 
 const getAllCustomers = () => {
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/customers`, {
         method: 'GET',
 
         headers: {

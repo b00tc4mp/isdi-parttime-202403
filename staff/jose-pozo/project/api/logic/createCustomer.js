@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { NotFoundError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError, DuplicityError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const createCustomer = (userId, name, surname, email) => {
@@ -15,23 +15,33 @@ const createCustomer = (userId, name, surname, email) => {
                 throw new NotFoundError('User not found')
             }
 
-            const newCustomer = {
-                name,
-                surname,
-                email,
-                password: '',
-                role: 'customer',
-                phone: '',
-                manager: user.id,
-                providers: [],
-                appointments: [],
-                notes: [],
-                services: []
-            }
-
-            return User.create(newCustomer)
+            return User.findOne({ $and: [{ email }, { manager: user.id }, { role: 'customer' }, { password: '' }] })
                 .catch(error => { throw new SystemError(error.message) })
-                .then(() => newCustomer)
+                .then(customer => {
+                    if (customer) {
+                        throw new DuplicityError('Customer already exists')
+                    }
+
+                    const newCustomer = {
+                        name,
+                        surname,
+                        email,
+                        password: '',
+                        role: 'customer',
+                        phone: '',
+                        manager: user.id,
+                        providers: [],
+                        appointments: [],
+                        notes: [],
+                        services: []
+                    }
+
+                    return User.create(newCustomer)
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(() => newCustomer)
+                })
+
+
         })
 
 }

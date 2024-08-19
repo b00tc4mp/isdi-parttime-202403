@@ -13,7 +13,7 @@ const CustomersList = () => {
 
     const [customers, setCustomers] = useState([])
 
-    const { handleUserProfileClick } = useUserProfileContext()
+    const { handleUserProfileClick, showCompoUserProfile } = useUserProfileContext()
 
     useEffect(() => {
         try {
@@ -29,10 +29,7 @@ const CustomersList = () => {
 
             alert(error.message)
         }
-    }, [])
-
-
-
+    }, [showCompoUserProfile])
 
 
     return <>
