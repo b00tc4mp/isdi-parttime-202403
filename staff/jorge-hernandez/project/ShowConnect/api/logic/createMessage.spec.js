@@ -33,7 +33,7 @@ describe('createMessage', () => {
       city: 'Test City',
       discipline: 'Test Discipline',
       description: 'Test Description',
-      images: 'testimage.jpg',
+      image: 'testimage.jpg',
       video: 'testvideo.mp4',
       dates: ['2024-08-17'],
       role: 'artist',

@@ -58,7 +58,7 @@ function ArtistsList({ artist, city, excludedDate }) {
             key={index}
             artisticName={artist.artisticName}
             description={artist.description}
-            images={artist.images}
+            image={artist.image}
             onClickProfile={() => handleArtistClick(artist)}
           />
         ))}

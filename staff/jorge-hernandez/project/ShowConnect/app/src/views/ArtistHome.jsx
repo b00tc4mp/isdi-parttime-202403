@@ -7,7 +7,6 @@ import EditableDescription from '../components/EditableDescription'
 import EditableVideo from '../components/EditableVideo'
 import AddDate from '../components/AddDate'
 import ArtistMessages from './ArtistMessages'
-import SendMessageAndRegister from '../components/SendMessageAndRegister'
 //TODO EDIT BUTTON
 function ArtistHome({ onUserLoggedOut }) {
   const [artist, setArtist] = useState(null)
@@ -78,9 +77,9 @@ function ArtistHome({ onUserLoggedOut }) {
               <div className='flex items-center mb-3'>
                 <EditableImage
                   artistId={artist.id}
-                  label={artist.images}
+                  label={artist.image}
                   onImageUpdate={(newImage) => {
-                    setArtist({ ...artist, images: newImage })
+                    setArtist({ ...artist, image: newImage })
                   }}
                 />
                 <EditableDescription

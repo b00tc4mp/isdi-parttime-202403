@@ -21,7 +21,7 @@ function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
     const description = form.description.value
     const email = form.email.value
     const city = form.city.value.toLowerCase()
-    const images = form.images.value
+    const image = form.image.value
     const video = form.video.value
     const password = form.password.value
     const passwordRepeat = form.passwordRepeat.value
@@ -35,7 +35,7 @@ function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
           city,
           description,
           email,
-          images,
+          image,
           video,
           password,
           passwordRepeat
@@ -149,11 +149,11 @@ function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
           labelClass='text-white'
-          htmlFor='images'
+          htmlFor='image'
           labelChildren='Imágen'
           inputClass='h-8 rounded p-2'
           type='text'
-          id='images'
+          id='image'
           placeholder='Link de foto'
         />
 

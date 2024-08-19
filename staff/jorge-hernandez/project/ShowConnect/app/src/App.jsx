@@ -67,7 +67,10 @@ function App() {
       )}
 
       {view === 'clientHome' && role === 'client' && (
-        <ClientHome onUserLoggedOut={handleGoToSearch} />
+        <ClientHome
+          onLogoClick={handleGoToSearch}
+          onUserLoggedOut={handleGoToSearch}
+        />
       )}
 
       {view === 'messages' && (

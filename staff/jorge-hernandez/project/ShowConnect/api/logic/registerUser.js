@@ -10,7 +10,7 @@ const registerUser = (
   city,
   description,
   email,
-  images,
+  image,
   video,
   password,
   passwordRepeat
@@ -21,7 +21,7 @@ const registerUser = (
   validate.text(discipline, 'discipline')
   validate.text(city, 'city')
   validate.text(description, 'description')
-  validate.url(images, 'images')
+  validate.url(image, 'image')
   validate.url(video, 'video')
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
@@ -48,7 +48,7 @@ const registerUser = (
             city: city,
             description: description,
             email: email,
-            images: images,
+            image: image,
             video: video,
             password: hash,
             role: 'artist',

@@ -24,9 +24,10 @@ const getArtistData = (userId, targetUserId) => {
             throw new NotFoundError('targetUser not found')
           }
           return {
+            name: user.name,
             artisticName: user.artisticName,
             description: user.description,
-            images: user.images,
+            image: user.image,
             video: user.video,
             email: user.email,
             dates: user.dates,

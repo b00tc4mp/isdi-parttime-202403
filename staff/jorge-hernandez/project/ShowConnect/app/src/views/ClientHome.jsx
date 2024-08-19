@@ -2,10 +2,15 @@ import logic from '../logic'
 import Header from '../components/Header'
 import UserChatsAndMessagesList from '../components/UserChatsAndMessagesList'
 
-function ClientHome({ onUserLoggedOut }) {
+function ClientHome({ onUserLoggedOut, onLogoClick }) {
   const handleLogout = () => {
     logic.logoutUser()
     onUserLoggedOut()
+  }
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    onLogoClick()
   }
   return (
     <>
@@ -13,6 +18,7 @@ function ClientHome({ onUserLoggedOut }) {
         isArtistHomeVisible={true}
         loginButtonChildren='logout'
         onClick={handleLogout}
+        onLogoClick={handleLogoClick}
       >
         ShowConnect
       </Header>

@@ -16,13 +16,16 @@
     "test": "mocha logic/*.spec.js",
     "test-inspect": "mocha --inspect-brk logic/*.spec.js",
     "start": "node --watch .",
-    "inspect": "node --inspect-brk ."
+    "inspect": "node --inspect-brk .",
+    "test-coverage": "c8 --experimental-monocart --reporter=html --reporter=text mocha logic/*.spec.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "c8": "^10.1.2",
     "chai": "^5.1.1",
-    "mocha": "^10.7.0"
+    "mocha": "^10.7.0",
+    "monocart-coverage-reports": "^2.10.3"
   }
 }

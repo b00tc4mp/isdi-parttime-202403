@@ -8,7 +8,7 @@ export default (req, res, next) => {
     city,
     description,
     email,
-    images,
+    image,
     video,
     password,
     passwordRepeat,
@@ -23,7 +23,7 @@ export default (req, res, next) => {
         city,
         description,
         email,
-        images,
+        image,
         video,
         password,
         passwordRepeat

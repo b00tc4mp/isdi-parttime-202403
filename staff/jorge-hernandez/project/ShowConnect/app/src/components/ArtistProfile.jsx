@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SendMessageAndRegister from './SendMessageAndRegister'
+import logic from '../logic/index'
 
 function ArtistProfile({ artist, onClose }) {
   const [sendMessage, setSendMessage] = useState(false)

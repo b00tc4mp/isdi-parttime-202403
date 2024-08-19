@@ -10,7 +10,7 @@ function EditableImage({ artistId, label, onImageUpdate }) {
   const handleImageChange = (event) => setNewImage(event.target.value)
 
   const handleImageSave = () => {
-    const updatedData = { images: newImage }
+    const updatedData = { image: newImage }
     logic
       .updateArtistData(artistId, updatedData)
       .then(() => {
@@ -18,7 +18,7 @@ function EditableImage({ artistId, label, onImageUpdate }) {
         setIsEditing(false)
       })
       .catch((error) => {
-        console.error('Error updating artist data:', error)
+        console.error(error.message)
       })
   }
   const handleImageCancel = () => {

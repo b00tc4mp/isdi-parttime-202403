@@ -26,7 +26,6 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
         .loginUser(email, password)
         .then(() => {
           const role = sessionStorage.role
-          console.log(role)
           onUserLoggedIn(role)
         })
         .catch((error) => {

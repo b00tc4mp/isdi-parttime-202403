@@ -5,7 +5,7 @@ import ArtistsList from './ArtistsList'
 import { disciplines } from '../assets/disciplines'
 import validate from 'com/validate'
 
-function Form({}) {
+function Form() {
   const [inputValue, setInputValue] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [artist, setArtist] = useState('')

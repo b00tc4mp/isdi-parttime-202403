@@ -85,7 +85,7 @@ Artist
 - artisticName (string, required)
 - city (string, required)
 - discipline (string, required)
-- images ([string], required)
+- image (string, required)
 - description (string, required)
 - video (string, optional)
 

@@ -28,7 +28,7 @@ describe('createChat', () => {
       city: 'New York',
       discipline: 'Painter',
       description: 'Experienced painter',
-      images: 'https://example.com/image.jpg',
+      image: 'https://example.com/image.jpg',
       video: 'https://example.com/video.mp4',
       dates: ['2024-08-01', '2024-08-02'],
       password: 'password123',

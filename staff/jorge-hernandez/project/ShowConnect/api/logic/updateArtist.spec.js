@@ -17,7 +17,7 @@ describe('updateArtist', () => {
     const userData = {
       name: 'Test User',
       artisticName: 'Old Name',
-      images: 'http://example.com/image',
+      image: 'http://example.com/image',
       description: 'Old description',
       dates: ['2024-01-01'],
       video: 'http://example.com/video',
@@ -32,14 +32,14 @@ describe('updateArtist', () => {
       const userId = user._id
       const updateData = {
         artisticName: 'New Name',
-        images: 'https://example.com/new-image',
+        image: 'https://example.com/new-image',
         description: 'New description',
         dates: ['2024-08-14'],
       }
 
       return updateArtist(userId, updateData).then((updatedUser) => {
         expect(updatedUser.artisticName).to.equal('New Name')
-        expect(updatedUser.images).to.equal('https://example.com/new-image')
+        expect(updatedUser.image).to.equal('https://example.com/new-image')
         expect(updatedUser.description).to.equal('New description')
         expect(updatedUser.dates).to.deep.equal(['2024-08-14'])
       })

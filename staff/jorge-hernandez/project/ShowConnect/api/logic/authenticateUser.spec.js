@@ -29,7 +29,7 @@ describe('authenticateUser', () => {
           city: 'madrid',
           description: 'description',
           email: 'jorge@moreno.com',
-          images: 'http',
+          image: 'http',
           video: 'http',
           password: hash,
         })
@@ -59,7 +59,7 @@ describe('authenticateUser', () => {
           city: 'madrid',
           description: 'mago',
           email: 'jorge@moreno.com',
-          images: 'https',
+          image: 'https',
           video: 'https',
           password: hash,
         })

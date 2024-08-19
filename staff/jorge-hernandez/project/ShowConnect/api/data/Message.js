@@ -9,13 +9,12 @@ const messageSchema = new Schema({
     ref: 'Chat',
   },
 
-  sender: [
-    {
-      type: ObjectId,
-      required: true,
-      ref: 'User',
-    },
-  ],
+  sender: {
+    type: ObjectId,
+    required: true,
+    ref: 'User',
+  },
+
   text: {
     type: String,
     // required: true,

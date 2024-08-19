@@ -1,3 +1,4 @@
+import { ContentError } from 'com/errors.js'
 import { Schema, model } from 'mongoose'
 
 const userSchema = new Schema({
@@ -22,17 +23,15 @@ const userSchema = new Schema({
   description: {
     type: String,
   },
-  images: {
+  image: {
     type: String,
   },
   video: {
     type: String,
   },
-
   dates: {
     type: [String],
   },
-
   password: {
     type: String,
     required: true,
@@ -51,15 +50,11 @@ userSchema.pre('validate', function (next) {
       !this.discipline ||
       !this.city ||
       !this.description ||
-      !this.images ||
+      !this.image ||
       !this.video ||
       !this.dates
     ) {
-      next(
-        new Error(
-          'Todos los campos requeridos para artistas deben ser completados.'
-        )
-      )
+      return next(new ContentError('all fields are required'))
     }
   }
   next()

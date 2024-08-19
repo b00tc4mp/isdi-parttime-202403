@@ -27,7 +27,7 @@ describe('getArtistData', function () {
       city: 'Madrid',
       description: 'Professional magician',
       email: 'jorge@moreno.com',
-      images: 'https://example.com/jorge.png',
+      image: 'https://example.com/jorge.png',
       video: 'https://example.com/video.mp4',
       password: 'hashed_password',
     })
@@ -40,7 +40,7 @@ describe('getArtistData', function () {
           city: 'Las Vegas',
           description: 'World-famous illusionist',
           email: 'david@copperfield.com',
-          images: 'https://example.com/david.png',
+          image: 'https://example.com/david.png',
           video: 'https://example.com/video_david.mp4',
           password: 'hashed_password',
         })
@@ -67,7 +67,7 @@ describe('getArtistData', function () {
       city: 'Las Vegas',
       description: 'World-famous illusionist',
       email: 'david@copperfield.com',
-      images: 'https://example.com/david.png',
+      image: 'https://example.com/david.png',
       video: 'https://example.com/video_david.mp4',
       password: 'hashed_password',
     })
@@ -90,7 +90,7 @@ describe('getArtistData', function () {
       city: 'Madrid',
       description: 'Professional magician',
       email: 'jorge@moreno.com',
-      images: 'https://example.com/jorge.png',
+      image: 'https://example.com/jorge.png',
       video: 'https://example.com/video.mp4',
       password: 'hashed_password',
     })
