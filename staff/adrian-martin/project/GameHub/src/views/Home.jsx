@@ -26,12 +26,6 @@ function Home() {
 
     const navigate = useNavigate()
 
-    const handleLogOut = () => {
-        logic.logOutUser();
-
-        navigate('/login')
-    };
-
     const handleCreatePanelGame = () => {
         setIsPanelGame(!isPanelGame);
     };
@@ -42,24 +36,7 @@ function Home() {
 
     return <View>
         <Header>
-            <Burger>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faHouseChimney} /></div>
-                    <Link to='/'  >Game List</Link>
-                </div>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faUser} /></div>
-                    <Link to='/profile' >Profile</Link>
-                </div>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faUsers} /></div>
-                    <Link to='/socialist' >Social List</Link>
-                </div>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
-                    <Button onClick={handleLogOut} >Log Out</Button>
-                </div>
-            </Burger>
+            <Burger />
 
         </Header>
 

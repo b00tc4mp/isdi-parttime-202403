@@ -1,45 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouseChimney, faUser, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 import './Burger.css'
 
-function Burguer({ children }) {
+import Button from '../../../components/core/Button/Button'
 
-    // cambiar clases del burguer
-    const [burguer_class, setBurguerClass] = useState('burger-bar unclicked')
-    const [menu_class, setMenuClass] = useState('menu hidden')
+function Burger({ children }) {
+    const [burgerClass, setBurgerClass] = useState('burger-bar unclicked')
+    const [menuClass, setMenuClass] = useState('menu hidden')
     const [isMenuClicked, setIsMenuClicked] = useState(false)
 
-    // menu del burguer
     const updateMenu = () => {
-        if (!isMenuClicked) {
-            setBurguerClass('burger-bar clicked')
-            setMenuClass('menu visible')
-        }
-        else {
-            setBurguerClass('burger-bar unclicked')
-            setMenuClass('menu hidden')
-        }
+        setBurgerClass(isMenuClicked ? 'burger-bar unclicked' : 'burger-bar clicked')
+        setMenuClass(isMenuClicked ? 'menu hidden' : 'menu visible')
         setIsMenuClicked(!isMenuClicked)
     }
+
+    const handleLogOut = () => {
+        logic.logOutUser()
+        navigate('/login')
+    }
+
+    const menuItems = [
+        { icon: faHouseChimney, label: 'Game List', to: '/' },
+        { icon: faUser, label: 'Profile', to: '/profile' },
+        { icon: faUsers, label: 'Social List', to: '/socialist' },
+        { icon: faArrowRightFromBracket, label: 'Log Out', onClick: handleLogOut, isButton: true }
+    ]
 
     return (
         <div>
             <div>
                 <div className='burger-menu' onClick={updateMenu}>
-                    <div className={burguer_class} ></div>
-                    <div className={burguer_class} ></div>
-                    <div className={burguer_class} ></div>
+                    <div className={burgerClass}></div>
+                    <div className={burgerClass}></div>
+                    <div className={burgerClass}></div>
                 </div>
             </div>
 
-            <div className={menu_class}>
+            <div className={menuClass}>
                 <div>
-                    {React.Children.map(children, (child) => (
-                        <div>{child}</div>
+                    {menuItems.map((item, index) => (
+                        <div key={index} className='Link-menu-burguer'>
+                            <div className='Icon'>
+                                <FontAwesomeIcon icon={item.icon} />
+                            </div>
+                            {item.isButton ? (
+                                <Button onClick={item.onClick}>{item.label}</Button>
+                            ) : (
+                                <Link to={item.to}>{item.label}</Link>
+                            )}
+                        </div>
                     ))}
+                    {children}
                 </div>
             </div>
         </div>
     )
 }
 
-export default Burguer
+export default Burger

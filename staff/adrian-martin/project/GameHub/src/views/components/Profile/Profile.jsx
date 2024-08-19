@@ -59,11 +59,6 @@ function Profile() {
         setRefresh(Date.now())
     }
 
-    const handleLogOut = () => {
-        logic.logOutUser();
-        navigate('/login')
-    };
-
     const handleGoHome = () => {
         navigate('/')
     }
@@ -78,24 +73,7 @@ function Profile() {
 
     return <View>
         <Header>
-            <Burger>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faHouseChimney} /></div>
-                    <Link to='/' >Game List</Link>
-                </div>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faUser} /></div>
-                    <Link to='/profile' >Profile</Link>
-                </div>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faUsers} /></div>
-                    <Link to='/socialist' >Social List</Link>
-                </div>
-                <div className='Link-menu-burguer'>
-                    <div className='Icon'><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
-                    <Button onClick={handleLogOut} >Log Out</Button>
-                </div>
-            </Burger>
+            <Burger />
         </Header>
 
         <div className='Profile'>
