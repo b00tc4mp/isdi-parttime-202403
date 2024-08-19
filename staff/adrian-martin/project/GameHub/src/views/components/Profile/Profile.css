@@ -48,27 +48,3 @@
 .Icon-edit {
     margin-left: 15px;
 }
-
-.Image {
-    height: 200px;
-    width: 200px;
-    margin: 0 auto;
-    border-radius: 15%;
-    border: 3px solid var(--second-color);
-    z-index: 1;
-
-}
-
-.Profile-ImageIcon {
-    position: relative;
-    display: inline-block;
-}
-
-.Rotate {
-    position: absolute;
-    top: 88%;
-    left: 88%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    cursor: pointer;
-}

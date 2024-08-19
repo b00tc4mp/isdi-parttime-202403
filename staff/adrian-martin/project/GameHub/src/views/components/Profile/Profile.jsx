@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faHouseChimney, faUser, faUsers, faArrowRightFromBracket, faRotate } from '@fortawesome/free-solid-svg-icons'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,32 +11,13 @@ import Button from '../../../components/core/Button/Button';
 import Footer from '../Footer/Footer';
 import Text from '../../../components/core/Text/Text';
 
-import Burger from '../Burger/Burger';
 import PanelEditUsername from './panelEditUsername/PanelEditUsername';
+import ProfileImage from '../ProfileImage/ProfileImage';
 
 import './Profile.css'
 
 function Profile() {
     console.log('Profile -> render')
-
-    const [currentImage, setCurrentImage] = useState(0)
-
-    const images = [
-        '/images/Icono1_Blanco.png',
-        '/images/Icono2_Verde.png',
-        '/images/Icono3_Rojo.png',
-        '/images/Icono4_Azul.png',
-        '/images/Icono5_Amarillo.png',
-        '/images/Icono6_Pink.png',
-    ];
-
-    const handleChangeImage = () => {
-        if (currentImage < images.length - 1) {
-            setCurrentImage(currentImage + 1)
-        } else {
-            setCurrentImage(0)
-        }
-    }
 
     const navigate = useNavigate()
     const [username, setUsername] = useState(null)
@@ -72,18 +52,11 @@ function Profile() {
     };
 
     return <View>
-        <Header>
-            <Burger />
-        </Header>
+        <Header />
 
         <div className='Profile'>
-            <div className='Profile-ImageIcon'>
-                <img src={images[currentImage]} alt='Profile' className='Image' />
-                <FontAwesomeIcon
-                    className='Rotate'
-                    icon={faRotate}
-                    onClick={handleChangeImage}
-                />
+            <div >
+                <ProfileImage />
             </div>
             <div className='Username-edit'>
                 <Text className='Username'>{username}</Text>
