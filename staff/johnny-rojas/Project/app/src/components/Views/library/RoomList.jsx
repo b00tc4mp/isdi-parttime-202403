@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import logic from "../../../logic/index";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import './RoomList.css'
+import { getUserRole } from "../../../logic/getUserInfo";
 
 function RoomList() {
   const [rooms, setRooms] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate()
+  const userRole = getUserRole()
 
   useEffect(() => {
     setIsLoggedIn(logic.isUserLoggedIn());

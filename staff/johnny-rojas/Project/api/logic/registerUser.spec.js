@@ -67,7 +67,7 @@ describe('registerUser', () => {
       } catch (error) {
         errorThrown = error
       } finally {
-        expect(erroThrown).to.be.instanceOf(ContentError)
+        expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown).to.equal('surname is not valid')
       }
     })
@@ -80,7 +80,7 @@ describe('registerUser', () => {
       } catch (error) {
         errorThrown = error
       } finally {
-        expect(erroThrown).to.be.instanceOf(ContentError)
+        expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown).to.equal('email is not valid')
       }
     })
@@ -93,7 +93,7 @@ describe('registerUser', () => {
       } catch (error) {
         errorThrown = error
       } finally {
-        expect(erroThrown).to.be.instanceOf(ContentError)
+        expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown).to.equal('phone is not valid')
       }
     })
@@ -106,7 +106,7 @@ describe('registerUser', () => {
       } catch (error) {
         errorThrown = error
       } finally {
-        expect(erroThrown).to.be.instanceOf(ContentError)
+        expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown).to.equal('password is not valid')
       }
     })
