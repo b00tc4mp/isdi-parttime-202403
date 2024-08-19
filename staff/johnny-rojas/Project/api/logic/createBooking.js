@@ -37,44 +37,27 @@ const createBooking = (userId, roomId, startDate, endDate) => {
                 throw new DuplicityError('unavailable dates')
               }
               return Room.findById(roomId)
-            })
-
-
-            .then(room => {
-              if (!room) {
-                throw new NotFoundError('room not found')
-              }
-              if (room.manager.toString() === userId) {
-                throw new MatchError('manager cannot book their own rooms')
-              }
-              const newBooking = {
-                user: userId,
-                room: roomId,
-                startDate,
-                endDate
-              }
-              return Booking.create(newBooking)
                 .catch(error => { throw new SystemError(error.message) })
-                .then((booking) => booking)
+                .then(room => {
+                  if (!room) {
+                    throw new NotFoundError('room not found')
+                  }
+                  if (room.manager.toString() === userId) {
+                    throw new MatchError('manager cannot book their own rooms')
+                  }
+                  const newBooking = {
+                    user: userId,
+                    room: roomId,
+                    startDate,
+                    endDate
+                  }
+                  return Booking.create(newBooking)
+                    .catch(error => { throw new SystemError(error.message) })
+                    .then((booking) => booking)
+                })
             })
 
 
-            .then(() => {
-              return Booking.find({ room: roomId }).lean()
-            })
-            .then(allBookings => {
-              const blockedDates = allBookings.flatMap(booking => {
-                const dates = []
-                let currentDate = new Date(booking.startDate)
-                while (currentDate <= booking.endDate) {
-                  dates.push(new Date(currentDate))
-                  currentDate.setDate(currentDate.getDate() + 1)
-                }
-                return dates
-              })
-              return blockedDates
-
-            })
         })
 
 

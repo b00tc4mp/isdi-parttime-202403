@@ -18,6 +18,7 @@ import getBlockedDatesByRoom from './getBlockedDatesByRoom';
 import getRoomBookings from './getRoomBookings'
 import getGuestInfo from './getGuestInfo'
 import getAllBookingsByGuest from './getAllBookingsByGuest'
+import deleteBookingByHost from './deleteBookingByHost';
 
 const logic = {
   registerUser,
@@ -40,7 +41,8 @@ const logic = {
   getBlockedDatesByRoom,
   getRoomBookings,
   getGuestInfo,
-  getAllBookingsByGuest
+  getAllBookingsByGuest,
+  deleteBookingByHost
 }
 
 export default logic

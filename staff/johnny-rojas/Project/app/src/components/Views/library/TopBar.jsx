@@ -17,24 +17,17 @@ const TopBar = () => {
 
   return (
     <div className="top-bar">
-
       <div className="top-content">
-
         <Link className="home-icon" to="/">
           <IoHomeOutline />
         </Link>
-
         <div className="page-logo">
           <img src={MyIcon} alt="IZI Logo" onClick={scrollTop}/>
         </div>
-
         <DropdownMenu className="dropdown-menu" />
       </div>
-
-      {/* <Input className="search-bar" placeholder="¿A dónde quieres ir ?" /> 
-      TODO SearchBar */}
     </div>
   );
 };
 
-export default TopBar;
+export default TopBar

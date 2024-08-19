@@ -31,19 +31,17 @@ function Booking() {
 
         logic.getBlockedDatesByRoom(roomId)
           .then(blockedDates => {
-            const dates = blockedDates.flatMap(booking => {
-              return getAllDatesBetween(booking.startDate, booking.endDate);
-            });
-            setUnavailableDates(dates);
+            const unavailableDates = blockedDates.map(blockDate => new Date(blockDate))
+            setUnavailableDates(unavailableDates)
           })
           .catch(error => {
-            console.error(error.message);
-          });
+            console.error(error.message)
+          })
       })
       .catch(error => {
-        console.error(error.message);
+        console.error(error.message)
       });
-  }, [roomId, userId]);
+  }, [roomId, userId])
 
   const handleSubmit = (event) => {
     event.preventDefault();

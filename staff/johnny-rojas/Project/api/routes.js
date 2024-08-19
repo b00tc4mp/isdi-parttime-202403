@@ -21,6 +21,7 @@ router.post('/create-booking/:roomId', jsonBodyParser, routes.createBookingHandl
 router.get('/create-booking/:roomId', routes.getBlockedDatesByRoomHandler)
 router.get('/bookings/:roomId', routes.getRoomBookingsHandler)
 router.get('/users/:userId/bookings', routes.getAllBookingsByGuestHandler)
+router.delete('/rooms/:roomId/manage/booking', jsonBodyParser, routes.deleteBookingByHostHandler)
 
 export default router;
 

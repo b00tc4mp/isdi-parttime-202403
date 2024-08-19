@@ -15,6 +15,7 @@ import getAllBookingsHandler from './getAllBookingsHandler.js';
 import getBlockedDatesByRoomHandler from './getBlockedDatesByRoomHandler.js';
 import getRoomBookingsHandler from './getRoomBookinsHandler.js'
 import getAllBookingsByGuestHandler from './getAllBookingsByGuestHandler.js';
+import deleteBookingByHostHandler from './deleteBookingByHostHandler.js'
 
 
 
@@ -36,7 +37,8 @@ const handlers = {
   getAllBookingsHandler,
   getBlockedDatesByRoomHandler,
   getRoomBookingsHandler,
-  getAllBookingsByGuestHandler
+  getAllBookingsByGuestHandler,
+  deleteBookingByHostHandler
 
 }
 

@@ -1,4 +1,4 @@
-import { NotFoundError, SystemError } from 'com/errors.js'
+import { SystemError } from 'com/errors.js'
 import { Booking, Room } from '../data/index.js'
 import validate from 'com/validate.js'
 

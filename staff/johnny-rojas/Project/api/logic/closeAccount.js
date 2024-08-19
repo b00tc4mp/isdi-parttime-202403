@@ -1,5 +1,5 @@
 import { NotFoundError, SystemError } from 'com/errors.js'
-import { Room, User } from '../data/index.js'
+import { User } from '../data/index.js'
 import validate from 'com/validate.js'
 
 
@@ -12,9 +12,6 @@ const closeAccount = (userId) => {
       if (!user) {
         throw new NotFoundError('user not found')
       }
-
-
-
       return User.deleteOne({ _id: userId })
         .catch(error => new SystemError(error.message))
         .then(() => { })
