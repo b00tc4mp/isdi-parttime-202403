@@ -15,4 +15,8 @@
         @apply text-gray-600 w-full h-full m-1 border-2 ps-5
 
     }
+    .calendar-day-today {
+        @apply bg-green-200;
+    }
+
 }

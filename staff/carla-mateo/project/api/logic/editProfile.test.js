@@ -1,15 +1,15 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import deleteTask from './deleteTask.js'
+import editProfile from './editProfile.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            deleteTask("66c246b578074b1ea774369b", "66c251d90e5a7fcc5785bed4")
-                .then(() => console.log('task deleted'))
+            editProfile("66c2dc0386ca8793548cb65d", "huguito", "qFk5O@example.com", "avatars/anaranjado.png")
+                .then(() => console.log('post edited'))
                 .catch((error) => console.error(error))
 
         } catch (error) {

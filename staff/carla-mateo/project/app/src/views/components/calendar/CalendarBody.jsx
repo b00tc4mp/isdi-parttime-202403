@@ -5,6 +5,7 @@ import './Calendar.css'
 const CalendarBody = ({ currentDate }) => {
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth()
+    const today = new Date()
 
     // Calculamos el primer día del mes y cuántos días tiene el mes actual
     const firstDayOfMonth = new Date(year, month, 0).getDay()
@@ -23,13 +24,22 @@ const CalendarBody = ({ currentDate }) => {
     ))
 
     // Crear un array para los días del mes actual
-    const monthDays = Array.from({ length: daysInMonth }, (_, index) => (
-        <CalendarDay
-            key={`current-${index}`}
-            day={index + 1}
-            className="calendar-day"
-        />
-    ))
+    const monthDays = Array.from({ length: daysInMonth }, (_, index) => {
+        const day = index + 1
+        const isToday =
+            year === today.getFullYear() &&
+            month === today.getMonth() &&
+            day === today.getDate()
+
+        return (
+            <CalendarDay
+                key={`current-${index}`}
+                day={day}
+                className="calendar-day"
+                isToday={isToday}
+            />
+        )
+    })
 
     // Calculamos cuántos días del próximo mes se necesitan para completar la última semana
     const totalDays = firstDayOfMonth + daysInMonth

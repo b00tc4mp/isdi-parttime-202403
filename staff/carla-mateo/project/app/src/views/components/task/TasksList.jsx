@@ -49,8 +49,7 @@ function TasksList({ refreshStamp }) {
 
     const handleHomeClick = () => { navigate('/') }
     const handleCreateTask = () => { setShowForm(!showForm) }
-    const handleCreateSuccess = (newTask) => {
-        setTasks(prevTasks => [...prevTasks, newTask])
+    const handleCreateSuccess = () => {
         setShowForm(false)
         loadTasks()
     }
@@ -61,10 +60,10 @@ function TasksList({ refreshStamp }) {
             {({ user }) => (
                 < View >
                     <Header>
-                        {user?.username && <Heading className="text-3xl mt-6 mr-10" level="1">{user.name}</Heading>}
+                        {user?.name && <Heading className="text-3xl mt-6 mr-10" level="1">{user.name}</Heading>}
                         <div>
                             {user?.avatar && <Img src={user.avatar} alt="user avatar" />}
-                            {user?.name && <Heading className="text-xl" level="3"> {user.username}</Heading>}
+                            {user?.username && <Heading className="text-xl" level="3"> {user.username}</Heading>}
                         </div>
                     </Header>
 
@@ -74,7 +73,7 @@ function TasksList({ refreshStamp }) {
 
                     <View>
                         {tasks.map(task => (
-                            <Task key={task.id}
+                            task && <Task key={task.id}
                                 task={task}
                                 onTaskDeleted={handleDeleteTask} />
                         ))}

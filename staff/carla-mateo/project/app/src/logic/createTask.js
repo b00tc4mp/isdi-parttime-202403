@@ -1,31 +1,34 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const createTask = (assignee, title, description) => {
-    validate.idAssignee(assignee, 'assignee')
+const createTask = (family, assignee, title, description) => {
+    validate.text(family, 'family')
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
 
+    const body = JSON.stringify({ family, assignee, title, description })
+
     return fetch(`${import.meta.env.VITE_API_URL}/createtask`, {
-        method: "POST",
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${sessionStorage.token}`
         },
-        body: JSON.stringify({ assignee, title, description })
+        body
     })
-        .catch(() => { throw new SystemError('server error') })
+        .catch(() => { throw new SystemError('Server error') })
         .then(response => {
             if (response.status === 201) return
 
+
             return response.json()
-                .catch(() => { throw new SystemError('server error') })
+                .catch(() => { throw new SystemError('Server error') })
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = errors[error] || SystemError
+                    const ErrorConstructor = errors[error]
 
-                    throw new constructor(message)
+                    throw new ErrorConstructor(message)
                 })
         })
 }

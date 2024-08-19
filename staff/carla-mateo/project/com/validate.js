@@ -5,6 +5,7 @@ const USERNAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const ID_REGEX = /^[0-9a-z]+$/
+const PATH_REGEX = /^[a-zA-Z0-9-_\/]+\.(jpg|jpeg|png|gif)$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -53,15 +54,20 @@ function validateId(id, explain = 'id') {
 }
 
 function validateIdAssignee(idAssignee, explain = 'id') {
-    if (idAssignee === null) {
-        // Si es null, permite pasar la validación
-        return;
-    } else if (typeof idAssignee == "string" || ID_REGEX.test(idAssignee)) {
-        // Si es una cadena de texto y cumple con el patrón, permite pasar la validación
-        return
-    } else {
-        // Si no cumple con ninguna de las condiciones, lanza un error
+    if (idAssignee === null) return
+
+    if (typeof idAssignee !== "string" || ID_REGEX.test(idAssignee)) {
         throw new ContentError(`${explain} is not valid`)
+    }
+}
+
+function validateAvatar(avatar, explain = 'avatar') {
+    if (typeof avatar !== 'string' || !PATH_REGEX.test(avatar)) {
+        throw new ContentError(`${explain} is not valid`);
+    }
+
+    if (!avatar.startsWith('avatars/')) {
+        throw new ContentError(`${explain} is not valid`);
     }
 }
 
@@ -78,7 +84,8 @@ const validate = {
     text: validateText,
     url: validateUrl,
     id: validateId,
-    idAssignee: validateIdAssignee
+    idAssignee: validateIdAssignee,
+    avatar: validateAvatar
 
 }
 

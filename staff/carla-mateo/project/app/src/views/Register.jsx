@@ -26,9 +26,10 @@ function Register() {
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
         const avatar = form.avatar.value
+        const family = form.family.value
 
         try {
-            logic.registerAdmin(name, username, email, password, passwordRepeat, avatar)
+            logic.registerAdmin(name, username, email, password, passwordRepeat, avatar, family)
                 .then(() => navigate('/login'))
                 .catch(error => {
                     alert(error.message)
@@ -45,20 +46,21 @@ function Register() {
 
         <form className="p-8" onSubmit={handleRegisterSubmit}>
             <Heading level={1} className="text-2xl">Create admin</Heading>
-            <Field id="name" type="text" placeholder="name" />
+            <Field id="name" type="text" placeholder="name home" />
             <Field id="username" type="text" placeholder="username" />
             <Field id="email" type="email" placeholder="name@example.com" />
             <Field id="password" type="password" placeholder="password" />
             <Field id="passwordRepeat" type="password" placeholder="password repeat" />
+            <Field id="family" type="text" placeholder="family" />
 
             <label htmlFor="avatar">Select an avatar:</label>
             <select id="avatar" name="avatar" className="form-select">
-                <option value="avatars/kiwi.jpg">kiwi</option>
-                <option value="avatars/cerezas.jpg">cerezas</option>
-                <option value="avatars/melon.jpg">melon</option>
-                <option value="avatars/pitahaya.jpg">pitahaya</option>
-                <option value="avatars/kumaquat.jpg">kumaquat</option>
-                <option value="avatars/aguacate.jpg">aguacate</option>
+                <option value="avatars/azul.png">azul</option>
+                <option value="avatars/rojo.png">rojo</option>
+                <option value="avatars/anaranjado.png">anaranjado</option>
+                <option value="avatars/naranja.png">naranja</option>
+                <option value="avatars/morado.png">morado</option>
+                <option value="avatars/verde.png">verde</option>
             </select>
 
             <Button type="submit">Register</Button>

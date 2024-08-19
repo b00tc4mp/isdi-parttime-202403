@@ -16,7 +16,7 @@ const deleteTask = (userId, taskId) => {
                 .then(task => {
                     if (!task) throw new NotFoundError('task not found')
 
-                    if (task.parent.toString() !== userId)
+                    if (task.family !== user.family)
                         throw new MatchError('task does not match user')
 
                     return Task.deleteOne({ _id: taskId })

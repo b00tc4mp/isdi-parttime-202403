@@ -3,12 +3,14 @@ import { DuplicityError, SystemError, NotFoundError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const registerUser = (userId, name, username, email, password, avatar) => {
+const registerUser = (userId, name, username, email, password, avatar, family) => {
     validate.id(userId)
     validate.name(name)
     validate.username(username)
     validate.email(email)
     validate.password(password)
+    validate.avatar(avatar)
+    validate.text(family)
 
 
     return User.findById(userId)
@@ -18,7 +20,7 @@ const registerUser = (userId, name, username, email, password, avatar) => {
                 throw new NotFoundError('user not found')
             }
 
-            return User.findOne({ $or: [{ username, email }] })
+            return User.findOne({ $or: [{ email }, { username }] })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
                     if (user) throw new DuplicityError('user already exists')
@@ -34,7 +36,7 @@ const registerUser = (userId, name, username, email, password, avatar) => {
                                 password: hash,
                                 avatar: avatar,
                                 role: "user",
-                                parent: userId
+                                family: family
                             }
 
                             return User.create(newUser)

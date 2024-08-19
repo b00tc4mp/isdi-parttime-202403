@@ -26,12 +26,14 @@ describe("getUsername", () => {
                 name: "casaUno",
                 username: "carla",
                 email: "carla@email.com",
-                password: hash
+                password: hash,
+                family: "casa"
             }), User.create({
                 name: "casaUno",
                 username: "judith",
                 email: "judith@email.com",
-                password: hash
+                password: hash,
+                family: "casa"
             })]))
             .then(([user, targetUser]) => getUsername(user.id, targetUser.id))
             .then(user => {
@@ -40,14 +42,14 @@ describe("getUsername", () => {
                 expect(user.name).to.be.equal("casaUno")
                 expect(user.username).to.be.equal("carla")
                 expect(user.email).to.be.equal("carla@email.com")
-                expect(user.parent).to.be.equal(user.id)
+                expect(user.family).to.be.equal("casa")
             })
     )
     it("fails on non-existing user", () => {
         let errorThrown
 
         return bcrypt.hash("1234", 8)
-            .then(hash => User.create({ name: "casa", username: "carla", email: "carla@email.es", password: hash }))
+            .then(hash => User.create({ name: "casa", username: "carla", email: "carla@email.es", password: hash, family: "casa" }))
             .then(targetUserId => getUsername(new ObjectId().toString(), targetUserId.id))
             .catch(error => errorThrown = error)
             .finally(() => {
@@ -60,7 +62,7 @@ describe("getUsername", () => {
         let errorThrown
 
         return bcrypt.hash("1234", 8)
-            .then(hash => User.create({ name: "casa", username: "hugo", email: "hugo@email.es", password: hash }))
+            .then(hash => User.create({ name: "casa", username: "hugo", email: "hugo@email.es", password: hash, family: "casa" }))
             .then(user => getUsername(user.id, new ObjectId().toString()))
             .catch(error => errorThrown = error)
             .finally(() => {

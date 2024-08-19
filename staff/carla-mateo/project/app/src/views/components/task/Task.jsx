@@ -29,7 +29,7 @@ function Task({ task, onTaskDeleted }) {
         <div className='flex flex-col items-center space-y-0' >
             <div className="flex gap-2">
                 <Heading level="2">{task.title}</Heading>
-                <Heading level="1">{task.assignee ? task.assignee.name : ''}</Heading>
+                <Heading level="1">{task.assignee ? task.assignee.username : ''}</Heading>
             </div>
             <Heading level="1">{task.description}</Heading>
             <Time>{task.date}</Time>

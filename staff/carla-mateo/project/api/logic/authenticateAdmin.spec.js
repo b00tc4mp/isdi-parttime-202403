@@ -25,7 +25,9 @@ describe('authenticateAdmin', () => {
                 username: 'carla',
                 email: 'carla@email.com',
                 password: hash,
-                role: 'admin'
+                role: 'admin',
+                family: 'casa'
+
             }))
             .then(() => authenticateAdmin('carla', '1234'))
 
@@ -59,7 +61,8 @@ describe('authenticateAdmin', () => {
                 name: "CASA",
                 username: "hugo",
                 email: "hugo@email.com",
-                password: hash
+                password: hash,
+                family: "casa"
             }))
             .then(() => authenticateAdmin("hugo", "otherPassword"))
             .catch(error => errorThrown = error)

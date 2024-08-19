@@ -3,6 +3,7 @@ import errors, { SystemError } from 'com/errors'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
 const getUserName = () => {
+
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
     return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {

@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            createTask('66bc4460a9004b9a4c9a2ce5', 'CASA', 'hugo', 'hay que cambiar la fecha y la hora de X tarea')
+            createTask('66c2dbbb86ca8793548cb656', 'Sensi', 'hugo', 'title', 'hay que cambiar la fecha y la hora de X tarea', 'avatars/anaranjado.png')
                 .then(() => console.log('task created'))
                 .catch(error => console.error(error))
         } catch (error) {

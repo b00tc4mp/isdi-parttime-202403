@@ -1,11 +1,13 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerUser = (name, username, email, password, avatar) => {
+const registerUser = (name, username, email, password, avatar, family) => {
     validate.name(name)
     validate.username(username)
     validate.email(email)
     validate.password(password)
+    validate.avatar(avatar)
+    validate.text(family)
 
 
 
@@ -15,7 +17,7 @@ const registerUser = (name, username, email, password, avatar) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${sessionStorage.token}`
         },
-        body: JSON.stringify({ name, username, email, password, avatar })
+        body: JSON.stringify({ name, username, email, password, avatar, family })
     })
 
         .catch(() => { throw new SystemError('server error') })

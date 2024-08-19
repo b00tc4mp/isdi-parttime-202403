@@ -6,6 +6,9 @@ import deleteTask from './deleteTask.js'
 import getAllUsers from './getAllUsers.js'
 import getAllTasks from './getAllTasks.js'
 import getUsername from './getUserame.js'
+import editProfile from './editProfile.js'
+import deleteProfile from './deleteProfile.js'
+
 
 const logic = {
     registerUser,
@@ -15,7 +18,10 @@ const logic = {
     deleteTask,
     getAllUsers,
     getAllTasks,
-    getUsername
+    getUsername,
+    editProfile,
+    deleteProfile
+
 }
 
 export default logic

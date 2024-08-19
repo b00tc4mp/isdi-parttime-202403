@@ -16,9 +16,10 @@ function RegisterUserForm({ onSuccess }) {
         const email = form.email.value
         const password = form.password.value
         const avatar = form.avatar.value
+        const family = form.family.value
 
         try {
-            logic.registerUser(name, username, email, password, avatar)
+            logic.registerUser(name, username, email, password, avatar, family)
                 .then(() => {
                     setRegistrationMessage('User registered successfully')
                     setTimeout(() => {
@@ -37,19 +38,20 @@ function RegisterUserForm({ onSuccess }) {
     return <>
         <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg'>
             <form className='mb-4' onSubmit={handleRegisterUserSubmit}>
-                <Field id="name" type="text" placeholder="name" />
+                <Field id="name" type="text" placeholder="name home" />
                 <Field id="username" type="text" placeholder="username" />
                 <Field id="email" type="email" placeholder="name@example.com" />
                 <Field id="password" type="password" placeholder="password" />
+                <Field id="family" type="text" placeholder="family" />
 
                 <label htmlFor="avatar">Select an avatar:</label>
                 <select id="avatar" name="avatar" className="form-select">
-                    <option value="avatars/kiwi.jpg">kiwi</option>
-                    <option value="avatars/cerezas.jpg">cerezas</option>
-                    <option value="avatars/melon.jpg">melon</option>
-                    <option value="avatars/pitahaya.jpg">pitahaya</option>
-                    <option value="avatars/kumaquat.jpg">kumaquat</option>
-                    <option value="avatars/aguacate.jpg">aguacate</option>
+                    <option value="avatars/azul.png">azul</option>
+                    <option value="avatars/rojo.png">rojo</option>
+                    <option value="avatars/anaranjado.png">anaranjado</option>
+                    <option value="avatars/naranja.png">naranja</option>
+                    <option value="avatars/morado.png">morado</option>
+                    <option value="avatars/verde.png">verde</option>
                 </select>
                 <Button type="submit">Create User</Button>
             </form>

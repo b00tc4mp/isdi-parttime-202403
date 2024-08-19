@@ -24,18 +24,20 @@ describe("getAllTask", () => {
                 name: "CASA",
                 username: "carla",
                 email: "carla@email.es",
-                password: hash
+                password: hash,
+                family: "casa"
             }))
             .then(user => {
 
                 return Task.create({
-                    parent: user._id,
+                    family: user.family,
                     title: "test",
                     description: "test",
                     date: new Date()
                 })
                     .then(() => Task.create({
-                        parent: user._id,
+                        family: user.family,
+                        assignee: user._id.toString(),
                         title: "test2",
                         description: "test2",
                         date: new Date()
@@ -47,6 +49,8 @@ describe("getAllTask", () => {
 
                         tasks.map(task => {
                             expect(task.id).to.be.a("string")
+                            expect(task.family).to.be.a("string")
+                            expect(task.assignee).to.be.a("string")
                             expect(task.title).to.be.a("string")
                             expect(task.description).to.be.a("string")
                             expect(task.date).to.be.an.instanceOf(Date)
@@ -64,6 +68,27 @@ describe("getAllTask", () => {
             .finally(() => {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
                 expect(errorThrown.message).to.equal("user not found")
+            })
+    })
+
+    it("fails on non-existing task", () => {
+        let errorThrown
+
+        return User.create({
+            name: "CASA",
+            username: "carla",
+            email: "carla@email.es",
+            password: "1234",
+            family: "casa"
+        })
+
+            .then((task) => {
+                getAllTasks(task.id)
+                    .catch((error) => errorThrown = error)
+                    .finally(() => {
+                        expect(errorThrown).to.be.instanceOf(NotFoundError)
+                        expect(errorThrown.message).to.equal("task not found")
+                    })
             })
     })
 

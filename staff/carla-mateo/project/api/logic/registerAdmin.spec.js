@@ -18,13 +18,15 @@ describe("registerAdmin", () => {
     beforeEach(() => User.deleteMany())
 
     it("succeeds on new user", () =>
-        registerAdmin("carla", "casaPrueba", "carla@email.com", "1234", "1234")
+        registerAdmin("casaPrueba", "carla", "carla@email.com", "1234", "1234", "avatars/.jpg", "familyOne")
             .then(() => User.findOne())
             .then(user => {
-                expect(user.name).to.equal("carla")
-                expect(user.username).to.equal("casaPrueba")
+                expect(user.name).to.equal("casaPrueba")
+                expect(user.username).to.equal("carla")
                 expect(user.email).to.equal("carla@email.com")
                 expect(user.role).to.equal("admin")
+                expect(user.avatar).to.equal("avatars/.jpg")
+                expect(user.family).to.equal("familyOne")
 
                 return bcrypt.compare("1234", user.password)
             })
@@ -32,23 +34,30 @@ describe("registerAdmin", () => {
     )
 
 
-    it("fails on existing user", () => {
+    it("fails on existing admin", () => {
         let errorThrown
 
         return bcrypt.hash("1234", 8)
-            .then(hash => User.create({ name: "carla", username: "casaPrueba", email: "carla@email.com", password: hash }))
-            .then(() => registerAdmin("carla", "casaPrueba", "carla@email.com", "1234", "1234"))
+            .then(hash => User.create({
+                name: "jordi",
+                username: "casaPrueba",
+                email: "jordi@email.com",
+                password: hash,
+                avatar: "avatars/.jpg",
+                family: "familyOne"
+            }))
+            .then((user) => registerAdmin("jordi", "casaPrueba", "jordi@email.com", "1234", "1234", "avatars/.jpg", "familyOne"))
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.instanceOf(DuplicityError)
-                expect(errorThrown.message).to.equal("user already exists")
+                expect(errorThrown.message).to.equal("admin already exists")
             })
     })
 
     it("fails on invalid name", () => {
         let errorThrown
         try {
-            registerAdmin(1234, "casaPrueba", "carla@email.com", "1234", "1234")
+            registerAdmin(1234, "casaPrueba", "carla@email.com", "1234", "1234", "avatars/.jpg", "familyOne")
         } catch (error) {
             errorThrown = error
         } finally {
@@ -60,7 +69,7 @@ describe("registerAdmin", () => {
     it("fails on invalid username", () => {
         let errorThrown
         try {
-            registerAdmin("carla", 1234, "carla@email.com", "1234")
+            registerAdmin("carla", 1234, "carla@email.com", "1234", "avatars/.jpg", "familyOne")
         } catch (error) {
             errorThrown = error
         } finally {
@@ -72,7 +81,7 @@ describe("registerAdmin", () => {
     it("fails on invalid email", () => {
         let errorThrown
         try {
-            registerAdmin("carla", "casaPrueba", "carlaemail.com", "1234", "1234")
+            registerAdmin("carla", "casaPrueba", "carlaemail.com", "1234", "1234", "avatars/.jpg", "familyOne")
         } catch (error) {
             errorThrown = error
         } finally {
@@ -84,7 +93,7 @@ describe("registerAdmin", () => {
     it("fails on invalid password", () => {
         let errorThrown
         try {
-            registerAdmin("carla", "casaPrueba", "carla@email.com", 1234, "1234")
+            registerAdmin("carla", "casaPrueba", "carla@email.com", 1234, "1234", "avatars/.jpg", "familyOne")
         } catch (error) {
             errorThrown = error
         } finally {
@@ -96,12 +105,36 @@ describe("registerAdmin", () => {
     it("fails on non-matching password repeat", () => {
         let errorThrown
         try {
-            registerAdmin("carla", "casaPrueba", "Mocha@Chai.com", "1234", 6666,)
+            registerAdmin("carla", "casaPrueba", "carla@email.com", "1234", 6666, "avatars/.jpg", "familyOne")
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(MatchError)
             expect(errorThrown.message).to.equal("password don\'t match")
+        }
+    })
+
+    it("fails on invalid avatar", () => {
+        let errorThrown
+        try {
+            registerAdmin("carla", "casaPrueba", "carla@email.com", "1234", "1234", "avat/.jpg", "familyOne")
+        } catch (error) {
+            errorThrown = error
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError)
+            expect(errorThrown.message).to.equal("avatar is not valid")
+        }
+    })
+
+    it("fails on invalid family", () => {
+        let errorThrown
+        try {
+            registerAdmin("CASA", "jordi", "jordi@email.com", "1234", "1234", "avatars/.jpg", 123)
+        } catch (error) {
+            errorThrown = error
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError)
+            expect(errorThrown.message).to.equal("text is not valid")
         }
     })
 

@@ -11,18 +11,17 @@ const getAllTasks = (userId) => {
             if (!user) {
                 throw new NotFoundError("user not found")
             }
+            const { family } = user
 
-            return Task.find({ parent: userId }).lean()
+            return Task.find({ family }).populate("assignee").lean()
                 .catch((error) => { throw new SystemError(error.message) })
                 .then(tasks => {
 
                     tasks.forEach((task) => {
                         task.id = task._id.toString()
+                        task.assignee = task.assignee || ""
                         delete task._id
 
-                        if (task.parent) {
-                            task.parent = task.parent.toString()
-                        }
                     })
                     return tasks
                 })

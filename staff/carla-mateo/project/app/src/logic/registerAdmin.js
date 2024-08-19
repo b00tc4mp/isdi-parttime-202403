@@ -1,12 +1,14 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerAdmin = (name, username, email, password, passwordRepeat, avatar) => {
+const registerAdmin = (name, username, email, password, passwordRepeat, avatar, family) => {
     validate.name(name)
     validate.username(username)
     validate.email(email)
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
+    validate.avatar(avatar)
+    validate.text(family)
 
 
     return fetch(`${import.meta.env.VITE_API_URL}/admin`, {
@@ -14,7 +16,7 @@ const registerAdmin = (name, username, email, password, passwordRepeat, avatar) 
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, username, email, password, passwordRepeat, avatar })
+        body: JSON.stringify({ name, username, email, password, passwordRepeat, avatar, family })
     })
 
         .catch(() => { throw new SystemError('server error') })

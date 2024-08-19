@@ -27,10 +27,11 @@ describe('deleteTask', () => {
                     name: "carla",
                     username: "CASA",
                     email: "carla@email.es",
-                    password: hash
+                    password: hash,
+                    family: "casa"
                 })
                 const task = new Task({
-                    parent: user._id,
+                    family: "casa",
                     title: "test",
                     description: "test",
                     date: new Date()
@@ -50,7 +51,7 @@ describe('deleteTask', () => {
         let errorThrown
 
         return Task.create({
-            parent: new ObjectId().toString(),
+            family: "casa",
             title: "test",
             description: "test",
             date: new Date()
@@ -73,7 +74,8 @@ describe('deleteTask', () => {
                 name: "carla",
                 username: "CASA",
                 email: "carla@email.es",
-                password: hash
+                password: hash,
+                family: "casa"
             }))
             .then((user) => {
                 return deleteTask(user.id.toString(), new ObjectId().toString())
@@ -94,17 +96,18 @@ describe('deleteTask', () => {
                     name: "carla",
                     username: "CASA",
                     email: "carla@email.es",
-                    password: hash
+                    password: hash,
+                    family: "casa"
                 })
                 const task = new Task({
-                    parent: new ObjectId().toString(),
+                    family: "mapa",
                     title: 'Prueba',
                     description: 'Vivan los test',
                     date: new Date()
                 })
                 return Promise.all([user.save(), task.save()])
             })
-            .then(([user, task]) => deleteTask(user.id.toString(), task.id.toString()))
+            .then(([user, task]) => deleteTask(user.id, task.id))
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.instanceOf(MatchError)

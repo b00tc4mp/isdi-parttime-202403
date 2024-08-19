@@ -2,29 +2,33 @@ import { Task, User } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const createTask = (parentId, assignee, title, description) => {
-    validate.id(parentId, 'parentId')
+const createTask = (userId, family, assigneeUsername, title, description) => {
+    validate.id(userId, 'userId')
+    validate.text(family, 'family')
     validate.text(title, 'title', 60)
     validate.text(description, 'description', 200)
 
-    if (assignee) {
+    return User.findById(userId).lean()
+        .catch(error => { throw new SystemError(error.message) })
+        .then(user => {
+            if (!user) throw new NotFoundError('User not found')
 
-        validate.id(assignee, 'assignee')
+            let assigneeId = null
 
-        return User.findOne({ username: assignee }).lean()
-            .catch(error => { throw new SystemError(error.message) })
-            .then(user => {
-                if (!user) throw new NotFoundError('assignee not found')
+            // Si se proporciona un assigneeUsername, buscar al usuario asignado
+            if (assigneeUsername) {
+                validate.text(assigneeUsername, 'assigneeUsername')
 
-                const { _id: assigneeId } = user
-
-                return User.findById(parentId).lean()
+                return User.findOne({ username: assigneeUsername }).lean()
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(user => {
-                        if (!user) throw new NotFoundError('admin not found')
+                    .then(assigneeUser => {
+                        if (!assigneeUser) throw new NotFoundError('Assignee not found')
 
+                        assigneeId = assigneeUser._id
+
+                        // Crear la tarea con el assignee encontrado
                         const task = {
-                            parent: parentId,
+                            family: user.family,
                             assignee: assigneeId,
                             title,
                             description,
@@ -34,17 +38,11 @@ const createTask = (parentId, assignee, title, description) => {
 
                         return Task.create(task)
                             .catch(error => { throw new SystemError(error.message) })
-                            .then(() => { })
                     })
-            })
-    } else {
-        return User.findById(parentId).lean()
-            .catch(error => { throw new SystemError(error.message) })
-            .then(user => {
-                if (!user) throw new NotFoundError('admin not found')
-
+            } else {
+                // Crear la tarea sin assignee
                 const task = {
-                    parent: parentId,
+                    family: user.family,
                     title,
                     description,
                     date: new Date(),
@@ -52,9 +50,9 @@ const createTask = (parentId, assignee, title, description) => {
                 }
                 return Task.create(task)
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(() => { })
-            })
-    }
+            }
+
+        })
 }
 
 export default createTask

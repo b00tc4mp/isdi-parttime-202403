@@ -10,7 +10,6 @@ import getAllTasksHandler from './getAllTasks.Handler.js'
 import getUsernameHandler from './getUsernameHandler.js'
 
 
-
 export default {
     errorHandler,
 
@@ -21,6 +20,7 @@ export default {
     deleteTaskHandler,
     getAllUsersHandler,
     getAllTasksHandler,
-    getUsernameHandler
+    getUsernameHandler,
+
 
 }

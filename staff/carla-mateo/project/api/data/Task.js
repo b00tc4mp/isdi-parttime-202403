@@ -3,9 +3,8 @@ import { Schema, model } from 'mongoose'
 const { ObjectId } = Schema.Types
 
 const task = new Schema({
-    parent: {
-        type: ObjectId,
-        ref: 'User',
+    family: {
+        type: String,
         required: true
     },
     assignee: {
@@ -32,7 +31,7 @@ const task = new Schema({
     role: {
         type: String,
         enum: ['admin', 'user']
-    }
+    },
 })
 
 const Task = model('Task', task)

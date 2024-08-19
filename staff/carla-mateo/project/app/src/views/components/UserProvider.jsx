@@ -16,7 +16,7 @@ function UserProvider({ children }) {
         } catch (error) {
             alert(error.message)
         }
-    }, []);
+    }, [])
 
 
     return children({ user, isAdmin })

@@ -71,7 +71,7 @@ User
 - password (string, required, hashed)
 - avatar (string)
 - role(string, enum: admin | user)
-- parent(User.id)
+- family(string)
 
 
 Task
@@ -80,7 +80,7 @@ Task
 - title(string, required)
 - done(boolean, default false)
 - date(Date)
-- parent(User.id)
+- family(string)
 - assignee(User.id)
 
 

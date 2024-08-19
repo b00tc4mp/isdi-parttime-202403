@@ -28,10 +28,10 @@ const user = new Schema({
         type: String,
         enum: ['admin', 'user']
     },
-    parent: {
-        type: ObjectId,
-        ref: 'User',
-    },
+    family: {
+        type: String,
+        required: true
+    }
 
 })
 
