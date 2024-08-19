@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { LiaFileInvoiceSolid } from "react-icons/lia"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
@@ -11,6 +14,8 @@ import logic from "../../logic"
 import "./InvoiceList.css"
 
 export default function InvoiceList() {
+  const { alert } = useContext()
+
   const [invoices, setInvoices] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -29,7 +34,10 @@ export default function InvoiceList() {
           setInvoices(invoices)
         })
         .catch((error) => {
-          alert(error.message)
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
+          alert("No hay Facturas para este cliente")
         })
     } catch (error) {
       alert(error.message)

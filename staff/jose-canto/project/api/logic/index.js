@@ -21,7 +21,7 @@ import getAllInvoices from "./getAllInvoices.js"
 import getInvoice from "./getInvoice.js"
 import createInvoice from "./createInvoice.js"
 import deleteInvoice from "./deleteInvoice.js"
-
+import getAllInvoicesCustomer from "./getAllInvoicesCustomer.js"
 
 const logic = {
   registerUser,
@@ -48,6 +48,7 @@ const logic = {
   getInvoice,
   createInvoice,
   deleteInvoice,
+  getAllInvoicesCustomer,
 }
 
 export default logic

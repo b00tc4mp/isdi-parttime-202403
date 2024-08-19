@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import { PiUserListBold } from "react-icons/pi"
 import { PiUserCirclePlusBold } from "react-icons/pi"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import Header from "../Header"
 import Footer from "../core/Footer"
 import Main from "../core/Main"
@@ -14,17 +17,20 @@ import "./CustomerList.css"
 export default function CustomerList() {
   const [customers, setCustomers] = useState([])
   const [refresh, setRefresh] = useState(0)
+  const { alert } = useContext()
 
   const loadCustomers = () => {
     try {
-      //prettier-ignore
+      // prettier-ignore
       logic.getAllCustomers()
         .then((customers) => {
           setCustomers(customers)
         })
         .catch((error) => {
-          console.error(error)
-          alert(error.message)
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
+          alert("Todavía no hay clientes, Añade tu primer cliente")
         })
     } catch (error) {
       console.error(error.message)

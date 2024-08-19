@@ -15,6 +15,11 @@ const getAllInvoices = (userId) => {
       return Invoice.find({ company: userId }).populate("company").populate("customer").sort({ date: -1 }).select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
         .then((invoices) => {
+
+          if (!invoices.length) {
+            throw new NotFoundError("Invoices not found")
+          }
+
           invoices.forEach((invoice) => {
             invoice.id = invoice._id.toString()
             delete invoice._id

@@ -4,4 +4,8 @@
   .CustomerProfile p {
     @apply text-xl font-bold;
   }
+
+  .CustomerButtons {
+    @apply m-0 w-[8.5rem] cursor-pointer;
+  }
 }

@@ -62,7 +62,7 @@ export default function Login() {
 
           <div className="Link">
             <p>
-              ¿No tienes cuenta?{" "}
+              ¿No tienes cuenta?
               <Link to="/register">
                 <span className="Link-RegisterLogin">Registrate</span>
               </Link>
