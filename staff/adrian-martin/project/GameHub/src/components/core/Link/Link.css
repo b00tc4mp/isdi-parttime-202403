@@ -4,6 +4,6 @@
 
 @layer components {
     .Link {
-        @apply text-center my-20 text-2xl
+        @apply text-center text-2xl
     }
 }

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import SubmitButton from "../components/core/SubmitButton/SubmitButton";
-import Title from "../components/core/Title/Title";
+import Button from '../components/core/Button/Button.jsx';
 import '../components/core/Link/Link'
 import FormWithFeedback from '../components/library/FormWithFeedback/FormWithFeedback'
 
@@ -47,7 +46,7 @@ function Login({ }) {
 
                 <input id='password' className='Login-input' placeholder='PASSWORD'></input>
 
-                <SubmitButton className='Login-button'>LOGIN</SubmitButton>
+                <Button type='submit' className='Login-button'>LOGIN</Button>
 
                 <Link className="Link" to='/register'>REGISTER</Link>
             </FormWithFeedback>
