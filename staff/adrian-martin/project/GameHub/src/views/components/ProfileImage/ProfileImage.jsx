@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import './ProfileImage.css'
 
-function ProfileImage() {
+function ProfileImage({ size = '250px', showRotate = true, borderRadius = '10px' }) {
     const [currentImage, setCurrentImage] = useState(0)
 
     const images = [
@@ -22,17 +22,22 @@ function ProfileImage() {
     };
 
     return (
-        <div className='Profile-ImageIcon'>
-
+        <div className='Profile-ImageIcon' style={{ width: size, height: size }}>
             <img
                 src={images[currentImage]}
-                alt='Profile' className='Profile-image' />
-
-            <FontAwesomeIcon
-                className='Rotate'
-                icon={faRotate}
-                onClick={handleChangeImage}
+                alt='Profile'
+                className='Profile-image'
+                style={{ width: size, height: size, borderRadius: borderRadius }}
             />
+
+            {showRotate && (
+                <FontAwesomeIcon
+                    className='Rotate'
+                    icon={faRotate}
+                    onClick={handleChangeImage}
+                    style={{ fontSize: `calc(${size} / 8)` }}
+                />
+            )}
 
         </div>
     )

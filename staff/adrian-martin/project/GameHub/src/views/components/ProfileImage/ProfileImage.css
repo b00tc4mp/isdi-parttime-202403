@@ -1,7 +1,4 @@
 .Profile-image {
-    height: auto;
-    width: 250px;
-    margin: 0 auto;
     border-radius: 10px;
     border: 2px solid var(--second-color);
     z-index: 1;
@@ -12,7 +9,6 @@
     top: 88%;
     left: 88%;
     transform: translate(-50%, -50%);
-    font-size: 30px;
     cursor: pointer;
 }
 

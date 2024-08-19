@@ -3,8 +3,10 @@
     height: 5em;
     background-color: var(--first-color);
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     top: 0;
     z-index: 1;
+    padding: 15px;
 }

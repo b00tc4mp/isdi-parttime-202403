@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useNavigate } from 'react-router-dom';
 import { faHouseChimney, faUser, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import './Burger.css'
 
 import Button from '../../../components/core/Button/Button'
+import logic from '../../../logic'
 
 function Burger({ children }) {
     const [burgerClass, setBurgerClass] = useState('burger-bar unclicked')
@@ -16,6 +18,9 @@ function Burger({ children }) {
         setMenuClass(isMenuClicked ? 'menu hidden' : 'menu visible')
         setIsMenuClicked(!isMenuClicked)
     }
+
+    const navigate = useNavigate()
+
 
     const handleLogOut = () => {
         logic.logOutUser()

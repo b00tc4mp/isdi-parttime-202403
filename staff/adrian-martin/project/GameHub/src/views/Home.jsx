@@ -1,8 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-
 import { useState } from 'react';
 
-import View from '../components/library/View/View'
 import Header from "./components/Header/Header"
 import Footer from './components/Footer/Footer'
 
@@ -17,8 +14,6 @@ function Home() {
     const [isPanelGame, setIsPanelGame] = useState(false);
     const [gameListRefreshStamp, setGameListRefreshStamp] = useState(0)
 
-    const navigate = useNavigate()
-
     const handleCreatePanelGame = () => {
         setIsPanelGame(!isPanelGame);
     };
@@ -27,7 +22,7 @@ function Home() {
         setGameListRefreshStamp(Date.now())
     }
 
-    return <View>
+    return <div>
         <Header />
 
         {< GameList refreshStamp={gameListRefreshStamp} />}
@@ -35,7 +30,7 @@ function Home() {
         {isPanelGame && <CreateGame onGameCreated={handleGameCreated} />}
 
         <Footer className='Footer' onCreateGame={handleCreatePanelGame} />
-    </View>
+    </div>
 }
 
 export default Home

@@ -5,16 +5,9 @@
 }
 
 .burger-menu {
-    margin-left: 15px;
-    margin-top: 15px;
-    height: 100%;
-    width: 4em;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
     cursor: pointer;
-
 }
 
 .burger-bar {
@@ -70,6 +63,7 @@
     top: 5em;
     border-radius: 0px 0px 40px 0px;
     z-index: 2;
+    left: 0;
 }
 
 .menu>div {

@@ -1,22 +1,29 @@
 .Container-Panel {
-    position: absolute;
-    margin-top: -800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 .TagGame {
     background-color: var(--first-color);
     width: 350px;
-    margin: auto;
     border-radius: 10px;
     z-index: 1;
     padding: 10px;
+    pointer-events: all;
 }
 
 .Game {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px auto;
 }
 
 .InputCreate {

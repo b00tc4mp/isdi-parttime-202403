@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import logic from '../../../logic/index';
-import View from '../../../components/library/View/View';
 import Header from '../Header/Header';
 import Button from '../../../components/core/Button/Button';
 import Footer from '../Footer/Footer';
@@ -51,7 +50,7 @@ function Profile() {
         setIsEditingUsername(false);
     };
 
-    return <View>
+    return <div>
         <Header />
 
         <div className='Profile'>
@@ -83,7 +82,7 @@ function Profile() {
 
         <Footer />
 
-    </View>
+    </div>
 }
 
 export default Profile

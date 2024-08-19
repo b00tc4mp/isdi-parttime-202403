@@ -11,7 +11,9 @@ const getAllGames = () => {
             if (response.status === 200)
                 return response.json()
                     .catch(() => { throw new SystemError('server error') })
-                    .then(games => games)
+                    .then(games => {
+                        return games.sort((a, b) => b.rating - a.rating)
+                    })
 
             return response.json()
                 .catch(() => { throw new SystemError('server error') })
