@@ -1,13 +1,19 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const createTask = (family, assignee, title, description, date) => {
-    validate.text(family, 'family')
+const createTask = (assigneeUserId = null, title, description, date = null) => {
+    if (assigneeUserId) {
+        validate.id(assigneeUserId, 'assigneeUserId')
+    }
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
+    if (date) {
+        if (!(date instanceof Date)) {
+            throw new ContentError('invalid date format')
+        }
+    }
 
-
-    const body = JSON.stringify({ family, assignee, title, description, date })
+    const body = JSON.stringify({ assigneeUserId, title, description, date })
 
     return fetch(`${import.meta.env.VITE_API_URL}/createtask`, {
         method: 'POST',

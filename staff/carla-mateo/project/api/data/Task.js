@@ -21,10 +21,10 @@ const task = new Schema({
     date: {
         type: Date,
     },
-    done: [{
-        type: ObjectId,
-        ref: 'User'
-    }],
+    done: {
+        type: Boolean,
+        default: false,
+    },
     role: {
         type: String,
         enum: ['admin', 'user']
