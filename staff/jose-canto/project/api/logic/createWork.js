@@ -2,7 +2,6 @@ import validate from "com/validate.js";
 import { Work, User, DeliveryNote } from "../model/index.js";
 import { NotFoundError, SystemError } from "com/errors.js"
 
-
 const createWork = (userId, deliveryNoteId, concept, quantity, price) => {
   validate.id(userId, "userId")
   validate.id(deliveryNoteId, "deliveryNoteId")

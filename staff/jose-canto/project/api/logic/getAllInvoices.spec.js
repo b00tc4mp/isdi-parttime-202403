@@ -1,3 +1,4 @@
+import "dotenv/config"
 import { mongoose, Types } from "mongoose"
 import bcrypt from "bcryptjs"
 import { expect } from "chai"
@@ -38,7 +39,7 @@ describe("getAllInvoices", () => {
             });
           });
       })
-  );
+  )
 
   it("fails on existing customer user", () => {
     let errorThrown

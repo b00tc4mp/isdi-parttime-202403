@@ -40,7 +40,6 @@ const registerCustomer = (userId, username, companyName, email, password, taxId,
             .catch(error => { throw new SystemError(error.message) })
             .then(() => { })
         })
-
     })
 }
 export default registerCustomer

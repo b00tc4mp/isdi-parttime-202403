@@ -1,6 +1,5 @@
 import "dotenv/config"
 import mongoose, { Types } from "mongoose"
-
 import bcrypt from "bcryptjs"
 
 import getAllDeliveryNotesCustomer from "./getAllDeliveryNotesCustomer.js"
@@ -71,7 +70,6 @@ describe("getDeliveryNotesCustomer", () => {
       })
   })
 
-
   it("fails on non-existing customer user", () => {
     let errorThrown
 
@@ -88,7 +86,6 @@ describe("getDeliveryNotesCustomer", () => {
         expect(errorThrown.message).to.equal("Customer not found")
       })
   })
-
 
   it("fails on non-existing delivery notes", () => {
     let errorThrown
@@ -115,7 +112,6 @@ describe("getDeliveryNotesCustomer", () => {
         expect(errorThrown.message).to.equal("DeliveryNotes not found")
       })
   })
-
 
   it("fails on invalid userId", () => {
     let errorThrown

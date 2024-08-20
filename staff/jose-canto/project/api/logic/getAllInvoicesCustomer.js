@@ -2,7 +2,6 @@ import { User, Invoice } from "../model/index.js"
 import validate from "com/validate.js"
 import { NotFoundError, SystemError } from "com/errors.js"
 
-
 const getAllInvoicesCustomer = (userId, customerId) => {
   validate.id(userId, "userId")
   validate.id(customerId, "customerId")
@@ -21,7 +20,7 @@ const getAllInvoicesCustomer = (userId, customerId) => {
             throw new NotFoundError("Customer not found")
           }
 
-          return Invoice.find({ customer: customerId, company: userId }).populate("customer").populate("company").populate({ path: "deliveryNotes", populate: { path: "works" } }).lean()
+          return Invoice.find({ customer: customerId, company: userId }).populate("customer").populate("company").populate({ path: "deliveryNotes", populate: { path: "works" } }).sort({ date: -1 }).lean()
             .catch(error => { throw new SystemError(error.message) })
             .then(invoices => {
               if (!invoices.length) {

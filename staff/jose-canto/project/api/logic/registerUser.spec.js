@@ -3,14 +3,12 @@ import mongoose from "mongoose"
 import bcrypt from "bcryptjs"
 
 import { expect } from "chai"
-
 import { User } from "../model/index.js"
 
 import registerUser from "./registerUser.js"
 import { ContentError, DuplicityError, MatchError } from "com/errors.js"
 
 const { MONGODB_URL_TEST } = process.env
-
 
 describe("registerUser", () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))

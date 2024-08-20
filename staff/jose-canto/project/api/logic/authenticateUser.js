@@ -1,8 +1,7 @@
 import validate from "com/validate.js"
 import { User } from "../model/index.js"
 import bcrypt from "bcryptjs"
-import { SystemError, CredentialsError, NotFoundError } from "com/errors.js"
-
+import { SystemError, CredentialsError } from "com/errors.js"
 
 const authenticateUser = (username, password) => {
   validate.username(username, "Username")

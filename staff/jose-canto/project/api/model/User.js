@@ -42,6 +42,10 @@ const user = new Schema({
   manager: {
     type: ObjectId,
     ref: "User"
+  },
+  active: {
+    type: Boolean,
+    default: true
   }
 })
 

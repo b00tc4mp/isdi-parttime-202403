@@ -2,7 +2,6 @@ import { User, DeliveryNote } from "../model/index.js"
 import validate from "com/validate.js"
 import { NotFoundError, SystemError } from "com/errors.js"
 
-
 function getDeliveryNote(userId, deliveryNoteId) {
   validate.id(userId, "userId")
   validate.id(deliveryNoteId, "deliveryNoteId")
@@ -27,7 +26,5 @@ function getDeliveryNote(userId, deliveryNoteId) {
           return deliveryNote
         })
     })
-
-
 }
 export default getDeliveryNote

@@ -3,19 +3,20 @@ import mongoose, { Types } from "mongoose"
 import bcrypt from "bcryptjs"
 
 import { expect } from "chai"
-import { User, DeliveryNote } from "../model/index.js"
+import { User, Invoice } from "../model/index.js"
 
-import deleteDeliveryNote from "./deleteDeliveryNote.js"
+import deleteInvoice from "./deleteInvoice.js"
 import { MatchError, NotFoundError, ContentError } from "com/errors.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
 
-describe("deleteDeliveryNote", () => {
-  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany().then(() => DeliveryNote.deleteMany())))
-  beforeEach(() => User.deleteMany().then(() => DeliveryNote.deleteMany()))
+describe("deleteInvoice", () => {
+  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany().then(() => Invoice.deleteMany())))
+  beforeEach(() => User.deleteMany().then(() => Invoice.deleteMany()))
 
-  it("succeeds on delete a delivery note", () => {
+
+  it("succeeds on delete a invoice", () => {
     return bcrypt.hash("1234", 8)
       .then(hash => User.create({
         username: "Peter",
@@ -23,28 +24,29 @@ describe("deleteDeliveryNote", () => {
         password: hash,
       }))
       .then(user => {
-        return DeliveryNote.create({
+        return Invoice.create({
           date: new Date(),
           number: "1234",
           customer: user.id,
           company: user.id,
-          works: [new ObjectId(), new ObjectId()],
-          observations: "Observations"
+          deliveryNotes: [new ObjectId(), new ObjectId()],
+          observations: "Observations",
+          paymentType: "cash",
         })
-          .then(deliveryNote => ({ user, deliveryNote }))
+          .then(invoice => ({ user, invoice }))
       })
-      .then(({ user, deliveryNote }) => deleteDeliveryNote(user.id, deliveryNote.id)
-        .then(() => DeliveryNote.findById(deliveryNote.id))
+      .then(({ user, invoice }) => deleteInvoice(user.id, invoice.id)
+        .then(() => Invoice.findById(invoice.id))
       )
-      .then(deletedDeliveryNote => {
-        expect(deletedDeliveryNote).to.be.null
+      .then(deletedInvoice => {
+        expect(deletedInvoice).to.be.null
       })
   })
 
   it("fails on non-existing user", () => {
     let errorThrown
 
-    return deleteDeliveryNote(new ObjectId().toString(), new ObjectId().toString())
+    return deleteInvoice(new ObjectId().toString(), new ObjectId().toString())
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -52,7 +54,7 @@ describe("deleteDeliveryNote", () => {
       })
   })
 
-  it("fails on non-existing delivery note", () => {
+  it("fails on non-existing invoice", () => {
     let errorThrown
 
     return bcrypt.hash("1234", 8)
@@ -62,11 +64,11 @@ describe("deleteDeliveryNote", () => {
         password: hash,
         role: "company"
       }))
-      .then(user => deleteDeliveryNote(user.id.toString(), new ObjectId().toString()))
+      .then(user => deleteInvoice(user.id.toString(), new ObjectId().toString()))
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-        expect(errorThrown.message).to.equal("Delivery Note not found")
+        expect(errorThrown.message).to.equal("Invoice not found")
       })
   })
 
@@ -80,21 +82,22 @@ describe("deleteDeliveryNote", () => {
         password: hash,
       }))
       .then(user => {
-        return DeliveryNote.create({
+        return Invoice.create({
           date: new Date(),
           number: "1234",
           customer: user.id,
           company: new ObjectId().toString(),
-          works: [new ObjectId(), new ObjectId()],
-          observations: "Observations"
+          deliveryNotes: [new ObjectId(), new ObjectId()],
+          observations: "Observations",
+          paymentType: "cash",
         })
-          .then(deliveryNote => ({ user, deliveryNote }))
+          .then(invoice => ({ user, invoice }))
       })
-      .then(({ user, deliveryNote }) => deleteDeliveryNote(user.id.toString(), deliveryNote.id.toString()))
+      .then(({ user, invoice }) => deleteInvoice(user.id.toString(), invoice.id.toString()))
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(MatchError)
-        expect(errorThrown.message).to.equal("Can not delete Delivery Note from another company")
+        expect(errorThrown.message).to.equal("Can not delete Invoice from another company")
       })
   })
 
@@ -102,7 +105,7 @@ describe("deleteDeliveryNote", () => {
     let errorThrown
 
     try {
-      deleteDeliveryNote(12345, new ObjectId().toString())
+      deleteInvoice(12345, new ObjectId().toString())
     } catch (error) {
       errorThrown = error
 
@@ -112,19 +115,23 @@ describe("deleteDeliveryNote", () => {
     }
   })
 
-  it("fails on invalid deliveryNoteId", () => {
+  it("fails on invalid invoice", () => {
     let errorThrown
 
     try {
-      deleteDeliveryNote(new ObjectId().toString(), 6666)
+      deleteInvoice(new ObjectId().toString(), 6666)
     } catch (error) {
       errorThrown = error
 
     } finally {
       expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal("deliveryNoteId is not valid")
+      expect(errorThrown.message).to.equal("invoiceId is not valid")
     }
   })
 
-  after(() => User.deleteMany().then(() => DeliveryNote.deleteMany()).then(() => mongoose.disconnect()))
+
+
+
+
+  after(() => User.deleteMany().then(() => Invoice.deleteMany()).then(() => mongoose.disconnect()))
 })

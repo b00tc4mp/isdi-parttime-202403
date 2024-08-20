@@ -26,7 +26,6 @@ const getAllDeliveryNotes = (userId) => {
             deliveryNote.customerName = deliveryNote.customer?.companyName || deliveryNote.customer?.username
 
             return deliveryNote
-
           })
         })
     })

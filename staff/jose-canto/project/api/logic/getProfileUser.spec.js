@@ -1,6 +1,5 @@
 import "dotenv/config"
 import mongoose, { Types } from "mongoose"
-
 import bcrypt from "bcryptjs"
 
 import getProfileUser from "./getProfileUser.js"
@@ -8,9 +7,7 @@ import { User } from "../model/index.js"
 import { NotFoundError, ContentError } from "com/errors.js"
 
 import { expect } from "chai"
-
 const { MONGODB_URL_TEST } = process.env
-
 const { ObjectId } = Types
 
 describe("getProfileUser", () => {

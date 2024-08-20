@@ -1,6 +1,6 @@
 import validate from "com/validate.js"
 import { User, DeliveryNote } from "../model/index.js"
-import { DuplicityError, NotFoundError, SystemError } from "com/errors.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 
 const createDeliveryNote = (userId, customerId) => {
   validate.id(userId, "userId")

@@ -1,6 +1,5 @@
 import "dotenv/config"
 import mongoose, { Types } from "mongoose"
-
 import bcrypt from "bcryptjs"
 
 import getInvoice from "./getInvoice.js"

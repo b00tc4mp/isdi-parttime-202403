@@ -3,8 +3,6 @@ import mongoose from "mongoose"
 import bcrypt from "bcryptjs"
 
 import { expect } from "chai"
-
-
 import { User } from "../model/index.js"
 
 import authenticateUser from "./authenticateUser.js"

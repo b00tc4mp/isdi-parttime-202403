@@ -12,7 +12,7 @@ const getAllCustomers = (userId) => {
         throw new NotFoundError("User not found")
       }
 
-      return User.find({ manager: userId }).select("-__v").lean()
+      return User.find({ manager: userId, active: true }).select("-__v").lean()
         .catch((error) => { throw new SystemError(error.message) })
         .then((customerUsers) => {
 

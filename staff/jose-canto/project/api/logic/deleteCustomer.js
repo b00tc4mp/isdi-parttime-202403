@@ -2,7 +2,6 @@ import validate from "com/validate.js"
 import { User } from "../model/index.js"
 import { MatchError, NotFoundError, SystemError } from "com/errors.js"
 
-
 const deleteCustomer = (userId, customerId) => {
   validate.id(userId, "userId")
   validate.id(customerId, "customerId")
@@ -22,10 +21,10 @@ const deleteCustomer = (userId, customerId) => {
           }
 
           if (customer.manager.toString() !== userId) {
-            throw new MatchError("Can not delete Customer from another user")
+            throw new MatchError("Can not deactivate Customer from another user")
           }
 
-          return User.deleteOne({ _id: customerId })
+          return User.updateOne({ _id: customerId }, { $set: { active: false } })
             .catch(error => { throw new SystemError(error.message) })
             .then(() => { })
         })

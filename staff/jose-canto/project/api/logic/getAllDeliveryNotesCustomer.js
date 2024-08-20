@@ -1,6 +1,6 @@
 import { User, DeliveryNote } from "../model/index.js"
 import validate from "com/validate.js"
-import { NotFoundError, SystemError, MatchError } from "com/errors.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 
 
 function getAllDeliveryNotesCustomer(userId, customerId) {

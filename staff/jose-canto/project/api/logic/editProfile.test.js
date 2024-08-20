@@ -27,7 +27,6 @@ mongoose.connect(MONGODB_URL)
         {
           username: "Jack"
         }
-
       )
         .then(() => {
           console.log("User Edited")

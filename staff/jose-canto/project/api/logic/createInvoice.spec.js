@@ -3,11 +3,10 @@ import { mongoose, Types } from "mongoose"
 import bcrypt from "bcryptjs"
 
 import { expect } from "chai"
-
 import { User, Invoice } from "../model/index.js"
 
 import createInvoice from "./createInvoice.js"
-import { ContentError, DuplicityError, NotFoundError } from "com/errors.js"
+import { ContentError, NotFoundError } from "com/errors.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env

@@ -3,7 +3,6 @@ import { mongoose, Types } from "mongoose"
 import bcrypt from "bcryptjs"
 
 import { expect } from "chai"
-
 import { User } from "../model/index.js"
 
 import editProfile from "./editProfile.js"

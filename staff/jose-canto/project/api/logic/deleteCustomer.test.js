@@ -8,9 +8,9 @@ mongoose.connect(MONGODB_URL)
   .then(() => {
 
     try {
-      deleteCustomer("66bb972f98051f33903e9a7c", "66bda6c6c129a4720c76911c")
+      deleteCustomer("66c44e9b220373c3309cfa43", "66c44efa220373c3309d24d3")
         .then(() => {
-          console.log(`Customer deleted`)
+          console.log(`Customer deactivated`)
         })
         .catch(error => console.error(error))
     } catch (error) {

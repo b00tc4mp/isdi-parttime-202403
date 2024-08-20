@@ -1,4 +1,4 @@
-import dotenv from "dotenv"
+import "dotenv/config"
 import mongoose, { Types } from "mongoose"
 import bcrypt from "bcryptjs"
 
@@ -17,7 +17,7 @@ describe("deleteCustomer", () => {
   beforeEach(() => User.deleteMany())
 
 
-  it("succeeds on delete a customer", () => {
+  it("succeeds on deactivate a customer", () => {
     return bcrypt.hash("1234", 8)
       .then(hash => User.create({
         username: "Peter",
@@ -37,8 +37,9 @@ describe("deleteCustomer", () => {
       .then(({ user, customer }) => deleteCustomer(user.id, customer.id)
         .then(() => User.findById(customer.id))
       )
-      .then(deletedCustomer => {
-        expect(deletedCustomer).to.be.null
+      .then(deactivatedCustomer => {
+        expect(deactivatedCustomer).to.exist
+        expect(deactivatedCustomer.active).to.be.false
       })
   })
 
@@ -95,7 +96,7 @@ describe("deleteCustomer", () => {
       })
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(MatchError)
-        expect(errorThrown.message).to.equal("Can not delete Customer from another user")
+        expect(errorThrown.message).to.equal("Can not deactivate Customer from another user")
       })
   })
 

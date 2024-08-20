@@ -76,7 +76,6 @@ describe("getAllDeliveryNotes", () => {
       })
   })
 
-
   it("fails on non-existing user", () => {
     let errorThrown
 
