@@ -21,6 +21,10 @@ const booking = new Schema({
     type: Date,
     required: true
   },
+  isBlocked: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const Booking = model('Booking', booking);

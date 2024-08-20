@@ -27,13 +27,13 @@ const deleteBookingByHost = (userId, roomId, bookingId) => {
             throw new MatchError('user cannot delete the booking')
           }
 
-          return Booking.findOne({ room: roomId }).lean()
+          return Booking.findOne({ room: roomId, isBlocked: false }).lean()
             .catch(error => { throw new SystemError(error.message) })
             .then(booking => {
               if (!booking) {
                 throw new NotFoundError('booking not found')
               }
-              return Booking.deleteOne({ _id: new ObjectId(bookingId) })
+              return Booking.updateOne({ _id: new ObjectId(bookingId) }, {$set: {isBlocked: true}})
                 .catch(error => { throw new SystemError(error.message) })
                 .then(() => null)
             })

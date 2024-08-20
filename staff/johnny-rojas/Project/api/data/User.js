@@ -1,4 +1,4 @@
-import { NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONE_REGEX } from '../../com/validate.js'
+import { NAME_REGEX, EMAIL_REGEX, PHONE_REGEX } from '../../com/validate.js'
 import { Schema, model, Types } from 'mongoose'
 
 const { ObjectId } = Types;
@@ -38,6 +38,10 @@ const user = new Schema({
     room: {
         type: ObjectId,
         ref:'Room'
+    },
+    isBlocked: {
+        type: Boolean, 
+        default: false
     }
 })
 

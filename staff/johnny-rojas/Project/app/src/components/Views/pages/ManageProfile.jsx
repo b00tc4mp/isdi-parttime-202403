@@ -7,12 +7,12 @@ import Field from "../core/Field"
 import SubmitButton from "../core/SubmitButton";
 import logic from "../../../logic/index"
 import { getUserId } from "../../../logic/getUserInfo";
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 function ManageProfile() {
   const userId = getUserId()
-  const navigate = useNavigate
+  const navigate = useNavigate()
 
   const handleEditUserContact = event => {
     event.preventDefault()
@@ -42,6 +42,7 @@ function ManageProfile() {
     try {
       logic.closeAccount(userId)
         .then(() => {
+          logic.logoutUser()
           navigate('/')
         })
         .catch(error => alert(error.message))

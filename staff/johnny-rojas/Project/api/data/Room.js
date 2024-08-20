@@ -39,6 +39,10 @@ const room = new Schema({
   manager: {
     type: ObjectId,
     ref:'User'
+  },
+  isBlocked: {
+    type: Boolean,
+    default: false
   }
 });
 

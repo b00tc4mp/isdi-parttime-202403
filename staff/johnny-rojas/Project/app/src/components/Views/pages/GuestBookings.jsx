@@ -33,7 +33,7 @@ function GuestBookings() {
       <section className="sectionCard">
         <h2 className="sectionTitle">Reservas</h2>
         <div className="bookingListContainer">
-          <ul className="gridList">
+          <ul className="gridList" key={bookings.id}>
             {bookings.length > 0 ? (
               bookings.map((booking) => (
                 <li className="bookingItem" key={booking.id}>
@@ -44,6 +44,7 @@ function GuestBookings() {
                   <p><span className="infoLabel">Teléfono:</span> {booking.room.manager.phone}</p>
                   <p><span className="infoLabel">Entrada:</span> {new Date(booking.startDate).toLocaleDateString()}</p>
                   <p><span className="infoLabel">Salida:</span> {new Date(booking.endDate).toLocaleDateString()}</p>
+                  <p><span className="infoLabel">Estatus:</span> {booking.isBlocked ? 'Cancelado' : 'Confirmado'}</p>
                 </li>
               ))
             ) : (

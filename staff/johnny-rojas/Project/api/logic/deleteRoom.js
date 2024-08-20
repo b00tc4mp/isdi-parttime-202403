@@ -26,14 +26,14 @@ const deleteRoom = (userId, roomId) => {
             throw new MatchError('room author do not match')
           }
 
-          return Booking.findOne({ room: roomId }).lean()
+          return Booking.findOne({ room: roomId, isBlocked: false }).lean()
             .catch(error => { throw new SystemError(error.message) })
             .then(booking => {
               if (booking) {
                 throw new MatchError('you cannot delete a room with bookings')
               }
 
-              return Room.deleteOne({ _id: new ObjectId(roomId) })
+              return Room.updateOne({ _id: new ObjectId(roomId) }, { $set: { isBlocked: true } })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(() => { })
             })
