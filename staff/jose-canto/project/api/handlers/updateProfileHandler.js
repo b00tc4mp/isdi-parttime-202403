@@ -16,7 +16,7 @@ export default ((req, res, next) => {
       .then(payload => {
         const { sub: userId } = payload
         try {
-          logic.editProfile(userId, updates)
+          logic.updateProfile(userId, updates)
             .then(() => {
               res.status(200).send()
             })

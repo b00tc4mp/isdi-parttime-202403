@@ -8,7 +8,7 @@ import "./index.css"
 import logic from "../../logic"
 import extractPayloadJwt from "../../../utils/extractPayloadJwt"
 
-export default function EditProfileForm({ onEditProfile }) {
+export default function UpdateProfileForm({ onUpdateProfile }) {
   const [userId, setUserId] = useState(null)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function EditProfileForm({ onEditProfile }) {
     }
   }, [])
 
-  const handleEditProfileForm = (event) => {
+  const handleUpdateProfileForm = (event) => {
     event.preventDefault()
 
     const target = event.target
@@ -52,9 +52,9 @@ export default function EditProfileForm({ onEditProfile }) {
 
     try {
       // prettier-ignore
-      logic.editProfile(userId, updates)
+      logic.updateProfile(userId, updates)
         .then(() => {
-          onEditProfile()
+          onUpdateProfile()
         })
         .catch((error) => {
           alert(error.message)
@@ -66,21 +66,19 @@ export default function EditProfileForm({ onEditProfile }) {
 
   return (
     <>
-      <>
-        <form className="EditProfileForm" onSubmit={handleEditProfileForm}>
-          <Field id="companyLogo" type="text" placeholder="url logo empresa" required={false}></Field>
-          <Field id="username" type="text" placeholder="Nombre de usuario" required={false}></Field>
-          <Field id="fullName" type="text" placeholder="Nombre" required={false}></Field>
-          <Field id="companyName" type="text" placeholder="Nombre Empresa" required={false}></Field>
-          <Field id="taxId" type="text" placeholder="CIF/NIF" required={false}></Field>
-          <Field id="email" type="email" placeholder="Email" required={false}></Field>
-          <Field id="address" type="text" placeholder="Dirección" required={false}></Field>
-          <Field id="phone" type="text" placeholder="Número de Móvil" required={false}></Field>
-          <Field id="bankAccount" type="text" placeholder="IBAN" required={false}></Field>
+      <form className="UpdateProfileForm" onSubmit={handleUpdateProfileForm}>
+        <Field id="companyLogo" type="text" placeholder="url logo empresa" required={false}></Field>
+        <Field id="username" type="text" placeholder="Nombre de usuario" required={false}></Field>
+        <Field id="fullName" type="text" placeholder="Nombre" required={false}></Field>
+        <Field id="companyName" type="text" placeholder="Nombre Empresa" required={false}></Field>
+        <Field id="taxId" type="text" placeholder="CIF/NIF" required={false}></Field>
+        <Field id="email" type="email" placeholder="Email" required={false}></Field>
+        <Field id="address" type="text" placeholder="Dirección" required={false}></Field>
+        <Field id="phone" type="text" placeholder="Número de Móvil" required={false}></Field>
+        <Field id="bankAccount" type="text" placeholder="IBAN" required={false}></Field>
 
-          <Button type="submit">Editar</Button>
-        </form>
-      </>
+        <Button type="submit">Editar</Button>
+      </form>
     </>
   )
 }

@@ -5,11 +5,16 @@ import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import logic from "../../logic/index"
 
 import "./NewDeliveryNotes.css"
 
 export default function NewDeliveryNotes() {
+  const { alert } = useContext()
+
   const [customers, setCustomers] = useState([])
 
   useEffect(() => {
@@ -19,7 +24,12 @@ export default function NewDeliveryNotes() {
         .then((customers) => {
           setCustomers(customers)
         })
-        .catch((error) => alert(error.message))
+        .catch((error) => {
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
+          alert("No hay clientes, añade uno para poder crear un albarán")
+        })
     } catch (error) {
       alert(error.message)
     }

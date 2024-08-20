@@ -1,7 +1,7 @@
 import errors, { SystemError } from "com/errors"
 import validate from "com/validate"
 
-const editProfile = (userId, updates) => {
+const updateProfile = (userId, updates) => {
   validate.id(userId, "userId")
 
   if (updates.username) validate.username(updates.username)
@@ -14,7 +14,7 @@ const editProfile = (userId, updates) => {
   if (updates.bankAccount) validate.iban(updates.bankAccount)
   if (updates.companyLogo) validate.url(updates.companyLogo, "companyLogo")
 
-  return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/edit`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/update`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -25,6 +25,8 @@ const editProfile = (userId, updates) => {
     .catch(() => { throw new SystemError("connection error") })
     .then(response => {
       if (response.status === 200) return
+
+
       return response.json()
         .catch(() => { throw new SystemError("connection error") })
         .then((body) => {
@@ -35,4 +37,4 @@ const editProfile = (userId, updates) => {
     })
 }
 
-export default editProfile
+export default updateProfile

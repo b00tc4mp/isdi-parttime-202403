@@ -128,21 +128,23 @@ export default function NewInvoice() {
         </div>
       </Header>
       <Main>
-        <input
-          className="-mb-9 -mt-5 w-[21rem] rounded-md border border-gray-500 p-2"
-          type="text"
-          placeholder="Buscar por número o nombre de Factura"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
         {showCustomerList ? (
-          <ul className="CustomerList">
-            {filterCustomers().map((customer) => (
-              <li key={customer.id} className="Customer" onClick={() => handleCustomerSelect(customer.id)}>
-                {customer?.companyName}
-              </li>
-            ))}
-          </ul>
+          <>
+            <input
+              className="-mb-9 -mt-5 w-[21rem] rounded-md border border-gray-500 p-2"
+              type="text"
+              placeholder="Buscar por número o nombre de Factura"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+            <ul className="CustomerList">
+              {filterCustomers().map((customer) => (
+                <li key={customer.id} className="Customer" onClick={() => handleCustomerSelect(customer.id)}>
+                  {customer?.companyName}
+                </li>
+              ))}
+            </ul>
+          </>
         ) : (
           <div className="relative top-7 -mt-16 flex flex-col items-center rounded-lg p-6">
             <ul className="w-full text-[0.9rem]">

@@ -66,8 +66,7 @@ export default function CustomerProfile() {
       setShowCustomerData("DeliveryNotes")
       setShowDeleteIcon("")
       //prettier-ignore
-      logic
-        .getAllDeliveryNotesCustomer(customerId)
+      logic.getAllDeliveryNotesCustomer(customerId)
         .then((deliveryNotes) => {
           setDeliveryNotes(deliveryNotes)
         })
@@ -87,8 +86,7 @@ export default function CustomerProfile() {
       setShowCustomerData("Invoices")
       setShowDeleteIcon("")
       //prettier-ignore
-      logic
-        .getAllInvoicesCustomer(customerId)
+      logic.getAllInvoicesCustomer(customerId)
         .then((invoices) => {
           setInvoices(invoices)
         })

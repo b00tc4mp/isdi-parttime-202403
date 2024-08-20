@@ -1,7 +1,7 @@
 import registerUserHandler from "./registerUserHandler.js"
 import authenticateUserHandler from "./authenticateUserHandler.js"
 import getUserNameHandler from "./getUserNameHandler.js"
-import editProfileHandler from "./editProfileHandler.js"
+import updateProfileHandler from "./updateProfileHandler.js"
 
 import registerCustomHandler from "./registerCustomerHandler.js"
 import getAllCustomersHandler from "./getAllCustomersHandler.js"
@@ -28,7 +28,7 @@ export default {
   registerUserHandler,
   authenticateUserHandler,
   getUserNameHandler,
-  editProfileHandler,
+  updateProfileHandler,
 
   getProfileUserHandler,
   registerCustomHandler,

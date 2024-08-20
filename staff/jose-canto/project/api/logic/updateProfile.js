@@ -2,7 +2,7 @@ import { NotFoundError, SystemError } from "com/errors.js"
 import { User } from "../model/index.js"
 import validate from "com/validate.js"
 
-const editProfile = (userId, updates) => {
+const updateProfile = (userId, updates) => {
   validate.id(userId, "userId")
 
   const updateFields = {}
@@ -54,4 +54,4 @@ const editProfile = (userId, updates) => {
     })
 }
 
-export default editProfile
+export default updateProfile

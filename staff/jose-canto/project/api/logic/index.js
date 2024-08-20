@@ -2,7 +2,7 @@ import registerUser from "./registerUser.js"
 import authenticateUser from "./authenticateUser.js"
 import getUserName from "./getUserName.js"
 
-import editProfile from "./editProfile.js"
+import updateProfile from "./updateProfile.js"
 
 import registerCustomer from "./registerCustomer.js"
 import getAllCustomers from "./getAllCustomers.js"
@@ -28,7 +28,7 @@ const logic = {
   authenticateUser,
   getUserName,
 
-  editProfile,
+  updateProfile,
 
   registerCustomer,
   getAllCustomers,

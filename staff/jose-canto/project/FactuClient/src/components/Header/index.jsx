@@ -7,7 +7,7 @@ import "./index.css"
 
 import logic from "../../logic"
 import RegisterCustomer from "../RegisterCustomerForm"
-import EditProfileForm from "../EditProfileForm"
+import UpdateProfileForm from "../UpdateProfileForm"
 
 export default function Header({
   className,
@@ -38,11 +38,11 @@ export default function Header({
     onRegisterCustomer()
   }
 
-  const handleEditProfile = () => {
+  const handleUpdateProfile = () => {
     setShowEditProfile(!showEditProfile)
   }
 
-  const handleCloseEditProfile = () => {
+  const handleCloseUpdateProfile = () => {
     setShowEditProfile(!showEditProfile)
   }
 
@@ -66,7 +66,7 @@ export default function Header({
 
         {location.pathname === "/users/profile" && (
           <div className="ContainerHeader">
-            <div onClick={handleEditProfile} className="IconLeftHeader">
+            <div onClick={handleUpdateProfile} className="IconLeftHeader">
               {iconLeftHeader}
             </div>
             <div className="IconUser">{iconUser}</div>
@@ -161,9 +161,9 @@ export default function Header({
         {showRegisterCustomer && <RegisterCustomer onCloseRegisterCustomer={handleCloseRegisterCustomer} />}
       </div>
 
-      <div className="EditProfile">
+      <div className="UpdateProfile">
         {showEditProfile && (
-          <EditProfileForm onEditProfile={handleCloseEditProfile} onCloseEditProfile={handleCloseEditProfile} />
+          <UpdateProfileForm onUpdateProfile={handleCloseUpdateProfile} onCloseEditProfile={handleCloseUpdateProfile} />
         )}
       </div>
     </>

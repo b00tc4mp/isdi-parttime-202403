@@ -2,6 +2,10 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState, Fragment } from "react"
 import { useNavigate } from "react-router-dom"
 
+import { PDFDownloadLink } from "@react-pdf/renderer"
+import { FaRegFilePdf } from "react-icons/fa6"
+import { FaSpinner } from "react-icons/fa"
+
 import { MdDeleteForever } from "react-icons/md"
 
 import Header from "../Header"
@@ -9,6 +13,7 @@ import Main from "../core/Main"
 import Footer from "../core/Footer"
 import Title from "../Title"
 import Confirm from "../Confirm"
+import InvoicePDF from "./InvoicePDF"
 
 import logic from "../../logic/index"
 
@@ -144,6 +149,16 @@ export default function InvoiceInfo() {
         </div>
         {showConfirmDelete && (
           <Confirm handleDeleteInvoice={handleDeleteInvoice} setShowConfirmDelete={handleShowConfirmDelete} />
+        )}
+
+        {invoice && (
+          <PDFDownloadLink
+            className="PDFDownloadLink"
+            document={<InvoicePDF invoice={invoice} total={total} iva={iva} />}
+            fileName={`invoice-${invoice.number}.pdf`}
+          >
+            {({ loading }) => (loading ? <FaSpinner /> : <FaRegFilePdf />)}
+          </PDFDownloadLink>
         )}
       </Main>
 
