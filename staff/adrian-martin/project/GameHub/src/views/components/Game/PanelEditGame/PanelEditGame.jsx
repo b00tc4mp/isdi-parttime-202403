@@ -29,7 +29,12 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
             image,
             rating: parseFloat(rating),
             hours: parseFloat(hours)
-        };
+        }
+
+        if (!game.id) {
+            alert('Game ID is missing');
+            return;
+        }
 
         try {
             logic.editGame(game.id, updates)
@@ -42,7 +47,7 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
         } catch (error) {
             alert(error.message)
         }
-    };
+    }
 
     return (
         <div className='Container'>

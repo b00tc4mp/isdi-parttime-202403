@@ -1,7 +1,10 @@
 import validate from "com/validate";
 import errors, { SystemError } from "com/errors";
+import extractPayloadFromJWT from "../util/extractPayloadFromJWT";
 
 const editGame = (gameId, updates) => {
+    const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
+
     validate.id(gameId, 'gameId')
 
     if (updates.title) validate.text(updates.title)
@@ -9,7 +12,8 @@ const editGame = (gameId, updates) => {
     if (updates.rating) validate.rating(updates.rating)
     if (updates.hours) validate.hours(updates.hours)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/games/${gameId}/edit`, {
+
+    return fetch(`${import.meta.env.VITE_API_URL}/games/${userId}/${gameId}/edit`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -19,7 +23,7 @@ const editGame = (gameId, updates) => {
     })
         .catch(() => { throw new SystemError('Connection error') })
         .then(response => {
-            if (response.status === 200) return
+            if (response.status === 200) return response.json()
             return response.json()
                 .catch(() => { throw new SystemError('Connection error') })
                 .then((body) => {

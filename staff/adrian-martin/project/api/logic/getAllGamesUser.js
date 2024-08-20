@@ -6,19 +6,26 @@ const getAllGamesUser = userId => {
     validate.id(userId, 'userId')
 
     return User.findById(userId)
-        .populate({
-            path: 'gameList',
-            select: '-__v',
-        }).lean()
+        .lean()
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
                 throw new NotFoundError('User not found')
             }
 
-            return user.gameList
-        })
-        .catch(error => {
-            throw new SystemError(error.message)
+            const gameList = user.gameList || []
+
+            gameList.forEach(game => {
+                game.id = game._id.toString()
+                delete game._id
+
+                if (game.author && game.author._id) {
+                    game.author.id = game.author._id.toString()
+                    delete game.author._id
+                }
+            });
+
+            return gameList
         });
 }
 

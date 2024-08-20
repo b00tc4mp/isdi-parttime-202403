@@ -43,9 +43,9 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/games/:userId', getAllGamesUserHandler)
 
-        api.delete('/games/:gameId', deleteGameHandler)
+        api.patch('/games/:userId/:gameId/edit', jsonBodyParser, editGameHandler)
 
-        api.patch('/games/:gameId/edit', jsonBodyParser, editGameHandler)
+        api.delete('/games/:gameId', deleteGameHandler)
 
         api.use(errorHandler)
 

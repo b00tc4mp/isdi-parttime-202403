@@ -9,7 +9,7 @@ const getAllGames = userId => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw NotFoundError('User not found')
+                throw new NotFoundError('User not found')
 
             return Game.find({})
                 .populate('author', 'username')
@@ -26,7 +26,7 @@ const getAllGames = userId => {
                                 game.author.id = game.author._id.toString()
                                 delete game.author._id
                             }
-                        });
+                        })
                     }
                     return games
                 })

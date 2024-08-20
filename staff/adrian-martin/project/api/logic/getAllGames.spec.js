@@ -12,7 +12,7 @@ const { ObjectId } = Types
 
 // npm run test-inspect
 
-describe('createGame', () => {
+describe('getAllGames', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([Game.deleteMany(), User.deleteMany()])))
     beforeEach(() => Promise.all([Game.deleteMany(), User.deleteMany()]))
 
@@ -40,16 +40,16 @@ describe('createGame', () => {
             })
     })
 
-    // it('fails on non-existing user', () => {
-    //     let errorThrown
+    it('fails on non-existing user', () => {
+        let errorThrown
 
-    //     return getAllGames(new ObjectId().toString(), 1, 2)
-    //         .catch(error => errorThrown = error)
-    //         .finally(() => {
-    //             expect(errorThrown).to.be.instanceOf(NotFoundError)
-    //             expect(errorThrown.message).to.equal('User not found')
-    //         })
-    // })
+        return getAllGames(new ObjectId().toString(), 1, 2)
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.instanceOf(NotFoundError)
+                expect(errorThrown.message).to.equal('User not found')
+            })
+    })
 
     it('fails on invalid userId', () => {
         let errorThrown
