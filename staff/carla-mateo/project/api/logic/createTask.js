@@ -16,13 +16,6 @@ const createTask = (userId, family, assigneeUsername, title, description, date =
             let assigneeId = null
             let taskDate = null
 
-            if (date) {
-                taskDate = new Date(date)
-                if (isNaN(taskDate.getTime())) {
-                    throw new ContentError('invalid date format')
-                }
-            }
-
             if (assigneeUsername) {
                 validate.text(assigneeUsername, 'assigneeUsername')
 

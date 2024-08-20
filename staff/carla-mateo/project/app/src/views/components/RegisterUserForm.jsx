@@ -25,7 +25,7 @@ function RegisterUserForm({ onSuccess }) {
                     setTimeout(() => {
                         setRegistrationMessage('')
                         onSuccess()
-                    }, 3000)
+                    }, 2000)
                 })
                 .catch(error => {
                     alert(error.message)
@@ -55,7 +55,7 @@ function RegisterUserForm({ onSuccess }) {
                 </select>
                 <Button className="flex justify-between" type="submit">Create User</Button>
             </form>
-            {registrationMessage.length > 0 && <p className="text-black-500 text-2xl">{registrationMessage}</p>}
+            {registrationMessage.length > 0 && <p className="text-black-500 text-lg">{registrationMessage}</p>}
         </div>
 
     </>

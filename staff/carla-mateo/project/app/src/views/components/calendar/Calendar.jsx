@@ -17,8 +17,6 @@ import Img from '../../../components/core/Img'
 import './Calendar.css'
 import View from '../../library/View'
 
-import logic from '../../../logic'
-
 const Calendar = () => {
     const [currentDate, setCurrentDate] = useState(new Date())
     const navigate = useNavigate()
@@ -26,19 +24,6 @@ const Calendar = () => {
         const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + delta))
         setCurrentDate(newDate)
     }
-
-    // const fetchTasks = () => {
-    //     logic.getAllTasks()
-    //         .then(fetchedTasks => setTasks(fetchedTasks))
-    //         .catch(error => {
-    //             console.error('Error fetching tasks:', error);
-    //             alert('Failed to fetch tasks');
-    //         })
-    // }
-
-    // useEffect(() => {
-    //     fetchTasks();
-    // }, [currentDate])
 
     const singHome = () => { navigate('/') }
 

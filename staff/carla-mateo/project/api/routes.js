@@ -11,9 +11,12 @@ router.post('/users/auth', jsonBodyParser, routes.authenticateAdminHandler)
 router.post('/createtask', jsonBodyParser, routes.createTaskHandler)
 
 router.delete('/task/:taskId', routes.deleteTaskHandler)
+router.delete('/profile/:userId', routes.deleteUserHandler)
 
-router.get("/users/:targetUserId", routes.getUsernameHandler)
+router.get('/users/:targetUserId', routes.getUsernameHandler)
 router.get('/getallusers', routes.getAllUsersHandler)
 router.get('/getalltasks', routes.getAllTasksHandler)
+
+router.patch('/profile/:userId', jsonBodyParser, routes.updateDataUserHandler)
 
 export default router

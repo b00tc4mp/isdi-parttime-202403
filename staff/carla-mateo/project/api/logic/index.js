@@ -6,8 +6,8 @@ import deleteTask from './deleteTask.js'
 import getAllUsers from './getAllUsers.js'
 import getAllTasks from './getAllTasks.js'
 import getUsername from './getUserame.js'
-import editProfile from './editProfile.js'
-import deleteProfile from './deleteProfile.js'
+import updateDataUser from './updateDataUser.js'
+import deleteUser from './deleteUser.js'
 
 
 const logic = {
@@ -19,8 +19,8 @@ const logic = {
     getAllUsers,
     getAllTasks,
     getUsername,
-    editProfile,
-    deleteProfile
+    updateDataUser,
+    deleteUser
 
 }
 

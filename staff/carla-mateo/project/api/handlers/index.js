@@ -8,6 +8,8 @@ import deleteTaskHandler from './deleteTaskHandler.js'
 import getAllUsersHandler from './getAllUsersHandler.js'
 import getAllTasksHandler from './getAllTasks.Handler.js'
 import getUsernameHandler from './getUsernameHandler.js'
+import deleteUserHandler from './deleteUserHandler.js'
+import updateDataUserHandler from './updateDataUserHandler.js'
 
 
 export default {
@@ -21,6 +23,6 @@ export default {
     getAllUsersHandler,
     getAllTasksHandler,
     getUsernameHandler,
-
-
+    deleteUserHandler,
+    updateDataUserHandler
 }

@@ -1,0 +1,1 @@
+curl -X DELETE http://localhost:9090/profile/66c30e9f9f5859571897dfdb -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMyZGQ2YTg2Y2E4NzkzNTQ4Y2I2N2EiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjQxMzAwNDcsImV4cCI6MTcyNTg1ODA0N30.QSynjNmnwbTvILg22eTyJ2-YEyFGu30s2NmU3pmzQuo" -v

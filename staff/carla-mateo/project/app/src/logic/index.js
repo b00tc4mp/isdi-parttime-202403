@@ -9,6 +9,8 @@ import getAllUsers from "./getAllUsers"
 import deleteTask from "./deleteTask"
 import getAllTasks from "./getAllTasks"
 import getUserRole from "./getUserRole"
+import updateDataUser from "../../../api/logic/updateDataUser"
+import deleteUser from "./deleteUser"
 
 
 const logic = {
@@ -22,7 +24,9 @@ const logic = {
     getAllUsers,
     deleteTask,
     getAllTasks,
-    getUserRole
+    getUserRole,
+    updateDataUser,
+    deleteUser
 
 }
 
