@@ -14,7 +14,7 @@ const getRandomWorkout = (userId, workoutType) => {
             return Workout.find({ workoutType }).select("-__v").populate("movements").lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(workouts => {
-                    if (!workouts) throw new NotFoundError("workouts not found")
+                    if (!workouts || workouts.length === 0) throw new NotFoundError("workouts not found")
 
                     const randomNumber = Math.floor(Math.random() * workouts.length)
 

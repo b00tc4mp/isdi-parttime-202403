@@ -17,7 +17,7 @@ const getResults = (userId) => {
                 .lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(results => {
-                    if (!results) throw new NotFoundError("you did't submit any result")
+                    if (results.length === 0) throw new NotFoundError("you did't submit any result")
                     results.forEach(result => {
                         result.id = result._id.toString()
                         delete result._id

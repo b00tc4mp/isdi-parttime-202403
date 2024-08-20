@@ -45,8 +45,9 @@ function validateText(text, explain = "text", maxLength = Infinity) {
 
 //en la validacion de imagen usamos uno generico de url
 function validateUrl(url, explain = "url") {
-    if (url && typeof url !== "string" || !url.startsWith("http"))
-        throw new ContentError(`${explain} is not valid`)
+    if (url && (typeof url !== "string" || !url.startsWith("http"))) {
+        throw new ContentError(`${explain} is not valid`);
+    }
 }
 
 function validateId(id, explain = "id") {
@@ -59,7 +60,7 @@ function validateType(type, explain = "type") {
 }
 
 function validateNumber(number, explain = "number") {
-    if (number && typeof number !== "number")
+    if (number && (typeof number !== "number"))
         throw new ContentError(`${explain} is not valid`)
 }
 

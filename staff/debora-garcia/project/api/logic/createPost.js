@@ -6,7 +6,8 @@ import { NotFoundError, SystemError } from "com/errors.js"
 const createPost = (userId, workoutId, image, description, time, repetitions, weight) => {
     validate.id(userId, "userId")
     validate.id(workoutId, "workoutId")
-    validate.url(image, "image")
+
+    validate.url(image, "image")  
     validate.text(description, "description", 150)
     validate.number(time, "time")
     validate.number(repetitions, "repetitions")
