@@ -1,39 +1,24 @@
 import { useState, useEffect } from 'react'
-import getUserChatsAndMessages from '../logic/getUserChatsAndMessages'
-import createAndUpdateMessage from '../logic/createAndUpdateMessage'
+import logic from '../logic/index'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
 function UserChatsAndMessagesList() {
   const [chats, setChats] = useState([])
   const [selectedChat, setSelectedChat] = useState(null)
-  const [userRole, setUserRole] = useState(null)
 
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
   const loadChats = () => {
-    getUserChatsAndMessages(userId)
+    logic
+      .getUserChatsAndMessages(userId)
       .then((chats) => {
         setChats(chats)
-
-        let role = null
-        chats.forEach((chat) => {
-          chat.participants.forEach((participant) => {
-            if (participant._id === userId) {
-              role = participant.role
-            }
-          })
-          if (role) return
-        })
-        setUserRole(role)
 
         if (selectedChat) {
           const updatedChat = chats.find(
             (chat) => chat._id === selectedChat._id
           )
-          if (updatedChat) {
-            return setSelectedChat(updatedChat)
-          }
-          setSelectedChat(null)
+          setSelectedChat(updatedChat || null)
         }
       })
       .catch((error) => {
@@ -52,9 +37,7 @@ function UserChatsAndMessagesList() {
   useEffect(() => {
     if (selectedChat) {
       const updatedChat = chats.find((chat) => chat._id === selectedChat._id)
-      if (updatedChat) {
-        setSelectedChat(updatedChat)
-      }
+      setSelectedChat(updatedChat || null)
     }
   }, [chats, selectedChat])
 
@@ -68,9 +51,10 @@ function UserChatsAndMessagesList() {
 
   const handleClickDelete = (chat) => {
     if (chat.messages.length === 1) {
-      return console.log('Eliminar chat')
+      console.log('Eliminar chat')
+    } else {
+      console.log('Solo puedes eliminar chats que no hayan respondido')
     }
-    console.log('Solo puedes eliminar chats que no hayan respondido')
   }
 
   const handleOnSubmit = (e) => {
@@ -78,9 +62,11 @@ function UserChatsAndMessagesList() {
     const form = e.target
     const messageText = form.mensaje.value
 
-    createAndUpdateMessage(selectedChat._id, userId, messageText)
+    logic
+      .createAndUpdateMessage(selectedChat._id, userId, messageText)
       .then(() => {
         form.reset()
+        loadChats()
       })
       .catch((error) => {
         console.error(error.message)
@@ -116,9 +102,6 @@ function UserChatsAndMessagesList() {
                     : 'text-left border rounded-md p-2 bg-pink-300 bg-opacity-40'
                 }`}
               >
-                <h2 className='text-xl'>
-                  {/* {message.sender._id === userId ? 'Tú' : message.sender.name}: */}
-                </h2>
                 <p className='font-sans'>"{message.text}"</p>
               </li>
             ))}
@@ -151,15 +134,6 @@ function UserChatsAndMessagesList() {
                   )
                   .join(' => ')}
               </p>
-              {userRole === 'client' && (
-                <i
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    handleClickDelete(chat)
-                  }}
-                  className='fa-solid fa-xmark m-3 text-red-500 text-2xl relative z-9999 cursor-pointer'
-                ></i>
-              )}
             </div>
           ))}
         </div>

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import SendMessageAndRegister from './SendMessageAndRegister'
+import RegisterClient from './RegisterClient'
 import logic from '../logic/index'
 
-function ArtistProfile({ artist, onClose }) {
+function ArtistProfile({ artist, onClose, onClickGoToLogin }) {
   const [sendMessage, setSendMessage] = useState(false)
 
   const handleClickContact = () => {
@@ -19,7 +19,10 @@ function ArtistProfile({ artist, onClose }) {
 
           <div className='flex flex-col justify-center'>
             {sendMessage ? (
-              <SendMessageAndRegister artistId={artist._id} />
+              <RegisterClient
+                onClickGoToLogin={onClickGoToLogin}
+                artistId={artist._id}
+              />
             ) : (
               <>
                 <h1 className='text-white text-xl m-3'>

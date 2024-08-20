@@ -12,6 +12,12 @@ function ClientHome({ onUserLoggedOut, onLogoClick }) {
     e.preventDefault()
     onLogoClick()
   }
+
+  const handleClicktoSearch = (e) => {
+    e.preventDefault()
+    onLogoClick()
+  }
+
   return (
     <>
       <Header
@@ -22,6 +28,9 @@ function ClientHome({ onUserLoggedOut, onLogoClick }) {
       >
         ShowConnect
       </Header>
+
+      <button onClick={handleClicktoSearch}>Buscar Nuevos Artistas</button>
+
       <UserChatsAndMessagesList />
     </>
   )

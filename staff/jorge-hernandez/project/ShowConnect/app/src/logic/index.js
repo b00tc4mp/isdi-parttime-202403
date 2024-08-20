@@ -3,12 +3,14 @@ import getArtistData from './getArtistData'
 import isUserLoggedIn from './isUserLoggedIn'
 import loginUser from './loginUser'
 import logoutUser from './logoutUser'
-import registerUser from './registerUser'
+import registerArtist from './registerArtist'
 import updateArtistData from './updateArtistData'
 import registerClient from './registerClient'
+import getUserChatsAndMessages from './getUserChatsAndMessages'
+import createAndUpdateMessage from './createAndUpdateMessage'
 
 const logic = {
-  registerUser,
+  registerArtist,
   loginUser,
   getArtistData,
   logoutUser,
@@ -16,6 +18,8 @@ const logic = {
   getArtistsByCity,
   updateArtistData,
   registerClient,
+  getUserChatsAndMessages,
+  createAndUpdateMessage,
 }
 
 export default logic

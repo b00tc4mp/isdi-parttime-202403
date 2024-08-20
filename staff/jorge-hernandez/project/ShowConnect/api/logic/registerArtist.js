@@ -3,7 +3,7 @@ import { DuplicityError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const registerUser = (
+const registerArtist = (
   name,
   artisticName,
   discipline,
@@ -63,4 +63,4 @@ const registerUser = (
     })
 }
 
-export default registerUser
+export default registerArtist

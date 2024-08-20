@@ -1,5 +1,6 @@
 import Header from '../components/Header'
 import Form from '../components/Form'
+import logic from '../logic/index'
 
 function Search({ onRegisterClick, onLoginClick }) {
   const handleRegisterClick = (e) => {
@@ -16,14 +17,14 @@ function Search({ onRegisterClick, onLoginClick }) {
   return (
     <>
       <Header
-        loginButtonChildren={'Login'}
+        loginButtonChildren={logic.isUserLoggedIn() ? 'Logout' : 'Login'}
         onClick={handleLoginClick}
         onRegisterClick={handleRegisterClick}
         isArtistHomeVisible={false}
       >
         ¿Eres artista? Regístrate
       </Header>
-      <Form />
+      <Form onClickGoToLogin={handleLoginClick} />
     </>
   )
 }

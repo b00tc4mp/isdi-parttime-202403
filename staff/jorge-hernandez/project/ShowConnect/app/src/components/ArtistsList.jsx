@@ -4,7 +4,7 @@ import logic from '../logic'
 import ArtistResult from './ArtistResult'
 import ArtistProfile from './ArtistProfile'
 
-function ArtistsList({ artist, city, excludedDate }) {
+function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
   const [artists, setArtists] = useState([])
   const [selectedArtist, setSelectedArtist] = useState(null)
 
@@ -66,7 +66,11 @@ function ArtistsList({ artist, city, excludedDate }) {
 
       {selectedArtist && (
         <div>
-          <ArtistProfile artist={selectedArtist} onClose={handleCloseProfile} />
+          <ArtistProfile
+            onClickGoToLogin={onClickGoToLogin}
+            artist={selectedArtist}
+            onClose={handleCloseProfile}
+          />
         </div>
       )}
     </>

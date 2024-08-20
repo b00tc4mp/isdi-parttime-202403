@@ -28,7 +28,7 @@ function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
 
     try {
       logic
-        .registerUser(
+        .registerArtist(
           name,
           artisticName,
           discipline,

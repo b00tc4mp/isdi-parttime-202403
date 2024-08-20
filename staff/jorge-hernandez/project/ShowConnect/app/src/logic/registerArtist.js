@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerUser = (
+const registerArtist = (
   name,
   artisticName,
   discipline,
@@ -63,4 +63,4 @@ const registerUser = (
     })
 }
 
-export default registerUser
+export default registerArtist

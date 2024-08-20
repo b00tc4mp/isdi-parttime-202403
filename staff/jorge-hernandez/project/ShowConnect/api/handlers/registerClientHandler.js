@@ -1,19 +1,11 @@
 import logic from '../logic/index.js'
 
 export default (req, res, next) => {
-  const { name, email, messageText, password, passwordRepeat, artistId } =
-    req.body
+  const { name, email, password, passwordRepeat } = req.body
 
   try {
     logic
-      .registerClient(
-        name,
-        email,
-        messageText,
-        password,
-        passwordRepeat,
-        artistId
-      )
+      .registerClient(name, email, password, passwordRepeat)
       .then(() => {
         res.status(201).send()
       })

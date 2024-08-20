@@ -17,6 +17,7 @@ function Header({
         logic
           .getArtistData()
           .then((artistData) => {
+            console.log(artistData)
             setName(artistData.name)
           })
           .catch((error) => {

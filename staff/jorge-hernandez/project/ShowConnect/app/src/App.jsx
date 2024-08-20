@@ -39,7 +39,14 @@ function App() {
       {view === 'search' && (
         <Search
           onRegisterClick={handleGoToRegister}
-          onLoginClick={handleGoToLogin}
+          onLoginClick={
+            logic.isUserLoggedIn()
+              ? () => {
+                  logic.logoutUser()
+                  handleGoToLogin()
+                }
+              : handleGoToLogin
+          }
         />
       )}
 

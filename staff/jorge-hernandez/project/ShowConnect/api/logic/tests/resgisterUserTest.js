@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import registerUser from '../registerUser.js'
+import registerArtist from '../registerArtist.js'
 
 const { MONGODB_URL } = process.env
 
@@ -9,7 +9,7 @@ mongoose
   .connect(MONGODB_URL)
   .then(() => {
     try {
-      registerUser(
+      registerArtist(
         'David',
         'David Bisbal',
         'cantante',

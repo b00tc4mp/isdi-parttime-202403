@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
-import registerUserHandler from './handlers/registerUserHandler.js'
+import registerArtistHandler from './handlers/registerArtistHandler.js'
 import authenticateUserHandler from './handlers/authenticateUserHandler.js'
 import getArtistDataHandler from './handlers/getArtistDataHandler.js'
 import updateChatWithMessageHandler from './handlers/updateChatWithMessageHandler.js'
@@ -35,7 +35,7 @@ mongoose
     //TODO CHANGE ROUTE USERS BY ARTISTS
     api.get('/', (_, res) => res.send('Hello World'))
 
-    api.post('/users', jsonbodyparser, registerUserHandler)
+    api.post('/users', jsonbodyparser, registerArtistHandler)
 
     api.post('/clients', jsonbodyparser, registerClientHandler)
 

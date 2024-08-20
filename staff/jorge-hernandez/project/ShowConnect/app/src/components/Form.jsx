@@ -5,7 +5,7 @@ import ArtistsList from './ArtistsList'
 import { disciplines } from '../assets/disciplines'
 import validate from 'com/validate'
 
-function Form() {
+function Form({ onClickGoToLogin }) {
   const [inputValue, setInputValue] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [artist, setArtist] = useState('')
@@ -124,7 +124,12 @@ function Form() {
         <Footer>Buscar</Footer>
       </form>
 
-      <ArtistsList artist={artist} city={city} excludedDate={excludedDate} />
+      <ArtistsList
+        onClickGoToLogin={onClickGoToLogin}
+        artist={artist}
+        city={city}
+        excludedDate={excludedDate}
+      />
     </main>
   )
 }

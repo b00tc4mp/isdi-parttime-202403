@@ -3,8 +3,10 @@ import { useState } from 'react'
 import { SystemError } from 'com/errors'
 import logic from '../logic'
 
-function SendMessageAndRegister({ artistId }) {
+function RegisterClient({ onClickGoToLogin }) {
   const [message, setMessage] = useState('')
+
+  const handleGoToLogin = () => onClickGoToLogin()
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -12,21 +14,13 @@ function SendMessageAndRegister({ artistId }) {
     const form = e.target
     const name = form.name.value
     const email = form.email.value
-    const messageText = form.message.value
     const password = form.password.value
     const passwordRepeat = form.passwordRepeat.value
 
     logic
-      .registerClient(
-        name,
-        email,
-        messageText,
-        password,
-        passwordRepeat,
-        artistId
-      )
+      .registerClient(name, email, password, passwordRepeat)
       .then(() => {
-        setMessage('User registered successfully and message sent')
+        setMessage('Usuario Registrado')
       })
       .catch((error) => {
         console.log(error)
@@ -40,7 +34,7 @@ function SendMessageAndRegister({ artistId }) {
 
   return (
     <div>
-      {logic.isUserLoggedIn() ? (
+      {!logic.isUserLoggedIn() ? (
         <form onSubmit={handleOnSubmit}>
           <Field
             divClass='Field flex flex-col gap-1 mx-2'
@@ -65,16 +59,6 @@ function SendMessageAndRegister({ artistId }) {
           <Field
             divClass='Field flex flex-col gap-1 mx-2'
             labelClass='text-white'
-            labelChildren='Mensaje'
-            htmlFor='message'
-            id='message'
-            type='text'
-            inputClass='text-black h-8 rounded p-2'
-            placeholder='Escribe tu mensaje'
-          />
-          <Field
-            divClass='Field flex flex-col gap-1 mx-2'
-            labelClass='text-white'
             labelChildren='Password'
             htmlFor='password'
             id='password'
@@ -92,19 +76,41 @@ function SendMessageAndRegister({ artistId }) {
             inputClass='text-black h-8 rounded p-2'
             placeholder='repite la contraseña'
           />
-          <button
-            type='submit'
-            className='h-10 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md shadow-md'
-          >
-            Enviar
-          </button>
+          <div className='flex flex-col items-center'>
+            <button
+              type='submit'
+              className='items-end h-10 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md shadow-md'
+            >
+              Enviar
+            </button>
+            <p onClick={handleGoToLogin} className=''>
+              Si ya estás registrado haz click
+              <span
+                onClick={onClickGoToLogin}
+                className='cursor-pointer text-green-300'
+              >
+                {' aquí'}
+              </span>
+            </p>
+          </div>
         </form>
       ) : (
-        <h1>Hola</h1> // Aquí puedes personalizar el mensaje si el usuario no está logado
+        <form action=''>
+          <Field
+            divClass='Field flex flex-col gap-1 mx-2'
+            labelClass='text-white'
+            labelChildren='Mensaje'
+            htmlFor='message'
+            id='message'
+            type='text'
+            inputClass='text-black h-8 rounded p-2'
+            placeholder='Escribe tu mensaje'
+          />
+        </form>
       )}
       {message && <p className='text-green-500'>{message}</p>}
     </div>
   )
 }
 
-export default SendMessageAndRegister
+export default RegisterClient

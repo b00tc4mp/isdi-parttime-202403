@@ -1,20 +1,11 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerClient = (
-  name,
-  email,
-  messageText,
-  password,
-  passwordRepeat,
-  artistId
-) => {
+const registerClient = (name, email, password, passwordRepeat) => {
   validate.name(name)
   validate.email(email)
-  validate.text(messageText)
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
-  validate.id(artistId)
 
   return fetch(`http://localhost:8080/clients`, {
     method: 'POST',
@@ -24,10 +15,8 @@ const registerClient = (
     body: JSON.stringify({
       name,
       email,
-      messageText,
       password,
       passwordRepeat,
-      artistId,
     }),
   })
     .catch(() => {

@@ -16,7 +16,7 @@ export default (req, res, next) => {
 
   try {
     logic
-      .registerUser(
+      .registerArtist(
         name,
         artisticName,
         discipline,
