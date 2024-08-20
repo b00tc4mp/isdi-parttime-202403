@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import logic from '../../../logic'
 
-import Field from '../../../components/core/Field'
 import Button from '../../../components/core/Button'
+import Field from '../../../components/core/Field'
 import SubmitButton from '../../../components/core/SubmitButton'
 import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import View from '../../../components/library/View'
@@ -13,61 +13,40 @@ import useContext from '../../../useContext'
 
 import './index.css'
 
-function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
+function ModifyDefinitionTaskForm({ task, onProcessFinished }) {
     const { alert } = useContext()
 
     const [message, setMessage] = useState('')
 
-    const [inputName, setInputName] = useState('')
+    const [inputName, setInputName] = useState(task.name)
     const onInputNameChange = ({ target }) => {
         setInputName(target.value)
     }
 
-    const [inputDescription, setInputDescription] = useState('')
+    const [inputDescription, setInputDescription] = useState(task.description)
     const onInputDescriptionChange = ({ target }) => {
         setInputDescription(target.value)
     }
 
-    const [selectedOption, setSelectedOption] = useState('low')
+    const [selectedOption, setSelectedOption] = useState(task.priority)
     const onSelectedOptionChange = ({ target }) => {
         setSelectedOption(target.value)
     }
 
-    const [visibleChecked, setVisibleChecked] = useState(false)
-    const onVisibleCheckedChange = ({ target }) => {
-        setVisibleChecked(target.value);
-    }
+    const handleCancelModifyTaskClick = () => onProcessFinished()
 
-    const [ownerChecked, setOwnerChecked] = useState(false)
-    const onOwnerCheckedChange = ({ target }) => {
-        setOwnerChecked(target.value);
-    }
-
-    const handleCancelAddTaskClick = () => onCancelAddTaskClick()
-
-    const handleAddTaskSubmit = event => {
+    const handleModifyTaskSubmit = event => {
         event.preventDefault()
 
         const form = event.target
 
-        let owner = null
-        if (form.owner.checked)
-            owner = logic.getUserId()
-
-        let visible = true
-        if (form.visible.checked === true){
-            visible = false
-            owner = logic.getUserId()
-        }
-
         const name = form.name.value
         const description = form.description.value
-        const status = 'toDo'
         const priority = form.priority.value
 
         try {
-            logic.addTask(owner, name, description, status, priority, visible)
-                .then(() => onTaskAdded())
+            logic.modifyTaskAsCreator(task.id, name, description, priority)
+                .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
 
@@ -76,18 +55,16 @@ function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
 
                         return
                     }
-
                     setMessage(error.message)
                 })
         } catch (error) {
             console.error(error)
-
             setMessage(error.message)
         }
     }
 
-    return <View className="AddTaskForm">
-        <FormWithFeedback onSubmit={handleAddTaskSubmit} message={message}>
+    return <View className="ModifyDefinitionTaskForm">
+        <FormWithFeedback onSubmit={handleModifyTaskSubmit} message={message}>
             <Field id="name" value={inputName} onChange={onInputNameChange}>Name</Field>
             <Field id="description" value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>
             
@@ -97,15 +74,12 @@ function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
                 <option value="high">Priority high</option>
             </select>
 
-            <Field id="visible" type="checkbox" checked={visibleChecked} onChange={onVisibleCheckedChange}>Private</Field>
-            <Field id="owner" type="checkbox" checked={ownerChecked} onChange={onOwnerCheckedChange}>Autoassign</Field>
-
             <View direction='row'>
-                <SubmitButton>Add task</SubmitButton>
-                <Button onClick={handleCancelAddTaskClick}>Cancel</Button>
+                <SubmitButton>Modify task</SubmitButton>
+                <Button onClick={handleCancelModifyTaskClick}>Cancel</Button>
             </View>
         </FormWithFeedback>
     </View>
 }
 
-export default AddTaskForm
+export default ModifyDefinitionTaskForm

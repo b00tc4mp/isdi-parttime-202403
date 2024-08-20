@@ -12,7 +12,7 @@ const deleteTask = (userId, taskId) => {
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new NotFoundError('user owner of task not found')
+            if (!user) throw new NotFoundError('user not found')
 
             return Task.findById(taskId).lean()
                 .catch(error => { throw new SystemError(error.message) })

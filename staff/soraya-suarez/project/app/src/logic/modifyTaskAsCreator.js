@@ -17,7 +17,7 @@ const modifyTaskAsCreator= (taskId, name, description, priority) => {
     })
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 204) 
+            if (response.status === 200) 
                 return
 
             return response.json()

@@ -5,6 +5,7 @@ const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const PHONE_REGEX = /^[0-9]{9}$/
 const ID_REGEX = /^[0-9a-z]+$/
+const NUMBER_REGEX = /^(0|[1-9]\d*)(\.\d+)?$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -72,7 +73,7 @@ function validateBoolean(boolean) {
 }
 
 function validateNumber(number) {
-    if (typeof number != 'number')
+    if (typeof number != 'number' || !NUMBER_REGEX.test(number))
         throw new ContentError('is not a number')
 }
 

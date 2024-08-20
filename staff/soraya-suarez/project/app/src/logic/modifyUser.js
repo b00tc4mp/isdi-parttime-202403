@@ -20,7 +20,7 @@ const modifyUser = (name, surname, email, phone, avatar, password, passwordRepea
     })
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 204) 
+            if (response.status === 200) 
                 return
 
             return response.json()

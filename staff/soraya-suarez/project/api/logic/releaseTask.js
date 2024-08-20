@@ -1,5 +1,5 @@
 import { User, Task } from '../data/index.js'
-import { SystemError, MatchError } from 'com/errors.js'
+import { SystemError, MatchError, CredentialsError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const releaseTask = (userId, taskId, observations) => {
@@ -18,7 +18,10 @@ const releaseTask = (userId, taskId, observations) => {
                     if (!task) throw new NotFoundError('task not found')
 
                     if (task.owner.toString() !== userId)
-                        throw new MatchError('you are not the owner')
+                        throw new CredentialsError('you are not the owner')
+
+                    if (task.visible === false)
+                        throw new MatchError('task is private, cannot be canceled')
                     
                     const update = { owner: null, status: 'canceled', observations }
 

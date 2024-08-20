@@ -3,38 +3,48 @@ import Text from '../../components/core/Text'
 
 import View from '../../components/library/View'
 import Confirm from './Confirm'
+import FinishTaskForm from './FinishTaskForm'
+import ModifyDefinitionTaskForm from './ModifyDefinitionTaskForm'
+import ModifyStatusOrObervationTaskForm from './ModifyStatusOrObservationTaskForm'
+import ReleaseTaskForm from './ReleaseTaskForm'
 
 import logic from '../../logic'
 import { useState } from 'react'
 
 import useContext from '../../useContext'
 
-function Task({ task, /*onTaskModified,*/ onTaskDeleted }) {
+function Task({ task, onTaskDeleted }) {
     const { alert } = useContext()
 
-    /*const [confirmModifyVisible, setConfirmModifyVisible] = useState(false)
+    const [form, setForm] = useState('')
+    const handleSetForm = (url) => setForm(form)
+    
+    const [confirmFinishVisible, setConfirmFinishVisible] = useState(false)
+    const handleFinishTask = () => {
+        setConfirmFinishVisible(true)
+        handleSetForm('finish')
+    }
 
-    const handleModifyTask = () => setConfirmModifyVisible(true)*/
+    const [confirmModifyDefinitionVisible, setConfirmModifyDefinitionVisible] = useState(false)
+    const handleModifyDefinitionTask = () => {
+        setConfirmModifyDefinitionVisible(true)
+        handleSetForm('definition')
+    }
+
+    const [confirmModifyStatusOrObservationsVisible, setConfirmModifyStatusOrObservationsVisible] = useState(false)
+    const handleModifyStatusOrObservationsTask = () => {
+        setConfirmModifyStatusOrObservationsVisible(true)
+        handleSetForm('status')
+    }
+
+    const [confirmReleaseVisible, setConfirmReleaseVisible] = useState(false)
+    const handleReleaseTask = () => {
+        setConfirmReleaseVisible(true)
+        handleSetForm('release')
+    }
 
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
-
     const handleDeleteTask = () => setConfirmDeleteVisible(true)
-
-    /*const handleModifyTaskAccepted = () => {
-        try {
-            logic.ModifyTask(task.id)
-                .then(() => onTaskModified())
-                .catch(error => {
-                    console.error(error)
-
-                    alert(error.message)
-                })
-        } catch (error) {
-            console.error(error)
-
-            alert(error.message)
-        }
-    }*/
 
     const handleDeleteTaskAccepted = () => {
         try {
@@ -52,18 +62,43 @@ function Task({ task, /*onTaskModified,*/ onTaskDeleted }) {
         }
     }
 
-    //const handleModifyTaskCancelled = () => setConfirmModifyVisible(false)
+    const handleFinishProcess = () => {
+        handleSetForm('')
+        setConfirmFinishVisible(false)
+    }
+
+    const handleFinishModifyDefinitionProcess = () => {
+        handleSetForm('')
+        setConfirmModifyDefinitionVisible(false)
+    }
+
+    const handleFinishModifyStatusOrObservationsProcess = () => {
+        handleSetForm('')
+        setConfirmModifyStatusOrObservationsVisible(false)
+    }
+
+    const handleFinishReleaseProcess = () => {
+        handleSetForm('')
+        setConfirmReleaseVisible(false)
+    }
+
     const handleDeleteTaskCancelled = () => setConfirmDeleteVisible(false)
 
     return <View tag="article" align="">
         <View direction='row'>
             <Text>{task.name}</Text>
             {task.creator === logic.getUserId() && <Button onClick={handleDeleteTask}>Delete</Button>}
-            {/*task.creator === logic.getUserId() && <Button onClick={handleModifyTask}>Modify</Button>*/}
+            {task.creator === logic.getUserId()&& task.status != 'finished' && <Button onClick={handleModifyDefinitionTask}>Modify definition of task</Button>}
+            {task.owner === logic.getUserId() && task.status != 'finished' && <Button onClick={handleModifyStatusOrObservationsTask}>Modify status/observations of task</Button>}
+            {task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button onClick={handleReleaseTask}>Release task</Button>}
+            {task.owner === logic.getUserId() && task.status != 'finished' && <Button onClick={handleFinishTask}>Finish task</Button>}
         </View>
-
-        {/*confirmModifyVisible && <Confirm message="Modify task?" onAccept={handleModifyTaskAccepted} onCancel={handleModifyTaskAccepted} />*/}
+        
         {confirmDeleteVisible && <Confirm message="Delete task?" onAccept={handleDeleteTaskAccepted} onCancel={handleDeleteTaskCancelled} />}
+        {confirmModifyDefinitionVisible && <ModifyDefinitionTaskForm task={task}  onProcessFinished={handleFinishModifyDefinitionProcess}/>}
+        {confirmModifyStatusOrObservationsVisible && <ModifyStatusOrObervationTaskForm task={task}  onProcessFinished={handleFinishModifyStatusOrObservationsProcess}/>}
+        {confirmReleaseVisible && <ReleaseTaskForm task={task} onProcessFinished={handleFinishReleaseProcess} />}
+        {confirmFinishVisible && <FinishTaskForm task={task} onProcessFinished={handleFinishProcess} />}
     </View>
 }
 

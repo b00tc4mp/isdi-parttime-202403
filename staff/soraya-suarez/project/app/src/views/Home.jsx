@@ -28,7 +28,10 @@ function Home({ onUserLoggedOut }) {
         onUserLoggedOut()
     }
 
-    const handleGoToUsers = () => navigate('/users')
+    const handleGoToUsers = () => {
+        handleNavigateTo('')
+        navigate('/users')
+    }
 
     const handleNavigateTo = (url) => setPage(url)
 
