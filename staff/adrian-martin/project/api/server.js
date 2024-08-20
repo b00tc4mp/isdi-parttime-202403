@@ -13,7 +13,8 @@ import {
     getAllGamesHandler,
     editGameHandler,
     deleteGameHandler,
-    getAllGamesUserHandler
+    getAllGamesUserHandler,
+    getAllUsersHandler
 } from './handlers/index.js'
 
 const { PORT, MONGODB_URL } = process.env
@@ -28,6 +29,8 @@ mongoose.connect(MONGODB_URL)
         api.get('/', (_, res) => {
             res.send('hello world')
         })
+
+        api.get('/users/SocialList', jsonBodyParser, getAllUsersHandler)
 
         api.post('/users', jsonBodyParser, registerUserHandler)
 

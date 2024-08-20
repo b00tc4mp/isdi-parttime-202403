@@ -108,4 +108,5 @@ describe('createGame', () => {
             expect(errorThrown.message).to.equal('hours is not valid')
         }
     })
+    after(() => Promise.all([User.deleteMany(), Game.deleteMany()]).then(() => mongoose.disconnect()))
 })

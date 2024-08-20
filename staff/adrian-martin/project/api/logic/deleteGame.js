@@ -24,7 +24,12 @@ const deleteGame = (userId, gameId) => {
 
                     return Game.deleteOne({ _id: new ObjectId(gameId) })
                         .catch(error => { throw new SystemError(error.message) })
-                        .then(() => { })
+                        .then(() => {
+                            // return User.updateOne(
+                            //     { _id: new ObjectId(userId) },
+                            //     { $pull: { gameList: new ObjectId(gameId) } }
+                            // )
+                        })
                 })
         })
 }

@@ -8,6 +8,7 @@ import deleteGameHandler from "./deleteGameHandler.js";
 import editGameHandler from "./editGameHandler.js";
 import errorHandler from './errorHandler.js'
 import getAllGamesUserHandler from "./getAllGamesUserHandler.js";
+import getAllUsersHandler from "./getAllUsersHandler.js";
 
 export {
     registerUserHandler,
@@ -20,4 +21,5 @@ export {
     editGameHandler,
     errorHandler,
     getAllGamesUserHandler,
+    getAllUsersHandler
 }

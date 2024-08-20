@@ -13,19 +13,21 @@ const getAllGamesUser = userId => {
                 throw new NotFoundError('User not found')
             }
 
-            const gameList = user.gameList || []
+            return Game.find({ author: userId })
+                .catch(error => { throw new SystemError(error.message) })
+                .then(games => {
+                    games.forEach(game => {
+                        game.id = game._id.toString()
+                        delete game._id
 
-            gameList.forEach(game => {
-                game.id = game._id.toString()
-                delete game._id
+                        if (game.author._id) {
+                            game.author.id = game.author._id.toString()
+                            delete game.author._id
+                        }
+                    })
 
-                if (game.author && game.author._id) {
-                    game.author.id = game.author._id.toString()
-                    delete game.author._id
-                }
-            });
-
-            return gameList
+                    return games
+                })
         });
 }
 
