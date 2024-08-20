@@ -7,7 +7,7 @@ import { expect } from "chai"
 import { User, DeliveryNote } from "../model/index.js"
 
 import createDeliveryNote from "./createDeliveryNote.js"
-import { ContentError, NotFoundError } from "com/errors.js"
+import { ContentError, NotFoundError, DuplicityError } from "com/errors.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
@@ -55,6 +55,94 @@ describe("createDeliveryNote", () => {
       .finally(() => {
         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
         expect(errorThrown.message).to.equal("User not found")
+      })
+  })
+
+
+  it("generates the first delivery note number when there are no previous delivery notes", () => {
+    return bcrypt.hash("1234", 10)
+      .then(hash => {
+        const user = new User({
+          username: "Bruce",
+          email: "bruce@email.es",
+          password: hash
+        });
+        const customer = new User({
+          username: "Clark",
+          email: "clark@kent.es",
+          password: hash,
+        });
+
+        return Promise.all([user.save(), customer.save()])
+          .then(() => createDeliveryNote(user.id, customer.id))
+          .then(deliveryNote => {
+            const currentYear = new Date().getFullYear()
+            expect(deliveryNote.number).to.equal(`${currentYear}/001`)
+          })
+      })
+  })
+
+  it("generates the next delivery note number when there is a previous delivery note in the same year", () => {
+    return bcrypt.hash("1234", 10)
+      .then(hash => {
+        const user = new User({
+          username: "Bruce",
+          email: "bruce@email.es",
+          password: hash
+        });
+        const customer = new User({
+          username: "Clark",
+          email: "clark@kent.es",
+          password: hash,
+        });
+
+        return Promise.all([user.save(), customer.save()])
+          .then(() => DeliveryNote.create({
+            date: new Date(),
+            number: `${new Date().getFullYear()}/001`,
+            company: user.id,
+            customer: customer.id,
+            observations: "",
+            works: [],
+          }))
+          .then(() => createDeliveryNote(user.id, customer.id))
+          .then(deliveryNote => {
+            const currentYear = new Date().getFullYear()
+            expect(deliveryNote.number).to.equal(`${currentYear}/002`)
+          })
+      })
+  })
+
+  it("generates the first delivery note number of the new year when there is a previous delivery note from the last year", () => {
+    return bcrypt.hash("1234", 10)
+      .then(hash => {
+        const user = new User({
+          username: "Bruce",
+          email: "bruce@email.es",
+          password: hash
+        });
+        const customer = new User({
+          username: "Clark",
+          email: "clark@kent.es",
+          password: hash,
+        });
+
+        const lastYear = new Date().getFullYear() - 1
+
+        return Promise.all([user.save(), customer.save()])
+          .then(() => DeliveryNote.create({
+            date: new Date(`${lastYear}-12-31`),
+            number: `${lastYear}/001`,
+            company: user.id,
+            customer: customer.id,
+            observations: "",
+            works: [],
+          }))
+          .then(() => createDeliveryNote(user.id, customer.id))
+          .then(deliveryNote => {
+            const currentYear = new Date().getFullYear()
+            expect(deliveryNote.number).to.equal(`${currentYear}/001`)
+          })
       })
   })
 

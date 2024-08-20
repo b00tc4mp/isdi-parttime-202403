@@ -34,11 +34,7 @@ const createDeliveryNote = (userId, customerId) => {
           const deliveryNoteNumber = `${currentYear}/${String(nextDeliveryNoteNumber).padStart(3, '0')}`
 
           return DeliveryNote.findOne({ number: deliveryNoteNumber, company: userId }).select("-__v").lean()
-            .then((deliveryNote) => {
-              if (deliveryNote) {
-                throw new DuplicityError("Delivery Note already exists")
-              }
-
+            .then(() => {
               const newDeliveryNote = {
                 date: new Date(),
                 number: deliveryNoteNumber,

@@ -18,6 +18,10 @@ export default function CustomerList() {
   const [customers, setCustomers] = useState([])
   const [refresh, setRefresh] = useState(0)
   const { alert } = useContext()
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const filterCustomers = () =>
+    customers.filter((customer) => customer.companyName.toLowerCase().includes(searchTerm.toLowerCase()))
 
   const loadCustomers = () => {
     try {
@@ -56,8 +60,15 @@ export default function CustomerList() {
       </Header>
 
       <Main>
+        <input
+          className="-mb-8 -mt-3 w-[21rem] rounded-md border border-gray-500 p-2"
+          type="text"
+          placeholder="Busca nombre de cliente"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
         <ul className="CustomerList">
-          {customers.map((customer) => (
+          {filterCustomers().map((customer) => (
             <Link to={`/customers/profile/${customer.id}`} key={customer.id}>
               {customer?.companyName && <li className="Customer">{customer.companyName}</li>}
             </Link>

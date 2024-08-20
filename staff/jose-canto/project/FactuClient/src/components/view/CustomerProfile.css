@@ -2,7 +2,7 @@
 
 @layer components {
   .CustomerProfile p {
-    @apply text-xl font-bold;
+    @apply text-center text-xl font-bold;
   }
 
   .CustomerButtons {

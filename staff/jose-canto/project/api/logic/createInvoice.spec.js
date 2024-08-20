@@ -7,7 +7,7 @@ import { expect } from "chai"
 import { User, Invoice } from "../model/index.js"
 
 import createInvoice from "./createInvoice.js"
-import { ContentError, NotFoundError } from "com/errors.js"
+import { ContentError, DuplicityError, NotFoundError } from "com/errors.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
@@ -57,6 +57,98 @@ describe("createInvoice", () => {
         expect(errorThrown.message).to.equal("User not found")
       })
   })
+
+
+
+  it("generates the first invoice number when there are no previous invoices", () => {
+    return bcrypt.hash("1234", 10)
+      .then(hash => {
+        const user = new User({
+          username: "Bruce",
+          email: "bruce@email.es",
+          password: hash
+        });
+        const customer = new User({
+          username: "Clark",
+          email: "clark@kent.es",
+          password: hash,
+        });
+
+        return Promise.all([user.save(), customer.save()])
+          .then(() => createInvoice(user.id, customer.id, []))
+          .then(invoice => {
+            const currentYear = new Date().getFullYear()
+            expect(invoice.number).to.equal(`${currentYear}/001`)
+          })
+      })
+  })
+
+  it("generates the next invoice number when there is a previous invoice in the same year", () => {
+    return bcrypt.hash("1234", 10)
+      .then(hash => {
+        const user = new User({
+          username: "Bruce",
+          email: "bruce@email.es",
+          password: hash
+        });
+        const customer = new User({
+          username: "Clark",
+          email: "clark@kent.es",
+          password: hash,
+        });
+
+        return Promise.all([user.save(), customer.save()])
+          .then(() => Invoice.create({
+            date: new Date(),
+            number: `${new Date().getFullYear()}/001`,
+            company: user.id,
+            customer: customer.id,
+            deliveryNotes: [],
+            observations: "",
+            paymentType: "Transferencia",
+          }))
+          .then(() => createInvoice(user.id, customer.id, []))
+          .then(invoice => {
+            const currentYear = new Date().getFullYear()
+            expect(invoice.number).to.equal(`${currentYear}/002`)
+          })
+      })
+  })
+
+  it("generates the first invoice number of the new year when there is a previous invoice from the last year", () => {
+    return bcrypt.hash("1234", 10)
+      .then(hash => {
+        const user = new User({
+          username: "Bruce",
+          email: "bruce@email.es",
+          password: hash
+        });
+        const customer = new User({
+          username: "Clark",
+          email: "clark@kent.es",
+          password: hash,
+        });
+
+        const lastYear = new Date().getFullYear() - 1
+
+        return Promise.all([user.save(), customer.save()])
+          .then(() => Invoice.create({
+            date: new Date(`${lastYear}-12-31`),
+            number: `${lastYear}/001`,
+            company: user.id,
+            customer: customer.id,
+            deliveryNotes: [],
+            observations: "",
+            paymentType: "Transferencia",
+          }))
+          .then(() => createInvoice(user.id, customer.id, []))
+          .then(invoice => {
+            const currentYear = new Date().getFullYear()
+            expect(invoice.number).to.equal(`${currentYear}/001`)
+          })
+      })
+  })
+
 
   it("fails on invalid userId", () => {
     let errorThrown

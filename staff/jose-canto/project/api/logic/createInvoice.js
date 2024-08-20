@@ -36,10 +36,7 @@ const createInvoice = (userId, customerId, deliveryNoteIds) => {
           const invoiceNumber = `${currentYear}/${String(nextInvoiceNumber).padStart(3, '0')}`
 
           return Invoice.findOne({ number: invoiceNumber }).select("-__v").lean()
-            .then(invoice => {
-              if (invoice) {
-                throw new DuplicityError("Invoice already exists")
-              }
+            .then(() => {
               const newInvoice = {
                 date: new Date(),
                 number: invoiceNumber,
@@ -54,7 +51,7 @@ const createInvoice = (userId, customerId, deliveryNoteIds) => {
                 .catch(error => { throw new SystemError(error.message) })
                 .then((invoice) => {
                   return Invoice.findById(invoice.id).select("-__v").populate("customer").populate("company").populate("deliveryNotes").lean()
-                    .then(() => { })
+                    .then((invoice) => invoice)
                 })
             })
         })

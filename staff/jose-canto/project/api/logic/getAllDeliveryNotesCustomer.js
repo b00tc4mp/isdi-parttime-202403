@@ -22,7 +22,7 @@ function getAllDeliveryNotesCustomer(userId, customerId) {
           }
 
 
-          return DeliveryNote.find({ customer: customerId }).populate("customer").populate("company").populate("works").select("-__v").lean()
+          return DeliveryNote.find({ customer: customerId }).populate("customer").populate("company").populate("works").sort({ date: -1 }).select("-__v").lean()
             .catch(error => { throw new SystemError(error.message) })
             .then(deliveryNotes => {
 

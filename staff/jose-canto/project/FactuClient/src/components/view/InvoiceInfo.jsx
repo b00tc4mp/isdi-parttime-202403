@@ -22,6 +22,7 @@ export default function InvoiceInfo() {
   const [invoice, setInvoice] = useState(null)
   const [total, setTotal] = useState(0)
   const [showConfirmDelete, setShowConfirmDelete] = useState(false)
+  const [iva, setIva] = useState(0)
 
   useEffect(() => {
     try {
@@ -35,6 +36,7 @@ export default function InvoiceInfo() {
           }, 0)
 
           setTotal(calculateTotal)
+          setIva(calculateTotal * 0.21) 
         })
         .catch((error) => {
           alert(error.message)
@@ -121,11 +123,11 @@ export default function InvoiceInfo() {
                 </div>
                 {deliveryNote?.works.map((work) => (
                   <div className="Info" key={work.id}>
-                    <div>{work.concept}</div>
+                    <div className="w-[41rem]">{work.concept}</div>
                     <div className="QuantityInfo">
                       <div className="QuantityBody">{work.quantity.toFixed(2)}</div>
                       <div className="PriceWork">{work.price.toFixed(2)}</div>
-                      <div>{(work.quantity * work.price).toFixed(2)}</div>
+                      <div className="ml-2">{(work.quantity * work.price).toFixed(2)}</div>
                     </div>
                   </div>
                 ))}
@@ -134,11 +136,12 @@ export default function InvoiceInfo() {
           </div>
         </div>
         <p className="InvoiceTotal">TOTAL: {total.toFixed(2)} € </p>
+        <p className="InvoiceTotal">21% IVA: {iva.toFixed(2)} € </p>
+        <p className="InvoiceTotal">TOTAL con IVA: {(total + iva).toFixed(2)} € </p>
         <div className="PaymentType">
           {invoice?.paymentType && <p>Forma de pago: {invoice.paymentType} </p>}
           {invoice?.company && <p>{invoice.company.bankAccount}</p>}
         </div>
-
         {showConfirmDelete && (
           <Confirm handleDeleteInvoice={handleDeleteInvoice} setShowConfirmDelete={handleShowConfirmDelete} />
         )}

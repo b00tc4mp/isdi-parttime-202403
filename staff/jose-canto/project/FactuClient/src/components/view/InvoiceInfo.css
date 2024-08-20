@@ -21,7 +21,7 @@
   }
 
   .CustomerData {
-    @apply mr-2 flex flex-col p-1 font-bold;
+    @apply mr-2 flex w-[16rem] flex-col p-1 font-bold;
   }
 
   .DataText {
@@ -44,7 +44,7 @@
     @apply flex w-full;
   }
   .Info {
-    @apply flex w-full justify-between;
+    @apply flex w-full justify-between text-[1rem];
   }
 
   .QuantityHeader {
@@ -56,13 +56,13 @@
   }
 
   .QuantityInfo {
-    @apply flex w-[10rem] justify-between gap-3;
+    @apply flex;
   }
   .QuantityBody {
     @apply w-full;
   }
   .PriceWork {
-    @apply ml-4 min-w-12;
+    @apply ml-4;
   }
 
   .NumberDateContainer {
@@ -85,7 +85,7 @@
   }
 
   .InvoiceTotal {
-    @apply flex w-[90%] justify-end text-xl font-semibold text-orange-900;
+    @apply -mb-2 flex w-[90%] justify-end text-[1.1rem] font-semibold text-orange-900;
   }
   .PaymentType {
     @apply relative mt-5 flex w-[90%] flex-col items-center font-bold;
