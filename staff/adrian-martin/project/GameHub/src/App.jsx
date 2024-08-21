@@ -5,6 +5,7 @@ import Login from './views/Login'
 import Home from './views/Home'
 
 import Profile from './views/components/Profile/Profile'
+import SocialList from './views/components/SocialList/SocialList'
 
 import './App.css'
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/' element={<Home onUserLoggedOut={handleUserLoggedOut} />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/sociallist' element={<SocialList />} />
         </Routes>
     </>
 }

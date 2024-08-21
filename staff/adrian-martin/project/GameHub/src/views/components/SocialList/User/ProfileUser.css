@@ -1,0 +1,35 @@
+.ProfileUser {
+    margin: 20px;
+    height: 100px;
+    display: flex;
+    border-radius: 20px;
+    background-color: aliceblue;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.739);
+}
+
+.ProfileUser-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    margin-top: 15px;
+    margin-left: 15px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.228);
+}
+
+.ProfileUser-text-Icon {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.ProfileUser-text {
+    margin-left: 30px;
+    font-size: 25px;
+}
+
+.ProfileUser-icon {
+    margin-right: 20px;
+    font-size: 30px;
+}

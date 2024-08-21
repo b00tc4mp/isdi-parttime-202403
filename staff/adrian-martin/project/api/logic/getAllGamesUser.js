@@ -38,7 +38,6 @@
 //Error retrieving games: Error [ERR_INTERNAL_ASSERTION]: Error [ERR_INTERNAL_ASSERTION]: BSONError: Cannot create Buffer from 66c4cf978c769799b033ac61
 // at Object.toLocalBufferType (C:\Users\Adrian\workspace\isdi-parttime-202403\staff\adrian-martin\project\api\node_modules\bson\lib\bson.cjs:232:15)
 
-
 import { User, Game } from '../data/index.js'
 import validate from 'com/validate.js'
 import { NotFoundError, SystemError } from 'com/errors.js'

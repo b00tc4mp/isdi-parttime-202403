@@ -30,7 +30,7 @@ mongoose.connect(MONGODB_URL)
             res.send('hello world')
         })
 
-        api.get('/users/SocialList', jsonBodyParser, getAllUsersHandler)
+        api.get('/users/socialList', jsonBodyParser, getAllUsersHandler)
 
         api.post('/users', jsonBodyParser, registerUserHandler)
 

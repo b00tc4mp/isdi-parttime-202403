@@ -1,1 +1,1 @@
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmM0Y2Y5NzhjNzY5Nzk5YjAzM2FjNjEiLCJpYXQiOjE3MjQxNzUyNDEsImV4cCI6MTcyNTAzOTI0MX0.PKGJ7hhh2GGvcl8POXDJ5Zi8uzAMVEaZbvfWnrm_rfI" http://localhost:8080/users/SocialList -v
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmM0Y2Y5NzhjNzY5Nzk5YjAzM2FjNjEiLCJpYXQiOjE3MjQxNzUyNDEsImV4cCI6MTcyNTAzOTI0MX0.PKGJ7hhh2GGvcl8POXDJ5Zi8uzAMVEaZbvfWnrm_rfI" http://localhost:8080/users/socialList -v

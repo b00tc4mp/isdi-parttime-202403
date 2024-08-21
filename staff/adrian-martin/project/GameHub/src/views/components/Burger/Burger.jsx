@@ -30,7 +30,7 @@ function Burger({ children }) {
     const menuItems = [
         { icon: faHouseChimney, label: 'Game List', to: '/' },
         { icon: faUser, label: 'Profile', to: '/profile' },
-        { icon: faUsers, label: 'Social List', to: '/socialist' },
+        { icon: faUsers, label: 'Social List', to: '/sociallist' },
         { icon: faArrowRightFromBracket, label: 'Log Out', onClick: handleLogOut, isButton: true }
     ]
 
