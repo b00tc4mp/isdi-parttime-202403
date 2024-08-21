@@ -9,6 +9,7 @@ import editGameHandler from "./editGameHandler.js";
 import errorHandler from './errorHandler.js'
 import getAllGamesUserHandler from "./getAllGamesUserHandler.js";
 import getAllUsersHandler from "./getAllUsersHandler.js";
+import getTargetProfileHandler from "./getTargetProfileHandler.js";
 
 export {
     registerUserHandler,
@@ -21,5 +22,6 @@ export {
     editGameHandler,
     errorHandler,
     getAllGamesUserHandler,
-    getAllUsersHandler
+    getAllUsersHandler,
+    getTargetProfileHandler
 }

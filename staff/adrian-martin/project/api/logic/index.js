@@ -8,6 +8,7 @@ import deleteGame from './deleteGame.js'
 import editGame from './editGame.js'
 import getAllGamesUser from './getAllGamesUser.js'
 import getAllUsers from './getAllUsers.js'
+import getTargetProfile from './getTargetProfile.js'
 
 const logic = {
     registerUser,
@@ -19,7 +20,8 @@ const logic = {
     editGame,
     deleteGame,
     getAllGamesUser,
-    getAllUsers
+    getAllUsers,
+    getTargetProfile
 }
 
 export default logic
