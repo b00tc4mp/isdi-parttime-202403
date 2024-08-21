@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .CreateCustomerSection {
+    @apply z-10 col-span-2 col-start-5 row-span-2 row-start-3 h-full w-full rounded-md border-2 border-solid bg-light-pale-sage p-4 text-fast-velvet shadow-2xl;
+  }
+}

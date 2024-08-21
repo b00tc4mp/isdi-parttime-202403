@@ -1,21 +1,24 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useUserProfileContext } from '../contexts/UserProfileProvider'
+import { useUserProfileContext } from '../../contexts/UserProfileProvider'
 
-import logic from '../logic/index'
+import './Home.css'
 
-import Button from '../components/core/Button'
-import Picture from '../components/core/Picture'
-import Text from '../components/core/Text'
-import Box from '../components/core/Box'
+import logic from '../../logic/index'
 
-import ViewBox from '../components/library/ViewBox'
+import Button from '../../components/core/Button'
+import Picture from '../../components/core/Picture'
+import Text from '../../components/core/Text'
+import Box from '../../components/core/Box'
 
-import CurrentTime from './components/CurrentTime'
-import CreateCustomerForm from './components/CreateCustomerForm'
-import CustomersList from './components/CustomersList'
-import UserProfile from './components/UserProfile'
+import ViewBox from '../../components/library/ViewBox'
+
+import CurrentTime from '../components/CurrentTime/CurrentTime'
+import CreateCustomerForm from '../components/CreateCustomerForm/CreateCustomerForm'
+import CustomersList from '../components/CustomersList/CustomersList'
+import UserProfile from '../components/UserProfile/UserProfile'
+import Calendar from '../components/Calendar/Calendar'
 // import Dropdown from './components/DropDown'
 
 
@@ -117,7 +120,9 @@ function Home() {
 
             <ViewBox tag={'main'} className={'HomeDaily'} >DAILY</ViewBox>
 
-            <ViewBox tag={'section'} className={'HomeCalendar'} >CALENDAR</ViewBox>
+            <ViewBox tag={'section'} className={'HomeCalendar'} >
+                <Calendar />
+            </ViewBox>
 
             <ViewBox tag={'section'} className={'HomeMiniContent'} >MINI CONTENT</ViewBox>
 

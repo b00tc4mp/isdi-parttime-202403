@@ -16,12 +16,4 @@
   .Text.ExportName {
     @apply h-auto self-center text-4xl font-bold text-pale-sage;
   }
-
-  .Text.CurrentTimeText {
-    @apply w-fit text-2xl font-bold text-fast-velvet;
-  }
-
-  .Text.CurrentDateText {
-    @apply w-fit text-xl font-bold text-fast-velvet;
-  }
 }

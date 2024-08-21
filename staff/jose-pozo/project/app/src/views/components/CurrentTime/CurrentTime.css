@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+  .Text.CurrentTimeText {
+    @apply w-fit text-5xl font-light text-fast-velvet;
+  }
+
+  .Text.CurrentDateText {
+    @apply w-fit text-3xl font-light text-fast-velvet;
+  }
+}

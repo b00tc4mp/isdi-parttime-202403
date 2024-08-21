@@ -5,6 +5,7 @@ const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const ID_REGEX = /^[0-9a-z]+$/
+const PHONE_REGEX = /^(\+?\d{1,4}[-.\s]?)?(\(?\d{1,4}\)?[-.\s]?)?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -51,6 +52,11 @@ function validateId(id, explain = 'id') {
         throw new ContentError(`${explain} is not valid`)
 }
 
+function validatePhone(phone, explain = 'phone') {
+    if (typeof phone !== 'string' || !PHONE_REGEX.test(phone))
+        throw new ContentError(`${explain} is not valid`)
+}
+
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -60,7 +66,8 @@ const validate = {
     callback: validateCallback,
     text: validateText,
     url: validateUrl,
-    id: validateId
+    id: validateId,
+    phone: validatePhone
 }
 
 export default validate

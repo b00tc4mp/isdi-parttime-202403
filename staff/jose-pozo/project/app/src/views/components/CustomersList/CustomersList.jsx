@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 
-import { useUserProfileContext } from '../../contexts/UserProfileProvider'
+import { useUserProfileContext } from '../../../contexts/UserProfileProvider'
 
-import logic from '../../logic/index'
+import logic from '../../../logic/index'
 
-import Text from '../../components/core/Text'
+import Text from '../../../components/core/Text'
 
-import ViewBox from '../../components/library/ViewBox'
+import ViewBox from '../../../components/library/ViewBox'
 
 
 const CustomersList = () => {

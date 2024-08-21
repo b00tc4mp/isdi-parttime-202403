@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 
-import logic from '../../logic/index'
+import './CreateCustomerForm.css'
 
-import Field from '../../components/core/Field'
-import SubmitButton from '../../components/core/SubmitButton'
-import Text from '../../components/core/Text'
+import logic from '../../../logic/index'
 
-import ViewBox from '../../components/library/ViewBox'
-import FormWithFeedback from '../../components/library/FormWithFeedback'
+import Field from '../../../components/core/Field'
+import SubmitButton from '../../../components/core/SubmitButton'
+import Text from '../../../components/core/Text'
+
+import ViewBox from '../../../components/library/ViewBox'
+import FormWithFeedback from '../../../components/library/FormWithFeedback'
 
 function CreateCustomerForm({ onClose }) {
 
@@ -50,13 +52,13 @@ function CreateCustomerForm({ onClose }) {
 
 
     return <>
-        <ViewBox tag='section' className={`p-4 text-fast-velvet rounded-md shadow-2xl bg-light-pale-sage z-10 border-solid border-2 row-span-2 col-span-2 h-full w-full col-start-5 row-start-3`}  >
+        <ViewBox tag='section' className='CreateCustomerSection' >
 
             <Text>Create Customer</Text>
 
             <hr className='border-1 border-fast-velvet'></hr>
 
-            <FormWithFeedback className={'CreateCustomerForm'} onSubmit={handlerCreateCustomerSubmit} message={message} >
+            <FormWithFeedback onSubmit={handlerCreateCustomerSubmit} message={message} >
 
                 <Field id='name' type='text' placeholder='Name'></Field>
 

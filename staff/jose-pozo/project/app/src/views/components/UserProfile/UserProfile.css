@@ -1,0 +1,55 @@
+@tailwind components;
+
+@layer components {
+  .UserProfileSection {
+    @apply z-10 col-span-3 col-start-2 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-light-pale-sage p-4 text-fast-velvet shadow-2xl;
+  }
+
+  .UserProfileFieldset {
+    @apply flex h-3/4 w-full flex-col justify-between rounded-md border-2 border-solid border-fast-velvet p-6;
+  }
+
+  .UserProfileLegend {
+    @apply ml-10 pl-2 pr-2 font-semibold;
+  }
+
+  .UserProfileMainBox {
+    @apply flex items-center justify-between;
+  }
+
+  .UserProfileInitialsBox {
+    @apply flex h-28 w-28 items-center justify-center rounded-full bg-pale-sage p-2 text-5xl font-bold text-white-mist;
+  }
+
+  .UserProfileDataBox {
+    @apply ml-10 w-3/4 p-2;
+  }
+
+  .UserProfileNameTextDataBox {
+    @apply mr-2 w-1/2 rounded bg-soft-gray p-1 font-medium placeholder:text-fast-velvet;
+  }
+
+  .UserProfileSurnameTextDataBox {
+    @apply ml-2 w-1/2 rounded bg-soft-gray p-1 font-medium placeholder:text-fast-velvet;
+  }
+
+  .UserProfileEmailTextDataBox {
+    @apply my-2 w-full rounded bg-soft-gray p-1 font-medium placeholder:text-fast-velvet placeholder:hover:text-fast-velvet;
+  }
+
+  .UserProfilePhoneTextDataBox {
+    @apply w-full rounded bg-soft-gray p-1 font-medium placeholder:text-fast-velvet;
+  }
+
+  .UseProfileButtonsMainBox {
+    @apply flex justify-between;
+  }
+
+  .UserProfileCreatedText {
+    @apply mt-6 font-normal;
+  }
+
+  .UserProfileUpdatedText {
+    @apply mt-4 font-normal;
+  }
+}

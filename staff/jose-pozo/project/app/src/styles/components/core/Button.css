@@ -18,10 +18,14 @@
   }
 
   .Button.DeleteProfileButton {
-    @apply mb-2 ml-2 w-2/4 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+    @apply mb-2 ml-2 w-2/4 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-sandy-pink hover:text-white-mist active:scale-95 active:bg-pale-sage;
   }
 
   .Button.EditProfileButton {
     @apply mb-2 mr-2 w-2/4 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
+
+  .Button.CancelProfileButton {
+    @apply ml-2 mt-5 h-fit w-1/2 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-sandy-pink hover:text-white-mist active:scale-95 active:bg-pale-sage;
   }
 }

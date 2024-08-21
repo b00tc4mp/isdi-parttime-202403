@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Text from '../../components/core/Text'
+
+import './CurrentTime.css'
+
+import Text from '../../../components/core/Text'
 
 function CurrentTime() {
     const [dateTime, setDateTime] = useState({ time: '', date: '' })

@@ -8,4 +8,8 @@
   .SubmitButton.CreateCustomerSubmit {
     @apply w-full rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
   }
+
+  .SubmitButton.SaveProfileButton {
+    @apply mr-2 mt-5 h-fit w-1/2 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
 }

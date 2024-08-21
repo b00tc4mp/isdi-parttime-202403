@@ -13,6 +13,9 @@ import createCustomer from './createCustomer'
 
 import deleteCustomer from './deleteCustomer'
 
+import editCustomer from './updateCustomer'
+import updateCustomer from './updateCustomer'
+
 
 const logic = {
     registerUser,
@@ -28,6 +31,8 @@ const logic = {
     createCustomer,
 
     deleteCustomer,
+
+    updateCustomer
 }
 
 export default logic
