@@ -96,7 +96,7 @@ function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
                 <option value="medium">Priority medium</option>
                 <option value="high">Priority high</option>
             </select>
-
+            
             <Field id="visible" type="checkbox" checked={visibleChecked} onChange={onVisibleCheckedChange}>Private</Field>
             <Field id="owner" type="checkbox" checked={ownerChecked} onChange={onOwnerCheckedChange}>Auto assign</Field>
 

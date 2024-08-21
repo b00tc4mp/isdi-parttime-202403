@@ -49,9 +49,9 @@ function Home({ onUserLoggedOut }) {
         </nav>
         <div className="py-4">
             <View>
-                <nav>
-                    <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('home')}>My Tasks</Button>
-                    <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In Progress</Button>
+                <nav className="flex justify-center text-xs" >
+                    <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('home')}>My tasks</Button>
+                    <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In progress</Button>
                     <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('private')}>Private</Button>
                     <Button className="border-gray-300 rounded-tl-none rounded-bl-none" onClick={()=> handleNavigateTo('finished')}>Finished</Button>
                 </nav>
