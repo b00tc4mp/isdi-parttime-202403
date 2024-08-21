@@ -16,6 +16,8 @@ router.get('/users/:targetUserId', routes.getUserNameHandler)
 router.get('/users/:targetUserId/profile', routes.getUserProfileHandler)
 router.get('/customers', routes.getAllCustomersHandler)
 
+router.patch('/users/:customerId', jsonBodyParser, routes.updateCustomerHandler)
+
 
 export default router
 

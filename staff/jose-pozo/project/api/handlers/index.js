@@ -11,6 +11,8 @@ import createCustomerHandler from './createCustomerHandler.js'
 
 import deleteCustomerHandler from './deleteCustomerHandler.js'
 
+import updateCustomerHandler from './updateCustomerHandler.js'
+
 
 export default {
     errorHandler,
@@ -25,4 +27,6 @@ export default {
     createCustomerHandler,
 
     deleteCustomerHandler,
+
+    updateCustomerHandler
 }

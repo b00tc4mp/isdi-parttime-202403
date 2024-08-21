@@ -9,6 +9,8 @@ import createCustomer from './createCustomer.js'
 
 import deleteCustomer from './deleteCustomer.js'
 
+import updateCustomer from './updateCustomer.js'
+
 
 const logic = {
     registerUser,
@@ -20,7 +22,9 @@ const logic = {
 
     createCustomer,
 
-    deleteCustomer
+    deleteCustomer,
+
+    updateCustomer
 }
 
 
