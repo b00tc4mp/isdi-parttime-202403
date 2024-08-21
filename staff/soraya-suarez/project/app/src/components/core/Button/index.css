@@ -2,6 +2,10 @@
 
 @layer components {
     .Button {
-        @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
+        @apply px-7 py-2 rounded-md bg-transparent border-[1px] border-[var(--first-color)];
+    }
+
+    .Button.SubmitButton {
+        @apply bg-indigo-200 border-indigo-300;
     }
 }

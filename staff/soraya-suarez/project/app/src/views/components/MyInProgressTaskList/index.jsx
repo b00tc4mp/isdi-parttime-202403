@@ -7,8 +7,6 @@ import logic from '../../../logic'
 
 import useContext from '../../../useContext'
 
-import './index.css'
-
 function MyInProgressTaskList() {
     const { alert } = useContext()
 
@@ -38,7 +36,7 @@ function MyInProgressTaskList() {
 
     const handleTaskDeleted = () => loadTasks()
 
-    return <View tag="section" className="TaskList">
+    return <View tag="section" className="overflow-scroll my-4">
         {tasks.map(task => <Task key={task.id} task={task} onTaskDeleted={handleTaskDeleted}/>)}
     </View>
 }

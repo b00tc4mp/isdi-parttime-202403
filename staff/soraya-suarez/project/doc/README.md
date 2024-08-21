@@ -39,6 +39,7 @@ User | Admin
 - Request vacation
 - Request resignation
 - Recover password
+- Choose Task
 
 Admin
 

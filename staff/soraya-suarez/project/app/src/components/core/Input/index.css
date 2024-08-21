@@ -2,6 +2,6 @@
 
 @layer components {
     .Input {
-        @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
+        @apply px-4 py-2 bg-transparent font-[1rem] border-[1px] border-gray-400 rounded-md;
     }
 }

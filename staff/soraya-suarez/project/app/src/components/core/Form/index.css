@@ -2,6 +2,6 @@
 
 @layer components {
     .Form {
-        @apply flex flex-col items-center;
+        @apply flex flex-col items-center gap-2;
     }
 }

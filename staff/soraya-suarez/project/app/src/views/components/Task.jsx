@@ -84,22 +84,24 @@ function Task({ task, onTaskDeleted }) {
 
     const handleDeleteTaskCancelled = () => setConfirmDeleteVisible(false)
 
-    return <View tag="article" align="">
-        <View direction='row'>
+    return <div>
+        <div className="flex items-center justify-between py-2">
             <Text>{task.name}</Text>
-            {task.creator === logic.getUserId() && <Button onClick={handleDeleteTask}>Delete</Button>}
-            {task.creator === logic.getUserId()&& task.status != 'finished' && <Button onClick={handleModifyDefinitionTask}>Modify definition of task</Button>}
-            {task.owner === logic.getUserId() && task.status != 'finished' && <Button onClick={handleModifyStatusOrObservationsTask}>Modify status/observations of task</Button>}
-            {task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button onClick={handleReleaseTask}>Release task</Button>}
-            {task.owner === logic.getUserId() && task.status != 'finished' && <Button onClick={handleFinishTask}>Finish task</Button>}
-        </View>
+            <div className="flex gap-2">
+                {task.creator === logic.getUserId() && <Button className="border-none" onClick={handleDeleteTask}>Delete</Button>}
+                {task.creator === logic.getUserId()&& task.status != 'finished' && <Button className="border-none" onClick={handleModifyDefinitionTask}>Modify definition of task</Button>}
+                {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleModifyStatusOrObservationsTask}>Modify status/observations of task</Button>}
+                {task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button className="border-none" onClick={handleReleaseTask}>Release task</Button>}
+                {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleFinishTask}>Finish task</Button>}
+            </div>
+        </div>
         
         {confirmDeleteVisible && <Confirm message="Delete task?" onAccept={handleDeleteTaskAccepted} onCancel={handleDeleteTaskCancelled} />}
         {confirmModifyDefinitionVisible && <ModifyDefinitionTaskForm task={task}  onProcessFinished={handleFinishModifyDefinitionProcess}/>}
         {confirmModifyStatusOrObservationsVisible && <ModifyStatusOrObervationTaskForm task={task}  onProcessFinished={handleFinishModifyStatusOrObservationsProcess}/>}
         {confirmReleaseVisible && <ReleaseTaskForm task={task} onProcessFinished={handleFinishReleaseProcess} />}
         {confirmFinishVisible && <FinishTaskForm task={task} onProcessFinished={handleFinishProcess} />}
-    </View>
+    </div>
 }
 
 export default Task

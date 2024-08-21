@@ -16,4 +16,8 @@
     .View.center {
         @apply items-center;
     }
+
+    .View.container-center {
+        @apply justify-center;
+    }
 }

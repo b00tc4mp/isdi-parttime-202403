@@ -16,15 +16,12 @@ import logic from '../logic'
 import './Home.css'
 
 function Home({ onUserLoggedOut }) {
-
-    const [view, setView] = useState(false)
-    const [page, setPage] = useState('home')
+    const [page, setPage] = useState('')
     
     const navigate = useNavigate()
 
     const handleLogout = () => {
         logic.logout()
-
         onUserLoggedOut()
     }
 
@@ -35,49 +32,46 @@ function Home({ onUserLoggedOut }) {
 
     const handleNavigateTo = (url) => setPage(url)
 
-    const handleAddTaskClick = () => setView(!view)
+    const handleAddTaskClick = () => setPage('')
 
-    const handleCancelClick = () => setView(!view)
+    const handleCancelClick = () => setPage('')
 
-    return <>
-        <nav className="bottom-navbar">
+    return <div className="container grid">
+        <nav className="flex justify-between items-center px-4 shadow shadow-gray-300">
             <a href="">Menu</a>
             <Link onClick={handleLogout}>Logout</Link>
         </nav>
+        <div className="py-4">
+            <View>
+                <nav>
+                    <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('home')}>My Tasks</Button>
+                    <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In Progress</Button>
+                    <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('private')}>Private</Button>
+                    <Button className="border-gray-300 rounded-tl-none rounded-bl-none" onClick={()=> handleNavigateTo('finished')}>Finished</Button>
+                </nav>
 
-        <nav className="main-navbar">
-            <Button onClick={()=> handleNavigateTo('home')}>My Tasks</Button>
-            <Button onClick={()=> handleNavigateTo('in-progress')}>In Progress</Button>
-            <Button onClick={()=> handleNavigateTo('private')}>Private</Button>
-            <Button onClick={()=> handleNavigateTo('finished')}>Finished</Button>
-        </nav>
+                { (() => {
+                switch (page) {
+                    case 'home': return <MyTaskList/>
+                    case 'in-progress': return <MyInProgressTaskList/>
+                    case 'private': return <MyPrivateTaskList/>
+                    case 'finished': return <MyFinishedTaskList/>
+                    case 'add': return <AddTaskForm onCancelAddTaskClick={handleCancelClick} onTaskAdded={handleAddTaskClick}/>
+                    default: return null
+                }
+                }) () }
 
-        <View tag="main">
-           {view && <AddTaskForm onCancelAddTaskClick={handleCancelClick} onTaskAdded={handleAddTaskClick}/>}
-       </View>
-
-       <View tag="main">
-           { (() => {
-            switch (page) {
-                case 'home': return <MyTaskList/>
-                case 'in-progress': return <MyInProgressTaskList/>
-                case 'private': return <MyPrivateTaskList/>
-                case 'finished': return <MyFinishedTaskList/>
-                default: return null
-            }
-           }) () }
-
-           <Routes>
-                <Route path="/users" element={<Users/>} />
-            </Routes>
-       </View>
-
-        <footer>
-            <Button onClick={()=> handleNavigateTo('home')}>Home</Button>
-            <Button onClick={handleAddTaskClick}>+</Button>
-            <Button onClick={handleGoToUsers}>Users</Button>
+                <Routes>
+                    <Route path="/users" element={<Users/>} />
+                </Routes>
+            </View>
+       </div>
+        <footer className="flex justify-around items-center shadow shadow-gray-400">
+            <Button className="border-0" onClick={()=> handleNavigateTo('home')}>Home</Button>
+            <Button className="border-0" onClick={()=> handleNavigateTo('add')}>+</Button>
+            <Button className="border-0" onClick={handleGoToUsers}>Users</Button>
         </footer>
-    </>
+    </div>
 }
 
 export default Home

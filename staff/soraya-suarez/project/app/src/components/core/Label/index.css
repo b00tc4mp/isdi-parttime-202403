@@ -2,6 +2,7 @@
 
 @layer components {
     .Label {
-        @apply mb-[.5rem];
+        @apply mb-0;
+        @apply text-gray-400;
     }
 }
