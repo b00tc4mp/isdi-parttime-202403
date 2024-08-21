@@ -7,7 +7,8 @@ import './Ad.css'
 export const Ad = ({ ad, onAdDeleted }) => {
     console.log('Ad -> render')
 
-    const handleDeleteAd = () => {
+    const handleDeleteAd = (event) => {
+        event.stopPropagation()
         if (confirm('Are you sure you want to delete this ad?'))
 
             try {

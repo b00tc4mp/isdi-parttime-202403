@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import logic from '../logic';
 import Title from '../components/core/Title';
+import CreateComment from './components/CreateCommnet/CreateComment';
 
 function AdPage() {
     // const navigate = useNavigate()
@@ -38,6 +39,16 @@ function AdPage() {
             <p>{ad?.price}</p>
             <p>{ad?.date}</p>
 
+            <CreateComment adId={adId} />
+            {ad.adcomments.map(comment => {
+
+                return <div key={comment._id}>
+                    <p>{comment.comment}</p>
+                    <p></p>
+                    <span>{comment.author.username}</span>
+                </div>
+            }
+            )}
 
         </div>
 

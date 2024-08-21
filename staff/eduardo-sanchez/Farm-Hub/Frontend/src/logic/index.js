@@ -6,7 +6,7 @@ import getUserInfo from './getUserInfo'
 import logoutUser from './logoutUser'
 import isUserLoggedIn from './isUserLoggedIn'
 import deleteAd from './deleteAd'
-import createAdComment from './createAdCommnet'
+import createAdComment from './createAdComment'
 import getAdId from './getAdId'
 
 

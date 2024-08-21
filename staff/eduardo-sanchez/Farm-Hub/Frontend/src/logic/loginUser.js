@@ -20,7 +20,11 @@ const loginUser = (username, password) => {
 
                 return response.json()
                     .catch(() => { throw new SystemError('server connection problem') })
-                    .then(token => sessionStorage.token = token)
+                    .then(({ token, userId }) => {
+                        sessionStorage.token = token
+                        sessionStorage.userId = userId
+                    })
+
             }
 
             return response.json()

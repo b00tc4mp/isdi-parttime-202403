@@ -23,6 +23,7 @@ function AdList({ refreshStamp }) {
         try {
             logic.getAllAds()
                 .then((ads) => {
+                    console.log(ads)
                     setAds(ads)
                 })
                 .catch((error) => {
@@ -32,8 +33,6 @@ function AdList({ refreshStamp }) {
             alert(error.message)
         }
     }
-
-
 
     const handleAdDeleted = () => loadAds()
 
@@ -49,7 +48,8 @@ function AdList({ refreshStamp }) {
 
                         <p>{Time(ad.date)}</p>
 
-                        <Ad ad={ad} onAdDeleted={handleAdDeleted} />
+
+                        {sessionStorage.userId === ad.author.id && <Ad ad={ad} onAdDeleted={handleAdDeleted} />}
                     </li >
                 )}
             </ul>
