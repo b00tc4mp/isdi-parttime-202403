@@ -48,18 +48,23 @@ describe('editRoom', () => {
           city: 'City 2',
           image: 'https://example.com/2-image.png',
           description: 'New description',
-          price: '100 USD'
+          price: '100 USD',
         })
       })
-      .then(updatedRoom => {
-        expect(updatedRoom.nameRoom).to.equal('New Room')
-        expect(updatedRoom.region).to.equal('Sur')
-        expect(updatedRoom.city).to.equal('City 2')
-        expect(updatedRoom.image).to.equal('https://example.com/2-image.png')
-        expect(updatedRoom.description).to.equal('New description')
-        expect(updatedRoom.price).to.equal('100 USD')
+      .then(() => {
+        return Room.findById(room.id);
       })
-  })
+      .then(updatedRoom => {
+        expect(updatedRoom).to.exist;
+        expect(updatedRoom.nameRoom).to.equal('New Room');
+        expect(updatedRoom.region).to.equal('Sur');
+        expect(updatedRoom.city).to.equal('City 2');
+        expect(updatedRoom.image).to.equal('https://example.com/2-image.png');
+        expect(updatedRoom.description).to.equal('New description');
+        expect(updatedRoom.price).to.equal('100 USD');
+      });
+  });
+
 
   it('fails when the room does not exist', () => {
     let errorThrown
@@ -340,6 +345,8 @@ describe('editRoom', () => {
       })
 
   })
-
   after(() => Promise.all([User.deleteMany(), Room.deleteMany()]).then(() => mongoose.disconnect()))
+
 })
+
+

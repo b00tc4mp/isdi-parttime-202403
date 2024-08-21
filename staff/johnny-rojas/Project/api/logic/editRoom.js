@@ -39,8 +39,6 @@ const editRoom = (userId, roomId, updates) => {
       if (!room) {
         throw new NotFoundError('room not found')
       }
-      return room
     })
-
 }
 export default editRoom

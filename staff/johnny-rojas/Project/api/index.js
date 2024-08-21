@@ -13,7 +13,7 @@ mongoose.connect(MONGODB_URL)
 
     api.use(cors())
 
-    api.get('/', (req, res) => res.send(''))
+    api.get('/', (_req, res) => res.send(''))
 
     api.use('/', router)
 

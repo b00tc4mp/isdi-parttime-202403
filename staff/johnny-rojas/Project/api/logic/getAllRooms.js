@@ -1,4 +1,4 @@
-import { NotFoundError, SystemError } from 'com/errors.js'
+import { SystemError } from 'com/errors.js'
 import { Room } from '../data/index.js'
 
 const getAllRooms = () => {

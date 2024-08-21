@@ -4,7 +4,7 @@ import { Booking } from '../data/index.js'
 
 const getAllBookings = () => {
 
-  return Booking.find({}).select('-__v')
+  return Booking.find({isBlocked: false}).select('-__v')
     .catch(error => { throw new SystemError(error.message) })
     .then(bookings => {
       bookings.forEach(booking => {

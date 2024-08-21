@@ -30,7 +30,6 @@ const editUserContact = (userId, updates) => {
           if (!user) {
             throw new NotFoundError('user not found')
           }
-          return user
         })
     })
 }

@@ -35,7 +35,7 @@ const deleteBookingByHost = (userId, roomId, bookingId) => {
               }
               return Booking.updateOne({ _id: new ObjectId(bookingId) }, {$set: {isBlocked: true}})
                 .catch(error => { throw new SystemError(error.message) })
-                .then(() => null)
+                .then(() => { })
             })
         })
     })

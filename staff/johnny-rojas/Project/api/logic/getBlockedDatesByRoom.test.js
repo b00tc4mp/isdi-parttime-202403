@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      getBlockedDatesByRoom('66bb9839a3b4be3d66985b62')
+      getBlockedDatesByRoom('66c499be379079ad3ca002a2')
         .then(bookings => console.log(bookings))
         .catch(error => console.error(error))
     } catch (error) {

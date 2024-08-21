@@ -4,7 +4,6 @@ import { Booking, User, Room } from '../data/index.js'
 import getRoomBookings from './getRoomBookings.js'
 import { expect } from 'chai'
 import bcrypt from 'bcryptjs'
-import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
@@ -83,34 +82,14 @@ describe('getRoomBookings', () => {
         expect(new Date(bookings[1].endDate)).to.deep.equal(new Date(2024, 7, 16))
       })
   })
+
   it('returns an empty array when there are no bookings for the room', () => {
     return getRoomBookings(new ObjectId().toString())
       .then(bookings => {
-        expect(bookings).to.be.an('array').that.is.empty
+        expect(bookings).to.be.an('array')
+        expect(bookings).to.have.lengthOf(0)
       })
   })
-
-  // it('fails when room is not found', () => {
-  //   let errorThrown
-
-  //   return bcrypt.hash('1234', 8)
-  //     .then(hash => User.create({
-  //       name: 'Mocha',
-  //       surname: 'Chai',
-  //       email: 'mocha@chai.com',
-  //       phone: '+58 414 455 7362',
-  //       password: hash
-  //     }))
-  //     .then(() => {
-  //       return getRoomBookings(new ObjectId().toString())
-  //         .catch(error => errorThrown = error)
-  //         .finally(() => {
-  //           expect(errorThrown).to.be.instanceOf(NotFoundError)
-  //           expect(errorThrown.message).to.equal('room not found')
-  //         })
-  //     })
-  // })
-
 
   after(() => Promise.all([User.deleteMany(), Room.deleteMany()]).then(() => mongoose.disconnect()))
 })

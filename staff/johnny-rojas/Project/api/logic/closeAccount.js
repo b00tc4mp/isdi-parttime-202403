@@ -23,7 +23,7 @@ const closeAccount = (userId) => {
               return Promise.all(rooms.map(room => {
                 return Room.updateOne({ _id: room._id }, { $set: { isBlocked: true } })
                   .catch(error => { throw new SystemError(error.message) })
-                  .then(() => {
+                  .then(room => {
 
                     return Booking.find({ room: room._id }).lean()
                       .catch(error => { throw new SystemError(error.message) })
@@ -35,8 +35,6 @@ const closeAccount = (userId) => {
                       })
                      
                   })
-
-
               }))
 
 

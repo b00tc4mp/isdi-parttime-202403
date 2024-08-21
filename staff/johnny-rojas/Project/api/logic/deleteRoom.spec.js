@@ -34,7 +34,8 @@ describe('deleteRoom', () => {
           image: 'https://example.com/image.png',
           description: 'Nice room',
           price: '100 USD',
-          author: user.id
+          author: user.id,
+          isBlocked: false
         })
       })
       .then(createdRoom => {
@@ -43,7 +44,8 @@ describe('deleteRoom', () => {
       })
       .then(() => Room.findById(room.id))
       .then(deletedRoom => {
-        expect(deletedRoom).to.be.null
+        expect(deletedRoom).to.not.be.null
+        expect(deletedRoom.isBlocked).to.be.true
       })
   })
 
@@ -192,7 +194,7 @@ describe('deleteRoom', () => {
       .catch(error => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.instanceOf(MatchError)
-        expect(errorThrown.message).to.equal('you cannot delete a room with bookings')
+        expect(errorThrown.message).to.equal('you cannot block a room with bookings')
       
     })
   })

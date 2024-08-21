@@ -17,6 +17,8 @@ describe('editUserContact', () => {
   beforeEach(() => User.deleteMany())
 
   it('succeeds when user contact info is updated successfully', () => {
+    let user
+
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
         name: 'Mocha',
@@ -25,16 +27,21 @@ describe('editUserContact', () => {
         phone: '+58 414 455 7362',
         password: hash
       }))
-      .then(user => {
+      .then(createdUser => {
+        user = createdUser
         return editUserContact(user.id, {
           email: 'chai@chai.com',
           phone: '+58 414 000 7362',
         })
       })
+      .then(() => {
+        return User.findById(user.id)
+      })
       .then(updateContact => {
         expect(updateContact.email).to.equal('chai@chai.com')
         expect(updateContact.phone).to.equal('+58 414 000 7362')
-      })
+    })
+      
   })
 
   it('fails on non existing user', () => {
@@ -64,7 +71,7 @@ describe('editUserContact', () => {
       }))
       .then(user => {
         return editUserContact(user.id, {
-          email: 'chaichai.com', 
+          email: 'chaichai.com',
           phone: '+58 414 000 7362',
         })
       })
@@ -89,7 +96,7 @@ describe('editUserContact', () => {
       .then(user => {
         return editUserContact(user.id, {
           email: 'chai@chai.com',
-          phone: ' 414 7362', 
+          phone: ' 414 7362',
         })
       })
       .catch(error => errorThrown = error)

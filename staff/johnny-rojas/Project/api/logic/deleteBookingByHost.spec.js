@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import deleteBookingByHost from './deleteBookingByHost.js'
 import { expect } from 'chai'
-import { MatchError, NotFoundError } from 'com/errors.js'
+import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
@@ -17,7 +17,7 @@ describe('deleteBookingByHost', () => {
   beforeEach(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()]))
 
   it('succeeds when host deletes a booking', () => {
-    let user1, user2, room, bookingId
+    let user1, user2, room, booking
 
     return bcrypt.hash('1234', 8)
       .then(hash => User.create({
@@ -41,13 +41,13 @@ describe('deleteBookingByHost', () => {
       .then(createdUser => {
         user2 = createdUser
         return Room.create({
+          author: user1.id,
           nameRoom: 'Room 1',
           region: 'Norte',
           city: 'City',
           image: 'https://example.com/anotherimage.png',
           description: 'Another nice room',
           price: '150 USD',
-          author: user1.id,
           manager: user1.id
         })
       })
@@ -57,19 +57,20 @@ describe('deleteBookingByHost', () => {
           user: user2.id,
           room: room.id,
           startDate: new Date(),
-          endDate: new Date()
+          endDate: new Date(),
+          isBlocked: false
         })
       })
       .then(createdBooking => {
-        bookingId = createdBooking.id
-        return deleteBookingByHost(user1.id, room.id, bookingId)
+        booking = createdBooking
+        return deleteBookingByHost(user1.id, room.id, booking.id)
+      })
+      .then(() => {
+        return Booking.findById(booking.id)
       })
       .then(deletedBooking => {
-        expect(deletedBooking).to.be.null
-        return Booking.findById(bookingId)
-      })
-      .then(deletedBooking => {
-        expect(deletedBooking).to.be.null
+        expect(deletedBooking).to.not.be.null
+        expect(deletedBooking.isBlocked).to.be.true
         expect(user1.id).to.be.equal(user1.id)
       })
   })

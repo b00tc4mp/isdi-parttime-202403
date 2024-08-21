@@ -1,6 +1,6 @@
 import registerUserHandler from './registerUserHandler.js';
 import authenticateUserHandler from './authenticaUserHandler.js';
-import editUserContact from './editUserContactHandler.js';
+import editUserContactHandler from './editUserContactHandler.js';
 import closeAccountHandler from './closeAccountHandler.js';
 
 import createRoomHandler from './createRoomHandler.js';
@@ -23,7 +23,7 @@ import deleteBookingByHostHandler from './deleteBookingByHostHandler.js'
 const handlers = {
   registerUserHandler,
   authenticateUserHandler,
-  editUserContact,
+  editUserContactHandler,
   closeAccountHandler,
 
   createRoomHandler,

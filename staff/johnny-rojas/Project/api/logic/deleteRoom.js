@@ -30,7 +30,7 @@ const deleteRoom = (userId, roomId) => {
             .catch(error => { throw new SystemError(error.message) })
             .then(booking => {
               if (booking) {
-                throw new MatchError('you cannot delete a room with bookings')
+                throw new MatchError('you cannot block a room with bookings')
               }
 
               return Room.updateOne({ _id: new ObjectId(roomId) }, { $set: { isBlocked: true } })
