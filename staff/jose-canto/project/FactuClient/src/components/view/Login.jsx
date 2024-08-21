@@ -55,9 +55,7 @@ export default function Login() {
       <Main className="LoginMain">
         <form className="LoginForm" onSubmit={handleLoginSubmit}>
           <Field id="username" type="text" placeholder="Username"></Field>
-
           <Field id="password" type="password" placeholder="Password"></Field>
-
           <Button type="submit">Login</Button>
 
           <div className="Link">

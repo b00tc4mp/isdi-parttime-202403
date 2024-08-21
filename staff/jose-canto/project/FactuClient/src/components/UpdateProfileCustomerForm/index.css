@@ -2,6 +2,6 @@
 
 @layer components {
   .UpdateCustomer {
-    @apply top-[12rem];
+    @apply top-[11rem];
   }
 }

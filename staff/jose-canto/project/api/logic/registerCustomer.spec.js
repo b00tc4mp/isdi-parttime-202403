@@ -20,7 +20,7 @@ describe("registerCustomer", () => {
     bcrypt.hash("1234", 10)
       .then((hash) => User.create({ username: "Jack", email: "jack@email.es", password: hash }))
       .then((user) =>
-        registerCustomer(user.id, "Pepito", "Pepito Grillo, S.L", "pepito@grillo.es", "1234", "B03413222", "Calle falsa 123", "666555444")
+        registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
           .then(() => User.findOne({ email: "pepito@grillo.es" }))
           .then(customer => {
             expect(customer._id).to.be.instanceOf(ObjectId)
@@ -40,7 +40,7 @@ describe("registerCustomer", () => {
   it("fails on non-existing customer user", () => {
     let errorThrown
 
-    return registerCustomer(new ObjectId().toString(), "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+    return registerCustomer(new ObjectId().toString(), "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
       .catch((error) => errorThrown = error)
       .finally(() => {
         expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -56,7 +56,7 @@ describe("registerCustomer", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) => {
-        return registerCustomer(user.id, 1234, "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, 1234, "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
       })
       .catch((error) => {
         errorThrown = error
@@ -64,6 +64,44 @@ describe("registerCustomer", () => {
       .finally(() => {
         expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown.message).to.equal("username is not valid")
+      })
+  })
+
+  it("fails on invalid password", () => {
+    let errorThrown;
+
+    return bcrypt.hash("1234", 10)
+      .then((hash) => {
+        return User.create({ username: "Jack", email: "jack@email.es", password: hash });
+      })
+      .then((user) => {
+        return registerCustomer(user.id, "Pepito", "123", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444");
+      })
+      .catch((error) => {
+        errorThrown = error;
+      })
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(ContentError);
+        expect(errorThrown.message).to.equal("Password is not valid");
+      });
+  });
+
+  it("fails on invalid fullName", () => {
+    let errorThrown
+
+    return bcrypt.hash("1234", 10)
+      .then((hash) => {
+        return User.create({ username: "Jack", email: "jack@email.es", password: hash })
+      })
+      .then((user) => {
+        return registerCustomer(user.id, "Pepito", "1234", 1234, "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
+      })
+      .catch((error) => {
+        errorThrown = error
+      })
+      .finally(() => {
+        expect(errorThrown).to.be.instanceOf(ContentError)
+        expect(errorThrown.message).to.equal("fullName is not valid")
       })
   })
 
@@ -75,14 +113,14 @@ describe("registerCustomer", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) => {
-        return registerCustomer(user.id, "Jack", 1234, "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", 7777, "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
       })
       .catch((error) => {
         errorThrown = error
       })
       .finally(() => {
         expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal("company name is not valid")
+        expect(errorThrown.message).to.equal("companyName is not valid")
       })
   })
 
@@ -94,7 +132,7 @@ describe("registerCustomer", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) => {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jackemail.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", 6666, "B03413222", "Calle falsa 123", "666555444")
       })
       .catch((error) => {
         errorThrown = error
@@ -102,25 +140,6 @@ describe("registerCustomer", () => {
       .finally(() => {
         expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown.message).to.equal("email is not valid")
-      })
-  })
-
-  it("fails on invalid password", () => {
-    let errorThrown
-
-    return bcrypt.hash("1234", 10)
-      .then((hash) => {
-        return User.create({ username: "Jack", email: "jack@email.es", password: hash })
-      })
-      .then((user) => {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "12", "B03413111", "Calle falsa 123", "666555443")
-      })
-      .catch((error) => {
-        errorThrown = error
-      })
-      .finally(() => {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal("Password is not valid")
       })
   })
 
@@ -132,7 +151,7 @@ describe("registerCustomer", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) => {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", 7777, "Calle falsa 123", "666555444")
       })
       .catch((error) => {
         errorThrown = error
@@ -151,7 +170,7 @@ describe("registerCustomer", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) => {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", 1234, "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", 5555, "666555444")
       })
       .catch((error) => {
         errorThrown = error
@@ -170,7 +189,7 @@ describe("registerCustomer", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) => {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "66655")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "6664")
       })
       .catch((error) => {
         errorThrown = error

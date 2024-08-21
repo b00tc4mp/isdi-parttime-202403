@@ -11,6 +11,8 @@ export default function RegisterCustomer({ onCloseRegisterCustomer }) {
 
     const target = event.target
 
+    const username = target.username.value
+    const password = target.password.value
     const fullName = target.fullName.value
     const companyName = target.companyName.value
     const taxId = target.taxId.value
@@ -20,7 +22,7 @@ export default function RegisterCustomer({ onCloseRegisterCustomer }) {
 
     try {
       //prettier-ignore
-      logic.registerCustomer(fullName, companyName, email, taxId, address, phone )
+      logic.registerCustomer(username, password, fullName, companyName, email, taxId, address, phone )
         .then(() => {
           onCloseRegisterCustomer()     
         })
@@ -34,6 +36,8 @@ export default function RegisterCustomer({ onCloseRegisterCustomer }) {
   return (
     <>
       <form className="RegisterCustomerForm" onSubmit={handleRegisterCustomerSubmit}>
+        <Field id="username" type="text" placeholder="Usuario"></Field>
+        <Field id="password" type="text" placeholder="Contraseña"></Field>
         <Field id="fullName" type="text" placeholder="Nombre"></Field>
         <Field id="companyName" type="text" placeholder="Nombre Empresa"></Field>
         <Field id="taxId" type="text" placeholder="CIF/NIF"></Field>

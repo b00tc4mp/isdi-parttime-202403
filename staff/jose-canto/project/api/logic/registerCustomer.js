@@ -3,10 +3,12 @@ import { User } from "../model/index.js"
 import { NotFoundError, SystemError } from "com/errors.js"
 import bcrypt from "bcryptjs"
 
-const registerCustomer = (userId, fullName, companyName, email, taxId, address, phone) => {
+const registerCustomer = (userId, username, password, fullName, companyName, email, taxId, address, phone) => {
   validate.id(userId)
-  validate.name(fullName)
-  validate.companyName(companyName)
+  validate.username(username)
+  validate.password(password)
+  validate.name(fullName, "fullName")
+  validate.companyName(companyName, "companyName")
   validate.email(email)
   validate.taxId(taxId)
   validate.address(address)
@@ -19,7 +21,12 @@ const registerCustomer = (userId, fullName, companyName, email, taxId, address, 
         throw new NotFoundError('User not found')
       }
 
+      return bcrypt.hash(password, 10)
+    })
+    .then(hash => {
       const newCustomer = {
+        username,
+        password: hash,
         fullName,
         companyName,
         email,
@@ -33,7 +40,6 @@ const registerCustomer = (userId, fullName, companyName, email, taxId, address, 
       return User.create(newCustomer)
         .catch(error => { throw new SystemError(error.message) })
         .then(() => { })
-
     })
 }
 export default registerCustomer

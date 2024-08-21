@@ -133,6 +133,7 @@ export default function CustomerProfile() {
               className="relative left-[4rem] top-[1.5rem] cursor-pointer text-3xl hover:text-orange-400"
             />
             <div className="ProfileInfoContainer">
+              <ProfileInfoItem label="UserName " value={customer?.username} />
               <ProfileInfoItem label="Nombre " value={customer?.fullName} />
               <ProfileInfoItem label="Empresa" value={customer?.companyName} />
               <ProfileInfoItem label="Email" value={customer?.email} />
