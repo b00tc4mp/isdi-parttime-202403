@@ -70,8 +70,9 @@ export function CreateAdForm() {
             <input id="title" type="text" placeholder="Title" />
             <input id="description" type="text" placeholder="Description" />
             <input id="price" type="text" placeholder="Price" />
-
+            <p></p>
             <button>Create</button>
+            <p></p>
             <button onClick={handleCancelCreateAd}>Cancel</button>
         </form>
     </>

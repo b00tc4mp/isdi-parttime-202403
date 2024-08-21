@@ -4,6 +4,10 @@ import createAd from './createAd.js'
 import getAllAds from './getAllAds.js'
 import deleteAd from './deleteAd.js'
 import getUserInfo from './getUserInfo.js'
+import createAdComment from './createAdComment.js'
+import getaAdId from './getAdId.js'
+
+
 
 
 const logic = {
@@ -12,7 +16,10 @@ const logic = {
     createAd,
     getAllAds,
     deleteAd,
-    getUserInfo
+    getUserInfo,
+    createAdComment,
+    getaAdId,
+
 }
 
 export default logic

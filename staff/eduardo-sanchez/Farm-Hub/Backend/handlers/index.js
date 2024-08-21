@@ -5,6 +5,8 @@ import createAdHandler from './createAdHandler.js'
 import getAllAdsHandler from './getAllAdsHandler.js'
 import deleteAdHandler from './deleteAdHandler.js'
 import getUserInfoHandler from './getUserInfoHandler.js'
+import createAdCommentHandler from './createAdCommentHandler.js'
+import getAdIdHandler from './getAdIdHandler.js'
 
 export {
     errorHandler,
@@ -13,5 +15,7 @@ export {
     createAdHandler,
     getAllAdsHandler,
     deleteAdHandler,
-    getUserInfoHandler
+    getUserInfoHandler,
+    createAdCommentHandler,
+    getAdIdHandler
 }

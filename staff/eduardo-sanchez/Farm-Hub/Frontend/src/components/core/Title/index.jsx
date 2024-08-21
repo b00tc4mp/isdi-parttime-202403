@@ -1,5 +1,5 @@
 import './index.css'
 
-export default function Title({ children, className }) {
-    return <h1 className={` ${className ? className : 'Title'}`} >{children}</h1>
+export default function Title({ children, className = 'Title' }) {
+    return <h1 className={` ${className ? className : ''}`} >{children}</h1>
 }

@@ -10,8 +10,11 @@ import {
     getAllAdsHandler,
     deleteAdHandler,
     getUserInfoHandler,
+    createAdCommentHandler,
+    getAdIdHandler,
     errorHandler
 } from './handlers/index.js'
+
 
 const { MONGODB_URL, PORT } = process.env
 
@@ -36,6 +39,10 @@ mongoose.connect(MONGODB_URL)
         api.get('/users/:targetUserId', getUserInfoHandler)
 
         api.delete('/ads/:adId', deleteAdHandler)
+
+        api.patch('/ads/:adId/comments', jsonBodyParser, createAdCommentHandler)
+
+        api.get('/ads/:adId', getAdIdHandler)
 
         api.use(errorHandler)
 

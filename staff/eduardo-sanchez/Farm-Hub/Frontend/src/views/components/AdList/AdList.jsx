@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import logic from '../../../logic'
 
 import './AdList.css'
@@ -8,7 +9,7 @@ import { Time } from '../../../components/core/Time/Time'
 function AdList({ refreshStamp }) {
     const [ads, setAds] = useState([])
 
-
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -40,7 +41,7 @@ function AdList({ refreshStamp }) {
         <>
             <ul>
                 {ads.map((ad) =>
-                    <li key={ad.id} className='AdContainer'>
+                    <li key={ad.id} className='AdContainer' onClick={() => navigate(`/adpage/${ad.id}`)}>
                         <p>{ad.author.username}</p>
                         <p>{ad.title}</p>
                         <p>{ad.description}</p>

@@ -6,6 +6,8 @@ import getUserInfo from './getUserInfo'
 import logoutUser from './logoutUser'
 import isUserLoggedIn from './isUserLoggedIn'
 import deleteAd from './deleteAd'
+import createAdComment from './createAdCommnet'
+import getAdId from './getAdId'
 
 
 const logic = {
@@ -16,7 +18,9 @@ const logic = {
     getUserInfo,
     logoutUser,
     isUserLoggedIn,
-    deleteAd
+    deleteAd,
+    createAdComment,
+    getAdId
 }
 
 export default logic
