@@ -2,6 +2,6 @@
 
 @layer components {
     .ModifyStatusOrObservationsTaskForm {
-        @apply fixed bottom-[13rem] w-full left-0 box-border;
+        @apply fixed bottom-[13rem] w-screen left-0 box-border bg-white;
     }
 }
