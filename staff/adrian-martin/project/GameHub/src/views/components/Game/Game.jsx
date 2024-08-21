@@ -46,7 +46,7 @@ function Game({ game, onGameDeleted, onGameEdited }) {
                     <Text className='GameTag-title'>{game.title}</Text>
                     <p className='GameTag-rating'>{game.rating}</p>
                     <div className='GameTag-hyi'>
-                        {game.author === logic.getUserId() && (
+                        {game.author.id === logic.getUserId() && (
                             <FontAwesomeIcon
                                 className='GameTag-icon'
                                 icon={faEllipsisVertical}

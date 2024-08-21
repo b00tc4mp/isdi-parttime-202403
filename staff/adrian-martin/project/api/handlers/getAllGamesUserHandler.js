@@ -14,7 +14,7 @@ export default (req, res, next) => {
 
                 try {
                     logic.getAllGamesUser(userId)
-                        .then(posts => res.json(posts))
+                        .then(games => res.json(games))
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)
