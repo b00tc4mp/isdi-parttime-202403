@@ -2,8 +2,8 @@
 
 
 @layer components {
-  .information-section {
-    @apply text-center m-8;
+  .informationSection {
+    @apply text-center m-8 mt-32
   }
 
   .TitleInfo{

@@ -45,12 +45,12 @@ const DropdownMenu = () => {
             </>
           ) : (
             <>
-              <Link to={`/users/${userId}/manage`}>Perfil</Link>
+              <Link to={`/users/${userId}/manage`}>Editar contacto</Link>
               <Link to={`/users/${userId}/bookings`}>Reservas</Link>
-              <Link to='/favoritos'>Favoritos</Link>
               <Link to='/rooms'>Ofrecer</Link>
               <Link to={`/users/${userId}/rooms`}>Mis ofertas</Link>
-              <button onClick={handleLogout} className="LogoutButton">Cerrar sesión</button>            </>
+              <button onClick={handleLogout} className="LogoutButton">Cerrar sesión</button>
+            </>
           )}
         </div>
       )}
@@ -59,5 +59,3 @@ const DropdownMenu = () => {
 };
 
 export default DropdownMenu;
-
-//TODO /rooms/:userId LINK

@@ -19,7 +19,7 @@ const CreateRoomInfo = ({ onClick }) => {
           <button className='Acepted' onClick={handleCloseAlert}>Aceptar</button>
         </div>
       ) : (
-        <div className="information-section">
+        <div className="informationSection">
           <Title className="TitleInfo"><strong>Instrucciones</strong></Title>
 
           <div className="instructions-content">

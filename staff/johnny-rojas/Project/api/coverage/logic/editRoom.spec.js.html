@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>87/87</span>
+                <span class='fraction'>89/89</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>52/52</span>
+                <span class='fraction'>53/53</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>87/87</span>
+                <span class='fraction'>89/89</span>
             </div>
         
             
@@ -407,7 +407,15 @@
 <a name='L342'></a><a href='#L342'>342</a>
 <a name='L343'></a><a href='#L343'>343</a>
 <a name='L344'></a><a href='#L344'>344</a>
-<a name='L345'></a><a href='#L345'>345</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a>
+<a name='L350'></a><a href='#L350'>350</a>
+<a name='L351'></a><a href='#L351'>351</a>
+<a name='L352'></a><a href='#L352'>352</a>
+<a name='L353'></a><a href='#L353'>353</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -462,11 +470,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -749,8 +762,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
 import { User, Room } from '../data/index.js'
 import mongoose from 'mongoose'
@@ -801,18 +817,23 @@ describe('editRoom', () =&gt; {
           city: 'City 2',
           image: 'https://example.com/2-image.png',
           description: 'New description',
-          price: '100 USD'
+          price: '100 USD',
         })
       })
-      .then(updatedRoom =&gt; {
-        expect(updatedRoom.nameRoom).to.equal('New Room')
-        expect(updatedRoom.region).to.equal('Sur')
-        expect(updatedRoom.city).to.equal('City 2')
-        expect(updatedRoom.image).to.equal('https://example.com/2-image.png')
-        expect(updatedRoom.description).to.equal('New description')
-        expect(updatedRoom.price).to.equal('100 USD')
+      .then(() =&gt; {
+        return Room.findById(room.id);
       })
-  })
+      .then(updatedRoom =&gt; {
+        expect(updatedRoom).to.exist;
+        expect(updatedRoom.nameRoom).to.equal('New Room');
+        expect(updatedRoom.region).to.equal('Sur');
+        expect(updatedRoom.city).to.equal('City 2');
+        expect(updatedRoom.image).to.equal('https://example.com/2-image.png');
+        expect(updatedRoom.description).to.equal('New description');
+        expect(updatedRoom.price).to.equal('100 USD');
+      });
+  });
+&nbsp;
 &nbsp;
   it('fails when the room does not exist', () =&gt; {
     let errorThrown
@@ -1093,16 +1114,19 @@ describe('editRoom', () =&gt; {
       })
 &nbsp;
   })
-&nbsp;
   after(() =&gt; Promise.all([User.deleteMany(), Room.deleteMany()]).then(() =&gt; mongoose.disconnect()))
-})</pre></td></tr></table></pre>
+&nbsp;
+})
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-20T13:21:30.726Z
+                at 2024-08-21T14:22:28.496Z
             </div>
         <script src="../prettify.js"></script>
         <script>

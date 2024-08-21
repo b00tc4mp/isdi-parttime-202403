@@ -16,7 +16,7 @@ function GuestBookings() {
         .catch(error => {
           alert(error.message)
           return
-      })
+        })
     } catch (error) {
       console.error(error.message)
       alert(error.message)
@@ -24,12 +24,12 @@ function GuestBookings() {
   }, [userId])
 
   return (<div>
-     <div>
-        <Header>
-          <TopBar />
-        </Header>
+    <div>
+      <Header>
+        <TopBar />
+      </Header>
     </div>
-    <div className="container">
+    <div className="containerImg">
       <section className="sectionCard">
         <h2 className="sectionTitle">Reservas</h2>
         <div className="bookingListContainer">
@@ -38,7 +38,7 @@ function GuestBookings() {
               bookings.map((booking) => (
                 <li className="bookingItem" key={booking.id}>
                   <p className="contactInfoTitle">Información de reserva:</p>
-                  <img src={booking.room.image}/>
+                  <img className="imagen" src={booking.room.image} />
                   <p><span className="infoLabel">Anfitrión:</span> {booking.room.manager.name}</p>
                   <p><span className="infoLabel">Email:</span> {booking.room.manager.email}</p>
                   <p><span className="infoLabel">Teléfono:</span> {booking.room.manager.phone}</p>

@@ -11,10 +11,10 @@ function ShowConfirm({setShowConfirm, handleDeleteRoom}) {
       <Title> </Title>
       <div className="Buttons">
         <div className="Confirm">
-          <button onClick={handleConfirm}>Si</button>
+          <button onClick={handleConfirm}>Aceptar</button>
         </div>
         <div className="Denied">
-          <button onClick={setShowConfirm}>No</button>
+          <button onClick={setShowConfirm}>Cancelar</button>
         </div>
       </div>
     </div>

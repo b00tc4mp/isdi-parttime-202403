@@ -63,7 +63,7 @@ function ManageRoom() {
       alert(error.message)
     }
   }
-  const handlerDeleteRoom = () => {
+  const handlerBlockRoom = () => {
     try {
       logic.deleteRoom(userId, roomId)
         .then(() => {
@@ -76,7 +76,7 @@ function ManageRoom() {
     }
   }
 
-  const handleDeleteBooking = (booking) => {
+  const handleBlockBooking = (booking) => {
     try {
       logic.deleteBookingByHost(userId, roomId, booking)
         .then(() => {
@@ -109,12 +109,17 @@ function ManageRoom() {
                     <p><span className="infoLabel">Teléfono:</span> {booking.user.phone}</p>
                     <p><span className="infoLabel">Entrada:</span> {new Date(booking.startDate).toLocaleDateString()}</p>
                     <p><span className="infoLabel">Salida:</span> {new Date(booking.endDate).toLocaleDateString()}</p>
-                    <button className="TrashButton" onClick={() => handleDeleteBooking(booking.id)}><IoTrashOutline /></button>
-                  </li>
-                ))
-              ) : (
-                <p>No hemos encontrado reservas.</p>
-              )}
+                    <p><span className="infoLabel">Estatus:</span> {booking.isBlocked ? 'Cancelado' : 'Confirmado'}</p>
+                    {!booking.isBlocked && (
+                        <button className="TrashButton" onClick={() => handleBlockBooking(booking.id)}>
+                          <IoTrashOutline />
+                        </button>
+                      )}
+                    </li>
+                  ))
+                ) : (
+                  <p>No hemos encontrado reservas.</p>
+                )}
             </ul>
           </div>
         </section>
@@ -138,7 +143,7 @@ function ManageRoom() {
           <SubmitButton>Realizar cambios</SubmitButton>
 
           <div className="Delete">
-            <button onClick={handlerDeleteRoom}>Eliminar habitacion</button>
+            <button onClick={handlerBlockRoom}>Bloquear habitación</button>
           </div>
 
         </FormWithPanel>
@@ -149,4 +154,7 @@ function ManageRoom() {
 }
 
 export default ManageRoom
+
+
+//TODO DESBLOQUEAR O BLOQUEAR ROOM
 

@@ -30,13 +30,15 @@ const closeAccount = (userId) => {
                       .then(bookings => {
 
                         return Promise.all(bookings.map(booking => {
+                          
                           return Booking.updateOne({ _id: booking._id }, { $set: { isBlocked: true } })
+                            .catch(error => { throw new SystemError(error.message) })
+                            .then(() => {})
                         }))
                       })
                      
                   })
               }))
-
 
             })
 
