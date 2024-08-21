@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
+import SearchFilter from "../searchFilter"
 
 import useContext from "../../useContext"
 import { SystemError } from "com/errors"
@@ -16,6 +17,7 @@ export default function NewDeliveryNotes() {
   const { alert } = useContext()
 
   const [customers, setCustomers] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     try {
@@ -35,6 +37,9 @@ export default function NewDeliveryNotes() {
     }
   }, [])
 
+  const filterCustomers = () =>
+    customers.filter((customer) => customer.companyName.toLowerCase().includes(searchTerm.toLowerCase()))
+
   return (
     <>
       <Header>
@@ -44,8 +49,13 @@ export default function NewDeliveryNotes() {
         </div>
       </Header>
       <Main className="MainCreateDelivery">
+        <SearchFilter
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          placeholder="Buscar por nombre de cliente"
+        />
         <ul className="CustomerList">
-          {customers.map((customer) => (
+          {filterCustomers().map((customer) => (
             <Link to={`/create/delivery-notes/${customer.id}`} key={customer.id}>
               {customer?.companyName && <li className="Customer">{customer.companyName}</li>}
             </Link>

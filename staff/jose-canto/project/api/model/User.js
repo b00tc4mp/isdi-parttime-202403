@@ -4,7 +4,6 @@ const { ObjectId } = Schema.Types
 const user = new Schema({
   username: {
     type: String,
-    required: true,
     unique: true
   },
   email: {
@@ -13,7 +12,6 @@ const user = new Schema({
   },
   password: {
     type: String,
-    required: true
   },
   fullName: {
     type: String,

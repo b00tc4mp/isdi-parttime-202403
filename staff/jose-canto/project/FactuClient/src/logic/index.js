@@ -24,6 +24,7 @@ import getInvoice from "./getInvoice.js"
 import createInvoice from "./createInvoice.js"
 import deleteInvoice from "./deleteInvoice.js"
 import getAllInvoicesCustomer from "./getAllInvoicesCustomer.js"
+import updateCustomerProfile from "./updateCustomerProfile.js"
 
 
 const logic = {
@@ -39,6 +40,7 @@ const logic = {
   getProfileUser,
   getAllCustomers,
   deleteCustomer,
+  updateCustomerProfile,
 
   getAllDeliveryNotesCustomer,
   getAllDeliveryNotes,

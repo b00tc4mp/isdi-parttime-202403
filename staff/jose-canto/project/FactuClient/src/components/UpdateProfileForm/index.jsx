@@ -77,7 +77,7 @@ export default function UpdateProfileForm({ onUpdateProfile }) {
         <Field id="phone" type="text" placeholder="Número de Móvil" required={false}></Field>
         <Field id="bankAccount" type="text" placeholder="IBAN" required={false}></Field>
 
-        <Button type="submit">Editar</Button>
+        <Button type="submit">Actualizar</Button>
       </form>
     </>
   )

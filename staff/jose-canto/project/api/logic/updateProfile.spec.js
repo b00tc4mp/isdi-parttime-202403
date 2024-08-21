@@ -5,13 +5,13 @@ import bcrypt from "bcryptjs"
 import { expect } from "chai"
 import { User } from "../model/index.js"
 
-import editProfile from "./editProfile.js"
+import updateProfile from "./updateProfile.js"
 import { ContentError, NotFoundError } from "com/errors.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
 
-describe("editProfile", () => {
+describe("updateProfile", () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
   beforeEach(() => User.deleteMany())
@@ -20,7 +20,7 @@ describe("editProfile", () => {
     bcrypt.hash("1234", 10)
       .then((hash) => User.create({ username: "Jack", email: "jack@email.es", password: hash }))
       .then((user) =>
-        editProfile(user.id, {
+        updateProfile(user.id, {
           username: "Pepito",
           email: "Pepito@grillo.es",
           fullName: "Pepito Grillo",
@@ -50,7 +50,7 @@ describe("editProfile", () => {
   it("fails on existing user", () => {
     let errorThrown
 
-    return editProfile(new ObjectId().toString(), {
+    return updateProfile(new ObjectId().toString(), {
       username: "Pepito",
       email: "Pepito@grillo.es",
       fullName: "Pepito Grillo",
@@ -76,7 +76,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: 7777,
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -104,7 +104,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepitgrillo.es",
         fullName: "Pepito Grillo",
@@ -132,7 +132,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: 1234,
@@ -160,7 +160,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -188,7 +188,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -216,7 +216,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -244,7 +244,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -272,7 +272,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -300,7 +300,7 @@ describe("editProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => editProfile(user.id, {
+      .then((user) => updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",

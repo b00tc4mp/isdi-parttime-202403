@@ -12,6 +12,7 @@ import Footer from "../core/Footer"
 import logic from "../../logic"
 
 import "./InvoiceList.css"
+import SearchFilter from "../searchFilter"
 
 export default function InvoiceList() {
   const { alert } = useContext()
@@ -50,12 +51,10 @@ export default function InvoiceList() {
         Facturas
       </Header>
       <Main>
-        <input
-          className="-mb-5 -mt-2 w-[21rem] rounded-md border border-gray-500 p-2"
-          type="text"
+        <SearchFilter
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
           placeholder="Buscar por número o nombre de Factura"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
         />
         <ul className="InvoiceList">
           {filterInvoices().map((invoice) => (

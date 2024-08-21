@@ -16,6 +16,8 @@ router.post("/customers", jsonBodyParser, routes.registerCustomHandler)
 router.get("/customers", routes.getAllCustomersHandler)
 router.delete("/customers/:customerId", routes.deleteCustomerHandler)
 router.get("/customers/:customerId/delivery-notes", routes.getAllDeliveryNotesCustomerHandler)
+router.patch("/customers/:customerId/update", jsonBodyParser, routes.updateCustomerProfileHandler)
+
 
 router.get("/delivery-notes", routes.getAllDeliveryNotesHandler)
 router.get("/delivery-notes/:deliveryNoteId", routes.getDeliveryNoteHandler)

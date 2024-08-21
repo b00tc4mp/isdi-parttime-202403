@@ -9,7 +9,7 @@
   }
 
   .UpdateProfileForm .Field {
-    @apply -mt-1;
+    @apply -mt-3;
   }
 
   .UpdateProfileForm .Button {

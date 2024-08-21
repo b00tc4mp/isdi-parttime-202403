@@ -22,7 +22,7 @@ export default function Header({
   const navigate = useNavigate()
   const location = useLocation()
   const [showRegisterCustomer, setShowRegisterCustomer] = useState(false)
-  const [showEditProfile, setShowEditProfile] = useState(false)
+  const [showUpdateProfile, setShowUpdateProfile] = useState(false)
 
   const handleLogout = () => {
     logic.logoutUser()
@@ -39,11 +39,11 @@ export default function Header({
   }
 
   const handleUpdateProfile = () => {
-    setShowEditProfile(!showEditProfile)
+    setShowUpdateProfile(!showUpdateProfile)
   }
 
   const handleCloseUpdateProfile = () => {
-    setShowEditProfile(!showEditProfile)
+    setShowUpdateProfile(!showUpdateProfile)
   }
 
   const isCustomerProfilePathCustomerId = matchPath("/customers/profile/:customerId", location.pathname)
@@ -162,7 +162,7 @@ export default function Header({
       </div>
 
       <div className="UpdateProfile">
-        {showEditProfile && (
+        {showUpdateProfile && (
           <UpdateProfileForm onUpdateProfile={handleCloseUpdateProfile} onCloseEditProfile={handleCloseUpdateProfile} />
         )}
       </div>

@@ -7,12 +7,14 @@ import { SystemError } from "com/errors"
 import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
+import Button from "../core/Button"
 import Time from "../core/Time"
+import MonthFilter from "../MonthFilter"
 
 import logic from "../../logic/index"
 
 import "./NewInvoice.css"
-import Button from "../core/Button"
+import SearchFilter from "../searchFilter"
 
 export default function NewInvoice() {
   const { alert } = useContext()
@@ -25,6 +27,7 @@ export default function NewInvoice() {
   const [selectedDeliveryNotes, setSelectedDeliveryNotes] = useState([])
   const [customerId, setCustomerId] = useState(null)
   const [searchTerm, setSearchTerm] = useState("")
+  const [selectedMonth, setSelectedMonth] = useState("")
 
   const filterCustomers = () =>
     customers.filter((customer) => customer.companyName.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -110,6 +113,17 @@ export default function NewInvoice() {
     setCustomerId(id)
     handleDeliveryNotesCustomer(id)
   }
+
+  const handleMonthChange = (event) => {
+    setSelectedMonth(event.target.value)
+  }
+
+  const filteredDeliveryNotes = deliveryNotes.filter((deliveryNote) => {
+    if (!selectedMonth) return true
+    const noteMonth = new Date(deliveryNote.date).getMonth() + 1
+    return noteMonth === parseInt(selectedMonth, 10)
+  })
+
   return (
     <>
       <Header className="z-10">
@@ -130,12 +144,10 @@ export default function NewInvoice() {
       <Main>
         {showCustomerList ? (
           <>
-            <input
-              className="-mb-9 -mt-5 w-[21rem] rounded-md border border-gray-500 p-2"
-              type="text"
-              placeholder="Buscar por número o nombre de Factura"
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+            <SearchFilter
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              placeholder="Buscar por nombre de cliente"
             />
             <ul className="CustomerList">
               {filterCustomers().map((customer) => (
@@ -147,8 +159,9 @@ export default function NewInvoice() {
           </>
         ) : (
           <div className="relative top-7 -mt-16 flex flex-col items-center rounded-lg p-6">
+            <MonthFilter selectedMonth={selectedMonth} handleMonthChange={handleMonthChange} />
             <ul className="w-full text-[0.9rem]">
-              {deliveryNotes.map((deliveryNote) => (
+              {filteredDeliveryNotes.map((deliveryNote) => (
                 <li
                   key={deliveryNote.id}
                   className="mb-4 flex cursor-pointer flex-wrap gap-2 rounded-lg bg-blue-50 p-2 shadow-md transition duration-300 hover:bg-blue-100"
@@ -166,7 +179,7 @@ export default function NewInvoice() {
                 </li>
               ))}
             </ul>
-            <Button onClick={() => handleCreateInvoice()} className="transition duration-300">
+            <Button onClick={() => handleCreateInvoice()} className="w-auto transition duration-300">
               Generar Factura
             </Button>
           </div>

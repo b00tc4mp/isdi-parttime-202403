@@ -1,16 +1,15 @@
 import validate from "com/validate.js"
 import errors, { SystemError } from "com/errors.js"
 
-const registerCustomer = (username, companyName, email, password, taxId, address, phone) => {
-  validate.username(username)
+const registerCustomer = (fullName, companyName, email, taxId, address, phone) => {
+  validate.name(fullName)
   validate.companyName(companyName)
   validate.email(email)
-  validate.password(password)
   validate.taxId(taxId)
   validate.address(address, address)
   validate.phone(phone)
 
-  const body = { username, companyName, email, password, taxId, address, phone }
+  const body = { fullName, companyName, email, taxId, address, phone }
 
   return fetch(`${import.meta.env.VITE_API_URL}/customers`, {
     method: "POST",

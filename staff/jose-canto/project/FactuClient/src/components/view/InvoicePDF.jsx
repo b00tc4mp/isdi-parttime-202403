@@ -93,6 +93,9 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "#666666"
   },
+  textRight: {
+    marginLeft: 5
+  },
   companyText: {
     fontSize: 12,
     color: "#333333"
@@ -174,7 +177,7 @@ const InvoicePDF = ({ invoice, total, iva }) => {
           </View>
           {invoice?.deliveryNotes.map((deliveryNote) => (
             <View key={deliveryNote.id}>
-              <Text style={styles.smallText}>
+              <Text style={[styles.smallText, styles.textRight]}>
                 A/Nº {deliveryNote.number} - {formatDate(deliveryNote.date)}
               </Text>
               {deliveryNote?.works.map((work) => (

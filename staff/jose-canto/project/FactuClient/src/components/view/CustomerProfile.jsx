@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 
 import { RiFileUserLine } from "react-icons/ri"
 import { MdDeleteForever } from "react-icons/md"
+import { FiEdit3 } from "react-icons/fi"
 
 import useContext from "../../useContext"
 import { SystemError } from "com/errors"
@@ -13,6 +14,7 @@ import Main from "../core/Main"
 import Confirm from "../Confirm"
 import ProfileInfoItem from "../ProfileItemInfo"
 import Button from "../core/Button"
+import UpdateProfileCustomerForm from "../UpdateProfileCustomerForm"
 
 import logic from "../../logic"
 
@@ -28,6 +30,8 @@ export default function CustomerProfile() {
   const [invoices, setInvoices] = useState([])
   const [showCustomerData, setShowCustomerData] = useState("Data")
   const [showDeleteIcon, setShowDeleteIcon] = useState(true)
+  const [showUpdateProfile, setShowUpdateProfile] = useState(false)
+  const [profileUpdated, setProfileUpdated] = useState(false)
 
   useEffect(() => {
     try {
@@ -42,7 +46,7 @@ export default function CustomerProfile() {
     } catch (error) {
       alert(error.message)
     }
-  }, [customerId])
+  }, [customerId, profileUpdated])
 
   const handleDeleteCustomer = () => {
     try {
@@ -101,6 +105,15 @@ export default function CustomerProfile() {
     }
   }
 
+  const handleUpdateProfile = () => {
+    setShowUpdateProfile(!showUpdateProfile)
+  }
+
+  const handleCloseUpdateProfile = () => {
+    setShowUpdateProfile(!showUpdateProfile)
+    setProfileUpdated(!profileUpdated)
+  }
+
   return (
     <>
       {customer?.companyName && (
@@ -114,23 +127,29 @@ export default function CustomerProfile() {
       )}
       <Main className="CustomerProfile">
         {showCustomerData === "Data" && (
-          <div className="ProfileInfoContainer">
-            <ProfileInfoItem label="Nombre de usuario" value={customer?.username} />
-            <ProfileInfoItem label="Empresa" value={customer?.companyName} />
-            <ProfileInfoItem label="Email" value={customer?.email} />
-            <ProfileInfoItem label="CIF/NIF" value={customer?.taxId} />
-            <ProfileInfoItem label="Nº Móvil" value={customer?.phone} />
-            <ProfileInfoItem label="Dirección	" value={customer?.address} />
+          <>
+            <FiEdit3
+              onClick={handleUpdateProfile}
+              className="relative left-[4rem] top-[1.5rem] cursor-pointer text-3xl hover:text-orange-400"
+            />
+            <div className="ProfileInfoContainer">
+              <ProfileInfoItem label="Nombre " value={customer?.fullName} />
+              <ProfileInfoItem label="Empresa" value={customer?.companyName} />
+              <ProfileInfoItem label="Email" value={customer?.email} />
+              <ProfileInfoItem label="CIF/NIF" value={customer?.taxId} />
+              <ProfileInfoItem label="Nº Móvil" value={customer?.phone} />
+              <ProfileInfoItem label="Dirección	" value={customer?.address} />
 
-            <div className="mt-10 flex w-full justify-center gap-12">
-              <Button onClick={handleGetAllInvoicesCustomer} className="CustomerButtons">
-                Facturas
-              </Button>
-              <Button onClick={handleGetAllDeliveryNotesCustomer} className="CustomerButtons">
-                Albaranes
-              </Button>
+              <div className="mt-10 flex w-full justify-center gap-12">
+                <Button onClick={handleGetAllInvoicesCustomer} className="CustomerButtons">
+                  Facturas
+                </Button>
+                <Button onClick={handleGetAllDeliveryNotesCustomer} className="CustomerButtons">
+                  Albaranes
+                </Button>
+              </div>
             </div>
-          </div>
+          </>
         )}
 
         {showCustomerData === "DeliveryNotes" && (
@@ -162,6 +181,16 @@ export default function CustomerProfile() {
         {showConfirmDelete && (
           <Confirm handleDeleteCustomer={handleDeleteCustomer} setShowConfirmDelete={handleShowConfirmDelete} />
         )}
+
+        <div className="UpdateProfile UpdateCustomer">
+          {showUpdateProfile && (
+            <UpdateProfileCustomerForm
+              customer={customer}
+              onUpdateProfile={handleCloseUpdateProfile}
+              onCloseEditProfile={handleCloseUpdateProfile}
+            />
+          )}
+        </div>
       </Main>
 
       <Footer>FactuClient</Footer>

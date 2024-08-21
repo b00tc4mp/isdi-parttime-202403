@@ -10,13 +10,9 @@
   }
 
   .ProfileInfo {
-    @apply flex w-full flex-col items-center;
+    @apply flex w-[95%] flex-col items-center;
   }
   .SpanText {
     @apply w-auto text-[1.1rem] font-bold text-orange-800 underline;
-  }
-
-  .ProfileInfo {
-    @apply w-full text-xl font-bold;
   }
 }

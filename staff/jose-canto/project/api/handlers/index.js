@@ -12,6 +12,7 @@ import getAllDeliveryNotesHandler from "./getAlldeliveryNotesHandler.js"
 import getDeliveryNoteHandler from "./getDeliveryNoteHandler.js"
 import deleteDeliveryNoteHandler from "./deleteDeliveryNoteHandler.js"
 import getAllDeliveryNotesCustomerHandler from "./getAllDeliveryNotesCustomerHandler.js"
+import updateCustomerProfileHandler from "./updateCustomerProfileHandler.js"
 
 import createDeliveryNoteHandler from "./createDeliveryNoteHandler.js"
 
@@ -22,6 +23,7 @@ import getInvoiceHandler from "./getInvoiceHandler.js"
 import createInvoiceHandler from "./createInvoiceHandler.js"
 import deleteInvoiceHandler from "./deleteInvoiceHandler.js"
 import getAllInvoicesCustomerHandler from "./getAllInvoicesCustomerHandler.js"
+
 
 
 export default {
@@ -39,6 +41,7 @@ export default {
   getAllDeliveryNotesHandler,
   getDeliveryNoteHandler,
   deleteDeliveryNoteHandler,
+  updateCustomerProfileHandler,
 
   createDeliveryNoteHandler,
 

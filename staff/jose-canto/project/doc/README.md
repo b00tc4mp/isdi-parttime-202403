@@ -86,6 +86,7 @@
 - role (string, customer / company)
 - password (string, required)
 - manager (User.id)
+- active (boolean)
 
 ### DeliveryNote
 

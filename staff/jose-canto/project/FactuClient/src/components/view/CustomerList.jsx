@@ -13,6 +13,7 @@ import Main from "../core/Main"
 import logic from "../../logic/index"
 
 import "./CustomerList.css"
+import SearchFilter from "../searchFilter"
 
 export default function CustomerList() {
   const [customers, setCustomers] = useState([])
@@ -60,13 +61,7 @@ export default function CustomerList() {
       </Header>
 
       <Main>
-        <input
-          className="-mb-8 -mt-3 w-[21rem] rounded-md border border-gray-500 p-2"
-          type="text"
-          placeholder="Busca nombre de cliente"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
+        <SearchFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeholder="Busca nombre de cliente" />
         <ul className="CustomerList">
           {filterCustomers().map((customer) => (
             <Link to={`/customers/profile/${customer.id}`} key={customer.id}>
