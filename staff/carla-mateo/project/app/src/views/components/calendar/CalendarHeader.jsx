@@ -1,5 +1,7 @@
 
 import React from 'react'
+import { GrNext } from "react-icons/gr"
+import { GrPrevious } from "react-icons/gr"
 
 const CalendarHeader = ({ currentDate, changeMonth }) => {
     const monthNames = [
@@ -8,9 +10,9 @@ const CalendarHeader = ({ currentDate, changeMonth }) => {
 
     return (
         <div className="calendar-header">
-            <button onClick={() => changeMonth(-1)}>Previous</button>
+            <button onClick={() => changeMonth(-1)}><GrPrevious /></button>
             <span>{monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}</span>
-            <button onClick={() => changeMonth(1)}>Next</button>
+            <button onClick={() => changeMonth(1)}><GrNext /></button>
         </div>
     )
 }

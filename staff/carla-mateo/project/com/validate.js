@@ -5,7 +5,7 @@ const USERNAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const ID_REGEX = /^[0-9a-z]+$/
-const PATH_REGEX = /^[a-zA-Z0-9-_\/]+\.(jpg|jpeg|png|gif)$/
+const AVATAR_REGEX = /^[a-zA-Z0-9-_\/]+\.(jpg|jpeg|png|gif)$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -62,7 +62,7 @@ function validateIdAssignee(idAssignee, explain = 'id') {
 }
 
 function validateAvatar(avatar, explain = 'avatar') {
-    if (typeof avatar !== 'string' || !PATH_REGEX.test(avatar)) {
+    if (typeof avatar !== 'string' || !AVATAR_REGEX.test(avatar)) {
         throw new ContentError(`${explain} is not valid`);
     }
 
@@ -70,9 +70,6 @@ function validateAvatar(avatar, explain = 'avatar') {
         throw new ContentError(`${explain} is not valid`);
     }
 }
-
-
-
 
 const validate = {
     name: validateName,
@@ -86,7 +83,6 @@ const validate = {
     id: validateId,
     idAssignee: validateIdAssignee,
     avatar: validateAvatar
-
 }
 
 export default validate

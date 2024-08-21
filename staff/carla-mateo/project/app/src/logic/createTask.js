@@ -1,17 +1,11 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
-
 const createTask = (assigneeUserId = null, title, description, date = null) => {
     if (assigneeUserId) {
         validate.id(assigneeUserId, 'assigneeUserId')
     }
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
-    if (date) {
-        if (!(date instanceof Date)) {
-            throw new ContentError('invalid date format')
-        }
-    }
 
     const body = JSON.stringify({ assigneeUserId, title, description, date })
 
@@ -26,8 +20,6 @@ const createTask = (assigneeUserId = null, title, description, date = null) => {
         .catch(() => { throw new SystemError('Server error') })
         .then(response => {
             if (response.status === 201) return
-
-
             return response.json()
                 .catch(() => { throw new SystemError('Server error') })
                 .then(body => {

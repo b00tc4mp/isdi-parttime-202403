@@ -1,11 +1,14 @@
-function Time({ date }) {
-    if (!date) return null
+export default function Time({ children: time }) {
+    if (!time || typeof time !== 'string' || isNaN(Date.parse(time))) return null
 
-    const newDate = new Date(date)
+    const date = new Date(time)
+    const options = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    }
+    const formattedTime = new Intl.DateTimeFormat("es-ES", options).format(date)
 
-    const onlyDate = newDate.toISOString().split('T')[0]
-
-    return <time className="m-2">{onlyDate}</time>
+    return <time className="className">{formattedTime}</time>
 }
 
-export default Time

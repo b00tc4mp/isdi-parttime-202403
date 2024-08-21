@@ -1,4 +1,3 @@
-import getUserName from "./getUserName"
 import isUserLoggedIn from "./isUserLoggedIn"
 import loginAdmin from "./loginAdmin"
 import logoutUser from "./logoutUser"
@@ -9,12 +8,12 @@ import getAllUsers from "./getAllUsers"
 import deleteTask from "./deleteTask"
 import getAllTasks from "./getAllTasks"
 import getUserRole from "./getUserRole"
-import updateDataUser from "../../../api/logic/updateDataUser"
+import updateDataUser from "./updateDataUser"
 import deleteUser from "./deleteUser"
-
+import getUsername from "./getUsername"
+import taskDay from "./taskDay"
 
 const logic = {
-    getUserName,
     isUserLoggedIn,
     loginAdmin,
     logoutUser,
@@ -26,7 +25,9 @@ const logic = {
     getAllTasks,
     getUserRole,
     updateDataUser,
-    deleteUser
+    deleteUser,
+    taskDay,
+    getUsername
 
 }
 

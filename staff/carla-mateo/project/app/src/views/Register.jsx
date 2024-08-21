@@ -44,7 +44,7 @@ function Register() {
 
         <Header></Header>
 
-        <form className="p-8" onSubmit={handleRegisterSubmit}>
+        <form className=" p-8 mt-24" onSubmit={handleRegisterSubmit}>
             <Heading level={1} className="text-2xl">Create admin</Heading>
             <Field id="name" type="text" placeholder="name home" />
             <Field id="username" type="text" placeholder="username" />

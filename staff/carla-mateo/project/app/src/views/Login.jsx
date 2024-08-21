@@ -38,7 +38,7 @@ function Login() {
 
         <Header></Header>
 
-        <form className=" p-8 " onSubmit={handleLoginSubmit}>
+        <form className=" p-8 mt-24" onSubmit={handleLoginSubmit}>
             <Heading className="text-2xl" level={1}>Enter your home</Heading>
             <Field id="username" type="text" placeholder="username" />
             <Field id="password" type="password" placeholder="password" />

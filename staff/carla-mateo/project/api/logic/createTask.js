@@ -12,10 +12,13 @@ const createTask = (userId, assigneeUserId, title, description, date) => {
     validate.text(title, 'title', 60)
     validate.text(description, 'description', 200)
 
+    let taskDate
     if (date) {
-        if (!(date instanceof Date)) {
-            throw new ContentError('invalid date format')
+        const parsedDate = new Date(date)
+        if (isNaN(parsedDate.getTime())) {
+            throw new ContentError('Invalid date format')
         }
+        taskDate = parsedDate
     }
 
     return User.findById(userId).lean()
@@ -38,7 +41,7 @@ const createTask = (userId, assigneeUserId, title, description, date) => {
                             description,
                         }
 
-                        if (date) task.date = date
+                        if (taskDate) task.date = taskDate
 
                         return Task.create(task)
                             .catch(error => { throw new SystemError(error.message) })
@@ -52,7 +55,7 @@ const createTask = (userId, assigneeUserId, title, description, date) => {
                     description,
                 }
 
-                if (date) task.date = date
+                if (taskDate) task.date = taskDate
 
                 return Task.create(task)
                     .catch(error => { throw new SystemError(error.message) })

@@ -1,12 +1,8 @@
 import errors, { SystemError } from 'com/errors'
 
-import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
+const taskDay = () => {
 
-const getUsername = () => {
-
-    const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
-
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/taskDay`, {
 
         method: "GET",
         headers: {
@@ -18,17 +14,19 @@ const getUsername = () => {
             if (response.status === 200) {
                 return response.json()
                     .catch(() => { throw new SystemError('conection error') })
-                    .then(user => user)
+                    .then(tasks => tasks)
             }
 
             return response.json()
                 .catch(() => { throw new SystemError('conection error') })
                 .then(body => {
                     const { error, message } = body
+
                     const constructor = errors[error]
+
                     throw new constructor(message)
                 })
         })
 }
 
-export default getUsername
+export default taskDay

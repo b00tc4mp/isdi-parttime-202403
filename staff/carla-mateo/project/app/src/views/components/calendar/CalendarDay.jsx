@@ -1,8 +1,10 @@
 import React from 'react'
 
-const CalendarDay = ({ day, className, isToday }) => {
+const CalendarDay = ({ day, hasTasks, isToday }) => {
     return (
-        <div className={`${className} ${isToday ? 'calendar-day-today' : ''}`}>
+        <div
+            className={`calendar-day ${hasTasks ? 'calendar-day-with-tasks' : ''} ${isToday ? 'calendar-day-today' : ''}`}
+        >
             {day}
         </div>
     )

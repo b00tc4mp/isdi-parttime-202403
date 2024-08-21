@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from 'react'
 
-import { PiUsersThree } from "react-icons/pi"
+import { IoCalendarNumber } from "react-icons/io5"
 import { IoHome } from "react-icons/io5"
 import { MdOutlineAddTask } from "react-icons/md"
 
@@ -55,6 +55,8 @@ function TasksList({ refreshStamp }) {
     }
     const handleDeleteTask = () => loadTasks()
 
+    const handleCalendarClick = () => { navigate('/calendar') }
+
     return (
         <UserProvider>
             {({ user }) => (
@@ -69,16 +71,21 @@ function TasksList({ refreshStamp }) {
 
                     {showForm && <CreateTask onTaskSuccess={handleCreateSuccess} />}
 
-                    <Button onClick={handleCreateTask} >{<MdOutlineAddTask size={32} />}</Button>
+                    <button className="absolute top-[5rem] left-8 " onClick={handleCreateTask} >{<MdOutlineAddTask size={32} />}</button>
 
-                    <View>
+
+                    <div className="flex-1 mb-[8rem] mt-[10rem] fixed top-0 bottom-0 overflow-y-auto">
                         {tasks.map(task => (
                             task && <Task key={task.id}
                                 task={task}
                                 onTaskDeleted={handleDeleteTask} />
                         ))}
-                    </View>
-                    <Footer><Button onClick={handleHomeClick}>{<IoHome size={32} />}</Button></Footer>
+                    </div>
+
+                    <Footer>
+                        <Button onClick={handleHomeClick}>{<IoHome size={32} />} </Button>
+                        <Button onClick={handleCalendarClick}>{<IoCalendarNumber size={32} />}</Button>
+                    </Footer>
                 </View>
             )}
         </UserProvider >

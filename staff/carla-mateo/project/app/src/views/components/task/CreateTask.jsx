@@ -18,7 +18,7 @@ function CreateTask({ onTaskSuccess }) {
         const title = form.title.value
         const description = form.description.value
         const assigneeUserId = form.assigneeUserId.value || null
-        const date = form.date.value || null
+        const date = form.date.value ? form.date.value : null
 
         try {
             logic.createTask(assigneeUserId, title, description, date)
@@ -42,7 +42,7 @@ function CreateTask({ onTaskSuccess }) {
         }
     }, [])
 
-    return <View>
+    return <View className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
         <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg ' >
             <form className='mb-4 ' onSubmit={handleCreateTask}>
                 <Field id="title" type="text" placeholder="Task Title" />

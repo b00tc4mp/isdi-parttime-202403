@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 
 import { IoHome } from "react-icons/io5"
+import { FaTasks } from "react-icons/fa"
 
 import CalendarBody from './CalendarBody'
 import CalendarHeader from './CalendarHeader'
@@ -27,6 +28,8 @@ const Calendar = () => {
 
     const singHome = () => { navigate('/') }
 
+    const handleTaskClick = () => { navigate('/taskslist') }
+
     return (
         <UserProvider>
             {({ user }) => (
@@ -43,7 +46,10 @@ const Calendar = () => {
                         <CalendarHeader currentDate={currentDate} changeMonth={changeMonth} />
                         <CalendarBody currentDate={currentDate} />
                     </div>
-                    <Footer><Button onClick={singHome}>{<IoHome size={32} />}</Button></Footer>
+                    <Footer>
+                        <Button onClick={singHome}>{<IoHome size={32} />}</Button>
+                        <Button onClick={handleTaskClick}>{<FaTasks size={32} />}</Button>
+                    </Footer>
                 </View>
             )
             }

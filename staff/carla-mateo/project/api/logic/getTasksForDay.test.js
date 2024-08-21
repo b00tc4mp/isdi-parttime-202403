@@ -1,15 +1,16 @@
 import "dotenv/config"
 import mongoose from "mongoose"
-import getAllTasks from "./getAllTasks.js"
+
+import getTasksForDay from "./getTasksForDay.js"
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getAllTasks('66be3bfaa0b65ba9d332f68e')
-                .then((parent) => {
-                    console.log(parent)
+            getTasksForDay('66c4e1645977091ceb8b584d', '22')
+                .then((family) => {
+                    console.log(family)
                 })
                 .catch(error => console.error(error))
         } catch (error) {

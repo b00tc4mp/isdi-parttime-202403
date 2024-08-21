@@ -1,4 +1,4 @@
-function Heading({ level, className, children }) {
+export default function Heading({ level, className, children }) {
     const Tag = `h${level}`
     return (
         <>
@@ -6,5 +6,3 @@ function Heading({ level, className, children }) {
         </>
     )
 }
-
-export default Heading

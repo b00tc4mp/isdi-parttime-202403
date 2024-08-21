@@ -1,22 +1,29 @@
 @tailwind components;
 
 @layer components {
+    .calendar-header {
+        @apply p-2 flex justify-between mt-36 mr-5 ml-5 text-xl
+    }
+
+    .calendar-body{
+        @apply grid p-2 gap-2 grid-cols-7 grid-rows-6 mt-6
+    }
+    
     .calendar-day{
         @apply w-full h-full m-1 border-2 ps-5
     }
 
-    .calendar-body{
-        @apply grid p-2 gap-2 grid-cols-7 grid-rows-6 mt-4
-    }
-    .calendar-header {
-        @apply p-2 flex justify-between mt-10
-    }
     .calendar-day-other-month {
         @apply text-gray-600 w-full h-full m-1 border-2 ps-5
 
     }
     .calendar-day-today {
-        @apply bg-green-200;
+        @apply border-green-950
+    }
+
+    .calendar-day-with-tasks {
+        @apply bg-green-300
+
     }
 
 }

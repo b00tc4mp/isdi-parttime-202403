@@ -26,21 +26,20 @@ function Task({ task, onTaskDeleted }) {
             }
     }
 
-    const formatDate = date => {
-        if (!date) return ''
-        const newDate = new Date(date);
-        return newDate.toISOString().split('T')[0]
-    }
 
     return <View>
-        <div className='flex flex-col items-center space-y-0' >
-            <div className="flex gap-2">
+        <div className='flex flex-row items-center space-x-4 m-4 text-sm ml-8'>
+            <div className="flex flex-col">
                 <Heading level="2">{task.title}</Heading>
+                <Heading level="1">{task.description}</Heading>
+            </div>
+            <Time className="ml-4">{task.date}</Time>
+            <div className="flex flex-col ml-4">
                 <Heading level="1">{task.assignee ? task.assignee.username : ''}</Heading>
             </div>
-            <Heading level="1">{task.description}</Heading>
-            <time className="m-2">{formatDate(task.date)}</time>
-            <Button onClick={handleDeleteTask}>Delete</Button>
+            <div className="ml-auto">
+                <Button onClick={handleDeleteTask}>Delete</Button>
+            </div>
         </div>
     </View>
 }

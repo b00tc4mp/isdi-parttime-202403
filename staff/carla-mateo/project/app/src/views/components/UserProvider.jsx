@@ -7,7 +7,7 @@ function UserProvider({ children }) {
 
     useEffect(() => {
 
-        logic.getUserName()
+        logic.getUsername()
             .then(user => {
                 setUser(user)
             })
