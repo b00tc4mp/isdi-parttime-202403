@@ -98,7 +98,7 @@ function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
             </select>
 
             <Field id="visible" type="checkbox" checked={visibleChecked} onChange={onVisibleCheckedChange}>Private</Field>
-            <Field id="owner" type="checkbox" checked={ownerChecked} onChange={onOwnerCheckedChange}>Autoassign</Field>
+            <Field id="owner" type="checkbox" checked={ownerChecked} onChange={onOwnerCheckedChange}>Auto assign</Field>
 
             <View direction='row'>
                 <SubmitButton>Add task</SubmitButton>

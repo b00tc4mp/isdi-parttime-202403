@@ -33,10 +33,10 @@ function MyTaskList() {
         }
     }
     
-    const handleTaskDeleted = () => loadTasks()
+    const handleRefresh = () => loadTasks()
 
     return <div tag="section" className="overflow-scroll my-4">
-        {tasks.map(task => <Task key={task.id} task={task} onTaskDeleted={handleTaskDeleted}/>)}
+        {tasks.map(task => <Task key={task.id} task={task} onTaskRefreshed={handleRefresh}/>)}
     </div>
 }
 

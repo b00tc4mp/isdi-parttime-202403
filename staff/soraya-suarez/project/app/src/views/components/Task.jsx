@@ -1,7 +1,7 @@
+import { RiDeleteBin5Line } from "react-icons/ri";
+
 import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
-
-import View from '../../components/library/View'
 import Confirm from './Confirm'
 import FinishTaskForm from './FinishTaskForm'
 import ModifyDefinitionTaskForm from './ModifyDefinitionTaskForm'
@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 import useContext from '../../useContext'
 
-function Task({ task, onTaskDeleted }) {
+function Task({ task, onTaskRefreshed }) {
     const { alert } = useContext()
 
     const [form, setForm] = useState('')
@@ -49,7 +49,29 @@ function Task({ task, onTaskDeleted }) {
     const handleDeleteTaskAccepted = () => {
         try {
             logic.deleteTask(task.id)
-                .then(() => onTaskDeleted())
+                .then(() => onTaskRefreshed())
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
+    const [confirmSelectVisible, setConfirmSelectVisible] = useState(false)
+    const handleSelectTask = () => setConfirmSelectVisible(true)
+
+    const handleSelectTaskAccepted = () => {
+        try {
+            logic.selectTask(task.id)
+                .then(() => {
+                    onTaskRefreshed()
+                    setConfirmSelectVisible(false)
+                })
                 .catch(error => {
                     console.error(error)
 
@@ -83,24 +105,28 @@ function Task({ task, onTaskDeleted }) {
     }
 
     const handleDeleteTaskCancelled = () => setConfirmDeleteVisible(false)
+    
+    const handleSelectTaskCancelled = () => setConfirmSelectVisible(false)
 
     return <div>
         <div className="flex items-center justify-between py-2">
             <Text>{task.name}</Text>
             <div className="flex gap-2">
-                {task.creator === logic.getUserId() && <Button className="border-none" onClick={handleDeleteTask}>Delete</Button>}
-                {task.creator === logic.getUserId()&& task.status != 'finished' && <Button className="border-none" onClick={handleModifyDefinitionTask}>Modify definition of task</Button>}
-                {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleModifyStatusOrObservationsTask}>Modify status/observations of task</Button>}
-                {task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button className="border-none" onClick={handleReleaseTask}>Release task</Button>}
-                {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleFinishTask}>Finish task</Button>}
+                {task.creator === logic.getUserId() && task.owner === null && (task.status != 'finished' || task.status != 'canceled') && <Button className="border-none" onClick={handleSelectTask}>Auto assing</Button>}
+                {task.creator === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleModifyDefinitionTask}>Modify definition</Button>}
+                {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleModifyStatusOrObservationsTask}>Modify status/observations</Button>}
+                {task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button className="border-none" onClick={handleReleaseTask}>Release</Button>}
+                {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleFinishTask}>Finish</Button>}
+                {task.creator === logic.getUserId() && <Button className="border-none" onClick={handleDeleteTask}>{<RiDeleteBin5Line/>}</Button>}
             </div>
         </div>
-        
-        {confirmDeleteVisible && <Confirm message="Delete task?" onAccept={handleDeleteTaskAccepted} onCancel={handleDeleteTaskCancelled} />}
+
+        {confirmSelectVisible && <Confirm message="Select task?" onAccept={handleSelectTaskAccepted} onCancel={handleSelectTaskCancelled} />}
         {confirmModifyDefinitionVisible && <ModifyDefinitionTaskForm task={task}  onProcessFinished={handleFinishModifyDefinitionProcess}/>}
         {confirmModifyStatusOrObservationsVisible && <ModifyStatusOrObervationTaskForm task={task}  onProcessFinished={handleFinishModifyStatusOrObservationsProcess}/>}
         {confirmReleaseVisible && <ReleaseTaskForm task={task} onProcessFinished={handleFinishReleaseProcess} />}
         {confirmFinishVisible && <FinishTaskForm task={task} onProcessFinished={handleFinishProcess} />}
+        {confirmDeleteVisible && <Confirm message="Delete task?" onAccept={handleDeleteTaskAccepted} onCancel={handleDeleteTaskCancelled} />}
     </div>
 }
 

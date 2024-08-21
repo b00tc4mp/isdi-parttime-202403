@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
+import { CiLogout } from "react-icons/ci";
+import { CiMenuBurger } from "react-icons/ci";
+import { IoIosAdd } from "react-icons/io";
+import { GoHomeFill } from "react-icons/go";
+import { FiUsers } from "react-icons/fi";
+
 import View from '../components/library/View'
 import Button from '../components/core/Button'
 import AddTaskForm from './components/AddTaskForm'
@@ -38,8 +44,8 @@ function Home({ onUserLoggedOut }) {
 
     return <div className="container grid">
         <nav className="flex justify-between items-center px-4 shadow shadow-gray-300">
-            <a href="">Menu</a>
-            <Link onClick={handleLogout}>Logout</Link>
+            <a href="">{<CiMenuBurger/>}</a>
+            <Link onClick={handleLogout}>{<CiLogout/>}</Link>
         </nav>
         <div className="py-4">
             <View>
@@ -67,9 +73,9 @@ function Home({ onUserLoggedOut }) {
             </View>
        </div>
         <footer className="flex justify-around items-center shadow shadow-gray-400">
-            <Button className="border-0" onClick={()=> handleNavigateTo('home')}>Home</Button>
-            <Button className="border-0" onClick={()=> handleNavigateTo('add')}>+</Button>
-            <Button className="border-0" onClick={handleGoToUsers}>Users</Button>
+            <Button className="border-0" onClick={()=> handleNavigateTo('home')}>{<GoHomeFill/>}</Button>
+            <Button className="border-0" onClick={()=> handleNavigateTo('add')}>{<IoIosAdd/>}</Button>
+            <Button className="border-0" onClick={handleGoToUsers}>{<FiUsers/>}</Button>
         </footer>
     </div>
 }
