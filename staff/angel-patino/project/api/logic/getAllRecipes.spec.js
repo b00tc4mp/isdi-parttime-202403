@@ -31,7 +31,7 @@ describe('getAllRecipes', () => {
                 cookTime: 55,
                 ingredients: [{ name: 'huevos', quantity: 2, unit: 'ml' }],
                 description: 'mix',
-                rating: 3
+                // rating: 3
             })
                 .then(() => user)
             )
@@ -80,7 +80,7 @@ describe('getAllRecipes', () => {
                 cookTime: 55,
                 ingredients: [{ name: 'huevos', quantity: 2, unit: 'ml' }],
                 description: 'mix',
-                rating: 3
+                // rating: 3
             })
                 .then(() => user)
             )

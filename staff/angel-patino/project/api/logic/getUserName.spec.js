@@ -97,13 +97,16 @@ describe('getUserName', () => {
                 username: 'mochachai',
                 password: hash
             }))
-            .then(user => getUserName(user._id, new ObjectId().toString()))
-            .catch(error => errorThrown = error)
-            .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal('targetUser not found')
+            .then(user => {
+                const nonExistingTargetUserId = new ObjectId().toString()
+                return getUserName(user._id.toString(), nonExistingTargetUserId)
+                    .catch(error => errorThrown = error)
+                    .finally(() => {
+                        expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+                        expect(errorThrown.message).to.equal('targetUser not found')
+                    })
             })
-    })
 
+    })
     after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

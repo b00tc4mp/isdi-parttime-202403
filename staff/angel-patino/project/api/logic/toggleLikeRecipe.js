@@ -26,7 +26,7 @@ function toggleLikeRecipe(userId, recipeId) {
 
                     return Recipe.findByIdAndUpdate(recipe._id, updateOperation, { new: true })
                         .catch(error => { throw new SystemError(error.message) })
-                        .then(updatedRecipe => updatedRecipe)
+                        .then((updateRecipe) => updateRecipe)
                 })
         })
 }

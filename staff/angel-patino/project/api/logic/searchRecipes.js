@@ -8,7 +8,7 @@ const searchRecipes = (query) => {
     return Recipe.find({
         $or: [
             { title: { $regex: query, $options: 'i' } },
-            { ingredients: { $regex: query, $options: 'i' } }
+            { 'ingredients.name': { $regex: query, $options: 'i' } }
         ]
     }).populate('author', 'username').lean()
         .catch(error => { throw new SystemError(error.message) })

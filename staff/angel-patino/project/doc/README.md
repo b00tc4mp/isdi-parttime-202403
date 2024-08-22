@@ -13,22 +13,17 @@ RecipeBox is a modern recipe management application built with React, Tailwind C
 - **Register User**: Users can create a new account.
 - **Login User**: Users can log in to their account.
 - **View Recipes**: Users can browse and view recipes.
-- **View favourites**: Users can view yours favourites recipes.
+- **View favorites**: Users can view yours favorites recipes.
 - **Upload Recipes**: Users can upload new recipes.
 - **Edit Your Recipes**: Users can edit their own recipes.
-- **View Others' Profiles**: Users can view profiles of other users.
-- **Follow Other Users**: Users can follow other users to keep track of their recipes.
-- **Rating**: Users can rating others recipes.
 
 ## Features
 
 - **View Recipes**: Browse through a curated list of recipes with all necessary details.
 - **Add Recipes**: Users can contribute by adding their own recipes.
 - **Edit Recipes**: Users can edit their own recipes.
-- **User-Friendly Interface**: Designed with Tailwind CSS for a clean and responsive user experience.
-- **Robust Backend**: Utilizes Express and Mongoose to handle CRUD operations with a MongoDB database.
-- **User Profiles**: View other users' profiles.
-- **Follow Users**: Follow other users to stay updated with their recipes.
+- **Like Recipes**: Users can like recipes, and the likes are stored and displayed.
+- **Search Functionality**: Users can search for recipes by title or description.
 
 ## UX/UI Design
 
@@ -46,21 +41,23 @@ RecipeBox is a modern recipe management application built with React, Tailwind C
 - username (string, required)
 - email (string, required)
 - password(string, required)
-- profilePicture (string)?
+- profilePicture (string, optional)?
 
 #### Recipe
 
 - id (auto)
 - author (user.id)
-- link(string)?
-- source(string)
 - title (string, required)
 - thumbnail (string, required)
 - date(date, required)
-- Ingredients (string, required)
-- Instructions (string, required)
-- rating (number, required)
-- cookTime (number, required)
+- Ingredients (array of objects, required)
+  - Each ingredient object contains:
+    - name(string,required)
+      -quantity(number,required)
+      unit(string, required)
+- description (string, required)
+- cookTime (number, required, in minutes)
+- likes(array of user.id)
 
 ## Technologies Used
 

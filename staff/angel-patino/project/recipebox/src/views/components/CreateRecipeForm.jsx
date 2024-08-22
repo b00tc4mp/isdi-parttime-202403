@@ -1,5 +1,4 @@
 import { useState } from "react"
-
 import logic from "../../logic"
 
 import Field from "../../components/core/Field"
@@ -12,16 +11,13 @@ import View from "../../components/library/View"
 function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
   const [message, setMessage] = useState("")
   const [ingredients, setIngredients] = useState([
-    { ingredient: "", quantity: "", unit: "grams" },
+    { name: "", quantity: "", unit: "grams" },
   ])
 
   const handleCancelCreateRecipeClick = () => onCancelCreateRecipeClick()
 
   const addIngredient = () => {
-    setIngredients([
-      ...ingredients,
-      { ingredient: "", quantity: "", unit: "grams" },
-    ])
+    setIngredients([...ingredients, { name: "", quantity: "", unit: "grams" }])
   }
 
   const removeIngredient = (index) => {
@@ -29,17 +25,23 @@ function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
     setIngredients(newIngredients)
   }
 
-  const handleIngredientChange = (index, value) => {
+  const handleIngredientChange = (index, value, field) => {
     const newIngredients = [...ingredients]
-    newIngredients[index].ingredient = value
+    newIngredients[index][field] = value
     setIngredients(newIngredients)
   }
 
-  const handleUnitChange = (index, value) => {
-    const newIngredients = [...ingredients]
-    newIngredients[index].unit = value
-    setIngredients(newIngredients)
-  }
+  // const handleQuantityChange = (index, value) => {
+  //   const newIngredients = [...ingredients]
+  //   newIngredients[index].quantity = value
+  //   setIngredients(newIngredients)
+  // }
+
+  // const handleUnitChange = (index, value) => {
+  //   const newIngredients = [...ingredients]
+  //   newIngredients[index].unit = value
+  //   setIngredients(newIngredients)
+  // }
 
   const handleCreateRecipeSubmit = (event) => {
     event.preventDefault()
@@ -50,6 +52,7 @@ function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
     const cookTime = parseFloat(form.cookTime.value)
     const description = form.description.value
 
+    console.log("Ingredients:", ingredients)
     try {
       logic
         .createRecipe(title, thumbnail, cookTime, ingredients, description)
@@ -72,30 +75,35 @@ function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
       <FormWithFeedback onSubmit={handleCreateRecipeSubmit} message={message}>
         <Field id="title">Title</Field>
         <Field id="thumbnail">Thumbnail</Field>
-        <Field id="cookTime">Cook Time</Field>
+        <Field id="cookTime" type="number">
+          Cook Time (minutes)
+        </Field>
         {ingredients.map((ingredient, index) => (
           <View key={index} className="ingredient-input">
             <Field
               id={`ingredient-${index}`}
               name={`ingredient-${index}`}
-              label="Ingredient"
-              value={ingredient.ingredient}
-              onChange={(e) => handleIngredientChange(index, e.target.value)}
+              value={ingredient.name}
+              onChange={(e) =>
+                handleIngredientChange(index, e.target.value, "name")
+              }
             >
               Ingredient
             </Field>
             <Field
               id={`quantity-${index}`}
               name={`quantity-${index}`}
-              label="Quantity"
+              type="number"
               value={ingredient.quantity}
-              onChange={(e) => handleQuantityChange(index, e.target.value)}
+              onChange={(e) =>
+                handleQuantityChange(index, e.target.value, "quantity")
+              }
             >
               Quantity
             </Field>
             <select
               value={ingredient.unit}
-              onChange={(e) => handleUnitChange(index, e.target.value)}
+              onChange={(e) => handleUnitChange(index, e.target.value, "unit")}
             >
               <option value="grams">grams</option>
               <option value="ml">ml</option>

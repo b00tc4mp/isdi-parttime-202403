@@ -8,9 +8,23 @@ const ingredientSchema = new Schema({
     unit: {
         type: String,
         required: true,
-        enum: ['gr', 'ml', 'l', 'tsp', 'unit']
+        enum: ['grams', 'ml', 'l', 'tsp', 'unit']
     }
 })
+
+// const ratingSchema = new Schema({
+//     user: {
+//         type: ObjectId,
+//         ref: 'User',
+//         required: true
+//     },
+//     value: {
+//         type: Number,
+//         min: 1,
+//         max: 5,
+//         required: true
+//     }
+// })
 
 const recipe = new Schema({
     author: {
@@ -49,16 +63,12 @@ const recipe = new Schema({
         default: Date.now
     },
 
-    rating: {
-        type: Number,
-        min: 1,
-        max: 5
-    },
+    /*ratings: [ratingSchema]*/
+
     likes: [{
         type: ObjectId,
         ref: 'User'
     }]
-
 
 })
 

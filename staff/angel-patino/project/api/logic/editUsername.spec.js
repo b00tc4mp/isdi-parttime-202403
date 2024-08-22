@@ -10,12 +10,14 @@ import { ContentError, DuplicityError, NotFoundError } from 'com/errors.js'
 const { MONGODB_URL_TEST } = process.env
 
 const { ObjectId } = Types
+
 describe('editUsername', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
     beforeEach(() => User.deleteMany())
 
     it('succeeds in changing the username for an existing user', () => {
+        let user
         return bcrypt.hash('12345678', 8)
             .then(hash => User.create({
                 name: 'Master',
@@ -24,7 +26,10 @@ describe('editUsername', () => {
                 username: 'masterchef',
                 password: hash
             }))
-            .then(() => editUsername(user._id.toString(), 'newusername'))
+            .then((createdUser) => {
+                user = createdUser
+                return editUsername(user._id.toString(), 'newusername')
+            })
             .then(updateUser => {
                 expect(updateUser).to.exist
                 expect(updateUser.username).to.equal('newusername')
@@ -32,11 +37,11 @@ describe('editUsername', () => {
 
     })
 
-    it('fails when the user does not exist', () => {
+    it('fails when the user does not exists', () => {
         let errorThrown
 
         return editUsername(new ObjectId().toString(), 'newusername')
-            .catch(error => errorThrown)
+            .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
                 expect(errorThrown.message).to.equal('User not found')
@@ -65,27 +70,30 @@ describe('editUsername', () => {
             ]))
             .then(([user, existingUser]) => {
                 return editUsername(user._id.toString(), existingUser.username)
-                    .catch(error => errorThrown = error)
+                    .catch(error => {
+                        errorThrown = error
+                    })
             })
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(DuplicityError)
-                expect(errorThrown.message).to.equal('Username already exists')
+                expect(errorThrown.message).to.equal('Username already exist')
             })
     })
+
 
     it('fails with an invalid userId', () => {
         let errorThrown
 
         try {
             editUsername('invalidUserId', 'username')
-
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.an.instanceOf(ContentError)
-            expect(errorThrown).to.equal('userId is not valid')
+            expect(errorThrown.message).to.equal('userId is not valid')
         }
     })
+
 
     it('fails with an invalid username', () => {
         let errorThrown

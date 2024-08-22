@@ -5,7 +5,7 @@ import editUsernameHandler from './editUsernameHandler.js'
 import getAllRecipesHandler from './getAllRecipesHandler.js'
 import getUserNameHandler from './getUserNameHandler.js'
 import registerUserHandler from './registerUserHandler.js'
-import rateRecipeHandler from './rateRecipeHandler.js'
+// import rateRecipeHandler from './rateRecipeHandler.js'
 import toggleLikeRecipeHandler from './toggleLikeRecipeHandler.js'
 import editRecipeHandler from './editRecipeHandler.js'
 import errorHandler from './errorHandler.js'
@@ -18,7 +18,7 @@ export {
     getAllRecipesHandler,
     getUserNameHandler,
     registerUserHandler,
-    rateRecipeHandler,
+    // rateRecipeHandler,
     toggleLikeRecipeHandler,
     editRecipeHandler,
     errorHandler

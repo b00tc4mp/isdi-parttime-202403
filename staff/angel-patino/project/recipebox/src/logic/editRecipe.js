@@ -9,7 +9,7 @@ const editRecipe = (recipeId, updates) => {
     if (updates.cookTime) validate.number(updates.cookTime)
     if (updates.ingredients) validate.ingredientArray(updates.ingredients)
     if (updates.description) validate.text(updates.description)
-    if (updates.reting) validate.rating(updates.rating)
+    // if (updates.reting) validate.rating(updates.rating)
 
 
     return fetch(`${import.meta.env.VITE_API_URL}/recipes/${recipeId}/edit`, {

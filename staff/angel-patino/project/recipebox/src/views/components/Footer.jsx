@@ -6,22 +6,46 @@ function Footer({
   onHomeClick,
   onFavoritesClick,
   onSearchClick,
-  onMyRecipesClick, // New handler for viewing the user's own recipes
+  onMyRecipesClick,
 }) {
   const handleHomeClick = () => onHomeClick()
   const handleFavoritesClick = () => onFavoritesClick()
   const handleSearchClick = () => onSearchClick()
   const handleCreateRecipeClick = () => onCreateRecipeClick()
-  const handleMyRecipesClick = () => onMyRecipesClick() // Handler for own recipes
+  const handleMyRecipesClick = () => onMyRecipesClick()
 
   return (
-    <View className="Footer" direction="row">
-      <Button onClick={handleHomeClick}>⌂</Button>
-      <Button onClick={handleFavoritesClick}>❤️</Button>
-      <Button onClick={handleSearchClick}>🔍</Button>
-      <Button onClick={handleCreateRecipeClick}>+</Button>
-      <Button onClick={handleMyRecipesClick}>📚</Button>
-      {/* Button for own recipes */}
+    <View
+      className="Footer  bottom-0 w-full bg-secondary-color shadow-lg py-2 flex justify-around items-center"
+      direction="row"
+    >
+      <Button onClick={handleHomeClick} className="text-primary-color text-lg">
+        ⌂
+      </Button>
+      <Button
+        onClick={handleFavoritesClick}
+        className="text-primary-color text-lg"
+      >
+        ❤️
+      </Button>
+      <Button
+        onClick={handleSearchClick}
+        className="text-primary-color text-lg"
+      >
+        🔍
+      </Button>
+      <Button
+        onClick={handleCreateRecipeClick}
+        className="text-primary-color text-lg"
+      >
+        +
+      </Button>
+      <Button
+        onClick={handleMyRecipesClick}
+        className="text-primary-color text-lg"
+      >
+        👤
+      </Button>
     </View>
   )
 }

@@ -10,16 +10,16 @@ import Button from "../components/core/Button"
 import Heading from "../components/core/Heading"
 import logic from "../logic"
 import About from "./components/About"
-import FavoritesList from "./components/FavoritesList" // Newly added
-import SearchFunctionality from "./components/SearchFunctionality" // Newly added
+import FavoritesList from "./components/FavoritesList"
+import SearchFunctionality from "./components/SearchFunctionality"
 
 function Home({ onUserLoggedOut }) {
   const [name, setName] = useState("")
   const [view, setView] = useState("")
   const [recipeListRefreshStamp, setRecipeListRefreshStamp] = useState(0)
-  const [searchQuery, setSearchQuery] = useState("") // Search state
-  const [favoritesOnly, setFavoritesOnly] = useState(false) // Favorites state
-  const [editRecipeId, setEditRecipeId] = useState(null) // Edit recipe state
+  const [searchQuery, setSearchQuery] = useState("") // Search
+  const [favoritesOnly, setFavoritesOnly] = useState(false) // Favorites
+  const [editRecipeId, setEditRecipeId] = useState(null) // Edit recipe
   const [myRecipesOnly, setMyRecipesOnly] = useState(false)
 
   const handleLogout = () => {
@@ -68,21 +68,23 @@ function Home({ onUserLoggedOut }) {
         <Heading level="1">RecipeBox</Heading>
         <View direction="row">
           <Heading level="3">{name}</Heading>
-          <Button onClick={handleLogout}>Logout</Button>
+          <Button onClick={handleLogout} className="text-primary-color">
+            Logout
+          </Button>
         </View>
       </Header>
 
       <SearchFunctionality onSearch={handleSearchQueryChange} />
-      <View direction="row">
-        <Button onClick={handleFavoritesToggle}>
+      <View className="flex justify-between items-center px-4 py-2">
+        <Button onClick={handleFavoritesToggle} className="text-accent-color">
           {favoritesOnly ? "Show All" : "Show Favorites"}
         </Button>
-        <Button onClick={handleMyRecipesToggle}>
-          {myRecipesOnly ? "Show All" : "My Recipes"}
+        <Button onClick={handleMyRecipesToggle} className="text-accent-color">
+          {myRecipesOnly ? "Show All" : "Show My Recipes"}
         </Button>
       </View>
 
-      <View tag="main">
+      <View tag="main" className="p-4">
         {editRecipeId ? (
           <EditRecipeForm
             recipeId={editRecipeId}
@@ -90,38 +92,28 @@ function Home({ onUserLoggedOut }) {
             onRecipeUpdated={handleRecipeUpdated}
           />
         ) : (
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <RecipeList
-                  refreshStamp={recipeListRefreshStamp}
-                  searchQuery={searchQuery}
-                  showFavorites={favoritesOnly}
-                  showMyRecipes={myRecipesOnly}
-                  onEditRecipeClick={handleEditRecipeClick}
-                />
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/favorites" element={<FavoritesList />} />
-          </Routes>
-        )}
-
-        {view === "create-recipe" && (
-          <CreateRecipeForm
-            onCancelCreateRecipeClick={handleCancelCreateRecipeClick}
-            onRecipeCreated={handleRecipeCreated}
+          <RecipeList
+            refreshStamp={recipeListRefreshStamp}
+            searchQuery={searchQuery}
+            showFavorites={favoritesOnly}
+            showMyRecipes={myRecipesOnly}
+            onEditRecipeClick={handleEditRecipeClick}
           />
         )}
       </View>
+
+      {view === "create-recipe" && (
+        <CreateRecipeForm
+          onCancelCreateRecipeClick={handleCancelCreateRecipeClick}
+          onRecipeCreated={handleRecipeCreated}
+        />
+      )}
 
       <Footer
         onCreateRecipeClick={handleCreateRecipeClick}
         onHomeClick={() => setView("")}
         onFavoritesClick={handleFavoritesToggle}
-        onMyRecipesClick={handleMyRecipesToggle}
-        onSearchClick={handleSearchQueryChange}
+        onSearchClick={() => setView("search")}
       />
     </View>
   )

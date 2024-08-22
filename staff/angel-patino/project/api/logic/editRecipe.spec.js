@@ -33,21 +33,21 @@ describe('editRecipe', () => {
                     cookTime: 30,
                     ingredients: [{ name: 'Salt', quantity: 1, unit: 'tsp' }],
                     description: 'A simple recipe.',
-                    rating: 3
+                    // ratings: 3
                 }).then(recipe => ({ user, recipe }))
             })
             .then(({ user, recipe }) => editRecipe(user._id.toString(), recipe._id.toString(), {
                 title: 'Updated Recipe',
                 thumbnail: 'https://example.com/newimage.jpg',
                 cookTime: 45,
-                rating: 4
+                ratings: 4
             }))
             .then(updatedRecipe => {
                 expect(updatedRecipe).to.exist
                 expect(updatedRecipe.title).to.equal('Updated Recipe')
                 expect(updatedRecipe.thumbnail).to.equal('https://example.com/newimage.jpg')
                 expect(updatedRecipe.cookTime).to.equal(45)
-                expect(updatedRecipe.rating).to.equal(4)
+                // expect(updatedRecipe.ratings).to.equal(4)
             })
     })
 
@@ -100,7 +100,7 @@ describe('editRecipe', () => {
                     cookTime: 30,
                     ingredients: [{ name: 'Salt', quantity: 1, unit: 'tsp' }],
                     description: 'A simple recipe.',
-                    rating: 3
+                    // rating: 3
                 }).then(recipe => ({ user2, recipe }))
             })
             .then(({ user2, recipe }) => editRecipe(user2._id.toString(), recipe._id.toString(), {

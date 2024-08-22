@@ -8,7 +8,7 @@ import deleteRecipe from './deleteRecipe.js'
 import searchRecipes from './searchRecipes.js'
 import editUsername from './editUsername.js'
 import editRecipe from './editRecipe.js'
-import rateRecipe from './rateRecipe.js'
+// import rateRecipe from './rateRecipe.js'
 import toggleLikeRecipe from './toggleLikeRecipe.js'
 
 const logic = {
@@ -23,7 +23,7 @@ const logic = {
     editUsername,
     editRecipe,
     toggleLikeRecipe,
-    rateRecipe
+    // rateRecipe
 }
 
 export default logic

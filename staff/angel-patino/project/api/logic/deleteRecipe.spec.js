@@ -36,7 +36,7 @@ describe('deleteRecipe', () => {
                 cookTime: 55,
                 ingredients: [{ name: 'huevos', quantity: 2, unit: 'ml' }],
                 description: 'mix',
-                rating: 3
+                // rating: 3
             })
                 .then(recipe => ({ user, recipe }))
             )
@@ -60,7 +60,7 @@ describe('deleteRecipe', () => {
             cookTime: 55,
             ingredients: [{ name: 'huevos', quantity: 2, unit: 'ml' }],
             description: 'mix',
-            rating: 3,
+            // rating: 3,
             liked: []
         })
             .then(recipe => deleteRecipe(new ObjectId().toString(), recipe.id))
@@ -109,7 +109,7 @@ describe('deleteRecipe', () => {
                     cookTime: 55,
                     ingredients: [{ name: 'huevos', quantity: 2, unit: 'ml' }],
                     description: 'mix',
-                    rating: 3,
+                    // rating: 3,
                 })
                 return Promise.all([user.save(), recipe.save()])
                     .then(([savedUser, savedRecipe]) => {

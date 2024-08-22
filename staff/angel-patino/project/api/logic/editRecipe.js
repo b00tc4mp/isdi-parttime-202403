@@ -34,10 +34,10 @@ const editRecipe = (userId, recipeId, updates) => {
         updateFields.description = updates.description
     }
 
-    if (updates.rating) {
-        validate.rating(updates.rating, 'rating')
-        updateFields.rating = updates.rating
-    }
+    // if (updates.ratings) {
+    //     validate.rating(updates.rating, 'rating')
+    //     updateFields.rating = updates.ratings
+    // }
 
     return Recipe.findOneAndUpdate({ _id: recipeId.toString(), author: userId }, updateFields, { new: true }).lean()
         .catch(error => { throw new SystemError(error.message) })

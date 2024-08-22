@@ -1,7 +1,7 @@
 import 'dotenv/config'
-import mongoose from 'mongoose'
+import mongoose, { Types } from 'mongoose'
 import { expect } from 'chai'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 import { User, Recipe } from '../data/index.js'
 import toggleLikeRecipe from './toggleLikeRecipe.js'
@@ -17,6 +17,8 @@ describe('toggleLikeRecipe', () => {
     beforeEach(() => Promise.all([User.deleteMany(), Recipe.deleteMany()]))
 
     it('succeeds in liking a recipe', () => {
+        let user, recipe;
+
         return bcrypt.hash('12345678', 8)
             .then(hash => User.create({
                 name: 'pepe',
@@ -25,25 +27,31 @@ describe('toggleLikeRecipe', () => {
                 username: 'pepeluis',
                 password: hash
             }))
-            .then(user => Recipe.create({
-                author: user._id,
-                title: 'Test Recipe',
-                thumbnail: 'https://example.com/image.jpg',
-                cookTime: 30,
-                ingredients: [{ name: 'Salt', quantity: 1, unit: 'tsp' }],
-                description: 'A test recipe.',
-                likes: []
-            }).then(recipe => ([user, recipe])))
-            .then(({ user, recipe }) => toggleLikeRecipe(user._id.toString(), recipe._id.toString())
-                .then(() => Recipe.findById(recipe._id))
-                .then(updateRecipe => {
-                    expect(updateRecipe.likes).to.have.lengthOf(1)
-                    expect(updateRecipe.likes[0].toString()).to.equal(user._id.toString())
-                })
-            )
+            .then(createdUser => {
+                user = createdUser;
+                return Recipe.create({
+                    author: user._id,
+                    title: 'Test Recipe',
+                    thumbnail: 'https://example.com/image.jpg',
+                    cookTime: 30,
+                    ingredients: [{ name: 'Salt', quantity: 1, unit: 'tsp' }],
+                    description: 'A test recipe.',
+                    likes: []
+                });
+            })
+            .then(createdRecipe => {
+                recipe = createdRecipe;
+                return toggleLikeRecipe(user._id.toString(), recipe._id.toString())
+            })
+            .then(() => Recipe.findById(recipe._id))
+            .then(updatedRecipe => {
+                expect(updatedRecipe.likes[0].toString()).to.equal(user._id.toString())
+            })
     })
 
-    it('succeds in unliking a recipe', () => {
+    it('succeeds in unliking a recipe', () => {
+        let user, recipe;
+
         return bcrypt.hash('12345678', 8)
             .then(hash => User.create({
                 name: 'pepe',
@@ -52,21 +60,27 @@ describe('toggleLikeRecipe', () => {
                 username: 'pepeluis',
                 password: hash
             }))
-            .then(user => Recipe.create({
-                author: user._id,
-                title: 'Test Recipe',
-                thumbnail: 'https://example.com/image.jpg',
-                cookTime: 30,
-                ingredients: [{ name: 'Salt', quantity: 1, unit: 'tsp' }],
-                description: 'A test recipe.',
-                likes: [user._id]
-            }).then(recipe => ([user, recipe])))
-            .then(({ user, recipe }) => toggleLikeRecipe(user._id.toString(), recipe._id.toString())
-                .then(() => Recipe.findById(recipe._id))
-                .then(updateRecipe => {
-                    expect(updateRecipe.likes).to.have.lengthOf(0)
-                })
-            )
+            .then(createdUser => {
+                user = createdUser
+                return Recipe.create({
+                    author: user._id,
+                    title: 'Test Recipe',
+                    thumbnail: 'https://example.com/image.jpg',
+                    cookTime: 30,
+                    ingredients: [{ name: 'Salt', quantity: 1, unit: 'tsp' }],
+                    description: 'A test recipe.',
+                    likes: []
+                });
+            })
+            .then(createdRecipe => {
+                recipe = createdRecipe;
+                return toggleLikeRecipe(user._id.toString(), recipe._id.toString())
+            })
+            .then(() => Recipe.findById(recipe._id))
+            .then(updatedRecipe => {
+                expect(updatedRecipe.likes).to.have.lengthOf(1)
+                expect(updatedRecipe.likes[0].toString()).to.equal(user._id.toString())
+            })
     })
 
     it('fails when the user does not exist', () => {
@@ -121,8 +135,8 @@ describe('toggleLikeRecipe', () => {
         })
             .then(recipe => {
                 try {
-                    toggleLikeRecipe('invalidUserId', recipe._id.toString())
-                } catch (errror) {
+                    toggleLikeRecipe('invalidUserId', new ObjectId().toString())
+                } catch (error) {
                     errorThrown = error
 
                 } finally {
