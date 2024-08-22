@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 
 import logic from "../../logic/index"
 
@@ -32,6 +32,11 @@ export default function Home() {
       alert(error.message)
     }
   }, [])
+
+  const { role, userId } = logic.getInfo()
+  if (role === "customer") {
+    return <Navigate to={`/customer/${userId}/info`} />
+  }
 
   return (
     <>

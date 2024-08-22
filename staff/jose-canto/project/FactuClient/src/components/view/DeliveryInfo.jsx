@@ -66,7 +66,7 @@ export default function DeliveryInfo() {
     <>
       <Header
         iconUser={<GiStabbedNote />}
-        iconLeftHeader={<MdDeleteForever />}
+        iconLeftHeader={logic.getInfo().role === "user" && <MdDeleteForever />}
         className={"HeaderDeliveryInfo"}
         onDeleteDeliveryNote={handleShowConfirmDelete}
       ></Header>

@@ -3,6 +3,7 @@ import registerUser from "./registerUser.js"
 import loginUser from "./loginUser.js"
 import getUserName from "./getUserName.js"
 import logoutUser from "./logoutUser.js"
+import getInfo from "./getInfo.js"
 
 import getAllCustomers from "./getAllCustomers.js"
 import registerCustomer from "./registerCustomer.js"
@@ -33,6 +34,7 @@ const logic = {
   registerUser,
   logoutUser,
   getUserName,
+  getInfo,
 
   registerCustomer,
 

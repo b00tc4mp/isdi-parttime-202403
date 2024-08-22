@@ -14,7 +14,7 @@ import MonthFilter from "../MonthFilter"
 import logic from "../../logic/index"
 
 import "./NewInvoice.css"
-import SearchFilter from "../searchFilter"
+import SearchFilter from "../SearchFilter"
 
 export default function NewInvoice() {
   const { alert } = useContext()

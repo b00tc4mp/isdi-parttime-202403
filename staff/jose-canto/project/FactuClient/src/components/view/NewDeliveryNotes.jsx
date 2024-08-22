@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
-import SearchFilter from "../searchFilter"
+import SearchFilter from "../SearchFilter"
 
 import useContext from "../../useContext"
 import { SystemError } from "com/errors"

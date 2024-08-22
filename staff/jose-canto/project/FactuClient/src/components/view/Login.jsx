@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 import useContext from "../../useContext"
 import { SystemError } from "com/errors"
@@ -28,8 +29,16 @@ export default function Login() {
     try {
       // prettier-ignore
       logic.loginUser(username, password)
-        .then(() => {
-          navigate("/")
+        .then(() => {    
+          const { role, userId } = logic.getInfo()
+          if(role === "user"){
+            navigate("/")
+          } 
+
+          if(role === "customer"){
+          navigate(`/customer/${userId}/info` )
+          }
+
         })
         .catch((error) => {
           if(error instanceof SystemError) {

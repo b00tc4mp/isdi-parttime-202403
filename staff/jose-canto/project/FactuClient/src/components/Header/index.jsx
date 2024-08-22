@@ -17,7 +17,8 @@ export default function Header({
   onRegisterCustomer,
   onDeleteDeliveryNote,
   onDeleteCustomer,
-  onDeleteInvoice
+  onDeleteInvoice,
+  showBackButton = true
 }) {
   const navigate = useNavigate()
   const location = useLocation()
@@ -50,6 +51,7 @@ export default function Header({
   const isCustomerProfilePathDeliveryNoteId = matchPath("/delivery-notes/:deliveryNoteId", location.pathname)
   const isCustomerProfilePathCreateDeliveryNoteId = matchPath("/create/delivery-notes/:customerId", location.pathname)
   const isCustomerProfilePathInvoiceId = matchPath("/invoices/:invoiceId", location.pathname)
+  const isCustomerInfoPath = matchPath("/customer/:customerId/info", location.pathname)
 
   return (
     <>
@@ -147,13 +149,23 @@ export default function Header({
             <div className="Children">{children}</div>
           </div>
         )}
+
+        {isCustomerInfoPath && (
+          <div className="ContainerHeader">
+            <div className="IconUser">{iconUser}</div>
+            <div className="Children">{children}</div>
+            <div onClick={handleLogout} className="IconLeftHeader">
+              {iconLeftHeader}
+            </div>
+          </div>
+        )}
       </div>
 
       <span className="IconExit">
         {location.pathname === "/" ? (
           <GiExitDoor onClick={handleLogout} />
         ) : (
-          <TiArrowBack onClick={() => navigate(-1)} />
+          showBackButton && <TiArrowBack onClick={() => navigate(-1)} />
         )}
       </span>
 

@@ -16,6 +16,7 @@ import CreateDeliveryNotes from "./components/view/CreateDeliveryNotes"
 import InvoiceInfo from "./components/view/InvoiceInfo"
 import NewInvoice from "./components/view/NewInvoice"
 import Alert from "./components/Alert"
+import CustomerInfo from "./components/view/CustomerInfo"
 
 import logic from "./logic/index"
 
@@ -26,6 +27,7 @@ function App() {
 
   const handleMessage = (message) => setMessage(message)
   const handleAlertAccepted = () => setMessage(null)
+
   return (
     <>
       <Context.Provider value={{ alert: handleMessage }}>
@@ -36,6 +38,8 @@ function App() {
 
           <Route path="/customers" element={<CustomerList />} />
           <Route path="/customers/profile/:customerId" element={<CustomerProfile />} />
+
+          <Route path="/customer/:customerId/info" element={<CustomerInfo />} />
 
           <Route path="/users/profile" element={<UsersProfile />} />
 

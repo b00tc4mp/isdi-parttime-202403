@@ -2,13 +2,13 @@
 
 @layer components {
   .CustomerProfile {
-    @apply mt-[7rem] gap-0;
+    @apply mt-[6.5rem] gap-0;
   }
   .CustomerProfile p {
-    @apply text-center text-xl font-bold;
+    @apply text-center text-[1.1rem] font-bold;
   }
 
   .CustomerButtons {
-    @apply m-0 w-[8.5rem] cursor-pointer;
+    @apply -mt-2 w-[8.5rem] cursor-pointer;
   }
 }

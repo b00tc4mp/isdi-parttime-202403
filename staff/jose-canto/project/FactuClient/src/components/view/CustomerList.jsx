@@ -13,7 +13,7 @@ import Main from "../core/Main"
 import logic from "../../logic/index"
 
 import "./CustomerList.css"
-import SearchFilter from "../searchFilter"
+import SearchFilter from "../SearchFilter"
 
 export default function CustomerList() {
   const [customers, setCustomers] = useState([])

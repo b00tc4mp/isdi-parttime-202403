@@ -83,6 +83,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginBottom: 15
+  },
+  footer: {
+    textAlign: "center",
+    fontSize: 10,
+    marginTop: 20,
+    color: "#666666"
   }
 })
 
@@ -144,6 +150,7 @@ const DeliveryNotePDF = ({ deliveryNote, total }) => {
 
           <Text style={styles.total}>TOTAL: {total.toFixed(2)} €</Text>
         </View>
+        <Text style={styles.footer}>FactuClient APP</Text>
       </Page>
     </Document>
   )

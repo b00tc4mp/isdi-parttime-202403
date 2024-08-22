@@ -12,7 +12,7 @@ import Footer from "../core/Footer"
 import logic from "../../logic"
 
 import "./InvoiceList.css"
-import SearchFilter from "../searchFilter"
+import SearchFilter from "../SearchFilter"
 
 export default function InvoiceList() {
   const { alert } = useContext()

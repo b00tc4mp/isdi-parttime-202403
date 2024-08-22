@@ -135,7 +135,6 @@ export default function CustomerProfile() {
             <div className="ProfileInfoContainer">
               <ProfileInfoItem label="UserName " value={customer?.username} />
               <ProfileInfoItem label="Nombre " value={customer?.fullName} />
-              <ProfileInfoItem label="Empresa" value={customer?.companyName} />
               <ProfileInfoItem label="Email" value={customer?.email} />
               <ProfileInfoItem label="CIF/NIF" value={customer?.taxId} />
               <ProfileInfoItem label="Nº Móvil" value={customer?.phone} />
@@ -154,7 +153,7 @@ export default function CustomerProfile() {
         )}
 
         {showCustomerData === "DeliveryNotes" && (
-          <ul className="DeliveryList">
+          <ul className="mt-8">
             {deliveryNotes.map((deliveryNote) => (
               <Link className="DeliveryLink" to={`/delivery-notes/${deliveryNote.id}`} key={deliveryNote.id}>
                 <li className="DeliveryNote">
@@ -167,7 +166,7 @@ export default function CustomerProfile() {
         )}
 
         {showCustomerData === "Invoices" && (
-          <ul className="InvoiceList">
+          <ul className="mt-8">
             {invoices.map((invoice) => (
               <Link className="InvoiceLink" key={invoice.id} to={`/invoices/${invoice.id}`}>
                 <li className="Invoice" key={invoice.id}>

@@ -21,7 +21,7 @@ const authenticateUser = (username, password) => {
             throw new CredentialsError("Wrong password")
           }
 
-          return userFound._id.toString()
+          return { userId: userFound._id.toString(), role: userFound.role }
         })
     })
 }
