@@ -11,10 +11,6 @@ import Button from '../components/core/Button'
 import AddTaskForm from './components/AddTaskForm'
 import HomeScreen from './components/HomeScreen'
 import Link from '../components/core/Link'
-/*import MyTaskList from './components/MyTasksList'
-import MyInProgressTaskList from './components/MyInProgressTaskList'
-import MyPrivateTaskList from './components/MyPrivateTaskList'
-import MyFinishedTaskList from './components/MyFinishedTaskList'*/
 import Users from './Users'
 
 import logic from '../logic'
@@ -46,7 +42,7 @@ function Home({ onUserLoggedOut }) {
 
     const handleAddTaskClick = () => setAddTaskForm(true)
 
-    const handleCancelClick = () => setAddTaskForm(false)
+    const handleProcessFinishClick = () => setAddTaskForm(false)
 
     return <div className="container grid">
         <nav className="flex justify-between items-center px-4 shadow shadow-gray-300 w-screen">
@@ -58,7 +54,7 @@ function Home({ onUserLoggedOut }) {
                 <Route path="/users" element={<Users/>} />
             </Routes>
 
-            {addTaskForm && <AddTaskForm onCancelAddTaskClick={handleCancelClick} onTaskAdded={handleAddTaskClick} />}
+            {addTaskForm && <AddTaskForm onProcessFinished={handleProcessFinishClick} />}
             {page === 'home' && <HomeScreen/>}
        </div>
 

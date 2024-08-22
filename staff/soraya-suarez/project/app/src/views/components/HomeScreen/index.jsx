@@ -12,8 +12,8 @@ function HomeScreen () {
     
     const handleNavigateTo = (url) => setPage(url)
 
-    return <div className="container grid">
-        <div className="py-4">
+    return <div >
+        <div>
             <View>
                 <nav className="flex justify-center text-xs w-screen">
                     <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('my-tasks')}>My tasks</Button>

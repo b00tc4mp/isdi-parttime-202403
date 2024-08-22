@@ -13,7 +13,7 @@ import useContext from '../../../useContext'
 
 import './index.css'
 
-function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
+function AddTaskForm({ onProcessFinished }) {
     const { alert } = useContext()
 
     const [message, setMessage] = useState('')
@@ -43,7 +43,7 @@ function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
         setOwnerChecked(target.value);
     }
 
-    const handleCancelAddTaskClick = () => onCancelAddTaskClick()
+    const handleCancelAddTaskClick = () => onProcessFinished()
 
     const handleAddTaskSubmit = event => {
         event.preventDefault()
@@ -67,7 +67,7 @@ function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
 
         try {
             logic.addTask(owner, name, description, status, priority, visible)
-                .then(() => onTaskAdded())
+                .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
 
@@ -86,7 +86,7 @@ function AddTaskForm({ onCancelAddTaskClick, onTaskAdded }) {
         }
     }
 
-    return <View className="AddTaskForm">
+    return <View className="AddTaskForm bg-white">
         <FormWithFeedback onSubmit={handleAddTaskSubmit} message={message}>
             <Field id="name" value={inputName} onChange={onInputNameChange}>Name</Field>
             <Field id="description" value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>

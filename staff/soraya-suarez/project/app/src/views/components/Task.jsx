@@ -126,7 +126,7 @@ function Task({ task, onTaskRefreshed }) {
         {confirmModifyStatusOrObservationsVisible && <ModifyStatusOrObervationTaskForm task={task}  onProcessFinished={handleFinishModifyStatusOrObservationsProcess}/>}
         {confirmReleaseVisible && <ReleaseTaskForm task={task} onProcessFinished={handleFinishReleaseProcess} />}
         {confirmFinishVisible && <FinishTaskForm task={task} onProcessFinished={handleFinishProcess} />}
-        {confirmDeleteVisible && <Confirm message="Delete task?" onAccept={handleDeleteTaskAccepted} onCancel={handleDeleteTaskCancelled} />}
+        {confirmDeleteVisible && <Confirm message="Delete task?  " onAccept={handleDeleteTaskAccepted} onCancel={handleDeleteTaskCancelled} />}
     </div>
 }
 
