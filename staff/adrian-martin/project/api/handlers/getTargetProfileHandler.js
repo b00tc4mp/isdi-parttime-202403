@@ -11,10 +11,10 @@ export default (req, res, next) => {
             .then(payload => {
 
                 const { sub: userId } = payload
-                const { targetProfile } = req.params
+                const { targetProfileId } = req.params
 
                 try {
-                    logic.getTargetProfile(userId, targetProfile)
+                    logic.getTargetProfile(userId, targetProfileId)
                         .then(targetProfile => {
 
                             res.json(targetProfile)
@@ -26,6 +26,6 @@ export default (req, res, next) => {
             })
             .catch(error => next(new CredentialError(error.message)))
     } catch (error) {
-
+        next(error)
     }
 }

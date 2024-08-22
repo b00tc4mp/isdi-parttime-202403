@@ -1,10 +1,10 @@
-import errors, { SystemError } from "com/errors";
-import extractPayloadFromJWT from "../util/extractPayloadFromJWT";
+import errors, { SystemError } from 'com/errors'
+import validate from 'com/validate'
 
-const getUserName = () => {
-    const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
+const getTargetProfile = (targetProfileId) => {
+    validate.id(targetProfileId, 'targetProfileId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/profiles/${targetProfileId}`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
@@ -14,18 +14,16 @@ const getUserName = () => {
             if (response.status === 200)
                 return response.json()
                     .catch(() => { throw new SystemError('Connection error') })
-                    .then(username => username)
+                    .then(targetProfileId => targetProfileId)
 
             return response.json()
                 .catch(() => { throw new SystemError('Connection error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })
 }
 
-export default getUserName
+export default getTargetProfile
