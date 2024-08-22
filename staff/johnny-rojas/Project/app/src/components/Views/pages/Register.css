@@ -3,13 +3,13 @@
 
 @layer base {
   body {
-    @apply min-h-screen w-full flex flex-col items-center justify-center bg-white text-gray-900;
+    @apply min-h-screen w-full flex flex-col items-center justify-center bg-white text-gray-900
   }
 }
 
 @layer components {
 .TitlePrincipalRegister{
-  @apply text-3xl font-semibold mb-6;
+  @apply text-3xl font-semibold mb-6 mt-16
 }
   .RegisterForm {
     @apply text-center flex flex-col justify-center items-center w-full max-w-md px-4 py-6 mt-6 mb-6 pt-6 pb-6;

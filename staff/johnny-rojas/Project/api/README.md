@@ -1,29 +1,23 @@
-Root
-- Routes for the Administrator:
-	- POST /rooms (Create room OJO)
-	- GET /rooms (View rooms)
-	- PUT /rooms/:id (Update room)
-	- DELETE /rooms/:id (Delete room)
-	- GET /reservations (View all reservations)
-	- PUT /reservations/:id (Update reservation)
-	- DELETE /reservations/:id (Cancel reservation)
-	- POST /invoices (Generate invoice WIP STRIPE)
-	- GET /invoices (View invoices WIP STRIPE)
-	- PUT /invoices/:id (Confirm payment WIP STRIPE)
-	- GET /reports (Generate reports)
-	- GET /users (Manage customer profiles)
-- Customer Routes:
-	- GET /rooms (Search rooms)
-	- GET /rooms/:id (View room details)
-	- POST /reservations (Create reservation)
-	- GET /reservations/my_reservations (View my reservations)
-	- PUT /reservations/:id (Modify my reservation)
-	- DELETE /reservations/:id (Cancel my reservation)
-	- GET /invoices/my_invoices (View my invoices WIP STRIPE)
-	- POST /payments (Make payment WIP STRIPE)
-	- GET /profile (View my profile)
-	- PUT /profile (Update my profile)
-	- GET /booking_history (View booking history)
+Router
 
+- Routes for User:
+	- POST /users (Create user)
+	- PATCH /users/:userId/manage (Update information user)
+	- DELETE /users/:userId/manage(Soft delete for user)
+	- POST /users/auth (Delete room)
+	
+- Routes for Room:
+	- GET /rooms (Get Rooms)
+	- POST /rooms (Create Room)
+	- GET /rooms/:roomId (Get Room)
+	- POST /users/:userId/rooms (Get all user Rooms)
+	- PATCH /rooms/:roomId/manage (Update information rooms )
+	- DELETE /rooms/:roomId/manage (Delete room)
+
+- Routes for Room:
+	- POST /create-booking/:roomId (Create Booking)
+	- GET /create-booking/:roomId (Get blocked days by Room)
+	- GET /bookings/:roomId (Get Room bookings)
+	- DELETE /rooms/:roomId/manage/booking (Cancell Booking)
 
 	//TODO actualizar

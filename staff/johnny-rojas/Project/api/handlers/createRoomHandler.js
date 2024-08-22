@@ -13,10 +13,10 @@ const createRoomHandler = ((req, res, next) => {
       .then(payload => {
         const { sub: userId } = payload
 
-        const { nameRoom, region, city, image, description, price, likes } = req.body;
+        const { nameRoom, region, city, image, description, price } = req.body;
 
         try {
-          logic.createRoom(userId, nameRoom, region, city, image, description, price, likes)
+          logic.createRoom(userId, nameRoom, region, city, image, description, price)
             .then(() => { res.status(201).send() })
             .catch(error => next(error))
         } catch (error) {

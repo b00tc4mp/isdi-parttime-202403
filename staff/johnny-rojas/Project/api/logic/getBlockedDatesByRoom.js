@@ -9,10 +9,13 @@ const getBlockedDatesByRoom = (roomId) => {
   return Room.findById(roomId).select('-__V').lean()
     .catch(error => { throw new SystemError(error.message) })
     .then(() => {
-      return Booking.find({ room: roomId }).lean()
+
+      return Booking.find({ room: roomId, isBlocked: false }).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(allBookings => {
+
           const blockedDates = allBookings.flatMap(booking => {
+            
             const dates = []
             let currentDate = new Date(booking.startDate)
             while (currentDate <= booking.endDate) {

@@ -35,10 +35,6 @@ const user = new Schema({
         default: 'guest',
         enum: ['guest', 'host'],
     },
-    room: {
-        type: ObjectId,
-        ref:'Room'
-    },
     isBlocked: {
         type: Boolean, 
         default: false

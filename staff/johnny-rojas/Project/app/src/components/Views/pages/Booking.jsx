@@ -13,7 +13,6 @@ import Title from "../core/Title";
 
 import './Booking.css'
 
-
 function Booking() {
   const userId = getUserId();
   const { roomId } = useParams();
@@ -74,69 +73,70 @@ function Booking() {
   }
 
   return (
-    <div>
+    <div >
       <Header>
         <TopBar />
       </Header>
-
-      <div className="Info">
-        <img src={room.image} alt='Room' className='Image' />
-
-        <div className='InfoCard'>
-          <div className="InfoCardLeft">
-            <p className="nameRoom">{room.nameRoom}</p>
-            <p className="city">{room.city}</p>
-            <p className="descriptionRoom">{room.description}</p>
-          </div>
-
-          <div className="InfoCardRight">
-            <div className='Price'>
-              <p className="ppn">Precio por noche</p>
-              <p className="priceRoom">{room.price}</p>
+      <div>
+        
+        <div className="Info">
+          <img src={room.image} alt='Room' className='Image' />
+          <div className='InfoCard'>
+            <div className="InfoCardLeft">
+              <p className="nameRoom">{room.nameRoom}</p>
+              <p className="city">{room.city}</p>
+              <p className="descriptionRoom">{room.description}</p>
             </div>
-          </div>
-          <div className="TitleDates">
-            <Title className='SelectDates'>Selecciona tus fechas</Title>
-          </div>
 
-          <div className="DateSelect">
-            <form onSubmit={handleSubmit}>
-              <div className="Calendar">
-                <div className="DateRight">
-                  <DatePicker
-                    selected={startDate}
-                    onChange={date => setStartDate(date)}
-                    minDate={new Date()}
-                    excludeDates={unavailableDates}
-                    placeholderText="Fecha de inicio"
-                    dateFormat="dd/MM/yyyy"
-                  />
-                </div>
-                <div className="DateLeft">
-                  <DatePicker
-                    selected={endDate}
-                    onChange={date => setEndDate(date)}
-                    minDate={startDate}
-                    excludeDates={unavailableDates}
-                    placeholderText="Fecha de salida"
-                    dateFormat="dd/MM/yyyy"
-                  />
-                </div>
+            <div className="InfoCardRight">
+              <div className='Price'>
+                <p className="ppn">Precio por noche</p>
+                <p className="priceRoom">{room.price}</p>
               </div>
-              <div className="TitlePayment">
-                <Title className='TitlePrincipalPayment'>Realiza tu pago</Title>
-              </div>
-              <View className='RegisterFormPayment' >
+            </div>
+            <div className="TitleDates">
+              <Title className='SelectDates'>Selecciona tus fechas</Title>
+            </div>
 
-                <Field id='name' type='text' placeholder='Nombre en la tarjeta ' />
-                <Field id='text' type='text' placeholder='Nº de tarjeta' />
-                <Field id='text' type='text' placeholder='Caducidad' />
-                <Field id='photextne' type='text' placeholder='CCV' />
+            <div className="DateSelect">
+              <form onSubmit={handleSubmit}>
+                <div className="Calendar">
+                  <div className="DateRight">
+                    <DatePicker
+                      selected={startDate}
+                      onChange={date => setStartDate(date)}
+                      minDate={new Date()}
+                      excludeDates={unavailableDates}
+                      placeholderText="Fecha de inicio"
+                      dateFormat="dd/MM/yyyy"
+                    />
+                  </div>
+                  <div className="DateLeft">
+                    <DatePicker
+                      selected={endDate}
+                      onChange={date => setEndDate(date)}
+                      minDate={startDate}
+                      excludeDates={unavailableDates}
+                      placeholderText="Fecha de salida"
+                      dateFormat="dd/MM/yyyy"
+                    />
+                  </div>
+                </div>
+                <div className="TitlePayment">
+                  <Title className='TitlePrincipalPayment'>Realiza tu pago</Title>
+                </div>
+                <View className='RegisterFormPayment' >
 
-                <button type="submit">Create Booking</button>
-              </View>
+                  <Field id='name' type='text' placeholder='Nombre en la tarjeta ' />
+                  <Field id='text' type='text' placeholder='Nº de tarjeta' />
+                  <Field id='text' type='text' placeholder='Caducidad' />
+                  <Field id='photextne' type='text' placeholder='CCV' />
 
-            </form>
+                  <button type="submit">Create Booking</button>
+                </View>
+
+              </form>
+            </div>
           </div>
         </div>
       </div>

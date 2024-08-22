@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.18% </span>
+                <span class="strong">76% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/22</span>
+                <span class='fraction'>19/25</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.66% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/15</span>
+                <span class='fraction'>9/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.18% </span>
+                <span class="strong">76% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/22</span>
+                <span class='fraction'>19/25</span>
             </div>
         
             
@@ -114,7 +114,8 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,14 +130,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,10 +137,19 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,28 +181,29 @@ const closeAccount = (userId) =&gt; {
       if (!user) {
         throw new NotFoundError('user not found')
       }
-      return User.findByIdAndUpdate({ _id: userId }, { $set: { isBlocked: true } })
+      debugger
+      return User.updateOne({ _id: userId }, { $set: { isBlocked: true } })
         .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-        .then(user =&gt; {
+        .then(() =&gt; {
 &nbsp;
-          return Room.find({ manager: user.id }).lean()
+          return Room.find({ manager: user._id }).lean()
             .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
             .then(rooms =&gt; {
-&nbsp;
+              debugger
               return Promise.all(rooms.map(room =&gt; {
                 return Room.updateOne({ _id: room._id }, { $set: { isBlocked: true } })
                   .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-                  .then(room =&gt; {
+                  .then(() =&gt; {
 &nbsp;
                     return Booking.find({ room: room._id }).lean()
                       .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
                       .then(bookings =&gt; {
-&nbsp;
-                        return Promise.all(bookings.map(<span class="fstat-no" title="function not covered" >booking =&gt; {</span>
+                        debugger
+                        return Promise.all(bookings.map(booking =&gt; {
                           
-<span class="cstat-no" title="statement not covered" >                          return Booking.updateOne({ _id: booking._id }, { $set: { isBlocked: true } })</span>
+                          return Booking.updateOne({ _id: booking._id }, { $set: { isBlocked: true } })
                             .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-                            .then(<span class="fstat-no" title="function not covered" >() =&gt; {</span>})
+                            .then(() =&gt; {})
                         }))
                       })
                      
@@ -223,7 +226,7 @@ export default closeAccount
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-21T14:22:28.496Z
+                at 2024-08-21T19:44:39.569Z
             </div>
         <script src="../prettify.js"></script>
         <script>

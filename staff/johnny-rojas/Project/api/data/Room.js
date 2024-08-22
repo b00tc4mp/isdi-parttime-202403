@@ -32,10 +32,6 @@ const room = new Schema({
     type: String,
     required: true
   },
-  likes: [{
-    type: ObjectId,
-    ref: 'User'
-  }],
   manager: {
     type: ObjectId,
     ref:'User'

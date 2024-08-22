@@ -160,7 +160,7 @@ describe('close account', () => {
           expect(room.isBlocked).to.be.true
         })
       })
-      .then(() => Booking.find({ _id: room._id }))
+      .then(() => Booking.find({ room: room._id }))
       .then(deletedBookings => {
         expect(deletedBookings).to.be.an('array')
         deletedBookings.forEach(booking => {
@@ -168,7 +168,7 @@ describe('close account', () => {
           expect(booking.isBlocked).to.be.true
         })
 
-    })
+      })
   })
 
 
@@ -194,7 +194,3 @@ describe('close account', () => {
   })
   after(() => Promise.all([User.deleteMany(), Room.deleteMany(), Booking.deleteMany()]))
 })
-
-
-
-//TODO hacer 3 rooms y 3 bookings que y que expect sea que este en estado isblocked true

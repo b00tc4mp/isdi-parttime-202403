@@ -20,7 +20,7 @@ const createBooking = (userId, roomId, startDate, endDate) => {
             throw new NotFoundError('room not found')
           }
 
-          return Booking.find({ room: roomId }).select('-__v').lean()
+          return Booking.find({ room: roomId, isBlocked: false }).select('-__v').lean()
             .catch(error => { throw new SystemError(error.message) })
             .then((existingBooking) => {
 

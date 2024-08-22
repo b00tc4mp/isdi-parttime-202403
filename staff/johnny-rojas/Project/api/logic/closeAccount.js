@@ -12,31 +12,32 @@ const closeAccount = (userId) => {
       if (!user) {
         throw new NotFoundError('user not found')
       }
-      return User.findByIdAndUpdate({ _id: userId }, { $set: { isBlocked: true } })
-        .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
 
-          return Room.find({ manager: user.id }).lean()
+      return User.updateOne({ _id: userId }, { $set: { isBlocked: true } })
+        .catch(error => { throw new SystemError(error.message) })
+        .then(() => {
+
+          return Room.find({ manager: user._id }).lean()
             .catch(error => { throw new SystemError(error.message) })
             .then(rooms => {
 
               return Promise.all(rooms.map(room => {
                 return Room.updateOne({ _id: room._id }, { $set: { isBlocked: true } })
                   .catch(error => { throw new SystemError(error.message) })
-                  .then(room => {
+                  .then(() => {
 
                     return Booking.find({ room: room._id }).lean()
                       .catch(error => { throw new SystemError(error.message) })
                       .then(bookings => {
 
                         return Promise.all(bookings.map(booking => {
-                          
+
                           return Booking.updateOne({ _id: booking._id }, { $set: { isBlocked: true } })
                             .catch(error => { throw new SystemError(error.message) })
-                            .then(() => {})
+                            .then(() => { })
                         }))
                       })
-                     
+
                   })
               }))
 

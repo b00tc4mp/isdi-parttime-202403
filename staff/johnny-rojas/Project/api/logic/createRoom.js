@@ -32,7 +32,6 @@ const createRoom = (userId, nameRoom, region, city, image, description, price) =
         image,
         description,
         price,
-        likes: [],
         manager: userId
       }
       return Room.create(room)
