@@ -1,0 +1,17 @@
+.Searcher {
+    display: flex;
+    justify-content: center;
+}
+
+.Searcher-text-icon {
+
+    align-items: center;
+    display: flex;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.Text {
+    font-size: 20px;
+    outline: none;
+    text-align: center
+}
