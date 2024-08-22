@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import logic from '../../../logic/index';
 import Header from '../Header/Header';
@@ -19,20 +19,32 @@ function Profile() {
     console.log('Profile -> render')
 
     const navigate = useNavigate()
+    const { userId } = useParams()
     const [username, setUsername] = useState(null)
     const [isEditingUsername, setIsEditingUsername] = useState(false)
     const [refresh, setRefresh] = useState(Date.now());
 
     useEffect(() => {
-        logic.getUserName()
-            .then(username => {
-                setUsername(username)
-            })
-            .catch(error => {
-                console.error(error)
-                alert(error.message)
-            })
-    }, [refresh])
+        if (userId) {
+            logic.getTargetProfile(userId)
+                .then(profile => {
+                    setUsername(profile.username)
+                })
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+        } else {
+            logic.getUserName()
+                .then(username => {
+                    setUsername(username)
+                })
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+        }
+    }, [userId, refresh])
 
     const handleRefresh = () => {
         setRefresh(Date.now())
@@ -59,14 +71,16 @@ function Profile() {
             </div>
             <div className='Username-edit'>
                 <Text className='Username'>{username}</Text>
-                <div className='Icon-edit'>
-                    <FontAwesomeIcon
-                        icon={faPen}
-                        size='xl'
-                        style={{ color: '#235186', }}
-                        onClick={startEditingUsername}
-                    />
-                </div>
+                {!userId && (
+                    <div className='Icon-edit'>
+                        <FontAwesomeIcon
+                            icon={faPen}
+                            size='xl'
+                            style={{ color: '#235186', }}
+                            onClick={startEditingUsername}
+                        />
+                    </div>
+                )}
             </div>
 
             {isEditingUsername && (

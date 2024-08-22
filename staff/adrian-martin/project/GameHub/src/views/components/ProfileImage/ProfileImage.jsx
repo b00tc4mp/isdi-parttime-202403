@@ -30,14 +30,14 @@ function ProfileImage({ size = '250px', showRotate = true, borderRadius = '10px'
                 style={{ width: size, height: size, borderRadius: borderRadius }}
             />
 
-            {showRotate && (
+            {/* {showRotate && (
                 <FontAwesomeIcon
                     className='Rotate'
                     icon={faRotate}
                     onClick={handleChangeImage}
                     style={{ fontSize: `calc(${size} / 8)` }}
                 />
-            )}
+            )} */}
 
         </div>
     )

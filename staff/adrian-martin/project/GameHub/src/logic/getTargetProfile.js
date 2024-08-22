@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const getTargetProfile = (targetProfileId) => {
     validate.id(targetProfileId, 'targetProfileId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/profiles/${targetProfileId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/profile/${targetProfileId}`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
@@ -14,7 +14,7 @@ const getTargetProfile = (targetProfileId) => {
             if (response.status === 200)
                 return response.json()
                     .catch(() => { throw new SystemError('Connection error') })
-                    .then(targetProfileId => targetProfileId)
+                    .then(profile => profile)
 
             return response.json()
                 .catch(() => { throw new SystemError('Connection error') })

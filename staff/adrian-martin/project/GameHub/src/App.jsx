@@ -22,6 +22,7 @@ function App() {
             <Route path='/' element={<Home onUserLoggedOut={handleUserLoggedOut} />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/sociallist' element={<SocialList />} />
+            <Route path='/profile/:userId' element={<Profile />} />
         </Routes>
     </>
 }

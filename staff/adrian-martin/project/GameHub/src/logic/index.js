@@ -11,6 +11,7 @@ import deleteGame from "./deleteGame.js"
 import editGame from "./editGame.js"
 import getAllGamesUser from "./getAllGamesUser.js"
 import getAllUsers from "./getAllUsers.js"
+import getTargetProfile from "./getTargetProfile.js"
 
 
 const logic = {
@@ -27,6 +28,7 @@ const logic = {
     editGame,
     getAllGamesUser,
     getAllUsers,
+    getTargetProfile,
 
 }
 
