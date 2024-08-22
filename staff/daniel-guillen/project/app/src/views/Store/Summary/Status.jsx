@@ -3,9 +3,10 @@ import './index.css'
 //components
 import View from '../../../components/core/View'
 import StagnantWasteItem from './StagnantWasteItem'
-//logic
-import useFetchItemsList from '../../../logic/useFetchItemsList'
-import filterByMonthYear from '../../../logic/filterByMonthYear'
+//hooks
+import useFetchItemsList from '../../../hooks/useFetchItemsList'
+//utils
+import filterByMonthYear from '../../../utils/filterByMonthYear'
 
 
 const SummaryStatus = () => {

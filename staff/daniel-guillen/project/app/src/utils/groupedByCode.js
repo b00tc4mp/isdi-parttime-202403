@@ -1,4 +1,4 @@
-import useFetchItemsList from "./useFetchItemsList"
+import useFetchItemsList from "../hooks/useFetchItemsList"
 
 const groupedByCode = (collectionName) => {
 

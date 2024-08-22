@@ -9,9 +9,10 @@ import michelangelo64 from '../../../../components/img/michelangelo64.png'
 import useWasteSelection from '../../../../handlers/useWasteSelection'
 import useWasteContainer from '../../../../handlers/useWasteContainer'
 import useWasteWeight from '../../../../handlers/useWasteWeight'
-//logic
-import useSubmitLoad from '../../../../logic/useSubmitLoad'
-import getWeekNumberYear from '../../../../logic/getWeekNumberYear'
+//hooks
+import useSubmitLoad from '../../../../hooks/useSubmitLoad'
+//utils
+import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 
 
 const RegisterTruckLoad1 = () => {

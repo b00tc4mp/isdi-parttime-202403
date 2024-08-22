@@ -1,0 +1,32 @@
+.FleetOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 50px;
+}
+
+.ImageFleet {
+  width: 100%;
+  max-width: 409px;
+  border-radius: 5px;
+  filter: none;
+  margin-top: 8px;
+  border: grey 2px solid;
+}
+.ImageFleet:hover {
+  filter: grayscale(80%);
+  border: green 2px solid;
+}
+
+.FooterCheckList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Historical {
+  color: white;
+}

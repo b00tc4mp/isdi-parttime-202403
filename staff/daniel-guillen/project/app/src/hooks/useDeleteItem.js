@@ -1,5 +1,5 @@
 import { deleteDoc, doc } from 'firebase/firestore'
-import { db } from '../firebase/config.js'
+import { db } from '../utils/config.js'
 import useFetchItemsList from './useFetchItemsList.js'
 
 const useDeleteItem = ( collectionName ) => {

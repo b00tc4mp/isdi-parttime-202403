@@ -12,8 +12,8 @@ import useWasteSelection from '../../../handlers/useWasteSelection'
 import useWasteContainer from '../../../handlers/useWasteContainer'
 import useWasteStatus from '../../../handlers/useWasteStatus'
 import useWasteWeight from '../../../handlers/useWasteWeight'
-//logic
-import useSubmitWaste from '../../../logic/useSubmitWaste'
+//hooks
+import useSubmitWaste from '../../../hooks/useSubmitWaste'
 
 const Register = () => {
 

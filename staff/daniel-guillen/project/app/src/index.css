@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --first-color: black;
-  --second-color: white;
+  --first-color: white;
+  --second-color: orange;
+  --third-color: grey;
 }
 
 html,
@@ -13,18 +14,19 @@ body {
 }
 
 body {
-  background-color: rgb(243, 203, 147);
+  background-color: rgb(36, 36, 36);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .RouteTitle {
-  color: darkgreen;
+  color: var(--first-color);
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 .title {
   text-align: center;
+  color: var(--second-color);
   margin-top: 5px;
   margin-bottom: 5px;
 }

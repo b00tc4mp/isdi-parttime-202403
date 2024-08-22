@@ -7,11 +7,12 @@ import View from '../../../components/core/View'
 import MenuStore from '../MenuStore'
 //handlers
 import useWasteSelection from '../../../handlers/useWasteSelection'
-//logic
-import useFetchItemsList from '../../../logic/useFetchItemsList'
-import useDeleteItem from '../../../logic/useDeleteItem'
-import filterByMonthYear from '../../../logic/filterByMonthYear'
-import sortWasteItems from '../../../logic/sortWasteItems'
+//hooks
+import useFetchItemsList from '../../../hooks/useFetchItemsList'
+import useDeleteItem from '../../../hooks/useDeleteItem'
+//utils
+import filterByMonthYear from '../../../utils/filterByMonthYear'
+import sortWasteItems from '../../../utils/sortWasteItems'
 
 const SearchWaste = () => {
 

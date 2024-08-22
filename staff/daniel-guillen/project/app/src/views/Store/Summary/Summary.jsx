@@ -3,9 +3,10 @@ import './index.css'
 //components
 import GroupedWasteItem from '../../../components/GroupedWasteItem'
 import View from '../../../components/core/View'
-//logic
-import groupedByCode from '../../../logic/groupedByCode'
-import filterByMonthYear from '../../../logic/filterByMonthYear'
+//hooks
+import groupedByCode from '../../../utils/groupedByCode'
+//utils
+import filterByMonthYear from '../../../utils/filterByMonthYear'
 
 const SummaryWaste = () => {
 

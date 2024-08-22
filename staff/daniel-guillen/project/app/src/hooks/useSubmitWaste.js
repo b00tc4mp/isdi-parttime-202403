@@ -1,5 +1,5 @@
 import { collection, addDoc } from "firebase/firestore"
-import { db } from '../firebase/config'
+import { db } from '../utils/config'
 
 const submitDataStoreWaste = (collectionName, selectedWaste, weight, optionsContainer, statusOptions) => {
   

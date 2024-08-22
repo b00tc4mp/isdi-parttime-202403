@@ -10,11 +10,11 @@
 .image {
   width: 100%;
   border-radius: 5px;
-  filter: grayscale(80%);
+  filter: none;
   margin-top: 8px;
   border: grey 2px solid;
 }
 .image:hover {
-  filter: none;
+  filter: grayscale(80%);
   border: green 2px solid;
 }

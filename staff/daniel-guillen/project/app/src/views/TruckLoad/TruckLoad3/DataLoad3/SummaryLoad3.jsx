@@ -2,9 +2,9 @@ import React from 'react'
 //components
 import View from '../../../../components/core/View'
 import GroupedWasteItem from '../../../../components/GroupedWasteItem'
-//logic
-import groupedByCode from '../../../../logic/groupedByCode'
-import getWeekNumberYear from '../../../../logic/getWeekNumberYear'
+//hooks
+import groupedByCode from '../../../../utils/groupedByCode'
+import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 
 const SummaryLoad3 = () => {
 

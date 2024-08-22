@@ -15,7 +15,7 @@ const Home = () => {
       
       <a href="/Stored"><img className='image' src={store} /> </a>
       
-      <a href="/Acteco"><img className='image' src={departures} /> </a>
+      <a href="/TruckLoad1"><img className='image' src={departures} /> </a>
       
       <a href="/Fleet"><img className='image' src={fleet} /> </a>
       

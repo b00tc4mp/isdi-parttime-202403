@@ -2,11 +2,12 @@ import React from 'react'
 //components
 import View from '../../../../components/core/View'
 import WasteItem from '../../../../components/WasteItem'
-//logic
-import useFetchItemsList from '../../../../logic/useFetchItemsList'
-import useDeleteItem from '../../../../logic/useDeleteItem'
-import getWeekNumberYear from '../../../../logic/getWeekNumberYear'
-import sortWasteItems from '../../../../logic/sortWasteItems'
+//hooks
+import useFetchItemsList from '../../../../hooks/useFetchItemsList'
+import useDeleteItem from '../../../../hooks/useDeleteItem'
+//utils
+import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
+import sortWasteItems from '../../../../utils/sortWasteItems'
 
 const DataTruckLoad1 = () => {
 

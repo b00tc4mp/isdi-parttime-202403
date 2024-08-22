@@ -6,7 +6,7 @@
   flex-direction: column;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  background: linear-gradient(white 30%, transparent);
+  background: linear-gradient(white, transparent);
 }
 
 .logo {
@@ -53,6 +53,22 @@
 .menu-link-start:hover,
 .menu-link-center:hover,
 .menu-link-end:hover {
+  background: lightgreen;
+  border: greenyellow 1px solid;
+  color: black;
+}
+
+.menu-link {
+  padding: 0.5rem;
+  background: green;
+  border: darkgreen 1px solid;
+  border-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.menu-link:hover {
   background: lightgreen;
   border: greenyellow 1px solid;
   color: black;
