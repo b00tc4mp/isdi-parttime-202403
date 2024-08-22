@@ -1,4 +1,4 @@
-import { SystemError } from 'com/errors'
+import { ContentError, SystemError } from 'com/errors'
 
 const updateArtistData = (userId, updatedData) => {
   return fetch(`http://localhost:8080/users/${userId}`, {

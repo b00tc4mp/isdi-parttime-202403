@@ -24,7 +24,28 @@ function getUserChatsAndMessages(userId) {
       throw new SystemError(error.message)
     })
     .then((chats) => {
-      return chats
+      return chats.map((chat) => ({
+        id: chat._id,
+        participants: chat.participants.map((participant) => ({
+          id: participant._id,
+          name: participant.name,
+          email: participant.email,
+          artisticName: participant.artisticName,
+          role: participant.role,
+        })),
+        messages: chat.messages.map((message) => ({
+          id: message._id,
+          text: message.text,
+          date: message.date,
+          sender: {
+            id: message.sender._id,
+            name: message.sender.name,
+            email: message.sender.email,
+            artisticName: message.sender.artisticName,
+            role: message.sender.role,
+          },
+        })),
+      }))
     })
 }
 

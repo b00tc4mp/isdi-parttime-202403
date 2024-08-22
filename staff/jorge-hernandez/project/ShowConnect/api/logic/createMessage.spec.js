@@ -40,21 +40,21 @@ describe('createMessage', () => {
     })
       .then((user) =>
         Chat.create({
-          participants: [user._id, new ObjectId()],
+          participants: [user.id, new ObjectId()],
           date: new Date(),
         }).then((chat) => ({ user, chat }))
       )
       .then(({ user, chat }) =>
         createMessage(
-          user._id.toString(),
+          user.id.toString(),
           'Hello, this is a message',
-          chat._id.toString()
+          chat.id.toString()
         )
           .then(() => Message.findOne())
           .then((message) => {
-            expect(message.sender[0].toString()).to.equal(user._id.toString())
+            expect(message.sender.toString()).to.equal(user.id.toString())
             expect(message.text).to.equal('Hello, this is a message')
-            expect(message.chatId.toString()).to.equal(chat._id.toString())
+            expect(message.chatId.toString()).to.equal(chat.id.toString())
             expect(message.date).to.be.an.instanceOf(Date)
           })
       )

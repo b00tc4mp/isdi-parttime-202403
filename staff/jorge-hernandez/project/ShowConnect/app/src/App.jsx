@@ -31,6 +31,10 @@ function App() {
     setView(role === 'artist' ? 'artistHome' : 'clientHome')
   }
 
+  const handleClientHome = () => {
+    setView('clientHome')
+  }
+
   const handleGoToSearch = () => setView('search')
   const handleGoToMessages = () => setView('messages')
 
@@ -38,6 +42,7 @@ function App() {
     <>
       {view === 'search' && (
         <Search
+          OnClickMessages={handleClientHome}
           onRegisterClick={handleGoToRegister}
           onLoginClick={
             logic.isUserLoggedIn()

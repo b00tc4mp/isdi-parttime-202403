@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import RegisterClient from './RegisterClient'
-import logic from '../logic/index'
+import Button from './core/Button'
 
 function ArtistProfile({ artist, onClose, onClickGoToLogin }) {
   const [sendMessage, setSendMessage] = useState(false)
@@ -13,15 +13,15 @@ function ArtistProfile({ artist, onClose, onClickGoToLogin }) {
     <>
       <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60'>
         <div className='bg-gray-800 text-white rounded-lg p-6 w-full max-w-4xl relative'>
-          <button className='absolute top-4 right-4 text-2xl' onClick={onClose}>
+          <Button onClick={onClose} className='absolute top-4 right-4 text-2xl'>
             &times;
-          </button>
+          </Button>
 
           <div className='flex flex-col justify-center'>
             {sendMessage ? (
               <RegisterClient
                 onClickGoToLogin={onClickGoToLogin}
-                artistId={artist._id}
+                artistId={artist.id}
               />
             ) : (
               <>
@@ -50,13 +50,9 @@ function ArtistProfile({ artist, onClose, onClickGoToLogin }) {
                     </li>
                   ))}
                 </ul>
-
-                <button
-                  onClick={handleClickContact}
-                  className='h-10 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md shadow-md'
-                >
+                <Button onClick={handleClickContact}>
                   Contacta con {artist.artisticName}
-                </button>
+                </Button>
               </>
             )}
           </div>

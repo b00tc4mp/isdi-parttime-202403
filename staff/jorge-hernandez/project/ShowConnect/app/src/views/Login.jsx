@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic'
 import { SystemError } from 'com/errors'
-import Field from '../components/Field'
+import Field from '../components/core/Field'
 
 function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
   const [message, setMessage] = useState('')

@@ -1,12 +1,14 @@
-import Field from './Field'
+import Field from './core/Field'
 import { useState } from 'react'
 import { SystemError } from 'com/errors'
 import logic from '../logic'
+import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
+import Button from './core/Button'
 
-function RegisterClient({ onClickGoToLogin }) {
+function RegisterClient({ onClickGoToLogin, artistId }) {
   const [message, setMessage] = useState('')
 
-  const handleGoToLogin = () => onClickGoToLogin()
+  const handleGoToLogin = (e) => onClickGoToLogin(e)
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -20,7 +22,13 @@ function RegisterClient({ onClickGoToLogin }) {
     logic
       .registerClient(name, email, password, passwordRepeat)
       .then(() => {
-        setMessage('Usuario Registrado')
+        setMessage('Usuario Registrado, ya puedes hacer login')
+
+        form.reset()
+
+        setTimeout(() => {
+          handleGoToLogin(e)
+        }, 2000)
       })
       .catch((error) => {
         console.log(error)
@@ -29,6 +37,33 @@ function RegisterClient({ onClickGoToLogin }) {
           return
         }
         setMessage(error.message)
+      })
+  }
+
+  const handleSendMessage = (e) => {
+    e.preventDefault()
+
+    const form = e.target
+    const token = sessionStorage.token
+
+    const { sub: userId } = extractPayloadFromJWT(token)
+    const messageText = form.message.value.trim()
+
+    if (!userId || !artistId || !messageText) {
+      console.error('userId, artistId, or messageText is missing')
+      alert('Faltan datos necesarios para enviar el mensaje.')
+      return
+    }
+
+    logic
+      .createNewChatAndMessage(userId, artistId, messageText)
+      .then(() => {
+        form.reset()
+        setMessage('Mensaje enviado con éxito')
+      })
+      .catch((error) => {
+        console.error('Error sending message:', error.message)
+        alert('Error al enviar el mensaje: ' + error.message)
       })
   }
 
@@ -77,35 +112,27 @@ function RegisterClient({ onClickGoToLogin }) {
             placeholder='repite la contraseña'
           />
           <div className='flex flex-col items-center'>
-            <button
-              type='submit'
-              className='items-end h-10 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md shadow-md'
-            >
-              Enviar
-            </button>
-            <p onClick={handleGoToLogin} className=''>
+            <Button>Enviar</Button>
+            <p onClick={handleGoToLogin}>
               Si ya estás registrado haz click
-              <span
-                onClick={onClickGoToLogin}
-                className='cursor-pointer text-green-300'
-              >
-                {' aquí'}
-              </span>
+              <span className='cursor-pointer text-green-300'>{' aquí'}</span>
             </p>
           </div>
         </form>
       ) : (
-        <form action=''>
+        <form className='flex flex-col gap-5' onSubmit={handleSendMessage}>
           <Field
             divClass='Field flex flex-col gap-1 mx-2'
             labelClass='text-white'
             labelChildren='Mensaje'
             htmlFor='message'
             id='message'
+            name='message'
             type='text'
             inputClass='text-black h-8 rounded p-2'
             placeholder='Escribe tu mensaje'
           />
+          <Button>Enviar</Button>
         </form>
       )}
       {message && <p className='text-green-500'>{message}</p>}

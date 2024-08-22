@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import logic from '../logic/index'
+import Button from './core/Button'
 
 function Header({
   onRegisterClick,
@@ -17,7 +18,6 @@ function Header({
         logic
           .getArtistData()
           .then((artistData) => {
-            console.log(artistData)
             setName(artistData.name)
           })
           .catch((error) => {
@@ -35,28 +35,23 @@ function Header({
     <div className='Header'>
       <header>
         {!isArtistHomeVisible && (
-          <button
+          <Button
             onClick={onRegisterClick}
             className='w-full h-20 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700'
           >
             {children}
-          </button>
+          </Button>
         )}
-        <div className='flex justify-between m-2 items-center'>
+        <div className='flex m-2 items-center gap-4 justify-between '>
           <h1
             onClick={onLogoClick}
-            className='text-white text-[40px] mx-1 text-transparent bg-gradient-to-r from-white to-yellow-50 bg-clip-text cursor-pointer'
+            className=' text-white text-[40px] text-transparent bg-gradient-to-r from-white to-yellow-50 bg-clip-text cursor-pointer'
           >
             ShowConnect
           </h1>
-          <h2>{name}</h2>
-          <button
-            onClick={onClick}
-            className='h-10 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-0 font-medium border-none text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md shadow-md'
-          >
-            {loginButtonChildren}
-          </button>
+          <Button onClick={onClick}>{loginButtonChildren}</Button>
         </div>
+        <h2 className=' mr-3 text-end text-white text-xl'>{name}</h2>
       </header>
     </div>
   )

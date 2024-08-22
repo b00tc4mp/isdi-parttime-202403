@@ -8,6 +8,7 @@ import updateArtistData from './updateArtistData'
 import registerClient from './registerClient'
 import getUserChatsAndMessages from './getUserChatsAndMessages'
 import createAndUpdateMessage from './createAndUpdateMessage'
+import createNewChatAndMessage from './createNewChatAndMessage'
 
 const logic = {
   registerArtist,
@@ -20,6 +21,7 @@ const logic = {
   registerClient,
   getUserChatsAndMessages,
   createAndUpdateMessage,
+  createNewChatAndMessage,
 }
 
 export default logic

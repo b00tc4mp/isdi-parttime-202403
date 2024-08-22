@@ -43,16 +43,15 @@ const userSchema = new Schema({
   },
 })
 
-userSchema.pre('validate', function (next) {
-  if (this.role === 'artist') {
+userSchema.pre('save', function (next) {
+  if (this.isNew && this.role === 'artist') {
     if (
       !this.artisticName ||
       !this.discipline ||
       !this.city ||
       !this.description ||
       !this.image ||
-      !this.video ||
-      !this.dates
+      !this.video
     ) {
       return next(new ContentError('all fields are required'))
     }

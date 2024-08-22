@@ -1,6 +1,7 @@
 import logic from '../logic'
 import Header from '../components/Header'
 import UserChatsAndMessagesList from '../components/UserChatsAndMessagesList'
+import Button from '../components/core/Button'
 
 function ClientHome({ onUserLoggedOut, onLogoClick }) {
   const handleLogout = () => {
@@ -28,9 +29,9 @@ function ClientHome({ onUserLoggedOut, onLogoClick }) {
       >
         ShowConnect
       </Header>
-
-      <button onClick={handleClicktoSearch}>Buscar Nuevos Artistas</button>
-
+      <div className='m-5'>
+        <Button onClick={handleClicktoSearch}>Buscar Nuevos Artistas</Button>
+      </div>
       <UserChatsAndMessagesList />
     </>
   )

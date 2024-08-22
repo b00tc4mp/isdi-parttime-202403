@@ -1,4 +1,4 @@
-import Field from '../components/Field'
+import Field from '../components/core/Field'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic/index'

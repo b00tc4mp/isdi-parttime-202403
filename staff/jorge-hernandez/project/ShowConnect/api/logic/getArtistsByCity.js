@@ -3,10 +3,8 @@ import { SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const getArtistsByCity = (city, discipline, excludedDate) => {
-  //TODO VALIDATES
-  if (!city || !discipline || !excludedDate) {
-    throw new SystemError('City, discipline, and excludedDate are required')
-  }
+  validate.text(city, 'city')
+  validate.text(discipline, 'discipline')
 
   return User.find({
     city: city,
@@ -19,7 +17,16 @@ const getArtistsByCity = (city, discipline, excludedDate) => {
       throw new SystemError(error.message)
     })
     .then((artistsList) => {
-      return artistsList
+      return artistsList.map((artist) => ({
+        id: artist._id,
+        artisticName: artist.artisticName,
+        city: artist.city,
+        image: artist.image,
+        discipline: artist.discipline,
+        description: artist.description,
+        video: artist.video,
+        dates: artist.dates,
+      }))
     })
 }
 

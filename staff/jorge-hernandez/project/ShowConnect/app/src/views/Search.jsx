@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import Form from '../components/Form'
 import logic from '../logic/index'
 
-function Search({ onRegisterClick, onLoginClick }) {
+function Search({ onRegisterClick, onLoginClick, OnClickMessages }) {
   const handleRegisterClick = (e) => {
     e.preventDefault()
 
@@ -24,6 +24,12 @@ function Search({ onRegisterClick, onLoginClick }) {
       >
         ¿Eres artista? Regístrate
       </Header>
+      {logic.isUserLoggedIn() && (
+        <i
+          className='fa-regular fa-message text-2xl text-white cursor-pointer mr-8'
+          onClick={OnClickMessages}
+        ></i>
+      )}
       <Form onClickGoToLogin={handleLoginClick} />
     </>
   )

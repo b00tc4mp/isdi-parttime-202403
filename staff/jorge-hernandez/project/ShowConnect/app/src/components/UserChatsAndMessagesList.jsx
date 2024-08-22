@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import logic from '../logic/index'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
+import Button from './core/Button'
 
 function UserChatsAndMessagesList() {
   const [chats, setChats] = useState([])
@@ -15,9 +16,7 @@ function UserChatsAndMessagesList() {
         setChats(chats)
 
         if (selectedChat) {
-          const updatedChat = chats.find(
-            (chat) => chat._id === selectedChat._id
-          )
+          const updatedChat = chats.find((chat) => chat.id === selectedChat.id)
           setSelectedChat(updatedChat || null)
         }
       })
@@ -36,7 +35,7 @@ function UserChatsAndMessagesList() {
 
   useEffect(() => {
     if (selectedChat) {
-      const updatedChat = chats.find((chat) => chat._id === selectedChat._id)
+      const updatedChat = chats.find((chat) => chat.id === selectedChat.id)
       setSelectedChat(updatedChat || null)
     }
   }, [chats, selectedChat])
@@ -63,7 +62,7 @@ function UserChatsAndMessagesList() {
     const messageText = form.mensaje.value
 
     logic
-      .createAndUpdateMessage(selectedChat._id, userId, messageText)
+      .createAndUpdateMessage(selectedChat.id, userId, messageText)
       .then(() => {
         form.reset()
         loadChats()
@@ -97,7 +96,7 @@ function UserChatsAndMessagesList() {
               <li
                 key={index}
                 className={`text-white flex flex-col gap-2 ${
-                  message.sender._id === userId
+                  message.sender.id === userId
                     ? 'text-right border rounded-md p-2 bg-blue-400 bg-opacity-50'
                     : 'text-left border rounded-md p-2 bg-pink-300 bg-opacity-40'
                 }`}
@@ -113,9 +112,9 @@ function UserChatsAndMessagesList() {
               className='text-black h-8 rounded p-2'
               type='text'
             />
-            <button className='h-8 text-white bg-blue-900 hover:bg-blue-950 focus:outline-none focus:ring-0 font-medium border-none text-sm px-3 py-1 dark:bg-blue-500 dark:hover:bg-blue-700 rounded-md shadow-md'>
+            <Button className='h-8 text-white bg-blue-900 hover:bg-blue-950 focus:outline-none focus:ring-0 font-medium border-none text-sm px-3 py-1 dark:bg-blue-500 dark:hover:bg-blue-700 rounded-md shadow-md'>
               Enviar
-            </button>
+            </Button>
           </form>
         </div>
       ) : (

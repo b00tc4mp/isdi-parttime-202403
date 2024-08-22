@@ -1,5 +1,6 @@
 import logic from '../logic'
 import { useState } from 'react'
+import validate from 'com/validate'
 
 function EditableImage({ artistId, label, onImageUpdate }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -11,6 +12,9 @@ function EditableImage({ artistId, label, onImageUpdate }) {
 
   const handleImageSave = () => {
     const updatedData = { image: newImage }
+
+    validate.url(updatedData.image)
+
     logic
       .updateArtistData(artistId, updatedData)
       .then(() => {

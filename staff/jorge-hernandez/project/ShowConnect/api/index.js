@@ -11,6 +11,7 @@ import getArtistsByCityHandler from './handlers/getArtistsByCityHandler.js'
 import updateArtistHandler from './handlers/updateArtistHandler.js'
 import registerClientHandler from './handlers/registerClientHandler.js'
 import getUserChatsAndMessagesHandler from './handlers/getUserChatsAndMessagesHandler.js'
+import createNewChatAndMessageHandler from './handlers/createNewChatAndMessageHandler.js'
 
 import errorHandler from './handlers/errorHandler.js'
 
@@ -32,14 +33,14 @@ mongoose
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       })
     )
-    //TODO CHANGE ROUTE USERS BY ARTISTS
+
     api.get('/', (_, res) => res.send('Hello World'))
 
     api.post('/users', jsonbodyparser, registerArtistHandler)
 
-    api.post('/clients', jsonbodyparser, registerClientHandler)
-
     api.post('/users/auth', jsonbodyparser, authenticateUserHandler)
+
+    api.post('/clients', jsonbodyparser, registerClientHandler)
 
     api.get('/users/:targetUserId', getArtistDataHandler)
 
@@ -51,6 +52,8 @@ mongoose
     api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 
     api.post('/messages', jsonbodyparser, updateChatWithMessageHandler)
+
+    api.post('/messages/create', jsonbodyparser, createNewChatAndMessageHandler)
 
     api.get('/chats/:userId', jsonbodyparser, getUserChatsAndMessagesHandler)
 

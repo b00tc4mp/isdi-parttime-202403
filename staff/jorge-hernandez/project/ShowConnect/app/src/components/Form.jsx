@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Field from './Field'
+import Field from './core/Field'
 import Footer from './Footer'
 import ArtistsList from './ArtistsList'
 import { disciplines } from '../assets/disciplines'

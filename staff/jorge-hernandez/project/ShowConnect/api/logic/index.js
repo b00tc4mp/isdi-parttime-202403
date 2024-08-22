@@ -9,6 +9,8 @@ import createMessage from './createMessage.js'
 import getUserChatsAndMessages from './getUsersChatsAndMessages.js'
 import updateChatWithMessage from './updateChatWithMessage.js'
 import createAndUpdateMessage from './createAndUpdateMessage.js'
+import createNewChatAndMessage from './createNewChatAndMessage.js'
+import findExistingChat from './findExistingChat.js'
 
 const logic = {
   registerArtist,
@@ -22,6 +24,8 @@ const logic = {
   getUserChatsAndMessages,
   updateChatWithMessage,
   createAndUpdateMessage,
+  createNewChatAndMessage,
+  findExistingChat,
 }
 
 export default logic
