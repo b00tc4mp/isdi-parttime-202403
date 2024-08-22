@@ -2,8 +2,11 @@ import { Ad } from '../data/index.js'
 
 import { SystemError, NotFoundError } from 'com/errors.js'
 
+import validate from 'com/validate.js'
 
-const getaAd = (adId) => {
+const getAd = (adId) => {
+
+    validate.id(adId, 'adId')
 
     return Ad.findById(adId).populate('author', 'username').populate('adcomments.author', 'username').lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -18,4 +21,4 @@ const getaAd = (adId) => {
 
 }
 
-export default getaAd
+export default getAd
