@@ -6,6 +6,7 @@ import deleteAd from './deleteAd.js'
 import getUserInfo from './getUserInfo.js'
 import createAdComment from './createAdComment.js'
 import getAd from './getAd.js'
+import deleteComment from './deleteCommnet.js'
 
 
 
@@ -19,6 +20,7 @@ const logic = {
     getUserInfo,
     createAdComment,
     getAd,
+    deleteComment
 
 }
 

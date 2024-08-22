@@ -7,6 +7,7 @@ import deleteAdHandler from './deleteAdHandler.js'
 import getUserInfoHandler from './getUserInfoHandler.js'
 import createAdCommentHandler from './createAdCommentHandler.js'
 import getAdHandler from './getAdHandler.js'
+import deleteCommentHandler from './deleteCommentHandler.js'
 
 export {
     errorHandler,
@@ -17,5 +18,6 @@ export {
     deleteAdHandler,
     getUserInfoHandler,
     createAdCommentHandler,
-    getAdHandler
+    getAdHandler,
+    deleteCommentHandler
 }
