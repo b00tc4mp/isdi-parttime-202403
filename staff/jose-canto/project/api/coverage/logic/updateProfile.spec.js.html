@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/editProfile.spec.js</title>
+    <title>Code coverage report for logic/updateProfile.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> editProfile.spec.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> updateProfile.spec.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -718,13 +718,13 @@ import bcrypt from "bcryptjs"
 import { expect } from "chai"
 import { User } from "../model/index.js"
 &nbsp;
-import editProfile from "./editProfile.js"
+import updateProfile from "./updateProfile.js"
 import { ContentError, NotFoundError } from "com/errors.js"
 &nbsp;
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
 &nbsp;
-describe("editProfile", () =&gt; {
+describe("updateProfile", () =&gt; {
   before(() =&gt; mongoose.connect(MONGODB_URL_TEST).then(() =&gt; User.deleteMany()))
 &nbsp;
   beforeEach(() =&gt; User.deleteMany())
@@ -733,7 +733,7 @@ describe("editProfile", () =&gt; {
     bcrypt.hash("1234", 10)
       .then((hash) =&gt; User.create({ username: "Jack", email: "jack@email.es", password: hash }))
       .then((user) =&gt;
-        editProfile(user.id, {
+        updateProfile(user.id, {
           username: "Pepito",
           email: "Pepito@grillo.es",
           fullName: "Pepito Grillo",
@@ -763,7 +763,7 @@ describe("editProfile", () =&gt; {
   it("fails on existing user", () =&gt; {
     let errorThrown
 &nbsp;
-    return editProfile(new ObjectId().toString(), {
+    return updateProfile(new ObjectId().toString(), {
       username: "Pepito",
       email: "Pepito@grillo.es",
       fullName: "Pepito Grillo",
@@ -789,7 +789,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: 7777,
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -817,7 +817,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepitgrillo.es",
         fullName: "Pepito Grillo",
@@ -845,7 +845,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: 1234,
@@ -873,7 +873,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -901,7 +901,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -929,7 +929,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -957,7 +957,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -985,7 +985,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -1013,7 +1013,7 @@ describe("editProfile", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() =&gt; User.findOne())
-      .then((user) =&gt; editProfile(user.id, {
+      .then((user) =&gt; updateProfile(user.id, {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -1042,7 +1042,7 @@ describe("editProfile", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-20T16:56:36.216Z
+                at 2024-08-22T11:02:30.600Z
             </div>
         <script src="../prettify.js"></script>
         <script>

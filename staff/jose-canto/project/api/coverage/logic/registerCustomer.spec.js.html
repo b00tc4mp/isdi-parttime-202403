@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>83/83</span>
+                <span class='fraction'>91/91</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>50/50</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>83/83</span>
+                <span class='fraction'>91/91</span>
             </div>
         
             
@@ -248,7 +248,26 @@
 <a name='L183'></a><a href='#L183'>183</a>
 <a name='L184'></a><a href='#L184'>184</a>
 <a name='L185'></a><a href='#L185'>185</a>
-<a name='L186'></a><a href='#L186'>186</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -289,6 +308,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -455,7 +493,7 @@ describe("registerCustomer", () =&gt; {
     bcrypt.hash("1234", 10)
       .then((hash) =&gt; User.create({ username: "Jack", email: "jack@email.es", password: hash }))
       .then((user) =&gt;
-        registerCustomer(user.id, "Pepito", "Pepito Grillo, S.L", "pepito@grillo.es", "1234", "B03413222", "Calle falsa 123", "666555444")
+        registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
           .then(() =&gt; User.findOne({ email: "pepito@grillo.es" }))
           .then(customer =&gt; {
             expect(customer._id).to.be.instanceOf(ObjectId)
@@ -475,7 +513,7 @@ describe("registerCustomer", () =&gt; {
   it("fails on non-existing customer user", () =&gt; {
     let errorThrown
 &nbsp;
-    return registerCustomer(new ObjectId().toString(), "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+    return registerCustomer(new ObjectId().toString(), "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
       .catch((error) =&gt; errorThrown = error)
       .finally(() =&gt; {
         expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -491,7 +529,7 @@ describe("registerCustomer", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) =&gt; {
-        return registerCustomer(user.id, 1234, "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, 1234, "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
       })
       .catch((error) =&gt; {
         errorThrown = error
@@ -499,6 +537,44 @@ describe("registerCustomer", () =&gt; {
       .finally(() =&gt; {
         expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown.message).to.equal("username is not valid")
+      })
+  })
+&nbsp;
+  it("fails on invalid password", () =&gt; {
+    let errorThrown;
+&nbsp;
+    return bcrypt.hash("1234", 10)
+      .then((hash) =&gt; {
+        return User.create({ username: "Jack", email: "jack@email.es", password: hash });
+      })
+      .then((user) =&gt; {
+        return registerCustomer(user.id, "Pepito", "123", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444");
+      })
+      .catch((error) =&gt; {
+        errorThrown = error;
+      })
+      .finally(() =&gt; {
+        expect(errorThrown).to.be.instanceOf(ContentError);
+        expect(errorThrown.message).to.equal("Password is not valid");
+      });
+  });
+&nbsp;
+  it("fails on invalid fullName", () =&gt; {
+    let errorThrown
+&nbsp;
+    return bcrypt.hash("1234", 10)
+      .then((hash) =&gt; {
+        return User.create({ username: "Jack", email: "jack@email.es", password: hash })
+      })
+      .then((user) =&gt; {
+        return registerCustomer(user.id, "Pepito", "1234", 1234, "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
+      })
+      .catch((error) =&gt; {
+        errorThrown = error
+      })
+      .finally(() =&gt; {
+        expect(errorThrown).to.be.instanceOf(ContentError)
+        expect(errorThrown.message).to.equal("fullName is not valid")
       })
   })
 &nbsp;
@@ -510,14 +586,14 @@ describe("registerCustomer", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) =&gt; {
-        return registerCustomer(user.id, "Jack", 1234, "jack@email.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", 7777, "pepito@grillo.es", "B03413222", "Calle falsa 123", "666555444")
       })
       .catch((error) =&gt; {
         errorThrown = error
       })
       .finally(() =&gt; {
         expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal("company name is not valid")
+        expect(errorThrown.message).to.equal("companyName is not valid")
       })
   })
 &nbsp;
@@ -529,7 +605,7 @@ describe("registerCustomer", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) =&gt; {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jackemail.es", "1234", "B03413111", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", 6666, "B03413222", "Calle falsa 123", "666555444")
       })
       .catch((error) =&gt; {
         errorThrown = error
@@ -537,25 +613,6 @@ describe("registerCustomer", () =&gt; {
       .finally(() =&gt; {
         expect(errorThrown).to.be.instanceOf(ContentError)
         expect(errorThrown.message).to.equal("email is not valid")
-      })
-  })
-&nbsp;
-  it("fails on invalid password", () =&gt; {
-    let errorThrown
-&nbsp;
-    return bcrypt.hash("1234", 10)
-      .then((hash) =&gt; {
-        return User.create({ username: "Jack", email: "jack@email.es", password: hash })
-      })
-      .then((user) =&gt; {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "12", "B03413111", "Calle falsa 123", "666555443")
-      })
-      .catch((error) =&gt; {
-        errorThrown = error
-      })
-      .finally(() =&gt; {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal("Password is not valid")
       })
   })
 &nbsp;
@@ -567,7 +624,7 @@ describe("registerCustomer", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) =&gt; {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03", "Calle falsa 123", "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", 7777, "Calle falsa 123", "666555444")
       })
       .catch((error) =&gt; {
         errorThrown = error
@@ -586,7 +643,7 @@ describe("registerCustomer", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) =&gt; {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", 1234, "666555443")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", 5555, "666555444")
       })
       .catch((error) =&gt; {
         errorThrown = error
@@ -605,7 +662,7 @@ describe("registerCustomer", () =&gt; {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then((user) =&gt; {
-        return registerCustomer(user.id, "Jack", "Pepito Enterprise, Inc.", "jack@email.es", "1234", "B03413111", "Calle falsa 123", "66655")
+        return registerCustomer(user.id, "Pepito", "1234", "Pepito Grillo", "Pepito Grillo, S.L", "pepito@grillo.es", "B03413222", "Calle falsa 123", "6664")
       })
       .catch((error) =&gt; {
         errorThrown = error
@@ -625,7 +682,7 @@ describe("registerCustomer", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-20T16:56:36.216Z
+                at 2024-08-22T11:02:30.600Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.95% </span>
+                <span class="strong">91.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/23</span>
+                <span class='fraction'>21/23</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.95% </span>
+                <span class="strong">91.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/23</span>
+                <span class='fraction'>21/23</span>
             </div>
         
             
@@ -117,16 +117,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -134,7 +135,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -149,9 +149,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,12 +164,13 @@ import { User } from "../model/index.js"
 import { NotFoundError, SystemError } from "com/errors.js"
 import bcrypt from "bcryptjs"
 &nbsp;
-const registerCustomer = (userId, username, companyName, email, password, taxId, address, phone) =&gt; {
+const registerCustomer = (userId, username, password, fullName, companyName, email, taxId, address, phone) =&gt; {
   validate.id(userId)
   validate.username(username)
-  validate.companyName(companyName)
-  validate.email(email)
   validate.password(password)
+  validate.name(fullName, "fullName")
+  validate.companyName(companyName, "companyName")
+  validate.email(email)
   validate.taxId(taxId)
   validate.address(address)
   validate.phone(phone)
@@ -182,25 +183,24 @@ const registerCustomer = (userId, username, companyName, email, password, taxId,
       }
 &nbsp;
       return bcrypt.hash(password, 10)
+    })
+    .then(hash =&gt; {
+      const newCustomer = {
+        username,
+        password: hash,
+        fullName,
+        companyName,
+        email,
+        taxId,
+        address,
+        phone,
+        role: "customer",
+        manager: userId
+      }
+&nbsp;
+      return User.create(newCustomer)
         .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-        .then(hash =&gt; {
-&nbsp;
-          const newCustomer = {
-            username,
-            companyName,
-            email,
-            password: hash,
-            taxId,
-            address,
-            phone,
-            role: "customer",
-            manager: userId
-          }
-&nbsp;
-          return User.create(newCustomer)
-            .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-            .then(() =&gt; { })
-        })
+        .then(() =&gt; { })
     })
 }
 export default registerCustomer
@@ -214,7 +214,7 @@ export default registerCustomer
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-20T16:56:36.216Z
+                at 2024-08-22T11:02:30.600Z
             </div>
         <script src="../prettify.js"></script>
         <script>
