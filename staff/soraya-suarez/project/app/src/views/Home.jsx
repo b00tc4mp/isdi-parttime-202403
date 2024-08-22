@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 
 import { CiLogout } from "react-icons/ci";
 import { CiMenuBurger } from "react-icons/ci";
@@ -7,14 +7,14 @@ import { IoIosAdd } from "react-icons/io";
 import { GoHomeFill } from "react-icons/go";
 import { FiUsers } from "react-icons/fi";
 
-import View from '../components/library/View'
 import Button from '../components/core/Button'
 import AddTaskForm from './components/AddTaskForm'
+import HomeScreen from './components/HomeScreen'
 import Link from '../components/core/Link'
-import MyTaskList from './components/MyTasksList'
+/*import MyTaskList from './components/MyTasksList'
 import MyInProgressTaskList from './components/MyInProgressTaskList'
 import MyPrivateTaskList from './components/MyPrivateTaskList'
-import MyFinishedTaskList from './components/MyFinishedTaskList'
+import MyFinishedTaskList from './components/MyFinishedTaskList'*/
 import Users from './Users'
 
 import logic from '../logic'
@@ -22,7 +22,8 @@ import logic from '../logic'
 import './Home.css'
 
 function Home({ onUserLoggedOut }) {
-    const [page, setPage] = useState('')
+    const [page, setPage] = useState('home')
+    const [addTaskForm, setAddTaskForm] = useState(false)
     
     const navigate = useNavigate()
 
@@ -31,50 +32,39 @@ function Home({ onUserLoggedOut }) {
         onUserLoggedOut()
     }
 
+    const handleGoToHome = () => {
+        handleNavigateTo('home')
+        navigate('/')
+    }
+
     const handleGoToUsers = () => {
-        handleNavigateTo('')
+        handleNavigateTo('users')
         navigate('/users')
     }
 
     const handleNavigateTo = (url) => setPage(url)
 
-    const handleAddTaskClick = () => setPage('')
+    const handleAddTaskClick = () => setAddTaskForm(true)
 
-    const handleCancelClick = () => setPage('')
+    const handleCancelClick = () => setAddTaskForm(false)
 
     return <div className="container grid">
-        <nav className="flex justify-between items-center px-4 shadow shadow-gray-300">
+        <nav className="flex justify-between items-center px-4 shadow shadow-gray-300 w-screen">
             <a href="">{<CiMenuBurger/>}</a>
             <Link onClick={handleLogout}>{<CiLogout/>}</Link>
         </nav>
-        <div className="py-4">
-            <View>
-                <nav className="flex justify-center text-xs" >
-                    <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('home')}>My tasks</Button>
-                    <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In progress</Button>
-                    <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('private')}>Private</Button>
-                    <Button className="border-gray-300 rounded-tl-none rounded-bl-none" onClick={()=> handleNavigateTo('finished')}>Finished</Button>
-                </nav>
+        <div>
+            <Routes>
+                <Route path="/users" element={<Users/>} />
+            </Routes>
 
-                { (() => {
-                switch (page) {
-                    case 'home': return <MyTaskList/>
-                    case 'in-progress': return <MyInProgressTaskList/>
-                    case 'private': return <MyPrivateTaskList/>
-                    case 'finished': return <MyFinishedTaskList/>
-                    case 'add': return <AddTaskForm onCancelAddTaskClick={handleCancelClick} onTaskAdded={handleAddTaskClick}/>
-                    default: return null
-                }
-                }) () }
-
-                <Routes>
-                    <Route path="/users" element={<Users/>} />
-                </Routes>
-            </View>
+            {addTaskForm && <AddTaskForm onCancelAddTaskClick={handleCancelClick} onTaskAdded={handleAddTaskClick} />}
+            {page === 'home' && <HomeScreen/>}
        </div>
+
         <footer className="flex justify-around items-center shadow shadow-gray-400">
-            <Button className="border-0" onClick={()=> handleNavigateTo('home')}>{<GoHomeFill/>}</Button>
-            <Button className="border-0" onClick={()=> handleNavigateTo('add')}>{<IoIosAdd/>}</Button>
+            <Button className="border-0" onClick={()=> handleGoToHome()}>{<GoHomeFill/>}</Button>
+            <Button className="border-0" onClick={()=> handleAddTaskClick()}>{<IoIosAdd/>}</Button>
             <Button className="border-0" onClick={handleGoToUsers}>{<FiUsers/>}</Button>
         </footer>
     </div>

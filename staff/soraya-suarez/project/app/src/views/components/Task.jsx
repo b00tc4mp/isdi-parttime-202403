@@ -109,7 +109,7 @@ function Task({ task, onTaskRefreshed }) {
     const handleSelectTaskCancelled = () => setConfirmSelectVisible(false)
 
     return <div>
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between py-2 px-2">
             <Text>{task.name}</Text>
             <div className="flex gap-2">
                 {task.creator === logic.getUserId() && task.owner === null && (task.status != 'finished' || task.status != 'canceled') && <Button className="border-none" onClick={handleSelectTask}>Auto assing</Button>}
