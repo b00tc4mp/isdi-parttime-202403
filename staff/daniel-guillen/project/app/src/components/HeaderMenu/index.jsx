@@ -1,11 +1,10 @@
 import React from 'react'
-import View from '../core/View'
 import './index.css'
+//img
 import logo from '../img/logo.png'
 
 const HeaderMenu = () => {
   return (
-    <View>
     <nav className='Nav'>
           <div className='logo'>
             <a href="/"><img src={logo} /></a>
@@ -25,7 +24,6 @@ const HeaderMenu = () => {
                       
           </div>
     </nav>
-    </View>
   )
 }
 

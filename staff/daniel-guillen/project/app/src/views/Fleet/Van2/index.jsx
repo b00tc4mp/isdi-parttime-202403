@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 //components
-import View from '../../../components/core/View'
 import CheckList from '../../../components/CheckList'
 import ItemsToFix from '../../../components/ItemsToFix'
 import InspectionNote from '../../../components/InspectionNote'
-import michelangelo64 from '../../../components/img/michelangelo64.png'
+import mecanic from '../../../components/img/mecanic.png'
 //hooks
 import useSubmitCheck from '../../../hooks/useSubmitChek'
 //data
@@ -14,6 +13,8 @@ const Van2 = () => {
   const [checkList, setCheckList] = useState([])
   const [inspectionNote, setInspectionNote] = useState('')
   const [workerName, setWorkerName] = useState('')
+
+  const { saveData } = useSubmitCheck('dataCheckVan2', checkList, inspectionNote, workerName, '/Fleet/Van2/historical')
 
   useEffect(() => {
     const initializedData = data.map(item => ({ ...item, selectedValue: 'CORRECTO' }))
@@ -26,8 +27,6 @@ const Van2 = () => {
     )
     setCheckList(updatedCheckList)
   }
-
-  const { saveData } = useSubmitCheck('dataCheckVan2', checkList, inspectionNote, workerName)
 
   const sections = [
     { title: 'LUCES', items: checkList.filter(item => item.apartado === 'LUCES') },
@@ -42,7 +41,7 @@ const Van2 = () => {
   ]
 
   return (
-    <View>
+
       <div className='container'>
 
       <h1 className='RouteTitle'>INSPECCIÓN FURGÓN 2</h1>
@@ -73,18 +72,18 @@ const Van2 = () => {
         
         <div className='Button'>
         
-          <button onClick={saveData} className='SubmitButton' type='submit'>
-            <img className='SubmitButtonImage' src={michelangelo64} alt="Enviar Inspección" />
+        <button onClick={saveData} className='SubmitButtonInspection' type='submit'>
+          ENVIAR <img className='ImageInspection' src={mecanic} alt="Enviar Inspección" />
           </button>
         
-          <a className='menu-link' href="/Van2/historical">HISTORIAL</a>
+        <a className='menu-link' href="/Fleet/Van2/historical">HISTORIAL DE INSPECCIONES</a>  
         
         </div>
         
         </div>
         
       </div>
-    </View>
+
   )
 }
 

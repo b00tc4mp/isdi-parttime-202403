@@ -1,20 +1,17 @@
 import React from 'react'
 import './index.css'
-import View from '../core/View'
 
 const ItemsToFix = ({ items }) => (
-  <View>
-  <div className='container'>
-    <h3>Total de elementos a arreglar: <strong>{items.length}</strong></h3>
-    <ul>
+  <div className='ItemsToFix'>
+    <h3 className='Total'>Total de elementos a arreglar: <strong>{items.length}</strong></h3>
+
       {items.map(item => (
-        <li className='ItemsToFix' key={item.id}>
+        <p className='ItemsToFix' key={item.id}>
           {item.apartado}: {item.elemento}
-        </li>
+        </p>
       ))}
-    </ul>
+
   </div>
-  </View>
 )
 
 export default ItemsToFix

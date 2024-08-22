@@ -1,0 +1,19 @@
+.Historical {
+  background: white;
+  color: black;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: green 2px solid;
+}
+
+.Date {
+  font-weight: bold;
+  text-align: center;
+  border-bottom: green 1px solid;
+  line-height: 0;
+}
+
+.Fix {
+  border-bottom: green 1px solid;
+}

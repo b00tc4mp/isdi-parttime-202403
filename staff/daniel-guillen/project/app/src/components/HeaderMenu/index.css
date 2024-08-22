@@ -57,19 +57,3 @@
   border: greenyellow 1px solid;
   color: black;
 }
-
-.menu-link {
-  padding: 0.5rem;
-  background: green;
-  border: darkgreen 1px solid;
-  border-radius: 5px;
-  border-bottom-right-radius: 5px;
-  text-decoration: none;
-  color: white;
-}
-
-.menu-link:hover {
-  background: lightgreen;
-  border: greenyellow 1px solid;
-  color: black;
-}

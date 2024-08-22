@@ -1,5 +1,11 @@
 .ItemsToFix {
+  margin-top: 1rem;
   color: tomato;
   text-align: center;
-  list-style: none;
+  line-height: 5px;
+}
+
+.Total {
+  text-align: center;
+  color: white;
 }

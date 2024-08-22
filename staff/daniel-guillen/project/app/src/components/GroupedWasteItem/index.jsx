@@ -1,4 +1,5 @@
 import React from 'react'
+import'./index.css'
 
 const GroupedWasteItem = ({ item }) => {
   const shortDescription = item.description.length > 34

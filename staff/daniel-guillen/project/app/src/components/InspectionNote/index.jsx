@@ -1,15 +1,12 @@
 import React from 'react'
 import './index.css'
-import View from '../core/View'
 
 const InspectionNote = ({ inspectionNote, setInspectionNote, workerName, setWorkerName }) => (
-  <View>
-
     <div className='InspectionNote'>
     
     <div className='Note'>
 
-      <h3>Explicación de la Inspección</h3>
+      <h3>Explicación de la Inspección:</h3>
       
       <textarea
         value={inspectionNote}
@@ -21,7 +18,7 @@ const InspectionNote = ({ inspectionNote, setInspectionNote, workerName, setWork
 
     <div className='WorkerInfo'>
     
-      <p>Realizada por:</p>
+      <h3>Realizada por:</h3>
     
       <input required
         className='WorkerName'
@@ -30,11 +27,9 @@ const InspectionNote = ({ inspectionNote, setInspectionNote, workerName, setWork
         onChange={(e) => setWorkerName(e.target.value)}
         placeholder='Escribe su nombre...'
       />
-    
+
     </div>
   </div>
-
-  </View>
 )
 
 export default InspectionNote

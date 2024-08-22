@@ -3,7 +3,6 @@ import React from 'react'
 import WasteSelect from '../../../../components/WasteSelect'
 import WasteContainer from '../../../../components/WasteContainer'
 import WasteWeight from '../../../../components/WasteWeight'
-import View from '../../../../components/core/View'
 import michelangelo64 from '../../../../components/img/michelangelo64.png'
 //handlers
 import useWasteSelection from '../../../../handlers/useWasteSelection'
@@ -23,7 +22,7 @@ const RegisterTruckLoad3 = () => {
   const { saveData } = useSubmitLoad('dataTruck3Load', selectedWaste, weight, optionsContainer, week, year)
 
   return (
-    <View>
+
     <div className='TruckLoadDiv'>
     
     <h1 className='RouteTitle'>CARGA TRAILER 3</h1>
@@ -59,7 +58,7 @@ const RegisterTruckLoad3 = () => {
       </form>
       
     </div>
-    </View>
+
   )
 }
 

@@ -3,7 +3,6 @@ import './index.css'
 //components
 import WasteSelect from '../../../components/WasteSelect'
 import WasteItem from '../../../components/WasteItem'
-import View from '../../../components/core/View'
 import MenuStore from '../MenuStore'
 //handlers
 import useWasteSelection from '../../../handlers/useWasteSelection'
@@ -35,7 +34,7 @@ const SearchWaste = () => {
     const sortedList = sortWasteItems(selectedWasteList)
 
   return (
-    <View>
+
     <div className='SearchWasteDiv'>
     <h1 className='RouteTitle'>BUSCADOR</h1>
       <WasteSelect selectedWaste={selectedWaste} handleWasteChange={handleWasteChange} />
@@ -47,7 +46,7 @@ const SearchWaste = () => {
         ))}
         <MenuStore />
     </div>
-    </View>
+
   )
 }
 

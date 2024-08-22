@@ -1,10 +1,7 @@
 import React from 'react'
 import './index.css'
-import View from '../core/View'
 
 const CheckList = ({ title, items, handleRadioChange }) => (
-<View>
-
   <div className='RenderSection'>
 
     <h2 className='title'>{title}</h2>
@@ -58,7 +55,6 @@ const CheckList = ({ title, items, handleRadioChange }) => (
     </div>
   
   </div>
-</View>
 )
 
 export default CheckList

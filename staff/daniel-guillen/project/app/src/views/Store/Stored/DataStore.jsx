@@ -1,6 +1,5 @@
 import React from 'react'
 //components
-import View from '../../../components/core/View'
 import WasteItem from '../../../components/WasteItem'
 //hooks
 import useFetchItemsList from '../../../hooks/useFetchItemsList'
@@ -26,14 +25,14 @@ const DataStoreList = () => {
   const sortedList = sortWasteItems(filteredList)
 
   return (
-    <View>
+    <div>
         <h2 className='title'>Residuos almacenados {month}/{year}</h2>
 
         {sortedList.map((item) => (
           //renderizamos la lista de residuos con estilos especificos
           <WasteItem key={item.id} item={item} onDelete={deleteWaste} />
         ))}
-    </View>
+    </div>
   )
 }
 

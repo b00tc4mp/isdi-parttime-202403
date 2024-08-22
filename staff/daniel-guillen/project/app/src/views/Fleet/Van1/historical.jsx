@@ -1,31 +1,39 @@
 import React from 'react'
-import useFetchItemsList from '../../../hooks/useFetchItemsList'
 import '../index.css'
+//components
+import InspectionItem from '../../../components/InspectionItem'
+//hooks
+import useFetchItemsList from '../../../hooks/useFetchItemsList'
+//utils
+import getWeekNumberYear from '../../../utils/getWeekNumberYear'
+
 const HistoricalVan1 = () => {
-  
+
+  const { week, year } = getWeekNumberYear()
+  //buscamos todas las notas de inspeccion
   const { list } = useFetchItemsList('dataCheckVan1')
 
-  // ordenamos de mas actual a menos
-  const sortedList = list.sort((b, a) => new Date(b.date) - new Date(a.date))
-
-  // traemos la fecha de hoy para calcularlo
-  const month = new Date().toLocaleString('default', { month: 'long' })
-  const year = new Date().getFullYear()
-
+ // Filtramos las notas del año actual y ordenamos por semana
+ const filteredItems = list
+ .filter(item => item.year === year)
+ .sort((a, b) => b.week - a.week) // Ordenamos de la semana más reciente a la más antigua
   return (
-    <div>
 
-      <h2 className='title'>HISTORIAL f {month}/{year}</h2>
-      
-      {sortedList.map((item, index) => (
-        <div className='Historical' key={index}>
-          <p>{item.date} - {item.workerName}</p>
-          <p>{item.itemsToFix}</p>
-          <p>{item.notes}</p>
-        </div>
+    <div>
+      <h2 className="title">HISTORIAL FURGÓN 1</h2>
+      {filteredItems.map((item, index) => (
+        //renderizamos todas las notas con unos estilos especificos
+        <InspectionItem key={index} item={item} />
       ))}
-    
+
+      <div className='Button'>
+        
+        <a className='menu-link' href="/Fleet/Van1">VOLVER</a>
+              
+      </div>
+
     </div>
+
   )
 }
 

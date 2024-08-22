@@ -1,12 +1,10 @@
 import React from 'react'
 import './index.css'
-//components
-import View from '../core/View'
 
 const WasteStatus = ( { statusOptions, handleStatusOptions }) => {
 
   return (
-    <View>
+
     <div className="StatusDiv">
       <div className={`WasteStatus ${statusOptions}`}>
 
@@ -40,7 +38,7 @@ const WasteStatus = ( { statusOptions, handleStatusOptions }) => {
           </p>
       </div>
     </div>
-    </View>
+
   )
 }
 

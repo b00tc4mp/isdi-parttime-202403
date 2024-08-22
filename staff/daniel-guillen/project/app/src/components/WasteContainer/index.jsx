@@ -1,7 +1,5 @@
 import React from 'react'
 import './index.css'
-//components
-import View from '../core/View'
 //img
 import grg from '../img/grg.png'
 import palet from '../img/palet.png'
@@ -12,7 +10,6 @@ import bm200 from '../img/bm200.png'
 function WasteContainer( { optionsContainer, handleOptionsContainer }) {
 
   return (
-    <View>
     <div className="WasteContainerDiv">
       <div className={`WasteContainerStatus ${optionsContainer}`}>
         
@@ -82,7 +79,6 @@ function WasteContainer( { optionsContainer, handleOptionsContainer }) {
       </div>
 
     </div>
-    </View>
   )
 }
 

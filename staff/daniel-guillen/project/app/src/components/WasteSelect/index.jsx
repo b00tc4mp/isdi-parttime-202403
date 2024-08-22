@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import './index.css'
-//components
-import View from '../core/View'
 //data
 import data from './wasteList.json'
 
@@ -31,18 +29,18 @@ const WasteSelect = ({ selectedWaste, handleWasteChange }) => {
   const selectedOption = options.find(option => option.value.code === selectedWaste.code)
 
   return (
-    <View>
+
       <div className='WasteSelectDiv'>
         <Select required
           className='WasteSelect'
           id='WasteSelect'
-          placeholder="CODIGO LER"
+          placeholder="CODIGO DE RESIDUO"
           options={options}
           value={selectedOption}
           onChange={(selected) => handleWasteChange(selected.value)}
         />
       </div>
-    </View>
+
   )
 }
 

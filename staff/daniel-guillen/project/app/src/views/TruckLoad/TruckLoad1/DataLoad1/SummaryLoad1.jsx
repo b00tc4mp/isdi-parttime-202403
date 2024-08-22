@@ -1,6 +1,5 @@
 import React from 'react'
 //components
-import View from '../../../../components/core/View'
 import GroupedWasteItem from '../../../../components/GroupedWasteItem'
 //utils
 import groupedByCode from '../../../../utils/groupedByCode'
@@ -17,7 +16,7 @@ const SummaryLoad1 = () => {
     .sort((a, b) => a.code.localeCompare(b.code))
 
   return (
-    <View>
+
       <div className='SummaryDiv' >
 
         <h2 className='title'>Carga 1 Semana {week}</h2>
@@ -27,7 +26,7 @@ const SummaryLoad1 = () => {
           ))}
 
       </div>
-    </View>
+
   )
 }
 

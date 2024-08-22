@@ -1,7 +1,6 @@
 import React from 'react'
 import './index.css'
 //components
-import View from '../../../components/core/View'
 import michelangelo64 from '../../../components/img/michelangelo64.png'
 import WasteSelect from '../../../components/WasteSelect'
 import WasteContainer from '../../../components/WasteContainer'
@@ -25,7 +24,7 @@ const Register = () => {
   const { saveData } = useSubmitWaste('dataStoreWaste', selectedWaste, weight, optionsContainer, statusOptions)
 
   return (
-    <View>
+
     <div className='StoreDiv'>
       <h1 className='RouteTitle'>INVENTARIO</h1>
 
@@ -55,7 +54,7 @@ const Register = () => {
       
       </form>
     </div>
-    </View>
+
   )
 }
 

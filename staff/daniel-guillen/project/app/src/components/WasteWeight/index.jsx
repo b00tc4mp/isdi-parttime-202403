@@ -1,11 +1,10 @@
 import React from 'react'
-import View from '../core/View'
 import './index.css'
 
 const WasteWeight = ( { weight, handleWeightChange} ) => {
 
   return (
-    <View>
+
       <div className='InputWeightDiv'>
       
         <input required
@@ -26,7 +25,7 @@ const WasteWeight = ( { weight, handleWeightChange} ) => {
         </h2>
       
       </div>
-    </View>
+
   )
 }
 

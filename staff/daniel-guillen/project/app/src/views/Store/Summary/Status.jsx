@@ -1,7 +1,6 @@
 import React from 'react'
 import './index.css'
 //components
-import View from '../../../components/core/View'
 import StagnantWasteItem from './StagnantWasteItem'
 //hooks
 import useFetchItemsList from '../../../hooks/useFetchItemsList'
@@ -27,7 +26,7 @@ const SummaryStatus = () => {
     .sort((a, b) => a.code.localeCompare(b.code))
 
       return (
-        <View>
+
           <div className='SummaryDiv'>
 
             <h2 className='title'>Residuos estancados:</h2>
@@ -37,7 +36,7 @@ const SummaryStatus = () => {
             ))}
           
           </div>
-        </View>
+
       );
     };
     

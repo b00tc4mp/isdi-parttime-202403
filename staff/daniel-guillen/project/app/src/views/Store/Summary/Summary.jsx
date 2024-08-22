@@ -2,7 +2,6 @@ import React from 'react'
 import './index.css'
 //components
 import GroupedWasteItem from '../../../components/GroupedWasteItem'
-import View from '../../../components/core/View'
 //hooks
 import groupedByCode from '../../../utils/groupedByCode'
 //utils
@@ -20,7 +19,7 @@ const SummaryWaste = () => {
   const groupedList = filterByMonthYear(groupedItems, month, year)
 
   return (
-    <View>
+
       <div className='SummaryDiv'>
 
         <h2 className='title'>Datos resumidos de Residuos:</h2>
@@ -30,7 +29,7 @@ const SummaryWaste = () => {
         ))}
       
       </div>
-    </View>
+
   );
 };
 

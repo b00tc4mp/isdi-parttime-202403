@@ -1,7 +1,5 @@
 import React from 'react'
 import './index.css'
-//components
-import View from '../../components/core/View'
 //img
 import van1 from './img/van1.jpg'
 import van2 from './img/van2.jpg'
@@ -12,7 +10,7 @@ import truck6 from './img/truck6.jpg'
 
 const Fleet = () => {
   return (
-    <View>
+
     <div className='FleetOptions'>
       
       <a href="/Fleet/van1"><img className='ImageFleet' src={van1} /> </a>
@@ -27,7 +25,6 @@ const Fleet = () => {
 
       <a href="/Fleet/truck6"><img className='ImageFleet' src={truck6} /> </a>
     </div>
-    </View>
   )
 }
 
