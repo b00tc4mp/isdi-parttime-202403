@@ -1,4 +1,6 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { FaEye } from "react-icons/fa6";
+import { FaEyeSlash } from "react-icons/fa6";
 
 import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
@@ -7,6 +9,7 @@ import FinishTaskForm from './FinishTaskForm'
 import ModifyDefinitionTaskForm from './ModifyDefinitionTaskForm'
 import ModifyStatusOrObervationTaskForm from './ModifyStatusOrObservationTaskForm'
 import ReleaseTaskForm from './ReleaseTaskForm'
+import TaskView from './TaskView'
 
 import logic from '../../logic'
 import { useState } from 'react'
@@ -15,6 +18,10 @@ import useContext from '../../useContext'
 
 function Task({ task, onTaskRefreshed }) {
     const { alert } = useContext()
+
+    const [viewTask, setViewTask] = useState(false)
+    const handleViewTaskClick = () => setViewTask(true)
+    const handleProcessFinishClick = () => setViewTask(false)
 
     const [form, setForm] = useState('')
     const handleSetForm = (url) => setForm(form)
@@ -117,10 +124,13 @@ function Task({ task, onTaskRefreshed }) {
                 {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleModifyStatusOrObservationsTask}>Modify status/observations</Button>}
                 {task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button className="border-none" onClick={handleReleaseTask}>Release</Button>}
                 {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleFinishTask}>Finish</Button>}
+                {!viewTask && <Button className="border-none" onClick={handleViewTaskClick}>{<FaEye />}</Button>}
+                {viewTask && <Button className="border-none" onClick={handleProcessFinishClick}>{<FaEyeSlash />}</Button>}
                 {task.creator === logic.getUserId() && <Button className="border-none" onClick={handleDeleteTask}>{<RiDeleteBin5Line/>}</Button>}
             </div>
         </div>
 
+        {viewTask && <TaskView task={task} onProcessFinished={handleProcessFinishClick} />}
         {confirmSelectVisible && <Confirm message="Select task?" onAccept={handleSelectTaskAccepted} onCancel={handleSelectTaskCancelled} />}
         {confirmModifyDefinitionVisible && <ModifyDefinitionTaskForm task={task}  onProcessFinished={handleFinishModifyDefinitionProcess}/>}
         {confirmModifyStatusOrObservationsVisible && <ModifyStatusOrObervationTaskForm task={task}  onProcessFinished={handleFinishModifyStatusOrObservationsProcess}/>}
