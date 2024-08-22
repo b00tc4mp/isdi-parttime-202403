@@ -20,7 +20,7 @@ export default (req, res, next) => {
                 const { adId } = req.params
 
                 try {
-                    logic.getaAdId(adId)
+                    logic.getAd(adId)
                         .then(ad => {
                             res.json(ad)
                             // res.status(200).send(user)

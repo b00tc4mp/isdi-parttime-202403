@@ -1,13 +1,15 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
-import createAd from "../../../logic/createAd"
+import createAd from '../../../logic/createAd'
+
+import Button from '../../../components/core/Button'
 
 
 export function CreateAdForm() {
 
-    const [data, setData] = useState('')
+    const [message, setMessage] = useState('')
 
     const navigate = useNavigate()
 
@@ -32,16 +34,28 @@ export function CreateAdForm() {
 
         console.log({ title, description, price })
 
+        try {
 
-        createAd(title, description, price)
-            .then(() => {
-                navigate("/")
-                console.log('Ad created')
+            createAd(title, description, price)
+                .then(() => {
+                    navigate("/")
+                    console.log('Ad created')
 
-            })
-            .catch(error => {
-                console.error(error)
-            })
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    setMessage(error.message)
+                    return
+                })
+
+        } catch (error) {
+            console.error(error.message)
+
+            setMessage(error.message)
+        }
+
+
 
         // try {
         //     createAd(title, description, price)
@@ -66,14 +80,14 @@ export function CreateAdForm() {
     return <>
 
         <h1>CreateAdForm</h1>
-        <form onSubmit={handleCreateAd}>
+        <form onSubmit={handleCreateAd} message={message}>
             <input id="title" type="text" placeholder="Title" />
             <input id="description" type="text" placeholder="Description" />
             <input id="price" type="text" placeholder="Price" />
             <p></p>
-            <button>Create</button>
+            <Button type="submit">Create</Button>
             <p></p>
-            <button onClick={handleCancelCreateAd}>Cancel</button>
+            <Button onClick={handleCancelCreateAd}>Cancel</Button>
         </form>
     </>
 }

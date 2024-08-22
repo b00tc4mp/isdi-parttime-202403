@@ -1,9 +1,15 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom'
+
 import logic from '../../../logic';
 
-function CreateComment({ adId }) {
-    // const [data, setData] = useState('')
+import Button from '../../../components/core/Button'
+
+function CreateComment({ adId, onAdCommentSubmitted }) {
+    const [message, setMessage] = useState('')
+
+    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
 
@@ -12,19 +18,30 @@ function CreateComment({ adId }) {
         const form = event.target
         const comment = form.comment.value
 
-        logic.createAdComment(adId, comment)
-            .then(() => {
-                console.log('Comment created')
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+        try {
+
+            logic.createAdComment(adId, comment)
+                .then(() => {
+                    console.log('Comment created')
+                    onAdCommentSubmitted()
+                    form.reset()
+                })
+                .catch((error) => {
+                    console.error(error)
+                    setMessage(error.message)
+                })
+
+        } catch (error) {
+            setMessage(error.message)
+            console.error(error)
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <input type="text" name='comment' placeholder='Comment' />
-            <button>Comment</button>
+            <Button type="submit">Comment</Button>
+            {message && <p className="ErrorMessage">{message}</p>}
         </form>
     )
 

@@ -3,7 +3,7 @@ import { Ad } from '../data/index.js'
 import { SystemError, NotFoundError } from 'com/errors.js'
 
 
-const getaAdId = (adId) => {
+const getaAd = (adId) => {
 
     return Ad.findById(adId).populate('author', 'username').populate('adcomments.author', 'username').lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -18,4 +18,4 @@ const getaAdId = (adId) => {
 
 }
 
-export default getaAdId
+export default getaAd

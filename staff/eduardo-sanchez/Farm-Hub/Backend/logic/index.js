@@ -5,7 +5,7 @@ import getAllAds from './getAllAds.js'
 import deleteAd from './deleteAd.js'
 import getUserInfo from './getUserInfo.js'
 import createAdComment from './createAdComment.js'
-import getaAdId from './getAdId.js'
+import getAd from './getAd.js'
 
 
 
@@ -18,7 +18,7 @@ const logic = {
     deleteAd,
     getUserInfo,
     createAdComment,
-    getaAdId,
+    getAd,
 
 }
 

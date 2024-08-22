@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import logic from '../logic';
 import Title from '../components/core/Title';
+import Button from '../components/core/Button';
+import Link from '../components/core/Link';
 import CreateComment from './components/CreateCommnet/CreateComment';
 
 function AdPage() {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const [ad, setAd] = useState(null)
 
@@ -18,7 +20,7 @@ function AdPage() {
     }, [])
 
     const loadAd = () => {
-        logic.getAdId(adId)
+        logic.getAd(adId)
             .then(ad => {
                 setAd(ad)
                 console.log(ad)
@@ -30,6 +32,9 @@ function AdPage() {
 
         return <h1>Loading...</h1>
     }
+
+    const handleAdCommentSubmit = () => loadAd()
+
     return (
         <div>
 
@@ -39,7 +44,7 @@ function AdPage() {
             <p>{ad?.price}</p>
             <p>{ad?.date}</p>
 
-            <CreateComment adId={adId} />
+            <CreateComment adId={adId} onAdCommentSubmitted={handleAdCommentSubmit} />
             {ad.adcomments.map(comment => {
 
                 return <div key={comment._id}>
@@ -49,6 +54,7 @@ function AdPage() {
                 </div>
             }
             )}
+            <Link to={'/'}>Cancel</Link>
 
         </div>
 

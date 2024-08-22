@@ -1,6 +1,6 @@
 import errors, { SystemError } from 'com/errors';
 
-const getAdId = (adId) => {
+const getAd = (adId) => {
     return fetch(`${import.meta.env.VITE_API_URL}/ads/${adId}`, {
 
         method: 'GET',
@@ -30,4 +30,4 @@ const getAdId = (adId) => {
         })
 }
 
-export default getAdId
+export default getAd
