@@ -1,4 +1,4 @@
-import errors, { SystemError } from "com/errors";
+import errors, { SystemError } from 'com/errors';
 
 
 const getRoomBookings = (roomId) => {

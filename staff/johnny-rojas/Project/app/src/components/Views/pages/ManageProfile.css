@@ -1,11 +1,11 @@
-@tailwind components;
+@tailwind base;
 
-@layer components{
-  h2{
+@layer base{
+  .infoUserTitle{
     @apply text-2xl font-medium
   }
 
-  p{
+  .infoUser{
     @apply pb-4
   }
 }

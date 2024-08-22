@@ -1,6 +1,6 @@
-import { NotFoundError, SystemError } from "com/errors.js";
+import { NotFoundError, SystemError } from 'com/errors.js';
 import { Booking, User } from '../data/index.js'
-import validate from "com/validate.js";
+import validate from 'com/validate.js';
 
 
 const getAllBookingByGuest = (userId) => {

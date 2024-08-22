@@ -1,4 +1,4 @@
-import extractPayloadFromJWT from "../../utils/extractPayloadFromJWT"
+import extractPayloadFromJWT from '../../utils/extractPayloadFromJWT'
 
 export function getUserId() {
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)

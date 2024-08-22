@@ -1,5 +1,5 @@
-import errors, { SystemError } from "com/errors"
-import validate from "com/validate"
+import errors, { SystemError } from 'com/errors'
+import validate from 'com/validate'
 
 const getBlockedDatesByRoom = (roomId) => {
   validate.id(roomId, 'roomId')

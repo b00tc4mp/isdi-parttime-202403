@@ -1,13 +1,13 @@
-import Header from "../core/Header"
-import TopBar from "../library/TopBar"
-import View from "../core/View";
-import Title from "../core/Title";
-import FormWithPanel from "../core/FormWithPanel";
-import Field from "../core/Field"
-import SubmitButton from "../core/SubmitButton";
-import logic from "../../../logic/index"
-import { getUserId } from "../../../logic/getUserInfo";
-import { useNavigate } from "react-router-dom";
+import Header from '../core/Header'
+import TopBar from '../library/TopBar'
+import View from '../core/View';
+import Title from '../core/Title';
+import FormWithPanel from '../core/FormWithPanel';
+import Field from '../core/Field'
+import SubmitButton from '../core/SubmitButton';
+import logic from '../../../logic/index'
+import { getUserId } from '../../../logic/getUserInfo';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import './ManageProfile.css'
@@ -15,7 +15,7 @@ import './ManageProfile.css'
 function ManageProfile() {
   const userId = getUserId()
   const navigate = useNavigate()
-  const [userName, setUserName] = useState(""); 
+  const [userName, setUserName] = useState(''); 
 
   useEffect(() => {
     try {
@@ -77,8 +77,8 @@ function ManageProfile() {
 
           <Title className='TitleCreateRoom'>Edita tu informacion de contacto</Title>
 
-          <h2>Hola {userName}</h2>
-          <p>Aquí puedes actualizar tus datos de contacto. Recuerda
+          <h2 className='infoUserTitle'>Hola {userName}</h2>
+          <p className='infoUser'>Aquí puedes actualizar tus datos de contacto. Recuerda
 que debes tener tus datos al día para tener una comunicación optima, muchas gracias.</p>
 
           <FormWithPanel onSubmit={handleEditUserContact}>
@@ -89,7 +89,7 @@ que debes tener tus datos al día para tener una comunicación optima, muchas gr
 
             <SubmitButton>Realizar cambios</SubmitButton>
 
-            <div className="Delete">
+            <div className='Delete'>
               <button onClick={handleCloseAccount}>Eliminar cuenta</button>
             </div>
 

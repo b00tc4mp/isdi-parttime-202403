@@ -1,5 +1,5 @@
-import errors, { SystemError } from "com/errors"
-import extractPayloadFromJWT from "../../utils/extractPayloadFromJWT"
+import errors, { SystemError } from 'com/errors'
+import extractPayloadFromJWT from '../../utils/extractPayloadFromJWT'
 
 const getUserName = () => {
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)

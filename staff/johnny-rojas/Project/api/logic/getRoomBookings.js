@@ -1,6 +1,6 @@
-import validate from "com/validate.js"
-import { Booking, Room } from "../data/index.js"
-import { SystemError } from "com/errors.js"
+import validate from 'com/validate.js'
+import { Booking, Room } from '../data/index.js'
+import { SystemError } from 'com/errors.js'
 
 const getRoomBookings = (roomId) => {
   validate.id(roomId, 'roomId')

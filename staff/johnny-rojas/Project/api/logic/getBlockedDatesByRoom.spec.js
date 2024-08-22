@@ -4,7 +4,6 @@ import mongoose from 'mongoose'
 import getBlockedDatesByRoom from './getBlockedDatesByRoom.js'
 import bcrypt from 'bcryptjs'
 import { expect } from 'chai'
-import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = mongoose.Types
