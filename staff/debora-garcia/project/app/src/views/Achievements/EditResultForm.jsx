@@ -6,14 +6,13 @@ import Field from '../../components/Field';
 export default function EditResultForm({ resultId, onResultEdited }) {
     console.log("EditResultForm -> render")
 
-    const handleCreatePostSubmit = (event) => {
+    const handleEditResultSubmit = (event) => {
         event.preventDefault()
         const form = event.target
 
-
-        const time = form.time.value 
-        const repetitions = form.repetitions.value
-        const weight = form.weight.value
+        const time = form.time.value && Number(form.time.value)
+        const repetitions = form.repetitions.value && Number(form.repetitions.value)
+        const weight = form.weight.value && Number(form.weight.value)
 
         try {
 
@@ -24,10 +23,9 @@ export default function EditResultForm({ resultId, onResultEdited }) {
                 })
         } catch (error) {
             console.error(error)
-
         }
         return (
-            <form className="EditResultForm" onSubmit={handleCreatePostSubmit}>
+            <form className="EditResultForm" onSubmit={handleEditResultSubmit}>
                 <Field id="time" type="number" placeholder="Time"></Field>
                 <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
                 <Field id="weight" type="number" placeholder="Weight"></Field>
@@ -35,10 +33,8 @@ export default function EditResultForm({ resultId, onResultEdited }) {
                 <div className="form-buttons-container">
                     <Button type="submit">Save</Button>
                 </div>
-
-
             </form>
-        );
+        )
     }
 
 }

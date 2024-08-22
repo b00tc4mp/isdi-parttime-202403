@@ -9,7 +9,7 @@ const getPosts = (userId) => {
         .then(user => {
             if (!user) throw new NotFoundError("user not found")
 
-            return Post.find({})
+            return Post.find({}).lean()
                 .populate("author", "username")
                 .populate({
                     path: "workout",

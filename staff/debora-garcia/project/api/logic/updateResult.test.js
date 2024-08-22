@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            updateResult("66abe056713a8be92f8e5844", "66bde2c62e4b5d509cbbedda", "50", "", "")
+            updateResult("66b0b8ff337c2b614a26583b", "66c710b7724e091957a60d88", 50, null, null)
                 .then(() => console.log("result updated"))
                 .catch(error => console.error(error))
 

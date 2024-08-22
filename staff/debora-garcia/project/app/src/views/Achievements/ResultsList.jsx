@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import logic from "../../logic"
 import Heading from "../../components/Heading"
 import Button from "../../components/Button";
+import { Link } from "react-router-dom"
 
 import "./ResultsList.css"
 export default function ResultsList() {
@@ -38,28 +39,34 @@ export default function ResultsList() {
             alert
         }
     }
-    
-    return <div className="ResultsList">
-        <div className="ResultsList-container">
-            {results.map(result => <article key={result.id}>
-                <div className="result-header">
-                    <Heading level={6} className="Heading">{result.workout.workoutType.toUpperCase()} {result.workout.title}{result.workout.duration}</Heading>
-                    <time>{new Date(result.date).toLocaleDateString()}</time>
-                </div>
-                <div className="result-details-container">
-                    <p className="result-details">
-                        {result.time && `${result.time} min `}
-                        {result.repetitions && `${result.repetitions} reps `}
-                        {result.weight && `${result.weight} kg`}
-                    </p>
-                    <div className="action-button">
-                        <Button onClick={() => handleDeleteResult(result)}>✖️</Button>
-                        <Button onClick={() => handleEditResult(result)}>🖋️</Button>
 
-                    </div>
-                </div>
-
-            </article>)}
+    return (
+        <div className="ResultsList">
+            <div className="ResultsList-container">
+                {results.map(result => (
+                    <Link key={result.id} to={`/results/${result.id}`} className="ResultsList-item">
+                        <article>
+                            <div className="result-header">
+                                <Heading level={6} className="Heading">
+                                    {result.workout.workoutType.toUpperCase()} {result.workout.title} {result.workout.duration}
+                                </Heading>
+                                <time>{new Date(result.date).toLocaleDateString()}</time>
+                            </div>
+                            <div className="result-details-container">
+                                <p className="result-details">
+                                    {result.time && `${result.time} min `}
+                                    {result.repetitions && `${result.repetitions} reps `}
+                                    {result.weight && `${result.weight} kg`}
+                                </p>
+                                <div className="action-button">
+                                    <Button onClick={(e) => { e.preventDefault(); handleDeleteResult(result); }}>✖️</Button>
+                                    <Button onClick={(e) => { e.preventDefault(); handleEditResult(result); }}>🖋️</Button>
+                                </div>
+                            </div>
+                        </article>
+                    </Link>
+                ))}
+            </div>
         </div>
-    </div>
+    );
 }

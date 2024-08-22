@@ -13,9 +13,9 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
 
         const image = form.image.value
         const description = form.description.value
-        const time = Number(form.time.value)
-        const repetitions = Number(form.repetitions.value)
-        const weight = Number(form.weight.value)
+        const time = form.time.value && Number(form.time.value)
+        const repetitions = form.repetitions.value && Number(form.repetitions.value)
+        const weight = form.weight.value && Number(form.weight.value)
 
         try {
 
@@ -37,7 +37,7 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
             <Field id="time" type="number" placeholder="Time"></Field>
             <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
             <Field id="weight" type="number" placeholder="Weight"></Field>
-
+            
             <div className="form-buttons-container">
                 <Button type="submit">Share</Button>
             </div>

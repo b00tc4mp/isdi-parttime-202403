@@ -189,7 +189,7 @@ describe("createPost", () => {
                     .then(() => Post.findOne())
                     .then(post => {
                         expect(post.author.toString()).to.equal(user.id.toString())
-                        expect(post.image).to.be.null // Como la imagen no fue proporcionada
+                        expect(post.image).to.be.null 
                         expect(post.workout.toString()).to.equal(workout.id.toString())
 
                         expect(post.description).to.equal("descriptionTest")
@@ -200,9 +200,9 @@ describe("createPost", () => {
                     .then(result => {
                         expect(result.athlete.toString()).to.equal(result.athlete.toString())
                         expect(result.workout.toString()).to.equal(result.workout.toString())
-                        expect(result.time).to.equal(null) // Valor por defecto
-                        expect(result.repetitions).to.equal(null) // Valor por defecto
-                        expect(result.weight).to.equal(null) // Valor por defecto
+                        expect(result.time).to.equal(null) 
+                        expect(result.repetitions).to.equal(null) 
+                        expect(result.weight).to.equal(null) 
                     })
             )
     )

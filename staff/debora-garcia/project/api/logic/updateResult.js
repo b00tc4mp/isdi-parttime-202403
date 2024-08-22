@@ -8,9 +8,12 @@ const { ObjectId } = Types
 const updateResult = (userId, resultId, time, repetitions, weight) => {
     validate.id(userId, "userId")
     validate.id(resultId, "resultId")
-    if (time !== undefined) validate.number(time, "time");
-    if (repetitions !== undefined) validate.number(repetitions, "repetitions");
-    if (weight !== undefined) validate.number(weight, "weight");
+    validate.number(time, "time");
+    validate.number(repetitions, "repetitions");
+    validate.number(weight, "weight");
+    /*    if (time !== undefined) validate.number(time, "time");
+       if (repetitions !== undefined) validate.number(repetitions, "repetitions");
+       if (weight !== undefined) validate.number(weight, "weight"); */
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
