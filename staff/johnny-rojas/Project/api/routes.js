@@ -6,6 +6,7 @@ const jsonBodyParser = express.json({ strict: true, type: 'application/json' })
 const router = express.Router();
 
 router.post('/users', jsonBodyParser, routes.registerUserHandler)
+router.get('/users/:userId/manage', routes.getUserNameHandler)
 router.patch('/users/:userId/manage', jsonBodyParser, routes.editUserContactHandler)
 router.delete('/users/:userId/manage', jsonBodyParser, routes.closeAccountHandler)
 router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)

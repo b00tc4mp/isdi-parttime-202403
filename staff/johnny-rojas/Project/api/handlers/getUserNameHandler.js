@@ -10,14 +10,10 @@ const getUserNameHandler = (req, res, next) => {
 
     jwt.verify(token, JWT_SECRET)
       .then(payload => {
-        const { sub: id, role } = payload
-
-        const user = { id, role } 
-
-        const { targetUserId } = req.params
+        const { sub: userId} = payload
 
         try {
-          logic.getUserName(user, targetUserId)
+          logic.getUserName(userId)
             .then(name => res.json(name))
             .catch(error => next(error))
 

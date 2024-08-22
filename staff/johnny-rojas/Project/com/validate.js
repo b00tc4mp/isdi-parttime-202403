@@ -80,6 +80,11 @@ function validatePrice(price, explain = 'price') {
   }
 }
 
+function validateDate(date, explain = 'date') {
+  if (typeof date !== 'string' ) {
+    throw new ContentError(`${explain} is not valid`)
+  }
+}
 
 
 const validate = {
@@ -94,7 +99,8 @@ const validate = {
   url: validateUrl,
   id: validateId,
   region: validateRegion,
-  price: validatePrice
+  price: validatePrice,
+  date: validateDate
 
 }
 

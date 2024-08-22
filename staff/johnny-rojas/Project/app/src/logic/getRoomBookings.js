@@ -2,6 +2,7 @@ import errors, { SystemError } from "com/errors";
 
 
 const getRoomBookings = (roomId) => {
+  validate.id(roomId, 'roomId')
 
   return fetch(`${import.meta.env.VITE_API_URL}/bookings/${roomId}`, {
     method: 'GET',

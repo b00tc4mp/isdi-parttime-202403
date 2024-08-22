@@ -1,5 +1,6 @@
 import registerUser from './registerUser.js'
 import authenticateUser from './authenticateUser.js'
+import getUserName from './getUserName.js'
 import editUserContact from './editUserContact.js'
 import closeAccount from './closeAccount.js'
 
@@ -22,6 +23,7 @@ import deleteBookingByHost from './deleteBookingByHost.js'
 const logic = {
   registerUser,
   authenticateUser,
+  getUserName,
   editUserContact,
   closeAccount,
 

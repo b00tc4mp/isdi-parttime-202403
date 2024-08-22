@@ -4,7 +4,8 @@ import loginUser from './loginUser'
 import logoutUser from './logoutUser';
 import { getUserId, getUserRole } from "./getUserInfo";
 import closeAccount from './closeAccount';
-import editUserContact from './editUserContact'
+import editUserContact from './editUserContact';
+import getUserName from './getUserName'
 
 import createRoom from './createRoom';
 import getAllRooms from './getAllRooms';
@@ -29,6 +30,7 @@ const logic = {
   getUserRole,
   editUserContact,
   closeAccount,
+  getUserName,
 
   createRoom,
   getAllRooms,

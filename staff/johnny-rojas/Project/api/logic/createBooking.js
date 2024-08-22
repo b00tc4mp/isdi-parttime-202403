@@ -1,10 +1,12 @@
 import { Booking, Room, User } from '../data/index.js'
-import { NotFoundError, SystemError, DuplicityError, MatchError } from "com/errors.js"
-import validate from "com/validate.js"
+import { NotFoundError, SystemError, DuplicityError, MatchError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const createBooking = (userId, roomId, startDate, endDate) => {
   validate.id(userId, 'userId')
   validate.id(roomId, 'roomId')
+  validate.date(startDate, 'startDate')
+  validate.date(endDate, 'endDate')
 
   return User.findById(userId).select('-__v').lean()
     .catch(error => { throw new SystemError(error.message) })

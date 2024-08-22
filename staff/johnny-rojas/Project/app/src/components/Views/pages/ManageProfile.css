@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components{
+  h2{
+    @apply text-2xl font-medium
+  }
+
+  p{
+    @apply pb-4
+  }
+}

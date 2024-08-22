@@ -1,5 +1,6 @@
 import registerUserHandler from './registerUserHandler.js';
 import authenticateUserHandler from './authenticaUserHandler.js';
+import getUserNameHandler from './getUserNameHandler.js';
 import editUserContactHandler from './editUserContactHandler.js';
 import closeAccountHandler from './closeAccountHandler.js';
 
@@ -22,6 +23,7 @@ import deleteBookingByHostHandler from './deleteBookingByHostHandler.js'
 
 const handlers = {
   registerUserHandler,
+  getUserNameHandler,
   authenticateUserHandler,
   editUserContactHandler,
   closeAccountHandler,

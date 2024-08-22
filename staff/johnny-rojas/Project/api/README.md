@@ -20,4 +20,3 @@ Router
 	- GET /bookings/:roomId (Get Room bookings)
 	- DELETE /rooms/:roomId/manage/booking (Cancell Booking)
 
-	//TODO actualizar

@@ -7,14 +7,30 @@ import Field from "../core/Field"
 import SubmitButton from "../core/SubmitButton";
 import logic from "../../../logic/index"
 import { getUserId } from "../../../logic/getUserInfo";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
+import './ManageProfile.css'
 
 function ManageProfile() {
   const userId = getUserId()
   const navigate = useNavigate()
+  const [userName, setUserName] = useState(""); 
+
+  useEffect(() => {
+    try {
+      logic.getUserName(userId)
+      .then(name => setUserName(name)) 
+        .catch(error => alert(error.message));
+      
+    } catch (error) {
+      alert(error.message)
+    }
+    
+  }, [userId]);
 
   const handleEditUserContact = event => {
+
     event.preventDefault()
 
     const target = event.target
@@ -61,9 +77,9 @@ function ManageProfile() {
 
           <Title className='TitleCreateRoom'>Edita tu informacion de contacto</Title>
 
-          <div>
-            
-          </div>
+          <h2>Hola {userName}</h2>
+          <p>Aquí puedes actualizar tus datos de contacto. Recuerda
+que debes tener tus datos al día para tener una comunicación optima, muchas gracias.</p>
 
           <FormWithPanel onSubmit={handleEditUserContact}>
 

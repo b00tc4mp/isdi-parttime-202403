@@ -1,8 +1,9 @@
 import errors, { SystemError } from 'com/errors'
 
-const getAllUserRooms = (user) => {
+const getAllUserRooms = (userId) => {
+  validate.id(userId, 'userId')
 
-  return fetch(`${import.meta.env.VITE_API_URL}/users/${user.id}/rooms`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/rooms`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,

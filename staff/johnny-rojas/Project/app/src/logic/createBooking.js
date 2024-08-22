@@ -4,6 +4,8 @@ import validate from "com/validate"
 const createBooking = (userId, roomId, startDate, endDate) => {
   validate.id(userId, 'userId')
   validate.id(roomId, 'roomId')
+  validate.id(startDate, 'startDate')
+  validate.id(endDate, 'endDate')
 
   return fetch(`${import.meta.env.VITE_API_URL}/create-booking/${roomId}`, {
     method: 'POST',
