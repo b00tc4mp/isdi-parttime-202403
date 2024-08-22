@@ -12,7 +12,6 @@ function validateName(name, explain = "name") {
         throw new ContentError(`${explain} is not valid`)
 }
 
-//como targetUsername y username validan lo mismo pero devuelven diferente mensaje de error usamos por defecto el valor username con el parametro explain.
 function validateUsername(username, explain = "username") {
     if (typeof username !== "string" || !USERNAME_REGEX.test(username))
         throw new ContentError(`${explain} is not valid`)
@@ -37,13 +36,11 @@ function validateCallback(callback) {
     if (typeof callback !== "function")
         throw new TypeError("callback is not a function")
 }
-//por defecto el max length es infinito, sino es el valor que se recive, si no se pasa nada siempre se cumpliria la condicion de abajo
 function validateText(text, explain = "text", maxLength = Infinity) {
     if (typeof text !== "string" || !text.length || text.length > maxLength)
         throw new ContentError(`${explain} is not valid`)
 }
 
-//en la validacion de imagen usamos uno generico de url
 function validateUrl(url, explain = "url") {
     if (url && (typeof url !== "string" || !url.startsWith("http"))) {
         throw new ContentError(`${explain} is not valid`);

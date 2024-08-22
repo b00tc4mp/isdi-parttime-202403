@@ -114,6 +114,7 @@ describe("createPost", () => {
             expect(errorThrown.message).to.equal("image is not valid")
         }
     })
+
     it("fails on invalid description", () => {
         let errorThrown
         try {
@@ -163,6 +164,48 @@ describe("createPost", () => {
             expect(errorThrown.message).to.equal("weight is not valid")
         }
     })
+    it("succeeds with missing optional parameters", () =>
+        bcrypt.hash("1234", 8)
+            .then(hash => {
+                const user = new User({
+                    name: "nameTest",
+                    surname: "surnameTest",
+                    email: "test@gmail.com",
+                    username: "usernameTest",
+                    password: hash
+                })
+                const workout = new Workout({
+                    workoutType: "benchmark",
+                    title: "Fran",
+                    rounds: 10,
+                    movements: [],
+                    duration: 10,
+                    description: "descriptionTest"
+                })
+                return Promise.all([user.save(), workout.save()])
+            })
+            .then(([user, workout]) =>
+                createPost(user.id, workout.id, null, "descriptionTest", null, null, null, [], [])
+                    .then(() => Post.findOne())
+                    .then(post => {
+                        expect(post.author.toString()).to.equal(user.id.toString())
+                        expect(post.image).to.be.null // Como la imagen no fue proporcionada
+                        expect(post.workout.toString()).to.equal(workout.id.toString())
+
+                        expect(post.description).to.equal("descriptionTest")
+                        expect(post.likes).to.be.an("array")
+                        expect(post.comments).to.be.an("array")
+                        return Result.findById(post.result)
+                    })
+                    .then(result => {
+                        expect(result.athlete.toString()).to.equal(result.athlete.toString())
+                        expect(result.workout.toString()).to.equal(result.workout.toString())
+                        expect(result.time).to.equal(null) // Valor por defecto
+                        expect(result.repetitions).to.equal(null) // Valor por defecto
+                        expect(result.weight).to.equal(null) // Valor por defecto
+                    })
+            )
+    )
 
 
     after(() => Post.deleteMany().then(() => User.deleteMany().then(() => Result.deleteMany().then(() => mongoose.disconnect()))))

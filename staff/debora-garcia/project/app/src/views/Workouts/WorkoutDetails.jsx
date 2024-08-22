@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export default function WorkoutDetail() {
     const [workout, setWorkout] = useState({})
     const { workoutType } = useParams()
+
     const [view, setView] = useState("")
     const navigate = useNavigate()
 
@@ -38,6 +39,8 @@ export default function WorkoutDetail() {
         setView("create-post");
     }
     const handlePostCreated = () => {
+        //setPostListRefreshStamp(Date.now());
+
         setView("")
         navigate("/feed")
 

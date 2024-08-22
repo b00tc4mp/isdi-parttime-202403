@@ -7,6 +7,11 @@ import getRandomWorkout from "./getRandomWorkout";
 import createPost from "./createPost";
 import getPosts from "./getPosts";
 import getResults from "./getResults";
+import toggleLikePost from "./toggleLikePost";
+import getUserId from "./getUserId";
+import deleteResult from "./deleteResult";
+import updateResult from "./updateResult";
+
 
 const logic = {
     registerUser,
@@ -18,6 +23,10 @@ const logic = {
     createPost,
     getPosts,
     getResults,
+    toggleLikePost,
+    getUserId,
+    deleteResult,
+    updateResult
 
 }
 

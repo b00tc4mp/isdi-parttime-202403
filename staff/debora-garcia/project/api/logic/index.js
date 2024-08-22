@@ -5,6 +5,9 @@ import getRandomWorkout from "./getRandomWorkout.js"
 import createPost from "./createPost.js"
 import getPosts from "./getPosts.js"
 import getResults from "./getResults.js"
+import toggleLikePost from "./toggleLikePost.js"
+import deleteResult from "./deleteResult.js"
+import updateResult from "./updateResult.js"
 
 
 
@@ -15,7 +18,10 @@ const logic = {
     getRandomWorkout,
     createPost,
     getPosts,
-    getResults
+    getResults,
+    toggleLikePost,
+    deleteResult,
+    updateResult
 }
 
 export default logic

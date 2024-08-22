@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import logic from "../../logic"
 import Heading from "../../components/Heading"
 import "./PostList.css"
+import Button from "../../components/Button"
 export default function PostList() {
     console.log("PostList ->render")
 
@@ -22,6 +23,22 @@ export default function PostList() {
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    const handleToggleLikePost = (post) => {
+        try {
+            logic.toggleLikePost(post.id)
+                .then(() => loadPosts())
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }
@@ -51,6 +68,13 @@ export default function PostList() {
                         {post.result.repetitions && `${post.result.repetitions}reps `}
                         {post.result.weight && `${post.result.weight}kg`}
                     </p>
+                </div>
+                <div className="post-footer">
+
+                    <Button onClick={() => handleToggleLikePost(post)}>
+                        {`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}
+                    </Button>
+                    <Button>Comments</Button>
                 </div>
             </article>)}
         </div>

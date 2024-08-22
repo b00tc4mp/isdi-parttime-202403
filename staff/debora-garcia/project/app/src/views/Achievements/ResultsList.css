@@ -16,7 +16,13 @@
     @apply flex gap-[1rem] w-full justify-between p-[0_1rem] items-center ;
   }
 
+  .ResultsList .result-details-container{
+    @apply flex flex-row w-full h-[40px] items-center p-[0_1rem];
+  }
   .ResultsList .result-details{
-    @apply flex  w-full justify-start p-[0_1rem];
+    @apply flex flex-row w-full  justify-start ;
+  }
+  .ResultsList .edit-resultButton{
+    @apply flex flex-row w-full  justify-end ;
   }
 }
