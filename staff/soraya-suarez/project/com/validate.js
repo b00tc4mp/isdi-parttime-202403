@@ -72,9 +72,9 @@ function validateBoolean(boolean) {
         throw new ContentError('is not boolean')
 }
 
-function validateNumber(number) {
-    if (typeof number != 'number' || !NUMBER_REGEX.test(number))
-        throw new ContentError('is not a number')
+function validateNumber(number, explain = 'number') {
+    if (typeof number != 'number' || !NUMBER_REGEX.test(number) || number <= 0)
+        throw new ContentError(`${explain} is not valid`)
 }
 
 const validate = {
