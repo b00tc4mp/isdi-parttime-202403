@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 
 import Game from '../Game/Game'
 import logic from '../../../logic/index'
+
 import Searcher from '../Searcher/Searcher'
+import ScrollTopButton from '../ScrollTopButton/ScrollTopButton'
 
 import './GameList.css'
 
@@ -57,6 +59,7 @@ function GameList({ refreshStamp }) {
     return (
         <div className='List'>
             <Searcher onSearch={handleSearch} />
+            <ScrollTopButton />
             {filteredGames.map((game, index) =>
                 <Game
                     key={index}
