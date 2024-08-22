@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import logic from '../../../logic';
 
 import Button from '../../../components/core/Button'
+
+import './CreateComment.css'
 
 function CreateComment({ adId, onAdCommentSubmitted }) {
     const [message, setMessage] = useState('')
@@ -42,6 +44,7 @@ function CreateComment({ adId, onAdCommentSubmitted }) {
             <input type="text" name='comment' placeholder='Comment' />
             <Button type="submit">Comment</Button>
             {message && <p className="ErrorMessage">{message}</p>}
+            <Link className="CancelLink" to={'/'}>Cancel</Link>
         </form>
     )
 

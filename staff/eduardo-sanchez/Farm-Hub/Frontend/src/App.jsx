@@ -11,7 +11,7 @@ import { Notfound } from './views/Notfound'
 import { Login } from './views/Login'
 // import Header from './views/components/Header/Header'
 import { CreateAdForm } from './views/components/CreateAdForm/CreateAdForm'
-import AdPage from './views/AdPage'
+import AdPage from './views/AdPage/AdPage'
 // import AdList from './views/components/AdList/AdList.jsx'
 
 function App() {

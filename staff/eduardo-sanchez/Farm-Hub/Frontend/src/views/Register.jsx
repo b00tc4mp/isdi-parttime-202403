@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 import logic from '../logic'
 
 import Field from '../components/core/Field'
-import Link from '../components/core/Link'
+// import Link from '../components/core/Link'
 import Title from '../components/core/Title'
 
 import { SystemError } from 'com/errors'
@@ -56,14 +56,17 @@ function Register() {
         }
     }
 
-    const handleLoginClick = event => {
-        event.preventDefault()
+    // const handleLoginClick = event => {
+    //     event.preventDefault()
 
-        navigate('/login')
-    }
+    //     navigate('/login')
+    // }
 
     return (
         <div>
+
+            <Title className="text-4xl text-green-300">Farm-Hub</Title>
+
             <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
                 <Title>Register</Title>
 
@@ -83,7 +86,7 @@ function Register() {
 
             </form>
             <p className="ErrorMessage">{message}</p>
-            <Link className="Link" onClick={handleLoginClick}>Login</Link>
+            <Link className="Link" to="/login">Login</Link>
 
         </div>
     )

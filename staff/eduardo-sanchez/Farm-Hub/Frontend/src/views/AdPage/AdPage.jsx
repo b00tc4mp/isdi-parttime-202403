@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
-import logic from '../logic';
-import Title from '../components/core/Title';
-import Button from '../components/core/Button';
-import Link from '../components/core/Link';
-import CreateComment from './components/CreateCommnet/CreateComment';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import logic from '../../logic';
+import Title from '../../components/core/Title';
+// import Button from '../../components/core/Button';
+// import Link from '../components/core/Link';
+import CreateComment from '../components/CreateCommnet/CreateComment';
+
 
 function AdPage() {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const [ad, setAd] = useState(null)
 
@@ -54,7 +55,7 @@ function AdPage() {
                 </div>
             }
             )}
-            <Link to={'/'}>Cancel</Link>
+
 
         </div>
 
