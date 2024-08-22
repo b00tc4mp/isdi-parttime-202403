@@ -54,7 +54,7 @@ mongoose.connect(MONGODB_URL)
 
         api.delete('/games/:gameId', deleteGameHandler)
 
-        api.get('sociallist/:targetUserId/games', getAllGamesTargetUserHandler)
+        api.get('/sociallist/:targetUserId/games', getAllGamesTargetUserHandler)
 
         api.use(errorHandler)
 

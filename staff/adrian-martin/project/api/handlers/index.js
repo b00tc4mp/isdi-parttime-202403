@@ -26,5 +26,4 @@ export {
     getAllUsersHandler,
     getTargetProfileHandler,
     getAllGamesTargetUserHandler,
-
 }
