@@ -30,7 +30,7 @@ const userSchema = new Schema({
     type: String,
   },
   dates: {
-    type: [String],
+    type: [Date],
   },
   password: {
     type: String,

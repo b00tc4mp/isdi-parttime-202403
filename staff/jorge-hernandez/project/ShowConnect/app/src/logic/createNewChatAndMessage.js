@@ -1,4 +1,10 @@
+import validate from 'com/validate'
+
 const createNewChatAndMessage = (userId, artistId, messageText) => {
+  validate.id(userId, 'userId')
+  validate.id(artistId, 'artistId')
+  validate.text(messageText, 'messageText')
+
   return fetch(`http://localhost:8080/messages/create`, {
     method: 'POST',
     headers: {

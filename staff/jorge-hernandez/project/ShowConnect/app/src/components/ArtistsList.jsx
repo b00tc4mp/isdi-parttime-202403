@@ -17,7 +17,7 @@ function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
   const loadArtists = (artist, city, excludedDate) => {
     try {
       logic
-        .getArtistsByCity(city, artist, excludedDate)
+        .getArtistsByCity(artist, city, excludedDate)
         .then((artists) => {
           setArtists(artists)
         })

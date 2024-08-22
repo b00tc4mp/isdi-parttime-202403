@@ -42,25 +42,18 @@ function Form({ onClickGoToLogin }) {
     const excludedDate = form.fecha.value
 
     try {
-      validate.name(artist, 'artist')
-      validate.text(city, 'city')
+      setArtist(artist)
+      setCity(city)
+      setExcludedDate(excludedDate)
 
-      if (!excludedDate) {
-        throw new Error('date is empty')
-      }
+      form.reset()
+      setInputValue('')
     } catch (error) {
       setMessage(error.message)
       setTimeout(() => {
         setMessage('')
       }, 2000)
     }
-
-    setArtist(artist)
-    setCity(city)
-    setExcludedDate(excludedDate)
-
-    form.reset()
-    setInputValue('')
   }
 
   return (
@@ -113,7 +106,7 @@ function Form({ onClickGoToLogin }) {
 
         <Field
           labelClass='text-white'
-          labelChildren=' Fecha del Evento'
+          labelChildren='Fecha del Evento'
           htmlFor='fecha'
           id='fecha'
           type='date'

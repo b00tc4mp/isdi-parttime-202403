@@ -1,6 +1,25 @@
 import { ContentError, SystemError } from 'com/errors'
+import validate from 'com/validate'
 
 const updateArtistData = (userId, updatedData) => {
+  validate.id(userId)
+
+  if (updatedData.artisticName) {
+    validate.name(updatedData.artisticName, 'artisticName')
+  }
+
+  if (updatedData.description) {
+    validate.text(updatedData.description, 'description')
+  }
+
+  if (updatedData.image) {
+    validate.url(updatedData.image, 'image')
+  }
+
+  if (updatedData.video) {
+    validate.url(updatedData.video, 'video')
+  }
+
   return fetch(`http://localhost:8080/users/${userId}`, {
     method: 'PUT',
     headers: {

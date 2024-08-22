@@ -3,6 +3,10 @@ import validate from 'com/validate.js'
 import logic from './index.js'
 
 const createNewChatAndMessage = (userId, artistId, messageText) => {
+  validate.id(userId, 'userId')
+  validate.id(artistId, 'artistId')
+  validate.text(messageText, 'messageText')
+
   return logic
     .findExistingChat(userId, artistId)
     .then((existingChat) => {

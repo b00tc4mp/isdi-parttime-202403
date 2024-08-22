@@ -2,8 +2,6 @@ import { useState } from 'react'
 
 import logic from '../logic'
 
-import validate from 'com/validate'
-
 function EditableDescription({ artistId, label, onDescriptionUpdate }) {
   const [isEditing, setIsEditing] = useState(false)
   const [newDescription, setNewDescription] = useState(label)
@@ -15,8 +13,6 @@ function EditableDescription({ artistId, label, onDescriptionUpdate }) {
 
   const handleDescriptionSave = () => {
     const updatedData = { description: newDescription }
-
-    validate.text(updatedData.description, 'description')
 
     logic
       .updateArtistData(artistId, updatedData)

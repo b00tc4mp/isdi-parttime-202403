@@ -28,7 +28,7 @@ function UserChatsAndMessagesList() {
 
   useEffect(() => {
     loadChats()
-    const intervalId = setInterval(loadChats, 3000)
+    const intervalId = setInterval(loadChats, 5000)
 
     return () => clearInterval(intervalId)
   }, [])
@@ -48,13 +48,13 @@ function UserChatsAndMessagesList() {
     setSelectedChat(null)
   }
 
-  const handleClickDelete = (chat) => {
-    if (chat.messages.length === 1) {
-      console.log('Eliminar chat')
-    } else {
-      console.log('Solo puedes eliminar chats que no hayan respondido')
-    }
-  }
+  // const handleClickDelete = (chat) => {
+  //   if (chat.messages.length === 1) {
+  //     console.log('Eliminar chat')
+  //   } else {
+  //     console.log('Solo puedes eliminar chats que no hayan respondido')
+  //   }
+  // }
 
   const handleOnSubmit = (e) => {
     e.preventDefault()

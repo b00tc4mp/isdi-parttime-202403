@@ -13,8 +13,6 @@ function EditableVideo({ artistId, label, onVideoUpdate }) {
   const handleVideoSave = () => {
     const updatedData = { video: newVideo }
 
-    validate.url(updatedData.video)
-
     logic
       .updateArtistData(artistId, updatedData)
       .then(() => {

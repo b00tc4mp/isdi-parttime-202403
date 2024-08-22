@@ -13,8 +13,6 @@ function EditableArtisticName({ onArtisticNameUpdate, artistId, label }) {
   const handleNameSave = () => {
     try {
       const updatedData = { artisticName: newArtisticName }
-      validate.name(updatedData.artisticName, 'artisticName')
-      console.log(updatedData.artisticName)
 
       logic
         .updateArtistData(artistId, updatedData)

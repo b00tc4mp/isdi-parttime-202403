@@ -2,6 +2,10 @@ import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 const createAndUpdateMessage = (chatId, userId, messageText) => {
+  validate.id(chatId)
+  validate.id(userId)
+  validate.text(messageText)
+
   return fetch(`http://localhost:8080/messages`, {
     method: 'POST',
     headers: {

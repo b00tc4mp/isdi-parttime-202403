@@ -1,7 +1,7 @@
 import { ContentError, CredentialsError, MatchError } from './errors.js'
 
 const NAME_REGEX = /^[a-zA-Z ]+$/
-// const ARTISTIC_NAME_REGEX = /^[a-zA-Z ]+$/
+
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{3,}$/
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -11,11 +11,6 @@ function validateName(name, explain = 'name') {
   if (typeof name !== 'string' || !NAME_REGEX.test(name))
     throw new CredentialsError(`${explain} is not valid`)
 }
-
-// function validateArtisticName(artisticName, explain = 'artisticName') {
-//   if (typeof username !== 'string' || !ARTISTIC_NAME_REGEX.test(artisticName))
-//     throw new ContentError(`${explain} is not valid`)
-// }
 
 function validatePassword(password) {
   if (typeof password !== 'string' || !PASSWORD_REGEX.test(password))
@@ -50,9 +45,14 @@ function validateId(id, explain = 'id') {
   if (!ID_REGEX.test(id)) throw new ContentError(`${explain} is not valid`)
 }
 
+function validateDate(date, explain = 'date') {
+  if (!(date instanceof Date) || isNaN(date.getTime())) {
+    throw new ContentError(`${explain} is not valid`)
+  }
+}
+
 const validate = {
   name: validateName,
-  //   artisticName: validateArtisticName,
   password: validatePassword,
   passwordsMatch: validatePasswordsMatch,
   email: validateEmail,
@@ -60,6 +60,7 @@ const validate = {
   text: validateText,
   url: validateUrl,
   id: validateId,
+  date: validateDate,
 }
 
 export default validate

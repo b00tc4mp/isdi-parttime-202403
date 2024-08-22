@@ -1,19 +1,22 @@
-import { User } from '../data/index.js'
-import { SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
+import { User } from '../data/index.js'
 
-const getArtistsByCity = (city, discipline, excludedDate) => {
+const getArtistsByCity = (discipline, city, excludedDate) => {
+  const date = new Date(excludedDate)
+
   validate.text(city, 'city')
   validate.text(discipline, 'discipline')
+  validate.date(date, 'date')
 
   return User.find({
     city: city,
     discipline: discipline,
     role: 'artist',
-    dates: { $not: { $elemMatch: { $eq: excludedDate } } },
+    dates: { $not: { $elemMatch: { $eq: date } } },
   })
     .lean()
     .catch((error) => {
+      console.error(error.message)
       throw new SystemError(error.message)
     })
     .then((artistsList) => {
@@ -25,7 +28,7 @@ const getArtistsByCity = (city, discipline, excludedDate) => {
         discipline: artist.discipline,
         description: artist.description,
         video: artist.video,
-        dates: artist.dates,
+        dates: artist.dates.map((date) => date.toISOString()),
       }))
     })
 }

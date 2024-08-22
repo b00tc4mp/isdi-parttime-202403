@@ -3,7 +3,6 @@ import logic from '../logic'
 
 function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
   const [isAddingDate, setIsAddingDate] = useState(false)
-
   const [newDate, setNewDate] = useState(label || '')
 
   const handleClickAddDate = () => setIsAddingDate(true)
@@ -11,14 +10,18 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
   const handleDateChange = (e) => setNewDate(e.target.value)
 
   const handleDateSave = () => {
-    const updatedDates = [...dates, newDate]
+    const dateObject = new Date(newDate)
+
+    const formattedDate = dateObject.toISOString()
+
+    const updatedDates = [...dates, formattedDate]
 
     const updatedData = { dates: updatedDates }
 
     logic
       .updateArtistData(artistId, updatedData)
       .then(() => {
-        onDateUpdate(newDate)
+        onDateUpdate(formattedDate)
         setIsAddingDate(false)
       })
       .catch((error) => {
@@ -43,6 +46,14 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
       .catch((error) => {
         console.error(error)
       })
+  }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+    const day = date.getDate().toString().padStart(2, '0')
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const year = date.getFullYear()
+    return `${day}-${month}-${year}`
   }
 
   return isAddingDate ? (
@@ -73,7 +84,7 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
       <ul className='m-3 flex flex-col gap-2'>
         {dates.sort().map((date, index) => (
           <li key={index} className='flex items-center'>
-            <span className='flex-1'>{label || date}</span>
+            <span className='flex-1'>{formatDate(date)}</span>{' '}
             <i
               onClick={() => handleDeleteDate(date)}
               className='fa-solid fa-xmark text-red-500 text-2xl ml-6'
