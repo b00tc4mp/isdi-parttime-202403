@@ -15,7 +15,8 @@ import {
     deleteGameHandler,
     getAllGamesUserHandler,
     getAllUsersHandler,
-    getTargetProfileHandler
+    getTargetProfileHandler,
+    getAllGamesTargetUserHandler
 } from './handlers/index.js'
 
 const { PORT, MONGODB_URL } = process.env
@@ -52,6 +53,8 @@ mongoose.connect(MONGODB_URL)
         api.patch('/games/:userId/:gameId/edit', jsonBodyParser, editGameHandler)
 
         api.delete('/games/:gameId', deleteGameHandler)
+
+        api.get('sociallist/:targetUserId/games', getAllGamesTargetUserHandler)
 
         api.use(errorHandler)
 
