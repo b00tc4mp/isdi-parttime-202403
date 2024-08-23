@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-import View from '../../../components/library/View'
 import Task from '../Task'
 
 import logic from '../../../logic'
@@ -34,11 +33,11 @@ function MyInProgressTaskList() {
         }
     }
 
-    const handleTaskDeleted = () => loadTasks()
+    const handleRefresh = () => loadTasks()
 
-    return <View tag="section" className="overflow-scroll my-4">
-        {tasks.map(task => <Task key={task.id} task={task} onTaskDeleted={handleTaskDeleted}/>)}
-    </View>
+    return <div tag="section">
+        {tasks.map(task => <Task key={task.id} task={task} onTaskRefreshed={handleRefresh}/>)}
+    </div>
 }
 
 export default MyInProgressTaskList

@@ -35,7 +35,7 @@ function MyTaskList() {
     
     const handleRefresh = () => loadTasks()
 
-    return <div tag="section" className="overflow-scroll my-4">
+    return <div tag="section">
         {tasks.map(task => <Task key={task.id} task={task} onTaskRefreshed={handleRefresh}/>)}
     </div>
 }

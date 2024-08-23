@@ -1,11 +1,6 @@
-import { AiOutlineClose } from "react-icons/ai"
-
 import Text from '../../../components/core/Text'
-import Button from "../../../components/core/Button"
 
-function TaskView({ task, onProcessFinished }) {
-    const handleExit = () => onProcessFinished()
-
+function TaskView({ task }) {
     return <div className="bg-white w-full text-center">
         <Text>Name: {task.name}</Text>
         <Text>Description: {task.description}</Text>

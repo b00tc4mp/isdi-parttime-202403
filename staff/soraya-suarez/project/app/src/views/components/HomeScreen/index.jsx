@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import View from '../../../components/library/View'
 import Button from '../../../components/core/Button'
 import MyTaskList from '../MyTasksList'
 import MyInProgressTaskList from '../MyInProgressTaskList'
@@ -12,7 +11,7 @@ function HomeScreen () {
     
     const handleNavigateTo = (url) => setPage(url)
 
-    return <View>
+    return <div className="overflow-scroll my-4">
             <nav className="flex justify-center text-xs w-screen">
                 <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('my-tasks')}>My tasks</Button>
                 <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In progress</Button>
@@ -29,7 +28,7 @@ function HomeScreen () {
                 default: return null
             }
             }) () }
-        </View>
+    </div>
 }
 
 export default HomeScreen

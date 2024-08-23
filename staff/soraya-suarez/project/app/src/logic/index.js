@@ -3,6 +3,7 @@ import login from './login'
 import isUserLoggedIn from './isUserLoggedIn'
 import logout from './logout'
 import getUserId from './getUserId'
+import getUserRole from './getUserRole'
 import getAllUsers from './getAllUsers'
 import getAvalableUsers from './getAvailableUsers'
 import modifyUser from './modifyUser'
@@ -29,6 +30,7 @@ const logic = {
     isUserLoggedIn,
     logout,
     getUserId,
+    getUserRole,
     getAllUsers,
     getAvalableUsers,
     modifyUser,
