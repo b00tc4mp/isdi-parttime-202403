@@ -41,22 +41,19 @@ function Home() {
     }
   }, []);
 
+  const filterdAds = (searchText) => {
+    const adsFiltered = ads.filter((ad) => {
+      return ad.title.toLowerCase().includes(searchText.toLowerCase());
+    });
+    setAds(adsFiltered);
+  };
+
   return (
     <>
       <Header user={user} />
 
-      {/* {search ? <SearchBox /> : <></>} */}
-
-      {/* <Title>Farm-Hub</Title>
-            <h1 className='UsernameTitle'>{user.username}</h1>
-            
-            
-            </Header> */}
       <main className="Home">
-        <SearchBox setAds={setAds} />
-
-        {/* {search === true && <SearchBox setAds={setAds} setSearch={setSearch} />} */}
-
+        <SearchBox filterdAds={filterdAds} />
         <CreateAdButton />
 
         <div>

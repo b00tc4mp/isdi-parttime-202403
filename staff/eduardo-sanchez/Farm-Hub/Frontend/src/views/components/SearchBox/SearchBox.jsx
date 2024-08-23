@@ -1,25 +1,10 @@
-import logic from "../../../logic";
-
-// import { Link } from 'react-router-dom'
-
-function SearchBox({ setAds }) {
+function SearchBox({ filterdAds }) {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
 
-    const search = event.target.search.value;
+    const searchText = event.target.search.value;
 
-    try {
-      logic
-        .searchAds(search)
-        .then((ads) => {
-          setAds(ads);
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    } catch (error) {
-      alert(error.message);
-    }
+    filterdAds(searchText);
   };
 
   const handleCancelSearch = (event) => {
@@ -38,26 +23,3 @@ function SearchBox({ setAds }) {
 }
 
 export default SearchBox;
-
-// function SearchBox({ setAds, setSearch }) {
-
-// const loadAds = () => {
-//     try {
-//         logic.getAllAds()
-//             .then((ads) => {
-//                 console.log(ads)
-//                 setAds(ads)
-//             })
-//             .catch((error) => {
-//                 alert(error.message)
-//             })
-//     } catch (error) {
-//         alert(error.message)
-//     }
-// }
-
-// const handleCancelSearch = (event) => {
-//     event.preventDefault()
-//     loadAds()
-//     setSearch(false)
-// }
