@@ -1,0 +1,101 @@
+* {
+    margin: auto;
+}
+
+.GameUser {
+    /* border: 3px solid var(--second-color); */
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.739);
+    border-radius: 20px;
+    background-color: aliceblue;
+}
+
+.GameUser-description {
+    text-align: center;
+    width: 200px;
+}
+
+.ImageTagUser {
+    width: 200px;
+    height: 150px;
+    display: block;
+    object-fit: cover;
+    border-radius: 20px 0px 0px 20px;
+
+}
+
+.GameUser-title {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.GameUser-rating {
+    margin: 10px;
+    font-size: 30px;
+}
+
+.GameUser-hours {
+    font-size: 20px;
+}
+
+.GameUser-image {
+    position: relative;
+    display: inline-block;
+    object-fit: cover;
+}
+
+.GameUser-icon {
+    position: absolute;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    cursor: pointer;
+    left: 225px;
+}
+
+.GameUser-hyi {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.EditDeletePanelContainer {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.EditDeletePanel {
+    border-radius: 10px;
+    border: 1px solid black;
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    background-color: aliceblue;
+}
+
+.Button-3point {
+    width: 70px;
+}
+
+/* object-fit: cover;     
+object-fit: contain; 
+object-fit: fill; */
+
+.Rating10 {
+    color: blue;
+}
+
+.Rating-high {
+    color: rgb(90, 235, 0);
+}
+
+.Rating-medium {
+    color: orange;
+}
+
+.Rating-low {
+    color: red
+}

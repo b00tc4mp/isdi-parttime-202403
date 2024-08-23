@@ -2,7 +2,7 @@ import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 const getAllGamesTargetUser = (targetUserId) => {
-    validate(targetUserId, 'targetUserId')
+    validate.id(targetUserId, 'targetUserId')
 
     return fetch(`${import.meta.env.VITE_API_URL}/sociallist/${targetUserId}/games`, {
         headers: {

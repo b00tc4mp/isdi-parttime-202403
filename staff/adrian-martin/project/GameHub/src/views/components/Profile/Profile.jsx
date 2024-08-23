@@ -50,8 +50,18 @@ function Profile() {
         setRefresh(Date.now())
     }
 
-    const handleGoHome = () => {
-        navigate('/')
+    // const handleGoHomeOrGameListUser = () => {
+    //     if (game.author.id === logic.getUserId()) {
+    //         navigate('/')
+    //     } else {
+    //         navigate(`/sociallist/${userId}`)
+    //     }
+    // }
+
+    //TODO change handleGoToGameList so that if you are the owner it takes you to '/'
+
+    const handleGoToGameList = () => {
+        navigate(`/sociallist/${userId}`)
     }
 
     const startEditingUsername = () => {
@@ -91,7 +101,7 @@ function Profile() {
             )}
 
             <div className='Separator'></div>
-            <Button onClick={handleGoHome} className='Game-List'>Game List</Button>
+            <Button onClick={handleGoToGameList} className='Game-List'>Game List</Button>
         </div>
 
         <Footer />

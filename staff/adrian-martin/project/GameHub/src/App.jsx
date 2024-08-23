@@ -7,6 +7,8 @@ import Home from './views/Home'
 import Profile from './views/components/Profile/Profile'
 import SocialList from './views/components/SocialList/SocialList'
 
+import GameListUser from './views/components/SocialList/GameListUser/GameListUser'
+
 import './App.css'
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/sociallist' element={<SocialList />} />
             <Route path='/profile/:userId' element={<Profile />} />
+            <Route path='/sociallist/:userId' element={<GameListUser />} />
         </Routes>
     </>
 }
