@@ -16,10 +16,7 @@ import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton";
 function Home() {
   const [ads, setAds] = useState([]);
 
-  const [search, setSearch] = useState(false);
-
   const [user, setUser] = useState("");
-  const navigate = useNavigate;
 
   useEffect(() => {
     console.log("Home -> useEffect");
@@ -46,7 +43,7 @@ function Home() {
 
   return (
     <>
-      <Header user={user} setSearch={setSearch} />
+      <Header user={user} />
 
       {/* {search ? <SearchBox /> : <></>} */}
 
@@ -56,7 +53,7 @@ function Home() {
             
             </Header> */}
       <main className="Home">
-        {search === true && <SearchBox setAds={setAds} />}
+        <SearchBox setAds={setAds} />
 
         {/* {search === true && <SearchBox setAds={setAds} setSearch={setSearch} />} */}
 
