@@ -8,6 +8,7 @@ import getAllCustomersHandler from './getAllCustomersHandler.js'
 import getUserProfileHandler from './getUserProfileHandler.js'
 
 import createCustomerHandler from './createCustomerHandler.js'
+import addServiceHandler from './addServiceHandler.js'
 
 import deleteCustomerHandler from './deleteCustomerHandler.js'
 
@@ -25,6 +26,7 @@ export default {
     getUserProfileHandler,
 
     createCustomerHandler,
+    addServiceHandler,
 
     deleteCustomerHandler,
 

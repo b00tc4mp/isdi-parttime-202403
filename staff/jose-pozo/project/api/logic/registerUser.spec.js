@@ -50,27 +50,24 @@ describe('register user', () => {
             })
     )
 
-    it('fails on existing user', () => {
+    it('user already exists', () => {
         let errorThrown
 
-        return bcrypt.hash('1234', 8)
-            .then(hash => {
-                User.create({
-                    name: 'Jon',
-                    surname: 'Snow',
-                    email: 'jon@snow.com',
-                    password: hash,
-                    role: 'provider'
-                })
-            })
+        bcrypt.hash('1234', 8)
+            .then(hash => User.create({
+                name: 'Jon',
+                surname: 'Snow',
+                email: 'jon@snow.com',
+                password: hash,
+                role: 'provider'
+            }))
             .then(() => registerUser('Jon', 'Snow', 'jon@snow.com', '1234', '1234'))
-            .catch(error => {
-                errorThrown = error
-            })
+            .catch((error) => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(DuplicityError)
-                expect(errorThrown.message).to.equal('User already exists')
+                expect(errorThrown.message).to.equal('user already exists')
             })
+
     })
 
     it('fails on invalid name', () => {

@@ -2,7 +2,7 @@ import 'dotenv/config'
 
 import jwt from '../util/jsonwebtoken-promised.js'
 
-import logic from "../logic/index.js"
+import logic from '../logic/index.js'
 
 import { CredentialsError } from 'com/errors.js'
 
@@ -17,10 +17,10 @@ export default ((req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const { name, surname, email } = req.body
+                const { name, description, category, duration, price } = req.body
 
                 try {
-                    logic.createCustomer(userId, name, surname, email)
+                    logic.addService(userId, name, description, category, duration, price)
                         .then(() => res.status(201).json())
                         .catch(error => next(error))
                 } catch (error) {
@@ -32,3 +32,4 @@ export default ((req, res, next) => {
         next(error)
     }
 })
+

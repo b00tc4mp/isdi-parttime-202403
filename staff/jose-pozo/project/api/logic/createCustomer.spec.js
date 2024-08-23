@@ -34,12 +34,11 @@ describe('create customer', () => {
             .then(user => createCustomer(user.id, 'Alfa', 'Beto', 'alfa@beto.com'))
             .then(() => User.findOne({ email: 'alfa@beto.com' }))
             .then(customer => {
-                expect(customer).to.be.an('object')
-                expect(customer._id).to.be.an.instanceOf(ObjectId)
-                expect(customer.id).to.be.a('string')
-                expect(customer.id).to.have.lengthOf(24)
+                expect(customer.name).to.be.an('string')
                 expect(customer.name).to.equal('Alfa')
+                expect(customer.surname).to.be.an('string')
                 expect(customer.surname).to.equal('Beto')
+                expect(customer.email).to.be.an('string')
                 expect(customer.email).to.equal('alfa@beto.com')
                 expect(customer.role).to.equal('customer')
                 expect(customer.manager).to.be.an.instanceOf(ObjectId)
@@ -68,34 +67,34 @@ describe('create customer', () => {
     })
 
     it('fails on duplicity customer', () => {
-        let errorThrown
+        let errorThrown, user1
 
         return bcrypt.hash('1234', 8)
-            .then(hash => {
+            .then(hash => User.create({
+                name: 'Jon',
+                surname: 'Snow',
+                email: 'jon@snow.com',
+                password: hash,
+                role: 'provider',
+            }))
+            .then(createdUser => {
+                user1 = createdUser
+
                 return User.create({
-                    name: 'Jon',
-                    surname: 'Snow',
-                    email: 'jon@snow.com',
-                    password: hash,
-                    role: 'provider'
+                    name: 'Alfa',
+                    surname: 'Beto',
+                    email: 'alfa@beto.com',
+                    role: 'customer',
+                    manager: user1.id
                 })
-                    .then(user => {
-                        return User.create({
-                            name: 'Alfa',
-                            surname: 'Beto',
-                            email: 'alfa@beto.com',
-                            role: 'customer',
-                            manager: user.id
-                        })
-                    })
-                    .then((user) => createCustomer(user.id, 'Alfa', 'Beto', 'alfa@beto.com'))
-                    .catch(error => {
-                        errorThrown = error
-                    })
-                    .finally(() => {
-                        expect(errorThrown).to.be.an.instanceOf(DuplicityError)
-                        expect(errorThrown.message).to.equal('Customer already exists')
-                    })
+            })
+            .then(() => createCustomer(user1.id, 'Alfa', 'Beto', 'alfa@beto.com'))
+            .catch(error => {
+                errorThrown = error
+            })
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(DuplicityError)
+                expect(errorThrown.message).to.equal('Customer already exists')
             })
     })
 

@@ -12,12 +12,11 @@ const service = new Schema({
 
     category: {
         type: String,
-        enum: ['Laser treatments', 'Aesthetic treatments']
     },
 
     duration: {
         type: Number,
-        enum: [30, 60, 90, 120],
+        enum: [15, 30, 45, 60, 75, 90, 105, 120],
         required: true
     },
 

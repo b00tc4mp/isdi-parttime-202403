@@ -57,6 +57,11 @@ function validatePhone(phone, explain = 'phone') {
         throw new ContentError(`${explain} is not valid`)
 }
 
+function validateNumber(number, explain = 'number') {
+    if (typeof number !== 'number')
+        throw new ContentError(`${explain} is not valid`)
+}
+
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -67,7 +72,8 @@ const validate = {
     text: validateText,
     url: validateUrl,
     id: validateId,
-    phone: validatePhone
+    phone: validatePhone,
+    number: validateNumber
 }
 
 export default validate

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useUserProfileContext } from '../../contexts/UserProfileProvider'
 
 import './Home.css'
@@ -19,16 +18,16 @@ import CreateCustomerForm from '../components/CreateCustomerForm/CreateCustomerF
 import CustomersList from '../components/CustomersList/CustomersList'
 import UserProfile from '../components/UserProfile/UserProfile'
 import Calendar from '../components/Calendar/Calendar'
+import AddService from '../components/Add Service/AddService'
 // import Dropdown from './components/DropDown'
-
 
 function Home() {
     const [name, setName] = useState('')
     const [showCreateCustomerForm, setShowCreateCustomerForm] = useState(false)
     const [showCustomersList, setShowCustomersList] = useState(false)
-
+    const [showServicesList, setShowServicesList] = useState(false)
+    const [showAddService, setShowAddService] = useState(false)
     const { showCompoUserProfile, setShowCompoUserProfile } = useUserProfileContext()
-
 
     const navigate = useNavigate()
 
@@ -59,6 +58,7 @@ function Home() {
         setShowCreateCustomerForm(!showCreateCustomerForm)
         setShowCustomersList(false)
         setShowCompoUserProfile(false)
+        setShowAddService(false)
     }
 
     const handleCloseCreateCustomerForm = () => {
@@ -69,8 +69,23 @@ function Home() {
         setShowCustomersList(!showCustomersList)
         setShowCreateCustomerForm(false)
         setShowCompoUserProfile(false)
+        setShowAddService(false)
     }
 
+    const handleServicesList = () => {
+        setShowServicesList(!showServicesList)
+    }
+
+    const handleAddService = () => {
+        setShowAddService(!showAddService)
+        setShowCreateCustomerForm(false)
+        setShowCustomersList(false)
+        setShowCompoUserProfile(false)
+    }
+
+    const handleCloseAddService = () => {
+        setShowAddService(false)
+    }
 
 
     return <>
@@ -82,6 +97,8 @@ function Home() {
             {showCustomersList && <CustomersList />}
 
             {showCompoUserProfile && <UserProfile />}
+
+            {showAddService && <AddService onClose={handleCloseAddService} />}
 
 
 
@@ -106,16 +123,14 @@ function Home() {
             </ViewBox>
 
             <ViewBox tag={'aside'} className={'HomeSidebar'} >
-
-                <Button className={'HomeSidebarButton'} onClick={handleCreateCustomer}>Create Customers</Button>
-                <Button className={'HomeSidebarButton'} onClick={handleCustomersList}>Customers List</Button>
-
+                <Button className={'HomeSidebarButton'} onClick={handleCreateCustomer}>Add Customer</Button>
+                <Button className={'HomeSidebarButton'} onClick={handleCustomersList}>Customers</Button>
+                <Button className={'HomeSidebarButton'} onClick={handleServicesList}>Services</Button>
+                <Button className={'HomeSidebarButton'} onClick={handleAddService}>Add Service</Button>
             </ViewBox>
 
             <ViewBox tag={'section'} className={'HomeCurrentTimeSection'}>
-
                 <CurrentTime />
-
             </ViewBox>
 
             <ViewBox tag={'main'} className={'HomeDaily'} >DAILY</ViewBox>

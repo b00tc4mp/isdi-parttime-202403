@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>73/73</span>
+                <span class='fraction'>72/72</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>73/73</span>
+                <span class='fraction'>72/72</span>
             </div>
         
             
@@ -224,8 +224,7 @@
 <a name='L159'></a><a href='#L159'>159</a>
 <a name='L160'></a><a href='#L160'>160</a>
 <a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L162'></a><a href='#L162'>162</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -277,7 +276,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -299,7 +297,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -309,6 +306,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -322,7 +321,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -423,12 +421,11 @@ describe('create customer', () =&gt; {
             .then(user =&gt; createCustomer(user.id, 'Alfa', 'Beto', 'alfa@beto.com'))
             .then(() =&gt; User.findOne({ email: 'alfa@beto.com' }))
             .then(customer =&gt; {
-                expect(customer).to.be.an('object')
-                expect(customer._id).to.be.an.instanceOf(ObjectId)
-                expect(customer.id).to.be.a('string')
-                expect(customer.id).to.have.lengthOf(24)
+                expect(customer.name).to.be.an('string')
                 expect(customer.name).to.equal('Alfa')
+                expect(customer.surname).to.be.an('string')
                 expect(customer.surname).to.equal('Beto')
+                expect(customer.email).to.be.an('string')
                 expect(customer.email).to.equal('alfa@beto.com')
                 expect(customer.role).to.equal('customer')
                 expect(customer.manager).to.be.an.instanceOf(ObjectId)
@@ -457,34 +454,34 @@ describe('create customer', () =&gt; {
     })
 &nbsp;
     it('fails on duplicity customer', () =&gt; {
-        let errorThrown
+        let errorThrown, user1
 &nbsp;
         return bcrypt.hash('1234', 8)
-            .then(hash =&gt; {
+            .then(hash =&gt; User.create({
+                name: 'Jon',
+                surname: 'Snow',
+                email: 'jon@snow.com',
+                password: hash,
+                role: 'provider',
+            }))
+            .then(createdUser =&gt; {
+                user1 = createdUser
+&nbsp;
                 return User.create({
-                    name: 'Jon',
-                    surname: 'Snow',
-                    email: 'jon@snow.com',
-                    password: hash,
-                    role: 'provider'
+                    name: 'Alfa',
+                    surname: 'Beto',
+                    email: 'alfa@beto.com',
+                    role: 'customer',
+                    manager: user1.id
                 })
-                    .then(user =&gt; {
-                        return User.create({
-                            name: 'Alfa',
-                            surname: 'Beto',
-                            email: 'alfa@beto.com',
-                            role: 'customer',
-                            manager: user.id
-                        })
-                    })
-                    .then((user) =&gt; createCustomer(user.id, 'Alfa', 'Beto', 'alfa@beto.com'))
-                    .catch(error =&gt; {
-                        errorThrown = error
-                    })
-                    .finally(() =&gt; {
-                        expect(errorThrown).to.be.an.instanceOf(DuplicityError)
-                        expect(errorThrown.message).to.equal('Customer already exists')
-                    })
+            })
+            .then(() =&gt; createCustomer(user1.id, 'Alfa', 'Beto', 'alfa@beto.com'))
+            .catch(error =&gt; {
+                errorThrown = error
+            })
+            .finally(() =&gt; {
+                expect(errorThrown).to.be.an.instanceOf(DuplicityError)
+                expect(errorThrown.message).to.equal('Customer already exists')
             })
     })
 &nbsp;
@@ -556,7 +553,7 @@ describe('create customer', () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-21T10:21:56.053Z
+                at 2024-08-23T16:10:47.227Z
             </div>
         <script src="../prettify.js"></script>
         <script>

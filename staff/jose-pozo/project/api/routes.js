@@ -9,6 +9,7 @@ router.post('/users', jsonBodyParser, routes.registerUserHandler)
 router.post('/users/auth', jsonBodyParser, routes.authenticateUserHandler)
 
 router.post('/users/customers', jsonBodyParser, routes.createCustomerHandler)
+router.post('/users/services', jsonBodyParser, routes.addServiceHandler)
 
 router.delete('/users/:customerId', routes.deleteCustomerHandler)
 

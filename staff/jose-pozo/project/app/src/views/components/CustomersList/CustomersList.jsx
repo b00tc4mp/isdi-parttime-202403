@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 
 import { useUserProfileContext } from '../../../contexts/UserProfileProvider'
 
+import './CustomersList.css'
+
 import logic from '../../../logic/index'
 
 import Text from '../../../components/core/Text'
@@ -34,15 +36,15 @@ const CustomersList = () => {
 
     return <>
 
-        <ViewBox tag={'section'} className={`p-4 text-fast-velvet  rounded-md shadow-2xl bg-light-pale-sage z-10 border-solid border-2 row-span-3 col-span-2 h-full w-full col-start-5 row-start-2`}  >
+        <ViewBox tag={'section'} className='CustomersListSection'>
 
             <Text>Customers</Text>
 
-            <hr className='border-1 border-fast-velvet'></hr>
+            <hr className='CustomersListHr'></hr>
 
             <ul>
                 {customers.map(customer => (
-                    <li onClick={() => handleUserProfileClick(customer)} key={customer._id} className='my-2 w-full hover:cursor-pointer rounded bg-soft-gray p-1 text-left text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;'>
+                    <li onClick={() => handleUserProfileClick(customer)} key={customer._id} className='CustomersListLi'>
                         {customer.name} {customer.surname}
                     </li>
                 ))}

@@ -10,10 +10,10 @@ import getAllCustomers from './getAllCustomers'
 import getUserProfile from './getUserProfile'
 
 import createCustomer from './createCustomer'
+import addService from './addService'
 
 import deleteCustomer from './deleteCustomer'
 
-import editCustomer from './updateCustomer'
 import updateCustomer from './updateCustomer'
 
 
@@ -29,6 +29,7 @@ const logic = {
     logoutUser,
 
     createCustomer,
+    addService,
 
     deleteCustomer,
 

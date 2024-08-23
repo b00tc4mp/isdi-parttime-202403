@@ -1,14 +1,17 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
+const addService = (name, description, category, duration, price) => {
+    validate.text(name, 'name')
+    // validate.text(description, 'description')
+    // validate.text(category, 'category')
+    validate.number(duration)
+    validate.number(price)
 
-const createCustomer = (name, surname, email) => {
-    // validate.id(userId, 'user id')
-    validate.name(name)
-    validate.name(surname, 'surname')
-    validate.email(email)
+    if (description) { validate.text(description, 'description') }
+    if (category) { validate.text(category, 'category') }
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/customers`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/services`, {
         method: 'POST',
 
         headers: {
@@ -18,8 +21,10 @@ const createCustomer = (name, surname, email) => {
         },
         body: JSON.stringify({
             name,
-            surname,
-            email
+            description,
+            category,
+            duration,
+            price
         })
     })
         .catch(() => { throw new SystemError('server error') })
@@ -38,4 +43,4 @@ const createCustomer = (name, surname, email) => {
         })
 }
 
-export default createCustomer
+export default addService

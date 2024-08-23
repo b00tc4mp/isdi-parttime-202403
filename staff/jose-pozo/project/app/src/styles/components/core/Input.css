@@ -2,7 +2,7 @@
 
 @layer components {
   .Input {
-    @apply bg-soft-gray rounded-md p-1;
+    @apply my-4 flex w-full flex-col rounded-md bg-soft-gray p-1 py-2;
   }
 
   .Input:focus {

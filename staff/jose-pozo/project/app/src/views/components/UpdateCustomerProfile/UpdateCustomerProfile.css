@@ -1,11 +1,23 @@
 @tailwind components;
 
 @layer components {
-  .EditCustomerProfileSection {
-    @apply z-20 col-span-2 col-start-5 row-span-3 row-start-2 h-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
+  .UpdateCustomerProfileSection {
+    @apply z-20 col-span-2 col-start-5 row-span-3 row-start-2 h-full rounded-md border-2 border-solid bg-light-pale-sage bg-opacity-100 p-4 text-fast-velvet shadow-xl;
   }
 
-  .EditCustomerProfileForm {
+  .UpdateCustomerProfileForm {
     @apply flex flex-col;
+  }
+
+  .UpdateCustomerProfileButtons {
+    @apply flex justify-between;
+  }
+
+  .UpdateCustomerProfileSaveButton {
+    @apply mb-2 mr-2 mt-6 w-1/2 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
+
+  .UpdateCustomerProfileCancelButton {
+    @apply mb-2 ml-2 mt-6 h-fit w-1/2 rounded bg-soft-gray p-1 text-fast-velvet hover:bg-sandy-pink hover:text-white-mist active:scale-95 active:bg-pale-sage;
   }
 }

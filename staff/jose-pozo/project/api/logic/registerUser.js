@@ -10,7 +10,7 @@ const registerUser = (name, surname, email, password, passwordRepeat) => {
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
-    return User.findOne({ $and: [{ email }, { role: 'provider' }] })
+    return User.findOne({ email }, { role: 'provider' })
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user) {
@@ -37,10 +37,6 @@ const registerUser = (name, surname, email, password, passwordRepeat) => {
                         .then(() => { })
                 })
         })
-
-
-
-
 }
 
 export default registerUser

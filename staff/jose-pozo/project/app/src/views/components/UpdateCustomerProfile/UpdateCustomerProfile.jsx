@@ -1,13 +1,16 @@
 import { useUserProfileContext } from '../../../contexts/UserProfileProvider'
 
+import './UpdateCustomerProfile.css'
+
 import logic from '../../../logic/index'
 
 import Input from '../../../components/core/Input'
 import Button from '../../../components/core/Button'
+import Text from '../../../components/core/Text'
 
+import Box from '../../../components/core/Box'
 import ViewBox from '../../../components/library/ViewBox'
 
-import './UpdateCustomerProfile.css'
 import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import SubmitButton from '../../../components/core/SubmitButton'
 
@@ -42,14 +45,22 @@ function UpdateCustomerProfile({ onSaveCustomerProfile }) {
     }
 
     return <>
-        <ViewBox tag='section' className='EditCustomerProfileSection'>
-            <FormWithFeedback className='EditCustomerProfileForm' onSubmit={handleUpdateCustomerProfileSubmit}>
-                <Input id={'name'} placeholder='Name' required={false}></Input>
-                <Input id={'surname'} placeholder='Surname' required={false}></Input>
-                <Input id={'email'} placeholder='Email' required={false}></Input>
-                <Input id={'phone'} placeholder='Phone' required={false}></Input>
-                <SubmitButton className='EditCustomerProfileSubmit'>Save</SubmitButton>
-                <Button className='EditCustomerProfileCancel'>Cancel</Button>
+
+        <ViewBox tag='section' className='UpdateCustomerProfileSection'>
+
+            <Text className='UpdateCustomerProfileText'>Update Customer Profile</Text>
+
+            <hr className='border-1 border-fast-velvet'></hr>
+
+            <FormWithFeedback className='UpdateCustomerProfileForm' onSubmit={handleUpdateCustomerProfileSubmit}>
+                <Input id='name' type='text' placeholder='Name' required={false}></Input>
+                <Input id='surname' type='text' placeholder='Surname' required={false}></Input>
+                <Input id='email' type='email' placeholder='Email' required={false}></Input>
+                <Input id='phone' type='text' placeholder='Phone' required={false}></Input>
+                <Box className='UpdateCustomerProfileButtons'>
+                    <Button className='UpdateCustomerProfileSaveButton'>Save</Button>
+                    <Button className='UpdateCustomerProfileCancelButton'>Cancel</Button>
+                </Box>
             </FormWithFeedback>
         </ViewBox>
     </>

@@ -41,15 +41,17 @@ describe('get user profile', () => {
                             role: 'customer',
                             manager: user.id
                         })
-                            .then((userId, targetUserId) => getUserProfile(userId.id, targetUserId.id))
+                            .then((user) => getUserProfile(user.id, user.id))
                             .then(userProfile => {
-                                expect(userProfile).to.be.an('object')
-                                // expect(userProfile.id).to.be.a('string')
                                 expect(userProfile.name).to.be.a('string')
+                                expect(userProfile.name).to.equal('Alfa')
                                 expect(userProfile.surname).to.be.a('string')
+                                expect(userProfile.surname).to.equal('Beto')
                                 expect(userProfile.email).to.be.a('string')
+                                expect(userProfile.email).to.equal('alfa@beto.com')
                                 expect(userProfile.role).to.be.a('string')
-                                expect(userProfile.manager).to.be.an.instanceOf(ObjectId)
+                                expect(userProfile.role).to.equal('customer')
+                                expect(userProfile.id).to.be.a('string')
                             })
                     })
             })

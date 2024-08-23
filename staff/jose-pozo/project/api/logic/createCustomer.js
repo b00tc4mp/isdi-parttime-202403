@@ -15,7 +15,7 @@ const createCustomer = (userId, name, surname, email) => {
                 throw new NotFoundError('User not found')
             }
 
-            return User.findOne({ $and: [{ email }, { manager: user.id }, { role: 'customer' }, { password: '' }] })
+            return User.findOne({ manager: user.id, email: email, role: 'customer' })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(customer => {
                     if (customer) {
@@ -38,7 +38,7 @@ const createCustomer = (userId, name, surname, email) => {
 
                     return User.create(newCustomer)
                         .catch(error => { throw new SystemError(error.message) })
-                        .then(() => newCustomer)
+                        .then(() => { })
                 })
 
 

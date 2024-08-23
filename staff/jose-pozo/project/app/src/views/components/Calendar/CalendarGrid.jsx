@@ -41,8 +41,8 @@ const CalendarGrid = ({ currentMonth, currentYear, today }) => {
 
     const handleDayClick = (dateISO) => {
         console.log(`Clicked on date: ${dateISO}`)
-        // Aquí puedes añadir la lógica para manejar el clic
-        // Por ejemplo, mostrar un modal con citas, realizar una solicitud a una API, etc.
+        // Aquí añadir la lógica para manejar el clic
+        // Por ejemplo, mostrar un modal con citas.
     }
 
     return (

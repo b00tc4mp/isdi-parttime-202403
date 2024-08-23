@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/48</span>
+                <span class='fraction'>51/51</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.65% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>22/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/48</span>
+                <span class='fraction'>51/51</span>
             </div>
         
             
@@ -191,7 +191,9 @@
 <a name='L126'></a><a href='#L126'>126</a>
 <a name='L127'></a><a href='#L127'>127</a>
 <a name='L128'></a><a href='#L128'>128</a>
-<a name='L129'></a><a href='#L129'>129</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,13 +238,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -362,15 +366,17 @@ describe('get user profile', () =&gt; {
                             role: 'customer',
                             manager: user.id
                         })
-                            .then((userId, targetUserId) =&gt; getUserProfile(userId.id, targetUserId.id))
-                            .then(<span class="fstat-no" title="function not covered" >userProfile =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                                expect(userProfile).to.be.an('object')</span>
-                                // expect(userProfile.id).to.be.a('string')
-<span class="cstat-no" title="statement not covered" >                                expect(userProfile.name).to.be.a('string')</span>
-<span class="cstat-no" title="statement not covered" >                                expect(userProfile.surname).to.be.a('string')</span>
-<span class="cstat-no" title="statement not covered" >                                expect(userProfile.email).to.be.a('string')</span>
-<span class="cstat-no" title="statement not covered" >                                expect(userProfile.role).to.be.a('string')</span>
-<span class="cstat-no" title="statement not covered" >                                expect(userProfile.manager).to.be.an.instanceOf(ObjectId)</span>
+                            .then((user) =&gt; getUserProfile(user.id, user.id))
+                            .then(userProfile =&gt; {
+                                expect(userProfile.name).to.be.a('string')
+                                expect(userProfile.name).to.equal('Alfa')
+                                expect(userProfile.surname).to.be.a('string')
+                                expect(userProfile.surname).to.equal('Beto')
+                                expect(userProfile.email).to.be.a('string')
+                                expect(userProfile.email).to.equal('alfa@beto.com')
+                                expect(userProfile.role).to.be.a('string')
+                                expect(userProfile.role).to.equal('customer')
+                                expect(userProfile.id).to.be.a('string')
                             })
                     })
             })
@@ -454,7 +460,7 @@ describe('get user profile', () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-21T10:21:56.053Z
+                at 2024-08-23T16:10:47.227Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import './CreateCustomerForm.css'
 
 import logic from '../../../logic/index'
 
-import Field from '../../../components/core/Field'
+import Input from '../../../components/core/Input'
 import SubmitButton from '../../../components/core/SubmitButton'
 import Text from '../../../components/core/Text'
 
@@ -36,16 +36,11 @@ function CreateCustomerForm({ onClose }) {
 
                     }, 1500)
                 })
-
                 .catch(error => {
-                    console.log(error)
-
                     setMessage(error.message)
                 })
 
         } catch (error) {
-            console.error(error)
-
             setMessage(error.message)
         }
     }
@@ -54,20 +49,15 @@ function CreateCustomerForm({ onClose }) {
     return <>
         <ViewBox tag='section' className='CreateCustomerSection' >
 
-            <Text>Create Customer</Text>
+            <Text>Add Customer</Text>
 
             <hr className='border-1 border-fast-velvet'></hr>
 
             <FormWithFeedback onSubmit={handlerCreateCustomerSubmit} message={message} >
-
-                <Field id='name' type='text' placeholder='Name'></Field>
-
-                <Field id='surname' type='text' placeholder='Surname'></Field>
-
-                <Field id='email' type='email' placeholder='Email'></Field>
-
+                <Input id='name' type='text' placeholder='Name'></Input>
+                <Input id='surname' type='text' placeholder='Surname'></Input>
+                <Input id='email' type='email' placeholder='Email'></Input>
                 <SubmitButton className={'CreateCustomerSubmit'}>Submit</SubmitButton>
-
             </FormWithFeedback>
 
         </ViewBox>
