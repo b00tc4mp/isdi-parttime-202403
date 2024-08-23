@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 import './ScrollTopButton.css'
 
-import Button from "../../../components/core/Button/Button"
+import Button from '../../../components/core/Button/Button'
 
 const ScrollTopButton = () => {
     const [isVisible, setIsVisible] = useState(false)
@@ -28,9 +28,11 @@ const ScrollTopButton = () => {
 
     return (
         isVisible && (
-            <Button className="Scroll" onClick={scrollToTop}>
-                ↑
-            </Button>
+            <div className='Scroll'>
+                <Button className='Scroll-icon' onClick={scrollToTop}>
+                    ⭡
+                </Button>
+            </div>
         )
     )
 }
