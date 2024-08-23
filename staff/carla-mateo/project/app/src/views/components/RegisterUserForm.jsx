@@ -3,7 +3,7 @@ import Field from "../../components/core/Field"
 import Button from '../../components/core/Button'
 import logic from '../../logic/index'
 
-function RegisterUserForm({ onSuccess }) {
+function RegisterUserForm({ onSuccessRegister, onCancelSuccess }) {
     const [registrationMessage, setRegistrationMessage] = useState('')
 
     const handleRegisterUserSubmit = event => {
@@ -24,7 +24,7 @@ function RegisterUserForm({ onSuccess }) {
                     setRegistrationMessage('User registered successfully')
                     setTimeout(() => {
                         setRegistrationMessage('')
-                        onSuccess()
+                        onSuccessRegister()
                     }, 2000)
                 })
                 .catch(error => {
@@ -33,6 +33,10 @@ function RegisterUserForm({ onSuccess }) {
         } catch (error) {
             alert(error.message)
         }
+    }
+
+    const handleCancel = () => {
+        onCancelSuccess()
     }
 
     return <>
@@ -54,6 +58,7 @@ function RegisterUserForm({ onSuccess }) {
                     <option value="avatars/verde.png">verde</option>
                 </select>
                 <Button className="flex justify-between" type="submit">Create User</Button>
+                <Button onSubmit={handleCancel} className="flex justify-between" type="submit">Cancel</Button>
             </form>
             {registrationMessage.length > 0 && <p className="text-black-500 text-lg">{registrationMessage}</p>}
         </div>

@@ -48,7 +48,7 @@ function Register() {
             <Heading level={1} className="text-2xl">Create admin</Heading>
             <Field id="name" type="text" placeholder="name home" />
             <Field id="username" type="text" placeholder="username" />
-            <Field id="email" type="email" placeholder="name@example.com" />
+            <Field id="email" type="email" placeholder="email@example.com" />
             <Field id="password" type="password" placeholder="password" />
             <Field id="passwordRepeat" type="password" placeholder="password repeat" />
             <Field id="family" type="text" placeholder="family" />

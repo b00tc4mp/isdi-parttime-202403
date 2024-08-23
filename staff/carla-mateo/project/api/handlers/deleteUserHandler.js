@@ -11,8 +11,8 @@ export default (req, res, next) => {
         const token = req.headers.authorization.slice(7)
 
         jwt.verify(token, JWT_SECRET)
-            .then(payload => {
-                const { sub: userId } = payload
+            .then(() => {
+                const { userId } = req.params
 
                 try {
                     logic.deleteUser(userId)

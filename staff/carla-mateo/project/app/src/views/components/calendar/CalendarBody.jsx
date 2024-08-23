@@ -4,7 +4,7 @@ import CalendarDay from './CalendarDay'
 import taskDay from '../../../logic/taskDay'
 import './Calendar.css'
 
-const CalendarBody = ({ currentDate }) => {
+const CalendarBody = ({ currentDate, handleShowTasks }) => {
     const [daysWithTasks, setDaysWithTasks] = useState([])
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth()
@@ -14,10 +14,10 @@ const CalendarBody = ({ currentDate }) => {
     const daysInPreviousMonth = new Date(year, month, 0).getDate()
 
     useEffect(() => {
-        taskDay()
+        taskDay(new Date(`${year}-${month + 1}-01`))
             .then(days => setDaysWithTasks(days))
             .catch((error) => alert(error.message))
-    }, [])
+    }, [month])
 
     const prevMonthDays = Array.from({ length: firstDayOfMonth }, (_, index) => (
         <CalendarDay
@@ -33,6 +33,9 @@ const CalendarBody = ({ currentDate }) => {
             year === today.getFullYear() &&
             month === today.getMonth() &&
             day === today.getDate()
+        const isPast = new Date(year, month, day) < today && !isToday
+        const hasTasks = daysWithTasks.includes(day) && !isPast
+        const isPastTask = daysWithTasks.includes(day) && isPast
 
         return (
             <CalendarDay
@@ -40,7 +43,10 @@ const CalendarBody = ({ currentDate }) => {
                 day={day}
                 className="calendar-day"
                 isToday={isToday}
-                hasTasks={daysWithTasks.includes(day)}
+                isPastTask={isPastTask}
+                hasTasks={hasTasks}
+                currentDate={`${year}-${month + 1}-${day}`}
+                handleShowTasks={handleShowTasks}
             />
         )
     })

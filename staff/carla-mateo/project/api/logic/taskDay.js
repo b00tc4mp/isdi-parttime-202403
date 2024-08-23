@@ -2,7 +2,7 @@ import { User, Task } from "../data/index.js"
 import { NotFoundError, SystemError } from "com/errors.js"
 import Validate from "com/validate.js"
 
-const taskDay = (userId) => {
+const taskDay = (userId, selectedDate) => {
     Validate.id(userId, 'userId')
 
     return User.findById(userId).lean()
@@ -13,9 +13,8 @@ const taskDay = (userId) => {
             }
             const { family } = user
 
-            const now = new Date();
-            const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 0)
-            const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+            const startOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 0)
+            const endOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0)
 
             return Task.find({
                 family,

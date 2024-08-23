@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            deleteUser("66c2ddd186ca8793548cb67f")
+            deleteUser("66c6d796e8e6065c0dc81b2f")
                 .then(() => { })
                 .catch((error) => console.error(error))
 

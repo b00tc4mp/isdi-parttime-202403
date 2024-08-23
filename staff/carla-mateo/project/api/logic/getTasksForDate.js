@@ -1,12 +1,11 @@
 import { User, Task } from "../data/index.js"
 import { NotFoundError, SystemError } from "com/errors.js"
-import Validate from "com/validate.js"
+import validate from "com/validate.js"
 
-const getTasksForDay = (userId, dayOfMonth) => {
-    Validate.id(userId, 'userId')
+const getTasksForDate = (userId, date) => {
+    validate.id(userId, 'userId')
+    validate.date(date, 'date')
 
-    const today = new Date()
-    const date = new Date(today.getFullYear(), today.getMonth(), dayOfMonth)
     const startOfDay = new Date(date.setHours(0, 0, 0, 0))
     const endOfDay = new Date(date.setHours(23, 59, 59, 999))
 
@@ -27,7 +26,7 @@ const getTasksForDay = (userId, dayOfMonth) => {
                     $gte: startOfDay,
                     $lte: endOfDay
                 }
-            }).lean()
+            }, { __v: 0 }).lean()
                 .catch(error => {
                     throw new SystemError(error.message)
                 })
@@ -42,4 +41,4 @@ const getTasksForDay = (userId, dayOfMonth) => {
         })
 }
 
-export default getTasksForDay
+export default getTasksForDate

@@ -16,7 +16,10 @@ router.delete('/profile/:userId', routes.deleteUserHandler)
 router.get('/users/:targetUserId', routes.getUsernameHandler)
 router.get('/getallusers', routes.getAllUsersHandler)
 router.get('/getalltasks', routes.getAllTasksHandler)
-router.get('/taskDay', routes.taskDayHandler)
+router.get('/getTasks/:date', routes.getTasksForDateHandler)
+
+
+router.get('/taskDay/:selectedDate', routes.taskDayHandler)
 
 router.patch('/profile/:userId', jsonBodyParser, routes.updateDataUserHandler)
 

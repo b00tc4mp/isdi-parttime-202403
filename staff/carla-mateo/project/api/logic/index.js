@@ -9,6 +9,7 @@ import getUsername from './getUsername.js'
 import updateDataUser from './updateDataUser.js'
 import deleteUser from './deleteUser.js'
 import taskDay from './taskDay.js'
+import getTasksForDate from './getTasksForDate.js'
 
 const logic = {
     registerUser,
@@ -21,7 +22,8 @@ const logic = {
     getUsername,
     updateDataUser,
     deleteUser,
-    taskDay
+    taskDay,
+    getTasksForDate
 
 }
 

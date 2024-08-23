@@ -1,14 +1,14 @@
 import "dotenv/config"
 import mongoose from "mongoose"
 
-import getTasksForDay from "./getTasksForDay.js"
+import getTasksForDate from "./getTasksForDate.js"
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getTasksForDay('66c4e1645977091ceb8b584d', '22')
+            getTasksForDate('66c71ba3fff37f070d5cf0d3', new Date('2024-08-04'))
                 .then((family) => {
                     console.log(family)
                 })

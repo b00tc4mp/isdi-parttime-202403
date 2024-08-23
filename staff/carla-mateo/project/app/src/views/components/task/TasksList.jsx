@@ -63,9 +63,13 @@ function TasksList({ refreshStamp }) {
                 < View >
                     <Header>
                         {user?.name && <Heading className="text-3xl mt-6 mr-10" level="1">{user.name}</Heading>}
-                        <div>
+                        <div className="flex flex-col items-center justify-center">
                             {user?.avatar && <Img src={user.avatar} alt="user avatar" />}
-                            {user?.username && <Heading className="text-xl" level="3"> {user.username}</Heading>}
+                            {user?.username && (
+                                <Heading className="text-xl mt-2" level="3">
+                                    {user.username}
+                                </Heading>
+                            )}
                         </div>
                     </Header>
 

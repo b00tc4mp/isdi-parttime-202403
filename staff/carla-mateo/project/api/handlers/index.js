@@ -11,6 +11,7 @@ import getUsernameHandler from './getUsernameHandler.js'
 import deleteUserHandler from './deleteUserHandler.js'
 import updateDataUserHandler from './updateDataUserHandler.js'
 import taskDayHandler from './taskDayHandler.js'
+import getTasksForDateHandler from './getTasksForDateHandler.js'
 
 
 
@@ -27,5 +28,6 @@ export default {
     getUsernameHandler,
     deleteUserHandler,
     updateDataUserHandler,
-    taskDayHandler
+    taskDayHandler,
+    getTasksForDateHandler
 }

@@ -71,6 +71,11 @@ function validateAvatar(avatar, explain = 'avatar') {
     }
 }
 
+function validateDate(date, explain = 'date') {
+    if (!(date instanceof Date)) {
+        throw new ContentError(`${explain} is not valid`);
+    }
+}
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -82,7 +87,8 @@ const validate = {
     url: validateUrl,
     id: validateId,
     idAssignee: validateIdAssignee,
-    avatar: validateAvatar
+    avatar: validateAvatar,
+    date: validateDate
 }
 
 export default validate
