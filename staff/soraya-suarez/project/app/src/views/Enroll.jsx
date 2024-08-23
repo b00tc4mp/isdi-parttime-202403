@@ -8,10 +8,40 @@ import View from '../components/library/View/index'
 import { SystemError } from 'com/errors'
 import useContext from '../useContext'
 
-function Enroll({ onUserEnrolled }) {
+function Enroll( onProcessFinished ) {
     const { alert } = useContext()
 
     const [message, setMessage] = useState('')
+
+    const [inputName, setInputName] = useState('')
+    const onInputNameChange = ({ target }) => {
+        setInputName(target.value)
+    }
+
+    const [inputSurname, setInputSurname] = useState('')
+    const onInputSurnameChange = ({ target }) => {
+        setInputSurname(target.value)
+    }
+
+    const [inputEmail, setInputEmail] = useState('')
+    const onInputEmailChange = ({ target }) => {
+        setInputEmail(target.value)
+    }
+
+    const [selectedOption, setSelectedOption] = useState('user')
+    const onSelectedOptionChange = ({ target }) => {
+        setSelectedOption(target.value)
+    }
+
+    const [inputPassword, setInputPassword] = useState('')
+    const onInputPasswordChange = ({ target }) => {
+        setInputPassword(target.value)
+    }
+
+    const [inputRepeatPassword, setInputRepeatPassword] = useState('')
+    const onInputRepeatPasswordChange = ({ target }) => {
+        setInputRepeatPassword(target.value)
+    }
 
     const handleEnrollSubmit = event => {
         event.preventDefault()
@@ -21,13 +51,13 @@ function Enroll({ onUserEnrolled }) {
         const name = form.name.value
         const surname = form.surname.value
         const email = form.email.value
-        const role = form.username.value
+        const role = form.role.value
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
 
         try {
             logic.enrollUser(name, surname, email, role, password, passwordRepeat)
-                .then(() => onUserEnrolled())
+                .then(() => onProcessFinished())
                 .catch(error => {
                     console.log(error)
 
@@ -46,24 +76,19 @@ function Enroll({ onUserEnrolled }) {
         }
     }
 
-    return <View tag="main">
-        <h1>Enroll user</h1>
-
+    return <View tag="main" className="container-center min-h-screen" title="Enroll user">
         <FormWithFeedback onSubmit={handleEnrollSubmit} message={message}>
-            <Field id="name" placeholder="name">Name</Field>
+            <Field id="name" placeholder="name" value={inputName} onChange={onInputNameChange}>Name</Field>
+            <Field id="surname" placeholder="surname" value={inputSurname} onChange={onInputSurnameChange}>Surname</Field>
+            <Field id="email" type="email" placeholder="name@example.com" value={inputEmail} onChange={onInputEmailChange}>E-mail</Field>
 
-            <Field id="surname" placeholder="surname">Surname</Field>
-
-            <Field id="email" type="email" placeholder="name@example.com">E-mail</Field>
-
-            <select name="role" id="role" required>
-                <option value="user" selected>Type user</option>
+            <select name="role" id="role" value={selectedOption} onChange={onSelectedOptionChange} required>
+                <option value="user">Type user</option>
                 <option value="admin">Type admin</option>
             </select>
 
-            <Field id="password" type="password" placeholder="password">Password</Field>
-
-            <Field id="passwordRepeat" type="password" placeholder="password repeat">Password Repeat</Field>
+            <Field id="password" type="password" placeholder="password" value={inputPassword} onChange={onInputPasswordChange}>Password</Field>
+            <Field id="passwordRepeat" type="password" placeholder="password repeat" value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Password Repeat</Field>
 
             <SubmitButton>Enroll</SubmitButton>
         </FormWithFeedback>

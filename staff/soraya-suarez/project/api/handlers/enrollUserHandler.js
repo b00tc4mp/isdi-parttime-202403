@@ -19,7 +19,7 @@ export default (req, res, next) => {
 
                 try {
                     logic.enrollUser(name, surname, email, role, userId, password, passwordRepeat)
-                        .then(() => res.status(204).send())
+                        .then(() => res.status(201).send())
                         .catch(error => next(error))
                 } catch (error) {
                     next(error)

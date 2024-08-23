@@ -5,13 +5,14 @@ const enrollUser = (name, surname, email, role, password, passwordRepeat) => {
     validate.name(name)
     validate.name(surname, 'surname')
     validate.email(email)
-    validate.username(username)
+    validate.role(role)
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
     return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ name, surname, email, role, password, passwordRepeat })

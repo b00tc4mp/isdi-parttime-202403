@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import { CiLogout } from "react-icons/ci";
 import { CiMenuBurger } from "react-icons/ci";
