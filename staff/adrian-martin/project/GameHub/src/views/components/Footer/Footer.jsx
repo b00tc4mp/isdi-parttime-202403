@@ -6,7 +6,7 @@ function Footer({ onCreateGame }) {
     // const handleCreateGame = () => onCreateGame()
 
     return <footer className='Footer'>
-        <Button onClick={onCreateGame}>⊕</Button>
+        <Button onClick={onCreateGame}>⨭</Button>
     </footer>
 }
 

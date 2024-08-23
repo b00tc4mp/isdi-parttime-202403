@@ -36,6 +36,13 @@ function Game({ game, onGameDeleted, onGameEdited }) {
         }
     }
 
+    const getRatingClass = (rating) => {
+        if (rating === 10) return 'Rating10'
+        if (rating >= 8) return 'Rating-high'
+        if (rating >= 5) return 'Rating-medium'
+        return 'Rating-low'
+    }
+
     return (
         <div>
             <div className='GameTag'>
@@ -44,7 +51,11 @@ function Game({ game, onGameDeleted, onGameEdited }) {
                 </div>
                 <div className='GameTag-description'>
                     <Text className='GameTag-title'>{game.title}</Text>
-                    <p className='GameTag-rating'>{game.rating}</p>
+                    <p className='GameTag-rating'>
+                        <span className={getRatingClass(game.rating)}>
+                            {game.rating}
+                        </span>
+                    </p>
                     <div className='GameTag-hyi'>
                         {game.author.id === logic.getUserId() && (
                             <FontAwesomeIcon

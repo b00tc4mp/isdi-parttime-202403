@@ -83,3 +83,19 @@
 /* object-fit: cover;     
 object-fit: contain; 
 object-fit: fill; */
+
+.Rating10 {
+    color: blue;
+}
+
+.Rating-high {
+    color: rgb(90, 235, 0);
+}
+
+.Rating-medium {
+    color: orange;
+}
+
+.Rating-low {
+    color: red
+}
