@@ -78,7 +78,7 @@ function TasksList({ refreshStamp }) {
                     <button className="absolute top-[5rem] left-8 " onClick={handleCreateTask} >{<MdOutlineAddTask size={32} />}</button>
 
 
-                    <div className="flex-1 mb-[8rem] mt-[10rem] fixed top-0 bottom-0 overflow-y-auto">
+                    <div className="flex flex-col  mb-[8rem] mt-[10rem] fixed top-0 bottom-0 overflow-y-auto">
                         {tasks.map(task => (
                             task && <Task key={task.id}
                                 task={task}

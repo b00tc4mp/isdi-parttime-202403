@@ -58,7 +58,7 @@ function RegisterUserForm({ onSuccessRegister, onCancelSuccess }) {
                     <option value="avatars/verde.png">verde</option>
                 </select>
                 <Button className="flex justify-between" type="submit">Create User</Button>
-                <Button onSubmit={handleCancel} className="flex justify-between" type="submit">Cancel</Button>
+                <Button onClick={handleCancel} className="flex justify-between" type="button">Cancel</Button>
             </form>
             {registrationMessage.length > 0 && <p className="text-black-500 text-lg">{registrationMessage}</p>}
         </div>

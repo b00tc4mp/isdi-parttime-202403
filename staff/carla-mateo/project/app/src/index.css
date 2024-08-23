@@ -1,11 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
+
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 
 @layer base {
     body {
         @apply min-h-screen flex flex-col bg-gradient-bg
     }
+
+    * {
+        @apply font-texturina
+    }
     
+}
+
+@layer utilities {
+    .font-texturina {
+    font-family: "Texturina", serif;
+    }
 }
 

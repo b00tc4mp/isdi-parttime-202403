@@ -10,11 +10,6 @@ export default {
         'first-color': 'rgb(4, 65, 34)',
         'color-footer': '#0b6f73'
       },
-
-      fontFamily: {
-        roboto: ['"Roboto Mono"', 'monospace'],
-        jersey: ['"Jersey 10"', 'sans-serif'],
-      },
       backgroundImage: {
         'gradient-bg': 'linear-gradient(#0D878B, #1FA191, #4CBB8E, #7FD385, #B9E779)',
       },

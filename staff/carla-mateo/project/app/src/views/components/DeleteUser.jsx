@@ -4,7 +4,7 @@ import { TiArrowBack } from 'react-icons/ti'
 
 import Button from '../../components/core/Button'
 import logic from '../../logic/index'
-const DeleteUser = (onSuccessDeleteUser) => {
+const DeleteUser = ({ onDeleteSuccess }) => {
     const [users, setUsers] = useState([])
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
     const [selectedUser, setSelectedUser] = useState(null)
@@ -29,7 +29,6 @@ const DeleteUser = (onSuccessDeleteUser) => {
                     setShowDeleteConfirm(false)
                     setSelectedUser(null)
                     setUsers([])
-                    onSuccessDeleteUser()
                 })
                 .catch(error => {
                     console.error(error)
@@ -39,6 +38,11 @@ const DeleteUser = (onSuccessDeleteUser) => {
             console.error(error)
             alert(error.message)
         }
+    }
+
+    const handleDeleteUser = () => {
+        onDeleteSuccess()
+
     }
 
     return (
@@ -57,7 +61,7 @@ const DeleteUser = (onSuccessDeleteUser) => {
                         ))}
                     </ul>
                     <div className="flex justify-end">
-                        <Button onClick={() => setUsers([])}>{<TiArrowBack size={20} />}</Button>
+                        <Button onClick={handleDeleteUser}>{<TiArrowBack size={20} />}</Button>
                     </div>
                 </div>
             )}

@@ -34,7 +34,7 @@ function Home() {
     const handleTaskList = () => { navigate('/taskslist') }
 
     const toggleOptions = () => {
-        setShowOptions(prev => !prev);
+        setShowOptions(!showOptions)
     }
     const handleRegisterUser = () => {
         setShowForm(!showForm)
@@ -48,11 +48,15 @@ function Home() {
 
     const handleDeleteUser = () => {
         setShowDeleteUser(!showDeleteUser)
-        setShowOptions(false)
+        setShowOptions(!showOptions)
     }
 
     const handleCancel = () => {
         setShowForm(!showForm)
+    }
+
+    const handleDeleteSuccess = () => {
+        setShowDeleteUser(!showDeleteUser)
     }
 
     return (
@@ -92,8 +96,8 @@ function Home() {
                             <Button className="mb-6" onClick={handleTaskList}>TASKS</Button>
                         </div>
                     </div>
-                    {isAdmin && showForm && <RegisterUserForm onSuccessRegister={() => setShowForm(false)} handleCancel={handleCancel} />}
-                    {isAdmin && showDeleteUser && <DeleteUser onSuccessDeleteUser={() => setShowDeleteUser(false)} />}
+                    {isAdmin && showForm && <RegisterUserForm onSuccessRegister={() => setShowForm(false)} onCancelSuccess={handleCancel} />}
+                    {isAdmin && showDeleteUser && <DeleteUser onSuccessDeleteUser={() => setShowDeleteUser(false)} onDeleteSuccess={handleDeleteSuccess} />}
                     {showEditForm && <UpdateDataUser userId={user.id} onSuccessEdit={() => setShowEditForm(false)} />}
                     <Footer>
                         <Button onClick={handleLogout}>{<CiLogout size={32} />}</Button>

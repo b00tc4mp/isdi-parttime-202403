@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Link, useNavigate } from 'react-router-dom'
 
 import { TiArrowForward } from "react-icons/ti"
@@ -11,9 +13,11 @@ import Field from '../components/core/Field'
 import Heading from '../components/core/Heading'
 import Header from "./components/Header"
 import Footer from './components/Footer'
+import ImageSelect from './components/ImageSelect'
 
 function Register() {
     const navigate = useNavigate()
+    const [selectedAvatar, setSelectedAvatar] = useState('avatars/azul.png')
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -25,7 +29,7 @@ function Register() {
         const email = form.email.value
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
-        const avatar = form.avatar.value
+        const avatar = selectedAvatar
         const family = form.family.value
 
         try {
@@ -38,6 +42,15 @@ function Register() {
             alert(error.message)
         }
     }
+
+    const avatarOptions = [
+        { value: "avatars/azul.png", label: "azul" },
+        { value: "avatars/rojo.png", label: "rojo" },
+        { value: "avatars/amarillo.png", label: "amarillo" },
+        { value: "avatars/naranja.png", label: "naranja" },
+        { value: "avatars/morado.png", label: "morado" },
+        { value: "avatars/verde.png", label: "verde" },
+    ]
 
 
     return <View>
@@ -53,15 +66,14 @@ function Register() {
             <Field id="passwordRepeat" type="password" placeholder="password repeat" />
             <Field id="family" type="text" placeholder="family" />
 
-            <label htmlFor="avatar">Select an avatar:</label>
-            <select id="avatar" name="avatar" className="right-0 mt-2 m-4 w-48 bg-green-100 border border-green-800 shadow-lg">
-                <option value="avatars/azul.png">azul</option>
-                <option value="avatars/rojo.png">rojo</option>
-                <option value="avatars/amarillo.png">amarillo</option>
-                <option value="avatars/naranja.png">naranja</option>
-                <option value="avatars/morado.png">morado</option>
-                <option value="avatars/verde.png">verde</option>
-            </select>
+            <label htmlFor="avatar" className="block mt-4">Select an avatar:</label>
+            <ImageSelect
+                id="avatar"
+                name="avatar"
+                options={avatarOptions}
+                value={selectedAvatar}
+                onChange={setSelectedAvatar}
+            />
 
             <Button className="mb-4" type="submit">Register</Button>
 

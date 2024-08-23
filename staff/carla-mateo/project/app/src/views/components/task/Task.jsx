@@ -28,8 +28,8 @@ function Task({ task, onTaskDeleted }) {
 
 
     return <View>
-        <div className='flex flex-row items-center space-x-4 m-4 text-sm ml-8'>
-            <div className="flex flex-col">
+        <div className='flex flex-row justify-between items-center space-x-4 m-4 text-sm ml-8'>
+            <div className="flex flex-col w-">
                 <Heading level="2">{task.title}</Heading>
                 <Heading level="1">{task.description}</Heading>
             </div>
