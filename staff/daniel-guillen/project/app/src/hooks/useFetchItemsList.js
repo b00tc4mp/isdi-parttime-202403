@@ -2,29 +2,24 @@ import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../utils/config'
 
-// Pasaremos el nombre de la coleccion como parametro
-const useFetchItemsList = (collectionName) => {
-  const [list, setList] = useState([])
+const useFetchItemsList = (collectionName, refreshList) => {
+  const [data, setData] = useState([])
+
+  const fetchData = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, collectionName))
+      const docs = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+      setData(docs)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
 
   useEffect(() => {
-    const getList = async () => {
-      try {
-        // Usando la coleccion dinamiecamente
-        const querySnapshot = await getDocs(collection(db, collectionName))
-        const docs = []
-        querySnapshot.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id })
-        })
-        setList(docs)
-      } catch (error) {
-        console.log('Error fetching data:', error)
-      }
-    }
+    fetchData()
+  }, [refreshList, collectionName])
 
-    getList()
-  }, [collectionName])
-
-  return { list, setList }
+  return { data, fetchData }
 }
 
 export default useFetchItemsList

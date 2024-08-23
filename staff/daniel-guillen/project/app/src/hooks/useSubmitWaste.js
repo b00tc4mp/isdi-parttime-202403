@@ -1,38 +1,19 @@
-import { collection, addDoc } from "firebase/firestore"
-import { db } from '../utils/config'
+import saveWasteData from '../utils/saveWasteData'
 
-const submitDataStoreWaste = (collectionName, selectedWaste, weight, optionsContainer, statusOptions) => {
-  
-  const saveData = () => {
-    const today = new Date()
-    const day = String(today.getDate()).padStart(2, '0')
-    const month = String(today.getMonth() + 1).padStart(2, '0')
-    const year = String(today.getFullYear())
-
-    const dataWaste = {
-      code: selectedWaste.code,
-      description: selectedWaste.description,
-      weight: weight,
-      container: optionsContainer,
-      status: statusOptions,
-      month: month,
-      year: year
+const useSubmitWaste = (collectionName, selectedWaste, weight, optionsContainer, statusOptions, refreshData) => {
+  const saveData = async () => {
+    const result = await saveWasteData(collectionName, selectedWaste, weight, optionsContainer, statusOptions)
+    
+    if (result.success) {
+      alert('Residuo Registrado 🎉 ' + selectedWaste.code + '-' + selectedWaste.description)
+      refreshData()  // prueba de refrescar la lista de datos
+    } else {
+      console.error("Error registrando el residuo:", result.error)
+      // gestionar luego error
     }
-    console.log(dataWaste)
-
-    const dataBaseStoreWaste = collection(db, collectionName)
-
-    addDoc(dataBaseStoreWaste, dataWaste)
-      .then(() => {
-        alert('Residuo Registrado 🎉 ' + selectedWaste.code + '-' + selectedWaste.description)
-        window.location.reload()
-      })
-      .catch((error) => {
-        console.error("Error registrando el residuo: ", error)
-      })
   }
 
   return { saveData }
 }
 
-export default submitDataStoreWaste
+export default useSubmitWaste
