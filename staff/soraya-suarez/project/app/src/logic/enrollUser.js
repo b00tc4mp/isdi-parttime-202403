@@ -19,7 +19,9 @@ const enrollUser = (name, surname, email, role, password, passwordRepeat) => {
     })
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
-            if (response.status === 201) return
+            if (response.status === 201)
+                return
+
             return response.json()
                 .catch(() => { throw new SystemError('server error') })
                 .then(body => {

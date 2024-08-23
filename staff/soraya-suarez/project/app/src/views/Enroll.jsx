@@ -2,6 +2,7 @@ import { useState } from 'react'
 import logic from '../logic'
 
 import Field from '../components/core/Field/index'
+import Button from '../components/core/Button'
 import SubmitButton from '../components/core/SubmitButton/index'
 import FormWithFeedback from '../components/library/FormWithFeedback/index'
 import View from '../components/library/View/index'

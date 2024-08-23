@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Button from '../components/core/Button'
 import AllUsersList from './components/AllUsersList'
@@ -11,16 +11,16 @@ import logic from '../logic'
 function Users() {
     const [page, setPage] = useState('')
     const [enrollUserForm, setEnrollUserForm] = useState(false)
-    
+
     const handleNavigateTo = (url) => setPage(url)
 
-    const handleEnrollUser = () => setEnrollUserForm(true)
+    const handleEnrollUserClick = () => setEnrollUserForm(true)
     const handleProcessFinishClick = () => setEnrollUserForm(false)
     
     return <div className="overflow-scroll my-4">
         <nav className="flex justify-center text-xs w-screen">
             <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('all-users')}>All users</Button>
-            <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('available-users')}>Available users</Button>
+            <Button className="border-gray-300 rounded-tl-none rounded-bl-none" onClick={()=> handleNavigateTo('available-users')}>Available users</Button>
         </nav>
 
         { (() => {
@@ -31,13 +31,14 @@ function Users() {
         }
         }) () }
 
-        <div className="flex justify-center items-center mt-4">
-            {logic.getUserRole() === 'admin' && <Button onClick={()=> handleEnrollUser()}>Enroll user</Button>}
+        <div>
+            {enrollUserForm && <Enroll onProcessFinished={handleProcessFinishClick} />}
         </div>
 
-        <div>
-            {enrollUserForm && <Enroll onProcessFinished={handleProcessFinishClick()} />}
+        <div className="flex justify-center items-center mt-4">
+            {logic.getUserRole() === 'admin' && <Button onClick={()=> handleEnrollUserClick()}>Enroll user</Button>}
         </div>
+
     </div>
 }
 export default Users

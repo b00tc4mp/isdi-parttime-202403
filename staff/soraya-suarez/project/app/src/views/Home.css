@@ -5,3 +5,7 @@
       @apply grid-rows-[44px_1fr_60px] min-h-screen;
     }
 }
+
+.body-grid {
+  height: calc(100vh - 104px);
+}

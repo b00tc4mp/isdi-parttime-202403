@@ -6,12 +6,14 @@ import MyInProgressTaskList from '../MyInProgressTaskList'
 import MyPrivateTaskList from '../MyPrivateTaskList'
 import MyFinishedTaskList from '../MyFinishedTaskList'
 
+import './index.css'
+
 function HomeScreen () {
     const [page, setPage] = useState('')
     
     const handleNavigateTo = (url) => setPage(url)
 
-    return <div className="overflow-scroll my-4">
+    return <div>
             <nav className="flex justify-center text-xs w-screen">
                 <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('my-tasks')}>My tasks</Button>
                 <Button className="border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In progress</Button>

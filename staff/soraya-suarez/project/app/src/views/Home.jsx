@@ -49,7 +49,7 @@ function Home({ onUserLoggedOut }) {
             <a href="">{<CiMenuBurger/>}</a>
             <Link onClick={handleLogout}>{<CiLogout/>}</Link>
         </nav>
-        <div>
+        <div className="overflow-scroll py-4 body-grid">
             <Routes>
                 <Route path="/users" element={<Users/>} />
             </Routes>
