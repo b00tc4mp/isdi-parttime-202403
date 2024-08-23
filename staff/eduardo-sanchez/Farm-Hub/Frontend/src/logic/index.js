@@ -8,6 +8,8 @@ import isUserLoggedIn from './isUserLoggedIn'
 import deleteAd from './deleteAd'
 import createAdComment from './createAdComment'
 import getAd from './getAd'
+import deleteAdComment from './deleteAdComment'
+import searchAds from './searchAds'
 
 
 const logic = {
@@ -20,7 +22,9 @@ const logic = {
     isUserLoggedIn,
     deleteAd,
     createAdComment,
-    getAd
+    getAd,
+    deleteAdComment,
+    searchAds
 }
 
 export default logic

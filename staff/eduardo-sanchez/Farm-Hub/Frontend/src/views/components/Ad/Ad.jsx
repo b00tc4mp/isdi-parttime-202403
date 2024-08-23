@@ -12,10 +12,10 @@ export const Ad = ({ ad, onAdDeleted }) => {
         if (confirm('Are you sure you want to delete this ad?'))
 
             try {
-                logic.deleteAd(ad.id)
+                logic.deleteAd(ad._id)
                     .then(() => {
-                        onAdDeleted(ad.id)
-                        console.log(`Ad ${ad.id} deleted`)
+                        onAdDeleted(ad._id)
+                        console.log(`Ad ${ad._id} deleted`)
 
                     })
                     .catch(error => {

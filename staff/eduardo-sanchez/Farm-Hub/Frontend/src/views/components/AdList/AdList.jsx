@@ -6,8 +6,8 @@ import './AdList.css'
 import { Ad } from '../Ad/Ad'
 import { Time } from '../../../components/core/Time/Time'
 
-function AdList({ refreshStamp }) {
-    const [ads, setAds] = useState([])
+function AdList({ refreshStamp, ads, setAds }) {
+
 
     const navigate = useNavigate()
 
@@ -39,8 +39,8 @@ function AdList({ refreshStamp }) {
     return (
         <>
             <ul>
-                {ads.map((ad) =>
-                    <li key={ad.id} className='AdContainer' onClick={() => navigate(`/adpage/${ad.id}`)}>
+                {ads.map((ad, index) =>
+                    <li key={index} className='AdContainer' onClick={() => navigate(`/adpage/${ad._id}`)}>
                         <p>{ad.author.username}</p>
                         <p>{ad.title}</p>
                         <p>{ad.description}</p>
@@ -49,7 +49,7 @@ function AdList({ refreshStamp }) {
                         <p>{Time(ad.date)}</p>
 
 
-                        {sessionStorage.userId === ad.author.id && <Ad ad={ad} onAdDeleted={handleAdDeleted} />}
+                        {sessionStorage.userId === ad.author._id && <Ad ad={ad} onAdDeleted={handleAdDeleted} />}
                     </li >
                 )}
             </ul>

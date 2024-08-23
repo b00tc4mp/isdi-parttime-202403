@@ -6,6 +6,7 @@ import Title from '../../components/core/Title';
 // import Button from '../../components/core/Button';
 // import Link from '../components/core/Link';
 import CreateComment from '../components/CreateCommnet/CreateComment';
+import DeleteAdComment from '../components/DeleteAdComment/DeleteAdComment';
 
 
 function AdPage() {
@@ -52,6 +53,7 @@ function AdPage() {
                     <p>{comment.comment}</p>
                     <p></p>
                     <span>{comment.author.username}</span>
+                    {comment.author._id === sessionStorage.userId && <DeleteAdComment adId={adId} commentId={comment._id} onAdCommentSubmitted={handleAdCommentSubmit} />}
                 </div>
             }
             )}
@@ -64,3 +66,8 @@ function AdPage() {
 }
 
 export default AdPage
+
+
+
+
+//     < CreateComment adId = { adId } onAdCommentSubmitted = { loadAd } />

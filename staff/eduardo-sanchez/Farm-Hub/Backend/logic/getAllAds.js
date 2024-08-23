@@ -15,15 +15,15 @@ const getAllAds = (userId) => {
                 .then(ads => {
                     if (!ads) throw new NotFoundError('ads not found')
 
-                    ads.forEach(ad => {
-                        ad.id = ad._id.toString()
-                        delete ad._id
+                    // ads.forEach(ad => {
+                    //     ad.id = ad._id.toString()
+                    //     delete ad._id
 
-                        if (ad.author._id) {
-                            ad.author.id = ad.author._id.toString()
-                            delete ad.author._id
-                        }
-                    })
+                    //     if (ad.author._id) {
+                    //         ad.author.id = ad.author._id.toString()
+                    //         delete ad.author._id
+                    //     }
+                    // })
                     return ads
                 })
         })

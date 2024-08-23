@@ -8,11 +8,18 @@ import { useEffect, useState } from "react"
 
 import AdList from "./components/AdList/AdList"
 
+import SearchBox from "./components/SearchBox/SearchBox"
+
 
 import './Home.css'
 import Header from "./components/Header/Header"
 import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton"
 function Home() {
+
+    const [ads, setAds] = useState([])
+
+    const [search, setSearch] = useState(false)
+
 
     const [user, setUser] = useState('')
     const navigate = useNavigate
@@ -42,19 +49,26 @@ function Home() {
 
     return <>
 
-        <Header user={user} />
+        <Header user={user} setSearch={setSearch} />
+
+
+        {/* {search ? <SearchBox /> : <></>} */}
 
         {/* <Title>Farm-Hub</Title>
             <h1 className='UsernameTitle'>{user.username}</h1>
-
-
-        </Header> */}
+            
+            
+            </Header> */}
         <main className="Home">
+
+            {search === true && <SearchBox setAds={setAds} />}
+
+            {/* {search === true && <SearchBox setAds={setAds} setSearch={setSearch} />} */}
 
             <CreateAdButton />
 
             <div>
-                <AdList />
+                <AdList ads={ads} setAds={setAds} />
 
             </div>
 
