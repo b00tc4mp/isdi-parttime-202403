@@ -2,7 +2,7 @@ import React from 'react'
 //components
 import WasteItem from '../../../../components/WasteItem'
 //hooks
-import useFetchItemsList from '../../../../hooks/useFetchItemsList'
+import useFetchList from '../../../../hooks/useFetchList'
 import useDeleteItem from '../../../../hooks/useDeleteItem'
 //utils
 import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
@@ -10,7 +10,7 @@ import sortWasteItems from '../../../../utils/sortWasteItems'
 
 const DataTruckLoad3 = () => {
 
-  const { list } = useFetchItemsList('dataTruck3Load')
+  const { list } = useFetchList('dataTruck3Load')
   const { deleteWaste  } = useDeleteItem('dataTruck3Load')
   const { week, year } = getWeekNumberYear()
 

@@ -8,7 +8,7 @@ import '../index.css'
 
 const TruckLoad2 = () => {
   return (
-    <div className='TruckLoad'> 
+    <div className='container'> 
         <RegisterTruckLoad2 />
         <SummaryLoad2 />
         <DataLoad2 />

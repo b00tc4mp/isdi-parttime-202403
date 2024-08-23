@@ -7,7 +7,7 @@ import MenuStore from '../MenuStore'
 //handlers
 import useWasteSelection from '../../../handlers/useWasteSelection'
 //hooks
-import useFetchItemsList from '../../../hooks/useFetchItemsList'
+import useFetchList from '../../../hooks/useFetchList'
 import useDeleteItem from '../../../hooks/useDeleteItem'
 //utils
 import filterByMonthYear from '../../../utils/filterByMonthYear'
@@ -17,7 +17,7 @@ const SearchWaste = () => {
 
     const { selectedWaste, handleWasteChange } = useWasteSelection()
 
-    const { list } = useFetchItemsList('dataStoreWaste')
+    const { list } = useFetchList('dataStoreWaste')
     const { deleteWaste  } = useDeleteItem('dataStoreWaste')
 
     const today = new Date();

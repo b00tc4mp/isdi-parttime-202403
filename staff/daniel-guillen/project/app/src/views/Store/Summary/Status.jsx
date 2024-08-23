@@ -3,7 +3,7 @@ import './index.css'
 //components
 import StagnantWasteItem from './StagnantWasteItem'
 //hooks
-import useFetchItemsList from '../../../hooks/useFetchItemsList'
+import useFetchList from '../../../hooks/useFetchList'
 //utils
 import filterByMonthYear from '../../../utils/filterByMonthYear'
 
@@ -11,7 +11,7 @@ import filterByMonthYear from '../../../utils/filterByMonthYear'
 const SummaryStatus = () => {
 
     //solicitar y renderizamos lista de residuos
-    const { list } = useFetchItemsList('dataStoreWaste')
+    const { list } = useFetchList('dataStoreWaste')
 
     const today = new Date();
     const month = String(today.getMonth() + 1).padStart(2, '0')

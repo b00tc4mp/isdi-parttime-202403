@@ -8,10 +8,10 @@ import useDeleteItem from '../../../../hooks/useDeleteItem'
 import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 
-const DataTruckLoad1 = () => {
+const DataTruckLoad1 = ({ refreshList, refreshData }) => {
 
-  const { list } = useFetchItemsList('dataTruck1Load')
-  const { deleteWaste  } = useDeleteItem('dataTruck1Load')
+  const { data: list } = useFetchItemsList('dataTruck1Load', refreshList)  // usamos el hook para obtener los datos
+  const { deleteWaste  } = useDeleteItem('dataTruck1Load', refreshData)  // pasamos refreshData
   const { week, year } = getWeekNumberYear()
 
     // Filtramos los residuos por semana y año actual
@@ -24,10 +24,15 @@ const DataTruckLoad1 = () => {
 
       <div className='TruckLoadListDiv'>
         <h2 className='title'>Lista de Residuos:</h2>
-        {sortedList.map((item) => (
+
+      {sortedList.length > 0 ? (
+        sortedList.map(item => (
           <WasteItem key={item.id} item={item} onDelete={deleteWaste} />
-        ))}
-      </div>
+        ))
+      ) : (
+        <p>No data available</p>
+      )}
+    </div>
 
   )
 }
