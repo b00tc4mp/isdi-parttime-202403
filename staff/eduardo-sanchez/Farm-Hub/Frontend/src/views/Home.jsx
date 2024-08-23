@@ -1,22 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
-import Title from "../components/core/Title";
-
-import Button from "../components/core/Button";
-
-import logic from "../logic";
 import { useEffect, useState } from "react";
+import logic from "../logic";
 
 import AdList from "./components/AdList/AdList";
 
 import SearchBox from "./components/SearchBox/SearchBox";
 
 import "./Home.css";
-import Header from "./components/Header/Header";
 import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton";
+import Header from "./components/Header/Header";
 function Home() {
-  const [ads, setAds] = useState([]);
-
   const [user, setUser] = useState("");
+  const [ads, setAds] = useState([]);
+  const [adsFiltered, setAdsFiltered] = useState(ads);
 
   useEffect(() => {
     console.log("Home -> useEffect");
@@ -45,7 +40,7 @@ function Home() {
     const adsFiltered = ads.filter((ad) => {
       return ad.title.toLowerCase().includes(searchText.toLowerCase());
     });
-    setAds(adsFiltered);
+    setAdsFiltered(adsFiltered);
   };
 
   return (
@@ -57,7 +52,11 @@ function Home() {
         <CreateAdButton />
 
         <div>
-          <AdList ads={ads} setAds={setAds} />
+          <AdList
+            setAds={setAds}
+            adsFiltered={adsFiltered}
+            setAdsFiltered={setAdsFiltered}
+          />
         </div>
       </main>
     </>
