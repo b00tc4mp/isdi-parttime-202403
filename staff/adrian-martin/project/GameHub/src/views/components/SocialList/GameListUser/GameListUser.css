@@ -1,4 +1,9 @@
-.List {
-    margin-bottom: 120px;
-    margin-top: 6rem;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .List {
+        @apply mb-32 mt-24
+    }
 }

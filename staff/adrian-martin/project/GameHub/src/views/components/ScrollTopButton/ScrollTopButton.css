@@ -1,21 +1,19 @@
-.Scroll {
-    width: 50px;
-    height: 50px;
-    background-color: var(--second-color);
-    border-radius: 50%;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-
-    z-index: 1000;
+@layer components {
+    .Scroll {
+        @apply w-12 h-12 bg-second rounded-full flex justify-center items-center fixed left-1/2 z-10
+    }
 }
 
-.Scroll-icon {
-    font-size: 30px;
-    color: aliceblue;
+.Scroll {
+    transform: translateX(-50%);
+}
+
+@layer components {
+    .Scroll-icon {
+        @apply text-3xl text-seventh
+    }
 }

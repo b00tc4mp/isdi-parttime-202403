@@ -1,12 +1,9 @@
-.Header {
-    width: 100%;
-    height: 5em;
-    background-color: var(--first-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    padding: 15px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Header {
+        @apply w-full h-20 bg-first flex justify-between items-center fixed top-0 p-4 z-10
+    }
 }

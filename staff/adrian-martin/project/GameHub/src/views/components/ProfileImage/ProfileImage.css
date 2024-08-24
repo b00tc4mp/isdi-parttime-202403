@@ -1,18 +1,28 @@
-.Profile-image {
-    border-radius: 10px;
-    border: 2px solid var(--second-color);
-    z-index: 1;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Profile-image {
+        @apply rounded-xl z-10
+    }
 }
 
-.Rotate {
+.Profile-image {
+    border: 2px solid var(--second-color);
+}
+
+
+/* .Rotate {
     position: absolute;
     top: 88%;
     left: 88%;
     transform: translate(-50%, -50%);
     cursor: pointer;
-}
+} */
 
-.Profile-ImageIcon {
-    position: relative;
-    display: inline-block;
+@layer components {
+    .Profile-ImageIcon {
+        @apply relative inline-block
+    }
 }

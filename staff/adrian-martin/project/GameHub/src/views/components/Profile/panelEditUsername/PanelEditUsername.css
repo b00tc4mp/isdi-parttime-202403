@@ -1,34 +1,35 @@
-.Panel-username {
-    border-radius: 10px;
-    background-color: rgb(216, 228, 230);
-    margin: auto;
-    width: 400px;
-    border: 3px solid var(--second-color);
-    margin-bottom: 50px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Panel-username {
+        @apply rounded-xl bg-[#d8e4e6] m-auto w-96 mb-12
+    }
 }
 
-.Panel {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+.Panel-username {
+    border: 2px solid var(--second-color);
+}
+
+@layer components {
+    .Panel {
+        @apply items-center flex flex-col
+    }
+}
+
+@layer components {
+    .Input-panel {
+        @apply text-center text-second p-3 text-xl m-5 rounded-xl
+    }
 }
 
 .Input-panel {
-    text-align: center;
-    color: var(--second-color);
-    padding: 10px;
-    font-size: 20px;
-    border: 2px solid var(--second-color);
-    margin: 20px;
-    border-radius: 10px;
+    border: 2px solid var(--second-color)
 }
 
-.Button-panel {
-    color: var(--second-color);
-    padding: 10px;
-    font-size: 22px;
-}
-
-.Button-panel {
-    margin: 10px;
+@layer components {
+    .Button-panel {
+        @apply text-second p-3 text-xl m-2
+    }
 }

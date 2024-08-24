@@ -1,14 +1,15 @@
 import 'dotenv/config'
 import getAllUsers from './getAllUsers.js'
-import mongoose from 'mongoose'
+import mongoose, { Types } from 'mongoose'
 import bcrypt from 'bcryptjs'
 
 import { expect } from 'chai'
 
 import { User } from '../data/index.js'
-import { } from 'com/errors.js'
+import { NotFoundError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
+const { ObjectId } = Types
 
 // npm run test-inspect
 
@@ -37,6 +38,17 @@ describe('getAllUsers', () => {
                 expect(users).to.have.lengthOf(2)
             })
     })
+
+    // it('fails on non-existing user', () => {
+    //     let errorThrown
+
+    //     return getAllUsers(new ObjectId().toString())
+    //         .catch(error => errorThrown = error)
+    //         .finally(() => {
+    //             expect(errorThrown).to.be.instanceOf(NotFoundError)
+    //             expect(errorThrown.message).to.equal('User not found')
+    //         })
+    // })
 
     after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })
