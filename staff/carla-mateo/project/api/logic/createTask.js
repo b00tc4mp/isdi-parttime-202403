@@ -4,19 +4,16 @@ import validate from 'com/validate.js'
 
 const createTask = (userId, assigneeUserId, title, description, date) => {
     validate.id(userId)
-
     if (assigneeUserId) {
         validate.id(assigneeUserId, 'assigneeUserId')
     }
-
     validate.text(title, 'title', 60)
     validate.text(description, 'description', 200)
-
     let taskDate
     if (date) {
         const parsedDate = new Date(date)
         if (isNaN(parsedDate.getTime())) {
-            throw new ContentError('Invalid date format')
+            throw new ContentError('invalid date format')
         }
         taskDate = parsedDate
     }
@@ -27,7 +24,6 @@ const createTask = (userId, assigneeUserId, title, description, date) => {
             if (!user) throw new NotFoundError('user not found')
 
             if (assigneeUserId) {
-
 
                 return User.findById(assigneeUserId).lean()
                     .catch(error => { throw new SystemError(error.message) })
@@ -40,21 +36,18 @@ const createTask = (userId, assigneeUserId, title, description, date) => {
                             title,
                             description,
                         }
-
                         if (taskDate) task.date = taskDate
 
                         return Task.create(task)
                             .catch(error => { throw new SystemError(error.message) })
                             .then(() => { })
                     })
-
             } else {
                 const task = {
                     family: user.family,
                     title,
                     description,
                 }
-
                 if (taskDate) task.date = taskDate
 
                 return Task.create(task)
@@ -62,7 +55,7 @@ const createTask = (userId, assigneeUserId, title, description, date) => {
                     .then(() => { })
             }
         })
-}
 
+}
 
 export default createTask

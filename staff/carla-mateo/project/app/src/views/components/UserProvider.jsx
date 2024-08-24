@@ -12,14 +12,12 @@ function UserProvider({ children }) {
                     setUser(user)
                 })
                 .catch((error) => alert('Failed to get user name: ' + error.message))
-
             const role = logic.getUserRole()
             setAdmin(role === 'admin')
         } catch (error) {
             alert('Failed to get user role: ' + error.message)
         }
     }, [])
-
 
     return children({ user, isAdmin })
 }

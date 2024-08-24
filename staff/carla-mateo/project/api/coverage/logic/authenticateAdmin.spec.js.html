@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/42</span>
+                <span class='fraction'>48/48</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/42</span>
+                <span class='fraction'>48/48</span>
             </div>
         
             
@@ -160,12 +160,11 @@
 <a name='L95'></a><a href='#L95'>95</a>
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,15 +178,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,8 +193,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -219,10 +213,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,7 +233,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -254,7 +245,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -270,13 +260,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
-&nbsp;
 import { expect } from 'chai'
-&nbsp;
 import { User } from '../data/index.js'
-&nbsp;
-import authenticateAdmin from './authenticateAdmin.js'
 import { ContentError, CredentialsError, NotFoundError } from 'com/errors.js'
+import authenticateAdmin from './authenticateAdmin.js'
 &nbsp;
 const { MONGODB_URL_TEST } = process.env
 &nbsp;
@@ -296,56 +283,55 @@ describe('authenticateAdmin', () =&gt; {
                 password: hash,
                 role: 'admin',
                 family: 'casa'
-&nbsp;
             }))
             .then(() =&gt; authenticateAdmin('carla', '1234'))
-&nbsp;
-            .then((id) =&gt; {
-                expect(id).to.be.a('string')
-                expect(id).to.not.be.null
-                expect(id).to.not.be.undefined
-                expect(id.length).to.equal(24)
-&nbsp;
+            .then((result) =&gt; {
+                expect(result).to.be.an('object')
+                expect(result.id).to.be.a('string')
+                expect(result.id).to.not.be.null
+                expect(result.id).to.not.be.undefined
+                expect(result.id.length).to.equal(24)
+                expect(result.role).to.be.a('string')
+                expect(result.role).to.equal('admin')
+                expect(result.role).to.not.be.undefined
+                expect(result.role).to.not.be.null
+                expect(result.role.length).to.equal(5)
             })
-&nbsp;
     )
 &nbsp;
-    it("fails on non-existing user", () =&gt; {
+    it('fails on non-existing user', () =&gt; {
         let errorThrown
 &nbsp;
-        return authenticateAdmin("usernameNonExistent", "1234")
+        return authenticateAdmin('usernameNonExistent', '1234')
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal("user not found")
+                expect(errorThrown.message).to.equal('user not found')
             })
-    }
-    )
+    })
 &nbsp;
-    it("fails on existing user by wrong password", () =&gt; {
+    it('fails on existing user by wrong password', () =&gt; {
         let errorThrown
-&nbsp;
-        return bcrypt.hash("1234", 8)
+        return bcrypt.hash('1234', 8)
             .then(hash =&gt; User.create({
-                name: "CASA",
-                username: "hugo",
-                email: "hugo@email.com",
+                name: 'CASA',
+                username: 'hugo',
+                email: 'hugo@email.com',
                 password: hash,
-                family: "casa"
+                family: 'casa'
             }))
-            .then(() =&gt; authenticateAdmin("hugo", "otherPassword"))
+            .then(() =&gt; authenticateAdmin('hugo', 'otherPassword'))
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.instanceOf(CredentialsError)
-                expect(errorThrown.message).to.equal("wrong password")
+                expect(errorThrown.message).to.equal('wrong password')
             })
     })
 &nbsp;
     it('fails on invalid username', () =&gt; {
         let errorThrown
-&nbsp;
         try {
-            authenticateAdmin(1234, "1234")
+            authenticateAdmin(1234, '1234')
         } catch (error) {
             errorThrown = error
         } finally {
@@ -356,7 +342,6 @@ describe('authenticateAdmin', () =&gt; {
 &nbsp;
     it('fails on invalid password', () =&gt; {
         let errorThrown
-&nbsp;
         try {
             authenticateAdmin('alwaysErrors', '123')
         } catch (error) {
@@ -376,7 +361,7 @@ describe('authenticateAdmin', () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-19T18:57:46.355Z
+                at 2024-08-24T14:19:12.835Z
             </div>
         <script src="../prettify.js"></script>
         <script>

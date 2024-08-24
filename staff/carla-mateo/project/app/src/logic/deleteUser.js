@@ -1,5 +1,5 @@
-import errors, { SystemError } from "com/errors";
-import validate from "com/validate";
+import errors, { SystemError } from 'com/errors';
+import validate from 'com/validate';
 
 const deleteProfile = (userId) => {
     validate.id(userId, 'userId')
@@ -19,9 +19,7 @@ const deleteProfile = (userId) => {
                 .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })

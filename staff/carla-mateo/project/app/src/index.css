@@ -7,7 +7,6 @@
     body {
         @apply min-h-screen flex flex-col bg-gradient-bg
     }
-
     * {
         @apply font-texturina
     }
@@ -16,7 +15,7 @@
 
 @layer utilities {
     .font-texturina {
-    font-family: "Texturina", serif;
+    font-family: 'Texturina', serif;
     }
 }
 

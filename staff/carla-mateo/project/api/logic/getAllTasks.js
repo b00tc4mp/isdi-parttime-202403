@@ -1,6 +1,6 @@
-import { User, Task } from "../data/index.js"
-import { NotFoundError, SystemError } from "com/errors.js"
-import Validate from "com/validate.js"
+import { User, Task } from '../data/index.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
+import Validate from 'com/validate.js'
 
 const getAllTasks = (userId) => {
     Validate.id(userId, 'userId')
@@ -9,11 +9,11 @@ const getAllTasks = (userId) => {
         .catch((error) => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new NotFoundError("user not found")
+                throw new NotFoundError('user not found')
             }
             const { family } = user
 
-            return Task.find({ family }).populate("assignee").lean()
+            return Task.find({ family }).populate('assignee').lean()
                 .catch((error) => { throw new SystemError(error.message) })
                 .then(tasks => {
 

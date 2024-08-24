@@ -14,7 +14,6 @@ export default (req, res, next) => {
                 const { sub: userId } = payload
 
                 const updates = req.body
-
                 try {
                     logic.updateDataUser(userId, updates)
                         .then(() => {

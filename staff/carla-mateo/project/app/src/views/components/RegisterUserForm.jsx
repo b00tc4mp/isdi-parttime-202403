@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Field from "../../components/core/Field"
+import Field from '../../components/core/Field'
 import Button from '../../components/core/Button'
 import logic from '../../logic/index'
 import ImageSelect from './ImageSelect'
@@ -10,7 +10,6 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
 
     const handleRegisterUserSubmit = event => {
         event.preventDefault()
-
 
         const form = event.target
 
@@ -43,37 +42,35 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
     }
 
     const avatarOptions = [
-        { value: "avatars/azul.png", label: "azul" },
-        { value: "avatars/rojo.png", label: "rojo" },
-        { value: "avatars/amarillo.png", label: "amarillo" },
-        { value: "avatars/naranja.png", label: "naranja" },
-        { value: "avatars/morado.png", label: "morado" },
-        { value: "avatars/verde.png", label: "verde" },
+        { value: 'avatars/azul.png', label: 'azul' },
+        { value: 'avatars/rojo.png', label: 'rojo' },
+        { value: 'avatars/amarillo.png', label: 'amarillo' },
+        { value: 'avatars/naranja.png', label: 'naranja' },
+        { value: 'avatars/morado.png', label: 'morado' },
+        { value: 'avatars/verde.png', label: 'verde' },
     ]
 
     return <>
         <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg'>
             <form className='mb-4' onSubmit={handleRegisterUserSubmit}>
-                <Field id="name" type="text" placeholder="name home" />
-                <Field id="username" type="text" placeholder="username" />
-                <Field id="email" type="email" placeholder="name@example.com" />
-                <Field id="password" type="password" placeholder="password" />
-                <Field id="family" type="text" placeholder="family" />
-
-                <label htmlFor="avatar" className="block mt-4  ">Select an avatar:</label>
+                <Field id='name' type='text' placeholder='name home' />
+                <Field id='username' type='text' placeholder='username' />
+                <Field id='email' type='email' placeholder='name@example.com' />
+                <Field id='password' type='password' placeholder='password' />
+                <Field id='family' type='text' placeholder='family' />
+                <label htmlFor='avatar' className='block mt-4  '>Select an avatar:</label>
                 <ImageSelect
-                    id="avatar"
-                    name="avatar"
+                    id='avatar'
+                    name='avatar'
                     options={avatarOptions}
                     value={selectedAvatar}
                     onChange={setSelectedAvatar}
                 />
-                <Button className="flex justify-between" type="submit">Create User</Button>
-                <Button onClick={handleCancelRegister} className="flex justify-between" type="button">Cancel</Button>
+                <Button className='flex justify-between' type='submit'>Create User</Button>
+                <Button onClick={handleCancelRegister} className='flex justify-between' type='button'>Cancel</Button>
             </form>
-            {registrationMessage.length > 0 && <p className="text-black-500 text-lg">{registrationMessage}</p>}
+            {registrationMessage.length > 0 && <p className='text-black-500 text-lg'>{registrationMessage}</p>}
         </div>
-
     </>
 
 

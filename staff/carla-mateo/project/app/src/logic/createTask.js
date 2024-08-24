@@ -1,5 +1,6 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
+
 const createTask = (assigneeUserId = null, title, description, date = null) => {
     if (assigneeUserId) {
         validate.id(assigneeUserId, 'assigneeUserId')
@@ -24,9 +25,7 @@ const createTask = (assigneeUserId = null, title, description, date = null) => {
                 .catch(() => { throw new SystemError('Server error') })
                 .then(body => {
                     const { error, message } = body
-
                     const ErrorConstructor = errors[error]
-
                     throw new ErrorConstructor(message)
                 })
         })

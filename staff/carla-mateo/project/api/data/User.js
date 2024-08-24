@@ -1,7 +1,5 @@
 import { Schema, model } from 'mongoose'
 
-const { ObjectId } = Schema.Types
-
 const user = new Schema({
     name: {
         type: String,

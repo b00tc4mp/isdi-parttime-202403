@@ -26,9 +26,7 @@ const loginAdmin = (username, password) => {
                 .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })

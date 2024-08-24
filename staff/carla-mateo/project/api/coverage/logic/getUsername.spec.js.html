@@ -160,18 +160,12 @@
 <a name='L95'></a><a href='#L95'>95</a>
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -263,16 +257,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "dotenv/config"
-import mongoose, { Types } from "mongoose"
-&nbsp;
-import bcrypt from "bcryptjs"
-&nbsp;
-import getUsername from "./getUserame.js"
-import { User } from "../data/index.js"
-import { NotFoundError, ContentError } from "com/errors.js"
-&nbsp;
-import { expect } from "chai"
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
+import mongoose, { Types } from 'mongoose'
+import bcrypt from 'bcryptjs'
+import { User } from '../data/index.js'
+import { expect } from 'chai'
+import { NotFoundError, ContentError } from 'com/errors.js'
+import getUsername from './getUsername.js'
 &nbsp;
 const { MONGODB_URL_TEST } = process.env
 &nbsp;
@@ -280,62 +271,62 @@ const { ObjectId } = Types
 &nbsp;
 debugger
 &nbsp;
-describe("getUsername", () =&gt; {
+describe('getUsername', () =&gt; {
     before(() =&gt; mongoose.connect(MONGODB_URL_TEST).then(() =&gt; User.deleteMany()))
 &nbsp;
     beforeEach(() =&gt; User.deleteMany())
 &nbsp;
-    it("succeeds get userName from existing user", () =&gt;
-        bcrypt.hash("1234", 8)
+    it('succeeds get userName from existing user', () =&gt;
+        bcrypt.hash('1234', 8)
             .then(hash =&gt; Promise.all([User.create({
-                name: "casaUno",
-                username: "carla",
-                email: "carla@email.com",
+                name: 'casaUno',
+                username: 'carla',
+                email: 'carla@email.com',
                 password: hash,
-                family: "casa"
+                family: 'casa'
             }), User.create({
-                name: "casaUno",
-                username: "judith",
-                email: "judith@email.com",
+                name: 'casaUno',
+                username: 'judith',
+                email: 'judith@email.com',
                 password: hash,
-                family: "casa"
+                family: 'casa'
             })]))
             .then(([user, targetUser]) =&gt; getUsername(user.id, targetUser.id))
             .then(user =&gt; {
                 expect(user).to.be.a.string
                 expect(user.id).to.be.a.string
-                expect(user.name).to.be.equal("casaUno")
-                expect(user.username).to.be.equal("carla")
-                expect(user.email).to.be.equal("carla@email.com")
-                expect(user.family).to.be.equal("casa")
+                expect(user.name).to.be.equal('casaUno')
+                expect(user.username).to.be.equal('carla')
+                expect(user.email).to.be.equal('carla@email.com')
+                expect(user.family).to.be.equal('casa')
             })
     )
-    it("fails on non-existing user", () =&gt; {
+    it('fails on non-existing user', () =&gt; {
         let errorThrown
 &nbsp;
-        return bcrypt.hash("1234", 8)
-            .then(hash =&gt; User.create({ name: "casa", username: "carla", email: "carla@email.es", password: hash, family: "casa" }))
+        return bcrypt.hash('1234', 8)
+            .then(hash =&gt; User.create({ name: 'casa', username: 'carla', email: 'carla@email.es', password: hash, family: 'casa' }))
             .then(targetUserId =&gt; getUsername(new ObjectId().toString(), targetUserId.id))
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal("user not found")
+                expect(errorThrown.message).to.equal('user not found')
             })
     })
 &nbsp;
-    it("fails on non-existing targetUser", () =&gt; {
+    it('fails on non-existing targetUser', () =&gt; {
         let errorThrown
 &nbsp;
-        return bcrypt.hash("1234", 8)
-            .then(hash =&gt; User.create({ name: "casa", username: "hugo", email: "hugo@email.es", password: hash, family: "casa" }))
+        return bcrypt.hash('1234', 8)
+            .then(hash =&gt; User.create({ name: 'casa', username: 'hugo', email: 'hugo@email.es', password: hash, family: 'casa' }))
             .then(user =&gt; getUsername(user.id, new ObjectId().toString()))
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal("user not found")
+                expect(errorThrown.message).to.equal('user not found')
             })
     })
-    it("fails on invalid userId", () =&gt; {
+    it('fails on invalid userId', () =&gt; {
         let errorThrown
 &nbsp;
         try {
@@ -345,11 +336,11 @@ describe("getUsername", () =&gt; {
 &nbsp;
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("userId is not valid")
+            expect(errorThrown.message).to.equal('userId is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid targetUserId", () =&gt; {
+    it('fails on invalid targetUserId', () =&gt; {
         let errorThrown
 &nbsp;
         try {
@@ -359,7 +350,7 @@ describe("getUsername", () =&gt; {
 &nbsp;
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("targetUserId is not valid")
+            expect(errorThrown.message).to.equal('targetUserId is not valid')
         }
     })
     after(() =&gt; User.deleteMany().then(() =&gt; mongoose.disconnect()))
@@ -370,7 +361,7 @@ describe("getUsername", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-19T18:57:46.355Z
+                at 2024-08-24T14:19:12.835Z
             </div>
         <script src="../prettify.js"></script>
         <script>

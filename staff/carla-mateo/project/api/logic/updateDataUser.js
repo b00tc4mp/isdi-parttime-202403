@@ -4,19 +4,15 @@ import { NotFoundError, SystemError } from 'com/errors.js'
 
 const updateDataUser = (userId, updates) => {
     validate.id(userId, 'userId')
-
     if (updates.username) {
         validate.username(updates.username, 'username')
     }
-
     if (updates.email) {
         validate.email(updates.email, 'email')
     }
-
     if (updates.avatar) {
         validate.avatar(updates.avatar, 'avatar')
     }
-
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })

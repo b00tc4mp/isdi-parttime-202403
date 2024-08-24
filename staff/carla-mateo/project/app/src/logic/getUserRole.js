@@ -1,8 +1,8 @@
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
-function getUserRole() {
+
+export default function getUserRole() {
     const { role } = extractPayloadFromJWT(sessionStorage.token)
 
     return role
 }
 
-export default getUserRole

@@ -4,7 +4,7 @@ const getAllTasks = () => {
 
     return fetch(`${import.meta.env.VITE_API_URL}/getalltasks`, {
 
-        method: "GET",
+        method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
@@ -21,9 +21,7 @@ const getAllTasks = () => {
                 .catch(() => { throw new SystemError('conection error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })

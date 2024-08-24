@@ -1,10 +1,9 @@
 import errors, { SystemError } from 'com/errors'
 
 const taskDay = (date) => {
-
     return fetch(`${import.meta.env.VITE_API_URL}/taskDay/${date.toISOString()}`, {
 
-        method: "GET",
+        method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
@@ -21,9 +20,7 @@ const taskDay = (date) => {
                 .catch(() => { throw new SystemError('conection error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })

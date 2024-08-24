@@ -9,8 +9,6 @@ const registerUser = (name, username, email, password, avatar, family) => {
     validate.avatar(avatar)
     validate.text(family)
 
-
-
     return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {
@@ -28,9 +26,7 @@ const registerUser = (name, username, email, password, avatar, family) => {
                 .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })

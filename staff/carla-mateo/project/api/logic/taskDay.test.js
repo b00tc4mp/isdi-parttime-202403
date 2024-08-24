@@ -1,7 +1,7 @@
-import "dotenv/config"
-import mongoose from "mongoose"
+import 'dotenv/config'
+import mongoose from 'mongoose'
 
-import taskDay from "./taskDay.js"
+import taskDay from './taskDay.js'
 
 const { MONGODB_URL } = process.env
 

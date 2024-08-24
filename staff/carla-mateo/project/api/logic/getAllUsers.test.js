@@ -1,6 +1,6 @@
-import "dotenv/config"
-import mongoose from "mongoose";
-import getAllUsers from "./getAllUsers.js";
+import 'dotenv/config'
+import mongoose from 'mongoose';
+import getAllUsers from './getAllUsers.js';
 
 const { MONGODB_URL } = process.env
 

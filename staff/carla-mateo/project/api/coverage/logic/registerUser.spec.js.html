@@ -377,158 +377,158 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "dotenv/config"
-import { mongoose, Types } from "mongoose"
-import bcrypt from "bcryptjs"
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
+import { mongoose, Types } from 'mongoose'
+import bcrypt from 'bcryptjs'
 &nbsp;
-import { expect } from "chai"
+import { expect } from 'chai'
 &nbsp;
-import { User } from "../data/index.js"
+import { User } from '../data/index.js'
 &nbsp;
-import registerUser from "./registerUser.js"
-import { ContentError, NotFoundError, DuplicityError } from "com/errors.js"
+import registerUser from './registerUser.js'
+import { ContentError, NotFoundError, DuplicityError } from 'com/errors.js'
 &nbsp;
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
 &nbsp;
 &nbsp;
-describe("registerUser", () =&gt; {
+describe('registerUser', () =&gt; {
     before(() =&gt; mongoose.connect(MONGODB_URL_TEST).then(() =&gt; User.deleteMany()))
 &nbsp;
     beforeEach(() =&gt; User.deleteMany())
 &nbsp;
-    it("succeeds on new user", () =&gt;
-        bcrypt.hash("1234", 8)
-            .then(hash =&gt; User.create({ name: "CASA", username: "carla", email: "carla@email.com", password: hash, avatar: "avatars/.jpg", family: "familyOne" }))
+    it('succeeds on new user', () =&gt;
+        bcrypt.hash('1234', 8)
+            .then(hash =&gt; User.create({ name: 'CASA', username: 'carla', email: 'carla@email.com', password: hash, avatar: 'avatars/.jpg', family: 'familyOne' }))
             .then((user) =&gt;
-                registerUser(user.id, "CASA", "jordi", "jordi@email.com", "1234", "avatars/.jpg", "familyOne")
-                    .then(() =&gt; User.findOne({ email: "jordi@email.com" }))
+                registerUser(user.id, 'CASA', 'jordi', 'jordi@email.com', '1234', 'avatars/.jpg', 'familyOne')
+                    .then(() =&gt; User.findOne({ email: 'jordi@email.com' }))
                     .then(user =&gt; {
                         expect(user._id).to.be.instanceOf(ObjectId)
-                        expect(user.name).to.equal("CASA")
-                        expect(user.username).to.equal("jordi")
-                        expect(user.email).to.equal("jordi@email.com")
-                        expect(user.avatar).to.equal("avatars/.jpg")
-                        expect(user.family).to.equal("familyOne")
+                        expect(user.name).to.equal('CASA')
+                        expect(user.username).to.equal('jordi')
+                        expect(user.email).to.equal('jordi@email.com')
+                        expect(user.avatar).to.equal('avatars/.jpg')
+                        expect(user.family).to.equal('familyOne')
 &nbsp;
-                        return bcrypt.compare("1234", user.password)
+                        return bcrypt.compare('1234', user.password)
                     })
                     .then((match) =&gt; expect(match).to.be.true)
             )
     )
 &nbsp;
 &nbsp;
-    it("fails on non-existing user", () =&gt; {
+    it('fails on non-existing user', () =&gt; {
         let errorThrown
 &nbsp;
-        return registerUser(new ObjectId().toString(), "jordi", "casaPrueba", "jordi@email.com", "1234", "avatars/.jpg", "familyOne")
+        return registerUser(new ObjectId().toString(), 'jordi', 'casaPrueba', 'jordi@email.com', '1234', 'avatars/.jpg', 'familyOne')
             .catch((error) =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal("user not found")
+                expect(errorThrown.message).to.equal('user not found')
             })
     })
 &nbsp;
-    it("fails on existing user", () =&gt; {
+    it('fails on existing user', () =&gt; {
         let errorThrown
 &nbsp;
-        return bcrypt.hash("1234", 8)
+        return bcrypt.hash('1234', 8)
             .then(hash =&gt; User.create({
-                name: "jordi",
-                username: "casaPrueba",
-                email: "jordi@email.com",
+                name: 'jordi',
+                username: 'casaPrueba',
+                email: 'jordi@email.com',
                 password: hash,
-                avatar: "avatars/.jpg",
-                family: "familyOne"
+                avatar: 'avatars/.jpg',
+                family: 'familyOne'
             }))
-            .then((user) =&gt; registerUser(user.id.toString(), "jordi", "casaPrueba", "jordi@email.com", "1234", "avatars/.jpg", "familyOne"))
+            .then((user) =&gt; registerUser(user.id.toString(), 'jordi', 'casaPrueba', 'jordi@email.com', '1234', 'avatars/.jpg', 'familyOne'))
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.instanceOf(DuplicityError)
-                expect(errorThrown.message).to.equal("user already exists")
+                expect(errorThrown.message).to.equal('user already exists')
             })
     })
 &nbsp;
-    it("fails on invalid id", () =&gt; {
+    it('fails on invalid id', () =&gt; {
         let errorThrown
         try {
-            registerUser(1234, "jordi", "casaPrueba", "jordi@email.com", "1234", "avatars/.jpg", "familyOne")
+            registerUser(1234, 'jordi', 'casaPrueba', 'jordi@email.com', '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("id is not valid")
+            expect(errorThrown.message).to.equal('id is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid name", () =&gt; {
+    it('fails on invalid name', () =&gt; {
         let errorThrown
         try {
-            registerUser(new ObjectId().toString(), 1234, "casaPrueba", "jordi@email.com", "1234", "avatars/.jpg", "familyOne")
+            registerUser(new ObjectId().toString(), 1234, 'casaPrueba', 'jordi@email.com', '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("name is not valid")
+            expect(errorThrown.message).to.equal('name is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid username", () =&gt; {
+    it('fails on invalid username', () =&gt; {
         let errorThrown
         try {
-            registerUser(new ObjectId().toString(), "jordi", 1234, "jordi@email.com", "1234", "avatars/.jpg", "familyOne")
+            registerUser(new ObjectId().toString(), 'jordi', 1234, 'jordi@email.com', '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("username is not valid")
+            expect(errorThrown.message).to.equal('username is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid email", () =&gt; {
+    it('fails on invalid email', () =&gt; {
         let errorThrown
         try {
-            registerUser(new ObjectId().toString(), "jordi", "casaPrueba", "jordiemail.com", "1234", "avatars/.jpg", "familyOne")
+            registerUser(new ObjectId().toString(), 'jordi', 'casaPrueba', 'jordiemail.com', '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("email is not valid")
+            expect(errorThrown.message).to.equal('email is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid password", () =&gt; {
+    it('fails on invalid password', () =&gt; {
         let errorThrown
         try {
-            registerUser(new ObjectId().toString(), "silvia", "casaPrueba", "silvia@email.com", 1234, "avatars/.jpg", "familyOne")
+            registerUser(new ObjectId().toString(), 'silvia', 'casaPrueba', 'silvia@email.com', 1234, 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("password is not valid")
+            expect(errorThrown.message).to.equal('password is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid avatar", () =&gt; {
+    it('fails on invalid avatar', () =&gt; {
         let errorThrown
         try {
-            registerUser(new ObjectId().toString(), "jordi", "casaPrueba", "jordi@email.com", "1234", "avat/.jpg", "familyOne")
+            registerUser(new ObjectId().toString(), 'jordi', 'casaPrueba', 'jordi@email.com', '1234', 'avat/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("avatar is not valid")
+            expect(errorThrown.message).to.equal('avatar is not valid')
         }
     })
-    it("fails on invalid family", () =&gt; {
+    it('fails on invalid family', () =&gt; {
         let errorThrown
         try {
-            registerUser(new ObjectId().toString(), "CASA", "jordi", "jordi@email.com", "1234", "avatars/.jpg", 123)
+            registerUser(new ObjectId().toString(), 'CASA', 'jordi', 'jordi@email.com', '1234', 'avatars/.jpg', 123)
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("text is not valid")
+            expect(errorThrown.message).to.equal('text is not valid')
         }
     })
 &nbsp;
@@ -541,7 +541,7 @@ describe("registerUser", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-19T18:57:46.355Z
+                at 2024-08-24T14:19:12.835Z
             </div>
         <script src="../prettify.js"></script>
         <script>

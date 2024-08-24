@@ -1,6 +1,6 @@
-import { User, Task } from "../data/index.js"
-import { NotFoundError, SystemError } from "com/errors.js"
-import validate from "com/validate.js"
+import { User, Task } from '../data/index.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const getTasksForDate = (userId, date) => {
     validate.id(userId, 'userId')
@@ -15,7 +15,7 @@ const getTasksForDate = (userId, date) => {
         })
         .then(user => {
             if (!user) {
-                throw new NotFoundError("user not found")
+                throw new NotFoundError('user not found')
             }
 
             const { family } = user

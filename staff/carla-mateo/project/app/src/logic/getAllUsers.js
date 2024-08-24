@@ -4,7 +4,7 @@ const getAllUsers = () => {
 
     return fetch(`${import.meta.env.VITE_API_URL}/getallusers`, {
 
-        method: "GET",
+        method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
@@ -21,9 +21,7 @@ const getAllUsers = () => {
                 .catch(() => { throw new SystemError('conection error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })

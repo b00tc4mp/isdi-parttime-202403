@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import CalendarDay from './CalendarDay'
 import taskDay from '../../../logic/taskDay'
 import './Calendar.css'
-
 const CalendarBody = ({ currentDate, handleShowTasks }) => {
     const [daysWithTasks, setDaysWithTasks] = useState([])
     const year = currentDate.getFullYear()
@@ -23,7 +22,7 @@ const CalendarBody = ({ currentDate, handleShowTasks }) => {
         <CalendarDay
             key={`prev-${index}`}
             day={daysInPreviousMonth - firstDayOfMonth + index + 1}
-            className="calendar-day-other-month"
+            className='calendar-day-other-month'
         />
     ))
 
@@ -41,7 +40,7 @@ const CalendarBody = ({ currentDate, handleShowTasks }) => {
             <CalendarDay
                 key={`current-${index}`}
                 day={day}
-                className="calendar-day"
+                className='calendar-day'
                 isToday={isToday}
                 isPastTask={isPastTask}
                 hasTasks={hasTasks}
@@ -57,14 +56,14 @@ const CalendarBody = ({ currentDate, handleShowTasks }) => {
         <CalendarDay
             key={`next-${index}`}
             day={index + 1}
-            className="calendar-day-other-month"
+            className='calendar-day-other-month'
         />
     ))
 
     const days = [...prevMonthDays, ...monthDays, ...nextMonthDays]
 
     return (
-        <div className="calendar-body">
+        <div className='calendar-body'>
             {days}
         </div>
     )

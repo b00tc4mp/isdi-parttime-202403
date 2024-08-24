@@ -3,12 +3,12 @@ export default function Time({ children: time }) {
 
     const date = new Date(time)
     const options = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
     }
-    const formattedTime = new Intl.DateTimeFormat("es-ES", options).format(date)
+    const formattedTime = new Intl.DateTimeFormat('es-ES', options).format(date)
 
-    return <time className="className">{formattedTime}</time>
+    return <time className='className'>{formattedTime}</time>
 }
 

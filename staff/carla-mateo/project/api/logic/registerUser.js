@@ -12,7 +12,6 @@ const registerUser = (userId, name, username, email, password, avatar, family) =
     validate.avatar(avatar)
     validate.text(family)
 
-
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
@@ -35,7 +34,7 @@ const registerUser = (userId, name, username, email, password, avatar, family) =
                                 email: email,
                                 password: hash,
                                 avatar: avatar,
-                                role: "user",
+                                role: 'user',
                                 family: family
                             }
 

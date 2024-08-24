@@ -1,12 +1,11 @@
-import "dotenv/config"
-import logic from "../logic/index.js"
-import jwt from "../utils/jsonwebtoken-promised.js"
-import { CredentialsError } from "com/errors.js"
+import 'dotenv/config'
+import logic from '../logic/index.js'
+import jwt from '../utils/jsonwebtoken-promised.js'
+import { CredentialsError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
 
 export default ((req, res, next) => {
-
     try {
         const token = req.headers.authorization.slice(7)
 
@@ -15,17 +14,13 @@ export default ((req, res, next) => {
                 const { sub: userId } = payload
 
                 const { selectedDate } = req.params
-
                 try {
-
                     const date = new Date(selectedDate)
-
                     logic.taskDay(userId, date)
                         .then((tasks) => {
                             res.json(tasks)
                         })
                         .catch(error => next(error))
-
                 } catch (error) {
                     next(error)
                 }

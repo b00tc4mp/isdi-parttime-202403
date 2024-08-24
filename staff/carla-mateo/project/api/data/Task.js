@@ -9,7 +9,7 @@ const task = new Schema({
     },
     assignee: {
         type: ObjectId,
-        ref: "User"
+        ref: 'User'
     },
     title: {
         type: String,

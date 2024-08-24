@@ -1,12 +1,12 @@
-import "dotenv/config"
-import mongoose, { Types } from "mongoose"
-import bcrypt from "bcryptjs"
+import 'dotenv/config'
+import mongoose, { Types } from 'mongoose'
+import bcrypt from 'bcryptjs'
 
-import deleteTask from "./deleteTask.js"
-import { User, Task } from "../data/index.js"
+import deleteTask from './deleteTask.js'
+import { User, Task } from '../data/index.js'
 
-import { expect } from "chai"
-import { MatchError, NotFoundError, ContentError } from "com/errors.js"
+import { expect } from 'chai'
+import { MatchError, NotFoundError, ContentError } from 'com/errors.js'
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
@@ -23,16 +23,16 @@ describe('deleteTask', () => {
         bcrypt.hash('1234', 8)
             .then((hash) => {
                 const user = new User({
-                    name: "carla",
-                    username: "CASA",
-                    email: "carla@email.es",
+                    name: 'carla',
+                    username: 'CASA',
+                    email: 'carla@email.es',
                     password: hash,
-                    family: "casa"
+                    family: 'casa'
                 })
                 const task = new Task({
-                    family: "casa",
-                    title: "test",
-                    description: "test",
+                    family: 'casa',
+                    title: 'test',
+                    description: 'test',
                     date: new Date()
                 })
                 return Promise.all([user.save(), task.save()])
@@ -50,9 +50,9 @@ describe('deleteTask', () => {
         let errorThrown
 
         return Task.create({
-            family: "casa",
-            title: "test",
-            description: "test",
+            family: 'casa',
+            title: 'test',
+            description: 'test',
             date: new Date()
         })
             .then((task) => {
@@ -70,11 +70,11 @@ describe('deleteTask', () => {
 
         return bcrypt.hash('1234', 8)
             .then(hash => User.create({
-                name: "carla",
-                username: "CASA",
-                email: "carla@email.es",
+                name: 'carla',
+                username: 'CASA',
+                email: 'carla@email.es',
                 password: hash,
-                family: "casa"
+                family: 'casa'
             }))
             .then((user) => {
                 return deleteTask(user.id.toString(), new ObjectId().toString())
@@ -92,14 +92,14 @@ describe('deleteTask', () => {
         return bcrypt.hash('1234', 8)
             .then((hash) => {
                 const user = new User({
-                    name: "carla",
-                    username: "CASA",
-                    email: "carla@email.es",
+                    name: 'carla',
+                    username: 'CASA',
+                    email: 'carla@email.es',
                     password: hash,
-                    family: "casa"
+                    family: 'casa'
                 })
                 const task = new Task({
-                    family: "mapa",
+                    family: 'mapa',
                     title: 'Prueba',
                     description: 'Vivan los test',
                     date: new Date()

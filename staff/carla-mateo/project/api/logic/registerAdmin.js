@@ -28,7 +28,7 @@ const registerAdmin = (name, username, email, password, passwordRepeat, avatar, 
                         email: email,
                         password: hash,
                         avatar: avatar,
-                        role: "admin",
+                        role: 'admin',
                         family: family
                     }
 

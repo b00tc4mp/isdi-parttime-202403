@@ -17,9 +17,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<RenderHome />} />
-        <Route path="/login" element={<RenderLogin />} />
-        <Route path="/register" element={<RenderRegister />} />
+        <Route path='/' element={<RenderHome />} />
+        <Route path='/login' element={<RenderLogin />} />
+        <Route path='/register' element={<RenderRegister />} />
 
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
@@ -35,6 +35,6 @@ function App() {
 
 export default App
 
-const RenderHome = () => (logic.isUserLoggedIn() ? <Home /> : <Navigate to="/login" />)
-const RenderLogin = () => (logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login />)
-const RenderRegister = () => (logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register />)
+const RenderHome = () => (logic.isUserLoggedIn() ? <Home /> : <Navigate to='/login' />)
+const RenderLogin = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Login />)
+const RenderRegister = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Register />)

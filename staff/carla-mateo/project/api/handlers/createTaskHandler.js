@@ -1,6 +1,6 @@
 import 'dotenv/config'
-import logic from '../logic/index.js'
 import jwt from '../utils/jsonwebtoken-promised.js'
+import logic from '../logic/index.js'
 import { CredentialsError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
@@ -14,7 +14,6 @@ export default (req, res, next) => {
                 const { sub: userId } = payload
 
                 const { assigneeUserId, title, description, date } = req.body
-
                 try {
                     logic.createTask(userId, assigneeUserId, title, description, date)
                         .then(() => res.status(201).send())
@@ -24,7 +23,6 @@ export default (req, res, next) => {
                 }
             })
             .catch(error => next(new CredentialsError(error.message)))
-
     } catch (error) {
         next(error)
     }

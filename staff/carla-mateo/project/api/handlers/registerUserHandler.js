@@ -9,7 +9,6 @@ export default (req, res, next) => {
         const { name, username, email, password, avatar, family } = req.body
 
         const token = req.headers.authorization.slice(7)
-
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
                 const { sub: userId } = payload

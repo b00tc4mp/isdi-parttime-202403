@@ -1,6 +1,6 @@
-import { User } from "../data/index.js"
-import { NotFoundError, SystemError } from "com/errors.js"
-import Validate from "com/validate.js"
+import { User } from '../data/index.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
+import Validate from 'com/validate.js'
 
 const getAllUsers = (userId) => {
     Validate.id(userId, 'userId')
@@ -9,13 +9,13 @@ const getAllUsers = (userId) => {
         .catch((error) => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new NotFoundError("user not found")
+                throw new NotFoundError('user not found')
             }
             return User.find({ family: user.family }).lean()
                 .catch((error) => { throw new SystemError(error.message) })
                 .then(users => {
                     if (!users.length) {
-                        throw new NotFoundError("users not found with same family")
+                        throw new NotFoundError('users not found with same family')
                     }
                     users.forEach((user) => {
                         user.id = user._id.toString()

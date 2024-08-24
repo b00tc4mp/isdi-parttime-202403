@@ -27,9 +27,7 @@ const registerAdmin = (name, username, email, password, passwordRepeat, avatar, 
                 .catch(() => { throw new SystemError('server error') })
                 .then(body => {
                     const { error, message } = body
-
                     const constructor = errors[error]
-
                     throw new constructor(message)
                 })
         })

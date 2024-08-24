@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Link, useNavigate } from 'react-router-dom'
 
-import { TiArrowForward } from "react-icons/ti"
+import { TiArrowForward } from 'react-icons/ti'
 
 import logic from '../logic/index'
 
@@ -11,7 +11,7 @@ import View from './library/View'
 import Button from '../components/core/Button'
 import Field from '../components/core/Field'
 import Heading from '../components/core/Heading'
-import Header from "./components/Header"
+import Header from './components/Header'
 import Footer from './components/Footer'
 import ImageSelect from './components/ImageSelect'
 
@@ -23,7 +23,6 @@ function Register() {
         event.preventDefault()
 
         const form = event.target
-
         const name = form.name.value
         const username = form.username.value
         const email = form.email.value
@@ -44,49 +43,39 @@ function Register() {
     }
 
     const avatarOptions = [
-        { value: "avatars/azul.png", label: "azul" },
-        { value: "avatars/rojo.png", label: "rojo" },
-        { value: "avatars/amarillo.png", label: "amarillo" },
-        { value: "avatars/naranja.png", label: "naranja" },
-        { value: "avatars/morado.png", label: "morado" },
-        { value: "avatars/verde.png", label: "verde" },
+        { value: 'avatars/azul.png', label: 'azul' },
+        { value: 'avatars/rojo.png', label: 'rojo' },
+        { value: 'avatars/amarillo.png', label: 'amarillo' },
+        { value: 'avatars/naranja.png', label: 'naranja' },
+        { value: 'avatars/morado.png', label: 'morado' },
+        { value: 'avatars/verde.png', label: 'verde' },
     ]
 
-
     return <View>
-
         <Header></Header>
-
-        <form className=" p-8 mt-24" onSubmit={handleRegisterSubmit}>
-            <Heading level={1} className="text-2xl">Create admin</Heading>
-            <Field id="name" type="text" placeholder="name home" />
-            <Field id="username" type="text" placeholder="username" />
-            <Field id="email" type="email" placeholder="email@example.com" />
-            <Field id="password" type="password" placeholder="password" />
-            <Field id="passwordRepeat" type="password" placeholder="password repeat" />
-            <Field id="family" type="text" placeholder="family" />
-
-            <label htmlFor="avatar" className="block mt-4">Select an avatar:</label>
+        <form className=' p-8 mt-24' onSubmit={handleRegisterSubmit}>
+            <Heading level={1} className='text-2xl'>Create admin</Heading>
+            <Field id='name' type='text' placeholder='name home' />
+            <Field id='username' type='text' placeholder='username' />
+            <Field id='email' type='email' placeholder='email@example.com' />
+            <Field id='password' type='password' placeholder='password' />
+            <Field id='passwordRepeat' type='password' placeholder='password repeat' />
+            <Field id='family' type='text' placeholder='family' />
+            <label htmlFor='avatar' className='block mt-4'>Select an avatar:</label>
             <ImageSelect
-                id="avatar"
-                name="avatar"
+                id='avatar'
+                name='avatar'
                 options={avatarOptions}
                 value={selectedAvatar}
                 onChange={setSelectedAvatar}
             />
-
-            <Button className="mb-4" type="submit">Register</Button>
-
-            <Link to="/login">
-                <span className="absolute top-6 right-0 p-4">{<TiArrowForward size={32} />}</span>
+            <Button className='mb-4' type='submit'>Register</Button>
+            <Link to='/login'>
+                <span className='absolute top-6 right-0 p-4'>{<TiArrowForward size={32} />}</span>
             </Link>
         </form>
-
         <Footer></Footer>
     </View>
-
-
-
 }
 
 export default Register

@@ -351,143 +351,143 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "dotenv/config"
-import mongoose from "mongoose"
-import bcrypt from "bcryptjs"
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
+import mongoose from 'mongoose'
+import bcrypt from 'bcryptjs'
 &nbsp;
-import { expect } from "chai"
+import { expect } from 'chai'
 &nbsp;
-import { User } from "../data/index.js"
+import { User } from '../data/index.js'
 &nbsp;
-import registerAdmin from "./registerAdmin.js"
-import { ContentError, DuplicityError, MatchError } from "com/errors.js"
+import registerAdmin from './registerAdmin.js'
+import { ContentError, DuplicityError, MatchError } from 'com/errors.js'
 &nbsp;
 const { MONGODB_URL_TEST } = process.env
 &nbsp;
 &nbsp;
-describe("registerAdmin", () =&gt; {
+describe('registerAdmin', () =&gt; {
     before(() =&gt; mongoose.connect(MONGODB_URL_TEST).then(() =&gt; User.deleteMany()))
 &nbsp;
     beforeEach(() =&gt; User.deleteMany())
 &nbsp;
-    it("succeeds on new user", () =&gt;
-        registerAdmin("casaPrueba", "carla", "carla@email.com", "1234", "1234", "avatars/.jpg", "familyOne")
+    it('succeeds on new user', () =&gt;
+        registerAdmin('casaPrueba', 'carla', 'carla@email.com', '1234', '1234', 'avatars/.jpg', 'familyOne')
             .then(() =&gt; User.findOne())
             .then(user =&gt; {
-                expect(user.name).to.equal("casaPrueba")
-                expect(user.username).to.equal("carla")
-                expect(user.email).to.equal("carla@email.com")
-                expect(user.role).to.equal("admin")
-                expect(user.avatar).to.equal("avatars/.jpg")
-                expect(user.family).to.equal("familyOne")
+                expect(user.name).to.equal('casaPrueba')
+                expect(user.username).to.equal('carla')
+                expect(user.email).to.equal('carla@email.com')
+                expect(user.role).to.equal('admin')
+                expect(user.avatar).to.equal('avatars/.jpg')
+                expect(user.family).to.equal('familyOne')
 &nbsp;
-                return bcrypt.compare("1234", user.password)
+                return bcrypt.compare('1234', user.password)
             })
             .then((match) =&gt; expect(match).to.be.true)
     )
 &nbsp;
 &nbsp;
-    it("fails on existing admin", () =&gt; {
+    it('fails on existing admin', () =&gt; {
         let errorThrown
 &nbsp;
-        return bcrypt.hash("1234", 8)
+        return bcrypt.hash('1234', 8)
             .then(hash =&gt; User.create({
-                name: "jordi",
-                username: "casaPrueba",
-                email: "jordi@email.com",
+                name: 'jordi',
+                username: 'casaPrueba',
+                email: 'jordi@email.com',
                 password: hash,
-                avatar: "avatars/.jpg",
-                family: "familyOne"
+                avatar: 'avatars/.jpg',
+                family: 'familyOne'
             }))
-            .then((user) =&gt; registerAdmin("jordi", "casaPrueba", "jordi@email.com", "1234", "1234", "avatars/.jpg", "familyOne"))
+            .then((user) =&gt; registerAdmin('jordi', 'casaPrueba', 'jordi@email.com', '1234', '1234', 'avatars/.jpg', 'familyOne'))
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.instanceOf(DuplicityError)
-                expect(errorThrown.message).to.equal("admin already exists")
+                expect(errorThrown.message).to.equal('admin already exists')
             })
     })
 &nbsp;
-    it("fails on invalid name", () =&gt; {
+    it('fails on invalid name', () =&gt; {
         let errorThrown
         try {
-            registerAdmin(1234, "casaPrueba", "carla@email.com", "1234", "1234", "avatars/.jpg", "familyOne")
+            registerAdmin(1234, 'casaPrueba', 'carla@email.com', '1234', '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("name is not valid")
+            expect(errorThrown.message).to.equal('name is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid username", () =&gt; {
+    it('fails on invalid username', () =&gt; {
         let errorThrown
         try {
-            registerAdmin("carla", 1234, "carla@email.com", "1234", "avatars/.jpg", "familyOne")
+            registerAdmin('carla', 1234, 'carla@email.com', '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("username is not valid")
+            expect(errorThrown.message).to.equal('username is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid email", () =&gt; {
+    it('fails on invalid email', () =&gt; {
         let errorThrown
         try {
-            registerAdmin("carla", "casaPrueba", "carlaemail.com", "1234", "1234", "avatars/.jpg", "familyOne")
+            registerAdmin('carla', 'casaPrueba', 'carlaemail.com', '1234', '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("email is not valid")
+            expect(errorThrown.message).to.equal('email is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid password", () =&gt; {
+    it('fails on invalid password', () =&gt; {
         let errorThrown
         try {
-            registerAdmin("carla", "casaPrueba", "carla@email.com", 1234, "1234", "avatars/.jpg", "familyOne")
+            registerAdmin('carla', 'casaPrueba', 'carla@email.com', 1234, '1234', 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("password is not valid")
+            expect(errorThrown.message).to.equal('password is not valid')
         }
     })
 &nbsp;
-    it("fails on non-matching password repeat", () =&gt; {
+    it('fails on non-matching password repeat', () =&gt; {
         let errorThrown
         try {
-            registerAdmin("carla", "casaPrueba", "carla@email.com", "1234", 6666, "avatars/.jpg", "familyOne")
+            registerAdmin('carla', 'casaPrueba', 'carla@email.com', '1234', 6666, 'avatars/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(MatchError)
-            expect(errorThrown.message).to.equal("password don\'t match")
+            expect(errorThrown.message).to.equal('password don\'t match')
         }
     })
 &nbsp;
-    it("fails on invalid avatar", () =&gt; {
+    it('fails on invalid avatar', () =&gt; {
         let errorThrown
         try {
-            registerAdmin("carla", "casaPrueba", "carla@email.com", "1234", "1234", "avat/.jpg", "familyOne")
+            registerAdmin('carla', 'casaPrueba', 'carla@email.com', '1234', '1234', 'avat/.jpg', 'familyOne')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("avatar is not valid")
+            expect(errorThrown.message).to.equal('avatar is not valid')
         }
     })
 &nbsp;
-    it("fails on invalid family", () =&gt; {
+    it('fails on invalid family', () =&gt; {
         let errorThrown
         try {
-            registerAdmin("CASA", "jordi", "jordi@email.com", "1234", "1234", "avatars/.jpg", 123)
+            registerAdmin('CASA', 'jordi', 'jordi@email.com', '1234', '1234', 'avatars/.jpg', 123)
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal("text is not valid")
+            expect(errorThrown.message).to.equal('text is not valid')
         }
     })
 &nbsp;
@@ -502,7 +502,7 @@ describe("registerAdmin", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-19T18:57:46.355Z
+                at 2024-08-24T14:19:12.835Z
             </div>
         <script src="../prettify.js"></script>
         <script>

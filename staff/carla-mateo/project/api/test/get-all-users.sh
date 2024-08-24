@@ -1,1 +1,1 @@
-curl -H GET http://localhost:9090/getallusers  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMyZGJiYjg2Y2E4NzkzNTQ4Y2I2NTYiLCJpYXQiOjE3MjQwNDY5MTMsImV4cCI6MTcyNTM0MjkxM30.XjlYk63V69SG3qHhtSJADbjzeAvCEMv-YncnKC0VBHE" -v
+curl -H GET http://localhost:9090/getallusers  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMyZGJiYjg2Y2E4NzkzNTQ4Y2I2NTYiLCJpYXQiOjE3MjQwNDY5MTMsImV4cCI6MTcyNTM0MjkxM30.XjlYk63V69SG3qHhtSJADbjzeAvCEMv-YncnKC0VBHE' -v
