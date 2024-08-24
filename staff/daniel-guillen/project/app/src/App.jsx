@@ -1,23 +1,29 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-
 import './index.css'
+
 import HeaderMenu from './components/HeaderMenu'
 import Home from './views/Home'
-import Stored from './views/Store/Stored'
-import Summary from './views/Store/Summary'
-import Search from './views/Store/Search'
-import TruckLoad1 from './views/TruckLoad/TruckLoad1'
-import TruckLoad2 from './views/TruckLoad/TruckLoad2'
-import TruckLoad3 from './views/TruckLoad/TruckLoad3'
-import Fleet from './views/Fleet'
-import Van1 from "./views/Fleet/Van1"
-import Van2 from "./views/Fleet/Van2"
-import HistoricalVan1 from "./views/Fleet/Van1/historical"
-import HistoricalVan2 from "./views/Fleet/Van2/historical"
+import Store from './views/Store'
+import Stored from './views/Store/Store/Stored'
+import Summary from './views/Store/Store/Summary'
+import Search from './views/Store/Store/Search'
+import TruckLoad from './views/Store/Departures/TruckLoad'
+import TruckLoad2 from './views/Store/Departures/TruckLoad2'
+import TruckLoad3 from './views/Store/Departures/TruckLoad3'
+import Vehicles from './views/Vehicles'
+import Van1 from "./views/Vehicles/Van1"
+import Van2 from "./views/Vehicles/Van2"
+import HistoricalVan1 from "./views/Vehicles/Van1/historical"
+import HistoricalVan2 from "./views/Vehicles/Van2/historical"
+import Admin from './views/Admin'
+import Register from './views/Admin/Register'
+import Users from './views/Admin/Users'
 
-// import Users from './views/Users'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+
 
 function App() {
+
+
 
   return (
 <div className='App'>
@@ -28,20 +34,21 @@ function App() {
     <Routes>
       
       <Route path="/" element={<Home />} />
-      <Route path="/stored" element={<Stored />} />
+      <Route path="/Store" element={<Store />} />
+      <Route path="/Store/Stored" element={<Stored />} />
       <Route path="/Store/Summary" element={<Summary />} />
       <Route path="/Store/Search" element={<Search />} />
-      <Route path="/TruckLoad1" element={<TruckLoad1 />} />
-      <Route path="/Truckload2" element={<TruckLoad2 />} />
-      <Route path="/Truckload3" element={<TruckLoad3 />} />
-      {/* <Route path="/Truckload/Search" element={<Search />} /> */}
-      <Route path="/Fleet" element={<Fleet />} />
-      <Route path="/Fleet/Van1" element={<Van1 />} />
-      <Route path="/Fleet/Van2" element={<Van2 />} />
-      <Route path="/Fleet/Van1/historical" element={<HistoricalVan1 />} />
-      <Route path="/Fleet/Van2/historical" element={<HistoricalVan2 />} />
-      {/* <Route path="/users" element={<Users />} /> */}
-    
+      <Route path="/Departures/TruckLoad" element={<TruckLoad />} />
+      <Route path="/Departures/Truckload2" element={<TruckLoad2 />} />
+      <Route path="/Departures/Truckload3" element={<TruckLoad3 />} />
+      <Route path="/Vehicles" element={<Vehicles />} />
+      <Route path="/Vehicles/Van1" element={<Van1 />} />
+      <Route path="/Vehicles/Van2" element={<Van2 />} />
+      <Route path="/Vehicles/Van1/Historical" element={<HistoricalVan1 />} />
+      <Route path="/Vehicles/Van2/Historical" element={<HistoricalVan2 />} />
+      <Route path="/Admin" element={<Admin />} />
+      <Route path="/Admin/Register" element={<Register />} />
+      <Route path="/Admin/Users" element={<Users />} />
     </Routes>
 
   </BrowserRouter>

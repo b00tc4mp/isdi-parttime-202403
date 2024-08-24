@@ -1,0 +1,34 @@
+.InspectionNote {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.Note {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  display: flex;
+}
+
+textarea {
+  width: 100%;
+  height: 80px;
+  border: 1px solid green;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.WorkerInfo {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  align-items: center;
+}
+
+.WorkerName {
+  display: flex;
+  align-items: center;
+  text-align: star;
+  margin-left: 10px;
+}

@@ -1,0 +1,12 @@
+.SubmitButton {
+  color: white;
+  background: tomato;
+  border: grey solid 2px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.SubmitButton:hover {
+  background: orangered;
+  border: red solid 2px;
+}

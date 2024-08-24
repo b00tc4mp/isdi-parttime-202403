@@ -1,9 +1,9 @@
-import useFetchItemsList from "../hooks/useFetchItemsList"
+import useFetchList from "../hooks/useFetchList"
 
 const groupedByCode = (collectionName) => {
 
   // Llama al hook con el nombre de la coleccion
-  const { list } = useFetchItemsList(collectionName)
+  const { list } = useFetchList(collectionName)
 
   // Agrupar, mostrar una sola iteracion y sumar el peso total por codigo
   const groupedItemCode = list.reduce((acc, item) => {

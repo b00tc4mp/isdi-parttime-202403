@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 //components
-import InspectionFooter from '../../../components/InspectionFooter'
-import InspectionSections  from '../../../components/InspectionSections'
+import InspectionFooter from '../components/InspectionFooter'
+import InspectionSections  from '../components/InspectionSections'
 //hooks
 import useSubmitCheck from '../../../hooks/useSubmitChek'
 //data

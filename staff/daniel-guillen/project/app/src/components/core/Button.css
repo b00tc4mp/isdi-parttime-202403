@@ -1,0 +1,10 @@
+.Button {
+  text-align: center;
+  align-items: center;
+  background-color: white;
+  font-size: 30px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}

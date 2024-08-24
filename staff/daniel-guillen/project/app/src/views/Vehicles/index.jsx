@@ -1,12 +1,12 @@
 import React from 'react'
 import './index.css'
 //img
-import van1 from './img/van1.jpg'
-import van2 from './img/van2.jpg'
-import truck3 from './img/truck3.jpg'
-import truck4 from './img/truck4.jpg'
-import truck5 from './img/truck5.jpg'
-import truck6 from './img/truck6.jpg'
+import van1 from '../../components/img/van1.jpg'
+import van2 from '../../components/img/van2.jpg'
+import truck3 from '../../components/img/truck3.jpg'
+import truck4 from '../../components/img/truck4.jpg'
+import truck5 from '../../components/img/truck5.jpg'
+import truck6 from '../../components/img/truck6.jpg'
 
 const Vehicles = () => {
   return (

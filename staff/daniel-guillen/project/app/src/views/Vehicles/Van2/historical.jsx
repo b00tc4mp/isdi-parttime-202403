@@ -1,7 +1,7 @@
 import React from 'react'
 import '../index.css'
 //components
-import InspectionItem from '../../../components/InspectionItem'
+import InspectionItem from '../components/InspectionItem'
 //hooks
 import useFetchList from '../../../hooks/useFetchList'
 //utils
@@ -26,7 +26,7 @@ const HistoricalVan2 = () => {
         <InspectionItem key={index} item={item} />
       ))}
 
-      <div className='Button'>
+      <div className='container'>
         
         <a className='menu-link' href="/Vehicles/Van2">VOLVER</a>
               

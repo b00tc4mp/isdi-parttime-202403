@@ -26,7 +26,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 50px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .RouteTitle {
@@ -42,26 +43,87 @@ body {
   margin-bottom: 5px;
 }
 
-.SubmitButton {
+.SubmitButtonImage {
+  max-width: 55px;
+}
+
+.image {
+  width: 100%;
+  border-radius: 5px;
+  filter: none;
+  margin-top: 8px;
+  border: grey 2px solid;
+}
+.image:hover {
+  filter: grayscale(80%);
+  border: green 2px solid;
+}
+
+.menu-link {
+  padding: 0.5rem;
+  margin-top: 35px;
+  background: green;
+  border: darkgreen 2px solid;
+  border-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.menu-link:hover {
+  background: lightgreen;
+  border: greenyellow 2px solid;
+  color: black;
+}
+
+.menuFooterDiv {
+  position: fixed;
+  bottom: 0;
+}
+
+.menuFooter {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 49px;
-  width: 56px;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 30px;
-  border-radius: 5px;
-  border: grey solid 1px;
-  cursor: pointer;
+  font-size: small;
+  font-size: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  list-style-type: none;
+}
+.menuFooter-center {
+  padding: 0.5rem;
+  background: green;
+  border: darkgreen 1px solid;
   text-decoration: none;
+  color: white;
+}
+.menuFooter-start {
+  padding: 0.5rem;
+  background: green;
+  border: darkgreen 1px solid;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-decoration: none;
+  color: white;
+}
+.menuFooter-end {
+  padding: 0.5rem;
+  background: green;
+  border: darkgreen 1px solid;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-decoration: none;
+  color: white;
 }
 
-.SubmitButton:hover {
-  background: grey;
-  border: black 1px solid;
+.menuFooter-start:hover,
+.menuFooter-center:hover,
+.menuFooter-end:hover {
+  background: lightgreen;
+  border: greenyellow 1px solid;
+  color: black;
 }
 
-.SubmitButtonImage {
-  max-width: 38px;
+.ButtonImage {
+  max-width: 30px;
 }

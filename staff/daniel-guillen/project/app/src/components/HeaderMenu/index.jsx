@@ -12,13 +12,11 @@ const HeaderMenu = () => {
           <div >
             <ul className='MenuButtons'>
 
-              <li><a className='menu-link-start'href="/Stored">INVENTRARIO</a></li>
+              <li><a className='menu-link-start'href="/Store">ALMACEN</a></li>
 
-              <li><a className='menu-link-center' href="/TruckLoad1">SALIDAS</a></li>
+              <li><a className='menu-link-center' href="/Vehicles">VEHICULOS</a></li>
 
-              <li><a className='menu-link-center' href="/Fleet">VEHICULOS</a></li>
-
-              <li><a className='menu-link-end' href="/Users">USUARIOS</a></li>
+              <li><a className='menu-link-end' href="/Admin">ADMIN</a></li>
                 
             </ul>    
                       
