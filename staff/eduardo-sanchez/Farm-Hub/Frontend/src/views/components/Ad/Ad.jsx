@@ -9,13 +9,13 @@ export const Ad = ({ ad, onAdDeleted }) => {
 
     const handleDeleteAd = (event) => {
         event.stopPropagation()
-        if (confirm('Are you sure you want to delete this ad?'))
+        if (confirm('Are you sure you want to delete this ad?')) {
 
             try {
                 logic.deleteAd(ad._id)
                     .then(() => {
-                        onAdDeleted(ad._id)
                         console.log(`Ad ${ad._id} deleted`)
+                        onAdDeleted()
 
                     })
                     .catch(error => {
@@ -28,11 +28,13 @@ export const Ad = ({ ad, onAdDeleted }) => {
 
                 alert(error.message)
             }
+
+        }
     }
 
     return (
 
-        <div>
+        <div className="AdActions">
 
             <Button
 
