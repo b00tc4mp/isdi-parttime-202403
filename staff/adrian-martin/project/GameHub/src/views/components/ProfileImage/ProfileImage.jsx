@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import './ProfileImage.css'
 
-function ProfileImage({ size = '250px', showRotate = true, borderRadius = '10px' }) {
+function ProfileImage({ onClick, size = '250px', showRotate = true, borderRadius = '10px' }) {
     const [currentImage, setCurrentImage] = useState(0)
 
     const images = [
@@ -24,6 +24,7 @@ function ProfileImage({ size = '250px', showRotate = true, borderRadius = '10px'
     return (
         <div className='Profile-ImageIcon' style={{ width: size, height: size }}>
             <img
+                onClick={onClick}
                 src={images[currentImage]}
                 alt='Profile'
                 className='Profile-image'

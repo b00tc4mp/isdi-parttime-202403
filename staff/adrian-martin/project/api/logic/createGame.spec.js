@@ -44,6 +44,34 @@ describe('createGame', () => {
             })
     })
 
+    it('handles error when Game.create fails', () => {
+        // Sobrescribimos temporalmente el método create para que lance un error
+        const originalCreate = Game.create;
+        Game.create = () => Promise.reject(new SystemError('Connection error'));
+
+        return bcrypt.hash('123132123', 8)
+            .then(hash => User.create({ name: 'Mocha', username: 'MochaChai', email: 'Mocha@Chai.com', password: hash }))
+            .then(user => createGame(user.id, 'Test Game', 'https://example.com/game.jpg', 10, 10))
+            .catch(error => {
+                expect(error).to.be.an.instanceOf(SystemError);
+                expect(error.message).to.equal('Connection error');
+            })
+            .finally(() => {
+                // Restauramos el método original
+                Game.create = originalCreate;
+            });
+    });
+
+    it('adds the created game to the user\'s gameList', () => {
+        return bcrypt.hash('123132123', 8)
+            .then(hash => User.create({ name: 'Mocha', username: 'MochaChai', email: 'Mocha@Chai.com', password: hash }))
+            .then(user => createGame(user.id, 'Test Game', 'https://example.com/game.jpg', 10, 10))
+            .then(createdGame => User.findById(user.id))
+            .then(user => {
+                expect(user.gameList[0].toString()).to.equal(createdGame._id.toString());
+            });
+    });
+
     it('fails on invalid userId', () => {
         let errorThrown
 
