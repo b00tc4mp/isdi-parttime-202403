@@ -16,6 +16,12 @@ function Home() {
   useEffect(() => {
     console.log("Home -> useEffect");
 
+    fetchUserInfo();
+    loadAds();
+  }, []);
+
+  const fetchUserInfo = () => {
+
     try {
       logic
         .getUserInfo()
@@ -34,7 +40,28 @@ function Home() {
 
       alert(error.message);
     }
-  }, []);
+  };
+
+
+  const loadAds = () => {
+    try {
+      logic
+        .getAllAds()
+        .then((fetchedAds) => {
+          console.log(fetchedAds);
+          setAds(fetchedAds);
+          setAdsFiltered(fetchedAds);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+  };
+
 
   const filterdAds = (searchText) => {
     const adsFiltered = ads.filter((ad) => {
@@ -42,6 +69,8 @@ function Home() {
     });
     setAdsFiltered(adsFiltered);
   };
+
+  const handleAdDeleted = () => loadAds();
 
   return (
     <>
@@ -53,9 +82,10 @@ function Home() {
 
         <div>
           <AdList
-            setAds={setAds}
+            // setAds={setAds}
             adsFiltered={adsFiltered}
-            setAdsFiltered={setAdsFiltered}
+            // setAdsFiltered={setAdsFiltered}
+            onAdDeleted={handleAdDeleted}
           />
         </div>
       </main>

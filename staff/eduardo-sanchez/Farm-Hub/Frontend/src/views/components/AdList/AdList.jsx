@@ -6,31 +6,8 @@ import "./AdList.css";
 import { Ad } from "../Ad/Ad";
 import { Time } from "../../../components/core/Time/Time";
 
-function AdList({ setAds, adsFiltered, setAdsFiltered }) {
+function AdList({ adsFiltered, onAdDeleted }) {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    loadAds();
-  }, []);
-
-  const loadAds = () => {
-    try {
-      logic
-        .getAllAds()
-        .then((ads) => {
-          console.log(ads);
-          setAds(ads);
-          setAdsFiltered(ads);
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
-  const handleAdDeleted = () => loadAds();
 
   return (
     <>
@@ -50,7 +27,7 @@ function AdList({ setAds, adsFiltered, setAdsFiltered }) {
               <p>{Time(ad.date)}</p>
 
               {sessionStorage.userId === ad.author._id && (
-                <Ad ad={ad} onAdDeleted={handleAdDeleted} />
+                <Ad ad={ad} onAdDeleted={onAdDeleted} />
               )}
             </li>
           ))}
