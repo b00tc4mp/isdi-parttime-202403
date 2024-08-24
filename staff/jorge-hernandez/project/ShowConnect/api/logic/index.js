@@ -11,7 +11,7 @@ import updateChatWithMessage from './updateChatWithMessage.js'
 import createAndUpdateMessage from './createAndUpdateMessage.js'
 import createNewChatAndMessage from './createNewChatAndMessage.js'
 import findExistingChat from './findExistingChat.js'
-
+import deleteDate from './deleteDate.js'
 const logic = {
   registerArtist,
   authenticateUser,
@@ -26,6 +26,7 @@ const logic = {
   createAndUpdateMessage,
   createNewChatAndMessage,
   findExistingChat,
+  deleteDate,
 }
 
 export default logic

@@ -1,8 +1,5 @@
-import { SystemError } from 'com/errors.js'
-import Chat from '../data/Chat.js'
-import Message from '../data/Message.js'
-import User from '../data/User.js'
 import validate from 'com/validate.js'
+import { Chat } from '../data/index.js'
 
 function getUserChatsAndMessages(userId) {
   validate.id(userId)
@@ -25,20 +22,20 @@ function getUserChatsAndMessages(userId) {
     })
     .then((chats) => {
       return chats.map((chat) => ({
-        id: chat._id,
+        id: chat._id.toString(),
         participants: chat.participants.map((participant) => ({
-          id: participant._id,
+          id: participant._id.toString(),
           name: participant.name,
           email: participant.email,
           artisticName: participant.artisticName,
           role: participant.role,
         })),
         messages: chat.messages.map((message) => ({
-          id: message._id,
+          id: message._id.toString(),
           text: message.text,
           date: message.date,
           sender: {
-            id: message.sender._id,
+            id: message.sender._id.toString(),
             name: message.sender.name,
             email: message.sender.email,
             artisticName: message.sender.artisticName,

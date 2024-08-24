@@ -37,8 +37,8 @@ function ArtistHome({ onUserLoggedOut }) {
     setArtist({ ...artist, dates: updatedDates })
   }
 
-  const handleDateDelete = (dateToDelete) => {
-    const updatedDates = artist.dates.filter((date) => date !== dateToDelete)
+  const handleDateDelete = (date) => {
+    const updatedDates = artist.dates.filter((d) => d !== date)
     setArtist({ ...artist, dates: updatedDates })
   }
 

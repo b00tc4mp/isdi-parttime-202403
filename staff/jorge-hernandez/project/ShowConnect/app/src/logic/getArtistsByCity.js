@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const getArtistsByCity = (discipline, city, excludedDate) => {
   const date = new Date(excludedDate)
   validate.discipline(discipline)
-  validate.city(city)
+  validate.text(city)
   validate.date(date, 'excludedDate')
 
   const isoExcludedDate = date.toISOString()
@@ -29,7 +29,6 @@ const getArtistsByCity = (discipline, city, excludedDate) => {
         })
         .then((body) => {
           const { error, message } = body
-          console.log('Error Type from server:', error) // Debugging line
           const Constructor = errors[error] || SystemError
           throw new Constructor(message)
         })

@@ -12,8 +12,8 @@ import updateArtistHandler from './handlers/updateArtistHandler.js'
 import registerClientHandler from './handlers/registerClientHandler.js'
 import getUserChatsAndMessagesHandler from './handlers/getUserChatsAndMessagesHandler.js'
 import createNewChatAndMessageHandler from './handlers/createNewChatAndMessageHandler.js'
-
 import errorHandler from './handlers/errorHandler.js'
+import deleteDateHandler from './handlers/deleteDateHandler.js'
 
 const { MONGODB_URL, PORT } = process.env
 
@@ -56,6 +56,12 @@ mongoose
     api.post('/messages/create', jsonbodyparser, createNewChatAndMessageHandler)
 
     api.get('/chats/:userId', jsonbodyparser, getUserChatsAndMessagesHandler)
+
+    api.delete(
+      '/users/:artistId/dates/:date',
+      jsonbodyparser,
+      deleteDateHandler
+    )
 
     api.use(errorHandler)
 

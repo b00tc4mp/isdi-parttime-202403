@@ -34,17 +34,13 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
   }
 
   const handleDeleteDate = (date) => {
-    const updatedDates = dates.filter((d) => d !== date)
-
-    const updatedData = { dates: updatedDates }
-
     logic
-      .updateArtistData(artistId, updatedData)
-      .then((response) => {
+      .deleteDate(artistId, date)
+      .then(() => {
         onDateDelete(date)
       })
       .catch((error) => {
-        console.error(error)
+        console.error(error.message)
       })
   }
 
@@ -57,7 +53,7 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
   }
 
   return isAddingDate ? (
-    <div className='flex flex-col text-black items-center m-10'>
+    <div className='flex flex-col text-black items-center m-10 border rounded-md'>
       <input
         className='text-black p-2 rounded'
         type='date'
@@ -83,7 +79,7 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
       </div>
       <ul className='m-3 flex flex-col gap-2'>
         {dates.sort().map((date, index) => (
-          <li key={index} className='flex items-center'>
+          <li key={index} className='flex items-center border rounded-md p-3'>
             <span className='flex-1'>{formatDate(date)}</span>{' '}
             <i
               onClick={() => handleDeleteDate(date)}
