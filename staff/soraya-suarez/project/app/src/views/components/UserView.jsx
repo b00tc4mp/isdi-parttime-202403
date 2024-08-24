@@ -4,9 +4,9 @@ function UserView({ user }) {
     return <div className="bg-white w-full text-center">
         <Text>Name: {user.name}</Text>
         <Text>Surname: {user.surname}</Text>
-        <Text>Phone: {user.phone}</Text>
+        { user.phone !== '' && <Text>Phone: {user.phone}</Text>}
         <Text>Email: {user.email}</Text>
-        <img className="Image" src={user.avatar}/>
+        {user.avatar !== '' && <img className="inline w-12" src={user.avatar}/>}
     </div>
 }
 

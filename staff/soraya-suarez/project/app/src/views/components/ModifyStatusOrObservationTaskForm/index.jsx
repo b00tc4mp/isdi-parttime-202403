@@ -57,7 +57,7 @@ function ModifyStatusOrObervationTaskForm({ task, onProcessFinished }) {
         }
     }
 
-    return <View className="ModifyStatusOrObervationTaskForm">
+    return <View className="modifyStatusOrObervationTaskForm">
         <FormWithFeedback onSubmit={handleModifyTaskSubmit} message={message}>
             <Field id="observations" value={inputObervations} onChange={onInputObservationsChange}>Observations</Field>
             

@@ -9,10 +9,12 @@ import View from '../components/library/View/index'
 import { SystemError } from 'com/errors'
 import useContext from '../useContext'
 
-function Enroll( onProcessFinished ) {
+function Enroll({ onProcessFinished }) {
     const { alert } = useContext()
 
     const [message, setMessage] = useState('')
+
+    const handleCancelEnrollTaskClick = () => onProcessFinished()
 
     const [inputName, setInputName] = useState('')
     const onInputNameChange = ({ target }) => {
@@ -91,7 +93,10 @@ function Enroll( onProcessFinished ) {
             <Field id="password" type="password" placeholder="password" value={inputPassword} onChange={onInputPasswordChange}>Password</Field>
             <Field id="passwordRepeat" type="password" placeholder="password repeat" value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Password Repeat</Field>
 
-            <SubmitButton>Enroll</SubmitButton>
+            <View direction='row'>
+                <SubmitButton>Enroll</SubmitButton>
+                <Button onClick={handleCancelEnrollTaskClick}>Cancel</Button>
+            </View>
         </FormWithFeedback>
     </View>
 }

@@ -51,7 +51,7 @@ function ReleaseTaskForm({ task, onProcessFinished }) {
         }
     }
 
-    return <View className="ReleaseTaskForm">
+    return <View className="releaseTaskForm">
         <FormWithFeedback onSubmit={handleModifyTaskSubmit} message={message}>
         <Field id="observations" value={inputObervations} onChange={onInputObservationsChange}>Observations</Field>
 

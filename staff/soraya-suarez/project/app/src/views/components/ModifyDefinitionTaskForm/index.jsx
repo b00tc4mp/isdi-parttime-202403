@@ -63,7 +63,7 @@ function ModifyDefinitionTaskForm({ task, onProcessFinished }) {
         }
     }
 
-    return <View className="ModifyDefinitionTaskForm">
+    return <View className="modifyDefinitionTaskForm">
         <FormWithFeedback onSubmit={handleModifyTaskSubmit} message={message}>
             <Field id="name" value={inputName} onChange={onInputNameChange}>Name</Field>
             <Field id="description" value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>

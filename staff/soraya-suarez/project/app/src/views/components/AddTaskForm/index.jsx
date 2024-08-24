@@ -86,7 +86,7 @@ function AddTaskForm({ onProcessFinished }) {
         }
     }
 
-    return <View className="AddTaskForm bg-white">
+    return <View className="addTaskForm bg-white">
         <FormWithFeedback onSubmit={handleAddTaskSubmit} message={message}>
             <Field id="name" value={inputName} onChange={onInputNameChange}>Name</Field>
             <Field id="description" value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>
