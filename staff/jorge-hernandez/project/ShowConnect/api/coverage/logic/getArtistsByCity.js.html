@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/authenticateUser.js</title>
+    <title>Code coverage report for logic/getArtistsByCity.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> authenticateUser.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> getArtistsByCity.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/17</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.66% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/15</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
@@ -97,74 +97,80 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { User } from '../data/index.js'
-import { CredentialsError, SystemError } from 'com/errors.js'
-import validate from 'com/validate.js'
-import bcrypt from 'bcryptjs'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import validate from 'com/validate.js'
+import { User } from '../data/index.js'
 &nbsp;
-const authenticateUser = (email, password) =&gt; {
-  validate.email(email)
-  validate.password(password)
+const getArtistsByCity = (discipline, city, excludedDate) =&gt; {
+  const date = new Date(excludedDate)
 &nbsp;
-  return User.findOne({ email })
+  validate.text(city, 'city')
+  validate.text(discipline, 'discipline')
+  validate.date(date, 'date')
+&nbsp;
+  return User.find({
+    city: city,
+    discipline: discipline,
+    role: 'artist',
+    dates: { $not: { $elemMatch: { $eq: date } } },
+  })
     .lean()
     .catch(<span class="fstat-no" title="function not covered" >(error) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      console.error(error.message)</span>
 <span class="cstat-no" title="statement not covered" >      throw new SystemError(error.message)</span>
     })
-    .then((user) =&gt; {
-      if (!user) throw new CredentialsError('user not found')
-&nbsp;
-      return bcrypt
-        .compare(password, user.password)
-        .catch(<span class="fstat-no" title="function not covered" >(error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          throw new SystemError(error.message)</span>
-        })
-        .then((match) =&gt; {
-          if (!match) <span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >throw new CredentialsError('wrong password')</span></span>
-&nbsp;
-          return {
-            userId: user._id.toString(),
-            role: user.role,
-          }
-        })
+    .then((artistsList) =&gt; {
+      return artistsList.map((artist) =&gt; ({
+        id: artist._id,
+        artisticName: artist.artisticName,
+        city: artist.city,
+        image: artist.image,
+        discipline: artist.discipline,
+        description: artist.description,
+        video: artist.video,
+        dates: artist.dates.map((date) =&gt; date.toISOString()),
+      }))
     })
 }
 &nbsp;
-export default authenticateUser
+export default getArtistsByCity
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

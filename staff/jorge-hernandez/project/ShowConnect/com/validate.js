@@ -1,7 +1,7 @@
 import { ContentError, CredentialsError, MatchError } from './errors.js'
+import { disciplines, cities } from '../app/src/assets/disciplines.js'
 
 const NAME_REGEX = /^[a-zA-Z ]+$/
-
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{3,}$/
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -51,6 +51,19 @@ function validateDate(date, explain = 'date') {
   }
 }
 
+function validateDiscipline(discipline) {
+  console.log(disciplines)
+  console.log(discipline)
+  if (typeof discipline !== 'string' || !disciplines.includes(discipline)) {
+    throw new ContentError('discipline is not valid')
+  }
+}
+function validateCity(city) {
+  if (typeof city !== 'string' || !cities.includes(city)) {
+    throw new ContentError('city is not valid')
+  }
+}
+
 const validate = {
   name: validateName,
   password: validatePassword,
@@ -61,6 +74,8 @@ const validate = {
   url: validateUrl,
   id: validateId,
   date: validateDate,
+  discipline: validateDiscipline,
+  city: validateCity,
 }
 
 export default validate

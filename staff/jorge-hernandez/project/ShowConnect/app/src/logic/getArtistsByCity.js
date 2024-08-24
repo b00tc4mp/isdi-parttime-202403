@@ -1,17 +1,16 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const getArtistsByCity = (city, discipline, excludedDate) => {
+const getArtistsByCity = (discipline, city, excludedDate) => {
   const date = new Date(excludedDate)
-  validate.text(city, 'city')
-  validate.text(discipline, 'discipline')
+  validate.discipline(discipline)
+  validate.city(city)
   validate.date(date, 'excludedDate')
 
-  // Si decides no usar encodeURIComponent, simplemente usa el formato ISO directamente
   const isoExcludedDate = date.toISOString()
 
   return fetch(
-    `http://localhost:8080/users/city/${city}/discipline/${discipline}/dates/${isoExcludedDate}`
+    `http://localhost:8080/users/city/${discipline}/discipline/${city}/dates/${isoExcludedDate}`
   )
     .catch(() => {
       throw new SystemError('server error')

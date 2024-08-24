@@ -3,7 +3,6 @@ import Field from './core/Field'
 import Footer from './Footer'
 import ArtistsList from './ArtistsList'
 import { disciplines } from '../assets/disciplines'
-import validate from 'com/validate'
 
 function Form({ onClickGoToLogin }) {
   const [inputValue, setInputValue] = useState('')
@@ -46,7 +45,6 @@ function Form({ onClickGoToLogin }) {
       setCity(city)
       setExcludedDate(excludedDate)
 
-      form.reset()
       setInputValue('')
     } catch (error) {
       setMessage(error.message)
