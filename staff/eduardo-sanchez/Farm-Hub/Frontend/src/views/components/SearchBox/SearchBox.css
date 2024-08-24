@@ -1,0 +1,24 @@
+@tailwind components;
+
+@layer components {
+
+    .SearchBox {
+        @apply w-full max-w-[400px] mx-auto p-2 bg-orange-100;
+    }
+
+    .SearchBoxContainer {
+        @apply relative flex items-center;
+    }
+
+    .SearchBoxInput {
+        @apply w-full py-2 px-3 pr-20 text-base border border-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300;
+    }
+
+    .SearchBoxButton {
+        @apply absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-none text-xl cursor-pointer text-blue-500 hover:text-blue-700;
+    }
+
+    /* .ClearButton {
+        @apply absolute right-20 top-1/2 -translate-y-1/2 bg-transparent border-none text-xl cursor-pointer text-gray-400 hover:text-gray-600;
+    } */
+}

@@ -1,23 +1,47 @@
+import { useState } from 'react';
+
+import './SearchBox.css';
+
 function SearchBox({ filterdAds }) {
+
+  const [searchText, setSearchText] = useState('');
+
   const handleSearchSubmit = (event) => {
     event.preventDefault();
 
-    const searchText = event.target.search.value;
+    // const searchText = event.target.search.value;
 
     filterdAds(searchText);
+
+    setSearchText('');
   };
 
-  const handleCancelSearch = (event) => {
-    event.preventDefault();
-    window.location.reload();
+  const handleSearchChange = (event) => {
+    setSearchText(event.target.value);
   };
+
+  // const handleClearSearch = () => {
+  //   setSearchText('');
+  //   filterdAds('');
+  // };
+
+  // const handleCancelSearch = (event) => {
+  //   event.preventDefault();
+  //   window.location.reload();
+  // };
 
   return (
-    <form onSubmit={handleSearchSubmit}>
-      <input type="text" name="search" placeholder="Search for product..." />
-      <button>Search</button>
+    <form className="SearchBox" onSubmit={handleSearchSubmit}>
+      <div className="SearchBoxContainer">
 
-      <button onClick={handleCancelSearch}>Cancel</button>
+        <input className="SearchBoxInput" type="text" value={searchText} onChange={handleSearchChange} placeholder="Search Product" />
+
+        {/* {searchText && (<button type='button' className="ClearButton" onClick={handleClearSearch}>Clear</button>)} */}
+
+        <button type="submit" className="SearchBoxButton">Search</button>
+
+        {/* <button onClick={handleCancelSearch}>Cancel</button> */}
+      </div>
     </form>
   );
 }
