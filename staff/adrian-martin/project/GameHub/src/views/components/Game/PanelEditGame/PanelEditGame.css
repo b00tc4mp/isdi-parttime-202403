@@ -1,41 +1,33 @@
-.Container {
-    position: relative;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Container {
+        @apply relative
+    }
 }
 
-.EditGamePanel {
-    z-index: 1;
-    background-color: var(--first-color);
-    width: 350px;
-    margin: auto;
-    border-radius: 10px;
+@layer components {
+    .EditGamePanel {
+        @apply z-10 bg-first w-80 m-auto rounded-xl
+    }
 }
 
-.EditGame {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px auto;
+@layer components {
+    .EditGame {
+        @apply flex flex-col items-center my-5 mx-auto
+    }
 }
 
-.AllButtons {}
-
-.ButtonPanel {
-    width: 120px;
-    height: 50px;
-    border-radius: 10px;
-    font-size: 18px;
-    background-color: aliceblue;
-    border: 2px solid beige;
-    text-align: center;
-    margin: 20px;
+@layer components {
+    .ButtonPanel {
+        @apply w-24 h-12 rounded-lg text-lg bg-seventh text-center my-4 m-3
+    }
 }
 
-.InputPanel {
-    align-items: center;
-    width: 300px;
-    text-align: center;
-    height: 30px;
-    padding: 20px;
-    margin: 15px;
-    font-size: 18px;
+@layer components {
+    .InputPanel {
+        @apply items-center w-72 text-center h-8 p-5 m-4 text-lg
+    }
 }

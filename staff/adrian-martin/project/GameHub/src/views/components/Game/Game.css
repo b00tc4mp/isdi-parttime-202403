@@ -1,101 +1,109 @@
-* {
-    margin: auto;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    * {
+        @apply m-auto
+    }
 }
 
-.GameTag {
-    /* border: 3px solid var(--second-color); */
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.739);
-    border-radius: 20px;
-    background-color: aliceblue;
+@layer components {
+    .GameTag {
+        @apply flex justify-between m-5 shadow-3xl rounded-2xl bg-seventh
+    }
 }
 
-.GameTag-description {
-    text-align: center;
-    width: 200px;
+@layer components {
+    .GameTag-description {
+        @apply w-48 text-center
+    }
+}
+
+@layer components {
+    .ImageTag {
+        @apply w-48 h-36 block object-cover
+    }
 }
 
 .ImageTag {
-    width: 200px;
-    height: 150px;
-    display: block;
-    object-fit: cover;
-    border-radius: 20px 0px 0px 20px;
-
+    border-radius: 15px 0px 0px 15px;
 }
 
-.GameTag-title {
-    font-size: 20px;
-    margin-top: 15px;
+@layer components {
+    .GameTag-title {
+        @apply text-xl mt-4
+    }
 }
 
-.GameTag-rating {
-    margin: 10px;
-    font-size: 30px;
+@layer components {
+    .GameTag-rating {
+        @apply m-3 text-3xl
+    }
 }
 
-.GameTag-hours {
-    font-size: 20px;
+@layer components {
+    .GameTag-hours {
+        @apply text-xl
+    }
 }
 
-.GameTag-image {
-    position: relative;
-    display: inline-block;
-    object-fit: cover;
+@layer components {
+    .GameTag-image {
+        @apply relative inline-block object-cover
+    }
 }
 
-.GameTag-icon {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 30px;
-    cursor: pointer;
-    left: 225px;
+@layer components {
+    .GameTag-icon {
+        @apply absolute text-black text-3xl cursor-pointer left-56
+    }
 }
 
-.GameTag-hyi {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+@layer components {
+    .GameTag-hyi {
+        @apply flex justify-around items-center
+    }
 }
 
-.EditDeletePanelContainer {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-
+@layer components {
+    .EditDeletePanelContainer {
+        @apply text-center flex justify-center
+    }
 }
 
-.EditDeletePanel {
-    border-radius: 10px;
-    border: 1px solid black;
-    width: 300px;
-    display: flex;
-    justify-content: space-around;
-    background-color: aliceblue;
+@layer components {
+    .EditDeletePanel {
+        @apply rounded-xl w-72 flex justify-around bg-seventh
+    }
 }
 
-.Button-3point {
-    width: 70px;
+@layer components {
+    .Button-3point {
+        @apply w-16
+    }
 }
 
-/* object-fit: cover;     
-object-fit: contain; 
-object-fit: fill; */
-
-.Rating10 {
-    color: blue;
+@layer components {
+    .Rating10 {
+        @apply text-blue-800
+    }
 }
 
-.Rating-high {
-    color: rgb(90, 235, 0);
+@layer components {
+    .Rating-high {
+        @apply text-green-500
+    }
 }
 
-.Rating-medium {
-    color: orange;
+@layer components {
+    .Rating-medium {
+        @apply text-orange-400
+    }
 }
 
-.Rating-low {
-    color: red
+@layer components {
+    .Rating-low {
+        @apply text-red-700
+    }
 }

@@ -1,48 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Container-Panel {
+        @apply fixed inset-1/2 flex justify-center items-center w-full h-full origin-center
+    }
+}
+
 .Container-Panel {
-    position: fixed;
-    top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
 }
 
-.TagGame {
-    background-color: var(--first-color);
-    width: 350px;
-    border-radius: 10px;
-    z-index: 1;
-    padding: 10px;
-    pointer-events: all;
+@layer components {
+    .TagGame {
+        @apply bg-first w-80 rounded-xl p-3 z-10
+    }
 }
 
-.Game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@layer components {
+    .Game {
+        @apply flex flex-col items-center
+    }
 }
 
-.InputCreate {
-    align-items: center;
-    width: 300px;
-    text-align: center;
-    height: 30px;
-    padding: 20px;
-    margin: 15px;
-    font-size: 18px;
+@layer components {
+    .InputCreate {
+        @apply items-center w-72 text-center h-8 p-5 m-4 text-lg
+    }
 }
 
-.Button-game {
-    width: 120px;
-    height: 50px;
-    border-radius: 10px;
-    font-size: 18px;
-    background-color: aliceblue;
-    border: 2px solid beige;
-    text-align: center;
-    margin: 20px;
+@layer components {
+    .Button-game {
+        @apply w-32 h-12 rounded-xl text-lg bg-seventh mt-2
+    }
 }

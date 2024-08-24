@@ -1,52 +1,39 @@
-.Login-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    background: var(--fifth-color);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Login-form {
+        @apply flex justify-center items-center h-screen flex-col bg-fifth
+    }
 }
 
-.Login-formall {
-    background-color: rgb(163, 182, 195);
-    border-radius: 20px;
-    width: 300px;
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.653);
-    padding: 20px;
-    text-align: center;
+@layer components {
+    .Login-formall {
+        @apply bg-[#A3B6C3] rounded-2xl w-72 p-5 text-center shadow-3xl
+    }
 }
 
-.Login-Title {
-    text-align: center;
-    font-size: 70px;
-    color: var(--first-color);
-    margin-bottom: 30px;
+@layer components {
+    .Login-Title {
+        @apply text-center text-6xl text-first mb-7
+    }
 }
 
-.Login-input {
-    text-align: center;
-    width: calc(100% - 20px);
-    height: 40px;
-    margin: 15px 0;
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.653);
-    border: none;
-    padding: 0 10px;
-    border-radius: 5px;
+@layer components {
+    .Login-input {
+        @apply text-center h-10 my-3.5 mx-0 shadow-3xl border-none px-2.5 rounded
+    }
 }
 
-.Link {
-    display: block;
-    margin-top: 10px;
-    color: var(--first-color);
-    text-decoration: underline;
+@layer components {
+    .Link {
+        @apply block mt-3 text-first underline
+    }
 }
 
-.Login-button {
-    background-color: var(--first-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 20px;
+@layer components {
+    .Login-button {
+        @apply bg-first text-white border-none py-3 px-5 rounded m-5 cursor-pointer
+    }
 }

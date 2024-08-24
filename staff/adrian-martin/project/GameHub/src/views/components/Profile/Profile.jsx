@@ -24,6 +24,7 @@ function Profile() {
     const [isEditingUsername, setIsEditingUsername] = useState(false)
     const [refresh, setRefresh] = useState(Date.now());
 
+
     useEffect(() => {
         if (userId) {
             logic.getTargetProfile(userId)
@@ -50,17 +51,7 @@ function Profile() {
         setRefresh(Date.now())
     }
 
-    // const handleGoHomeOrGameListUser = () => {
-    //     if (game.author.id === logic.getUserId()) {
-    //         navigate('/')
-    //     } else {
-    //         navigate(`/sociallist/${userId}`)
-    //     }
-    // }
-
-    //TODO change handleGoToGameList so that if you are the owner it takes you to '/'
-
-    const handleGoToGameList = () => {
+    const handleGoHomeOrGameListUser = () => {
         navigate(`/sociallist/${userId}`)
     }
 
@@ -101,7 +92,9 @@ function Profile() {
             )}
 
             <div className='Separator'></div>
-            <Button onClick={handleGoToGameList} className='Game-List'>Game List</Button>
+            {userId && (
+                <Button onClick={handleGoHomeOrGameListUser} className='Game-List'>Game List</Button>
+            )}
         </div>
 
         <Footer />
