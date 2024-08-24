@@ -7,7 +7,7 @@ import View from "../../library/View"
 import Button from "../../../components/core/Button"
 import Field from "../../../components/core/Field"
 
-function CreateTask({ onTaskSuccess }) {
+function CreateTask({ onTaskSuccess, onCancelCreateTaskSuccess }) {
     const [users, setUsers] = useState([])
 
     const handleCreateTask = event => {
@@ -42,6 +42,8 @@ function CreateTask({ onTaskSuccess }) {
         }
     }, [])
 
+    const handleCancelCreateTask = () => onCancelCreateTaskSuccess()
+
     return <View className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
         <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg ' >
             <form className='mb-4 ' onSubmit={handleCreateTask}>
@@ -56,6 +58,7 @@ function CreateTask({ onTaskSuccess }) {
                     ))}
                 </select>
                 <Button type="submit">Add Task</Button>
+                <Button onClick={handleCancelCreateTask} className="flex justify-between" type="button">Cancel</Button>
             </form>
         </div>
     </View>

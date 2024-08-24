@@ -4,10 +4,11 @@ import Button from "../../components/core/Button"
 
 import logic from "../../logic"
 import Field from "../../components/core/Field"
+import ImageSelect from './ImageSelect'
 
-function updateDataUser({ userId, onSuccessEdit }) {
-
+function updateDataUser({ userId, onSuccessEdit, onCancelEditSuccess }) {
     const [message, setMessage] = useState("")
+    const [selectedAvatar, setSelectedAvatar] = useState('avatars/azul.png')
 
     const handleUpdateDataUserSubmit = (event) => {
         event.preventDefault()
@@ -16,7 +17,7 @@ function updateDataUser({ userId, onSuccessEdit }) {
 
         const username = form.username.value
         const email = form.email.value
-        const avatar = form.avatar.value
+        const avatar = selectedAvatar
 
         try {
             logic.updateDataUser(userId, username, email, avatar)
@@ -33,6 +34,19 @@ function updateDataUser({ userId, onSuccessEdit }) {
         }
     }
 
+    const handleCancelEdit = () => {
+        onCancelEditSuccess()
+    }
+
+    const avatarOptions = [
+        { value: "avatars/azul.png", label: "azul" },
+        { value: "avatars/rojo.png", label: "rojo" },
+        { value: "avatars/amarillo.png", label: "amarillo" },
+        { value: "avatars/naranja.png", label: "naranja" },
+        { value: "avatars/morado.png", label: "morado" },
+        { value: "avatars/verde.png", label: "verde" },
+    ]
+
 
     return (
         <>
@@ -40,16 +54,16 @@ function updateDataUser({ userId, onSuccessEdit }) {
                 <form className="mb-4" onSubmit={handleUpdateDataUserSubmit}>
                     <Field id="username" type="text" placeholder="New username" />
                     <Field id="email" type="email" placeholder="New email" />
-                    <label htmlFor="avatar">Select an avatar:</label>
-                    <select id="avatar" name="avatar" className="right-0 mt-2 m-4 w-30 bg-green-100 border border-green-800 shadow-lg">
-                        <option value="avatars/azul.png">azul</option>
-                        <option value="avatars/rojo.png">rojo</option>
-                        <option value="avatars/amarillo.png">amarillo</option>
-                        <option value="avatars/naranja.png">naranja</option>
-                        <option value="avatars/morado.png">morado</option>
-                        <option value="avatars/verde.png">verde</option>
-                    </select>
+                    <label htmlFor="avatar" className="block mt-4  ">Select an avatar:</label>
+                    <ImageSelect
+                        id="avatar"
+                        name="avatar"
+                        options={avatarOptions}
+                        value={selectedAvatar}
+                        onChange={setSelectedAvatar}
+                    />
                     <Button className="flex justify-between" type="submit">Edit profil</Button>
+                    <Button onClick={handleCancelEdit} className="flex justify-between" type="button">Cancel</Button>
                 </form >
             </div>
         </>

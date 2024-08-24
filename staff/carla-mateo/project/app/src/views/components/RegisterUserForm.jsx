@@ -2,12 +2,15 @@ import { useState } from 'react'
 import Field from "../../components/core/Field"
 import Button from '../../components/core/Button'
 import logic from '../../logic/index'
+import ImageSelect from './ImageSelect'
 
-function RegisterUserForm({ onSuccessRegister, onCancelSuccess }) {
+function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
     const [registrationMessage, setRegistrationMessage] = useState('')
+    const [selectedAvatar, setSelectedAvatar] = useState('avatars/azul.png')
 
     const handleRegisterUserSubmit = event => {
         event.preventDefault()
+
 
         const form = event.target
 
@@ -15,7 +18,7 @@ function RegisterUserForm({ onSuccessRegister, onCancelSuccess }) {
         const username = form.username.value
         const email = form.email.value
         const password = form.password.value
-        const avatar = form.avatar.value
+        const avatar = selectedAvatar
         const family = form.family.value
 
         try {
@@ -35,9 +38,18 @@ function RegisterUserForm({ onSuccessRegister, onCancelSuccess }) {
         }
     }
 
-    const handleCancel = () => {
-        onCancelSuccess()
+    const handleCancelRegister = () => {
+        onCancelRegisterSuccess()
     }
+
+    const avatarOptions = [
+        { value: "avatars/azul.png", label: "azul" },
+        { value: "avatars/rojo.png", label: "rojo" },
+        { value: "avatars/amarillo.png", label: "amarillo" },
+        { value: "avatars/naranja.png", label: "naranja" },
+        { value: "avatars/morado.png", label: "morado" },
+        { value: "avatars/verde.png", label: "verde" },
+    ]
 
     return <>
         <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg'>
@@ -48,17 +60,16 @@ function RegisterUserForm({ onSuccessRegister, onCancelSuccess }) {
                 <Field id="password" type="password" placeholder="password" />
                 <Field id="family" type="text" placeholder="family" />
 
-                <label htmlFor="avatar">Select an avatar:</label>
-                <select id="avatar" name="avatar" className="right-0 mt-2 m-4 w-30 bg-green-100 border border-green-800 shadow-lg">
-                    <option value="avatars/azul.png">azul</option>
-                    <option value="avatars/rojo.png">rojo</option>
-                    <option value="avatars/amarillo.png">amarillo</option>
-                    <option value="avatars/naranja.png">naranja</option>
-                    <option value="avatars/morado.png">morado</option>
-                    <option value="avatars/verde.png">verde</option>
-                </select>
+                <label htmlFor="avatar" className="block mt-4  ">Select an avatar:</label>
+                <ImageSelect
+                    id="avatar"
+                    name="avatar"
+                    options={avatarOptions}
+                    value={selectedAvatar}
+                    onChange={setSelectedAvatar}
+                />
                 <Button className="flex justify-between" type="submit">Create User</Button>
-                <Button onClick={handleCancel} className="flex justify-between" type="button">Cancel</Button>
+                <Button onClick={handleCancelRegister} className="flex justify-between" type="button">Cancel</Button>
             </form>
             {registrationMessage.length > 0 && <p className="text-black-500 text-lg">{registrationMessage}</p>}
         </div>

@@ -51,8 +51,12 @@ function Home() {
         setShowOptions(!showOptions)
     }
 
-    const handleCancel = () => {
+    const handleCancelRegister = () => {
         setShowForm(!showForm)
+    }
+
+    const handleCancelEdit = () => {
+        setShowEditForm(!showEditForm)
     }
 
     const handleDeleteSuccess = () => {
@@ -87,18 +91,18 @@ function Home() {
                         )}
                     </div>
                     <div className="mt-[12rem]">
-                        <div className="flex flex-col items-center m-2 gap-3" onClick={handleCalendar}>
+                        <div className="flex flex-col items-center m-2 gap-3">
                             <img src="https://tse2.mm.bing.net/th?id=OIG4.DDKSIFGAp8wr01ZhK.yc&pid=ImgGn" className="w-60 h-52" />
                             <Button className="mt-5" onClick={handleCalendar}>CALENDAR</Button>
                         </div>
-                        <div className="flex flex-col items-center m-2 gap-3" onClick={handleTaskList}>
+                        <div className="flex flex-col items-center m-2 gap-3">
                             <img src="https://tse1.mm.bing.net/th?id=OIG2.T9B8HYpRLZMjs_53IlWZ&pid=ImgGn" className="w-60 h-52" />
                             <Button className="mb-6" onClick={handleTaskList}>TASKS</Button>
                         </div>
                     </div>
-                    {isAdmin && showForm && <RegisterUserForm onSuccessRegister={() => setShowForm(false)} onCancelSuccess={handleCancel} />}
+                    {isAdmin && showForm && <RegisterUserForm onSuccessRegister={() => setShowForm(false)} onCancelRegisterSuccess={handleCancelRegister} />}
                     {isAdmin && showDeleteUser && <DeleteUser onSuccessDeleteUser={() => setShowDeleteUser(false)} onDeleteSuccess={handleDeleteSuccess} />}
-                    {showEditForm && <UpdateDataUser userId={user.id} onSuccessEdit={() => setShowEditForm(false)} />}
+                    {showEditForm && <UpdateDataUser userId={user.id} onSuccessEdit={() => setShowEditForm(false)} onCancelEditSuccess={handleCancelEdit} />}
                     <Footer>
                         <Button onClick={handleLogout}>{<CiLogout size={32} />}</Button>
                     </Footer>

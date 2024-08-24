@@ -57,6 +57,10 @@ function TasksList({ refreshStamp }) {
 
     const handleCalendarClick = () => { navigate('/calendar') }
 
+    const handleCancelCreateTaskSuccess = () => {
+        setShowForm(false)
+    }
+
     return (
         <UserProvider>
             {({ user }) => (
@@ -73,7 +77,7 @@ function TasksList({ refreshStamp }) {
                         </div>
                     </Header>
 
-                    {showForm && <CreateTask onTaskSuccess={handleCreateSuccess} />}
+                    {showForm && <CreateTask onTaskSuccess={handleCreateSuccess} onCancelCreateTaskSuccess={handleCancelCreateTaskSuccess} />}
 
                     <button className="absolute top-[5rem] left-8 " onClick={handleCreateTask} >{<MdOutlineAddTask size={32} />}</button>
 

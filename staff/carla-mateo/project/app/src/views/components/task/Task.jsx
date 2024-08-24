@@ -8,8 +8,6 @@ import Heading from '../../../components/core/Heading'
 import Time from '../../../components/core/Time'
 
 import Button from '../../../components/core/Button'
-
-
 function Task({ task, onTaskDeleted }) {
     const handleDeleteTask = () => {
         if (confirm('Delete task?'))
@@ -26,11 +24,10 @@ function Task({ task, onTaskDeleted }) {
             }
     }
 
-
     return <View>
         <div className='flex flex-row justify-between items-center space-x-4 m-4 text-sm ml-8'>
             <div className="flex flex-col w-">
-                <Heading level="2">{task.title}</Heading>
+                <Heading className="text-xl" level="1">{task.title}</Heading>
                 <Heading level="1">{task.description}</Heading>
             </div>
             <Time className="ml-4">{task.date}</Time>
@@ -39,6 +36,7 @@ function Task({ task, onTaskDeleted }) {
             </div>
             <div className="ml-auto">
                 <Button onClick={handleDeleteTask}>Delete</Button>
+
             </div>
         </div>
     </View>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaChevronDown } from 'react-icons/fa'
+import { FaChevronUp } from "react-icons/fa6"
 
 const ImageSelect = ({ options, value, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -17,15 +17,16 @@ const ImageSelect = ({ options, value, onChange }) => {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <img src={value} alt="Selected Avatar" className="w-8 h-8 rounded-full" />
-                <FaChevronDown />
+                <FaChevronUp className='rorate-180' />
             </button>
             {isOpen && (
-                <div className="absolute mt-2 w-full bg-green-100 border border-green-800 shadow-lg z-10">
+                <div className="absolute bottom-full mb-2 w-full bg-green-100 border border-green-800 shadow-lg z-10 "
+                >
                     {options.map((option) => (
                         <button
                             key={option.value}
                             type="button"
-                            className="flex items-center w-full p-2 hover:bg-gray-100"
+                            className="flex items-center w-full p-2 hover:bg-green-100"
                             onClick={() => handleOptionClick(option.value)}
                         >
                             <img src={option.value} alt={option.label} className="w-8 h-8 rounded-full mr-2" />
