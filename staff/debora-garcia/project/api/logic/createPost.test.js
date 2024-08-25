@@ -1,6 +1,5 @@
 import "dotenv/config"
 import mongoose from "mongoose"
-import { Result } from "../data/index.js"
 
 import createPost from "./createPost.js"
 const { MONGODB_URL } = process.env

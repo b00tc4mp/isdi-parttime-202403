@@ -6,7 +6,7 @@ import { CredentialsError } from "com/errors.js"
 const { JWT_SECRET } = process.env
 const createPostHandler = (req, res, next) => {
     try {
-        
+
         const token = req.headers.authorization.slice(7)
 
         jwt.verify(token, JWT_SECRET)
@@ -17,8 +17,8 @@ const createPostHandler = (req, res, next) => {
 
                 try {
                     logic.createPost(userId, workoutId, image, description, time, repetitions, weight)
-                        .then(result => {
-                            res.status(201).json(result)
+                        .then(() => {
+                            res.status(201).json({})
                         })
                         .catch(error => next(error))
                 } catch (error) {

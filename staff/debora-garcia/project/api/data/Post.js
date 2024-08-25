@@ -32,29 +32,10 @@ const post = new Schema({
     likes: [{
         type: ObjectId,
         ref: "User"
-    }],
-
-    comments: [{
-        type: {
-            author: {
-                type: String,
-                ref: "User",
-                required: true
-            },
-            text: {
-                type: String,
-                required: true
-            },
-            date: {
-                type: Date,
-                required: true,
-                default: Date.now
-            }
-        }
     }]
 
 })
-//TODO ? hacer embebed doc con coments?
+
 const Post = model("Post", post)
 
 export default Post

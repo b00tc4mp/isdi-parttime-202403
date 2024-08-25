@@ -8,6 +8,7 @@ import getAllResultsHandler from "./getAllResultsHandler.js";
 import getUsernameHandler from "./getUsernameHandler.js";
 import registerUserHandler from "./registerUserHandler.js";
 import toggleLikePostHandler from "./toggleLikePostHandler.js";
+import createCommentHandler from "./createCommentHandler.js";
 import updateResultHandler from "./updateResultHandler.js";
 import getResultHandler from "./getResultHandler.js";
 
@@ -17,11 +18,15 @@ const routeHandler = {
     registerUserHandler,
     authenticateUserHandler,
     getUsernameHandler,
+
     getRandomWorkoutHandler,
+
     createPostHandler,
     getPostsHandler,
     getAllResultsHandler,
     toggleLikePostHandler,
+    createCommentHandler,
+
     deleteResultHandler,
     updateResultHandler,
     getResultHandler

@@ -9,6 +9,7 @@ import toggleLikePost from "./toggleLikePost.js"
 import deleteResult from "./deleteResult.js"
 import updateResult from "./updateResult.js"
 import getResult from "./getResult.js"
+import createComment from "./createComment.js"
 
 
 
@@ -24,6 +25,7 @@ const logic = {
     deleteResult,
     updateResult,
     getResult,
+    createComment
 }
 
 export default logic

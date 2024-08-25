@@ -1,5 +1,6 @@
-import errors from "com/errors"
+import errors, { SystemError } from "com/errors"
 import extractPayloadFormJWT from "../utils/extractPayloadFormJWT"
+
 
 //TODO revisar linea 10
 const getUsername = () => {
