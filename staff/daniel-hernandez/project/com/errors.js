@@ -61,5 +61,12 @@ class ParseError extends Error {
    }
 }
 
-export { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError, FetchError, ParseError };
-export default { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError, FetchError, ParseError };
+class NotFoundError extends Error {
+   constructor(message) {
+      super(message);
+      this.name = this.constructor.name;
+   }
+}
+
+export { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError, FetchError, ParseError, NotFoundError };
+export default { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError, FetchError, ParseError, NotFoundError };

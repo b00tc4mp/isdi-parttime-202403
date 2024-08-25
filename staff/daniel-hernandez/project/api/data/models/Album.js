@@ -9,6 +9,11 @@ const AlbumSchema = new Schema(
          index: true
          /* match ? length limits ? */
       },
+      type: {
+         type: String,
+         required: true,
+         enum: ['single', 'album']
+      },
       artists: [
          {
             type: ObjectId,
@@ -20,7 +25,8 @@ const AlbumSchema = new Schema(
       releaseDate: {
          type: Date,
          required: true,
-         default: Date.now
+         default: Date.now,
+         index: true
       },
       coverArt: {
          type: String,

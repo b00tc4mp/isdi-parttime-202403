@@ -62,7 +62,7 @@ describe('log', () => {
       const hash = await bcrypt.hash('!1slimmY567876', 8);
       const user = await User.create({ username: 'eminem', email: 'slim@shady.com', passwordHash: hash });
       const track = await Track.create({ name: 'Brand New Dance', addedBy: user.id, artists: [user.id], duration: 195.6 });
-      const album = await Album.create({ name: 'The Death of Slim Shady (Coup De Grace)', artists: [user.id], releaseDate: new Date(2024, 6, 12), tracks: [track.id] });
+      const album = await Album.create({ name: 'The Death of Slim Shady (Coup De Grace)', artists: [user.id], releaseDate: new Date(2024, 6, 12), tracks: [track.id], type: 'album' });
 
       await expect(log(user.id, constants.FOLLOWED_ALBUM, album.id, constants.types[3])).to.be.fulfilled;
 

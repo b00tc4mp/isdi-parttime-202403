@@ -20,11 +20,11 @@ describe('checkEmail', () => {
       const hash = await bcrypt.hash('NeonGenesis02', 8);
       const user = await User.create({ username: 'eva02', email: 'asuka@soryu.com', passwordHash: hash });
 
-      await expect(checkEmail(user.email)).to.eventually.be.true;
+      await expect(checkEmail(user.email)).to.be.fulfilled.and.to.eventually.be.true;
    });
 
    it("succeeds when it returns false when the user doesn't exist", async () => {
-      await expect(checkEmail('asuka@soryu.com')).to.eventually.be.false;
+      await expect(checkEmail('asuka@soryu.com')).to.be.fulfilled.and.to.eventually.be.false;
    });
 
    it('fails with SystemError on database error', async () => {

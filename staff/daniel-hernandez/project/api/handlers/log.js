@@ -1,27 +1,10 @@
 import services from '../services/index.js';
-import jwt from '../utils/jsonwebtoken-promisified.js';
-import validate from 'com/validation.js';
-import { CredentialError } from 'com/errors.js';
-const { JWT_SECRET } = process.env;
 
 const log = async (req, res, next) => {
+   const { id: userId } = req.user;
+   const { type, targetId, targetType, query } = req.body;
+
    try {
-      if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) {
-         throw new CredentialError('Missing or malformed authorization header');
-      }
-
-      const token = req.headers.authorization.split(' ')[1];
-      if (!token) throw new CredentialError('Token missing in authorization header');
-      validate.token(token);
-
-      const { sub: tokenUserId } = await jwt.verify(token, JWT_SECRET);
-
-      const { userId, type, targetId, targetType, query } = req.body;
-
-      if (userId !== tokenUserId) {
-         throw new CredentialError('User id in token does not match user id in request');
-      }
-
       await services.log(userId, type, targetId, targetType, query);
       res.status(201).send();
    } catch (error) {

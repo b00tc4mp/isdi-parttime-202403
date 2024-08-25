@@ -1,4 +1,4 @@
-import { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError } from 'com/errors.js';
+import { ConnectionError, InvalidArgumentError, SystemError, DuplicateEntryError, CredentialError, InvalidTokenError, TokenExpiredError, FetchError, ParseError, NotFoundError } from 'com/errors.js';
 import jsonwebtoken from '../utils/jsonwebtoken-promisified.js';
 const { JsonWebTokenError, TokenExpiredError: JWTTokenExpiredError } = jsonwebtoken;
 
@@ -37,15 +37,30 @@ const errorHandler = (err, _, res, __) => {
          status: 401,
          defaultMessage: 'Credential error'
       },
+      [InvalidTokenError.name]: {
+         name: InvalidTokenError.name,
+         status: 401,
+         defaultMessage: 'Invalid token'
+      },
       [TokenExpiredError.name]: {
          name: TokenExpiredError.name,
          status: 401,
          defaultMessage: 'Token has expired'
       },
-      [InvalidTokenError.name]: {
-         name: InvalidTokenError.name,
-         status: 401,
-         defaultMessage: 'Invalid token'
+      [FetchError.name]: {
+         name: FetchError.name,
+         status: 500,
+         defaultMessage: 'Fetch error'
+      },
+      [ParseError.name]: {
+         name: ParseError.name,
+         status: 500,
+         defaultMessage: 'Parse error'
+      },
+      [NotFoundError.name]: {
+         name: NotFoundError.name,
+         status: 404,
+         defaultMessage: 'Not found error'
       }
    };
 

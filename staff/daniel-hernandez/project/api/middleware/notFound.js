@@ -1,4 +1,4 @@
-const notFound = (req, res, next) => {
+const notFound = (_, res, __) => {
    const asciiArt = `
              _   _     _               _                            __ ___ _____    _____  
             | | | |   (_)             | |                          / //   |  _  |  /   \\ \\ 

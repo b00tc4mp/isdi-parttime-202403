@@ -33,7 +33,12 @@ const login = (email, password) => {
          throw new CredentialError('Wrong password');
       }
 
-      await log(user._id.toString(), constants.LOGGED_IN);
+      try {
+         await log(user._id.toString(), constants.LOGGED_IN);
+      } catch (error) {
+         throw new SystemError(`Login failed: ${error.message}`);
+      }
+
       return user._id.toString();
    })();
 };

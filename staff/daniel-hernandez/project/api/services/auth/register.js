@@ -12,7 +12,7 @@ const register = (email, password, username) => {
    validate.username(username);
 
    return (async () => {
-      let existingUser, passwordHash;
+      let existingUser, passwordHash, user;
 
       try {
          existingUser = await User.findOne({
@@ -33,7 +33,12 @@ const register = (email, password, username) => {
       }
 
       try {
-         const user = await User.create({ email, passwordHash, username });
+         user = await User.create({ email, passwordHash, username });
+      } catch (error) {
+         throw new SystemError(`Register failed: ${error.message}`);
+      }
+
+      try {
          await log(user.id, constants.REGISTERED);
       } catch (error) {
          throw new SystemError(`Register failed: ${error.message}`);

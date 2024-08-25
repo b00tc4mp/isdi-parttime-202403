@@ -121,8 +121,43 @@ function validateToken(token) {
    }
 }
 
+function validateRange(range) {
+   if (!range || typeof range !== 'string' || !range.startsWith('bytes=')) {
+      throw new InvalidArgumentError('Invalid range format');
+   }
+
+   const parts = range.substring(6).split('-');
+   if (parts.length !== 2) {
+      throw new InvalidArgumentError('Invalid range format');
+   }
+
+   const start = parts[0] ? parseInt(parts[0], 10) : undefined;
+   const end = parts[1] ? parseInt(parts[1], 10) : undefined;
+
+   if (start !== undefined && isNaN(start)) {
+      throw new InvalidArgumentError('Invalid range start value');
+   }
+
+   if (end !== undefined && isNaN(end)) {
+      throw new InvalidArgumentError('Invalid range end value');
+   }
+
+   if (start !== undefined && start < 0) {
+      throw new InvalidArgumentError('Invalid range. Start value must be >= 0');
+   }
+
+   if (start !== undefined && end !== undefined && end < start) {
+      throw new InvalidArgumentError('Invalid range. End value must be >= start value');
+   }
+
+   if (start === undefined && end === undefined) {
+      throw new InvalidArgumentError('Invalid range. Both start and end cannot be undefined');
+   }
+}
+
 export default {
    inputs: validateInputs,
+   range: validateRange,
    objectId: validateObjectId,
    logType: validateLogType,
    targetType: validateTargetType,

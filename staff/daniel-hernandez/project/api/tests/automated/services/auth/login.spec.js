@@ -6,6 +6,7 @@ import chaiAsPromised from 'chai-as-promised';
 import { Log, User } from '../../../../data/index.js';
 import { CredentialError, InvalidArgumentError, SystemError } from 'com/errors.js';
 import login from '../../../../services/auth/login.js';
+import log from '../../../../services/log.js';
 import constants from 'com/constants.js';
 
 const { MONGO_TEST_URI } = process.env;
@@ -23,10 +24,9 @@ describe('login', () => {
 
       await expect(login('asuka@soryu.com', 'Neon-Genesis02')).to.eventually.be.a('string').and.have.lengthOf(24);
 
-      const logEntry = await expect(Log.findOne({ type: constants.LOGGED_IN })).to.eventually.be.a('object');
-      expect(logEntry).to.not.be.null;
+      const logEntry = await expect(Log.findOne({ type: constants.LOGGED_IN })).to.be.fulfilled.and.to.eventually.be.a('object');
       expect(logEntry.user.toString()).to.equal(user.id);
-      expect(logEntry.type).to.equal(constants.LOGGED_IN);
+      expect(logEntry).to.have.property('type').that.equals(constants.LOGGED_IN);
    });
 
    it("fails when the user doesn't exist", async () => {

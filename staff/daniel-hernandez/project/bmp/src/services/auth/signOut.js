@@ -1,12 +1,10 @@
 import validate from 'com/validation';
 import constants from 'com/constants';
 import errors, { FetchError, ParseError } from 'com/errors';
-import extractPayload from '../../utils/extractPayload';
 
 const signOut = token => {
    validate.inputs(token);
    validate.token(token);
-   const { sub: userId } = extractPayload(token);
 
    return (async () => {
       let res, body;
@@ -18,7 +16,7 @@ const signOut = token => {
                Authorization: `Bearer ${token}`,
                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ userId, type: constants.LOGGED_OUT })
+            body: JSON.stringify({ type: constants.LOGGED_OUT })
          });
       } catch (error) {
          throw new FetchError(`Fetch failed: ${error.message}`);

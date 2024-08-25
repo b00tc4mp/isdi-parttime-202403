@@ -20,16 +20,14 @@ describe('register', () => {
    it('succeeds when the user exists after registering and is logged correctly', async () => {
       await expect(register('asuka@soryu.com', 'Neon-Genesis02', 'eva02')).to.be.fulfilled;
 
-      const user = await expect(User.findOne({ email: 'asuka@soryu.com' })).to.eventually.be.a('object');
-      expect(user).to.not.be.null;
-      expect(user.email).to.equal('asuka@soryu.com');
+      const user = await expect(User.findOne({ email: 'asuka@soryu.com' })).to.be.fulfilled.and.to.eventually.be.a('object');
+      expect(user).to.have.property('email').that.equals('asuka@soryu.com');
+      expect(user).to.have.property('username').that.equals('eva02');
       await expect(bcrypt.compare('Neon-Genesis02', user.passwordHash)).to.eventually.be.true;
-      expect(user.username).to.equal('eva02');
 
-      const logEntry = await expect(Log.findOne({ type: constants.REGISTERED })).to.eventually.be.a('object');
-      expect(logEntry).to.not.be.null;
+      const logEntry = await expect(Log.findOne({ type: constants.REGISTERED })).to.be.fulfilled.and.to.eventually.be.a('object');
       expect(logEntry.user.toString()).to.equal(user.id);
-      expect(logEntry.type).to.equal(constants.REGISTERED);
+      expect(logEntry).to.have.property('type').that.equals(constants.REGISTERED);
    });
 
    it('fails when the user already exists (email)', async () => {

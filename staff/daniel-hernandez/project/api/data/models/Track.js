@@ -40,7 +40,8 @@ const TrackSchema = new Schema(
       releaseDate: {
          type: Date,
          required: true,
-         default: Date.now
+         default: Date.now,
+         index: true
       },
       coverArt: {
          type: String,
