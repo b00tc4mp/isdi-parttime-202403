@@ -32,7 +32,7 @@ const registerAdmin = (name, username, email, password, passwordRepeat, avatar, 
                         family: family
                     }
 
-                    return User.create(newUser, { __v: 0 })
+                    return User.create(newUser)
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })

@@ -5,6 +5,7 @@ const { ObjectId } = Schema.Types
 const task = new Schema({
     family: {
         type: String,
+        required: true
     },
     assignee: {
         type: ObjectId,

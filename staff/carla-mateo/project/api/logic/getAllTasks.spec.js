@@ -56,7 +56,7 @@ describe('getAllTask', () => {
                             expect(task.assignee.username).to.be.a('string')
                             expect(task.assignee.email).to.be.a('string')
                             expect(task.assignee.family).to.be.a('string')
-                            expect(task.done).to.be.an('boolean')
+                            expect(task.done).to.be.an('array')
                             expect(task.title).to.be.a('string')
                             expect(task.description).to.be.a('string')
                             expect(task.date).to.be.an.instanceOf(Date)
@@ -96,7 +96,7 @@ describe('getAllTask', () => {
                             expect(task.id).to.be.a('string')
                             expect(task.family).to.be.a('string')
                             expect(task.assignee).to.be.null
-                            expect(task.done).to.be.an('boolean')
+                            expect(task.done).to.be.an('array')
                             expect(task.title).to.be.a('string')
                             expect(task.description).to.be.a('string')
                             expect(task.date).to.be.an.instanceOf(Date)

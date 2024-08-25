@@ -51,7 +51,7 @@ describe('getTasksForDate', () => {
                             expect(task.id).to.be.a('string')
                             expect(task.family).to.be.a('string')
                             expect(task.assignee).to.be.a('Object')
-                            expect(task.done).to.be.a('boolean')
+                            expect(task.done).to.be.an('array')
                             expect(task.title).to.be.a('string')
                             expect(task.description).to.be.a('string')
                             expect(task.date).to.be.an.instanceOf(Date)
@@ -92,7 +92,7 @@ describe('getTasksForDate', () => {
                             expect(task.id).to.be.a('string')
                             expect(task.family).to.be.a('string')
                             expect(task.assignee).to.be.undefined
-                            expect(task.done).to.be.a('boolean')
+                            expect(task.done).to.be.an('array')
                             expect(task.title).to.be.a('string')
                             expect(task.description).to.be.a('string')
                             expect(task.date).to.be.an.instanceOf(Date)
