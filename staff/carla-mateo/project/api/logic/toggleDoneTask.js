@@ -1,6 +1,6 @@
 import { User, Task } from '../data/index.js'
 import validate from 'com/validate.js'
-import { NotFoundError, SystemError } from 'com/errors.js'
+import { ContentError, NotFoundError, SystemError } from 'com/errors.js'
 
 function toggleDoneTask(userId, taskId) {
     validate.id(userId, 'userId')
@@ -19,7 +19,7 @@ function toggleDoneTask(userId, taskId) {
                     if (task.assignee) {
                         const assigneeId = task.assignee.toString()
                         if (assigneeId !== userId) {
-                            throw new SystemError('user is not assigned to this task')
+                            throw new ContentError('user is not assigned to this task')
                         }
                     }
 

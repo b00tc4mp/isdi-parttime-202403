@@ -22,5 +22,6 @@ router.get('/getTasks/:date', routes.getTasksForDateHandler)
 router.get('/taskDay/:selectedDate', routes.taskDayHandler)
 
 router.patch('/profile', jsonBodyParser, routes.updateDataUserHandler)
+router.patch('/task/:taskId/done', jsonBodyParser, routes.toggleDoneTaskHandler)
 
 export default router

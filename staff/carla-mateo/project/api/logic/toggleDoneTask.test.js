@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            toggleDoneTask('66c98728e8d42c5310e007bf', '66c97ba4e8d42c5310e00751')
+            toggleDoneTask('66cad28961562baeee7c8e43', '66cb5cfbce0823db99873052')
                 .then(() => console.log('user toggled done'))
                 .catch(error => console.error(error))
 
