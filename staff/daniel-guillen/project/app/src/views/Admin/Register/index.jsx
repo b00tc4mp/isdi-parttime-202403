@@ -7,28 +7,17 @@ import Title from '../../../components/core/Title'
 import FormWithFeedback from '../../../components/core/FormWithFeedback'
 
 import { SystemError } from '../../../../../com/errors'
-import AccessControl from '../components/AccessControl'
 
 import registerUser from '../../../logic/registerUser'
+import AccessControl from '../components/AccessControl'
 
 const RegisterUser = () => {
     const [message, setMessage] = useState('')
-
+    const [valueAccess, setValueAccess] = useState('user') // Default access level
     const navigate = useNavigate()
 
-    const [access, setAccess] = useState({
-        stored: 'FALSE',
-        truckLoad: 'FALSE', 
-        vehicles: 'FALSE',  
-        admin: 'FALSE'      
-    })
-
-    const handleAccessChange = (event) => {
-        const { name, checked } = event.target
-        setAccess(prevAccess => ({
-            ...prevAccess,
-            [name]: checked ? 'TRUE' : 'FALSE'
-        }))
+    const handleAccessChange = (newAccessLevel) => {
+        setValueAccess(newAccessLevel)
     }
 
     const handleRegisterSubmit = async (event) => {
@@ -36,14 +25,13 @@ const RegisterUser = () => {
 
         const form = event.target
 
-        const name = form.name.value
-        const surname = form.surname.value
+        const email = form.email.value
         const username = form.username.value
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
 
         try {
-            await registerUser(name, surname, username, password, passwordRepeat, access)
+            await registerUser(email, username, password, passwordRepeat, valueAccess)
             alert('Registro completado! 🎉')
             navigate('/Admin/users')
         } catch (error) {
@@ -61,12 +49,12 @@ const RegisterUser = () => {
             <div className='RouteTitle'><Title>NUEVO USUARIO</Title></div>
 
             <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
-                <Field id="name" placeholder="Nombre" />
-                <Field id="surname" placeholder="Apellido" />
+
+                <Field id="email" type="email" placeholder="Correo electrónico" />
                 <Field id="username" placeholder="Alias" />
                 <Field id="password" type="password" placeholder="Contraseña" />
                 <Field id="passwordRepeat" type="password" placeholder="Repetir contraseña" />
-                <AccessControl access={access} handleAccessChange={handleAccessChange} />
+                <AccessControl valueAccess={valueAccess} handleAccessChange={handleAccessChange}/>
                 <SubmitButton>GUARDAR 💾</SubmitButton>
             </FormWithFeedback>
 

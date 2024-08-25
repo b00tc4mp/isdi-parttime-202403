@@ -1,62 +1,31 @@
 import React from 'react'
 import './index.css'
-import Label from '../../../../components/core/Label'
-import Input from '../../../../components/core/Input'
+import Text from '../../../../components/core/Text'
 
-const AccessControl = ({ access, handleAccessChange }) => {
+const AccessControl = ({ valueAccess, handleAccessChange }) => {
   return (
-    <div className='AccessOptions'>
-      <h3>Control de Acceso</h3>
+    <div className='AccessOptionsDiv'>
+      <Text>Control de accesos 🔒</Text>
 
-      <div className='AccessOptions1'>
-        <h4>INVENTARIO</h4>
-        <Label>
-          <Input
-            className="Lock"
-            type="checkbox"
-            name="stored"
-            checked={access.stored === 'TRUE'}
-            onChange={handleAccessChange}
-          />🔓
-        </Label>
+      <div className='Access'>
+        Acceso a
+        <select 
+          className="AccessOption"
+          value={valueAccess} 
+          onChange={(e) => handleAccessChange(e.target.value)}
+        >
+          <option value="admin">Admin 🔑</option> 
+          <option value="almacen">Almacen 👷‍♂️</option>
+          <option value="furgon1">Furgon1 🚙</option>
+          <option value="furgon2">Furgon2 🚙</option>
+          <option value="camion3">Camion3 🚚</option>
+          <option value="camion4">Camion4 🚚</option>
+          <option value="camion5">Camion5 🚛</option>
+          <option value="camion6">Camion6 🚛</option>
+        </select>
+      
       </div>
-      <div className='AccessOptions1'>
-        <h4>SALIDAS</h4>
-        <Label>
-          <Input
-            className="Lock"
-            type="checkbox"
-            name="truckLoad"
-            checked={access.truckLoad === 'TRUE'}
-            onChange={handleAccessChange}
-          />🔓
-        </Label>
-      </div>
-
-      <div className='AccessOptions1'>
-        <h4>VEHICULOS</h4>
-        <Label>
-          <Input
-            className="Lock"
-            type="checkbox"
-            name="vehicles"
-            checked={access.vehicles === 'TRUE'}
-            onChange={handleAccessChange}
-          />🔓
-        </Label>
-      </div>
-      <div className='AccessOptions1'>
-        <h4>ADMIN</h4>
-        <Label>
-          <Input
-            className="Lock"
-            type="checkbox"
-            name="admin"
-            checked={access.admin === 'TRUE'}
-            onChange={handleAccessChange}
-          />🔓
-        </Label>
-      </div>
+        
     </div>
   )
 }

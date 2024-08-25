@@ -1,7 +1,6 @@
 .Input {
-  padding: 0.4rem;
-  background-color: transparent;
+  padding: 0.5rem;
   font-size: 1rem;
-  border: 2px solid var(--first-color);
-  background: linear-gradient(grey, ghostwhite);
+  border: 2px solid var(--third-color);
+  border-radius: 5px;
 }

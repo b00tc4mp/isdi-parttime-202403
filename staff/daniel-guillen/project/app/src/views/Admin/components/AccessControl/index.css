@@ -1,12 +1,26 @@
-.AccessOptions {
+.AccessOptionsDiv {
   display: flex;
   flex-direction: column;
+  text-align: center;
   line-height: 0;
 }
 
-.AccessOptions1 {
+.Access {
   display: flex;
-  flex-direction: row;
-  text-align: center;
   align-items: center;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background: white;
+  height: full;
+  border: grey 2px solid;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.AccessOption {
+  padding-left: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  background: white;
+  border: 0;
 }
