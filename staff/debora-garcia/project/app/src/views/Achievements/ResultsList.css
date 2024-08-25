@@ -17,12 +17,17 @@
   }
 
   .ResultsList .result-details-container{
-    @apply flex flex-row w-full h-[40px] items-center p-[0_1rem];
+    @apply flex flex-row w-full h-[40px] justify-between p-[0_1rem];
   }
   .ResultsList .result-details{
-    @apply flex flex-row w-full  justify-start ;
+    @apply flex flex-row flex-nowrap w-full   ;
   }
   .ResultsList .edit-resultButton{
     @apply flex flex-row w-full  justify-end ;
+  }
+
+  .ResultsList .action-button{
+    @apply flex flex-row w-full  justify-end ;
+
   }
 }

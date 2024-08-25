@@ -39,7 +39,7 @@ const getPosts = (userId) => {
                             delete post.workout._id
                         }
 
-                        if (post.result._id) {
+                        if (post.result?._id) {
                             post.result.id = post.result._id.toString()
 
                             delete post.result._id

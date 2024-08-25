@@ -6,11 +6,12 @@ import registerUser from "./registerUser";
 import getRandomWorkout from "./getRandomWorkout";
 import createPost from "./createPost";
 import getPosts from "./getPosts";
-import getResults from "./getResults";
+import getAllResults from "./getAllResults";
 import toggleLikePost from "./toggleLikePost";
 import getUserId from "./getUserId";
 import deleteResult from "./deleteResult";
 import updateResult from "./updateResult";
+import getResult from "./getResult";
 
 
 const logic = {
@@ -22,11 +23,12 @@ const logic = {
     getRandomWorkout,
     createPost,
     getPosts,
-    getResults,
+    getAllResults,
     toggleLikePost,
     getUserId,
     deleteResult,
-    updateResult
+    updateResult,
+    getResult
 
 }
 

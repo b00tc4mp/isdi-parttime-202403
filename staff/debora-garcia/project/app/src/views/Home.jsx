@@ -10,6 +10,7 @@ import Footer from "./.components/Footer"
 import Heading from "../components/Heading"
 import GoBackButton from "../components/GoBackButton"
 import WorkoutDetail from "./Workouts/WorkoutDetails"
+import ResultDetails from "./Achievements/ResultDetails"
 export default function Home() {
     console.log("Home ->render")
     const [username, setUsername] = useState("")
@@ -56,6 +57,7 @@ export default function Home() {
                     <Route path="/feed" element={<Feed />} />
 
                     <Route path="/achievements" element={<Achievements />} />
+                    <Route path="/achievements/results/:resultId" element={<ResultDetails />} />
 
                     <Route path="/workouts" element={<Workouts />} />
                     <Route path="/workouts/:workoutType" element={<WorkoutDetail />} />

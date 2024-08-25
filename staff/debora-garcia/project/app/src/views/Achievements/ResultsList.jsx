@@ -18,7 +18,7 @@ export default function ResultsList() {
 
     const loadResults = () => {
         try {
-            logic.getResults()
+            logic.getAllResults()
                 .then(results => {
                     setResults(results)
                     console.log(results)
@@ -28,23 +28,13 @@ export default function ResultsList() {
             alert(error.message)
         }
     }
-
-    const handleDeleteResult = (result) => {
-        try {
-            logic.deleteResult(result.id)
-                .then(() => loadResults())
-                .catch(error => alert(error.message))
-
-        } catch (error) {
-            alert
-        }
-    }
+    
 
     return (
         <div className="ResultsList">
             <div className="ResultsList-container">
                 {results.map(result => (
-                    <Link key={result.id} to={`/results/${result.id}`} className="ResultsList-item">
+                    <Link key={result.id} to={`/achievements/results/${result.id}`} className="ResultsList-item">
                         <article>
                             <div className="result-header">
                                 <Heading level={6} className="Heading">
@@ -58,10 +48,7 @@ export default function ResultsList() {
                                     {result.repetitions && `${result.repetitions} reps `}
                                     {result.weight && `${result.weight} kg`}
                                 </p>
-                                <div className="action-button">
-                                    <Button onClick={(e) => { e.preventDefault(); handleDeleteResult(result); }}>✖️</Button>
-                                    <Button onClick={(e) => { e.preventDefault(); handleEditResult(result); }}>🖋️</Button>
-                                </div>
+
                             </div>
                         </article>
                     </Link>

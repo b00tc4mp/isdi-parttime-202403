@@ -20,7 +20,7 @@ const deleteResult = (userId, resultId) => {
                         throw new MatchError("result doesn't match user")
                     }
 
-                    return Result.deleteOne({ _id: resultId })
+                    return Result.updateOne({ _id: resultId }, { $set: { active: false } })
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })

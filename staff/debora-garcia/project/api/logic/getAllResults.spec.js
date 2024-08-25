@@ -2,7 +2,7 @@ import "dotenv/config"
 import mongoose, { Types } from "mongoose"
 import bcrypt from "bcryptjs"
 
-import getResults from "./getResults.js"
+import getAllResults from "./getAllResults.js"
 import { Post, Result, User, Workout } from "../data/index.js"
 import { expect } from "chai"
 import { ContentError, NotFoundError } from "com/errors.js"
@@ -10,7 +10,7 @@ import { ContentError, NotFoundError } from "com/errors.js"
 const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = Types
 
-describe("getResults", () => {
+describe("getAllResults", () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Post.deleteMany(), Result.deleteMany()])))
 
     beforeEach(() => Promise.all([User.deleteMany(), Post.deleteMany(), Result.deleteMany()]))
@@ -45,7 +45,7 @@ describe("getResults", () => {
                 .then(() => user)
             )
 
-            .then(user => getResults(user.id))
+            .then(user => getAllResults(user.id))
             .then(results => {
                 expect(results).to.be.an.instanceOf(Array)
                 expect(results).to.have.lengthOf(1)
@@ -61,7 +61,7 @@ describe("getResults", () => {
     it("fails on non-existing user", () => {
         let errorThrown
 
-        return getResults(new ObjectId().toString())
+        return getAllResults(new ObjectId().toString())
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -81,7 +81,7 @@ describe("getResults", () => {
                 username: "usernameTest",
                 password: hash
             }))
-            .then(user => getResults(user.id))
+            .then(user => getAllResults(user.id))
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -92,7 +92,7 @@ describe("getResults", () => {
     it("fails on invalid user id", () => {
         let errorThrown
         try {
-            getResults(1234)
+            getAllResults(1234)
         } catch (error) {
             errorThrown = error
         } finally {

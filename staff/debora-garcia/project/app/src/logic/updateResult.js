@@ -16,7 +16,7 @@ const updateResult = (resultId, time, repetitions, weight) => {
     })
         .catch(() => { throw new SystemError("server error ") })
         .then(response => {
-            if (response.status === 204) return
+            if (response.status === 200) return
 
             return response.json()
                 .catch(() => { throw new SystemError("server error") })

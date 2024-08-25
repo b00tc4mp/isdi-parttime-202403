@@ -1,17 +1,22 @@
 import errors, { SystemError } from "com/errors"
-const getResults = () => {
+import validate from "com/validate"
 
-    return fetch(`${import.meta.env.VITE_API_URL}/results`, {
+const getResult = (resultId) => {
+    validate.id(resultId, "resultId")
+
+    return fetch(`${import.meta.env.VITE_API_URL}/results/${resultId}`, {
+        method: "GET",
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
+
         .catch(() => { throw new SystemError("server error") })
         .then(response => {
             if (response.status === 200) {
                 return response.json()
                     .catch(() => { throw new SystemError("server error") })
-                    .then(results => results)
+                    .then(result => result)
 
             }
             return response.json()
@@ -24,4 +29,4 @@ const getResults = () => {
         })
 }
 
-export default getResults
+export default getResult

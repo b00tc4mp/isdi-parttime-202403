@@ -2,9 +2,12 @@ import React from 'react';
 import logic from '../../logic';
 import Button from '../../components/Button';
 import Field from '../../components/Field';
+import "./EditResultForm.css"
 
-export default function EditResultForm({ resultId, onResultEdited }) {
+export default function EditResultForm({ resultId, onResultEdited, onCancel }) {
     console.log("EditResultForm -> render")
+ 
+    console.log("EditResultForm -> resultId:", resultId);
 
     const handleEditResultSubmit = (event) => {
         event.preventDefault()
@@ -15,7 +18,6 @@ export default function EditResultForm({ resultId, onResultEdited }) {
         const weight = form.weight.value && Number(form.weight.value)
 
         try {
-
             logic.updateResult(resultId, time, repetitions, weight)
                 .then(() => onResultEdited())
                 .catch(error => {
@@ -24,17 +26,18 @@ export default function EditResultForm({ resultId, onResultEdited }) {
         } catch (error) {
             console.error(error)
         }
-        return (
-            <form className="EditResultForm" onSubmit={handleEditResultSubmit}>
-                <Field id="time" type="number" placeholder="Time"></Field>
-                <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
-                <Field id="weight" type="number" placeholder="Weight"></Field>
-
-                <div className="form-buttons-container">
-                    <Button type="submit">Save</Button>
-                </div>
-            </form>
-        )
     }
+    return (
+        <form className="EditResultForm" onSubmit={handleEditResultSubmit}>
+            <Field id="time" type="number" placeholder="Time"></Field>
+            <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
+            <Field id="weight" type="number" placeholder="Weight"></Field>
+
+            <div className="form-buttons-container">
+                <Button type="submit">Save</Button>
+                <Button type="button" onClick={onCancel} className="cancel-button">Cancel</Button>
+            </div>
+        </form>
+    )
 
 }

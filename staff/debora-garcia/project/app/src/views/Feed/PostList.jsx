@@ -19,7 +19,6 @@ export default function PostList() {
             logic.getPosts()
                 .then((posts) => {
                     setPosts(posts)
-                    console.log(posts)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {

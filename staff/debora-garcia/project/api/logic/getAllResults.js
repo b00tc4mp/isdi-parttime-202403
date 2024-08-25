@@ -1,7 +1,7 @@
 import { User, Result } from "../data/index.js"
 import { SystemError, NotFoundError } from "com/errors.js"
 import validate from "com/validate.js"
-const getResults = (userId) => {
+const getAllResults = (userId) => {
     validate.id(userId, "userId")
 
     return User.findById(userId).lean()
@@ -9,7 +9,7 @@ const getResults = (userId) => {
         .then(user => {
             if (!user) throw new NotFoundError("user not found")
 
-            return Result.find({ athlete: userId })
+            return Result.find({ athlete: userId, active: true })
                 .populate("workout")
                 .populate("athlete")
                 .select("-__v")
@@ -38,4 +38,4 @@ const getResults = (userId) => {
         })
 }
 
-export default getResults
+export default getAllResults

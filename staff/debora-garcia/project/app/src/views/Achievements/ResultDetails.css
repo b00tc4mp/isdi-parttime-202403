@@ -1,0 +1,33 @@
+@tailwind components;
+
+@layer components {
+
+  .result-details-container {
+    @apply flex flex-col h-full p-4 gap-5 justify-between;
+  }
+
+
+  .result-header {
+    @apply flex justify-between items-center mb-4;
+  }
+
+
+  .result-title {
+    @apply text-xl font-bold;
+  }
+
+  .action-button{
+    @apply flex w-5 
+  }
+
+ 
+  .action-menu {
+    @apply fixed mb-4 items-center bottom-[70px] left-1/2 transform -translate-x-1/2;
+  }
+
+  .action-menu Button {
+    @apply flex bg-[#ffffff] top-1 text-black py-2 rounded-md justify-center w-[100px] ;
+  }
+
+  
+}

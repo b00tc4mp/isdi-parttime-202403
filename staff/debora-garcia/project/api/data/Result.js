@@ -24,6 +24,10 @@ const result = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    active: {
+        type: Boolean,
+        default: true
     }
 })
 
