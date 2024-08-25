@@ -1,3 +1,4 @@
+import { useState } from 'react'
 
 import logic from '../../../logic/index'
 
@@ -6,22 +7,36 @@ import View from '../../library/View'
 import Heading from '../../../components/core/Heading'
 import Time from '../../../components/core/Time'
 import Button from '../../../components/core/Button'
+import Confirm from '../Confirm'
 
 function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
-    const handleDeleteTask = () => {
+    const [showConfirm, setShowConfirm] = useState(false)
 
-        if (confirm('Delete task?'))
-            try {
-                logic.deleteTask(task.id)
-                    .then(() => onTaskDeleted())
-                    .catch(error => {
-                        console.error(error)
-                        alert(error.message)
-                    })
-            } catch (error) {
-                console.error(error)
-                alert(error.message)
-            }
+    const handleDeleteTask = () => {
+        setShowConfirm(true)
+    }
+
+    const handleConfirmDelete = () => {
+        try {
+            logic.deleteTask(task.id)
+                .then(() => {
+                    onTaskDeleted()
+                    setShowConfirm(false)
+                })
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                    setShowConfirm(false)
+                })
+        } catch (error) {
+            console.error(error)
+            alert(error.message)
+            setShowConfirm(false)
+        }
+    }
+
+    const handleCancelDelete = () => {
+        setShowConfirm(false)
     }
 
     const handleToggleDoneTask = () => {
@@ -65,6 +80,13 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
                 <Button onClick={handleDeleteTask}>Delete</Button>
             </div>
         </div>
+        {showConfirm && (
+            <Confirm
+                message="Are you sure you want to delete this task?"
+                onConfirm={handleConfirmDelete}
+                onCancel={handleCancelDelete}
+            />
+        )}
     </View>
 }
 export default Task

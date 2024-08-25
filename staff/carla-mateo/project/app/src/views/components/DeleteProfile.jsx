@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 
 import Button from '../../components/core/Button'
+import Confirm from './Confirm'
 import logic from '../../logic/index'
 
 const DeleteProfile = ({ onDeleteSuccess }) => {
@@ -68,16 +69,12 @@ const DeleteProfile = ({ onDeleteSuccess }) => {
                 </div>
             )}
 
-            {showDeleteConfirm && (
-                <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-75'>
-                    <div className='bg-green-100 border border-green-800 p-4 rounded shadow-lg'>
-                        <p>Are you sure you want to delete {selectedUser.username}?</p>
-                        <div className='flex justify-end space-x-4'>
-                            <Button onClick={() => setShowDeleteConfirm(false)}>Cancel</Button>
-                            <Button onClick={confirmDeleteProfile}>Confirm</Button>
-                        </div>
-                    </div>
-                </div>
+            {showDeleteConfirm && selectedUser && (
+                <Confirm
+                    message={`Are you sure you want to delete ${selectedUser.username}?`}
+                    onConfirm={confirmDeleteProfile}
+                    onCancel={() => setShowDeleteConfirm(false)}
+                />
             )}
         </>
     )
