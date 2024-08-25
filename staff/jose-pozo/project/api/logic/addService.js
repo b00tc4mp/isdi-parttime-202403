@@ -6,8 +6,6 @@ import validate from 'com/validate.js'
 const addService = (userId, name, description, category, duration, price) => {
     validate.id(userId, 'userId')
     validate.text(name, 'name')
-    // validate.text(description, 'description')
-    // validate.text(category, 'category')
     validate.number(duration, 'duration')
     validate.number(price, 'price')
 

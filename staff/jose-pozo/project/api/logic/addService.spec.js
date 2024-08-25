@@ -16,7 +16,7 @@ import addService from './addService.js'
 
 const { MONGODB_URL_TEST } = process.env
 
-debugger
+
 
 describe('add service', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([User.deleteMany(), Service.deleteMany()])))

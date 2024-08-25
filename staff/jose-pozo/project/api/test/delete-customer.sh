@@ -1,6 +1,5 @@
 curl -X DELETE \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMyMmZmZjY5OGM4YTg2MDRlZTU2MWEiLCJpYXQiOjE3MjQwMDIzMTgsImV4cCI6MTcyNDAyMzkxOH0.j_WD7Kj_WDbRmz0yVKS3picFxv3Q-UT-Xpk9qdjJmiY" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmM4OTYwMjA0MWFlOGU1YTNjYmM1YzQiLCJpYXQiOjE3MjQ2MDE3MjEsImV4cCI6MTcyNDY4ODEyMX0.QMXaz1mEVO9O1UKH6M_apvQnjFOehPAofzKiX6B67Y4" \
 -H "Content-Type: application/json" \
 -v \
-http://localhost:2011/users/66c2305a698c8a8604ee5629
-
+http://localhost:2011/users/66caf087336403de8258d8bb

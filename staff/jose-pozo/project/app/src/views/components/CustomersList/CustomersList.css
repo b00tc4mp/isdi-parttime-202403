@@ -6,10 +6,14 @@
   }
 
   .CustomersListLi {
-    @apply my-2 w-full rounded bg-soft-gray p-1 text-left text-fast-velvet hover:cursor-pointer hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+    @apply mb-2 w-full rounded bg-soft-gray p-1 text-left text-fast-velvet hover:cursor-pointer hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
   }
 
   .CustomersListHr {
     @apply border-fast-velvet;
+  }
+
+  .CustomersListUl {
+    @apply mt-4 h-5/6 overflow-y-auto;
   }
 }

@@ -14,17 +14,13 @@ const getAllCustomers = (userId) => {
             return User.find({ manager: userId }).select('-__v').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(customers => {
-                    if (!customers.length) throw new NotFoundError('Customers not found')
+                    // if (!customers.length) throw new NotFoundError('Customers not found')
 
                     customers.forEach(customer => {
 
                         customer.id = customer._id.toString()
 
                         delete customer._id
-
-                        // if (customer.manager) {
-                        //     customer.manager = customer.manager.toString()
-                        // }
                     })
 
                     return customers

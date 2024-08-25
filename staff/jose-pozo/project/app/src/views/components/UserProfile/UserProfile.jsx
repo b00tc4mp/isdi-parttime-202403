@@ -28,7 +28,7 @@ const UserProfile = () => {
     }, [])
 
     const handleDeleteCustomerClick = () => {
-        if (!confirm(`Are you sure you want to delete ${selectedUserProfile.name} ${selectedUserProfile.surname}?`)) return
+        if (!confirm(`Are you sure you want to delete customer ${selectedUserProfile.name} ${selectedUserProfile.surname}?`)) return
 
         try {
             logic.deleteCustomer(selectedUserProfile.id)
@@ -56,8 +56,12 @@ const UserProfile = () => {
         setShowCompoUserProfile(!showCompoUserProfile)
     }
 
+    const handleCloseUpdateCustomerProfile = () => {
+        setShowEditCustomerProfile(false)
+    }
+
     return <>
-        {showEditCustomerProfile && <UpdateCustomerProfile onSaveCustomerProfile={handleSaveCustomerProfile} />}
+        {showEditCustomerProfile && <UpdateCustomerProfile onSaveCustomerProfile={handleSaveCustomerProfile} onCloseUpdateCustomerProfile={handleCloseUpdateCustomerProfile} />}
 
         <ViewBox tag='section' className='UserProfileSection'  >
             <fieldset className='UserProfileFieldset' >

@@ -8,11 +8,13 @@ import logoutUser from './logoutUser'
 import getUserName from './getUserName'
 import getAllCustomers from './getAllCustomers'
 import getUserProfile from './getUserProfile'
+import getAllServices from './getAllServices'
 
 import createCustomer from './createCustomer'
 import addService from './addService'
 
 import deleteCustomer from './deleteCustomer'
+import deleteService from './deleteService'
 
 import updateCustomer from './updateCustomer'
 
@@ -24,6 +26,7 @@ const logic = {
     getUserName,
     getAllCustomers,
     getUserProfile,
+    getAllServices,
 
     isUserLoggedIn,
     logoutUser,
@@ -32,6 +35,7 @@ const logic = {
     addService,
 
     deleteCustomer,
+    deleteService,
 
     updateCustomer
 }

@@ -22,13 +22,9 @@ const CustomersList = () => {
             logic.getAllCustomers()
                 .then(customers => setCustomers(customers))
                 .catch(error => {
-                    console.error(error)
-
                     alert(error.message)
                 })
         } catch (error) {
-            console.error(error)
-
             alert(error.message)
         }
     }, [showCompoUserProfile])
@@ -42,7 +38,8 @@ const CustomersList = () => {
 
             <hr className='CustomersListHr'></hr>
 
-            <ul>
+            {/* TODO Fix scrollbar */}
+            <ul className='CustomersListUl'>
                 {customers.map(customer => (
                     <li onClick={() => handleUserProfileClick(customer)} key={customer._id} className='CustomersListLi'>
                         {customer.name} {customer.surname}

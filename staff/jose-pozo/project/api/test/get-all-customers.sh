@@ -1,5 +1,5 @@
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmIzYTZkNzQ3ODQ2MmQxMjAyODA2NmYiLCJpYXQiOjE3MjMxODk3NzksImV4cCI6MTcyMzIxMTM3OX0.tndoxdw0ZLGtsq7U5u6CX5yn45SXpZcNidynhp5EUsk" \
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmM4OTYwMjA0MWFlOGU1YTNjYmM1YzQiLCJpYXQiOjE3MjQ2MDE3MjEsImV4cCI6MTcyNDY4ODEyMX0.QMXaz1mEVO9O1UKH6M_apvQnjFOehPAofzKiX6B67Y4" \
      -H "Content-Type: application/json" \
       -v \
-     http://localhost:2011/users/customers
+     http://localhost:2011/customers
     

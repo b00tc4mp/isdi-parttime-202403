@@ -8,10 +8,10 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            updateCustomer('66c22fff698c8a8604ee561a', '66c4865d822a5cbdc12afc6d', {
+            updateCustomer('66c89602041ae8e5a3cbc5c4', '66c89602041ae8e5a3cbc5c4', {
                 name: 'Manda', surname: 'Carallo', email: 'manda@carallo.com', phone: '+34 6999 000 000'
             })
-                .then((user) => console.log('user updated', user))
+                .then((user) => console.log('user updated'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

@@ -3,8 +3,6 @@ import validate from 'com/validate'
 
 const addService = (name, description, category, duration, price) => {
     validate.text(name, 'name')
-    // validate.text(description, 'description')
-    // validate.text(category, 'category')
     validate.number(duration)
     validate.number(price)
 

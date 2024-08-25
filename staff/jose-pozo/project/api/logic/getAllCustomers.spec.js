@@ -41,8 +41,6 @@ describe('get all customers', () => {
                             role: 'customer',
                             manager: user.id.toString()
                         })
-
-
                             .then(() => getAllCustomers(user.id))
                             .then(customers => {
                                 expect(customers).to.be.an('array')
@@ -78,12 +76,11 @@ describe('get all customers', () => {
             })
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal('User not found') //TODO change alert and fix spec
+                expect(errorThrown.message).to.equal('User not found')
             })
     })
 
-    it('fails on non-existing customer', () => {
-        let errorThrown
+    it('returns an empty array when there are no customers', () => {
         bcrypt.hash('1234', 8)
             .then(hash => User.create({
                 name: 'Jon',
@@ -92,14 +89,15 @@ describe('get all customers', () => {
                 password: hash,
                 role: 'provider'
             }))
-            .then(user => getAllCustomers(user.id))
-            .catch(error => {
-                errorThrown = error
+
+            .then(user => {
+                return getAllCustomers(user.id)
+                    .then(services => {
+                        expect(services).to.be.an('array').that.is.empty
+                    })
+
             })
-            .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal('Customers not found')
-            })
+
     })
 
     it('fails on invalid userId', () => {
@@ -116,6 +114,5 @@ describe('get all customers', () => {
     })
 
     after(() => User.deleteMany().then(() => mongoose.disconnect()))
-
 })
 

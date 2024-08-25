@@ -4,7 +4,6 @@ import validate from 'com/validate.js'
 
 
 const deleteCustomer = (userId, customerId) => {
-
     validate.id(userId, 'userId')
     validate.id(customerId, 'Customer')
 
@@ -12,10 +11,6 @@ const deleteCustomer = (userId, customerId) => {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) throw new NotFoundError('User not found')
-
-            // return User.updateOne({ _id: userId }, { $pull: { customers: Customer } })
-            //     .catch(error => { throw new SystemError(error.message) })
-            //     .then(() => {
 
             return User.findById(customerId).select('-__v').lean()
                 .catch(error => { throw new SystemError(error.message) })
@@ -29,7 +24,6 @@ const deleteCustomer = (userId, customerId) => {
                             return customerId._id
                         })
                 })
-            // })
         })
 }
 

@@ -14,7 +14,7 @@ import ViewBox from '../../../components/library/ViewBox'
 import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import SubmitButton from '../../../components/core/SubmitButton'
 
-function UpdateCustomerProfile({ onSaveCustomerProfile }) {
+function UpdateCustomerProfile({ onSaveCustomerProfile, onCloseUpdateCustomerProfile }) {
     const { selectedUserProfile } = useUserProfileContext()
 
     const handleUpdateCustomerProfileSubmit = event => {
@@ -44,6 +44,9 @@ function UpdateCustomerProfile({ onSaveCustomerProfile }) {
         }
     }
 
+    const handleCloseUpdateCustomerProfile = () => onCloseUpdateCustomerProfile()
+
+
     return <>
 
         <ViewBox tag='section' className='UpdateCustomerProfileSection'>
@@ -53,13 +56,13 @@ function UpdateCustomerProfile({ onSaveCustomerProfile }) {
             <hr className='border-1 border-fast-velvet'></hr>
 
             <FormWithFeedback className='UpdateCustomerProfileForm' onSubmit={handleUpdateCustomerProfileSubmit}>
-                <Input id='name' type='text' placeholder='Name' required={false}></Input>
-                <Input id='surname' type='text' placeholder='Surname' required={false}></Input>
-                <Input id='email' type='email' placeholder='Email' required={false}></Input>
-                <Input id='phone' type='text' placeholder='Phone' required={false}></Input>
+                <Input id='name' type='text' placeholder={selectedUserProfile.name} required={false}></Input>
+                <Input id='surname' type='text' placeholder={selectedUserProfile.surname} required={false}></Input>
+                <Input id='email' type='email' placeholder={selectedUserProfile.email} required={false}></Input>
+                <Input id='phone' type='text' placeholder={selectedUserProfile.phone ? selectedUserProfile.phone : 'Phone'} required={false}></Input>
                 <Box className='UpdateCustomerProfileButtons'>
-                    <Button className='UpdateCustomerProfileSaveButton'>Save</Button>
-                    <Button className='UpdateCustomerProfileCancelButton'>Cancel</Button>
+                    <SubmitButton className='UpdateCustomerProfileSaveButton'>Save</SubmitButton>
+                    <Button onClick={handleCloseUpdateCustomerProfile} className='UpdateCustomerProfileCancelButton'>Cancel</Button>
                 </Box>
             </FormWithFeedback>
         </ViewBox>

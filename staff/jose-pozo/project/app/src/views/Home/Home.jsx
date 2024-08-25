@@ -19,6 +19,7 @@ import CustomersList from '../components/CustomersList/CustomersList'
 import UserProfile from '../components/UserProfile/UserProfile'
 import Calendar from '../components/Calendar/Calendar'
 import AddService from '../components/Add Service/AddService'
+import ServicesList from '../components/ServicesList/ServicesList'
 // import Dropdown from './components/DropDown'
 
 function Home() {
@@ -59,6 +60,7 @@ function Home() {
         setShowCustomersList(false)
         setShowCompoUserProfile(false)
         setShowAddService(false)
+        setShowServicesList(false)
     }
 
     const handleCloseCreateCustomerForm = () => {
@@ -70,10 +72,15 @@ function Home() {
         setShowCreateCustomerForm(false)
         setShowCompoUserProfile(false)
         setShowAddService(false)
+        setShowServicesList(false)
     }
 
     const handleServicesList = () => {
         setShowServicesList(!showServicesList)
+        setShowCreateCustomerForm(false)
+        setShowCompoUserProfile(false)
+        setShowAddService(false)
+        setShowCustomersList(false)
     }
 
     const handleAddService = () => {
@@ -81,6 +88,7 @@ function Home() {
         setShowCreateCustomerForm(false)
         setShowCustomersList(false)
         setShowCompoUserProfile(false)
+        setShowServicesList(false)
     }
 
     const handleCloseAddService = () => {
@@ -99,6 +107,8 @@ function Home() {
             {showCompoUserProfile && <UserProfile />}
 
             {showAddService && <AddService onClose={handleCloseAddService} />}
+
+            {showServicesList && <ServicesList />}
 
 
 
