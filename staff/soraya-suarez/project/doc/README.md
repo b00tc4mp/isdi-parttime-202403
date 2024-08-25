@@ -17,7 +17,6 @@ User | Admin
   - Available tasks
   - Private tasks
   - Completed tasks
-- Edit profile
 - See all employees and only availables employees
   - Profile avatar
   - Email
@@ -36,6 +35,7 @@ User | Admin
 
 - Sign in
 - Sign out
+- Edit profile
 - Request vacation
 - Request resignation
 - Recover password

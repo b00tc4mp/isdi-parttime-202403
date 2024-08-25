@@ -1,5 +1,5 @@
 import { User, Task } from '../data/index.js'
-import { DuplicityError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const addTask = (creator, owner, name, description, status, priority, visible) => {
