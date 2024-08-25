@@ -11,7 +11,7 @@ import Img from '../components/core/Img'
 import RegisterUserForm from './components/RegisterUserForm'
 import UpdateDataUser from './components/UpdateDataUser'
 import UserProvider from './components/UserProvider'
-import DeleteUser from './components/DeleteUser'
+import DeleteProfile from './components/DeleteProfile'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -24,7 +24,8 @@ function Home() {
     const [showForm, setShowForm] = useState(false)
     const [showOptions, setShowOptions] = useState(false)
     const [showEditForm, setShowEditForm] = useState(false)
-    const [showDeleteUser, setShowDeleteUser] = useState(false)
+    const [showDeleteProfile, setShowDeleteProfile] = useState(false)
+
     const handleLogout = () => {
         logic.logoutUser()
 
@@ -32,6 +33,7 @@ function Home() {
     }
     const handleCalendar = () => { navigate('/calendar') }
     const handleTaskList = () => { navigate('/taskslist') }
+
     const toggleOptions = () => {
         setShowOptions(!showOptions)
     }
@@ -43,8 +45,8 @@ function Home() {
         setShowEditForm(!showEditForm)
         setShowOptions(false)
     }
-    const handleDeleteUser = () => {
-        setShowDeleteUser(!showDeleteUser)
+    const handleDeleteProfile = () => {
+        setShowDeleteProfile(!showDeleteProfile)
         setShowOptions(!showOptions)
     }
     const handleCancelRegister = () => {
@@ -54,7 +56,11 @@ function Home() {
         setShowEditForm(!showEditForm)
     }
     const handleDeleteSuccess = () => {
-        setShowDeleteUser(!showDeleteUser)
+        setShowDeleteProfile(!showDeleteProfile)
+    }
+
+    const handleEditSuccess = () => {
+        setShowEditForm(!showEditForm)
     }
 
     return (
@@ -79,7 +85,7 @@ function Home() {
                         {showOptions && (
                             <div className='relative left-0  m-1 w-36 bg-green-100 border border-green-800 shadow-lg'>
                                 {isAdmin && <button className='m-2 w-32 border-t border-green-800' onClick={handleRegisterUser}>Register User</button>}
-                                {isAdmin && <button className='m-2 w-32 border-t border-green-800' onClick={handleDeleteUser}>Delete User</button>}
+                                {isAdmin && <button className='m-2 w-32 border-t border-green-800' onClick={handleDeleteProfile}>Delete User</button>}
                                 <button className='m-2 w-32 border-t border-green-800' onClick={handleUpdateDataUser}>Edit Profile</button>
                             </div>
                         )}
@@ -95,8 +101,8 @@ function Home() {
                         </div>
                     </div>
                     {isAdmin && showForm && <RegisterUserForm onSuccessRegister={() => setShowForm(false)} onCancelRegisterSuccess={handleCancelRegister} />}
-                    {isAdmin && showDeleteUser && <DeleteUser onSuccessDeleteUser={() => setShowDeleteUser(false)} onDeleteSuccess={handleDeleteSuccess} />}
-                    {showEditForm && <UpdateDataUser userId={user.id} onSuccessEdit={() => setShowEditForm(false)} onCancelEditSuccess={handleCancelEdit} />}
+                    {isAdmin && showDeleteProfile && <DeleteProfile onSuccessDeleteProfile={() => setShowDeleteProfile(false)} onDeleteSuccess={handleDeleteSuccess} />}
+                    {showEditForm && <UpdateDataUser onSuccessEdit={handleEditSuccess} onCancelEditSuccess={handleCancelEdit} />}
                     <Footer>
                         <Button onClick={handleLogout}>{<CiLogout size={32} />}</Button>
                     </Footer>
@@ -105,6 +111,5 @@ function Home() {
         </UserProvider>
     )
 }
-
 
 export default Home

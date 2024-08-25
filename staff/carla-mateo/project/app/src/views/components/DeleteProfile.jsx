@@ -5,7 +5,7 @@ import { TiArrowBack } from 'react-icons/ti'
 import Button from '../../components/core/Button'
 import logic from '../../logic/index'
 
-const DeleteUser = ({ onDeleteSuccess }) => {
+const DeleteProfile = ({ onDeleteSuccess }) => {
     const [users, setUsers] = useState([])
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
     const [selectedUser, setSelectedUser] = useState(null)
@@ -23,13 +23,14 @@ const DeleteUser = ({ onDeleteSuccess }) => {
             alert(error.message)
         }
     }, [])
-    const confirmDeleteUser = () => {
+    const confirmDeleteProfile = () => {
         try {
-            logic.deleteUser(selectedUser.id)
+            logic.deleteProfile(selectedUser.id)
                 .then(() => {
                     setShowDeleteConfirm(false)
                     setSelectedUser(null)
                     setUsers([])
+                    onDeleteSuccess()
                 })
                 .catch(error => {
                     console.error(error)
@@ -41,7 +42,7 @@ const DeleteUser = ({ onDeleteSuccess }) => {
         }
     }
 
-    const handleDeleteUser = () => {
+    const handleDeleteProfile = () => {
         onDeleteSuccess()
 
     }
@@ -62,7 +63,7 @@ const DeleteUser = ({ onDeleteSuccess }) => {
                         ))}
                     </ul>
                     <div className='flex justify-end'>
-                        <Button onClick={handleDeleteUser}>{<TiArrowBack size={20} />}</Button>
+                        <Button onClick={handleDeleteProfile}>{<TiArrowBack size={20} />}</Button>
                     </div>
                 </div>
             )}
@@ -73,7 +74,7 @@ const DeleteUser = ({ onDeleteSuccess }) => {
                         <p>Are you sure you want to delete {selectedUser.username}?</p>
                         <div className='flex justify-end space-x-4'>
                             <Button onClick={() => setShowDeleteConfirm(false)}>Cancel</Button>
-                            <Button onClick={confirmDeleteUser}>Confirm</Button>
+                            <Button onClick={confirmDeleteProfile}>Confirm</Button>
                         </div>
                     </div>
                 </div>
@@ -82,4 +83,4 @@ const DeleteUser = ({ onDeleteSuccess }) => {
     )
 }
 
-export default DeleteUser
+export default DeleteProfile

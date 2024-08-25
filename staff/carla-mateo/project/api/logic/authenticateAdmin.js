@@ -7,7 +7,7 @@ const authenticateAdmin = (username, password) => {
     validate.username(username)
     validate.password(password)
 
-    return User.findOne({ username }).lean()
+    return User.findOne({ username }, { __v: 0 }).lean()
         .catch((error) => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {

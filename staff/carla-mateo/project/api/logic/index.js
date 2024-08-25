@@ -7,9 +7,11 @@ import getAllUsers from './getAllUsers.js'
 import getAllTasks from './getAllTasks.js'
 import getUsername from './getUsername.js'
 import updateDataUser from './updateDataUser.js'
-import deleteUser from './deleteUser.js'
 import taskDay from './taskDay.js'
 import getTasksForDate from './getTasksForDate.js'
+import deleteProfile from './deleteProfile.js'
+import toggleDoneTask from './toggleDoneTask.js'
+
 
 const logic = {
     registerUser,
@@ -21,9 +23,10 @@ const logic = {
     getAllTasks,
     getUsername,
     updateDataUser,
-    deleteUser,
+    deleteProfile,
     taskDay,
-    getTasksForDate
+    getTasksForDate,
+    toggleDoneTask
 
 }
 

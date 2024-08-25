@@ -9,10 +9,10 @@ import deleteTask from './deleteTask'
 import getAllTasks from './getAllTasks'
 import getUserRole from './getUserRole'
 import updateDataUser from './updateDataUser'
-import deleteUser from './deleteUser'
 import getUsername from './getUsername'
 import taskDay from './taskDay'
 import getTasksForDate from './getTasksForDate'
+import deleteProfile from './deleteProfile'
 
 const logic = {
     isUserLoggedIn,
@@ -26,7 +26,7 @@ const logic = {
     getAllTasks,
     getUserRole,
     updateDataUser,
-    deleteUser,
+    deleteProfile,
     taskDay,
     getUsername,
     getTasksForDate

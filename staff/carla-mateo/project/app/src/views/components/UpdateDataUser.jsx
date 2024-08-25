@@ -6,7 +6,7 @@ import logic from '../../logic'
 import Field from '../../components/core/Field'
 import ImageSelect from './ImageSelect'
 
-function updateDataUser({ userId, onSuccessEdit, onCancelEditSuccess }) {
+function UpdateDataUser({ onSuccessEdit, onCancelEditSuccess }) {
     const [message, setMessage] = useState('')
     const [selectedAvatar, setSelectedAvatar] = useState('avatars/azul.png')
 
@@ -18,8 +18,10 @@ function updateDataUser({ userId, onSuccessEdit, onCancelEditSuccess }) {
         const email = form.email.value
         const avatar = selectedAvatar
 
+        const updates = { username, email, avatar }
+
         try {
-            logic.updateDataUser(userId, username, email, avatar)
+            logic.updateDataUser(updates)
                 .then(() => onSuccessEdit())
                 .catch(error => {
                     console.error(error.message)
@@ -34,6 +36,8 @@ function updateDataUser({ userId, onSuccessEdit, onCancelEditSuccess }) {
     const handleCancelEdit = () => {
         onCancelEditSuccess()
     }
+
+
 
     const avatarOptions = [
         { value: 'avatars/azul.png', label: 'azul' },
@@ -66,4 +70,4 @@ function updateDataUser({ userId, onSuccessEdit, onCancelEditSuccess }) {
     )
 }
 
-export default updateDataUser
+export default UpdateDataUser

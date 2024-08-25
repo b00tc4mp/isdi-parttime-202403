@@ -14,7 +14,7 @@ export default (req, res, next) => {
                 const { userId } = req.params
 
                 try {
-                    logic.deleteUser(userId)
+                    logic.deleteProfile(userId)
                         .then(() => res.status(204).send())
                         .catch(error => next(error))
                 } catch (error) {

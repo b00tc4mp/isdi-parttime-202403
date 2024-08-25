@@ -11,7 +11,7 @@ const getAllUsers = (userId) => {
             if (!user) {
                 throw new NotFoundError('user not found')
             }
-            return User.find({ family: user.family }).lean()
+            return User.find({ family: user.family }, { __v: 0 }).lean()
                 .catch((error) => { throw new SystemError(error.message) })
                 .then(users => {
                     if (!users.length) {

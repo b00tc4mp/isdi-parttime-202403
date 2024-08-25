@@ -1,1 +1,1 @@
-curl -H GET http://localhost:9090/getalltasks  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMwZTgzM2M0NWM5YzJlZmUwNzk0ZjkiLCJpYXQiOjE3MjM5NTM4NzAsImV4cCI6MTcyNTI0OTg3MH0.2iysA5k98WVPl4_6VDwYJ7dZOQxNLkBJJr06RijdzxM' -v
+curl -H GET http://localhost:9090/getalltasks  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMwZTgzM2M0NWM5YzJlZmUwNzk0ZjkiLCJpYXQiOjE3MjM5NTM4NzAsImV4cCI6MTcyNTI0OTg3MH0.2iysA5k98WVPl4_6VDwYJ7dZOQxNLkBJJr06RijdzxM" -v

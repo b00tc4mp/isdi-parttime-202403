@@ -69,7 +69,7 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
                 <Button className='flex justify-between' type='submit'>Create User</Button>
                 <Button onClick={handleCancelRegister} className='flex justify-between' type='button'>Cancel</Button>
             </form>
-            {registrationMessage.length > 0 && <p className='text-black-500 text-lg'>{registrationMessage}</p>}
+            {registrationMessage.length > 0 && <p className='text-black text-sm'>{registrationMessage}</p>}
         </div>
     </>
 

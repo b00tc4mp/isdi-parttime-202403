@@ -20,23 +20,18 @@ const updateDataUser = (userId, updates) => {
             if (!user) {
                 throw new NotFoundError('user not found')
             }
-
             if (updates.username) {
                 user.username = updates.username
             }
-
             if (updates.email) {
                 user.email = updates.email
             }
-
             if (updates.avatar) {
                 user.avatar = updates.avatar
             }
-
             return user.save()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(() => { })
-
         })
 }
 

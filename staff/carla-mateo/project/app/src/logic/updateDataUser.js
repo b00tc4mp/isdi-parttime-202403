@@ -1,8 +1,7 @@
-import validate from 'com/validate';
-import errors, { SystemError } from 'com/errors';
+import validate from 'com/validate'
+import errors, { SystemError } from 'com/errors'
 
-const editProfile = (userId, updates) => {
-    validate.id(userId, 'userId')
+const updateDataUser = (updates) => {
     if (updates.username) {
         validate.username(updates.username)
     }
@@ -13,7 +12,9 @@ const editProfile = (userId, updates) => {
         validate.avatar(updates.avatar)
     }
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/profile`, {
+    console.log(updates)
+
+    return fetch(`${import.meta.env.VITE_API_URL}/profile`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
@@ -35,4 +36,4 @@ const editProfile = (userId, updates) => {
         })
 }
 
-export default editProfile
+export default updateDataUser
