@@ -20,7 +20,7 @@ const updateArtistData = (userId, updatedData) => {
     validate.url(updatedData.video, 'video')
   }
 
-  return fetch(`http://localhost:8080/users/${userId}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}users/${userId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const updateArtistData = (userId, updatedData) => {
       }
       return response.json().then((body) => {
         const { error, message } = body
-        throw new SystemError(message)
+        throw new SystemError('server error')
       })
     })
     .catch((error) => {

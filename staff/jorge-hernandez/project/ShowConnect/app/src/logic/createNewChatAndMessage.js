@@ -5,7 +5,7 @@ const createNewChatAndMessage = (userId, artistId, messageText) => {
   validate.id(artistId, 'artistId')
   validate.text(messageText, 'messageText')
 
-  return fetch(`http://localhost:8080/messages/create`, {
+  return fetch(`${import.meta.env.VITE_API_URL}messages/create`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

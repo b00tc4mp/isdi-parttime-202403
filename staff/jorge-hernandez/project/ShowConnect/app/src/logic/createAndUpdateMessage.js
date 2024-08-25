@@ -6,7 +6,7 @@ const createAndUpdateMessage = (chatId, userId, messageText) => {
   validate.id(userId)
   validate.text(messageText)
 
-  return fetch(`http://localhost:8080/messages`, {
+  return fetch(`${import.meta.env.VITE_API_URL}messages`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

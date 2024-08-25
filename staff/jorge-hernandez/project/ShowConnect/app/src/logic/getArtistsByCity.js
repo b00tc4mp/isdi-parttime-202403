@@ -10,7 +10,9 @@ const getArtistsByCity = (discipline, city, excludedDate) => {
   const isoExcludedDate = date.toISOString()
 
   return fetch(
-    `http://localhost:8080/users/city/${discipline}/discipline/${city}/dates/${isoExcludedDate}`
+    `${
+      import.meta.env.VITE_API_URL
+    }users/city/${discipline}/discipline/${city}/dates/${isoExcludedDate}`
   )
     .catch(() => {
       throw new SystemError('server error')
@@ -29,8 +31,7 @@ const getArtistsByCity = (discipline, city, excludedDate) => {
         })
         .then((body) => {
           const { error, message } = body
-          const Constructor = errors[error] || SystemError
-          throw new Constructor(message)
+          const Constructor = errors[error]
         })
     })
 }

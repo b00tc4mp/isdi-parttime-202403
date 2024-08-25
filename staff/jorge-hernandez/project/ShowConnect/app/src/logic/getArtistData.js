@@ -5,7 +5,7 @@ import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 const getArtistData = () => {
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
-  return fetch(`http://localhost:8080/users/${userId}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}users/${userId}`, {
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,
     },

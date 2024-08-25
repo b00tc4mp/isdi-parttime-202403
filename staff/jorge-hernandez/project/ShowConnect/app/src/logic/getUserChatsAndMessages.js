@@ -5,7 +5,7 @@ import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 const getUserChatsAndMessages = () => {
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
-  return fetch(`http://localhost:8080/chats/${userId}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}chats/${userId}`, {
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,
     },
