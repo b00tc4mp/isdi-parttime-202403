@@ -16,6 +16,10 @@ const getTargetProfile = (userId, targetProfileId) => {
                 .then(targetProfile => {
                     if (!targetProfile) throw new NotFoundError('Target profile not found')
 
+                    if (targetProfile._id.toString() !== userId.toString()) {
+                        throw new NotFoundError('Target profile not found')
+                    }
+
                     targetProfile.id = targetProfile._id.toString()
                     delete targetProfile._id
 

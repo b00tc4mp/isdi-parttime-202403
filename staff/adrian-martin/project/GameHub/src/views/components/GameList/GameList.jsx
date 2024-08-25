@@ -20,8 +20,6 @@ function GameList({ refreshStamp }) {
     }, [refreshStamp])
 
     useEffect(() => {
-        console.log('Games:', games)
-        console.log('Search Query:', searchQuery)
         setFilteredGames(
             games.filter(game =>
                 game.title && game.title.toLowerCase().includes(searchQuery.toLowerCase())

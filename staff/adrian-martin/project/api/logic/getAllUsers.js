@@ -1,12 +1,12 @@
 import { User } from '../data/index.js'
-import { SystemError } from 'com/errors.js'
+import { SystemError, NotFoundError } from 'com/errors.js'
 
 const getAllUsers = () => {
 
     return User.find({}).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(users => {
-            if (!users)
+            if (!users.length)
                 throw new NotFoundError('User not found')
 
             users.forEach(user => {

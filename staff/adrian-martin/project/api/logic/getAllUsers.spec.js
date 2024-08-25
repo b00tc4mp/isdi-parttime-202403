@@ -39,16 +39,16 @@ describe('getAllUsers', () => {
             })
     })
 
-    // it('fails on non-existing user', () => {
-    //     let errorThrown
+    it('fails on non-existing user', () => {
+        let errorThrown
 
-    //     return getAllUsers(new ObjectId().toString())
-    //         .catch(error => errorThrown = error)
-    //         .finally(() => {
-    //             expect(errorThrown).to.be.instanceOf(NotFoundError)
-    //             expect(errorThrown.message).to.equal('User not found')
-    //         })
-    // })
+        return getAllUsers(new ObjectId().toString())
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.instanceOf(NotFoundError)
+                expect(errorThrown.message).to.equal('User not found')
+            })
+    })
 
     after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

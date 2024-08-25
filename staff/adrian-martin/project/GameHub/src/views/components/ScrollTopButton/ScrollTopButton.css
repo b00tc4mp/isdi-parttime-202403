@@ -1,6 +1,4 @@
-@tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 @layer components {
     .Scroll {
@@ -14,6 +12,6 @@
 
 @layer components {
     .Scroll-icon {
-        @apply text-3xl text-yellow-600
+        @apply text-3xl text-second
     }
 }

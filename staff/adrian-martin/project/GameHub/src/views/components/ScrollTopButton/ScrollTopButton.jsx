@@ -38,5 +38,3 @@ const ScrollTopButton = () => {
 }
 
 export default ScrollTopButton
-
-//TODO chenge the z-index

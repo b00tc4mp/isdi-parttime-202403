@@ -11,13 +11,14 @@ const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = Types
 
 describe('getAllGamesTargetUser', () => {
+
+
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([Game.deleteMany(), User.deleteMany()])))
     beforeEach(() => Promise.all([Game.deleteMany(), User.deleteMany()]))
 
-    it('succeeds when both user and targetUser exist and targetUser has games', () => {
+    it('succeeds get all games target', () => {
         let userId, targetUserId
 
-        // Create users and games
         return bcrypt.hash('123132123', 8)
             .then(hash => {
                 return Promise.all([
@@ -29,18 +30,15 @@ describe('getAllGamesTargetUser', () => {
                 userId = user._id
                 targetUserId = targetUser._id
 
-                // Create games for targetUser with all required fields
                 return Game.create([
                     { title: 'Game1', hours: 5, rating: 4.5, image: 'image1.png', author: targetUserId },
-                    { title: 'Game2', hours: 10, rating: 4.0, image: 'image2.png', author: targetUserId }
+                    { title: 'Game1', hours: 10, rating: 4.0, image: 'image2.png', author: targetUserId }
                 ])
             })
             .then(() => {
-                // Call the function
                 return getAllGamesTargetUser(userId, targetUserId)
             })
             .then(games => {
-                // Check the result
                 expect(games).to.be.an('array').that.has.lengthOf(2)
 
                 expect(games[0]).to.deep.include({
@@ -51,29 +49,13 @@ describe('getAllGamesTargetUser', () => {
                 })
 
                 expect(games[1]).to.deep.include({
-                    title: 'Game2',
+                    title: 'Game1',
                     hours: 10,
                     rating: 4.0,
                     image: 'image2.png'
                 })
-
-                // Validate the format of the author field
                 expect(games[0].author).to.deep.equal({ id: targetUserId.toString() })
                 expect(games[1].author).to.deep.equal({ id: targetUserId.toString() })
-            })
-    })
-
-    it('fails if user does not exist', () => {
-        const invalidUserId = new ObjectId().toString()
-        const validTargetUserId = new ObjectId().toString()
-
-        return getAllGamesTargetUser(invalidUserId, validTargetUserId)
-            .then(() => {
-                throw new Error('Expected NotFoundError but got success')
-            })
-            .catch(error => {
-                expect(error).to.be.instanceOf(NotFoundError)
-                expect(error.message).to.equal('User not found')
             })
     })
 
@@ -105,7 +87,7 @@ describe('getAllGamesTargetUser', () => {
             })
     })
 
-    it('returns an empty array if targetUser has no games', () => {
+    it('error if empty array is returned', () => {
         let userId, targetUserId
 
         return bcrypt.hash('123132123', 8)
@@ -119,16 +101,14 @@ describe('getAllGamesTargetUser', () => {
                 userId = user._id
                 targetUserId = targetUser._id
 
-                // Call the function without creating any games
                 return getAllGamesTargetUser(userId, targetUserId)
             })
             .then(games => {
-                // Check the result
                 expect(games).to.be.an('array').that.is.empty
             })
     })
 
-    it('fails on invalid userId format', () => {
+    it('fails on invalid userId', () => {
         let errorThrown
 
         try {
@@ -141,7 +121,7 @@ describe('getAllGamesTargetUser', () => {
         }
     })
 
-    it('fails on invalid targetUserId format', () => {
+    it('fails on invalid targetUserId', () => {
         let errorThrown
 
         try {

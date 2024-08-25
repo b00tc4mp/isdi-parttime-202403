@@ -31,11 +31,6 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
             hours: parseFloat(hours)
         }
 
-        if (!game.id) {
-            alert('Game ID is missing');
-            return;
-        }
-
         try {
             logic.editGame(game.id, updates)
                 .then(() => {
