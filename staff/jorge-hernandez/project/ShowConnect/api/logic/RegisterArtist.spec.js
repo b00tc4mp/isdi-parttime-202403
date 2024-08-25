@@ -9,27 +9,22 @@ import {
   CredentialsError,
   DuplicityError,
   MatchError,
+  SystemError,
 } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 
 describe('registerArtist', () => {
-  before((done) => {
-    mongoose
-      .connect(MONGODB_URL_TEST)
-      .then(() => User.deleteMany())
-      .then(() => done())
-      .catch(done)
+  before(() => {
+    return mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany())
   })
 
-  beforeEach((done) => {
-    User.deleteMany()
-      .then(() => done())
-      .catch(done)
+  beforeEach(() => {
+    return User.deleteMany()
   })
 
-  it('succeeds on new user', (done) => {
-    registerArtist(
+  it('succeeds on new user', () => {
+    return registerArtist(
       'David',
       'David Bisbal',
       'cantante',
@@ -55,15 +50,13 @@ describe('registerArtist', () => {
       })
       .then((match) => {
         expect(match).to.be.true
-        done()
       })
-      .catch(done)
   })
 
-  it('fails on existing user', (done) => {
+  it('fails on existing user', () => {
     let errorThrown
 
-    bcrypt
+    return bcrypt
       .hash('1234', 8)
       .then((hash) =>
         User.create({
@@ -97,15 +90,15 @@ describe('registerArtist', () => {
       .catch((error) => {
         errorThrown = error
       })
-      .finally(() => {
+      .then(() => {
         expect(errorThrown).to.be.instanceOf(DuplicityError)
         expect(errorThrown.message).to.equal('User already exists')
-        done()
       })
   })
 
-  it('fails on invalid name', (done) => {
+  it('fails on invalid name', () => {
     let errorThrown
+
     try {
       registerArtist(
         1234,
@@ -121,15 +114,17 @@ describe('registerArtist', () => {
       )
     } catch (error) {
       errorThrown = error
-    } finally {
+    }
+
+    return Promise.resolve().then(() => {
       expect(errorThrown).to.be.instanceOf(CredentialsError)
       expect(errorThrown.message).to.equal('name is not valid')
-      done()
-    }
+    })
   })
 
-  it('fails on invalid artisticName', (done) => {
+  it('fails on invalid artisticName', () => {
     let errorThrown
+
     try {
       registerArtist(
         'David',
@@ -145,15 +140,17 @@ describe('registerArtist', () => {
       )
     } catch (error) {
       errorThrown = error
-    } finally {
+    }
+
+    return Promise.resolve().then(() => {
       expect(errorThrown).to.be.instanceOf(CredentialsError)
       expect(errorThrown.message).to.equal('artisticName is not valid')
-      done()
-    }
+    })
   })
 
-  it('fails on invalid email', (done) => {
+  it('fails on invalid email', () => {
     let errorThrown
+
     try {
       registerArtist(
         'David',
@@ -169,15 +166,17 @@ describe('registerArtist', () => {
       )
     } catch (error) {
       errorThrown = error
-    } finally {
+    }
+
+    return Promise.resolve().then(() => {
       expect(errorThrown).to.be.instanceOf(CredentialsError)
       expect(errorThrown.message).to.equal('email is not valid')
-      done()
-    }
+    })
   })
 
-  it('fails on invalid password', (done) => {
+  it('fails on invalid password', () => {
     let errorThrown
+
     try {
       registerArtist(
         'David',
@@ -193,15 +192,17 @@ describe('registerArtist', () => {
       )
     } catch (error) {
       errorThrown = error
-    } finally {
+    }
+
+    return Promise.resolve().then(() => {
       expect(errorThrown).to.be.instanceOf(ContentError)
       expect(errorThrown.message).to.equal('password is not valid')
-      done()
-    }
+    })
   })
 
-  it('fails on non-matching password repeat', (done) => {
+  it('fails on non matching password repeat', () => {
     let errorThrown
+
     try {
       registerArtist(
         'David',
@@ -213,21 +214,19 @@ describe('registerArtist', () => {
         'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTQzZXI4NHNnc3luYms4MTNlczBubGhveWF5Z2p1NW0zMG5lOWF2YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3OyjowP63pRVQJl9dB/giphy.gif',
         'https',
         '123123123',
-        123123123
+        '123456789'
       )
     } catch (error) {
       errorThrown = error
-    } finally {
-      expect(errorThrown).to.be.instanceOf(MatchError)
-      expect(errorThrown.message).to.equal("passwords don't match")
-      done()
     }
+
+    return Promise.resolve().then(() => {
+      expect(errorThrown).to.be.instanceOf(MatchError)
+      expect(errorThrown.message).to.equal(`passwords don't match`)
+    })
   })
 
-  after((done) => {
-    User.deleteMany()
-      .then(() => mongoose.disconnect())
-      .then(() => done())
-      .catch(done)
+  after(() => {
+    return User.deleteMany().then(() => mongoose.disconnect())
   })
 })

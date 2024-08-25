@@ -165,19 +165,7 @@
 <a name='L100'></a><a href='#L100'>100</a>
 <a name='L101'></a><a href='#L101'>101</a>
 <a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -227,10 +215,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -243,10 +227,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -271,10 +251,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -319,15 +295,15 @@ describe('createMessage', () =&gt; {
 &nbsp;
   it('succeeds on valid userId, messageText, and chatId', () =&gt; {
     return User.create({
-      name: 'Test User',
-      email: 'testuser@example.com',
+      name: 'Jorge',
+      email: 'Jor@ge.com',
       password: 'password123',
-      artisticName: 'ArtistName',
-      city: 'Test City',
-      discipline: 'Test Discipline',
-      description: 'Test Description',
-      image: 'testimage.jpg',
-      video: 'testvideo.mp4',
+      artisticName: 'Jorge',
+      city: 'Madrid',
+      discipline: 'mago',
+      description: 'magia',
+      image: 'https',
+      video: 'https',
       dates: ['2024-08-17'],
       role: 'artist',
     })
@@ -338,15 +314,11 @@ describe('createMessage', () =&gt; {
         }).then((chat) =&gt; ({ user, chat }))
       )
       .then(({ user, chat }) =&gt;
-        createMessage(
-          user.id.toString(),
-          'Hello, this is a message',
-          chat.id.toString()
-        )
+        createMessage(user.id.toString(), 'Hello world', chat.id.toString())
           .then(() =&gt; Message.findOne())
           .then((message) =&gt; {
             expect(message.sender.toString()).to.equal(user.id.toString())
-            expect(message.text).to.equal('Hello, this is a message')
+            expect(message.text).to.equal('Hello world')
             expect(message.chatId.toString()).to.equal(chat.id.toString())
             expect(message.date).to.be.an.instanceOf(Date)
           })
@@ -356,11 +328,7 @@ describe('createMessage', () =&gt; {
   it('fails on invalid userId', () =&gt; {
     let errorThrown
     try {
-      createMessage(
-        'invalid-id',
-        'Hello, this is a message',
-        new ObjectId().toString()
-      )
+      createMessage('invalidid', 'Hello world', new ObjectId().toString())
     } catch (error) {
       errorThrown = error
     } finally {
@@ -384,11 +352,7 @@ describe('createMessage', () =&gt; {
   it('fails on invalid chatId', () =&gt; {
     let errorThrown
     try {
-      createMessage(
-        new ObjectId().toString(),
-        'Hello, this is a message',
-        'invalid-id'
-      )
+      createMessage(new ObjectId().toString(), 'Hello world', 'invalidid')
     } catch (error) {
       errorThrown = error
     } finally {
@@ -412,7 +376,7 @@ describe('createMessage', () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-25T09:30:56.499Z
+                at 2024-08-25T18:10:29.576Z
             </div>
         <script src="../prettify.js"></script>
         <script>

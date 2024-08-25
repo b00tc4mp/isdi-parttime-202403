@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { ContentError, SystemError } from 'com/errors.js'
+import { SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const deleteDate = (artistId, dateToRemove) => {

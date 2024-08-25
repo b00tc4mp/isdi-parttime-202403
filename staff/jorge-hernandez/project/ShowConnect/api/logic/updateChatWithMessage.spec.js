@@ -4,76 +4,70 @@ import { expect } from 'chai'
 import { Chat, Message } from '../data/index.js'
 import updateChatWithMessage from './updateChatWithMessage.js'
 import { SystemError, ContentError } from 'com/errors.js'
+import validate from 'com/validate.js'
 
 const { ObjectId } = mongoose.Types
 const { MONGODB_URL_TEST } = process.env
 
 describe('updateChatWithMessage', function () {
-  before((done) => {
-    mongoose
-      .connect(MONGODB_URL_TEST, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-      .then(() => done())
-      .catch(done)
+  before(() => {
+    return mongoose
+      .connect(MONGODB_URL_TEST)
+      .then(() => Promise.all([Chat.deleteMany(), Message.deleteMany()]))
   })
 
-  beforeEach((done) => {
-    if (mongoose.connection.readyState === 0) {
-      done(new Error('Database not connected'))
-    } else {
-      Promise.all([Chat.deleteMany(), Message.deleteMany()])
-        .then(() => done())
-        .catch(done)
-    }
+  beforeEach(() => {
+    return Promise.all([Chat.deleteMany(), Message.deleteMany()])
   })
 
-  it('should add a message to an existing chat successfully', function (done) {
-    this.timeout(5000) // Aumenta el timeout si es necesario
+  it('should add a message to an existing chat successfully', () => {
     const chatId = new ObjectId().toString()
     const messageId = new ObjectId().toString()
 
-    // Crear un chat de prueba
-    Chat.create({ _id: chatId, messages: [] })
+    return Chat.create({ _id: chatId, messages: [] })
       .then(() => updateChatWithMessage(chatId, messageId))
       .then((result) => {
         expect(result).to.have.property('success', true)
         expect(result.chat).to.be.an('object')
         expect(result.chat.messages).to.include(messageId)
-        done()
       })
-      .catch(done)
   })
 
-  it('should throw a SystemError if the chat does not exist', function (done) {
+  it('should throw a SystemError if the chat does not exist', () => {
     const invalidChatId = new ObjectId().toString()
     const messageId = new ObjectId().toString()
 
-    updateChatWithMessage(invalidChatId, messageId).catch((error) => {
-      expect(error).to.be.instanceOf(SystemError)
-      expect(error.message).to.equal('Chat not found')
-      done()
-    })
+    return updateChatWithMessage(invalidChatId, messageId)
+      .then(() => {
+        throw new Error('Expected function to throw')
+      })
+      .catch((error) => {
+        expect(error).to.be.instanceOf(SystemError)
+        expect(error.message).to.equal('Chat not found')
+      })
   })
 
-  it('should throw a ContentError if there is a validation error', function (done) {
-    const invalidChatId = 'invalid-id'
+  it('should throw a ContentError if there is a validation error', () => {
+    const invalidChatId = 'invalidId'
     const messageId = new ObjectId().toString()
 
     try {
+      validate.id(invalidChatId)
       updateChatWithMessage(invalidChatId, messageId)
+        .then(() => {
+          throw new Error('Expected function to throw')
+        })
+        .catch((error) => {
+          expect(error).to.be.instanceOf(ContentError)
+          expect(error.message).to.equal('id is not valid')
+        })
     } catch (error) {
       expect(error).to.be.instanceOf(ContentError)
       expect(error.message).to.equal('id is not valid')
-      done()
     }
   })
 
-  after((done) => {
-    mongoose
-      .disconnect()
-      .then(() => done())
-      .catch(done)
+  after(() => {
+    return mongoose.disconnect()
   })
 })

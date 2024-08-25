@@ -14,22 +14,16 @@ import {
 const { MONGODB_URL_TEST } = process.env
 
 describe('registerClient', () => {
-  before((done) => {
-    mongoose
-      .connect(MONGODB_URL_TEST)
-      .then(() => User.deleteMany())
-      .then(() => done())
-      .catch(done)
+  before(() => {
+    return mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany())
   })
 
-  beforeEach((done) => {
-    User.deleteMany()
-      .then(() => done())
-      .catch(done)
+  beforeEach(() => {
+    return User.deleteMany()
   })
 
-  it('succeeds on new user', (done) => {
-    registerClient('David', 'david@bisbal.com', '123123123', '123123123')
+  it('succeeds on new user', () => {
+    return registerClient('David', 'david@bisbal.com', '123123123', '123123123')
       .then(() => User.findOne())
       .then((user) => {
         expect(user.name).to.equal('David')
@@ -39,15 +33,13 @@ describe('registerClient', () => {
       })
       .then((match) => {
         expect(match).to.be.true
-        done()
       })
-      .catch(done)
   })
 
-  it('fails on existing user', (done) => {
+  it('fails on existing user', () => {
     let errorThrown
 
-    bcrypt
+    return bcrypt
       .hash('1234', 8)
       .then((hash) =>
         User.create({
@@ -62,46 +54,62 @@ describe('registerClient', () => {
       )
       .catch((error) => {
         errorThrown = error
-        return Promise.resolve() // Ensure the Promise chain continues
+        return Promise.resolve()
       })
-      .finally(() => {
+      .then(() => {
         expect(errorThrown).to.be.instanceOf(DuplicityError)
         expect(errorThrown.message).to.equal('User already exists')
-        done()
       })
   })
 
-  it('fails on invalid name', (done) => {
+  it('fails on invalid name', () => {
+    let errorThrown
+
     try {
       registerClient(1234, 'david@bisbal.com', '123123123', '123123123')
     } catch (error) {
-      expect(error).to.be.instanceOf(CredentialsError)
-      expect(error.message).to.equal('name is not valid')
-      done()
+      errorThrown = error
     }
+
+    return Promise.resolve().then(() => {
+      expect(errorThrown).to.be.instanceOf(CredentialsError)
+      expect(errorThrown.message).to.equal('name is not valid')
+    })
   })
 
-  it('fails on invalid email', (done) => {
+  it('fails on invalid email', () => {
+    let errorThrown
+
     try {
       registerClient('David', 'invalid-email', '123123123', '123123123')
     } catch (error) {
-      expect(error).to.be.instanceOf(CredentialsError)
-      expect(error.message).to.equal('email is not valid')
-      done()
+      errorThrown = error
     }
+
+    return Promise.resolve().then(() => {
+      expect(errorThrown).to.be.instanceOf(CredentialsError)
+      expect(errorThrown.message).to.equal('email is not valid')
+    })
   })
 
-  it('fails on invalid password', (done) => {
+  it('fails on invalid password', () => {
+    let errorThrown
+
     try {
       registerClient('David', 'david@bisbal.com', 123123123, '123123123')
     } catch (error) {
-      expect(error).to.be.instanceOf(ContentError)
-      expect(error.message).to.equal('password is not valid')
-      done()
+      errorThrown = error
     }
+
+    return Promise.resolve().then(() => {
+      expect(errorThrown).to.be.instanceOf(ContentError)
+      expect(errorThrown.message).to.equal('password is not valid')
+    })
   })
 
-  it('fails on non-matching password repeat', (done) => {
+  it('fails on non matching password repeat', () => {
+    let errorThrown
+
     try {
       registerClient(
         'David',
@@ -110,16 +118,16 @@ describe('registerClient', () => {
         'differentpassword'
       )
     } catch (error) {
-      expect(error).to.be.instanceOf(MatchError)
-      expect(error.message).to.equal("passwords don't match")
-      done()
+      errorThrown = error
     }
+
+    return Promise.resolve().then(() => {
+      expect(errorThrown).to.be.instanceOf(MatchError)
+      expect(errorThrown.message).to.equal("passwords don't match")
+    })
   })
 
-  after((done) => {
-    User.deleteMany()
-      .then(() => mongoose.disconnect())
-      .then(() => done())
-      .catch(done)
+  after(() => {
+    return User.deleteMany().then(() => mongoose.disconnect())
   })
 })

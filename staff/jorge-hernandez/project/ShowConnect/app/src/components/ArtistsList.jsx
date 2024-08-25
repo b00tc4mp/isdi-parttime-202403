@@ -7,7 +7,7 @@ import ArtistProfile from './ArtistProfile'
 function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
   const [artists, setArtists] = useState([])
   const [selectedArtist, setSelectedArtist] = useState(null)
-  const [errorMessage, setErrorMessage] = useState('') // Estado para mensaje de error
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     if (artist && city && excludedDate) {

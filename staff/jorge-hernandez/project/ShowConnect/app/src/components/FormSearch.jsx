@@ -2,17 +2,19 @@ import { useState } from 'react'
 import Field from './core/Field'
 import Footer from './Footer'
 import ArtistsList from './ArtistsList'
-import { disciplines } from '../assets/disciplines'
+import { disciplines, cities } from '../assets/disciplines'
 
 function FormSearch({ onClickGoToLogin }) {
   const [inputValue, setInputValue] = useState('')
-  const [suggestions, setSuggestions] = useState([])
+  const [disciplineSuggestions, setDisciplineSuggestions] = useState([])
+  const [cityInputValue, setCityInputValue] = useState('')
+  const [citySuggestions, setCitySuggestions] = useState([])
   const [artist, setArtist] = useState('')
   const [city, setCity] = useState('')
   const [excludedDate, setExcludedDate] = useState('')
   const [message, setMessage] = useState('')
 
-  const handleInputChange = (e) => {
+  const handleDisciplineInputChange = (e) => {
     const value = e.target.value
     setInputValue(value)
 
@@ -20,15 +22,34 @@ function FormSearch({ onClickGoToLogin }) {
       const filteredSuggestions = disciplines.filter((suggestion) =>
         suggestion.toLowerCase().startsWith(value.toLowerCase())
       )
-      setSuggestions(filteredSuggestions)
+      setDisciplineSuggestions(filteredSuggestions)
     } else {
-      setSuggestions([])
+      setDisciplineSuggestions([])
     }
   }
 
-  const handleSuggestionClick = (suggestion) => {
+  const handleDisciplineSuggestionClick = (suggestion) => {
     setInputValue(suggestion)
-    setSuggestions([])
+    setDisciplineSuggestions([])
+  }
+
+  const handleCityInputChange = (e) => {
+    const value = e.target.value
+    setCityInputValue(value)
+
+    if (value.length > 0) {
+      const filteredSuggestions = cities.filter((suggestion) =>
+        suggestion.toLowerCase().startsWith(value.toLowerCase())
+      )
+      setCitySuggestions(filteredSuggestions)
+    } else {
+      setCitySuggestions([])
+    }
+  }
+
+  const handleCitySuggestionClick = (suggestion) => {
+    setCityInputValue(suggestion)
+    setCitySuggestions([])
   }
 
   const handleOnSubmit = (e) => {
@@ -45,7 +66,8 @@ function FormSearch({ onClickGoToLogin }) {
       setCity(city)
       setExcludedDate(excludedDate)
 
-      setInputValue('')
+      // setInputValue('')
+      // setCityInputValue('')
     } catch (error) {
       setMessage(error.message)
       setTimeout(() => {
@@ -72,17 +94,17 @@ function FormSearch({ onClickGoToLogin }) {
           type='text'
           value={inputValue}
           inputClass='h-8 rounded p-2'
-          onChange={handleInputChange}
+          onChange={handleDisciplineInputChange}
           placeholder='musicos, humoristas, magos...'
           divClass='Field flex flex-col gap-1 mx-2'
         ></Field>
 
-        {suggestions.length > 0 && (
+        {disciplineSuggestions.length > 0 && (
           <ul className='relative border border-gray-300 border-t-0 max-h-[150px] overflow-y-auto bg-white w-[100%] z-50'>
-            {suggestions.map((suggestion, index) => (
+            {disciplineSuggestions.map((suggestion, index) => (
               <li
                 key={index}
-                onClick={() => handleSuggestionClick(suggestion)}
+                onClick={() => handleDisciplineSuggestionClick(suggestion)}
                 className='p-2 cursor-pointer hover:bg-gray-200'
               >
                 {suggestion}
@@ -97,10 +119,26 @@ function FormSearch({ onClickGoToLogin }) {
           htmlFor='ciudad'
           id='ciudad'
           type='text'
+          value={cityInputValue}
           inputClass='h-8 rounded p-2'
+          onChange={handleCityInputChange}
           placeholder='Ciudad del evento'
           divClass='Field flex flex-col gap-1 mx-2'
         ></Field>
+
+        {citySuggestions.length > 0 && (
+          <ul className='relative border border-gray-300 border-t-0 max-h-[150px] overflow-y-auto bg-white w-[100%] z-50'>
+            {citySuggestions.map((suggestion, index) => (
+              <li
+                key={index}
+                onClick={() => handleCitySuggestionClick(suggestion)}
+                className='p-2 cursor-pointer hover:bg-gray-200'
+              >
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        )}
 
         <Field
           labelClass='text-white'

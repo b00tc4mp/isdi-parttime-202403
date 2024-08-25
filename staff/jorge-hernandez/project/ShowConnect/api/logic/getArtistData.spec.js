@@ -36,13 +36,13 @@ describe('getArtistData', function () {
         return User.create({
           name: 'David',
           artisticName: 'David Copperfield',
-          discipline: 'magician',
-          city: 'Las Vegas',
-          description: 'World-famous illusionist',
+          discipline: 'mago',
+          city: 'madrid',
+          description: 'mago',
           email: 'david@copperfield.com',
-          image: 'https://example.com/david.png',
-          video: 'https://example.com/video_david.mp4',
-          password: 'hashed_password',
+          image: 'https:',
+          video: 'https:',
+          password: 'pass',
         })
       })
       .then((_targetUser) => {
@@ -52,7 +52,7 @@ describe('getArtistData', function () {
       .then((result) => {
         expect(result).to.be.an('object')
         expect(result.artisticName).to.equal('David Copperfield')
-        expect(result.description).to.equal('World-famous illusionist')
+        expect(result.description).to.equal('mago')
         expect(result.email).to.equal('david@copperfield.com')
       })
   })
@@ -63,13 +63,13 @@ describe('getArtistData', function () {
     return User.create({
       name: 'David',
       artisticName: 'David Copperfield',
-      discipline: 'magician',
-      city: 'Las Vegas',
-      description: 'World-famous illusionist',
+      discipline: 'mago',
+      city: 'madrid',
+      description: 'mago',
       email: 'david@copperfield.com',
       image: 'https://example.com/david.png',
       video: 'https://example.com/video_david.mp4',
-      password: 'hashed_password',
+      password: 'pass',
     })
       .then((targetUser) => {
         return getArtistData(invalidUserId, targetUser._id.toString())
@@ -86,13 +86,13 @@ describe('getArtistData', function () {
     return User.create({
       name: 'Jorge',
       artisticName: 'Jorge Moreno',
-      discipline: 'magician',
-      city: 'Madrid',
-      description: 'Professional magician',
+      discipline: 'mago',
+      city: 'madrid',
+      description: 'magia',
       email: 'jorge@moreno.com',
-      image: 'https://example.com/jorge.png',
-      video: 'https://example.com/video.mp4',
-      password: 'hashed_password',
+      image: 'https:',
+      video: 'https:',
+      password: 'pass',
     })
       .then((user) => {
         return getArtistData(user._id.toString(), invalidTargetUserId)

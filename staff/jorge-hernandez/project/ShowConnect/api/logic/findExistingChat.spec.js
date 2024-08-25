@@ -4,7 +4,7 @@ import { expect } from 'chai'
 
 import { Chat } from '../data/index.js'
 import findExistingChat from './findExistingChat.js'
-import { SystemError, CredentialsError } from 'com/errors.js'
+import { CredentialsError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 

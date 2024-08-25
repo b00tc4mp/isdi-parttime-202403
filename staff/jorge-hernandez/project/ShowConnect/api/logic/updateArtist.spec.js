@@ -9,9 +9,13 @@ import { SystemError, ContentError } from 'com/errors.js'
 const { MONGODB_URL_TEST } = process.env
 
 describe('updateArtist', () => {
-  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
+  before(() => {
+    return mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany())
+  })
 
-  beforeEach(() => User.deleteMany())
+  beforeEach(() => {
+    return User.deleteMany()
+  })
 
   it('should update artist details and save successfully', () => {
     const userData = {
@@ -62,5 +66,7 @@ describe('updateArtist', () => {
       })
   })
 
-  after(() => mongoose.disconnect())
+  after(() => {
+    return mongoose.disconnect()
+  })
 })

@@ -26,15 +26,15 @@ describe('createMessage', () => {
 
   it('succeeds on valid userId, messageText, and chatId', () => {
     return User.create({
-      name: 'Test User',
-      email: 'testuser@example.com',
+      name: 'Jorge',
+      email: 'Jor@ge.com',
       password: 'password123',
-      artisticName: 'ArtistName',
-      city: 'Test City',
-      discipline: 'Test Discipline',
-      description: 'Test Description',
-      image: 'testimage.jpg',
-      video: 'testvideo.mp4',
+      artisticName: 'Jorge',
+      city: 'Madrid',
+      discipline: 'mago',
+      description: 'magia',
+      image: 'https',
+      video: 'https',
       dates: ['2024-08-17'],
       role: 'artist',
     })
@@ -45,15 +45,11 @@ describe('createMessage', () => {
         }).then((chat) => ({ user, chat }))
       )
       .then(({ user, chat }) =>
-        createMessage(
-          user.id.toString(),
-          'Hello, this is a message',
-          chat.id.toString()
-        )
+        createMessage(user.id.toString(), 'Hello world', chat.id.toString())
           .then(() => Message.findOne())
           .then((message) => {
             expect(message.sender.toString()).to.equal(user.id.toString())
-            expect(message.text).to.equal('Hello, this is a message')
+            expect(message.text).to.equal('Hello world')
             expect(message.chatId.toString()).to.equal(chat.id.toString())
             expect(message.date).to.be.an.instanceOf(Date)
           })
@@ -63,11 +59,7 @@ describe('createMessage', () => {
   it('fails on invalid userId', () => {
     let errorThrown
     try {
-      createMessage(
-        'invalid-id',
-        'Hello, this is a message',
-        new ObjectId().toString()
-      )
+      createMessage('invalidid', 'Hello world', new ObjectId().toString())
     } catch (error) {
       errorThrown = error
     } finally {
@@ -91,11 +83,7 @@ describe('createMessage', () => {
   it('fails on invalid chatId', () => {
     let errorThrown
     try {
-      createMessage(
-        new ObjectId().toString(),
-        'Hello, this is a message',
-        'invalid-id'
-      )
+      createMessage(new ObjectId().toString(), 'Hello world', 'invalidid')
     } catch (error) {
       errorThrown = error
     } finally {
