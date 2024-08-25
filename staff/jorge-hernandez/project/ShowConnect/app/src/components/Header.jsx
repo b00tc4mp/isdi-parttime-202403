@@ -51,7 +51,7 @@ function Header({
           </h1>
           <Button onClick={onClick}>{loginButtonChildren}</Button>
         </div>
-        <h2 className=' mr-3 text-end text-white text-xl'>{name}</h2>
+        <h2 className=' mr-3 text-white text-xl text-center'>{name}</h2>
       </header>
     </div>
   )

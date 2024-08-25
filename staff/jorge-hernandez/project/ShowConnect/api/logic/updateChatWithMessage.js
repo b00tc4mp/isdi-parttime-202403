@@ -1,5 +1,6 @@
 import { Chat } from '../data/index.js'
 import validate from 'com/validate.js'
+import { SystemError } from 'com/errors.js'
 
 const updateChatWithMessage = (chatId, messageId) => {
   validate.id(chatId)
@@ -10,15 +11,15 @@ const updateChatWithMessage = (chatId, messageId) => {
     { $push: { messages: messageId } },
     { new: true }
   )
-    .catch((error) => {
-      throw new SystemError(error.message)
-    })
-
     .then((updatedChat) => {
       if (!updatedChat) {
-        throw new SystemError(error.message)
+        throw new SystemError('Chat not found')
       }
       return { success: true, chat: updatedChat }
     })
+    .catch((error) => {
+      throw new SystemError(error.message)
+    })
 }
+
 export default updateChatWithMessage

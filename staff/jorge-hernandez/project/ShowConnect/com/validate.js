@@ -52,12 +52,11 @@ function validateDate(date, explain = 'date') {
 }
 
 function validateDiscipline(discipline) {
-  console.log(disciplines)
-  console.log(discipline)
   if (typeof discipline !== 'string' || !disciplines.includes(discipline)) {
     throw new ContentError('discipline is not valid')
   }
 }
+
 function validateCity(city) {
   if (typeof city !== 'string' || !cities.includes(city)) {
     throw new ContentError('city is not valid')

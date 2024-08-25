@@ -11,7 +11,6 @@ import logic from './logic'
 function App() {
   const [view, setView] = useState('search')
   const [role, setRole] = useState(sessionStorage.getItem('role') || '')
-  console.log(import.meta.env.VITE_API_URL)
 
   useEffect(() => {
     if (logic.isUserLoggedIn()) {

@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const getArtistsByCity = (discipline, city, excludedDate) => {
   const date = new Date(excludedDate)
   validate.discipline(discipline)
-  validate.text(city)
+  validate.city(city)
   validate.date(date, 'excludedDate')
 
   const isoExcludedDate = date.toISOString()

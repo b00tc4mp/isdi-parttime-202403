@@ -4,7 +4,7 @@ import Footer from './Footer'
 import ArtistsList from './ArtistsList'
 import { disciplines } from '../assets/disciplines'
 
-function Form({ onClickGoToLogin }) {
+function FormSearch({ onClickGoToLogin }) {
   const [inputValue, setInputValue] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [artist, setArtist] = useState('')
@@ -125,4 +125,4 @@ function Form({ onClickGoToLogin }) {
   )
 }
 
-export default Form
+export default FormSearch

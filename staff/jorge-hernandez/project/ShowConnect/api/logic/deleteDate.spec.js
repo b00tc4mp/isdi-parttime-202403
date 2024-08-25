@@ -10,12 +10,7 @@ const { ObjectId } = Types
 
 describe('deleteDate', () => {
   before(() => {
-    return mongoose
-      .connect(MONGODB_URL_TEST, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-      .then(() => User.deleteMany())
+    return mongoose.connect(MONGODB_URL_TEST, {}).then(() => User.deleteMany())
   })
 
   beforeEach(() => User.deleteMany())

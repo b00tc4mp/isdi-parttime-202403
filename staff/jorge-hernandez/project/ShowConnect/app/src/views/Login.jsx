@@ -29,7 +29,7 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
           onUserLoggedIn(role)
         })
         .catch((error) => {
-          console.log(error)
+          console.error(error)
 
           if (error instanceof SystemError) {
             alert(error.message)

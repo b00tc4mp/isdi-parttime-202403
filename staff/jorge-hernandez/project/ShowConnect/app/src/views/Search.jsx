@@ -1,5 +1,5 @@
 import Header from '../components/Header'
-import Form from '../components/Form'
+import FormSearch from '../components/FormSearch'
 import logic from '../logic/index'
 
 function Search({ onRegisterClick, onLoginClick, OnClickMessages }) {
@@ -25,12 +25,14 @@ function Search({ onRegisterClick, onLoginClick, OnClickMessages }) {
         ¿Eres artista? Regístrate
       </Header>
       {logic.isUserLoggedIn() && (
-        <i
-          className='fa-regular fa-message text-2xl text-white cursor-pointer mr-8'
-          onClick={OnClickMessages}
-        ></i>
+        <div className='flex justify-end p-4'>
+          <i
+            className='fa-regular fa-message text-2xl text-white cursor-pointer'
+            onClick={OnClickMessages}
+          ></i>
+        </div>
       )}
-      <Form onClickGoToLogin={handleLoginClick} />
+      <FormSearch onClickGoToLogin={handleLoginClick} />
     </>
   )
 }

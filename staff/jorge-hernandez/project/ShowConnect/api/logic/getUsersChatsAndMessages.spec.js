@@ -11,10 +11,7 @@ const { ObjectId } = Types
 describe('getUserChatsAndMessages', () => {
   before(() => {
     return mongoose
-      .connect(MONGODB_URL_TEST, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
+      .connect(MONGODB_URL_TEST)
       .then(() => User.deleteMany())
       .then(() => Chat.deleteMany())
       .then(() => Message.deleteMany())

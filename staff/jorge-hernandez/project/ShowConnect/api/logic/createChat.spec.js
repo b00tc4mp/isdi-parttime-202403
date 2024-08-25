@@ -5,7 +5,7 @@ import { expect } from 'chai'
 import { Chat, User } from '../data/index.js'
 
 import createChat from './createChat.js'
-import { NotFoundError, ContentError, SystemError } from 'com/errors.js'
+import { ContentError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 

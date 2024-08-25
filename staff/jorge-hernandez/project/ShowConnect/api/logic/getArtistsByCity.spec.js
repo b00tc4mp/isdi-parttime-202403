@@ -2,8 +2,7 @@ import { expect } from 'chai'
 import mongoose from 'mongoose'
 import 'dotenv/config'
 import { User } from '../data/index.js'
-import getArtistsByCity from '../logic/getArtistsByCity.js'
-import { SystemError } from 'com/errors.js'
+import getArtistsByCity from './getArtistsByCity.js'
 
 const { MONGODB_URL_TEST } = process.env
 

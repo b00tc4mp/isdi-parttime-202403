@@ -31,7 +31,7 @@ function RegisterClient({ onClickGoToLogin, artistId }) {
         }, 2000)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         if (error instanceof SystemError) {
           alert(error.message)
           return

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import logic from '../logic/index'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 import Button from './core/Button'
+import ChatList from './ChatList'
+import MessagesList from './MessagesList'
 
 function UserChatsAndMessagesList() {
   const [chats, setChats] = useState([])
@@ -86,25 +88,12 @@ function UserChatsAndMessagesList() {
       {selectedChat ? (
         <div className='border rounded-md px-8 pb-8 flex flex-col shadow-xl shadow-gray-800 bg-blue-600'>
           <div className='flex justify-end m-0 py-4 cursor-pointer'>
-            <button className='text-sm text-white' onClick={handleCloseChat}>
-              Cerrar
-            </button>
+            <Button className='text-white text-3xl' onClick={handleCloseChat}>
+              &times;
+            </Button>
           </div>
-          <h2 className='text-white text-2xl mb-8'>Mensajes del Chat</h2>
-          <ul className='flex flex-col gap-3'>
-            {selectedChat.messages.map((message, index) => (
-              <li
-                key={index}
-                className={`text-white flex flex-col gap-2 ${
-                  message.sender.id === userId
-                    ? 'text-right border rounded-md p-2 bg-blue-400 bg-opacity-50'
-                    : 'text-left border rounded-md p-2 bg-pink-300 bg-opacity-40'
-                }`}
-              >
-                <p className='font-sans'>"{message.text}"</p>
-              </li>
-            ))}
-          </ul>
+          <MessagesList selectedChat={selectedChat} userId={userId} />
+
           <form onSubmit={handleOnSubmit} className='flex space-x-2 mt-6'>
             <input
               name='mensaje'
@@ -118,24 +107,7 @@ function UserChatsAndMessagesList() {
           </form>
         </div>
       ) : (
-        <div className='flex flex-col gap-4 m-4 text-lg'>
-          {chats.map((chat, index) => (
-            <div
-              className='flex'
-              key={index}
-              onClick={() => handleChatClick(chat)}
-            >
-              <p className='bg-blue-600 shadow-md shadow-slate-500 border rounded-md gap-3 p-2 text-white cursor-pointer hover:bg-opacity-50 transition-colors duration-300'>
-                {chat.participants
-                  .map(
-                    (participant) =>
-                      participant.artisticName || participant.name
-                  )
-                  .join(' => ')}
-              </p>
-            </div>
-          ))}
-        </div>
+        <ChatList onChatClick={handleChatClick} chats={chats} />
       )}
     </div>
   )

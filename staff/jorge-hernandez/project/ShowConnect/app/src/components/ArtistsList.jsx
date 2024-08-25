@@ -7,6 +7,7 @@ import ArtistProfile from './ArtistProfile'
 function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
   const [artists, setArtists] = useState([])
   const [selectedArtist, setSelectedArtist] = useState(null)
+  const [errorMessage, setErrorMessage] = useState('') // Estado para mensaje de error
 
   useEffect(() => {
     if (artist && city && excludedDate) {
@@ -15,6 +16,8 @@ function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
   }, [artist, city, excludedDate])
 
   const loadArtists = (artist, city, excludedDate) => {
+    setErrorMessage('')
+
     try {
       logic
         .getArtistsByCity(artist, city, excludedDate)
@@ -22,12 +25,12 @@ function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
           setArtists(artists)
         })
         .catch((error) => {
-          console.error(error)
-          alert(error.message)
+          console.error(error.message)
+          setErrorMessage(error.message)
         })
     } catch (error) {
-      console.error(error)
-      alert(error.message)
+      console.error(error.message)
+      setErrorMessage(error.message)
     }
   }
 
@@ -41,7 +44,10 @@ function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
 
   return (
     <>
-      {artist && city && (
+      {errorMessage && (
+        <p className='text-red-500 text-center'>{errorMessage}</p>
+      )}
+      {artist && city && !errorMessage && (
         <h1
           className={`m-auto text-2xl ${
             artists.length === 0 ? 'text-red-500' : 'text-white'

@@ -16,8 +16,7 @@ export const disciplines = [
   'payaso',
   'clown',
 ]
-
-export const cities = [
+export const originalCities = [
   'Yecla',
   'Alía',
   'Molsosa, La',
@@ -6497,3 +6496,6 @@ export const cities = [
   'Pravia',
   'Oviedo',
 ]
+const lowerCaseCities = originalCities.map((city) => city.toLowerCase())
+
+export const cities = lowerCaseCities
