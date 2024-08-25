@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const toggleDoneTask = (taskId) => {
     validate.id(taskId, 'taskId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/task/${taskId}done`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/task/${taskId}/done`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

@@ -5,7 +5,6 @@ const { ObjectId } = Schema.Types
 const task = new Schema({
     family: {
         type: String,
-        required: true
     },
     assignee: {
         type: ObjectId,
@@ -21,10 +20,10 @@ const task = new Schema({
     date: {
         type: Date,
     },
-    done: [{
-        type: ObjectId,
-        ref: 'User'
-    }],
+    done: {
+        type: Boolean,
+        default: false
+    },
     role: {
         type: String,
         enum: ['admin', 'user']

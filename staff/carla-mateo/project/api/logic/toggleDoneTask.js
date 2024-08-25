@@ -23,13 +23,8 @@ function toggleDoneTask(userId, taskId) {
                         }
                     }
 
-                    const included = task.done.some(userObjectId => userObjectId.toString() === userId)
-
                     return Task.updateOne({ _id: task._id },
-                        included ?
-                            { $pull: { done: user._id } }
-                            :
-                            { $push: { done: user._id } }
+                        { $set: { done: !task.done } }
                     )
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })

@@ -54,6 +54,10 @@ function TasksList({ refreshStamp }) {
         setShowForm(false)
         loadTasks()
     }
+
+    const handleTaskDoneToggled = () => {
+        loadTasks()
+    }
     return (
         <UserProvider>
             {({ user }) => (
@@ -75,7 +79,9 @@ function TasksList({ refreshStamp }) {
                         {tasks.map(task => (
                             task && <Task key={task.id}
                                 task={task}
-                                onTaskDeleted={handleDeleteTask} />
+                                onTaskDeleted={handleDeleteTask}
+                                onTaskDoneToggled={handleTaskDoneToggled}
+                            />
                         ))}
                     </div>
                     <Footer>
