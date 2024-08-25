@@ -33,6 +33,27 @@ describe('createGame', () => {
             })
     })
 
+    it('succeeds on create game', () => {
+        return bcrypt.hash('123132123', 8)
+            .then(hash => {
+                return User.create({ name: 'Mocha', username: 'MochaChai', email: 'Mocha@Chai.com', password: hash })
+            })
+            .then(user => {
+                return createGame(user.id, 'Test Game', 'https://example.com/game.jpg', 10, 10)
+                    .then(() => {
+                        return Game.findOne()
+                    })
+                    .then(game => {
+                        expect(game).to.exist
+                        expect(game.author.toString()).to.equal(user.id)
+                        expect(game.title).to.equal('Test Game')
+                        expect(game.image).to.equal('https://example.com/game.jpg')
+                        expect(game.rating).to.equal(10)
+                        expect(game.hours).to.equal(10)
+                    })
+            })
+    })
+
     it('fails on non-existing user', () => {
         let errorThrown
 

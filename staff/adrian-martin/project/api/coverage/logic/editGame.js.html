@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">96% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/25</span>
+                <span class='fraction'>24/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">96% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/25</span>
+                <span class='fraction'>24/25</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -108,38 +108,38 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,39 +147,39 @@
 import { Game } from '../data/index.js'
 import validate from 'com/validate.js'
 &nbsp;
-const editGame = <span class="fstat-no" title="function not covered" >(userId, gameId, updates) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    validate.id(userId, 'userId')</span>
-<span class="cstat-no" title="statement not covered" >    validate.id(gameId, 'gameId')</span>
+const editGame = (userId, gameId, updates) =&gt; {
+    validate.id(userId, 'userId')
+    validate.id(gameId, 'gameId')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const updateFields = {}</span>
+    const updateFields = {}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (updates.title) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.text(updates.title, 'title')</span>
-<span class="cstat-no" title="statement not covered" >        updateFields.title = updates.title</span>
+    if (updates.title) {
+        validate.text(updates.title, 'title')
+        updateFields.title = updates.title
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (updates.image) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.url(updates.image, 'image')</span>
-<span class="cstat-no" title="statement not covered" >        updateFields.image = updates.image</span>
+    if (updates.image) {
+        validate.url(updates.image, 'image')
+        updateFields.image = updates.image
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (updates.rating) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.rating(updates.rating, 'rating')</span>
-<span class="cstat-no" title="statement not covered" >        updateFields.rating = updates.rating</span>
+    if (updates.rating) {
+        validate.rating(updates.rating, 'rating')
+        updateFields.rating = updates.rating
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (updates.hours) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.hours(updates.hours, 'hours')</span>
-<span class="cstat-no" title="statement not covered" >        updateFields.hours = updates.hours</span>
+    if (updates.hours) {
+        validate.hours(updates.hours, 'hours')
+        updateFields.hours = updates.hours
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return Game.findOneAndUpdate({ _id: gameId.toString() }, updateFields, { new: true }).lean()</span>
+    return Game.findOneAndUpdate({ _id: gameId.toString() }, updateFields, { new: true }).lean()
         .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-        .then(<span class="fstat-no" title="function not covered" >game =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if (!game) {</span>
-<span class="cstat-no" title="statement not covered" >                throw new NotFoundError('Game not found')</span>
+        .then(game =&gt; {
+            if (!game) {
+                throw new NotFoundError('Game not found')
             }
-<span class="cstat-no" title="statement not covered" >            return game</span>
+            return game
         })
 }
 &nbsp;
@@ -190,7 +190,7 @@ export default editGame</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-23T23:22:28.153Z
+                at 2024-08-25T05:43:08.413Z
             </div>
         <script src="../prettify.js"></script>
         <script>
