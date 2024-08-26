@@ -45,10 +45,10 @@ function CreateTask({ onTaskSuccess, onCancelCreateTaskSuccess }) {
     const handleCancelCreateTask = () => onCancelCreateTaskSuccess()
 
     return <View className='fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50'>
-        <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg ' >
-            <form className='mb-4 ' onSubmit={handleCreateTask}>
+        <div className='fixed bottom-0 mb-20 left-1/2 transform border border-black -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg ' >
+            <form className='flex flex-col gap-1 mb-4  ' onSubmit={handleCreateTask}>
                 <Field id='title' type='text' placeholder='Task Title' />
-                <textarea className='bg-green-100 border border-green-800 shadow-lg' id='description' type='text' placeholder='Task Description' />
+                <textarea className='bg-green-100 border border-green-800 shadow-lg placeholder-black mb-2 mt-2' id='description' type='text' placeholder='Task Description ' />
                 <Field id='date' type='date' placeholder='Task Date' />
                 <select id='assigneeUserId' className='min-w-20 p-2  rounded  left-0 mt-2 w-48 bg-green-100 border border-green-800 shadow-lg'>
                     <option value=''>Unassigned</option>
@@ -56,8 +56,10 @@ function CreateTask({ onTaskSuccess, onCancelCreateTaskSuccess }) {
                         <option key={user.id} value={user.id}>{user.username}</option>
                     ))}
                 </select>
-                <Button type='submit'>Add Task</Button>
-                <Button onClick={handleCancelCreateTask} className='flex justify-between' type='button'>Cancel</Button>
+                <div className='flex flex-col justify-start mt-4 space-y-2'>
+                    <Button type='submit'>Add Task</Button>
+                    <Button onClick={handleCancelCreateTask} className='flex justify-between' type='button'>Cancel</Button>
+                </div>
             </form>
         </div>
     </View>

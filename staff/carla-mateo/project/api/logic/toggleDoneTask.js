@@ -22,7 +22,6 @@ function toggleDoneTask(userId, taskId) {
                             throw new ContentError('user is not assigned to this task')
                         }
                     }
-
                     return Task.updateOne({ _id: task._id },
                         { $set: { done: !task.done } }
                     )

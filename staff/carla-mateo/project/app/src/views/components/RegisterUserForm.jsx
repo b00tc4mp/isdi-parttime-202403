@@ -51,7 +51,7 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
     ]
 
     return <>
-        <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg'>
+        <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 border  border-black rounded-lg shadow-lg'>
             <form className='mb-4' onSubmit={handleRegisterUserSubmit}>
                 <Field id='name' type='text' placeholder='name home' />
                 <Field id='username' type='text' placeholder='username' />
@@ -66,8 +66,11 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
                     value={selectedAvatar}
                     onChange={setSelectedAvatar}
                 />
-                <Button className='flex justify-between' type='submit'>Create User</Button>
-                <Button onClick={handleCancelRegister} className='flex justify-between' type='button'>Cancel</Button>
+                <div className='flex flex-col justify-start mt-4 space-y-2'>
+                    <Button className='flex justify-between' type='submit'>Create User</Button>
+                    <Button onClick={handleCancelRegister} className='flex justify-between' type='button'>Cancel</Button>
+                </div>
+
             </form>
             {registrationMessage.length > 0 && <p className='text-black text-sm'>{registrationMessage}</p>}
         </div>

@@ -62,8 +62,11 @@ function UpdateDataUser({ onSuccessEdit, onCancelEditSuccess }) {
                         value={selectedAvatar}
                         onChange={setSelectedAvatar}
                     />
-                    <Button className='flex justify-between' type='submit'>Edit profil</Button>
-                    <Button onClick={handleCancelEdit} className='flex justify-between' type='button'>Cancel</Button>
+                    <div className='flex flex-col justify-start mt-4 space-y-2'>
+                        <Button className='flex justify-between' type='submit'>Edit profil</Button>
+                        <Button onClick={handleCancelEdit} className='flex justify-between' type='button'>Cancel</Button>
+                    </div>
+
                 </form >
             </div>
         </>

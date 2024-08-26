@@ -75,7 +75,7 @@ const Calendar = () => {
                                             <Heading className='mb-2' level='2'>{selectedDay}</Heading>
                                             <Heading className='mb-2' level='2'>Tasks:</Heading>
                                         </div>
-                                        <Button onClick={handleCloseTasks} >{<IoMdCloseCircleOutline size={20} />}</Button>
+                                        <button className='mb-8 mr-3' onClick={handleCloseTasks} >{<IoMdCloseCircleOutline size={26} />}</button>
                                     </div>
                                     <ul>
                                         {selectedDayTasks.map(task => (

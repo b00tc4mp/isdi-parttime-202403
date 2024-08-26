@@ -51,11 +51,11 @@ const DeleteProfile = ({ onDeleteSuccess }) => {
     return (
         <>
             {users.length > 0 && (
-                <div className='absolute top-20 left-10 p-2 bg-green-100 border border-green-800 shadow-lg'>
-                    <h2>Select a user to delete:</h2>
+                <div className='absolute top-20 left-10 p-2 bg-green-100 border border-black shadow-lg'>
+                    <h2 className='text-ms text-color-footer'>Select to delete:</h2>
                     <ul>
                         {users.map(user => (
-                            <li key={user.id} value={user.id} className='m-2 w-32 border-t border-green-800' onClick={() => {
+                            <li key={user.id} value={user.id} className='m-2 w-32 border-t border-green-800 text-color-footer' onClick={() => {
                                 setSelectedUser(user)
                                 setShowDeleteConfirm(true)
                             }}>
