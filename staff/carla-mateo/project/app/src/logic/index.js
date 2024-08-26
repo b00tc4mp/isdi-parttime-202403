@@ -8,13 +8,15 @@ import getAllUsers from './getAllUsers'
 import deleteTask from './deleteTask'
 import getAllTasks from './getAllTasks'
 import getUserRole from './getUserRole'
-import updateDataUser from './updateDataUser'
 import getUsername from './getUsername'
 import taskDay from './taskDay'
 import getTasksForDate from './getTasksForDate'
 import deleteProfile from './deleteProfile'
 import toggleDoneTask from './toggleDoneTAsk'
 import getUserId from './getUserId'
+import updateAvatar from './updateAvatar'
+import updateEmail from './updateEmail'
+import updateUsername from './updateUsername'
 
 const logic = {
     isUserLoggedIn,
@@ -27,13 +29,15 @@ const logic = {
     deleteTask,
     getAllTasks,
     getUserRole,
-    updateDataUser,
     deleteProfile,
     taskDay,
     getUsername,
     getTasksForDate,
     toggleDoneTask,
-    getUserId
+    getUserId,
+    updateAvatar,
+    updateEmail,
+    updateUsername
 
 }
 

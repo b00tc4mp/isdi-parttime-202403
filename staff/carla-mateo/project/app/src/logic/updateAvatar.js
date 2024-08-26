@@ -1,26 +1,16 @@
 import validate from 'com/validate'
 import errors, { SystemError } from 'com/errors'
 
-const updateDataUser = (updates) => {
-    if (updates.username) {
-        validate.username(updates.username)
-    }
-    if (updates.email) {
-        validate.email(updates.email)
-    }
-    if (updates.avatar) {
-        validate.avatar(updates.avatar)
-    }
+const updateAvatar = (avatar) => {
+    validate.avatar(avatar)
 
-    console.log(updates)
-
-    return fetch(`${import.meta.env.VITE_API_URL}/profile`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/avatar`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(updates)
+        body: JSON.stringify({ avatar })
     })
         .catch(() => { throw new SystemError('server error') })
         .then(response => {
@@ -36,4 +26,4 @@ const updateDataUser = (updates) => {
         })
 }
 
-export default updateDataUser
+export default updateAvatar

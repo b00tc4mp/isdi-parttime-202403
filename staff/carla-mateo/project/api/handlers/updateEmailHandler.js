@@ -13,9 +13,9 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const updates = req.body
+                const { email } = req.body
                 try {
-                    logic.updateDataUser(userId, updates)
+                    logic.updateEmail(userId, email)
                         .then(() => {
                             res.status(200).json()
                         })

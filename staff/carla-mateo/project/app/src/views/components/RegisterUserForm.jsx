@@ -27,7 +27,7 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
                     setTimeout(() => {
                         setRegistrationMessage('')
                         onSuccessRegister()
-                    }, 2000)
+                    }, 1000)
                 })
                 .catch(error => {
                     alert(error.message)
@@ -72,7 +72,7 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
                 </div>
 
             </form>
-            {registrationMessage.length > 0 && <p className='text-black text-sm'>{registrationMessage}</p>}
+            {registrationMessage.length > 0 && <p className='text-green-300 mt-4 text-sm'>{registrationMessage}</p>}
         </div>
     </>
 

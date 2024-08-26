@@ -1,19 +1,15 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
 
-import updateDataUser from './updateDataUser.js'
+import updateUsername from './updateUsername.js'
 
 const { MONGODB_URL } = process.env
 
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            updateDataUser('66cad199b405991bce930c88', {
-                username: 'huguito',
-                email: 'qFk5O@example.com',
-                avatar: 'avatars/anaranjado.png'
-            })
-                .then(() => console.log('profile edited'))
+            updateUsername('66cad15de2e0f70ae070925a', 'huguito')
+                .then(() => console.log('username edited'))
                 .catch((error) => console.error(error))
 
         } catch (error) {
