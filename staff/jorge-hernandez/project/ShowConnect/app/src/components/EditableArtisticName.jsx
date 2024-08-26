@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import validate from 'com/validate'
 import logic from '../logic'
 
 function EditableArtisticName({ onArtisticNameUpdate, artistId, label }) {
@@ -22,11 +21,11 @@ function EditableArtisticName({ onArtisticNameUpdate, artistId, label }) {
           setError('')
         })
         .catch((error) => {
-          console.error('Error updating artist data:', error)
-          setError('Failed to update artistic name. Please try again.')
+          console.error(error.message)
+          setError(error.message)
         })
-    } catch (validationError) {
-      setError(validationError.message)
+    } catch (error) {
+      setError(error.message)
     }
   }
 

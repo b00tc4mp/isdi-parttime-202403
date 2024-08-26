@@ -18,7 +18,7 @@ function validatePassword(password) {
 }
 
 function validatePasswordsMatch(password, passwordRepeat) {
-  if (password !== passwordRepeat) throw new MatchError("passwords don't match")
+  if (password !== passwordRepeat) throw new MatchError(`passwords don't match`)
 }
 
 function validateEmail(email) {

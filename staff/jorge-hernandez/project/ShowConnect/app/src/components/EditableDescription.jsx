@@ -14,15 +14,21 @@ function EditableDescription({ artistId, label, onDescriptionUpdate }) {
   const handleDescriptionSave = () => {
     const updatedData = { description: newDescription }
 
-    logic
-      .updateArtistData(artistId, updatedData)
-      .then(() => {
-        onDescriptionUpdate(newDescription)
-        setIsEditing(false)
-      })
-      .catch((error) => {
-        console.error('Error updating artist data:', error)
-      })
+    try {
+      logic
+        .updateArtistData(artistId, updatedData)
+        .then(() => {
+          onDescriptionUpdate(newDescription)
+          setIsEditing(false)
+        })
+        .catch((error) => {
+          console.error(error.message)
+          alert(alert.message)
+        })
+    } catch (error) {
+      console.error(error.message)
+      alert(error.message)
+    }
   }
 
   const handleDescriptionCancel = () => {

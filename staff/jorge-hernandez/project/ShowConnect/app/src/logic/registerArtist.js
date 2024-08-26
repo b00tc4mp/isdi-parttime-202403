@@ -24,7 +24,7 @@ const registerArtist = (
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
 
-  return fetch(`${import.meta.env.VITE_API_URL}users`, {
+  return fetch(`${import.meta.env.VITE_API_URL}users/artists`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import logic from '../logic'
-import validate from 'com/validate'
 
 function EditableVideo({ artistId, label, onVideoUpdate }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -13,15 +12,21 @@ function EditableVideo({ artistId, label, onVideoUpdate }) {
   const handleVideoSave = () => {
     const updatedData = { video: newVideo }
 
-    logic
-      .updateArtistData(artistId, updatedData)
-      .then(() => {
-        onVideoUpdate(newVideo)
-        setIsEditing(false)
-      })
-      .catch((error) => {
-        console.error(error.message)
-      })
+    try {
+      logic
+        .updateArtistData(artistId, updatedData)
+        .then(() => {
+          onVideoUpdate(newVideo)
+          setIsEditing(false)
+        })
+        .catch((error) => {
+          console.error(error.message)
+          alert(error.message)
+        })
+    } catch (error) {
+      console.error(error.message)
+      alert(error.message)
+    }
   }
 
   const handleVideoCancel = () => {

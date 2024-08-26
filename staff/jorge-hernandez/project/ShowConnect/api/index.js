@@ -36,32 +36,32 @@ mongoose
 
     api.get('/', (_, res) => res.send('Hello World'))
 
-    api.post('/users', jsonbodyparser, registerArtistHandler)
-
     api.post('/users/auth', jsonbodyparser, authenticateUserHandler)
 
-    api.post('/clients', jsonbodyparser, registerClientHandler)
+    api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 
     api.get('/users/:targetUserId', getArtistDataHandler)
+
+    api.post('/users/clients', jsonbodyparser, registerClientHandler)
+
+    api.post('/users/artists', jsonbodyparser, registerArtistHandler)
+
+    api.delete(
+      '/users/artists/:artistId/dates/:date',
+      jsonbodyparser,
+      deleteDateHandler
+    )
 
     api.get(
       '/users/city/:city/discipline/:discipline/dates/:excludedDate',
       getArtistsByCityHandler
     )
 
-    api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
-
     api.post('/messages', jsonbodyparser, updateChatWithMessageHandler)
 
     api.post('/messages/create', jsonbodyparser, createNewChatAndMessageHandler)
 
     api.get('/chats/:userId', jsonbodyparser, getUserChatsAndMessagesHandler)
-
-    api.delete(
-      '/users/:artistId/dates/:date',
-      jsonbodyparser,
-      deleteDateHandler
-    )
 
     api.use(errorHandler)
 

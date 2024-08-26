@@ -7,7 +7,7 @@ const registerClient = (name, email, password, passwordRepeat) => {
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
 
-  return fetch(`${import.meta.env.VITE_API_URL}clients`, {
+  return fetch(`${import.meta.env.VITE_API_URL}users/clients`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

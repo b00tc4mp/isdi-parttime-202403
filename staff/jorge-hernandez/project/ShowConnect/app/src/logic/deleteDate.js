@@ -2,7 +2,9 @@ import errors, { SystemError } from 'com/errors'
 
 const deleteDate = (artistId, dateToRemove) => {
   return fetch(
-    `${import.meta.env.VITE_API_URL}users/${artistId}/dates/${dateToRemove}`,
+    `${
+      import.meta.env.VITE_API_URL
+    }users/artists/${artistId}/dates/${dateToRemove}`,
     {
       method: 'DELETE',
       headers: {

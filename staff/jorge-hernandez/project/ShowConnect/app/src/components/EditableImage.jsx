@@ -12,15 +12,21 @@ function EditableImage({ artistId, label, onImageUpdate }) {
   const handleImageSave = () => {
     const updatedData = { image: newImage }
 
-    logic
-      .updateArtistData(artistId, updatedData)
-      .then(() => {
-        onImageUpdate(newImage)
-        setIsEditing(false)
-      })
-      .catch((error) => {
-        console.error(error.message)
-      })
+    try {
+      logic
+        .updateArtistData(artistId, updatedData)
+        .then(() => {
+          onImageUpdate(newImage)
+          setIsEditing(false)
+        })
+        .catch((error) => {
+          console.error(error.message)
+          alert(error.message)
+        })
+    } catch (error) {
+      console.error(error.message)
+      alert(error.message)
+    }
   }
   const handleImageCancel = () => {
     setNewImage(label)

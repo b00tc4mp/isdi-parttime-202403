@@ -12,20 +12,27 @@ function UserChatsAndMessagesList() {
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
   const loadChats = () => {
-    logic
-      .getUserChatsAndMessages(userId)
-      .then((chats) => {
-        setChats(chats)
+    try {
+      logic
+        .getUserChatsAndMessages(userId)
+        .then((chats) => {
+          setChats(chats)
 
-        if (selectedChat) {
-          const updatedChat = chats.find((chat) => chat.id === selectedChat.id)
-          setSelectedChat(updatedChat || null)
-        }
-      })
-      .catch((error) => {
-        console.error(error.message)
-        alert(error.message)
-      })
+          if (selectedChat) {
+            const updatedChat = chats.find(
+              (chat) => chat.id === selectedChat.id
+            )
+            setSelectedChat(updatedChat || null)
+          }
+        })
+        .catch((error) => {
+          console.error(error.message)
+          alert(error.message)
+        })
+    } catch (error) {
+      console.error(error.message)
+      alert(error.message)
+    }
   }
 
   useEffect(() => {

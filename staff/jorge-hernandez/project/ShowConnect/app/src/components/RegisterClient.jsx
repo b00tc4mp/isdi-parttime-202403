@@ -71,6 +71,7 @@ function RegisterClient({ onClickGoToLogin, artistId }) {
     <div>
       {!logic.isUserLoggedIn() ? (
         <form onSubmit={handleOnSubmit}>
+          <h1 className='text-center text-xl mb-5'>Regístrate</h1>
           <Field
             divClass='Field flex flex-col gap-1 mx-2'
             labelClass='text-white'
@@ -111,9 +112,9 @@ function RegisterClient({ onClickGoToLogin, artistId }) {
             inputClass='text-black h-8 rounded p-2'
             placeholder='repite la contraseña'
           />
-          <div className='flex flex-col items-center'>
+          <div className='flex flex-col items-center m-5'>
             <Button>Enviar</Button>
-            <p onClick={handleGoToLogin}>
+            <p className='m-3' onClick={handleGoToLogin}>
               Si ya estás registrado haz click
               <span className='cursor-pointer text-green-300'>{' aquí'}</span>
             </p>
