@@ -1,0 +1,25 @@
+.DoActivityCompleteSentence{
+    margin-top: 40%;
+}
+.DoExerciseText{
+    font-size: 1.2rem;
+}
+
+.DoActivityTitle{
+    margin-bottom: 15px;
+}
+.ExerciseContainer{
+    display:inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    margin-bottom: 15px;
+}
+
+.ExerciseInput{
+    width: 6rem;
+    font-size: 1.2rem;
+}
+
+.DoActivityButton{
+    margin-bottom: 15px;
+}

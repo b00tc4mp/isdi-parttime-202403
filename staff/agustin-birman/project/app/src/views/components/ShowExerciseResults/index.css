@@ -1,0 +1,25 @@
+.exerciseCorrect{
+    background-color: lightgreen;
+}
+
+.exerciseWrong{
+    background-color:salmon;
+}
+.SentenceResult{
+    text-align: center;
+}
+.ResultTitle{
+    margin: 20px;
+}
+
+.ResultTable td {
+    width: 50%; /* Ensures that each column is 50% width */
+   
+}
+
+.ResultTable {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    width: 97%;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}

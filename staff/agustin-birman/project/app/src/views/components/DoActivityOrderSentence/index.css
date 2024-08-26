@@ -1,0 +1,65 @@
+.DoActOrderSentenceTitle{
+    margin-top: 40%;
+}
+
+.DoActOrderSentence{
+    margin: 5%;
+}
+
+.SelectedWords, .MixedWords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%; /* O un tamaño específico si prefieres */
+    box-sizing: border-box;
+}
+
+.SelectedWords {
+    margin-bottom: 20px; /* Espacio entre las listas */
+}
+
+.DoActOrderSentenceButton{
+    margin: 5%;
+}
+
+.btnOrderSentence {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.3s;
+   /* Evita que los botones se reduzcan más allá de su tamaño mínimo */
+}
+
+/* Animaciones para mover botones */
+.move-to-selected {
+    animation: moveToSelected 0.3s forwards;
+}
+
+.move-to-mixed {
+    animation: moveToMixed 0.3s forwards;
+}
+
+/* Ajustar animación */
+@keyframes moveToSelected {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToMixed {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

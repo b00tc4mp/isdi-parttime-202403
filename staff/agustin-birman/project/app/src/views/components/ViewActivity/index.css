@@ -1,0 +1,32 @@
+@tailwind components;
+
+@layer components{
+
+    .ActivityHeading{
+    @apply border-b border-black mb-[8%];
+    }
+    
+    
+    .ActivityTitle{
+         @apply border-b border-black mb-[3%];
+    }
+
+    .ActivityText{
+        @apply mb-[4%];
+    }
+
+    .ActivityView{
+        margin: 10px;
+        width: 98%;
+    }
+
+    .CompleteResult{
+        @apply mb-[4%] text-green-500;
+    }
+
+    .IncompleteResult{
+        @apply mb-[4%] text-red-600;
+    }
+
+
+}

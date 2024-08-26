@@ -1,0 +1,46 @@
+.ActivityView {
+    display: flex;
+    flex-direction: column;
+    /* Otras propiedades si es necesario */
+}
+.IconsContainer {
+    display: flex;
+    justify-content: flex-end; /* Alinea los íconos a la derecha */
+    margin-bottom: 1rem; /* Espacio inferior para que no quede pegado al contenido */
+    margin-right: 5%;
+}
+.IconsContainer i {
+    font-size: 1.5rem;
+    margin-left: 1rem; /* Espacio entre íconos */
+}
+.ActivityTeacherTable {
+    border-collapse: separate; /* Asegúrate de que los bordes no se fusionen */
+    border-spacing: 0 10px; /* Espacio entre filas */
+    width: 90%;
+   
+    margin: 20px;
+}
+
+.ActivityTeacherTable td {
+    border: 1px solid #ddd; /* Borde alrededor de las celdas */
+    padding: 10px; /* Espacio dentro de cada celda */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.ActivityTeacherTable th {
+    border: 1px solid #ddd; /* Borde alrededor de las celdas */
+    padding: 10px; /* Espacio dentro de cada celda */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.ActivityTeacherTable tr {
+    border-bottom: 2px solid #f4f4f4; /* Espacio entre filas */
+} 
+
+.ActivityTeacherTitle {
+    padding: 3px; /* Reduce el relleno interno de la celda */
+    border-radius: 20px; /* Estilo opcional para bordes redondeados */
+}
+

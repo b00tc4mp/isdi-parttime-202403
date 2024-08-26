@@ -1,0 +1,12 @@
+.ListExerciseTitle{
+    margin: 10px;
+}
+
+.ListExercisesTable{
+    height: auto;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 10%  0;
+    width: 95%;
+    overflow-x: auto;
+}

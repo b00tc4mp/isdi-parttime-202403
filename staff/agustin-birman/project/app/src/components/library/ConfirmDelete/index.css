@@ -1,0 +1,25 @@
+.ConfirmDelete {
+    border: 1px solid black;
+    border-radius: 20px;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    height: 30%;
+    position: fixed;
+    display: flex; /* Utiliza flexbox para organizar los elementos en el contenedor */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    gap: 16px; /* Espacio entre los elementos (texto y botones) */
+    text-align: center; /* Centra el texto dentro del contenedor */
+    z-index: 10;
+    background-color: rgb(175, 222, 238);
+}
+
+.ConfirmDeleteButtonContainer {
+    display: flex; /* Usa flexbox para organizar los botones horizontalmente */
+    gap: 8px; /* Espacio entre los botones */
+}
+.ConfirmDeleteButton {
+    margin: 0 8px; /* Espacio horizontal entre los botones */
+}

@@ -1,0 +1,17 @@
+
+
+.AddStudentText{
+margin: 5%;
+}
+
+.AddStudentButton{
+    margin: 8%;
+    }
+
+.AddStudentContainer{
+    margin-top: 30%;
+    width: 90%;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 15px;
+}

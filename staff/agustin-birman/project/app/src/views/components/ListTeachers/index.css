@@ -1,0 +1,29 @@
+@tailwind components;
+
+@layer components{
+
+    .TeachersListTitle{
+        margin-top: 5%;
+    }
+
+    .TeachersList {
+        width: 90%;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        margin: 10%  0;
+    }
+    
+    .Teacher{
+        padding: 3px;
+        display:flex;
+        justify-content: space-around;
+        border-bottom: solid 1px black;
+    }
+
+    
+    .Teacher:last-child{
+        border-bottom: none
+    }
+    
+
+}

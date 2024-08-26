@@ -1,0 +1,11 @@
+.SelectActivity {
+    margin-bottom: 10px;
+}
+.SelectActivity Button{
+        width: 90%;
+        height: 15%;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 20px;
+        margin-bottom: 1rem;
+}
