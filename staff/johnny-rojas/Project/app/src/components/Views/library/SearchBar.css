@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+  .SearchBarContent {
+    @apply mt-10 flex items-center justify-center 
+  }
+
+  .SearchBar {
+    @apply w-full max-w-md p-3 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500
+  }
+
+  .SearchIcon {
+    @apply  text-gray-500 -ml-5 relative right-3 top-1/2 transform size-5 
+  }
+}

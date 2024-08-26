@@ -2,6 +2,7 @@ import Header from "../core/Header";
 import TopBar from "../library/TopBar";
 
 import UserRooms from "../library/UserRooms";
+import './HostRooms.css'
 
 
 function HostRooms() {

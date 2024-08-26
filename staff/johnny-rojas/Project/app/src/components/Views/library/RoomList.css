@@ -14,11 +14,11 @@
   }
 
   .Container{
-    @apply flex flex-col items-center w-full mx-auto pt-28 
+    @apply flex flex-col items-center w-full mx-auto
   }
 
   .Grid{
-    @apply mb-20 mt-10
+    @apply mb-20 mt-8
   }
 
   .Card{

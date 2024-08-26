@@ -1,4 +1,5 @@
 import errors, { SystemError } from 'com/errors';
+import validate from 'com/validate';
 
 
 const getRoomBookings = (roomId) => {

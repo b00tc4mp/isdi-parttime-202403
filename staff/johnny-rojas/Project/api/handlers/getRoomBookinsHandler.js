@@ -1,6 +1,5 @@
 import 'dotenv/config'
 import logic from '../logic/index.js'
-import { SystemError } from 'com/errors.js'
 
 const getRoomBookingsHandler = (req, res, next) => {
   try {

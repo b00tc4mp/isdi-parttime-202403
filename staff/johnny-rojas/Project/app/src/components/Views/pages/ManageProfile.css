@@ -8,4 +8,12 @@
   .infoUser{
     @apply pb-4
   }
+
+  span{
+    @apply font-bold
+  }
+
+  .ManageProfile{
+    @apply mt-20
+  }
 }

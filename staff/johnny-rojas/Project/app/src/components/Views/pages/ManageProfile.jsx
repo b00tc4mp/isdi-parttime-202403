@@ -15,12 +15,12 @@ import './ManageProfile.css'
 function ManageProfile() {
   const userId = getUserId()
   const navigate = useNavigate()
-  const [userName, setUserName] = useState(''); 
+  const [user, setUser] = useState(''); 
 
   useEffect(() => {
     try {
       logic.getUserName(userId)
-      .then(name => setUserName(name)) 
+      .then(name => setUser(name)) 
         .catch(error => alert(error.message));
       
     } catch (error) {
@@ -72,12 +72,15 @@ function ManageProfile() {
       <Header>
         <TopBar />
       </Header>
-      <div>
+      <div className='ManageProfile'>
         <View className='RegisterForm' tag='main'>
 
           <Title className='TitleCreateRoom'>Edita tu informacion de contacto</Title>
 
-          <h2 className='infoUserTitle'>Hola {userName}</h2>
+          <h2 className='infoUserTitle'>Hola {user.name}</h2>
+          <p>Estos son tus datos actuales:</p>
+          <p><span>Email:</span> {user.email}</p>
+          <p><span>Telefono:</span> {user.phone}</p>
           <p className='infoUser'>Aquí puedes actualizar tus datos de contacto. Recuerda
 que debes tener tus datos al día para tener una comunicación optima, muchas gracias.</p>
 
@@ -102,3 +105,5 @@ que debes tener tus datos al día para tener una comunicación optima, muchas gr
   )
 }
 export default ManageProfile
+
+//TODO Email y PHONE

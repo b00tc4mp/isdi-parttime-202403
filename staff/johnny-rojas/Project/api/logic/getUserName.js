@@ -12,8 +12,10 @@ const getUserName = (userId) => {
       throw new NotFoundError('user not found')
       }
       
-      return user.name 
+      return user 
     })
 }
 
 export default getUserName
+
+//TODO USER

@@ -19,4 +19,8 @@ Router
 	- GET /create-booking/:roomId (Get blocked days by Room)
 	- GET /bookings/:roomId (Get Room bookings)
 	- DELETE /rooms/:roomId/manage/booking (Cancell Booking)
+	
+
+
+	![](../api/coverage/Screenshot%202024-08-26%20at%2009.55.30.png)
 

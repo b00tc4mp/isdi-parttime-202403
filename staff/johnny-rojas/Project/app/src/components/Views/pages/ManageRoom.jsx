@@ -16,6 +16,7 @@ import './ManageRoom.css'
 function ManageRoom() {
   const [bookings, setBookings] = useState([])
   const { roomId } = useParams()
+  const [room, setRoom] = useState(null)
   const userId = getUserId()
   const navigate = useNavigate()
   const [onLoad, setOnLoad] = useState(0)
@@ -28,6 +29,13 @@ function ManageRoom() {
           alert(error.message)
           return
         })
+      
+      logic.getRoom(userId, roomId)
+        .then(room => { setRoom(room) })
+        .catch(error => {
+        alert(error.message)
+      })
+
     } catch (error) {
       console.error(error.message)
       alert(error)
@@ -125,36 +133,32 @@ function ManageRoom() {
         </section>
       </div>
 
+      {!room?.isBlocked && (
+          <View className='RegisterForm' tag='main'>
+            <Title className='TitleCreateRoom'>Edita tu habitación</Title>
 
-      <View className='RegisterForm' tag='main'>
+            <FormWithPanel onSubmit={handlerEditRoom}>
+              <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' defaultValue={room?.nameRoom || ''} />
 
-        <Title className='TitleCreateRoom'>Edita tu habitación</Title>
+              <Field id='image' type='string' placeholder='Imagen (link)' defaultValue={room?.image || ''} />
 
-        <FormWithPanel onSubmit={handlerEditRoom}>
+              <Field id='description' type='string' placeholder='Descripción del alojamiento' defaultValue={room?.description || ''} />
 
-          <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' />
+              <Field id='price' type='string' placeholder='Precio por noche' defaultValue={room?.price || ''} />
 
-          <Field id='image' type='string' placeholder='Imagen (link)' />
+              <SubmitButton>Realizar cambios</SubmitButton>
 
-          <Field id='description' type='string' placeholder='Descripción del alojamiento' />
-
-          <Field id='price' type='string' placeholder='Precio por noche' />
-
-          <SubmitButton>Realizar cambios</SubmitButton>
-
-          <div className="Delete">
-            <button onClick={handlerBlockRoom}>Bloquear habitación</button>
-          </div>
-
-        </FormWithPanel>
-      </View>
-
+              <div className="Delete">
+                <button onClick={handlerBlockRoom}>Bloquear habitación</button>
+              </div>
+            </FormWithPanel>
+          </View>
+        )}
+      </div>
     </div>
-  </div>
 }
 
 export default ManageRoom
 
 
-//TODO DESBLOQUEAR O BLOQUEAR ROOM
-
+//TODO ALERTAS
