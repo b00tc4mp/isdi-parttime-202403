@@ -8,14 +8,10 @@ import './Searcher.css'
 const Searcher = ({ onSearch }) => {
     const [query, setQuery] = useState('')
 
-    const handleChance = event => {
+    const handleChange = event => {
         const newValue = event.target.value
         setQuery(newValue)
         onSearch(newValue)
-    }
-
-    const handleSearch = () => {
-        onSearch(query)
     }
 
     return (
@@ -24,7 +20,7 @@ const Searcher = ({ onSearch }) => {
                 <input
                     type="text"
                     value={query}
-                    onChange={handleChance}
+                    onChange={handleChange}
                     placeholder="Search game ..."
                     className='Text'
                 />

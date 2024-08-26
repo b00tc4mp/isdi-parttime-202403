@@ -6,4 +6,8 @@
     .List-users {
         @apply mt-24
     }
+
+    .List-users-searcher{
+        @apply mt-24
+    }
 }
