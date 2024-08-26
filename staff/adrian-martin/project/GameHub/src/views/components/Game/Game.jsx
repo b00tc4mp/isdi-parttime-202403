@@ -107,7 +107,7 @@ function Game({ game, onGameDeleted, onGameEdited }) {
                 <Confirm
                     setShowConfirmDelete={setShowConfirmDelete}
                     handleDeleteGame={confirmDeleteGame}
-                    message={`Do you want to delete \n "${game.title}"?`}
+                    message={`Do you want to delete "${game.title}"?`}
                 />
             )}
         </div>
