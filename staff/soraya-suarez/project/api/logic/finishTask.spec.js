@@ -22,9 +22,12 @@ describe('finishTask', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then(user =>
@@ -90,11 +93,14 @@ describe('finishTask', () => {
         return bcrypt.hash('123123123', 8)
           .then((hash) => User.create({
             name: 'Soraya', 
-            surname: 'Suarez', 
-            email: 'soraya@suarez.com', 
-            role: 'admin',
-            manager: new ObjectId().toString(),
-            password: hash 
+                surname: 'Suarez', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
+                role: 'admin',
+                manager: new ObjectId().toString(),
+                available: true,
+                password: hash 
           })
           .then((user) => finishTask(user.id, new ObjectId().toString(), 2)))
           .catch(error => errorThrown = error)
@@ -111,9 +117,12 @@ describe('finishTask', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then(user =>

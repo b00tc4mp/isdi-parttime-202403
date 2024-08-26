@@ -18,9 +18,12 @@ describe('authenticateUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'user',
-                manager: '66c8ad010acb5e0e61f07d66',
+                manager: null,
+                available: true,
                 password: hash 
             }))
             .then(() => authenticateUser('soraya@suarez.com', '123123123'))
@@ -43,9 +46,12 @@ describe('authenticateUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
-                manager: '66c8ad010acb5e0e61f07d66',
+                manager: null,
+                available: true,
                 password: hash 
             }))
             .then(() => authenticateUser('soraya@suarez.com', '123123123'))

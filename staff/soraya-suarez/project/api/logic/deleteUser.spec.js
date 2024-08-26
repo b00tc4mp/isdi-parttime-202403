@@ -20,9 +20,12 @@ describe('deleteUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then(user =>
@@ -30,9 +33,12 @@ describe('deleteUser', () => {
                     .then(hash => User.create({ 
                         name: 'Agustin', 
                         surname: 'Suarez', 
-                        email: 'agustin@suarez.com', 
+                        email: 'agustin@suarez.com',
+                        phone: '',
+                        avatar: '',
                         role: 'user',
                         manager: user.id,
+                        available: true,
                         password: hash 
                     })
                     .then(userToDelete => ({ user, userToDelete }))
@@ -55,9 +61,12 @@ describe('deleteUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then((user) => deleteUser(new ObjectId().toString(), user.id))
@@ -75,9 +84,12 @@ describe('deleteUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then((user) => deleteUser(user.id, new ObjectId().toString()))
@@ -95,9 +107,12 @@ describe('deleteUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'user',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then((user) => deleteUser(user.id, new ObjectId().toString()))

@@ -100,9 +100,12 @@ describe('deleteTask', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'user',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then(user =>

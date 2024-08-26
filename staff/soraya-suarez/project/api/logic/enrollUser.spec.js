@@ -20,9 +20,12 @@ describe('enrollUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then((user) => enrollUser('Agustin', 'Suarez', 'agustin@suarez.com', 'user', user.id, '123123123', '123123123'))
@@ -32,8 +35,11 @@ describe('enrollUser', () => {
                     expect(user.name).to.equal('Agustin')
                     expect(user.surname).to.equal('Suarez')
                     expect(user.email).to.equal('agustin@suarez.com')
+                    expect(user.phone).to.equal('')
+                    expect(user.avatar).to.equal('')
                     expect(user.role).to.equal('user')
                     expect(user.manager).instanceOf(ObjectId)
+                    expect(user.available).to.equal(true)
                     return bcrypt.compare('123123123', user.password)
                 })
                 .then((match) => {
@@ -59,9 +65,12 @@ describe('enrollUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'user',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then((user) => enrollUser('Poca', 'Hontas', 'poca@hontas.com', 'user', user.id, '123123123', '123123123'))
@@ -79,9 +88,12 @@ describe('enrollUser', () => {
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
-                email: 'soraya@suarez.com', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
                 role: 'admin',
                 manager: new ObjectId().toString(),
+                available: true,
                 password: hash 
             }))
             .then(user => enrollUser('sor', 'aya', 'soraya@suarez.com', 'user', user.id, '123123123', '123123123'))
