@@ -121,7 +121,7 @@ describe('deleteUser', () => {
         }
     })
 
-    it('fails on invalid user id to delete', () => {
+    it('fails on invalid task id to delete', () => {
         let errorThrown
         
         try {
