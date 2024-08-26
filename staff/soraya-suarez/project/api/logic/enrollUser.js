@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { DuplicityError, CredentialsError, SystemError } from 'com/errors.js'
+import { DuplicityError, CredentialsError, SystemError, NotFoundError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
