@@ -21,13 +21,16 @@ describe('getUserName', () => {
         name: 'Chai',
         surname: 'Mocha',
         email: 'Chai@Mocha.com',
-        username: 'Chaimocha',
+        phone: '+58 414 455 7362',
         password: hash
       }))
       .then(() => User.findOne())
       .then(user => {
         expect(user.name).to.be.a.string
         expect(user.name).to.be.equal('Chai')
+        expect(user.surname).to.be.equal('Mocha')
+        expect(user.email).to.be.equal('Chai@Mocha.com')
+        expect(user.phone).to.be.equal('+58 414 455 7362')
       })
   })
 
