@@ -7,8 +7,8 @@ export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|
 export const ID_REGEX = /^[0-9a-z-_]+$/i
 export const NIF_CIF_REGEX = /^[0-9]{8}[A-Z]|^[A-HJ-NP-SUVW][0-9]{7}[0-9A-J]?$/
 export const PHONE_REGEX = /^(6|7|8|9)\d{8}$/
-export const COMPANY_NAME_REGEX = /^[a-zA-Z0-9 ,.&]+$/
-export const ADDRESS_REGEX = /^[a-zA-Z0-9 ,.]+$/
+export const COMPANY_NAME_REGEX = /^[a-zA-Z0-9 ,.&áéíóúÁÉÍÓÚñÑ]+$/
+export const ADDRESS_REGEX = /^[a-zA-Z0-9 ,.áéíóúÁÉÍÓÚñÑ/ºª]+$/
 export const IBANREGEX = /^[A-Z]{2}\d{2}\s?\d{4}\s?\d{4}\s?\d{2}\s?\d{10}$/i
 export const NUMBERREGEX = /^\d+(\.\d{1,2})?$/
 

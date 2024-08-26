@@ -11,8 +11,6 @@ import { SystemError } from "com/errors"
 
 import logic from "../../logic/index"
 
-import "./NewDeliveryNotes.css"
-
 export default function NewDeliveryNotes() {
   const { alert } = useContext()
 

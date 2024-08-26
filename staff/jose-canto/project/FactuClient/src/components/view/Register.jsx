@@ -36,6 +36,8 @@ export default function Register() {
           if (error instanceof SystemError) {
             alert(error.message)
           }
+
+          alert(error.message)
         })
     } catch (error) {
       alert(error.message)

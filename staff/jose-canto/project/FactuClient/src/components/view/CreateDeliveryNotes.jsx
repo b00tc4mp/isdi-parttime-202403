@@ -14,7 +14,6 @@ import Time from "../core/Time"
 import Field from "../core/Field"
 
 import "./CreateDeliveryNotes.css"
-import { set } from "mongoose"
 
 export default function CreateDeliveryNotes() {
   const { customerId } = useParams()

@@ -15,22 +15,19 @@ const addNewObservation = (userId, deliveryNoteId, observation) => {
         throw new NotFoundError("User not found")
       }
 
-      return DeliveryNote.findById(deliveryNoteId).select("-__v").lean()
+      return DeliveryNote.findByIdAndUpdate(deliveryNoteId, { observations: observation }, { new: true }).select("-__v").lean()
         .catch(error => { throw new SystemError(error.message) })
         .then((deliveryNote) => {
           if (!deliveryNote) {
             throw new NotFoundError("Delivery note not found")
           }
 
-          return DeliveryNote.findByIdAndUpdate(deliveryNoteId, { observations: observation }, { new: true }).select("-__v").lean()
-            .catch(error => { throw new SystemError(error.message) })
-            .then((deliveryNote) => {
-              deliveryNote.id = deliveryNote._id.toString()
-              delete deliveryNote._id
+          deliveryNote.id = deliveryNote._id.toString()
+          delete deliveryNote._id
 
-              return deliveryNote
-            })
+          return deliveryNote
         })
+
     })
 }
 

@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
 
 import useContext from "../../useContext"
 import { SystemError } from "com/errors"
@@ -44,6 +43,7 @@ export default function Login() {
           if(error instanceof SystemError) {
             alert(error.message)
           }
+          alert("Invalid username or password")
         })
     } catch (error) {
       alert(error.message)
