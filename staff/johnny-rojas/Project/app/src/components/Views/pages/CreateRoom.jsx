@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TopBar from '../library/TopBar';
-import Header from '../core/Header';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import TopBar from '../library/TopBar'
+import Header from '../core/Header'
 import CreateRoomInfo from './CreateRoomInfo'
-import FormWithPanel from '../core/FormWithPanel';
-import View from '../core/View';
-import SubmitButton from '../core/SubmitButton';
-import Field from '../core/Field';
-import Title from '../core/Title';
+import FormWithPanel from '../core/FormWithPanel'
+import View from '../core/View'
+import SubmitButton from '../core/SubmitButton'
+import Field from '../core/Field'
+import Title from '../core/Title'
+import UseContext from "../core/UseContext"
 
-import logic from '../../../logic';
+import logic from '../../../logic'
 
 import './CreateRoom.css'
 
 function CreateRoom() {
   const [showForm, setShowForm] = useState(false)
   const navigate = useNavigate()
+  const { alert } = UseContext()
 
   const handleCreateRoomSubmit = event => {
     event.preventDefault()

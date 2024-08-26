@@ -5,6 +5,14 @@ import { NotFoundError, SystemError } from 'com/errors.js'
 const editUserContact = (userId, updates) => {
   validate.id(userId, 'userId')
 
+  if (updates.email) {
+    validate.email(updates.email, 'email')
+  }
+
+  if (updates.phone) {
+    validate.phone(updates.phone, 'phone')
+  }
+
   return User.findById(userId)
     .catch(error => { throw new SystemError(error.message) })
     .then(user => {
@@ -15,12 +23,10 @@ const editUserContact = (userId, updates) => {
       const updateFields = {}
 
       if (updates.email) {
-        validate.email(updates.email, 'email')
         updateFields.email = updates.email
       }
 
       if (updates.phone) {
-        validate.phone(updates.phone, 'phone')
         updateFields.phone = updates.phone
       }
 

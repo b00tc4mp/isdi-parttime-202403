@@ -3,11 +3,13 @@ import logic from '../../../logic/index'
 import { getUserId } from "../../../logic/getUserInfo"
 import Header from "../core/Header"
 import TopBar from "../library/TopBar"
+import UseContext from "../core/UseContext"
 
 
 function GuestBookings() {
   const userId = getUserId()
   const [bookings, setBookings] = useState([])
+  const { alert } = UseContext()
 
   useEffect(() => {
     try {

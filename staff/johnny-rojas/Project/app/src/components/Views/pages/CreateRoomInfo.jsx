@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import Title from '../core/Title';
-import Alert from '../core/ShowMessage';
-import './CreateRoom.css';
+import { useState } from 'react'
+import Title from '../core/Title'
+import './CreateRoom.css'
+
 
 const CreateRoomInfo = ({ onClick }) => {
-  const [showAlert, setShowAlert] = useState(true);
+  const [showAlert, setShowAlert] = useState(true)
 
   const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
+    setShowAlert(false)
+  }
 
   return (
     <div>

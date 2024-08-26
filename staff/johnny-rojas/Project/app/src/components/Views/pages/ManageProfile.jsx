@@ -9,25 +9,27 @@ import logic from '../../../logic/index'
 import { getUserId } from '../../../logic/getUserInfo';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import UseContext from "../core/UseContext";
 
 import './ManageProfile.css'
 
 function ManageProfile() {
   const userId = getUserId()
   const navigate = useNavigate()
-  const [user, setUser] = useState(''); 
+  const [user, setUser] = useState('')
+  const { alert } = UseContext()
 
   useEffect(() => {
     try {
       logic.getUserName(userId)
-      .then(name => setUser(name)) 
-        .catch(error => alert(error.message));
-      
+        .then(name => setUser(name))
+        .catch(error => alert(error.message))
+
     } catch (error) {
       alert(error.message)
     }
-    
-  }, [userId]);
+
+  }, [userId])
 
   const handleEditUserContact = event => {
 
@@ -46,7 +48,10 @@ function ManageProfile() {
     try {
       logic.editUserContact(userId, updates)
         .then(() => {
-          navigate(`/users/${userId}/manage`)
+          return logic.getUserName(userId) 
+        })
+        .then(updatedUser => {
+          setUser(updatedUser) 
         })
         .catch(error => alert(error.message))
     } catch (error) {
@@ -82,7 +87,7 @@ function ManageProfile() {
           <p><span>Email:</span> {user.email}</p>
           <p><span>Telefono:</span> {user.phone}</p>
           <p className='infoUser'>Aquí puedes actualizar tus datos de contacto. Recuerda
-que debes tener tus datos al día para tener una comunicación optima, muchas gracias.</p>
+            que debes tener tus datos al día para tener una comunicación optima, muchas gracias.</p>
 
           <FormWithPanel onSubmit={handleEditUserContact}>
 
@@ -105,5 +110,3 @@ que debes tener tus datos al día para tener una comunicación optima, muchas gr
   )
 }
 export default ManageProfile
-
-//TODO Email y PHONE

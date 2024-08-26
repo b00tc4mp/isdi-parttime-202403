@@ -1,9 +1,9 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext } from 'react'
 
 export const Context = createContext()
 
 export default () => {
-  const context = useContext(Context)
+    const context = useContext(Context)
 
-  return context
+    return context
 }

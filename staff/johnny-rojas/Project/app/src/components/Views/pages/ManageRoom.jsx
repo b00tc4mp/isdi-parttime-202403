@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import logic from "../../../logic/index"
 import { useState, useEffect } from "react";
 import { IoTrashOutline } from "react-icons/io5";
+import UseContext from "../core/UseContext";
 
 import './ManageRoom.css'
 
@@ -20,6 +21,7 @@ function ManageRoom() {
   const userId = getUserId()
   const navigate = useNavigate()
   const [onLoad, setOnLoad] = useState(0)
+  const { alert } = UseContext()
 
   useEffect(() => {
     try {
@@ -29,12 +31,12 @@ function ManageRoom() {
           alert(error.message)
           return
         })
-      
+
       logic.getRoom(userId, roomId)
         .then(room => { setRoom(room) })
         .catch(error => {
-        alert(error.message)
-      })
+          alert(error.message)
+        })
 
     } catch (error) {
       console.error(error.message)
@@ -119,43 +121,43 @@ function ManageRoom() {
                     <p><span className="infoLabel">Salida:</span> {new Date(booking.endDate).toLocaleDateString()}</p>
                     <p><span className="infoLabel">Estatus:</span> {booking.isBlocked ? 'Cancelado' : 'Confirmado'}</p>
                     {!booking.isBlocked && (
-                        <button className="TrashButton" onClick={() => handleBlockBooking(booking.id)}>
-                          <IoTrashOutline />
-                        </button>
-                      )}
-                    </li>
-                  ))
-                ) : (
-                  <p>No hemos encontrado reservas.</p>
-                )}
+                      <button className="TrashButton" onClick={() => handleBlockBooking(booking.id)}>
+                        <IoTrashOutline />
+                      </button>
+                    )}
+                  </li>
+                ))
+              ) : (
+                <p>No hemos encontrado reservas.</p>
+              )}
             </ul>
           </div>
         </section>
       </div>
 
       {!room?.isBlocked && (
-          <View className='RegisterForm' tag='main'>
-            <Title className='TitleCreateRoom'>Edita tu habitación</Title>
+        <View className='RegisterForm' tag='main'>
+          <Title className='TitleCreateRoom'>Edita tu habitación</Title>
 
-            <FormWithPanel onSubmit={handlerEditRoom}>
-              <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' defaultValue={room?.nameRoom || ''} />
+          <FormWithPanel onSubmit={handlerEditRoom}>
+            <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' defaultValue={room?.nameRoom || ''} />
 
-              <Field id='image' type='string' placeholder='Imagen (link)' defaultValue={room?.image || ''} />
+            <Field id='image' type='string' placeholder='Imagen (link)' defaultValue={room?.image || ''} />
 
-              <Field id='description' type='string' placeholder='Descripción del alojamiento' defaultValue={room?.description || ''} />
+            <Field id='description' type='string' placeholder='Descripción del alojamiento' defaultValue={room?.description || ''} />
 
-              <Field id='price' type='string' placeholder='Precio por noche' defaultValue={room?.price || ''} />
+            <Field id='price' type='string' placeholder='Precio por noche' defaultValue={room?.price || ''} />
 
-              <SubmitButton>Realizar cambios</SubmitButton>
+            <SubmitButton>Realizar cambios</SubmitButton>
 
-              <div className="Delete">
-                <button onClick={handlerBlockRoom}>Bloquear habitación</button>
-              </div>
-            </FormWithPanel>
-          </View>
-        )}
-      </div>
+            <div className="Delete">
+              <button onClick={handlerBlockRoom}>Bloquear habitación</button>
+            </div>
+          </FormWithPanel>
+        </View>
+      )}
     </div>
+  </div>
 }
 
 export default ManageRoom

@@ -6,6 +6,7 @@ import ShowHidePassword from '../core/ShowHidePassword'
 import SubmitButton from '../core/SubmitButton'
 import TopBar from '../library/TopBar'
 import Header from '../core/Header'
+import UseContext from "../core/UseContext";
 
 import logic from '../../../logic'
 
@@ -16,6 +17,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
   const navigate = useNavigate()
+  const { alert } = UseContext()
 
   const handlerLoginSubmit = event => {
     event.preventDefault()

@@ -1,32 +1,34 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import logic from '../../../logic/index';
-import { getUserId } from "../../../logic/getUserInfo";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Header from "../core/Header";
-import TopBar from "../library/TopBar";
-import createBooking from '../../../logic/createBooking';
-import View from "../core/View";
-import Field from "../core/Field";
-import Title from "../core/Title";
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import logic from '../../../logic/index'
+import { getUserId } from "../../../logic/getUserInfo"
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import Header from "../core/Header"
+import TopBar from "../library/TopBar"
+import createBooking from '../../../logic/createBooking'
+import View from "../core/View"
+import Field from "../core/Field"
+import Title from "../core/Title"
+import UseContext from "../core/UseContext"
 
 import './Booking.css'
 
 function Booking() {
-  const userId = getUserId();
-  const { roomId } = useParams();
+  const userId = getUserId()
+  const { roomId } = useParams()
   const navigate = useNavigate()
+  const { alert } = UseContext()
 
-  const [room, setRoom] = useState(null);
-  const [unavailableDates, setUnavailableDates] = useState([]);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [room, setRoom] = useState(null)
+  const [unavailableDates, setUnavailableDates] = useState([])
+  const [startDate, setStartDate] = useState(null)
+  const [endDate, setEndDate] = useState(null)
 
   useEffect(() => {
     logic.getRoom(userId, roomId)
       .then(roomData => {
-        setRoom(roomData);
+        setRoom(roomData)
 
         logic.getBlockedDatesByRoom(roomId)
           .then(blockedDates => {

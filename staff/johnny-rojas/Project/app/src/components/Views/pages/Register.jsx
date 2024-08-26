@@ -4,7 +4,7 @@ import Title from '../core/Title'
 import FormWithPanel from '../core/FormWithPanel'
 import ShowHidePassword from '../core/ShowHidePassword'
 import SubmitButton from '../core/SubmitButton'
-
+import UseContext from '../core/UseContext'
 import logic from '../../../logic'
 
 import './Register.css'
@@ -16,6 +16,7 @@ import Header from '../core/Header'
 
 function Register() {
   const navigate = useNavigate()
+  const { alert } = UseContext()
 
   const handleRegisterSubmit = event => {
     event.preventDefault()
@@ -41,9 +42,9 @@ function Register() {
 
   return <div>
     <div>
-    <Header>
-      <TopBar></TopBar>
-    </Header>
+      <Header>
+        <TopBar></TopBar>
+      </Header>
     </div>
 
     <View className='RegisterForm' tag='main'>
