@@ -1,19 +1,32 @@
 @tailwind components;
 
 @layer components {
+    @keyframes shake {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        20%, 60% {
+            transform: translateX(-10px);
+        }
+        40%, 80% {
+            transform: translateX(10px);
+        }
+    }
+
     .Alert-container {
-        @apply  fixed inset-0 flex top-1/3 justify-center z-50 text-center
+        @apply fixed inset-0 flex justify-center items-center z-50 text-center bg-[#000000b3] h-full;
     }
 
     .Alert-p-button {
-        @apply w-80 h-36 bg-fifth border-first border-4 rounded-xl 
+        @apply w-80 h-36 bg-fifth  border-4 rounded-xl;
+        animation: shake 0.5s ease-in-out;
     }
 
     .Alert-p {
-        @apply text-lg text-first m-5
+        @apply text-lg text-first m-5;
     }
 
     .Alert-button {
-        @apply  text-fifth text-lg bg-first w-28 h-10 rounded-xl
+        @apply text-fifth text-lg bg-first w-28 h-10 rounded-xl;
     }
 }
