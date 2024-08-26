@@ -2,7 +2,7 @@ import "dotenv/config"
 import { mongoose, Types } from "mongoose"
 import bcrypt from "bcryptjs"
 import { expect } from "chai"
-import { ContentError, NotFoundError, SystemError } from "com/errors.js"
+import { ContentError, NotFoundError } from "com/errors.js"
 import { User, Task } from "../data/index.js"
 import createTask from "./createTask.js"
 

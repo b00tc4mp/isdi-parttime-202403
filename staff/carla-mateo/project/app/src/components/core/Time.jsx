@@ -9,6 +9,6 @@ export default function Time({ children: time }) {
     }
     const formattedTime = new Intl.DateTimeFormat('es-ES', options).format(date)
 
-    return <time className='className'>{formattedTime}</time>
+    return <time className='w-15 truncate'>{formattedTime}</time>
 }
 

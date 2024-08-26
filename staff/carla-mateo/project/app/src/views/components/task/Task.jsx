@@ -66,20 +66,19 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
 
     return <div>
         <div className='flex flex-row justify-between items-center space-x-4 m-4 text-sm ml-8'>
-            <div className='flex flex-col w-'>
-                <Heading className='text-xl' level='1'>{task.title}</Heading>
+            <div className='flex flex-col w-20'>
+                <Heading className='text-2xl truncate' level='1'>{task.title}</Heading>
             </div>
-            <button onClick={() => setShowDescription(!showDescription)}>
+            <button className='text-2xl w-5' onClick={() => setShowDescription(!showDescription)}>
                 {showDescription ? '-' : '+'}
             </button>
             <Time className='ml-4'>{task.date}</Time>
             <div className='flex flex-col ml-4'>
-                <Heading level='1'>{task.assignee ? task.assignee.username : ''}</Heading>
+                <Heading className=' w-10 truncate' level='1'>{task.assignee ? task.assignee.username : ''}</Heading>
             </div>
             <div>
                 {userCanToggleTask() && (
-                    <button onClick={handleToggleDoneTask} className={`w-5 h-5 text-2xl flex items-center justify-center ${task.done ? ' text-lime-300 ' : 'text-green-950'
-                        } `}>
+                    <button onClick={handleToggleDoneTask} className={`w-5 h-5 text-2xl flex items-center justify-center  ${task.done ? ' text-lime-300 ' : 'text-green-950'} `}>
                         {task.done ? '☑' : '☐'}
                     </button>
                 )}

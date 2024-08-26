@@ -41,6 +41,17 @@ describe('update Avatar', () => {
             })
     })
 
+    it('fails on non-existing user', () => {
+        let errorThrown
+
+        return updateAvatar(new ObjectId().toString(), 'avatars/newAvatar.png')
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+                expect(errorThrown.message).to.equal('user not found')
+            })
+    })
+
     it('fails on invalid userId', () => {
         let errorThrown
 
@@ -53,6 +64,7 @@ describe('update Avatar', () => {
             expect(errorThrown.message).to.equal('userId is not valid')
         }
     })
+
     it('fails on invalid avatar', () => {
         let errorThrown
 
@@ -66,6 +78,6 @@ describe('update Avatar', () => {
         }
 
     })
-    after(() => User.deleteMany().then(() => mongoose.disconnect()))
 
+    after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

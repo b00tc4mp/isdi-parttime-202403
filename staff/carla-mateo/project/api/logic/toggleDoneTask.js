@@ -19,7 +19,6 @@ function toggleDoneTask(userId, taskId) {
                     if (task.assignee) {
                         const assigneeId = task.assignee.toString()
                         if (assigneeId !== userId) {
-                            throw new ContentError('user is not assigned to this task')
                         }
                     }
                     return Task.updateOne({ _id: task._id },
