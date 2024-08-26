@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { CiLogout } from 'react-icons/ci'
 import { SlOptions } from 'react-icons/sl'
@@ -25,6 +25,7 @@ function Home() {
     const [showOptions, setShowOptions] = useState(false)
     const [showEditForm, setShowEditForm] = useState(false)
     const [showDeleteProfile, setShowDeleteProfile] = useState(false)
+    const [refreshStamp, setRefreshStamp] = useState(false)
 
     const handleLogout = () => {
         logic.logoutUser()
@@ -61,10 +62,11 @@ function Home() {
 
     const handleEditSuccess = () => {
         setShowEditForm(!showEditForm)
+        setRefreshStamp(!refreshStamp)
     }
 
     return (
-        <UserProvider>
+        <UserProvider refreshStamp={refreshStamp}>
             {({ user, isAdmin }) => (
                 <View>
                     <Header>

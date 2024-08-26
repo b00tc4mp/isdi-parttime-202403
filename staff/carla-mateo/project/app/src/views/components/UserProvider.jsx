@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import logic from '../../logic/index'
 
-function UserProvider({ children }) {
+function UserProvider({ children, refreshStamp }) {
     const [user, setUser] = useState(null)
     const [isAdmin, setAdmin] = useState(false)
 
@@ -21,7 +21,7 @@ function UserProvider({ children }) {
             console.error(error.message)
             setMessage(error.message)
         }
-    }, [])
+    }, [refreshStamp])
 
     return children({ user, isAdmin })
 }
