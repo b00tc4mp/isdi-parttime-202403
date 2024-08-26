@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import Header from "../Header"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
+import SearchFilter from "../SearchFilter"
 
 import useContext from "../../useContext"
 import { SystemError } from "com/errors"
@@ -18,6 +19,14 @@ export default function DeliveryNoteList() {
   const { alert } = useContext()
 
   const [deliveryNotes, setDeliveryNotes] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const filterDeliveryNotes = () =>
+    deliveryNotes.filter(
+      (deliveryNote) =>
+        deliveryNote.number.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        deliveryNote.customer.companyName.toLowerCase().includes(searchTerm.toLowerCase())
+    )
 
   useEffect(() => {
     try {
@@ -42,8 +51,13 @@ export default function DeliveryNoteList() {
     <>
       <Header iconUser={<GoNote />}>Albaranes</Header>
       <Main>
+        <SearchFilter
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          placeholder="Buscar por número o nombre de Albarán"
+        />
         <ul className="DeliveryList">
-          {deliveryNotes.map((deliveryNote) => (
+          {filterDeliveryNotes().map((deliveryNote) => (
             <Link className="DeliveryLink" to={`/delivery-notes/${deliveryNote.id}`} key={deliveryNote.id}>
               <li className="DeliveryNote">
                 {deliveryNote?.number && <p>A/Nº: {deliveryNote.number}</p>}

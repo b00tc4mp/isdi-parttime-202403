@@ -22,7 +22,7 @@
     @apply ml-1 font-normal;
   }
   .DeliveryInfoCustomer {
-    @apply flex w-full flex-col items-center font-bold;
+    @apply flex w-[80%] flex-col items-center font-bold;
   }
 
   .DeliveryNumber {
@@ -36,10 +36,10 @@
     @apply flex justify-between rounded-md border border-gray-400 bg-slate-300 p-1 font-medium;
   }
   .DeliveryTitleQuantityPrice {
-    @apply mr-1 flex gap-4;
+    @apply mr-1 flex gap-5;
   }
   .DeliveryQuantityPrice {
-    @apply mr-1 flex gap-3;
+    @apply mr-3 flex gap-3;
   }
   .TotalContainer {
     @apply w-[3rem] text-right;
@@ -50,7 +50,7 @@
   }
 
   .QuantityContainer {
-    @apply flex w-[3rem];
+    @apply flex w-[2.3rem];
   }
 
   .DeliveryTotal {
@@ -58,7 +58,7 @@
   }
 
   .ObservationsContainer {
-    @apply ml-3 w-full font-medium;
+    @apply ml-3 mt-5 flex w-[90%] flex-col p-1 font-medium;
   }
 
   .DeliveryDate {

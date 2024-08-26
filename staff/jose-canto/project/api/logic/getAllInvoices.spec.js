@@ -52,6 +52,21 @@ describe("getAllInvoices", () => {
       })
   })
 
+  it("fails on existing invoices", () => {
+    let errorThrown
+
+    return bcrypt.hash("1234", 10)
+      .then((hash) => User.create({ username: "Jack", email: "jack@email.es", password: hash }))
+      .then((user) => {
+        return getAllInvoices(user.id.toString())
+          .catch((error) => errorThrown = error)
+          .finally(() => {
+            expect(errorThrown).to.be.instanceOf(NotFoundError)
+            expect(errorThrown.message).to.equal("Invoices not found")
+          })
+      })
+  })
+
   it("fails on invalid userId", () => {
     let errorThrown
 

@@ -6,7 +6,7 @@
   }
 
   .InvoiceLink {
-    @apply flex items-start;
+    @apply flex;
   }
 
   .Invoice {

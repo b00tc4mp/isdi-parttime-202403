@@ -27,6 +27,8 @@ import deleteInvoice from "./deleteInvoice.js"
 import getAllInvoicesCustomer from "./getAllInvoicesCustomer.js"
 import updateCustomerProfile from "./updateCustomerProfile.js"
 
+import addNewObservation from "./addNewObservation.js"
+
 
 const logic = {
   isUserLoggedIn,
@@ -57,7 +59,9 @@ const logic = {
   getInvoice,
   createInvoice,
   deleteInvoice,
-  getAllInvoicesCustomer
+  getAllInvoicesCustomer,
+
+  addNewObservation
 }
 
 export default logic

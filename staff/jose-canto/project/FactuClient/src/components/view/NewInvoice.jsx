@@ -35,11 +35,16 @@ export default function NewInvoice() {
   useEffect(() => {
     try {
       //prettier-ignore
-      logic.getAllCustomers()
+      logic
+        .getAllCustomers()
         .then((customers) => {
           setCustomers(customers)
         })
-        .catch((error) => alert(error.message))
+        .catch((error) => {
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
+        })
     } catch (error) {
       alert(error.message)
     }

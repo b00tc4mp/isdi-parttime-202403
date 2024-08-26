@@ -7,6 +7,9 @@ import { FaSpinner } from "react-icons/fa"
 import { GiStabbedNote } from "react-icons/gi"
 import { MdDeleteForever } from "react-icons/md"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import Header from "../Header"
 import Main from "../core/Main"
 import Time from "../core/Time"
@@ -28,15 +31,21 @@ export default function DeliveryInfo() {
   useEffect(() => {
     try {
       //prettier-ignore
-      logic.getDeliveryNote(deliveryNoteId)
+      logic
+        .getDeliveryNote(deliveryNoteId)
         .then((deliveryNote) => {
           setDeliveryNote(deliveryNote)
 
-            const calculateTotal = deliveryNote.works.reduce((accumulator, work) => accumulator + work.quantity * work.price, 0)
-            setTotal(calculateTotal)
+          const calculateTotal = deliveryNote.works.reduce(
+            (accumulator, work) => accumulator + work.quantity * work.price,
+            0
+          )
+          setTotal(calculateTotal)
         })
         .catch((error) => {
-          alert(error.message)
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
         })
     } catch (error) {
       alert(error.message)
@@ -46,12 +55,15 @@ export default function DeliveryInfo() {
   const handleDeleteDeliveryNote = () => {
     try {
       //prettier-ignore
-      logic.deleteDeliveryNote(deliveryNoteId)
+      logic
+        .deleteDeliveryNote(deliveryNoteId)
         .then(() => {
           navigate(-1)
         })
         .catch((error) => {
-          alert(error.message)
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
         })
     } catch (error) {
       alert(error.message)
@@ -106,7 +118,12 @@ export default function DeliveryInfo() {
               </div>
             ))}
           <div className="ObservationsContainer">
-            {deliveryNote?.customer && <p className="Observations">Observaciones:{deliveryNote.observations}</p>}
+            {deliveryNote?.customer && (
+              <ul>
+                <li className="Observations">Observaciones:</li>
+                <li>{deliveryNote.observations}</li>
+              </ul>
+            )}
           </div>
           <div className="DeliveryTotal">TOTAL: {total.toFixed(2)} €</div>
         </div>

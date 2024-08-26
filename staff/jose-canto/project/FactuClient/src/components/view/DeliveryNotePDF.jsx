@@ -87,8 +87,17 @@ const styles = StyleSheet.create({
   footer: {
     textAlign: "center",
     fontSize: 10,
-    marginTop: 20,
-    color: "#666666"
+    marginTop: 20
+  },
+  observations: {
+    marginTop: 5,
+    marginBottom: 10,
+    padding: 5,
+    fontSize: 10
+  },
+  observationsTitle: {
+    fontWeight: "bold",
+    marginBottom: 5 // Añadir margen inferior
   }
 })
 
@@ -147,6 +156,11 @@ const DeliveryNotePDF = ({ deliveryNote, total }) => {
               <Text style={styles.totalAmount}>{(work.quantity * work.price).toFixed(2)}</Text>
             </View>
           ))}
+
+          <View style={styles.observations}>
+            <Text style={styles.observationsTitle}>Observaciones:</Text>
+            <Text>{deliveryNote.observations}</Text>
+          </View>
 
           <Text style={styles.total}>TOTAL: {total.toFixed(2)} €</Text>
         </View>

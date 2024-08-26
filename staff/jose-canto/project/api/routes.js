@@ -32,5 +32,7 @@ router.get("/invoices/:invoiceId", routes.getInvoiceHandler)
 router.delete("/invoices/:invoiceId", routes.deleteInvoiceHandler)
 router.get("/:customerId/invoices", routes.getAllInvoicesCustomerHandler)
 
+router.patch("/observation/delivery-note/:deliveryNoteId", jsonBodyParser, routes.addNewObservation)
+
 
 export default router

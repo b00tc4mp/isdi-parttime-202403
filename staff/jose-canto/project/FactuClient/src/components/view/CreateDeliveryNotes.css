@@ -29,4 +29,11 @@
   .SaveWorkButton:hover {
     @apply text-[#924200];
   }
+
+  .observationInput {
+    @apply fixed top-[30rem] flex h-auto w-[90%] flex-col items-start gap-3 rounded-xl bg-[#000000c9] p-2 shadow-custom-shadow;
+  }
+  .observationInput .ContainerSaveButton {
+    @apply absolute -left-2;
+  }
 }

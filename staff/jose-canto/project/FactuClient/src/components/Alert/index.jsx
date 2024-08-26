@@ -2,11 +2,11 @@ import Button from "../core/Button"
 
 import "./index.css"
 
-function Alert({ message, onAccept, level = "warn" }) {
+function Alert({ message, onAccept }) {
   return (
     <>
       <div className="ContainerAlert">
-        <div className={`AlertBox AlertBox-${level}`}>
+        <div className={`AlertBox`}>
           <p>{message}</p>
           <Button className="AlertButton" onClick={onAccept}>
             Aceptar

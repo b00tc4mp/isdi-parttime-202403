@@ -22,13 +22,18 @@ describe("authenticateUser", () => {
         surname: "Chai",
         email: "Mocha@Chai.com",
         username: "MochaChai",
-        password: hash
+        password: hash,
+        role: "user"
       }))
       .then(() => authenticateUser("MochaChai", "1234"))
-      .then(userId => {
-        expect(userId).to.be.a.string
-        expect(userId).to.have.lengthOf(24)
+      .then((user => {
+        expect(user).to.exist
+        expect(user).to.be.an("object")
+        expect(user.userId).to.be.a.string
+        expect(user.userId).to.have.lengthOf(24)
+        expect(user.role).to.equal("user")
       })
+      )
   )
 
   it("fails on non-existing user", () => {

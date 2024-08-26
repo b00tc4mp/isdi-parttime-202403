@@ -1,56 +1,65 @@
 import "dotenv/config"
-import { mongoose, Types } from "mongoose"
-import bcrypt from "bcryptjs"
-
 import { expect } from "chai"
+import mongoose, { Types } from "mongoose"
+import bcrypt from "bcryptjs"
 import { User } from "../model/index.js"
 
-import updateProfile from "./updateProfile.js"
 import { ContentError, NotFoundError } from "com/errors.js"
+
+import updateCustomerProfile from "./updateCustomerProfile.js"
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
 
-describe("updateProfile", () => {
+describe("updateCustomerProfile", () => {
   before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
   beforeEach(() => User.deleteMany())
 
-  it("succeds on update profile", () =>
+  it("succeeds on updating customer profile", () =>
     bcrypt.hash("1234", 10)
       .then((hash) => User.create({ username: "Jack", email: "jack@email.es", password: hash }))
       .then((user) =>
-        updateProfile(user.id, {
-          username: "Pepito",
-          email: "Pepito@grillo.es",
-          fullName: "Pepito Grillo",
-          companyName: "Canta Pepito, S.L.",
-          address: "Avenida Pepito, 123 Barcelona 03000",
-          taxId: "B03413222",
-          phone: "666555333",
-          bankAccount: "ES1234567890123456789012",
-          companyLogo: "https://canta.es/logo.png"
-        })
+        User.create({
+          username: "Agustin",
+          email: "agustin@email.es",
+          password: "1234",
+          companyName: "Agustin Enterprise, Inc.",
+          address: "Avenida Agustin 23 , Alicante 03680",
+          taxId: "B0123565",
+          phone: "666555221",
+          role: "customer",
+          manager: user._id,
+          active: false,
+          fullName: "Agustin"
+        }).then((customer) =>
+          updateCustomerProfile(user.id.toString(), customer.id.toString(), {
+            username: "Pepito",
+            email: "Pepito@grillo.es",
+            fullName: "Pepito Grillo",
+            companyName: "Canta Pepito, S.L.",
+            address: "Avenida Pepito, 123 Barcelona 03000",
+            taxId: "B03413222",
+            phone: "666555333",
+          }).then(() => User.findById(customer._id))
+            .then((updatedCustomer) => {
+              expect(updatedCustomer).to.exist
+              expect(updatedCustomer.username).to.equal("Pepito")
+              expect(updatedCustomer.email).to.equal("Pepito@grillo.es")
+              expect(updatedCustomer.fullName).to.equal("Pepito Grillo")
+              expect(updatedCustomer.companyName).to.equal("Canta Pepito, S.L.")
+              expect(updatedCustomer.address).to.equal("Avenida Pepito, 123 Barcelona 03000")
+              expect(updatedCustomer.taxId).to.equal("B03413222")
+              expect(updatedCustomer.phone).to.equal("666555333")
+            })
+        )
       )
-      .then(() => User.findOne())
-      .then(user => {
-        expect(user._id).to.be.instanceOf(ObjectId)
-        expect(user.username).to.equal("Pepito")
-        expect(user.email).to.equal("Pepito@grillo.es")
-        expect(user.fullName).to.equal("Pepito Grillo")
-        expect(user.companyName).to.equal("Canta Pepito, S.L.")
-        expect(user.address).to.equal("Avenida Pepito, 123 Barcelona 03000")
-        expect(user.taxId).to.equal("B03413222")
-        expect(user.phone).to.equal("666555333")
-        expect(user.bankAccount).to.equal("ES1234567890123456789012")
-        expect(user.companyLogo).to.equal("https://canta.es/logo.png")
-      })
   )
 
   it("fails on existing user", () => {
     let errorThrown
 
-    return updateProfile(new ObjectId().toString(), {
+    return updateCustomerProfile(new ObjectId().toString(), new ObjectId().toString(), {
       username: "Pepito",
       email: "Pepito@grillo.es",
       fullName: "Pepito Grillo",
@@ -58,8 +67,6 @@ describe("updateProfile", () => {
       address: "Avenida Pepito, 123 Barcelona 03000",
       taxId: "B03413222",
       phone: "666555333",
-      bankAccount: "ES1234567890123456789012",
-      companyLogo: "https://canta.es/logo.png"
     })
       .catch((error) => errorThrown = error)
       .finally(() => {
@@ -67,6 +74,7 @@ describe("updateProfile", () => {
         expect(errorThrown.message).to.equal("User not found")
       })
   })
+
 
   it("fails on invalid username", () => {
     let errorThrown
@@ -76,7 +84,7 @@ describe("updateProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
+      .then((user) => updateCustomerProfile(user.id, new ObjectId().toString(), {
         username: 7777,
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -84,8 +92,6 @@ describe("updateProfile", () => {
         address: "Avenida Pepito, 123 Barcelona 03000",
         taxId: "B03413222",
         phone: "666555333",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: "https://canta.es/logo.png"
       }))
       .catch((error) => {
         errorThrown = error
@@ -104,7 +110,7 @@ describe("updateProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
+      .then((user) => updateCustomerProfile(user.id, new ObjectId().toString(), {
         username: "Pepito",
         email: "Pepitgrillo.es",
         fullName: "Pepito Grillo",
@@ -112,8 +118,6 @@ describe("updateProfile", () => {
         address: "Avenida Pepito, 123 Barcelona 03000",
         taxId: "B03413222",
         phone: "666555333",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: "https://canta.es/logo.png"
       }))
       .catch((error) => {
         errorThrown = error
@@ -132,7 +136,7 @@ describe("updateProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
+      .then((user) => updateCustomerProfile(user.id, new ObjectId().toString(), {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: 1234,
@@ -140,8 +144,6 @@ describe("updateProfile", () => {
         address: "Avenida Pepito, 123 Barcelona 03000",
         taxId: "B03413222",
         phone: "666555333",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: "https://canta.es/logo.png"
       }))
       .catch((error) => {
         errorThrown = error
@@ -160,7 +162,7 @@ describe("updateProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
+      .then((user) => updateCustomerProfile(user.id, new ObjectId().toString(), {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -168,8 +170,6 @@ describe("updateProfile", () => {
         address: "Avenida Pepito, 123 Barcelona 03000",
         taxId: "B03413222",
         phone: "666555333",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: "https://canta.es/logo.png"
       }))
       .catch((error) => {
         errorThrown = error
@@ -188,7 +188,7 @@ describe("updateProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
+      .then((user) => updateCustomerProfile(user.id, new ObjectId().toString(), {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -196,8 +196,7 @@ describe("updateProfile", () => {
         address: 7777,
         taxId: "B03413222",
         phone: "666555333",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: "https://canta.es/logo.png"
+
       }))
       .catch((error) => {
         errorThrown = error
@@ -216,7 +215,7 @@ describe("updateProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
+      .then((user) => updateCustomerProfile(user.id, new ObjectId().toString(), {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -224,8 +223,6 @@ describe("updateProfile", () => {
         address: "Avenida Pepito, 123 Barcelona 03000",
         taxId: 7777,
         phone: "666555333",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: "https://canta.es/logo.png"
       }))
       .catch((error) => {
         errorThrown = error
@@ -244,7 +241,7 @@ describe("updateProfile", () => {
         return User.create({ username: "Jack", email: "jack@email.es", password: hash })
       })
       .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
+      .then((user) => updateCustomerProfile(user.id, new ObjectId().toString(), {
         username: "Pepito",
         email: "Pepito@grillo.es",
         fullName: "Pepito Grillo",
@@ -252,8 +249,6 @@ describe("updateProfile", () => {
         address: "Avenida Pepito, 123 Barcelona 03000",
         taxId: "B03413222",
         phone: "666",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: "https://canta.es/logo.png"
       }))
       .catch((error) => {
         errorThrown = error
@@ -264,61 +259,6 @@ describe("updateProfile", () => {
       })
   })
 
-  it("fails on invalid bankAccount", () => {
-    let errorThrown
-
-    return bcrypt.hash("1234", 10)
-      .then((hash) => {
-        return User.create({ username: "Jack", email: "jack@email.es", password: hash })
-      })
-      .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
-        username: "Pepito",
-        email: "Pepito@grillo.es",
-        fullName: "Pepito Grillo",
-        companyName: "Canta Pepito, S.L.",
-        address: "Avenida Pepito, 123 Barcelona 03000",
-        taxId: "B03413222",
-        phone: "666555333",
-        bankAccount: 7777,
-        companyLogo: "https://canta.es/logo.png"
-      }))
-      .catch((error) => {
-        errorThrown = error
-      })
-      .finally(() => {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal("bankAccount is not valid")
-      })
-  })
-
-  it("fails on invalid companyLogo", () => {
-    let errorThrown
-
-    return bcrypt.hash("1234", 10)
-      .then((hash) => {
-        return User.create({ username: "Jack", email: "jack@email.es", password: hash })
-      })
-      .then(() => User.findOne())
-      .then((user) => updateProfile(user.id, {
-        username: "Pepito",
-        email: "Pepito@grillo.es",
-        fullName: "Pepito Grillo",
-        companyName: "Canta Pepito, S.L.",
-        address: "Avenida Pepito, 123 Barcelona 03000",
-        taxId: "B03413222",
-        phone: "666555333",
-        bankAccount: "ES1234567890123456789012",
-        companyLogo: ":canta.es/logo.png"
-      }))
-      .catch((error) => {
-        errorThrown = error
-      })
-      .finally(() => {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal("companyLogo is not valid")
-      })
-  })
 
   after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

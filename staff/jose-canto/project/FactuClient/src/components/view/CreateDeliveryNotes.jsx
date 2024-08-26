@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 
 import { TfiSave } from "react-icons/tfi"
 import { FiPlusSquare } from "react-icons/fi"
+import { IoIosAddCircleOutline } from "react-icons/io"
 
 import logic from "../../logic/index"
 
@@ -13,6 +14,7 @@ import Time from "../core/Time"
 import Field from "../core/Field"
 
 import "./CreateDeliveryNotes.css"
+import { set } from "mongoose"
 
 export default function CreateDeliveryNotes() {
   const { customerId } = useParams()
@@ -20,6 +22,7 @@ export default function CreateDeliveryNotes() {
   const [total, setTotal] = useState(0)
   const [showFormWork, setShowFormWork] = useState(false)
   const [deliveryNoteUpdated, setDeliveryNoteUpdated] = useState(null)
+  const [showObservationInput, setShowObservationInput] = useState(false)
 
   useEffect(() => {
     try {
@@ -62,8 +65,36 @@ export default function CreateDeliveryNotes() {
     }
   }
 
+  const handleAddObservation = (event) => {
+    event.preventDefault()
+
+    const target = event.target
+    const observation = target.observation.value
+
+    try {
+      //prettier-ignore
+      logic.addNewObservation(deliveryNote.id, observation)
+        .then((deliveryNoteUpdated) => {
+          setDeliveryNote(prevState => ({...prevState, observations: deliveryNoteUpdated.observations}))
+
+          setDeliveryNoteUpdated(prevState => ({...prevState, observations: deliveryNoteUpdated.observations}))
+
+          setShowObservationInput(!showObservationInput)
+        })
+        .catch((error) => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   const handleShowFormWork = () => {
     setShowFormWork(!showFormWork)
+  }
+
+  const handleShowObservationInput = () => {
+    setShowObservationInput(!showObservationInput)
   }
 
   return (
@@ -92,10 +123,10 @@ export default function CreateDeliveryNotes() {
                 <p className="DeliveryWorkConcept">{work.concept}</p>
                 <div className="DeliveryQuantityPrice">
                   <div className="QuantityContainer">
-                    <p className="Quantity">{work.quantity.toFixed(2)}</p>
+                    <p className="Quantity">{work.quantity?.toFixed(2)}</p>
                   </div>
                   <div className="PriceContainer">
-                    <p className="Price">{work.price.toFixed(2)}</p>
+                    <p className="Price">{work.price?.toFixed(2)}</p>
                   </div>
                   <div className="TotalContainer">
                     <p className="Total">{(work.quantity * work.price).toFixed(2)}</p>
@@ -120,8 +151,32 @@ export default function CreateDeliveryNotes() {
 
           <FiPlusSquare className="AddWorkButton" onClick={handleShowFormWork} />
 
+          {showObservationInput && (
+            <form className="observationInput" onSubmit={handleAddObservation}>
+              <textarea
+                className="z-20 flex w-[80%] p-1"
+                id="observation"
+                type="text"
+                placeholder="Introduce observación"
+              ></textarea>
+
+              <div className="ContainerSaveButton">
+                <button type="submit" className="SaveWorkButton">
+                  <TfiSave />
+                </button>
+              </div>
+            </form>
+          )}
+
           <div className="ObservationsContainer">
-            {deliveryNote?.customer && <p className="Observations">Observaciones:{deliveryNote.observations}</p>}
+            {deliveryNote?.customer && (
+              <ul>
+                <li className="mb-4 flex cursor-pointer gap-4" onClick={handleShowObservationInput}>
+                  <IoIosAddCircleOutline className="rounded-lg text-2xl shadow-custom-shadow" /> Observaciones:
+                </li>
+                <li>{deliveryNote.observations}</li>
+              </ul>
+            )}
           </div>
           <div className="DeliveryTotal">TOTAL: {total.toFixed(2)} € </div>
         </div>
