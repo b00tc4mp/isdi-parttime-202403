@@ -1,5 +1,5 @@
 import { User, Task } from '../data/index.js'
-import { SystemError, MatchError } from 'com/errors.js'
+import { SystemError, MatchError, NotFoundError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const modifyTaskAsCreator = (userId, taskId, name, description, priority) => {

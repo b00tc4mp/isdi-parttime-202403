@@ -33,7 +33,7 @@ function validatePhone(phone) {
 }
 
 function validateUrl(url, explain = 'url') {
-    if (typeof url !== 'string' || !url.startsWith('http'))
+    if (typeof url !== 'string' || !url.startsWith('http') && id !== '')
         throw new ContentError(`${explain} is not valid`)
 }
 
@@ -54,7 +54,7 @@ function validateText(text, explain = 'text', maxLength = Infinity) {
 
 function validateObservations(observations, explain = 'observations', maxLength = Infinity) {
     if (typeof observations !== 'string' || observations.length > maxLength)
-        throw new ContentError(`${explain} is not valid`)
+        throw new ContentError(`${explain} are not valid`)
 }
 
 function validateStatus(status, explain = 'status') {

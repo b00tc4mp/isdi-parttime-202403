@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { DuplicityError, CredentialsError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
@@ -22,7 +22,6 @@ const modifyUser = (userId, name, surname, email, phone, avatar, password, passw
             return bcrypt.hash(password, 8)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(hash => {
-                    //const update = { name:name, surname: surname, email: email, phone: phone, avatar: avatar, password: hash}
                     const update = { name, surname, email, phone, avatar, password: hash }
 
                     return User.updateOne( { _id: user._id }, update)
