@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import useContext from './useContext.jsx'
+
 import Button from '../components/core/Button/Button.jsx';
 import '../components/core/Link/Link'
 import FormWithFeedback from '../components/library/FormWithFeedback/FormWithFeedback'
@@ -10,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function Register() {
     console.log('Register -> render')
 
+    const { alert } = useContext()
     const navigate = useNavigate()
 
     const handleRegisterSubmit = event => {

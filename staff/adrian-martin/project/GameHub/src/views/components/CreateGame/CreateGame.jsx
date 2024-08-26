@@ -3,10 +3,13 @@ import { useState } from 'react'
 import logic from '../../../logic'
 import Button from '../../../components/core/Button/Button'
 
+import useContext from '../../useContext'
+
 import './CreateGame.css'
 
 function CreateGame({ onGameCreated }) {
     const [isPanelOpen, setIsPanelOpen] = useState(true)
+    const { alert } = useContext()
 
     const handleCreateGame = event => {
         event.preventDefault()
@@ -18,6 +21,8 @@ function CreateGame({ onGameCreated }) {
         const rating = parseFloat(form.rating.value)
         const hours = parseFloat(form.hours.value)
 
+        // TODO fix alert the form
+
         try {
             logic.createGame(title, image, rating, hours)
                 .then(() => {
@@ -25,10 +30,10 @@ function CreateGame({ onGameCreated }) {
                     onGameCreated()
                 })
                 .catch(error => {
-                    console.error(error)
+                    alert('params is not valid')
                 })
         } catch (error) {
-            console.error(error)
+            alert('params is not valid')
         }
     }
 

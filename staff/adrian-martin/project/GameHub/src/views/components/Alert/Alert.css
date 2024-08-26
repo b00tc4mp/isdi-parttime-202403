@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+    .Alert-container {
+        @apply  fixed inset-0 flex top-1/3 justify-center z-50 text-center
+    }
+
+    .Alert-p-button {
+        @apply w-80 h-36 bg-fifth border-first border-4 rounded-xl 
+    }
+
+    .Alert-p {
+        @apply text-lg text-first m-5
+    }
+
+    .Alert-button {
+        @apply  text-fifth text-lg bg-first w-28 h-10 rounded-xl
+    }
+}

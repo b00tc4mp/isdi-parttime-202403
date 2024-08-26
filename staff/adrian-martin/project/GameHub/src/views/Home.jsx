@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import useContext from './useContext.jsx'
+
 import Header from "./components/Header/Header"
 import Footer from './components/Footer/Footer'
 
@@ -13,6 +15,7 @@ function Home() {
 
     const [isPanelGame, setIsPanelGame] = useState(false);
     const [gameListRefreshStamp, setGameListRefreshStamp] = useState(0)
+    const { alert } = useContext()
 
     const handleCreatePanelGame = () => {
         setIsPanelGame(!isPanelGame);

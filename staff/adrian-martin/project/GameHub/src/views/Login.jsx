@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import useContext from './useContext.jsx'
+
 import Button from '../components/core/Button/Button.jsx';
 import '../components/core/Link/Link'
 import FormWithFeedback from '../components/library/FormWithFeedback/FormWithFeedback'
@@ -11,7 +13,7 @@ import './Login.css'
 
 function Login({ }) {
     console.log('Login -> render')
-
+    const { alert } = useContext()
     const navigate = useNavigate()
 
     const handleLoginSubmit = event => {

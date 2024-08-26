@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import useContext from '../../../useContext'
 import extractPayloadFromJWT from '../../../../util/extractPayloadFromJWT'
 
 import logic from '../../../../logic/index'
@@ -10,7 +11,7 @@ import './PanelEditUsername.css'
 
 function PanelEditUsername({ onClose, onUsernameUpdated }) {
     const [username, setUsername] = useState('')
-
+    const { alert } = useContext()
     const handleCancelCreatePostClick = () => onClose()
 
     let payLoad
@@ -20,7 +21,7 @@ function PanelEditUsername({ onClose, onUsernameUpdated }) {
             payLoad = extractPayloadFromJWT(sessionStorage.token)
 
     } catch (error) {
-        alert(message.error)
+        alert(error.message)
     }
 
     const { sub: userId } = payLoad
@@ -29,7 +30,6 @@ function PanelEditUsername({ onClose, onUsernameUpdated }) {
         event.preventDefault()
 
         const target = event.target
-
         const username = target.username.value
 
         logic.editUsername(userId, username)
@@ -39,7 +39,7 @@ function PanelEditUsername({ onClose, onUsernameUpdated }) {
                 onClose()
             })
             .catch(error => {
-                console.error(error)
+                alert(error.message)
             })
     }
 
