@@ -30,10 +30,10 @@ function CreateGame({ onGameCreated }) {
                     onGameCreated()
                 })
                 .catch(error => {
-                    alert('params is not valid')
+                    alert(error.message)
                 })
         } catch (error) {
-            alert('params is not valid')
+            alert(error.message)
         }
     }
 

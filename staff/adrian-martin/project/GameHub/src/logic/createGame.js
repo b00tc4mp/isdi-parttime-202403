@@ -2,10 +2,14 @@ import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 const createGame = (title, image, rating, hours) => {
-    validate.text(title, 'title')
-    validate.url(image, 'image')
-    validate.rating(rating, 'rating')
-    validate.hours(hours, 'hours')
+    try {
+        validate.text(title, 'title')
+        validate.url(image, 'image')
+        validate.rating(rating, 'rating')
+        validate.hours(hours, 'hours')
+    } catch (error) {
+        return Promise.reject(error)
+    }
 
     return fetch(`${import.meta.env.VITE_API_URL}/games`, {
         method: 'POST',
