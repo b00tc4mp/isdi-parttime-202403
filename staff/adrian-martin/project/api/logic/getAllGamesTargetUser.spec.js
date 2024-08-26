@@ -31,8 +31,8 @@ describe('getAllGamesTargetUser', () => {
                 targetUserId = targetUser._id
 
                 return Game.create([
-                    { title: 'Game1', hours: 5, rating: 4.5, image: 'image1.png', author: targetUserId },
-                    { title: 'Game1', hours: 10, rating: 4.0, image: 'image2.png', author: targetUserId }
+                    { title: 'Game1', hours: 5, rating: 5, image: 'image1.png', author: targetUserId },
+                    { title: 'Game1', hours: 10, rating: 4, image: 'image2.png', author: targetUserId }
                 ])
             })
             .then(() => {
@@ -44,14 +44,14 @@ describe('getAllGamesTargetUser', () => {
                 expect(games[0]).to.deep.include({
                     title: 'Game1',
                     hours: 5,
-                    rating: 4.5,
+                    rating: 5,
                     image: 'image1.png'
                 })
 
                 expect(games[1]).to.deep.include({
                     title: 'Game1',
                     hours: 10,
-                    rating: 4.0,
+                    rating: 4,
                     image: 'image2.png'
                 })
                 expect(games[0].author).to.deep.equal({ id: targetUserId.toString() })

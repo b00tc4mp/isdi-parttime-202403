@@ -5,6 +5,7 @@ import PanelEditGame from './PanelEditGame/PanelEditGame'
 import Button from '../../../components/core/Button/Button'
 import Image from '../../../components/core/Image/Image'
 import Text from '../../../components/core/Text/Text'
+import Confirm from '../Confirm/Confirm'
 import logic from '../../../logic/index'
 import './Game.css'
 
@@ -12,28 +13,32 @@ function Game({ game, onGameDeleted, onGameEdited }) {
     console.log('Game -> render')
     const [isEditingGame, setIsEditingGame] = useState(false)
     const [showEditForm, setShowEditForm] = useState(false)
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false)
 
     const handleEditingGame = () => {
         setIsEditingGame(!isEditingGame)
-    };
+    }
 
     const toggleEditForm = () => {
         setShowEditForm(!showEditForm)
         setIsEditingGame(!isEditingGame)
-    };
+    }
 
     const handleDeleteGame = () => {
-        try {
-            logic.deleteGame(game.id)
-                .then(() => onGameDeleted())
-                .catch(error => {
-                    console.error(error)
-                    alert(error.message)
-                });
-        } catch (error) {
-            console.error(error)
-            alert(error.message)
-        }
+        setShowConfirmDelete(true)
+    }
+
+    const confirmDeleteGame = () => {
+        logic.deleteGame(game.id)
+            .then(() => {
+                onGameDeleted()
+                setShowConfirmDelete(false)
+            })
+            .catch(error => {
+                console.error(error)
+                alert(error.message)
+                setShowConfirmDelete(false)
+            })
     }
 
     const getRatingClass = (rating) => {
@@ -97,8 +102,16 @@ function Game({ game, onGameDeleted, onGameEdited }) {
                     onCancel={toggleEditForm}
                 />
             )}
+
+            {showConfirmDelete && (
+                <Confirm
+                    setShowConfirmDelete={setShowConfirmDelete}
+                    handleDeleteGame={confirmDeleteGame}
+                    message={`Do you want to delete \n "${game.title}"?`}
+                />
+            )}
         </div>
-    );
+    )
 }
 
 export default Game
