@@ -81,9 +81,6 @@ describe('getTargetProfile', () => {
 
                 return getTargetProfile(userId.toString(), otherUserId.toString())
             })
-            .then(() => {
-                throw new Error('Expected NotFoundError but got success')
-            })
             .catch(error => {
                 expect(error).to.be.instanceOf(NotFoundError)
                 expect(error.message).to.equal('Target profile not found')

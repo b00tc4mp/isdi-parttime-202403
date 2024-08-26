@@ -47,3 +47,6 @@ User
 - rating (number, required)              nota asignada al videojuego por el usuario
 - hoursInTheGame (number, required)      cantidad de horas que el usuario ha jugado
 
+### Code Coverage
+
+![alt text](image.png)
