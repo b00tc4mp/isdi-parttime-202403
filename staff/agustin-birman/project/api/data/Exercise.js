@@ -29,7 +29,7 @@ const completeSentenceSchema = new Schema({
         type: String,
         required: true
     }
-});
+})
 
 const CompleteSentenceExercise = Exercise.discriminator('completeSentence', completeSentenceSchema);
 
@@ -41,8 +41,8 @@ const orderSentenceSchema = new Schema({
     translate: {
         type: String,
         required: true
-    },
-});
+    }
+})
 
 const OrderSentenceExercise = Exercise.discriminator('orderSentence', orderSentenceSchema);
 

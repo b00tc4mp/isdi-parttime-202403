@@ -3,9 +3,8 @@
 @layer components{
 
     .ActivityHeading{
-    @apply border-b border-black mb-[8%];
+    @apply mb-[8%];
     }
-    
     
     .ActivityTitle{
          @apply border-b border-black mb-[3%];

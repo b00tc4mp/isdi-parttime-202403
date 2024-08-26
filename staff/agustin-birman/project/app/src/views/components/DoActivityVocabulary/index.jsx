@@ -8,9 +8,7 @@ import Input from '../../../components/core/Input'
 import Button from '../../../components/core/Button'
 import './index.css'
 
-let SENTENCE_REGEX = /^(.*?)\s*\(.*?\)\s*(.*?)$/
-
-function DoActivity() {
+function DoActivityVocabulary() {
     const [message, setMessage] = useState('')
     const [exercises, setExercises] = useState([])
     const [answer, setAnswer] = useState('')
@@ -58,6 +56,7 @@ function DoActivity() {
     }
 
     const handleSubmittedAnswer = (exerciseId) => {
+
         try {
             logic.submitAnswer(activityId, exerciseId, answer)
                 .then(() => {
@@ -86,24 +85,11 @@ function DoActivity() {
 
     return (<View>
         {currentExercises.map(exercise => {
-            let beforeParentheses = ''
-            let afterParentheses = ''
-
-            let matches = exercise.sentence.match(SENTENCE_REGEX);
-
-            if (matches) {
-                beforeParentheses = matches[1].trim()
-                afterParentheses = matches[2].trim()
-            }
-
             return (<>
-                <Heading className='DoActivityTitle' level='3'>{exercise.index + 1} Exercise</Heading>
-                <div className='DoActivityCompleteSentence' key={exercise.index}>
-                    <div className='ExerciseContainer'>
-                        <Text className='DoExerciseText'>{beforeParentheses}</Text>
-                        <Input className='ExerciseInput' onChange={(e) => { setAnswer(e.target.value) }} />
-                        <Text className='DoExerciseText'>{afterParentheses}</Text>
-                    </div>
+                <Heading className='DoActVocabularyTitle' level='3'>{exercise.index + 1} Exercise</Heading>
+                <div className='DoActivityVocabulary' key={exercise.index}>
+                    <Heading className='DoActivityTitle' level='2'>{exercise.word}</Heading>
+                    <Input className='ExerciseInputVocabulary' onChange={(e) => { setAnswer(e.target.value) }} />
 
                     {
                         currentPage > totalPages
@@ -112,7 +98,6 @@ function DoActivity() {
 
                     }
                     <Text>{message}</Text>
-
                 </div>
                 <Text>Page {currentPage} of {Math.ceil(exercises.length / pageSize)}</Text>
             </>)
@@ -121,4 +106,4 @@ function DoActivity() {
     )
 }
 
-export default DoActivity
+export default DoActivityVocabulary

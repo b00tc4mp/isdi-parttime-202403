@@ -43,10 +43,16 @@ const getUserStats = (userId, targetUserId) => {
                                                             countCorrectExercises += 1
                                                         }
                                                         break
+                                                    case 'vocabulary':
+                                                        if (exercise.answer.includes(answer.answer)) {
+                                                            countCorrectExercises += 1
+                                                        }
+                                                        break
                                                 }
                                             }
                                         })
                                     })
+
                                     const activityIds = exercises.map(exercise => exercise.activity)
                                     return Activity.countDocuments({ _id: { $in: activityIds } })
                                         .catch(error => { throw new SystemError(error.message) })

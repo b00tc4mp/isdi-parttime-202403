@@ -26,6 +26,7 @@ import OrderSentence from './components/OrderSentence'
 import DoActivityOrderSentence from './components/DoActivityOrderSentence'
 import ViewStudentStats from './components/ViewStudentStats'
 import Vocabulary from './components/Vocabulary'
+import DoActivityVocabulary from './components/DoActivityVocabulary'
 
 function Home() {
     const [name, setName] = useState('')
@@ -79,6 +80,7 @@ function Home() {
 
                 <Route path='/activities/:activityId/do-activity/completeSentence' element={<DoActivity></DoActivity>} />
                 <Route path='/activities/:activityId/do-activity/orderSentence' element={<DoActivityOrderSentence></DoActivityOrderSentence>} />
+                <Route path='/activities/:activityId/do-activity/vocabulary' element={<DoActivityVocabulary></DoActivityVocabulary>} />
                 <Route path='/activities/:activityId/results' element={<ShowExerciseResults></ShowExerciseResults>} />
 
                 <Route path='/users/:userId' element={<ShareQR></ShareQR>} />

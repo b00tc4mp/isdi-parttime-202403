@@ -1,0 +1,10 @@
+
+
+.ActivityStudentTable{
+    height: auto;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    margin: 10%  0;
+    width: 95%;
+    overflow-x: auto;
+}

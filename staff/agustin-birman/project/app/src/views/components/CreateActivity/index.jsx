@@ -47,18 +47,20 @@ function CreateActivity({ }) {
 
 
     return <FormWithFeedback className='CreateActivity' onSubmit={handleCreatedActivity} message={message}>
+        {exerciseType === 'completeSentence' && <Heading level='2'>Complete the sentence</Heading>}
+        {exerciseType === 'orderSentence' && <Heading level='2'>Order the sentence</Heading>}
+        {exerciseType === 'vocabulary' && <Heading level='2'>Vocabulary</Heading>}
 
-        <Heading level='2'>Complete the Sentence</Heading>
 
-        <Field id='title' type='text' placeholder='title'>Title</Field>
+        <Field id='title' type='text' placeholder='Conjugating the verb Haben' className='CreateActivityTitle'>Title</Field>
 
-        <FieldWithTextArea id='description' type='text' placeholder='description'>Description</FieldWithTextArea>
+        <FieldWithTextArea id='description' type='text' placeholder='We will practice how to conjugate the verb haben in the first and third person forms'>Description</FieldWithTextArea>
 
         <div className='divButton'>
             <Button className='btn btn-secondary' type='button'><Link to='/'>Cancel</Link></Button>
             <Button className="btn btn-success">Created</Button>
         </div>
-    </FormWithFeedback>
+    </FormWithFeedback >
 }
 
 export default CreateActivity

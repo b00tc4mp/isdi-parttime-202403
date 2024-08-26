@@ -64,8 +64,8 @@ function ViewStudentStats() {
     }
 
     return <>
+        <Heading className='UserStatsTitle' level='2'>Student's Information</Heading>
         <div className='UserStatsContainer'>
-            <Heading level='2'>Student's Information</Heading>
             <Text className='UserStatsText'>Name: {userInfo.name}</Text>
             <Text className='UserStatsText'>Surname: {userInfo.surname}</Text>
             <Text className='UserStatsText'>Username: {userInfo.username}</Text>

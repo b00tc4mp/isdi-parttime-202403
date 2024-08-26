@@ -9,6 +9,7 @@ import Input from '../../../components/core/Input'
 import ConfirmDelete from '../../../components/library/ConfirmDelete'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useContext from '../../../useContext'
+import TextArea from '../../../components/core/TextArea'
 
 function ViewActivityTeacher() {
     const { activityId } = useParams()
@@ -128,13 +129,13 @@ function ViewActivityTeacher() {
                     <tr>
                         <td>
                             {editView
-                                ? <Input value={description} onChange={(e) => setDescription(e.target.value)} />
-                                : <Text className='ActivityText'>{activity.description}</Text>}
+                                ? <TextArea value={description} onChange={(e) => setDescription(e.target.value)} />
+                                : <Heading level='4' className='ActivityText'>{activity.description}</Heading>}
                         </td>
                     </tr>
                     {editView === false &&
                         <tr>
-                            <td>
+                            <td >
 
                                 <Text>N° exercises</Text>
                                 <Heading level='3' className='ActivityText'>{exercisesCount}</Heading>

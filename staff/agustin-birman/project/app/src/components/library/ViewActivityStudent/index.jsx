@@ -7,6 +7,7 @@ import Button from '../../../components/core/Button'
 import ConfirmDelete from '../../../components/library/ConfirmDelete'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useContext from '../../../useContext'
+import './index.css'
 
 function ViewActivityStudent() {
     const { activityId } = useParams()
@@ -131,27 +132,42 @@ function ViewActivityStudent() {
 
     return <View className='ActivityView'>
         <Heading level='2' className='ActivityHeading'>Activity</Heading>
-        <Heading level='3' className='ActivityTitle'>Title</Heading>
-        <Text className='ActivityText'>{activity.title}</Text>
-
-        <Heading level='3' className='ActivityTitle'>Description</Heading>
-        <Text className='ActivityText'>{activity.description}</Text>
-
-        <Heading level='3' className='ActivityTitle'>How many exercises in this activity?</Heading>
-        <Text className='ActivityText'>{exercisesCount}</Text>
-
-        <Heading level='3' className='ActivityTitle'>Status</Heading>
-        {completedActivity === true
-            ? <Text className='CompleteResult'>Complete</Text>
-            : <Text className='IncompleteResult'>Incomplete</Text>}
-
+        <View className='ActivityStudentTable'>
+            <table  >
+                <tbody>
+                    <tr>
+                        <th colSpan="2" className='ActivityStudentTitle'>
+                            <Heading level='3' className='ActivityText'>{activity.title}</Heading>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <Heading level='4' className='ActivityText'>{activity.description}</Heading>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><Text>N° exercises</Text></th>
+                        <th><Text>Status</Text></th>
+                    </tr>
+                    <tr>
+                        <td >
+                            <Heading level='3' className='ActivityText'>{exercisesCount}</Heading>
+                        </td>
+                        <td>
+                            {completedActivity === true
+                                ? <Text className='CompleteResult'>Complete</Text>
+                                : <Text className='IncompleteResult'>Incomplete</Text>}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </View>
         <Button><Link to={`/activities/${activityId}/do-activity/${exerciseType}`}>Start Activity</Link></Button>
         {completedActivity === true && <>
             <Button><Link to={`/activities/${activityId}/results`}>View Results</Link></Button>
             <Button onClick={toggleDeleteAnswers}> Restart Activity</Button>
         </>}
         <Button><Link to={`/activities/${userId}/list`}>Go Back</Link></Button>
-
         {confirmDeleteAnswers && <ConfirmDelete message="Delete all answers? (You can not recover them after this)" onAccept={handleDeleteAnswers} onCancel={toggleDeleteAnswers} />}
     </View >
 }

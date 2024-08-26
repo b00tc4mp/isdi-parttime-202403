@@ -82,7 +82,7 @@ function ShowExerciseResults() {
                     </thead>
                     <tbody>
                         <tr className="SentenceResult">
-                            <td colSpan="2">{exercise.sentence}</td>
+                            <td colSpan="2">{exercise.word !== undefined ? exercise.word : exercise.sentence}</td>
                         </tr>
                         {exerciseType === 'completeSentence' || exerciseType === 'Vocabulary'
                             ? <tr>
@@ -100,15 +100,22 @@ function ShowExerciseResults() {
                                 ? <td>{exercise.answer}</td>
                                 : null}
                             <td>
-                                {exerciseType === 'completeSentence' || exerciseType === 'Vocabulary'
-                                    ?
+                                {exerciseType === 'completeSentence' &&
+
                                     exercise.answers.map((answer, index) => (
                                         <div key={index} className={answer.answer === exercise.answer ? 'exerciseCorrect' : 'exerciseWrong'}>
                                             {answer.answer}
                                         </div>
-                                    ))
-                                    : exercise.answers.map((answer, index) => (
+                                    ))}
+                                {exerciseType === 'orderSentence' &&
+                                    exercise.answers.map((answer, index) => (
                                         <div key={index} className={answer.answer === exercise.sentence ? 'exerciseCorrect' : 'exerciseWrong'}>
+
+                                            {answer.answer}
+                                        </div>))}
+                                {exerciseType === 'vocabulary' &&
+                                    exercise.answers.map((answer, index) => (
+                                        <div key={index} className={exercise.answer.includes(answer.answer) ? 'exerciseCorrect' : 'exerciseWrong'}>
                                             {answer.answer}
                                         </div>))}
                             </td>

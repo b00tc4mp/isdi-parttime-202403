@@ -130,41 +130,43 @@ function DoActivityOrderSentence() {
 
     return (<View >
         {currentExercises.map((exercise, index) => (
-            <View>
-                <Text className='DoActOrderSentenceTitle'>{exercise.index + 1} Exercise</Text>
-                <Heading className='DoActOrderSentence' level='3'> {exercise.translate} </Heading>
-                <div key={index} className='OrderSentenceContainer'>
-                    <div className='SelectedWords'>
-                        {selectedWords.map((word, selectedWordIndex) => (
-                            <Button
-                                className="btn btn-success move-to-mixed"
-                                key={`selected-${selectedWordIndex}-${word}`}
-                                onClick={() => handleSelectedWordClick(word)}
-                            >
-                                {word}
-                            </Button>
-                        ))}
+            <>
+                <Heading level='3' className='DoActOrderSentenceTitle'>{exercise.index + 1} Exercise</Heading>
+                <View className='DoActOrderSentenceContainer'>
+                    <Heading className='DoActOrderSentence' level='3'> {exercise.translate} </Heading>
+                    <div key={index} className='OrderSentenceContainer'>
+                        <div className='SelectedWords'>
+                            {selectedWords.map((word, selectedWordIndex) => (
+                                <Button
+                                    className="btn btn-success move-to-mixed"
+                                    key={`selected-${selectedWordIndex}-${word}`}
+                                    onClick={() => handleSelectedWordClick(word)}
+                                >
+                                    {word}
+                                </Button>
+                            ))}
+                        </div>
+                        <div className='MixedWords'>
+                            {mixedWords.map((word, wordIndex) => (
+                                <Button
+                                    className="btn btn-secondary btnOrderSentence move-to-selected"
+                                    key={`mixed-${wordIndex}-${word}`}
+                                    onClick={() => { handleWordClick(word), console.log(word) }}>
+                                    {word}
+                                </Button>
+                            ))}
+                        </div>
                     </div>
-                    <div className='MixedWords'>
-                        {mixedWords.map((word, wordIndex) => (
-                            <Button
-                                className="btn btn-secondary btnOrderSentence move-to-selected"
-                                key={`mixed-${wordIndex}-${word}`}
-                                onClick={() => { handleWordClick(word), console.log(word) }}>
-                                {word}
-                            </Button>
-                        ))}
-                    </div>
-                </div>
-                {
-                    currentPage > totalPages
-                        ? <Button className='DoActOrderSentenceButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Finish</Button>
-                        : <Button className='DoActOrderSentenceButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Next Exercise</Button>
-                }
-                <Text>{message}</Text>
+                    {
+                        currentPage > totalPages
+                            ? <Button className='DoActOrderSentenceButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Finish</Button>
+                            : <Button className='DoActOrderSentenceButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Next Exercise</Button>
+                    }
+                    <Text>{message}</Text>
 
+                </ View>
                 <Text>Page {currentPage} of {Math.ceil(exercises.length / pageSize)}</Text>
-            </ View>
+            </>
         ))}
     </ View>
     )

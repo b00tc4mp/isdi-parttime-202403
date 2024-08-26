@@ -61,7 +61,6 @@ const editExercise = (userId, exerciseId, updateData = {}) => {
                             }
 
                             if (updateData.answers !== undefined) {
-                                validate.text(updateData.answers, 'word', 50)
                                 update.answer = updateData.answers
                             }
 

@@ -28,8 +28,9 @@ function Vocabulary() {
 
 
     const handleEditedExercise = () => {
+        const separatedAnswers = answers.split(' ')
         try {
-            logic.editExercise(selectedExercise.id, { word, answers })
+            logic.editExercise(selectedExercise.id, { word, answers: separatedAnswers })
                 .then(() => {
                     setUpdateExercises(prev => prev + 1)
                     setEditView(false)

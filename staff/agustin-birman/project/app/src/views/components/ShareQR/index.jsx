@@ -18,7 +18,7 @@ function ShareQR() {
             fgColor="#000000"
         />
         <Text>Ask to your teacher to scan this code!</Text>
-        <Button><Link to='/'>Go Home</Link></Button>
+        <Button className='QRButton'><Link to='/'>Go Home</Link></Button>
     </div>
 }
 
