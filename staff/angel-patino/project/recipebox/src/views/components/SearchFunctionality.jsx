@@ -26,28 +26,25 @@ function SearchFunctionality() {
   }
 
   return (
-    <View className="SearchFunctionality" tag="section">
-      <form onSubmit={handleSearch}>
+    <View className="search-functionality" tag="section">
+      <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for recipes..."
-          className="p-2 border border-gray-400 rounded-md"
+          className="search-input"
         />
-        <button
-          type="submit"
-          className="ml-2 p-2 bg-blue-500 text-white rounded-md"
-        >
+        <button type="submit" className="search-button">
           Search
         </button>
       </form>
 
-      <View className="results mt-4">
+      <View className="results">
         {results.length > 0 ? (
           results.map((recipe) => <Recipe key={recipe.id} recipe={recipe} />)
         ) : (
-          <p>No results found for "{query}".</p>
+          <p className="no-results">No results found for "{query}".</p>
         )}
       </View>
     </View>

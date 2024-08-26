@@ -7,7 +7,7 @@ function View({
 }) {
   return (
     <Tag
-      className={`View ${className ? className : ""} ${
+      className={`view ${className ? className : ""} ${
         direction === "column" ? "View column" : "View row"
       } ${align === "center" ? "View center" : ""}`}
     >

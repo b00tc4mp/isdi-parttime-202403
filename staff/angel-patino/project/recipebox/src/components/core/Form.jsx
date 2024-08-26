@@ -1,6 +1,6 @@
 function Form({ className, onSubmit, children }) {
   return (
-    <form className={`Form ${className ? className : ""}`} onSubmit={onSubmit}>
+    <form className={`form ${className ? className : ""}`} onSubmit={onSubmit}>
       {children}
     </form>
   )

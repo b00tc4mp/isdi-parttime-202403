@@ -3,9 +3,9 @@ import Text from "../core/Text"
 
 function FormWithFeedback({ onSubmit, children, message, level = "error" }) {
   return (
-    <Form className="FormWithFeedback" onSubmit={onSubmit}>
+    <Form className="formWithFeedback" onSubmit={onSubmit}>
       {children}
-      {message && <Text className={`Feedback ${level}`}>{message}</Text>}
+      {message && <Text className={`feedback ${level}`}>{message}</Text>}
     </Form>
   )
 }

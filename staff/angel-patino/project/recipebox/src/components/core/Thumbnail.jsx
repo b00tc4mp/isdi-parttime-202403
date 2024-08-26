@@ -1,4 +1,4 @@
 function Thumbnail({ src }) {
-  return <img className="Thumbnail" src={src} />
+  return <img className="thumbnail" src={src} />
 }
 export default Thumbnail

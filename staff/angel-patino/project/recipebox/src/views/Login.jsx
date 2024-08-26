@@ -1,6 +1,7 @@
 import { useState } from "react"
 import View from "../components/library/View"
 import Field from "../components/core/Field"
+import Button from "../components/core/Button.jsx"
 import FormWithFeedback from "../components/library/FormWithFeedback.jsx"
 import SubmitButton from "../components/core/SubmitButton.jsx"
 import Link from "./components/Link.jsx"
@@ -48,10 +49,11 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
   }
   return (
     <View tag="main" className="login-view">
+      <Title className="form-title">
+        Welcome to <span className="highlight">RecipeBox</span>
+      </Title>
+      <p className="form-subtitle">Login to continue</p>
       <div className="form-container">
-        <Title className="form-title">Welcome to RecipeBox</Title>
-        <p className="form-subtitle">Login to continue</p>
-
         <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
           <Field id="username" placeholder="Username" className="form-field">
             Username
@@ -66,12 +68,14 @@ function Login({ onUserLoggedIn, onRegisterLinkClick }) {
             Password
           </Field>
 
-          <SubmitButton className="form-button">Login</SubmitButton>
+          <div className="btn-container">
+            <SubmitButton className="btn-login">Login</SubmitButton>
+            <p className="account-message">Don't have an account?</p>
+            <Link onClick={handleRegisterClick} className="form-link">
+              Register
+            </Link>
+          </div>
         </FormWithFeedback>
-
-        <Link onClick={handleRegisterClick} className="form-link">
-          Register
-        </Link>
       </div>
     </View>
   )

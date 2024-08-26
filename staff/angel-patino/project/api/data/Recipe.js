@@ -2,15 +2,7 @@ import { Schema, model, Types } from "mongoose"
 
 const { ObjectId } = Types
 
-const ingredientSchema = new Schema({
-    name: { type: String, required: true },
-    quantity: { type: Number, required: true },
-    unit: {
-        type: String,
-        required: true,
-        enum: ['grams', 'ml', 'l', 'tsp', 'unit']
-    }
-})
+
 
 // const ratingSchema = new Schema({
 //     user: {
@@ -47,11 +39,15 @@ const recipe = new Schema({
         required: true
     },
 
-    ingredients: {
-        type: [ingredientSchema],
-        required: true
-
-    },
+    ingredients: [{
+        name: { type: String, required: true },
+        quantity: { type: Number, required: true },
+        unit: {
+            type: String,
+            required: true,
+            enum: ['grams', 'ml', 'l', 'tsp', 'unit']
+        }
+    }],
 
     description: {
         type: String,

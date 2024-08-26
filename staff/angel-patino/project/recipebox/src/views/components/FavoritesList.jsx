@@ -32,11 +32,11 @@ function FavoritesList() {
   }
 
   return (
-    <View className="FavoritesList" tag="section">
+    <View className="favorites-list" tag="section">
       {favorites.length > 0 ? (
         favorites.map((recipe) => <Recipe key={recipe.id} recipe={recipe} />)
       ) : (
-        <p>No favorites yet!</p>
+        <p className="no-favorites">No favorites yet!</p>
       )}
     </View>
   )

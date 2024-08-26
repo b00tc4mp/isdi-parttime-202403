@@ -1,4 +1,4 @@
-import Button from "../../components/core/Button"
+import { Link } from "react-router-dom"
 import View from "../../components/library/View"
 
 function Footer({
@@ -16,36 +16,44 @@ function Footer({
 
   return (
     <View
-      className="Footer  bottom-0 w-full bg-secondary-color shadow-lg py-2 flex justify-around items-center"
+      className="Footer bottom-0 w-full bg-secondary-color shadow-lg py-2 flex justify-around items-center"
       direction="row"
     >
-      <Button onClick={handleHomeClick} className="text-primary-color text-lg">
+      <Link
+        to="/"
+        onClick={handleHomeClick}
+        className="text-primary-color text-lg"
+      >
         ⌂
-      </Button>
-      <Button
+      </Link>
+      <Link
+        to="/favorites"
         onClick={handleFavoritesClick}
         className="text-primary-color text-lg"
       >
         ❤️
-      </Button>
-      <Button
+      </Link>
+      <Link
+        to="/search"
         onClick={handleSearchClick}
         className="text-primary-color text-lg"
       >
         🔍
-      </Button>
-      <Button
+      </Link>
+      <Link
+        to="/create-recipe"
         onClick={handleCreateRecipeClick}
         className="text-primary-color text-lg"
       >
         +
-      </Button>
-      <Button
+      </Link>
+      <Link
+        to="/my-recipes"
         onClick={handleMyRecipesClick}
         className="text-primary-color text-lg"
       >
         👤
-      </Button>
+      </Link>
     </View>
   )
 }

@@ -1,7 +1,7 @@
 function Button({ type, className, onClick, children }) {
   return (
     <button
-      className={`Button ${className ? className : ""}`}
+      className={`button ${className ? className : ""}`}
       type={type}
       onClick={onClick}
     >

@@ -3,7 +3,7 @@ import Input from "./Input"
 
 function Field({ id, type, placeholder, children }) {
   return (
-    <div className="Field">
+    <div className="field">
       <Label htmlFor={id}>{children}</Label>
       <Input id={id} type={type} placeholder={placeholder} />
     </div>

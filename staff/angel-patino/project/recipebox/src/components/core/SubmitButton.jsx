@@ -1,8 +1,8 @@
 import Button from "./Button"
 
-function SubmitButton({ children }) {
+function SubmitButton({ className, children }) {
   return (
-    <Button className="SubmitButton" type="submit">
+    <Button className={className} type="submit">
       {children}
     </Button>
   )

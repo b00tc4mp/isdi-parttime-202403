@@ -5,6 +5,7 @@ const USERNAME_REGEX = /^[\w-]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{8,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const ID_REGEX = /^[0-9a-z]+$/
+const INGREDIENT_NAME_REGEX = /^[a-zA-Z\s]+$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -65,22 +66,26 @@ function validateIngredientArray(ingredients, explain = 'ingredients') {
         throw new ContentError(`${explain} must be a non-empty array.`);
     }
 
-    ingredients.forEach(ingredient => {
+    ingredients.forEach((ingredient, index) => {
         if (typeof ingredient !== 'object' || ingredient === null) {
-            throw new ContentError(`Each item in ${explain} must be an object.`);
+            throw new ContentError(`Ingredient at position ${index + 1} is not a valid object.`);
         }
-        if (typeof ingredient.name !== 'string' || ingredient.name.trim() === '') {
-            throw new ContentError(`Each ${explain} must have a valid 'name'.`);
+
+        const { name, quantity, unit } = ingredient;
+
+        if (typeof name !== 'string' || !INGREDIENT_NAME_REGEX.test(name)) {
+            throw new ContentError(`Ingredient name at position ${index + 1} is not valid.`);
         }
-        if (typeof ingredient.quantity !== 'number' || isNaN(ingredient.quantity) || ingredient.quantity <= 0) {
-            throw new ContentError(`Each ${explain} must have a valid 'quantity' greater than 0.`);
+
+        if (typeof quantity !== 'number' || isNaN(quantity) || quantity <= 0) {
+            throw new ContentError(`Ingredient quantity at position ${index + 1} must be a positive number.`);
         }
-        if (!['grams', 'ml', 'l', 'tsp', 'unit'].includes(ingredient.unit)) {
-            throw new ContentError(`Each ${explain} must have a valid 'unit' that is one of the following: 'grams', 'ml', 'l', 'tsp', or 'unit'.`);
+
+        if (typeof unit !== 'string' || unit.trim().length === 0) {
+            throw new ContentError(`Ingredient unit at position ${index + 1} cannot be empty.`);
         }
     })
 }
-
 // function validateRating(rating, explain = 'rating') {
 //     const min = 1;
 //     const max = 5;

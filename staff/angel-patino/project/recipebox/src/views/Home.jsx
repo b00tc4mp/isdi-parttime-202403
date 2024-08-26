@@ -1,48 +1,34 @@
 import { useState, useEffect } from "react"
-import { Routes, Route } from "react-router-dom"
 import View from "../components/library/View"
 import Header from "./components/Header"
-import RecipeList from "./components/RecipeList"
-import Footer from "./components/Footer"
-import CreateRecipeForm from "./components/CreateRecipeForm"
-import EditRecipeForm from "./components/EditRecipeForm"
-import Button from "../components/core/Button"
 import Heading from "../components/core/Heading"
+import Button from "../components/core/Button"
+import EditRecipeForm from "./components/EditRecipeForm"
+import Footer from "./components/Footer"
+import CreateRecipeForm from "../views/components/CreateRecipeForm"
+import RecipeList from "./components/RecipeList"
 import logic from "../logic"
-import About from "./components/About"
-import FavoritesList from "./components/FavoritesList"
-import SearchFunctionality from "./components/SearchFunctionality"
 
 function Home({ onUserLoggedOut }) {
   const [name, setName] = useState("")
-  const [view, setView] = useState("")
-  const [recipeListRefreshStamp, setRecipeListRefreshStamp] = useState(0)
-  const [searchQuery, setSearchQuery] = useState("") // Search
-  const [favoritesOnly, setFavoritesOnly] = useState(false) // Favorites
-  const [editRecipeId, setEditRecipeId] = useState(null) // Edit recipe
-  const [myRecipesOnly, setMyRecipesOnly] = useState(false)
+  const [view, setView] = useState("") // Manages the current view state
+  const [editRecipeId, setEditRecipeId] = useState(null) // Manages the ID of the recipe being edited
+  const [recipeListRefreshStamp, setRecipeListRefreshStamp] = useState(0) // Refreshes the recipe list when updated
+  const [searchQuery, setSearchQuery] = useState("") // Stores the search query
+  const [favoritesOnly, setFavoritesOnly] = useState(false) // Toggle to show only favorite recipes
+  const [myRecipesOnly, setMyRecipesOnly] = useState(false) // Toggle to show only user's recipes
+
+  useEffect(() => {
+    logic
+      .getUserName()
+      .then((name) => setName(name))
+      .catch((error) => alert(error.message))
+  }, [])
 
   const handleLogout = () => {
     logic.logoutUser()
     onUserLoggedOut()
   }
-
-  useEffect(() => {
-    try {
-      logic
-        .getUserName()
-        .then((name) => {
-          setName(name)
-        })
-        .catch((error) => {
-          console.error(error)
-          alert(error.message)
-        })
-    } catch (error) {
-      console.error(error)
-      alert(error.message)
-    }
-  }, [])
 
   const handleCreateRecipeClick = () => setView("create-recipe")
   const handleCancelCreateRecipeClick = () => setView("")
@@ -63,7 +49,7 @@ function Home({ onUserLoggedOut }) {
   const handleMyRecipesToggle = () => setMyRecipesOnly((prev) => !prev)
 
   return (
-    <View>
+    <View className="main-content">
       <Header>
         <Heading level="1">RecipeBox</Heading>
         <View direction="row">
@@ -74,17 +60,7 @@ function Home({ onUserLoggedOut }) {
         </View>
       </Header>
 
-      <SearchFunctionality onSearch={handleSearchQueryChange} />
-      <View className="flex justify-between items-center px-4 py-2">
-        <Button onClick={handleFavoritesToggle} className="text-accent-color">
-          {favoritesOnly ? "Show All" : "Show Favorites"}
-        </Button>
-        <Button onClick={handleMyRecipesToggle} className="text-accent-color">
-          {myRecipesOnly ? "Show All" : "Show My Recipes"}
-        </Button>
-      </View>
-
-      <View tag="main" className="p-4">
+      <View tag="main" className="p-4 pb-16">
         {editRecipeId ? (
           <EditRecipeForm
             recipeId={editRecipeId}
@@ -114,6 +90,7 @@ function Home({ onUserLoggedOut }) {
         onHomeClick={() => setView("")}
         onFavoritesClick={handleFavoritesToggle}
         onSearchClick={() => setView("search")}
+        onMyRecipesClick={handleMyRecipesToggle}
       />
     </View>
   )

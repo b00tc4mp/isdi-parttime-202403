@@ -16,6 +16,11 @@ function Recipe({
 }) {
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
   const [rating, setRating] = useState(recipe.userRating || 0)
+  const [ingredientsVisible, setIngredientsVIsible] = useState(false)
+
+  const handleToggleIngredients = () => {
+    setIngredientsVIsible(!ingredientsVisible)
+  }
 
   const handleDeleteRecipe = () => setConfirmDeleteVisible(true)
 
@@ -72,37 +77,63 @@ function Recipe({
   }
 
   return (
-    <View tag="article" className="Recipe">
-      <View direction="row" align="center" className="ProfileSection">
-        <img
-          src="/path/to/profile-pic.jpg"
-          alt="Profile"
-          className="ProfileImage"
-        />
-        <Heading level="2" className="Username">
-          {recipe.author.username}
-        </Heading>
-        <Button onClick={handleEditRecipe}>Edit</Button>
+    <View tag="article" className="recipe-card">
+      <View direction="row" align="center" className="profile-section">
+        <div className="profile-info">
+          <img
+            src="/path/to/profile-pic.jpg"
+            alt="Profile"
+            className="profile-image"
+          />
+          <Heading level="2" className="username">
+            {recipe.author.username}
+          </Heading>
+        </div>
+        <div>
+          {recipe.author.id === logic.getUserId() && (
+            <Button onClick={handleEditRecipe} className="edit-button">
+              Edit
+            </Button>
+          )}
+        </div>
       </View>
 
-      <Thumbnail src={recipe.thumbnail} className="Thumbnail" />
+      <Thumbnail src={recipe.thumbnail} className="recipe-thumbnail" />
 
-      <View direction="row" align="center" className="Actions">
-        <Button onClick={handleToggleLikeRecipe} className="p-0">
+      <View direction="row" align="center" className="actions-section">
+        <Button onClick={handleToggleLikeRecipe} className="like-button">
           {recipe.likes.includes(logic.getUserId()) ? "❤️" : "🤍"}
         </Button>
-        <Text className="LikesCount">{`${recipe.likes.length} ${
+        <Text className="likes-count">{`${recipe.likes.length} ${
           recipe.likes.length === 1 ? "like" : "likes"
         }`}</Text>
       </View>
 
-      <View className="Content">
-        <Heading level="3" className="Title">
+      <View className="recipe-content">
+        <Heading level="3" className="recipe-title">
           {recipe.title}
         </Heading>
-        <Text className="Description">{recipe.description}</Text>
+        <Text className="recipe-description">{recipe.description}</Text>
+        <Text className="IngredientsTitle">Ingredients:</Text>
+        <div className="ingredients-section">
+          <Button
+            onClick={handleToggleIngredients}
+            className="ingredients-toggle"
+          >
+            {ingredientsVisible ? "⬆️" : "⬇️"}
+          </Button>
+          {ingredientsVisible && (
+            <ul className="ingredients-list">
+              {recipe.ingredients.map((ingredient, index) => (
+                <li key={index} className="ingredient-item">
+                  {ingredient.name} - {ingredient.quantity} {ingredient.unit}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
-        <View className="Rating">
+        <View className="rating-section">
           {[1, 2, 3, 4, 5].map((star) => (
             <Button
               key={star}
@@ -116,12 +147,12 @@ function Recipe({
           ))}
         </View>
 
-        <Time className="Timestamp">
+        <Time className="timestamp">
           {new Date(recipe.date).toLocaleString()}
         </Time>
         {recipe.author.id === logic.getUserId() && (
           <>
-            <Button onClick={handleDeleteRecipe} className="DeleteButton">
+            <Button onClick={handleDeleteRecipe} className="delete-button">
               Delete
             </Button>
           </>

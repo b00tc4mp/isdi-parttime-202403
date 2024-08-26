@@ -54,10 +54,10 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
   }
   return (
     <View tag="main" className="register-view">
-      <div className="form-container">
-        <Title className="form-title">Welcome to RecipeBox</Title>
-        <p className="form-subtitle">Create an account to get started</p>
+      <Title className="form-title">Welcome to RecipeBox</Title>
+      <p className="form-subtitle">Create an account to get started</p>
 
+      <div className="form-container">
         <FormWithFeedback onSubmit={handleRegisterSubmit} message={message}>
           <Field id="name" placeholder="Name" className="form-field">
             Name
@@ -93,12 +93,14 @@ function Register({ onUserRegistered, onLoginLinkClick }) {
             Repeat Password
           </Field>
 
-          <SubmitButton className="form-button">Register</SubmitButton>
+          <div className="btn-container">
+            <SubmitButton className="btn-register">Register</SubmitButton>
+            <p className="account-message">Already have an account?</p>
+            <Link onClick={handleLoginClick} className="form-link">
+              Login
+            </Link>
+          </div>
         </FormWithFeedback>
-
-        <Link onClick={handleLoginClick} className="form-link">
-          Login
-        </Link>
       </div>
     </View>
   )

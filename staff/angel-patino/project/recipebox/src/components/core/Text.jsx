@@ -1,5 +1,5 @@
 function Text({ children, className }) {
-  return <p className={`Text ${className}`}>{children}</p>
+  return <p className={`text ${className}`}>{children}</p>
 }
 
 export default Text

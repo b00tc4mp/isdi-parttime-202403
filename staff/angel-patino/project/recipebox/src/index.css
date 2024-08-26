@@ -4,67 +4,293 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base Styles */
 @layer base {
     :root {
-        --primary-color: #ff6b6b;
-        --secondary-color: #ffe66d;
-        --accent-color: #4ecdc4;
-        --text-color: #343a40;
-        font-family: 'Crimson Text', serif;
+        --primary-color: #1DA1F2; /* Instagram-like blue */
+        --secondary-color: #000000; /* Black for secondary buttons */
+        --text-color: #343a40; /* Dark gray color for text */
+        font-family: 'Arial', sans-serif;
     }
 
-    body {
-        @apply bg-secondary-color text-text-color;
+    html,body, #root {
+      @apply h-full;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
     }
 }
 
+/* Components */
 @layer components {
+  .main-content {
+    @apply flex-grow p-4 mb-16; /* Ensures the main content area grows and adds padding */
+  }
 
-    .login-view, .register-view {
-        @apply flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-yellow-100 via-red-100 to-yellow-200 p-4;
+  .Footer {
+    @apply fixed bottom-0 w-full bg-secondary-color shadow-lg py-2 flex justify-around items-center z-10;
+}
+  
+  .account-message{
+    @apply mt-2  text-gray-600 text-center;
+  }
+  .label{
+    @apply w-full px-3 py-2;
+  }
+
+
+    /* Login View */
+    .login-view {
+        @apply flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-300 via-pink-300 to-red-300;
     }
 
     .form-container {
-        @apply bg-white rounded-lg shadow-lg p-8 max-w-md w-full;
+        @apply bg-white p-8 rounded-lg shadow-lg max-w-md w-full;
     }
 
     .form-title {
-        @apply text-4xl font-bold text-primary-color mb-6 text-center;
+        @apply text-4xl font-bold text-center text-black mb-4;
     }
 
     .form-subtitle {
-        @apply text-lg text-gray-700 mb-8 text-center;
+        @apply text-center text-gray-600 mb-6 text-sm;
     }
 
     .form-field {
         @apply mb-4;
     }
 
-    .form-input {
-        @apply w-full rounded-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-color;
+    .btn-container {
+        @apply flex flex-col items-center mt-6;
     }
 
-    .form-button {
-        @apply w-full py-3 mt-6 rounded-full bg-primary-color text-white font-bold hover:bg-opacity-80 transition duration-300;
+    .btn-login {
+        @apply bg-primary-color text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 focus:bg-blue-700 transition duration-200;
+    }
+
+    .btn-register {
+        @apply bg-black text-white font-bold py-2 px-4 rounded-full hover:bg-gray-800 focus:bg-gray-900 transition duration-200;
+    }
+
+    .feedback.error {
+        @apply text-red-500 text-center mt-4;
+    }
+
+    /* Register View */
+    .register-view {
+        @apply flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-300 via-pink-300 to-red-300;
+    }
+
+    .form-link-container {
+        @apply flex justify-center items-center mt-6;
+    }
+
+    .form-link-container p {
+        @apply   text-blue-400 text-xs mr-2;
     }
 
     .form-link {
-        @apply text-accent-color text-center block mt-4 cursor-pointer;
-    }
+        @apply text-blue-500 font-semibold ml-1;
+ }
 
-    .error-message {
-        @apply text-red-500 mt-4 text-center;
-    }
-    .header {
-      @apply flex justify-between items-center p-4 bg-secondary-color;
-    }
+    
+
+    /* Recipe Card */
+  .recipe-card {
+    @apply bg-white border rounded-sm max-w-md mx-auto mb-8 shadow-lg;
+  }
+
+  .profile-section {
+    @apply flex items-center px-4 py-3 border-b border-gray-200;
+  }
+
+  .profile-info {
+    @apply flex items-center;
+  }
+
+  .profile-image {
+    @apply h-12 w-12 rounded-full mr-3;
+  }
+
+  .username {
+    @apply text-sm font-semibold text-gray-800;
+  }
+
+  .edit-button {
+    @apply text-blue-500 font-semibold ml-auto;
+  }
+
+  .recipe-thumbnail {
+    @apply w-full h-auto mt-3;
+  }
+
+  .actions-section {
+    @apply flex items-center justify-between px-4 mt-3 mb-2;
+  }
+
+  .like-button {
+    @apply p-0 text-xl;
+  }
+
+  .likes-count {
+    @apply text-sm font-semibold text-gray-800;
+  }
+
+  .recipe-content {
+    @apply px-4 py-2;
+  }
+
+  .recipe-title {
+    @apply text-lg font-bold text-gray-800 mt-2;
+  }
+
+  .recipe-description {
+    @apply text-sm text-gray-700 mt-1 mb-3;
+  }
+
+  .ingredients-section {
+    @apply mb-4;
+  }
+
+  .ingredients-toggle {
+    @apply text-blue-500 font-semibold mb-2 cursor-pointer;
+  }
+
+  .ingredients-list {
+    @apply list-disc list-inside text-sm text-gray-700;
+  }
+
+  .ingredient-item {
+    @apply text-gray-700;
+  }
+
+  .rating-section {
+    @apply flex gap-1 mt-2;
+  }
+
+  .rating-star {
+    @apply p-0 text-xl;
+  }
+
+  .timestamp {
+    @apply text-xs text-gray-500 mt-3;
+  }
+
+  .delete-button {
+    @apply text-red-500 mt-3;
+  }
+
+  /*CreateRecipeForm*/
+
+  .create-recipe-form {
+    @apply bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto;
+  }
+
+  .form-field {
+    @apply mb-4 block w-full border border-gray-300 rounded-lg p-2;
+  }
+
+  .form-select {
+    @apply mb-4 w-full border border-gray-300 rounded-lg p-2;
+  }
+
+  .ingredients-section {
+    @apply mb-4;
+  }
+
+  .ingredients-title {
+    @apply font-semibold text-gray-700 mb-2;
+  }
+
+  .ingredient-input {
+    @apply flex flex-col gap-2 mb-2;
+  }
+
+  .add-ingredient-button {
+    @apply bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600;
+  }
+
+  .remove-ingredient-button {
+    @apply bg-red-500 text-white rounded-full py-1 px-2 hover:bg-red-600 mt-2;
+  }
+
+  .form-actions {
+    @apply flex justify-between items-center mt-6;
+  }
+
+  .submit-button {
+    @apply bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600;
+  }
+
+  .cancel-button {
+    @apply bg-gray-500 text-white font-bold py-2 px-4 rounded-full hover:bg-gray-600;
+  }
+
+  /*EdiRecipeForm*/
+  .edit-recipe-form {
+    @apply bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto;
+  }
+
+  .form-field {
+    @apply mb-4 block w-full border border-gray-300 rounded-lg p-2;
+  }
+
+  .form-actions {
+    @apply flex justify-between items-center mt-6;
+  }
+
+  .submit-button {
+    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600;
+  }
+
+  .cancel-button {
+    @apply bg-gray-500 text-white font-bold py-2 px-4 rounded-full hover:bg-gray-600;
+  }
+
+
+  /*FavoritesList*/
+  .favorites-list {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4;
+  }
+
+  .favorites-list .no-favorites {
+    @apply text-center text-gray-500 font-semibold text-lg mt-8;
+  }
+
+  .favorites-list .recipe {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+  }
+
+  /*Search*/
+  .search-functionality {
+    @apply p-4;
+  }
+
+  .search-form {
+    @apply flex justify-center items-center w-full max-w-md mx-auto;
+  }
+
+  .search-input {
+    @apply flex-1 p-2 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-500 focus:outline-none;
+  }
+
+  .search-button {
+    @apply p-2 bg-blue-500 text-white font-semibold rounded-r-md hover:bg-blue-600 transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none;
+  }
+
+  .results {
+    @apply mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+  }
+
+  .no-results {
+    @apply text-center text-gray-500 font-semibold mt-4;
+  }
+
+  /*MyRecipeView*/
+  .my-recipes-view {
+    @apply flex flex-col items-center justify-center min-h-screen bg-white;
+  }
   
-  
-    .button-primary {
-      @apply py-2 px-4 rounded-full bg-primary-color text-white hover:bg-opacity-80 transition duration-300;
-    }
-  
-    .main-content {
-      @apply flex flex-col items-center justify-center min-h-screen p-4 bg-secondary-color;
-    }
+  .no-recipes {
+    @apply text-center text-gray-500;
+  }
 }

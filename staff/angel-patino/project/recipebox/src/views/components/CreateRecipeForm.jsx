@@ -1,128 +1,159 @@
 import { useState } from "react"
 import logic from "../../logic"
 
-import Field from "../../components/core/Field"
-import Button from "../../components/core/Button"
-import SubmitButton from "../../components/core/SubmitButton"
-
-import FormWithFeedback from "../../components/library/FormWithFeedback"
-import View from "../../components/library/View"
-
 function CreateRecipeForm({ onCancelCreateRecipeClick, onRecipeCreated }) {
   const [message, setMessage] = useState("")
   const [ingredients, setIngredients] = useState([
-    { name: "", quantity: "", unit: "grams" },
+    { name: "", quantity: 0, unit: "grams" },
   ])
 
   const handleCancelCreateRecipeClick = () => onCancelCreateRecipeClick()
 
   const addIngredient = () => {
-    setIngredients([...ingredients, { name: "", quantity: "", unit: "grams" }])
+    setIngredients([...ingredients, { name: "", quantity: 0, unit: "grams" }])
   }
 
   const removeIngredient = (index) => {
-    const newIngredients = ingredients.filter((_, i) => i !== index)
-    setIngredients(newIngredients)
+    setIngredients(ingredients.filter((_, i) => i !== index))
   }
 
-  const handleIngredientChange = (index, value, field) => {
+  const handleIngredientChange = (index, field, value) => {
     const newIngredients = [...ingredients]
-    newIngredients[index][field] = value
+    newIngredients[index][field] =
+      field === "quantity" ? parseFloat(value) : value
     setIngredients(newIngredients)
   }
-
-  // const handleQuantityChange = (index, value) => {
-  //   const newIngredients = [...ingredients]
-  //   newIngredients[index].quantity = value
-  //   setIngredients(newIngredients)
-  // }
-
-  // const handleUnitChange = (index, value) => {
-  //   const newIngredients = [...ingredients]
-  //   newIngredients[index].unit = value
-  //   setIngredients(newIngredients)
-  // }
 
   const handleCreateRecipeSubmit = (event) => {
     event.preventDefault()
-    const form = event.target
+    const { title, thumbnail, cookTime, description } = event.target
 
-    const title = form.title.value
-    const thumbnail = form.thumbnail.value
-    const cookTime = parseFloat(form.cookTime.value)
-    const description = form.description.value
-
-    console.log("Ingredients:", ingredients)
     try {
       logic
-        .createRecipe(title, thumbnail, cookTime, ingredients, description)
+        .createRecipe(
+          title.value,
+          thumbnail.value,
+          parseFloat(cookTime.value),
+          ingredients,
+          description.value
+        )
         .then(() => {
           onRecipeCreated()
           setMessage("Recipe created successfully!")
         })
-        .catch((error) => {
-          console.error(error)
-          setMessage(error.message)
-        })
+        .catch((error) => setMessage(error.message))
     } catch (error) {
-      console.error(error)
       setMessage(error.message)
     }
   }
 
   return (
-    <View className="CreateRecipeForm">
-      <FormWithFeedback onSubmit={handleCreateRecipeSubmit} message={message}>
-        <Field id="title">Title</Field>
-        <Field id="thumbnail">Thumbnail</Field>
-        <Field id="cookTime" type="number">
-          Cook Time (minutes)
-        </Field>
-        {ingredients.map((ingredient, index) => (
-          <View key={index} className="ingredient-input">
-            <Field
-              id={`ingredient-${index}`}
-              name={`ingredient-${index}`}
-              value={ingredient.name}
-              onChange={(e) =>
-                handleIngredientChange(index, e.target.value, "name")
-              }
-            >
-              Ingredient
-            </Field>
-            <Field
-              id={`quantity-${index}`}
-              name={`quantity-${index}`}
-              type="number"
-              value={ingredient.quantity}
-              onChange={(e) =>
-                handleQuantityChange(index, e.target.value, "quantity")
-              }
-            >
-              Quantity
-            </Field>
-            <select
-              value={ingredient.unit}
-              onChange={(e) => handleUnitChange(index, e.target.value, "unit")}
-            >
-              <option value="grams">grams</option>
-              <option value="ml">ml</option>
-              <option value="l">l</option>
-              <option value="tsp">tsp</option>
-              <option value="unit">unit</option>
-            </select>
-            <Button onClick={() => removeIngredient(index)}>Remove</Button>
-          </View>
-        ))}
-        <Button onClick={addIngredient}>Add Ingredient</Button>
-        <Field id="description">Description</Field>
+    <form onSubmit={handleCreateRecipeSubmit} className="create-recipe-form">
+      <div className="form-field">
+        <label htmlFor="title">Title</label>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          placeholder="Title"
+          required
+        />
+      </div>
+      <div className="form-field">
+        <label htmlFor="thumbnail">Thumbnail URL</label>
+        <input
+          id="thumbnail"
+          name="thumbnail"
+          type="url"
+          placeholder="Thumbnail URL"
+          required
+        />
+      </div>
+      <div className="form-field">
+        <label htmlFor="cookTime">Cook Time (minutes)</label>
+        <input
+          id="cookTime"
+          name="cookTime"
+          type="number"
+          placeholder="Cook Time (minutes)"
+          required
+        />
+      </div>
+      <div className="form-field">
+        <label htmlFor="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Description"
+          required
+        ></textarea>
+      </div>
 
-        <View direction="row">
-          <SubmitButton>Create Recipe</SubmitButton>
-          <Button onClick={handleCancelCreateRecipeClick}>Cancel</Button>
-        </View>
-      </FormWithFeedback>
-    </View>
+      {ingredients.map((ingredient, index) => (
+        <div key={index} className="ingredient-input">
+          <input
+            type="text"
+            placeholder="Ingredient Name"
+            value={ingredient.name}
+            onChange={(e) =>
+              handleIngredientChange(index, "name", e.target.value)
+            }
+            required
+          />
+          <input
+            type="number"
+            placeholder="Quantity"
+            value={ingredient.quantity}
+            onChange={(e) =>
+              handleIngredientChange(index, "quantity", e.target.value)
+            }
+            required
+          />
+          <select
+            value={ingredient.unit}
+            onChange={(e) =>
+              handleIngredientChange(index, "unit", e.target.value)
+            }
+            required
+          >
+            <option value="grams">grams</option>
+            <option value="ml">ml</option>
+            <option value="l">l</option>
+            <option value="tsp">tsp</option>
+            <option value="unit">unit</option>
+          </select>
+          <button
+            type="button"
+            onClick={() => removeIngredient(index)}
+            className="remove-ingredient-button"
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+
+      <button
+        type="button"
+        onClick={addIngredient}
+        className="add-ingredient-button"
+      >
+        Add Ingredient
+      </button>
+
+      <div className="form-actions">
+        <button type="submit" className="submit-button">
+          Create Recipe
+        </button>
+        <button
+          type="button"
+          onClick={handleCancelCreateRecipeClick}
+          className="cancel-button"
+        >
+          Cancel
+        </button>
+      </div>
+      {message && <p>{message}</p>}
+    </form>
   )
 }
 
