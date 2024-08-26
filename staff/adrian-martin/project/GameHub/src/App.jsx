@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 
 import Register from './views/Register'
@@ -14,9 +15,15 @@ import isUserLoggedIn from './logic/isUserLoggedIn'
 import './App.css'
 
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    useEffect(() => {
+        setIsLoggedIn(isUserLoggedIn())
+    }, [])
 
     const handleUserLoggedOut = () => {
         console.log('User has logged out')
+        setIsLoggedIn(false)
     }
 
     return <>
