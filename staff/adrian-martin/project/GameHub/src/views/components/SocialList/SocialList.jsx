@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import logic from '../../../logic/index'
 import ProfileUser from './User/ProfileUser.jsx'
+
 import Searcher from '../Searcher/Searcher.jsx'
 import ScrollTopButton from '../ScrollTopButton/ScrollTopButton.jsx'
+
 import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import './SocialList.css'
@@ -50,6 +52,7 @@ function SocialList() {
             <Header />
             <div className='List-users'>
                 <Searcher onSearch={handleSearchUser} />
+                <ScrollTopButton />
                 {filteredUser.map(user =>
                     <ProfileUser
                         key={user.id}
