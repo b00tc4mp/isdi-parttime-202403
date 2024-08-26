@@ -15,7 +15,7 @@ const createInvoice = (userId, customerId, deliveryNoteIds) => {
       }
 
 
-      return Invoice.findOne().sort({ number: -1 }).select("-__v").lean()
+      return Invoice.findOne({ company: userId }).sort({ number: -1 }).select("-__v").lean()
         .then(lastInvoice => {
           const currentYear = new Date().getFullYear()
           //const currentYear = 2025 // prueba con año 2025 para ver si modifica la factura 
@@ -35,7 +35,7 @@ const createInvoice = (userId, customerId, deliveryNoteIds) => {
 
           const invoiceNumber = `${currentYear}/${String(nextInvoiceNumber).padStart(3, '0')}`
 
-          return Invoice.findOne({ number: invoiceNumber }).select("-__v").lean()
+          return Invoice.findOne({ number: invoiceNumber, company: userId }).select("-__v").lean()
             .then(() => {
               const newInvoice = {
                 date: new Date(),

@@ -83,9 +83,6 @@ export default function NewInvoice() {
         newSelected = [...prevSelected, deliveryNoteId]
       }
 
-      // Imprimimos la lista actualizada de albaranes seleccionados en la consola
-      console.log("Delivery notes seleccionados:", newSelected)
-
       // Devolvemos la nueva lista de albaranes seleccionados para actualizar el estado
       return newSelected
     })

@@ -13,6 +13,10 @@ const updateCustomerProfile = (userId, customerId, updates) => {
     validate.username(updates.username, "username")
     updateFields.username = updates.username
   }
+  if (updates.password) {
+    validate.password(updates.password, "password")
+    updateFields.password = bcrypt.hashSync(updates.password, 10)
+  }
   if (updates.email) {
     validate.email(updates.email, "email")
     updateFields.email = updates.email

@@ -20,10 +20,7 @@ const registerUser = (username, email, password, passwordRepeat) => {
       throw new SystemError("connection error")
     })
     .then((response) => {
-      if (response.status === 201) {
-        console.log("user registered")
-        return
-      }
+      if (response.status === 201) return
 
       return response.json()
         .catch(() => {
