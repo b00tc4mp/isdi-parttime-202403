@@ -48,7 +48,7 @@ function Register() {
 
                 <input id='email' className='Login-input' type='email' placeholder='E-MAIL'></input>
 
-                <input id='password' className='Login-input' placeholder='PASSWORD'></input>
+                <input id='password' className='Login-input' type='password' placeholder='PASSWORD'></input>
 
                 <Button type='submit' className='Login-button'>REGISTER</Button>
 

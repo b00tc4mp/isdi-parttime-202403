@@ -44,7 +44,7 @@ function Login({ }) {
             <FormWithFeedback onSubmit={handleLoginSubmit} className='Login-all'>
                 <input id='username' className='Login-input' placeholder='USERNAME'></input>
 
-                <input id='password' className='Login-input' placeholder='PASSWORD'></input>
+                <input id='password' className='Login-input' type='password' placeholder='PASSWORD'></input>
 
                 <Button type='submit' className='Login-button'>LOGIN</Button>
 
