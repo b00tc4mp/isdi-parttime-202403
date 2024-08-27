@@ -1,16 +1,17 @@
 import { getUserId } from "../../../logic/getUserInfo"
-import TopBar from '../library/TopBar';
-import Header from '../core/Header';
-import FormWithPanel from '../core/FormWithPanel';
-import View from '../core/View';
-import SubmitButton from '../core/SubmitButton';
-import Field from '../core/Field';
-import Title from '../core/Title';
-import { useNavigate, useParams } from "react-router-dom";
+import TopBar from '../library/TopBar'
+import Header from '../core/Header'
+import FormWithPanel from '../core/FormWithPanel'
+import View from '../core/View'
+import SubmitButton from '../core/SubmitButton'
+import Field from '../core/Field'
+import Title from '../core/Title'
+import { useNavigate, useParams } from "react-router-dom"
 import logic from "../../../logic/index"
-import { useState, useEffect } from "react";
-import { IoTrashOutline } from "react-icons/io5";
-import UseContext from "../core/UseContext";
+import { useState, useEffect } from "react"
+import { IoTrashOutline } from "react-icons/io5"
+import UseContext from "../core/UseContext"
+import Confirm from "../core/Confirm"
 
 import './ManageRoom.css'
 
@@ -22,6 +23,7 @@ function ManageRoom() {
   const navigate = useNavigate()
   const [onLoad, setOnLoad] = useState(0)
   const { alert } = UseContext()
+  const [showConfirm, setShowConfirm] = useState(false)
 
   useEffect(() => {
     try {
@@ -45,7 +47,7 @@ function ManageRoom() {
   }, [roomId, onLoad])
 
 
-  const handlerEditRoom = event => {
+  const handleEditRoom = event => {
     event.preventDefault()
 
     const target = event.target
@@ -73,7 +75,7 @@ function ManageRoom() {
       alert(error.message)
     }
   }
-  const handlerBlockRoom = () => {
+  const handleBlockRoom = () => {
     try {
       logic.deleteRoom(userId, roomId)
         .then(() => {
@@ -96,6 +98,10 @@ function ManageRoom() {
     } catch (error) {
       alert(error.message)
     }
+  }
+
+  const handleShowConfirmCancel = () => {
+    setShowConfirm(!showConfirm)
   }
 
   return <div>
@@ -139,28 +145,34 @@ function ManageRoom() {
         <View className='RegisterForm' tag='main'>
           <Title className='TitleCreateRoom'>Edita tu habitación</Title>
 
-          <FormWithPanel onSubmit={handlerEditRoom}>
-            <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' defaultValue={room?.nameRoom || ''} />
+          <FormWithPanel onSubmit={handleEditRoom}>
+            <Field id='nameRoom' type='text' placeholder='Nombre de la habitación' defaultValue={room?.nameRoom} />
 
-            <Field id='image' type='string' placeholder='Imagen (link)' defaultValue={room?.image || ''} />
+            <Field id='image' type='string' placeholder='Imagen (link)' defaultValue={room?.image} />
 
-            <Field id='description' type='string' placeholder='Descripción del alojamiento' defaultValue={room?.description || ''} />
+            <Field id='description' type='string' placeholder='Descripción del alojamiento' defaultValue={room?.description} />
 
-            <Field id='price' type='string' placeholder='Precio por noche' defaultValue={room?.price || ''} />
+            <Field id='price' type='string' placeholder='Precio por noche' defaultValue={room?.price} />
 
             <SubmitButton>Realizar cambios</SubmitButton>
 
-            <div className="Delete">
-              <button onClick={handlerBlockRoom}>Bloquear habitación</button>
-            </div>
           </FormWithPanel>
+
+          <div className="Delete">
+            <button onClick={handleShowConfirmCancel} >Bloquear habitación</button>
+          </div>
+
         </View>
+      )}
+      {showConfirm && (
+        <Confirm
+          setShowConfirmCancel={handleShowConfirmCancel}
+          handleBlockRoom={handleBlockRoom} 
+          
+          />
       )}
     </div>
   </div>
 }
 
 export default ManageRoom
-
-
-//TODO ALERTAS

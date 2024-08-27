@@ -1,4 +1,4 @@
-Router
+##### Router
 
 - Routes for User:
 	- POST /users (Create user)
@@ -20,7 +20,7 @@ Router
 	- GET /bookings/:roomId (Get Room bookings)
 	- DELETE /rooms/:roomId/manage/booking (Cancell Booking)
 	
+##### Test Coverage
 
-
-	![](./coverage/Screenshot%202024-08-26%20at%2013.21.23.png)
+![](./coverage/Screenshot%202024-08-26%20at%2013.21.23.png)
 

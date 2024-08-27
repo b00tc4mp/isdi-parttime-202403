@@ -1,15 +1,16 @@
 import Header from '../core/Header'
 import TopBar from '../library/TopBar'
-import View from '../core/View';
-import Title from '../core/Title';
-import FormWithPanel from '../core/FormWithPanel';
+import View from '../core/View'
+import Title from '../core/Title'
+import FormWithPanel from '../core/FormWithPanel'
 import Field from '../core/Field'
-import SubmitButton from '../core/SubmitButton';
+import SubmitButton from '../core/SubmitButton'
 import logic from '../../../logic/index'
-import { getUserId } from '../../../logic/getUserInfo';
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import UseContext from "../core/UseContext";
+import { getUserId } from '../../../logic/getUserInfo'
+import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import UseContext from "../core/UseContext"
+import Confirm from '../core/Confirm'
 
 import './ManageProfile.css'
 
@@ -18,6 +19,7 @@ function ManageProfile() {
   const navigate = useNavigate()
   const [user, setUser] = useState('')
   const { alert } = UseContext()
+  const [showConfirm, setShowConfirm] = useState(false)
 
   useEffect(() => {
     try {
@@ -48,10 +50,10 @@ function ManageProfile() {
     try {
       logic.editUserContact(userId, updates)
         .then(() => {
-          return logic.getUserName(userId) 
+          return logic.getUserName(userId)
         })
         .then(updatedUser => {
-          setUser(updatedUser) 
+          setUser(updatedUser)
         })
         .catch(error => alert(error.message))
     } catch (error) {
@@ -70,6 +72,10 @@ function ManageProfile() {
     } catch (error) {
       alert(error.message)
     }
+  }
+
+  const handleShowConfirmCancel = () => {
+    setShowConfirm(!showConfirm)
   }
 
   return (
@@ -97,12 +103,20 @@ function ManageProfile() {
 
             <SubmitButton>Realizar cambios</SubmitButton>
 
-            <div className='Delete'>
-              <button onClick={handleCloseAccount}>Eliminar cuenta</button>
-            </div>
-
           </FormWithPanel>
+
+          <div className='Delete'>
+            <button onClick={handleShowConfirmCancel}>Eliminar cuenta</button>
+          </div>
+
         </View>
+
+        {showConfirm && (
+          <Confirm
+            setShowConfirmCancel={handleShowConfirmCancel}
+            handleCloseAccount={handleCloseAccount}
+          />
+        )}
 
       </div>
     </div>

@@ -9,6 +9,8 @@ This app is a PMS (Property Managment System) oriented for hotels and lodges in 
 
 ## Functional
 
+[Figma]()
+
 ### Use Cases
 Guest | Host 
 
@@ -48,11 +50,6 @@ The Guest is the user who searches for and books accommodation. This profile has
 	- View and Edit Profile: Access and update your personal information, such email address and phone number.
 	- Booking History: View a history of all bookings made in the past.
 
-  ### UI Design
-
-  ##Technical
-
-	FIGMA
 
   ### Data Model
 
