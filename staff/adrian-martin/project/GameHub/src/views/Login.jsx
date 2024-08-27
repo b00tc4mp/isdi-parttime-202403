@@ -9,7 +9,7 @@ import Form from '../components/core/Form/Form.jsx'
 import logic from '../logic/index.js';
 import { useNavigate } from 'react-router-dom';
 
-import './Login.css'
+import './LoginRegister.css'
 
 function Login({ }) {
     console.log('Login -> render')

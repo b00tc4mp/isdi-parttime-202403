@@ -10,6 +10,8 @@ import Input from '../components/core/Input/Input.jsx';
 import logic from '../logic/index.js';
 import { useNavigate } from 'react-router-dom';
 
+import './LoginRegister.css'
+
 function Register() {
     console.log('Register -> render')
 
