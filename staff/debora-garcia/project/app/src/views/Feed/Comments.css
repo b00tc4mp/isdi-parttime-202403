@@ -2,12 +2,13 @@
 
 @layer components {
   .Comments {
-    @apply fixed w-[300px] h-[400px] bottom-[100px] left-1/2 transform -translate-x-1/2 bg-slate-500 p-[10px] shadow-lg rounded-md;
+    @apply fixed w-[350px] h-[400px] bottom-[100px] left-1/2 transform -translate-x-1/2 bg-[#cac4c4] p-[10px] shadow-lg rounded-md;
   }
 
   .comments-header {
     @apply flex flex-row justify-between items-center;
   }
+
   .comments-container {
     @apply flex flex-col h-full;
   }
@@ -17,19 +18,19 @@
   }
 
   .comment-form-container {
-    @apply flex flex-row  pt-2 justify-between;
+    @apply flex flex-row justify-between items-center pt-2; 
   }
 
-  .Comments .comment-form {
-    @apply flex justify-between;
+  .comment-form {
+    @apply flex flex-row items-center w-full
   }
 
   .comment-form .Field {
-    @apply m-1 p-2 w-full;
+    @apply m-1 p-2 w-full
   }
 
   .submit-comment-button {
-    @apply bg-[#a2918d] py-2 px-4 rounded-md;
+    @apply bg-[#a2918d] py-2 px-4 rounded-md
   }
 
   .cancel-comment-button {
@@ -41,7 +42,7 @@
   }
 
   .comment-form input::placeholder {
-    @apply text-[15px] tracking-[-0.01rem];
-    word-spacing: -5px;
+    @apply text-[15px] tracking-tight; 
+    word-spacing: -1px; 
   }
 }

@@ -1,7 +1,7 @@
 @tailwind components;
 @layer components {
   .WorkoutDetails {
-    @apply flex flex-col justify-center items-center gap-1  p-0 mt-8 w-[350px] h-[420px] rounded-[7px];
+    @apply flex flex-col justify-center items-center gap-1  p-0 mt-8 w-[350px] h-[420px]  rounded-[7px];
   }
 
   .buttons-container {

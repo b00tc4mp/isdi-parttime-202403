@@ -2,8 +2,8 @@
 
 @layer components {
 
-  .result-details-container {
-    @apply flex flex-col h-full p-4 gap-5 justify-between;
+  .ResultDetails {
+    @apply flex flex-col h-full p-4 gap-5 justify-between ;
   }
 
 
@@ -11,7 +11,9 @@
     @apply flex justify-between items-center mb-4;
   }
 
-
+  .ResultDetails .result-details {
+    @apply flex flex-col h-full pt-2 items-start ;
+  }
   .result-title {
     @apply text-xl font-bold;
   }
