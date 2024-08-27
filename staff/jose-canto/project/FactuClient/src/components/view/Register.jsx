@@ -9,6 +9,7 @@ import Title from "../Title"
 import Field from "../core/Field"
 import Button from "../core/Button"
 import Main from "../core/Main"
+import PasswordField from "../PasswordField"
 import Footer from "../core/Footer"
 
 import "./Register.css"
@@ -59,8 +60,8 @@ export default function Register() {
         <form className="RegisterForm" onSubmit={handleRegisterSubmit}>
           <Field id="username" type="text" placeholder="Nombre de Usuario"></Field>
           <Field id="email" type="email" placeholder="Email"></Field>
-          <Field id="password" type="password" placeholder="Password"></Field>
-          <Field id="confirmPassword" type="password" placeholder="Confirmar password"></Field>
+          <PasswordField id="password" placeholder="Password"></PasswordField>
+          <PasswordField id="confirmPassword" placeholder="Confirmar password"></PasswordField>
           <Button type="submit">Registrate</Button>
 
           <div className="Link">

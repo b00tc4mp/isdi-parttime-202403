@@ -82,20 +82,28 @@ export default function InvoiceInfo() {
       <Main className="MainInvoiceInfo">
         <div className="DataContainer">
           <div className="CompanyData">
-            {invoice?.company && <p>{invoice.company.companyName}</p>}
-            {invoice?.company && <p>{invoice.company.address}</p>}
-            {invoice?.company && <p>{invoice.company.taxId}</p>}
-            {invoice?.company && <p>{invoice.company.email}</p>}
-            {invoice?.company && <p>{invoice.company.phone}</p>}
+            {invoice?.company && (
+              <ul>
+                <li>{invoice.company.companyName}</li>
+                <li>{invoice.company.address}</li>
+                <li>{invoice.company.taxId}</li>
+                <li>{invoice.company.email}</li>
+                <li>{invoice.company.phone}</li>
+              </ul>
+            )}
           </div>
 
           <div className="CustomerData">
             <p className="DataText">DATOS CLIENTE:</p>
-            {invoice?.customer && <p>{invoice.customer.companyName}</p>}
-            {invoice?.customer && <p>{invoice.customer.address}</p>}
-            {invoice?.customer && <p>{invoice.customer.taxId}</p>}
-            {invoice?.customer && <p>{invoice.customer.email}</p>}
-            {invoice?.customer && <p>{invoice.customer.phone}</p>}
+            {invoice?.customer && (
+              <ul>
+                <li>{invoice.customer.companyName}</li>
+                <li>{invoice.customer.address}</li>
+                <li>{invoice.customer.taxId}</li>
+                <li>{invoice.customer.email}</li>
+                <li>{invoice.customer.phone}</li>
+              </ul>
+            )}
           </div>
         </div>
         <div className="InvoiceContainer">

@@ -3,6 +3,8 @@
 
 # FactuClient
 
+<img style="width:50%" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3R3MmRvcDR3Znd5N3RoczF4MjV1ZWJrc2t6Y2tuNWt6eWU0ZzV3NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FAEEL82CUc1JPBas1V/giphy.webp" alt="Image Invoice" >
+
 **FactuClient** es una aplicación de gestión diseñada para facilitar la creación, visualización y manejo de albaranes y facturas de clientes. Los usuarios pueden crear perfiles de clientes, gestionar sus datos, generar facturas a partir de albaranes existentes, y descargar o compartir estas facturas y albaranes en formato PDF. Este proyecto es parte del proyecto final del BootCamp de ISDICODERS.
 
 ## Tecnologías Utilizadas
@@ -42,14 +44,14 @@
 2. **Instalar las dependencias del frontend:**
 
    ```bash
-   cd client
+   cd factuclient
    npm install
    ```
 
 3. **Instalar las dependencias del backend:**
 
    ```bash
-   cd ../server
+   cd ../api
    npm install
    ```
 
@@ -65,13 +67,14 @@
 5. **Iniciar el servidor:**
 
    ```bash
-   npm run dev
+   cd api
+   npm run start
    ```
 
 6. **Iniciar el frontend:**
 
    ```bash
-   cd client
+   cd factuclient
    npm run dev
    ```
 
@@ -89,7 +92,7 @@ Una vez que el servidor y el frontend están en funcionamiento, puedes acceder a
 
 ```
 FactuClient/
-├── api/                      # Código fuente del backend
+├── api/                  
 │   ├── coverage/             # Reportes de cobertura de pruebas
 │   ├── handlers/             # Manejadores de rutas y lógica de controladores
 │   ├── logic/                # Lógica de negocio y funciones utilitarias
@@ -98,7 +101,8 @@ FactuClient/
 │   ├── utils/                # Funciones utilitarias y helpers
 │   ├── routes.js             # Definición de las rutas de la API
 │   └── server.js             # Configuración e inicio del servidor
-├── doc/                      # Documentación adicional del proyecto
+├── doc/                      # Documentacion proyecto modelo de datos
+├── com/                      # Package validate, errors.
 ├── FactuClient/              # Código fuente del frontend
 │   ├── dist/                 # Archivos estáticos generados para producción
 │   ├── public/               # Recursos públicos, como imágenes y favicons

@@ -12,6 +12,7 @@ import Button from "../core/Button"
 import Field from "../core/Field"
 import Main from "../core/Main"
 import Footer from "../core/Footer"
+import PasswordField from "../PasswordField"
 
 export default function Login() {
   const { alert } = useContext()
@@ -64,7 +65,7 @@ export default function Login() {
       <Main className="LoginMain">
         <form className="LoginForm" onSubmit={handleLoginSubmit}>
           <Field id="username" type="text" placeholder="Username"></Field>
-          <Field id="password" type="password" placeholder="Password"></Field>
+          <PasswordField id="password" placeholder="Password"></PasswordField>
           <Button type="submit">Login</Button>
 
           <div className="Link">

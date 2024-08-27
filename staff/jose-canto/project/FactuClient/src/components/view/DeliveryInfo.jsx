@@ -22,6 +22,8 @@ import logic from "../../logic/index"
 import "./DeliveryInfo.css"
 
 export default function DeliveryInfo() {
+  const { alert } = useContext()
+
   const navigate = useNavigate()
   const { deliveryNoteId } = useParams()
   const [deliveryNote, setDeliveryNote] = useState(null)
@@ -37,9 +39,7 @@ export default function DeliveryInfo() {
           setDeliveryNote(deliveryNote)
 
           const calculateTotal = deliveryNote.works.reduce(
-            (accumulator, work) => accumulator + work.quantity * work.price,
-            0
-          )
+            (accumulator, work) => accumulator + work.quantity * work.price, 0)
           setTotal(calculateTotal)
         })
         .catch((error) => {
@@ -85,9 +85,13 @@ export default function DeliveryInfo() {
 
       <Main className={"MainDeliveryInfo"}>
         <div className="DeliveryInfoCustomer">
-          {deliveryNote?.customer && <p>{deliveryNote.customer.companyName}</p>}
-          {deliveryNote?.customer && <p>{deliveryNote.customer.address}</p>}
-          {deliveryNote?.customer && <p>{deliveryNote.customer.taxId}</p>}
+          {deliveryNote?.customer && (
+            <ul className="flex flex-col items-center">
+              <li>{deliveryNote.customer.companyName}</li>
+              <li>{deliveryNote.customer.address}</li>
+              <li>{deliveryNote.customer.taxId}</li>
+            </ul>
+          )}
         </div>
         <div className="DeliveryWork">
           <div className="TitleDateContainer">
