@@ -12,6 +12,7 @@ import Text from '../../../components/core/Text/Text';
 
 import PanelEditUsername from './panelEditUsername/PanelEditUsername';
 import ProfileImage from '../ProfileImage/ProfileImage';
+import GameListUser from '../SocialList/GameListUser/GameListUser'
 
 import './Profile.css'
 
@@ -93,7 +94,7 @@ function Profile() {
 
             <div className='Separator'></div>
             {userId && (
-                <Button onClick={handleGoHomeOrGameListUser} className='Game-List'>Game List</Button>
+                <GameListUser />
             )}
         </div>
 

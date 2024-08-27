@@ -58,8 +58,7 @@ function GameListUser() {
     }
 
     return (<>
-        <Header />
-        <div className='List'>
+        <div className='List-user-target'>
             <Searcher onSearch={handleSearch} />
             <ScrollTopButton />
             {filteredGames.map((game, index) =>
@@ -68,7 +67,6 @@ function GameListUser() {
                     game={game}
                 />)}
         </div>
-        <Footer />
     </>
     )
 }

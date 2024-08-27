@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-    .List {
-        @apply mb-32 mt-24
+    .List-user-target{
+        @apply mt-6 mb-28
     }
 }
