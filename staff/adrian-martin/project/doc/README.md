@@ -1,10 +1,10 @@
 # Gamehub
 
-GameHub is an application designed for video game players. It allows you to create a custom list of your favorite games, where you can rate each title. Additionally, it has a section displaying the lists of all players, enabling you to view and rate the lists of others. Each player will have their own profile
+GameHub is an application designed for video game players. It allows you to create a custom list of your favorite games, where you can rate each title. Additionally, it has a section displaying the lists of all players. Each player will have their own profile.
 
-## Application to store completed work and generate client invoices.
+We will gradually implement more features into the app.
 
-![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY241YWIzaHFuajRxaDBlN2trN3YzNDBjbzJyc2Uxc3Fuem0xYjNzcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/L8K62iTDkzGX6/giphy.gif)
+![alt text](image-1.png)
 
 ## Functional
 
@@ -13,7 +13,9 @@ GameHub is an application designed for video game players. It allows you to crea
 User
 - register user
 - log in
-- create game list
+- implement game in your gameList
+- edit the games
+- delete the games
 - view the game list
 - edit the game list
 - view others profiles
@@ -34,7 +36,6 @@ User
 - username (string, required)  nombre de usuario unico
 - email (string, required)     direccion de correo electronico
 - password(string, required)   contraseña del usuario
-
 - profilePicture (string)      image de perfil del usuario
 - gameList (game.id)           id de cada juego
 
@@ -46,6 +47,12 @@ User
 - imageGame (string, required)           image del videojuego
 - rating (number, required)              nota asignada al videojuego por el usuario
 - hoursInTheGame (number, required)      cantidad de horas que el usuario ha jugado
+
+## Technologies Used
+
+- Frontend: React, Vite
+- Backend: Node.js
+- Testing: Mocha Chai
 
 ### Code Coverage
 
