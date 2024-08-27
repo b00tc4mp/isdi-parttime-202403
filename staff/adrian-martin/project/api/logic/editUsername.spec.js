@@ -15,7 +15,7 @@ const { ObjectId } = Types
 
 // npm run test-inspect
 
-describe('editUsername', () => {
+describe('succeeds editUsername', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
     beforeEach(() => User.deleteMany())
 
@@ -32,19 +32,16 @@ describe('editUsername', () => {
     })
 
     it('succeeds in editing the username', () => {
-        // Crea un usuario inicial con un nombre de usuario específico
         return bcrypt.hash('123132123', 8)
             .then(hash => User.create({ name: 'Mocha', username: 'MochaChai', email: 'Mocha@Chai.com', password: hash }))
             .then(user => {
-                // Llama a editUsername para actualizar el nombre de usuario
                 return editUsername(user._id, 'Adrian')
                     .then(updatedUser => {
-                        // Verifica que los campos del usuario actualizado sean correctos
+
                         expect(updatedUser.name).to.equal('Mocha')
                         expect(updatedUser.username).to.equal('Adrian')
                         expect(updatedUser.email).to.equal('Mocha@Chai.com')
 
-                        // Verifica que la contraseña almacenada sea la correcta
                         return bcrypt.compare('123132123', updatedUser.password)
                             .then(isMatch => {
                                 expect(isMatch).to.be.true
@@ -56,11 +53,9 @@ describe('editUsername', () => {
     it('fails on non-existing user', () => {
         return editUsername(new ObjectId().toString(), 'Adrian')
             .then(() => {
-                // Si editUsername no lanza un error, forzamos el test a fallar
                 throw new Error('Expected NotFoundError was not thrown')
             })
             .catch(error => {
-                // Verifica que el error sea una instancia de NotFoundError
                 expect(error).to.be.an.instanceOf(NotFoundError)
                 expect(error.message).to.equal('User not found')
             })

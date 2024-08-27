@@ -16,7 +16,6 @@ describe('getTargetProfile', () => {
     it('succeeds on existing user', () => {
         let userId
 
-        // Crea un usuario válido
         return bcrypt.hash('123132123', 8)
             .then(hash => User.create({ name: 'Mocha', username: 'MochaChai', email: 'Mocha@Chai.com', password: hash }))
             .then(user => {
