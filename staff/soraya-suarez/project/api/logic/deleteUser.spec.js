@@ -64,7 +64,7 @@ describe('deleteUser', () => {
                 email: 'soraya@suarez.com',
                 phone: '',
                 avatar: '',
-                role: 'admin',
+                role: 'user',
                 manager: new ObjectId().toString(),
                 available: true,
                 password: hash 
@@ -77,10 +77,49 @@ describe('deleteUser', () => {
             })
     })
 
+    it('fails on-non permited role', () => {
+        let errorThrown
+
+        return bcrypt.hash('123123123', 8)
+            .then(hash => User.create({ 
+                name: 'Soraya', 
+                surname: 'Suarez', 
+                email: 'soraya@suarez.com',
+                phone: '',
+                avatar: '',
+                role: 'user',
+                manager: new ObjectId().toString(),
+                available: true,
+                password: hash 
+            }))
+            .then(user =>
+                bcrypt.hash('123123123', 8)
+                    .then(hash => User.create({ 
+                        name: 'Agustin', 
+                        surname: 'Suarez', 
+                        email: 'agustin@suarez.com',
+                        phone: '',
+                        avatar: '',
+                        role: 'user',
+                        manager: new ObjectId().toString(),
+                        available: true,
+                        password: hash 
+                    })
+                    .then(userToDelete => ({ user, userToDelete }))
+                    )
+            )
+            .then(({ user, userToDelete }) => deleteUser(user.id, userToDelete.id))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(CredentialsError)
+                expect(errorThrown.message).to.equal('role not permited')
+            })
+    })
+
     it('fails on non-existing user to delete', () => {
         let errorThrown
 
-        bcrypt.hash('123123123', 8)
+        return bcrypt.hash('123123123', 8)
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
@@ -97,29 +136,6 @@ describe('deleteUser', () => {
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError)
                 expect(errorThrown.message).to.equal('user to delete not found')
-            })
-    })
-    
-    it('fails on non-permiting role user to delete', () => {
-        let errorThrown
-
-        bcrypt.hash('123123123', 8)
-            .then(hash => User.create({ 
-                name: 'Soraya', 
-                surname: 'Suarez', 
-                email: 'soraya@suarez.com',
-                phone: '',
-                avatar: '',
-                role: 'user',
-                manager: new ObjectId().toString(),
-                available: true,
-                password: hash 
-            }))
-            .then((user) => deleteUser(user.id, new ObjectId().toString()))
-            .catch(error => errorThrown = error)
-            .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(CredentialsError)
-                expect(errorThrown.message).to.equal('role not permited')
             })
     })
 

@@ -98,7 +98,7 @@ describe('modifyTaskAsCreator', () => {
     it('fails on non-match user and task creator', () => {
         let errorThrown
 
-        bcrypt.hash('123123123', 8)
+        return bcrypt.hash('123123123', 8)
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 

@@ -98,7 +98,7 @@ describe('releaseTask', () => {
     it('fails on non-match user and task owner', () => {
         let errorThrown
 
-        bcrypt.hash('123123123', 8)
+        return bcrypt.hash('123123123', 8)
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
@@ -124,20 +124,18 @@ describe('releaseTask', () => {
                 })
                 .then((task) => ({ user, task }))
             )
-            .then(({ user, task }) => 
-                releaseTask(user.id, task.id, 'observando')
-            )
+            .then(({ user, task }) => releaseTask(user.id, task.id, 'observando'))
             .catch(error => errorThrown = error)
             .finally(() => {
-            expect(errorThrown).to.be.an.instanceOf(MatchError)
-            expect(errorThrown.message).to.equal('you are not the owner')
+                expect(errorThrown).to.be.an.instanceOf(MatchError)
+                expect(errorThrown.message).to.equal('you are not the owner')
             })
     })
 
     it('fails on non-permitted cancel private task', () => {
         let errorThrown
 
-        bcrypt.hash('123123123', 8)
+        return bcrypt.hash('123123123', 8)
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
@@ -163,13 +161,11 @@ describe('releaseTask', () => {
                 })
                 .then((task) => ({ user, task }))
             )
-            .then(({ user, task }) => 
-                releaseTask(user.id, task.id, 'observando')
-            )
+            .then(({ user, task }) => releaseTask(user.id, task.id, 'observando'))
             .catch(error => errorThrown = error)
             .finally(() => {
-            expect(errorThrown).to.be.an.instanceOf(MatchError)
-            expect(errorThrown.message).to.equal('task is private, cannot be canceled')
+                expect(errorThrown).to.be.an.instanceOf(MatchError)
+                expect(errorThrown.message).to.equal('task is private, cannot be canceled')
             })
     })
 

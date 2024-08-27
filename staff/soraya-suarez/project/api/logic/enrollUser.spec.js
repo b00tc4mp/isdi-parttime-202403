@@ -61,7 +61,7 @@ describe('enrollUser', () => {
     it('fails on non-permiting role user to enroll', () => {
         let errorThrown
 
-        bcrypt.hash('123123123', 8)
+        return bcrypt.hash('123123123', 8)
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 
@@ -84,7 +84,7 @@ describe('enrollUser', () => {
     it('fails on-existing user to enroll', () => {
         let errorThrown
 
-        bcrypt.hash('123123123', 8)
+        return bcrypt.hash('123123123', 8)
             .then(hash => User.create({ 
                 name: 'Soraya', 
                 surname: 'Suarez', 

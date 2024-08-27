@@ -1,13 +1,9 @@
-# App
+# Commands to initialize the application
 
 ## Installation
 
-```sh
-$ npm i
-```
+npm i
 
-## Execution
+## Start application
 
-```sh
-$ npm start
-```
+npm start

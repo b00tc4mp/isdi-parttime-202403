@@ -83,3 +83,13 @@ Admin
 - visible (boolean, required, default true)
 - observations (string, optional)
 - completionTime (number, required if state is finished)
+
+## Technologies Used
+
+- Frontend: React, Vite
+- Backend: Node.js
+- Testing: Mocha Chai
+
+### Code Coverage
+
+![alt text](coverage.png)
