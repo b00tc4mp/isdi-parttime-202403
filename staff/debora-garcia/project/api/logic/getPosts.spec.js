@@ -69,7 +69,7 @@ describe("getPosts", () => {
                 expect(posts[0].comments).to.be.an.instanceOf(Array)
             })
     )
-
+//TODO revisar este test
     it("fails on non-existing user", () => {
         let errorThrown
 

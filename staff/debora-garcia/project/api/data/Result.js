@@ -31,6 +31,7 @@ const result = new Schema({
     }
 })
 
+//TODO actualizar specs con el active
 
 const Result = model("Result", result)
 
