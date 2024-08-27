@@ -1,8 +1,12 @@
 import { useState } from 'react'
-
 import { Link, useNavigate } from 'react-router-dom'
 
+import useContext from '../useContext'
+
 import { TiArrowForward } from 'react-icons/ti'
+
+import { SystemError } from 'com/errors'
+
 
 import logic from '../logic/index'
 
@@ -16,6 +20,8 @@ import Footer from './components/Footer'
 import ImageSelect from './components/ImageSelect'
 
 function Register() {
+    const { alert } = useContext()
+
     const navigate = useNavigate()
     const [selectedAvatar, setSelectedAvatar] = useState('avatars/azul.png')
 
@@ -34,8 +40,11 @@ function Register() {
         try {
             logic.registerAdmin(name, username, email, password, passwordRepeat, avatar, family)
                 .then(() => navigate('/login'))
-                .catch(error => {
-                    alert(error.message)
+                .catch((error) => {
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+                    }
+                    alert("Invalid format")
                 })
         } catch (error) {
             alert(error.message)

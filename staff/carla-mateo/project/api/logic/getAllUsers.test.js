@@ -7,7 +7,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getAllUsers('66be3bfaa0b65ba9d332f68e')
+            getAllUsers('66cb5c15ce0823db99872fcb')
                 .then((users) => {
                     console.log(users)
                 })

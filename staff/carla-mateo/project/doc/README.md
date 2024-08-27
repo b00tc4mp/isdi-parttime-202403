@@ -84,3 +84,6 @@ Task
 - assignee(User.id)
 
 
+Code coverage
+
+![alt text](image.png)

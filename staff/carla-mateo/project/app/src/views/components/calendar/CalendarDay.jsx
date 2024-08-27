@@ -1,12 +1,14 @@
 import React from 'react'
+
 const CalendarDay = ({ day, className, hasTasks, isToday, isPastTask, handleShowTasks, currentDate }) => {
+
 
     return (
         <>
             {hasTasks ? (
                 <button
                     onClick={handleShowTasks(new Date(currentDate))}
-                    className={`${className} calendar-day calendar-day-with-tasks ${isToday ? 'calendar-day-today' : ''} ${isPastTask ? 'calendar-day-past-task' : ''}`}
+                    className={`${className} calendar-day-with-tasks ${isToday ? 'calendar-day-today' : ''} ${isPastTask ? 'calendar-day-past-task' : ''}`}
                 >
                     {day}
                 </button>

@@ -1,5 +1,8 @@
-
 import { Link, useNavigate } from 'react-router-dom'
+import useContext from '../useContext'
+
+import { SystemError } from 'com/errors'
+
 import { TiArrowBack } from 'react-icons/ti'
 
 import logic from '../logic/index'
@@ -13,6 +16,8 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 function Login() {
+    const { alert } = useContext()
+
     const navigate = useNavigate()
 
     const handleLoginSubmit = event => {
@@ -25,8 +30,11 @@ function Login() {
         try {
             logic.loginAdmin(username, password)
                 .then(() => navigate('/'))
-                .catch(error => {
-                    alert(error.message)
+                .catch((error) => {
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+                    }
+                    alert("Not found")
                 })
         } catch (error) {
             alert(error.message)

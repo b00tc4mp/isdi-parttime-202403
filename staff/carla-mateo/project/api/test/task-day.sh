@@ -1,1 +1,0 @@
-curl -H GET http://localhost:9090/taskDay  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmM0ZGYzMTk5MjM2ZjdmNzY2MTJjYjAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjQyNjI2ODIsImV4cCI6MTcyNTk5MDY4Mn0.lie8TukQErFKNvMFVD-_SoDsONqtsFYkVhh0NI23DF8" 

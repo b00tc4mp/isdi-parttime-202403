@@ -7,7 +7,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            registerUser('66c2459f698221d4016c6e15', 'CASA', 'ron', 'ron@email.com', '1234', 'avatars/.jpg', 'familyOne')
+            registerUser('66cac4ee4a7629597f88bb2b', 'HOWARDS', 'ana', 'ana@email.com', '1234', 'avatars/.jpg', 'mateo')
                 .then(() => {
                     console.log('User Created')
                 })

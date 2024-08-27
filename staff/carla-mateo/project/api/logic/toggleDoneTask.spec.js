@@ -10,6 +10,8 @@ const { MONGODB_URL_TEST } = process.env
 
 const { ObjectId } = Types
 
+debugger
+
 describe("toggleDoneTask", () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()).then(() => Task.deleteMany()))
 

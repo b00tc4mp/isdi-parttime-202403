@@ -102,12 +102,12 @@ describe("createTask", () => {
     it('fails on invalid date', () => {
         let errorThrown
         try {
-            createTask(new ObjectId().toString(), new ObjectId().toString(), 'title', 'description', 'new Date')
+            createTask(new ObjectId().toString(), new ObjectId().toString(), 'title', 'description', 'ivalid-Date')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('invalid date format')
+            expect(errorThrown.message).to.equal('date is not valid')
         }
     })
 

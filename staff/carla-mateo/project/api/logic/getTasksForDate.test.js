@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getTasksForDate('66c71ba3fff37f070d5cf0d3', new Date('2024-08-04'))
+            getTasksForDate('66cac4ee4a7629597f88bb2b', new Date('2024-08-31'))
                 .then((family) => {
                     console.log(family)
                 })

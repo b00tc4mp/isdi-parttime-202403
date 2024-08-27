@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import useContext from '../../useContext'
 import Button from '../../components/core/Button'
 import ImageSelect from './ImageSelect'
 import logic from '../../logic'
 
 function UpdateAvatarForm({ onSuccess }) {
+    const { alert } = useContext()
+
     const [selectedAvatar, setSelectedAvatar] = useState('avatars/azul.png')
     const [message, setMessage] = useState('')
 
@@ -21,9 +24,10 @@ function UpdateAvatarForm({ onSuccess }) {
 
         logic.updateAvatar(selectedAvatar)
             .then(() => onSuccess())
-            .catch(error => {
-                console.error(error.message)
-                setMessage(error.message)
+            .catch((error) => {
+                if (error instanceof SystemError) {
+                    alert(error.message)
+                }
             })
     }
 

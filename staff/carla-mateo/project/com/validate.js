@@ -72,7 +72,7 @@ function validateAvatar(avatar, explain = 'avatar') {
 }
 
 function validateDate(date, explain = 'date') {
-    if (!(date instanceof Date)) {
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
         throw new ContentError(`${explain} is not valid`);
     }
 }

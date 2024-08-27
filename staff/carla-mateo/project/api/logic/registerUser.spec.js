@@ -12,6 +12,7 @@ import { ContentError, NotFoundError, DuplicityError } from 'com/errors.js'
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
 
+debugger
 
 describe('registerUser', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))

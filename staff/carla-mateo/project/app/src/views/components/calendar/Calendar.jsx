@@ -33,8 +33,6 @@ const Calendar = () => {
         setCurrentDate(newDate)
     }
 
-
-
     const handleShowTasks = (dayDate) => () => {
         logic.getTasksForDate(dayDate)
             .then(tasks => {

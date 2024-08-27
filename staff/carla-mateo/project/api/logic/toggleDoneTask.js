@@ -1,6 +1,6 @@
 import { User, Task } from '../data/index.js'
 import validate from 'com/validate.js'
-import { ContentError, NotFoundError, SystemError } from 'com/errors.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 function toggleDoneTask(userId, taskId) {
     validate.id(userId, 'userId')

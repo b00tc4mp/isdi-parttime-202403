@@ -11,6 +11,7 @@ import { ContentError, DuplicityError, MatchError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 
+debugger
 
 describe('registerAdmin', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))

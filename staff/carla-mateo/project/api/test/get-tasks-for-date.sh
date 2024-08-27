@@ -1,1 +1,1 @@
-curl -H GET http://localhost:9090/getTasks/2024-08-30 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmM3MTU3ZDgwZjIxNThhN2VhYTBiYzUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjQzNDM4OTQsImV4cCI6MTcyNjA3MTg5NH0.OUyiZtkdZbadyOuQLYp5GGI4wCEE2nhCBcyCBaCXyFE" -v
+curl -H GET http://localhost:9090/getTasks/2024-08-31 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmNhYzRlZTRhNzYyOTU5N2Y4OGJiMmIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjQ3MTAzMTUsImV4cCI6MTcyNjQzODMxNX0.pis8urgLExk5rfXc84cuMKnpEaoBSYZXw2Rk-MQeAGs" -v

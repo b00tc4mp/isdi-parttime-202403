@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import useContext from '../../useContext'
 import Button from '../../components/core/Button'
 import Field from '../../components/core/Field'
 import logic from '../../logic'
 
 function UpdateEmailForm({ onSuccess }) {
+    const { alert } = useContext()
     const [message, setMessage] = useState('')
 
     const handleUpdateEmailSubmit = (event) => {
@@ -13,9 +15,11 @@ function UpdateEmailForm({ onSuccess }) {
 
         logic.updateEmail(email)
             .then(() => onSuccess())
-            .catch(error => {
-                console.error(error.message)
-                setMessage(error.message)
+            .catch((error) => {
+                if (error instanceof SystemError) {
+                    alert(error.message)
+                }
+                alert("Not found")
             })
     }
 

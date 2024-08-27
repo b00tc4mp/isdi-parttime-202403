@@ -12,9 +12,7 @@ const createTask = (userId, assigneeUserId, title, description, date) => {
     let taskDate
     if (date) {
         const parsedDate = new Date(date)
-        if (isNaN(parsedDate.getTime())) {
-            throw new ContentError('invalid date format')
-        }
+        validate.date(parsedDate, 'date')
         taskDate = parsedDate
     }
 

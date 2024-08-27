@@ -16,14 +16,13 @@ router.delete('/profile/:userId', routes.deleteProfileHandler)
 router.get('/users/:targetUserId', routes.getUsernameHandler)
 router.get('/getallusers', routes.getAllUsersHandler)
 router.get('/getalltasks', routes.getAllTasksHandler)
-router.get('/getTasks/:date', routes.getTasksForDateHandler)
-
-
-router.get('/taskDay/:selectedDate', routes.taskDayHandler)
+router.get('/gettasks/:date', routes.getTasksForDateHandler)
+router.get('/getdaywithtasks', routes.getDayWithTaskHandler)
 
 router.patch('/username', jsonBodyParser, routes.updateUsernameHandler)
 router.patch('/email', jsonBodyParser, routes.updateEmailHandler)
 router.patch('/avatar', jsonBodyParser, routes.updateAvatarHandler)
 router.patch('/task/:taskId/done', jsonBodyParser, routes.toggleDoneTaskHandler)
+router.patch('/description/:taskId', jsonBodyParser, routes.updateTaskDescriptionHandler)
 
 export default router

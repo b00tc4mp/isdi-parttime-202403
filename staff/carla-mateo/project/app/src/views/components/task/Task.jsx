@@ -6,13 +6,14 @@ import { RiMenuAddFill } from "react-icons/ri"
 
 import Heading from '../../../components/core/Heading'
 import Time from '../../../components/core/Time'
-import Button from '../../../components/core/Button'
 import Confirm from '../Confirm'
+import UpdateTaskDescription from '../updateTaskDescription'
 
 function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
     const [showConfirm, setShowConfirm] = useState(false)
     const [showOptions, setShowOptions] = useState(false)
     const [showDescription, setShowDescription] = useState(false)
+    const [showEditForm, setShowEditForm] = useState(false)
 
     const Options = () => {
         setShowOptions(!showOptions);
@@ -59,6 +60,16 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
         }
     }
 
+    const handleEditTask = () => {
+        setShowEditForm(true)
+        setShowOptions(false)
+    }
+
+    const handleUpdateTaskSuccess = () => {
+        setShowEditForm(false)
+        onTaskUpdated()
+    }
+
     const userCanToggleTask = () => {
         const userId = logic.getUserId()
         return !task.assignee || task.assignee._id === userId
@@ -95,6 +106,12 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
                         >
                             Delete Task
                         </button>
+                        <button
+                            onClick={handleEditTask}
+                            className='w-full text-left px-4 py-2 hover:bg-green-100 text-color-footer'
+                        >
+                            Edit Task
+                        </button>
                     </div>
                 )}
             </div>
@@ -110,6 +127,13 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
                 message="Are you sure you want to delete this task?"
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
+            />
+        )}
+
+        {showEditForm && (
+            <UpdateTaskDescription
+                onSuccess={handleUpdateTaskSuccess}
+                task={task}
             />
         )}
 

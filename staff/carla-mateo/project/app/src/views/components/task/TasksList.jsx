@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import useContext from '../../../useContext'
 
 import { IoCalendarNumber } from 'react-icons/io5'
 import { IoHome } from 'react-icons/io5'
@@ -22,6 +23,8 @@ import View from '../../library/View'
 import logic from '../../../logic/index'
 
 function TasksList({ refreshStamp }) {
+    const { alert } = useContext()
+
     const navigate = useNavigate()
     const [tasks, setTasks] = useState([])
     const [showForm, setShowForm] = useState(false)
@@ -29,16 +32,18 @@ function TasksList({ refreshStamp }) {
     useEffect(() => {
         loadTasks()
     }, [refreshStamp])
+
     const loadTasks = () => {
         try {
             logic.getAllTasks()
                 .then((tasks) => setTasks(tasks))
                 .catch(error => {
-                    console.error(error)
-                    alert(error.message)
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+                    }
+                    alert("Problem with tasks")
                 })
         } catch (error) {
-            console.error(error)
             alert(error.message)
         }
     }

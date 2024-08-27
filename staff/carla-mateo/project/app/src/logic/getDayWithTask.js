@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 
-const taskDay = (date) => {
-    return fetch(`${import.meta.env.VITE_API_URL}/taskDay/${date.toISOString()}`, {
+const getDayWithTask = () => {
+    return fetch(`${import.meta.env.VITE_API_URL}/getdaywithtasks`, {
 
         method: 'GET',
         headers: {
@@ -26,4 +26,4 @@ const taskDay = (date) => {
         })
 }
 
-export default taskDay
+export default getDayWithTask

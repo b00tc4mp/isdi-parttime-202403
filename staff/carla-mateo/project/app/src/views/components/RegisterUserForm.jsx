@@ -3,6 +3,7 @@ import Field from '../../components/core/Field'
 import Button from '../../components/core/Button'
 import logic from '../../logic/index'
 import ImageSelect from './ImageSelect'
+import Alert from './Alert'
 
 function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
     const [registrationMessage, setRegistrationMessage] = useState('')

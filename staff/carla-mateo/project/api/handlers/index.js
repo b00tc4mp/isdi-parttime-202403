@@ -8,13 +8,14 @@ import deleteTaskHandler from './deleteTaskHandler.js'
 import getAllUsersHandler from './getAllUsersHandler.js'
 import getAllTasksHandler from './getAllTasks.Handler.js'
 import getUsernameHandler from './getUsernameHandler.js'
-import taskDayHandler from './taskDayHandler.js'
 import getTasksForDateHandler from './getTasksForDateHandler.js'
 import deleteProfileHandler from './deleteProfileHandler.js'
 import toggleDoneTaskHandler from './toggleDoneTaskHandler.js'
 import updateEmailHandler from './updateEmailHandler.js'
 import updateAvatarHandler from './updateAvatarHandler.js'
 import updateUsernameHandler from './updateUsernameHandler.js'
+import updateTaskDescriptionHandler from './updateTaskDescriptionHandler.js'
+import getDayWithTaskHandler from './getDayWithTaskHandler.js'
 
 
 
@@ -30,10 +31,11 @@ export default {
     getAllTasksHandler,
     getUsernameHandler,
     deleteProfileHandler,
-    taskDayHandler,
     getTasksForDateHandler,
     toggleDoneTaskHandler,
     updateEmailHandler,
     updateAvatarHandler,
-    updateUsernameHandler
+    updateUsernameHandler,
+    updateTaskDescriptionHandler,
+    getDayWithTaskHandler
 }

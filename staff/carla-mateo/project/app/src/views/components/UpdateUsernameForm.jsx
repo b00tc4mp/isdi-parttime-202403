@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import useContext from '../../useContext'
 import Button from '../../components/core/Button'
 import Field from '../../components/core/Field'
 import logic from '../../logic'
 
 function UpdateUsernameForm({ onSuccess }) {
+    const { alert } = useContext()
+
     const [message, setMessage] = useState('')
 
     const handleUpdateUsernameSubmit = (event) => {
@@ -13,9 +16,10 @@ function UpdateUsernameForm({ onSuccess }) {
 
         logic.updateUsername(username)
             .then(() => onSuccess())
-            .catch(error => {
-                console.error(error.message)
-                setMessage(error.message)
+            .catch((error) => {
+                if (error instanceof SystemError) {
+                    alert(error.message)
+                }
             })
     }
 

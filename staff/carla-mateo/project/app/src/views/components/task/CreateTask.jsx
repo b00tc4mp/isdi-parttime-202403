@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import logic from '../../../logic'
+import useContext from '../../../useContext'
 
 import View from '../../library/View'
 
@@ -8,6 +9,8 @@ import Button from '../../../components/core/Button'
 import Field from '../../../components/core/Field'
 
 function CreateTask({ onTaskSuccess, onCancelCreateTaskSuccess }) {
+    const { alert } = useContext()
+
     const [users, setUsers] = useState([])
 
     const handleCreateTask = event => {
@@ -24,7 +27,12 @@ function CreateTask({ onTaskSuccess, onCancelCreateTaskSuccess }) {
                 .then(newTask => {
                     onTaskSuccess(newTask)
                 })
-                .catch((error) => alert(error.message))
+                .catch((error) => {
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+                    }
+                    alert("Not found")
+                })
         } catch (error) {
             alert(error.message)
         }
