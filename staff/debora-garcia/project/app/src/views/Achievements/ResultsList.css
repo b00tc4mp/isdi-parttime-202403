@@ -6,21 +6,21 @@
   }
 
   .ResultsList-container {
-    @apply pt-[120px] pb-[90px]
+    @apply pt-[120px] pb-[90px] 
   }
   .ResultsList article {
-    @apply flex flex-col w-full min-h-[60px] bg-white items-center pt-1 mb-5 rounded-[8px] border-solid border-[--fourth-color] border-[1px];;
+    @apply flex flex-col w-full h-[60px] bg-white items-center pt-1 mb-5 rounded-[8px] border-solid border-[--fourth-color] border-[1px];;
   }
 
   .ResultsList .result-header {
-    @apply flex gap-[1rem] w-full justify-between p-[0_1rem] items-center ;
+    @apply flex gap-[1rem] w-full justify-between p-[0_1rem] items-center m-0 ;
   }
 
   .ResultsList .result-details-container{
-    @apply flex flex-row w-full h-[40px] justify-between p-[0_1rem];
+    @apply flex flex-row w-full justify-between p-[0_1rem] ;
   }
-  .ResultsList .result-details{
-    @apply flex flex-row flex-nowrap w-full   ;
+  .result-details{
+    @apply flex flex-row flex-nowrap  self-end  w-full   ;
   }
   .ResultsList .edit-resultButton{
     @apply flex flex-row w-full  justify-end ;

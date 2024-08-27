@@ -20,7 +20,7 @@ const getAllComments = (userId, postId) => {
                     return Comment.find({ post: postId }).lean()
                         .populate("author", "username")
                         .select("-__v")
-                        .sort({ date: -1 })
+        
                         .lean()
                         .catch(error => { throw new SystemError(error.message) })
                         .then(comments => {
