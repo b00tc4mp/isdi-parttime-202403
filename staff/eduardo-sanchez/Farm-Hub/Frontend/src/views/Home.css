@@ -1,7 +1,17 @@
 @tailwind components;
 
 @layer components {
+    .HomeContainer {
+
+        @apply flex flex-col mt-16 min-h-screen;
+        /* @apply mt-16 flex w-full flex-col items-center justify-center gap-2; */
+    }
+
+
+
     .Home {
-        @apply mt-16 flex w-full flex-col items-center justify-center gap-2;
+        @apply flex-grow overflow-y-auto pb-10;
     }
 }
+
+/* @apply flex flex-col items-center justify-center gap-2; */

@@ -10,29 +10,41 @@ function AdList({ adsFiltered, onAdDeleted }) {
   const navigate = useNavigate();
 
   return (
-    <>
-      <ul>
+
+    <div className="AdListContainer" >
+
+      <ul className="AdList">
         {adsFiltered.length > 0 &&
           adsFiltered.map((ad, index) => (
             <li
               key={index}
-              className="AdContainer"
+              className="AdListItem"
               onClick={() => navigate(`/adpage/${ad._id}`)}
             >
-              <p>{ad.author.username}</p>
-              <p>{ad.title}</p>
-              <p>{ad.description}</p>
-              <p>{ad.price}</p>
 
-              <p>{Time(ad.date)}</p>
+              <div className="AdListItemContent">
 
-              {sessionStorage.userId === ad.author._id && (
-                <Ad ad={ad} onAdDeleted={onAdDeleted} />
-              )}
+                <div className="AdListItemHeader">
+                  <p className="AdListItemAuthor">{ad.author.username}</p>
+
+                  <p className="AdListItemDate">{Time(ad.date)}</p>
+                </div>
+
+                <p className="AdListItemTitle">{ad.title}</p>
+                <p className="AdListItemDescription">{ad.description}</p>
+                <p className="AdListItemPrice">{ad.price}</p>
+              </div>
+
+              <div className="AdListItemActions">
+                {sessionStorage.userId === ad.author._id && (
+                  <Ad ad={ad} onAdDeleted={onAdDeleted} />
+                )}
+              </div>
             </li>
           ))}
       </ul>
-    </>
+    </div>
+
   );
 }
 export default AdList;

@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import logic from "../logic";
 
 import AdList from "./components/AdList/AdList";
-
 import SearchBox from "./components/SearchBox/SearchBox";
-
-import "./Home.css";
 import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton";
 import Header from "./components/Header/Header";
+
+import "./Home.css";
+
 function Home() {
   const [user, setUser] = useState("");
   const [ads, setAds] = useState([]);
@@ -75,20 +75,23 @@ function Home() {
   return (
     <>
       <Header user={user} />
+      <div className="HomeContainer">
 
-      <main className="Home">
-        <SearchBox filterdAds={filterdAds} />
+
+        <main className="Home">
+          <SearchBox filterdAds={filterdAds} />
+
+          <div>
+            <AdList
+              // setAds={setAds}
+              adsFiltered={adsFiltered}
+              // setAdsFiltered={setAdsFiltered}
+              onAdDeleted={handleAdDeleted}
+            />
+          </div>
+        </main>
         <CreateAdButton />
-
-        <div>
-          <AdList
-            // setAds={setAds}
-            adsFiltered={adsFiltered}
-            // setAdsFiltered={setAdsFiltered}
-            onAdDeleted={handleAdDeleted}
-          />
-        </div>
-      </main>
+      </div>
     </>
   );
 }

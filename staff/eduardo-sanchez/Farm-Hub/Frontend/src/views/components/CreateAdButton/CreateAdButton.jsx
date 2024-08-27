@@ -7,6 +7,14 @@ import './CreateAdButton.css'
 export const CreateAdButton = ({ }) => {
     const navigate = useNavigate()
 
-    return <button className="CreateAdButton" onClick={() => navigate('/createAd')}>+</button>
+    return (
+
+        <footer className="CreateAdButtonFooter">
+
+            <button className="CreateAdButton" onClick={() => navigate('/createAd')}>+</button>
+        </footer>
+
+    )
+
 }
 

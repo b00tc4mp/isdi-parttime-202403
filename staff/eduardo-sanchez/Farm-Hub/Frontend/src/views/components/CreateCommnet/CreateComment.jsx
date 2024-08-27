@@ -40,11 +40,14 @@ function CreateComment({ adId, onAdCommentSubmitted }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name='comment' placeholder='Comment' />
-            <Button type="submit">Comment</Button>
+        <form className='CreateCommentform' onSubmit={handleSubmit}>
+            <input className='CreateCommentInput' type="text" name='comment' placeholder='Comment' />
+
+            <div className='CreateCommentButtons'>
+                <Button className='CreateCommentButton' type="submit" >Comment</Button>
+                <Link className="CancelCommentLink" to={'/'}>Cancel</Link>
+            </div>
             {message && <p className="ErrorMessage">{message}</p>}
-            <Link className="CancelLink" to={'/'}>Cancel</Link>
         </form>
     )
 

@@ -3,7 +3,7 @@
  @layer components {
 
      .Header {
-         @apply flex gap-[0rem] w-full fixed justify-between items-center p-[.5rem] box-border border-b-[1px] border-b-orange-700 bg-orange-100;
+         @apply flex gap-[0rem] w-full fixed justify-between items-center p-[.5rem] box-border border-b-[1px] border-b-orange-700 bg-white;
      }
 
      .UsernameTitle {
@@ -12,7 +12,7 @@
 
      .LogoutButton {
 
-         @apply p-[0.4rem] bg-white font-[1rem] border-[1px] border-blue-500 rounded-md;
+         @apply p-[0.4rem] bg-white border-[1px] border-blue-500 rounded-md;
      }
 
      .LogoutButtonContainer {

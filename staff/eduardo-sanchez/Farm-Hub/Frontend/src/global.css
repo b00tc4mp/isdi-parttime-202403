@@ -11,7 +11,7 @@
   }
 
   :root {
-    @apply max-w-screen-xl mx-auto text-center flex justify-center items-center text-green-500 bg-orange-100;
+    @apply max-w-screen-xl mx-auto text-center flex justify-center items-center text-green-600 bg-white;
   }
 
   * {
@@ -31,7 +31,7 @@
   }
 
   h1 {
-    @apply text-xl font-bold text-black;
+    @apply text-xl font-bold text-gray-700;
 
   }
 

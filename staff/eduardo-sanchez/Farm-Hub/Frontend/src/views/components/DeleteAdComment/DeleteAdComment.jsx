@@ -6,6 +6,8 @@ import logic from '../../../logic';
 
 import Button from '../../../components/core/Button'
 
+import './DeleteAdComment.css'
+
 function DeleteAdComment({ adId, onAdCommentSubmitted, commentId }) {
     const [message, setMessage] = useState('')
 
@@ -34,7 +36,11 @@ function DeleteAdComment({ adId, onAdCommentSubmitted, commentId }) {
 
 
     return (
-        <Button className="deleteAdCommentButton" onClick={handleDeleteAdComment}>Delete</Button>
+        <>
+            <Button className="DeleteAdCommentButton" onClick={handleDeleteAdComment} type="button">Delete</Button>
+
+            {message && <p className="ErrorMessage">{message}</p>}
+        </>
     )
 
 }
