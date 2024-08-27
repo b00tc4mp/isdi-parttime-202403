@@ -1,10 +1,13 @@
 import { useState } from 'react';
 
+import backArrow from '../../../icons/backArrow.png';
+
 import './SearchBox.css';
 
 function SearchBox({ filterdAds }) {
 
   const [searchText, setSearchText] = useState('');
+
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
@@ -13,17 +16,17 @@ function SearchBox({ filterdAds }) {
 
     filterdAds(searchText);
 
-    setSearchText('');
+    // setSearchText('');
   };
 
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
   };
 
-  // const handleClearSearch = () => {
-  //   setSearchText('');
-  //   filterdAds('');
-  // };
+  const handleClearSearch = () => {
+    setSearchText('');
+    filterdAds('');
+  };
 
   // const handleCancelSearch = (event) => {
   //   event.preventDefault();
@@ -34,9 +37,9 @@ function SearchBox({ filterdAds }) {
     <form className="SearchBox" onSubmit={handleSearchSubmit}>
       <div className="SearchBoxContainer">
 
-        <input className="SearchBoxInput" type="text" value={searchText} onChange={handleSearchChange} placeholder="Search Product" />
+        {searchText && (<img src={backArrow} width={24} alt="Back"  className="ClearButton" onClick={handleClearSearch}/>)}
 
-        {/* {searchText && (<button type='button' className="ClearButton" onClick={handleClearSearch}>Clear</button>)} */}
+        <input className="SearchBoxInput" type="text" value={searchText} onChange={handleSearchChange} placeholder="Search Product" />
 
         <button type="submit" className="SearchBoxButton">Search</button>
 
@@ -47,3 +50,38 @@ function SearchBox({ filterdAds }) {
 }
 
 export default SearchBox;
+
+
+// import { useState } from 'react';
+
+// import './SearchBox.css';
+
+// function SearchBox({ filterdAds }) {
+
+ 
+//   const handleSearchSubmit = (event) => {
+   
+//     filterdAds(event.target.value);
+  
+//   };
+
+//   const handleSearchChange = (event) => {
+//   };
+  
+//   return (
+//     <section className="SearchBox" >
+//       <div className="SearchBoxContainer">
+
+//         <input className="SearchBoxInput" type="text" onChange={handleSearchSubmit} placeholder="Search Product" />
+
+       
+//         <button type="submit" className="SearchBoxButton">Search</button>
+
+//       </div>
+//     </section>
+//   );
+// }
+
+// export default SearchBox;
+
+

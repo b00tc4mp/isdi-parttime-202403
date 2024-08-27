@@ -14,7 +14,7 @@ function AdList({ adsFiltered, onAdDeleted }) {
     <div className="AdListContainer" >
 
       <ul className="AdList">
-        {adsFiltered.length > 0 &&
+        {adsFiltered.length > 0 ?
           adsFiltered.map((ad, index) => (
             <li
               key={index}
@@ -41,7 +41,8 @@ function AdList({ adsFiltered, onAdDeleted }) {
                 )}
               </div>
             </li>
-          ))}
+          )) : <p>"There are no ads..., try again later"</p>}
+
       </ul>
     </div>
 

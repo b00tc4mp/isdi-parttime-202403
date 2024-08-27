@@ -3,7 +3,7 @@
 @layer components {
 
     .SearchBox {
-        @apply relative w-full max-w-[400px] mx-auto p-1 bg-white rounded-full;
+        @apply fixed w-full max-w-[400px] mx-auto p-1 bg-white rounded-full;
     }
 
     .SearchBoxContainer {
@@ -11,14 +11,14 @@
     }
 
     .SearchBoxInput {
-        @apply w-full py-2 px-3 pr-20 text-base border border-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300;
+        @apply w-full py-2 px-9 pr-20 text-base border border-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300;
     }
 
     .SearchBoxButton {
         @apply absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-none text-xl cursor-pointer text-green-600 hover:text-green-600;
     }
 
-    /* .ClearButton {
-        @apply absolute right-20 top-1/2 -translate-y-1/2 bg-transparent border-none text-xl cursor-pointer text-gray-400 hover:text-gray-600;
-    } */
+    .ClearButton {
+        @apply absolute left-3 top-1/2 -translate-y-1/2 bg-transparent border-none text-xl cursor-pointer text-black font-bold;
+    }
 }
