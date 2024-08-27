@@ -31,29 +31,32 @@ User
 
 #### User
 
-- id (auto)                    identificador 
-- name (string, required)      nombre de usuario
-- username (string, required)  nombre de usuario unico
-- email (string, required)     direccion de correo electronico
-- password(string, required)   contraseña del usuario
-- profilePicture (string)      image de perfil del usuario
-- gameList (game.id)           id de cada juego
+- id (auto)                    
+- name (string, required)      
+- username (string, required)  
+- email (string, required)     
+- password(string, required)
+
+( profilePicture (string) Vs 2.0 ) 
+( gameList (game.id)      Vs 2.0 )
+
+
 
 #### Game
 
-- id (auto)                              identificador 
-- author (user.id)                       id del usuario         
-- titleVideoGame (string, required)      titulo del videojuego
-- imageGame (string, required)           image del videojuego
-- rating (number, required)              nota asignada al videojuego por el usuario
-- hoursInTheGame (number, required)      cantidad de horas que el usuario ha jugado
+- id (auto)                              
+- author (user.id)                                
+- title (string, required)      
+- image (string, required)           
+- rating (number, required)               
+- hours (number, required)    
 
 ## Technologies Used
 
 - Frontend: React, Vite
-- Backend: Node.js
+- Backend: Nodejs
 - Testing: Mocha Chai
 
-### Code Coverage
+## Code Coverage
 
 ![alt text](image.png)
