@@ -9,7 +9,7 @@ npm i
 
 npm start
 
-#### Start test server
+#### Start test Mocha Chai
 
 npm test
 
