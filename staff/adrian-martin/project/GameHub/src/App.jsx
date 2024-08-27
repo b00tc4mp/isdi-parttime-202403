@@ -18,17 +18,7 @@ import Alert from './views/components/Alert/Alert'
 import './App.css'
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [message, setMessage] = useState(null)
-
-    useEffect(() => {
-        setIsLoggedIn(isUserLoggedIn())
-    }, [])
-
-    const handleUserLoggedOut = () => {
-        console.log('User has logged out')
-        setIsLoggedIn(false)
-    }
 
     const handleMessage = (message) => setMessage(message)
     const handleAlertAccepted = () => setMessage(null)
@@ -37,14 +27,14 @@ function App() {
         <>
             <Context.Provider value={{ alert: handleMessage }}>
                 <Routes>
-                    <Route path='/register' element={<Register />} />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/register' element={<RenderRegister />} />
+                    <Route path='/login' element={<RenderLogin />} />
 
-                    <Route path='/' element={isUserLoggedIn() ? <Home onUserLoggedOut={handleUserLoggedOut} /> : <Navigate to="/login" />} />
-                    <Route path='/profile' element={isUserLoggedIn() ? <Profile /> : <Navigate to="/login" />} />
-                    <Route path='/sociallist' element={isUserLoggedIn() ? <SocialList /> : <Navigate to="/login" />} />
-                    <Route path='/profile/:userId' element={isUserLoggedIn() ? <Profile /> : <Navigate to="/login" />} />
-                    <Route path='/sociallist/:userId' element={isUserLoggedIn() ? <GameListUser /> : <Navigate to="/login" />} />
+                    <Route path='/' element={<RenderHome />} />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/sociallist' element={<SocialList />} />
+                    <Route path='/profile/:userId' element={<Profile />} />
+                    <Route path='/sociallist/:userId' element={<GameListUser />} />
                 </Routes>
 
                 {message && <Alert message={message} onAccept={handleAlertAccepted} />}
@@ -54,3 +44,7 @@ function App() {
 }
 
 export default App
+
+const RenderHome = () => isUserLoggedIn() ? <Home /> : <Navigate to='/login' />
+const RenderLogin = () => isUserLoggedIn() ? <Navigate to='/' /> : <Login />
+const RenderRegister = () => isUserLoggedIn() ? <Navigate to='/register' /> : <Register />  

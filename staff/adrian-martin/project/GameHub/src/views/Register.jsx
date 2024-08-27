@@ -4,7 +4,8 @@ import useContext from './useContext.jsx'
 
 import Button from '../components/core/Button/Button.jsx';
 import '../components/core/Link/Link'
-import FormWithFeedback from '../components/library/FormWithFeedback/FormWithFeedback'
+import Form from '../components/core/Form/Form.jsx';
+import Input from '../components/core/Input/Input.jsx';
 
 import logic from '../logic/index.js';
 import { useNavigate } from 'react-router-dom';
@@ -44,19 +45,19 @@ function Register() {
         <div className='Login-formall'>
             <h1 className='Login-Title'>Register</h1>
 
-            <FormWithFeedback onSubmit={handleRegisterSubmit} className='Register-all'>
-                <input id='name' className='Login-input' placeholder='NAME'></input>
+            <Form onSubmit={handleRegisterSubmit} className='Register-all'>
+                <Input id='name' className='Login-input' placeholder='NAME'></Input>
 
-                <input id='username' className='Login-input' placeholder='USERNAME'></input>
+                <Input id='username' className='Login-input' placeholder='USERNAME'></Input>
 
-                <input id='email' className='Login-input' type='email' placeholder='E-MAIL'></input>
+                <Input id='email' className='Login-input' type='email' placeholder='E-MAIL'></Input>
 
-                <input id='password' className='Login-input' type='password' placeholder='PASSWORD'></input>
+                <Input id='password' className='Login-input' type='password' placeholder='PASSWORD'></Input>
 
                 <Button type='submit' className='Login-button'>REGISTER</Button>
 
                 <Link className='Link' to='/login'>LOGIN</Link>
-            </FormWithFeedback>
+            </Form>
         </div>
     </div>
 }

@@ -4,7 +4,7 @@ import useContext from './useContext.jsx'
 
 import Button from '../components/core/Button/Button.jsx';
 import '../components/core/Link/Link'
-import FormWithFeedback from '../components/library/FormWithFeedback/FormWithFeedback'
+import Form from '../components/core/Form/Form.jsx'
 
 import logic from '../logic/index.js';
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +43,7 @@ function Login({ }) {
         <div className='Login-formall'>
             <h1 className='Login-Title'>Login</h1>
 
-            <FormWithFeedback onSubmit={handleLoginSubmit} className='Login-all'>
+            <Form onSubmit={handleLoginSubmit} className='Login-all'>
                 <input id='username' className='Login-input' placeholder='USERNAME'></input>
 
                 <input id='password' className='Login-input' type='password' placeholder='PASSWORD'></input>
@@ -51,7 +51,7 @@ function Login({ }) {
                 <Button type='submit' className='Login-button'>LOGIN</Button>
 
                 <Link className="Link" to='/register'>REGISTER</Link>
-            </FormWithFeedback>
+            </Form>
         </div>
     </div>
 

@@ -11,6 +11,7 @@ const { MONGODB_URL_TEST } = process.env
 const { ObjectId } = Types
 
 // npm run test-inspect
+debugger
 
 describe('getAllGames', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => Promise.all([Game.deleteMany(), User.deleteMany()])))

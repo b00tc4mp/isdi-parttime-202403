@@ -12,8 +12,6 @@ function Header() {
         navigate('/profile')
     }
 
-    //TODO fix button navigation
-
     return (
         <div className='Header-Image-Burger'>
             <header className='Header'>

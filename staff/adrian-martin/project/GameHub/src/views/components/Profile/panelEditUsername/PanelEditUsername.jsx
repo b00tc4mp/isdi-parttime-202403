@@ -4,7 +4,8 @@ import useContext from '../../../useContext'
 import extractPayloadFromJWT from '../../../../util/extractPayloadFromJWT'
 
 import logic from '../../../../logic/index'
-import FormWithFeedback from '../../../../components/library/FormWithFeedback/FormWithFeedback'
+import Form from '../../../../components/core/Form/Form'
+import Input from '../../../../components/core/Input/Input'
 import Button from '../../../../components/core/Button/Button'
 
 import './PanelEditUsername.css'
@@ -46,8 +47,8 @@ function PanelEditUsername({ onClose, onUsernameUpdated }) {
     return (
 
         <div className='Panel-username'>
-            <FormWithFeedback className='Panel' onSubmit={handleEditUsername} >
-                <input className='Input-panel'
+            <Form className='Panel' onSubmit={handleEditUsername} >
+                <Input className='Input-panel'
                     id='username'
                     type='text'
                     placeholder='New Username'
@@ -62,7 +63,7 @@ function PanelEditUsername({ onClose, onUsernameUpdated }) {
                         Confirm
                     </Button>
                 </div>
-            </FormWithFeedback>
+            </Form>
         </div>
     )
 }
