@@ -7,7 +7,6 @@ import "./EditResultForm.css"
 export default function EditResultForm({ resultId, onResultEdited, onCancel }) {
     console.log("EditResultForm -> render")
  
-    console.log("EditResultForm -> resultId:", resultId);
 
     const handleEditResultSubmit = (event) => {
         event.preventDefault()

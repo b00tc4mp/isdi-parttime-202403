@@ -11,6 +11,7 @@ import toggleLikePostHandler from "./toggleLikePostHandler.js";
 import createCommentHandler from "./createCommentHandler.js";
 import updateResultHandler from "./updateResultHandler.js";
 import getResultHandler from "./getResultHandler.js";
+import getAllCommentsHandler from "./getAllCommentsHandler.js";
 
 
 const routeHandler = {
@@ -26,6 +27,7 @@ const routeHandler = {
     getAllResultsHandler,
     toggleLikePostHandler,
     createCommentHandler,
+    getAllCommentsHandler,
 
     deleteResultHandler,
     updateResultHandler,

@@ -30,9 +30,9 @@ const updateResult = (userId, resultId, time, repetitions, weight) => {
 
                     const changes = {}
 
-                    if (time !== undefined) changes.time = time;
-                    if (repetitions !== undefined) changes.repetitions = repetitions;
-                    if (weight !== undefined) changes.weight = weight;
+                    if (time) changes.time = time;
+                    if (repetitions) changes.repetitions = repetitions;
+                    if (weight) changes.weight = weight;
 
                     return Result.updateOne({ _id: resultId }, { $set: changes })
                         .catch(error => { throw new SystemError(error.message) })

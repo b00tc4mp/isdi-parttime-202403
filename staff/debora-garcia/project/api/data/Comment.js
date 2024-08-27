@@ -4,7 +4,7 @@ const { ObjectId } = Types
 const comment = new Schema({
     
     author: {
-        type: String,
+        type: ObjectId,
         ref: "User",
         required: true
     },

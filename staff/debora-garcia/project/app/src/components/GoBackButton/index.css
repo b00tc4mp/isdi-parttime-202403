@@ -2,7 +2,7 @@
 
 @layer components{
   .GoBackButton {
-    @apply flex gap-[3rem] w-full bg-transparent fixed top-[100px] ml-[20px] cursor-pointer;
+    @apply flex gap-[3rem]  bg-[#d6cece] fixed top-[100px] ml-[20px] cursor-pointer;
   
     }
 }

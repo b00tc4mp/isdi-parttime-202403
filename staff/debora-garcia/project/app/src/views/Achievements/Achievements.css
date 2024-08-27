@@ -1,8 +1,7 @@
 @tailwind components;
 
 @layer components {
-  /* Contenedor principal de logros */
   .achievements-container {
-    @apply w-full h-screen overflow-auto p-4; /* Ajusta el ancho y alto para permitir el desplazamiento */
+    @apply w-full h-screen overflow-auto p-4; 
   }
 }

@@ -3,11 +3,11 @@ import logic from "../../logic"
 import Heading from "../../components/Heading"
 import "./PostList.css"
 import Button from "../../components/Button"
+import Comments from "./Comments"
 export default function PostList() {
     console.log("PostList ->render")
 
     const [posts, setPosts] = useState([])
-
     useEffect(() => {
         console.log("PostList -> useEffect")
 
@@ -41,6 +41,7 @@ export default function PostList() {
             alert(error.message)
         }
     }
+
     return <div className="PostList">
         <div className="PostList-container">
             {posts.map(post => <article key={post.id} >
@@ -63,9 +64,9 @@ export default function PostList() {
                 </div>
                 <div className="result-details">
                     <p>
-                        {post.result.time && `Time:${post.result.time} `}
-                        {post.result.repetitions && `${post.result.repetitions}reps `}
-                        {post.result.weight && `${post.result.weight}kg`}
+                        {post.result?.time && `Time:${post.result.time} `}
+                        {post.result?.repetitions && `${post.result.repetitions}reps `}
+                        {post.result?.weight && `${post.result.weight}kg`}
                     </p>
                 </div>
                 <div className="post-footer">
@@ -73,7 +74,16 @@ export default function PostList() {
                     <Button onClick={() => handleToggleLikePost(post)}>
                         {`${post.likes.includes(logic.getUserId()) ? '❤️' : '🤍'} ${post.likes.length} like${post.likes.length === 1 ? '' : 's'}`}
                     </Button>
-                    <Button>Comments</Button>
+
+                    <div>
+                        <Button onClick={() => handleToggleComments(post.id)}></Button>
+                    </div>
+
+                    <div>
+                        <Comments postId={post.id} />
+                    </div>
+
+
                 </div>
             </article>)}
         </div>

@@ -21,7 +21,6 @@ export default function ResultsList() {
             logic.getAllResults()
                 .then(results => {
                     setResults(results)
-                    console.log(results)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {

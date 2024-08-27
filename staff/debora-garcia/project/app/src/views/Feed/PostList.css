@@ -22,10 +22,11 @@
     @apply flex flex-col min-w-[20rem];
   }
   .post-movements {
-    @apply flex flex-col w-full justify-start pt-[0.5rem]
-
+    @apply flex flex-col w-full justify-start pt-[0.5rem];
   }
   .PostList .result-details {
     @apply flex  w-full justify-start p-[0.3rem_1rem] font-bold;
   }
+
+  
 }

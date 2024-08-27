@@ -29,5 +29,9 @@
     @apply flex bg-[#ffffff] top-1 text-black py-2 rounded-md justify-center w-[100px] ;
   }
 
+  .container2{
+    @apply mb-[300px]
+  }
+
   
 }

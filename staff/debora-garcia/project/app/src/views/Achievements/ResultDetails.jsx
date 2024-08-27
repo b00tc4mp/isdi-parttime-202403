@@ -67,7 +67,7 @@ export default function ResultDetails() {
 
     return (
         <div className="result-details-container">
-            <div className="container2">
+            <div className="result-card">
                 <div className="result-header">
                     <h6 className="result-title">{result?.workout.workoutType.toUpperCase()} {result?.workout.duration}</h6>
                     {!isEditing && !isMenuOpen && (

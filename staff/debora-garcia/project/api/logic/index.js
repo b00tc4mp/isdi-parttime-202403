@@ -10,6 +10,7 @@ import deleteResult from "./deleteResult.js"
 import updateResult from "./updateResult.js"
 import getResult from "./getResult.js"
 import createComment from "./createComment.js"
+import getAllComments from "./getAllComments.js"
 
 
 
@@ -25,7 +26,8 @@ const logic = {
     deleteResult,
     updateResult,
     getResult,
-    createComment
+    createComment,
+    getAllComments
 }
 
 export default logic
