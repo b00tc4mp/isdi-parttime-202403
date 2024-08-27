@@ -48,5 +48,3 @@ function CardRoom({ Room }) {
 }
 
 export default CardRoom
-
-//TODO

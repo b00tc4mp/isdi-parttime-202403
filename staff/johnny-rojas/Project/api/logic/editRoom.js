@@ -12,14 +12,6 @@ const editRoom = (userId, roomId, updates) => {
     validate.nameRoom(updates.nameRoom, 'nameRoom')
     updateFields.nameRoom = updates.nameRoom
   }
-  if (updates.region) {
-    validate.region(updates.region, 'region')
-    updateFields.region = updates.region
-  }
-  if (updates.city) {
-    validate.text(updates.city, 'city')
-    updateFields.city = updates.city
-  }
   if (updates.image) {
     validate.url(updates.image, 'image')
     updateFields.image = updates.image

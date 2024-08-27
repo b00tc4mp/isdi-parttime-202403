@@ -33,7 +33,7 @@ function ManageProfile() {
 
   }, [userId])
 
-  const handleEditUserContact = event => {
+  const handleUpdateUserContact = event => {
 
     event.preventDefault()
 
@@ -48,7 +48,7 @@ function ManageProfile() {
     }
 
     try {
-      logic.editUserContact(userId, updates)
+      logic.updateUserContact(userId, updates)
         .then(() => {
           return logic.getUserName(userId)
         })
@@ -95,7 +95,7 @@ function ManageProfile() {
           <p className='infoUser'>Aquí puedes actualizar tus datos de contacto. Recuerda
             que debes tener tus datos al día para tener una comunicación optima, muchas gracias.</p>
 
-          <FormWithPanel onSubmit={handleEditUserContact}>
+          <FormWithPanel onSubmit={handleUpdateUserContact}>
 
             <Field id='email' type='email' placeholder='Email'></Field>
 

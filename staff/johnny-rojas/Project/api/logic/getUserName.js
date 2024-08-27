@@ -17,5 +17,3 @@ const getUserName = (userId) => {
 }
 
 export default getUserName
-
-//TODO USER

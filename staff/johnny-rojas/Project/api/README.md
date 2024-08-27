@@ -24,3 +24,34 @@
 
 ![](./coverage/Screenshot%202024-08-26%20at%2013.21.23.png)
 
+# Commands to initialize the application
+
+### Install dependencies 
+
+npm i
+
+## Start the back
+#### Start application
+
+npm start
+
+#### Start test server
+
+npm test
+
+#### Start coverage test server
+
+npm run test-coverage
+
+## Start debugger server
+#### Debugger general back
+
+npm run inpect
+
+### Debugger test server
+
+node --inspect-brk logic/(rute)
+
+### Debugger test Mocha Chai
+
+npm run test-inpect (rute)

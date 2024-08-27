@@ -86,4 +86,3 @@ function CreateRoom() {
 
 export default CreateRoom;
 
-//TODO numero maximo de personas

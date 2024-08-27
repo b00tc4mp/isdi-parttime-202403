@@ -149,7 +149,4 @@ function Booking() {
 export default Booking;
 
 //TODO MEJORAR EL PAGO con validaciones ¿hacer un modelo de payment? 
-//TODO Alert de confirmacion Con estilos
-//TODO que te lleve al invoice(FACTURA) Que te lleve a una pagina que puedas ver los detalles detu alojamiento
-//TODO No se marcan los dias no disponibles En el calendario los dias no disponibles no se ponen opacos REPASAR
-//TODO Cuando no eres usuario que te salga un alert
+
