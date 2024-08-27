@@ -28,12 +28,12 @@ function validateEmail(email) {
 }
 
 function validatePhone(phone) {
-    if (typeof phone !== 'string' || !PHONE_REGEX.test(phone))
+    if (typeof phone !== 'string' || !PHONE_REGEX.test(phone) && phone !== '')
         throw new ContentError('phone is not valid')
 }
 
 function validateUrl(url, explain = 'url') {
-    if (typeof url !== 'string' || !url.startsWith('http') && id !== '')
+    if (typeof url !== 'string' || !url.startsWith('http') && url !== '')
         throw new ContentError(`${explain} is not valid`)
 }
 

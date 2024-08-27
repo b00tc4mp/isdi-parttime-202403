@@ -13,7 +13,6 @@ const modifyUser = (userId, name, surname, email, phone, avatar, password, passw
     validate.password(password)
     validate.passwordsMatch(password, passwordRepeat)
 
-
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {

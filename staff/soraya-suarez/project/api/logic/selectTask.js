@@ -1,5 +1,5 @@
 import { User, Task } from '../data/index.js'
-import { DuplicityError, CredentialsError, SystemError } from 'com/errors.js'
+import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const selectTask = (userId, taskId) => {
@@ -19,7 +19,7 @@ const selectTask = (userId, taskId) => {
                     if (task.owner !== null)
                         throw new MatchError('task already have a owner')
                     
-                    const update = { owner: userId }
+                    const update = { owner: userId, status: 'toDo' }
 
                     return Task.updateOne( { _id: task._id }, update)
                         .catch(error => { throw new SystemError(error.message) })

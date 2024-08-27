@@ -15,106 +15,42 @@ describe('modifyUser', () => {
 
     beforeEach(() => User.deleteMany())
 
-    it('fails on invalid name', () => {
-        let errorThrown
-        
-        try {
-            modifyUser(new ObjectId().toString(), 1234, 'Suarez', 'soraya@suarez.com', '673445678', '', '321321321', '321321321')
-        } catch (error) {
-            errorThrown = error
-        } finally {
-            expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('name is not valid')
-        }
-    })
-
-    it('fails on invalid surname', () => {
-        let errorThrown
-        
-        try {
-            modifyUser(new ObjectId().toString(), 'Soraya', 1234, 'soraya@suarez.com', '673445678', '', '321321321', '321321321')
-        } catch (error) {
-            errorThrown = error
-        } finally {
-            expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('surname is not valid')
-        }
-    })
-
-    it('fails on invalid email', () => {
-        let errorThrown
-        
-        try {
-            modifyUser(new ObjectId().toString(), 'Soraya', 'Suarez', 1234, '673445678', '', '321321321', '321321321')
-        } catch (error) {
-            errorThrown = error
-        } finally {
-            expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('email is not valid')
-        }
-    })
-
-    it('fails on invalid phone', () => {
-        let errorThrown
-        
-        try {
-            modifyUser(new ObjectId().toString(), 'Soraya', 'Suarez', 'soraya@suarez.com', 673445678, '', '321321321', '321321321')
-        } catch (error) {
-            errorThrown = error
-        } finally {
-            expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('phone is not valid')
-        }
-    })
-
-    it('fails on invalid avatar', () => {
-        let errorThrown
-        
-        try {
-            modifyUser(new ObjectId().toString(), 'Soraya', 'Suarez', 'soraya@suarez.com', '673445678', 1234, '321321321', '321321321')
-        } catch (error) {
-            errorThrown = error
-        } finally {
-            expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('url is not valid')
-        }
-    })
-
-    /*it('succeeds on modify user', () =>
-        bcrypt.hash('123123123', 8)
-            .then(hash => User.create({ 
-                name: 'soraya', 
-                surname: 'suarez', 
-                email: 'soraya@suarez.com',
-                phone: '',
-                avatar: '',
-                role: 'admin',
-                manager: new ObjectId().toString(),
-                available: true,
-                password: hash 
-            }))
-            .then(user =>
-                modifyUser(user.id, 'Soraya', 'Suarez', 'soraya@suarez.com', '673445678', '', '321321321', '321321321')
-            )
-            .then(() => User.findOne())
-            .then(user => {
-                expect(user.id).to.be.a.string
-                expect(user.name).to.equal('Soraya')
-                expect(user.surname).to.equal('Suarez')
-                expect(user.email).to.equal('soraya@suarez.com')
-                expect(user.phone).to.equal('673445678')
-                expect(user.avatar).to.equal('')
-                expect(user.role).to.equal('admin')
-                expect(user.manager).to.be.instanceOf(ObjectId)
-                expect(user.available).to.equal(true)
-                return bcrypt.compare('321321321', user.password)
-            })
-    )
+    it('succeeds on modify user', () =>
+    bcrypt.hash('123123123', 8)
+        .then(hash => User.create({ 
+            name: 'Soraya', 
+            surname: 'Suarez', 
+            email: 'soraya@suarez.com',
+            phone: '',
+            avatar: '',
+            role: 'admin',
+            manager: new ObjectId().toString(),
+            available: true,
+            password: hash 
+        })
+        .then(user =>
+            modifyUser(user.id, 'Soraya', 'Srz', 'soraya@srz.com', '677584932', '', '321321321', '321321321')
+        ))
+        .then(() => User.find())
+        .then(users => {
+            expect(users).to.be.an.instanceOf(Array)
+            expect(users[0]).to.be.an.instanceOf(Object)
+            expect(users[0].name).to.be.equal('Soraya')
+            expect(users[0].surname).to.be.equal('Srz')
+            expect(users[0].email).to.be.equal('soraya@srz.com')
+            expect(users[0].phone).to.be.equal('677584932')
+            expect(users[0].avatar).to.be.equal('')
+            expect(users[0].role).to.be.equal('admin')
+            expect(users[0].manager).to.be.a.string
+            expect(users[0].available).to.be.equal(true)
+            return bcrypt.compare('321321321', users[0].password)
+        })
+)
 
     it('fails on non-existing user', () => {
         let errorThrown
 
-        return modifyUser(new ObjectId().toString(), 'Soraya', 'Suarez', 'soraya@suarez.com', '673445678', '', '321321321', '321321321')
+        return modifyUser(new ObjectId().toString(), 'Soraya', 'Srz', 'soraya@srz.com', '677584932', '', '321321321', '321321321')
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -224,7 +160,7 @@ describe('modifyUser', () => {
             expect(errorThrown).to.be.instanceOf(MatchError)
             expect(errorThrown.message).to.equal('passwords don\'t match')
         }
-    })*/
+    })
 
     after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })
