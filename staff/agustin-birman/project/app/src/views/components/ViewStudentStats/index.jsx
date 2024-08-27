@@ -1,12 +1,12 @@
 import logic from '../../../logic'
-import View from '../../../components/library/View'
-import Heading from '../../../components/core/Heading'
-import Text from '../../../components/core/Text'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import Button from '../../../components/core/Button'
 import './index.css'
 
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
+import Heading from '../../../components/core/Heading'
+import Text from '../../../components/core/Text'
+import Button from '../../../components/core/Button'
 
 function ViewStudentStats() {
     const [userInfo, setUserInfo] = useState('')

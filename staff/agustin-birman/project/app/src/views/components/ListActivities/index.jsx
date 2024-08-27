@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './index.css'
 
 import Heading from '../../../components/core/Heading'
-import Text from '../../../components/core/Text'
 import Button from '../../../components/core/Button'
 import View from '../../../components/library/View'
 import logic from '../../../logic'
@@ -31,11 +30,9 @@ function ListActivities() {
         }
     }
 
-
-
-    return <View className='ViewActivitesList'>
+    return <View >
         <Heading level='2' className='ActitvitiesListTitle'>Activities List</Heading>
-        <div className='ActivitiesList'>
+        <div className='ActivitiesListContainer'>
             <table>
                 <thead>
                     <tr>

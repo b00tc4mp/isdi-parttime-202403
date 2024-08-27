@@ -1,10 +1,12 @@
-import 'dotenv/config'
-import bcrypt from 'bcryptjs'
 import mongoose, { Types } from 'mongoose'
+import bcrypt from 'bcryptjs'
 import checkCompleteActivity from './checkCompleteActivity.js'
-import { expect } from 'chai'
+import 'dotenv/config'
+
 import { User, Activity, Exercise, Answer } from '../../data/index.js'
 import { ContentError, NotFoundError } from 'com/errors.js'
+import { expect } from 'chai'
+
 const { MONGODB_URL_TEST } = process.env
 
 const { ObjectId } = Types

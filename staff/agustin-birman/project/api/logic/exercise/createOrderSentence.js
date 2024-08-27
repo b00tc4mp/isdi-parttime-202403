@@ -1,7 +1,7 @@
 import validate from "com/validate.js"
 import { Activity, Exercise, User } from "../../data/index.js"
-import { NotFoundError, SystemError } from "com/errors.js"
 import { OrderSentenceExercise } from "../../data/Exercise.js"
+import { NotFoundError, SystemError } from "com/errors.js"
 
 const createOrderSentence = (userId, activityId, sentence, translate) => {
     validate.id(userId, 'userId')

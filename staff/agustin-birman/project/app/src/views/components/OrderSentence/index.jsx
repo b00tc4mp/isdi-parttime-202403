@@ -1,24 +1,21 @@
 import './index.css'
+import logic from '../../../logic'
 
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import Button from '../../../components/core/Button'
 import Field from '../../../components/core/Field'
 import Heading from '../../../components/core/Heading'
 import Text from '../../../components/core/Text'
-import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import Input from '../../../components/core/Input'
-
-import logic from '../../../logic'
+import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import View from '../../../components/library/View'
 import Exercises from '../../../components/library/Exercises'
 
-const ANSWER_REGEX = /\(([^)]+)\)/
 
 function OrderSentence() {
     const [message, setMessage] = useState('')
-    const [answerInput, setAnswerInput] = useState('Not answer found')
     const [editView, setEditView] = useState(false)
     const [sentence, setSentence] = useState('')
     const [translate, setTranslate] = useState('')
@@ -26,8 +23,6 @@ function OrderSentence() {
     const [updateExercises, setUpdateExercises] = useState(0)
 
     const { activityId } = useParams()
-
-
 
     const handleEditedExercise = () => {
         try {
@@ -81,8 +76,8 @@ function OrderSentence() {
 
     return <View>
 
-        <FormWithFeedback className='CreateOrderSentence' message={message}>
-            <Heading level='2' className='OrderSentenceTitle'>-Order the sentence</Heading>
+        <FormWithFeedback message={message}>
+            <Heading level='2' >-Order the sentence</Heading>
 
             {editView === false
                 ? <Field id='sentence' placeholder='Alex hat es gegessen' >New sentence</Field>

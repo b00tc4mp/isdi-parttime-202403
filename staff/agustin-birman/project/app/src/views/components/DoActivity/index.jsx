@@ -97,18 +97,18 @@ function DoActivity() {
             }
 
             return (<>
-                <Heading className='DoActivityTitle' level='3'>{exercise.index + 1} Exercise</Heading>
+                <Heading className='CompleteSenteneTitle' level='3'>{exercise.index + 1} Exercise</Heading>
                 <div className='DoActivityCompleteSentence' key={exercise.index}>
-                    <div className='ExerciseContainer'>
-                        <Text className='DoExerciseText'>{beforeParentheses}</Text>
-                        <Input className='ExerciseInput' onChange={(e) => { setAnswer(e.target.value) }} />
-                        <Text className='DoExerciseText'>{afterParentheses}</Text>
+                    <div className='CompleteSentenceContainer'>
+                        <Text className='CompleteSentenceText'>{beforeParentheses}</Text>
+                        <Input className='CompleteSentenceInput' onChange={(e) => { setAnswer(e.target.value) }} />
+                        <Text className='CompleteSentenceText'>{afterParentheses}</Text>
                     </div>
 
                     {
                         currentPage > totalPages
-                            ? <Button className='DoActivityButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Finish</Button>
-                            : <Button className='DoActivityButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Next Exercise</Button>
+                            ? <Button onClick={() => handleSubmittedAnswer(exercise.id)}>Finish</Button>
+                            : <Button onClick={() => handleSubmittedAnswer(exercise.id)}>Next Exercise</Button>
 
                     }
                     <Text>{message}</Text>

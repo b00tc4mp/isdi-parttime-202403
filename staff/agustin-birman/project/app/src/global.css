@@ -7,11 +7,6 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --first-color: black;
-        --second-color: rgb(112, 233, 233);
-    }
-    
     * {
         font-family: catamaran;
         color: var(--first-color);

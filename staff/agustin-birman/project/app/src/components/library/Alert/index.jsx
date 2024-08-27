@@ -4,3 +4,5 @@ export default ({ message, onAccept, level = 'warn' }) => <div className="Alert"
         <button className="Button" onClick={onAccept}>Accept</button>
     </div>
 </div>
+
+//TODO alert css

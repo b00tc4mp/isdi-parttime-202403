@@ -1,9 +1,11 @@
 import validate from 'com/validate.js'
 import { Activity, Answer, Exercise, User } from '../../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
+
 import { Types } from 'mongoose'
 
 const { ObjectId } = Types
+
 const deleteExercise = (userId, exerciseId) => {
     validate.id(userId, 'userId')
     validate.id(exerciseId, 'exerciseId')

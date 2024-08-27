@@ -1,19 +1,17 @@
-// import './index.css'
+import logic from '../../../logic'
 
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import Button from '../../../components/core/Button'
 import Field from '../../../components/core/Field'
 import Heading from '../../../components/core/Heading'
 import Text from '../../../components/core/Text'
-import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import Input from '../../../components/core/Input'
 
-import logic from '../../../logic'
+import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import View from '../../../components/library/View'
 import Exercises from '../../../components/library/Exercises'
-
 
 function Vocabulary() {
     const [message, setMessage] = useState('')
@@ -24,8 +22,6 @@ function Vocabulary() {
     const [updateExercises, setUpdateExercises] = useState(0)
 
     const { activityId } = useParams()
-
-
 
     const handleEditedExercise = () => {
         const separatedAnswers = answers.split(' ')
@@ -84,9 +80,8 @@ function Vocabulary() {
     }
 
     return <View>
-
-        <FormWithFeedback className='CreateOrderSentence' message={message}>
-            <Heading level='2' className='OrderSentenceTitle'>-Vocabulary</Heading>
+        <FormWithFeedback message={message}>
+            <Heading level='2' >-Vocabulary</Heading>
 
             {editView === false
                 ? <Field id='word' placeholder='laufen' >New word</Field>
@@ -97,7 +92,6 @@ function Vocabulary() {
                 ? <Field id='answers' placeholder='run walk jog go' >Answers</Field>
                 : <><Text>{selectedExercise.index + 1} Sentence</Text>
                     <Input value={answers} onChange={(e) => { setAnswers(e.target.value) }} /></>}
-
 
             <Text>Make sure that all the words are separated by a space</Text>
 
@@ -121,4 +115,3 @@ function Vocabulary() {
 
 }
 export default Vocabulary
-

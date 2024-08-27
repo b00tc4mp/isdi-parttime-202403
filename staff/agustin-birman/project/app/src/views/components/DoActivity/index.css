@@ -1,34 +1,19 @@
 .DoActivityCompleteSentence{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 7%;
-    padding: 2rem;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    width: 92%;
-    overflow-x: auto;
-}
-.DoExerciseText{
-    font-size: 1.2rem;
+    @apply flex flex-col items-center m-[7%] p-[2rem] shadow-custom rounded-[20px] w-[92%] overflow-x-auto;
 }
 
-.DoActivityTitle{
-    margin-top: 40%;
-    margin-bottom: 15px;
-}
-.ExerciseContainer{
-    display:inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    margin-bottom: 15px;
+.CompleteSentenceText{
+    @apply text-[1.2rem];
 }
 
-.ExerciseInput{
-    width: 6rem;
-    font-size: 1.2rem;
+.CompleteSenteneTitle{
+    @apply mt-[40%] mb-[15px];
 }
 
-.DoActivityButton{
-    margin-bottom: 15px;
+.CompleteSentenceContainer{
+    @apply inline-flex items-center mb-[15px]
+}
+
+.CompleteSentenceInput{
+    @apply w-[6rem] text-[1.2rem]
 }

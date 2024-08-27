@@ -1,6 +1,7 @@
-.Field {
-    display: flex;
-    flex-direction: column;
-    margin: .25rem 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+.Field {
+    @apply flex flex-col my-1;
+}

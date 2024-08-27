@@ -1,7 +1,6 @@
 import { CredentialsError } from "com/errors.js"
 import logic from "../logic/index.js"
 import jwt from "../util/jsonwebtoken-promised.js"
-import 'dotenv/config'
 
 const { JWT_SECRET } = process.env
 

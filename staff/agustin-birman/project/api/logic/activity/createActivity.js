@@ -1,6 +1,6 @@
-import { NotFoundError, SystemError } from 'com/errors.js'
-import { User, Activity } from '../../data/index.js'
 import validate from 'com/validate.js'
+import { User, Activity } from '../../data/index.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 const createActivity = (userId, title, description) => {
     validate.id(userId, 'userId')

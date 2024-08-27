@@ -88,13 +88,13 @@ function DoActivityVocabulary() {
             return (<>
                 <Heading className='DoActVocabularyTitle' level='3'>{exercise.index + 1} Exercise</Heading>
                 <div className='DoActivityVocabulary' key={exercise.index}>
-                    <Heading className='DoActivityTitle' level='2'>{exercise.word}</Heading>
-                    <Input className='ExerciseInputVocabulary' onChange={(e) => { setAnswer(e.target.value) }} />
+                    <Heading className='VocabularyTitle' level='2'>{exercise.word}</Heading>
+                    <Input className='VocabularyInput' onChange={(e) => { setAnswer(e.target.value) }} />
 
                     {
                         currentPage > totalPages
-                            ? <Button className='DoActivityButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Finish</Button>
-                            : <Button className='DoActivityButton' onClick={() => handleSubmittedAnswer(exercise.id)}>Next Exercise</Button>
+                            ? <Button onClick={() => handleSubmittedAnswer(exercise.id)}>Finish</Button>
+                            : <Button onClick={() => handleSubmittedAnswer(exercise.id)}>Next Exercise</Button>
 
                     }
                     <Text>{message}</Text>

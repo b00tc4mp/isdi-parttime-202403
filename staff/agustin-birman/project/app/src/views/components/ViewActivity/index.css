@@ -1,7 +1,6 @@
 @tailwind components;
 
 @layer components{
-
     .ActivityHeading{
     @apply mb-[8%];
     }
@@ -15,17 +14,6 @@
     }
 
     .ActivityView{
-        margin: 10px;
-        width: 98%;
+        @apply m-[10px] 
     }
-
-    .CompleteResult{
-        @apply mb-[4%] text-green-500;
-    }
-
-    .IncompleteResult{
-        @apply mb-[4%] text-red-600;
-    }
-
-
 }

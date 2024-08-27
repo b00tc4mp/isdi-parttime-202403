@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import './index.css'
 
 function ShareQR() {
-    const { sub: userId } = extractPayloadFromJWT(localStorage.token)
+    const { sub: userId } = extractPayloadFromJWT(localStorage.token) //TODO hacer la funcion userID
     const url = `${import.meta.env.VITE_APP_URL}/users/${userId}/add`
 
     return <div className='QRContainer'>

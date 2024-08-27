@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react"
-import logic from "../../../logic"
-import { useNavigate, useParams } from "react-router-dom"
-import Heading from "../../../components/core/Heading"
-import View from "../../../components/library/View"
 import './index.css'
+import logic from "../../../logic"
+
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+
+import Heading from "../../../components/core/Heading"
 import Button from "../../../components/core/Button"
+import View from "../../../components/library/View"
 
 function ShowExerciseResults() {
     const [exercisesWithAnswers, setExercisesWithAnswers] = useState([])

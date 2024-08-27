@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './index.css'
 import Button from '../../../components/core/Button'
@@ -7,7 +7,6 @@ import Heading from '../../../components/core/Heading'
 import View from '../../../components/library/View'
 import logic from '../../../logic'
 import ConfirmDelete from '../../../components/library/ConfirmDelete'
-
 
 function ListTeachers() {
     const [teachers, setTeachers] = useState([])
@@ -52,6 +51,7 @@ function ListTeachers() {
     }
 
     const toggleDeleteTeacher = () => setConfirmDeleteTeacher(prevState => !prevState)
+
     return <View >
         <Heading level='2' className='TeachersListTitle'>Teachers List</Heading>
         <View >

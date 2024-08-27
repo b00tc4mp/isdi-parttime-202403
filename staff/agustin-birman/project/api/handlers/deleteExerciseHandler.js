@@ -1,7 +1,5 @@
-import { CredentialsError } from 'com/errors.js'
-
 import logic from '../logic/index.js'
-
+import { CredentialsError } from 'com/errors.js'
 import jwt from '../util/jsonwebtoken-promised.js'
 
 const { JWT_SECRET } = process.env

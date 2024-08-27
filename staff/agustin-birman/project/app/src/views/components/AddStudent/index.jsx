@@ -52,12 +52,12 @@ function AddStudent() {
     }
 
     return <>
-        <View className='AddStudentContainer'>
-            <Heading level='2'>Student's Information</Heading>
+        <Heading level='2' className='AddStudentTitle'>Student's Information</Heading>
+        <div className='AddStudentContainer'>
             <Text className='AddStudentText'>Name: {userInfo.name}</Text>
             <Text className='AddStudentText'>Surname: {userInfo.surname}</Text>
             <Text className='AddStudentText'>Username: {userInfo.username}</Text>
-        </View >
+        </div >
         <Button className='AddStudentButton' onClick={handleAddStudent}>Add Student</Button>
     </>
 }

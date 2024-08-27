@@ -132,10 +132,10 @@ function DoActivityOrderSentence() {
         {currentExercises.map((exercise, index) => (
             <>
                 <Heading level='3' className='DoActOrderSentenceTitle'>{exercise.index + 1} Exercise</Heading>
-                <View className='DoActOrderSentenceContainer'>
+                <div className='DoActOrderSentenceContainer'>
                     <Heading className='DoActOrderSentence' level='3'> {exercise.translate} </Heading>
                     <div key={index} className='OrderSentenceContainer'>
-                        <div className='SelectedWords'>
+                        <div className='SelectedWordsContainer'>
                             {selectedWords.map((word, selectedWordIndex) => (
                                 <Button
                                     className="btn btn-success move-to-mixed"
@@ -146,7 +146,7 @@ function DoActivityOrderSentence() {
                                 </Button>
                             ))}
                         </div>
-                        <div className='MixedWords'>
+                        <div className='MixedWordsContainer'>
                             {mixedWords.map((word, wordIndex) => (
                                 <Button
                                     className="btn btn-secondary btnOrderSentence move-to-selected"
@@ -164,7 +164,7 @@ function DoActivityOrderSentence() {
                     }
                     <Text>{message}</Text>
 
-                </ View>
+                </ div>
                 <Text>Page {currentPage} of {Math.ceil(exercises.length / pageSize)}</Text>
             </>
         ))}

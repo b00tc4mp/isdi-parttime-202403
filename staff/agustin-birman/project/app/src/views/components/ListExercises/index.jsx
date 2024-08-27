@@ -7,7 +7,6 @@ import Button from '../../../components/core/Button'
 import View from '../../../components/library/View'
 import logic from '../../../logic'
 
-
 function ListExercises() {
     const { activityId } = useParams()
     const [exercises, setExercises] = useState([])
@@ -55,7 +54,7 @@ function ListExercises() {
 
     return <View>
         <Heading level='2' className='ExerciseListTitle'>Exercises List</Heading>
-        <div className='ExerciseList'>
+        <div className='ExerciseListContainer'>
             <table>
                 <thead>
                     <tr>

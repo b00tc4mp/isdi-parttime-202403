@@ -1,6 +1,6 @@
-import { NotFoundError, SystemError } from "com/errors.js"
 import validate from "com/validate.js"
 import { User } from '../../data/index.js'
+import { NotFoundError, SystemError } from "com/errors.js"
 
 const removeTeacher = (userId, teacherId) => {
     validate.id(userId, 'userId')

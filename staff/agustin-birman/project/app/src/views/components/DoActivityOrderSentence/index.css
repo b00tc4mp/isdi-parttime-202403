@@ -1,45 +1,28 @@
 .DoActOrderSentenceTitle{
-    margin-top: 40%;
+    @apply mt-[40%]
 }
 .DoActOrderSentenceContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 7%;
-    padding: 2rem;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    width: 92%;
-    overflow-x: auto;
+    @apply flex flex-col items-center m-[7%] shadow-custom rounded-[20px] w-[95%] overflow-x-auto
 }
 .DoActOrderSentence{
-    margin: 5%;
+    @apply m-[5%]
 }
 
-.SelectedWords, .MixedWords {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%; /* O un tamaño específico si prefieres */
-    box-sizing: border-box;
+.SelectedWordsContainer, .MixedWordsContainer {
+    @apply min-h-[50px] flex flex-wrap gap-[10px] w-full ;
 }
 
-.SelectedWords {
-    margin-bottom: 20px; /* Espacio entre las listas */
+.SelectedWordsContainer {
+    @apply mb-[20px]
 }
 
 .DoActOrderSentenceButton{
-    margin: 5%;
+    @apply m-[5%]
 }
 
 .btnOrderSentence {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
+    @apply py-[10px] px-[20px] border-none rounded-[4px] cursor-pointer;
     transition: transform 0.3s, opacity 0.3s;
-   /* Evita que los botones se reduzcan más allá de su tamaño mínimo */
 }
 
 /* Animaciones para mover botones */

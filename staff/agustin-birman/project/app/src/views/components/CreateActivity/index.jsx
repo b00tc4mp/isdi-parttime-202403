@@ -8,7 +8,6 @@ import Heading from '../../../components/core/Heading'
 import Button from '../../../components/core/Button'
 import Field from '../../../components/core/Field'
 import FieldWithTextArea from '../../../components/core/FieldWithTextArea'
-import SubmitButton from '../../../components/core/SubmitButton'
 import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 

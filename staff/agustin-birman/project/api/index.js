@@ -1,40 +1,43 @@
-import 'dotenv/config'
+import mongoose from 'mongoose'
 import express from 'express'
 import cors from 'cors'
-import mongoose from 'mongoose'
+import 'dotenv/config'
 
 import {
+    errorHandler,
+
     registerUserHandler,
     authenticateUserHandler,
     getUserNameHandler,
-    errorHandler,
+    getUserInfoHandler,
+    addStudentHandler,
+    removeStudentHandler,
+    getStudentsHandler,
+    getTeachersHandler,
+    getUserStatsHandler,
+    removeTeacherHandler,
+
     createActivityHandler,
-    createCompleteSentenceExerciseHandler,
     getActivitiesHandler,
     getActivityHandler,
     deleteActivityHandler,
-    getExercisesHandler,
-    deleteExerciseHandler,
     editActivityHandler,
+    getTeachersActivitiesHandler,
+    checkCompleteActivityHandler,
+
+    createCompleteSentenceExerciseHandler,
+    createVocabularyHandler,
+    createOrderSentenceHandler,
+    getExercisesHandler,
+    getExercisesCountHandler,
+    getExerciseTypeHandler,
+    deleteExerciseHandler,
     editExerciseHandler,
 
     submitAnswerHandler,
     getAnswersHandler,
     deleteAnswersHandler,
-    getUserInfoHandler,
-    addStudentHandler,
-    removeStudentHandler,
-    getStudentsHandler,
-    getTeachersActivitiesHandler,
-    getTeachersHandler,
-    checkCompleteActivityHandler,
-    getExercisesCountHandler,
-    getExerciseTypeHandler,
-    getUserStatsHandler,
-    createVocabularyHandler
 } from './handlers/index.js'
-import removeTeacherHandler from './handlers/removeTeacherHandler.js'
-import createOrderSentenceHandler from './handlers/createOrderSentenceHandler.js'
 
 const { MONGODB_URL, PORT } = process.env
 

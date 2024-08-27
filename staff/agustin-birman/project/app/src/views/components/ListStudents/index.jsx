@@ -8,12 +8,10 @@ import View from '../../../components/library/View'
 import logic from '../../../logic'
 import ConfirmDelete from '../../../components/library/ConfirmDelete'
 
-
 function ListStudents() {
     const [students, setStudents] = useState([])
     const [confirmDeleteStudent, setConfirmDeleteStudent] = useState(false)
     const navigate = useNavigate()
-
 
     useEffect(() =>
         loadStudents()
@@ -53,9 +51,9 @@ function ListStudents() {
         }
     }
 
-
     const handleUserStats = (studentId) => navigate(`/users/student/${studentId}/info`)
     const toggleDeleteStudent = () => setConfirmDeleteStudent(prevState => !prevState)
+
     return <View>
         <Heading level='2' className='StudentsListTitle'>Students List</Heading>
         <View >

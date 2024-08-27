@@ -1,10 +1,7 @@
 import validate from 'com/validate.js'
 import { Exercise, User } from '../../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
-import { Types } from 'mongoose'
 import { CompleteSentenceExercise, OrderSentenceExercise, VocabularyExercise } from '../../data/Exercise.js'
-
-const { ObjectId } = Types
 
 const ANSWER_REGEX = /\(([^)]+)\)/;
 

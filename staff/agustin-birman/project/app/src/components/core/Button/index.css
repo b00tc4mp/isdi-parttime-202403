@@ -1,13 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .Button {
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    margin: 5px;
-    font-size: 1.2rem;
-    font-weight: 500;
-    cursor: pointer;
-} 
+  @apply shadow-custom cursor-pointer m-[5px] text-[1.2rem] font-medium;
+}
 
 .Header .Button {
-    padding: 0.3rem;
+  @apply p-[0.3rem];
 }
+

@@ -1,19 +1,20 @@
-.ConfirmDelete {
-    border: 1px solid black;
+.ConfirmDelete { 
+    @apply border border-black rounded-[20px] top-[30%] left-[10%] w-[80%] h-[30%] gap-[16px] fixed flex flex-col items-center justify-center z-10  bg-[rgb(175,222,238)];
+    /* border: 1px solid black;
     border-radius: 20px;
     top: 30%;
     left: 10%;
     width: 80%;
     height: 30%;
     position: fixed;
-    display: flex; /* Utiliza flexbox para organizar los elementos en el contenedor */
-    flex-direction: column; /* Organiza los elementos en una columna */
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
-    gap: 16px; /* Espacio entre los elementos (texto y botones) */
-    text-align: center; /* Centra el texto dentro del contenedor */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+    gap: 16px; 
+    text-align: center; 
     z-index: 10;
-    background-color: rgb(175, 222, 238);
+    background-color: rgb(175, 222, 238); */
 }
 
 .ConfirmDeleteButtonContainer {

@@ -1,7 +1,3 @@
 .MenuItem{
-    width: 90%;
-    height: 15%;
-    padding: 10px;
-    border-radius: 20px;
-    margin-bottom: 1rem;
+    @apply w-[90%] h-[15%] p-[10px] rounded-[20px] mb-[1rem]
 }

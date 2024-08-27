@@ -1,27 +1,7 @@
-/* .DoActivityVocabulary{
-    height: auto;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    margin: 10%  0;
-    width: 95%;
-    overflow-x: auto;
-} */
  .DoActVocabularyTitle{
-    margin-top: 30%;
+    @apply mt-[30%]
  }
 
 .DoActivityVocabulary{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 7%;
-    padding: 2rem;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    width: 92%;
-    overflow-x: auto;
-}
-
-.ExerciseInputVocabulary{
-    width: 80%;
+    @apply flex flex-col items-center m-[7%] p-[2rem] shadow-custom rounded-[20px] w-[92%] overflow-x-auto;
 }

@@ -26,8 +26,6 @@ function MenuItem() {
         }
     }
     return <View tag='main'>
-
-
         {userRole === 'student' && <>
             <Button className='MenuItem'><Link to={`/activities/${userId}/list`}>View activities</Link></Button>
             <Button className='MenuItem'><Link to='/users/teachers'>View teachers</Link></Button>

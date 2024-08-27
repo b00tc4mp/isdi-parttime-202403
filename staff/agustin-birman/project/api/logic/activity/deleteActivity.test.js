@@ -1,5 +1,5 @@
-import deleteActivity from './deleteActivity.js'
 import mongoose from 'mongoose'
+import deleteActivity from './deleteActivity.js'
 import 'dotenv/config'
 
 const { MONGODB_URL } = process.env

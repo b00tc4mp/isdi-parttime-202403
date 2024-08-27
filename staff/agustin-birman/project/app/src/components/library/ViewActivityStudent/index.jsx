@@ -132,7 +132,7 @@ function ViewActivityStudent() {
 
     return <View className='ActivityView'>
         <Heading level='2' className='ActivityHeading'>Activity</Heading>
-        <View className='ActivityStudentTable'>
+        <div className='ActivityStudentTable'>
             <table  >
                 <tbody>
                     <tr>
@@ -161,7 +161,7 @@ function ViewActivityStudent() {
                     </tr>
                 </tbody>
             </table>
-        </View>
+        </div>
         <Button><Link to={`/activities/${activityId}/do-activity/${exerciseType}`}>Start Activity</Link></Button>
         {completedActivity === true && <>
             <Button><Link to={`/activities/${activityId}/results`}>View Results</Link></Button>

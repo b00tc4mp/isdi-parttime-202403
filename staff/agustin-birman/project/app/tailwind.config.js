@@ -6,8 +6,12 @@ export default {
     './staff/agustin-birman/app/src/views/**/*.{js,jsx,ts,tsx}', // Para todos los archivos en views
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'custom': '3px 3px 10px rgba(0, 0, 0, 0.3)', // Añadir la sombra personalizada
+      },
+    },
   },
   plugins: [],
-}
+};
 
