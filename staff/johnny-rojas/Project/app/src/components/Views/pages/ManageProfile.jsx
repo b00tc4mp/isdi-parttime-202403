@@ -48,7 +48,7 @@ function ManageProfile() {
     }
 
     try {
-      logic.updateUserContact(userId, updates)
+      logic.editUserContact(userId, updates)
         .then(() => {
           return logic.getUserName(userId)
         })

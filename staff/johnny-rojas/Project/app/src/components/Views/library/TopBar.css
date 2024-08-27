@@ -1,8 +1,5 @@
-@tailwind base;
 @tailwind components;
-@tailwind utilities;
 
-/* Contenedor principal de la barra superior */
 .top-bar {
   @apply fixed top-0 left-0 w-full bg-white z-50 flex flex-col items-center pl-4 py-2 shadow-md pt-8 pb-0
 }
