@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { CredentialsError, SystemError } from 'com/errors.js'
+import { CredentialsError, NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 const modifyUserAvailable = (userId, userToDeleteId) => {
