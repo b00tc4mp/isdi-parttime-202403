@@ -19,7 +19,7 @@ function Confirm({
     return (
         <div className='Confirm-container'>
             <div className='Confirm-p-2button'>
-                <p className='Confirm-p'>{message || "¿Estás seguro que quieres proceder?"}</p>
+                <p className='Confirm-p'>{message}</p>
                 <div className='Confirm-container-button'>
                     <Button className='Confirm-button-cancel' onClick={() => setShowConfirmDelete(false)}>
                         Cancel

@@ -4,7 +4,7 @@ GameHub is an application designed for video game players. It allows you to crea
 
 We will gradually implement more features into the app.
 
-![alt text](image-1.png)
+![alt text](image-2.png)
 
 ## Functional
 
