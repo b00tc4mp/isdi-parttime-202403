@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic'
 import { SystemError } from 'com/errors'
 import Field from '../components/core/Field'
 
+import Context from '../Context'
+
 function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
   const [message, setMessage] = useState('')
+
+  const { alert } = useContext(Context)
 
   const handleRegisterClick = (e) => {
     e.preventDefault()

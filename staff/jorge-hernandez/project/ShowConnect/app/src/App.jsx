@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Alert from './components/Alert'
 import Register from './views/Register'
 import Search from './views/Search'
 import Login from './views/Login'
@@ -7,9 +8,12 @@ import ArtistHome from './views/ArtistHome'
 import ClientHome from './views/ClientHome'
 import logic from './logic'
 
+import Context from './Context'
+
 function App() {
   const [view, setView] = useState('search')
   const [role, setRole] = useState(sessionStorage.getItem('role') || '')
+  const [message, setMessage] = useState(null)
 
   useEffect(() => {
     if (logic.isUserLoggedIn()) {
@@ -35,10 +39,15 @@ function App() {
   }
 
   const handleGoToSearch = () => setView('search')
+
   const handleGoToMessages = () => setView('messages')
 
+  const handleAlertAccepted = () => setMessage(null)
+
+  const handleMessage = (message) => setMessage(message)
+
   return (
-    <>
+    <Context.Provider value={{ alert: handleMessage }}>
       {view === 'search' && (
         <Search
           OnClickMessages={handleClientHome}
@@ -53,7 +62,6 @@ function App() {
           }
         />
       )}
-
       {view === 'register' && (
         <Register
           onLogoClick={handleGoToSearch}
@@ -61,7 +69,6 @@ function App() {
           onUserRegistered={handleGoToLogin}
         />
       )}
-
       {view === 'login' && (
         <Login
           onLogoClick={handleGoToSearch}
@@ -69,25 +76,20 @@ function App() {
           onRegisterClick={handleGoToRegister}
         />
       )}
-
       {view === 'artistHome' && role === 'artist' && (
         <ArtistHome
           onShowMessage={handleGoToMessages}
           onUserLoggedOut={handleGoToSearch}
         />
       )}
-
       {view === 'clientHome' && role === 'client' && (
         <ClientHome
           onLogoClick={handleGoToSearch}
           onUserLoggedOut={handleGoToSearch}
         />
       )}
-      {/* 
-      {view === 'messages' && (
-        <ArtistMessages onClickedBack={handleGoToSearch} />
-      )} */}
-    </>
+      {message && <Alert message={message} onAccept={handleAlertAccepted} />}{' '}
+    </Context.Provider>
   )
 }
 

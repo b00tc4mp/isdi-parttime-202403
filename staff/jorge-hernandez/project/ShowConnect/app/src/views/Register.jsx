@@ -1,7 +1,10 @@
+import Alert from '../components/Alert'
 import Field from '../components/core/Field'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic/index'
+import { useContext } from 'react'
+import Context from '../Context'
 
 import { SystemError } from 'com/errors'
 
@@ -9,6 +12,7 @@ import { useState } from 'react'
 
 function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
   const [message, setMessage] = useState('')
+  const { alert } = useContext(Context)
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault()
@@ -50,7 +54,7 @@ function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
             return
           }
 
-          setMessage(error.message)
+          alert(error.message)
         })
     } catch (error) {
       console.error(error)

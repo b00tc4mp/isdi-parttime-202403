@@ -46,8 +46,6 @@ function ArtistHome({ onUserLoggedOut }) {
     setArtist({ ...artist, dates: updatedDates })
   }
 
-  // const handleClickEdit = () => {}
-
   if (!artist) {
     return <div>Loading...</div>
   }
@@ -73,10 +71,6 @@ function ArtistHome({ onUserLoggedOut }) {
             ></i>
 
             <div className='flex flex-col items-center'>
-              {/* <i
-                onClick={handleClickEdit}
-                class='fa-regular fa-pen-to-square'
-              ></i> */}
               <EditableArtisticName
                 artistId={artist.id}
                 label={artist.artisticName}
