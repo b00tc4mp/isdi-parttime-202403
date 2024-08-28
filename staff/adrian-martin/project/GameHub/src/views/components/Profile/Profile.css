@@ -16,7 +16,7 @@
 
 @layer components {
     .Separator {
-        @apply flex w-3/4 h-1 bg-[#12375e38] mx-auto
+        @apply flex w-5/6 h-1 bg-[#00000068] mx-auto
     }
 }
 
