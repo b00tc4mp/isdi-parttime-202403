@@ -72,16 +72,16 @@ function ListStudents() {
                             <td>{student.name}</td>
                             <td>{student.surname}</td>
                             <td><i
-                                className="bi bi-info-circle"
+                                className='bi bi-info-circle'
                                 onClick={() => handleUserStats(student.id)}
                                 style={{ cursor: 'pointer', color: '#007bff' }}
                             ></i></td>
                             <td>
                                 <i
-                                    className="bi bi-trash3"
+                                    className='bi bi-trash3'
                                     style={{ cursor: 'pointer', color: '#ff0000' }}
                                     onClick={toggleDeleteStudent}
-                                    title="Delete Teacher"
+                                    title='Delete Teacher'
                                 ></i>
                                 {confirmDeleteStudent && <ConfirmDelete message='Do you want to delete this student?' onAccept={() => handleDeleteStudent(student.id)} onCancel={toggleDeleteStudent}></ConfirmDelete>}
                             </td>

@@ -1,5 +1,5 @@
 import validate from 'com/validate.js'
-import { Activity, Exercise, User } from "../../data/index.js"
+import { Activity, Exercise, User } from '../../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 
 const getExercisesCount = (userId, activityId) => {

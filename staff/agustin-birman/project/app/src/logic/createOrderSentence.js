@@ -6,7 +6,7 @@ const createOrderSentence = (activityId, sentence, translate) => {
     validate.text(sentence, 'sentence', 200)
     validate.text(translate, 'translate', 200)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercise/order-sentence`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/order-sentence`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,

@@ -1,10 +1,10 @@
-import errors, { SystemError } from "../../../com/errors"
-import validate from "../../../com/validate"
+import errors, { SystemError } from '../../../com/errors'
+import validate from '../../../com/validate'
 
 const getAnswers = exerciseId => {
     validate.id(exerciseId, 'exerciseId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/answer/${exerciseId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/answers/${exerciseId}`, {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
         }

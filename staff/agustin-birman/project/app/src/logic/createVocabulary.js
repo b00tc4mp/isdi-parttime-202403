@@ -1,11 +1,11 @@
-import errors, { SystemError } from "../../../com/errors"
-import validate from "../../../com/validate"
+import errors, { SystemError } from '../../../com/errors'
+import validate from '../../../com/validate'
 
 const createVocabulary = (activityId, word, answers) => {
     validate.id(activityId, 'activityId')
     validate.text(word, 'word', 60)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercise/vocabulary`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/vocabulary`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,

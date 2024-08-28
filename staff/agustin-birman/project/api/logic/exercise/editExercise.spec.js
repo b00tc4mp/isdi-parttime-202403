@@ -8,6 +8,7 @@ import { User, Activity, Exercise } from '../../data/index.js'
 import { NotFoundError, ContentError } from 'com/errors.js'
 
 import editExercise from './editExercise.js'
+import { CompleteSentenceExercise, OrderSentenceExercise, VocabularyExercise } from '../../data/Exercise.js'
 
 const { MONGODB_URL_TEST } = process.env
 
@@ -20,17 +21,44 @@ describe('editExercise', () => {
 
     beforeEach(() => Promise.all([User.deleteMany(), Activity.deleteMany(), Exercise.deleteMany()]))
 
-    it('succeeds on editing exercise', () => {
+    it('succeeds on editing exercise complete sentence', () => {
         return bcrypt.hash('12345678', 8)
             .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
             .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
-                .then(activity => Exercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
-                    .then(exercise => editExercise(user.id, exercise.id, 'ich (habe) es gesagt')
+                .then(activity => CompleteSentenceExercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { sentence: 'ich (habe) es gesagt' })
                         .then(() => Exercise.findById(exercise.id)))))
-
             .then(exerciseResult => {
                 expect(exerciseResult.sentence).to.equal('ich (habe) es gesagt')
                 expect(exerciseResult.answer).to.equal('habe')
+                expect(exerciseResult.index).to.be.a('number').and.to.equal(0)
+            })
+    })
+
+    it('succeeds on editing exercise order sentence', () => {
+        return bcrypt.hash('12345678', 8)
+            .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
+            .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => OrderSentenceExercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', translate: 'ich (habe) es gesagt', index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { sentence: 'ich (habe) es gesagt', translate: 'alan (hat) es gegessen' })
+                        .then(() => Exercise.findById(exercise.id)))))
+            .then(exerciseResult => {
+                expect(exerciseResult.sentence).to.equal('ich (habe) es gesagt')
+                expect(exerciseResult.translate).to.equal('alan (hat) es gegessen')
+                expect(exerciseResult.index).to.be.a('number').and.to.equal(0)
+            })
+    })
+
+    it('succeeds on editing exercise vocabulary', () => {
+        return bcrypt.hash('12345678', 8)
+            .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
+            .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => VocabularyExercise.create({ teacher: user.id, activity: activity.id, word: 'sind', answer: ['hat', 'haben'], index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { word: 'laufen', answers: ['run', 'walk'] })
+                        .then(() => Exercise.findById(exercise.id)))))
+            .then(exerciseResult => {
+                expect(exerciseResult.word).to.equal('laufen')
+                expect(exerciseResult.answer).to.deep.equal(['run', 'walk'])
                 expect(exerciseResult.index).to.be.a('number').and.to.equal(0)
             })
     })
@@ -92,20 +120,78 @@ describe('editExercise', () => {
         }
     })
 
-    it('fails on invalid sentence', () => {
+    it('fails on invalid sentence complete sentence', () => {
         let errorThrown
 
         return bcrypt.hash('12345678', 8)
             .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
             .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
-                .then(activity => ({ user, activity })))
-            .then(({ user, activity }) => Exercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
-                .then(exercise => ({ user, exercise })))
-            .then(({ user, exercise }) => editExercise(user.id, exercise.id, 12345))
+                .then(activity => CompleteSentenceExercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { sentence: 12345 }))))
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(ContentError)
                 expect(errorThrown.message).to.equal('sentence is not valid')
+            })
+    })
+
+    it('fails on invalid sentence order sentence', () => {
+        let errorThrown
+
+        return bcrypt.hash('12345678', 8)
+            .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
+            .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => OrderSentenceExercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', translate: 'alan (hat) es gegessen', index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { sentence: 12345 }))))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(ContentError)
+                expect(errorThrown.message).to.equal('sentence is not valid')
+            })
+    })
+
+    it('fails on invalid sentence order sentence', () => {
+        let errorThrown
+
+        return bcrypt.hash('12345678', 8)
+            .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
+            .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => OrderSentenceExercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', translate: 'alan (hat) es gegessen', index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { translate: 12345 }))))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(ContentError)
+                expect(errorThrown.message).to.equal('translate is not valid')
+            })
+    })
+
+    it('fails on invalid word vocabulary', () => {
+        let errorThrown
+
+        return bcrypt.hash('12345678', 8)
+            .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
+            .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => VocabularyExercise.create({ teacher: user.id, activity: activity.id, word: 'laufen', answer: ['walk', 'run'], index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { word: 12345 }))))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(ContentError)
+                expect(errorThrown.message).to.equal('word is not valid')
+            })
+    })
+
+    it('fails on invalid answer vocabulary', () => {
+        let errorThrown
+
+        return bcrypt.hash('12345678', 8)
+            .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
+            .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => VocabularyExercise.create({ teacher: user.id, activity: activity.id, word: 'laufen', answer: ['walk', 'run'], index: 0 })
+                    .then(exercise => editExercise(user.id, exercise.id, { answers: 12345 }))))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(ContentError)
+                expect(errorThrown.message).to.equal('answers is not valid')
             })
     })
 

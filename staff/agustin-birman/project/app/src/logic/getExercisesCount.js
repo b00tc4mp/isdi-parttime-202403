@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const getExercisesCount = activityId => {
     validate.id(activityId, 'activityId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercise/${activityId}/count`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/${activityId}/count`, {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
         }

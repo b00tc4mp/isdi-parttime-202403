@@ -63,7 +63,7 @@ function ListTeachersActivities() {
                                 <td>{activity.teacherUsername}</td>
                                 <td>
                                     <Link to={`/activities/${activity.id}`}><i
-                                        className="bi bi-info-circle"
+                                        className='bi bi-info-circle'
                                         style={{ cursor: 'pointer', color: '#007bff' }}
                                     ></i></Link>
                                 </td>
@@ -71,7 +71,7 @@ function ListTeachersActivities() {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="3">No activities found</td>
+                            <td colSpan='3'>No activities found</td>
                         </tr>
                     )}
                 </tbody>

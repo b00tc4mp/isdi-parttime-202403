@@ -27,9 +27,7 @@ describe('getExercises', () => {
                     .then(() => CompleteSentenceExercise.create({ teacher: user.id, activity: activity.id, sentence: 'pepe (hat) es gesagt', answer: 'hat', index: 1 })
                         .then(() => getExercises(user.id, activity.id)
                             .then(result => {
-                                console.log(result)
                                 const { exercises, count } = result
-                                console.log(exercises, count)
                                 expect(exercises).to.be.an('array')
                                 expect(count).to.be.a('number')
 

@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const editExercise = (exerciseId, updateData) => {
     validate.id(exerciseId, 'exerciseId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercise/${exerciseId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/${exerciseId}`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,

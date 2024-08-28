@@ -4,7 +4,7 @@ import errors, { SystemError } from '../../../com/errors'
 const getActivity = activityId => {
     validate.id(activityId, 'activityId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/activity/${activityId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/activities/${activityId}`, {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
         }

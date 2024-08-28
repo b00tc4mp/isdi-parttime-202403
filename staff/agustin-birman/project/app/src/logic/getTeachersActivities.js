@@ -5,7 +5,7 @@ const getTeachersActivities = () => {
 
     const { sub: userId } = extractPayloadFromJWT(localStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/activity/student/${userId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/activities/student/${userId}`, {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
         }

@@ -12,7 +12,6 @@
         color: var(--first-color);
     }
 
-
     h1{
         @apply text-5xl
     }
@@ -55,7 +54,6 @@
     tr:hover {
         background-color: #e0e0e0; /* Fondo ligeramente más oscuro al pasar el ratón */
     }
-
 }
 
 

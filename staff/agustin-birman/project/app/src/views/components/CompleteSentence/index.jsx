@@ -116,12 +116,12 @@ function CreateCompleteSentence() {
                 ?
                 <View className='divButton'>
                     <Button type='button' className='btn btn-secondary'><Link to='/'>Cancel</Link></Button>
-                    <Button type='button' className="btn btn-success" onClick={handleNextExercise}>Add a new exercise</Button>
+                    <Button type='button' className='btn btn-success' onClick={handleNextExercise}>Add a new exercise</Button>
                 </View>
 
                 : <View className='divButton'>
                     <Button type='button' className='btn btn-secondary' onClick={handleEditButton}>Cancel Edit</Button>
-                    <Button type='button' className="btn btn-success" onClick={handleEditedExercise}>Save Changes</Button>
+                    <Button type='button' className='btn btn-success' onClick={handleEditedExercise}>Save Changes</Button>
                 </View>
             }
         </FormWithFeedback>

@@ -44,8 +44,8 @@ describe('removeTeacher', () => {
     )
 
     it('fails on non-existing user', () => {
-
-        bcrypt.hash('12345678', 8)
+        let errorThrown
+        return bcrypt.hash('12345678', 8)
             .then(hash => User.create({
                 name: 'Test',
                 surname: 'User',
@@ -62,9 +62,9 @@ describe('removeTeacher', () => {
                 }))
     })
 
-    it('fails on non-existing student', () => {
-
-        bcrypt.hash('12345678', 8)
+    it('fails on non-existing targetUser', () => {
+        let errorThrown
+        return bcrypt.hash('12345678', 8)
             .then(hash => User.create({
                 name: 'Test',
                 surname: 'User',
@@ -73,13 +73,41 @@ describe('removeTeacher', () => {
                 password: hash,
                 userType: 'teacher'
             })
-                .then(teacher => removeTeacher(teacher.id, new ObjectId().toString()))
-                .catch(error => errorThrown = error)
-                .finally(() => {
-                    expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                    expect(errorThrown.message).to.equal('student is not in your list')
-                }))
+                .then(user => removeTeacher(user.id, new ObjectId().toString())))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+                expect(errorThrown.message).to.equal('teacher not found')
+            })
     })
+    it('fails on non-existing student in the list', () => {
+        let errorThrown
+        return bcrypt.hash('12345678', 8)
+            .then(hash => Promise.all([
+                User.create({
+                    name: 'Mocha',
+                    surname: 'Chai',
+                    email: 'Mocha@Chai.com',
+                    username: 'MochaChai',
+                    password: hash,
+                    userType: 'teacher'
+                }),
+                User.create({
+                    name: 'Test',
+                    surname: 'User',
+                    email: 'test@user.com',
+                    username: 'testuser',
+                    password: hash,
+                    userType: 'student'
+                })
+            ]))
+            .then(([student, teacher]) => removeTeacher(student.id, teacher.id))
+            .catch(error => errorThrown = error)
+            .finally(() => {
+                expect(errorThrown).to.be.an.instanceOf(NotFoundError);
+                expect(errorThrown.message).to.equal('Student is not in the teacher\'s student list')
+            });
+    });
 
     it('fails on invalid userId', () => {
         let errorThrown

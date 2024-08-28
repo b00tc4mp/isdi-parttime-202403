@@ -1,12 +1,13 @@
-import validate from "com/validate.js"
-import { Activity, Exercise, User } from "../../data/index.js"
-import { OrderSentenceExercise } from "../../data/Exercise.js"
-import { NotFoundError, SystemError } from "com/errors.js"
+import validate from 'com/validate.js'
+import { Activity, Exercise, User } from '../../data/index.js'
+import { OrderSentenceExercise } from '../../data/Exercise.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 const createOrderSentence = (userId, activityId, sentence, translate) => {
     validate.id(userId, 'userId')
     validate.id(activityId, 'activityId')
     validate.text(sentence, 'sentence')
+    validate.text(translate, 'translate')
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })

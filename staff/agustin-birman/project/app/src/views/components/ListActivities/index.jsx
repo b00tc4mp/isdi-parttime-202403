@@ -46,7 +46,7 @@ function ListActivities() {
                             <td>{activity.title}</td>
                             <td>
                                 <Link to={`/activities/${activity.id}`}><i
-                                    className="bi bi-info-circle"
+                                    className='bi bi-info-circle'
                                     style={{ cursor: 'pointer', color: '#007bff' }}
                                 ></i></Link>
                             </td>

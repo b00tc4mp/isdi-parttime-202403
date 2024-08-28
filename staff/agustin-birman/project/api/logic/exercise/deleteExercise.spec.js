@@ -22,8 +22,9 @@ describe('deleteExercise', () => {
             .then(hash => User.create({ name: 'Mocha', surname: 'Chai', email: 'mocha@chai.es', username: 'mochachai', password: hash, userType: 'teacher' }))
             .then(user => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
                 .then(activity => Exercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
-                    .then(exercise => deleteExercise(user.id, exercise.id)
-                        .then(() => Exercise.findById(exercise.id)))))
+                    .then(exercise => Exercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 1 })
+                        .then(() => deleteExercise(user.id, exercise.id)
+                            .then(() => Exercise.findById(exercise.id))))))
             .then(exercise => {
                 expect(exercise).to.be.null
             })
@@ -53,6 +54,38 @@ describe('deleteExercise', () => {
                 .finally(() => {
                     expect(errorThrown).to.be.an.instanceOf(NotFoundError)
                     expect(errorThrown.message).to.equal('user not found')
+                }))
+    })
+
+    it('fails on non-same user', () => {
+        let errorThrown
+
+        return bcrypt.hash('12345678', 8)
+            .then(hash => Promise.all([
+                User.create({
+                    name: 'Mocha',
+                    surname: 'Chai',
+                    email: 'Mocha@Chai.com',
+                    username: 'MochaChai',
+                    password: hash,
+                    userType: 'teacher'
+                }),
+                User.create({
+                    name: 'Test',
+                    surname: 'User',
+                    email: 'test@user.com',
+                    username: 'testuser',
+                    password: hash,
+                    userType: 'student'
+                })
+            ]))
+            .then(([user, userFake]) => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => Exercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
+                    .then(exercise => deleteExercise(userFake.id, exercise.id)))
+                .catch(error => errorThrown = error)
+                .finally(() => {
+                    expect(errorThrown).to.be.an.instanceOf(MatchError)
+                    expect(errorThrown.message).to.equal('you are not the owner of the exercise')
                 }))
     })
 

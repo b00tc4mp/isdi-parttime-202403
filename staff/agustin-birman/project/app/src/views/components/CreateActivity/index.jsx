@@ -57,7 +57,7 @@ function CreateActivity({ }) {
 
         <div className='divButton'>
             <Button className='btn btn-secondary' type='button'><Link to='/'>Cancel</Link></Button>
-            <Button className="btn btn-success">Created</Button>
+            <Button className='btn btn-success'>Created</Button>
         </div>
     </FormWithFeedback >
 }

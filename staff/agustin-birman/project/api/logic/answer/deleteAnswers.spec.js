@@ -4,7 +4,7 @@ import mongoose, { Types } from 'mongoose'
 import deleteAnswers from './deleteAnswers.js'
 import { expect } from 'chai'
 import { User, Activity, Exercise, Answer } from '../../data/index.js'
-import { ContentError, NotFoundError } from 'com/errors.js'
+import { ContentError, CredentialsError, NotFoundError } from 'com/errors.js'
 const { MONGODB_URL_TEST } = process.env
 
 const { ObjectId } = Types
@@ -26,6 +26,40 @@ describe('deleteAnswers', () => {
                                 .then(answer2 => deleteAnswers(user.id, activity.id)
                                     .then(() => Answer.find({ activity: activity.id })
                                         .then(answers => expect(answers).to.be.an('array').that.is.empty))))))))
+    })
+
+    it('fails non-same user', () => {
+        let errorThrown
+        return bcrypt.hash('12345678', 8)
+            .then(hash => Promise.all([
+                User.create({
+                    name: 'Mocha',
+                    surname: 'Chai',
+                    email: 'Mocha@Chai.com',
+                    username: 'MochaChai',
+                    password: hash,
+                    userType: 'teacher'
+                }),
+                User.create({
+                    name: 'Test',
+                    surname: 'User',
+                    email: 'test@user.com',
+                    username: 'testuser',
+                    password: hash,
+                    userType: 'student'
+                })
+            ]))
+            .then(([user, fakeUser]) => Activity.create({ teacher: user.id, title: 'title', description: 'description' })
+                .then(activity => Exercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
+                    .then(exercise1 => Exercise.create({ teacher: user.id, activity: activity.id, sentence: 'alan (hat) es gegessen', answer: 'hat', index: 0 })
+                        .then(exercise2 => Answer.create({ student: user.id, exercise: exercise1.id, activity: activity.id, answer: 'hat' })
+                            .then(answer1 => Answer.create({ student: user.id, exercise: exercise2.id, activity: activity.id, answer: 'haben' })
+                                .then(answer2 => deleteAnswers(fakeUser.id, activity.id))
+                                .catch(error => errorThrown = error)
+                                .finally(() => {
+                                    expect(errorThrown).to.be.an.instanceOf(CredentialsError)
+                                    expect(errorThrown.message).to.equal('you cannot delete this answer')
+                                }))))))
     })
 
     it('fails non-existing user', () => {

@@ -36,7 +36,8 @@ const editExercise = (userId, exerciseId, updateData = {}) => {
                                 update.answer = removeAnswer[1]
 
                                 return CompleteSentenceExercise.updateOne({ _id: exerciseId }, { $set: update })
-                                //TODO catch and then
+                                    .catch(error => { throw new SystemError(error.message) })
+                                    .then(() => { })
                             }
                         case 'orderSentence':
                             if (updateData.sentence !== undefined) {
@@ -50,7 +51,8 @@ const editExercise = (userId, exerciseId, updateData = {}) => {
                             }
 
                             return OrderSentenceExercise.updateOne({ _id: exerciseId }, { $set: update })
-
+                                .catch(error => { throw new SystemError(error.message) })
+                                .then(() => { })
                         case 'vocabulary':
                             if (updateData.word !== undefined) {
                                 validate.text(updateData.word, 'word', 50)
@@ -58,10 +60,13 @@ const editExercise = (userId, exerciseId, updateData = {}) => {
                             }
 
                             if (updateData.answers !== undefined) {
+                                validate.array(updateData.answers, 'answers')
                                 update.answer = updateData.answers
                             }
 
                             return VocabularyExercise.updateOne({ _id: exerciseId }, { $set: update })
+                                .catch(error => { throw new SystemError(error.message) })
+                                .then(() => { })
                     }
                 })
         })

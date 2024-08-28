@@ -10,7 +10,7 @@ const editActivity = (activityId, title, description) => {
         validate.text(description, 'description', 200)
     }
 
-    return fetch(`${import.meta.env.VITE_API_URL}/activity/${activityId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/activities/${activityId}`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,

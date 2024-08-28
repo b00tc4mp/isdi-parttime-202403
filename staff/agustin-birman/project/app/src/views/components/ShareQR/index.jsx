@@ -14,8 +14,8 @@ function ShareQR() {
             className='QR'
             value={url}
             size={256}
-            bgColor="#ffffff"
-            fgColor="#000000"
+            bgColor='#ffffff'
+            fgColor='#000000'
         />
         <Text>Ask to your teacher to scan this code!</Text>
         <Button className='QRButton'><Link to='/'>Go Home</Link></Button>

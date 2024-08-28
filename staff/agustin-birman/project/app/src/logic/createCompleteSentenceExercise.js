@@ -5,7 +5,7 @@ const createCompleteSentenceExercise = (activityId, sentence) => {
     validate.id(activityId, 'activityId')
     validate.textCompleteSentence(sentence, 'sentence', 200)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercise/complete-sentence`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/complete-sentence`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,

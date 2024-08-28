@@ -63,6 +63,11 @@ function validateUserType(userType) {
         throw new ContentError('userType is not valid')
 }
 
+function validateArray(array, explain = 'array') {
+    if (!Array.isArray(array))
+        throw new ContentError(`${explain} is not valid`)
+}
+
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -74,7 +79,8 @@ const validate = {
     url: validateUrl,
     id: validateId,
     userType: validateUserType,
-    textCompleteSentence: validateTextCompleteSentence
+    textCompleteSentence: validateTextCompleteSentence,
+    array: validateArray
 }
 
 export default validate

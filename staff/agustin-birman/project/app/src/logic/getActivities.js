@@ -1,7 +1,7 @@
 import errors, { SystemError } from '../../../com/errors'
 
 const getActivities = () => {
-    return fetch(`${import.meta.env.VITE_API_URL}/activity`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/activities`, {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
         }

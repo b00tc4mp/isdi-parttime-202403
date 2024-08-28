@@ -5,7 +5,7 @@ const createActivity = (title, description) => {
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/activity`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/activities`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,

@@ -1,6 +1,6 @@
-import validate from "com/validate.js";
-import { User } from "../../data/index.js";
-import { NotFoundError, SystemError } from "com/errors.js";
+import validate from 'com/validate.js';
+import { User } from '../../data/index.js';
+import { NotFoundError, SystemError } from 'com/errors.js';
 
 const getUserInfo = (userId, userInfoId) => {
     validate.id(userId, 'userId')

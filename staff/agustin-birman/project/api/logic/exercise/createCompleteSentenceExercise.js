@@ -25,9 +25,6 @@ const createCompleteSentenceExercise = (userId, activityId, sentence) => {
 
                     const removeAnswer = sentence.match(ANSWER_REGEX)
 
-                    if (!removeAnswer[1])
-                        throw new NotFoundError('Answer not found')
-
                     return Exercise.countDocuments({ activity: activityId })
                         .catch(error => { throw new SystemError(error.message) })
                         .then(index => {

@@ -1,12 +1,13 @@
-import validate from "com/validate.js"
-import { Activity, Exercise, User } from "../../data/index.js"
-import { VocabularyExercise } from "../../data/Exercise.js"
-import { NotFoundError, SystemError } from "com/errors.js"
+import validate from 'com/validate.js'
+import { Activity, Exercise, User } from '../../data/index.js'
+import { VocabularyExercise } from '../../data/Exercise.js'
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 const createVocabulary = (userId, activityId, word, answers) => {
     validate.id(userId, 'userId')
     validate.id(activityId, 'activityId')
     validate.text(word, 'word', 60)
+    validate.array(answers, 'answers')
     const filteredArray = answers.filter(element => element !== undefined && element !== null && element !== '');
 
 

@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const deleteActivity = activityId => {
     validate.id(activityId, 'activityId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/activity/${activityId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/activities/${activityId}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${localStorage.token}`

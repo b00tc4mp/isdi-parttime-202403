@@ -71,10 +71,10 @@ function ListTeachers() {
                             <td>{teacher.surname}</td>
                             <td>
                                 <i
-                                    className="bi bi-trash3"
+                                    className='bi bi-trash3'
                                     style={{ cursor: 'pointer', color: '#007bff' }}
                                     onClick={toggleDeleteTeacher}
-                                    title="Delete Teacher"
+                                    title='Delete Teacher'
                                 ></i>
                                 {confirmDeleteTeacher && <ConfirmDelete message='Do you want to delete this teacher?' onAccept={() => handleDeleteTeacher(teacher.id)} onCancel={toggleDeleteTeacher}></ConfirmDelete>}
                             </td>

@@ -1,6 +1,6 @@
-import validate from "com/validate.js"
-import { Activity, Answer, Exercise, User } from "../../data/index.js"
-import { NotFoundError, SystemError } from "com/errors.js"
+import validate from 'com/validate.js'
+import { Activity, Answer, Exercise, User } from '../../data/index.js'
+import { CredentialsError, NotFoundError, SystemError } from 'com/errors.js'
 
 const deleteAnswers = (userId, activityId) => {
     validate.id(userId, 'userId')
@@ -31,6 +31,10 @@ const deleteAnswers = (userId, activityId) => {
                                 .then(answers => {
                                     if (!answers || answers.length === 0)
                                         throw new NotFoundError('answer not found')
+
+                                    const unauthorizedAnswer = answers.find(answer => userId !== answer.student.toString())
+                                    if (unauthorizedAnswer)
+                                        throw new CredentialsError('you cannot delete this answer')
 
                                     return Answer.deleteMany({ exercise: { $in: exerciseIds } })
                                         .catch(error => { throw new SystemError(error.message) })

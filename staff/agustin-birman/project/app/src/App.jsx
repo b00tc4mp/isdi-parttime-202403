@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import Alert from './components/library/Alert'
 import Register from './views/Register'
 import Login from './views/Login'

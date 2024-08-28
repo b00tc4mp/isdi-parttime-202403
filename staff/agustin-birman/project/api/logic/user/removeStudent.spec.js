@@ -43,7 +43,7 @@ describe('removeStudent', () => {
     )
 
     it('fails on non-existing teacher', () => {
-
+        let errorThrown
         bcrypt.hash('12345678', 8)
             .then(hash => User.create({
                 name: 'Test',
@@ -62,8 +62,8 @@ describe('removeStudent', () => {
     })
 
     it('fails on non-existing student', () => {
-
-        bcrypt.hash('12345678', 8)
+        let errorThrown
+        return bcrypt.hash('12345678', 8)
             .then(hash => User.create({
                 name: 'Test',
                 surname: 'User',

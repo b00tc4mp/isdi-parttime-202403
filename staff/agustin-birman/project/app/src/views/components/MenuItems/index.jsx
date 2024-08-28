@@ -31,7 +31,7 @@ function MenuItem() {
             <Button className='MenuItem'><Link to='/users/teachers'>View teachers</Link></Button>
             <Button className='MenuItem btn btn-primary'><Link to={`/users/${userId}`} >Share ID</Link></Button>
             <Button className='MenuItem btn btn-primary'><Link to={`/users/student/${userId}/info`} >View Stats</Link></Button>
-            <i className="bi bi-info-circle">asd</i>
+            <i className='bi bi-info-circle'>asd</i>
         </>}
 
         {userRole === 'teacher' && <>

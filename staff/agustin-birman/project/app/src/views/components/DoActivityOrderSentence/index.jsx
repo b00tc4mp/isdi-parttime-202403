@@ -138,7 +138,7 @@ function DoActivityOrderSentence() {
                         <div className='SelectedWordsContainer'>
                             {selectedWords.map((word, selectedWordIndex) => (
                                 <Button
-                                    className="btn btn-success move-to-mixed"
+                                    className='btn btn-success move-to-mixed'
                                     key={`selected-${selectedWordIndex}-${word}`}
                                     onClick={() => handleSelectedWordClick(word)}
                                 >
@@ -149,7 +149,7 @@ function DoActivityOrderSentence() {
                         <div className='MixedWordsContainer'>
                             {mixedWords.map((word, wordIndex) => (
                                 <Button
-                                    className="btn btn-secondary btnOrderSentence move-to-selected"
+                                    className='btn btn-secondary btnOrderSentence move-to-selected'
                                     key={`mixed-${wordIndex}-${word}`}
                                     onClick={() => { handleWordClick(word), console.log(word) }}>
                                     {word}

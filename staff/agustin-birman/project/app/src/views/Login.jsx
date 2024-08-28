@@ -9,7 +9,6 @@ import Link from '../components/core/Link'
 
 import FormWithFeedback from '../components/library/FormWithFeedback'
 import View from '../components/library/View'
-import Heading from '../components/core/Heading'
 
 function Login({ onUserLoggedIn, onRegisterLinkClick }) {
     const [message, setMessage] = useState('')

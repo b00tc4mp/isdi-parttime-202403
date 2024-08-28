@@ -4,7 +4,7 @@ import errors, { SystemError } from '../../../com/errors'
 const checkCompleteActivity = activityId => {
     validate.id(activityId, 'activityId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/activity/${activityId}/result`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/activities/${activityId}/result`, {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
         }

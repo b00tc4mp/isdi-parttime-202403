@@ -1,6 +1,6 @@
-import validate from "com/validate.js"
+import validate from 'com/validate.js'
 import { User } from '../../data/index.js'
-import { NotFoundError, SystemError } from "com/errors.js"
+import { NotFoundError, SystemError } from 'com/errors.js'
 
 const removeTeacher = (userId, teacherId) => {
     validate.id(userId, 'userId')
@@ -9,23 +9,20 @@ const removeTeacher = (userId, teacherId) => {
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
+            if (!user)
                 throw new NotFoundError('user not found')
-            }
+
 
             return User.findById(teacherId)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(teacher => {
-                    if (!teacher) {
+                    if (!teacher)
                         throw new NotFoundError('teacher not found')
-                    }
+
 
                     return User.find({ _id: { $in: user.student } })
                         .catch(error => { throw new SystemError(error.message) })
-                        .then(user => {
-                            if (!user) {
-                                throw new NotFoundError('user not found')
-                            }
+                        .then(() => {
 
                             const index = teacher.student.indexOf(userId)
                             if (index > -1) {

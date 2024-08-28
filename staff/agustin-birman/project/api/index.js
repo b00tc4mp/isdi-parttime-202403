@@ -76,41 +76,41 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/users/student/:targetUserId/stats', getUserStatsHandler)
 
-        api.post('/activity', jsonBodyParser, createActivityHandler)
+        api.post('/activities', jsonBodyParser, createActivityHandler)
 
-        api.get('/activity', getActivitiesHandler)
+        api.get('/activities', getActivitiesHandler)
 
-        api.get('/activity/:activityId', getActivityHandler)
+        api.get('/activities/:activityId', getActivityHandler)
 
-        api.get('/activity/:activityId/result', checkCompleteActivityHandler)
+        api.get('/activities/:activityId/result', checkCompleteActivityHandler)
 
-        api.get('/activity/:activityId/type', getExerciseTypeHandler)
+        api.get('/activities/:activityId/type', getExerciseTypeHandler)
 
-        api.get('/activity/student/:userId', getTeachersActivitiesHandler)
+        api.get('/activities/student/:userId', getTeachersActivitiesHandler)
 
-        api.delete('/activity/:activityId', deleteActivityHandler)
+        api.delete('/activities/:activityId', deleteActivityHandler)
 
-        api.patch('/activity/:activityId', jsonBodyParser, editActivityHandler)
+        api.patch('/activities/:activityId', jsonBodyParser, editActivityHandler)
 
-        api.post('/exercise/complete-sentence', jsonBodyParser, createCompleteSentenceExerciseHandler)
+        api.post('/exercises/complete-sentence', jsonBodyParser, createCompleteSentenceExerciseHandler)
 
-        api.post('/exercise/order-sentence', jsonBodyParser, createOrderSentenceHandler)
+        api.post('/exercises/order-sentence', jsonBodyParser, createOrderSentenceHandler)
 
-        api.post('/exercise/vocabulary', jsonBodyParser, createVocabularyHandler)
+        api.post('/exercises/vocabulary', jsonBodyParser, createVocabularyHandler)
 
-        api.get('/exercise/:activityId/count', getExercisesCountHandler)
+        api.get('/exercises/:activityId/count', getExercisesCountHandler)
 
-        api.get('/exercise/:activityId', getExercisesHandler)
+        api.get('/exercises/:activityId', getExercisesHandler)
 
-        api.delete('/exercise/:exerciseId', deleteExerciseHandler)
+        api.delete('/exercises/:exerciseId', deleteExerciseHandler)
 
-        api.patch('/exercise/:exerciseId', jsonBodyParser, editExerciseHandler)
+        api.patch('/exercises/:exerciseId', jsonBodyParser, editExerciseHandler)
 
-        api.post('/answer', jsonBodyParser, submitAnswerHandler)
+        api.post('/answers', jsonBodyParser, submitAnswerHandler)
 
-        api.get('/answer/:exerciseId', getAnswersHandler)
+        api.get('/answers/:exerciseId', getAnswersHandler)
 
-        api.delete('/answer/:activityId', deleteAnswersHandler)
+        api.delete('/answers/:activityId', deleteAnswersHandler)
 
         api.use(errorHandler)
 

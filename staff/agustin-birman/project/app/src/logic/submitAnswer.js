@@ -1,12 +1,12 @@
-import errors, { SystemError } from "com/errors"
-import validate from "com/validate"
+import errors, { SystemError } from 'com/errors'
+import validate from 'com/validate'
 
 const submitAnswer = (activityId, exerciseId, answer) => {
     validate.id(activityId, 'activityId')
     validate.id(exerciseId, 'exerciseId')
     validate.text(answer, 'answer')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/answer`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/answers`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,

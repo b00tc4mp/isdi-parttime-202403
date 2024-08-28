@@ -1,12 +1,12 @@
 import './index.css'
-import logic from "../../../logic"
+import logic from '../../../logic'
 
-import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import Heading from "../../../components/core/Heading"
-import Button from "../../../components/core/Button"
-import View from "../../../components/library/View"
+import Heading from '../../../components/core/Heading'
+import Button from '../../../components/core/Button'
+import View from '../../../components/library/View'
 
 function ShowExerciseResults() {
     const [exercisesWithAnswers, setExercisesWithAnswers] = useState([])
@@ -76,15 +76,15 @@ function ShowExerciseResults() {
         <View>
             <Heading level='2' className='ResultTitle'>Results</Heading>
             {exercisesWithAnswers.map(exercise => (
-                <table className="ResultTable" key={exercise.id}>
+                <table className='ResultTable' key={exercise.id}>
                     <thead>
                         <tr>
-                            <th colSpan="2">{exercise.index + 1} Sentence</th>
+                            <th colSpan='2'>{exercise.index + 1} Sentence</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="SentenceResult">
-                            <td colSpan="2">{exercise.word !== undefined ? exercise.word : exercise.sentence}</td>
+                        <tr className='SentenceResult'>
+                            <td colSpan='2'>{exercise.word !== undefined ? exercise.word : exercise.sentence}</td>
                         </tr>
                         {exerciseType === 'completeSentence' || exerciseType === 'Vocabulary'
                             ? <tr>

@@ -4,7 +4,7 @@ import validate from 'com/validate'
 const deleteExercise = exerciseId => {
     validate.id(exerciseId, 'exerciseId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercise/${exerciseId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/${exerciseId}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${localStorage.token}`

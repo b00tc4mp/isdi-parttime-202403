@@ -8,6 +8,7 @@ import './index.css'
 function Exercises({ activityId, onEditButton, updateExercises }) {
     const [exercises, setExercises] = useState([])
     const [confirmDeleteExercise, setConfirmDeleteExercise] = useState(false)
+    const [exerciseId, setExerciseId] = useState('')
 
     useEffect(() =>
         loadExercises()
@@ -32,10 +33,13 @@ function Exercises({ activityId, onEditButton, updateExercises }) {
         }
     }
 
-    const handleDeletedExericise = (exerciseId) => {
+    const handleDeletedExercise = () => {
         try {
             logic.deleteExercise(exerciseId)
-                .then(() => loadExercises())
+                .then(() => {
+                    loadExercises()
+                    toggleDeleteExercise()
+                })
                 .catch(error => {
                     console.error(error)
 
@@ -48,7 +52,10 @@ function Exercises({ activityId, onEditButton, updateExercises }) {
         }
     }
 
-    const toggleDeleteExercise = () => setConfirmDeleteExercise(prevState => !prevState)
+    const toggleDeleteExercise = (exerciseId) => {
+        setConfirmDeleteExercise(prevState => !prevState)
+        setExerciseId(exerciseId)
+    }
 
     return <View className='ListExercise'>
         <Heading className='ListExerciseTitle' level='2'>List Exercises</Heading>
@@ -77,11 +84,10 @@ function Exercises({ activityId, onEditButton, updateExercises }) {
                         <td> <i
                             className="bi bi-trash3"
                             style={{ cursor: 'pointer', color: '#007bff' }}
-                            onClick={toggleDeleteExercise}
+                            onClick={() => toggleDeleteExercise(exercise.id)}
                             title="Delete Teacher"
                         ></i>
-                            {confirmDeleteExercise && <ConfirmDelete message='Do you want to delete this teacher?' onAccept={() => handleDeletedExericise(exercise.id)} onCancel={toggleDeleteExercise}></ConfirmDelete>}
-
+                            {confirmDeleteExercise && <ConfirmDelete message='Do you want to delete this teacher?' onAccept={handleDeletedExercise} onCancel={toggleDeleteExercise}></ConfirmDelete>}
                         </td>
                     </tr>
                 )}
