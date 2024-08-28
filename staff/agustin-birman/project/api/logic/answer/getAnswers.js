@@ -22,7 +22,7 @@ const getAnswers = (userId, exerciseId) => {
                     if (!exercise)
                         throw new NotFoundError('exercise not found')
 
-                    return Answer.find({ exercise: new ObjectId(exerciseId) })
+                    return Answer.find({ exercise: new ObjectId(exerciseId) }).select('-__v')
                         .catch(error => { throw new SystemError(error.message) })
                         .then(answers => {
                             return answers.map(answer => {

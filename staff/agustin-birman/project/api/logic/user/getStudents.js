@@ -11,7 +11,7 @@ const getStudents = userId => {
             if (!user)
                 throw new NotFoundError('user not found')
 
-            return User.find({ _id: { $in: user.student } })
+            return User.find({ _id: { $in: user.student } }).select('-__v')
                 .catch(error => { throw new SystemError(error.message) })
                 .then(students => {
                     return students.map(student => {

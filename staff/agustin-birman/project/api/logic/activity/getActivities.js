@@ -12,7 +12,7 @@ const getActivities = (userId) => {
                 throw new NotFoundError('user not found')
             }
 
-            return Activity.find({ teacher: userId })
+            return Activity.find({ teacher: userId }).select('-__v')
                 .catch(error => { throw new SystemError(error.message) })
                 .then(activities => {
                     const transformedActivities = activities.map(activity => {

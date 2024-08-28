@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Context } from '../../../useContext'
 import logic from '../../../logic'
 import './index.css'
 import View from '../../../components/library/View'
@@ -9,7 +10,7 @@ import ViewActivityTeacher from '../../../components/library/ViewActivityTeacher
 function ViewActivity() {
     const [userRole, setUserRole] = useState('')
 
-    const { alert } = useContext()
+    const { alert } = useContext(Context)
 
     useEffect(() => {
         getRole()

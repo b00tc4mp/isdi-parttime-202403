@@ -1,7 +1,7 @@
 import './index.css'
 
-function TextArea({ id, type, placeholder, onChange, value }) {
-    return <textarea className='TextArea' id={id} type={type} placeholder={placeholder} onChange={onChange} value={value}></textarea>
+function TextArea({ id, type, placeholder, onChange, value, className }) {
+    return <textarea className={`TextArea ${className ? className : ''}`} id={id} type={type} placeholder={placeholder} onChange={onChange} value={value}></textarea>
 }
 
 export default TextArea

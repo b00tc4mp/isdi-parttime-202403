@@ -1,9 +1,9 @@
 import './index.css'
 import logic from '../../../logic'
 
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-
+import { Context } from '../../../useContext'
 import Heading from '../../../components/core/Heading'
 import Button from '../../../components/core/Button'
 import View from '../../../components/library/View'
@@ -12,6 +12,7 @@ function ShowExerciseResults() {
     const [exercisesWithAnswers, setExercisesWithAnswers] = useState([])
     const [exerciseType, SetExerciseType] = useState('')
     const { activityId } = useParams()
+    const { alert } = useContext(Context)
 
     const navigate = useNavigate()
 
@@ -37,7 +38,7 @@ function ShowExerciseResults() {
                 .then(exercisesWithAnswers => setExercisesWithAnswers(exercisesWithAnswers))
                 .catch(error => {
                     console.error(error)
-                    alert(error.message) // TODO: mejorar el alert
+                    alert(error.message)
                 });
         } catch (error) {
             console.error(error)

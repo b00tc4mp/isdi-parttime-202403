@@ -1,12 +1,30 @@
 import QRCode from 'react-qr-code'
-import extractPayloadFromJWT from '../../../utils/extractPayloadFromJWT'
 import Text from '../../../components/core/Text'
 import Button from '../../../components/core/Button'
 import { Link } from 'react-router-dom'
 import './index.css'
-
+import { Context } from '../../../useContext'
+import { useContext } from 'react'
 function ShareQR() {
-    const { sub: userId } = extractPayloadFromJWT(localStorage.token) //TODO hacer la funcion userID
+    const [userId, setUserId] = useState('')
+
+    const { alert } = useContext(Context)
+
+    useEffect(() => {
+        getUserId()
+    }, [])
+
+    const getUserId = () => {
+        try {
+            const userrId = logic.getUserId()
+            setUserId(userrId)
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
     const url = `${import.meta.env.VITE_APP_URL}/users/${userId}/add`
 
     return <div className='QRContainer'>

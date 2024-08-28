@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { Context } from '../../../useContext'
 import './index.css'
 
 import Heading from '../../../components/core/Heading'
@@ -11,6 +12,7 @@ function ListExercises() {
     const { activityId } = useParams()
     const [exercises, setExercises] = useState([])
     const [exerciseType, SetExerciseType] = useState('')
+    const { alert } = useContext(Context)
 
     useEffect(() => {
         loadExercises()
@@ -27,7 +29,7 @@ function ListExercises() {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message) //TODO hacer un alert mejor
+                    alert(error.message)
                 })
         } catch (error) {
             console.error(error)

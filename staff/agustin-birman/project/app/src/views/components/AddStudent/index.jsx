@@ -1,19 +1,17 @@
 import logic from '../../../logic'
-import View from '../../../components/library/View'
 import Heading from '../../../components/core/Heading'
 import Text from '../../../components/core/Text'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { Context } from '../../../useContext'
 import Button from '../../../components/core/Button'
 import './index.css'
-
 
 function AddStudent() {
     const [userInfo, setUserInfo] = useState('')
     const { userInfoId } = useParams()
     const navigate = useNavigate()
-
-
+    const { alert } = useContext(Context)
 
     useEffect(() => {
         getUserInfo()

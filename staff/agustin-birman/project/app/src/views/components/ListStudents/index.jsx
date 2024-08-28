@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Context } from '../../../useContext'
 import './index.css'
 
 import Button from '../../../components/core/Button'
@@ -12,6 +13,7 @@ function ListStudents() {
     const [students, setStudents] = useState([])
     const [confirmDeleteStudent, setConfirmDeleteStudent] = useState(false)
     const navigate = useNavigate()
+    const { alert } = useContext(Context)
 
     useEffect(() =>
         loadStudents()
@@ -26,7 +28,7 @@ function ListStudents() {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message) //TODO hacer un alert mejor
+                    alert(error.message)
                 })
         } catch (error) {
             console.error(error)

@@ -3,17 +3,30 @@ import View from '../../../components/library/View'
 import { Link } from 'react-router-dom'
 import './index.css'
 import logic from '../../../logic'
-import extractPayloadFromJWT from '../../../utils/extractPayloadFromJWT'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { Context } from '../../../useContext'
 
 function MenuItem() {
     const [userRole, setUserRole] = useState('')
+    const [userId, setUserId] = useState('')
 
-    const { sub: userId } = extractPayloadFromJWT(localStorage.token) // TODO logic para getUserId
+    const { alert } = useContext(Context)
 
     useEffect(() => {
         getRole()
+        getUserId()
     }, [])
+
+    const getUserId = () => {
+        try {
+            const userrId = logic.getUserId()
+            setUserId(userrId)
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
 
     const getRole = () => {
         try {

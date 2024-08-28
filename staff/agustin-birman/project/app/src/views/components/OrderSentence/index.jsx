@@ -13,7 +13,6 @@ import FormWithFeedback from '../../../components/library/FormWithFeedback'
 import View from '../../../components/library/View'
 import Exercises from '../../../components/library/Exercises'
 
-
 function OrderSentence() {
     const [message, setMessage] = useState('')
     const [editView, setEditView] = useState(false)
@@ -34,12 +33,12 @@ function OrderSentence() {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    setMessage(error.message)
                 })
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            setMessage(error.message)
         }
     }
 

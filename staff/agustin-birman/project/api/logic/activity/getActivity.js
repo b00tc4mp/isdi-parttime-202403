@@ -12,7 +12,7 @@ const getActivity = (userId, activityId) => {
             if (!user)
                 throw new NotFoundError('user not found')
 
-            return Activity.findById(activityId)
+            return Activity.findById(activityId).select('-__v')
                 .catch(error => { throw new SystemError(error.message) })
                 .then(activity => {
                     if (!activity)

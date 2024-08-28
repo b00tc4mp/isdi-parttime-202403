@@ -60,8 +60,8 @@ Exercise
     CompleteSentence
     -sentence (string)
     -answer (string)
+    
     OrderSentence
-
     -sentence (string)
     -translate (string)
 

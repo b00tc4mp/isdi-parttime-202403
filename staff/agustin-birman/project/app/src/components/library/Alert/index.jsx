@@ -1,8 +1,10 @@
+import { Button } from 'react-bootstrap'
+import Text from '../../core/Text'
+import './index.css'
+
 export default ({ message, onAccept, level = 'warn' }) => <div className="Alert">
     <div className={`AlertBox AlertBox-${level}`}>
-        <p>{message}</p>
-        <button className="Button" onClick={onAccept}>Accept</button>
+        <Text>{message}</Text>
+        <Button className="Button" onClick={onAccept}>Accept</Button>
     </div>
 </div>
-
-//TODO alert css

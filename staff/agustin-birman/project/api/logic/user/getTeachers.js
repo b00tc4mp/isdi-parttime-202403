@@ -11,7 +11,7 @@ const getTeachers = userId => {
             if (!user)
                 throw new NotFoundError('user not found')
 
-            return User.find({ student: userId }).lean()
+            return User.find({ student: userId }).lean().select('-__v')
                 .catch(error => { throw new SystemError(error.message) })
                 .then(teachers => {
 

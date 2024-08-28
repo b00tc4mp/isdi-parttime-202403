@@ -7,8 +7,6 @@ import logic from '../../../logic'
 import './index.css'
 import Button from '../../../components/core/Button'
 
-let SENTENCE_REGEX = /^(.*?)\s*\(.*?\)\s*(.*?)$/
-
 function DoActivityOrderSentence() {
     const [message, setMessage] = useState('')
     const [selectedWords, setSelectedWords] = useState([])

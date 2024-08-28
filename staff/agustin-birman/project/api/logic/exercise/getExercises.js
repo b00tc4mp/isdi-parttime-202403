@@ -22,7 +22,7 @@ const getExercises = (userId, activityId) => {
                         .catch(error => { throw new SystemError(error.message) })
                         .then(count => {
 
-                            return Exercise.find({ activity: activityId })
+                            return Exercise.find({ activity: activityId }).select('-__v')
                                 .catch(error => { throw new SystemError(error.message) })
                                 .then(exercises => {
                                     const transformedExercises = exercises.map(exercise => {

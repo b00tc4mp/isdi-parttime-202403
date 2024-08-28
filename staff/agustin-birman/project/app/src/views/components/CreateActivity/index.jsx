@@ -18,7 +18,6 @@ function CreateActivity({ }) {
 
     const navigate = useNavigate()
 
-
     const handleCreatedActivity = event => {
         event.preventDefault()
 
@@ -44,12 +43,10 @@ function CreateActivity({ }) {
         }
     }
 
-
     return <FormWithFeedback className='CreateActivity' onSubmit={handleCreatedActivity} message={message}>
         {exerciseType === 'completeSentence' && <Heading level='2'>Complete the sentence</Heading>}
         {exerciseType === 'orderSentence' && <Heading level='2'>Order the sentence</Heading>}
         {exerciseType === 'vocabulary' && <Heading level='2'>Vocabulary</Heading>}
-
 
         <Field id='title' type='text' placeholder='Conjugating the verb Haben' className='CreateActivityTitle'>Title</Field>
 

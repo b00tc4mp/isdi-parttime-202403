@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../../../useContext'
 import './index.css'
 
 import Heading from '../../../components/core/Heading'
@@ -9,6 +10,7 @@ import logic from '../../../logic'
 
 function ListActivities() {
     const [activities, setActivities] = useState([])
+    const { alert } = useContext(Context)
 
     useEffect(() =>
         loadActivities()
@@ -21,7 +23,7 @@ function ListActivities() {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message) //TODO hacer un alert mejor
+                    alert(error.message)
                 })
         } catch (error) {
             console.error(error)

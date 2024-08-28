@@ -2,8 +2,8 @@ import logic from '../../../logic'
 import './index.css'
 
 import { Link, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-
+import { useContext, useEffect, useState } from 'react'
+import { Context } from '../../../useContext'
 import Heading from '../../../components/core/Heading'
 import Text from '../../../components/core/Text'
 import Button from '../../../components/core/Button'
@@ -13,6 +13,8 @@ function ViewStudentStats() {
     const [userStats, setUserStats] = useState('')
     const [userRole, setUserRole] = useState('')
     const { userId } = useParams()
+
+    const { alert } = useContext(Context)
 
     useEffect(() => {
         getUserInfo()

@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import View from "../View"
 import Heading from "../../core/Heading"
 import ConfirmDelete from "../ConfirmDelete"
 import logic from "../../../logic"
 import './index.css'
+import { Context } from "../../../useContext"
 
 function Exercises({ activityId, onEditButton, updateExercises }) {
     const [exercises, setExercises] = useState([])
     const [confirmDeleteExercise, setConfirmDeleteExercise] = useState(false)
     const [exerciseId, setExerciseId] = useState('')
-
+    const { alert } = useContext(Context)
     useEffect(() =>
         loadExercises()
         , [updateExercises])
@@ -24,7 +25,7 @@ function Exercises({ activityId, onEditButton, updateExercises }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message) //TODO hacer un alert mejor
+                    alert(error.message)
                 })
         } catch (error) {
             console.error(error)

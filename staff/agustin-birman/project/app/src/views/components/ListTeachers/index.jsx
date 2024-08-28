@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { Context } from '../../../useContext'
 import './index.css'
 import Button from '../../../components/core/Button'
 import Heading from '../../../components/core/Heading'
@@ -11,6 +11,7 @@ import ConfirmDelete from '../../../components/library/ConfirmDelete'
 function ListTeachers() {
     const [teachers, setTeachers] = useState([])
     const [confirmDeleteTeacher, setConfirmDeleteTeacher] = useState(false)
+    const { alert } = useContext(Context)
 
     useEffect(() =>
         loadTeachers()
@@ -25,7 +26,7 @@ function ListTeachers() {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message) //TODO hacer un alert mejor
+                    alert(error.message)
                 })
         } catch (error) {
             console.error(error)

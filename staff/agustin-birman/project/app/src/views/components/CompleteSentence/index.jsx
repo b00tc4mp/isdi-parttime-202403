@@ -48,12 +48,12 @@ function CreateCompleteSentence() {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    setMessage(error.message)
                 })
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            setMessage(error.message)
         }
     }
 

@@ -18,7 +18,7 @@ const getTeachersActivities = (userId) => {
 
                     const teacherIds = teachers.map(teacher => teacher._id)
 
-                    return Activity.find({ teacher: { $in: teacherIds } })
+                    return Activity.find({ teacher: { $in: teacherIds } }).select('-__v')
                         .populate({ path: 'teacher', select: 'username' })
                         .catch(error => { throw new SystemError(error.message) })
                         .then(activities => {
@@ -30,12 +30,14 @@ const getTeachersActivities = (userId) => {
 
                                 if (activityObj.teacher) {
                                     activityObj.teacherUsername = activityObj.teacher.username
+                                    activityObj.teacher.id = activityObj.teacher._id
+                                    delete activityObj.teacher._id
                                 }
 
                                 return activityObj
                             })
                             return transformedActivities
-                        }) //TODO chequear como devolver esto correctamente
+                        })
                 })
         })
 }

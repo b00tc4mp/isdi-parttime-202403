@@ -129,19 +129,25 @@ function ViewActivityTeacher() {
                     <tr>
                         <td>
                             {editView
-                                ? <TextArea value={description} onChange={(e) => setDescription(e.target.value)} />
+                                ? <TextArea className='TextAreaActivity' value={description} onChange={(e) => setDescription(e.target.value)} />
                                 : <Heading level='4' className='ActivityText'>{activity.description}</Heading>}
                         </td>
                     </tr>
-                    {editView === false &&
-                        <tr>
-                            <td >
+                    {editView === false && (
+                        <>
+                            <tr>
+                                <th>
+                                    <Text>N° exercises</Text>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <Heading level='3' className='ActivityText'>{exercisesCount}</Heading>
+                                </td>
+                            </tr>
+                        </>
+                    )}
 
-                                <Text>N° exercises</Text>
-                                <Heading level='3' className='ActivityText'>{exercisesCount}</Heading>
-
-                            </td>
-                        </tr>}
                 </tbody>
             </table>
         </View>
