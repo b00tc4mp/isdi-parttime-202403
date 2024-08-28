@@ -3,9 +3,14 @@ import Button from "../core/Button"
 
 import "./index.css"
 
+import useContext from "../../useContext"
+import { SystemError } from "com/errors"
+
 import logic from "../../logic/index"
 
 export default function RegisterCustomer({ onCloseRegisterCustomer }) {
+  const { alert } = useContext()
+
   const handleRegisterCustomerSubmit = (event) => {
     event.preventDefault()
 
@@ -22,12 +27,16 @@ export default function RegisterCustomer({ onCloseRegisterCustomer }) {
 
     try {
       //prettier-ignore
-      logic.registerCustomer(username, password, fullName, companyName, email, taxId, address, phone )
+      logic
+        .registerCustomer(username, password, fullName, companyName, email, taxId, address, phone)
         .then(() => {
-          onCloseRegisterCustomer()     
+          onCloseRegisterCustomer()
         })
         .catch((error) => {
-          alert(error.message)
+          if (error instanceof SystemError) {
+            alert(error.message)
+          }
+          alert("Usuario ya existe.")
         })
     } catch (error) {
       alert(error.message)
