@@ -1,26 +1,74 @@
 import { useState } from 'react';
 import backArrow from '../../../icons/backArrow.png';
 
-// import * as backArrow from '../../../icons/backArrow.png';
-
-//  const backArrow = require ('../../../icons/backArrow.png');
+import logic from '../../../logic';
 
 import './SearchBox.css';
 
-function SearchBox({ searchText, setSearchText, onSearch }) {
+function SearchBox({ setAds, searchText, setSearchText, setIsLoading }) {
+
+  const handleSearch = (search) => {
+    //setIsLoading(true);
+    console.log('texto', search)
+    try {
+      if (search.length > 0) {
+        logic
+          .searchAds(search)
+          .then((searchedAds) => {
+            setAds(searchedAds);
+            // setSearchText('');
+            setIsLoading(false);
+
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(error.message);
+            setIsLoading(false);
+          });
+      } else {
+        setAds([]);
+        console.log("There are no ads within your search parameters");
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+      setIsLoading(false);
+    }
+  };
+
+  const loadAds = () => {
+    setSearchText('');
+    //setIsLoading(true);
+    console.log('I also got here')
+    try {
+      logic
+        .getAllAds()
+        .then((fetchedAds) => {
+          console.log(fetchedAds);
+          setAds(fetchedAds);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+          setIsLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+      setIsLoading(false);
+    }
+  };
+
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    onSearch(searchText);
+    handleSearch(searchText);
   };
 
   const handleSearchChange = (event) => {
     console.log(event.target.value);
     setSearchText(event.target.value);
-  };
-
-  const handleClearSearch = () => {
-    setSearchText('');
-    onSearch('');
   };
 
   return (
@@ -32,7 +80,7 @@ function SearchBox({ searchText, setSearchText, onSearch }) {
             width={24}
             alt="Back"
             className="ClearButton"
-            onClick={handleClearSearch}
+            onClick={loadAds}
           />
         )}
         <input
@@ -49,99 +97,3 @@ function SearchBox({ searchText, setSearchText, onSearch }) {
 }
 
 export default SearchBox;
-
-
-
-
-
-/*    import { useState } from 'react';
-
-import backArrow from '../../../icons/backArrow.png';
-
-import './SearchBox.css';
-
-function SearchBox({ filterdAds }) {
-
-  const [searchText, setSearchText] = useState('');
-
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-
-    // const searchText = event.target.search.value;
-
-    filterdAds(searchText);
-
-    // setSearchText('');
-  };
-
-  const handleSearchChange = (event) => {
-    setSearchText(event.target.value);
-  };
-
-  const handleClearSearch = () => {
-    setSearchText('');
-    filterdAds('');
-  };
-
-  // const handleCancelSearch = (event) => {
-  //   event.preventDefault();
-  //   window.location.reload();
-  // };
-
-  return (
-    <form className="SearchBox" onSubmit={handleSearchSubmit}>
-      <div className="SearchBoxContainer">
-
-        {searchText && (<img src={backArrow} width={24} alt="Back"  className="ClearButton" onClick={handleClearSearch}/>)}
-
-        <input className="SearchBoxInput" type="text" value={searchText} onChange={handleSearchChange} placeholder="Search Product" />
-
-        <button type="submit" className="SearchBoxButton">Search</button>
-
-        /* <button onClick={handleCancelSearch}>Cancel</button> */
-
-//       </div>
-//     </form>
-//   );
-// }
-
-// export default SearchBox; 
-
-
-
-
-
-// import { useState } from 'react';
-
-// import './SearchBox.css';
-
-// function SearchBox({ filterdAds }) {
-
- 
-//   const handleSearchSubmit = (event) => {
-   
-//     filterdAds(event.target.value);
-  
-//   };
-
-//   const handleSearchChange = (event) => {
-//   };
-  
-//   return (
-//     <section className="SearchBox" >
-//       <div className="SearchBoxContainer">
-
-//         <input className="SearchBoxInput" type="text" onChange={handleSearchSubmit} placeholder="Search Product" />
-
-       
-//         <button type="submit" className="SearchBoxButton">Search</button>
-
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default SearchBox;
-
-

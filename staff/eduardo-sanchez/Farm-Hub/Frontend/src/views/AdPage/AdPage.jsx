@@ -8,11 +8,14 @@ import Title from '../../components/core/Title';
 import CreateComment from '../components/CreateCommnet/CreateComment';
 import DeleteAdComment from '../components/DeleteAdComment/DeleteAdComment';
 
+import backArrow from '../../icons/backArrow.png';
+
+
 import './AdPage.css';
 
 
 function AdPage() {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const [ad, setAd] = useState(null)
 
@@ -68,6 +71,7 @@ function AdPage() {
 
     return (
         <div className="AdPageContainer">
+            <img src={backArrow} alt="Go back" onClick={() => navigate(-1)} className="AdPageBackButton" />
             <Title className="AdPageTitle">{ad?.title}</Title>
             <div className="AdPageDetails">
                 <p className="AdPageAuthor">Posted by: {ad?.author.username}</p>
@@ -99,9 +103,9 @@ function AdPage() {
                 </div>
             </div>
 
-            <Link to="/" className="AdPageBackButton">
+            {/* <Link to="/" className="AdPageBackButton">
                 Back to Ads
-            </Link>
+            </Link> */}
         </div>
     );
 

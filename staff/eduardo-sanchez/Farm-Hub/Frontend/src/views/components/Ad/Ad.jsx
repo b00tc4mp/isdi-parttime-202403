@@ -1,3 +1,5 @@
+import { useNavigate, Link } from 'react-router-dom'
+
 import Button from '../../../components/core/Button'
 
 import logic from '../../../logic'
@@ -6,6 +8,8 @@ import './Ad.css'
 
 export const Ad = ({ ad, onAdDeleted }) => {
     console.log('Ad -> render')
+
+    const navigate = useNavigate()
 
     const handleDeleteAd = (event) => {
         event.stopPropagation()
@@ -32,6 +36,11 @@ export const Ad = ({ ad, onAdDeleted }) => {
         }
     }
 
+    const handleUpdateAd = (event) => {
+        event.stopPropagation()
+        navigate(`/updateAd/${ad._id}`)
+    }
+
     return (
 
         <div className="AdActions">
@@ -42,7 +51,16 @@ export const Ad = ({ ad, onAdDeleted }) => {
 
             </Button>
 
+
+            <button
+
+                className="DeleteButton" type="button" onClick={handleUpdateAd}>Update
+
+            </button>
+
         </div>
 
     )
 }
+
+{/* <Link to={`/updateAd/${ad._id}`}> */ }

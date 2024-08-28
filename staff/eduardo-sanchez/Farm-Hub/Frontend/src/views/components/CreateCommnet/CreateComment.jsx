@@ -45,7 +45,7 @@ function CreateComment({ adId, onAdCommentSubmitted }) {
 
             <div className='CreateCommentButtons'>
                 <Button className='CreateCommentButton' type="submit" >Comment</Button>
-                <Link className="CancelCommentLink" to={'/'}>Cancel</Link>
+                {/* <Link className="CancelCommentLink" to={'/'}>Cancel</Link> */}
             </div>
             {message && <p className="ErrorMessage">{message}</p>}
         </form>
