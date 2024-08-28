@@ -3,6 +3,9 @@ import Button from '../../../../components/core/Button/Button';
 import './PanelEditGame.css';
 import logic from '../../../../logic';
 
+import Input from '../../../../components/core/Input/Input';
+import Form from '../../../../components/core/Form/Form';
+
 function PanelEditGame({ game, onGameEdited, onCancel }) {
     const [formData, setFormData] = useState({
         title: game.title,
@@ -47,8 +50,8 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
     return (
         <div className='Container'>
             <div className='EditGamePanel'>
-                <form className='EditGame' onSubmit={handleEditGame}>
-                    <input
+                <Form className='EditGame' onSubmit={handleEditGame}>
+                    <Input
                         className='InputPanel'
                         type='text'
                         placeholder='Game Title'
@@ -56,7 +59,7 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
                         value={formData.title}
                         onChange={handleInputChange}
                     />
-                    <input
+                    <Input
                         className='InputPanel'
                         type='text'
                         placeholder='Image URL'
@@ -64,7 +67,7 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
                         value={formData.image}
                         onChange={handleInputChange}
                     />
-                    <input
+                    <Input
                         className='InputPanel'
                         type='number'
                         placeholder='Rating 1-10'
@@ -72,7 +75,7 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
                         value={formData.rating}
                         onChange={handleInputChange}
                     />
-                    <input
+                    <Input
                         className='InputPanel'
                         type='number'
                         placeholder='Hours Played'
@@ -84,7 +87,7 @@ function PanelEditGame({ game, onGameEdited, onCancel }) {
                         <Button className='ButtonPanel' type='button' onClick={onCancel}>Cancel</Button>
                         <Button className='ButtonPanel' type='submit'>Edit Game</Button>
                     </div>
-                </form>
+                </Form>
             </div>
         </div>
     );

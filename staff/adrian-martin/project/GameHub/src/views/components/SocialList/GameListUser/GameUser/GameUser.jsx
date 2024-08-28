@@ -20,13 +20,13 @@ function GameUser({ game }) {
                 </div>
                 <div className='GameUser-description'>
                     <Text className='GameUser-title'>{game.title}</Text>
-                    <p className='GameUser-rating'>
+                    <Text className='GameUser-rating'>
                         <span className={getRatingClass(game.rating)}>
                             {game.rating}
                         </span>
-                    </p>
+                    </Text>
                     <div className='GameUser-hyi'>
-                        <p className='GameUser-hours'>{game.hours}h</p>
+                        <Text className='GameUser-hours'>{game.hours}h</Text>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ import Button from '../../../components/core/Button/Button'
 import useContext from '../../useContext'
 
 import './CreateGame.css'
+import Input from '../../../components/core/Input/Input'
+import Form from '../../../components/core/Form/Form'
 
 function CreateGame({ onGameCreated }) {
     const [isPanelOpen, setIsPanelOpen] = useState(true)
@@ -21,8 +23,6 @@ function CreateGame({ onGameCreated }) {
         const rating = parseFloat(form.rating.value)
         const hours = parseFloat(form.hours.value)
 
-        // TODO fix alert the form
-
         try {
             logic.createGame(title, image, rating, hours)
                 .then(() => {
@@ -37,18 +37,18 @@ function CreateGame({ onGameCreated }) {
         }
     }
 
-    if (!isPanelOpen) return null // No renderiza el compo si esta cerradop el panek
+    if (!isPanelOpen) return null
 
     return (
         <div className='Container-Panel'>
             <div className='TagGame'>
-                <form className='Game' onSubmit={handleCreateGame}>
-                    <input name='title' className='InputCreate' placeholder='Write the game' />
-                    <input name='image' className='InputCreate' placeholder='Url Image' />
-                    <input name='rating' className='InputCreate' placeholder='Rating 1-10' />
-                    <input name='hours' className='InputCreate' placeholder='Hours Played' />
+                <Form className='Game' onSubmit={handleCreateGame}>
+                    <Input name='title' className='InputCreate' placeholder='Write the game' />
+                    <Input name='image' className='InputCreate' placeholder='Url Image' />
+                    <Input name='rating' className='InputCreate' placeholder='Rating 1-10' />
+                    <Input name='hours' className='InputCreate' placeholder='Hours Played' />
                     <Button type='submit' className='Button-game'>Create Game</Button>
-                </form>
+                </Form>
             </div>
         </div>
     )

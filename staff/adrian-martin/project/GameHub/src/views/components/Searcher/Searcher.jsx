@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
+import Input from '../../../components/core/Input/Input'
+
 import { useState } from 'react'
 
 import './Searcher.css'
@@ -17,7 +19,7 @@ const Searcher = ({ onSearch }) => {
     return (
         <div className='Searcher'>
             <div className='Searcher-text-icon'>
-                <input
+                <Input
                     type="text"
                     value={query}
                     onChange={handleChange}

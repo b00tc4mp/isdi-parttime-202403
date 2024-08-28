@@ -4,6 +4,7 @@ import { useState } from 'react'
 import PanelEditGame from './PanelEditGame/PanelEditGame'
 import Button from '../../../components/core/Button/Button'
 import Image from '../../../components/core/Image/Image'
+import Form from '../../../components/core/Form/Form'
 import Text from '../../../components/core/Text/Text'
 import Confirm from '../Confirm/Confirm'
 import logic from '../../../logic/index'
@@ -56,11 +57,11 @@ function Game({ game, onGameDeleted, onGameEdited }) {
                 </div>
                 <div className='GameTag-description'>
                     <Text className='GameTag-title'>{game.title}</Text>
-                    <p className='GameTag-rating'>
+                    <Text className='GameTag-rating'>
                         <span className={getRatingClass(game.rating)}>
                             {game.rating}
                         </span>
-                    </p>
+                    </Text>
                     <div className='GameTag-hyi'>
                         {game.author.id === logic.getUserId() && (
                             <FontAwesomeIcon
@@ -69,13 +70,13 @@ function Game({ game, onGameDeleted, onGameEdited }) {
                                 onClick={handleEditingGame}
                             />
                         )}
-                        <p className='GameTag-hours'>{game.hours}h</p>
+                        <Text className='GameTag-hours'>{game.hours}h</Text>
                     </div>
                 </div>
             </div>
 
             {isEditingGame && (
-                <form onSubmit={handleEditingGame} className='EditDeletePanelContainer'>
+                <Form onSubmit={handleEditingGame} className='EditDeletePanelContainer'>
                     <div className='EditDeletePanel'>
                         <Button
                             className='Button-3point'
@@ -89,7 +90,7 @@ function Game({ game, onGameDeleted, onGameEdited }) {
                             onClick={handleDeleteGame}
                         >Delete</Button>
                     </div>
-                </form>
+                </Form>
             )}
 
             {showEditForm && (

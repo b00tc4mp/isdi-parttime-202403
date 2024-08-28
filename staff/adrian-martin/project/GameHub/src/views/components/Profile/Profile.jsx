@@ -52,10 +52,6 @@ function Profile() {
         setRefresh(Date.now())
     }
 
-    const handleGoHomeOrGameListUser = () => {
-        navigate(`/sociallist/${userId}`)
-    }
-
     const startEditingUsername = () => {
         setIsEditingUsername(true)
     }

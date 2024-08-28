@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
 
+import Image from '../../../components/core/Image/Image'
+
 import { useState } from 'react'
 
 import './ProfileImage.css'
@@ -23,7 +25,7 @@ function ProfileImage({ onClick, size = '250px', showRotate = true, borderRadius
 
     return (
         <div className='Profile-ImageIcon' style={{ width: size, height: size }}>
-            <img
+            <Image
                 onClick={onClick}
                 src={images[currentImage]}
                 alt='Profile'
