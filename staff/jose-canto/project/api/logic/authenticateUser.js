@@ -3,6 +3,8 @@ import { User } from "../model/index.js"
 import bcrypt from "bcryptjs"
 import { SystemError, CredentialsError } from "com/errors.js"
 
+debugger
+
 const authenticateUser = (username, password) => {
   validate.username(username, "Username")
   validate.password(password)

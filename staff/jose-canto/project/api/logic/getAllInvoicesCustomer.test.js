@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
   .then(() => {
     try {
-      getAllInvoicesCustomer("66bdb9e2859c06c6535cfb14", "66bdd4c732fcba8cafde2520")
+      getAllInvoicesCustomer("66cddd1cda2e8a2e8682ee70", "66cdde45da2e8a2e8683466d")
         .then((invoices) => {
           console.log(invoices)
         })

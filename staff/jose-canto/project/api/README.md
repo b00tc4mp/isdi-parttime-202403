@@ -132,3 +132,9 @@
   - **Parameters:**
     - `customerId` (string) - ID of the customer.
   - **Handler:** `getAllInvoicesCustomerHandler`
+
+## Test Coverage
+
+The project has a test coverage of more than 96%. This ensures that most features have been rigorously tested, minimizing the possibility of errors in production and guaranteeing a high level of code quality.
+
+![Test Coverage](./coverage/test-Coverage.png)

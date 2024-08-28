@@ -121,7 +121,7 @@ FactuClient/
 El backend de la aplicación está testeado en más del 95% utilizando Mocha y Chai. Para ejecutar las pruebas:
 
 ```bash
-cd server
+cd api
 npm run test
 ```
 

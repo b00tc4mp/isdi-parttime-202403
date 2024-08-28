@@ -147,7 +147,7 @@ export default function CustomerInfo() {
         {showCustomerData === "Invoices" && (
           <>
             <TiArrowBack className="absolute right-2 top-2 text-7xl" onClick={handleBackToData} />
-            <ul className="InvoiceList">
+            <ul className="mt-7">
               {invoices.map((invoice) => (
                 <Link className="InvoiceLink" key={invoice.id} to={`/invoices/${invoice.id}`}>
                   <li className="Invoice" key={invoice.id}>

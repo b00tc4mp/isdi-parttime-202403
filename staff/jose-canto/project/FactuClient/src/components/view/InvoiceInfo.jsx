@@ -72,7 +72,11 @@ export default function InvoiceInfo() {
 
   return (
     <>
-      <Header iconLeftHeader={<MdDeleteForever />} className="InvoiceHeader" onDeleteInvoice={handleShowConfirmDelete}>
+      <Header
+        iconLeftHeader={logic.getInfo().role === "user" && <MdDeleteForever />}
+        className="InvoiceHeader"
+        onDeleteInvoice={handleShowConfirmDelete}
+      >
         <Title className="TitleInvoice" level={2}>
           Factura Nº: {invoice?.number && invoice.number}
           {invoice?.customer && <p>{invoice.customer.companyName}</p>}

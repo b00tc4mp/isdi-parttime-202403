@@ -64,7 +64,7 @@
 
 ### UX/UI Design
 
-[Figma Design prototype](https://www.figma.com/proto/fxphzzY7aubtHDbX4zHKbf/Project?t=EH1h31BHQYbxyRVR-1)
+[Figma Design prototype](https://www.figma.com/proto/fxphzzY7aubtHDbX4zHKbf/Project?node-id=4-28&t=qBCsgBBywESmmTzI-1&starting-point-node-id=4%3A28)
 ![alt text](Figma-prototype-design.PNG)
 
 ## <span style="color:cyan;">Technical</span>
@@ -128,3 +128,9 @@
 - app
 - db
 - doc
+
+## Test Coverage
+
+The project has a test coverage of more than 96%. This ensures that most features have been rigorously tested, minimizing the possibility of errors in production and guaranteeing a high level of code quality.
+
+![Test Coverage](../api//coverage/test-Coverage.png)
