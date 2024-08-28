@@ -46,8 +46,6 @@ const getPosts = (userId) => {
                         }
 
                         post.likes.map(userObjectId => userObjectId.toString())
-                        //post.comments.map(userObjectId => userObjectId.toString())
-                        //TODO COMMENTS
 
                     })
                     return (posts)

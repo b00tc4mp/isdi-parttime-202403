@@ -1,8 +1,6 @@
 import errors, { SystemError } from "com/errors"
 import extractPayloadFormJWT from "../utils/extractPayloadFormJWT"
 
-
-//TODO revisar linea 10
 const getUsername = () => {
     const { sub: userId } = extractPayloadFormJWT(sessionStorage.token)
 
@@ -17,7 +15,6 @@ const getUsername = () => {
                 return response.json()
                     .catch(() => { throw new SystemError("server error") })
                     .then(username => username)
-
             }
             return response.json()
                 .catch(() => { throw new SystemError("server error") })
@@ -29,7 +26,6 @@ const getUsername = () => {
                     throw new constructor(message)
                 })
         })
-
 
 }
 

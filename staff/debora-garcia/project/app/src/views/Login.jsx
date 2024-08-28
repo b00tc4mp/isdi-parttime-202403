@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
 import logic from "../logic"
@@ -25,14 +25,12 @@ export default function Login() {
                 .then(() => navigate("/workouts"))
                 .catch(error => {
                     console.error(error)
-
-                    setMessage(error.message)
+                    alert(error.message)
                 })
 
         } catch (error) {
             console.error(error)
-
-            setMessage(error.message)
+            alert(error.message)
         }
     }
 

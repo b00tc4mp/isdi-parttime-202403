@@ -22,12 +22,17 @@ export default function ResultsList() {
                 .then(results => {
                     setResults(results)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+
         } catch (error) {
+            console.error(error)
             alert(error.message)
         }
     }
-    
+
 
     return (
         <div className="ResultsList">
@@ -44,8 +49,8 @@ export default function ResultsList() {
                             <div className="result-details-container">
                                 <p className="result-details">
                                     {result.time && `${result.time} min `}
-                                    {result.repetitions && `${result.repetitions} reps `}
-                                    {result.weight && `${result.weight} kg`}
+                                    {(result.repetitions || result.repetitions === 0) && `${result.repetitions} reps `}
+                                    {(result.weight || result.weight === 0) && `${result.weight} kg`}
                                 </p>
 
                             </div>

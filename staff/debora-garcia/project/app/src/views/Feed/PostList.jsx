@@ -22,7 +22,11 @@ export default function PostList() {
                     console.log("PostList -> setPosts")
                     setPosts(posts)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+
         } catch (error) {
             console.error(error)
             alert(error.message)

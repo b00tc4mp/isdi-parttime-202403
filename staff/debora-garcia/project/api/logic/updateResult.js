@@ -8,12 +8,10 @@ const { ObjectId } = Types
 const updateResult = (userId, resultId, time, repetitions, weight) => {
     validate.id(userId, "userId")
     validate.id(resultId, "resultId")
-    validate.number(time, "time");
-    validate.number(repetitions, "repetitions");
-    validate.number(weight, "weight");
-    /*    if (time !== undefined) validate.number(time, "time");
-       if (repetitions !== undefined) validate.number(repetitions, "repetitions");
-       if (weight !== undefined) validate.number(weight, "weight"); */
+
+    if (repetitions || repetitions === 0) validate.number(repetitions, "repetitions");
+    if (weight || weight === 0) validate.number(weight, "weight");
+    if (time || time === 0) validate.time(time, "time")
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -31,8 +29,8 @@ const updateResult = (userId, resultId, time, repetitions, weight) => {
                     const changes = {}
 
                     if (time) changes.time = time;
-                    if (repetitions) changes.repetitions = repetitions;
-                    if (weight) changes.weight = weight;
+                    if (repetitions || repetitions === 0) changes.repetitions = repetitions;
+                    if (weight || weight === 0) changes.weight = weight;
 
                     return Result.updateOne({ _id: resultId }, { $set: changes })
                         .catch(error => { throw new SystemError(error.message) })

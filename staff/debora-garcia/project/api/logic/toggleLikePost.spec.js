@@ -32,7 +32,7 @@ describe("toggleLikePost", () => {
                     description: "descriptionTest",
                     time: 10,
                     likes: [],
-                    comments: []
+    
                 })
                 return Promise.all([user.save(), post.save()])
 
@@ -64,7 +64,7 @@ describe("toggleLikePost", () => {
                     description: "descriptionTest",
                     time: 10,
                     likes: [user.id],
-                    comments: []
+    
                 })
                 return Promise.all([user.save(), post.save()])
             })
@@ -86,7 +86,6 @@ describe("toggleLikePost", () => {
             description: "descriptionTest",
             time: 10,
             likes: [],
-            comments: []
         })
             .then(post => toggleLikePost(new ObjectId().toString(), post.id))
             .catch(error => errorThrown = error)

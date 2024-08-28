@@ -50,7 +50,7 @@ describe("getPosts", () => {
                         repetitions: 10,
                         weight: 10,
                         likes: [],
-                        comments: []
+                    
                     })))
                 .then(() => user)
             )
@@ -66,7 +66,6 @@ describe("getPosts", () => {
                 expect(posts[0].description).to.equal("descriptionTest")
         
                 expect(posts[0].likes).to.be.an.instanceOf(Array)
-                expect(posts[0].comments).to.be.an.instanceOf(Array)
             })
     )
 //TODO revisar este test

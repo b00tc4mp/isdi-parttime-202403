@@ -57,11 +57,20 @@ function validateType(type, explain = "type") {
 }
 
 function validateNumber(number, explain = "number") {
-    if (number && (typeof number !== "number"))
+    if (typeof number !== "number" || number < 0)
         throw new ContentError(`${explain} is not valid`)
 }
 
+function validateTime(number, explain = "time") {
+   
+    if (typeof number !== "number" || number <= 0) {
+        throw new ContentError(`${explain} is not valid`);
+    }
+    if (number === undefined || number === null) {
+        return
+    }
 
+}
 
 const validate = {
     name: validateName,
@@ -74,7 +83,9 @@ const validate = {
     url: validateUrl,
     id: validateId,
     type: validateType,
-    number: validateNumber
+    number: validateNumber,
+    time: validateTime
+
 
 }
 

@@ -31,13 +31,12 @@ export default function Register() {
                 .then(() => navigate("/login"))
                 .catch(error => {
                     console.error(error)
-
-                    setMessage(error.message)
+                    alert(error.message)
                 })
+
         } catch (error) {
             console.error(error)
-
-            setMessage(error.message)
+            alert(error.message)
         }
 
     }
@@ -46,7 +45,6 @@ export default function Register() {
         event.preventDefault()
 
         navigate("/login")
-
     }
 
     return (

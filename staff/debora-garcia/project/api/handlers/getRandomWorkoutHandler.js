@@ -1,9 +1,9 @@
-import "dotenv/config"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
 import { CredentialsError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
+
 const getRandomWorkoutHandler = (req, res, next) => {
     try {
         const token = req.headers.authorization.slice(7)
@@ -20,7 +20,6 @@ const getRandomWorkoutHandler = (req, res, next) => {
                 } catch (error) {
                     next(error)
                 }
-
             })
             .catch(error => next(new CredentialsError(error.message)))
 

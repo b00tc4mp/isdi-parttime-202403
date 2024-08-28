@@ -17,7 +17,6 @@ export default function Home() {
     const navigate = useNavigate()
     const [message, setMessage] = useState(null)
 
-
     useEffect(() => {
         console.log("Home -> useEffect")
         try {
@@ -29,21 +28,21 @@ export default function Home() {
                 })
                 .catch(error => {
                     console.error(error)
-
-                    setMessage(error.message)
+                    alert(error.message)
                 })
+
         } catch (error) {
             console.error(error)
-
             alert(error.message)
         }
     }, [])
 
     const handleLogout = () => {
         logic.logoutUser()
+        
         navigate("/login")
     }
-
+//TODO mostrar ruta y marcar colores de los iconos en el navbar
     return (
         <>
             <Header username={username} onLogout={handleLogout}>

@@ -38,11 +38,16 @@ export default function Comments({ postId, onCancelCommentsClick, author }) {
             logic.createComment(postId, text)
                 .then(() => {
                     loadComments()
+                    form.reset()
                 })
-                .catch(error => alert(error.message))
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
 
         } catch (error) {
             console.error(error)
+            alert(error.message)
         }
     }
 
@@ -86,4 +91,3 @@ export default function Comments({ postId, onCancelCommentsClick, author }) {
 
 }
 
-//TODO add comment to.. 

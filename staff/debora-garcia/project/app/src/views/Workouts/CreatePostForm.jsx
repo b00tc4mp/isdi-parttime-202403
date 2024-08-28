@@ -23,10 +23,12 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
                 .then(() => onPostCreated())
                 .catch(error => {
                     console.error(error)
+                    alert(error.message)
                 })
+
         } catch (error) {
             console.error(error)
-
+            alert(error.message)
         }
 
     }

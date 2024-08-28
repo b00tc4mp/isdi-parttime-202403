@@ -4,9 +4,10 @@ import Button from '../../components/Button';
 import Field from '../../components/Field';
 import "./EditResultForm.css"
 
-export default function EditResultForm({ resultId, onResultEdited, onCancel }) {
+export default function EditResultForm({ result, onResultEdited, onCancel }) {
     console.log("EditResultForm -> render")
- 
+
+    const { id: resultId, time, repetitions, weight } = result
 
     const handleEditResultSubmit = (event) => {
         event.preventDefault()
@@ -21,22 +22,36 @@ export default function EditResultForm({ resultId, onResultEdited, onCancel }) {
                 .then(() => onResultEdited())
                 .catch(error => {
                     console.error(error)
+                    alert(error.message)
                 })
+            
         } catch (error) {
             console.error(error)
+            alert(error.message)
         }
     }
     return (
         <form className="EditResultForm" onSubmit={handleEditResultSubmit}>
-            <Field id="time" type="number" placeholder="Time"></Field>
-            <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
-            <Field id="weight" type="number" placeholder="Weight"></Field>
+            <Field
+                id="time"
+                type="number"
+                placeholder={time ? `Your time: ${time}'` : "Total time"}
+            />
+            <Field
+                id="repetitions"
+                type="number"
+                placeholder={repetitions ? `Repetitions: ${repetitions}` : "Total repetitions"}
+            />
+            <Field
+                id="weight"
+                type="number"
+                placeholder={weight ? `Weight: ${weight} kg` : "Total weight"}
+            />
 
             <div className="form-buttons-container">
                 <Button type="submit">Save</Button>
                 <Button type="button" onClick={onCancel} className="cancel-button">Cancel</Button>
             </div>
         </form>
-    )
-
+    );
 }

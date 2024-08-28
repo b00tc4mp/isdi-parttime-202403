@@ -1,6 +1,5 @@
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
-
 import { CredentialsError } from "com/errors.js"
 
 const { JWT_SECRET } = process.env
@@ -11,7 +10,6 @@ const createCommentHandler = (req, res, next) => {
 
         jwt.verify(token, JWT_SECRET)
             .then(payload => {
-
                 const { sub: userId } = payload
                 const { postId } = req.params
                 const { text } = req.body

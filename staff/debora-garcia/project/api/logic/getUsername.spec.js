@@ -19,7 +19,7 @@ describe("getUsername", () => {
     beforeEach(() => User.deleteMany())
 
     it("suceeds get username from existent user", () => {
-        bcrypt.hash("1234", 8)
+        return bcrypt.hash("1234", 8)
             .then(hash => Promise.all([User.create({
                 name: "nameTest",
                 surname: "surnameTest",
@@ -36,7 +36,7 @@ describe("getUsername", () => {
             .then(([user, target]) => getUsername(user.id, target.id))
             .then(name => {
                 expect(name).to.be.a.string
-                expect(name).to.be.equal("target")
+                expect(name).to.be.equal("targetUser")
             })
     })
 

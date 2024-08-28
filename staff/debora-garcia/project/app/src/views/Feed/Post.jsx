@@ -14,12 +14,11 @@ export default function Post({ post, onPostLikeToggled }) {
                 .then(() => onPostLikeToggled())
                 .catch(error => {
                     console.error(error)
-
                     alert(error.message)
                 })
+
         } catch (error) {
             console.error(error)
-
             alert(error.message)
         }
     }
@@ -50,8 +49,8 @@ export default function Post({ post, onPostLikeToggled }) {
             <div className="result-details">
                 <p>
                     {post.result?.time && `Time:${post.result.time} `}
-                    {post.result?.repetitions && `${post.result.repetitions}reps `}
-                    {post.result?.weight && `${post.result.weight}kg`}
+                    {(post.result?.repetitions || post.result?.repetitions === 0) && `${post.result.repetitions}reps `}
+                    {(post.result?.weight || post.result?.weight === 0) && `${post.result.weight}kg`}
                 </p>
             </div>
             <div className="post-footer">

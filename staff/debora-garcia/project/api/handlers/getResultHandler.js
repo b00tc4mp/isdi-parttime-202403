@@ -20,13 +20,11 @@ const getResultHandler = (req, res, next) => {
                 } catch (error) {
                     next(error)
                 }
-
             })
             .catch(error => next(new CredentialsError(error.message)))
 
     } catch (error) {
         next(error)
-
     }
 }
 

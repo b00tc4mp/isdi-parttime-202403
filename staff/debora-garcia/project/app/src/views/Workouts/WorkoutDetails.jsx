@@ -24,8 +24,13 @@ export default function WorkoutDetail() {
                     setWorkout(workout)
                     console.log(workout)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+
         } catch (error) {
+            console.error(error)
             alert(error.message)
         }
     }

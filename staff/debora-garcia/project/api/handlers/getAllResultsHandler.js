@@ -1,4 +1,3 @@
-import "dotenv/config"
 import logic from "../logic/index.js"
 import jwt from "../utils/jsonwebtoken-promised.js"
 import { CredentialsError } from "com/errors.js"
@@ -21,6 +20,7 @@ const getAllResultsHandler = (req, res, next) => {
                 }
             })
             .catch(error => next(new CredentialsError(error.message)))
+        
     } catch (error) {
         next(error)
     }

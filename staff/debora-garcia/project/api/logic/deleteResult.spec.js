@@ -34,15 +34,16 @@ describe("deleteResult", () => {
                 athlete: user.id,
                 time: 10,
                 repetitions: 10,
-                weight: 10
+                weight: 10,
             })
                 .then(result => ({ user, result }))
             )
 
             .then(({ user, result }) => deleteResult(user.id, result.id)
-                .then((resultId) => Result.findById(resultId))
+                .then(() => Result.findById(result.id))
                 .then(deletedResult => {
-                    expect(deletedResult).to.be.null
+                    expect(deletedResult).to.exist
+                    expect(deletedResult.active).to.be.false
                 })
             )
     })
@@ -55,7 +56,8 @@ describe("deleteResult", () => {
             athlete: new ObjectId().toString(),
             time: 10,
             repetitions: 10,
-            weight: 10
+            weight: 10,
+            active: true
         })
             .then(result => deleteResult(new ObjectId().toString(), result.id))
             .catch(error => errorThrown = error)
@@ -100,12 +102,13 @@ describe("deleteResult", () => {
             .then(user => {
                 return Result.create({
                     workout: new ObjectId().toString(),
-                    athlete: new ObjectId().toString(),  // Esto crea un resultado con un atleta diferente
+                    athlete: new ObjectId().toString(),  
                     time: 10,
                     repetitions: 10,
-                    weight: 10
+                    weight: 10,
+                    active: true
                 })
-                    .then(result => ({ user, result }));  // Encapsulamos user y result en un objeto
+                    .then(result => ({ user, result })); 
             })
             .then(({ user, result }) => {
                 return deleteResult(user.id.toString(), result.id.toString());

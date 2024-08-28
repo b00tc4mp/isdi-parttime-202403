@@ -31,7 +31,6 @@ const createComment = (userId, postId, text) => {
         })
 
 }
-//TODO SPEC
 export default createComment
 
 

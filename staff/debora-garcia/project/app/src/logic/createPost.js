@@ -4,10 +4,11 @@ import validate from "com/validate"
 const createPost = (workoutId, image, description, time, repetitions, weight) => {
     validate.url(image, "image")
     validate.text(description, "description", 150)
-    validate.number(time, "time");
-    validate.number(repetitions, "repetitions");
-    validate.number(weight, "weight");
- 
+    if (repetitions || repetitions === 0) validate.number(repetitions, "repetitions");
+    if (weight || weight === 0) validate.number(weight, "weight");
+    if (time || time === 0) validate.time(time, "time")
+
+
     return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: "POST",
         headers: {

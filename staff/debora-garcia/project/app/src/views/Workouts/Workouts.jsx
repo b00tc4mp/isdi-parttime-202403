@@ -1,14 +1,11 @@
-import { useNavigate, Link, Routes, Route, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Button from "../../components/Button"
 import WorkoutDetails from "./WorkoutDetails"
 import "./Workouts.css"
 
-//TODO alert & use context
-//TODO usar Link de react-router-dom para reacer los botones del footer
 export default function Workouts() {
     console.log("Workouts ->render")
     const { workoutType } = useParams(); // Captura el tipo de workout desde la URL
-
 
     return (
         <div className="Workouts">

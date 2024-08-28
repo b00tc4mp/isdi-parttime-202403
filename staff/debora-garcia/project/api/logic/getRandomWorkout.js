@@ -20,19 +20,17 @@ const getRandomWorkout = (userId, workoutType) => {
 
                     const randomWorkout = workouts[randomNumber]
 
-                    if (!randomWorkout) throw new NotFoundError("workout not found")
-
                     randomWorkout.id = randomWorkout._id.toString()
-
                     delete randomWorkout._id
-                    
-                    if (randomWorkout.movements) {
-                        randomWorkout.movements = randomWorkout.movements.map(movement => {
-                            movement.id = movement._id.toString()
-                            delete movement._id
-                            return movement
-                        })
-                    }
+
+                    if (!randomWorkout.movements) throw new NotFoundError("movements not found")
+
+                    randomWorkout.movements = randomWorkout.movements.map(movement => {
+
+                        movement.id = movement._id.toString()
+                        delete movement._id
+                        return movement
+                    })
                     return randomWorkout
                 })
 

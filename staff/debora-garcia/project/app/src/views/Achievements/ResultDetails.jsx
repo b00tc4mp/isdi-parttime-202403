@@ -18,11 +18,17 @@ export default function ResultDetails() {
             logic.getResult(resultId)
                 .then(result => {
                     setResult(result)
-                    console.log(result)
+
                 })
-                .catch(error => alert(error.message))
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
         } catch (error) {
-            alert(error.message)
+            console.error(error)
+
+                    alert(error.message)
         }
     }
 
@@ -37,13 +43,13 @@ export default function ResultDetails() {
                 .then(() => {
                     navigate(-1)
                 })
-
                 .catch(error => {
                     console.error(error)
                     alert(error.message)
                 })
 
         } catch (error) {
+            console.error(error)
             alert(error.message)
         }
     }
@@ -83,9 +89,10 @@ export default function ResultDetails() {
 
                 <div className="result-details">
                     <h6 >Result</h6>
-                    <p >{result?.time && `Time: ${result.time}'`}</p>
-                    <p >{result?.repetitions && `Reps: ${result.repetitions} `}</p>
-                    <p >{result?.weight && `Weight: ${result.weight} kg`}</p>
+                    <p>{result?.time && `Time: ${result.time}'`}</p>
+                    <p>{(result?.repetitions || result?.repetitions === 0) && `Reps: ${result.repetitions} `}</p>
+                    <p>{(result?.weight || result?.weight === 0) && `Weight: ${result.weight} kg`}</p>
+
                 </div>
             </div>
 
@@ -96,7 +103,13 @@ export default function ResultDetails() {
                     <Button onClick={handleToggleMenu}>Cancel</Button>
                 </div>
             )}
-            {isEditing && <EditResultForm resultId={result.id} onResultEdited={handleResultEdited} onCancel={handleCancelEdit} />}
+            {isEditing && (
+                <EditResultForm
+                    result={{ id: result.id, time: result.time, repetitions: result.repetitions, weight: result.weight }}
+                    onResultEdited={handleResultEdited}
+                    onCancel={handleCancelEdit}
+                />
+            )}
         </div>
     );
 }

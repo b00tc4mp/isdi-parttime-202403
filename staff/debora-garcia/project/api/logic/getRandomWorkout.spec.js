@@ -43,7 +43,6 @@ describe("getRandomWorkout", () => {
                     duration: 60,
                     description: "descriptionTest2"
                 })])
-
                     .then(() => user)
             })
             .then((user) => getRandomWorkout(user.id, workoutType))
@@ -93,36 +92,46 @@ describe("getRandomWorkout", () => {
             })
 
     })
-    
-    it("fails on generating random workout", () => {
-        let errorThrown
 
-        return bcrypt.hash("1234", 8)
-            .then(hash => User.create({
-                name: "nameTest",
-                surname: "surnameTest",
-                email: "test@gmail.com",
-                username: "usernameTest",
-                password: hash
-            }))
-            .then(user => Workout.create({
-                workoutType: "benchmark",
-                title: "Fran",
-                rounds: 10,
-                movements: [],
-                duration: 10,
-                description: "descriptionTest"
-            })
-                .then(() => Workout.deleteMany({ workoutType: "benchmark" }))
-                .then(() => getRandomWorkout(user.id, "benchmark"))
-            )
-            .catch(error => errorThrown = error)
-            .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.be.equal("workout not found")
-            })
+    it("fails when a movement is null or undefined", () => { 
+    let errorThrown
 
+    return bcrypt.hash("1234", 8)
+    .then(hash => User.create({
+        name: "nameTest",
+        surname: "surnameTest",
+        email: "test@gmail.com",
+        username: "usernameTest",
+        password: hash
+    }))
+    .then((user) => {
+        return Promise.all([Workout.create({
+            workoutType: "benchmark",
+            title: "Fran",
+            rounds: 10,
+            movements: null,
+            duration: 10,
+            description: "descriptionTest1"
+        }),
+        Workout.create({
+            workoutType: "benchmark",
+            title: "Murph",
+            rounds: 1,
+            movements: null,
+            duration: 60,
+            description: "descriptionTest2"
+        })])
+
+            .then(() => user)
     })
+    .then((user) => getRandomWorkout(user.id, "benchmark"))
+        .catch(error => errorThrown = error)
+        .finally(() => {
+            expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+            expect(errorThrown.message).to.be.equal("movements not found")
+        })
+})
+
     it("fails on invalid user id", () => {
         let errorThrown
         try {
