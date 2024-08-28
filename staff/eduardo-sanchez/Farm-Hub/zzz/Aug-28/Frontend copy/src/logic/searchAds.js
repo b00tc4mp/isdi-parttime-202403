@@ -13,7 +13,6 @@ const searchAds = (search) => {
         .catch(() => { throw new SystemError('server connection problem') })
         .then(response => {
             if (response.status === 200) {
-                console.log('Llego aqui?')
                 return response.json()
                     .catch(() => { throw new SystemError('server connection problem') })
                     .then(ads => ads)

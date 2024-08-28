@@ -1,22 +1,30 @@
-import errors, { SystemError } from 'com/errors';
+import errors, { SystemError } from 'com/errors'
+import validate from 'com/validate'
 
-const searchAds = (search) => {
-    return fetch(`${import.meta.env.VITE_API_URL}/searchads/${search}`, {
+const loginUser = (username, password) => {
+    validate.username(username)
+    validate.password(password)
 
-        method: 'GET',
+    const body = { username, password }
 
+    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+        method: 'POST',
         headers: {
-            'Authorization': `Bearer ${sessionStorage.token}`
-        }
-
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
     })
         .catch(() => { throw new SystemError('server connection problem') })
         .then(response => {
             if (response.status === 200) {
-                console.log('Llego aqui?')
+
                 return response.json()
                     .catch(() => { throw new SystemError('server connection problem') })
-                    .then(ads => ads)
+                    .then(({ token, userId }) => {
+                        sessionStorage.token = token
+                        sessionStorage.userId = userId
+                    })
+
             }
 
             return response.json()
@@ -29,6 +37,7 @@ const searchAds = (search) => {
                     throw new constructor(message)
                 })
         })
+
 }
 
-export default searchAds
+export default loginUser

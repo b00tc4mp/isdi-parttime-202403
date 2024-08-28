@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors';
 
-const searchAds = (search) => {
-    return fetch(`${import.meta.env.VITE_API_URL}/searchads/${search}`, {
+const getAllAds = () => {
+    return fetch(`${import.meta.env.VITE_API_URL}/ads`, {
 
         method: 'GET',
 
@@ -13,7 +13,6 @@ const searchAds = (search) => {
         .catch(() => { throw new SystemError('server connection problem') })
         .then(response => {
             if (response.status === 200) {
-                console.log('Llego aqui?')
                 return response.json()
                     .catch(() => { throw new SystemError('server connection problem') })
                     .then(ads => ads)
@@ -31,4 +30,4 @@ const searchAds = (search) => {
         })
 }
 
-export default searchAds
+export default getAllAds

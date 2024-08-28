@@ -1,26 +1,59 @@
 import { useState } from 'react';
 import backArrow from '../../../icons/backArrow.png';
 
+import logic from '../../../logic';
 // import * as backArrow from '../../../icons/backArrow.png';
 
 //  const backArrow = require ('../../../icons/backArrow.png');
 
 import './SearchBox.css';
+// , onSearch
 
 function SearchBox({ searchText, setSearchText, onSearch }) {
+
+  const handleSearch = (search) => {
+    //setIsLoading(true);
+    console.log('texto', search)
+    try {
+      if (search.length > 0) {
+        logic
+          .searchAds(search)
+          .then((searchedAds) => {
+            onSearch(searchedAds);
+            //setAds(searchedAds);
+            // setSearchText('');
+            //setIsLoading(false);
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(error.message);
+            //setIsLoading(false);
+          });
+      } else {
+        console.log("Home -> loadAds");
+        //loadAds();
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+      //setIsLoading(false);
+    }
+  };
+
+  
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    onSearch(searchText);
+   // onSearch(searchText);
   };
 
   const handleSearchChange = (event) => {
-    console.log(event.target.value);
     setSearchText(event.target.value);
+    handleSearch(event.target.value);
   };
 
   const handleClearSearch = () => {
     setSearchText('');
-    onSearch('');
+    //onSearch('');
   };
 
   return (
