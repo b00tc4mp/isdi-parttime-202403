@@ -110,103 +110,34 @@ function Home() {
 export default Home;
 
 
+// add a useCallback hook for the handleSearch and handleAdDeleted functions to optimize performance
 
-// import { useEffect, useState } from "react";
-// import logic from "../logic";
+// import { useEffect, useState, useCallback } from "react";
 
-// import AdList from "./components/AdList/AdList";
-// import SearchBox from "./components/SearchBox/SearchBox";
-// import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton";
-// import Header from "./components/Header/Header";
-
-// import "./Home.css";
-
-// function Home() {
-//   const [user, setUser] = useState("");
-//   const [ads, setAds] = useState([]);
-//   const [adsFiltered, setAdsFiltered] = useState(ads);
-
-//   useEffect(() => {
-//     console.log("Home -> useEffect");
-
-//     fetchUserInfo();
-//     loadAds();
-//   }, []);
-
-//   const fetchUserInfo = () => {
-
-//     try {
+// const handleSearch = useCallback((search) => {
+//   console.log('texto', search)
+//   try {
+//     if (search.length > 0) {
 //       logic
-//         .getUserInfo()
-//         .then((user) => {
-//           console.log("Home -> setUsername");
-
-//           setUser(user);
-//         })
-//         .catch((error) => {
-//           console.error(error);
-
-//           alert(error.message + " " + "HELL");
-//         });
-//     } catch (error) {
-//       console.error(error);
-
-//       alert(error.message);
-//     }
-//   };
-
-
-//   const loadAds = () => {
-//     try {
-//       logic
-//         .getAllAds()
-//         .then((fetchedAds) => {
-//           console.log(fetchedAds);
-//           setAds(fetchedAds);
-//           setAdsFiltered(fetchedAds);
+//         .searchAds(search)
+//         .then((searchedAds) => {
+//           setAds(searchedAds);
+//           setIsLoading(false);
 //         })
 //         .catch((error) => {
 //           console.error(error);
 //           alert(error.message);
+//           setIsLoading(false);
 //         });
-//     } catch (error) {
-//       console.error(error);
-//       alert(error.message);
+//     } else {
+//       console.log("Home -> loadAds");
+//       loadAds();
 //     }
-//   };
+//   } catch (error) {
+//     console.error(error);
+//     alert(error.message);
+//     setIsLoading(false);
+//   }
+// }, []);
 
-
-//   const filterdAds = (searchText) => {
-//     const adsFiltered = ads.filter((ad) => {
-//       return ad.title.toLowerCase().includes(searchText.toLowerCase());
-//     });
-//     setAdsFiltered(adsFiltered);
-//   };
-
-//   const handleAdDeleted = () => loadAds();
-
-//   return (
-//     <>
-//       <Header user={user} />
-//       <div className="HomeContainer">
-
-
-//         <main className="Home">
-//           <SearchBox filterdAds={filterdAds} />
-
-//           <div>
-//             <AdList
-//               // setAds={setAds}
-//               adsFiltered={adsFiltered}
-//               // setAdsFiltered={setAdsFiltered}
-//               onAdDeleted={handleAdDeleted}
-//             />
-//           </div>
-//         </main>
-//         <CreateAdButton />
-//       </div>
-//     </>
-//   );
-// }
-
-// export default Home;
+// const handleAdDeleted = useCallback(() => loadAds(), []);

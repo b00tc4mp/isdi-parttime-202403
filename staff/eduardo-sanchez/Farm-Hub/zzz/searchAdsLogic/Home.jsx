@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logic from "../logic";
-import searchAds from "../logic/searchAds"; // Import the searchAds function
+// import searchAds from "../logic/searchAds"; // Import the searchAds function
 import AdList from "./components/AdList/AdList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton";
@@ -11,7 +11,9 @@ function Home() {
     const [user, setUser] = useState("");
     const [ads, setAds] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [isSearchActive, setIsSearchActive] = useState(false);
+    const [searchText, setSearchText] = useState(""); // state for searching text
+    // const [isSearchActive, setIsSearchActive] = useState(false);
+
 
     useEffect(() => {
         console.log("Home -> useEffect");
@@ -63,16 +65,34 @@ function Home() {
         }
     };
 
-    const handleSearch = (searchText) => {
-        if (searchText.trim() === "") {
-            loadAds();
-            setIsSearchActive(false);
-        } else {
-            setIsLoading(true);
-            setIsSearchActive(true);
-            searchAds(searchText)
+    // const handleSearch = (searchText) => {
+    //     if (searchText.trim() === "") {
+    //         loadAds();
+    //         setIsSearchActive(false);
+    //     } else {
+    //         setIsLoading(true);
+    //         setIsSearchActive(true);
+    //         searchAds(searchText)
+    //             .then((searchedAds) => {
+    //                 setAds(searchedAds);
+    //                 setIsLoading(false);
+    //             })
+    //             .catch((error) => {
+    //                 console.error(error);
+    //                 alert(error.message);
+    //                 setIsLoading(false);
+    //             });
+    //     }
+    // };
+
+    const handleSearch = (search) => {
+        setIsLoading(true);
+        try {
+            logic
+                .searchAds(search)
                 .then((searchedAds) => {
                     setAds(searchedAds);
+                    // setSearchText('');
                     setIsLoading(false);
                 })
                 .catch((error) => {
@@ -80,13 +100,17 @@ function Home() {
                     alert(error.message);
                     setIsLoading(false);
                 });
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+            setIsLoading(false);
         }
     };
 
-    const handleClearSearch = () => {
-        loadAds();
-        setIsSearchActive(false);
-    };
+    // const handleClearSearch = () => {
+    //     loadAds();
+    //     setIsSearchActive(false);
+    // };
 
     const handleAdDeleted = () => loadAds();
 
@@ -95,19 +119,13 @@ function Home() {
             <Header user={user} />
             <div className="HomeContainer">
                 <main className="Home">
-                    <SearchBox onSearch={handleSearch} />
-                    {isSearchActive && (
-                        <button onClick={handleClearSearch} className="ClearSearchButton">
-                            Back to All Ads
-                        </button>
+                    <SearchBox searchText={searchText}
+                        setSearchText={setSearchText} onSearch={handleSearch} />
+                    {isLoading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <AdList ads={ads} onAdDeleted={handleAdDeleted} />
                     )}
-                    <div>
-                        {isLoading ? (
-                            <p>Loading...</p>
-                        ) : (
-                            <AdList ads={ads} onAdDeleted={handleAdDeleted} />
-                        )}
-                    </div>
                 </main>
                 <CreateAdButton />
             </div>
@@ -116,3 +134,28 @@ function Home() {
 }
 
 export default Home;
+
+
+// return(
+//     <>
+//         <Header user={user} />
+//         <div className="HomeContainer">
+//             <main className="Home">
+//                 <SearchBox onSearch={handleSearch} />
+//                 {isSearchActive && (
+//                     <button onClick={handleClearSearch} className="ClearSearchButton">
+//                         Back to All Ads
+//                     </button>
+//                 )}
+//                 <div>
+//                     {isLoading ? (
+//                         <p>Loading...</p>
+//                     ) : (
+//                         <AdList ads={ads} onAdDeleted={handleAdDeleted} />
+//                     )}
+//                 </div>
+//             </main>
+//             <CreateAdButton />
+//         </div>
+//     </>
+// );
