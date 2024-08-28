@@ -5,19 +5,19 @@
       "entryPoint": "./main.jsx",
       "version": "0.0.0",
       "orientation": "portrait",
-      "icon": "./assets/images/icon.png",
+      "icon": "./assets/icon.png",
       "userInterfaceStyle": "automatic",
       "platforms": [
          "ios"
       ],
       "splash": {
-         "image": "./assets/images/splash.png",
+         "image": "./assets/splash.png",
          "resizeMode": "contain",
          "backgroundColor": "#1B1A1A"
       },
       "ios": {
          "supportsTablet": true,
-         "bundleIdentifier": "com.bmp.mediaplayer"
+         "bundleIdentifier": "com.bread.bmp"
       },
       "plugins": [
          [
@@ -31,7 +31,8 @@
                   "./assets/fonts/Poppins-Bold.ttf",
                   "./assets/fonts/SpaceMono-Regular.ttf",
                   "./assets/fonts/SpaceMono-Bold.ttf",
-                  "./assets/fonts/MonaspaceNeon-Regular.otf"
+                  "./assets/fonts/MonaspaceNeon-Regular.otf",
+                  "./assets/fonts/RoundedMplus1c-Medium.ttf"
                ]
             }
          ],

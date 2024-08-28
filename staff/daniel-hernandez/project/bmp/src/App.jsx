@@ -1,23 +1,28 @@
 import { useEffect, useReducer, useMemo, useState, useRef } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar, Text, Pressable } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { StatusBar, Text, Pressable, Image } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import { BlurView } from 'expo-blur';
 
 import AuthContext from './context/AuthContext';
-import ToastNotification from './components/ToastNotification';
+import { Header, ToastNotification } from './components';
 
-import LandingScreen from './screens/LandingScreen';
-import EmailInputScreen from './screens/EmailInputScreen';
-import PasswordInputScreen from './screens/PasswordInputScreen';
-import UsernameInputScreen from './screens/UsernameInputScreen';
+import { authScreens, mainScreens } from './screens';
+const { LandingScreen, EmailInputScreen, PasswordInputScreen, UsernameInputScreen } = authScreens;
+const { HomeScreen, SearchScreen, LibraryScreen } = mainScreens;
 
-import HomeScreen from './screens/HomeScreen';
+import { TabIcons } from '../assets/images/icons';
 
 import services from './services';
 import validate from 'com/validation';
 import { InvalidArgumentError } from 'com/errors';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 // TODO: Componentize everything
 // TODO: Fix loading state
@@ -101,6 +106,9 @@ const App = () => {
                dispatch({ type: 'SIGN_OUT' });
                return;
             }
+
+            //  TODO: api call to get user preferences / settings and username
+            // Store them in async storage and save for later use
          }
 
          notify('Token restore successful', 'info');
@@ -162,9 +170,9 @@ const App = () => {
 
                try {
                   await services.signOut(token);
-               } catch (error) {
+               } catch (e) {
                   // TODO: Improve error handling here.
-                  if (error.message !== "User doesn't exist") {
+                  if (e.message !== "User doesn't exist") {
                      notify('Oops. Something went wrong signing out', 'error');
                      return;
                   }
@@ -210,6 +218,18 @@ const App = () => {
 
             dispatch({ type: 'SIGN_IN', token });
             return true;
+         },
+         checkEmail: async data => {
+            let bool;
+
+            try {
+               bool = await services.checkEmail(data.email);
+            } catch {
+               notify('Something went wrong. Try again later', 'error');
+               return null;
+            }
+
+            return bool;
          }
       }),
       []
@@ -217,6 +237,58 @@ const App = () => {
 
    // TODO: Make error handling more centralized ?
    // Maybe with a error boundary or error logging system ?
+   const Tabs = ({ route, navigation }) => {
+      const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTab';
+
+      useEffect(() => {
+         let headerTitle;
+
+         switch (routeName) {
+            case 'HomeTab':
+               headerTitle = 'こんにちは, User.';
+               break;
+            case 'SearchTab':
+               headerTitle = 'Search.';
+               break;
+            case 'LibraryTab':
+               headerTitle = 'Library.';
+               break;
+            default:
+               headerTitle = '';
+         }
+
+         navigation.setOptions({ header: () => <Header title={headerTitle} navigation={navigation} routeName={routeName} /> });
+      }, [route, routeName]);
+
+      return (
+         <Tab.Navigator
+            screenOptions={({ route }) => ({
+               headerShown: false,
+               tabBarIcon: ({ focused, color, size }) => {
+                  let iconSource;
+                  if (route.name === 'HomeTab') {
+                     iconSource = focused ? TabIcons.homeIconActive : TabIcons.homeIcon;
+                  } else if (route.name === 'SearchTab') {
+                     iconSource = focused ? TabIcons.glassIconActive : TabIcons.glassIcon;
+                  } else if (route.name === 'LibraryTab') {
+                     iconSource = focused ? TabIcons.folderIconActive : TabIcons.folderIcon;
+                  }
+
+                  return <Image source={iconSource} style={{ width: size - 3.8, height: size - 3.8, tintColor: color }} />;
+               },
+               tabBarActiveTintColor: '#E36526',
+               tabBarInactiveTintColor: '#A0908A',
+               tabBarShowLabel: false,
+               tabBarStyle: { position: 'absolute', borderTopWidth: 0, borderTopColor: 'transparent' },
+               tabBarBackground: () => <BlurView tint="systemThinMaterialDark" intensity={100} className="absolute" />
+            })}
+         >
+            <Tab.Screen name="HomeTab" component={HomeScreen} />
+            <Tab.Screen name="SearchTab" component={SearchScreen} />
+            <Tab.Screen name="LibraryTab" component={LibraryScreen} />
+         </Tab.Navigator>
+      );
+   };
 
    return (
       <AuthContext.Provider value={authContext}>
@@ -243,7 +315,13 @@ const App = () => {
             ) : (
                // User is signed in
                <>
-                  <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+                  <Stack.Screen name="Main" options={{ headerShown: false }}>
+                     {() => (
+                        <Drawer.Navigator screenOptions={{ headerStyle: { backgroundColor: '#1B1A1A' }, headerTintColor: '#ECE3DC', headerShadowVisible: false }}>
+                           <Drawer.Screen name="Tabs" component={Tabs} options={{ drawerItemStyle: { display: 'none' } }} />
+                        </Drawer.Navigator>
+                     )}
+                  </Stack.Screen>
                </>
             )}
          </Stack.Navigator>

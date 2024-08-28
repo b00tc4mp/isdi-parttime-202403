@@ -1,11 +1,10 @@
-import { View, Image, Pressable, Text } from 'react-native';
-import { SafeAreaView } from 'react-native';
+import { View, Image, Pressable, Text, SafeAreaView } from 'react-native';
 
 const LandingScreen = ({ navigation }) => {
    return (
       <SafeAreaView className="flex-1 bg-palette-90 items-center">
          <View className="flex-1 items-center top-24">
-            <Image source={require('../../assets/images/landing.png')} resizeMode="center" />
+            <Image source={require('../../assets/images/extras/landing.png')} resizeMode="center" />
          </View>
 
          <View className="bottom-0 w-[100%]">

@@ -36,7 +36,8 @@ module.exports = {
             'poppins-bold': ['Poppins-Bold'],
             spacemono: ['SpaceMono-Regular'],
             'spacemono-bold': ['SpaceMono-Bold'],
-            monaspace: ['MonaspaceNeon-Regular']
+            monaspace: ['MonaspaceNeon-Regular'],
+            'rounded-mplus-1c-medium': ['RoundedMplus1c-Medium']
          }
       }
    },

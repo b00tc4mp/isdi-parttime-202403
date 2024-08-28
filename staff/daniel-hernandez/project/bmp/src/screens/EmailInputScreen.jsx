@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Text, View, TextInput, Pressable, SafeAreaView } from 'react-native';
-import services from '../services';
+import AuthContext from '../context/AuthContext';
 import validate from 'com/validation';
 
 // TODO: Add loading state
-// TODO: Put the check email service in authContext ?
 const EmailInputScreen = ({ navigation }) => {
+   const { checkEmail } = useContext(AuthContext);
    const [email, setEmail] = useState('');
    const [feedback, setFeedback] = useState('');
 
@@ -25,7 +25,8 @@ const EmailInputScreen = ({ navigation }) => {
       }
 
       try {
-         emailExists = await services.checkEmail(email);
+         emailExists = await checkEmail({ email });
+         validate.inputs(emailExists);
       } catch {
          setFeedback('Something went wrong. Please try again later');
          return;
