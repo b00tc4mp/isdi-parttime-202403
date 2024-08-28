@@ -1,27 +1,23 @@
-import { useState } from 'react'
-import useContext from '../../useContext'
-import Button from '../../components/core/Button'
-import Field from '../../components/core/Field'
-import logic from '../../logic'
 
-function UpdateTaskDescription({ onSuccess, onCancelEditSuccess }) {
-    const { alert } = useContext()
-    const [message, setMessage] = useState('')
+import Button from '../../../components/core/Button'
+import Field from '../../../components/core/Field'
+
+import logic from '../../../logic/index'
+
+function UpdateTaskDescription({ task, onEditSuccess, onCancelEditSuccess }) {
 
     const handleUpdateTaskDescriptionSubmit = (event) => {
         event.preventDefault()
         const form = event.target
         const description = form.description.value
 
-        logic.UpdateTaskDescription(description)
-            .then(() => onSuccess())
+        logic.updateTaskDescription(description, task.id)
+            .then(() => onEditSuccess(description))
             .catch((error) => {
-                if (error instanceof SystemError) {
-                    alert(error.message)
-                }
-                alert("Not found")
+                alert(error.message)
             })
     }
+
     const handleCancelEdit = () => {
         onCancelEditSuccess()
     }

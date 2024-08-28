@@ -1,7 +1,8 @@
 import errors, { SystemError } from 'com/errors'
 
-const getDayWithTask = () => {
-    return fetch(`${import.meta.env.VITE_API_URL}/getdaywithtasks`, {
+const getDayWithTask = (selectedDate) => {
+
+    return fetch(`${import.meta.env.VITE_API_URL}/getdaywithtasks/${selectedDate}`, {
 
         method: 'GET',
         headers: {

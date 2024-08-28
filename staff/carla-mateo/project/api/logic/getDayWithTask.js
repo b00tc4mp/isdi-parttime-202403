@@ -2,7 +2,7 @@ import { User, Task } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
-const getDayWithTask = (userId) => {
+const getDayWithTask = (userId, selectedDate) => {
     validate.id(userId, 'userId')
 
     return User.findById(userId).lean()
@@ -13,10 +13,10 @@ const getDayWithTask = (userId) => {
             }
             const { family } = user
 
-            const currentDate = new Date()
+            const formattedDate = new Date(selectedDate)
 
-            const startOfDay = new Date(currentDate.setHours(0, 0, 0, 0))
-            const endOfDay = new Date(currentDate.setHours(23, 59, 59, 999))
+            const startOfDay = new Date(formattedDate.setHours(0, 0, 0, 0))
+            const endOfDay = new Date(formattedDate.setHours(23, 59, 59, 999))
 
             return Task.exists({
                 family,

@@ -85,7 +85,7 @@ function Home() {
                             <SlOptions size={30} />
                         </button>
                         {showOptions && (
-                            <div className='relative left-0  m-1 w-36 bg-green-100 border border-black shadow-lg text-color-footer'>
+                            <div className='relative left-0  m-1 w-36 bg-green-100 border border-black shadow-lg text-color-footer rounded z-50' >
                                 {isAdmin && <button className='m-2 w-32 border-t border-green-800' onClick={handleRegisterUser}>Register User</button>}
                                 {isAdmin && <button className='m-2 w-32 border-t border-green-800' onClick={handleDeleteProfile}>Delete User</button>}
                                 <button className='m-2 w-32 border-t border-green-800' onClick={handleUpdateDataUser}>Edit Profile</button>

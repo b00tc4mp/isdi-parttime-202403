@@ -63,6 +63,11 @@ function TasksList({ refreshStamp }) {
     const handleTaskDoneToggled = () => {
         loadTasks()
     }
+
+    const handleEditTask = () => {
+        loadTasks()
+    }
+
     return (
         <UserProvider>
             {({ user }) => (
@@ -86,6 +91,7 @@ function TasksList({ refreshStamp }) {
                                 task={task}
                                 onTaskDeleted={handleDeleteTask}
                                 onTaskDoneToggled={handleTaskDoneToggled}
+                                onEditSuccess={handleEditTask}
                             />
                         ))}
                     </div>

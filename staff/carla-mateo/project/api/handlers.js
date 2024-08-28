@@ -17,7 +17,7 @@ router.get('/users/:targetUserId', routes.getUsernameHandler)
 router.get('/getallusers', routes.getAllUsersHandler)
 router.get('/getalltasks', routes.getAllTasksHandler)
 router.get('/gettasks/:date', routes.getTasksForDateHandler)
-router.get('/getdaywithtasks', routes.getDayWithTaskHandler)
+router.get('/getdaywithtasks/:selectedDate', routes.getDayWithTaskHandler)
 
 router.patch('/username', jsonBodyParser, routes.updateUsernameHandler)
 router.patch('/email', jsonBodyParser, routes.updateEmailHandler)

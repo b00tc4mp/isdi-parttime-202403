@@ -21,14 +21,20 @@ const CalendarBody = ({ currentDate, handleShowTasks }) => {
         />
     ))
 
+    const checkDayWithTask = (selectedDate, setHasTask) => {
+        getDayWithTask(selectedDate)
+            .then((hasTask) => setHasTask(hasTask))
+            .catch((error) => {
+                throw new SystemError(error.message)
+            })
+    }
+
     const monthDays = Array.from({ length: daysInMonth }, (_, index) => {
         const day = index + 1
         const isToday =
             year === today.getFullYear() &&
             month === today.getMonth() &&
             day === today.getDate()
-
-        const hasTask = getDayWithTask()
 
         return (
             <CalendarDay
@@ -37,7 +43,6 @@ const CalendarBody = ({ currentDate, handleShowTasks }) => {
                 className='calendar-day'
                 isToday={isToday}
                 currentDate={new Date(year, month, day)}
-                hasTasks={hasTask}
                 handleShowTasks={handleShowTasks}
             />
         )

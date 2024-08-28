@@ -1,10 +1,12 @@
 import validate from 'com/validate'
 import errors, { SystemError } from 'com/errors'
 
-const updateTaskDescription = (description) => {
+const updateTaskDescription = (description, taskId) => {
     validate.text(description, 'description', 200)
+    validate.id(taskId, 'taskId')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/description${taskId}`, {
+
+    return fetch(`${import.meta.env.VITE_API_URL}/description/${taskId}`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,

@@ -13,8 +13,10 @@ export default ((req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
+                const { selectedDate } = req.params
+
                 try {
-                    logic.getDayWithTask(userId)
+                    logic.getDayWithTask(userId, selectedDate)
                         .then((tasksExist) => {
                             res.json(tasksExist)
                         })

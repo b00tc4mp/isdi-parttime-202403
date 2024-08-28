@@ -7,16 +7,17 @@ import { RiMenuAddFill } from "react-icons/ri"
 import Heading from '../../../components/core/Heading'
 import Time from '../../../components/core/Time'
 import Confirm from '../Confirm'
-import UpdateTaskDescription from '../updateTaskDescription'
+import UpdateTaskDescription from './UpdateTaskDescription'
 
-function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
+function Task({ task, onTaskDeleted, onTaskDoneToggled, onEditSuccess }) {
     const [showConfirm, setShowConfirm] = useState(false)
     const [showOptions, setShowOptions] = useState(false)
     const [showDescription, setShowDescription] = useState(false)
     const [showEditForm, setShowEditForm] = useState(false)
+    const [currentTask, setCurrentTask] = useState(task)
 
     const Options = () => {
-        setShowOptions(!showOptions);
+        setShowOptions(!showOptions)
     }
     const handleDeleteTask = () => {
         setShowConfirm(true)
@@ -66,8 +67,11 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
     }
 
     const handleUpdateTaskSuccess = () => {
+
+        onEditSuccess()
+
         setShowEditForm(false)
-        onTaskUpdated()
+
     }
 
     const userCanToggleTask = () => {
@@ -99,23 +103,22 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
                     <RiMenuAddFill />
                 </button>
                 {showOptions && (
-                    <div className='absolute right-0 mt-2 w-36 bg-green-100 border border-green-800 shadow-lg rounded'>
+                    <div className='absolute right-0 mt-2 w-36 p-2 bg-green-100 border border-black shadow-lg rounded z-50 ' >
                         <button
                             onClick={handleDeleteTask}
-                            className=' w-full text-left px-4 py-2 hover:bg-green-100 text-color-footer'
+                            className=' wm-2 w-32 border-t border-green-800'
                         >
                             Delete Task
                         </button>
                         <button
                             onClick={handleEditTask}
-                            className='w-full text-left px-4 py-2 hover:bg-green-100 text-color-footer'
+                            className='m-2 w-32 border-t border-green-800'
                         >
                             Edit Task
                         </button>
                     </div>
                 )}
             </div>
-
         </div>
         {showDescription && (
             <div className='flex-1 max-w-full ml-4 '>
@@ -129,14 +132,13 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled }) {
                 onCancel={handleCancelDelete}
             />
         )}
-
         {showEditForm && (
             <UpdateTaskDescription
-                onSuccess={handleUpdateTaskSuccess}
-                task={task}
+                onEditSuccess={handleUpdateTaskSuccess}
+                onCancelEditSuccess={() => setShowEditForm(false)}
+                task={currentTask}
             />
         )}
-
     </div>
 }
 export default Task

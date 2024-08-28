@@ -17,7 +17,7 @@ import getUserId from './getUserId'
 import updateAvatar from './updateAvatar'
 import updateEmail from './updateEmail'
 import updateUsername from './updateUsername'
-
+import updateTaskDescription from './updateTaskDescription'
 const logic = {
     isUserLoggedIn,
     loginAdmin,
@@ -37,7 +37,8 @@ const logic = {
     getUserId,
     updateAvatar,
     updateEmail,
-    updateUsername
+    updateUsername,
+    updateTaskDescription
 
 }
 
