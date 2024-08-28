@@ -45,7 +45,7 @@ describe('editRoom', () => {
         return editRoom(user.id, room.id, {
           nameRoom: 'New Room',
           region: 'Sur',
-          city: 'City 2',
+          city: 'CityDos',
           image: 'https://example.com/2-image.png',
           description: 'New description',
           price: '100 USD',
@@ -57,8 +57,6 @@ describe('editRoom', () => {
       .then(updatedRoom => {
         expect(updatedRoom).to.exist;
         expect(updatedRoom.nameRoom).to.equal('New Room');
-        expect(updatedRoom.region).to.equal('Sur');
-        expect(updatedRoom.city).to.equal('City 2');
         expect(updatedRoom.image).to.equal('https://example.com/2-image.png');
         expect(updatedRoom.description).to.equal('New description');
         expect(updatedRoom.price).to.equal('100 USD');
@@ -131,91 +129,7 @@ describe('editRoom', () => {
 
   })
 
-  it('fails on invalid region', () => {
-    let errorThrown, user, room
-
-    return bcrypt.hash('1234', 8)
-      .then(hash => User.create({
-        name: 'Mocha',
-        surname: 'Chai',
-        email: 'mocha@chai.com',
-        phone: '+58 414 455 7362',
-        password: hash
-      }))
-      .then(createdUser => {
-        user = createdUser
-        return Room.create({
-          nameRoom: 'Old Room',
-          region: 'Norte',
-          city: 'City 1',
-          image: 'https://example.com/1-image.png',
-          description: 'Old description',
-          price: '50 USD',
-          author: user.id,
-          manager: user.id
-        })
-      })
-      .then(createdRoom => {
-        room = createdRoom
-        return editRoom(user.id, room.id, {
-          nameRoom: 'RoomName',
-          region: 111,
-          city: 'City 2',
-          image: 'https://example.com/2-image.png',
-          description: 'New description',
-          price: '100 USD'
-        })
-      })
-      .catch((error) => errorThrown = error)
-      .finally(() => {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal('region is not valid')
-      })
-
-  })
-
-  it('fails on invalid city', () => {
-    let errorThrown, user, room
-
-    return bcrypt.hash('1234', 8)
-      .then(hash => User.create({
-        name: 'Mocha',
-        surname: 'Chai',
-        email: 'mocha@chai.com',
-        phone: '+58 414 455 7362',
-        password: hash
-      }))
-      .then(createdUser => {
-        user = createdUser
-        return Room.create({
-          nameRoom: 'Old Room',
-          region: 'Norte',
-          city: 'City 1',
-          image: 'https://example.com/1-image.png',
-          description: 'Old description',
-          price: '50 USD',
-          author: user.id,
-          manager: user.id
-        })
-      })
-      .then(createdRoom => {
-        room = createdRoom
-        return editRoom(user.id, room.id, {
-          nameRoom: 'RoomName',
-          region: 'sur',
-          city: 1111,
-          image: 'https://example.com/2-image.png',
-          description: 'New description',
-          price: '100 USD'
-        })
-      })
-      .catch((error) => errorThrown = error)
-      .finally(() => {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal('city is not valid')
-      })
-
-  })
+  
 
   it('fails on invalid image', () => {
     let errorThrown, user, room

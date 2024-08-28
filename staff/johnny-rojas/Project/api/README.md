@@ -46,7 +46,7 @@ npm run test-coverage
 ## Start debugger server
 #### Debugger general back
 
-npm run inpect
+npm run inspect
 
 ### Debugger test server
 
@@ -54,4 +54,4 @@ node --inspect-brk logic/(rute)
 
 ### Debugger test Mocha Chai
 
-npm run test-inpect (rute)
+npm run test-inspect (rute)
