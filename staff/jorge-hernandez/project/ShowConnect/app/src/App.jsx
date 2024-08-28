@@ -7,40 +7,33 @@ import Login from './views/Login'
 import ArtistHome from './views/ArtistHome'
 import ClientHome from './views/ClientHome'
 import logic from './logic'
-
 import Context from './Context'
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 
 function App() {
-  const [view, setView] = useState('search')
-  const [role, setRole] = useState(sessionStorage.getItem('role') || '')
+  const [role, setRole] = useState(sessionStorage.role || '')
   const [message, setMessage] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (logic.isUserLoggedIn()) {
-      const storedRole = sessionStorage.getItem('role')
+      const storedRole = sessionStorage.role
       if (storedRole) {
         setRole(storedRole)
-        setView(storedRole === 'client' ? 'clientHome' : 'artistHome')
       }
     }
-  }, [])
+  }, [navigate])
 
-  const handleGoToRegister = () => setView('register')
-  const handleGoToLogin = () => setView('login')
+  const handleGoToRegister = () => navigate('/register')
+  const handleGoToLogin = () => navigate('/login')
 
   const handleGotoHome = (role) => {
-    sessionStorage.setItem('role', role)
+    sessionStorage.role = role
     setRole(role)
-    setView(role === 'artist' ? 'artistHome' : 'clientHome')
+    navigate(role === 'artist' ? '/artist-home' : '/client-home')
   }
 
-  const handleClientHome = () => {
-    setView('clientHome')
-  }
-
-  const handleGoToSearch = () => setView('search')
-
-  const handleGoToMessages = () => setView('messages')
+  const handleGoToSearch = () => navigate('/')
 
   const handleAlertAccepted = () => setMessage(null)
 
@@ -48,47 +41,90 @@ function App() {
 
   return (
     <Context.Provider value={{ alert: handleMessage }}>
-      {view === 'search' && (
-        <Search
-          OnClickMessages={handleClientHome}
-          onRegisterClick={handleGoToRegister}
-          onLoginClick={
-            logic.isUserLoggedIn()
-              ? () => {
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <Search
+              OnClickMessages={() => navigate('/client-home')}
+              onRegisterClick={handleGoToRegister}
+              onLoginClick={() => {
+                if (logic.isUserLoggedIn()) {
                   logic.logoutUser()
-                  handleGoToLogin()
+                  sessionStorage.removeItem('role')
+                  setRole('')
+                  navigate('/')
+                } else {
+                  navigate('/login')
                 }
-              : handleGoToLogin
+              }}
+            />
           }
         />
-      )}
-      {view === 'register' && (
-        <Register
-          onLogoClick={handleGoToSearch}
-          onLoginClick={handleGoToLogin}
-          onUserRegistered={handleGoToLogin}
+
+        <Route
+          path='/register'
+          element={
+            logic.isUserLoggedIn() ? (
+              <Navigate
+                to={role === 'client' ? '/client-home' : '/artist-home'}
+              />
+            ) : (
+              <Register
+                onLogoClick={handleGoToSearch}
+                onLoginClick={handleGoToLogin}
+                onUserRegistered={handleGoToLogin}
+              />
+            )
+          }
         />
-      )}
-      {view === 'login' && (
-        <Login
-          onLogoClick={handleGoToSearch}
-          onUserLoggedIn={handleGotoHome}
-          onRegisterClick={handleGoToRegister}
+
+        <Route
+          path='/login'
+          element={
+            logic.isUserLoggedIn() ? (
+              <Navigate
+                to={role === 'client' ? '/client-home' : '/artist-home'}
+              />
+            ) : (
+              <Login
+                onLogoClick={handleGoToSearch}
+                onUserLoggedIn={handleGotoHome}
+                onRegisterClick={handleGoToRegister}
+              />
+            )
+          }
         />
-      )}
-      {view === 'artistHome' && role === 'artist' && (
-        <ArtistHome
-          onShowMessage={handleGoToMessages}
-          onUserLoggedOut={handleGoToSearch}
+
+        <Route
+          path='/artist-home'
+          element={
+            role === 'artist' ? (
+              <ArtistHome
+                onShowMessage={() => navigate('/messages')}
+                onUserLoggedOut={handleGoToSearch}
+              />
+            ) : (
+              <Navigate to='/login' />
+            )
+          }
         />
-      )}
-      {view === 'clientHome' && role === 'client' && (
-        <ClientHome
-          onLogoClick={handleGoToSearch}
-          onUserLoggedOut={handleGoToSearch}
+
+        <Route
+          path='/client-home'
+          element={
+            role === 'client' ? (
+              <ClientHome
+                onLogoClick={handleGoToSearch}
+                onUserLoggedOut={handleGoToSearch}
+              />
+            ) : (
+              <Navigate to='/login' />
+            )
+          }
         />
-      )}
-      {message && <Alert message={message} onAccept={handleAlertAccepted} />}{' '}
+      </Routes>
+      {message && <Alert message={message} onAccept={handleAlertAccepted} />}
     </Context.Provider>
   )
 }

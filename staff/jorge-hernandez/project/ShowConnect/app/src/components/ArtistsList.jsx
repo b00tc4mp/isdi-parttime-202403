@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import logic from '../logic'
 
 import ArtistResult from './ArtistResult'
 import ArtistProfile from './ArtistProfile'
+import Context from '../Context'
 
 function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
   const [artists, setArtists] = useState([])
   const [selectedArtist, setSelectedArtist] = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
+
+  const { alert } = useContext(Context)
 
   useEffect(() => {
     if (artist && city && excludedDate) {
@@ -26,7 +29,7 @@ function ArtistsList({ artist, city, excludedDate, onClickGoToLogin }) {
         })
         .catch((error) => {
           console.error(error.message)
-          setErrorMessage(error.message)
+          alert(error.message)
         })
     } catch (error) {
       console.error(error.message)

@@ -5,13 +5,17 @@ import logic from '../logic/index'
 function Search({ onRegisterClick, onLoginClick, OnClickMessages }) {
   const handleRegisterClick = (e) => {
     e.preventDefault()
-
     onRegisterClick()
   }
+
   const handleLoginClick = (e) => {
     e.preventDefault()
-
-    onLoginClick()
+    if (logic.isUserLoggedIn()) {
+      logic.logoutUser()
+      onLoginClick()
+    } else {
+      onLoginClick()
+    }
   }
 
   return (

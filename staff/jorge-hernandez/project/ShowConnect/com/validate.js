@@ -1,5 +1,5 @@
 import { ContentError, CredentialsError, MatchError } from './errors.js'
-import { disciplines, cities } from '../app/src/assets/disciplines.js'
+import { disciplines, cities } from '../app/src/assets/disciplinesAndCities.js'
 
 const NAME_REGEX = /^[a-zA-Z ]+$/
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{3,}$/

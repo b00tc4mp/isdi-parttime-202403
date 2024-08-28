@@ -1,12 +1,13 @@
 import Field from './core/Field'
-import { useState } from 'react'
-import { SystemError } from 'com/errors'
+import { useState, useContext } from 'react'
 import logic from '../logic'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 import Button from './core/Button'
+import Context from '../Context'
 
 function RegisterClient({ onClickGoToLogin, artistId }) {
   const [message, setMessage] = useState('')
+  const { alert } = useContext(Context)
 
   const handleGoToLogin = (e) => onClickGoToLogin(e)
 
@@ -19,25 +20,27 @@ function RegisterClient({ onClickGoToLogin, artistId }) {
     const password = form.password.value
     const passwordRepeat = form.passwordRepeat.value
 
-    logic
-      .registerClient(name, email, password, passwordRepeat)
-      .then(() => {
-        setMessage('Usuario Registrado, ya puedes hacer login')
+    try {
+      logic
+        .registerClient(name, email, password, passwordRepeat)
+        .then(() => {
+          setMessage('Usuario Registrado, ya puedes hacer login')
 
-        form.reset()
+          form.reset()
 
-        setTimeout(() => {
-          handleGoToLogin(e)
-        }, 2000)
-      })
-      .catch((error) => {
-        console.error(error)
-        if (error instanceof SystemError) {
+          setTimeout(() => {
+            handleGoToLogin(e)
+          }, 2000)
+        })
+        .catch((error) => {
+          console.error(error)
           alert(error.message)
           return
-        }
-        setMessage(error.message)
-      })
+        })
+    } catch (error) {
+      console.error(error.message)
+      alert(error.message)
+    }
   }
 
   const handleSendMessage = (e) => {

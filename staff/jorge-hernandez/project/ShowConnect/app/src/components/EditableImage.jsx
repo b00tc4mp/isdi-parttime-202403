@@ -1,9 +1,14 @@
 import logic from '../logic'
 import { useState } from 'react'
+import Context from '../Context'
+import { useContext } from 'react'
 
 function EditableImage({ artistId, label, onImageUpdate }) {
   const [isEditing, setIsEditing] = useState(false)
+
   const [newImage, setNewImage] = useState(label)
+
+  const { alert } = useContext(Context)
 
   const handleImageClick = () => setIsEditing(true)
 

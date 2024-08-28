@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Field from './core/Field'
 import Footer from './Footer'
 import ArtistsList from './ArtistsList'
-import { disciplines, cities } from '../assets/disciplines'
+import { disciplines, cities } from '../assets/disciplinesAndCities'
 
 function FormSearch({ onClickGoToLogin }) {
   const [inputValue, setInputValue] = useState('')
@@ -65,9 +65,6 @@ function FormSearch({ onClickGoToLogin }) {
       setArtist(artist)
       setCity(city)
       setExcludedDate(excludedDate)
-
-      // setInputValue('')
-      // setCityInputValue('')
     } catch (error) {
       setMessage(error.message)
       setTimeout(() => {

@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import logic from '../logic'
+import Context from '../Context'
+import { useContext } from 'react'
 
 function EditableArtisticName({ onArtisticNameUpdate, artistId, label }) {
   const [newArtisticName, setNewArtisticName] = useState(label)
+
   const [isEditing, setIsEditing] = useState(false)
-  const [error, setError] = useState('')
+
+  const { alert } = useContext(Context)
 
   const handleNameClick = () => setIsEditing(true)
+
   const handleNameChange = (e) => setNewArtisticName(e.target.value)
 
   const handleNameSave = () => {
@@ -18,26 +23,24 @@ function EditableArtisticName({ onArtisticNameUpdate, artistId, label }) {
         .then(() => {
           onArtisticNameUpdate(newArtisticName)
           setIsEditing(false)
-          setError('')
         })
         .catch((error) => {
           console.error(error.message)
-          setError(error.message)
+          alert(error.message)
         })
     } catch (error) {
-      setError(error.message)
+      console.error(error.message)
+      alert(error.message)
     }
   }
 
   const handleNameCancel = () => {
     setIsEditing(false)
     setNewArtisticName(label)
-    setError('')
   }
 
   return (
     <div>
-      {error && <p className='text-red-500'>{error}</p>}
       {isEditing ? (
         <div>
           <input

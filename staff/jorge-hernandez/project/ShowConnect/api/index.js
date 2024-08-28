@@ -30,7 +30,7 @@ mongoose
     api.use(
       cors({
         origin: '*',
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
       })
     )
 
@@ -53,7 +53,7 @@ mongoose
     )
 
     api.get(
-      '/users/city/:city/discipline/:discipline/dates/:excludedDate',
+      '/users/search-artists/:city/discipline/:discipline/dates/:excludedDate',
       getArtistsByCityHandler
     )
 

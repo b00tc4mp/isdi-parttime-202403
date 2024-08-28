@@ -7,7 +7,6 @@ La aplicación ShowConnect es una plataforma que permite a artistas de diversos 
 - Registro de artistas: Los artistas pueden registrarse en la plataforma y crear perfiles detallados que muestren su trabajo, habilidades y experiencia.
 - Búsqueda por comunidad autónoma: Los clientes pueden buscar artistas específicamente en su comunidad autónoma.
 - Mensajería integrada: Los usuarios pueden comunicarse directamente con los artistas a través de un sistema de mensajería interno para discutir detalles y hacer arreglos.
-- Calificaciones y reseñas: Los usuarios pueden dejar calificaciones y reseñas sobre la experiencia con un artista, lo que ayuda a otros usuarios a tomar decisiones.
 
 <div style="text-align: center;">
   <img src="https://media.giphy.com/media/XWKrUYz1N5J7i/giphy.gif?cid=ecf05e47vrluquvgelor4hj0w7g0l7jh6vx3497ugu2j1ffe&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="GIF">
@@ -24,7 +23,7 @@ Artist
 - Edit profile
 - view messages
 - reply to message
-- view events calendar
+- view events
 - add event
 - edit event
 - delete event
@@ -34,12 +33,12 @@ Client
 - Search artists(by discipline and city)
 - View artist details (profile and events)
 - Send message to artist
-- add review on artist
 
 #### version 0.1
 
 Artist
 
+- add review on artist
 - report review
 
 Admin
@@ -100,11 +99,4 @@ Message
 - id (auto)
 - sender (User.id)
 - text (string)
-- date (Date)
-
-Event
-
-- id (auto)
-- artist (Artist.id)
-- title (string, required)
 - date (Date)

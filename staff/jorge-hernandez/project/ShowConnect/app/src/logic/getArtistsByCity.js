@@ -12,7 +12,7 @@ const getArtistsByCity = (discipline, city, excludedDate) => {
   return fetch(
     `${
       import.meta.env.VITE_API_URL
-    }users/city/${discipline}/discipline/${city}/dates/${isoExcludedDate}`
+    }users/search-artists/${discipline}/discipline/${city}/dates/${isoExcludedDate}`
   )
     .catch(() => {
       throw new SystemError('server error')

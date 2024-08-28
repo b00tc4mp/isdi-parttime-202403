@@ -2,9 +2,15 @@ import { useState } from 'react'
 
 import logic from '../logic'
 
+import Context from '../Context'
+import { useContext } from 'react'
+
 function EditableDescription({ artistId, label, onDescriptionUpdate }) {
   const [isEditing, setIsEditing] = useState(false)
+
   const [newDescription, setNewDescription] = useState(label)
+
+  const { alert } = useContext(Context)
 
   const handleDescriptionClick = () => setIsEditing(true)
 

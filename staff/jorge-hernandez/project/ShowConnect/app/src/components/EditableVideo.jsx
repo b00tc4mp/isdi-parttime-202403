@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import logic from '../logic'
+import Context from '../Context'
+import { useContext } from 'react'
 
 function EditableVideo({ artistId, label, onVideoUpdate }) {
   const [isEditing, setIsEditing] = useState(false)
   const [newVideo, setNewVideo] = useState(label)
+  const { alert } = useContext(Context)
 
   const handleVideoClick = () => setIsEditing(true)
 

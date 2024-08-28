@@ -1,13 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import logic from '../logic/index'
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 import Button from './core/Button'
 import ChatList from './ChatList'
 import MessagesList from './MessagesList'
+import Context from '../Context'
 
 function UserChatsAndMessagesList() {
   const [chats, setChats] = useState([])
+
   const [selectedChat, setSelectedChat] = useState(null)
+
+  const [intervalId, setIntervalId] = useState(null)
+
+  const { alert } = useContext(Context)
 
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
@@ -37,33 +43,32 @@ function UserChatsAndMessagesList() {
 
   useEffect(() => {
     loadChats()
-    const intervalId = setInterval(loadChats, 5000)
-
-    return () => clearInterval(intervalId)
   }, [])
 
   useEffect(() => {
     if (selectedChat) {
-      const updatedChat = chats.find((chat) => chat.id === selectedChat.id)
-      setSelectedChat(updatedChat || null)
+      const id = setInterval(loadChats, 5000)
+      setIntervalId(id)
     }
-  }, [chats, selectedChat])
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId)
+      }
+    }
+  }, [selectedChat])
 
   const handleChatClick = (chat) => {
     setSelectedChat(chat)
   }
 
   const handleCloseChat = () => {
+    if (intervalId) {
+      clearInterval(intervalId)
+      setIntervalId(null)
+    }
     setSelectedChat(null)
   }
-
-  // const handleClickDelete = (chat) => {
-  //   if (chat.messages.length === 1) {
-  //     console.log('Eliminar chat')
-  //   } else {
-  //     console.log('Solo puedes eliminar chats que no hayan respondido')
-  //   }
-  // }
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
