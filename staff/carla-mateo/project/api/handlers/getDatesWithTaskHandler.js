@@ -16,7 +16,7 @@ export default ((req, res, next) => {
                 const { selectedDate } = req.params
 
                 try {
-                    logic.getDayWithTask(userId, selectedDate)
+                    logic.getDatesWithTask(userId, selectedDate)
                         .then((tasksExist) => {
                             res.json(tasksExist)
                         })

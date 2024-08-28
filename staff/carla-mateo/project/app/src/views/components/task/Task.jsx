@@ -106,13 +106,13 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled, onEditSuccess }) {
                     <div className='absolute right-0 mt-2 w-36 p-2 bg-green-100 border border-black shadow-lg rounded z-50 ' >
                         <button
                             onClick={handleDeleteTask}
-                            className=' wm-2 w-32 border-t border-green-800'
+                            className='mt-2 p-1 text-sm wm-2 w-32 border-t border-green-800'
                         >
                             Delete Task
                         </button>
                         <button
                             onClick={handleEditTask}
-                            className='m-2 w-32 border-t border-green-800'
+                            className='p-1 mt-2 w-32 text- border-t border-green-800'
                         >
                             Edit Task
                         </button>

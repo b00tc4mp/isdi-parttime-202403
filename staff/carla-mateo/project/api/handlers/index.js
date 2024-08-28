@@ -15,7 +15,8 @@ import updateEmailHandler from './updateEmailHandler.js'
 import updateAvatarHandler from './updateAvatarHandler.js'
 import updateUsernameHandler from './updateUsernameHandler.js'
 import updateTaskDescriptionHandler from './updateTaskDescriptionHandler.js'
-import getDayWithTaskHandler from './getDayWithTaskHandler.js'
+import getDatesWithTaskHandler from './getDatesWithTaskHandler.js'
+
 
 
 
@@ -37,5 +38,6 @@ export default {
     updateAvatarHandler,
     updateUsernameHandler,
     updateTaskDescriptionHandler,
-    getDayWithTaskHandler
+    getDatesWithTaskHandler
+
 }

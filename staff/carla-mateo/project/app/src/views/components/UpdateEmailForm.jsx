@@ -6,6 +6,7 @@ import logic from '../../logic'
 
 function UpdateEmailForm({ onSuccess }) {
     const { alert } = useContext()
+    
     const [message, setMessage] = useState('')
 
     const handleUpdateEmailSubmit = (event) => {
@@ -26,7 +27,7 @@ function UpdateEmailForm({ onSuccess }) {
     return (
         <form onSubmit={handleUpdateEmailSubmit}>
             <Field id='email' type='email' placeholder='New email' />
-            <Button type='submit'>Edit profile</Button>
+            <Button type='submit'>Edit e-mail</Button>
             {message && <p className='text-green-300 mt-4 text-sm'>{message}</p>}
         </form>
     )

@@ -1,15 +1,19 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
+
+import getDatesWithTask from '../../../logic/getDatesWithTask'
+
 import CalendarDay from './CalendarDay'
-import getDayWithTask from '../../../logic/getDayWithTask'
+
 
 import './Calendar.css'
 
-const CalendarBody = ({ currentDate, handleShowTasks }) => {
-
+const CalendarBody = ({ currentDate, handleShowTasks, selectedDate }) => {
+    const [taskDates, setTaskDates] = useState([])
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth()
     const today = new Date()
-    const firstDayOfMonth = new Date(year, month, 0).getDay()
+    const firstDayOfMonth = new Date(year, month, 1).getDay()
     const daysInMonth = new Date(year, month + 1, 0).getDate()
     const daysInPreviousMonth = new Date(year, month, 0).getDate()
 
@@ -21,16 +25,16 @@ const CalendarBody = ({ currentDate, handleShowTasks }) => {
         />
     ))
 
-    const checkDayWithTask = (selectedDate, setHasTask) => {
-        getDayWithTask(selectedDate)
-            .then((hasTask) => setHasTask(hasTask))
-            .catch((error) => {
-                throw new SystemError(error.message)
-            })
-    }
+    useEffect(() => {
+        const selectedDate = `${year}-${month}-01`
+
+        getDatesWithTask(selectedDate)
+            .then(dates => setTaskDates(dates))
+            .catch(error => console.error(error))
+    }, [selectedDate])
 
     const monthDays = Array.from({ length: daysInMonth }, (_, index) => {
-        const day = index + 1
+        const day = index + 2
         const isToday =
             year === today.getFullYear() &&
             month === today.getMonth() &&
@@ -44,6 +48,7 @@ const CalendarBody = ({ currentDate, handleShowTasks }) => {
                 isToday={isToday}
                 currentDate={new Date(year, month, day)}
                 handleShowTasks={handleShowTasks}
+                hasTasks={taskDates.includes(new Date(year, month, day))}
             />
         )
     })

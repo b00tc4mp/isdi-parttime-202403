@@ -26,7 +26,7 @@ function UpdateUsernameForm({ onSuccess }) {
     return (
         <form onSubmit={handleUpdateUsernameSubmit}>
             <Field id='username' type='text' placeholder='New username' />
-            <Button type='submit'>Edit profile</Button>
+            <Button type='submit'>Edit username</Button>
             {message && <p className='text-green-300 mt-4 text-sm'>{message}</p>}
         </form>
     )

@@ -9,7 +9,7 @@ import deleteTask from './deleteTask'
 import getAllTasks from './getAllTasks'
 import getUserRole from './getUserRole'
 import getUsername from './getUsername'
-import getDayWithTask from './getDayWithTask'
+import getDatesWithTask from './getDatesWithTask'
 import getTasksForDate from './getTasksForDate'
 import deleteProfile from './deleteProfile'
 import toggleDoneTask from './toggleDoneTAsk'
@@ -30,7 +30,7 @@ const logic = {
     getAllTasks,
     getUserRole,
     deleteProfile,
-    getDayWithTask,
+    getDatesWithTask,
     getUsername,
     getTasksForDate,
     toggleDoneTask,

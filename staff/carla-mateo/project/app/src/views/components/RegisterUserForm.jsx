@@ -3,9 +3,11 @@ import Field from '../../components/core/Field'
 import Button from '../../components/core/Button'
 import logic from '../../logic/index'
 import ImageSelect from './ImageSelect'
-import Alert from './Alert'
+import useContext from '../../useContext'
 
 function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
+    const { alert } = useContext()
+
     const [registrationMessage, setRegistrationMessage] = useState('')
     const [selectedAvatar, setSelectedAvatar] = useState('avatars/azul.png')
 
@@ -30,8 +32,11 @@ function RegisterUserForm({ onSuccessRegister, onCancelRegisterSuccess }) {
                         onSuccessRegister()
                     }, 1000)
                 })
-                .catch(error => {
-                    alert(error.message)
+                .catch((error) => {
+                    if (error instanceof SystemError) {
+                        alert(error.message)
+                    }
+                    alert("Invalid format")
                 })
         } catch (error) {
             alert(error.message)

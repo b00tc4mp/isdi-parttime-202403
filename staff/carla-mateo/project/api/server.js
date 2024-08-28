@@ -4,7 +4,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 
 import errorHandler from './handlers/errorHandler.js'
-import router from './handlers.js'
+import router from './router.js'
 
 const { MONGODB_URL, PORT } = process.env
 

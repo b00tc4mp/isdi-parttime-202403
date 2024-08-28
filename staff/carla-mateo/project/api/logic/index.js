@@ -13,7 +13,7 @@ import updateUsername from './updateUsername.js'
 import updateAvatar from './updateAvatar.js'
 import updateEmail from './updateEmail.js'
 import updateTaskDescription from './updateTaskDescription.js'
-import getDayWithTask from './getDayWithTask.js'
+import getDatesWithTask from './getDatesWithTask.js'
 
 
 
@@ -33,7 +33,7 @@ const logic = {
     updateAvatar,
     updateEmail,
     updateTaskDescription,
-    getDayWithTask
+    getDatesWithTask
 
 }
 

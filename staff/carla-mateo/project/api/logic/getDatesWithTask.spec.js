@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { mongoose, Types } from 'mongoose'
 import bcrypt from 'bcryptjs'
 
-import getDayWithTask from './getDayWithTask.js'
+import getDatesWithTask from './getDatesWithTask.js'
 import { User, Task } from '../data/index.js'
 
 import { expect } from 'chai'
@@ -36,7 +36,7 @@ describe('taskDay', () => {
                     description: 'test',
                     date: new Date(2023, 7, 10)
                 })
-                    .then(() => getDayWithTask(user._id.toString(), 'casa', selectedDate))
+                    .then(() => getDatesWithTask(user._id.toString(), 'casa', selectedDate))
                     .then(daysWithTasks => {
                         expect(daysWithTasks).to.be.false
                     })
@@ -46,7 +46,7 @@ describe('taskDay', () => {
     it('fails on non-existing user', () => {
         let errorThrown
 
-        return getDayWithTask(new ObjectId().toString(), new Date())
+        return getDatesWithTask(new ObjectId().toString(), new Date())
             .catch((error) => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -58,7 +58,7 @@ describe('taskDay', () => {
         let errorThrown
 
         try {
-            getDayWithTask(12345, new Date())
+            getDatesWithTask(12345, new Date())
         } catch (error) {
             errorThrown = error
         } finally {

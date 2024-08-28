@@ -41,7 +41,7 @@ function UpdateAvatarForm({ onSuccess }) {
                 value={selectedAvatar}
                 onChange={setSelectedAvatar}
             />
-            <Button type='submit'>Edit profile</Button>
+            <Button type='submit'>Edit avatar</Button>
             {message && <p className='text-green-300 mt-4 text-sm'>{message}</p>}
         </form>
     )
