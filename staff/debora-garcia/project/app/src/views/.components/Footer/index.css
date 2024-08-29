@@ -2,10 +2,8 @@
 
 @layer components {
   .Footer {
-    @apply w-full flex justify-around fixed bottom-0 p-0 bg-[white] border-solid border-[--fourth-color] border-t-[1px];
+    @apply w-full flex justify-around fixed bottom-0 p-0 bg-[white] border-solid  border-t-[1px];
   }
-
-  
 }
 .FooterButton {
   @apply bg-transparent border-none cursor-pointer text-white;
@@ -15,5 +13,14 @@
   @apply outline-none;
 }
 .FooterIcon i {
-  @apply text-2xl text-[--fourth-color];
+  @apply text-2xl text-[--third-color];
 }
+
+.FooterButton.active {
+ @apply bg-[#f0f0f0] 
+}
+
+.FooterIcon.active i {
+  @apply text-2xl text-[--fourth-color]
+}
+

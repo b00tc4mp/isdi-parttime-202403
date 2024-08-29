@@ -1,6 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import logic from "../../logic"
+import useContext from "../../useContext"
+
+
 import Button from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
 import EditResultForm from './EditResultForm'
@@ -12,6 +15,7 @@ export default function ResultDetails() {
     const [isEditing, setIsEditing] = useState(false)
     const { resultId } = useParams()
     const navigate = useNavigate()
+    const { alert } = useContext()
 
     const loadResult = () => {
         try {

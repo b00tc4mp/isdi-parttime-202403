@@ -1,20 +1,19 @@
-import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import { SystemError } from 'com/errors'
+
+import logic from "../logic"
+import useContext from '../useContext'
 
 import Button from "../components/Button"
 import Field from "../components/Field"
 import Heading from "../components/Heading"
 
-import logic from "../logic"
-
-//TODO alert & use context
 export default function Register() {
     console.log("Register->render")
 
     const navigate = useNavigate()
 
-    const [message, setMessage] = useState("")
-
+    const { alert } = useContext()
     const handleRegisterSubmit = event => {
         event.preventDefault()
 
@@ -31,14 +30,16 @@ export default function Register() {
                 .then(() => navigate("/login"))
                 .catch(error => {
                     console.error(error)
-                    alert(error.message)
-                })
+                    if (error instanceof SystemError) {
+                        alert(error.message)
 
+                        return
+                    }
+                })
         } catch (error) {
             console.error(error)
             alert(error.message)
         }
-
     }
 
     const handleLoginClick = event => {
@@ -50,7 +51,7 @@ export default function Register() {
     return (
 
         <form className="registerForm" onSubmit={handleRegisterSubmit}>
-            <Heading level="1" className="Heading">NEW ACCOUNT</Heading>
+            <Heading level="4" className="Heading">NEW ACCOUNT</Heading>
             <p>Be part of our team</p>
             <Field id="name" type="text" placeholder="Name"></Field>
             <Field id="surname" type="text" placeholder="Surname"></Field>

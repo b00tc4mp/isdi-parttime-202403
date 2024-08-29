@@ -1,25 +1,35 @@
 import { Routes, Route, Navigate } from "react-router-dom"
+import { useState } from "react"
 
-import logic from "./logic";
+import { Context } from "./useContext"
 
-import Login from "./views/Login";
-import Register from "./views/Register";
+import logic from "./logic"
+import Login from "./views/Login"
+import Register from "./views/Register"
+import Home from "./views/Home"
 
-import Home from "./views/Home";
-import './global.css'
+import Alert from "./views/.components/Alert"
+import "./global.css"
 
 export default function App() {
     console.log("App -> render")
 
-    return <Routes>
+    const [message, setMessage] = useState(null)
 
-        <Route path="/login" element={<RenderLogin />} />
+    const handleAlertAccepted = () => setMessage(null)
+    const handleMessage = message => setMessage(message)
 
-        <Route path="/register" element={<RenderRegister />} />
+    return <Context.Provider value={{ alert: handleMessage }}>
+        <Routes>
+            <Route path="/login" element={<RenderLogin />} />
 
-        <Route path="/*" element={<RenderHome />} />
-        
-    </Routes>
+            <Route path="/register" element={<RenderRegister />} />
+
+            <Route path="/*" element={<RenderHome />} />
+        </Routes>
+
+        {message && <Alert message={message} onAccept={handleAlertAccepted} />}
+    </Context.Provider>
 }
 
 const RenderRegister = () => (logic.isUserLoggedIn() ? <Navigate to="/workouts" /> : <Register />)

@@ -1,6 +1,10 @@
-import { useNavigate, Link, Routes, Route, Navigate } from "react-router-dom"
+import { useNavigate, Link, Routes, Route, Navigate, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import logic from "../logic"
+
+import { Context } from "../useContext"
+
+import Alert from "./.components/Alert"
 
 import Feed from "./Feed/Feed"
 import Workouts from "./Workouts/Workouts"
@@ -11,11 +15,19 @@ import Heading from "../components/Heading"
 import GoBackButton from "../components/GoBackButton"
 import WorkoutDetail from "./Workouts/WorkoutDetails"
 import ResultDetails from "./Achievements/ResultDetails"
+
 export default function Home() {
     console.log("Home ->render")
     const [username, setUsername] = useState("")
     const navigate = useNavigate()
+    const location = useLocation()
+    const [currentRoute, setCurrentRoute] = useState("")
+
     const [message, setMessage] = useState(null)
+
+    const handleAlertAccepted = () => setMessage(null)
+    const handleMessage = message => setMessage(message)
+
 
     useEffect(() => {
         console.log("Home -> useEffect")
@@ -37,41 +49,49 @@ export default function Home() {
         }
     }, [])
 
+    useEffect(() => {
+        const path = location.pathname;
+        if (path.includes("feed")) {
+            setCurrentRoute("FEED")
+        } else if (path.includes("achievements")) {
+            setCurrentRoute("ACHIEVEMENTS")
+        } else if (path.includes("workouts")) {
+            setCurrentRoute("WORKOUTS")
+        } else {
+            setCurrentRoute("");
+        }
+    }, [location]);
+
     const handleLogout = () => {
         logic.logoutUser()
-        
+
         navigate("/login")
     }
-//TODO mostrar ruta y marcar colores de los iconos en el navbar
     return (
         <>
-            <Header username={username} onLogout={handleLogout}>
-                <Heading level="6">ROUTE</Heading>
-            </Header>
-            <GoBackButton />
-            <main className="main-view">
-                <Routes>
-                    <Route path="/" element={<Navigate to="/workouts" />} />
+            <Context.Provider value={{ alert: handleMessage }}>
+                <Header username={username} onLogout={handleLogout}>
+                    <Heading level="5">{currentRoute}</Heading>
+                </Header>
+                <main className="main-view">
+                    <Routes>
+                        <Route path="/" element={<Navigate to="/workouts" />} />
 
-                    <Route path="/feed" element={<Feed />} />
+                        <Route path="/feed" element={<Feed />} />
 
-                    <Route path="/achievements" element={<Achievements />} />
-                    <Route path="/achievements/results/:resultId" element={<ResultDetails />} />
+                        <Route path="/achievements" element={<Achievements />} />
+                        <Route path="/achievements/results/:resultId" element={<ResultDetails />} />
 
-                    <Route path="/workouts" element={<Workouts />} />
-                    <Route path="/workouts/:workoutType" element={<WorkoutDetail />} />
-                </Routes>
-            </main>
-            <Footer />
+                        <Route path="/workouts" element={<Workouts />} />
+                        <Route path="/workouts/:workoutType" element={<WorkoutDetail />} />
+                    </Routes>
+                    {message && <Alert message={message} onAccept={handleAlertAccepted} />}
+                </main>
+                <Footer />
+            </Context.Provider>
         </>
     )
 
 }
 
 
-
-
-//  <Route path="/workouts/emom/:emom" element={<Emom />} />
-//  <Route path="/workouts/amrap/:amrap" element={<Amrap />} />
-//  <Route path="/workouts/benchmark/:benchmark" element={<Benchmark />} />
-//  <Route path="/workouts/for-time/:for-time" element={<ForTime />} />

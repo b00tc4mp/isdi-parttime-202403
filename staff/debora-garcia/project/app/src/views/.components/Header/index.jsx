@@ -1,6 +1,7 @@
 import Button from "../../../components/Button"
 import "./index.css"
 import { useNavigate } from "react-router-dom"
+import GoBackButton from "../../../components/GoBackButton"
 
 
 export default function Header({ children, username, onLogout }) {
@@ -17,13 +18,21 @@ export default function Header({ children, username, onLogout }) {
 
     return (
         <header className="Header">
-            {children}
-            <div className="user-logo">
-                <div className="user-initial">
-                    {handlePrintInitialLetter(username)}
-                </div>
+            <div className="path-name">
+                {children}
             </div>
-            <Button onClick={handleLogout} className="logout-button">Logout</Button>
+            <GoBackButton />
+
+            <div className="user-info">
+                <div className="user-logo">
+                    <div className="user-initial">
+                        {handlePrintInitialLetter(username)}
+                    </div>
+                </div>
+                <Button onClick={handleLogout} className="logout-button">
+                    <i class="fa-solid fa-arrow-right-from-bracket "></i>
+                </Button>
+            </div>
         </header>
     )
 }

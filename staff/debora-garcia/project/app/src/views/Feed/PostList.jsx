@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import logic from "../../logic"
-import Heading from "../../components/Heading"
 import "./PostList.css"
-import Button from "../../components/Button"
-import Comments from "./Comments"
+
 import Post from "./Post"
+import useContext from "../../useContext"
+
 export default function PostList() {
     console.log("PostList ->render")
+    const { alert } = useContext()
 
     const [posts, setPosts] = useState([])
     useEffect(() => {

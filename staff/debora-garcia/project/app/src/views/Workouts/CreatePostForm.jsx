@@ -3,12 +3,16 @@ import logic from '../../logic';
 import Button from '../../components/Button';
 import Field from '../../components/Field';
 import "./CreatePostForm.css"
+import useContext from "../../useContext"
+
 
 export default function CreatePostForm({ workoutId, onPostCreated }) {
     console.log("CreatePostForm -> render")
 
     const handleCreatePostSubmit = (event) => {
         event.preventDefault()
+        const { alert } = useContext()
+
         const form = event.target
 
         const image = form.image.value

@@ -2,9 +2,12 @@ import { useEffect, useState } from "react"
 import logic from "../../logic"
 import Heading from "../../components/Heading"
 import "./Post.css"
+import useContext from "../../useContext"
+
 import Button from "../../components/Button"
 import Comments from "./Comments"
 export default function Post({ post, onPostLikeToggled }) {
+    const { alert } = useContext()
 
     const [commentsSectionVisible, setCommentsSectionVisible] = useState(false)
 

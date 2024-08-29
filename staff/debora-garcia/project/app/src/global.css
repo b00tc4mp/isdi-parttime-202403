@@ -1,13 +1,13 @@
 @tailwind base;
 @tailwind components;
 
-
 @layer base {
   :root {
     --first-color: rgb(0, 0, 0);
     --second-color: rgb(240, 237, 237);
     --third-color: rgb(136, 128, 136);
-    --fourth-color:rgb(193, 65, 97);
+    --fourth-color: rgb(223, 53, 79);
+    --fourth-clor: rgb(193, 65, 97);
   }
 
   * {
@@ -49,9 +49,14 @@
     @apply flex flex-col items-center;
   }
 
+  .account-prompt {
+    @apply w-[300px] flex justify-end items-center gap-3 
+  }
+  .account-prompt p {
+    @apply text-[#7b7a7a63] 
+  }
  
-
-  
-
-  
+  .sign-up-link {
+    @apply font-bold;
+  }
 }

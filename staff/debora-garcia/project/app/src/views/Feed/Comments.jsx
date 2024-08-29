@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import Field from "../../components/Field";
 
 import "./Comments.css"
+import useContext from "../../useContext"
 
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -11,6 +12,7 @@ import { useState, useEffect } from "react";
 
 export default function Comments({ postId, onCancelCommentsClick, author }) {
     console.log("Comments -> render")
+    const { alert } = useContext()
 
     const [comments, setComments] = useState([])
 

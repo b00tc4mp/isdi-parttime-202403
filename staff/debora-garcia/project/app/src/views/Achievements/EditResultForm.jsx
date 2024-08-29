@@ -3,11 +3,14 @@ import logic from '../../logic';
 import Button from '../../components/Button';
 import Field from '../../components/Field';
 import "./EditResultForm.css"
+import useContext from "../../useContext"
+
 
 export default function EditResultForm({ result, onResultEdited, onCancel }) {
     console.log("EditResultForm -> render")
 
     const { id: resultId, time, repetitions, weight } = result
+    const { alert } = useContext()
 
     const handleEditResultSubmit = (event) => {
         event.preventDefault()

@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import "./WorkoutDetails.css"
 import CreatePostForm from './CreatePostForm'
 import { useNavigate } from 'react-router-dom';
+import useContext from "../../useContext"
 
 export default function WorkoutDetail() {
     const [workout, setWorkout] = useState({})
@@ -12,8 +13,8 @@ export default function WorkoutDetail() {
 
     const [view, setView] = useState("")
     const navigate = useNavigate()
+    const { alert } = useContext()
 
-    //const [postListRefreshStamp, setPostListRefreshStamp] = useState(0)
 
     const generateRandomWorkout = () => {
         console.log(`Generating ${workoutType} workout`);
