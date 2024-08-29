@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Button {
+        @apply py-1.5 bg-transparent text-[1.3rem] cursor-pointer w-28 h-auto;
+    }
+
+    .CancelButton {
+        @apply border-2 border-red-500 bg-red-100/75 rounded-[5%] cursor-pointer;
+    }
+
+    .DeleteButton {
+        @apply border-2 border-red-500 bg-red-100/75 rounded-[5%] cursor-pointer;
+    }
+
+    .ConfirmButton {
+        @apply py-1.5 bg-transparent text-[1.3rem] cursor-pointer w-28 h-auto;
+    }
+
+    .DeleteConfirmButton {
+        @apply border-2 border-red-500 bg-red-100/75 rounded-[15%] cursor-pointer py-2 px-4 text-[1.5rem] w-36;
+    }
+
+    .ConfirmCancelButton {
+        @apply rounded-[15%] cursor-pointer py-2 px-4 text-[1.5rem] w-36;
+    }
+}

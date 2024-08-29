@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Permanent+Marker&family=Tac+One&family=Zeyada&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer component {}
+
+:root {
+  --first-color: rgb(135, 56, 4);
+  --second-color: black;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+* {
+  font-family: Paytone One;
+  color: var(--first-color);
+}
+
+body {
+  background: linear-gradient(to bottom right, rgb(241, 178, 5), rgb(234, 205, 127));
+}

@@ -1,0 +1,12 @@
+.CreatePostForm {
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10rem;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(to top left, rgba(255, 191, 0, 0.653), rgba(0, 0, 0, 0.55), rgba(255, 191, 0, 0.653));
+    height: 100vh;
+    z-index: 80;
+
+}

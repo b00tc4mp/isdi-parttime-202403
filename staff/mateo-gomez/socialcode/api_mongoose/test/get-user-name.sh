@@ -1,0 +1,1 @@
+curl -X POST http://localhost:8080/users/668fb3125c888d2a25aa5896 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjhhODkyMzI3YjM5ZDdiMTliNGUyNTQiLCJpYXQiOjE3MjA3ODEwMDcsImV4cCI6MTcyMDc4NDYwN30.sWQRpG_HAU_9MXb4_wiKpUrnr2Qh9HL39rMaTrxBwso" -v
