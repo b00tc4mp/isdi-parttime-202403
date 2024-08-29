@@ -12,20 +12,19 @@ An application to share tasks, calendar, shopping list and more, between members
 
 Admin
 
-- set avatar
 - create user
-- edit user
 - delete user
-- edit task
-- delete task
 
 
 Admin | User
  
-- view timed tasks(calendar)
+- view tasks(calendar)
+- edit user
 - create task
 - mark task
 - view tasks
+- edit task
+- delete task
 
 
 #### version 0.1
@@ -66,8 +65,8 @@ User
 
 - id (auto)
 - name (string, required)
-- username (string, required)
-- email (string, unique)
+- username (string, required, unique)
+- email (string, required, unique)
 - password (string, required, hashed)
 - avatar (string)
 - role(string, enum: admin | user)
@@ -77,7 +76,8 @@ User
 Task
 
 - id (auto)
-- title(string, required)
+- title(string)
+- description(string)
 - done(boolean, default false)
 - date(Date)
 - family(string)

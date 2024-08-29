@@ -70,7 +70,7 @@ function TasksList({ refreshStamp }) {
 
     return (
         <UserProvider>
-            {({ user }) => (
+            {({ user, isAdmin }) => (
                 < View >
                     <Header>
                         {user?.name && <Heading className='text-3xl mt-6 mr-10' level='1'>{user.name}</Heading>}
@@ -89,9 +89,9 @@ function TasksList({ refreshStamp }) {
                         {tasks.map(task => (
                             task && <Task key={task.id}
                                 task={task}
-                                onTaskDeleted={handleDeleteTask}
                                 onTaskDoneToggled={handleTaskDoneToggled}
                                 onEditSuccess={handleEditTask}
+                                onTaskDeleted={handleDeleteTask}
                             />
                         ))}
                     </div>
