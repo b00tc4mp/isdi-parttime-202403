@@ -14,6 +14,7 @@ Admin
 
 - create user
 - delete user
+- delete task
 
 
 Admin | User
@@ -24,7 +25,7 @@ Admin | User
 - mark task
 - view tasks
 - edit task
-- delete task
+
 
 
 #### version 0.1
