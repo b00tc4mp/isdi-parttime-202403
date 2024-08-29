@@ -9,6 +9,7 @@ function UpdateDataUser({ onSuccessEdit, onCancelEditSuccess }) {
         onCancelEditSuccess()
     }
 
+
     return (
         <div className='fixed bottom-0 mb-20 left-1/2 transform -translate-x-1/2 bg-color-footer p-4 rounded-lg shadow-lg'>
             <UpdateUsernameForm onSuccess={onSuccessEdit} />

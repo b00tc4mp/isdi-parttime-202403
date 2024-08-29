@@ -79,66 +79,61 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled, onEditSuccess }) {
         return !task.assignee || task.assignee._id === userId
     }
 
-    return <div>
-        <div className='flex flex-row justify-between items-center space-x-4 m-4 text-sm ml-8'>
-            <div className='flex flex-col w-20'>
-                <Heading className='text-2xl truncate' level='1'>{task.title}</Heading>
-            </div>
-            <button className='text-2xl w-5' onClick={() => setShowDescription(!showDescription)}>
-                {showDescription ? '-' : '+'}
-            </button>
-            <Time className='ml-4'>{task.date}</Time>
-            <div className='flex flex-col ml-4'>
-                <Heading className=' w-10 truncate' level='1'>{task.assignee ? task.assignee.username : ''}</Heading>
-            </div>
-            <div>
-                {userCanToggleTask() && (
-                    <button onClick={handleToggleDoneTask} className={`w-5 h-5 text-2xl flex items-center justify-center  ${task.done ? ' text-lime-300 ' : 'text-green-950'} `}>
-                        {task.done ? '☑' : '☐'}
-                    </button>
-                )}
-            </div>
-            <div className='relative'>
+    return (
+        <div className='relative flex flex-col  m-4 text-sm ml-8'>
+            <div className='flex flex-row items-start justify-between space-x-4 w-full'>
                 <button onClick={Options} className='text-xl'>
                     <RiMenuAddFill />
                 </button>
-                {showOptions && (
-                    <div className='absolute right-0 mt-2 w-36 p-2 bg-green-100 border border-black shadow-lg rounded z-50 ' >
-                        <button
-                            onClick={handleDeleteTask}
-                            className='mt-2 p-1 text-sm wm-2 w-32 border-t border-green-800'
-                        >
-                            Delete Task
-                        </button>
-                        <button
-                            onClick={handleEditTask}
-                            className='p-1 mt-2 w-32 text- border-t border-green-800'
-                        >
-                            Edit Task
-                        </button>
+                <div className='flex flex-grow flex-col'>
+                    <Heading className='text-sm border-b-2 w-20 truncate' level='1'>{task.title} : </Heading>
+                    <div className='flex mt-2 '>
+                        <Time>{task.date}</Time>
                     </div>
-                )}
+                </div>
+                <div className='text-sm'>
+                    {task.description}
+                </div>
+                <Heading className='w-15' level='1'>{task.assignee ? task.assignee.username : ''}</Heading>
+                <div className='ml-auto'>
+                    {userCanToggleTask() && (
+                        <button onClick={handleToggleDoneTask} className={`w-5 h-5 text-2xl flex justify-end  right-0 ${task.done ? 'text-lime-300' : 'text-green-950'}`}>
+                            {task.done ? '☑' : '☐'}
+                        </button>
+                    )}
+                </div>
             </div>
+            {showOptions && (
+                <div className='absolute left-0 top-full mt-2 w-36 p-2 bg-green-100 border border-black shadow-lg rounded z-50'>
+                    <button
+                        onClick={handleDeleteTask}
+                        className='mt-2 p-1 text-sm w-32 border-t border-green-800'
+                    >
+                        Delete Task
+                    </button>
+                    <button
+                        onClick={handleEditTask}
+                        className='p-1 mt-2 w-32 border-t border-green-800'
+                    >
+                        Edit Task
+                    </button>
+                </div>
+            )}
+            {showConfirm && (
+                <Confirm
+                    message="Do you want to delete this task?"
+                    onConfirm={handleConfirmDelete}
+                    onCancel={handleCancelDelete}
+                />
+            )}
+            {showEditForm && (
+                <UpdateTaskDescription
+                    onEditSuccess={handleUpdateTaskSuccess}
+                    onCancelEditSuccess={() => setShowEditForm(false)}
+                    task={currentTask}
+                />
+            )}
         </div>
-        {showDescription && (
-            <div className='flex-1 max-w-full ml-4 '>
-                {task.description}
-            </div>
-        )}
-        {showConfirm && (
-            <Confirm
-                message="Are you sure you want to delete this task?"
-                onConfirm={handleConfirmDelete}
-                onCancel={handleCancelDelete}
-            />
-        )}
-        {showEditForm && (
-            <UpdateTaskDescription
-                onEditSuccess={handleUpdateTaskSuccess}
-                onCancelEditSuccess={() => setShowEditForm(false)}
-                task={currentTask}
-            />
-        )}
-    </div>
+    )
 }
 export default Task

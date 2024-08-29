@@ -2,7 +2,7 @@ import errors, { SystemError } from 'com/errors'
 
 const getDatesWithTask = (selectedDate) => {
 
-    return fetch(`${import.meta.env.VITE_API_URL}/getdateswithtasks/${selectedDate}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/getdateswithtasks/${selectedDate.toISOString()}`, {
 
         method: 'GET',
         headers: {
@@ -11,7 +11,7 @@ const getDatesWithTask = (selectedDate) => {
     })
         .catch(() => { throw new SystemError('conection error') })
         .then(response => {
-            if (response.status === 200) {
+            if (response.status === 200 || response.status === 204) {
                 return response.json()
                     .catch(() => { throw new SystemError('conection error') })
                     .then(tasks => tasks)

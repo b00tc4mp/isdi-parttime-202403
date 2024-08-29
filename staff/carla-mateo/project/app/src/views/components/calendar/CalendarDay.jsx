@@ -1,7 +1,24 @@
-import React from 'react'
 
-const CalendarDay = ({ day, className, hasTasks, isToday, isPastTask, handleShowTasks, currentDate }) => {
+import { useEffect, useState } from 'react'
 
+const CalendarDay = ({ day, className, taskDates, isToday, isPastTask, handleShowTasks, currentDate }) => {
+    const [hasTasks, setHasTasks] = useState(false)
+
+    const checkHasTasks = () => {
+        const index = taskDates.indexOf(currentDate)
+        if (index === -1) {
+            setHasTasks(false)
+        } else {
+            setHasTasks(true)
+        }
+    }
+
+    useEffect(() => {
+        if (taskDates && taskDates.length > 0) {
+            checkHasTasks()
+        }
+
+    }, [taskDates])
 
     return (
         <>
