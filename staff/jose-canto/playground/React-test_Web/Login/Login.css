@@ -1,0 +1,53 @@
+.ContainerForm {
+  max-width: 55vw;
+  height: 23vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+label {
+  font-size: 1.2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Form input {
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem;
+  background-color: #7474745b;
+  color: aliceblue;
+
+}
+
+.Form button {
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem;
+  background-color: #5f5f5f5b;
+  color: white;
+  width: 5rem;
+}
+
+.Form button {
+  cursor: pointer;
+}
+
+.Form button:hover {
+  background-color: #747474;
+}
