@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import logic from "../logic";
 import AdList from "./components/AdList/AdList";
 import SearchBox from "./components/SearchBox/SearchBox";
@@ -8,15 +9,29 @@ import "./Home.css";
 
 function Home() {
   const [user, setUser] = useState("");
-  const [ads, setAds] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchText, setSearchText] = useState(""); // state for searching text
+
+  const [currentSearchText, setCurrentSearchText] = useState("");
+
+  const navigate = useNavigate();
+
+  const { search } = useLocation()
+
+  const searchParams = new URLSearchParams(search)
+
+  const q = searchParams.get('q')
 
   useEffect(() => {
     console.log("Home -> useEffect");
     fetchUserInfo();
-    // loadAds();
+
   }, []);
+
+  useEffect(() => {
+    console.log("Search query changed:", q);
+    setCurrentSearchText(q);
+
+  }, [q]);
+
 
   const fetchUserInfo = () => {
     try {
@@ -36,19 +51,20 @@ function Home() {
     }
   };
 
+  const handleSearch = (text) => {
+    navigate(`/?q=${text}`);
+  }
 
   return (
     <>
       <Header user={user} />
       <div className="HomeContainer">
         <main className="Home">
-          <SearchBox searchText={searchText}
-            setSearchText={setSearchText} setAds={setAds} setIsLoading={setIsLoading} />
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            <AdList ads={ads} setAds={setAds} />
-          )}
+          <SearchBox onSearch={handleSearch} initialSearchText={currentSearchText}
+          />
+
+          <AdList searchText={currentSearchText} />
+
         </main>
         <CreateAdButton />
       </div>

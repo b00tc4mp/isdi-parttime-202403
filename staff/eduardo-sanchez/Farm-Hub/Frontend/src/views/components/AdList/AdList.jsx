@@ -5,20 +5,55 @@ import { Time } from "../../../components/core/Time/Time";
 import logic from "../../../logic";
 import "./AdList.css";
 
-function AdList({ ads, setAds }) {
+function AdList({ searchText }) {
+
   const navigate = useNavigate();
+
+  const [ads, setAds] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
 
-    console.log("Home -> useEffect");
-    // fetchUserInfo();
-    loadAds();
-  }, []);
+    console.log("Home -> useEffect")
+
+    setIsLoading(true)
+    if (searchText) {
+      loadFilteredAds(searchText)
+    } else {
+      loadAds()
+    };
+  }, [searchText]);
+
+  const loadFilteredAds = (search) => {
+    console.log('texto', search)
+    try {
+      if (search.length > 0) {
+        logic
+          .searchAds(search)
+          .then((searchedAds) => {
+            setAds(searchedAds);
+            setIsLoading(false);
+
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(error.message);
+            setIsLoading(false);
+
+          });
+      } else {
+        setAds([]);
+        console.log('There are no ads within your search parameters');
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+      setIsLoading(false);
+    }
+  };
 
   const loadAds = () => {
-    //setIsLoading(true);
     console.log('I got here')
     try {
       logic
@@ -39,6 +74,10 @@ function AdList({ ads, setAds }) {
       setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   if (!ads || ads.length === 0) {
     return <p className="AdListEmpty">No ads found</p>;

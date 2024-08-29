@@ -1,69 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import backArrow from '../../../icons/backArrow.png';
 
 import logic from '../../../logic';
 
 import './SearchBox.css';
 
-function SearchBox({ setAds, searchText, setSearchText, setIsLoading }) {
+function SearchBox({ onSearch, initialSearchText }) {
 
-  const handleSearch = (search) => {
-    //setIsLoading(true);
-    console.log('texto', search)
-    try {
-      if (search.length > 0) {
-        logic
-          .searchAds(search)
-          .then((searchedAds) => {
-            setAds(searchedAds);
-            // setSearchText('');
-            setIsLoading(false);
+  const [searchText, setSearchText] = useState(initialSearchText); // state for searching text
 
-          })
-          .catch((error) => {
-            console.error(error);
-            alert(error.message);
-            setIsLoading(false);
-          });
-      } else {
-        setAds([]);
-        console.log("There are no ads within your search parameters");
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
-      setIsLoading(false);
-    }
-  };
+  // useEffect(() => {
+  //   setSearchText(initialSearchText || '');
+  // }, [initialSearchText]);
 
-  const loadAds = () => {
+  const handleClearSearch = () => {
     setSearchText('');
-    //setIsLoading(true);
-    console.log('I also got here')
-    try {
-      logic
-        .getAllAds()
-        .then((fetchedAds) => {
-          console.log(fetchedAds);
-          setAds(fetchedAds);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          alert(error.message);
-          setIsLoading(false);
-        });
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
-      setIsLoading(false);
-    }
+    onSearch('');
   };
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    handleSearch(searchText);
+    onSearch(searchText);
   };
 
   const handleSearchChange = (event) => {
@@ -78,9 +35,9 @@ function SearchBox({ setAds, searchText, setSearchText, setIsLoading }) {
           <img
             src={backArrow}
             width={24}
-            alt="Back"
+            alt="Clear Search"
             className="ClearButton"
-            onClick={loadAds}
+            onClick={handleClearSearch}
           />
         )}
         <input
