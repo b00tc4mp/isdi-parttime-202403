@@ -15,10 +15,12 @@ export default ((req, res, next) => {
 
                 const { selectedDate } = req.params
 
+                const formattedSelectedDates = new Date(selectedDate)
+
                 try {
-                    logic.getDatesWithTask(userId, selectedDate)
-                        .then((tasksExist) => {
-                            res.json(tasksExist)
+                    logic.getDatesWithTask(userId, formattedSelectedDates)
+                        .then((dates) => {
+                            res.json(dates)
                         })
                         .catch(error => next(error))
                 } catch (error) {

@@ -7,6 +7,7 @@ import { User, Task } from '../data/index.js'
 
 import { expect } from 'chai'
 import { NotFoundError, ContentError } from 'com/errors.js'
+import getDatesWithTask from './getDatesWithTask.js'
 
 const { ObjectId } = Types
 const { MONGODB_URL_TEST } = process.env
@@ -122,6 +123,18 @@ describe('getTasksForDate', () => {
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
             expect(errorThrown.message).to.equal('userId is not valid')
+        }
+    })
+
+    it('fails on invalid date', () => {
+        let errorThrown
+        try {
+            getTasksForDate(new ObjectId().toString(), 'ivalid-Date')
+        } catch (error) {
+            errorThrown = error
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError)
+            expect(errorThrown.message).to.equal('date is not valid')
         }
     })
 

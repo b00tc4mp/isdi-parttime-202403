@@ -4,6 +4,7 @@ import validate from 'com/validate.js'
 
 const getDatesWithTask = (userId, selectedDate) => {
     validate.id(userId, 'userId')
+    validate.date(selectedDate, 'selectedDate')
 
     return User.findById(userId).lean()
         .catch((error) => { throw new SystemError(error.message) })

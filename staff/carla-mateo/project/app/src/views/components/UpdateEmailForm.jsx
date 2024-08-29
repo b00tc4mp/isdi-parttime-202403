@@ -6,10 +6,11 @@ import logic from '../../logic'
 
 function UpdateEmailForm({ onSuccess }) {
     const { alert } = useContext()
-    
+
     const [message, setMessage] = useState('')
 
     const handleUpdateEmailSubmit = (event) => {
+
         event.preventDefault()
         const form = event.target
         const email = form.email.value
