@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import logic from "../../logic"
 import useContext from "../../useContext"
-
+import Confirm from '../.components/Confirm';
 
 import Button from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
@@ -16,13 +16,13 @@ export default function ResultDetails() {
     const { resultId } = useParams()
     const navigate = useNavigate()
     const { alert } = useContext()
+    const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
 
     const loadResult = () => {
         try {
             logic.getResult(resultId)
                 .then(result => {
                     setResult(result)
-
                 })
                 .catch(error => {
                     console.error(error)
@@ -32,7 +32,7 @@ export default function ResultDetails() {
         } catch (error) {
             console.error(error)
 
-                    alert(error.message)
+            alert(error.message)
         }
     }
 
@@ -41,6 +41,13 @@ export default function ResultDetails() {
         loadResult()
     }, [resultId])
 
+    const handleConfirmDelete = (isConfirmed) => {
+        setConfirmDeleteVisible(false);
+
+        if (isConfirmed) {
+            handleDeleteResult();
+        }
+    };
     const handleDeleteResult = () => {
         try {
             logic.deleteResult(result.id)
@@ -79,15 +86,21 @@ export default function ResultDetails() {
         <div className="ResultDetails">
             <div className="result-card">
                 <div className="result-header">
-                    <h6 className="result-title">{result?.workout.workoutType.toUpperCase()} {result?.workout.duration}</h6>
+                    <h6 className="result-title">
+                        {result?.workout.workoutType.toUpperCase()} {result?.workout?.duration && ` ${result?.workout.duration}'`}
+                    </h6>
                     {!isEditing && !isMenuOpen && (
-                        <Button className="action-button" onClick={handleToggleMenu}>⋮</Button>
+                        <Button className="action-button" onClick={handleToggleMenu}>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </Button>
                     )}
                 </div>
                 <h6 >{result?.workout.title}</h6>
                 <ul>
                     {result?.workout.movements.map((movement, index) => (
-                        <li key={index} className="text-base">{movement.quantity} {movement.name}</li>
+                        <li key={index} className="text-base">
+                            {movement.quantity} {movement.name}
+                        </li>
                     ))}
                 </ul>
 
@@ -100,11 +113,13 @@ export default function ResultDetails() {
                 </div>
             </div>
 
-            {isMenuOpen && (
-                <div className="action-menu">
-                    <Button onClick={handleEditResult}>Edit</Button>
-                    <Button onClick={handleDeleteResult}>Delete</Button>
-                    <Button onClick={handleToggleMenu}>Cancel</Button>
+            {isMenuOpen && !confirmDeleteVisible && (
+                <div className="action-menu-container">
+                    <div className="action-menu">
+                        <Button onClick={handleEditResult} className="edit-button">Edit</Button>
+                        <Button onClick={() => setConfirmDeleteVisible(true)} className="delete-button">Delete</Button>
+                        <Button onClick={handleToggleMenu} className="cancel-button">Cancel</Button>
+                    </div>
                 </div>
             )}
             {isEditing && (
@@ -112,6 +127,13 @@ export default function ResultDetails() {
                     result={{ id: result.id, time: result.time, repetitions: result.repetitions, weight: result.weight }}
                     onResultEdited={handleResultEdited}
                     onCancel={handleCancelEdit}
+                />
+            )}
+            {confirmDeleteVisible && (
+                <Confirm
+                    message="Delete result?"
+                    onAccept={() => handleConfirmDelete(true)}
+                    onCancel={() => handleConfirmDelete(false)}
                 />
             )}
         </div>

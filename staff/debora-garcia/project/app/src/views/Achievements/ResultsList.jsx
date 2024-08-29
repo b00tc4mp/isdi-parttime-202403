@@ -61,7 +61,7 @@ export default function ResultsList() {
                             <article>
                                 <div className="result-header">
                                     <Heading level={6} className="Heading">
-                                        {result.workout.workoutType.toUpperCase()} {result.workout.title} {result.workout.duration}
+                                        {result.workout.workoutType.toUpperCase()} {result.workout?.duration && ` ${result.workout.duration}'`} {result.workout.title && `"${result.workout.title}"`} 
                                     </Heading>
                                     <time>{new Date(result.date).toLocaleDateString()}</time>
                                 </div>

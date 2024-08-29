@@ -11,13 +11,17 @@ Level Up allows users to generate and customize workouts, track personal bests a
 **User**
 
 - View workout results
-- Toggle like workout result
+- Toggle like workout post
 - View wod result coments
-- Add coment to workout result
-- Delete coment from wod result
+- Add comment to workout post
+- Delete wod result
 - Get random workout
 - Share workout result
 - Edit wod result
+  - Time
+  - Repetitions
+  - Weight
+- Filter wod results by workout type
 - View own wod results
 
 **v0.1**
@@ -34,8 +38,6 @@ Level Up allows users to generate and customize workouts, track personal bests a
   - Activity: View all recorded workouts
   - Analytics: Calculate and estimate weights and repetitions based on personal bests
 
-- Add friends to circle ??
-- View friends' profiles??
 
 ### UIUX Design
 
@@ -65,6 +67,7 @@ Level Up allows users to generate and customize workouts, track personal bests a
 - surname (string)
 - email (string, unique)
 - username (string, unique)
+- password (string, unique)
 
 **Post**
 
@@ -74,14 +77,14 @@ Level Up allows users to generate and customize workouts, track personal bests a
 - workout (Workout.id)
 - result (Result.id)
 - date (date)
-- likes ([User.id)]
+- likes ([User.id])
 
 **Comment**
 
 - id
-- post (Post.id)
 - author (User.id)
-- text
+- post (Post.id)
+- text (string,required)
 - date (date)
 
 **Result**
@@ -89,18 +92,19 @@ Level Up allows users to generate and customize workouts, track personal bests a
 - id (string)
 - workout (Workout.id)
 - athlete (User.id)
-- repetitions (number, optional)
 - time (number, optional)
+- repetitions (number, optional)
 - weight (number, optional)
 
 **Workout**
 
 - id (string)
-- type (string, enum: emom|amrap|for-time|benchmark)
+- workoutType (string, enum: emom|amrap|for-time|benchmark)
+- title (string, optional)
 - movements ([Movement.id])
-- rounds (number)
-- duration (number)
-- description (string)
+- rounds (number, optional)
+- duration (number, optional)
+- description (string, optional)
 
 **Movement**
 
@@ -108,7 +112,7 @@ Level Up allows users to generate and customize workouts, track personal bests a
 - name (string,required)
 - weight (number, optional)
 - quantity (number, required)
-- units (string)
+- units (string, optional)
 
 **v0.1**
 
@@ -117,10 +121,8 @@ Level Up allows users to generate and customize workouts, track personal bests a
 **Anlytics**
 
 - exercises (list of Movement.id)
-
   - reps and weights (1RM, 2RM..)
   - percentage and weights (85%, 90%..)
-
   - photo or avatar (string, optional)
 
 **Profile**
@@ -128,4 +130,9 @@ Level Up allows users to generate and customize workouts, track personal bests a
 - gender (string, optional)
 - weight (string, optional)
 - age (date, optional)
-- friends (list of User.id)??
+- friends ([User.id])
+
+
+### Test Coverage
+
+![](../api/coverage/screenshot-29.08.24.png)

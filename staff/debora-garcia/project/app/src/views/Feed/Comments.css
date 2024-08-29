@@ -6,7 +6,7 @@
   }
 
   .comments-header {
-    @apply flex flex-row justify-between items-center;
+    @apply flex flex-row justify-end gap-[100px] items-center mb-2 font-bold
   }
 
   .comments-container {
@@ -14,35 +14,38 @@
   }
 
   .CommentsList {
-    @apply flex flex-col flex-grow overflow-y-auto;
+    @apply flex flex-col flex-grow p-1;
   }
 
   .comment-form-container {
-    @apply flex flex-row justify-between items-center pt-2; 
+    @apply flex flex-row justify-between items-center pt-2;
   }
 
   .comment-form {
-    @apply flex flex-row items-center w-full
+    @apply flex flex-row justify-between items-center w-[400px];
   }
 
-  .comment-form .Field {
-    @apply m-1 p-2 w-full
+  .comment-form textarea {
+    @apply m-0 p-2 w-full rounded-md;
   }
 
   .submit-comment-button {
-    @apply bg-[#a2918d] py-2 px-4 rounded-md
+    @apply bg-[transparent] text-xl py-2 px-4 rounded-md;
   }
 
   .cancel-comment-button {
     @apply bg-[#a2918d] p-[5px_10px] m-0 rounded-md;
   }
 
-  .cancel-button {
-    @apply text-red-600 py-2 px-4 rounded-md;
+  .comment-form textarea::placeholder {
+    @apply text-[18px] tracking-tight;
+    word-spacing: -1px;
   }
 
-  .comment-form input::placeholder {
-    @apply text-[15px] tracking-tight; 
-    word-spacing: -1px; 
+  .comment {
+    @apply mb-2
+  }
+  .comment-author {
+    @apply font-bold;
   }
 }

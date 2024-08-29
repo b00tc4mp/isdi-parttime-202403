@@ -1,7 +1,7 @@
 import "dotenv/config"
 import mongoose from "mongoose"
-import { Workout } from "./index.js"
-import { Movement } from "./index.js"
+import { Workout } from "../index.js"
+import { Movement } from "../index.js"
 
 const { MONGODB_URL } = process.env
 

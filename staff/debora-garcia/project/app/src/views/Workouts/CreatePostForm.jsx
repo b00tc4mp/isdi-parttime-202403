@@ -8,10 +8,10 @@ import useContext from "../../useContext"
 
 export default function CreatePostForm({ workoutId, onPostCreated }) {
     console.log("CreatePostForm -> render")
+    const { alert } = useContext()
 
     const handleCreatePostSubmit = (event) => {
         event.preventDefault()
-        const { alert } = useContext()
 
         const form = event.target
 
@@ -38,17 +38,18 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
     }
     return (
         <form className="CreatePostForm" onSubmit={handleCreatePostSubmit}>
-            <Field id="image" type="text" placeholder="Upload image"></Field>
-            <Field id="description" type="text" placeholder="Description"></Field>
-            <Field id="time" type="number" placeholder="Time"></Field>
-            <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
-            <Field id="weight" type="number" placeholder="Weight"></Field>
-            
-            <div className="form-buttons-container">
-                <Button type="submit">Share</Button>
+            <div className="post-form-container">
+                <Field id="image" type="text" placeholder="Upload image"></Field>
+                <Field id="description" type="text" placeholder="Description"></Field>
+                <Field id="time" type="number" placeholder="Time"></Field>
+                <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
+                <Field id="weight" type="number" placeholder="Weight"></Field>
+
+                <div className="form-buttons-container">
+                    <Button type="submit">Share</Button>
+                </div>
+
             </div>
-
-
         </form>
     );
 }

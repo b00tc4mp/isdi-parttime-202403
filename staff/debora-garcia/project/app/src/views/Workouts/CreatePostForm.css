@@ -2,24 +2,34 @@
 
 @layer components {
   .CreatePostForm {
-    @apply flex flex-col items-center;
+    @apply fixed w-[350px] h-[270px] bottom-[100px] left-1/2 transform -translate-x-1/2 bg-[#cac4c4] p-[10px] shadow-lg rounded-md;
   }
-
-  .buttons-container {
-    display: flex;
-    justify-content: space-between; /* Opcional: Espacia los botones */
-    gap: 10px; /* Espacio entre los botones */
-    margin-top: 20px; /* Espacio superior para separar de los elementos anteriores */
-  }
-
-  .buttons-container Button {
-    flex: 1; /* Hace que los botones tengan el mismo ancho */
-    max-width: 150px; /* Limita el ancho máximo de los botones */
-  }
-  .form-buttons-container Button:hover {
-    @apply bg-[#65524d];
-  }
+  
   .CreatePostForm .Field {
-    @apply m-1 p-[.02rem] w-[300px];
+    @apply  p-[.2rem] items-center;
   }
+}
+.post-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 10px; 
+}
+
+.post-form-container > * {
+  width: 100%;
+  max-width: 400px
+}
+
+.form-buttons-container {
+  display: flex; 
+  justify-content: center; 
+  width: 100%; 
+}
+
+.form-buttons-container Button {
+  max-width: 200px; 
+  width: 20%; 
+  text-align: center; 
+  display: block; 
 }

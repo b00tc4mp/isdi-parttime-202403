@@ -27,7 +27,7 @@ export default function EditResultForm({ result, onResultEdited, onCancel }) {
                     console.error(error)
                     alert(error.message)
                 })
-            
+
         } catch (error) {
             console.error(error)
             alert(error.message)
@@ -35,26 +35,26 @@ export default function EditResultForm({ result, onResultEdited, onCancel }) {
     }
     return (
         <form className="EditResultForm" onSubmit={handleEditResultSubmit}>
-            <Field
-                id="time"
-                type="number"
-                placeholder={time ? `Your time: ${time}'` : "Total time"}
-            />
-            <Field
-                id="repetitions"
-                type="number"
-                placeholder={repetitions ? `Repetitions: ${repetitions}` : "Total repetitions"}
-            />
-            <Field
-                id="weight"
-                type="number"
-                placeholder={weight ? `Weight: ${weight} kg` : "Total weight"}
-            />
+                <Field
+                    id="time"
+                    type="number"
+                    placeholder={time ? `Your time: ${time}'` : "Total time"}
+                />
+                <Field
+                    id="repetitions"
+                    type="number"
+                    placeholder={repetitions ? `Repetitions: ${repetitions}` : "Total repetitions"}
+                />
+                <Field
+                    id="weight"
+                    type="number"
+                    placeholder={weight ? `Weight: ${weight} kg` : "Total weight"}
+                />
 
-            <div className="form-buttons-container">
-                <Button type="submit">Save</Button>
-                <Button type="button" onClick={onCancel} className="cancel-button">Cancel</Button>
-            </div>
+                <div className="form-buttons">
+                    <Button type="submit" className="save-button">Save</Button>
+                    <Button type="button" onClick={onCancel} className="cancel-button">Cancel</Button>
+                </div>
         </form>
     );
 }

@@ -1,18 +1,49 @@
 @tailwind components;
 @layer components {
   .WorkoutDetails {
-    @apply flex flex-col justify-center items-center gap-1  p-0 mt-8 w-[350px] h-[420px]  rounded-[7px];
+    @apply flex flex-col justify-center w-[350px] min-h-[200px] bg-white items-center p-4 rounded-[8px] gap-3;
   }
 
   .buttons-container {
     display: flex;
-    justify-content: space-between; /* Opcional: Espacia los botones */
-    gap: 10px; /* Espacio entre los botones */
-    margin-top: 20px; /* Espacio superior para separar de los elementos anteriores */
+    justify-content: space-between; 
+    gap: 10px; 
+    margin-top: 20px;
   }
 
-  .buttons-container Button {
-    flex: 1; /* Hace que los botones tengan el mismo ancho */
-    max-width: 150px; /* Limita el ancho máximo de los botones */
+
+  .WorkoutDetails .shuffle-button {
+    @apply bg-[white] border-[--third-color] text-[--third-color] border rounded-md px-4 py-2 
+
   }
+  .WorkoutDetails .shuffle-button i {
+    @apply text-xl text-[--third-color]
+
+  }
+  .WorkoutDetails .save-button {
+    @apply bg-[--third-color] border-[--third-color] text-[white] border rounded-md px-4 py-2 transition-colors duration-300 ease-in-out
+
+  }
+}
+
+.Confirm .confirm-buttons {
+  @apply flex space-x-6 w-full mt-4  justify-center;
+}
+
+.Confirm .confirm-accept {
+  @apply bg-[white] border-[--third-color] text-[--third-color] border rounded-md px-4 py-2 
+}
+
+.Confirm .confirm-cancel {
+  @apply bg-[--third-color] text-white rounded-md px-4 py-2 
+}
+.PostList {
+  @apply flex flex-col w-[350px];
+}
+
+.PostList-container {
+  @apply pt-[90px] pb-[90px];
+}
+.PostList article {
+  @apply flex flex-col bg-white items-center p-[10px_0] mb-5 rounded-[8px];
 }

@@ -1,39 +1,51 @@
 @tailwind components;
 
 @layer components {
-
   .ResultDetails {
-    @apply flex flex-col h-full p-4 gap-5 justify-between ;
+    @apply flex flex-col h-full p-4 gap-5 justify-between;
   }
 
-
-  .result-header {
-    @apply flex justify-between items-center mb-4;
+  .ResultDetails .result-header {
+    @apply flex w-[320px] justify-center items-center mb-0;
   }
 
   .ResultDetails .result-details {
-    @apply flex flex-col h-full pt-2 items-start ;
+    @apply flex flex-col h-full pt-2 items-center;
   }
   .result-title {
     @apply text-xl font-bold;
   }
 
-  .action-button{
-    @apply flex w-5 
+  .action-button {
+    @apply flex w-5;
+  }
+
+  /*  .action-menu-container {
+    @apply fixed mb-4 items-center bottom-[70px] left-1/2 transform -translate-x-1/2;
+  } */
+  .action-menu-container {
+    @apply fixed w-[350px] bg-[#777272db] bottom-[90px] rounded-md p-3 shadow-lg flex flex-col items-center left-1/2 transform -translate-x-1/2;
+  }
+  .action-menu {
+    @apply w-full rounded-lg  flex flex-col items-center;
+  }
+  .action-menu Button {
+    @apply w-[100px] items-center bg-[white] border-[--third-color] text-[black] m-1 rounded-md px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-[white] focus:outline-none focus:ring-2 focus:ring-[#b5202064];
   }
 
  
-  .action-menu {
-    @apply fixed mb-4 items-center bottom-[70px] left-1/2 transform -translate-x-1/2;
+
+  .container2 {
+    @apply mb-[300px];
   }
 
-  .action-menu Button {
-    @apply flex bg-[#ffffff] top-1 text-black py-2 rounded-md justify-center w-[100px] ;
-  }
+ 
 
-  .container2{
-    @apply mb-[300px]
-  }
+  .result-card {
+    @apply flex flex-col justify-center w-[350px] min-h-[200px] bg-white text-center p-4 rounded-[8px] gap-3;
 
-  
+  }
+}
+.action-button {
+  @apply fixed right-[30px] flex justify-center w-[20px] bg-[#898686db] border-[--third-color] text-[black] text-xl m-1 rounded-md px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-[white] focus:outline-none focus:ring-2 focus:ring-[#b5202064] self-center;
 }

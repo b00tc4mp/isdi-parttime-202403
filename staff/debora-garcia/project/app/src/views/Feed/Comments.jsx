@@ -73,6 +73,7 @@ export default function Comments({ postId, onCancelCommentsClick, author }) {
                         ) : (
                             comments.map(comment => (
                                 <div key={comment.id} className="comment">
+                                    <p className="comment-author">{comment.author.username}</p>
                                     <p>{comment.text}</p>
                                 </div>
                             ))
@@ -82,8 +83,10 @@ export default function Comments({ postId, onCancelCommentsClick, author }) {
                     <div className="comment-form-container">
 
                         <div className="comment-form">
-                            <Field id="text" type="text" placeholder={`Add a comment to ${author}...`} />
-                            <Button type="submit" className="submit-comment-button">✉️</Button>
+                            <textarea id="text" type="text" placeholder={`Add a comment to ${author}...`} />
+                            <Button type="submit" className="submit-comment-button">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            </Button>
                         </div>
                     </div>
                 </div>

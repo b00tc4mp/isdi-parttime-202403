@@ -53,13 +53,10 @@ export default function WorkoutDetail() {
     }
     return (
         <div className="WorkoutDetails">
-            {workout?.workoutType && (
-                <p>
-                    {workout.workoutType.toUpperCase()}
-                    {workout?.duration && ` ${workout.duration} min.`}
-                </p>
-            )}
-            {workout?.title && <p>{workout.title}</p>}
+            
+            <h6>
+                {workout?.workoutType?.toUpperCase()} {workout?.duration && ` ${workout.duration}'`} {workout.title && `"${workout.title}"`}
+            </h6>
 
             {workout?.movements && workout.movements.map((movement, index) => (
                 <div key={index}>
@@ -67,9 +64,11 @@ export default function WorkoutDetail() {
                 </div>
             ))}
             <div className="buttons-container">
-                <Button onClick={generateRandomWorkout} type="button">Again!</Button>
+                <Button onClick={generateRandomWorkout} type="button" className="shuffle-button">
+                    <i class="fa-solid fa-shuffle"></i>
+                </Button>
 
-                <Button onClick={handleSaveClick} type="button">Save</Button>
+                <Button onClick={handleSaveClick} type="button" className="save-button">Save</Button>
 
             </div>
             {view === "create-post" && <CreatePostForm workoutId={workout.id} onPostCreated={handlePostCreated} />}
