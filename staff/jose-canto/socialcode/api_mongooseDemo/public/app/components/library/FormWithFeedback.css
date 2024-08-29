@@ -1,0 +1,13 @@
+.FormWithFeedback {
+  margin: 0;
+  color: white;
+  font-size: 1.2rem;
+  position: relative;
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+}
+
+.FormWithFeedback {
+  color: greenyellow;
+}

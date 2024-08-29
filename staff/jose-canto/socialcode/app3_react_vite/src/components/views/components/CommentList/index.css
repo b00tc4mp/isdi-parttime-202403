@@ -1,0 +1,23 @@
+@tailwind components;
+
+@layer components {
+  .Container-CommentList {
+    @apply w-full flex justify-center;
+  }
+
+  .CommentList {
+    @apply flex flex-col items-center justify-center rounded-lg w-full m-2 p-2;
+  }
+
+  fieldset {
+    @apply flex flex-col items-center justify-center w-[95%] rounded-lg;
+  }
+
+  fieldset > legend {
+    @apply mb-[-1.3rem];
+  }
+
+  fieldset > legend > h2 {
+    @apply text-2xl text-blanchedalmond mr-1 ml-1;
+  }
+}

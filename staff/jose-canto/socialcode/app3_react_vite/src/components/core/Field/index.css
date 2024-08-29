@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+  .Field {
+    @apply flex flex-col items-center;
+  }
+
+  .Field > label {
+    @apply my-1 w-auto text-2xl;
+  }
+}

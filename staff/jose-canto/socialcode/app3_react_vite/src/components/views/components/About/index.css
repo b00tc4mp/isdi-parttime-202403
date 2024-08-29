@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .About {
+    @apply mt-28 flex w-3/4 flex-col items-center justify-center text-blanchedalmond;
+  }
+}

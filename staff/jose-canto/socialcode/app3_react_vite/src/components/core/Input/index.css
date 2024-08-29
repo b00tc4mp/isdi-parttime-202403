@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .Input {
+    @apply w-60 rounded-sm bg-[#eeeaea21] p-1 text-center text-[1.1rem] tracking-wide text-blanchedalmond;
+  }
+}

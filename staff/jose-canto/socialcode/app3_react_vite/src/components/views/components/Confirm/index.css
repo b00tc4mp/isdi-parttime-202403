@@ -1,0 +1,16 @@
+@tailwind components;
+
+@layer components {
+  .Confirm {
+    @apply absolute top-36 flex w-56 flex-wrap justify-center rounded-2xl bg-blanchedalmond p-4 text-center;
+  }
+
+  .Confirm .Text {
+    @apply w-full text-xl;
+    font-family: "Jersey 10";
+  }
+
+  .Confirm .Button {
+    @apply m-4 w-36;
+  }
+}

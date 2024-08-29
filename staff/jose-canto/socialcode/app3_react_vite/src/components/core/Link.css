@@ -1,0 +1,14 @@
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components {
+  .Link {
+    @apply text-blanchedalmond mt-2 tracking-wider text-base transition-colors duration-400 ease-in-out cursor-pointer underline;
+  }
+
+  .Link:hover {
+    @apply text-[var(--second-color)];
+  }
+}

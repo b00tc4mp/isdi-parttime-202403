@@ -1,0 +1,52 @@
+@tailwind components;
+@layer components {
+  .Article {
+    @apply flex w-4/5 flex-col justify-center rounded-lg bg-[#929292] p-4;
+  }
+
+  .Article .AuthorTitle {
+    @apply m-0 p-0 text-lg font-extrabold;
+  }
+
+  .Article .PostTitle {
+    @apply mb-3 mt-2 w-full text-3xl text-blanchedalmond;
+    border-bottom: 2px solid white;
+  }
+
+  .Article .Likes > sub {
+    @apply ml-1 text-lg text-blanchedalmond;
+  }
+
+  .Article .Likes {
+    @apply transition-transform duration-400;
+    text-shadow: 3px 1px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .Article .Likes:hover {
+    @apply text-second-color;
+    transform: translateY(7px);
+  }
+
+  /*Movimiento de posts */
+  @keyframes show {
+    from {
+      opacity: 0;
+      scale: 50%;
+    }
+
+    to {
+      opacity: 1;
+      scale: 100%;
+    }
+  }
+
+  .Article {
+    view-timeline-name: --reveal;
+
+    animation-name: show;
+    animation-fill-mode: both;
+
+    animation-timeline: --reveal;
+    animation-range: entry 5% cover 30%;
+  }
+}

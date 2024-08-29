@@ -1,0 +1,38 @@
+@tailwind components;
+
+@layer components {
+  .EditPostForm {
+    @apply fixed top-32;
+    background-image: linear-gradient(
+      to right top,
+      #f97c16,
+      #d25a2c,
+      #a54031,
+      #742c2e,
+      #441c22,
+      #2f161b,
+      #1c0e11,
+      #1b1b1b,
+      #1b1b1b,
+      #1b1b1b,
+      #000000,
+      #000000
+    );
+  }
+  .EditPostForm i {
+    @apply absolute right-4 top-1 cursor-pointer rounded-lg text-xl text-first-color transition ease-in;
+  }
+  .EditPostForm i:hover {
+    @apply text-blanchedalmond;
+  }
+
+  @media screen and (max-width: 440px) {
+    .EditPostForm {
+      @apply w-[90%];
+    }
+
+    .EditPostForm > .Field > input {
+      @apply w-[100%];
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@tailwind components;
+@layer components {
+  .Author_navbar {
+    @apply flex w-full items-center justify-between;
+  }
+
+  .Navbar {
+    @apply absolute right-4 top-2 flex h-auto w-[90%] flex-col items-end gap-1;
+  }
+
+  .Navbar_container {
+    @apply realative flex gap-2;
+  }
+
+  .DeleteButton {
+    @apply relative flex h-8 items-center justify-center;
+  }
+
+  .EditButton {
+    @apply relative mt-2 flex h-8 items-center justify-center;
+  }
+
+  .NavButton {
+    @apply cursor-pointer text-2xl;
+  }
+
+  .fa-solid.fa-bars {
+    @apply text-blanchedalmond;
+  }
+
+  .fa-solid.fa-bars-staggered {
+    @apply text-black;
+  }
+}

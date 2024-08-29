@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .Header {
+    @apply fixed z-10 flex w-full items-center justify-end gap-4 bg-black bg-opacity-80 p-2 text-xl tracking-wider;
+  }
+
+  .Container-Logo {
+    @apply flex w-full flex-col justify-center;
+  }
+
+  .Logo {
+    @apply relative left-0 ml-6 w-fit rounded-lg text-[1.5rem] text-blanchedalmond no-underline md:text-[4vw] lg:text-[2.5rem];
+  }
+
+  .Header > Button {
+    @apply mr-8;
+  }
+}
