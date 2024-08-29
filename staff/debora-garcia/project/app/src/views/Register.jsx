@@ -3,7 +3,7 @@ import { SystemError } from 'com/errors'
 
 import logic from "../logic"
 import useContext from '../useContext'
-
+import "./Register.css"
 import Button from "../components/Button"
 import Field from "../components/Field"
 import Heading from "../components/Heading"
@@ -60,8 +60,7 @@ export default function Register() {
             <Field id="password" type="password" placeholder="Password"></Field>
             <Field id="passwordRepeat" type="password" placeholder="Confirm Password"></Field>
             <Button type="submit">Sign up</Button>
-            <Link onClick={handleLoginClick}>Login</Link>
-
+            <Link onClick={handleLoginClick} className="link-button">Login</Link>
         </form>
     )
 }

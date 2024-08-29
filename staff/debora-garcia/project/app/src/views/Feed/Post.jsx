@@ -51,7 +51,7 @@ export default function Post({ post, onPostLikeToggled }) {
                 <time>{getTimeDifference(post.date)}</time>
                 </div>
             <div className="post-body">
-                <img src={post.image} alt={post.description} className="post-image" />
+                <img src={post?.image} className="post-image" />
                 <p>{post.description}</p>
                 <div className="post-footer-buttons">
                     <Button onClick={() => handleToggleLikePost(post)} className="like-button">

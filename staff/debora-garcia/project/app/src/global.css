@@ -43,20 +43,35 @@
 
 @layer components {
   .registerForm {
-    @apply flex flex-col items-center;
+    @apply flex flex-col items-center gap-2;
   }
   .loginForm {
-    @apply flex flex-col items-center;
+    @apply flex flex-col items-center gap-2;
   }
 
   .account-prompt {
-    @apply w-[300px] flex justify-end items-center gap-3 
+    @apply w-[300px] flex justify-end items-center gap-3;
   }
   .account-prompt p {
-    @apply text-[#7b7a7a63] 
+    @apply text-[#2d2a2a63];
   }
- 
+
   .sign-up-link {
     @apply font-bold;
+  }
+
+  .app-title {
+    @apply text-[--third-color] font-semibold;
+  }
+
+  .registerForm .link-button {
+    @apply bg-[white] w-[100px] border-[--third-color] text-[--third-color] text-center border rounded-md px-4 py-2 transition-colors duration-300 ease-in-out;
+  }
+
+  .registerForm Button {
+    @apply  bg-[--third-color] text-white rounded-md px-4 py-2 transition-colors duration-300 ease-in-out;
+  }
+  .loginForm Button {
+    @apply  bg-[--third-color] text-white rounded-md px-4 py-2 transition-colors duration-300 ease-in-out;
   }
 }

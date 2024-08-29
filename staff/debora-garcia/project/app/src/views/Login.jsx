@@ -42,6 +42,7 @@ export default function Login() {
 
     return <>
         <form className="loginForm" onSubmit={handleLoginSubmit} >
+            <h1 className="app-title">LEVEL UP</h1>
             <h4>WELLCOME BACK!</h4>
             <p>Be part of our team</p>
 
