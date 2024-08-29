@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Header {
+        @apply w-full h-20 bg-first flex justify-between items-center fixed top-0 p-4 z-10
+    }
+}

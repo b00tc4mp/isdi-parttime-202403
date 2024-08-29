@@ -1,0 +1,17 @@
+@tailwind components;
+
+@layer components {
+    .Scroll {
+        @apply w-12 h-12 bg-seventh rounded-full flex justify-center items-center fixed left-1/2 z-[1] border-4 border-second
+    }
+}
+
+.Scroll {
+    transform: translateX(-50%);
+}
+
+@layer components {
+    .Scroll-icon {
+        @apply text-3xl text-second
+    }
+}

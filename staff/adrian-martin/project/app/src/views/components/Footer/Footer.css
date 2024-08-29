@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Footer {
+        @apply w-full h-24 flex justify-center fixed bottom-0 bg-first text-white text-5xl
+    }
+}

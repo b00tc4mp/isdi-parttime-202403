@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    * {
+        @apply m-auto
+    }
+}
+
+@layer components {
+    .GameUser {
+        @apply flex justify-between m-5 shadow-3xl rounded-2xl bg-seventh
+    }
+}
+
+@layer components {
+    .GameUser-description {
+        @apply text-center w-52
+    }
+}
+
+@layer components {
+    .ImageTagUser {
+        @apply w-52 h-36 block object-cover
+    }
+}
+
+.ImageTagUser {
+    border-radius: 15px 0px 0px 15px;
+}
+
+@layer components {
+    .GameUser-title {
+        @apply mt-3 text-xl
+    }
+}
+
+@layer components {
+    .GameUser-rating {
+        @apply m-3 text-3xl
+    }
+}
+
+@layer components {
+    .GameUser-hours {
+        @apply text-xl
+    }
+}
+
+@layer components {
+    .GameUser-image {
+        @apply relative object-cover inline-block
+    }
+}
+
+@layer components {
+    .GameUser-icon {
+        @apply text-black absolute text-3xl left-56
+    }
+}
+
+@layer components {
+    .GameUser-hyi {
+        @apply flex justify-around items-center
+    }
+}
+
+@layer components {
+    .EditDeletePanelContainer {
+        @apply text-center flex justify-center
+    }
+}
+
+@layer components {
+    .EditDeletePanel {
+        @apply rounded-2xl w-72 flex justify-around bg-seventh
+    }
+}
+
+.EditDeletePanel {
+    border: 1px solid black;
+}
+
+@layer components {
+    .Button-3point {
+        @apply w-16
+    }
+}
+
+@layer components {
+    .Rating10 {
+        @apply text-blue-800
+    }
+}
+
+@layer components {
+    .Rating-high {
+        @apply text-green-500
+    }
+}
+
+@layer components {
+    .Rating-medium {
+        @apply text-orange-400
+    }
+}
+
+@layer components {
+    .Rating-low {
+        @apply text-red-700
+    }
+}

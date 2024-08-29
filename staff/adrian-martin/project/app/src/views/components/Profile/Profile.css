@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Profile {
+        @apply mt-32 flex flex-col items-center
+    }
+}
+
+@layer components {
+    .Username {
+        @apply text-center text-4xl text-second mt-8 mb-8
+    }
+}
+
+@layer components {
+    .Separator {
+        @apply flex w-5/6 h-1 bg-[#00000068] mx-auto
+    }
+}
+
+@layer components {
+    .Game-List {
+        @apply mt-8 mb-8 text-center text-2xl text-[#005eff] underline
+    }
+}
+
+@layer components {
+    .Link-menu-burguer {
+        @apply flex w-auto
+    }
+}
+
+@layer components {
+    .Icon {
+        @apply w-12
+    }
+}
+
+@layer components {
+    .Username-edit {
+        @apply flex items-center justify-center
+    }
+}
+
+@layer components {
+    .Icon-edit {
+        @apply ml-4
+    }
+}

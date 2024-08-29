@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Login-form {
+        @apply flex justify-center items-center h-screen flex-col bg-fifth
+    }
+}
+
+@layer components {
+    .Login-formall {
+        @apply bg-[#A3B6C3] rounded-2xl w-72 p-5 text-center shadow-3xl
+    }
+}
+
+@layer components {
+    .Login-Title {
+        @apply text-center text-6xl text-first mb-7
+    }
+}
+
+@layer components {
+    .Login-input {
+        @apply text-center h-10 my-3.5 mx-0 shadow-3xl border-none px-2.5 rounded
+    }
+}
+
+@layer components {
+    .Link {
+        @apply block mt-3 text-first underline
+    }
+}
+
+@layer components {
+    .Login-button {
+        @apply bg-first text-white border-none py-3 px-5 rounded m-5 cursor-pointer
+    }
+}
