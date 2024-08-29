@@ -45,7 +45,7 @@ The Guest is the user who searches for and books accommodation. This profile has
 
   ### Data Model
 
-- User:
+- Users:
   - id (objectId, auto)
   - name (string, required)
   - surname (string, required)
@@ -55,7 +55,7 @@ The Guest is the user who searches for and books accommodation. This profile has
   - role (string, required, default guest, enum: guest|host)
   - isBlocked (boolen, default false)
 
-- Room:
+- Rooms:
   - id: (objectId, auto)
   - nameRoom: (string, requerido)
   - region: (string, requerido)
@@ -67,7 +67,7 @@ The Guest is the user who searches for and books accommodation. This profile has
   - isBlocked: (boolean, default: false)
 
 
-- Booking:
+- Bookings:
 	- id (objectId, auto)
 	- userId (string, required, array)
 	- roomId (string, required)
@@ -76,4 +76,4 @@ The Guest is the user who searches for and books accommodation. This profile has
 	- isBlocked (boolean, default:false)
 
 ## Test-Coverage
-![](../api/coverage/Screenshot%202024-08-26%20at%2013.21.23.png)
+![](../api/coverage/Screenshot%202024-08-28%20at%2016.43.37.png)

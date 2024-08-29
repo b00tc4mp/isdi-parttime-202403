@@ -1,12 +1,12 @@
 ##### Router
 
-- Routes for User:
+- Routes for Users:
 	- POST /users (Create user)
 	- PATCH /users/:userId/manage (Update information user)
 	- DELETE /users/:userId/manage(Soft delete for user)
 	- POST /users/auth (Delete room)
 	
-- Routes for Room:
+- Routes for Rooms:
 	- GET /rooms (Get Rooms)
 	- POST /rooms (Create Room)
 	- GET /rooms/:roomId (Get Room)
@@ -14,7 +14,7 @@
 	- PATCH /rooms/:roomId/manage (Update information rooms )
 	- DELETE /rooms/:roomId/manage (Delete room)
 
-- Routes for Room:
+- Routes for Bookings:
 	- POST /create-booking/:roomId (Create Booking)
 	- GET /create-booking/:roomId (Get blocked days by Room)
 	- GET /bookings/:roomId (Get Room bookings)
@@ -22,36 +22,39 @@
 	
 ##### Test Coverage
 
-![](./coverage/Screenshot%202024-08-26%20at%2013.21.23.png)
+![](./coverage/Screenshot%202024-08-28%20at%2016.43.37.png)
 
-# Commands to initialize the application
+  ### Data Model
 
-### Install dependencies 
+- Users:
+  - id (objectId, auto)
+  - name (string, required)
+  - surname (string, required)
+  - email (string, required, email) 
+  - phone (number, required)
+  - password (string, required, password)
+  - role (string, required, default guest, enum: guest|host)
+  - isBlocked (boolen, default false)
 
-npm i
+- Rooms:
+  - id: (objectId, auto)
+  - nameRoom: (string, requerido)
+  - region: (string, requerido)
+  - city: (array, requerido)
+  - image: (string, requerido)
+  - description: (string, requerido)
+  - price: (string, requerido)
+  - manager: (objectId, requerido, Ref: User)
+  - isBlocked: (boolean, default: false)
 
-## Start the back
-#### Start application
 
-npm start
+- Bookings:
+	- id (objectId, auto)
+	- userId (string, required, array)
+	- roomId (string, required)
+	- startDate (date, required)
+	- endDate (date. required)
+	- isBlocked (boolean, default:false)
 
-#### Start test server
 
-npm test
 
-#### Start coverage test server
-
-npm run test-coverage
-
-## Start debugger server
-#### Debugger general back
-
-npm run inspect
-
-### Debugger test server
-
-node --inspect-brk logic/(rute)
-
-### Debugger test Mocha Chai
-
-npm run test-inspect (rute)
