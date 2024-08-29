@@ -1,0 +1,455 @@
+/*GRID*/
+.matrix{
+    display: grid;
+    grid-template-columns: repeat(3 ,1fr);
+    grid-template-rows: repeat(2 ,1fr);
+    grid-gap: 3px;
+    height: 100%;
+    width: 100%;
+}
+
+/* PIG*/
+.surface:nth-child(1){
+    display: flex;
+    justify-content: center;
+    background-color: #c0fff4;
+    z-index: -50;
+    padding: 30px;
+}
+.pig{
+    display: flex;
+}
+.head-pig{
+    border: 1px solid rgb(207, 107, 124);
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+    border-radius: 50%;
+}
+.ears-pig{   
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 15px solid rgb(222, 136, 151);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    margin-bottom: -10px;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+}
+.ears-pig:nth-child(1){
+    rotate:-35deg;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+.ears-pig:nth-child(2){
+    rotate:35deg;
+    margin-top: 4px;
+    margin-left: 70px;
+}
+.eyes-pig{
+    margin: 15px auto 10px;
+    height: 15px;
+    width: 80px;
+    display: flex;
+    justify-content: space-around;
+}
+.eye-pig{
+    height: 18px;
+    width: 15px;
+    border-radius: 45%;
+    background-color: black;
+    padding: 3px;
+}
+.pupiles-pig{
+    margin-left: 1px;
+    background-color: white;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+.nose-pig{
+    border: 2px solid rgb(207, 107, 124);
+    height: 24px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(222, 136, 151);
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.noseHoles-pig{
+    background-color: rgb(77, 30, 37);
+    height: 13px;
+    width: 9px;
+    border-radius: 45%;
+}
+.mofletes-pig{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    margin-top: -12px;
+}
+.moflete-pig{
+    
+    background-color: rgba(242, 145, 161, 0.62);
+    width: 15px;
+    height: 10px;
+    border-radius: 50%;
+}
+.mouth-pig{
+    border-radius: 0 0 70% 50%;
+    border-bottom: 6px solid rgb(222, 136, 151) ;
+    width: 45px;
+    height: 25px;
+    margin: -13px 0 0 30px;
+    transform: rotate(-7deg);
+}
+.tail-group-pig{
+    margin: 35px 0 0 -14px;
+    display: flex;
+    z-index: -2;
+    transform: rotate(-15deg);
+
+}
+.tail-pig:nth-child(1){
+    height: 20px;
+    width: 40px;
+    border-bottom: 2px solid rgb(222, 136, 151);
+    border-radius: 50%;
+}
+.tail-pig:nth-child(2){
+    height: 7px;
+    width: 16px;
+    border-radius: 50%;
+    border: 2px solid rgb(222, 136, 151);
+    margin: 8.5px -19px 0 -20px;
+}
+.tail-pig:nth-child(3){
+    height: 20px;
+    width: 30px;
+    border-bottom: 2px solid rgb(222, 136, 151);
+    border-radius: 50%;
+}
+
+
+
+
+/* Dog*/
+
+.surface:nth-child(2){
+    background-color: rgb(255, 129, 29);
+    background-color: #1d9aff;
+    z-index: -2;
+    display: flex;
+    justify-content: center;
+}
+.dog{
+    display: flex;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+    margin: 0  40px;
+}
+.tail-dog{
+    border-left: 5px solid rgb(255, 129, 29);
+    border-radius: 50% 0 0 50%;
+    height: 25px;
+    width: 10px;
+    transform: rotate(-30deg);
+    margin: 0 -15px 23px;
+}
+.cuerpo-dog:nth-child(2){
+    background-color: rgb(255, 129, 29);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: -15px;
+}
+.cuerpo-dog:nth-child(3){
+    background-color: rgb(255, 129, 29);
+    height: 30px;
+    width: 60px;
+}.cuerpo-dog:nth-child(4){
+    background-color: rgb(255, 129, 29);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-left: -15px;
+}
+.cuello-dog{
+    height: 25px;
+    width: 30px;
+    background-color: rgb(255, 129, 29);
+    margin:  0 0px 23px -30.2px;
+}
+.head-dog{
+    background-color: rgb(255, 129,29);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin: 0  0 45px -30px ;
+    display: flex;
+    
+}
+.morro-dog{
+    height: 0;
+    width: 0;
+    border: 10px solid transparent;
+    border-left: 0;
+    border-right: 15px solid rgb(255, 129, 29);
+    margin: 5px 25px 0;
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+.nose-dog{
+    background-color: #80644E;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    margin: 0 8px 50px;
+    z-index: 2;
+}
+.ear-dog{
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    width: 30px;
+    margin: 0 0 43px -55px;
+    transform: rotate(15deg);
+}
+.ear-dog-part:nth-child(1){
+    background-color: #80644E;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+.ear-dog-part:nth-child(2){
+    background-color: #80644E;
+    height: 15px;
+    width: 15px;
+    margin: -7px 0;
+}
+.ear-dog-part:nth-child(3){
+    background-color: #80644E;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    margin:  0;
+}
+.mouth-dog{
+    height: 10px;
+    width: 10px;
+    border-bottom: 1px solid #80644E;
+    border-bottom-left-radius: 50%;
+    border-radius: 80%;
+    border-bottom-right-radius: 0% ;
+    margin: 0 0 42px -5px;
+    z-index: 4;
+    transform: rotate(15deg);
+}
+.ojo-dog{
+    background-color: black;
+    height: 3px;
+    width: 3px;
+    border-radius: 50%;
+    margin: 0 0 55px -12px;
+    z-index: 4;
+}
+.patas-dog{
+    display: flex;
+    margin: 0 0 -35px -70px;
+    z-index: -1;
+}
+.patas-dog-front{
+    background-color: rgb(255, 129, 29);
+    height: 13px;
+    width: 4px; 
+}
+.patas-dog-back{
+    background-color: #80644E;
+    height: 12px;
+    width: 4px;
+    margin: 0 40px 0 -1px;
+    z-index: 0;
+}
+
+
+/*ARBOL*/
+
+.surface:nth-child(3){
+    background-color: #FF1C93;
+}
+.tree{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 10px;
+}
+.tronco{
+    background-color: #80624E;
+    height: 90px;
+    width: 55px;
+}
+.laterales{
+    background-color:#FF1C93;
+    border-radius: 50%;
+    height: 80%;
+    width: 40px;
+    margin:0 -15px;
+    z-index: 2;
+}
+.hojas{
+    position: absolute;
+    top:10px;
+    height: 80px;
+    width: 110px;
+    z-index: 5;
+}
+.forma-hojas{
+    position: absolute;
+    background-color: #5FFF33;
+    border: 1px solid #59804e67;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.forma-hojas:nth-child(1){
+    top: 30px;
+    right: 20px;
+}
+.forma-hojas:nth-child(2){
+    top: 32px;
+    right: 25px;
+}
+.forma-hojas:nth-child(3){
+    top: 4px;
+    right: 27px;
+}
+.forma-hojas:nth-child(4){
+    top: 56px;
+    right: 32px;
+}
+
+.forma-hojas:nth-child(5){
+    top: 12px;
+    right: 56px;
+}
+
+.forma-hojas:nth-child(6){
+    top: 43px;
+    right: 29px;
+}
+
+.forma-hojas:nth-child(7){
+    top: 57px;
+    right: 79px;
+}
+
+.forma-hojas:nth-child(8){
+    top: 12px;
+    right: 67px;
+}
+
+.forma-hojas:nth-child(9){
+    top: 24px;
+    right: 69px;
+}
+
+.forma-hojas:nth-child(10){
+    top: 40px;
+    right: 50px;
+}
+
+.forma-hojas:nth-child(11){
+    top: 57px;
+    right: 5px;
+}
+
+.forma-hojas:nth-child(12){
+    top: 20px;
+    right: 3px;
+}
+
+.forma-hojas:nth-child(13){
+    top: 50px;
+    right: 70px;
+}
+
+.forma-hojas:nth-child(14){
+    top: 28px;
+    right: 46px;
+}
+.manzana{
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: red;
+    z-index: 70;
+}
+.manzana:nth-child(15){
+    top: 80px;
+    left: 50px;
+    z-index: 70;
+}
+.manzana:nth-child(16){
+    top: 20px;
+    left: 20px;
+    z-index: 70;
+}
+
+.manzana:nth-child(17){
+    top: 30px;
+    left: 80px;
+    z-index: 70;
+}
+.manzana:nth-child(18){
+    top: 50px;
+    left: 40px;
+    z-index: 70;
+}
+
+.manzana:nth-child(19){
+    top: 65px;
+    left: 75px;
+    z-index: 70;
+}
+
+
+.surface:nth-child(4){
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.bulding{
+    height: 130px;
+    width: 70px;
+    background-color: grey;
+}
+.grid-bulding{
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    padding-top: 3px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 6px;
+}
+
+.window{
+    background-color: rgb(247, 247, 103);
+    height: 80%;
+    width: 100%;
+}
+.door{
+    background-color: rgb(75, 74, 74);
+    height: 170%;
+    width: 100%;
+}
+

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: Montserrat;
+    color:rgb(51, 183, 139)
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+h1{
+    margin: 70px;
+    border-bottom: 7px double rgb(51, 183, 139) ;
+}
+h2{
+    border-bottom: 3px solid rgb(51, 183, 139);
+}
+button{
+    margin-top: 40px;
+    border: 2px solid rgb(51, 183, 139);
+}
+
+
+

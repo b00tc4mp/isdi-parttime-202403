@@ -1,0 +1,38 @@
+@import url(https://db.onlinewebfonts.com/c/1e820607bea3968e00731ad939b60eea?family=Alycidon-Condensed);
+@import url('https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&display=swap');
+
+:root {    
+    --color1: #bac8c9;
+    --color2: #EBE5A4;
+    --color3: #41636c;
+    --color4: #192e41;
+    --color5: #74543E;
+}
+
+
+*{
+    font-family:"Ojuju", sans-serif-Condensed ;
+    letter-spacing: .1rem;
+    font-weight: 600;
+    color: var(--color2);
+}
+.View{
+    background-color: var(--color1);
+}
+
+h1{
+    color: var(--color5);
+    font-size: 5rem;
+    letter-spacing: .3rem;
+    text-align: center;
+}
+
+.Input {
+    border: 0 transparent;
+    border-radius: .3rem;
+    width: 10rem;
+    background-color: transparent;
+}
+h1{
+    margin-bottom: 1rem;
+}
