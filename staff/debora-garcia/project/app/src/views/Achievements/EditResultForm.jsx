@@ -1,7 +1,7 @@
-import React from 'react';
-import logic from '../../logic';
-import Button from '../../components/Button';
-import Field from '../../components/Field';
+import React from "react"
+import logic from "../../logic"
+import Button from "../../components/Button"
+import Field from "../../components/Field"
 import "./EditResultForm.css"
 import useContext from "../../useContext"
 
@@ -38,7 +38,7 @@ export default function EditResultForm({ result, onResultEdited, onCancel }) {
                 <Field
                     id="time"
                     type="number"
-                    placeholder={time ? `Your time: ${time}'` : "Total time"}
+                    placeholder={time ? `Your time: ${time}"` : "Total time"}
                 />
                 <Field
                     id="repetitions"
@@ -56,5 +56,5 @@ export default function EditResultForm({ result, onResultEdited, onCancel }) {
                     <Button type="button" onClick={onCancel} className="cancel-button">Cancel</Button>
                 </div>
         </form>
-    );
+    )
 }

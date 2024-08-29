@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
 import logic from "../../logic"
 import useContext from "../../useContext"
-import Confirm from '../.components/Confirm';
+import Confirm from "../.components/Confirm"
 
-import Button from '../../components/Button';
-import { useNavigate } from 'react-router-dom';
-import EditResultForm from './EditResultForm'
+import Button from "../../components/Button"
+import { useNavigate } from "react-router-dom"
+import EditResultForm from "./EditResultForm"
 import "./ResultDetails.css"
 export default function ResultDetails() {
 
@@ -16,7 +16,7 @@ export default function ResultDetails() {
     const { resultId } = useParams()
     const navigate = useNavigate()
     const { alert } = useContext()
-    const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
+    const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
 
     const loadResult = () => {
         try {
@@ -42,12 +42,12 @@ export default function ResultDetails() {
     }, [resultId])
 
     const handleConfirmDelete = (isConfirmed) => {
-        setConfirmDeleteVisible(false);
+        setConfirmDeleteVisible(false)
 
         if (isConfirmed) {
-            handleDeleteResult();
+            handleDeleteResult()
         }
-    };
+    }
     const handleDeleteResult = () => {
         try {
             logic.deleteResult(result.id)
@@ -87,7 +87,7 @@ export default function ResultDetails() {
             <div className="result-card">
                 <div className="result-header">
                     <h6 className="result-title">
-                        {result?.workout.workoutType.toUpperCase()} {result?.workout?.duration && ` ${result?.workout.duration}'`}
+                        {result?.workout.workoutType.toUpperCase()} {result?.workout?.duration && ` ${result?.workout.duration}"`}
                     </h6>
                     {!isEditing && !isMenuOpen && (
                         <Button className="action-button" onClick={handleToggleMenu}>
@@ -106,7 +106,7 @@ export default function ResultDetails() {
 
                 <div className="result-details">
                     <h6 >Result</h6>
-                    <p>{result?.time && `Time: ${result.time}'`}</p>
+                    <p>{result?.time && `Time: ${result.time}"`}</p>
                     <p>{(result?.repetitions || result?.repetitions === 0) && `Reps: ${result.repetitions} `}</p>
                     <p>{(result?.weight || result?.weight === 0) && `Weight: ${result.weight} kg`}</p>
 
@@ -137,5 +137,5 @@ export default function ResultDetails() {
                 />
             )}
         </div>
-    );
+    )
 }

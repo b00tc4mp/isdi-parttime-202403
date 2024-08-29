@@ -1,10 +1,10 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
 import logic from "../../logic"
-import Button from '../../components/Button';
+import Button from "../../components/Button"
 import "./WorkoutDetails.css"
-import CreatePostForm from './CreatePostForm'
-import { useNavigate } from 'react-router-dom';
+import CreatePostForm from "./CreatePostForm"
+import { useNavigate } from "react-router-dom"
 import useContext from "../../useContext"
 
 export default function WorkoutDetail() {
@@ -45,8 +45,6 @@ export default function WorkoutDetail() {
         setView("create-post");
     }
     const handlePostCreated = () => {
-        //setPostListRefreshStamp(Date.now());
-
         setView("")
         navigate("/feed")
 
@@ -55,7 +53,7 @@ export default function WorkoutDetail() {
         <div className="WorkoutDetails">
             
             <h6>
-                {workout?.workoutType?.toUpperCase()} {workout?.duration && ` ${workout.duration}'`} {workout.title && `"${workout.title}"`}
+                {workout?.workoutType?.toUpperCase()} {workout?.duration && ` ${workout.duration}"`} {workout.title && `"${workout.title}"`}
             </h6>
 
             {workout?.movements && workout.movements.map((movement, index) => (

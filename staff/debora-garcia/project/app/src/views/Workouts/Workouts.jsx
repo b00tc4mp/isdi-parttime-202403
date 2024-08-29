@@ -5,7 +5,7 @@ import "./Workouts.css"
 
 export default function Workouts() {
     console.log("Workouts ->render")
-    const { workoutType } = useParams(); // Captura el tipo de workout desde la URL
+    const { workoutType } = useParams()
 
     return (
         <div className="Workouts">

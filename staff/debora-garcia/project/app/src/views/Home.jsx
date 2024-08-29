@@ -12,7 +12,6 @@ import Achievements from "./Achievements/Achievements"
 import Header from "./.components/Header"
 import Footer from "./.components/Footer"
 import Heading from "../components/Heading"
-import GoBackButton from "../components/GoBackButton"
 import WorkoutDetail from "./Workouts/WorkoutDetails"
 import ResultDetails from "./Achievements/ResultDetails"
 
@@ -50,7 +49,7 @@ export default function Home() {
     }, [])
 
     useEffect(() => {
-        const path = location.pathname;
+        const path = location.pathname
         if (path.includes("feed")) {
             setCurrentRoute("FEED")
         } else if (path.includes("achievements")) {
@@ -58,7 +57,7 @@ export default function Home() {
         } else if (path.includes("workouts")) {
             setCurrentRoute("WORKOUTS")
         } else {
-            setCurrentRoute("");
+            setCurrentRoute("")
         }
     }, [location]);
 

@@ -1,7 +1,7 @@
-import React from 'react';
-import logic from '../../logic';
-import Button from '../../components/Button';
-import Field from '../../components/Field';
+import React from "react"
+import logic from "../../logic"
+import Button from "../../components/Button"
+import Field from "../../components/Field"
 import "./CreatePostForm.css"
 import useContext from "../../useContext"
 
@@ -51,5 +51,5 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
 
             </div>
         </form>
-    );
+    )
 }

@@ -31,17 +31,17 @@ export default function Post({ post, onPostLikeToggled }) {
     }
 
     const getTimeDifference = (postDate) => {
-        const now = new Date();
-        const diffInMs = now - new Date(postDate);
-        const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
-        const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+        const now = new Date()
+        const diffInMs = now - new Date(postDate)
+        const diffInMinutes = Math.floor(diffInMs / (1000 * 60))
+        const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60))
       
         if (diffInMinutes < 60) {
-          return `${diffInMinutes} min ago`;
+          return `${diffInMinutes} min ago`
         } else if (diffInHours < 24) {
-          return `${diffInHours} h ago`;
+          return `${diffInHours} h ago`
         } else {
-          return new Date(postDate).toLocaleDateString();
+          return new Date(postDate).toLocaleDateString()
         }
       }
     return (
