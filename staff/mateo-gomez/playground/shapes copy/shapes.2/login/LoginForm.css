@@ -1,0 +1,23 @@
+.LoginForm {
+    padding: 3rem;
+    box-shadow: 15px 5px 30px;
+}
+
+.LoginForm .Input,
+
+.Button {
+    background-color: rgb(249, 227, 159);
+    font-size: 1.5rem;
+    border: 1px solid var(--first-color)
+}
+
+.LoginForm .Feedback {
+    color: rgb(244, 42, 7);
+    font-size: 1.2rem;
+}
+
+
+.LoginForm .Feedback.success {
+    color: rgb(32, 140, 2);
+    font-size: 1.2rem;
+}

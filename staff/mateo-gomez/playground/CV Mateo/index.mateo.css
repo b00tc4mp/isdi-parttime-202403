@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Tauri&family=Workbench&display=swap');
+
+* {
+    font-family: Tauri;
+    color: black;
+
+}
+
+/*body{ 
+    background-color: black;
+
+}*/
+
+.underline {
+    text-decoration: underline;
+}
