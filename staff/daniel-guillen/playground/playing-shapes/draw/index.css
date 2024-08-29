@@ -1,0 +1,86 @@
+.pig {
+    padding: 20px;
+}
+.pig-head {
+border: 1px solid violet;
+width: 100px;
+height: 100px;
+border-radius: 50%;
+background-color: palevioletred;
+}
+.pig-ears {
+    display: flex;
+    justify-content: space-around;
+}
+.pig-ear {
+   background-color: pink;
+   width: 20px;
+   height: 20px;
+   border: 1px solid violet;
+   border-radius: 50%;
+}
+.pig-inner-ear {
+    background-color: palevioletred;
+    width: 10px;
+    height: 10px;
+    border: 1px solid violet;
+    border-radius: 50%;
+}
+.pig-eyes {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.pig-eye {
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pig-pupil {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.pig-nose {
+    border: 1px solid violet;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: pink;
+    align-content: center;
+}
+.pig-blowholes {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.pig-blowhole {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.matrix {
+display: grid;
+padding: 20px;
+grid-template-rows: repeat(8, 1fr);
+grid-template-columns: repeat(8, 1fr);
+width: 400px;
+height: 400px;
+gap: 2px;
+}
+.matrix-pixel {
+background-color: grey;
+}
+.matrix-pixel-black {
+    background-color: black;
+}

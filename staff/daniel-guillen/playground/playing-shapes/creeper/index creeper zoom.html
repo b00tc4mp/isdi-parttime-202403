@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Shapes - Jugando con formas</title>
+</head>
+<body>
+    <script>
+ function Shape() {
+            this.container = document.createElement('div')
+
+            this.container.style.position = 'absolute'
+        }
+
+        Shape.prototype.setHeight = function (value) {
+            this.container.style.height = value + 'px'
+        }
+
+        Shape.prototype.setWidth = function (value) {
+            this.container.style.width = value + 'px'
+        }
+
+        Shape.prototype.setRadius = function (value) {
+            this.container.style.borderRadius = value + '%'
+        }
+
+        Shape.prototype.setColor = function (value) {
+            this.container.style.backgroundColor = value
+        }
+
+        Shape.prototype.setX = function (value) {
+            this.container.style.left = value + 'px'
+        }
+
+        Shape.prototype.setY = function (value) {
+            this.container.style.top = value + 'px'
+        }
+
+        Shape.prototype.setZ = function (value) {
+            this.container.style.transitionProperty = 'transform'
+            this.container.style.transitionDuration = '0.1s'
+            this.container.style.transform = 'scale(' + (value + 100) / 100 + ')'
+        }
+
+
+        Shape.prototype.add = function (child) {
+            this.container.appendChild(child.container)
+        }
+
+        var eyeL = new Shape()
+        eyeL.setHeight(60)
+        eyeL.setWidth(60)
+        eyeL.setColor('black')
+        eyeL.setX(-20)
+        eyeL.setY(-85)
+
+        var eyeR = new Shape()
+        eyeR.setHeight(50)
+        eyeR.setWidth(50)
+        eyeR.setColor('white')
+        eyeR.setX(80)
+        eyeR.setY(-80)
+
+        var face = new Shape()
+        face.setColor('black')
+        face.setHeight(30)
+        face.setWidth(120)
+        face.setY(100)
+        face.setX(50)
+
+        face.add(eyeL)
+        face.add(eyeR)
+
+        var body = new Shape()
+        body.setColor('darkgreen')
+        body.setHeight(500)
+        body.setWidth(200)
+        body.setX(50)
+        body.setY(170)
+
+        body.add(face)
+
+        var footL = new Shape()
+        footL.setColor('darkgreen')
+        footL.setHeight(150)
+        footL.setWidth(160)
+        footL.setX(-120)
+        footL.setY(480)
+
+        body.add(footL)
+
+        var footR = new Shape()
+        footR.setColor('darkgreen')
+        footR.setHeight(140)
+        footR.setWidth(150)
+        footR.setX(180)
+        footR.setY(480)
+
+        body.add(footR)
+
+        var x = 200
+        var y = 300
+        var z = 0
+
+        body.setX(x)
+        body.setY(y)
+
+        var step = 20
+
+        var applyOnY = true
+
+        document.onkeydown = function (event) {
+            console.log(event.key)
+
+            if (event.key === 'ArrowLeft')
+                x -= step
+            else if (event.key === 'ArrowRight')
+                x += step
+            else if (event.key === 'ArrowUp') {
+                if (applyOnY)
+                    y -= step
+                else
+                    z -= step
+            } else if (event.key === 'ArrowDown') {
+                if (applyOnY)
+                    y += step
+                else
+                    z += step
+            } else if (event.key === 'Alt')
+                applyOnY = false
+
+            body.setX(x)
+            body.setY(y)
+            body.setZ(z)
+        }
+
+        document.onkeyup = function (event) {
+            console.log(event.key)
+
+            if (event.key === 'Alt')
+                applyOnY = true
+
+        }
+
+        document.body.appendChild(body.container)
+
+
+</script>
+</body>
+</html>
