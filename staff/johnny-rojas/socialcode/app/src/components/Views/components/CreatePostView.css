@@ -1,0 +1,28 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .modal {
+    @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90 p-5 shadow-lg rounded-lg z-50;
+  }
+
+  .field {
+    @apply m-2.5;
+  }
+
+  .optionsNewPost {
+    @apply flex flex-col justify-center items-center mt-2;
+  }
+
+  .optionsNewPost .buttonCancel {
+    @apply mt-2 w-24 mb-4 self-center rounded-2xl border border-gray-800 text-gray-800 bg-transparent;
+  }
+
+  .ButtonSubmit {
+    @apply w-32 rounded-3xl bg-[var(--third-color)] text-white
+  }
+
+  .ButtonConfirm{
+    @apply w-32 justify-center rounded-3xl border border-black
+  }
+}

@@ -1,0 +1,28 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .Field{
+    @apply m-0
+  }
+  .FormWithFeedback{
+    @apply flex flex-col items-center
+  }
+
+  .FormWithFeedback .Feedback{
+    @apply text-red-400 mt-3 font-semibold
+  }
+
+  .FormWithFeedback .Feedback.success{
+    @apply text-green-400 mt-3 font-semibold
+  }
+  
+  .FormWithFeedback.Field{
+    @apply mb-0 h-12
+  }
+
+  .FormWithFeedback .EyeIcon{
+    @apply relative left-[174px] top-[-30px] m-0
+
+  }
+}
