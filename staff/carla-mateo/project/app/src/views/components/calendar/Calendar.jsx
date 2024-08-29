@@ -68,7 +68,7 @@ const Calendar = () => {
                         <div className='tasks-container'>
                             {selectedDay && showTask && (
                                 <div>
-                                    <div className='flex justify-between text-xl m-2  bg-green-200 bg-opacity-80 rounded-lg p-1 shadow'>
+                                    <div className='flex justify-between text-xl m-2 shadow-xl bg-green-200 bg-opacity-80 rounded-lg p-1 '>
                                         <div className='mt-3 ml-6 flex flex-col'>
                                             <Heading className='mb-2' level='2'>{selectedDay}</Heading>
                                             <Heading className='mb-2' level='2'>Tasks:</Heading>
@@ -78,7 +78,7 @@ const Calendar = () => {
                                     <ul>
                                         {selectedDayTasks.map(task => (
                                             <li key={task.id} className='m-2'>
-                                                <div className='bg-green-200 bg-opacity-80 rounded-lg p-1 shadow '>
+                                                <div className='bg-green-200 bg-opacity-80 shadow-xl rounded-lg p-1  '>
                                                     <h3 className='text-lg font-bold mb-2 ml-6 '>{task.title}</h3>
                                                     <p className='text-sm text-gray-600 ml-6 mb-2'>{task.description}</p>
                                                 </div>

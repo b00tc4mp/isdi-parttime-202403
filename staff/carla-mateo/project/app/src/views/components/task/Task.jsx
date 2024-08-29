@@ -12,7 +12,6 @@ import UpdateTaskDescription from './UpdateTaskDescription'
 function Task({ task, onTaskDeleted, onTaskDoneToggled, onEditSuccess }) {
     const [showConfirm, setShowConfirm] = useState(false)
     const [showOptions, setShowOptions] = useState(false)
-    const [showDescription, setShowDescription] = useState(false)
     const [showEditForm, setShowEditForm] = useState(false)
     const [currentTask, setCurrentTask] = useState(task)
 
@@ -80,31 +79,31 @@ function Task({ task, onTaskDeleted, onTaskDoneToggled, onEditSuccess }) {
     }
 
     return (
-        <div className='relative flex flex-col  m-4 text-sm ml-8'>
-            <div className='flex flex-row items-start justify-between space-x-4 w-full'>
-                <button onClick={Options} className='text-xl'>
+        <div className='flex flex-col mt-2 overflow-y-auto w-full p-4'>
+            <div className='flex justify-center items-center shadow-xl bg-green-200 rounded-xl p-1 pr-2 pl-2'>
+                <button onClick={Options} className='mr-2 text-2xl self-center'>
                     <RiMenuAddFill />
                 </button>
-                <div className='flex flex-grow flex-col'>
-                    <Heading className='text-sm border-b-2 w-20 truncate' level='1'>{task.title} : </Heading>
-                    <div className='flex mt-2 '>
+                <div className='ml-2 mr-2 '>
+                    <Heading className='' level='1'>{task.title} : </Heading>
+                    <div>
                         <Time>{task.date}</Time>
                     </div>
                 </div>
-                <div className='text-sm'>
-                    {task.description}
+                <div className='ml-2 mr-2'>
+                    - {task.description}
                 </div>
-                <Heading className='w-15' level='1'>{task.assignee ? task.assignee.username : ''}</Heading>
+                <Heading className='ml-2' level='1'>{task.assignee ? task.assignee.username : ''}</Heading>
                 <div className='ml-auto'>
                     {userCanToggleTask() && (
-                        <button onClick={handleToggleDoneTask} className={`w-5 h-5 text-2xl flex justify-end  right-0 ${task.done ? 'text-lime-300' : 'text-green-950'}`}>
+                        <button onClick={handleToggleDoneTask} className={`text-2xl ${task.done ? 'text-lime-800' : 'text-green-950'}`}>
                             {task.done ? '☑' : '☐'}
                         </button>
                     )}
                 </div>
             </div>
             {showOptions && (
-                <div className='absolute left-0 top-full mt-2 w-36 p-2 bg-green-100 border border-black shadow-lg rounded z-50'>
+                <div className='absolute mt-12 w-36 p-2 bg-green-100 border border-black shadow-lg rounded z-50'>
                     <button
                         onClick={handleDeleteTask}
                         className='mt-2 p-1 text-sm w-32 border-t border-green-800'
