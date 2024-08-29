@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Profile-image {
+        @apply rounded-xl z-10
+    }
+}
+
+.Profile-image {
+    border: 2px solid var(--second-color);
+}
+
+
+/* .Rotate {
+    position: absolute;
+    top: 88%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+} */
+
+@layer components {
+    .Profile-ImageIcon {
+        @apply relative inline-block
+    }
+}

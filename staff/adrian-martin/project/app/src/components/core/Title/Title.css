@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .Title {
+        @apply text-center text-[var(--second-color)] text-6xl mt-32 mb-12;
+    }
+}

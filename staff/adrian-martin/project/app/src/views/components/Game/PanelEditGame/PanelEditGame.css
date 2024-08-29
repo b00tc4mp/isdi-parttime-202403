@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Container {
+        @apply relative
+    }
+}
+
+@layer components {
+    .EditGamePanel {
+        @apply z-10 bg-first w-80 m-auto rounded-xl
+    }
+}
+
+@layer components {
+    .EditGame {
+        @apply flex flex-col items-center my-5 mx-auto
+    }
+}
+
+@layer components {
+    .ButtonPanel {
+        @apply w-24 h-12 rounded-lg text-lg bg-seventh text-center my-4 m-3
+    }
+}
+
+@layer components {
+    .InputPanel {
+        @apply items-center w-72 text-center h-8 p-5 m-4 text-lg
+    }
+}

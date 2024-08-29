@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    * {
+        @apply m-auto
+    }
+}
+
+@layer components {
+    .GameTag {
+        @apply flex justify-between m-5 shadow-3xl rounded-2xl bg-seventh
+    }
+}
+
+@layer components {
+    .GameTag-description {
+        @apply w-48 text-center
+    }
+}
+
+@layer components {
+    .ImageTag {
+        @apply w-48 h-36 block object-cover
+    }
+}
+
+.ImageTag {
+    border-radius: 15px 0px 0px 15px;
+}
+
+@layer components {
+    .GameTag-title {
+        @apply text-xl mt-4
+    }
+}
+
+@layer components {
+    .GameTag-rating {
+        @apply m-3 text-3xl
+    }
+}
+
+@layer components {
+    .GameTag-hours {
+        @apply text-xl
+    }
+}
+
+@layer components {
+    .GameTag-image {
+        @apply relative inline-block object-cover
+    }
+}
+
+@layer components {
+    .GameTag-icon {
+        @apply absolute text-black text-3xl cursor-pointer left-56
+    }
+}
+
+@layer components {
+    .GameTag-hyi {
+        @apply flex justify-around items-center
+    }
+}
+
+@layer components {
+    .EditDeletePanelContainer {
+        @apply text-center flex justify-center
+    }
+}
+
+@layer components {
+    .EditDeletePanel {
+        @apply rounded-xl w-72 flex justify-around bg-seventh
+    }
+}
+
+@layer components {
+    .Button-3point {
+        @apply w-16
+    }
+}
+
+@layer components {
+    .Rating10 {
+        @apply text-blue-800
+    }
+}
+
+@layer components {
+    .Rating-high {
+        @apply text-green-500
+    }
+}
+
+@layer components {
+    .Rating-medium {
+        @apply text-orange-400
+    }
+}
+
+@layer components {
+    .Rating-low {
+        @apply text-red-700
+    }
+}

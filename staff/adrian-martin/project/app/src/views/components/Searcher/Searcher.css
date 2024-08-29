@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Searcher {
+        @apply flex justify-center
+    }
+}
+
+@layer components {
+    .Searcher-text-icon {
+        @apply items-center flex
+    }
+}
+
+.Searcher-text-icon {
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+@layer components {
+    .Text {
+        @apply text-xl text-center outline-none
+    }
+}

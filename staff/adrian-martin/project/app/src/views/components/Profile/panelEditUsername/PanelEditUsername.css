@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .Panel-username {
+        @apply rounded-xl bg-[#d8e4e6] m-auto w-96 mb-12
+    }
+}
+
+.Panel-username {
+    border: 2px solid var(--second-color);
+}
+
+@layer components {
+    .Panel {
+        @apply items-center flex flex-col
+    }
+}
+
+@layer components {
+    .Input-panel {
+        @apply text-center text-second p-3 text-xl m-5 rounded-xl
+    }
+}
+
+.Input-panel {
+    border: 2px solid var(--second-color)
+}
+
+@layer components {
+    .Button-panel {
+        @apply text-second p-3 text-xl m-2
+    }
+}

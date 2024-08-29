@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .List-user-target{
+        @apply mt-6 mb-28
+    }
+}

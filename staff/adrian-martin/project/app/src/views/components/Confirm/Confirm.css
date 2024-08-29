@@ -1,0 +1,40 @@
+@tailwind components;
+
+@layer components {
+    @keyframes shake {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        20%, 60% {
+            transform: translateX(-10px);
+        }
+        40%, 80% {
+            transform: translateX(10px);
+        }
+    }
+
+    .Confirm-container {
+        @apply fixed inset-0 flex justify-center items-center z-50 text-center bg-[#000000b3] h-full;
+    }
+
+    .Confirm-p-2button {
+        @apply w-80 h-44 bg-fifth  border-4 rounded-xl;
+        animation: shake 0.5s ease-in-out;
+    }
+
+    .Confirm-container-button{
+        @apply flex justify-center;
+    }
+
+    .Confirm-p {
+        @apply text-lg text-first m-5;
+    }
+
+    .Confirm-button-acept {
+        @apply text-fifth text-lg bg-first w-28 h-10 rounded-xl ml-2 mr-2 mt-3;
+    }
+
+    .Confirm-button-cancel {
+        @apply text-fifth text-lg bg-red-700 w-28 h-10 rounded-xl ml-2 mr-2 mt-3;
+    }
+}

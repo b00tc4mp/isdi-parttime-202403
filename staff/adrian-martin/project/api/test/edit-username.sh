@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:8080/profile/66a9e33d6fc36f64e9967e22/editUsername -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmE5ZTMzZDZmYzM2ZjY0ZTk5NjdlMjIiLCJpYXQiOjE3MjI1MzM2MTAsImV4cCI6MTcyMzM5NzYxMH0.QJR5Kj82W3Cj_fAjsxwu3Y-AoJgHsVnbI88DwjgAlso" -H "Content-Type: application/json" -d '{"username":"ADRIANG0N"}' -v

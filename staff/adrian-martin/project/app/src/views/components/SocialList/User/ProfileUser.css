@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .ProfileUser {
+        @apply m-5 h-24 flex rounded-3xl bg-seventh shadow-3xl
+    }
+}
+
+@layer components {
+    .ProfileUser-image {
+        @apply w-16 h-16 rounded-2xl flex mt-4 ml-4 shadow-3xl
+    }
+}
+
+@layer components {
+    .ProfileUser-text-Icon {
+        @apply flex items-center w-72 justify-between
+    }
+}
+
+@layer components {
+    .ProfileUser-text {
+        @apply ml-8 text-2xl
+    }
+}
+
+@layer components {
+    .ProfileUser-icon {
+        @apply mr-5 text-3xl
+    }
+}
