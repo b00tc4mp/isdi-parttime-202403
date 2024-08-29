@@ -1,20 +1,37 @@
-import { SystemError } from 'com/errors.js'
-import logic from '../logic/index.js'
 import validate from 'com/validate.js'
+import { Chat } from '../data/index.js'
+import { Message } from '../data/index.js'
+import { SystemError } from 'com/errors.js'
 
 const createAndUpdateMessage = (chatId, userId, messageText) => {
-  validate.id(chatId)
-  validate.id(userId)
-  validate.text(messageText)
+  validate.id(chatId, 'chatId')
+  validate.id(userId, 'userId')
+  validate.text(messageText, 'messageText')
 
-  return logic
-    .createMessage(userId, messageText, chatId)
-    .then((message) => {
-      return logic.updateChatWithMessage(chatId, message._id)
+  const newMessage = new Message({
+    sender: userId,
+    text: messageText,
+    chatId: chatId,
+  })
+
+  return newMessage
+    .save()
+    .then((savedMessage) => {
+      return Chat.findByIdAndUpdate(
+        chatId,
+        { $push: { messages: savedMessage._id } },
+        { new: true }
+      )
     })
     .catch((error) => {
       console.error(error.message)
       throw new SystemError(error.message)
+    })
+    .then((updatedChat) => {
+      if (!updatedChat) {
+        throw new SystemError('Chat not found')
+      }
+      return { success: true, chat: updatedChat }
     })
 }
 

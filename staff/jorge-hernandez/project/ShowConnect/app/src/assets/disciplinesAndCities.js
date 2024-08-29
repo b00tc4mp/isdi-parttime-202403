@@ -1292,6 +1292,7 @@ export const originalCities = [
   'Parra de las Vegas, La',
   'Buenache de Alarcón',
   'Barchín del Hoyo',
+  'Barcelona',
   'Hontecillas',
   'Olmedilla de Alarcón',
   'Piqueras del Castillo',

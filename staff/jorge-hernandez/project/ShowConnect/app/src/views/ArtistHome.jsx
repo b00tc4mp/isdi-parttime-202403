@@ -67,7 +67,7 @@ function ArtistHome({ onUserLoggedOut }) {
           <div className='bg-gray-700 text-white rounded-lg p-2 w-full max-w-4xl relative'>
             <i
               onClick={handleClickMessages}
-              className=' cursor-pointer fa-regular fa-message text-xl ml-2 mt-2'
+              className='cursor-pointer fa-regular fa-message text-xl ml-2 mt-2'
             ></i>
 
             <div className='flex flex-col items-center'>
