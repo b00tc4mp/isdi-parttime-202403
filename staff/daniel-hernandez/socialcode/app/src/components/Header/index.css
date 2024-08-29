@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+   .header {
+      @apply w-full fixed top-0 left-0 bg-dark text-primary3 font-ubuntu font-[400] z-[998] flex justify-between items-center py-[10] px-[20] box-border select-none;
+   }
+
+   .logoutButton {
+      @apply m-[10px] py-[10px] px-[20px] border-none bg-secondary text-primary3 font-ubuntu text-[16px] cursor-pointer rounded-[7px] transition-colors duration-[300ms];
+   }
+
+   .logoutButton:hover {
+      @apply bg-primary2;
+   }
+
+   .username {
+      @apply m-0 ml-[15px] p-0 text-[18px];
+   }
+}

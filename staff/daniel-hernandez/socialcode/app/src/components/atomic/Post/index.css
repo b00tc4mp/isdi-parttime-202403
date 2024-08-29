@@ -1,0 +1,60 @@
+@tailwind components;
+
+@layer components {
+   .post {
+      @apply flex flex-col bg-dark p-[20px] rounded-[8px] shadow-custom-light;
+   }
+
+   .postTitle {
+      @apply mb-[5px] text-[1.5em] text-primary3 font-bold;
+   }
+
+   .author {
+      @apply text-[medium] mt-[5px] text-primary3;
+   }
+
+   .postImage {
+      @apply rounded-[5%] w-full h-auto mt-[10px] mb-[10px];
+   }
+
+   .buttonContainer {
+      @apply flex justify-between items-center;
+   }
+
+   .removePostButton,
+   .likeButton {
+      @apply select-none leading-none;
+   }
+
+   .likeButton {
+      @apply flex items-center p-0 px-[3px] py-[1px] m-0 border border-primary2 text-[#d75656] bg-dark font-ubuntu text-[9px] cursor-pointer rounded-[8px] transition-colors duration-300 self-center;
+   }
+
+   .likeButton:hover {
+      @apply bg-primary2;
+   }
+
+   .likeText {
+      @apply inline-block text-primary3 text-[small] ml-[5px];
+   }
+
+   .removePostButton {
+      @apply self-center p-0 px-[3px] py-[1px] m-0 border border-primary2 text-primary3 bg-secondary font-ubuntu text-[9px] cursor-pointer rounded-[8px] transition-colors duration-300;
+   }
+
+   .removePostButton:hover {
+      @apply border-dark text-[#f18e8e] bg-[#d75656];
+   }
+
+   .removePostButton:active {
+      @apply text-[#d75656] bg-[#f18e8e];
+   }
+
+   .postDescription {
+      @apply mt-[5px] mb-[10px] text-primary3;
+   }
+
+   .postTime {
+      @apply text-[x-small] text-primary3 mb-[5px];
+   }
+}

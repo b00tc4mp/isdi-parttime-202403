@@ -1,0 +1,44 @@
+@tailwind components;
+
+@layer components {
+   .dialogOverlay {
+      @apply fixed top-0 left-0 w-full h-full bg-overlay z-[999] flex items-center justify-center;
+   }
+
+   .confirmDialog {
+      @apply flex flex-col border border-secondary rounded-[10px] items-center justify-center box-border bg-dark text-primary3 p-[20px] z-[1000] select-none;
+   }
+
+   .dialogParagraph {
+      @apply mb-[20px];
+   }
+
+   .cancelButton,
+   .okButton {
+      @apply w-full text-primary3 bg-secondary p-[10px] rounded-[4px] cursor-pointer text-[16px] font-ubuntu mt-[10px] transition-colors duration-[500ms];
+   }
+
+   .cancelButton {
+      @apply border-[1px] border-[#d75656] text-[#d75656];
+   }
+
+   .okButton {
+      @apply border border-[#56d77d] text-[#56d77d];
+   }
+
+   .cancelButton:hover {
+      @apply bg-[#d75656] text-primary3 border-dark;
+   }
+
+   .okButton:hover {
+      @apply border-dark text-primary3 bg-[#56d77d];
+   }
+
+   .cancelButton:active {
+      @apply bg-[#f18e8e] text-[#d75656];
+   }
+
+   .okButton:active {
+      @apply text-[#56d77d] bg-[#81e39d];
+   }
+}
