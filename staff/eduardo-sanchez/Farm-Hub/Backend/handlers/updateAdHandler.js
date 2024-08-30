@@ -32,7 +32,6 @@ export default (req, res, next) => {
 
                         })
 
-
                         .catch(error => next(error))
 
                 } catch (error) {
