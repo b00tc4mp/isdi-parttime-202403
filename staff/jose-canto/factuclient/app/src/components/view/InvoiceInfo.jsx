@@ -130,7 +130,7 @@ export default function InvoiceInfo() {
           </div>
           <div className="BodyTable">
             {invoice?.deliveryNotes.map((deliveryNote) => (
-              <Fragment key={deliveryNote.id}>
+              <Fragment>
                 <div className="BodyInfo">
                   {deliveryNote?.number && (
                     <div className="InvoiceNumber">
