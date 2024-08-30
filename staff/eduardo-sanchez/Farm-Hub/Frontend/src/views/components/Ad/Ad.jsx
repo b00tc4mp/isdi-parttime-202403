@@ -38,7 +38,7 @@ export const Ad = ({ ad, onAdDeleted }) => {
 
     const handleUpdateAd = (event) => {
         event.stopPropagation()
-        navigate(`/updateAd/${ad._id}`)
+        navigate(`/updateadform/${ad._id}`)
     }
 
     return (

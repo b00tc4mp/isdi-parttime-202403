@@ -66,7 +66,6 @@ function Home() {
       console.log('no hay text searched')
     }
 
-
   }
 
   return (

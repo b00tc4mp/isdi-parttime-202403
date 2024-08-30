@@ -12,6 +12,7 @@ import { Login } from './views/Login'
 // import Header from './views/components/Header/Header'
 import { CreateAdForm } from './views/components/CreateAdForm/CreateAdForm'
 import AdPage from './views/AdPage/AdPage'
+import { UpdateAdForm } from './views/UpdateApForm/UpdateAdForm'
 // import AdList from './views/components/AdList/AdList.jsx'
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
 
         <Route path="/createad" element={<CreateAdForm />}></Route>
         <Route path="/adpage/:adId" element={<AdPage />}></Route>
+        <Route path="updateadform/:adId" element={<UpdateAdForm />}></Route>
         <Route path="/*" element={<Notfound />} />
       </Routes>
     </>
