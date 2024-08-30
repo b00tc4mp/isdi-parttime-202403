@@ -31,7 +31,7 @@ function AdList({ searchText }) {
   const loadFilteredAds = (search) => {
     console.log('texto', search)
     try {
-      // if (search.length > 0) {
+
       logic
         .searchAds(search)
         .then((searchedAds) => {
@@ -45,10 +45,7 @@ function AdList({ searchText }) {
           setIsLoading(false);
 
         });
-      // } else {
-      //   setAds([]);
-      //   console.log('There are no ads within your search parameters');
-      // }
+
     } catch (error) {
       console.error(error);
       alert(error.message);

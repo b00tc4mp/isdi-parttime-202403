@@ -45,4 +45,8 @@
     .AdListItemActions {
         @apply mt-2 flex justify-end;
     }
+
+    .AdListEmpty {
+        @apply mt-20 text-center text-black font-bold;
+    }
 }

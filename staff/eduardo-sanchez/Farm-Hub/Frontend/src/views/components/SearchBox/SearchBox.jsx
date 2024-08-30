@@ -7,11 +7,11 @@ import './SearchBox.css';
 
 function SearchBox({ onSearch, initialSearchText }) {
 
-  const [searchText, setSearchText] = useState(initialSearchText); // state for searching text
+  const [searchText, setSearchText] = useState(initialSearchText || ''); // state for searching text
 
-  // useEffect(() => {
-  //   setSearchText(initialSearchText || '');
-  // }, [initialSearchText]);
+  useEffect(() => {
+    setSearchText(initialSearchText || '');
+  }, [initialSearchText]);
 
   const handleClearSearch = () => {
     setSearchText('');

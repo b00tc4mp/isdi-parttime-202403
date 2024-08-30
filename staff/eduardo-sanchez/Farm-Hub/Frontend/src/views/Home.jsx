@@ -14,6 +14,8 @@ function Home() {
 
   const navigate = useNavigate();
 
+  // const location = useLocation()
+
   const { search } = useLocation()
 
   const searchParams = new URLSearchParams(search)
@@ -29,7 +31,7 @@ function Home() {
   useEffect(() => {
     console.log("Search query changed:", q);
     setCurrentSearchText(q);
-
+    // setCurrentSearchText(q || "");
   }, [q]);
 
 
@@ -52,7 +54,19 @@ function Home() {
   };
 
   const handleSearch = (text) => {
-    navigate(`/?q=${text}`);
+
+    if (text) {
+      navigate(`/?q=${text}`);
+
+      console.log('entra en el searched text')
+
+    } else {
+      navigate('/');
+
+      console.log('no hay text searched')
+    }
+
+
   }
 
   return (
@@ -63,7 +77,7 @@ function Home() {
           <SearchBox onSearch={handleSearch} initialSearchText={currentSearchText}
           />
 
-          <AdList searchText={currentSearchText} />
+          <AdList key={currentSearchText} searchText={currentSearchText} />
 
         </main>
         <CreateAdButton />

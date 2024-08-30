@@ -62,5 +62,3 @@ export const Ad = ({ ad, onAdDeleted }) => {
 
     )
 }
-
-{/* <Link to={`/updateAd/${ad._id}`}> */ }

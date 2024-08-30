@@ -56,7 +56,7 @@ function AdPage() {
         <div className="AdPageContainer">
             <img src={backArrow} alt="Go back" onClick={() => navigate(-1)} className="AdPageBackButton" />
             {/* onClick={handleGoBack} */}
-            <Title className="AdPageTitle">{ad?.title}</Title>
+            <Title className="AdPageTitle">{ad.title}</Title>
             <div className="AdPageDetails">
                 <p className="AdPageAuthor">Posted by: {ad?.author.username}</p>
                 <p className="AdPageDescription">{ad?.description}</p>
