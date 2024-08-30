@@ -14,6 +14,7 @@ import {
     getAdHandler,
     deleteAdCommentHandler,
     searchAdsHandler,
+    updateAdHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -50,10 +51,16 @@ mongoose.connect(MONGODB_URL)
 
         api.delete('/comments/:adId/:commentId', deleteAdCommentHandler)
 
+        api.patch('/updatead/:adId', jsonBodyParser, updateAdHandler)
+
         api.use(errorHandler)
 
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
     })
     .catch(error => console.error(error))
+
+mongoose.connection.on('error', (error) => {
+    console.error('MongoDB connection error:', error)
+})
 
 

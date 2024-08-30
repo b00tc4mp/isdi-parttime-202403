@@ -8,6 +8,7 @@ import createAdComment from './createAdComment.js'
 import getAd from './getAd.js'
 import deleteAdComment from './deleteAdComment.js'
 import searchAds from './searchAds.js'
+import updateAd from './updateAd.js'
 
 
 
@@ -22,7 +23,8 @@ const logic = {
     createAdComment,
     getAd,
     deleteAdComment,
-    searchAds
+    searchAds,
+    updateAd
 
 }
 

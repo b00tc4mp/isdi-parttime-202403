@@ -10,6 +10,8 @@ import getAdHandler from './getAdHandler.js'
 import deleteAdCommentHandler from './deleteAdCommentHandler.js'
 import searchAdsHandler from './searchAdsHandler.js'
 
+import updateAdHandler from './updateAdHandler.js'
+
 export {
     errorHandler,
     registerUserHandler,
@@ -21,5 +23,6 @@ export {
     createAdCommentHandler,
     getAdHandler,
     deleteAdCommentHandler,
-    searchAdsHandler
+    searchAdsHandler,
+    updateAdHandler
 }

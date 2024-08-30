@@ -3,9 +3,12 @@ import { MatchError, NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 
-const updateAd = (userId, adId) => {
+const updateAd = (userId, adId, title, description, price) => {
     validate.id(userId, 'userId')
     validate.id(adId, 'adId')
+    validate.text(title, 'title', 50)
+    validate.text(description, 'description', 200)
+    validate.price(price, 'price')
 
     return User.findById(userId).lean()
         .catch((error) => { throw new SystemError(error.message) })
@@ -21,12 +24,14 @@ const updateAd = (userId, adId) => {
                         throw new NotFoundError(' Ad not found')
                     }
                     if (ad.author.toString() !== userId) {
-                        throw new MatchError('You can't update this ad')
+                        throw new MatchError('You did not create this ad, so you cannot update it')
                     }
 
-                    return Ad.findByIdAndUpdate(adId, { title: title }, { new: true }).lean()
+                    return Ad.findByIdAndUpdate(adId, { title, description, price }, { new: true }).lean()
                         .catch((error) => { throw new SystemError(error.message) })
-                        .then(() => { })
+                        // .then((updateAd) => updateAd)
+                        // .then(() => { })
+                        .then((updateAd) => { updateAd })
                 })
         })
 }
