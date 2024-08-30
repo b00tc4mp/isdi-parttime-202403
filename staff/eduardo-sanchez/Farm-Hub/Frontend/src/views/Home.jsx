@@ -10,7 +10,7 @@ import "./Home.css";
 function Home() {
   const [user, setUser] = useState("");
 
-  const [currentSearchText, setCurrentSearchText] = useState("");
+  const [currentSearchText, setCurrentSearchText] = useState(null);
 
   const navigate = useNavigate();
 
@@ -30,8 +30,8 @@ function Home() {
 
   useEffect(() => {
     console.log("Search query changed:", q);
-    setCurrentSearchText(q);
-    // setCurrentSearchText(q || "");
+    // setCurrentSearchText(q);
+    setCurrentSearchText(q || "");
   }, [q]);
 
 
@@ -77,7 +77,7 @@ function Home() {
           <SearchBox onSearch={handleSearch} initialSearchText={currentSearchText}
           />
 
-          <AdList key={currentSearchText} searchText={currentSearchText} />
+          {currentSearchText !== null && <AdList searchText={currentSearchText} />}
 
         </main>
         <CreateAdButton />
