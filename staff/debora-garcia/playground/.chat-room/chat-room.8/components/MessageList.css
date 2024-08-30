@@ -1,0 +1,8 @@
+.MessageList {
+    color: rgb(173, 39, 158);
+}
+
+.MessageList .title {
+    color:rgb(222, 114, 32);
+    background-color: bisque;
+}
