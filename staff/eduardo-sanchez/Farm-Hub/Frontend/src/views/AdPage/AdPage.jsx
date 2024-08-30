@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import logic from '../../logic';
 import Title from '../../components/core/Title';
-// import Button from '../../components/core/Button';
-// import Link from '../components/core/Link';
+
 import CreateComment from '../components/CreateCommnet/CreateComment';
 import DeleteAdComment from '../components/DeleteAdComment/DeleteAdComment';
 
 import backArrow from '../../icons/backArrow.png';
 
-
 import './AdPage.css';
-
 
 function AdPage() {
     const navigate = useNavigate()
+
+    // const location = useLocation();
 
     const [ad, setAd] = useState(null)
 
@@ -25,6 +24,16 @@ function AdPage() {
 
         loadAd()
     }, [])
+
+    // const handleGoBack = () => {
+    //     const searchParams = new URLSearchParams(location.state?.search || '');
+    //     const searchQuery = searchParams.get('q');
+    //     if (searchQuery) {
+    //         navigate(`/?q=${encodeURIComponent(searchQuery)}`);
+    //     } else {
+    //         navigate('/');
+    //     }
+    // };
 
     const loadAd = () => {
         logic.getAd(adId)
@@ -43,35 +52,10 @@ function AdPage() {
 
     const handleAdCommentSubmit = () => loadAd()
 
-    // return (
-    //     <div className='AdPageContainer'>
-
-    //         <Title>{ad?.title}</Title>
-    //         <p>{ad?.author.username}</p>
-    //         <p>{ad?.description}</p>
-    //         <p>{ad?.price}</p>
-    //         <p>{ad?.date}</p>
-
-    //         <CreateComment adId={adId} onAdCommentSubmitted={handleAdCommentSubmit} />
-    //         {ad.adcomments.map(comment => {
-
-    //             return <div key={comment._id}>
-    //                 <p>{comment.comment}</p>
-    //                 <p></p>
-    //                 <span>{comment.author.username}</span>
-    //                 {comment.author._id === sessionStorage.userId && <DeleteAdComment adId={adId} commentId={comment._id} onAdCommentSubmitted={handleAdCommentSubmit} />}
-    //             </div>
-    //         }
-    //         )}
-
-
-    //     </div>
-
-    // )
-
     return (
         <div className="AdPageContainer">
             <img src={backArrow} alt="Go back" onClick={() => navigate(-1)} className="AdPageBackButton" />
+            {/* onClick={handleGoBack} */}
             <Title className="AdPageTitle">{ad?.title}</Title>
             <div className="AdPageDetails">
                 <p className="AdPageAuthor">Posted by: {ad?.author.username}</p>
@@ -103,17 +87,9 @@ function AdPage() {
                 </div>
             </div>
 
-            {/* <Link to="/" className="AdPageBackButton">
-                Back to Ads
-            </Link> */}
         </div>
     );
 
 }
 
 export default AdPage
-
-
-
-
-//     < CreateComment adId = { adId } onAdCommentSubmitted = { loadAd } />
