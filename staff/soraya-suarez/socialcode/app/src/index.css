@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --first-color: white;
+    --second-color: black;
+  }
+
+  * {
+    color: var(--first-color);
+  }
+
+  body {
+    background-color: var(--second-color);
+    margin: 0;
+  }
+}

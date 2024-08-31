@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .CreatePostForm {
+        @apply fixed bottom-[3rem] w-full left-0 box-border bg-[var(--second-color)];
+    }
+}
