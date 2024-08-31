@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 
 const getMyFinishedTasks = () => {
-    return fetch(`${import.meta.env.VITE_API_URL}/tasks/myFinishedTasks`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/tasks/my-finished-tasks`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }

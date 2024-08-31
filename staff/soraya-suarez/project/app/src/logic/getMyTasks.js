@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 
 const getMyTasks = () => {
-    return fetch(`${import.meta.env.VITE_API_URL}/tasks/myTasks`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/tasks/my-tasks`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }

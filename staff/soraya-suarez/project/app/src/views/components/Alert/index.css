@@ -6,7 +6,7 @@
     }
 
     .AlertBox {
-        @apply p-[.4rem] bg-[var(--second-color)] text-[1rem] border-[1px] border-[var(--first-color)] w-[200px] h-[200px];
+        @apply p-[2.4rem] bg-[var(--second-color)] text-[1rem] border-[1px] border-[var(--first-color)] w-[200px] h-[200px] text-center;
     }
 
     .AlertBox--warn {

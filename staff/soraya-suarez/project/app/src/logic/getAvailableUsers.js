@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 
 const getAvailableUsers = () => {
-    return fetch(`${import.meta.env.VITE_API_URL}/users/availableUsers`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/available-users`, {
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }

@@ -23,7 +23,7 @@ function ModifyStatusOrObervationTaskForm({ task, onProcessFinished }) {
         setInputObservations(target.value)
     }
 
-    const [selectedOption, setSelectedOption] = useState(task.priority)
+    const [selectedOption, setSelectedOption] = useState(task.status)
     const onSelectedOptionChange = ({ target }) => {
         setSelectedOption(target.value)
     }

@@ -6,7 +6,7 @@ const modifyTaskAsOwner= (taskId, status, observations) => {
     validate.status(status)
     validate.observations(observations)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/tasks/${taskId}/modifyAsOwner`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/tasks/${taskId}/modify-as-owner`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,

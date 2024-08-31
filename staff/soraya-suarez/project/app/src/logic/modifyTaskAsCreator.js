@@ -7,7 +7,7 @@ const modifyTaskAsCreator= (taskId, name, description, priority) => {
     validate.text(description, 'description', 200)
     validate.priority(priority)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/tasks/${taskId}/modifyAsCreator`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/tasks/${taskId}/modify-as-creator`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
