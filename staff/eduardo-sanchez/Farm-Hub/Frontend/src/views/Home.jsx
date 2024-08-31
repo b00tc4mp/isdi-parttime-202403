@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logic from "../logic";
 import AdList from "./components/AdList/AdList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import { CreateAdButton } from "./components/CreateAdButton/CreateAdButton";
 import Header from "./components/Header/Header";
+
+import { Context } from "../Context/Context";
 import "./Home.css";
 
 function Home() {
@@ -14,7 +16,7 @@ function Home() {
 
   const navigate = useNavigate();
 
-  // const location = useLocation()
+  const { fetchUserInfo } = useContext(Context);
 
   const { search } = useLocation()
 
@@ -24,34 +26,15 @@ function Home() {
 
   useEffect(() => {
     console.log("Home -> useEffect");
-    fetchUserInfo();
+    fetchUserInfo(setUser);
 
   }, []);
 
   useEffect(() => {
     console.log("Search query changed:", q);
-    // setCurrentSearchText(q);
     setCurrentSearchText(q || "");
   }, [q]);
 
-
-  const fetchUserInfo = () => {
-    try {
-      logic
-        .getUserInfo()
-        .then((user) => {
-          console.log("Home -> setUsername");
-          setUser(user);
-        })
-        .catch((error) => {
-          console.error(error);
-          alert(error.message);
-        });
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
-    }
-  };
 
   const handleSearch = (text) => {
 
