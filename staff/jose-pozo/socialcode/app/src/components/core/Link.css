@@ -1,0 +1,10 @@
+.Link {
+    cursor: pointer;
+    color: #7c91ff;
+    display: flex;
+    justify-content: center;
+}
+
+.Link:hover {
+    border-color: #7c91ff;
+}

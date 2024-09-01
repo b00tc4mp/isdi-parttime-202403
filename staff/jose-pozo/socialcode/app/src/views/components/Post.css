@@ -1,0 +1,78 @@
+.Post {
+    width: 450px;
+    margin: 1.5rem 0;
+    align-items: normal;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+h2 {}
+
+.Image {
+    border-radius: 0.5rem;
+}
+
+.PostFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+Time {
+    color: lightcoral;
+}
+
+.IconBox {
+    justify-content: space-between;
+}
+
+.Button.IconButton {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8892c6;
+    margin-top: 1rem;
+
+}
+
+.Button.IconButton:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.Button.IconButton:active {
+    scale: 0.9;
+}
+
+.Image.IconImage {
+    width: 1.5rem;
+    padding: 0rem;
+    border-radius: 0.05rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.LikeIconText {
+    margin-left: 0.5rem;
+    font-family: "Sigmar", sans-serif;
+    font-size: large;
+}
+
+.Button.CommentText {
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+    font-weight: lighter;
+    font-size: x-small;
+    color: #8892c6;
+    text-align: left;
+    padding: 0rem;
+    background-color: #242424;
+    border: none;
+    width: fit-content;
+}
