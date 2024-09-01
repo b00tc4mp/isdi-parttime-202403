@@ -1,0 +1,6 @@
+.MessageList {}
+
+.MessageList .title {
+    color: lightblue;
+    background-color: blue;
+}

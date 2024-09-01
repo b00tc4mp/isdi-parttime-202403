@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Climate+Crisis&family=Luckiest+Guy&family=Righteous&family=Sedgwick+Ave+Display&family=Slackey&display=swap');
+
+.view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #80AAB7;
+    background: linear-gradient(135deg, #063843, #80AAB7);
+    height: 100vh;
+    margin: 0;
+    align-items: center;
+}
