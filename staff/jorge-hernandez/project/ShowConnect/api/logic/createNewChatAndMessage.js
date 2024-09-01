@@ -1,42 +1,63 @@
-import { DuplicityError, SystemError } from 'com/errors.js'
+import { SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
-import logic from './index.js'
+import { Chat, Message } from '../data/index.js'
 
-const createNewChatAndMessage = (userId, artistId, messageText) => {
+const createNewChatAndMessage = async (userId, artistId, messageText) => {
   validate.id(userId, 'userId')
   validate.id(artistId, 'artistId')
   validate.text(messageText, 'messageText')
 
-  return logic
-    .findExistingChat(userId, artistId)
-    .then((existingChat) => {
-      if (existingChat) {
-        return logic.createAndUpdateMessage(
-          existingChat._id,
-          userId,
-          messageText
-        )
-      }
+  try {
+    const existingChat = await Chat.findOne({
+      participants: { $all: [userId, artistId] },
+    })
 
-      return logic.createChat(userId, artistId).then((createdChat) => {
-        return logic
-          .createMessage(userId, messageText, createdChat._id)
-          .then((createdMessage) => {
-            return logic.updateChatWithMessage(
-              createdChat._id,
-              createdMessage._id
-            )
-          })
-      })
-    })
-    .catch((error) => {
-      console.error('Error:', error.message)
-      if (error instanceof DuplicityError) {
-        throw new DuplicityError('Chat already exists')
-      } else {
-        throw new SystemError('Server error')
+    if (existingChat) {
+      try {
+        const newMessage = new Message({
+          sender: userId,
+          text: messageText,
+          chatId: existingChat._id,
+        })
+
+        await newMessage.save()
+
+        await Chat.findByIdAndUpdate(existingChat._id, {
+          $push: { messages: newMessage._id },
+        })
+      } catch (error) {
+        console.error(error.message)
+        throw new SystemError(error.message)
       }
-    })
+    } else {
+      try {
+        const newChat = new Chat({
+          participants: [userId, artistId],
+          date: new Date(),
+        })
+
+        const savedChat = await newChat.save()
+
+        const newMessage = new Message({
+          sender: userId,
+          text: messageText,
+          chatId: savedChat._id,
+        })
+
+        await newMessage.save()
+
+        await Chat.findByIdAndUpdate(savedChat._id, {
+          $push: { messages: newMessage._id },
+        })
+      } catch (error) {
+        console.error(error.message)
+        throw new SystemError(error.message)
+      }
+    }
+  } catch (error) {
+    console.error(error.message)
+    throw new SystemError(error.message)
+  }
 }
 
 export default createNewChatAndMessage

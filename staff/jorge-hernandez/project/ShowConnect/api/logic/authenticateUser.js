@@ -3,32 +3,35 @@ import { CredentialsError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const authenticateUser = (email, password) => {
+const authenticateUser = async (email, password) => {
   validate.email(email)
   validate.password(password)
 
-  return User.findOne({ email })
-    .lean()
-    .catch((error) => {
-      throw new SystemError(error.message)
-    })
-    .then((user) => {
-      if (!user) throw new CredentialsError('user not found')
+  try {
+    const user = await User.findOne({ email }).lean()
 
-      return bcrypt
-        .compare(password, user.password)
-        .catch((error) => {
-          throw new SystemError(error.message)
-        })
-        .then((match) => {
-          if (!match) throw new CredentialsError('wrong password')
+    if (!user) {
+      throw new CredentialsError('user not found')
+    }
 
-          return {
-            userId: user._id.toString(),
-            role: user.role,
-          }
-        })
-    })
+    const credentials = await bcrypt.compare(password, user.password)
+
+    if (!credentials) {
+      throw new CredentialsError('wrong password')
+    }
+
+    return {
+      userId: user._id.toString(),
+      role: user.role,
+    }
+  } catch (error) {
+    if (error instanceof CredentialsError) {
+      throw error
+    }
+
+    console.error(error.message)
+    throw new SystemError(error.message)
+  }
 }
 
 export default authenticateUser

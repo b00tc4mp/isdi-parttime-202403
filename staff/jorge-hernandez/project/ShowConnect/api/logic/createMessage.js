@@ -1,12 +1,16 @@
 import validate from 'com/validate.js'
 import { Message } from '../data/index.js'
 
-import { SystemError } from 'com/errors.js'
+import { SystemError, ContentError } from 'com/errors.js'
 
-const createMessage = (userId, messageText, chatId) => {
-  validate.id(userId, 'userId')
-  validate.text(messageText, 'messageText')
-  validate.id(chatId, 'chatId')
+const createMessage = async (userId, messageText, chatId) => {
+  try {
+    validate.id(userId, 'userId')
+    validate.text(messageText, 'messageText')
+    validate.id(chatId, 'chatId')
+  } catch (error) {
+    throw new ContentError(error.message)
+  }
 
   const newMessage = new Message({
     sender: userId,
@@ -14,10 +18,12 @@ const createMessage = (userId, messageText, chatId) => {
     chatId: chatId,
   })
 
-  return newMessage.save().catch((error) => {
+  try {
+    await newMessage.save()
+  } catch (error) {
     console.error(error.message)
     throw new SystemError(error.message)
-  })
+  }
 }
 
 export default createMessage

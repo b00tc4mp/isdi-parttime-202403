@@ -12,7 +12,7 @@ describe('deleteDate', () => {
 
   beforeEach(() => User.deleteMany())
 
-  it("should successfully remove a date from the user's dates array", () => {
+  it("should successfully remove a date from the user's dates array", async () => {
     const artistData = {
       name: 'Jorge',
       artisticName: 'Jorge',
@@ -27,18 +27,16 @@ describe('deleteDate', () => {
       role: 'artist',
     }
 
-    return User.create(artistData).then((user) => {
-      const artistId = user._id.toString()
-      const dateToRemove = '2024-08-01T00:00:00.000Z'
+    const user = await User.create(artistData)
+    const artistId = user._id.toString()
+    const dateToRemove = '2024-08-01T00:00:00.000Z'
 
-      return deleteDate(artistId, dateToRemove).then((updatedUser) => {
-        expect(updatedUser.dates).to.not.include(dateToRemove)
-        expect(updatedUser.dates).to.have.lengthOf(1)
-      })
-    })
+    const updatedUser = await deleteDate(artistId, dateToRemove)
+    expect(updatedUser.dates).to.not.include(dateToRemove)
+    expect(updatedUser.dates).to.have.lengthOf(1)
   })
 
-  it('should handle invalid date format', () => {
+  it('should handle invalid date format', async () => {
     const artistData = {
       name: 'Jorge',
       artisticName: 'Jorge',
@@ -53,23 +51,19 @@ describe('deleteDate', () => {
       role: 'artist',
     }
 
-    return User.create(artistData).then((user) => {
-      const artistId = user._id.toString()
-      const invalidDate = 'invalidDate'
+    const user = await User.create(artistData)
+    const artistId = user._id.toString()
+    const invalidDate = 'invalidDate'
 
-      let errorThrown
+    let errorThrown = null
+    try {
+      await deleteDate(artistId, invalidDate)
+    } catch (error) {
+      errorThrown = error
+    }
 
-      try {
-        deleteDate(artistId, invalidDate).catch((error) => {
-          errorThrown = error
-        })
-      } catch (error) {
-        errorThrown = error
-      } finally {
-        expect(errorThrown).to.be.instanceOf(ContentError)
-        expect(errorThrown.message).to.equal('date is not valid')
-      }
-    })
+    expect(errorThrown).to.be.instanceOf(ContentError)
+    expect(errorThrown.message).to.equal('date is not valid')
   })
 
   after(() => User.deleteMany().then(() => mongoose.disconnect()))

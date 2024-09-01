@@ -18,7 +18,7 @@ import deleteDateHandler from './handlers/deleteDateHandler.js'
 const { MONGODB_URL, PORT } = process.env
 
 mongoose
-  .connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGODB_URL)
   .then(() => {
     const api = express()
 

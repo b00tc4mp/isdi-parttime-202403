@@ -9,7 +9,6 @@ import createMessage from './createMessage.js'
 import createNewChatAndMessage from './createNewChatAndMessage.js'
 import getUserChatsAndMessages from './getUsersChatsAndMessages.js'
 import updateChatWithMessage from './updateChatWithMessage.js'
-import findExistingChat from './findExistingChat.js'
 import deleteDate from './deleteDate.js'
 import createAndUpdateMessage from './createAndUpdateMessage.js'
 const logic = {
@@ -24,7 +23,6 @@ const logic = {
   updateChatWithMessage,
   createNewChatAndMessage,
   createMessage,
-  findExistingChat,
   deleteDate,
   createAndUpdateMessage,
 }
