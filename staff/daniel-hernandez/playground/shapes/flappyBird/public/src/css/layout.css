@@ -1,0 +1,56 @@
+/* layout */
+
+body {
+  background-color: var(--darkest);
+}
+
+body,
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.game-container {
+  margin-top: 40px;
+  background-color: var(--dark);
+  height: 600px;
+  width: 450px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+
+.score-display {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  position: relative;
+  color: var(--primary3);
+  /* -webkit-text-stroke: 1px var(--darkest); */
+  z-index: 1200;
+  user-select: none;
+  cursor: default;
+  right: 47.5%;
+  bottom: 28%;
+}
+
+.nav-bar {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 300;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: var(--dark);
+  color: var(--primary3);
+  z-index: 5000;
+  padding: 10px;
+  box-shadow: inset 0 0 0 2px var(--darkest);
+}
+
+.nav-bar > * {
+  display: inline-block;
+  margin-left: 20px;
+}

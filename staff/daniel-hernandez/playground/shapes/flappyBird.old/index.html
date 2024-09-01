@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>:^)</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class= "frame-container" id="game">
+            <div class="bird" id="bird"><img src="./assets/not-found-box.svg" class="bird"></div>
+            <div class="collision-block"></div>
+            <div class="pipe-container" id="pipeC">
+                <div class="topPipe"><img src="./assets/pipe.png" class="topImg"></div>
+                <div class="bottomPipe"><img src="./assets/pipe.png" class="bottomImg"></div>
+            </div>
+        </div>
+        
+        <!--import birdMov-->
+        <script src="./birdMov.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                birdModule.initializeBirdMovement;
+            });
+        </script>
+
+        <!--import pipeGen-->
+        <script src="./pipeClass.js"></script>
+        <script src="./pipeGen.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var clicked = false;
+                
+                function clickHandler () {
+                    if(!clicked) {
+                        createPipes();
+                        clicked = true;
+                        document.removeEventListener('click', clickHandler);
+                    }
+                }
+                document.addEventListener('click', clickHandler);
+            })
+        </script>
+
+        <!--import collision handler-->
+        <script src="./collisionHandler.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                initializeCollisionHandler();
+            });
+        </script>
+    </body>
+</html>
