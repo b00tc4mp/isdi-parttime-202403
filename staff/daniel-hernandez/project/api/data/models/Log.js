@@ -18,7 +18,7 @@ const LogSchema = new Schema(
             constants.REGISTERED,
             constants.LIKED_TRACK,
             constants.DISLIKED_TRACK,
-            constants.SEARCHED_TRACK,
+            constants.SEARCHED,
             constants.CREATED_TRACK,
             constants.EDITED_TRACK,
             constants.REMOVED_TRACK,
@@ -109,7 +109,7 @@ const LogSchema = new Schema(
          type: String,
          trim: true,
          required: function () {
-            return [constants.SEARCHED_TRACK].includes(this.type);
+            return [constants.SEARCHED].includes(this.type);
          }
       }
    },

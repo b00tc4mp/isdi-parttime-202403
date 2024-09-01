@@ -1,8 +1,11 @@
 const types = ['targetUser', 'track', 'playlist', 'album', 'query', 'targetId'];
+const queryTypes = ['user', 'track', 'playlist', 'album'];
+const DEFAULT_LIMIT = 20;
+const MAX_LIMIT = 50;
 const LOGGED_IN = 'logged_in';
 const LOGGED_OUT = 'logged_out';
 const REGISTERED = 'registered';
-const SEARCHED_TRACK = 'searched_track';
+const SEARCHED = 'searched';
 const LIKED_TRACK = 'liked_track';
 const DISLIKED_TRACK = 'disliked_track';
 const CREATED_TRACK = 'created_track';
@@ -40,10 +43,13 @@ const VIEWED_USER_CREATED_ALBUMS = 'viewed_user_created_albums';
 
 export default {
    types,
+   queryTypes,
+   DEFAULT_LIMIT,
+   MAX_LIMIT,
    LOGGED_IN,
    LOGGED_OUT,
    REGISTERED,
-   SEARCHED_TRACK,
+   SEARCHED,
    LIKED_TRACK,
    DISLIKED_TRACK,
    CREATED_TRACK,

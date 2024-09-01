@@ -45,7 +45,6 @@ const UserSchema = new Schema(
             ref: 'Album'
          }
       ],
-
       followingPlaylists: [
          {
             type: ObjectId,

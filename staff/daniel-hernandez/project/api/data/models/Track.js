@@ -35,7 +35,8 @@ const TrackSchema = new Schema(
       },
       genre: {
          type: String,
-         default: 'Unknown'
+         default: 'Unknown',
+         index: true
       },
       releaseDate: {
          type: Date,

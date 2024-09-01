@@ -65,7 +65,7 @@ describe('login', () => {
       bcrypt.compare = bcryptCompare;
    });
 
-   it('fails if all fields are empty', () => {
+   it('fails when all fields are empty', () => {
       expect(() => login()).to.throw(InvalidArgumentError, 'All inputs are required');
    });
 

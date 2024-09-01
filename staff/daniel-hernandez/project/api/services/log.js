@@ -8,7 +8,7 @@ const log = (userId, type, targetId, targetType, query) => {
    validate.objectId(userId);
    validate.logType(type);
 
-   if (type === constants.SEARCHED_TRACK) {
+   if (type === constants.SEARCHED) {
       if (!query) throw new InvalidArgumentError('No query provided');
       validate.inputs(query);
       validate.query(query);
@@ -39,7 +39,7 @@ const log = (userId, type, targetId, targetType, query) => {
       if (targetId && targetType) {
          logData[targetType] = targetId;
       }
-      if (type === constants.SEARCHED_TRACK && query) {
+      if (type === constants.SEARCHED && query) {
          logData.query = query;
       }
 

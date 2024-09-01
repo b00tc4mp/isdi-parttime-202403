@@ -77,11 +77,11 @@ describe('log', () => {
       const hash = await bcrypt.hash('Neon-Genesis02', 8);
       const user = await User.create({ username: 'eva02', email: 'asuka@soryu.com', passwordHash: hash });
 
-      await expect(log(user.id, constants.SEARCHED_TRACK, null, null, 'summertime_2007')).to.be.fulfilled;
+      await expect(log(user.id, constants.SEARCHED, null, null, 'summertime_2007')).to.be.fulfilled;
 
-      const logEntry = await expect(Log.findOne({ type: constants.SEARCHED_TRACK })).to.eventually.be.a('object');
+      const logEntry = await expect(Log.findOne({ type: constants.SEARCHED })).to.eventually.be.a('object');
       expect(logEntry.user.toString()).to.equal(user.id);
-      expect(logEntry.type).to.equal(constants.SEARCHED_TRACK);
+      expect(logEntry.type).to.equal(constants.SEARCHED);
       expect(logEntry.query).to.equal('summertime_2007');
    });
 
@@ -105,14 +105,14 @@ describe('log', () => {
       const hash = await bcrypt.hash('Neon-Genesis02', 8);
       const user = await User.create({ username: 'eva02', email: 'asuka@soryu.com', passwordHash: hash });
 
-      expect(() => log(user.id, constants.SEARCHED_TRACK)).to.throw(InvalidArgumentError, 'No query provided');
+      expect(() => log(user.id, constants.SEARCHED)).to.throw(InvalidArgumentError, 'No query provided');
    });
 
    it('fails when the query is invalid', async () => {
       const hash = await bcrypt.hash('Neon-Genesis02', 8);
       const user = await User.create({ username: 'eva02', email: 'asuka@soryu.com', passwordHash: hash });
 
-      expect(() => log(user.id, constants.SEARCHED_TRACK, null, null, 1)).to.throw(InvalidArgumentError, 'Query must be a non-empty string');
+      expect(() => log(user.id, constants.SEARCHED, null, null, 1)).to.throw(InvalidArgumentError, 'Query must be a non-empty string');
    });
 
    it('fails with SystemError on database failiure during user search', async () => {
@@ -139,6 +139,10 @@ describe('log', () => {
       await expect(log(user.id, constants.MANAGED_OFFLINE_STORAGE)).to.be.rejectedWith(SystemError, 'Log creation failed: Database connection error');
 
       Log.prototype.save = save;
+   });
+
+   it('fails when all fields are empty', () => {
+      expect(() => log('', '')).to.throw(InvalidArgumentError, 'All inputs are required');
    });
 
    it('fails when not provided with a user id', () => {

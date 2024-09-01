@@ -46,7 +46,7 @@ function validateLogType(type) {
       constants.REGISTERED,
       constants.LIKED_TRACK,
       constants.DISLIKED_TRACK,
-      constants.SEARCHED_TRACK,
+      constants.SEARCHED,
       constants.CREATED_TRACK,
       constants.EDITED_TRACK,
       constants.REMOVED_TRACK,
@@ -89,6 +89,20 @@ function validateLogType(type) {
 function validateTargetType(type) {
    if (!constants.types.includes(type)) {
       throw new InvalidArgumentError('Invalid target type');
+   }
+}
+
+function validateQueryTypes(types) {
+   if (!Array.isArray(types)) {
+      throw new InvalidArgumentError('Expected an array of query types');
+   }
+
+   const validTypes = [...constants.queryTypes];
+
+   for (const type of types) {
+      if (!validTypes.includes(type)) {
+         throw new InvalidArgumentError('Invalid query type within array');
+      }
    }
 }
 
@@ -155,6 +169,18 @@ function validateRange(range) {
    }
 }
 
+function validateLimit(limit) {
+   if (!limit || typeof limit !== 'number' || !Number.isInteger(limit) || limit <= 0 || limit > constants.MAX_LIMIT) {
+      throw new InvalidArgumentError('Invalid limit');
+   }
+}
+
+function validatePage(page) {
+   if (!page || typeof page !== 'number' || isNaN(page) || !Number.isInteger(page) || page <= 0) {
+      throw new InvalidArgumentError('Invalid page');
+   }
+}
+
 export default {
    inputs: validateInputs,
    range: validateRange,
@@ -162,6 +188,9 @@ export default {
    logType: validateLogType,
    targetType: validateTargetType,
    query: validateQuery,
+   queryTypes: validateQueryTypes,
+   limit: validateLimit,
+   page: validatePage,
    token: validateToken,
    username: validateUsername,
    email: validateEmail,

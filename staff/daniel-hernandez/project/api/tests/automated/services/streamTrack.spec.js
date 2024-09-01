@@ -170,6 +170,46 @@ describe('streamTrack', () => {
       Track.findById = findById;
    });
 
+   it('fails when all fields are empty', () => {
+      expect(() => streamTrack('', '')).to.throw(InvalidArgumentError, 'All inputs are required');
+   });
+
+   it('fails when not provided with a user id', () => {
+      expect(() => streamTrack('', '66b2cebc5621e4111875102c')).to.throw(InvalidArgumentError, '');
+   });
+
+   it('fails when not provided with a track id', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102c', '')).to.throw(InvalidArgumentError, '');
+   });
+
+   it('fails when the user id is invalid', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102X', '66b2cebc5621e4111875102c')).to.throw(InvalidArgumentError, 'Invalid ObjectId');
+   });
+
+   it('fails when the track id is invalid', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102c', '66b2cebc5621e4111875102X')).to.throw(InvalidArgumentError, 'Invalid ObjectId');
+   });
+
+   it('fails when the range is provided but incorrect (number)', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102c', '66b2cebc5621e4111875102c', 200)).to.throw(InvalidArgumentError, 'Invalid range format');
+   });
+
+   it('fails when the range is provided but incorrect (Range start value)', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102c', '66b2cebc5621e4111875102c', 'bytes=undefined-200')).to.throw(InvalidArgumentError, 'Invalid range start value');
+   });
+
+   it('fails when the range is provided but incorrect (Range end value)', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102c', '66b2cebc5621e4111875102c', 'bytes=0-undefined')).to.throw(InvalidArgumentError, 'Invalid range end value');
+   });
+
+   it('fails when the range is provided but incorrect !(Range >= 0)', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102c', '66b2cebc5621e4111875102c', 'bytes=-1-100')).to.throw(InvalidArgumentError, 'Invalid range format');
+   });
+
+   it('fails when the range is provided but incorrect (Range start value > Range end value)', () => {
+      expect(() => streamTrack('66b2cebc5621e4111875102c', '66b2cebc5621e4111875102c', 'bytes=200-100')).to.throw(InvalidArgumentError, 'Invalid range. End value must be >= start value');
+   });
+
    after(async () => {
       await Promise.all([User.deleteMany(), Track.deleteMany(), Log.deleteMany()]);
 

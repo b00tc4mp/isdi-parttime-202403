@@ -14,7 +14,8 @@ const PlaylistSchema = new Schema(
          type: String,
          trim: true,
          maxLength: 300,
-         default: ''
+         default: '',
+         index: true
       },
       public: {
          type: Boolean,
@@ -23,7 +24,8 @@ const PlaylistSchema = new Schema(
       owner: {
          type: ObjectId,
          ref: 'User',
-         required: true
+         required: true,
+         index: true
       },
       tracks: [
          {
