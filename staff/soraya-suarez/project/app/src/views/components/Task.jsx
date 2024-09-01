@@ -119,7 +119,7 @@ function Task({ task, onTaskRefreshed }) {
         <div className="flex items-center justify-between py-2 px-2">
             <Text>{task.name}</Text>
             <div className="flex gap-2">
-                {task.creator === logic.getUserId() && task.owner === null && (task.status != 'finished' || task.status != 'canceled') && <Button className="border-none" onClick={handleSelectTask}>Assign me</Button>}
+                {task.owner === null && <Button className="border-none" onClick={handleSelectTask}>Assign me</Button>}
                 {task.creator === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleModifyDefinitionTask}>Modify definition</Button>}
                 {task.owner === logic.getUserId() && task.status != 'finished' && <Button className="border-none" onClick={handleModifyStatusOrObservationsTask}>Modify status/observations</Button>}
                 {task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button className="border-none" onClick={handleReleaseTask}>Release</Button>}

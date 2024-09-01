@@ -48,7 +48,7 @@ mongoose.connect(MONGODB_URL)
         api.delete('/users/:userToDeleteId', deleteUserHandler)
         
         api.post('/tasks', jsonBodyParser, addTaskHandler)
-        api.get('/tasks/my-available-tasks', getAvailableTasksHandler)
+        api.get('/tasks/available-tasks', getAvailableTasksHandler)
         api.get('/tasks/my-tasks', getMyTasksHandler)
         api.get('/tasks/my-in-progress-tasks', getMyInProgressTasksHandler)
         api.get('/tasks/my-private-tasks', getMyPrivateTasksHandler)

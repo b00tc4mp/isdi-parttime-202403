@@ -6,12 +6,15 @@ import { CiMenuBurger } from "react-icons/ci";
 import { IoIosAdd } from "react-icons/io";
 import { GoHomeFill } from "react-icons/go";
 import { FiUsers } from "react-icons/fi";
+import { IoSearchOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
 import Button from '../components/core/Button'
 import AddTaskForm from './components/AddTaskForm'
 import HomeScreen from './components/HomeScreen'
 import Link from '../components/core/Link'
 import Users from './Users'
+import SearchTasks from './SearchTasks'
 
 import logic from '../logic'
 
@@ -33,6 +36,11 @@ function Home({ onUserLoggedOut }) {
         navigate('/')
     }
 
+    const handleGoToSearchTasks = () => {
+        handleNavigateTo('search-tasks')
+        navigate('/search-tasks')
+    }
+
     const handleGoToUsers = () => {
         handleNavigateTo('users')
         navigate('/users')
@@ -51,6 +59,7 @@ function Home({ onUserLoggedOut }) {
         </nav>
         <div className="overflow-scroll py-4 body-grid">
             <Routes>
+                <Route path="/search-tasks" element={<SearchTasks/>} />
                 <Route path="/users" element={<Users/>} />
             </Routes>
 
@@ -60,8 +69,10 @@ function Home({ onUserLoggedOut }) {
 
         <footer className="flex justify-around items-center shadow shadow-gray-400">
             <Button className="border-0" onClick={()=> handleGoToHome()}>{<GoHomeFill/>}</Button>
+            <Button className="border-0" onClick={()=> handleGoToSearchTasks()}>{<IoSearchOutline />}</Button>
             <Button className="border-0" onClick={()=> handleAddTaskClick()}>{<IoIosAdd/>}</Button>
             <Button className="border-0" onClick={handleGoToUsers}>{<FiUsers/>}</Button>
+            <Button className="border-0" onClick={()=> handleAddTaskClick()}>{<CgProfile />}</Button>
         </footer>
     </div>
 }
