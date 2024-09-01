@@ -170,32 +170,38 @@ describe('query', () => {
 
       expect(queryData).to.have.property('results').with.length(6);
 
-      expect(queryData.results[0]).to.have.property('username').that.equals(data.user2.username);
-      expect(queryData.results[0]).to.have.property('id').that.equals(data.user2.id);
+      expect(queryData.results[0]).to.have.property('name').that.equals(data.track3.name);
+      expect(queryData.results[0]).to.have.property('artists').with.length(1).to.deep.include({ username: data.user2.username, id: data.user2.id });
+      expect(queryData.results[0]).to.have.property('duration').that.equals(data.track3.duration.toString());
+      expect(queryData.results[0]).to.have.property('album').that.deep.includes({ name: data.album2.name, id: data.album2.id });
+      expect(queryData.results[0]).to.have.property('id').that.equals(data.track3.id);
+      expect(queryData.results[0]).to.have.property('relevance').that.equals('-26');
 
-      expect(queryData.results[1]).to.have.property('name').that.equals(data.track3.name);
-      expect(queryData.results[1]).to.have.property('artists').with.length(1).to.deep.include({ username: data.user2.username, id: data.user2.id });
-      expect(queryData.results[1]).to.have.property('duration').that.equals(data.track3.duration.toString());
-      expect(queryData.results[1]).to.have.property('album').that.deep.includes({ name: data.album2.name, id: data.album2.id });
-      expect(queryData.results[1]).to.have.property('id').that.equals(data.track3.id);
+      expect(queryData.results[1]).to.have.property('name').that.equals(data.playlist2.name);
+      expect(queryData.results[1]).to.have.property('owner').that.deep.includes({ username: data.user2.username, id: data.user2.id });
+      expect(queryData.results[1]).to.have.property('id').that.equals(data.playlist2.id);
+      expect(queryData.results[1]).to.have.property('relevance').that.equals('-21');
 
-      expect(queryData.results[2]).to.have.property('name').that.equals(data.track2.name);
+      expect(queryData.results[2]).to.have.property('name').that.equals(data.album2.name);
       expect(queryData.results[2]).to.have.property('artists').with.length(1).to.deep.include({ username: data.user2.username, id: data.user2.id });
-      expect(queryData.results[2]).to.have.property('duration').that.equals(data.track2.duration.toString());
-      expect(queryData.results[2]).to.have.property('album').that.deep.includes({ name: data.album2.name, id: data.album2.id });
-      expect(queryData.results[2]).to.have.property('id').that.equals(data.track2.id);
+      expect(queryData.results[2]).to.have.property('id').that.equals(data.album2.id);
+      expect(queryData.results[2]).to.have.property('relevance').that.equals('-21');
 
-      expect(queryData.results[3]).to.have.property('name').that.equals(data.playlist2.name);
-      expect(queryData.results[3]).to.have.property('owner').that.deep.includes({ username: data.user2.username, id: data.user2.id });
-      expect(queryData.results[3]).to.have.property('id').that.equals(data.playlist2.id);
+      expect(queryData.results[3]).to.have.property('username').that.equals(data.user2.username);
+      expect(queryData.results[3]).to.have.property('id').that.equals(data.user2.id);
+      expect(queryData.results[3]).to.have.property('relevance').that.equals('-18');
 
-      expect(queryData.results[4]).to.have.property('name').that.equals(data.album2.name);
+      expect(queryData.results[4]).to.have.property('name').that.equals(data.track2.name);
       expect(queryData.results[4]).to.have.property('artists').with.length(1).to.deep.include({ username: data.user2.username, id: data.user2.id });
-      expect(queryData.results[4]).to.have.property('id').that.equals(data.album2.id);
+      expect(queryData.results[4]).to.have.property('duration').that.equals(data.track2.duration.toString());
+      expect(queryData.results[4]).to.have.property('album').that.deep.includes({ name: data.album2.name, id: data.album2.id });
+      expect(queryData.results[4]).to.have.property('id').that.equals(data.track2.id);
+      expect(queryData.results[4]).to.have.property('relevance').that.equals('-16');
 
       expect(queryData.results[5]).to.have.property('name').that.equals(data.album1.name);
       expect(queryData.results[5]).to.have.property('artists').with.length(1).to.deep.include({ username: data.user1.username, id: data.user1.id });
       expect(queryData.results[5]).to.have.property('id').that.equals(data.album1.id);
+      expect(queryData.results[5]).to.have.property('relevance').that.equals('-1');
 
       const logEntry = await expect(Log.findOne({ type: constants.SEARCHED })).to.be.fulfilled.and.to.eventually.be.a('object');
       expect(logEntry.user.toString()).to.equal(data.user1.id);

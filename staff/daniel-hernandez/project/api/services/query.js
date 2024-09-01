@@ -31,7 +31,6 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
 
       const { likedTracks, likedAlbums, followingPlaylists, following } = user;
       const skip = (page - 1) * limit;
-
       const queryTypes = types.length === 0 ? [...constants.queryTypes] : types;
 
       // Normalize query: remove spaces, special characters, and convert to lowercase
@@ -62,71 +61,62 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
          [users, tracks, playlists, albums] = await Promise.all([
             queryTypes.includes('user')
                ? User.aggregate([
-                    { $match: { username: regexQuery } },
+                    { $match: { username: regexQuery } }, // Match users by username
                     {
                        $addFields: {
                           relevance: {
                              $add: [
-                                { $indexOfCP: ['$username', normalizedQuery] },
-                                {
-                                   $cond: {
-                                      if: { $in: ['$_id', following] },
-                                      then: -10, // Boost relevance for followed users
-                                      else: 0
-                                   }
-                                }
+                                // Boost for exact match (higher boost than partial match)
+                                { $cond: { if: { $regexMatch: { input: '$username', regex: `^${normalizedQuery}$`, options: 'i' } }, then: -50, else: 0 } },
+
+                                // Boost for partial match within the username (lower boost)
+                                { $cond: { if: { $regexMatch: { input: '$username', regex: normalizedQuery, options: 'i' } }, then: -20, else: 0 } },
+
+                                // Boost relevance for followed users
+                                { $cond: { if: { $in: ['$_id', following] }, then: -10, else: 0 } },
+
+                                // Boost relevance based on the number of followers (more followers = higher boost, capped)
+                                { $multiply: [{ $min: [{ $size: '$followers' }, 5] }, -2] },
+
+                                { $indexOfCP: ['$username', normalizedQuery] }
                              ]
                           },
-                          followersCount: { $size: '$followers' }
+                          followersCount: { $size: '$followers' } // Calculate follower count
                        }
                     },
-                    { $sort: { relevance: 1, username: 1 } },
-                    { $skip: skip },
-                    { $limit: limit },
+                    { $sort: { relevance: 1, username: 1 } }, // Sort by relevance
+                    { $skip: skip }, // Skip for pagination
+                    { $limit: limit }, // Limit results for pagination
                     {
                        $project: {
                           username: 1,
                           profileImage: 1,
-                          followers: { total: { $convert: { input: '$followersCount', to: 'int' } } }
+                          followers: { total: { $convert: { input: '$followersCount', to: 'int' } } },
+                          relevance: 1 // Include relevance score in the results
                        }
                     }
                  ])
                : [],
             queryTypes.includes('track')
                ? Track.aggregate([
-                    {
-                       $match: {
-                          $or: [
-                             { name: regexQuery },
-                             {
-                                artists: {
-                                   $in: await User.find({ username: regexQuery }).distinct('_id')
-                                }
-                             }
-                          ]
-                       }
-                    },
+                    { $match: { $or: [{ name: regexQuery }, { artists: { $in: await User.find({ username: regexQuery }).distinct('_id') } }] } }, // Match tracks by name or by artists username in the track
                     {
                        $addFields: {
                           relevance: {
                              $add: [
-                                { $indexOfCP: ['$name', normalizedQuery] },
-                                {
-                                   $cond: {
-                                      if: { $in: ['$_id', likedTracks] },
-                                      then: -20, // Boost relevance for liked tracks
-                                      else: 0
-                                   }
-                                },
-                                {
-                                   $cond: {
-                                      if: {
-                                         $in: ['$album', await Album.find({ name: regexQuery }).distinct('_id')]
-                                      },
-                                      then: -15, // Boost relevance for tracks within the most relevant album
-                                      else: 0
-                                   }
-                                }
+                                // Boost for exact match (higher boost than partial match)
+                                { $cond: { if: { $regexMatch: { input: '$name', regex: `^${normalizedQuery}$`, options: 'i' } }, then: -50, else: 0 } },
+
+                                // Boost for partial match within the track name (lower boost)
+                                { $cond: { if: { $regexMatch: { input: '$name', regex: normalizedQuery, options: 'i' } }, then: -20, else: 0 } },
+
+                                // Boost relevance for liked tracks
+                                { $cond: { if: { $in: ['$_id', likedTracks] }, then: -10, else: 0 } },
+
+                                // Boost relevance for tracks within the most relevant album
+                                { $cond: { if: { $in: ['$album', await Album.find({ name: regexQuery }).distinct('_id')] }, then: -15, else: 0 } },
+
+                                { $indexOfCP: ['$name', normalizedQuery] }
                              ]
                           }
                        }
@@ -157,25 +147,34 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                           artists: { _id: 1, username: 1 },
                           duration: 1,
                           album: { _id: 1, name: 1 },
-                          coverArt: 1
+                          coverArt: 1,
+                          relevance: 1
                        }
                     }
                  ])
                : [],
             queryTypes.includes('playlist')
                ? Playlist.aggregate([
+                    { $match: { $and: [{ public: true }, { $or: [{ name: regexQuery }, { 'tracks.name': regexQuery }, { 'tracks.artists.username': regexQuery }] }] } },
                     {
-                       $match: {
-                          $and: [
-                             { public: true },
-                             {
-                                $or: [
-                                   { name: regexQuery },
-                                   { 'tracks.name': regexQuery }, // Match by track names within the playlist
-                                   { 'tracks.artists.username': regexQuery }
-                                ]
-                             }
-                          ]
+                       $addFields: {
+                          relevance: {
+                             $add: [
+                                // Boost for exact match (higher boost than partial match)
+                                { $cond: { if: { $regexMatch: { input: '$name', regex: `^${normalizedQuery}$`, options: 'i' } }, then: -50, else: 0 } },
+
+                                // Boost for partial match within the playlist name (lower boost)
+                                { $cond: { if: { $regexMatch: { input: '$name', regex: normalizedQuery, options: 'i' } }, then: -20, else: 0 } },
+
+                                // Boost relevance for followed playlists
+                                { $cond: { if: { $in: ['$_id', followingPlaylists] }, then: -10, else: 0 } },
+
+                                // Boost relevance based on the number of followers (more followers = higher boost, capped)
+                                { $multiply: [{ $min: ['$followers', 1000] }, -0.01] },
+
+                                { $indexOfCP: ['$name', normalizedQuery] }
+                             ]
+                          }
                        }
                     },
                     {
@@ -187,22 +186,6 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                        }
                     },
                     { $unwind: '$owner' },
-                    {
-                       $addFields: {
-                          relevance: {
-                             $add: [
-                                { $indexOfCP: ['$name', normalizedQuery] },
-                                {
-                                   $cond: {
-                                      if: { $in: ['$_id', followingPlaylists] },
-                                      then: -10, // Boost relevance for liked playlists
-                                      else: 0
-                                   }
-                                }
-                             ]
-                          }
-                       }
-                    },
                     { $sort: { relevance: 1, name: 1 } },
                     { $skip: skip },
                     { $limit: limit },
@@ -210,19 +193,32 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                        $project: {
                           name: 1,
                           owner: { _id: 1, username: 1 },
-                          coverArt: 1
+                          coverArt: 1,
+                          relevance: 1,
+                          followers: 1
                        }
                     }
                  ])
                : [],
             queryTypes.includes('album')
                ? Album.aggregate([
+                    { $match: { $or: [{ name: regexQuery }, { 'artists.username': regexQuery }] } },
                     {
-                       $match: {
-                          $or: [
-                             { name: regexQuery },
-                             { 'artists.username': regexQuery } // Match by artist names within the album
-                          ]
+                       $addFields: {
+                          relevance: {
+                             $add: [
+                                // Boost for exact match (higher boost than partial match)
+                                { $cond: { if: { $regexMatch: { input: '$name', regex: `^${normalizedQuery}$`, options: 'i' } }, then: -50, else: 0 } },
+
+                                // Boost for partial match within the album name (lower boost)
+                                { $cond: { if: { $regexMatch: { input: '$name', regex: normalizedQuery, options: 'i' } }, then: -20, else: 0 } },
+
+                                // Boost relevance for liked albums
+                                { $cond: { if: { $in: ['$_id', likedAlbums] }, then: -20, else: 0 } },
+
+                                { $indexOfCP: ['$name', normalizedQuery] }
+                             ]
+                          }
                        }
                     },
                     {
@@ -233,22 +229,6 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                           as: 'artists'
                        }
                     },
-                    {
-                       $addFields: {
-                          relevance: {
-                             $add: [
-                                { $indexOfCP: ['$name', normalizedQuery] },
-                                {
-                                   $cond: {
-                                      if: { $in: ['$_id', likedAlbums] },
-                                      then: -10, // Boost relevance for liked albums
-                                      else: 0
-                                   }
-                                }
-                             ]
-                          }
-                       }
-                    },
                     { $sort: { relevance: 1, name: 1 } },
                     { $skip: skip },
                     { $limit: limit },
@@ -256,7 +236,8 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                        $project: {
                           name: 1,
                           artists: { _id: 1, username: 1 },
-                          coverArt: 1
+                          coverArt: 1,
+                          relevance: 1
                        }
                     }
                  ])
@@ -266,6 +247,7 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
          throw new SystemError(`Query failed: ${error.message}`);
       }
 
+      // Transform documents
       users = users.map(transformDocument);
       tracks = tracks.map(transformDocument);
       playlists = playlists.map(transformDocument);
@@ -277,14 +259,14 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
          throw new SystemError(`Query logging failed: ${error.message}`);
       }
 
-      const result = {
-         ...(queryTypes.includes('user') && { users }),
-         ...(queryTypes.includes('track') && { tracks }),
-         ...(queryTypes.includes('playlist') && { playlists }),
-         ...(queryTypes.includes('album') && { albums })
-      };
-
-      return types.length === 0 ? { results: [...users, ...tracks, ...playlists, ...albums] } : result;
+      return types.length === 0
+         ? { results: [...users, ...tracks, ...playlists, ...albums].sort((a, b) => a.relevance - b.relevance) }
+         : {
+              ...(queryTypes.includes('user') && { users }),
+              ...(queryTypes.includes('track') && { tracks }),
+              ...(queryTypes.includes('playlist') && { playlists }),
+              ...(queryTypes.includes('album') && { albums })
+           };
    })();
 };
 
