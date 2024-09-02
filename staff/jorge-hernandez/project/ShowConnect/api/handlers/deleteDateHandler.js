@@ -1,15 +1,16 @@
 import logic from '../logic/index.js'
 
-const deleteDateHandler = (req, res, next) => {
+export default async (req, res, next) => {
   const { artistId, date } = req.params
 
   try {
-    logic
-      .deleteDate(artistId, date)
-      .then(() => res.status(200).send())
-      .catch((error) => next(error))
+    await logic.deleteDate(artistId, date)
+    res.status(200).send()
   } catch (error) {
-    next(error)
+    if (error instanceof CredentialsError) {
+      next(new CredentialsError(error.message))
+    } else {
+      next(error)
+    }
   }
 }
-export default deleteDateHandler

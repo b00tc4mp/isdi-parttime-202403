@@ -40,7 +40,7 @@ mongoose
 
     api.put('/users/:userId', jsonbodyparser, updateArtistHandler)
 
-    api.get('/users/:targetUserId', getArtistDataHandler)
+    api.get('/users/:userId', getArtistDataHandler)
 
     api.post('/users/clients', jsonbodyparser, registerClientHandler)
 

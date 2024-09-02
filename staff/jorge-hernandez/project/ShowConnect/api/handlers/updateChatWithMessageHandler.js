@@ -2,32 +2,23 @@ import logic from '../logic/index.js'
 const { JWT_SECRET } = process.env
 import jwt from '../util/jsonwebtoken-promised.js'
 
-export default (req, res, next) => {
+export default async (req, res, next) => {
   try {
     const token = req.headers.authorization.slice(7)
 
-    jwt
-      .verify(token, JWT_SECRET)
-      .then((payload) => {
-        const { sub: userId } = payload
+    const payload = await jwt.verify(token, JWT_SECRET)
+    const { sub: userId } = payload
 
-        const { chatId, messageText } = req.body
+    const { chatId, messageText } = req.body
 
-        try {
-          logic
-            .createAndUpdateMessage(chatId, userId, messageText)
-            .then(() => {
-              res.status(200).send()
-            })
-            .catch((error) => {
-              next(error)
-            })
-        } catch (error) {
-          next(error)
-        }
-      })
-      .catch((error) => next(new CredentialsError(error.message)))
+    await logic.createAndUpdateMessage(chatId, userId, messageText)
+
+    res.status(200).send()
   } catch (error) {
-    next(error)
+    if (error instanceof CredentialsError) {
+      next(new CredentialsError(error.message))
+    } else {
+      next(error)
+    }
   }
 }

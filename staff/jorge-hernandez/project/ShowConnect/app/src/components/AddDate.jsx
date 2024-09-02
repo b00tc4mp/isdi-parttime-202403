@@ -9,25 +9,25 @@ function AddDate({ dates, label, artistId, onDateUpdate, onDateDelete }) {
 
   const handleDateChange = (e) => setNewDate(e.target.value)
 
-  const handleDateSave = () => {
-    const dateObject = new Date(newDate)
+  const handleDateSave = async () => {
+    try {
+      const dateObject = new Date(newDate)
 
-    const formattedDate = dateObject.toISOString()
+      const formattedDate = dateObject.toISOString()
 
-    const updatedDates = [...dates, formattedDate]
+      const updatedDates = [...dates, formattedDate]
 
-    const updatedData = { dates: updatedDates }
+      const updatedData = { dates: updatedDates }
 
-    logic
-      .updateArtistData(artistId, updatedData)
-      .then(() => {
-        onDateUpdate(formattedDate)
-        setIsAddingDate(false)
-      })
-      .catch((error) => {
-        console.error(error.message)
-        alert(error.message)
-      })
+      await logic.updateArtistData(artistId, updatedData)
+
+      onDateUpdate(formattedDate)
+
+      setIsAddingDate(false)
+    } catch (error) {
+      console.error(error.message)
+      alert(error.message)
+    }
   }
 
   const handleDateCancel = () => {

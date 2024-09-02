@@ -14,104 +14,97 @@ import {
 const { MONGODB_URL_TEST } = process.env
 
 describe('registerClient', () => {
-  before(() => {
-    return mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany())
+  before(async () => {
+    await mongoose.connect(MONGODB_URL_TEST)
+    await User.deleteMany()
   })
 
-  beforeEach(() => {
-    return User.deleteMany()
+  beforeEach(async () => {
+    await User.deleteMany()
   })
 
-  it('succeeds on new user', () => {
-    return registerClient('David', 'david@bisbal.com', '123123123', '123123123')
-      .then(() => User.findOne())
-      .then((user) => {
-        expect(user.name).to.equal('David')
-        expect(user.email).to.equal('david@bisbal.com')
+  it('succeeds on new user', async () => {
+    await registerClient('David', 'david@bisbal.com', '123123123', '123123123')
+    const user = await User.findOne()
 
-        return bcrypt.compare('123123123', user.password)
-      })
-      .then((match) => {
-        expect(match).to.be.true
-      })
+    expect(user.name).to.equal('David')
+    expect(user.email).to.equal('david@bisbal.com')
+
+    const match = await bcrypt.compare('123123123', user.password)
+    expect(match).to.be.true
   })
 
-  it('fails on existing user', () => {
+  it('fails on existing user', async () => {
     let errorThrown
 
-    return bcrypt
-      .hash('1234', 8)
-      .then((hash) =>
-        User.create({
-          name: 'David',
-          email: 'david@bisbal.com',
-          role: 'client',
-          password: hash,
-        })
+    await bcrypt.hash('1234', 8).then((hash) =>
+      User.create({
+        name: 'David',
+        email: 'david@bisbal.com',
+        role: 'client',
+        password: hash,
+      })
+    )
+
+    try {
+      await registerClient(
+        'David',
+        'david@bisbal.com',
+        '123123123',
+        '123123123'
       )
-      .then(() =>
-        registerClient('David', 'david@bisbal.com', '123123123', '123123123')
-      )
-      .catch((error) => {
-        errorThrown = error
-        return Promise.resolve()
-      })
-      .then(() => {
-        expect(errorThrown).to.be.instanceOf(DuplicityError)
-        expect(errorThrown.message).to.equal('User already exists')
-      })
-  })
-
-  it('fails on invalid name', () => {
-    let errorThrown
-
-    try {
-      registerClient(1234, 'david@bisbal.com', '123123123', '123123123')
     } catch (error) {
       errorThrown = error
     }
 
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(CredentialsError)
-      expect(errorThrown.message).to.equal('name is not valid')
-    })
+    expect(errorThrown).to.be.instanceOf(DuplicityError)
+    expect(errorThrown.message).to.equal('User already exists')
   })
 
-  it('fails on invalid email', () => {
+  it('fails on invalid name', async () => {
     let errorThrown
 
     try {
-      registerClient('David', 'invalid-email', '123123123', '123123123')
+      await registerClient(1234, 'david@bisbal.com', '123123123', '123123123')
     } catch (error) {
       errorThrown = error
     }
 
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(CredentialsError)
-      expect(errorThrown.message).to.equal('email is not valid')
-    })
+    expect(errorThrown).to.be.instanceOf(CredentialsError)
+    expect(errorThrown.message).to.equal('name is not valid')
   })
 
-  it('fails on invalid password', () => {
+  it('fails on invalid email', async () => {
     let errorThrown
 
     try {
-      registerClient('David', 'david@bisbal.com', 123123123, '123123123')
+      await registerClient('David', 'invalid-email', '123123123', '123123123')
     } catch (error) {
       errorThrown = error
     }
 
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal('password is not valid')
-    })
+    expect(errorThrown).to.be.instanceOf(CredentialsError)
+    expect(errorThrown.message).to.equal('email is not valid')
   })
 
-  it('fails on non matching password repeat', () => {
+  it('fails on invalid password', async () => {
     let errorThrown
 
     try {
-      registerClient(
+      await registerClient('David', 'david@bisbal.com', 123123123, '123123123')
+    } catch (error) {
+      errorThrown = error
+    }
+
+    expect(errorThrown).to.be.instanceOf(ContentError)
+    expect(errorThrown.message).to.equal('password is not valid')
+  })
+
+  it('fails on non-matching password repeat', async () => {
+    let errorThrown
+
+    try {
+      await registerClient(
         'David',
         'david@bisbal.com',
         '123123123',
@@ -121,13 +114,12 @@ describe('registerClient', () => {
       errorThrown = error
     }
 
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(MatchError)
-      expect(errorThrown.message).to.equal("passwords don't match")
-    })
+    expect(errorThrown).to.be.instanceOf(MatchError)
+    expect(errorThrown.message).to.equal("passwords don't match")
   })
 
-  after(() => {
-    return User.deleteMany().then(() => mongoose.disconnect())
+  after(async () => {
+    await User.deleteMany()
+    await mongoose.disconnect()
   })
 })

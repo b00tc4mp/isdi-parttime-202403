@@ -2,36 +2,35 @@ import errors, { SystemError } from 'com/errors'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
-const getUserChatsAndMessages = () => {
+const getUserChatsAndMessages = async () => {
   const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
-  return fetch(`${import.meta.env.VITE_API_URL}chats/${userId}`, {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.token}`,
-    },
-  })
-    .catch(() => {
-      throw new SystemError('server error')
-    })
-    .then((response) => {
-      if (response.status === 200)
-        return response.json().catch(() => {
-          throw new SystemError('server error')
-        })
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}chats/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      }
+    )
 
-      return response
-        .json()
-        .catch(() => {
-          throw new SystemError('server error')
-        })
-        .then((body) => {
-          const { error, message } = body
+    if (response.status === 200) return response.json()
 
-          const constructor = errors[error]
+    try {
+      body = await response.json()
+    } catch (jsonError) {
+      throw new SystemError(`${response.statusText}`)
+    }
 
-          throw new constructor(message)
-        })
-    })
+    const { error, message } = body
+
+    const constructor = errors[error]
+
+    throw new constructor(message)
+  } catch (error) {
+    throw new SystemError('Server Error')
+  }
 }
 
 export default getUserChatsAndMessages

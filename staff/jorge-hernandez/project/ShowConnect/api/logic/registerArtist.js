@@ -3,7 +3,7 @@ import { DuplicityError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const registerArtist = (
+const registerArtist = async (
   name,
   artisticName,
   discipline,
@@ -26,41 +26,34 @@ const registerArtist = (
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
 
-  return User.findOne({ email })
-    .catch((error) => {
-      throw new SystemError(error.message)
-    })
-    .then((user) => {
-      if (user) {
-        throw new DuplicityError('User already exists')
-      }
+  try {
+    const existingUser = await User.findOne({ email })
+    if (existingUser) {
+      throw new DuplicityError('User already exists')
+    }
 
-      return bcrypt
-        .hash(password, 8)
-        .catch((error) => {
-          throw new SystemError(error.message)
-        })
-        .then((hash) => {
-          const newUser = {
-            name: name,
-            artisticName: artisticName,
-            discipline: discipline,
-            city: city,
-            description: description,
-            email: email,
-            image: image,
-            video: video,
-            password: hash,
-            role: 'artist',
-          }
+    const passHash = await bcrypt.hash(password, 8)
 
-          return User.create(newUser)
-            .catch((error) => {
-              throw new SystemError(error.message)
-            })
-            .then(() => {})
-        })
-    })
+    const newUser = {
+      name,
+      artisticName,
+      discipline,
+      city,
+      description,
+      email,
+      image,
+      video,
+      password: passHash,
+      role: 'artist',
+    }
+
+    await User.create(newUser)
+  } catch (error) {
+    if (error instanceof DuplicityError) {
+      throw error
+    }
+    throw new SystemError(error.message)
+  }
 }
 
 export default registerArtist

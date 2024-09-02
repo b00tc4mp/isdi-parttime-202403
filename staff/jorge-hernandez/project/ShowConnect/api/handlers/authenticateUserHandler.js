@@ -1,26 +1,19 @@
 import jwt from '../util/jsonwebtoken-promised.js'
-
 import logic from '../logic/index.js'
-
-import { SystemError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
 
-export default (req, res, next) => {
+export default async (req, res, next) => {
   const { email, password } = req.body
 
   try {
-    logic
-      .authenticateUser(email, password)
-      .then(({ userId, role }) =>
-        jwt
-          .sign({ sub: userId, role }, JWT_SECRET, {
-            expiresIn: '365d',
-          })
-          .then((token) => res.json({ token, role }))
-          .catch((error) => next(new SystemError(error.message)))
-      )
-      .catch((error) => next(error))
+    const { userId, role } = await logic.authenticateUser(email, password)
+
+    const token = await jwt.sign({ sub: userId, role }, JWT_SECRET, {
+      expiresIn: '365d',
+    })
+
+    res.json({ token, role })
   } catch (error) {
     next(error)
   }

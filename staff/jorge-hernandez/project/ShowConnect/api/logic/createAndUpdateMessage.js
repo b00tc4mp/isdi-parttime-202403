@@ -25,8 +25,6 @@ const createAndUpdateMessage = async (chatId, userId, messageText) => {
     if (!updatedChat) {
       throw new SystemError('chat not found')
     }
-
-    // return { success: true, chat: updatedChat }
   } catch (error) {
     console.error(error.message)
     throw new SystemError(error.message)

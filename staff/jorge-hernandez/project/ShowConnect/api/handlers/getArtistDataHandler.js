@@ -6,28 +6,22 @@ import { CredentialsError } from 'com/errors.js'
 
 const { JWT_SECRET } = process.env
 
-export default (req, res, next) => {
+export default async (req, res, next) => {
   try {
     const token = req.headers.authorization.slice(7)
 
-    jwt
-      .verify(token, JWT_SECRET)
-      .then((payload) => {
-        const { sub: userId } = payload
+    const payload = await jwt.verify(token, JWT_SECRET)
 
-        const { targetUserId } = req.params
+    const { sub: userId } = payload
 
-        try {
-          logic
-            .getArtistData(userId, targetUserId)
-            .then((userData) => res.json(userData))
-            .catch((error) => next(error))
-        } catch (error) {
-          next(error)
-        }
-      })
-      .catch((error) => next(new CredentialsError(error.message)))
+    const userData = await logic.getArtistData(userId)
+
+    res.json(userData)
   } catch (error) {
-    next(error)
+    if (error instanceof CredentialsError) {
+      next(new CredentialsError(error.message))
+    } else {
+      next(error)
+    }
   }
 }

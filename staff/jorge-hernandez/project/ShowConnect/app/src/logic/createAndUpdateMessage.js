@@ -20,19 +20,21 @@ const createAndUpdateMessage = async (chatId, userId, messageText) => {
       }),
     })
 
-    if (response.status !== 200) {
-      let body
-      try {
-        body = await response.json()
-      } catch {
-        throw new SystemError('server error')
-      }
-
-      const { error, message } = body
-      const constructor = errors[error]
-
-      throw new constructor(message)
+    if (response.status === 200) {
+      return
     }
+
+    try {
+      body = await response.json()
+    } catch (jsonError) {
+      throw new SystemError(`${response.statusText}`)
+    }
+
+    const { error, message } = body
+
+    const constructor = errors[error]
+
+    throw new constructor(message)
   } catch (error) {
     if (!(error instanceof SystemError)) {
       console.error(error.message)

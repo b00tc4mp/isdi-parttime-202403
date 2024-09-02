@@ -1,7 +1,7 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const getArtistsByCity = (discipline, city, excludedDate) => {
+const getArtistsByCity = async (discipline, city, excludedDate) => {
   const date = new Date(excludedDate)
   validate.discipline(discipline)
   validate.city(city)
@@ -9,31 +9,31 @@ const getArtistsByCity = (discipline, city, excludedDate) => {
 
   const isoExcludedDate = date.toISOString()
 
-  return fetch(
-    `${
-      import.meta.env.VITE_API_URL
-    }users/search-artists/${discipline}/discipline/${city}/dates/${isoExcludedDate}`
-  )
-    .catch(() => {
-      throw new SystemError('server error')
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json().catch(() => {
-          throw new SystemError('server error')
-        })
-      }
+  try {
+    const response = await fetch(
+      `${
+        import.meta.env.VITE_API_URL
+      }users/search-artists/${discipline}/discipline/${city}/dates/${isoExcludedDate}`
+    )
 
-      return response
-        .json()
-        .catch(() => {
-          throw new SystemError('server error')
-        })
-        .then((body) => {
-          const { error, message } = body
-          const Constructor = errors[error]
-        })
-    })
+    if (response.status === 200) {
+      return response.json()
+    }
+
+    try {
+      body = await response.json()
+    } catch (jsonError) {
+      throw new SystemError(`${response.statusText}`)
+    }
+
+    const { error, message } = body
+
+    const constructor = errors[error]
+
+    throw new constructor(message)
+  } catch (error) {
+    throw new SystemError('Server error')
+  }
 }
 
 export default getArtistsByCity

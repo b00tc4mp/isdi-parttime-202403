@@ -1,37 +1,38 @@
 import errors, { SystemError } from 'com/errors'
-
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
-const getArtistData = () => {
-  const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
+const getArtistData = async () => {
+  try {
+    const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
-  return fetch(`${import.meta.env.VITE_API_URL}users/${userId}`, {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.token}`,
-    },
-  })
-    .catch(() => {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}users/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.token}`,
+        },
+      }
+    )
+
+    if (response.status === 200) {
+      try {
+        return await response.json()
+      } catch {
+        throw new SystemError('server error')
+      }
+    }
+
+    try {
+      const body = await response.json()
+    } catch {
       throw new SystemError('server error')
-    })
-    .then((response) => {
-      if (response.status === 200)
-        return response.json().catch(() => {
-          throw new SystemError('server error')
-        })
-
-      return response
-        .json()
-        .catch(() => {
-          throw new SystemError('server error')
-        })
-        .then((body) => {
-          const { error, message } = body
-
-          const constructor = errors[error]
-
-          throw new constructor(message)
-        })
-    })
+    }
+    const { error, message } = body
+    const constructor = errors[error]
+    throw new constructor(message)
+  } catch {
+    throw new SystemError('server error')
+  }
 }
 
 export default getArtistData

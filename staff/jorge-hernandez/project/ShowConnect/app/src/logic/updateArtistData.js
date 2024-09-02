@@ -1,7 +1,7 @@
 import { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const updateArtistData = (userId, updatedData) => {
+const updateArtistData = async (userId, updatedData) => {
   validate.id(userId)
 
   if (updatedData.artisticName) {
@@ -20,25 +20,40 @@ const updateArtistData = (userId, updatedData) => {
     validate.url(updatedData.video, 'video')
   }
 
-  return fetch(`${import.meta.env.VITE_API_URL}users/${userId}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(updatedData),
-  })
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json()
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}users/${userId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
       }
-      return response.json().then((body) => {
-        const { error, message } = body
-        throw new SystemError('server error')
-      })
-    })
-    .catch((error) => {
-      throw new SystemError('server error')
-    })
+    )
+
+    if (response.status === 200) {
+      try {
+        return await response.json()
+      } catch (jsonError) {
+        throw new SystemError(`${response.statusText}`)
+      }
+    }
+
+    try {
+      body = await response.json()
+    } catch (jsonError) {
+      throw new SystemError(`${response.statusText}`)
+    }
+
+    const { error, message } = body
+
+    const constructor = errors[error]
+
+    throw new constructor(message)
+  } catch (error) {
+    throw new SystemError('Server error')
+  }
 }
 
 export default updateArtistData

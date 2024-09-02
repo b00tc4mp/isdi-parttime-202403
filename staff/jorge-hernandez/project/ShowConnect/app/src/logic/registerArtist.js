@@ -1,7 +1,7 @@
-import errors, { SystemError } from 'com/errors'
+import errors, { SystemError, DuplicityError } from 'com/errors'
 import validate from 'com/validate'
 
-const registerArtist = (
+const registerArtist = async (
   name,
   artisticName,
   discipline,
@@ -24,43 +24,53 @@ const registerArtist = (
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
 
-  return fetch(`${import.meta.env.VITE_API_URL}users/artists`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name,
-      artisticName,
-      discipline,
-      city,
-      description,
-      email,
-      image,
-      video,
-      password,
-      passwordRepeat,
-    }),
-  })
-    .catch(() => {
-      throw new SystemError('server error')
-    })
-    .then((response) => {
-      if (response.status === 201) return
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}users/artists`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          artisticName,
+          discipline,
+          city,
+          description,
+          email,
+          image,
+          video,
+          password,
+          passwordRepeat,
+        }),
+      }
+    )
 
-      return response
-        .json()
-        .catch(() => {
-          throw new SystemError('server error')
-        })
-        .then((body) => {
-          const { error, message } = body
+    if (response.status === 201) {
+      return
+    }
 
-          const constructor = errors[error]
+    try {
+      body = await response.json()
+    } catch (jsonError) {
+      throw new SystemError(`${response.statusText}`)
+    }
+    const { error, message } = body
 
-          throw new constructor(message)
-        })
-    })
+    if (error === 'DuplicityError') {
+      throw new DuplicityError('User already exists')
+    }
+
+    const constructor = errors[error]
+
+    throw new constructor(message)
+  } catch (error) {
+    if (!(error instanceof DuplicityError) && !(error instanceof SystemError)) {
+      throw new SystemError('Server error')
+    }
+    throw error
+  }
 }
 
 export default registerArtist

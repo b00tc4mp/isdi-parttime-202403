@@ -3,7 +3,7 @@ import { SystemError } from 'com/errors.js'
 
 import validate from 'com/validate.js'
 
-const updateArtist = (userId, updateData) => {
+const updateArtist = async (userId, updateData) => {
   validate.id(userId)
 
   if (updateData.artisticName) {
@@ -22,25 +22,23 @@ const updateArtist = (userId, updateData) => {
     validate.url(updateData.video, 'video')
   }
 
-  return User.findById(userId)
-    .catch((error) => {
-      throw new SystemError(error.message)
-    })
-    .then((user) => {
-      if (!user) {
-        throw new SystemError('Artist not found')
-      }
+  try {
+    const user = await User.findById(userId)
+    if (!user) {
+      throw new SystemError('Artist not found')
+    }
+    if (updateData.artisticName) user.artisticName = updateData.artisticName
+    if (updateData.image) user.image = updateData.image
+    if (updateData.description) user.description = updateData.description
+    if (updateData.dates) user.dates = updateData.dates
+    if (updateData.video) user.video = updateData.video
 
-      if (updateData.artisticName) user.artisticName = updateData.artisticName
-      if (updateData.image) user.image = updateData.image
-      if (updateData.description) user.description = updateData.description
-      if (updateData.dates) user.dates = updateData.dates
-      if (updateData.video) user.video = updateData.video
+    await user.save()
 
-      return user.save().catch((error) => {
-        throw new SystemError(error.message)
-      })
-    })
+    return user
+  } catch (error) {
+    throw new SystemError(error.message)
+  }
 }
 
 export default updateArtist

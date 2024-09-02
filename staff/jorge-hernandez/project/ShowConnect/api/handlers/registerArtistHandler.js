@@ -1,6 +1,6 @@
 import logic from '../logic/index.js'
 
-export default (req, res, next) => {
+export default async (req, res, next) => {
   const {
     name,
     artisticName,
@@ -15,21 +15,19 @@ export default (req, res, next) => {
   } = req.body
 
   try {
-    logic
-      .registerArtist(
-        name,
-        artisticName,
-        discipline,
-        city,
-        description,
-        email,
-        image,
-        video,
-        password,
-        passwordRepeat
-      )
-      .then(() => res.status(201).send())
-      .catch((error) => next(error))
+    await logic.registerArtist(
+      name,
+      artisticName,
+      discipline,
+      city,
+      description,
+      email,
+      image,
+      video,
+      password,
+      passwordRepeat
+    )
+    res.status(201).send()
   } catch (error) {
     next(error)
   }

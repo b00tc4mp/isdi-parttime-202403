@@ -15,16 +15,12 @@ import {
 const { MONGODB_URL_TEST } = process.env
 
 describe('registerArtist', () => {
-  before(() => {
-    return mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany())
-  })
+  before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
-  beforeEach(() => {
-    return User.deleteMany()
-  })
+  beforeEach(() => User.deleteMany())
 
-  it('succeeds on new user', () => {
-    return registerArtist(
+  it('succeeds on new user', async () => {
+    await registerArtist(
       'David',
       'David Bisbal',
       'cantante',
@@ -36,71 +32,59 @@ describe('registerArtist', () => {
       '123123123',
       '123123123'
     )
-      .then(() => User.findOne())
-      .then((user) => {
-        expect(user.name).to.equal('David')
-        expect(user.artisticName).to.equal('David Bisbal')
-        expect(user.email).to.equal('david@bisbal.com')
-        expect(user.image).to.equal(
-          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTQzZXI4NHNnc3luYms4MTNlczBubGhveWF5Z2p1NW0zMG5lOWF2YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3OyjowP63pRVQJl9dB/giphy.gif'
-        )
-        expect(user.video).to.equal('https')
 
-        return bcrypt.compare('123123123', user.password)
-      })
-      .then((match) => {
-        expect(match).to.be.true
-      })
+    const user = await User.findOne()
+    expect(user.name).to.equal('David')
+    expect(user.artisticName).to.equal('David Bisbal')
+    expect(user.email).to.equal('david@bisbal.com')
+    expect(user.image).to.equal(
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTQzZXI4NHNnc3luYms4MTNlczBubGhveWF5Z2p1NW0zMG5lOWF2YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3OyjowP63pRVQJl9dB/giphy.gif'
+    )
+    expect(user.video).to.equal('https')
+
+    const match = await bcrypt.compare('123123123', user.password)
+    expect(match).to.be.true
   })
 
-  it('fails on existing user', () => {
-    let errorThrown
-
-    return bcrypt
-      .hash('1234', 8)
-      .then((hash) =>
-        User.create({
-          name: 'David',
-          artisticName: 'David Bisbal',
-          discipline: 'cantante',
-          city: 'Madrid',
-          description: 'Buleria Buleria',
-          email: 'david@bisbal.com',
-          image:
-            'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTQzZXI4NHNnc3luYms4MTNlczBubGhveWF5Z2p1NW0zMG5lOWF2YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3OyjowP63pRVQJl9dB/giphy.gif',
-          video: 'https',
-          password: hash,
-          role: 'artist',
-        })
-      )
-      .then(() =>
-        registerArtist(
-          'David',
-          'David Bisbal',
-          'cantante',
-          'Madrid',
-          'Buleria Buleria',
-          'david@bisbal.com',
+  it('fails on existing user', async () => {
+    await bcrypt.hash('1234', 8).then((hash) =>
+      User.create({
+        name: 'David',
+        artisticName: 'David Bisbal',
+        discipline: 'cantante',
+        city: 'Madrid',
+        description: 'Buleria Buleria',
+        email: 'david@bisbal.com',
+        image:
           'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTQzZXI4NHNnc3luYms4MTNlczBubGhveWF5Z2p1NW0zMG5lOWF2YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3OyjowP63pRVQJl9dB/giphy.gif',
-          'https',
-          '123123123',
-          '123123123'
-        )
-      )
-      .catch((error) => {
-        errorThrown = error
+        video: 'https',
+        password: hash,
+        role: 'artist',
       })
-      .then(() => {
-        expect(errorThrown).to.be.instanceOf(DuplicityError)
-        expect(errorThrown.message).to.equal('User already exists')
-      })
-  })
-
-  it('fails on invalid name', () => {
-    let errorThrown
+    )
 
     try {
-      registerArtist(
+      await registerArtist(
+        'David',
+        'David Bisbal',
+        'cantante',
+        'Madrid',
+        'Buleria Buleria',
+        'david@bisbal.com',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTQzZXI4NHNnc3luYms4MTNlczBubGhveWF5Z2p1NW0zMG5lOWF2YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3OyjowP63pRVQJl9dB/giphy.gif',
+        'https',
+        '123123123',
+        '123123123'
+      )
+    } catch (error) {
+      expect(error).to.be.instanceOf(DuplicityError)
+      expect(error.message).to.equal('User already exists')
+    }
+  })
+
+  it('fails on invalid name', async () => {
+    try {
+      await registerArtist(
         1234,
         'David Bisbal',
         'cantante',
@@ -113,20 +97,14 @@ describe('registerArtist', () => {
         '123123123'
       )
     } catch (error) {
-      errorThrown = error
+      expect(error).to.be.instanceOf(CredentialsError)
+      expect(error.message).to.equal('name is not valid')
     }
-
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(CredentialsError)
-      expect(errorThrown.message).to.equal('name is not valid')
-    })
   })
 
-  it('fails on invalid artisticName', () => {
-    let errorThrown
-
+  it('fails on invalid artisticName', async () => {
     try {
-      registerArtist(
+      await registerArtist(
         'David',
         1234,
         'cantante',
@@ -139,20 +117,14 @@ describe('registerArtist', () => {
         '123123123'
       )
     } catch (error) {
-      errorThrown = error
+      expect(error).to.be.instanceOf(CredentialsError)
+      expect(error.message).to.equal('artisticName is not valid')
     }
-
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(CredentialsError)
-      expect(errorThrown.message).to.equal('artisticName is not valid')
-    })
   })
 
-  it('fails on invalid email', () => {
-    let errorThrown
-
+  it('fails on invalid email', async () => {
     try {
-      registerArtist(
+      await registerArtist(
         'David',
         'David Bisbal',
         'cantante',
@@ -165,20 +137,14 @@ describe('registerArtist', () => {
         '123123123'
       )
     } catch (error) {
-      errorThrown = error
+      expect(error).to.be.instanceOf(CredentialsError)
+      expect(error.message).to.equal('email is not valid')
     }
-
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(CredentialsError)
-      expect(errorThrown.message).to.equal('email is not valid')
-    })
   })
 
-  it('fails on invalid password', () => {
-    let errorThrown
-
+  it('fails on invalid password', async () => {
     try {
-      registerArtist(
+      await registerArtist(
         'David',
         'David Bisbal',
         'cantante',
@@ -191,20 +157,14 @@ describe('registerArtist', () => {
         '123123123'
       )
     } catch (error) {
-      errorThrown = error
+      expect(error).to.be.instanceOf(ContentError)
+      expect(error.message).to.equal('password is not valid')
     }
-
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(ContentError)
-      expect(errorThrown.message).to.equal('password is not valid')
-    })
   })
 
-  it('fails on non matching password repeat', () => {
-    let errorThrown
-
+  it('fails on non-matching password repeat', async () => {
     try {
-      registerArtist(
+      await registerArtist(
         'David',
         'David Bisbal',
         'cantante',
@@ -217,16 +177,10 @@ describe('registerArtist', () => {
         '123456789'
       )
     } catch (error) {
-      errorThrown = error
+      expect(error).to.be.instanceOf(MatchError)
+      expect(error.message).to.equal(`passwords don't match`)
     }
-
-    return Promise.resolve().then(() => {
-      expect(errorThrown).to.be.instanceOf(MatchError)
-      expect(errorThrown.message).to.equal(`passwords don't match`)
-    })
   })
 
-  after(() => {
-    return User.deleteMany().then(() => mongoose.disconnect())
-  })
+  after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

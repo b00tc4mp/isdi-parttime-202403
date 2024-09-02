@@ -3,41 +3,34 @@ import { DuplicityError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 import bcrypt from 'bcryptjs'
 
-const registerClient = (name, email, password, passwordRepeat) => {
+const registerClient = async (name, email, password, passwordRepeat) => {
   validate.name(name)
   validate.email(email)
   validate.password(password)
   validate.passwordsMatch(password, passwordRepeat)
 
-  return User.findOne({ email })
-    .catch((error) => {
-      throw new SystemError(error.message)
-    })
-    .then((user) => {
-      if (user) {
-        throw new DuplicityError('User already exists')
-      }
+  try {
+    const user = await User.findOne({ email })
 
-      return bcrypt
-        .hash(password, 8)
-        .catch((error) => {
-          throw new SystemError(error.message)
-        })
-        .then((hash) => {
-          const newUser = {
-            name: name,
-            email: email,
-            password: hash,
-            role: 'client',
-          }
+    if (user) {
+      throw new DuplicityError('User already exists')
+    }
 
-          return User.create(newUser)
-            .catch((error) => {
-              throw new SystemError(error.message)
-            })
-            .then(() => {})
-        })
-    })
+    const passHash = await bcrypt.hash(password, 8)
+
+    const newUser = {
+      name: name,
+      email: email,
+      password: passHash,
+      role: 'client',
+    }
+    await User.create(newUser)
+  } catch (error) {
+    if (error instanceof DuplicityError) {
+      throw error
+    }
+    throw new SystemError(error.message)
+  }
 }
 
 export default registerClient

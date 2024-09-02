@@ -1,6 +1,6 @@
 import logic from '../logic/index.js'
 
-export default (req, res, next) => {
+export default async (req, res, next) => {
   const { userId } = req.params
   const { artisticName, image, description, dates, video } = req.body
 
@@ -13,14 +13,8 @@ export default (req, res, next) => {
   if (video) updateData.video = video
 
   try {
-    logic
-      .updateArtist(userId, updateData)
-      .then((updatedUser) => {
-        res.status(200).json(updatedUser)
-      })
-      .catch((error) => {
-        next(error)
-      })
+    await logic.updateArtist(userId, updateData)
+    res.status(200).json(updateData)
   } catch (error) {
     next(error)
   }

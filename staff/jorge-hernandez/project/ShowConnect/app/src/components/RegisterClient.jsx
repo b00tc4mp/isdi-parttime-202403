@@ -11,7 +11,7 @@ function RegisterClient({ onClickGoToLogin, artistId }) {
 
   const handleGoToLogin = (e) => onClickGoToLogin(e)
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault()
 
     const form = e.target
@@ -21,53 +21,45 @@ function RegisterClient({ onClickGoToLogin, artistId }) {
     const passwordRepeat = form.passwordRepeat.value
 
     try {
-      logic
-        .registerClient(name, email, password, passwordRepeat)
-        .then(() => {
-          setMessage('Usuario Registrado, ya puedes hacer login')
+      await logic.registerClient(name, email, password, passwordRepeat)
+      setMessage('Usuario Registrado, ya puedes hacer login')
+      form.reset()
 
-          form.reset()
-
-          setTimeout(() => {
-            handleGoToLogin(e)
-          }, 2000)
-        })
-        .catch((error) => {
-          console.error(error)
-          alert(error.message)
-          return
-        })
+      setTimeout(() => {
+        handleGoToLogin(e)
+      }, 2000)
     } catch (error) {
-      console.error(error.message)
-      alert(error.message)
+      console.error('Error registering client:', error)
+      alert(error.message || 'An unexpected error occurred')
     }
   }
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault()
 
     const form = e.target
     const token = sessionStorage.token
 
-    const { sub: userId } = extractPayloadFromJWT(token)
-    const messageText = form.message.value.trim()
+    try {
+      const { sub: userId } = extractPayloadFromJWT(token)
+      const messageText = form.message.value.trim()
 
-    if (!userId || !artistId || !messageText) {
-      console.error('userId, artistId, or messageText is missing')
-      alert('Faltan datos necesarios para enviar el mensaje.')
-      return
+      if (!userId || !artistId || !messageText) {
+        console.error('userId, artistId, or messageText is missing')
+        alert('Faltan datos necesarios para enviar el mensaje.')
+        return
+      }
+
+      await logic.createNewChatAndMessage(userId, artistId, messageText)
+      form.reset()
+      setMessage('Mensaje enviado con éxito')
+    } catch (error) {
+      console.error('Error sending message:', error)
+      alert(
+        'Error al enviar el mensaje: ' +
+          (error.message || 'An unexpected error occurred')
+      )
     }
-
-    logic
-      .createNewChatAndMessage(userId, artistId, messageText)
-      .then(() => {
-        form.reset()
-        setMessage('Mensaje enviado con éxito')
-      })
-      .catch((error) => {
-        console.error('Error sending message:', error.message)
-        alert('Error al enviar el mensaje: ' + error.message)
-      })
   }
 
   return (
