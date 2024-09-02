@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import logic from "../../../logic/index"
 import { useNavigate } from "react-router-dom"
-import SearchBar from "../library/SearchBar" // Importar SearchBar
+import SearchBar from "../library/SearchBar" 
 
 import './RoomList.css'
 
