@@ -1,19 +1,13 @@
 import { Schema, model } from 'mongoose'
 
 const appointment = new Schema({
-    date: {
+    startDate: {
         type: Date,
         required: true
     },
 
-    time: {
+    endDate: {
         type: Date,
-        required: true
-    },
-
-    service: {
-        type: Schema.Types.ObjectId,
-        ref: 'Service',
         required: true
     },
 
@@ -23,6 +17,13 @@ const appointment = new Schema({
         required: true
     },
 
+    service: {
+        type: Schema.Types.ObjectId,
+        ref: 'Service',
+        required: true
+    },
+
+
     provider: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -31,8 +32,12 @@ const appointment = new Schema({
 
     status: {
         type: String,
-        enum: ['confirmed', 'pending', 'cancelled'],
-        default: 'confirmed'
+        enum: ['confirmed', 'pending', 'cancelled']
+    },
+
+    active: {
+        type: Boolean,
+        default: true
     },
 
     notes: [{

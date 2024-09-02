@@ -14,7 +14,7 @@
   }
 
   .CalendarDay {
-    @apply border-ligth-shadow-grey rounded border-2 border-solid p-2 text-fast-velvet hover:cursor-pointer;
+    @apply rounded border-2 border-solid border-ligth-shadow-grey p-2 text-fast-velvet hover:cursor-pointer hover:bg-light-pale-sage active:scale-95;
   }
 
   .CalendarDay.Today {
@@ -23,7 +23,7 @@
 
   .CalendarDay.PrevMonthDay,
   .CalendarDay.NextMonthDay {
-    @apply text-dark-shadow-grey bg-soft-gray;
+    @apply bg-soft-gray text-dark-shadow-grey;
   }
 
   .Button {

@@ -1,5 +1,4 @@
-import { User } from '../data/index.js'
-import { Service } from '../data/index.js'
+import { User, Service } from '../data/index.js'
 import { NotFoundError, SystemError, DuplicityError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
@@ -20,7 +19,7 @@ const addService = (userId, name, description, category, duration, price) => {
                 throw new NotFoundError('User not found')
             }
 
-            return Service.findOne({ name, provider: user.id })
+            return Service.findOne({ name, provider: user.id, active: true })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(service => {
                     if (service) {
@@ -40,8 +39,6 @@ const addService = (userId, name, description, category, duration, price) => {
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })
-
-
         })
 }
 

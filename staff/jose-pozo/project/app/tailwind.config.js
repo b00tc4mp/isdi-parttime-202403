@@ -15,7 +15,10 @@ export default {
         'sandy-pink': '#ce8083', // Tono claro de rosa-rojo
         'ligth-shadow-grey': '#dddddd', //Tono de sombra clara de gris.
         'dark-shadow-grey': '#999999', //Tono de sombra oscura de gris.
-        'input-inherit': '#999'
+        'input-inherit': '#999',
+        'opal-green': '#97dfc6',
+        'ivory-cream': '#f8ecc4',
+        'coral-blush': 'f69591'
       },
     },
   },

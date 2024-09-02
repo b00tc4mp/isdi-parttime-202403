@@ -11,11 +11,15 @@ import Text from '../../../components/core/Text'
 import ViewBox from '../../../components/library/ViewBox'
 import FormWithFeedback from '../../../components/library/FormWithFeedback'
 
+
+
+
 function CreateCustomerForm({ onClose }) {
 
     const [message, setMessage] = useState('')
 
     const handlerCreateCustomerSubmit = event => {
+
         event.preventDefault()
 
         const form = event.target

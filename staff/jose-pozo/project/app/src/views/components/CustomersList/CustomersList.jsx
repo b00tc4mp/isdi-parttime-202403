@@ -7,6 +7,7 @@ import './CustomersList.css'
 import logic from '../../../logic/index'
 
 import Text from '../../../components/core/Text'
+import Input from '../../../components/core/Input'
 
 import ViewBox from '../../../components/library/ViewBox'
 
@@ -14,8 +15,13 @@ import ViewBox from '../../../components/library/ViewBox'
 const CustomersList = () => {
 
     const [customers, setCustomers] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
 
     const { handleUserProfileClick, showCompoUserProfile } = useUserProfileContext()
+
+    const handleSearchChange = event => setSearchTerm(event.target.value)
+
+    const filteredCustomers = customers.filter(service => service.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
     useEffect(() => {
         try {
@@ -38,10 +44,11 @@ const CustomersList = () => {
 
             <hr className='CustomersListHr'></hr>
 
-            {/* TODO Fix scrollbar */}
+            <Input className='CustomersSearchInput' type="text" placeholder="&#128269; Search Customer" value={searchTerm} onChange={handleSearchChange} />
+
             <ul className='CustomersListUl'>
-                {customers.map(customer => (
-                    <li onClick={() => handleUserProfileClick(customer)} key={customer._id} className='CustomersListLi'>
+                {filteredCustomers.map(customer => (
+                    <li onClick={() => handleUserProfileClick(customer)} key={customer.id} className='CustomersListLi'>
                         {customer.name} {customer.surname}
                     </li>
                 ))}

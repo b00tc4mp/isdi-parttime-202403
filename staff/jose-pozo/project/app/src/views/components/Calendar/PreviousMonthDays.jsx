@@ -2,7 +2,7 @@ import './Calendar.css'
 
 import CurrentMonthDay from './CurrentMonthDay'
 
-const PreviousMonthDays = ({ days }) => {
+const PreviousMonthDays = ({ days, onDayClick }) => {
     return <>
         {days.map(({ day, dateISO, className }) => (
             <CurrentMonthDay

@@ -17,12 +17,9 @@ const deleteService = (userId, serviceId) => {
                 .then(service => {
                     if (!service) throw new NotFoundError('Service not found')
 
-                    return Service.deleteOne({ _id: serviceId })
+                    return Service.updateOne({ _id: serviceId }, { $set: { active: false } })
                         .catch(error => { throw new SystemError(error.message) })
-                        .then(() => {
-
-                            return service._id
-                        })
+                        .then(() => { })
                 })
         })
 }

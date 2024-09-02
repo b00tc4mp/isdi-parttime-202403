@@ -1,10 +1,13 @@
 import './Calendar.css'
 
+import { useState } from 'react'
+
 import PreviousMonthDays from './PreviousMonthDays'
 import CurrentMonthDays from './CurrentMonthDays'
 import NextMonthDays from './NextMonthDays'
 
-const CalendarGrid = ({ currentMonth, currentYear, today }) => {
+const CalendarGrid = ({ currentMonth, currentYear, today, onDayClick }) => {
+
     const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate()
     let firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay()
     firstDayOfMonth = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1 // Lunes = 0, domingo = 6 Para empezar en Lunes
@@ -40,16 +43,16 @@ const CalendarGrid = ({ currentMonth, currentYear, today }) => {
     })
 
     const handleDayClick = (dateISO) => {
-        console.log(`Clicked on date: ${dateISO}`)
+        // console.log(`Clicked on date: ${dateISO}`)
         // Aquí añadir la lógica para manejar el clic
-        // Por ejemplo, mostrar un modal con citas.
+        onDayClick(dateISO)
     }
 
     return (
         <div className="CalendarGrid">
-            <PreviousMonthDays days={daysFromPrevMonth} />
+            <PreviousMonthDays days={daysFromPrevMonth} onDayClick={handleDayClick} />
             <CurrentMonthDays days={daysInCurrentMonth} today={today} onDayClick={handleDayClick} />
-            <NextMonthDays days={daysFromNextMonth} />
+            <NextMonthDays days={daysFromNextMonth} onDayClick={handleDayClick} />
         </div>
     )
 }

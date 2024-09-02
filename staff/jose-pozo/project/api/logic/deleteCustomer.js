@@ -17,12 +17,9 @@ const deleteCustomer = (userId, customerId) => {
                 .then(customerId => {
                     if (!customerId) throw new NotFoundError('Customer not found')
 
-                    return User.deleteOne({ _id: customerId })
+                    return User.updateOne({ _id: customerId }, { $set: { active: false } })
                         .catch(error => { throw new SystemError(error.message) })
-                        .then(() => {
-
-                            return customerId._id
-                        })
+                        .then(() => { })
                 })
         })
 }

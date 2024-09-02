@@ -4,10 +4,6 @@ import validate from 'com/validate'
 
 const updateCustomer = (customerId, customerUpdated) => {
     validate.id(customerId, 'customerId')
-    // validate.name(name)
-    // validate.surname(surname, 'surname')
-    // validate.email(email)
-    // validate.phone(phone)
 
     if (customerUpdated.name) validate.name(customerUpdated.name)
     if (customerUpdated.surname) validate.name(customerUpdated.surname, 'surname')

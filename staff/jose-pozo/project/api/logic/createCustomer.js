@@ -15,7 +15,7 @@ const createCustomer = (userId, name, surname, email) => {
                 throw new NotFoundError('User not found')
             }
 
-            return User.findOne({ manager: user.id, email: email, role: 'customer' })
+            return User.findOne({ manager: user.id, email: email, role: 'customer', active: true })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(customer => {
                     if (customer) {

@@ -5,7 +5,7 @@ import './Calendar.css'
 import CalendarHeader from './CalendarHeader'
 import CalendarGrid from './CalendarGrid'
 
-const Calendar = () => {
+const Calendar = ({ setSelectedDate }) => {
     const today = new Date()
     const [currentMonth, setCurrentMonth] = useState(today.getMonth())
     const [currentYear, setCurrentYear] = useState(today.getFullYear())
@@ -48,6 +48,7 @@ const Calendar = () => {
                 currentMonth={currentMonth}
                 currentYear={currentYear}
                 today={today}
+                onDayClick={setSelectedDate}
             />
         </div>
     )

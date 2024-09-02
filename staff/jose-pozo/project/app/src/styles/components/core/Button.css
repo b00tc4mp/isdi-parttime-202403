@@ -10,7 +10,7 @@
   }
 
   .Button.HomeSidebarButton {
-    @apply w-full rounded bg-soft-gray p-1 text-left text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+    @apply w-full truncate rounded bg-soft-gray p-1 text-left text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
   }
 
   .Button.CustomersButton {

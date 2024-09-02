@@ -159,7 +159,7 @@ describe('update customer', () => {
                 } catch (error) {
                     errorThrown = error
                 } finally {
-                    expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+                    expect(errorThrown).to.be.an.instanceOf(ContentError)
                     expect(errorThrown.message).to.equal('Name is not valid')
                 }
             })
@@ -194,7 +194,7 @@ describe('update customer', () => {
                 } catch (error) {
                     errorThrown = error
                 } finally {
-                    expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+                    expect(errorThrown).to.be.an.instanceOf(ContentError)
                     expect(errorThrown.message).to.equal('Surname is not valid')
                 }
             })
@@ -229,7 +229,7 @@ describe('update customer', () => {
                 } catch (error) {
                     errorThrown = error
                 } finally {
-                    expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+                    expect(errorThrown).to.be.an.instanceOf(ContentError)
                     expect(errorThrown.message).to.equal('Email is not valid')
                 }
             })
@@ -264,7 +264,7 @@ describe('update customer', () => {
                 } catch (error) {
                     errorThrown = error
                 } finally {
-                    expect(errorThrown).to.be.an.instanceOf(NotFoundError)
+                    expect(errorThrown).to.be.an.instanceOf(ContentError)
                     expect(errorThrown.message).to.equal('Phone is not valid')
                 }
             })

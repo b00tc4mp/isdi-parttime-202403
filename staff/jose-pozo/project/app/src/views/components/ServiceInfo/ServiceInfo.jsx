@@ -9,10 +9,12 @@ import Box from '../../../components/core/Text'
 import Button from '../../../components/core/Button'
 
 import ViewBox from '../../../components/library/ViewBox'
+import UpdateService from '../UpdateService/UpdateService'
 
 
 
 const ServiceInfo = ({ selectedService, oncloseServiceInfo }) => {
+    const [showEditService, setShowEditService] = useState(false)
 
     const handleDeleteServiceClick = () => {
         if (!confirm(`Are you sure you want to delete service ${selectedService.name}?`)) return
@@ -32,8 +34,17 @@ const ServiceInfo = ({ selectedService, oncloseServiceInfo }) => {
         }
     }
 
+    const handleEditServiceClick = () => setShowEditService(!showEditService)
+
+    const handleCloseUpdateService = () => {
+        setShowEditService(false)
+        oncloseServiceInfo()
+    }
+
 
     return <>
+        {showEditService && <UpdateService onCloseEditedService={handleCloseUpdateService} onSaveEditedService={handleCloseUpdateService} selectedService={selectedService} oncloseUpdateService={handleCloseUpdateService} />}
+
         <ViewBox tag={'section'} className='ServiceInfoSection'>
 
             <Text>Service Info</Text>
@@ -41,17 +52,13 @@ const ServiceInfo = ({ selectedService, oncloseServiceInfo }) => {
             <hr className='ServiceInfoHr'></hr>
 
             <Text className='my-4 text-4xl font-bold text-pale-sage'>{selectedService.name.toUpperCase()}</Text>
-            <Text>Description</Text>
-            <Text>{selectedService.description}</Text>
-            <Text>Category</Text>
-            <Text>{selectedService.category}</Text>
-            <Text>Duration</Text>
-            <Text>{selectedService.duration}</Text>
-            <Text>Price</Text>
-            <Text className='mb-4'>{selectedService.price}</Text>
+            <Text>&#9999; {selectedService.description}</Text>
+            <Text>&#127991; {selectedService.category}</Text>
+            <Text>&#9202; {selectedService.duration} minutes</Text>
+            <Text className='mb-4'>&#128182; {selectedService.price} €</Text>
 
             <Box className='ServiceInfoButtons'>
-                <Button className='EditServiceButton'>Edit</Button>
+                <Button className='EditServiceButton' onClick={handleEditServiceClick}>Edit</Button>
                 <Button className='DeleteServiceButton' onClick={handleDeleteServiceClick}>Delete</Button>
             </Box>
 

@@ -36,6 +36,11 @@ const user = new Schema({
         ref: 'User'
     },
 
+    active: {
+        type: Boolean,
+        default: true
+    },
+
     providers: [{
         type: Schema.Types.ObjectId,
         ref: 'User'

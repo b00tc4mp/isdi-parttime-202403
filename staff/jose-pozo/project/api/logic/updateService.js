@@ -1,5 +1,3 @@
-debugger
-
 import { User, Service } from '../data/index.js'
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
@@ -43,7 +41,6 @@ const updateService = (userId, serviceId, serviceUpdated) => {
             return Service.updateOne({ _id: serviceId }, { $set: fieldsUpdated })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(() => { })
-            return
         })
 }
 

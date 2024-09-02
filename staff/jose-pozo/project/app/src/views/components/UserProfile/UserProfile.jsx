@@ -58,6 +58,7 @@ const UserProfile = () => {
 
     const handleCloseUpdateCustomerProfile = () => {
         setShowEditCustomerProfile(false)
+        setShowCompoUserProfile(!showCompoUserProfile)
     }
 
     return <>

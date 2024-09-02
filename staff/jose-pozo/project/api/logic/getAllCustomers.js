@@ -11,10 +11,9 @@ const getAllCustomers = (userId) => {
             if (!user) throw new NotFoundError('User not found')
 
 
-            return User.find({ manager: userId }).select('-__v').lean()
+            return User.find({ manager: userId, active: true }).select('-__v').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(customers => {
-                    // if (!customers.length) throw new NotFoundError('Customers not found')
 
                     customers.forEach(customer => {
 

@@ -12,7 +12,7 @@ const getAllServices = (userId) => {
         .then(user => {
             if (!user) throw new NotFoundError('User not found')
 
-            return Service.find({ provider: user._id }).select('-__v').lean()
+            return Service.find({ provider: user._id, active: true }).select('-__v').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(services => {
 

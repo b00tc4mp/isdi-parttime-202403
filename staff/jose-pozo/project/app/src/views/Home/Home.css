@@ -13,38 +13,38 @@
   }
 
   .HomeHeader {
-    @apply col-span-6 flex w-full justify-between rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-1 align-middle opacity-100 shadow-xl;
+    @apply col-span-6 flex w-full justify-between rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-1 align-middle opacity-100 shadow-2xl;
   }
 
   .HomeSidebar {
-    @apply col-start-1 row-span-3 row-start-2 flex h-full w-full flex-col gap-2 rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-xl;
+    @apply col-start-1 row-span-3 row-start-2 flex h-full w-full flex-col gap-2 rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-2xl;
   }
 
   .HomeCurrentTimeSection {
-    @apply col-span-2 col-start-5 row-start-2 flex h-full w-full flex-col items-end justify-evenly rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-xl;
+    @apply col-span-2 col-start-5 row-start-2 flex h-full w-full flex-col items-end justify-evenly rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-2xl;
   }
 
   .HomeDaily {
-    @apply col-span-3 col-start-2 row-span-3 row-start-2 h-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
+    @apply col-span-3 col-start-2 row-span-3 row-start-2 h-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-2xl;
   }
 
   .HomeCalendar {
-    @apply col-span-2 col-start-5 row-span-2 row-start-3 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-xl;
+    @apply col-span-2 col-start-5 row-span-2 row-start-3 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 p-4 shadow-2xl;
   }
 
   .HomeMiniContent {
-    @apply col-start-1 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
+    @apply col-start-1 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-2xl;
   }
 
   .HomeContent1 {
-    @apply col-span-2 col-start-2 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
+    @apply col-span-2 col-start-2 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-2xl;
   }
 
   .HomeContent2 {
-    @apply col-span-3 col-start-4 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
+    @apply col-span-3 col-start-4 row-start-5 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-2xl;
   }
 
   .HomeFooter {
-    @apply col-span-6 col-start-1 row-start-6 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-xl;
+    @apply col-span-6 col-start-1 row-start-6 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-2xl;
   }
 }

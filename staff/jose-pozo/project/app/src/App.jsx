@@ -1,16 +1,16 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-
 import { UserProfileProvider } from './contexts/UserProfileProvider'
 
 import logic from './logic/index.js'
 
 import Login from './views/Login'
 import Register from './views/Register'
-import Home from './views/Home/Home.jsx'
-
+import Home from './views/Home/Home'
 
 
 function App() {
+
+
 
   return <Routes>
 
@@ -21,7 +21,6 @@ function App() {
     <Route path='/*' element={<RenderHome />} />
 
   </Routes>
-
 }
 
 export default App

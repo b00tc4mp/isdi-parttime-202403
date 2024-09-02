@@ -2,7 +2,7 @@ import './Calendar.css'
 
 import CurrentMonthDay from './CurrentMonthDay'
 
-const NextMonthDays = ({ days }) => {
+const NextMonthDays = ({ days, onDayClick }) => {
     return <>
         {days.map(({ day, dateISO, className }) => (
             <CurrentMonthDay

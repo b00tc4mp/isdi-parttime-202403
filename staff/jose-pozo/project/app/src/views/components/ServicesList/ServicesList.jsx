@@ -7,6 +7,7 @@ import './ServicesList.css'
 import logic from '../../../logic/index'
 
 import Text from '../../../components/core/Text'
+import Input from '../../../components/core/Input'
 
 import ViewBox from '../../../components/library/ViewBox'
 
@@ -17,6 +18,11 @@ const ServicesList = () => {
     const [services, setServices] = useState([])
     const [showServiceInfo, setShowServiceInfo] = useState(false)
     const [selectedService, setSelectedService] = useState(null)
+    const [searchTerm, setSearchTerm] = useState('')
+
+    const handleSearchChange = event => setSearchTerm(event.target.value)
+
+    const filteredServices = services.filter(service => service.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
     useEffect(() => {
         try {
@@ -35,14 +41,14 @@ const ServicesList = () => {
         setShowServiceInfo(true)
     }
 
-    const handleColseServiceInfo = () => {
+    const handleCloseServiceInfo = () => {
         setShowServiceInfo(false)
     }
 
 
     return <>
 
-        {showServiceInfo && <ServiceInfo oncloseServiceInfo={handleColseServiceInfo} selectedService={selectedService} />}
+        {showServiceInfo && <ServiceInfo oncloseServiceInfo={handleCloseServiceInfo} selectedService={selectedService} />}
 
         <ViewBox tag={'section'} className='ServicesListSection'>
 
@@ -50,9 +56,11 @@ const ServicesList = () => {
 
             <hr className='ServicesListHr'></hr>
 
+            <Input className='ServicesSearchInput' type="text" placeholder="&#128269; Search Service..." value={searchTerm} onChange={handleSearchChange} />
+
             <ul className='ServicesListUl'>
-                {services.map(service => (
-                    <li onClick={() => handleServiceClick(service)} key={service._id} className='ServicesListLi'>
+                {filteredServices.map(service => (
+                    <li onClick={() => handleServiceClick(service)} key={service.id} className='ServicesListLi'>
                         {service.name}
                     </li>
                 ))}

@@ -17,7 +17,7 @@ function AddService({ onClose }) {
     const [message, setMessage] = useState('')
     const [selectedOption, setSelectedOption] = useState('')
 
-    const handlerAddServiceSubmit = event => {
+    const handleAddServiceSubmit = event => {
         event.preventDefault()
 
         const form = event.target
@@ -61,7 +61,7 @@ function AddService({ onClose }) {
 
             <hr className='AddServiceHr'></hr>
 
-            <FormWithFeedback onSubmit={handlerAddServiceSubmit} message={message} >
+            <FormWithFeedback onSubmit={handleAddServiceSubmit} message={message} >
                 <Input id='name' type='text' placeholder='Name'></Input>
                 <Input id='description' type='text' placeholder='Description' required={false}></Input>
                 <Input id='category' type='text' placeholder='Category' required={false}></Input>

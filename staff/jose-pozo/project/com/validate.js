@@ -6,6 +6,8 @@ const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const ID_REGEX = /^[0-9a-z]+$/
 const PHONE_REGEX = /^(\+?\d{1,4}[-.\s]?)?(\(?\d{1,4}\)?[-.\s]?)?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
+const TIME_REGEX = /^\d{2}:\d{2}$/
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -62,6 +64,16 @@ function validateNumber(number, explain = 'number') {
         throw new ContentError(`${explain} is not valid`)
 }
 
+function validateDate(date, explain = 'date') {
+    if (typeof date !== 'string' || !DATE_REGEX.test(date))
+        throw new ContentError(`${explain} is not valid`)
+}
+
+function validateTime(time, explain = 'time') {
+    if (typeof time !== 'string' || !TIME_REGEX.test(time))
+        throw new ContentError(`${explain} is not valid`)
+}
+
 const validate = {
     name: validateName,
     username: validateUsername,
@@ -73,7 +85,9 @@ const validate = {
     url: validateUrl,
     id: validateId,
     phone: validatePhone,
-    number: validateNumber
+    number: validateNumber,
+    date: validateDate,
+    time: validateTime
 }
 
 export default validate

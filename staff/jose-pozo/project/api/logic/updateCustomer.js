@@ -37,10 +37,7 @@ const updateCustomer = (userId, customerId, customerUpdated) => {
             return User.updateOne({ _id: customerId }, { $set: fieldsUpdated })
                 .catch(error => { throw new SystemError(error.message) })
                 .then(() => { })
-            return
         })
-
-
 }
 
 export default updateCustomer
