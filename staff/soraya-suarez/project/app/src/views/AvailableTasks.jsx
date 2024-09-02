@@ -6,7 +6,7 @@ import logic from '../logic'
 
 import useContext from '../useContext'
 
-function searchTasks() {
+function AvailableTasks() {
     const { alert } = useContext()
 
     const [tasks, setTasks] = useState([])
@@ -38,4 +38,4 @@ function searchTasks() {
         {tasks.map(task => <Task key={task.id} task={task} onTaskRefreshed={handleRefresh}/>)}
     </div>
 }
-export default searchTasks
+export default AvailableTasks

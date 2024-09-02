@@ -14,7 +14,8 @@ import AddTaskForm from './components/AddTaskForm'
 import HomeScreen from './components/HomeScreen'
 import Link from '../components/core/Link'
 import Users from './Users'
-import SearchTasks from './SearchTasks'
+import AvailableTasks from './AvailableTasks'
+import Profile from './Profile';
 
 import logic from '../logic'
 
@@ -37,13 +38,18 @@ function Home({ onUserLoggedOut }) {
     }
 
     const handleGoToSearchTasks = () => {
-        handleNavigateTo('search-tasks')
-        navigate('/search-tasks')
+        handleNavigateTo('available-tasks')
+        navigate('/available-tasks')
     }
 
     const handleGoToUsers = () => {
         handleNavigateTo('users')
         navigate('/users')
+    }
+
+    const handleGoToProfile = () => {
+        handleNavigateTo('profile')
+        navigate('/profile')
     }
 
     const handleNavigateTo = (url) => setPage(url)
@@ -54,13 +60,15 @@ function Home({ onUserLoggedOut }) {
 
     return <div className="container grid">
         <nav className="flex justify-between items-center px-4 shadow shadow-gray-300 w-screen">
-            <a href="">{<CiMenuBurger/>}</a>
+            <p>Daily Work</p>
+            {/*<a href="">{<CiMenuBurger/>}</a>*/}
             <Link onClick={handleLogout}>{<CiLogout/>}</Link>
         </nav>
         <div className="overflow-scroll py-4 body-grid">
             <Routes>
-                <Route path="/search-tasks" element={<SearchTasks/>} />
+                <Route path="/available-tasks" element={<AvailableTasks/>} />
                 <Route path="/users" element={<Users/>} />
+                <Route path="/profile" element={<Profile/>} />
             </Routes>
 
             {addTaskForm && <AddTaskForm onProcessFinished={handleProcessFinishClick} />}
@@ -72,7 +80,7 @@ function Home({ onUserLoggedOut }) {
             <Button className="border-0" onClick={()=> handleGoToSearchTasks()}>{<IoSearchOutline />}</Button>
             <Button className="border-0" onClick={()=> handleAddTaskClick()}>{<IoIosAdd/>}</Button>
             <Button className="border-0" onClick={handleGoToUsers}>{<FiUsers/>}</Button>
-            <Button className="border-0" onClick={()=> handleAddTaskClick()}>{<CgProfile />}</Button>
+            <Button className="border-0" onClick={()=> handleGoToProfile()}>{<CgProfile />}</Button>
         </footer>
     </div>
 }

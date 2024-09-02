@@ -6,6 +6,7 @@ import mongoose from 'mongoose'
 import {
     enrollUserHandler,
     authenticateUserHandler,
+    getMyProfileHandler,
     getAllUsersHandler,
     getAvailableUsersHandler,
     modifyUserHandler,
@@ -41,6 +42,7 @@ mongoose.connect(MONGODB_URL)
 
         api.post('/users', jsonBodyParser, enrollUserHandler)
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
+        api.get('/users/my-profile', getMyProfileHandler)
         api.get('/users', getAllUsersHandler)
         api.get('/users/available-users', getAvailableUsersHandler)
         api.patch('/users/modify', jsonBodyParser, modifyUserHandler)
