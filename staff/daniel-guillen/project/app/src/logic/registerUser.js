@@ -1,49 +1,39 @@
-import app, { db } from '../utils/config'
-import { doc, setDoc } from 'firebase/firestore'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { db } from '../utils/config'
+import { collection, addDoc } from 'firebase/firestore'
 
 import { ValidationError, SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const auth = getAuth(app)
-
-const registerUser = async (email, username, password, passwordRepeat, access) => {
+const registerUser = async (username, password, passwordRepeat, access) => {
     try {
-        // Realizar las validaciones
-        validate.email(email)
+        //validaciones
         validate.username(username)
         validate.password(password)
         validate.passwordsMatch(password, passwordRepeat)
 
-    } catch (validationError) {
-        console.error("Validation error: ", validationError)
-        throw new ValidationError(validationError.message)
-    }
-
-    try {
-        // Crear el usuario con email y contraseña en Firebase Auth
-        const infoUser = await createUserWithEmailAndPassword(
-            auth, 
-            email, 
-            password
-        ).then((userFirebase) => {
-            return userFirebase
-        })
-
-        // Crear documento en Firestore para el usuario registrado
-        const docRef = doc(db, `users/${infoUser.user.uid}`)
-        await setDoc(docRef, {
+        // estructura de usuario
+        const user = {
             Usuario: username,
-            Correo: email,
-            Acceso: access
-        })
+            Password: password,
+            Acceso: access,
+        }
 
-        console.log("User registered: " + username + " " + infoUser.user.uid)
-        return infoUser.user.uid
+        //coleccion firestore
+        const userCollection = collection(db, 'users')
+        await addDoc(userCollection, user)
 
-    } catch (e) {
-        console.error("System error: ", e)
-        throw new SystemError('Error registering user in Firestore')
+        console.log("User registered: " + username + " con acceso en " + access)
+
+        // usuario
+        return user
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            console.error("Validation error: ", error)
+            throw new ValidationError(error.message)
+        } else {
+            console.error("System error: ", error)
+            throw new SystemError('Error registering user in Firestore')
+        }
     }
 }
 

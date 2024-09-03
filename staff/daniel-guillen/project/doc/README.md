@@ -122,4 +122,4 @@ Parts to monitor or review:
     - Basic accessories
     - ADR accessories
 
-![Vehiculos - Furgo 1, Furgo 2, Camion 1...](img/fleet.png)
+![Vehiculos - Furgo 1, Furgo 2, Camion 1...](img/Vehicles.png)

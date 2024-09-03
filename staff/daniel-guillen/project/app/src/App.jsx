@@ -1,30 +1,21 @@
 import './index.css'
 import HeaderMenu from './components/HeaderMenu'
 import { BrowserRouter } from "react-router-dom"
-import { useState } from 'react'
-import app from './utils/config'
-import { getAuth, onAuthStateChanged } from "firebase/auth"
-import AppRoutes from '../src/routes/AppRoutes'
+import StoreRoutes from './routes/StoreRoutes'
+import UsersRoutes from './routes/UsersRoutes'
+import VehiclesRoutes from './routes/VehiclesRoutes'
 
-const auth = getAuth(app)
+
 
 function App() {
-
-  const [user, setUser] = useState(null)
-
-  onAuthStateChanged(auth, (userFirebase) => {
-    if (userFirebase) {
-      setUser(userFirebase)
-    } else {
-      setUser(null)
-    }
-  })
 
   return (
     <div className='App'>
       <BrowserRouter>
-        <HeaderMenu />
-        <AppRoutes user={user} setUser={setUser} />
+        <HeaderMenu/>
+        <UsersRoutes/>
+        <StoreRoutes/>
+        <VehiclesRoutes/>
       </BrowserRouter>
     </div>
   )

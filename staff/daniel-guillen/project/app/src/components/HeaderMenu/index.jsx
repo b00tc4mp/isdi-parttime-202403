@@ -1,14 +1,22 @@
-import React from 'react'
 import './index.css'
 //img
 import logo from '../img/logo.png'
 import Button from '../core/Button'
-import app from '../../utils/config'
-import { getAuth, signOut } from 'firebase/auth'
 
-const auth = getAuth(app)
+import logoutUser from '../../logic/logoutUser'
+import { useNavigate } from 'react-router-dom'
 
 const HeaderMenu = () => {
+
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    
+    logoutUser()  // Elimina el token
+    navigate('/Login')  // => /Login
+  }
+
+
   return (
     <nav className='Nav'>
           <div className='logo'>
@@ -23,7 +31,7 @@ const HeaderMenu = () => {
 
               <li><a className='menu-link-center' href="/Admin">ADMIN</a></li>
 
-              <Button onClick={() => signOut(auth)}>cerrar sesion</Button>
+              <Button onClick={handleLogout}>😴</Button>
 
                 
             </ul>    
