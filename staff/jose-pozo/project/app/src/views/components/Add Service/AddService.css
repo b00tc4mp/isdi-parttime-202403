@@ -5,6 +5,14 @@
     @apply z-10 col-span-2 col-start-5 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-light-pale-sage p-4 text-fast-velvet shadow-2xl;
   }
 
+  .AddServiceForm {
+    @apply w-full;
+  }
+
+  .AddServiceInput {
+    @apply w-full;
+  }
+
   .AddServiceHr {
     @apply border-fast-velvet;
   }

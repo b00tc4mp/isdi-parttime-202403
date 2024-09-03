@@ -12,7 +12,7 @@ const CalendarHeader = ({ currentMonth, currentYear, onPrevMonth, onNextMonth, o
     return <>
         <Box className="CalendarHeader">
             <Button onClick={onPrevMonth}>← prev</Button>
-            <Button onClick={onTodayClick}> Today </Button>
+            <Button onClick={onTodayClick}> 🔄 Today </Button>
             <span> {monthNames[currentMonth]} {currentYear} </span>
             <Button onClick={onNextMonth}>next →</Button>
         </Box>

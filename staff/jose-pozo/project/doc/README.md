@@ -2,7 +2,7 @@
 
 Daily Planner is an application designed for professionals who need to efficiently manage their appointment schedules. This tool not only allows you to schedule and organize appointments with clients but also maintain a detailed database of each one, including their history and specific treatments.
 
-![Texto alternativo](../public/images/daily-planner-gif.webp)
+![Texto alternativo](../app/public/daily-planner-gif.webp)
 
 ## Functional
 
@@ -19,26 +19,13 @@ Provider
 - Create service
 - Delete service
 - Edit service
-- Send messages
-- Create profile
-- configure app
-- Send mails (remainders, info, etc...)
-
-Admin | Root
-
-- list latest reportings (from users)
-- view a report
-- reply to a report
-- deactivate a user
-- ...
-
-Root
-
-- list admin users
-- view admin user
-- deactivate admin user
-- register new admin user
-- ...
+- Create notes (version 1.0.0)
+- Delete notes (version 1.0.0)
+- Edit notes (version 1.0.0)
+- Edit profile (version 1.0.0)
+- Configure app (version 1.0.0)
+- Send mails (remainders, info, etc...) (version 1.0.0)
+- Retrive every stats for date, time, customer, etc... (version 1.0.0)
 
 ### UI Design
 
@@ -57,32 +44,38 @@ User
 - password (string)
 - role (string, enum: customer|provider)
 - phone (string, optional)
+- manager (User.id)
+- active (boolean)
+- providers (User.id)
 
 Service
 
 - id (auto)
-- title (string)
+- name (string)
 - duration (number)
 - price (number)
 - description (string)
 - provider (User.id)
+- active (boolean)
 
-Booking
+Appointment
 
 - id (auto)
 - service (Service.id)
-- date (Date)
-- user (User.id)
-
-Provider
-
-- id (auto)
-- user (User.id)
-- customers ([User.id])
+- stardate (Date)
+- enddate (Date)
+- customer (User.id)
+- provider (User.id)
 
 Note
 
 - id (auto)
-- provider (User.id)
-- customer (User.id)
 - text (string)
+- createdat (Date)
+- createdby (User.id)
+- relatedto(objectid)
+- relatedmodel (string, enum: appointment|customer|service)
+
+## Test-Coverage
+
+![](../app/public/Captura%20de%20pantalla%202024-09-03.png)

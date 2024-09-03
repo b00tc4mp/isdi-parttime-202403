@@ -11,13 +11,19 @@ import Button from '../../../components/core/Button'
 import ViewBox from '../../../components/library/ViewBox'
 import UpdateService from '../UpdateService/UpdateService'
 
-
+import Confirm from '../Confirm/Confirm'
 
 const ServiceInfo = ({ selectedService, oncloseServiceInfo }) => {
+
     const [showEditService, setShowEditService] = useState(false)
 
+    const [confirm, setConfirm] = useState(false)
+
+    const handleConfirm = () => {
+        setConfirm(!confirm)
+    }
+
     const handleDeleteServiceClick = () => {
-        if (!confirm(`Are you sure you want to delete service ${selectedService.name}?`)) return
 
         try {
             logic.deleteService(selectedService.id)
@@ -43,6 +49,9 @@ const ServiceInfo = ({ selectedService, oncloseServiceInfo }) => {
 
 
     return <>
+
+        {confirm && <Confirm handleDeleteService={handleDeleteServiceClick} message={`Are you sure you want to delete this service?`} onCancel={handleConfirm} />}
+
         {showEditService && <UpdateService onCloseEditedService={handleCloseUpdateService} onSaveEditedService={handleCloseUpdateService} selectedService={selectedService} oncloseUpdateService={handleCloseUpdateService} />}
 
         <ViewBox tag={'section'} className='ServiceInfoSection'>
@@ -59,7 +68,7 @@ const ServiceInfo = ({ selectedService, oncloseServiceInfo }) => {
 
             <Box className='ServiceInfoButtons'>
                 <Button className='EditServiceButton' onClick={handleEditServiceClick}>Edit</Button>
-                <Button className='DeleteServiceButton' onClick={handleDeleteServiceClick}>Delete</Button>
+                <Button className='DeleteServiceButton' onClick={handleConfirm}>Delete</Button>
             </Box>
 
             <hr className='ServiceInfoHr'></hr>

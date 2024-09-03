@@ -8,7 +8,7 @@ const { MONGODB_URL } = process.env
 mongoose.connect(MONGODB_URL)
     .then(() => {
         try {
-            getAllAppointments('66cb8d3d9e334b57ce1f9966')
+            getAllAppointments('66d2fd4593cac8027dc4033e')
                 .then(appointments => console.log('appointments retrieved', appointments))
                 .catch(error => console.error(error))
         } catch (error) {

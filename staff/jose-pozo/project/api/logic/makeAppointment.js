@@ -27,6 +27,7 @@ const makeAppointment = (userId, customerId, serviceId, date, time, status) => {
                     const endDateTime = new Date(startDateTime.getTime() + duration * 60000)
 
                     return Appointment.find({
+                        active: true,
                         provider: user._id,
                         $and: [
                             { startDate: { $lt: endDateTime } },

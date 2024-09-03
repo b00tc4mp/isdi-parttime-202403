@@ -1,6 +1,8 @@
+import './MakeAppointment.css'
+
 import { useState, useEffect } from 'react'
 
-import './MakeAppointment.css'
+import UseContext from '../../../UseContext'
 
 import logic from '../../../logic/index'
 
@@ -14,7 +16,9 @@ import FormWithFeedback from '../../../components/library/FormWithFeedback'
 
 function MakeAppointment({ onClose, refreshAppointments }) {
 
-    const [message, setMessage] = useState('')
+    // const [message, setMessage] = useState('')
+
+    const { alert } = UseContext()
 
     const [customers, setCustomers] = useState([])
     const [searchCustomerTerm, setSearchCustomerTerm] = useState('')
@@ -78,7 +82,7 @@ function MakeAppointment({ onClose, refreshAppointments }) {
         try {
             logic.makeAppointment(customer, service, date, time, status)
                 .then(() => {
-                    setMessage('¡Appointment made!')
+                    alert('¡Appointment made!')
 
                     setTimeout(() => {
 
@@ -89,11 +93,11 @@ function MakeAppointment({ onClose, refreshAppointments }) {
                     }, 2000)
                 })
                 .catch(error => {
-                    setMessage(error.message)
+                    alert(error.message)
                 })
 
         } catch (error) {
-            setMessage(error.message)
+            alert(error.message)
         }
     }
 
@@ -107,8 +111,8 @@ function MakeAppointment({ onClose, refreshAppointments }) {
 
             <hr className='MakeAppointmentHr'></hr>
 
-            <FormWithFeedback onSubmit={handleMakeAppointmentSubmit} message={message} >
-                <input type="text" placeholder="Search for client..." value={searchCustomerTerm} onChange={handleSearchCustomersChange} />
+            <FormWithFeedback onSubmit={handleMakeAppointmentSubmit}>
+                <input className='MakeAppointmentInput' type="text" placeholder="Search for client..." value={searchCustomerTerm} onChange={handleSearchCustomersChange} />
                 <select id="customer" className='MakeAppointmentSelect' value={selectedCustomer?.id} onChange={(event) => setSelectedCustomer(customers.find(customer => customer.id === event.target.value))}>
                     <option value="">Select a customer</option>
                     {filteredCustomers.map((customer) => (
@@ -118,7 +122,7 @@ function MakeAppointment({ onClose, refreshAppointments }) {
                     ))}
                 </select>
 
-                <input type="text" placeholder="Search for service..." value={searchServiceTerm} onChange={handleSearchServicesChange} />
+                <input className='MakeAppointmentInput' type="text" placeholder="Search for service..." value={searchServiceTerm} onChange={handleSearchServicesChange} />
 
                 <select id="service" className='MakeAppointmentSelect' value={selectedService?.id} onChange={(event) => setSelectedService(services.find(service => service.id === event.target.value))}>
                     <option value="">Select a service</option>

@@ -39,16 +39,17 @@ describe('update service', () => {
                             description: 'Depilacion laser Brazos',
                             category: 'Laser treatments',
                             duration: 30,
-                            price: 60
+                            price: 60,
+                            provider: user.id
                         })
                             .then(service => updateService(user.id, service.id, { name: 'Espalda', description: 'Depilacion Espalda', category: 'Laser treatments', duration: 30, price: 60 }))
-                            .then(service => {
-                                expect(service).to.be.an('object')
-                                expect(service.name).to.equal('Espalda')
-                                expect(service.description).to.equal('Depilacion Espalda')
-                                expect(service.category).to.equal('Laser treatments')
-                                expect(service.duration).to.equal(30)
-                                expect(service.price).to.equal(60)
+                            .then(updateService => Service.findOne({ _id: updateService.id }))
+                            .then(updateService => {
+                                expect(updateService.name).to.equal('Espalda')
+                                expect(updateService.description).to.equal('Depilacion Espalda')
+                                expect(updateService.category).to.equal('Laser treatments')
+                                expect(updateService.duration).to.equal(30)
+                                expect(updateService.price).to.equal(60)
                             })
                     })
             })
@@ -57,39 +58,9 @@ describe('update service', () => {
 
 
     it('fails on non-existing user', () => {
-        let errorThrown
+        let errorThrown, user, service
 
-        bcrypt.hash('1234', 8)
-            .then(hash => {
-                return User.create({
-                    name: 'Jon',
-                    surname: 'Snow',
-                    email: 'jon@snow',
-                    password: hash,
-                    role: 'provider',
-                })
-                    .then(user => {
-                        return Service.create({
-                            name: 'Brazos',
-                            description: 'Depilacion laser Brazos',
-                            category: 'Laser treatments',
-                            duration: 30,
-                            price: 60
-                        })
-                            .then((user, service) => updateService(new ObjectId.toString(), service.id, { name: 'Espalda', description: 'Depilacion Espalda', category: 'Laser treatments', duration: 30, price: 60 }))
-                            .catch(error => errorThrown = error)
-                            .finally(() => {
-                                expect(errorThrown).to.be.an.instanceof(NotFoundError)
-                                expect(errorThrown.message).to.equal('User not found')
-                            })
-                    })
-            })
-    })
-
-    it('fails on non-existing service', () => {
-        let errorThrown
-
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => User.create({
                 name: 'Jon',
                 surname: 'Snow',
@@ -98,20 +69,56 @@ describe('update service', () => {
                 role: 'provider',
             }))
             .then(createdUser => {
-                user1 = createdUser
+                user = createdUser
 
                 return Service.create({
                     name: 'Brazos',
                     description: 'Depilacion laser Brazos',
                     category: 'Laser treatments',
                     duration: 30,
-                    price: 60
+                    price: 60,
+                    provider: user.id
                 })
             })
             .then(createdService => {
                 service = createdService
 
-                return updateService(user1.id, new ObjectId.toString(), { name: 'Brazos', description: 'Depilacion laser Brazos', category: 'Laser treatments', duration: 30, price: 60 })
+                return updateService(new ObjectId().toString(), service.id, { name: 'Brazos', description: 'Depilacion laser Brazos', category: 'Laser treatments', duration: 30, price: 60 })
+                    .catch(error => errorThrown = error)
+                    .finally(() => {
+                        expect(errorThrown).to.be.an.instanceof(NotFoundError)
+                        expect(errorThrown.message).to.equal('User not found')
+                    })
+            })
+    })
+
+    it('fails on non-existing service', () => {
+        let errorThrown, user, service
+
+        return bcrypt.hash('1234', 8)
+            .then(hash => User.create({
+                name: 'Jon',
+                surname: 'Snow',
+                email: 'jon@snow',
+                password: hash,
+                role: 'provider',
+            }))
+            .then(createdUser => {
+                user = createdUser
+
+                return Service.create({
+                    name: 'Brazos',
+                    description: 'Depilacion laser Brazos',
+                    category: 'Laser treatments',
+                    duration: 30,
+                    price: 60,
+                    provider: user.id
+                })
+            })
+            .then(createdService => {
+                service = createdService
+
+                return updateService(user.id, new ObjectId().toString(), { name: 'Brazos', description: 'Depilacion laser Brazos', category: 'Laser treatments', duration: 30, price: 60 })
                     .catch(error => errorThrown = error)
                     .finally(() => {
                         expect(errorThrown).to.be.an.instanceof(NotFoundError)
@@ -123,7 +130,7 @@ describe('update service', () => {
     it('fails on invalid name', () => {
         let errorThrown, user1, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => User.create({
                 name: 'Jon',
                 surname: 'Snow',
@@ -139,7 +146,8 @@ describe('update service', () => {
                     description: 'Depilacion laser Brazos',
                     category: 'Laser treatments',
                     duration: 30,
-                    price: 60
+                    price: 60,
+                    provider: user1.id
                 })
             })
             .then(createdService => {
@@ -151,7 +159,7 @@ describe('update service', () => {
                 }
                 finally {
                     expect(errorThrown).to.be.an.instanceof(ContentError)
-                    expect(errorThrown.message).to.equal('Name is not valid')
+                    expect(errorThrown.message).to.equal('name is not valid')
                 }
             })
     })
@@ -159,7 +167,7 @@ describe('update service', () => {
     it('fails on invalid description', () => {
         let errorThrown, user1, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => User.create({
                 name: 'Jon',
                 surname: 'Snow',
@@ -175,7 +183,8 @@ describe('update service', () => {
                     description: 'Depilacion laser Brazos',
                     category: 'Laser treatments',
                     duration: 30,
-                    price: 60
+                    price: 60,
+                    provider: user1.id
                 })
             })
             .then(createdService => {
@@ -187,7 +196,7 @@ describe('update service', () => {
                 }
                 finally {
                     expect(errorThrown).to.be.an.instanceof(ContentError)
-                    expect(errorThrown.message).to.equal('Description is not valid')
+                    expect(errorThrown.message).to.equal('description is not valid')
                 }
             })
     })
@@ -195,7 +204,7 @@ describe('update service', () => {
     it('fails on invalid category', () => {
         let errorThrown, user1, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => User.create({
                 name: 'Jon',
                 surname: 'Snow',
@@ -211,7 +220,8 @@ describe('update service', () => {
                     description: 'Depilacion laser Brazos',
                     category: 'Laser treatments',
                     duration: 30,
-                    price: 60
+                    price: 60,
+                    provider: user1.id
                 })
             })
             .then(createdService => {
@@ -223,7 +233,7 @@ describe('update service', () => {
                 }
                 finally {
                     expect(errorThrown).to.be.an.instanceof(ContentError)
-                    expect(errorThrown.message).to.equal('Category is not valid')
+                    expect(errorThrown.message).to.equal('category is not valid')
                 }
             })
     })
@@ -231,7 +241,7 @@ describe('update service', () => {
     it('fails on invalid duration', () => {
         let errorThrown, user1, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => User.create({
                 name: 'Jon',
                 surname: 'Snow',
@@ -247,7 +257,8 @@ describe('update service', () => {
                     description: 'Depilacion laser Brazos',
                     category: 'Laser treatments',
                     duration: 30,
-                    price: 60
+                    price: 60,
+                    provider: user1.id
                 })
             })
             .then(createdService => {
@@ -259,7 +270,7 @@ describe('update service', () => {
                 }
                 finally {
                     expect(errorThrown).to.be.an.instanceof(ContentError)
-                    expect(errorThrown.message).to.equal('Duration is not valid')
+                    expect(errorThrown.message).to.equal('duration is not valid')
                 }
             })
     })
@@ -267,7 +278,7 @@ describe('update service', () => {
     it('fails on invalid price', () => {
         let errorThrown, user1, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => User.create({
                 name: 'Jon',
                 surname: 'Snow',
@@ -283,7 +294,8 @@ describe('update service', () => {
                     description: 'Depilacion laser Brazos',
                     category: 'Laser treatments',
                     duration: 30,
-                    price: 60
+                    price: 60,
+                    provider: user1.id
                 })
             })
             .then(createdService => {
@@ -295,7 +307,7 @@ describe('update service', () => {
                 }
                 finally {
                     expect(errorThrown).to.be.an.instanceof(ContentError)
-                    expect(errorThrown.message).to.equal('Price is not valid')
+                    expect(errorThrown.message).to.equal('price is not valid')
                 }
             })
     })

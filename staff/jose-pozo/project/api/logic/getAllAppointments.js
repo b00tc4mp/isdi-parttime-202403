@@ -19,6 +19,9 @@ const getAllAppointments = (userId) => {
                         appointment.id = appointment._id.toString()
 
                         delete appointment._id
+
+                        // appointment.startDate = new Date(appointment.startDate)
+
                     })
 
                     return appointments

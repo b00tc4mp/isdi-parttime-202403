@@ -29,10 +29,11 @@ function Daily({ onRefreshAppointments, selectedDate, onSelectAppointment, setCu
 
     const todayDate = new Date().toISOString().slice(0, 10)
 
+    console.log(todayDate)
+
     const filteredAppointments = selectedDate
         ? appointments.filter(appointment => appointment.startDate.startsWith(selectedDate))
         : appointments.filter(appointment => appointment.startDate.startsWith(todayDate))
-
 
 
     useEffect(() => {
@@ -63,19 +64,15 @@ function Daily({ onRefreshAppointments, selectedDate, onSelectAppointment, setCu
             <ul className='DailyUl'>
                 {filteredAppointments.slice().sort((a, b) => Date.parse(a.startDate) - Date.parse(b.startDate))
                     .map(appointment => {
-                        //  const startDateLocal = new Date(appointment.startDate).toUTCString().slice(17, 22)             //.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                        //const endDateLocal = new Date(appointment.endDate).toUTCString().slice(17, 22)                //.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                        // const dateFormatted = `${new Date(appointment.startDate).toISOString().slice(8, 10)}/${new Date(appointment.startDate).toISOString().slice(5, 7)}`
-                        // const dateFormatted = new Date(appointment.startDate).toISOString().slice(5, 10).join('/')
 
                         const startDateLocal = new Date(appointment.startDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                         const endDateLocal = new Date(appointment.endDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                         const dateFormatted = new Date(appointment.startDate).toLocaleDateString([], { day: '2-digit', month: '2-digit' })
 
 
-                        const now = new Date().toUTCString()
-                        const startDate = new Date(appointment.startDate).toUTCString()
-                        const endDate = new Date(appointment.endDate).toUTCString()
+                        const now = new Date()
+                        const startDate = new Date(appointment.startDate)
+                        const endDate = new Date(appointment.endDate)
 
                         const appointmentClassName =
                             endDate < now ? 'AppointmentPast' :

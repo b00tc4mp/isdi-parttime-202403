@@ -1,6 +1,8 @@
-import { useState } from 'react'
-
 import './CreateCustomerForm.css'
+
+// import { useState } from 'react'
+
+import UseContext from '../../../UseContext'
 
 import logic from '../../../logic/index'
 
@@ -16,7 +18,9 @@ import FormWithFeedback from '../../../components/library/FormWithFeedback'
 
 function CreateCustomerForm({ onClose }) {
 
-    const [message, setMessage] = useState('')
+    // const [message, setMessage] = useState('')
+
+    const { alert } = UseContext()
 
     const handlerCreateCustomerSubmit = event => {
 
@@ -32,7 +36,7 @@ function CreateCustomerForm({ onClose }) {
         try {
             logic.createCustomer(name, surname, email)
                 .then(() => {
-                    setMessage('¡Customer created!')
+                    alert('¡Customer created!')
 
                     setTimeout(() => {
 
@@ -41,11 +45,11 @@ function CreateCustomerForm({ onClose }) {
                     }, 1500)
                 })
                 .catch(error => {
-                    setMessage(error.message)
+                    alert(error.message)
                 })
 
         } catch (error) {
-            setMessage(error.message)
+            alert(error.message)
         }
     }
 
@@ -57,7 +61,7 @@ function CreateCustomerForm({ onClose }) {
 
             <hr className='border-1 border-fast-velvet'></hr>
 
-            <FormWithFeedback onSubmit={handlerCreateCustomerSubmit} message={message} >
+            <FormWithFeedback onSubmit={handlerCreateCustomerSubmit} >
                 <Input id='name' type='text' placeholder='Name'></Input>
                 <Input id='surname' type='text' placeholder='Surname'></Input>
                 <Input id='email' type='email' placeholder='Email'></Input>

@@ -1,26 +1,45 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { UserProfileProvider } from './contexts/UserProfileProvider'
 
+import { useState } from 'react'
+import { Context } from './UseContext'
+
+import Alert from './views/components/Alert/Alert'
+
 import logic from './logic/index.js'
 
-import Login from './views/Login'
-import Register from './views/Register'
+import Login from './views/Login/Login.jsx'
+import Register from './views/Register/Register.jsx'
 import Home from './views/Home/Home'
 
 
 function App() {
 
+  const [message, setMessage] = useState(null)
+  const handleMessage = (message) => setMessage(message)
+  const handleAlertAccepted = () => setMessage(null)
+
+  return (
+    <>
+      <Context.Provider value={{ alert: handleMessage }}>
+
+        <Routes>
+
+          <Route path='/register' element={<RenderRegister />} />
+
+          <Route path='/login' element={<RenderLogin />} />
+
+          <Route path='/*' element={<RenderHome />} />
+
+        </Routes>
+
+        {message && <Alert message={message} onAccept={handleAlertAccepted} />}
+
+      </Context.Provider>
+    </>
+  )
 
 
-  return <Routes>
-
-    <Route path='/register' element={<RenderRegister />} />
-
-    <Route path='/login' element={<RenderLogin />} />
-
-    <Route path='/*' element={<RenderHome />} />
-
-  </Routes>
 }
 
 export default App

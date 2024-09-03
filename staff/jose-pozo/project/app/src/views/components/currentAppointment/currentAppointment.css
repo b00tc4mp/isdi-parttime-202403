@@ -9,7 +9,19 @@
     @apply border-fast-velvet;
   }
 
-  .CurrentAppointmentsDetails {
-    @apply rounded-md font-normal;
+  .CurrentAppointmentDetails {
+    @apply my-1 rounded-md font-normal;
+  }
+
+  .DetailsBoxes {
+    @apply flex justify-between;
+  }
+
+  .DetailsBoxesButton {
+    @apply flex justify-end;
+  }
+
+  .CurrentAppointmentCancelButton {
+    @apply my-0 h-fit w-fit rounded bg-sandy-pink px-2 py-0 font-normal text-white-mist hover:scale-105 active:scale-95;
   }
 }

@@ -1,6 +1,8 @@
+import './AddService.css'
+
 import { useState } from 'react'
 
-import './AddService.css'
+import UseContext from '../../../UseContext'
 
 import logic from '../../../logic/index'
 
@@ -14,7 +16,10 @@ import FormWithFeedback from '../../../components/library/FormWithFeedback'
 
 function AddService({ onClose }) {
 
-    const [message, setMessage] = useState('')
+    // const [message, setMessage] = useState('')
+
+    const { alert } = UseContext()
+
     const [selectedOption, setSelectedOption] = useState('')
 
     const handleAddServiceSubmit = event => {
@@ -31,7 +36,7 @@ function AddService({ onClose }) {
         try {
             logic.addService(name, description, category, duration, price)
                 .then(() => {
-                    setMessage('¡Service added!')
+                    alert('¡Service added!')
 
                     setTimeout(() => {
 
@@ -40,11 +45,11 @@ function AddService({ onClose }) {
                     }, 2000)
                 })
                 .catch(error => {
-                    setMessage(error.message)
+                    alert(error.message)
                 })
 
         } catch (error) {
-            setMessage(error.message)
+            alert(error.message)
         }
     }
 
@@ -61,7 +66,7 @@ function AddService({ onClose }) {
 
             <hr className='AddServiceHr'></hr>
 
-            <FormWithFeedback onSubmit={handleAddServiceSubmit} message={message} >
+            <FormWithFeedback className='AddServiceForm' onSubmit={handleAddServiceSubmit}>
                 <Input id='name' type='text' placeholder='Name'></Input>
                 <Input id='description' type='text' placeholder='Description' required={false}></Input>
                 <Input id='category' type='text' placeholder='Category' required={false}></Input>

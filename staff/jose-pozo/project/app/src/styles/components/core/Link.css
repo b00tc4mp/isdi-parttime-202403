@@ -1,7 +1,1 @@
-@tailwind components;
 
-@layer components {
-  .LinkLoginRegister {
-    @apply my-6 w-80 text-center;
-  }
-}

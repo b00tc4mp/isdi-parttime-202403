@@ -5,10 +5,11 @@ import './Calendar.css'
 import CalendarHeader from './CalendarHeader'
 import CalendarGrid from './CalendarGrid'
 
-const Calendar = ({ setSelectedDate }) => {
+const Calendar = ({ setSelectedDate, onRefreshToday }) => {
     const today = new Date()
     const [currentMonth, setCurrentMonth] = useState(today.getMonth())
     const [currentYear, setCurrentYear] = useState(today.getFullYear())
+
 
     const handlePrevMonth = () => {
         setCurrentMonth((prevMonth) => {
@@ -33,6 +34,9 @@ const Calendar = ({ setSelectedDate }) => {
     const handleTodayClick = () => {
         setCurrentMonth(today.getMonth())
         setCurrentYear(today.getFullYear())
+        onRefreshToday()
+        const todayRefresh = today.toISOString().slice(0, 10)
+        setSelectedDate(todayRefresh)
     }
 
     return (

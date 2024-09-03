@@ -23,6 +23,7 @@ import ServicesList from '../components/ServicesList/ServicesList'
 import MakeAppointment from '../components/makeAppointment/MakeAppointment'
 import Daily from '../components/Daily/Daily'
 import CurrentAppointment from '../components/currentAppointment/currentAppointment'
+import DailyStats from '../components/DailyStats/DailyStats'
 
 // import Dropdown from './components/DropDown'
 
@@ -37,7 +38,11 @@ function Home() {
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedAppointment, setSelectedAppointment] = useState(null)
     const [currentAppointment, setCurrentAppointment] = useState(null)
+    const [refreshToday, setRefreshToday] = useState(false)
+
     const { showCompoUserProfile, setShowCompoUserProfile } = useUserProfileContext()
+
+
 
     const navigate = useNavigate()
 
@@ -129,6 +134,27 @@ function Home() {
         setSelectedAppointment(appointment)
     }
 
+    const handleRefreshToday = () => {
+        setRefreshToday(!refreshToday)
+        setSelectedAppointment(null)
+    }
+
+    const handleCancelAppointment = () => {
+        setSelectedAppointment(null)
+        setRefreshAppointments(!refreshAppointments)
+    }
+
+    const handleConfirmCancelAppointment = () => {
+        // setSelectedAppointment(null)
+        // setRefreshAppointments(!refreshAppointments)
+        setShowCreateCustomerForm(false)
+        setShowCustomersList(false)
+        setShowCompoUserProfile(false)
+        setShowAddService(false)
+        setShowServicesList(false)
+        setShowMakeAppointment(false)
+    }
+
 
 
     return <>
@@ -170,16 +196,18 @@ function Home() {
             </ViewBox>
 
             <ViewBox tag={'section'} className={'HomeCalendar'} >
-                <Calendar setSelectedDate={setSelectedDate} />
+                <Calendar setSelectedDate={setSelectedDate} onRefreshToday={handleRefreshToday} />
             </ViewBox>
 
             <ViewBox tag={'section'} className={'HomeMiniContent'} >MINI CONTENT</ViewBox>
 
             <ViewBox tag={'section'} className={'HomeContent1'}>
-                <CurrentAppointment appointment={selectedAppointment || currentAppointment} />
+                <CurrentAppointment onConfirmCancelAppointment={handleConfirmCancelAppointment} onCancelAppointment={handleCancelAppointment} appointment={selectedAppointment || currentAppointment} />
             </ViewBox>
 
-            <ViewBox tag={'section'} className={'HomeContent2'} >CONTENT 2</ViewBox>
+            <ViewBox tag={'section'} className={'HomeContent2'} >
+                <DailyStats />
+            </ViewBox>
 
             <ViewBox tag={'footer'} className={'HomeFooter'} >FOOTER</ViewBox>
 

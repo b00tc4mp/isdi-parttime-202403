@@ -17,7 +17,7 @@ const deleteAppointment = (userId, appointmentId) => {
                 .then(appointment => {
                     if (!appointment) throw new NotFoundError('Appointment not found')
 
-                    return Appointment.updateOne({ _id: appointmentId }, { $set: { active: false } })
+                    return Appointment.updateOne({ _id: appointmentId }, { $set: { active: false, status: 'deleted' } })
                         .catch(error => { throw new SystemError(error.message) })
                         .then(() => { })
                 })

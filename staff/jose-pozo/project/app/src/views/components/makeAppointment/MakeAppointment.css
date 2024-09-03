@@ -16,4 +16,8 @@
   .MakeAppointmentSelect {
     @apply my-1 h-10 w-full rounded bg-off-white py-2 text-dark-shadow-grey outline-none;
   }
+
+  .MakeAppointmentInput {
+    @apply mb-2 mt-4 h-5 w-full rounded bg-off-white p-1 text-dark-shadow-grey outline-none;
+  }
 }

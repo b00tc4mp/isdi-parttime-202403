@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">93.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>27/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">58.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>7/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.85% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/28</span>
+                <span class='fraction'>26/28</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -114,42 +114,42 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,45 +159,45 @@
 import { NotFoundError, SystemError } from 'com/errors.js'
 import validate from 'com/validate.js'
 &nbsp;
-const updateService = <span class="fstat-no" title="function not covered" >(userId, serviceId, serviceUpdated) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    validate.id(userId, 'userId')</span>
-<span class="cstat-no" title="statement not covered" >    validate.id(serviceId, 'serviceId')</span>
+const updateService = (userId, serviceId, serviceUpdated) =&gt; {
+    validate.id(userId, 'userId')
+    validate.id(serviceId, 'serviceId')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const fieldsUpdated = {}</span>
+    const fieldsUpdated = {}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (serviceUpdated.name) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.text(serviceUpdated.name, 'name')</span>
-<span class="cstat-no" title="statement not covered" >        fieldsUpdated.name = serviceUpdated.name</span>
+    if (serviceUpdated.name) {
+        validate.text(serviceUpdated.name, 'name')
+        fieldsUpdated.name = serviceUpdated.name
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (serviceUpdated.description) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.text(serviceUpdated.description, 'description')</span>
-<span class="cstat-no" title="statement not covered" >        fieldsUpdated.description = serviceUpdated.description</span>
+    if (serviceUpdated.description) {
+        validate.text(serviceUpdated.description, 'description')
+        fieldsUpdated.description = serviceUpdated.description
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (serviceUpdated.category) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.text(serviceUpdated.category, 'category')</span>
-<span class="cstat-no" title="statement not covered" >        fieldsUpdated.category = serviceUpdated.category</span>
+    if (serviceUpdated.category) {
+        validate.text(serviceUpdated.category, 'category')
+        fieldsUpdated.category = serviceUpdated.category
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (serviceUpdated.duration) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.number(serviceUpdated.duration, 'duration')</span>
-<span class="cstat-no" title="statement not covered" >        fieldsUpdated.duration = serviceUpdated.duration</span>
+    if (serviceUpdated.duration) {
+        validate.number(serviceUpdated.duration, 'duration')
+        fieldsUpdated.duration = serviceUpdated.duration
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (serviceUpdated.price) {</span>
-<span class="cstat-no" title="statement not covered" >        validate.number(serviceUpdated.price, 'price')</span>
-<span class="cstat-no" title="statement not covered" >        fieldsUpdated.price = serviceUpdated.price</span>
+    if (serviceUpdated.price) {
+        validate.number(serviceUpdated.price, 'price')
+        fieldsUpdated.price = serviceUpdated.price
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return User.findById(userId)</span>
+    return User.findById(userId)
         .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-        .then(<span class="fstat-no" title="function not covered" >user =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if (!user) <span class="cstat-no" title="statement not covered" >throw new NotFoundError('User not found')</span></span>
+        .then(user =&gt; {
+            if (!user) throw new NotFoundError('User not found')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            return Service.updateOne({ _id: serviceId }, { $set: fieldsUpdated })</span>
+            return Service.updateOne({ _id: serviceId }, { $set: fieldsUpdated })
                 .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-                .then(<span class="fstat-no" title="function not covered" >() =&gt; {</span> })
+                .then(() =&gt; { })
         })
 }
 &nbsp;
@@ -208,7 +208,7 @@ export default updateService</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-31T08:17:22.263Z
+                at 2024-09-03T09:17:24.781Z
             </div>
         <script src="../prettify.js"></script>
         <script>

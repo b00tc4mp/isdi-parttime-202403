@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.82% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/17</span>
+                <span class='fraction'>14/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/7</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/15</span>
+                <span class='fraction'>12/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,20 +95,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,14 +129,14 @@ const deleteAppointment = (userId, appointmentId) =&gt; {
         .then(user =&gt; {
             if (!user) throw new NotFoundError('User not found')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            return Appointment.findById(appointmentId)</span>
+            return Appointment.findById(appointmentId)
                 .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-                .then(<span class="fstat-no" title="function not covered" >appointment =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                    if (!appointment) <span class="cstat-no" title="statement not covered" >throw new NotFoundError('Appointment not found')</span></span>
+                .then(appointment =&gt; {
+                    if (!appointment) throw new NotFoundError('Appointment not found')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    return Appointment.deleteOne({ _id: appointmentId })</span>
+                    return Appointment.updateOne({ _id: appointmentId }, { $set: { active: false, status: 'deleted' } })
                         .catch(<span class="fstat-no" title="function not covered" >error =&gt; {</span> <span class="cstat-no" title="statement not covered" >throw new SystemError(error.message) </span>})
-                        .then(<span class="fstat-no" title="function not covered" >() =&gt; {</span> })
+                        .then(() =&gt; { })
                 })
         })
 }
@@ -148,7 +148,7 @@ export default deleteAppointment</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-31T08:17:22.263Z
+                at 2024-09-03T09:17:24.781Z
             </div>
         <script src="../prettify.js"></script>
         <script>

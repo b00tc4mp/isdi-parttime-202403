@@ -18,7 +18,9 @@ export default {
         'input-inherit': '#999',
         'opal-green': '#97dfc6',
         'ivory-cream': '#f8ecc4',
-        'coral-blush': 'f69591'
+        'coral-blush': '#f69591',
+        'dark-shadow-blue': '#43475e',
+        'jan-img': '#e4dfdf',
       },
     },
   },

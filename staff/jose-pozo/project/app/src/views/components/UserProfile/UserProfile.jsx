@@ -13,9 +13,17 @@ import ViewBox from '../../../components/library/ViewBox'
 
 import UpdateCustomerProfile from '../UpdateCustomerProfile/UpdateCustomerProfile'
 
+import Confirm from '../Confirm/Confirm'
+
 const UserProfile = () => {
     const { selectedUserProfile, showCompoUserProfile, setShowCompoUserProfile } = useUserProfileContext()
     const [showEditCustomerProfile, setShowEditCustomerProfile] = useState(false)
+
+    const [confirm, setConfirm] = useState(false)
+
+    const handleConfirm = () => {
+        setConfirm(!confirm)
+    }
 
     useEffect(() => {
         try {
@@ -38,7 +46,7 @@ const UserProfile = () => {
                     setTimeout(() => {
                         setShowCompoUserProfile(!showCompoUserProfile)
 
-                    }, 1500)
+                    }, 2000)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -62,6 +70,9 @@ const UserProfile = () => {
     }
 
     return <>
+
+        {confirm && <Confirm handleDeleteCustomer={handleDeleteCustomerClick} message={`Are you sure you want to delete this customer?`} onCancel={handleConfirm} />}
+
         {showEditCustomerProfile && <UpdateCustomerProfile onSaveCustomerProfile={handleSaveCustomerProfile} onCloseUpdateCustomerProfile={handleCloseUpdateCustomerProfile} />}
 
         <ViewBox tag='section' className='UserProfileSection'  >
@@ -82,7 +93,7 @@ const UserProfile = () => {
                 </Box>
                 <Box className='UseProfileButtonsMainBox'>
                     <Button className='EditProfileButton' onClick={handleEditCustomerClick}>Edit</Button>
-                    <Button className='DeleteProfileButton' onClick={handleDeleteCustomerClick}>Delete</Button>
+                    <Button className='DeleteProfileButton' onClick={handleConfirm}>Delete</Button>
                 </Box>
             </fieldset >
             <Text className='UserProfileCreatedText'>{`Customer created at ${createDate}`}</Text>

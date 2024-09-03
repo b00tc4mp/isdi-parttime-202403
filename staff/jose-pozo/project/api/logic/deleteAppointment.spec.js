@@ -18,7 +18,7 @@ describe('delete appointment', () => {
     it('succeeds on delete appointment', () => {
         let user, customer, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => {
                 return User.create({
                     name: 'Jon',
@@ -61,28 +61,12 @@ describe('delete appointment', () => {
                                         })
                                     })
                                     .then((appointment) => deleteAppointment(user.id, appointment.id))
-                                    .then((appointment) => {
-                                        expect(appointment).to.be.an('object')
-                                        expect(appointment._id).to.be.an.instanceOf(ObjectId)
-                                        expect(appointment.id).to.be.an.instanceOf(ObjectId)
-                                        expect(appointment.id).to.have.lengthOf(24)
-                                        expect(appointment.customer).to.equal(customer.id)
-                                        expect(appointment.customer).to.be.an.instanceOf(ObjectId)
-                                        expect(appointment.customer).to.have.lengthOf(24)
-                                        expect(appointment.service).to.equal(service.id)
-                                        expect(appointment.service).to.be.an.instanceOf(ObjectId)
-                                        expect(appointment.service).to.have.lengthOf(24)
-                                        expect(appointment.provider).to.equal(user.id)
-                                        expect(appointment.provider).to.be.an.instanceOf(ObjectId)
-                                        expect(appointment.provider).to.have.lengthOf(24)
-                                        expect(appointment.startDate).to.equal('2024-10-23')
-                                        expect(appointment.startDate).to.be.an.instanceOf(Date)
-                                        expect(appointment.endDate).to.equal('2024-10-23')
-                                        expect(appointment.endDate).to.be.an.instanceOf(Date)
-                                        expect(appointment.status).to.equal('confirmed')
+                                    .then(() => Appointment.findOne())
+                                    .then(appointment => {
+                                        expect(appointment).to.be.exist
+                                        expect(appointment.status).to.equal('deleted')
+                                        expect(appointment.active).to.be.false
                                     })
-
-
                             })
                     })
             })
@@ -91,7 +75,7 @@ describe('delete appointment', () => {
     it('fails on non-existing user', () => {
         let errorThrown, user, customer, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => {
                 return User.create({
                     name: 'Jon',
@@ -133,8 +117,10 @@ describe('delete appointment', () => {
                                             status: 'confirmed'
                                         })
                                     })
-                                    .then((appointment) => deleteAppointment(new ObjectId.toString(), appointment.id))
-                                    .catch(error => errorThrown = error)
+                                    .then((appointment) => deleteAppointment(new ObjectId().toString(), appointment.id))
+                                    .catch(error => {
+                                        errorThrown = error
+                                    })
                                     .finally(() => {
                                         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
                                         expect(errorThrown.message).to.equal('User not found')
@@ -147,7 +133,7 @@ describe('delete appointment', () => {
     it('fails on non-existing appointment', () => {
         let errorThrown, user, customer, service
 
-        bcrypt.hash('1234', 8)
+        return bcrypt.hash('1234', 8)
             .then(hash => {
                 return User.create({
                     name: 'Jon',
@@ -189,7 +175,7 @@ describe('delete appointment', () => {
                                             status: 'confirmed'
                                         })
                                     })
-                                    .then((appointment) => deleteAppointment(user.id, new ObjectId.toString()))
+                                    .then((appointment) => deleteAppointment(user.id, new ObjectId().toString()))
                                     .catch(error => errorThrown = error)
                                     .finally(() => {
                                         expect(errorThrown).to.be.an.instanceOf(NotFoundError)
