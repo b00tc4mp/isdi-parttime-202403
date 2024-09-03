@@ -5,6 +5,7 @@ import Text from "../../components/core/Text"
 import Time from "../../components/core/Time"
 import View from "../../components/library/View"
 import logic from "../../logic"
+import Confirm from "./Confirm"
 import { useState } from "react"
 
 function Recipe({
@@ -91,9 +92,9 @@ function Recipe({
         </div>
         <div>
           {recipe.author.id === logic.getUserId() && (
-            <Button onClick={handleEditRecipe} className="edit-button">
+            <button onClick={handleEditRecipe} className="edit-button">
               Edit
-            </Button>
+            </button>
           )}
         </div>
       </View>

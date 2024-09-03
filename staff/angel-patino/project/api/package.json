@@ -9,7 +9,8 @@
     "watch": "node --watch .",
     "inspect": "node --inspect-brk .",
     "test": "mocha logic/*.spec.js",
-    "test-inspect": "mocha --inspect-brk logic/*.spec.js"
+    "test-inspect": "mocha --inspect-brk logic/*.spec.js",
+    "test-coverage": "c8 --experimental-monocart --reporter=html --reporter=text mocha logic/*.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +25,9 @@
     "mongoose": "^8.5.0"
   },
   "devDependencies": {
+    "c8": "^10.1.2",
     "chai": "^5.1.1",
-    "mocha": "^10.6.0"
+    "mocha": "^10.6.0",
+    "monocart-coverage-reports": "^2.10.3"
   }
 }

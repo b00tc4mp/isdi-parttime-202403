@@ -2,7 +2,7 @@
 
 RecipeBox is a modern recipe management application built with React, Tailwind CSS, and Mongoose. It allows users to easily search, view, and add new recipes, providing a seamless and enjoyable cooking experience.
 
-![recipebox wallpaper](/staff/angel-patino/project/images/wallpaper.jpg)
+![recipebox wallpaper](/staff/angel-patino/project/doc/images/wallpaper.jpg)
 
 ## Functional
 

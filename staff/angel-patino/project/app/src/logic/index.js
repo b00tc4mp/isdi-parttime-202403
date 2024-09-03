@@ -8,7 +8,10 @@ import logoutUser from './logoutUser'
 import getAllRecipes from './getAllRecipes'
 import createRecipe from './createRecipe'
 import deleteRecipe from './deleteRecipe'
+import getRecipeById from './getRecipeById'
 import toggleLikeRecipe from './toggleLikeRecipe'
+import updateRecipe from './updateRecipe'
+import searchRecipes from './searchRecipes'
 // import rateRecipe from './rateRecipe'
 
 const logic = {
@@ -22,7 +25,10 @@ const logic = {
     getAllRecipes,
     createRecipe,
     deleteRecipe,
+    getRecipeById,
     toggleLikeRecipe,
+    updateRecipe,
+    searchRecipes
     // rateRecipe
 }
 

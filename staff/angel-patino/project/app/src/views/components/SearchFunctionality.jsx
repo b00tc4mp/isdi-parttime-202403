@@ -6,6 +6,7 @@ import logic from "../../logic"
 function SearchFunctionality() {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState([])
+  const [message, setMessage] = useState("") // New state to manage error messages
 
   const handleSearch = (event) => {
     event.preventDefault()
@@ -13,15 +14,20 @@ function SearchFunctionality() {
       logic
         .searchRecipes(query)
         .then((recipes) => {
-          setResults(recipes)
+          if (recipes.length === 0) {
+            setMessage(`No results found for "${query}".`)
+          } else {
+            setResults(recipes)
+            setMessage("") // Clear the message if results are found
+          }
         })
         .catch((error) => {
           console.error(error)
-          alert(error.message)
+          setMessage(error.message) // Display error message
         })
     } catch (error) {
       console.error(error)
-      alert(error.message)
+      setMessage(error.message) // Display error message
     }
   }
 
@@ -44,7 +50,7 @@ function SearchFunctionality() {
         {results.length > 0 ? (
           results.map((recipe) => <Recipe key={recipe.id} recipe={recipe} />)
         ) : (
-          <p className="no-results">No results found for "{query}".</p>
+          <p className="no-results">{message}</p>
         )}
       </View>
     </View>

@@ -14,8 +14,11 @@ import {
     editUsernameHandler,
     deleteRecipeHandler,
     editRecipeHandler,
+    getRecipeByIdHandler,
+    searchRecipesHandler
     // rateRecipeHandler
 } from './handlers/index.js'
+
 
 const { MONGODB_URL, PORT } = process.env
 
@@ -30,6 +33,8 @@ mongoose.connect(MONGODB_URL)
         api.get('/', (_, res) => res.send('Hello, RecipeBox'))
 
         api.post('/users', jsonBodyParser, registerUserHandler)
+
+        api.get('/recipes/:recipeId', getRecipeByIdHandler)
 
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler)
 
@@ -46,6 +51,8 @@ mongoose.connect(MONGODB_URL)
         api.delete('/recipes/:recipeId', deleteRecipeHandler)
 
         api.patch('/recipes/:recipeId/likes', toggleLikeRecipeHandler)
+
+        api.get('/recipes/search', searchRecipesHandler)
 
         // api.patch('/recipes/:recipeId/rate', rateRecipeHandler)
 

@@ -3,6 +3,7 @@ import authenticateUser from './authenticateUser.js'
 import getUserName from './getUserName.js'
 
 import getAllRecipes from './getAllRecipes.js'
+import getRecipeById from './getRecipeById.js'
 import createRecipe from './createRecipe.js'
 import deleteRecipe from './deleteRecipe.js'
 import searchRecipes from './searchRecipes.js'
@@ -16,6 +17,7 @@ const logic = {
     authenticateUser,
     getUserName,
     getAllRecipes,
+    getRecipeById,
 
     createRecipe,
     deleteRecipe,

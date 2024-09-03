@@ -9,6 +9,8 @@ import registerUserHandler from './registerUserHandler.js'
 import toggleLikeRecipeHandler from './toggleLikeRecipeHandler.js'
 import editRecipeHandler from './editRecipeHandler.js'
 import errorHandler from './errorHandler.js'
+import getRecipeByIdHandler from './getRecipeByIdHandler.js'
+import searchRecipesHandler from './searchRecipesHandler.js'
 
 export {
     authenticateUserHandler,
@@ -21,5 +23,7 @@ export {
     // rateRecipeHandler,
     toggleLikeRecipeHandler,
     editRecipeHandler,
+    getRecipeByIdHandler,
+    searchRecipesHandler,
     errorHandler
 }
