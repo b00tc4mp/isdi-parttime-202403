@@ -2,9 +2,8 @@ import { useState, useContext } from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic'
-import { SystemError } from 'com/errors'
+import { SystemError, CredentialsError } from 'com/errors'
 import Field from '../components/core/Field'
-
 import Context from '../Context'
 
 function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
@@ -17,7 +16,7 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
     onRegisterClick()
   }
 
-  const handleLoginSubmit = (event) => {
+  const handleLoginSubmit = async (event) => {
     event.preventDefault()
 
     const form = event.target
@@ -26,27 +25,24 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
     const password = form.password.value
 
     try {
-      logic
-        .loginUser(email, password)
-        .then(() => {
-          const role = sessionStorage.role
-          onUserLoggedIn(role)
-        })
-        .catch((error) => {
-          console.error(error)
+      await logic.loginUser(email, password)
 
-          if (error instanceof SystemError) {
-            alert(error.message)
+      const role = sessionStorage.getItem('role')
 
-            return
-          }
-
-          setMessage(error.message)
-        })
+      onUserLoggedIn(role)
     } catch (error) {
       console.error(error)
 
-      setMessage(error.message)
+      if (error instanceof CredentialsError) {
+        // Manejo específico para CredentialsError
+        setMessage(error.message)
+      } else if (error instanceof SystemError) {
+        // Manejo específico para SystemError
+        alert(error.message)
+      } else {
+        // Manejo genérico para otros errores
+        setMessage('An unexpected error occurred. Please try again.')
+      }
     }
   }
 
@@ -76,7 +72,7 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
         <Field
           divClass='Field flex flex-col gap-1 mx-2'
           labelClass='text-white'
-          labelChildren='password'
+          labelChildren='Password'
           htmlFor='password'
           id='password'
           type='password'

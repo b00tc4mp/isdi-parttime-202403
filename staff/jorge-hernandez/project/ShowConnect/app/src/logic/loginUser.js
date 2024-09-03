@@ -1,11 +1,11 @@
-import errors, { SystemError } from 'com/errors'
+import errors, { CredentialsError, SystemError } from 'com/errors'
 import validate from 'com/validate'
 
 const loginUser = async (email, password) => {
-  try {
-    validate.email(email)
-    validate.password(password)
+  validate.email(email)
+  validate.password(password)
 
+  try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
       method: 'POST',
       headers: {
@@ -14,37 +14,33 @@ const loginUser = async (email, password) => {
       body: JSON.stringify({ email, password }),
     })
 
-    if (response.status === 200) {
-      try {
-        const body = await response.json()
+    let body
 
-        const { token, role } = body
-
-        sessionStorage.token = token
-
-        sessionStorage.role = role
-
-        return
-      } catch (error) {
-        throw new SystemError(`${response.statusText}`)
-      }
-    }
     try {
       body = await response.json()
     } catch (jsonError) {
-      throw new SystemError(`${response.statusText}`)
+      throw new SystemError('Server error')
     }
 
-    const { error, message } = body
+    if (response.status === 200) {
+      const { token, role } = body
 
-    const constructor = errors[error]
+      sessionStorage.setItem('token', token)
+      sessionStorage.setItem('role', role)
+      return
+    }
 
-    throw new constructor(message)
+    try {
+      const { error, message } = body
+
+      const constructor = errors[error]
+
+      throw new constructor(message)
+    } catch (error) {
+      throw new SystemError(error.message)
+    }
   } catch (error) {
-    if (!(error instanceof SystemError)) {
-      throw new SystemError('server error')
-    }
-    throw error
+    throw new SystemError('Server error')
   }
 }
 

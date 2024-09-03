@@ -13,18 +13,16 @@ function ArtistHome({ onUserLoggedOut }) {
   const [isMessages, setIsMessages] = useState(false)
 
   useEffect(() => {
-    try {
-      logic
-        .getArtistData()
-        .then((artistData) => {
-          setArtist(artistData)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    } catch (error) {
-      console.error(error)
+    const fetchArtistData = async () => {
+      try {
+        const artistData = await logic.getArtistData()
+        setArtist(artistData)
+      } catch (error) {
+        console.error(error)
+      }
     }
+
+    fetchArtistData()
   }, [])
 
   const handleClickMessages = () => setIsMessages(true)

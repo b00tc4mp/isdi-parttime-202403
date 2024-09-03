@@ -3,18 +3,16 @@ import Field from '../components/core/Field'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import logic from '../logic/index'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import Context from '../Context'
 
 import { SystemError } from 'com/errors'
-
-import { useState } from 'react'
 
 function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
   const [message, setMessage] = useState('')
   const { alert } = useContext(Context)
 
-  const handleRegisterSubmit = (event) => {
+  const handleRegisterSubmit = async (event) => {
     event.preventDefault()
 
     const form = event.target
@@ -31,35 +29,27 @@ function Register({ onLoginClick, onLogoClick, onUserRegistered }) {
     const passwordRepeat = form.passwordRepeat.value
 
     try {
-      logic
-        .registerArtist(
-          name,
-          artisticName,
-          discipline,
-          city,
-          description,
-          email,
-          image,
-          video,
-          password,
-          passwordRepeat
-        )
-        .then(() => onUserRegistered())
-        .catch((error) => {
-          console.error(error)
-
-          if (error instanceof SystemError) {
-            alert(error.message)
-
-            return
-          }
-
-          alert(error.message)
-        })
+      await logic.registerArtist(
+        name,
+        artisticName,
+        discipline,
+        city,
+        description,
+        email,
+        image,
+        video,
+        password,
+        passwordRepeat
+      )
+      onUserRegistered()
     } catch (error) {
       console.error(error)
 
-      setMessage(error.message)
+      if (error instanceof SystemError) {
+        alert(error.message)
+      } else {
+        setMessage(error.message)
+      }
     }
   }
 
