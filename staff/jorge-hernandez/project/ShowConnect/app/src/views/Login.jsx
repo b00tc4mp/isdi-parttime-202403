@@ -34,13 +34,10 @@ function Login({ onLogoClick, onUserLoggedIn, onRegisterClick }) {
       console.error(error)
 
       if (error instanceof CredentialsError) {
-        // Manejo específico para CredentialsError
         setMessage(error.message)
       } else if (error instanceof SystemError) {
-        // Manejo específico para SystemError
         alert(error.message)
       } else {
-        // Manejo genérico para otros errores
         setMessage('An unexpected error occurred. Please try again.')
       }
     }

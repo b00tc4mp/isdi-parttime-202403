@@ -29,18 +29,15 @@ const loginUser = async (email, password) => {
       sessionStorage.setItem('role', role)
       return
     }
+    const { error, message } = body
+    const constructor = errors[error] || SystemError
 
-    try {
-      const { error, message } = body
-
-      const constructor = errors[error]
-
-      throw new constructor(message)
-    } catch (error) {
-      throw new SystemError(error.message)
-    }
+    throw new constructor(message)
   } catch (error) {
-    throw new SystemError('Server error')
+    if (!(error instanceof CredentialsError)) {
+      throw new SystemError('Server error')
+    }
+    throw error
   }
 }
 
