@@ -6,7 +6,8 @@ import logic from '../../../logic'
 
 import './Ad.css'
 
-export const Ad = ({ ad, onAdDeleted }) => {
+export const Ad = ({ ad, onAdDeleted, setAds, setIsLoading }) => {
+    // export const Ad = ({ ad, onAdDeleted }) => {
     console.log('Ad -> render')
 
     const navigate = useNavigate()
@@ -19,7 +20,8 @@ export const Ad = ({ ad, onAdDeleted }) => {
                 logic.deleteAd(ad._id)
                     .then(() => {
                         console.log(`Ad ${ad._id} deleted`)
-                        onAdDeleted()
+                        onAdDeleted(setAds, setIsLoading)
+                        // onAdDeleted()
 
                     })
                     .catch(error => {

@@ -35,8 +35,6 @@ function App() {
         {/* <Route path="/adlist" element={<AdList />} /> */}
 
         <Route path="/" element={logic.isUserLoggedIn() ? <Home /> : <Navigate to="/login" />} />
-
-
         <Route path="/createad" element={<CreateAdForm />}></Route>
         <Route path="/adpage/:adId" element={<AdPage />}></Route>
         <Route path="updateadform/:adId" element={<UpdateAdForm />}></Route>

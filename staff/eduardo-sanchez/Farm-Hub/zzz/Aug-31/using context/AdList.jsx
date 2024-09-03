@@ -1,13 +1,17 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Ad } from "../Ad/Ad";
 import { Time } from "../../../components/core/Time/Time";
 import logic from "../../../logic";
+import { Context } from "../../../Context/Context";
+
 import "./AdList.css";
 
 function AdList({ searchText }) {
 
   const navigate = useNavigate();
+
+  const { loadAds, loadFilteredAds } = useContext(Context)
 
   const [ads, setAds] = useState([]);
 
@@ -19,58 +23,13 @@ function AdList({ searchText }) {
 
     setIsLoading(true)
     if (searchText) {
-      loadFilteredAds(searchText)
+      loadFilteredAds(setAds, setIsLoading, searchText)
     } else {
-      loadAds()
+      loadAds(setAds, setIsLoading)
+      // loadAds()
     };
   }, [searchText]);
 
-  const loadFilteredAds = (search) => {
-    console.log('texto', search)
-    try {
-
-      logic
-        .searchAds(search)
-        .then((searchedAds) => {
-          setAds(searchedAds);
-          setIsLoading(false);
-
-        })
-        .catch((error) => {
-          console.error(error);
-          alert(error.message);
-          setIsLoading(false);
-
-        });
-
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
-      setIsLoading(false);
-    }
-  };
-
-  const loadAds = () => {
-    console.log('I got here')
-    try {
-      logic
-        .getAllAds()
-        .then((fetchedAds) => {
-          console.log(fetchedAds);
-          setAds(fetchedAds);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          alert(error.message);
-          setIsLoading(false);
-        });
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
-      setIsLoading(false);
-    }
-  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -100,7 +59,8 @@ function AdList({ searchText }) {
             </div>
             <div className="AdListItemActions">
               {sessionStorage.userId === ad.author._id && (
-                <Ad ad={ad} onAdDeleted={loadAds} />
+                <Ad ad={ad} setAds={setAds} setIsLoading={setIsLoading} onAdDeleted={loadAds} />
+                // <Ad ad={ad} onAdDeleted={loadAds} />
               )}
             </div>
           </li>
