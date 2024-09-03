@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import logic from '../logic'
 
 import { MdOutlineEdit } from "react-icons/md";
+import { IoIosAdd } from "react-icons/io";
 
 import Button from '../components/core/Button'
 import Field from '../components/core/Field'
@@ -10,6 +11,11 @@ import FormWithFeedback from '../components/library/FormWithFeedback'
 import View from '../components/library/View'
 import ModifyUserForm from './components/ModifyUserForm'
 import ModifyNameForm from './components/ModifyNameForm'
+import ModifySurnameForm from './components/ModifySurnameForm'
+import ModifyEmailForm from './components/ModifyEmailForm'
+import ModifyPhoneForm from './components/ModifyPhoneForm'
+import ModifyAvatarForm from './components/ModifyAvatarForm'
+import ModifyPasswordForm from './components/ModifyPassword'
 
 import useContext from '../useContext'
 
@@ -45,19 +51,84 @@ function Profile() {
     const handleModifyNameClick = () => setModifyNameForm(true)
     const handleProcessFinishNameClick = () => setModifyNameForm(false)
 
+    const [modifySurnameForm, setModifySurnameForm] = useState(false)
+    const handleModifySurnameClick = () => setModifySurnameForm(true)
+    const handleProcessFinishSurnameClick = () => setModifySurnameForm(false)
+
+    const [modifyEmailForm, setModifyEmailForm] = useState(false)
+    const handleModifyEmailClick = () => setModifyEmailForm(true)
+    const handleProcessFinishEmailClick = () => setModifyEmailForm(false)
+
+    const [modifyPhoneForm, setModifyPhoneForm] = useState(false)
+    const handleModifyPhoneClick = () => setModifyPhoneForm(true)
+    const handleProcessFinishPhoneClick = () => setModifyPhoneForm(false)
+
+    const [modifyAvatarForm, setModifyAvatarForm] = useState(false)
+    const handleModifyAvatarClick = () => setModifyAvatarForm(true)
+    const handleProcessFinishAvatarClick = () => setModifyAvatarForm(false)
+
+    const [modifyPasswordForm, setModifyPasswordForm] = useState(false)
+    const handleModifyPasswordClick = () => setModifyPasswordForm(true)
+    const handleProcessFinishPasswordClick = () => setModifyPasswordForm(false)
+
     /*const handleModifyUserClick = () => setModifyUserForm(true)
 
     const handleProcessFinishClick = () => setModifyUserForm(false)*/
 
-    return <>
-        <div className="flex m-4">
-           <p>{user.name}</p>
-           <Button className="border-0" onClick={()=> handleModifyNameClick()}>{<MdOutlineEdit />}</Button>
+    return <div className="content-center">
+        {user.avatar !== "" && <div>
+            <div className="flex justify-center">
+                <img className="inline w-12" src={user.avatar}/>
+            </div>
+
+            <div className="flex justify-center border-b-2">
+                <Button className="border-0 text-indigo-300" onClick={()=> handleModifyAvatarClick()}>Edit photo/avatar</Button>
+            </div>
+        </div> }
+
+        <div className="flex m-4 border-b-2">
+            <p className="font-bold">Name: &nbsp;</p>
+            <p>{user.name}</p>
+            <Button className="border-0" onClick={()=> handleModifyNameClick()}>{<MdOutlineEdit />}</Button>
        </div>
-        
+
+       <div className="flex m-4 border-b-2">
+            <p className="font-bold">Surname: &nbsp;</p>
+            <p>{user.surname}</p>
+            <Button className="border-0" onClick={()=> handleModifySurnameClick()}>{<MdOutlineEdit />}</Button>
+       </div>
+
+       <div className="flex m-4 border-b-2">
+            <p className="font-bold">Email: &nbsp;</p>
+            <p>{user.email}</p>
+            <Button className="border-0" onClick={()=> handleModifyEmailClick()}>{<MdOutlineEdit />}</Button>
+       </div>
+
+       {user.phone !== "" && <div className="flex m-4 border-b-2">
+            <p className="font-bold">Phone: &nbsp;</p>
+            <p>{user.phone}</p>
+            <Button className="border-0" onClick={()=> handleModifyPhoneClick()}>{<MdOutlineEdit />}</Button>
+       </div>}
+
+       {user.phone === "" && <div className="flex m-4 justify-center">
+            <Button className="border-0 ConfirmButton" onClick={()=> handleModifyPhoneClick()}>Add phone</Button>
+       </div>}
+
+       {user.avatar === "" && <div className="flex m-4 justify-center">
+            <Button className="border-0 ConfirmButton" onClick={()=> handleModifyAvatarClick()}>Add photo/avatar</Button>
+       </div>}
+
+       <div className="flex m-4 justify-center">
+            <Button className="border-0 ConfirmButton" onClick={()=> handleModifyPasswordClick()}>Change Password</Button>
+       </div>
 
         {modifyNameForm && <ModifyNameForm  user={user} onProcessFinished={handleProcessFinishNameClick} />}
-    </>
+        {modifySurnameForm && <ModifySurnameForm  user={user} onProcessFinished={handleProcessFinishSurnameClick} />}
+        {modifyEmailForm && <ModifyEmailForm  user={user} onProcessFinished={handleProcessFinishEmailClick} />}
+        {modifyPhoneForm && <ModifyPhoneForm  user={user} onProcessFinished={handleProcessFinishPhoneClick} />}
+        {modifyAvatarForm && <ModifyAvatarForm  user={user} onProcessFinished={handleProcessFinishAvatarClick} />}
+        {modifyPasswordForm && <ModifyPasswordForm  user={user} onProcessFinished={handleProcessFinishPasswordClick} />}
+    </div>
 }
 
 export default Profile
