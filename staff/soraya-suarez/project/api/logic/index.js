@@ -4,6 +4,7 @@ import getMyProfile from './getMyProfile.js'
 import getAllUsers from './getAllUsers.js'
 import getAvailableUsers from './getAvailableUsers.js'
 import modifyUser from './modifyUser.js'
+import modifyName from './modifyName.js'
 import modifyUserAvailable from './modifyUserAvailable.js'
 import deleteUser from './deleteUser.js'
 
@@ -27,6 +28,7 @@ const logic = {
     getAllUsers,
     getAvailableUsers,
     modifyUser,
+    modifyName,
     modifyUserAvailable,
     deleteUser,
     

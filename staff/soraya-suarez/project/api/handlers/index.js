@@ -4,6 +4,7 @@ import getMyProfileHandler from './getMyProfileHandler.js'
 import getAllUsersHandler from './getAllUsersHandler.js'
 import getAvailableUsersHandler from './getAvailableUsersHandler.js'
 import modifyUserHandler from './modifyUserHandler.js'
+import modifyNameHandler from './modifyNameHandler.js'
 import modifyUserAvailableHandler from './modifyUserAvailableHandler.js'
 import deleteUserHandler from './deleteUserHandler.js'
 
@@ -30,6 +31,7 @@ export {
     getAllUsersHandler,
     getAvailableUsersHandler,
     modifyUserHandler,
+    modifyNameHandler,
     modifyUserAvailableHandler,
     deleteUserHandler,
     

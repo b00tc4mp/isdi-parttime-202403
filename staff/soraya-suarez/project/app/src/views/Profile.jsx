@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react'
 import logic from '../logic'
 
+import { MdOutlineEdit } from "react-icons/md";
+
 import Button from '../components/core/Button'
+import Field from '../components/core/Field'
+import SubmitButton from '../components/core/SubmitButton'
+import FormWithFeedback from '../components/library/FormWithFeedback'
+import View from '../components/library/View'
 import ModifyUserForm from './components/ModifyUserForm'
+import ModifyNameForm from './components/ModifyNameForm'
 
 import useContext from '../useContext'
 
@@ -11,7 +18,7 @@ function Profile() {
 
     const [user, setUser] = useState([])
 
-    const [modifyUserForm, setModifyUserForm] = useState(false)
+    //const [modifyUserForm, setModifyUserForm] = useState(false)
 
     useEffect(() => {
         loadUser()
@@ -34,19 +41,23 @@ function Profile() {
         }
     }
 
-    const handleModifyUserClick = () => setModifyUserForm(true)
+    const [modifyNameForm, setModifyNameForm] = useState(false)
+    const handleModifyNameClick = () => setModifyNameForm(true)
+    const handleProcessFinishNameClick = () => setModifyNameForm(false)
 
-    const handleProcessFinishClick = () => {
-        setModifyUserForm(false)
-        loadUser()
-    }
+    /*const handleModifyUserClick = () => setModifyUserForm(true)
+
+    const handleProcessFinishClick = () => setModifyUserForm(false)*/
 
     return <>
-        {modifyUserForm && <ModifyUserForm user={user} onProcessFinished={handleProcessFinishClick} />}
+        <div className="flex m-4">
+           <p>{user.name}</p>
+           <Button className="border-0" onClick={()=> handleModifyNameClick()}>{<MdOutlineEdit />}</Button>
+       </div>
+        
 
-        {!modifyUserForm && <Button className="ConfirmButton" onClick={()=> handleModifyUserClick()}>Edit profile</Button>}
+        {modifyNameForm && <ModifyNameForm  user={user} onProcessFinished={handleProcessFinishNameClick} />}
     </>
-    
 }
 
 export default Profile
