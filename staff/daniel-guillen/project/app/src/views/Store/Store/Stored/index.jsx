@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './index.css'
 //components
 import Register from './Register'
@@ -16,7 +16,7 @@ const Store = () => {
   return (
     <div className='container'>
         <Register refreshData={refreshData}/>
-        <DataStoreList refreshList={refreshList} refreshData={refreshData} />  {/* Pasamos refreshList */}
+        <DataStoreList refreshList={refreshList} refreshData={refreshData} />
         <MenuStore />
     </div>
   )

@@ -14,8 +14,8 @@ const WasteWeight = ( { weight, handleWeightChange} ) => {
         name='weight'
         placeholder='Peso'
         value={weight}
-        min="15"
-        max="1499"
+        min="5"
+        max="1500"
         onChange={handleWeightChange}
         />
         

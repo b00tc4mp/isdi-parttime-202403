@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../utils/config'
 
-const useFetchItemsList = (collectionName, refreshList) => {
+const useFetchItemsList = () => {
   const [data, setData] = useState([])
 
   const fetchData = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, collectionName))
+      const querySnapshot = await getDocs(collection(db, StoredWaste))
       const docs = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
       setData(docs)
     } catch (error) {
@@ -15,9 +15,9 @@ const useFetchItemsList = (collectionName, refreshList) => {
     }
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [refreshList, collectionName])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [refreshList, StoredWaste])
 
   return { data, fetchData }
 }
