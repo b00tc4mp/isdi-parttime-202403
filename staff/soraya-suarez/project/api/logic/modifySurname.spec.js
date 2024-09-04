@@ -3,19 +3,19 @@ import mongoose, { Types } from 'mongoose'
 import bcrypt from 'bcryptjs'
 import { expect } from 'chai'
 import { User } from '../data/index.js'
-import modifyName from './modifyName.js'
+import modifySurname from './modifySurname.js'
 import { NotFoundError, ContentError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 
 const { ObjectId } = Types
 
-describe('modifyName', () => {
+describe('modifySurname', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => User.deleteMany()))
 
     beforeEach(() => User.deleteMany())
 
-    it('succeeds on modify name of user', () =>
+    it('succeeds on modify surname of user', () =>
     bcrypt.hash('123123123', 8)
         .then(hash => User.create({ 
             name: 'Soraya', 
@@ -29,14 +29,14 @@ describe('modifyName', () => {
             password: hash 
         })
         .then(user =>
-            modifyName(user.id, 'Sorayaa')
+            modifySurname(user.id, 'SRZ')
         ))
         .then(() => User.find())
         .then(users => {
             expect(users).to.be.an.instanceOf(Array)
             expect(users[0]).to.be.an.instanceOf(Object)
-            expect(users[0].name).to.be.equal('Sorayaa')
-            expect(users[0].surname).to.be.equal('Suarez')
+            expect(users[0].name).to.be.equal('Soraya')
+            expect(users[0].surname).to.be.equal('SRZ')
             expect(users[0].email).to.be.equal('soraya@suarez.com')
             expect(users[0].phone).to.be.equal('')
             expect(users[0].avatar).to.be.equal('')
@@ -50,7 +50,7 @@ describe('modifyName', () => {
     it('fails on non-existing user', () => {
         let errorThrown
 
-        return modifyName(new ObjectId().toString(), 'Soraya')
+        return modifySurname(new ObjectId().toString(), 'SRZ')
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -62,7 +62,7 @@ describe('modifyName', () => {
         let errorThrown
         
         try {
-            modifyName(1234, 'Soraya')
+            modifySurname(1234, 'SRZ')
         } catch (error) {
             errorThrown = error
         } finally {
@@ -71,16 +71,16 @@ describe('modifyName', () => {
         }
     })
 
-    it('fails on invalid name', () => {
+    it('fails on invalid surname', () => {
         let errorThrown
         
         try {
-            modifyName(new ObjectId().toString(), 1234)
+            modifySurname(new ObjectId().toString(), 1234)
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('name is not valid')
+            expect(errorThrown.message).to.equal('surname is not valid')
         }
     })
 

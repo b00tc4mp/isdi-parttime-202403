@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/modifyName.spec.js</title>
+    <title>Code coverage report for logic/modifySurname.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> modifyName.spec.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> modifySurname.spec.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -242,19 +242,19 @@ import mongoose, { Types } from 'mongoose'
 import bcrypt from 'bcryptjs'
 import { expect } from 'chai'
 import { User } from '../data/index.js'
-import modifyName from './modifyName.js'
+import modifySurname from './modifySurname.js'
 import { NotFoundError, ContentError } from 'com/errors.js'
 &nbsp;
 const { MONGODB_URL_TEST } = process.env
 &nbsp;
 const { ObjectId } = Types
 &nbsp;
-describe('modifyName', () =&gt; {
+describe('modifySurname', () =&gt; {
     before(() =&gt; mongoose.connect(MONGODB_URL_TEST).then(() =&gt; User.deleteMany()))
 &nbsp;
     beforeEach(() =&gt; User.deleteMany())
 &nbsp;
-    it('succeeds on modify name of user', () =&gt;
+    it('succeeds on modify surname of user', () =&gt;
     bcrypt.hash('123123123', 8)
         .then(hash =&gt; User.create({ 
             name: 'Soraya', 
@@ -268,14 +268,14 @@ describe('modifyName', () =&gt; {
             password: hash 
         })
         .then(user =&gt;
-            modifyName(user.id, 'Sorayaa')
+            modifySurname(user.id, 'SRZ')
         ))
         .then(() =&gt; User.find())
         .then(users =&gt; {
             expect(users).to.be.an.instanceOf(Array)
             expect(users[0]).to.be.an.instanceOf(Object)
-            expect(users[0].name).to.be.equal('Sorayaa')
-            expect(users[0].surname).to.be.equal('Suarez')
+            expect(users[0].name).to.be.equal('Soraya')
+            expect(users[0].surname).to.be.equal('SRZ')
             expect(users[0].email).to.be.equal('soraya@suarez.com')
             expect(users[0].phone).to.be.equal('')
             expect(users[0].avatar).to.be.equal('')
@@ -289,7 +289,7 @@ describe('modifyName', () =&gt; {
     it('fails on non-existing user', () =&gt; {
         let errorThrown
 &nbsp;
-        return modifyName(new ObjectId().toString(), 'Soraya')
+        return modifySurname(new ObjectId().toString(), 'SRZ')
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -301,7 +301,7 @@ describe('modifyName', () =&gt; {
         let errorThrown
         
         try {
-            modifyName(1234, 'Soraya')
+            modifySurname(1234, 'SRZ')
         } catch (error) {
             errorThrown = error
         } finally {
@@ -310,16 +310,16 @@ describe('modifyName', () =&gt; {
         }
     })
 &nbsp;
-    it('fails on invalid name', () =&gt; {
+    it('fails on invalid surname', () =&gt; {
         let errorThrown
         
         try {
-            modifyName(new ObjectId().toString(), 1234)
+            modifySurname(new ObjectId().toString(), 1234)
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('name is not valid')
+            expect(errorThrown.message).to.equal('surname is not valid')
         }
     })
 &nbsp;

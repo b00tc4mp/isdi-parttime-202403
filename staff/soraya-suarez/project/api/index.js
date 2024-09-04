@@ -11,6 +11,8 @@ import {
     getAvailableUsersHandler,
     modifyUserHandler,
     modifyNameHandler,
+    modifySurnameHandler,
+    modifyEmailHandler,
     modifyUserAvailableHandler,
     deleteUserHandler,
     
@@ -48,6 +50,8 @@ mongoose.connect(MONGODB_URL)
         api.get('/users/available-users', getAvailableUsersHandler)
         api.patch('/users/modify', jsonBodyParser, modifyUserHandler)
         api.patch('/users/modify-name', jsonBodyParser, modifyNameHandler)
+        api.patch('/users/modify-surname', jsonBodyParser, modifySurnameHandler)
+        api.patch('/users/modify-email', jsonBodyParser, modifyEmailHandler)
         api.patch('/users/:userToModifyId', jsonBodyParser, modifyUserAvailableHandler)
         api.delete('/users/:userToDeleteId', deleteUserHandler)
         

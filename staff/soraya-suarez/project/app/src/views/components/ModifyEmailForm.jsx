@@ -31,7 +31,7 @@ function ModifyEmailForm({ user, onProcessFinished }) {
         const email = form.email.value
 
         try {
-            logic.modifyName(email)
+            logic.modifyEmail(email)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)

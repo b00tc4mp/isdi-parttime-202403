@@ -15,7 +15,7 @@ import ModifySurnameForm from './components/ModifySurnameForm'
 import ModifyEmailForm from './components/ModifyEmailForm'
 import ModifyPhoneForm from './components/ModifyPhoneForm'
 import ModifyAvatarForm from './components/ModifyAvatarForm'
-import ModifyPasswordForm from './components/ModifyPassword'
+import ModifyPasswordForm from './components/ModifyPasswordForm'
 
 import useContext from '../useContext'
 
