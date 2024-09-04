@@ -1,0 +1,78 @@
+@tailwind components;
+
+
+@layer components {
+  .informationSection {
+    @apply text-center m-8 mt-32
+  }
+
+  .TitleInfo{
+    @apply text-4xl pt-4 
+  }
+
+  .instrucciones {
+    @apply mt-4;
+  }
+
+  .show-form-button {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200;
+  }
+
+  .TitleCreateRoom {
+    @apply text-3xl font-semibold mb-6;
+  }
+
+  .instructions-content {
+    @apply text-left mt-8 max-w-3xl mx-auto;
+  }
+
+  .instructions-heading {
+    @apply text-xl font-semibold mt-6 mb-2;
+  }
+
+  .instructions-list {
+    @apply list-disc list-inside mb-4;
+  }
+
+  .instructions-list ol {
+    @apply list-decimal ml-6;
+  }
+
+  .RegisterForm {
+    @apply text-center flex flex-col justify-center items-center w-full max-w-md px-4 py-6 mt-6 mb-6 pt-6 pb-6;
+  }
+
+  .RegisterForm input,
+  .RegisterForm select,
+  .RegisterForm textarea {
+    @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4;
+  }
+
+  .RegisterForm .SubmnitButton {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200;
+  }
+
+  .RegisterForm .Delete {
+    @apply mt-4 px-6 py-2 bg-slate-400 text-white rounded-md shadow hover:bg-blue-600 transition duration-200;
+  }
+
+  .RegisterForm p {
+    @apply mt-4 text-gray-600;
+  }
+
+  .RegisterForm a {
+    @apply text-blue-500 hover:underline;
+  }
+
+  .Acepted {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200 w-11/12 pt-2
+  }
+
+  .MessageContainer{
+    @apply flex flex-col text-center items-center
+  }
+
+  .TitleMessage{
+    @apply text-3xl font-semibold pb-2
+  }
+}

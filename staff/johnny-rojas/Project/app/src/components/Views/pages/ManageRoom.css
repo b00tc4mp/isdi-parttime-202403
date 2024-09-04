@@ -1,0 +1,50 @@
+@tailwind components;
+
+@layer components{
+.container {
+  @apply flex flex-col items-center mt-36
+}
+
+body{
+  @apply p-0 m-0 
+}
+
+.containerImg{
+  @apply flex w-full justify-center
+}
+
+.sectionCard {
+  @apply w-11/12 max-w-4xl bg-white rounded-lg shadow-lg p-6 
+}
+
+.sectionTitle {
+  @apply text-2xl font-bold mb-4
+}
+
+.bookingListContainer {
+  @apply max-h-96 overflow-y-auto
+}
+
+.gridList {
+  @apply space-y-6
+}
+
+img{
+  @apply pb-4
+}
+
+.bookingItem {
+  @apply bg-gray-50 p-4 rounded-lg shadow-md 
+}
+
+.contactInfoTitle {
+  @apply text-lg font-semibold mb-2
+}
+
+.infoLabel {
+  @apply font-bold
+}
+.TrashButton{
+  @apply pt-3 pl-44
+}
+}

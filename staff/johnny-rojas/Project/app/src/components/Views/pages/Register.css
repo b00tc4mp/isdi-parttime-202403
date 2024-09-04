@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+
+@layer base {
+  body {
+    @apply min-h-screen w-full flex flex-col items-center justify-center bg-white text-gray-900
+  }
+}
+
+@layer components {
+.TitlePrincipalRegister{
+  @apply text-3xl font-semibold mb-6 mt-16
+}
+  .RegisterForm {
+    @apply text-center flex flex-col justify-center items-center w-full max-w-md px-4 py-6 mt-6 mb-6 pt-6 pb-6
+  }
+  .RegisterForm input,
+  .RegisterForm select,
+  .RegisterForm textarea {
+    @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4
+  }
+
+  .RegisterForm .SubmitButton{
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200
+  }
+
+  .RegisterForm p {
+    @apply mt-4 text-gray-600
+  }
+
+  .RegisterForm a {
+    @apply text-blue-500 hover:underline
+  }
+  
+}
+

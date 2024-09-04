@@ -1,0 +1,40 @@
+@tailwind components;
+
+@layer components {
+  .dropdown-menu {
+    @apply relative inline-block text-left;
+  }
+
+  .dropdown-toggle {
+    @apply text-black border-none px-4 py-2 rounded-md focus:outline-none text-2xl;
+  }
+
+  .dropdown-content {
+    @apply absolute top-full left-0 mt-2 w-40 bg-white border border-gray-300 rounded-md shadow-sm z-10;
+    @apply hidden; 
+  }
+
+  .dropdown-content a {
+    @apply block px-4 py-3 text-gray-700 hover:bg-gray-100;
+  }
+
+  .LogoutButton{
+    @apply block px-4 py-3 text-gray-700 hover:bg-gray-100;
+  }
+
+
+  .top-bar .dropdown-menu {
+    @apply text-black text-xl ml-24 relative; 
+  }
+
+
+  .top-bar .dropdown-content {
+    @apply absolute bg-white border border-gray-300 rounded-md shadow-lg;
+    @apply top-full -left-24 z-10; 
+  }
+
+
+  .top-bar .dropdown-menu:hover .dropdown-content {
+    @apply block;
+  }
+}

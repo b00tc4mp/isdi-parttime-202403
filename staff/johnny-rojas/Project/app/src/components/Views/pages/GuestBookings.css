@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components{
+.sectionBooking{
+  @apply mt-40 mb-20
+}
+}

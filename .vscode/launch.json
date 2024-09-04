@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug App (src/index.js)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/staff/johnny-rojas/project/src"
+    },
+    {
+      "name": "Debug API",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/staff/johnny-rojas/project/api/index.js",
+      "outFiles": ["${workspaceFolder}/api/**/*.js"],
+      "envFile": "${workspaceFolder}/staff/johnny-rojas/project/api/.env",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/staff/johnny-rojas/project/api/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/staff/johnny-rojas/project/api/**/*.spec.js"
+      ],
+      "internalConsoleOptions": "openOnSessionStart",
+      "console": "integratedTerminal"
+    }
+  ]
+}

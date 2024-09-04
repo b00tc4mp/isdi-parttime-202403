@@ -1,0 +1,19 @@
+@tailwind base;
+
+@layer base{
+  .infoUserTitle{
+    @apply text-2xl font-medium
+  }
+
+  .infoUser{
+    @apply pb-4
+  }
+
+  span{
+    @apply font-bold
+  }
+
+  .ManageProfile{
+    @apply mt-20
+  }
+}

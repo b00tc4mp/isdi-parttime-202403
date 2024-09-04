@@ -1,0 +1,23 @@
+@tailwind components;
+
+.top-bar {
+  @apply fixed top-0 left-0 w-full bg-white z-50 flex flex-col items-center pl-4 py-2 shadow-md pt-8 pb-0
+}
+
+.top-bar .top-content {
+  @apply flex items-center justify-between w-full max-w-screen-lg mb-4 px-4 
+}
+
+.top-bar .home-icon {
+  @apply text-black text-2xl mr-24; 
+
+
+.top-bar .page-logo {
+  @apply w-16 h-16 overflow-hidden flex items-center justify-center;
+}
+
+.top-bar .page-logo img {
+  @apply w-full h-full object-cover;
+}
+
+}

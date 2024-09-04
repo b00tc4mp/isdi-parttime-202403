@@ -1,0 +1,61 @@
+@tailwind components;
+
+@layer components{
+  .Info{
+    @apply pt-40
+  }
+  .CardRoom{
+    @apply flex flex-col items-center
+  }
+
+  .Image{
+    @apply w-full h-96 object-cover
+  }
+
+  .InfoCardLeft{
+    @apply flex flex-col gap-1 
+  }
+
+  .TitleDates{
+    @apply text-center font-black pt-4 pb-4
+  }
+
+  .Calendar{
+    @apply flex flex-col items-center 
+  }
+
+  .DateRight{
+    @apply items-start w-8/12 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4
+  }
+
+  .DateLeft{
+    @apply items-end  w-8/12 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4
+  }
+
+  .TitlePayment{
+    @apply text-center mt-4 text-2xl font-semibold
+  }
+  .RegisterFormPayment {
+    @apply text-center flex flex-col justify-center items-center w-full max-w-md px-4 py-6 mb-6 pt-6 pb-6;
+  }
+  .RegisterFormPayment input,
+  .RegisterFormPayment select,
+  .RegisterFormPayment textarea {
+    @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4;
+  }
+
+  .RegisterFormPayment button {
+    @apply mt-4 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition duration-200;
+  }
+
+  .RegisterFormPayment p {
+    @apply mt-4 text-gray-600;
+  }
+
+  .RegisterFormPayment a {
+    @apply text-blue-500 hover:underline;
+  }
+  
+}
+
+
