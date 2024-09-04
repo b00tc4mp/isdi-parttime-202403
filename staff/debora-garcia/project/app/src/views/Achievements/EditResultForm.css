@@ -1,0 +1,43 @@
+@tailwind components;
+
+/* @layer components {
+  .EditResultForm {
+    @apply fixed w-[300px] bottom-[100px] left-1/2 transform -translate-x-1/2 bg-white p-[10px] shadow-lg rounded-md;
+  }
+
+  .form-buttons {
+    @apply flex justify-center gap-[10px] mt-[20px]
+  }
+
+  .form-buttons Button:hover {
+    @apply bg-[#65524d];
+  }
+  .EditResultForm .Field {
+    @apply m-1 p-[.02rem] w-full;
+  }
+
+  .cancel-button {
+    @apply text-[red] py-2 px-4 rounded-md;
+
+  }
+  
+} */
+
+@layer components {
+  .EditResultForm {
+    @apply fixed w-[350px] bg-[#777272db] bottom-[90px] rounded-md p-3 shadow-lg flex flex-col items-center left-1/2 transform -translate-x-1/2 gap-1;
+  }
+
+  .EditResultForm .form-buttons {
+    @apply w-full rounded-lg  flex flex-row  justify-center items-center gap-2;
+  }
+
+  .EditResultForm Button {
+    @apply w-[100px] items-center bg-[white] border-[--third-color] text-[black] m-1 rounded-md px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-[white] focus:outline-none focus:ring-2 focus:ring-[#b5202064];
+  }
+
+  /* .EditResultForm .cancel-button {
+    @apply bg-[--third-color] text-white rounded-md px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300;
+  }
+ */
+}

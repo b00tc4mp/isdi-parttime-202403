@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .achievements-container {
+    @apply w-full h-screen overflow-auto p-4; 
+  }
+}

@@ -1,0 +1,11 @@
+.search-input {
+    @apply fixed p-2 border border-[#ddd] rounded-lg text-base w-full max-w-[350px] mt-[3.15rem] transition-colors duration-300 focus:border-[#000000] focus:outline-none;
+  }
+.Filter i {
+  position: fixed;
+  top: 80px;
+  right: -100px;
+  color: #b7b7b7;
+  width: 200px;
+  font-size: 25px;
+}

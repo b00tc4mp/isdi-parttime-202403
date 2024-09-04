@@ -1,0 +1,55 @@
+@tailwind components;
+
+@layer components {
+  .comment-button i {
+    @apply text-[22px] m-0;
+  }
+  .like-button i {
+    @apply text-2xl m-0;
+  }
+  .like-button p {
+    @apply text-xl m-0 self-center
+  }
+  .comment-button  {
+    @apply text-xl m-0 
+  }
+  .post-footer {
+    @apply flex flex-row justify-between;
+  }
+
+  Button .post-footer-buttons {
+    @apply flex flex-row justify-between;
+  }
+
+  .Post {
+    @apply flex flex-col w-[350px];
+  }
+
+  .Post-container {
+    @apply pt-[90px] pb-[90px];
+  }
+  article {
+    @apply flex flex-col bg-white items-center p-[10px_0] mb-5 rounded-[8px];
+  }
+
+ .post-heading {
+    @apply flex gap-[1rem] w-full justify-between p-[0.2rem_1rem] items-center;
+  }
+  .post-image {
+    @apply flex max-h-[20rem] max-w-[20rem] mb-2;
+  }
+  .post-body {
+    @apply flex flex-col min-w-[20rem];
+  }
+  .post-movements {
+    @apply flex flex-col w-full justify-start pt-[0.5rem];
+  }
+  .Post .result-details {
+    @apply flex  w-full justify-start p-[0.3rem_1rem] font-bold;
+  }
+
+  time{
+    @apply text-[13px] tracking-tight; 
+    word-spacing: -3px; 
+  }
+}

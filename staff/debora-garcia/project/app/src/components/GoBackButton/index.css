@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components{
+  .GoBackButton {
+    @apply flex gap-[3rem] bg-[transparent] fixed top-[6px] left-[-5px] ml-[20px] cursor-pointer text-2xl
+    }
+
+    .GoBackButton i{
+      @apply text-[--fourth-color]
+    }
+}

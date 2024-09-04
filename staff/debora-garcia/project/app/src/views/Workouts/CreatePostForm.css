@@ -1,0 +1,35 @@
+@tailwind components;
+
+@layer components {
+  .CreatePostForm {
+    @apply fixed w-[350px] h-[270px] bottom-[100px] left-1/2 transform -translate-x-1/2 bg-[#cac4c4] p-[10px] shadow-lg rounded-md;
+  }
+  
+  .CreatePostForm .Field {
+    @apply  p-[.2rem] items-center;
+  }
+}
+.post-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 10px; 
+}
+
+.post-form-container > * {
+  width: 100%;
+  max-width: 400px
+}
+
+.form-buttons-container {
+  display: flex; 
+  justify-content: center; 
+  width: 100%; 
+}
+
+.form-buttons-container Button {
+  max-width: 200px; 
+  width: 20%; 
+  text-align: center; 
+  display: block; 
+}
