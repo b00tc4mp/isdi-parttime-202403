@@ -3,7 +3,6 @@ import { SystemError } from 'com/errors'
 
 import logic from "../logic"
 import useContext from '../useContext'
-import "./Register.css"
 import Button from "../components/Button"
 import Field from "../components/Field"
 import Heading from "../components/Heading"

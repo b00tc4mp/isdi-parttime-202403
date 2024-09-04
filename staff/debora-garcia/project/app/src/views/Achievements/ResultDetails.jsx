@@ -87,11 +87,11 @@ export default function ResultDetails() {
             <div className="result-card">
                 <div className="result-header">
                     <h6 className="result-title">
-                        {result?.workout.workoutType.toUpperCase()} {result?.workout?.duration && ` ${result?.workout.duration}"`}
+                        {result?.workout.workoutType.toUpperCase()} {result?.workout?.duration && ` ${result?.workout.duration}'`}
                     </h6>
                     {!isEditing && !isMenuOpen && (
                         <Button className="action-button" onClick={handleToggleMenu}>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <i className="fa-solid fa-ellipsis-vertical"></i>
                         </Button>
                     )}
                 </div>
@@ -106,7 +106,7 @@ export default function ResultDetails() {
 
                 <div className="result-details">
                     <h6 >Result</h6>
-                    <p>{result?.time && `Time: ${result.time}"`}</p>
+                    <p>{result?.time && `Time: ${result.time}'`}</p>
                     <p>{(result?.repetitions || result?.repetitions === 0) && `Reps: ${result.repetitions} `}</p>
                     <p>{(result?.weight || result?.weight === 0) && `Weight: ${result.weight} kg`}</p>
 

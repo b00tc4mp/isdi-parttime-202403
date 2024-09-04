@@ -30,7 +30,7 @@ export default function Header({ children, username, onLogout }) {
                     </div>
                 </div>
                 <Button onClick={handleLogout} className="logout-button">
-                    <i class="fa-solid fa-arrow-right-from-bracket "></i>
+                    <i className="fa-solid fa-arrow-right-from-bracket "></i>
                 </Button>
             </div>
         </header>

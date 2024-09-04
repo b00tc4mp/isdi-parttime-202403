@@ -53,7 +53,7 @@ export default function WorkoutDetail() {
         <div className="WorkoutDetails">
             
             <h6>
-                {workout?.workoutType?.toUpperCase()} {workout?.duration && ` ${workout.duration}"`} {workout.title && `"${workout.title}"`}
+                {workout?.workoutType?.toUpperCase()} {workout?.duration && ` ${workout.duration}'`} {workout.title && `"${workout.title}"`}
             </h6>
 
             {workout?.movements && workout.movements.map((movement, index) => (
@@ -63,7 +63,7 @@ export default function WorkoutDetail() {
             ))}
             <div className="buttons-container">
                 <Button onClick={generateRandomWorkout} type="button" className="shuffle-button">
-                    <i class="fa-solid fa-shuffle"></i>
+                    <i className="fa-solid fa-shuffle"></i>
                 </Button>
 
                 <Button onClick={handleSaveClick} type="button" className="save-button">Save</Button>
