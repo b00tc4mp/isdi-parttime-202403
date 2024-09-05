@@ -1,0 +1,8 @@
+._CreatePostForm {
+    position: fixed;
+    bottom: 3rem;
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
+    background-color: var(--second-color);
+}

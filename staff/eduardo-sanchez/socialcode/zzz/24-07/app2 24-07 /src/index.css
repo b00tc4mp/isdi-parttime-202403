@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  :root {
+    --first-color: DarkOliveGreen;
+    --second-color: MintCream;
+  }
+
+  * {
+    font-family: Workbench;
+    color: var(--first-color);
+  }
+
+  body {
+    background-color: var(--second-color);
+    margin: 0;
+  }
+}
+
+@layer components {
+  /* core */
+
+  .Form {
+    @apply flex flex-col items-center;
+  }
+
+  .Field {
+    @apply flex flex-col m-[.25rem_0];
+  }
+
+  .Label {
+    @apply mb-[.5rem];
+  }
+
+  .Input {
+    @apply p-[.4rem] bg-white font-[1rem] border-[1px] border-blue-500;
+  }
+
+  .Image {
+    @apply max-w-[22rem];
+  }
+
+  .Image-Container {
+    @apply flex justify-center w-4/5;
+  }
+
+  .SubmitButton {
+    @apply m-[1rem_0];
+  }
+
+  .Text {
+    @apply text-fuchsia-500;
+  }
+
+  .Time {
+    @apply text-orange-500;
+  }
+
+  /* library */
+
+  .FormWithFeedback {
+    @apply flex flex-col gap-0.5 p-[1rem] -mt-2 mb-2;
+  }
+
+  .FormWithFeedback .Feedback.error {
+    @apply text-[tomato];
+  }
+
+  .FormWithFeedback .Feedback.success {
+    @apply text-green-500;
+  }
+
+  .View {
+    @apply flex items-center justify-center gap-[0.5rem];
+  }
+
+  .View h2 {
+    @apply text-[blue]
+  }
+
+  .View button {
+    @apply m-[0.5rem_0]
+  }
+
+  .CreatePostForm {
+    @apply flex flex-col justify-center fixed bottom-[3rem] w-full box-border bg-[var(--second-color)];
+  }
+
+  .Footer {
+    @apply w-full flex justify-center fixed bottom-[-12px] p-[.5rem_0] border-t-[1px] border-t-[var(--first-color)] bg-[var(--second-color)];
+  }
+
+  .Header {
+    @apply flex gap-[1rem] w-full justify-between fixed top-[0rem] p-[.5rem] box-border border-b-[1px] border-b-[var(--first-color)] bg-[var(--second-color)] items-center;
+  }
+
+  .PostList {
+    @apply flex flex-col justify-center items-center m-16 w-4/6 mt-[3rem];
+  }
+
+  .Post {
+    @apply flex flex-col w-[22rem] justify-start items-center mt-8;
+  }
+
+  .Post-Header {
+    @apply flex w-[100%] justify-between;
+  }
+
+  .Post-Description {
+    @apply flex w-full justify-start -mb-4 text-[blue];
+  }
+
+  .Main {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .Date {
+    @apply flex justify-between items-center w-full;
+  }
+
+  .Login {
+    @apply flex flex-col justify-center items-center mt-3;
+  }
+
+  .Login h1 {
+    @apply mt-2 -mb-2;
+  }
+
+  .Login a {
+    @apply -mt-3;
+  }
+
+  .Register {
+    @apply flex flex-col justify-center items-center mt-3;
+  }
+
+  .Register h1 {
+    @apply mt-1 -mb-2;
+  }
+
+  .Register a {
+    @apply -mt-3;
+  }
+
+}
