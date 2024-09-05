@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shapes</title>
+</head>
+
+<body>
+    <script>
+        function Shape() {
+            this.container = document.createElement('div')
+
+            this.container.style.position = 'absolute'
+        }
+
+        Shape.prototype.setHeight = function (value) {
+            this.container.style.height = value + 'px'
+        }
+
+        Shape.prototype.setWidth = function (value) {
+            this.container.style.width = value + 'px'
+        }
+
+        Shape.prototype.setRadius = function (value) {
+            this.container.style.borderRadius = value + '%'
+        }
+
+        Shape.prototype.setColor = function (value) {
+            this.container.style.backgroundColor = value
+        }
+
+        Shape.prototype.setX = function (value) {
+            // this.container.style.transitionProperty = 'left'
+            // this.container.style.transitionDuration = '0.1s'
+            this.container.style.left = value + 'px'
+        }
+
+        Shape.prototype.setY = function (value) {
+            // this.container.style.transitionProperty = 'top'
+            // this.container.style.transitionDuration = '0.1s'
+            this.container.style.top = value + 'px'
+        }
+
+        Shape.prototype.setZ = function (value) {
+            this.container.style.transitionProperty = 'transform'
+            this.container.style.transitionDuration = '0.1s'
+            this.container.style.transform = 'scale(' + (value + 100) / 100 + ')'
+        }
+
+        // Shape.prototype.setLocation = function (x, y, z) {
+        //     console.log(x, y, z)
+
+        //     // this.container.style.transitionProperty = 'translate'
+        //     // this.container.style.transitionDuration = '0.2s'
+        //     // this.container.style.translate = x + 'px ' + y + 'px ' + z + 'px'
+
+
+        //     this.container.style.transitionProperty = 'transform'
+        //     this.container.style.transitionDuration = '0.2s'
+        //     this.container.style.transform = 'translate3d(' + x + 'px, ' + y + 'px, ' + z + 'px)'
+        //     console.log(this.container.style.transform)
+        // }
+
+        Shape.prototype.add = function (child) {
+            this.container.appendChild(child.container)
+        }
+
+        var eyeL = new Shape()
+        eyeL.setHeight(50)
+        eyeL.setWidth(50)
+        eyeL.setRadius(50)
+        eyeL.setColor('black')
+        eyeL.setX(30)
+        eyeL.setY(30)
+
+        var eyeR = new Shape()
+        eyeR.setHeight(50)
+        eyeR.setWidth(50)
+        eyeR.setRadius(50)
+        eyeR.setColor('white')
+        eyeR.setX(90)
+        eyeR.setY(30)
+
+        var face = new Shape()
+        face.setColor('pink')
+        face.setHeight(200)
+        face.setWidth(200)
+        face.setRadius(50)
+        face.setY(-170)
+        face.setX(-60)
+
+        face.add(eyeL)
+        face.add(eyeR)
+
+        var body = new Shape()
+        body.setColor('pink')
+        body.setHeight(100)
+        body.setWidth(100)
+        body.setX(50)
+        body.setY(170)
+
+        body.add(face)
+
+        var footL = new Shape()
+        footL.setColor('pink')
+        footL.setHeight(100)
+        footL.setWidth(50)
+        footL.setX(-20)
+        footL.setY(100)
+
+        body.add(footL)
+
+        var footR = new Shape()
+        footR.setColor('pink')
+        footR.setHeight(100)
+        footR.setWidth(50)
+        footR.setX(80)
+        footR.setY(100)
+
+        body.add(footR)
+
+        var x = 200
+        var y = 300
+        var z = 0
+
+        body.setX(x)
+        body.setY(y)
+
+        var step = 20
+
+        var meta = false
+
+        document.onkeydown = function (event) {
+            console.log(event.key)
+
+            if (event.key === 'ArrowLeft')
+                x -= step
+            else if (event.key === 'ArrowRight')
+                x += step
+            else if (event.key === 'ArrowUp') {
+                if (!meta)
+                    y -= step
+                else
+                    z -= step
+            } else if (event.key === 'ArrowDown') {
+                if (!meta)
+                    y += step
+                else
+                    z += step
+            } else if (event.key === 'Meta')
+                meta = true
+
+            body.setX(x)
+            body.setY(y)
+            body.setZ(z)
+            // body.setLocation(x, y, z)
+        }
+
+        document.onkeyup = function (event) {
+            console.log(event.key)
+
+            if (event.key === 'Meta')
+                meta = false
+        }
+
+        document.body.appendChild(body.container)
+
+    </script>
+</body>
+
+</html>
