@@ -4,9 +4,11 @@ import getMyProfileHandler from './getMyProfileHandler.js'
 import getAllUsersHandler from './getAllUsersHandler.js'
 import getAvailableUsersHandler from './getAvailableUsersHandler.js'
 import modifyUserHandler from './modifyUserHandler.js'
-import modifyNameHandler from './modifyNameHandler.js'
-import modifySurnameHandler from './modifySurnameHandler.js'
-import modifyEmailHandler from './modifyEmailHandler.js'
+import modifyMyNameHandler from './modifyMyNameHandler.js'
+import modifyMySurnameHandler from './modifyMySurnameHandler.js'
+import modifyMyEmailHandler from './modifyMyEmailHandler.js'
+import modifyMyphoneHandler from './modifyMyphoneHandler.js'
+import modifyMyAvatarHandler from './modifyMyAvatarHandler.js'
 import modifyUserAvailableHandler from './modifyUserAvailableHandler.js'
 import deleteUserHandler from './deleteUserHandler.js'
 
@@ -33,9 +35,11 @@ export {
     getAllUsersHandler,
     getAvailableUsersHandler,
     modifyUserHandler,
-    modifyNameHandler,
-    modifySurnameHandler,
-    modifyEmailHandler,
+    modifyMyNameHandler,
+    modifyMySurnameHandler,
+    modifyMyEmailHandler,
+    modifyMyphoneHandler,
+    modifyMyAvatarHandler,
     modifyUserAvailableHandler,
     deleteUserHandler,
     

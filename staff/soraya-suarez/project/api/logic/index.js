@@ -4,9 +4,11 @@ import getMyProfile from './getMyProfile.js'
 import getAllUsers from './getAllUsers.js'
 import getAvailableUsers from './getAvailableUsers.js'
 import modifyUser from './modifyUser.js'
-import modifyName from './modifyName.js'
-import modifySurname from './modifySurname.js'
-import modifyEmail from './modifyEmail.js'
+import modifyMyName from './modifyMyName.js'
+import modifyMySurname from './modifyMySurname.js'
+import modifyMyEmail from './modifyMyEmail.js'
+import modifyMyPhone from './modifyMyPhone.js'
+import modifyMyAvatar from './modifyMyAvatar.js'
 import modifyUserAvailable from './modifyUserAvailable.js'
 import deleteUser from './deleteUser.js'
 
@@ -30,9 +32,11 @@ const logic = {
     getAllUsers,
     getAvailableUsers,
     modifyUser,
-    modifyName,
-    modifySurname,
-    modifyEmail,
+    modifyMyName,
+    modifyMySurname,
+    modifyMyEmail,
+    modifyMyPhone,
+    modifyMyAvatar,
     modifyUserAvailable,
     deleteUser,
     

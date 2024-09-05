@@ -31,7 +31,7 @@ function ModifyAvatarForm({ user, onProcessFinished }) {
         const avatar = form.avatar.value
 
         try {
-            logic.modifySurname(avatar)
+            logic.modifyMyAvatar(avatar)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)

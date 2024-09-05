@@ -8,9 +8,11 @@ import getUserRole from './getUserRole'
 import getAllUsers from './getAllUsers'
 import getAvalableUsers from './getAvailableUsers'
 import modifyUser from './modifyUser'
-import modifyName from './modifyName'
-import modifySurname from './modifySurname'
-import modifyEmail from './modifyEmail'
+import modifyMyName from './modifyMyName'
+import modifyMySurname from './modifyMySurname'
+import modifyMyEmail from './modifyMyEmail'
+import modifyMyPhone from './modifyMyPhone'
+import modifyMyAvatar from './modifyMyAvatar'
 import modifyUserAvailable from './modifyUserAvailable'
 import deleteUser from './deleteUser'
 
@@ -39,9 +41,11 @@ const logic = {
     getAllUsers,
     getAvalableUsers,
     modifyUser,
-    modifyName,
-    modifySurname,
-    modifyEmail,
+    modifyMyName,
+    modifyMySurname,
+    modifyMyEmail,
+    modifyMyPhone,
+    modifyMyAvatar,
     modifyUserAvailable,
     deleteUser,
 

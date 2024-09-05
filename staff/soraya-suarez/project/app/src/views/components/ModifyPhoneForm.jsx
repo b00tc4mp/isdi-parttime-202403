@@ -31,7 +31,7 @@ function ModifyPhoneForm({ user, onProcessFinished }) {
         const phone = form.phone.value
 
         try {
-            logic.modifySurname(phone)
+            logic.modifyMyPhone(phone)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)

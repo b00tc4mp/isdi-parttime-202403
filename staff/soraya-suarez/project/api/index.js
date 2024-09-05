@@ -10,9 +10,11 @@ import {
     getAllUsersHandler,
     getAvailableUsersHandler,
     modifyUserHandler,
-    modifyNameHandler,
-    modifySurnameHandler,
-    modifyEmailHandler,
+    modifyMyNameHandler,
+    modifyMySurnameHandler,
+    modifyMyEmailHandler,
+    modifyMyphoneHandler,
+    modifyMyAvatarHandler,
     modifyUserAvailableHandler,
     deleteUserHandler,
     
@@ -49,9 +51,11 @@ mongoose.connect(MONGODB_URL)
         api.get('/users', getAllUsersHandler)
         api.get('/users/available-users', getAvailableUsersHandler)
         api.patch('/users/modify', jsonBodyParser, modifyUserHandler)
-        api.patch('/users/modify-name', jsonBodyParser, modifyNameHandler)
-        api.patch('/users/modify-surname', jsonBodyParser, modifySurnameHandler)
-        api.patch('/users/modify-email', jsonBodyParser, modifyEmailHandler)
+        api.patch('/users/modify-my-name', jsonBodyParser, modifyMyNameHandler)
+        api.patch('/users/modify-my-surname', jsonBodyParser, modifyMySurnameHandler)
+        api.patch('/users/modify-my-email', jsonBodyParser, modifyMyEmailHandler)
+        api.patch('/users/modify-my-phone', jsonBodyParser, modifyMyphoneHandler)
+        api.patch('/users/modify-my-avatar', jsonBodyParser, modifyMyAvatarHandler)
         api.patch('/users/:userToModifyId', jsonBodyParser, modifyUserAvailableHandler)
         api.delete('/users/:userToDeleteId', deleteUserHandler)
         

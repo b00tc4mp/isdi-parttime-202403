@@ -31,7 +31,7 @@ function ModifyNameForm({ user, onProcessFinished }) {
         const name = form.name.value
 
         try {
-            logic.modifyName(name)
+            logic.modifyMyName(name)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
