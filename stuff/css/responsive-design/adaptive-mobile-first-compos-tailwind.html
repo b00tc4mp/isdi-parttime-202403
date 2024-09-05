@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style type="text/tailwindcss">
+        @layer components {
+            .posts {
+                @apply border-[2px] border-[dodgerblue] flex flex-col gap-[5px] p-[5px] min-[300px]:grid min-[300px]:grid-cols-2 min-[400px]:grid-cols-3 min-[500px]:grid-cols-4 min-[600px]:grid-cols-[2fr_1fr_1fr_1fr];
+            }
+
+            .post {
+                @apply border-[2px] border-[tomato] min-h-[100px];
+            }
+        }
+      </style>
+
+    <h1>Hola, Mundo!</h1>
+
+    <section class="posts">
+        <article class="post">1</article>
+        <article class="post">2</article>
+        <article class="post">3</article>
+        <article class="post">4</article>
+        <article class="post">5</article>
+        <article class="post">6</article>
+        <article class="post">7</article>
+        <article class="post">8</article>
+        <article class="post">9</article>
+        <article class="post">10</article>
+        <article class="post">11</article>
+        <article class="post">12</article>
+    </section>
+</body>
+
+</html>
