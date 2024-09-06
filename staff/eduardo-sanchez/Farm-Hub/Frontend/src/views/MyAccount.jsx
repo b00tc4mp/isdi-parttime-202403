@@ -1,5 +1,3 @@
-// puedes crear update password
-
 import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
@@ -64,6 +62,8 @@ export const MyAccount = () => {
 
 
 }
+
+// puedes crear update password
 
 // const handlePasswordUpdate = (newPassword) => {
 //    // Add logic to update the password here

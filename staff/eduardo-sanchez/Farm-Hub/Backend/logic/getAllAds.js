@@ -13,7 +13,7 @@ const getAllAds = (userId) => {
             return Ad.find({}).populate('author', 'username').select('-__v').sort({ date: -1 }).lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(ads => {
-                    if (!ads) throw new NotFoundError('ads not found')
+                    if (!ads || !ads.length) throw new NotFoundError('ads not found')
 
                     // ads.forEach(ad => {
                     //     ad.id = ad._id.toString()

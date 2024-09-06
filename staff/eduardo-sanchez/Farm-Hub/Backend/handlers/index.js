@@ -13,6 +13,8 @@ import searchAdsHandler from './searchAdsHandler.js'
 
 import updateAdHandler from './updateAdHandler.js'
 
+import getUserAdsHandler from './getUserAdsHandler.js'
+
 export {
     errorHandler,
     registerUserHandler,
@@ -26,5 +28,6 @@ export {
     getAdHandler,
     deleteAdCommentHandler,
     searchAdsHandler,
-    updateAdHandler
+    updateAdHandler,
+    getUserAdsHandler
 }

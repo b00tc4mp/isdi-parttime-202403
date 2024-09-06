@@ -16,6 +16,7 @@ import {
     deleteAdCommentHandler,
     searchAdsHandler,
     updateAdHandler,
+    getUserAdsHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -55,6 +56,8 @@ mongoose.connect(MONGODB_URL)
         api.delete('/comments/:adId/:commentId', deleteAdCommentHandler)
 
         api.patch('/updatead/:adId', jsonBodyParser, updateAdHandler)
+
+        api.get('/users/:userId/userAds', getUserAdsHandler)
 
         api.use(errorHandler)
 
