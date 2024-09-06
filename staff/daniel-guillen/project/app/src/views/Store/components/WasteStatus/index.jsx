@@ -2,6 +2,8 @@ import './index.css'
 
 const WasteStatus = ( { statusOptions, handleStatusOptions }) => {
 
+  console.log('Renderizado: Input de estado de residuo.')
+
   return (
 
     <div className="StatusDiv">

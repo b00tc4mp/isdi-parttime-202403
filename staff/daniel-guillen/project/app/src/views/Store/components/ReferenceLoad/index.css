@@ -1,0 +1,28 @@
+.LoadTitle {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.ReferenceLoadDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-reference {
+  margin-left: 0.5rem;
+  color: orange;
+  text-align: left;
+  font-weight: bold;
+  font-size: x-large;
+  background: transparent;
+  border: 0;
+}
+
+.button-reference {
+  background: transparent;
+  font-size: x-large;
+  border: 0;
+  cursor: pointer;
+}

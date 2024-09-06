@@ -1,11 +1,8 @@
-import React from 'react'
 import './index.css'
 //components
 import WasteSelect from '../../components/WasteSelect'
 import WasteItem from '../../components/WasteItem'
 import MenuStore from '../../components/MenuStore'
-//handlers
-import useWasteSelection from '../../../../handlers/useWasteSelection'
 //hooks
 import useFetchList from '../../../../hooks/useFetchList'
 import useDeleteItem from '../../../../hooks/useDeleteItem'
@@ -15,7 +12,12 @@ import sortWasteItems from '../../../../utils/sortWasteItems'
 
 const SearchWaste = () => {
 
-    const { selectedWaste, handleWasteChange } = useWasteSelection()
+    const [selectedWaste, setSelectedWaste] = useState( { code: "" } )
+
+    const handleWasteChange = (selectedOption) => {
+      setSelectedWaste(selectedOption)
+      console.log("Residuos seleccionados:", selectedOption)
+    }
 
     const { list } = useFetchList('dataStoreWaste')
     const { deleteWaste  } = useDeleteItem('dataStoreWaste')

@@ -1,25 +1,18 @@
-import { useState } from 'react'
 import './index.css'
 //components
 import Register from './Register'
-import DataStoreList from './DataStore'
+import WasteStored from './DataStore'
 import MenuStore from '../../components/MenuStore'
 
-const Store = () => {
-
-  const [refreshList, setRefreshList] = useState(false)
-
-  const refreshData = () => {
-    setRefreshList(!refreshList)
-  }
+const Stored = () => {
 
   return (
     <div className='container'>
-        <Register refreshData={refreshData}/>
-        <DataStoreList refreshList={refreshList} refreshData={refreshData} />
+        <Register />
+        <WasteStored />
         <MenuStore />
     </div>
   )
 }
 
-export default Store
+export default Stored

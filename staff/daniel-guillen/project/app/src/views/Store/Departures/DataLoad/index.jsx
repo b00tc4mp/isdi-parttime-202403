@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react'
-
-// utils
-import filterByMonthYear from '../../../../utils/filterByMonthYear'
+//utils
+import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 
-// funcion para traer los residuos almacenados
-const fetchStoredWaste = async (setData, setLoading, setError) => {
+//traemos semana y año actual
+const { week, year } = getWeekNumberYear()
+
+// funcion para traer los residuos cargados
+const fetchLoads = async (reference, setData, setLoading, setError) => {
   try {
     setLoading(true)
-    const response = await fetch(`${import.meta.env.VITE_API_URL}stored/getAllWasteStored`, {
+    
+    // Agregar referencia dinámica a la URL
+    const response = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllLoads/${week}/${year}/${reference}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -16,7 +20,7 @@ const fetchStoredWaste = async (setData, setLoading, setError) => {
     })
 
     if (!response.ok) {
-      throw new Error('Error al obtener los residuos almacenados')
+      throw new Error('Error al obtener las cargas almacenadas')
     }
 
     const result = await response.json()
@@ -28,61 +32,59 @@ const fetchStoredWaste = async (setData, setLoading, setError) => {
   }
 }
 
-const WasteStored = () => {
+const WasteLoad = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  // renderizamos la lista de residuos almacenados
+  const reference = sessionStorage.getItem('reference')
+
+  // Renderizamos la lista de residuos cargados cuando se cambia la referencia
   useEffect(() => {
-    fetchStoredWaste(setData, setLoading, setError)
-  }, [])
+    if (reference) {  
+      fetchLoads(reference, setData, setLoading, setError)
+    }
+  }, [reference])
 
-  // filtrado para la lista
-  const today = new Date()
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const year = String(today.getFullYear())
-
-  // cargando...
+  // Cargando...
   if (loading) {
-    return <p style={{ color: 'orange', textAlign: 'center' }}>Cargando datos de residuos...</p>
+    return <p style={{ color: 'green', textAlign: 'center' }}>Cargando datos de residuos cargados...</p>
   }
 
-  // mensaje de error
+  // Mensaje de error
   if (error) {
     return <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos {error}</p>
   }
-
-  // filtramos y ordenamos residuos
-  const filteredList = filterByMonthYear(data, month, year)
-  const sortedList = sortWasteItems(filteredList)
-
-  // eliminar residuo por ID
-  const deleteWaste = async (id) => {
-    const isConfirmed = window.confirm('¿Deseas eliminar este residuo? 🙈')
   
+  // Ordenamos los datos recibidos
+  const sortedList = sortWasteItems(data)
+
+  // Eliminar residuo por ID
+  const deleteWaste = async (id) => {
+    const isConfirmed = window.confirm('¿Deseas eliminar este residuo cargado? 🙈')
+
     if (isConfirmed) {
       try {
-        const apiResponse = await fetch(`${import.meta.env.VITE_API_URL}stored/deleteWaste/${id}`, {
+        const apiResponse = await fetch(`${import.meta.env.VITE_API_URL}departures/deleteLoad/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
           },
         })
-  
+
         if (!apiResponse.ok) {
-          throw new Error('Error al eliminar el residuo')
+          throw new Error('Error al eliminar residuo cargado')
         }
-  
-        // mensaje
-        alert('Residuo eliminado exitosamente 🎉')
-  
+
+        // Mensaje
+        alert('Carga eliminada exitosamente 🎉')
+
         // Refrescar la lista después de eliminar un residuo
-        await fetchStoredWaste(setData, setLoading, setError)  // Asegúrate de pasar los argumentos aquí
+        await fetchLoads()
       } catch (error) {
-        console.error('Error eliminando el residuo:', error)
-        setError('Error eliminando el residuo. Inténtalo de nuevo más tarde.')
-        alert('Error eliminando el residuo. Inténtalo de nuevo más tarde.')
+        console.error('Error eliminando el carga:', error)
+        setError('Error eliminando carga. Inténtalo de nuevo más tarde.')
+        alert('Error eliminando carga. Inténtalo de nuevo más tarde.')
       }
     } else {
       alert('Eliminación cancelada 🙊')
@@ -91,7 +93,8 @@ const WasteStored = () => {
 
   return (
     <div>
-      <h2 className="title">Residuos almacenados {month}/{year}</h2>
+      <h2 className="title">Residuos cargados</h2>
+
       {sortedList.length > 0 ? (
         sortedList.map(item => {
           const shortDescription = item.description.length > 34
@@ -99,7 +102,7 @@ const WasteStored = () => {
             : item.description
 
           return (
-            // renderizamos residuo con estilos
+            // Renderizamos residuo con estilos
             <div key={item.id} className='list'>
               <button
                 className={`NewWasteDiv ${item.container} ${item.status}`}
@@ -114,10 +117,10 @@ const WasteStored = () => {
           )
         })
       ) : (
-      <p style={{ color: 'white', textAlign: 'center' }}>No hay datos disponibles</p>
+        <p style={{ color: 'white', textAlign: 'center' }}>No hay datos disponibles</p>
       )}
     </div>
   )
 }
 
-export default WasteStored
+export default WasteLoad

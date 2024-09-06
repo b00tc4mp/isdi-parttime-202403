@@ -1,0 +1,33 @@
+.ReferenceLoadDiv {
+  display: flex;
+  width: full;
+  background: white;
+  border-radius: 5px;
+  border: thistle solid 0.5px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+}
+
+.ReferenceSelected {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 28px;
+}
+.ReferenceSelected:focus {
+  border: none;
+}
+.ReferenceSelected:active {
+  border: none;
+}
+
+.WeekYearDiv {
+  display: flex;
+  align-items: center;
+  font-size: xx-large;
+  color: darkgrey;
+}
+
+Select {
+  border: 0px;
+}

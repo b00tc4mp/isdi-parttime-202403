@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 // Components
 import michelangelo64 from '../../../../components/img/michelangelo64.png'
 import Button from '../../../../components/core/Button'
@@ -92,8 +91,9 @@ const Register = () => {
       const result = await response.json()
 
       if (response.ok) {
-        alert('Residuo Registrado 🎉')
-        //refreshData() // Refresca la lista de datos
+        alert(`Residuo Registrado ${selectedWaste.code} ${selectedWaste.description} 🎉`)
+       // Refrescamos lista después de registrar un nuevo residuo
+       window.location.reload()
       } else {
         throw new Error(result.message || 'Error al registrar el residuo')
       }

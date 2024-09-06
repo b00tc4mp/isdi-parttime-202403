@@ -9,16 +9,12 @@
 
 .WasteContainerStatus {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   padding: 10px;
   padding-bottom: 0px;
-  height: full;
-  width: full;
   background: white;
   border-radius: 5px;
-  border: thistle solid 0.5px;
+  border: grey solid 2px;
 }
 
 .ContainerOptions {

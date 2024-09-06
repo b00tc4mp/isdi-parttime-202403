@@ -1,9 +1,9 @@
 import { db } from '../../firebase.js'
 
-// Handler para crear un residuo almacenado
-const createWaste = async (req, res) => {
+// Handler para crear un residuo cargado
+const createLoad = async (req, res) => {
   try {
-    const { code, container, description, status, weight, month, year } = req.body
+    const { code, container, description, reference, weight, week, year } = req.body
 
     // Validar que todos las entradas esten completadas correctamente
     if (!code || typeof code !== 'string') {
@@ -22,27 +22,20 @@ const createWaste = async (req, res) => {
       console.log('Error: El campo "description" es requerido.')
       return res.status(400).json({ message: 'El campo "description" es requerido.' })
     }
-    if (!status || typeof status !== 'string') {
-      console.log('Error: El campo "status" es requerido.')
-      return res.status(400).json({ message: 'El campo "status" es requerido.' })
-    }
     
-    if (status !== 'CORRECTO' && status !== 'ESTANCADO') {
-      console.log('Error: El campo "status" debe ser "CORRECTO" o "ESTANCADO".')
-      return res.status(400).json({ message: 'El campo "status" debe ser "CORRECTO" o "ESTANCADO".' })
+    // añadir una referencia personalizada para localizarlo
+    if (!reference || typeof reference !== 'string') {
+      console.log('Error: El campo "reference" es requerido.')
+      return res.status(400).json({ message: 'El campo "reference" es requerido.' })
     }
-    // if (weight == null || typeof weight !== 'number' || weight < 5 || weight > 1500) {
-    //   console.log('Error: El campo "weight" es requerido y debe ser un número entre 5 y 1500.')
-    //   return res.status(400).json({ message: 'El campo "weight" es requerido y debe ser un número entre 5 y 1500.' })
-    // }
+
     if (weight == null || typeof weight !== 'string' || !/^\d{1,4}$/.test(weight) || Number(weight) < 5 || Number(weight) > 1500) {
       console.log('Error: El campo "weight" es requerido: de 1 a 4 dígitos y su valor debe estar entre 5 y 1500.');
       return res.status(400).json({ message: 'El campo "weight" es requerido: de 1 a 4 dígitos y su valor debe estar entre 5 y 1500.' });
     }
-    
-    if (!month || typeof month !== 'string' || !/^(0[1-9]|1[0-2])$/.test(month)) {
-      console.log('Error: El campo "month" es requerido con un valor entre "01" y "12".')
-      return res.status(400).json({ message: 'El campo "month" es requerido con un valor entre "01" y "12".' })
+    if (!week || typeof week !== 'string' || !/^(0[1-9]|[1-4][0-9]|5[0-3])$/.test(week)) {
+      console.log('Error: El campo "week" es requerido con un valor entre "01" y "53".')
+      return res.status(400).json({ message: 'El campo "week" es requerido con un valor entre "01" y "53".' })
     }
     if (year == null || typeof year !== 'string' || !/^\d{4}$/.test(year) || year < '2024' || year > '2099') {
       console.log('Error: El campo "year" es requerido: 4 dígitos (Ejemplo: "2024").')
@@ -51,27 +44,28 @@ const createWaste = async (req, res) => {
     
 
     // Estructura del nuevo residuo
-    const newWaste = {
+    const newLoad = {
       code,
       container,
       description,
-      status,
+      reference,
       weight,
-      month,
+      week,
       year
     }
 
-    // Agregar el nuevo residuo a la colección 'StoredWaste'
-    const wasteRef = await db.collection('StoredWaste').add(newWaste)
+    // Agregar el nuevo residuo a la colección 'departures'
+    const LoadRef = await db.collection('departures').add(newLoad)
 
-    console.log(`Residuo registrado: ${code} - ${description}`)
+    console.log(`Carga registrada: ${code}-${description}-${reference}`)
 
     // Respuesta exitosa
     res.status(201).json({
-      message: 'Nuevo residuo registrado',
-      WasteId: wasteRef.id,
-      code: newWaste.code,
-      description: newWaste.description
+      message: 'Nueva carga registrada',
+      LoadId: LoadRef.id,
+      code: newLoad.code,
+      description: newLoad.description,
+      reference: newLoad.reference
     })
   } catch (error) {
     console.error('Error al registrar residuo', error)
@@ -79,4 +73,4 @@ const createWaste = async (req, res) => {
   }
 }
 
-export default createWaste
+export default createLoad

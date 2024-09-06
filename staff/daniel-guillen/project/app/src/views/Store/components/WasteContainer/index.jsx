@@ -8,6 +8,9 @@ import b200 from '../../../../components/img/b200.png'
 import bm200 from '../../../../components/img/bm200.png'
 
 function WasteContainer({ optionsContainer, handleOptionsContainer }) {
+
+  console.log('Renderizado: Input de acondicionamiento de residuos.')
+
   return (
     <div className="WasteContainerDiv">
       <div className={`WasteContainerStatus ${optionsContainer}`}>

@@ -18,16 +18,16 @@ const WasteSelect = ({ selectedWaste, handleWasteChange }) => {
         code: item.code,
         description: item.name,
       },
-      //label sera una cadena con item.code y item.name
+      //label sera una cadena con item.code y item.namereerererererer
       label: `${item.code} - ${item.name}`
     }))
     //listo para usar
+    console.log('Renderizado: Select lista de residuos.')
     setOptions(formattedData)
   }, [])
 
   // selectedWaste es mismo objeto que la options seleccionada de selecedOption
   const selectedOption = options.find(option => option.value.code === selectedWaste.code)
-
   return (
 
       <div className='WasteSelectDiv'>

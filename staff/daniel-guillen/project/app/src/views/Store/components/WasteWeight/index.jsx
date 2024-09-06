@@ -1,8 +1,8 @@
-import React from 'react'
 import './index.css'
 
 const WasteWeight = ( { weight, handleWeightChange} ) => {
 
+  console.log('Renderizado: Input de peso.')
   return (
 
       <div className='InputWeightDiv'>

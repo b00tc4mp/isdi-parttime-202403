@@ -1,4 +1,3 @@
-import React from 'react'
 import'./index.css'
 
  const GroupedWasteItem = ({ item }) => {
@@ -9,7 +8,7 @@ import'./index.css'
   return (
     <div className='SummaryWasteDataDiv' key={item.id}>
       <p>{item.code} - Total: {item.totalWeight}kg</p>
-      <p className='ShortDescription'>{shortDescription}</p>
+      <p className='ShortDescription'>{shortDescription}</p>      
     </div>
   )
 }
