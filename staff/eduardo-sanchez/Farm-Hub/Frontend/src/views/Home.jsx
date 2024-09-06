@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logic from "../logic";
@@ -25,7 +24,7 @@ function Home() {
 
   useEffect(() => {
     console.log("Home -> useEffect");
-    fetchUserInfo();
+    fetchUsername();
 
   }, []);
 
@@ -36,10 +35,10 @@ function Home() {
   }, [q]);
 
 
-  const fetchUserInfo = () => {
+  const fetchUsername = () => {
     try {
       logic
-        .getUserInfo()
+        .getUsername()
         .then((user) => {
           console.log("Home -> setUsername");
           setUser(user);

@@ -13,6 +13,7 @@ import { Login } from './views/Login'
 import { CreateAdForm } from './views/components/CreateAdForm/CreateAdForm'
 import AdPage from './views/AdPage/AdPage'
 import { UpdateAdForm } from './views/UpdateApForm/UpdateAdForm'
+import { MyAccount } from './views/MyAccount'
 // import AdList from './views/components/AdList/AdList.jsx'
 
 function App() {
@@ -33,11 +34,12 @@ function App() {
         <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register />} />
         <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login />} />
         {/* <Route path="/adlist" element={<AdList />} /> */}
-
         <Route path="/" element={logic.isUserLoggedIn() ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/createad" element={<CreateAdForm />}></Route>
+
         <Route path="/adpage/:adId" element={<AdPage />}></Route>
+        <Route path="/createad" element={<CreateAdForm />}></Route>
         <Route path="updateadform/:adId" element={<UpdateAdForm />}></Route>
+        <Route path="/myaccount/:userId" element={<MyAccount />}></Route>
         <Route path="/*" element={<Notfound />} />
       </Routes>
     </>
