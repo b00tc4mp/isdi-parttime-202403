@@ -2,14 +2,8 @@ import { useState, useEffect } from 'react'
 import logic from '../logic'
 
 import { MdOutlineEdit } from "react-icons/md";
-import { IoIosAdd } from "react-icons/io";
 
 import Button from '../components/core/Button'
-import Field from '../components/core/Field'
-import SubmitButton from '../components/core/SubmitButton'
-import FormWithFeedback from '../components/library/FormWithFeedback'
-import View from '../components/library/View'
-import ModifyUserForm from './components/ModifyUserForm'
 import ModifyNameForm from './components/ModifyNameForm'
 import ModifySurnameForm from './components/ModifySurnameForm'
 import ModifyEmailForm from './components/ModifyEmailForm'
@@ -23,8 +17,6 @@ function Profile() {
     const { alert } = useContext()
 
     const [user, setUser] = useState([])
-
-    //const [modifyUserForm, setModifyUserForm] = useState(false)
 
     useEffect(() => {
         loadUser()
@@ -70,10 +62,6 @@ function Profile() {
     const [modifyPasswordForm, setModifyPasswordForm] = useState(false)
     const handleModifyPasswordClick = () => setModifyPasswordForm(true)
     const handleProcessFinishPasswordClick = () => setModifyPasswordForm(false)
-
-    /*const handleModifyUserClick = () => setModifyUserForm(true)
-
-    const handleProcessFinishClick = () => setModifyUserForm(false)*/
 
     return <div className="content-center">
         {user.avatar !== "" && <div>
