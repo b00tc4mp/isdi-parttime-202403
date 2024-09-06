@@ -9,6 +9,7 @@ import {
     createAdHandler,
     getAllAdsHandler,
     deleteAdHandler,
+    getUsernameHandler,
     getUserInfoHandler,
     createAdCommentHandler,
     getAdHandler,
@@ -39,7 +40,9 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/ads', getAllAdsHandler)
 
-        api.get('/users/:targetUserId', getUserInfoHandler)
+        api.get('/users/:targetUserId', getUsernameHandler)
+
+        api.get('/users/:userId/userInfo', getUserInfoHandler)
 
         api.delete('/ads/:adId', deleteAdHandler)
 

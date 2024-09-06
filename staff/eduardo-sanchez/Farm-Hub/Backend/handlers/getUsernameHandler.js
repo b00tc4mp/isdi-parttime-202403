@@ -14,31 +14,22 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                // const { name, surname, email, username, password } = req.body
+                const { targetUserId } = req.params
 
                 try {
-                    logic.getUserInfo(userId)
-                        .then(userInfo => {
-
-                            console.log(userInfo)
-                            // res.json(userInfo)
-                            res.status(200).send(userInfo)
+                    logic.getUsername(userId, targetUserId)
+                        .then(user => {
+                            res.json(user)
+                            // res.status(200).send(user)
                         })
-                        .catch(error => {
-                            if (error instanceof jwt.JsonWebTokenError) {
-                                throw new CredentialsError(error.message)
-                            } else {
-
-                            } next(error)
-                        })
+                        .catch(error => next(error))
                 } catch (error) {
                     next(error)
                 }
-            })
 
+            })
             .catch(error => next(new CredentialsError(error.message)))
     } catch (error) {
         next(error)
     }
 }
-

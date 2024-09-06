@@ -2,7 +2,7 @@ import errors, { SystemError } from 'com/errors'
 
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
-const getUserInfo = () => {
+const getUsername = () => {
     const { sub: userId } = extractPayloadFromJWT(sessionStorage.token)
 
     return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
@@ -31,4 +31,4 @@ const getUserInfo = () => {
         })
 }
 
-export default getUserInfo
+export default getUsername
