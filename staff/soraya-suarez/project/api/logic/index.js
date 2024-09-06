@@ -9,6 +9,7 @@ import modifyMySurname from './modifyMySurname.js'
 import modifyMyEmail from './modifyMyEmail.js'
 import modifyMyPhone from './modifyMyPhone.js'
 import modifyMyAvatar from './modifyMyAvatar.js'
+import modifyMyPassword from './modifyMyPassword.js'
 import modifyUserAvailable from './modifyUserAvailable.js'
 import deleteUser from './deleteUser.js'
 
@@ -37,6 +38,7 @@ const logic = {
     modifyMyEmail,
     modifyMyPhone,
     modifyMyAvatar,
+    modifyMyPassword,
     modifyUserAvailable,
     deleteUser,
     

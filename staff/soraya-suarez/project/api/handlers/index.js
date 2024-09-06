@@ -9,6 +9,7 @@ import modifyMySurnameHandler from './modifyMySurnameHandler.js'
 import modifyMyEmailHandler from './modifyMyEmailHandler.js'
 import modifyMyphoneHandler from './modifyMyphoneHandler.js'
 import modifyMyAvatarHandler from './modifyMyAvatarHandler.js'
+import modifyMyPasswordHandler from './modifyMyPasswordHandler.js'
 import modifyUserAvailableHandler from './modifyUserAvailableHandler.js'
 import deleteUserHandler from './deleteUserHandler.js'
 
@@ -40,6 +41,7 @@ export {
     modifyMyEmailHandler,
     modifyMyphoneHandler,
     modifyMyAvatarHandler,
+    modifyMyPasswordHandler,
     modifyUserAvailableHandler,
     deleteUserHandler,
     

@@ -16,9 +16,9 @@ function ModifyPasswordForm({ user, onProcessFinished }) {
 
     const [message, setMessage] = useState('')
 
-    const [inputActualPassword, setInputActualPassword] = useState('')
-    const onInputActualPasswordChange = ({ target }) => {
-        setInputActualPassword(target.value)
+    const [inputOldPassword, setInputOldPassword] = useState('')
+    const onInputOldPasswordChange = ({ target }) => {
+        setInputOldPassword(target.value)
     }
 
     const [inputPassword, setInputPassword] = useState('')
@@ -38,12 +38,12 @@ function ModifyPasswordForm({ user, onProcessFinished }) {
 
         const form = event.target
 
-        const actualPassword = form.actualPassword.value
+        const oldPassword = form.oldPassword.value
         const password = form.password.value
         const passwordRepeat = form.passwordRepeat.value
 
         try {
-            logic.modifySurname(actualPassword, password, passwordRepeat)
+            logic.modifyMyPassword(oldPassword, password, passwordRepeat)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
@@ -65,9 +65,9 @@ function ModifyPasswordForm({ user, onProcessFinished }) {
 
     return <View className="bg-white">
         <FormWithFeedback onSubmit={handleModifyPasswordSubmit} message={message}>
-            <Field id="actualPassword" type="password" placeholder="password" value={inputPassword} onChange={onInputActualPasswordChange}>Actual password</Field>
+            <Field id="oldPassword" type="password" placeholder="password" value={inputOldPassword} onChange={onInputOldPasswordChange}>Actual password</Field>
             <Field id="password" type="password" placeholder="password" value={inputPassword} onChange={onInputPasswordChange}>New password</Field>
-            <Field id="passwordRepeat" type="password" placeholder="password repeat" value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Repeat password Repeat</Field>
+            <Field id="passwordRepeat" type="password" placeholder="password repeat" value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Repeat password</Field>
 
             <View direction='row'>
                 <SubmitButton>Modify password</SubmitButton>

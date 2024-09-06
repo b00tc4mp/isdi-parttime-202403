@@ -13,6 +13,7 @@ import modifyMySurname from './modifyMySurname'
 import modifyMyEmail from './modifyMyEmail'
 import modifyMyPhone from './modifyMyPhone'
 import modifyMyAvatar from './modifyMyAvatar'
+import modifyMyPassword from './modifyMyPassword'
 import modifyUserAvailable from './modifyUserAvailable'
 import deleteUser from './deleteUser'
 
@@ -46,6 +47,7 @@ const logic = {
     modifyMyEmail,
     modifyMyPhone,
     modifyMyAvatar,
+    modifyMyPassword,
     modifyUserAvailable,
     deleteUser,
 
