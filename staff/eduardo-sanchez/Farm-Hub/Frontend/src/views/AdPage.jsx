@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import logic from '../../logic';
-import Title from '../../components/core/Title';
+import logic from '../logic';
+import Title from '../components/core/Title';
 
-import CreateComment from '../components/CreateCommnet/CreateComment';
-import DeleteAdComment from '../components/DeleteAdComment/DeleteAdComment';
+import CreateComment from './components/CreateCommnet/CreateComment';
+import DeleteAdComment from './components/DeleteAdComment/DeleteAdComment';
 
-import backArrow from '../../icons/backArrow.png';
+import backArrow from '../icons/backArrow.png';
 
 import './AdPage.css';
 
@@ -25,28 +25,28 @@ function AdPage() {
         loadAd()
     }, [])
 
-    // const handleGoBack = () => {
-    //     const searchParams = new URLSearchParams(location.state?.search || '');
-    //     const searchQuery = searchParams.get('q');
-    //     if (searchQuery) {
-    //         navigate(`/?q=${encodeURIComponent(searchQuery)}`);
-    //     } else {
-    //         navigate('/');
-    //     }
-    // };
-
     const loadAd = () => {
-        logic.getAd(adId)
-            .then(ad => {
-                setAd(ad)
-                console.log(ad)
-            })
 
-            .catch(error => console.error(error.message))
+        try {
+            logic.getAd(adId)
+                .then(ad => {
+                    setAd(ad)
+                    console.log(ad)
+                })
+
+                .catch(error => {
+                    console.error(error.message)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+
     }
     if (ad === null) {
-
-        // return <h1>Loading...</h1>
         return <h1 className="AdPageLoading">Loading...</h1>;
     }
 
@@ -55,7 +55,6 @@ function AdPage() {
     return (
         <div className="AdPageContainer">
             <img src={backArrow} alt="Go back" onClick={() => navigate(-1)} className="AdPageBackButton" />
-            {/* onClick={handleGoBack} */}
             <Title className="AdPageTitle">{ad.title}</Title>
             <div className="AdPageDetails">
                 <p className="AdPageAuthor">Posted by: {ad?.author.username}</p>

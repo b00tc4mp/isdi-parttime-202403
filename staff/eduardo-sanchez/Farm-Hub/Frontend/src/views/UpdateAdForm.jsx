@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 
-import logic from '../../logic'
+import logic from '../logic'
 
-import Button from '../../components/core/Button'
+import Button from '../components/core/Button'
 
 
 export function UpdateAdForm() {
@@ -18,11 +18,10 @@ export function UpdateAdForm() {
     const { adId } = useParams()
 
     useEffect(() => {
+        console.log("UpdateAdForm -> useEffect");
         chooseAdtoUpdate()
 
-
     }, [setAd])
-
 
     const handleUpdateAd = event => {
         event.preventDefault()
@@ -45,6 +44,7 @@ export function UpdateAdForm() {
                 })
                 .catch(error => {
                     console.error(error)
+                    alert(error.message)
 
                     setMessage(error.message)
                     return
@@ -52,10 +52,10 @@ export function UpdateAdForm() {
 
         } catch (error) {
             console.error(error.message)
+            alert(error.message)
 
             setMessage(error.message)
         }
-
     }
 
     const chooseAdtoUpdate = () => {
@@ -77,7 +77,8 @@ export function UpdateAdForm() {
     return <>
 
         <h1>UpdateAdForm</h1>
-        <form onSubmit={handleUpdateAd} message={message}>
+        <form onSubmit={handleUpdateAd}>
+            <p>{message}</p>
             <input id="title" type="text" value={ad.title} onChange={handleAdUpdate} placeholder="Title" />
             <input id="description" type="text" value={ad.description} onChange={handleAdUpdate} placeholder="Description" />
             <input id="price" type="text" value={ad.price} onChange={handleAdUpdate} placeholder="Price" />
