@@ -17,11 +17,11 @@ export const MyAccount = () => {
 
     useEffect(() => {
         console.log("MyAccount -> useEffect");
-        loadUser();
+        loadUserInfo();
     }, [userId]);
 
 
-    const loadUser = () => {
+    const loadUserInfo = () => {
         try {
             logic
                 .getUserInfo(userId)
@@ -35,7 +35,7 @@ export const MyAccount = () => {
         }
     };
 
-    const handleLoadUserInfo = () => loadUser();
+    const handleLoadUserInfo = () => loadUserInfo();
 
     return (
         <div>

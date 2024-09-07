@@ -1,34 +1,39 @@
 import registerUser from './registerUser'
 import loginUser from './loginUser'
-import getAllAds from './getAllAds'
-import createAd from './createAd'
-import getUsername from './getUsername'
-import getUserInfo from './getUserInfo'
+
 import logoutUser from './logoutUser'
 import isUserLoggedIn from './isUserLoggedIn'
-import deleteAd from './deleteAd'
-import createAdComment from './createAdComment'
+
+import getUsername from './getUsername'
+import getUserInfo from './getUserInfo'
+import getAllAds from './getAllAds'
 import getAd from './getAd'
-import deleteAdComment from './deleteAdComment'
-import searchAds from './searchAds'
+import getUserAds from './getUserAds'
+
+import createAd from './createAd'
+import deleteAd from './deleteAd'
 import updateAd from './updateAd'
+import searchAds from './searchAds'
+import createAdComment from './createAdComment'
+import deleteAdComment from './deleteAdComment'
 
 
 const logic = {
     registerUser,
     loginUser,
-    createAd,
-    getAllAds,
-    getUsername,
-    getUserInfo,
     logoutUser,
     isUserLoggedIn,
-    deleteAd,
-    createAdComment,
+    getUsername,
+    getUserInfo,
+    getAllAds,
     getAd,
-    deleteAdComment,
+    getUserAds,
+    createAd,
+    deleteAd,
+    updateAd,
     searchAds,
-    updateAd
+    createAdComment,
+    deleteAdComment,
 }
 
 export default logic

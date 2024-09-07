@@ -7,11 +7,15 @@ const UserInfoMenu = (userId) => {
         navigate(`/myaccount/${userId}`); // este userId tiene q estar disponible 
     };
 
+    const handleMyAdsClick = () => {
+        navigate(`/myads/${userId}`); // este userId tiene q estar disponible 
+    };
+
     return (
         <div className="dropdown-menu">
             <ul>
                 <li onClick={handleMyAccountClick}>My Account</li>
-                <li>Your Ads</li>
+                <li onClick={handleMyAdsClick}>My Ads</li>
                 <li>Your Comments</li>
             </ul>
         </div>
