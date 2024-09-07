@@ -4,11 +4,8 @@ desde front crear la logica del servicio para hacer fetch a back y manejar error
 */
 
 import { useEffect, useState } from "react"
-
 import { useNavigate, useParams } from "react-router-dom"
-
 import Title from "../components/core/Title"
-
 import logic from "../logic"
 
 export const MyAds = () => {
@@ -17,18 +14,23 @@ export const MyAds = () => {
 
     const { userId } = useParams();
 
-
     useEffect(() => {
         console.log("MyAds -> useEffect");
-        if (userId) {
-            console.log(userId)
-            loadUserAds();
-        } else {
-            console.error('No userId found');
-        }
-    }, [userId]);
+        loadUserAds();
+    }, []);
+
+    //useEffect(() => {
+    //    console.log("MyAds -> useEffect");
+    //    //if (userId) {
+    //    console.log('From MyAds: ', userId)
+    //    loadUserAds();
+    //    //} else {
+    //    //  console.error('No userId found');
+    //    //}
+    //}, [userId]);
 
     const loadUserAds = () => {
+        console.log('Param: ', JSON.stringify(userId, null, 2))
         try {
             logic.getUserAds()
                 .then((userAds) => {

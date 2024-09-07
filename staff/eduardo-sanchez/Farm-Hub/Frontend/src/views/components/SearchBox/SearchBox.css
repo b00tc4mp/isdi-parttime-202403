@@ -3,7 +3,8 @@
 @layer components {
 
     .SearchBox {
-        @apply fixed w-full max-w-[400px] mx-auto p-1 bg-white rounded-full;
+        @apply fixed w-full max-w-[400px] mx-auto p-1 bg-white rounded-full mt-[60px] mb-[60px];
+        /* @apply relative w-full max-w-[400px] mx-auto p-1 bg-white rounded-full; */
     }
 
     .SearchBoxContainer {

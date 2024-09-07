@@ -39,9 +39,9 @@ function App() {
         <Route path="/adpage/:adId" element={<AdPage />}></Route>
         <Route path="updateadform/:adId" element={<UpdateAdForm />}></Route>
 
-        <Route path="/myaccount/:userId" element={<MyAccount />}></Route>
+        <Route path="/myaccount" element={<MyAccount />}></Route>
 
-        <Route path="/myads/:userId" element={<MyAds />}></Route>
+        <Route path="/myads" element={<MyAds />}></Route>
 
       </Routes>
     </>

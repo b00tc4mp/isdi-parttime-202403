@@ -8,9 +8,8 @@ import logic from '../logic';
 
 export const MyAccount = () => {
 
-    const navigate = useNavigate();
-
-    const { userId } = useParams();
+    //const navigate = useNavigate();
+    //const { userId } = useParams();
 
     const [userInfo, setUserInfo] = useState(null);
 
@@ -18,13 +17,14 @@ export const MyAccount = () => {
     useEffect(() => {
         console.log("MyAccount -> useEffect");
         loadUserInfo();
-    }, [userId]);
+    }, []);
+    // userId
 
 
     const loadUserInfo = () => {
         try {
             logic
-                .getUserInfo(userId)
+                .getUserInfo()
                 .then((userInfo) => {
                     setUserInfo(userInfo);
                     console.log(userInfo);
@@ -39,7 +39,7 @@ export const MyAccount = () => {
 
     return (
         <div>
-            <Title>My account</Title>
+            <Title>My Account</Title>
 
             {userInfo && (
                 <>

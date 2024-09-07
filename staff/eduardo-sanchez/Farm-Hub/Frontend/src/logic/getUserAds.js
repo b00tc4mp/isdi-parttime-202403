@@ -1,5 +1,4 @@
 import errors, { SystemError } from 'com/errors'
-
 import extractPayloadFromJWT from '../utils/extractPayloadFromJWT'
 
 const getUserAds = () => {

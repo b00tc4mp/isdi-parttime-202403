@@ -1,14 +1,16 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const UserInfoMenu = (userId) => {
+const UserInfoMenu = () => {
+
     const navigate = useNavigate();
 
     const handleMyAccountClick = () => {
-        navigate(`/myaccount/${userId}`); // este userId tiene q estar disponible 
+        navigate(`/myaccount`); // este userId tiene q estar disponible 
     };
 
     const handleMyAdsClick = () => {
-        navigate(`/myads/${userId}`); // este userId tiene q estar disponible 
+        navigate(`/myads`); // este userId tiene q estar disponible 
     };
 
     return (
