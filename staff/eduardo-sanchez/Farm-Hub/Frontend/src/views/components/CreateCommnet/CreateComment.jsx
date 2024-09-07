@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import { useNavigate, Link } from 'react-router-dom'
-
 import logic from '../../../logic';
 
 import Button from '../../../components/core/Button'
@@ -10,8 +8,6 @@ import './CreateComment.css'
 
 function CreateComment({ adId, onAdCommentSubmitted }) {
     const [message, setMessage] = useState('')
-
-    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
 
@@ -30,17 +26,19 @@ function CreateComment({ adId, onAdCommentSubmitted }) {
                 })
                 .catch((error) => {
                     console.error(error)
+                    alert(error.message)
                     setMessage(error.message)
                 })
 
         } catch (error) {
-            setMessage(error.message)
             console.error(error)
+            alert(error.message)
+            setMessage(error.message)
         }
     }
 
     return (
-        <form className='CreateCommentform' onSubmit={handleSubmit}>
+        <form className='CreateCommentForm' onSubmit={handleSubmit} >
             <input className='CreateCommentInput' type="text" name='comment' placeholder='Comment' />
 
             <div className='CreateCommentButtons'>
@@ -50,7 +48,6 @@ function CreateComment({ adId, onAdCommentSubmitted }) {
             {message && <p className="ErrorMessage">{message}</p>}
         </form>
     )
-
 }
 
 export default CreateComment

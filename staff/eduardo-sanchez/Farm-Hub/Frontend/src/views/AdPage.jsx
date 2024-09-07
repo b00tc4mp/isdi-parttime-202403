@@ -77,7 +77,8 @@ function AdPage() {
                                     <DeleteAdComment
                                         adId={adId}
                                         commentId={comment._id}
-                                        onAdCommentSubmitted={handleAdCommentSubmit}
+                                        onCommentDeleted={handleAdCommentSubmit}
+                                    // onAdCommentSubmitted={handleAdCommentSubmit}
                                     />
                                 }
                             </div>

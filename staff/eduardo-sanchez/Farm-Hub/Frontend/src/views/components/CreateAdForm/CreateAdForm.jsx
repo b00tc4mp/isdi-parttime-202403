@@ -2,26 +2,15 @@ import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import createAd from '../../../logic/createAd'
+import logic from '../../../logic'
+
+import { SystemError } from 'com/errors'
 
 import Button from '../../../components/core/Button'
 
-
 export function CreateAdForm() {
 
-    const [message, setMessage] = useState('')
-
     const navigate = useNavigate()
-
-    // const [data, setData] = useState({ title: '', description: '' })
-
-    // const handleData = (event) => {
-
-    //     if (data.title.length > 10) return
-
-    //     setData({ ...data, [event.target.name]: event.target.value })
-    //     console.log(data)
-    // }
 
     const handleCreateAd = event => {
         event.preventDefault()
@@ -36,40 +25,24 @@ export function CreateAdForm() {
 
         try {
 
-            createAd(title, description, price)
+            logic.createAd(title, description, price)
                 .then(() => {
                     navigate("/")
                     console.log('Ad created')
 
                 })
                 .catch(error => {
-                    console.error(error)
+                    if (error instanceof SystemError) {
 
-                    setMessage(error.message)
-                    return
+                        console.error(error)
+                        alert(error.message)
+                    }
                 })
-
         } catch (error) {
             console.error(error.message)
 
-            setMessage(error.message)
+            alert(error.message)
         }
-
-
-
-        // try {
-        //     createAd(title, description, price)
-        //         .then(() => {
-        //             navigate("/")
-        //             console.log('Ad created')
-
-        //         })
-        //         .catch(error => {
-        //             console.error(error)
-        //         })
-        // } catch (error) {
-        //     console.error(error)
-        // }
     }
 
     const handleCancelCreateAd = event => {
@@ -80,7 +53,7 @@ export function CreateAdForm() {
     return <>
 
         <h1>CreateAdForm</h1>
-        <form onSubmit={handleCreateAd} message={message}>
+        <form onSubmit={handleCreateAd} >
             <input id="title" type="text" placeholder="Title" />
             <input id="description" type="text" placeholder="Description" />
             <input id="price" type="text" placeholder="Price" />
@@ -91,29 +64,3 @@ export function CreateAdForm() {
         </form>
     </>
 }
-
-{/* <h1>CreateAdForm</h1>
-        <form>
-            <input name="title" type="text" value={data.title} placeholder="Title" onChange={handleData} />
-            <input name="description" type="text" value={data.description} placeholder="Description" onChange={handleData} />
-        </form> */}
-
-// const handleCancelCreateAd = (event, number) => {
-//     event.preventDefault()
-//     navigate("/")
-//     number = number + 1
-
-// }
-
-// return <>
-
-//     <h1>CreateAdForm</h1>
-//     <form onSubmit={handleCreateAd}>
-//         <input id="title" type="text" placeholder="Title" />
-//         <input id="description" type="text" placeholder="Description" />
-//         <input id="price" type="text" placeholder="Price" />
-
-//         <button>Create</button>
-//         <button onClick={(event) => handleCancelCreateAd(event, 5)}>Cancel</button>
-//     </form>
-// </>
