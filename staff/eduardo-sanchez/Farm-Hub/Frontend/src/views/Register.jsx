@@ -42,8 +42,8 @@ function Register() {
                     console.log('User Register -> success')
                 })
                 .catch((error) => {
-                    console.error(error)
                     if (error instanceof SystemError) {
+                        console.error(error)
                         alert(error.message)
 
                         return

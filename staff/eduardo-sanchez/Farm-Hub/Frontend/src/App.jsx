@@ -11,8 +11,8 @@ import { Notfound } from './views/Notfound'
 import { Login } from './views/Login'
 
 import { CreateAdForm } from './views/components/CreateAdForm/CreateAdForm'
-import AdPage from './views/AdPage/AdPage'
-import { UpdateAdForm } from './views/UpdateApForm/UpdateAdForm'
+import AdPage from './views/AdPage'
+import { UpdateAdForm } from './views/UpdateAdForm'
 import { MyAccount } from './views/MyAccount'
 import { MyAds } from './views/MyAds'
 

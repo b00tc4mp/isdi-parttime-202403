@@ -2,24 +2,20 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
+import { SystemError } from 'com/errors';
+
 import Title from '../components/core/Title';
 
 import logic from '../logic';
 
 export const MyAccount = () => {
 
-    //const navigate = useNavigate();
-    //const { userId } = useParams();
-
     const [userInfo, setUserInfo] = useState(null);
-
 
     useEffect(() => {
         console.log("MyAccount -> useEffect");
         loadUserInfo();
     }, []);
-    // userId
-
 
     const loadUserInfo = () => {
         try {
@@ -28,7 +24,13 @@ export const MyAccount = () => {
                 .then((userInfo) => {
                     setUserInfo(userInfo);
                     console.log(userInfo);
-                });
+                })
+                .catch((error) => {
+                    if (error instanceof SystemError) {
+                        console.log(error.message);
+                        alert(error.message);
+                    }
+                })
         } catch (error) {
             console.error(error.message);
             alert(error.message);
@@ -38,11 +40,11 @@ export const MyAccount = () => {
     const handleLoadUserInfo = () => loadUserInfo();
 
     return (
-        <div>
+        <>
             <Title>My Account</Title>
 
             {userInfo && (
-                <>
+                <div>
 
                     <p>{userInfo._id}</p>
                     <p>Name: {userInfo.name}</p>
@@ -54,13 +56,10 @@ export const MyAccount = () => {
                         // userInfo={userInfo}
                         onClick={handleLoadUserInfo}
                     />
-                </>
+                </div>
             )}
-        </div>
+        </>
     )
-
-
-
 }
 
 // puedes crear update password
