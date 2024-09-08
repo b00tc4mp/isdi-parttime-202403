@@ -1,31 +1,15 @@
 import { useEffect, useReducer, useMemo, useState, useRef } from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import { StatusBar, Text, Pressable, Image } from 'react-native';
+import { StatusBar } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { BlurView } from 'expo-blur';
-
+import StackNavigator from './navigation/StackNavigator';
+import { Context } from './hooks/useContext';
 import AuthContext from './context/AuthContext';
-import { Header, ToastNotification } from './components';
-
-import { authScreens, mainScreens } from './screens';
-const { LandingScreen, EmailInputScreen, PasswordInputScreen, UsernameInputScreen } = authScreens;
-const { HomeScreen, SearchScreen, LibraryScreen } = mainScreens;
-
-import { TabIcons } from '../assets/images/icons';
-
+import { RouteTitleProvider } from './context/RouteTitleContext';
+import ToastNotification from './components/ToastNotification';
 import services from './services';
 import validate from 'com/validation';
 import { InvalidArgumentError } from 'com/errors';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
-
-// TODO: Componentize everything
-// TODO: Fix loading state
 const App = () => {
    const [message, setMessage] = useState('');
    const [type, setType] = useState('wrong');
@@ -47,6 +31,7 @@ const App = () => {
       isNotificationActive.current = true;
       notificationTimeoutRef.current = setTimeout(() => {
          isNotificationActive.current = false;
+         setMessage('');
       }, 3600);
    };
 
@@ -237,96 +222,17 @@ const App = () => {
 
    // TODO: Make error handling more centralized ?
    // Maybe with a error boundary or error logging system ?
-   const Tabs = ({ route, navigation }) => {
-      const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTab';
-
-      useEffect(() => {
-         let headerTitle;
-
-         switch (routeName) {
-            case 'HomeTab':
-               headerTitle = 'こんにちは, User.';
-               break;
-            case 'SearchTab':
-               headerTitle = 'Search.';
-               break;
-            case 'LibraryTab':
-               headerTitle = 'Library.';
-               break;
-            default:
-               headerTitle = '';
-         }
-
-         navigation.setOptions({ header: () => <Header title={headerTitle} navigation={navigation} routeName={routeName} /> });
-      }, [route, routeName]);
-
-      return (
-         <Tab.Navigator
-            screenOptions={({ route }) => ({
-               headerShown: false,
-               tabBarIcon: ({ focused, color, size }) => {
-                  let iconSource;
-                  if (route.name === 'HomeTab') {
-                     iconSource = focused ? TabIcons.homeIconActive : TabIcons.homeIcon;
-                  } else if (route.name === 'SearchTab') {
-                     iconSource = focused ? TabIcons.glassIconActive : TabIcons.glassIcon;
-                  } else if (route.name === 'LibraryTab') {
-                     iconSource = focused ? TabIcons.folderIconActive : TabIcons.folderIcon;
-                  }
-
-                  return <Image source={iconSource} style={{ width: size - 3.8, height: size - 3.8, tintColor: color }} />;
-               },
-               tabBarActiveTintColor: '#E36526',
-               tabBarInactiveTintColor: '#A0908A',
-               tabBarShowLabel: false,
-               tabBarStyle: { position: 'absolute', borderTopWidth: 0, borderTopColor: 'transparent' },
-               tabBarBackground: () => <BlurView tint="systemThinMaterialDark" intensity={100} className="absolute" />
-            })}
-         >
-            <Tab.Screen name="HomeTab" component={HomeScreen} />
-            <Tab.Screen name="SearchTab" component={SearchScreen} />
-            <Tab.Screen name="LibraryTab" component={LibraryScreen} />
-         </Tab.Navigator>
-      );
-   };
 
    return (
-      <AuthContext.Provider value={authContext}>
-         <ToastNotification message={message} type={type} />
-         <Stack.Navigator
-            screenOptions={({ navigation }) => ({
-               headerStyle: { backgroundColor: '#1B1A1A' },
-               headerShadowVisible: false,
-               headerLeft: () => (
-                  <Pressable className="bg-palette-80 w-[36] h-[36] justify-center rounded-xl ml-[0.75rem]" onPress={() => navigation.goBack()}>
-                     <Text className="text-palette-30 text-center text-4xl font-monaspace">«</Text>
-                  </Pressable>
-               )
-            })}
-         >
-            {state.userToken == null ? (
-               // No token found, user isn't signed in
-               <>
-                  <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false, animationTypeForReplace: state.isSignout ? 'pop' : 'push' }} />
-                  <Stack.Screen name="EmailInput" component={EmailInputScreen} options={{ title: '' }} />
-                  <Stack.Screen name="PasswordInput" component={PasswordInputScreen} options={{ title: '' }} />
-                  <Stack.Screen name="UsernameInput" component={UsernameInputScreen} options={{ title: '' }} />
-               </>
-            ) : (
-               // User is signed in
-               <>
-                  <Stack.Screen name="Main" options={{ headerShown: false }}>
-                     {() => (
-                        <Drawer.Navigator screenOptions={{ headerStyle: { backgroundColor: '#1B1A1A' }, headerTintColor: '#ECE3DC', headerShadowVisible: false }}>
-                           <Drawer.Screen name="Tabs" component={Tabs} options={{ drawerItemStyle: { display: 'none' } }} />
-                        </Drawer.Navigator>
-                     )}
-                  </Stack.Screen>
-               </>
-            )}
-         </Stack.Navigator>
-         <StatusBar barStyle="light-content" />
-      </AuthContext.Provider>
+      <Context.Provider value={{ notify }}>
+         <AuthContext.Provider value={authContext}>
+            <RouteTitleProvider>
+               {message !== '' && <ToastNotification message={message} type={type} />}
+               <StackNavigator state={state} />
+               <StatusBar barStyle="light-content" backgroundColor="#1B1A1A" />
+            </RouteTitleProvider>
+         </AuthContext.Provider>
+      </Context.Provider>
    );
 };
 

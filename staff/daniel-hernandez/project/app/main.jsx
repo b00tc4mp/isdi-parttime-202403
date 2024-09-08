@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { registerRootComponent } from 'expo';
 import { verifyInstallation } from 'nativewind';
 import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import App from './src/App';
 
 /* 
@@ -33,9 +34,11 @@ const Root = () => {
 
    return (
       <React.StrictMode>
-         <NavigationContainer>
-            <App />
-         </NavigationContainer>
+         <SafeAreaProvider initialMetrics={{ insets: { bottom: 34, left: 0, right: 0, top: 59 } }}>
+            <NavigationContainer>
+               <App />
+            </NavigationContainer>
+         </SafeAreaProvider>
       </React.StrictMode>
    );
 };

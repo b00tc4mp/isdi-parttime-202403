@@ -1,3 +1,4 @@
+import Config from 'react-native-config';
 import validate from 'com/validation';
 import errors, { FetchError, ParseError } from 'com/errors';
 
@@ -11,7 +12,7 @@ const signUp = (email, password, username) => {
       let res, body;
 
       try {
-         res = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/api/v1/auth/register`, {
+         res = await fetch(`${Config.API_URL}/api/v1/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, username })

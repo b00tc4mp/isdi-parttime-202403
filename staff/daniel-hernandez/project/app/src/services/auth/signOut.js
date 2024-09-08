@@ -1,3 +1,4 @@
+import Config from 'react-native-config';
 import validate from 'com/validation';
 import constants from 'com/constants';
 import errors, { FetchError, ParseError } from 'com/errors';
@@ -10,7 +11,7 @@ const signOut = token => {
       let res, body;
 
       try {
-         res = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/api/v1/logs`, {
+         res = await fetch(`${Config.API_URL}/api/v1/logs`, {
             method: 'POST',
             headers: {
                Authorization: `Bearer ${token}`,

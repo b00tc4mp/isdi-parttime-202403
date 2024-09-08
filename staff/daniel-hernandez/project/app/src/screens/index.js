@@ -1,13 +1,15 @@
-import LandingScreen from './LandingScreen';
-import EmailInputScreen from './EmailInputScreen';
-import PasswordInputScreen from './PasswordInputScreen';
-import UsernameInputScreen from './UsernameInputScreen';
+import LandingScreen from './initial/LandingScreen';
+import EmailInputScreen from './initial/EmailInputScreen';
+import PasswordInputScreen from './initial/PasswordInputScreen';
+import UsernameInputScreen from './initial/UsernameInputScreen';
 
-import HomeScreen from './HomeScreen';
-import LibraryScreen from './LibraryScreen';
-import SearchScreen from './SearchScreen';
+import HomeScreen from './main/HomeScreen';
+import LibraryScreen from './main/LibraryScreen';
+import SearchScreen from './main/SearchScreen';
 
-export const authScreens = {
+import LoadingScreen from './LoadingScreen';
+
+export const initialScreens = {
    LandingScreen,
    EmailInputScreen,
    PasswordInputScreen,
@@ -20,7 +22,7 @@ export const mainScreens = {
    SearchScreen
 };
 
-export { LandingScreen, EmailInputScreen, PasswordInputScreen, UsernameInputScreen, HomeScreen, LibraryScreen, SearchScreen };
+export { LandingScreen, EmailInputScreen, PasswordInputScreen, UsernameInputScreen, HomeScreen, LibraryScreen, SearchScreen, LoadingScreen };
 
-const screens = { ...authScreens, ...mainScreens };
+const screens = { ...initialScreens, ...mainScreens, LoadingScreen };
 export default screens;
