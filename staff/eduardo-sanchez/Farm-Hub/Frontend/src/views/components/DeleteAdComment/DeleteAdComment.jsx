@@ -9,7 +9,7 @@ function DeleteAdComment({ adId, onCommentDeleted, commentId }) {
     const navigate = useNavigate();
 
     const handleDeleteAdComment = (event) => {
-        event.stopPropagation();
+        // event.stopPropagation();
         if (confirm('Are you sure you want to delete this comment?')) {
             try {
                 logic.deleteAdComment(adId, commentId)
