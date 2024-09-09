@@ -91,7 +91,7 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                        $project: {
                           username: 1,
                           profileImage: 1,
-                          followers: { total: { $convert: { input: '$followersCount', to: 'int' } } },
+                          followers: '$followersCount',
                           relevance: 1 // Include relevance score in the results
                        }
                     }
@@ -157,7 +157,16 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                ? Playlist.aggregate([
                     { $match: { $and: [{ public: true }, { $or: [{ name: regexQuery }, { 'tracks.name': regexQuery }, { 'tracks.artists.username': regexQuery }] }] } },
                     {
+                       $lookup: {
+                          from: 'tracks',
+                          localField: 'tracks',
+                          foreignField: '_id',
+                          as: 'trackDetails'
+                       }
+                    },
+                    {
                        $addFields: {
+                          duration: { $sum: '$trackDetails.duration' },
                           relevance: {
                              $add: [
                                 // Boost for exact match (higher boost than partial match)
@@ -174,7 +183,8 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
 
                                 { $indexOfCP: ['$name', normalizedQuery] }
                              ]
-                          }
+                          },
+                          trackCount: { $size: '$tracks' }
                        }
                     },
                     {
@@ -195,7 +205,9 @@ const query = (userId, query, types = [], limit = constants.DEFAULT_LIMIT, page 
                           owner: { _id: 1, username: 1 },
                           coverArt: 1,
                           relevance: 1,
-                          followers: 1
+                          followers: 1,
+                          tracks: '$trackCount',
+                          duration: 1
                        }
                     }
                  ])
