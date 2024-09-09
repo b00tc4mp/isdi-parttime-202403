@@ -63,7 +63,7 @@ const FloatingLabelTextInput = ({ label = '', value = '', onChangeText = () => {
 
    return (
       <View className="mx-[2.5rem] bg-transparent">
-         <View className={`${error ? 'border border-extras-30' : ''} w-[100%] h-[43] bg-palette-80 rounded-md justify-center`}>
+         <View className={`${error ? 'border border-extras-30' : ''} ${className} w-[100%] h-[43] bg-palette-80 rounded-md justify-center`}>
             <Animated.View style={[{ transform: [{ translateY: yVal }] }, { position: 'absolute', zIndex: 10, height: '100%', justifyContent: 'center' }]}>
                <Animated.Text style={{ fontSize: labelFontSize }} className="absolute text-palette-40 font-poppins-medium p-3 z-0">
                   {label}
@@ -79,7 +79,7 @@ const FloatingLabelTextInput = ({ label = '', value = '', onChangeText = () => {
                onFocus={onFocusHandler}
                onBlur={onBlurHandler}
                secureTextEntry={props.secureTextEntry}
-               className={`${className} bg-transparent text-palette-40 z-20 pl-3 font-poppins-medium text-xs pt-2 rounded-md ${iconRight ? 'pr-12' : 'pr-3'}`}
+               className={`bg-transparent text-palette-40 z-20 pl-3 font-poppins-medium text-xs pt-2 rounded-md ${iconRight ? 'pr-12' : 'pr-3'}`}
                {...props}
             />
 

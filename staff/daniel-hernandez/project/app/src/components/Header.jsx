@@ -7,7 +7,7 @@ const Header = ({ title, navigation }) => {
    const insets = useSafeAreaInsets();
 
    return (
-      <View className="bg-palette-90 absolute w-[100%] z-50" style={{ paddingTop: insets.top - 5, paddingBottom: insets.bottom - 35, paddingLeft: insets.left, paddingRight: insets.right }}>
+      <View className="bg-palette-90 w-[100%] z-50" style={{ paddingTop: insets.top - 5, paddingBottom: insets.bottom - 35, paddingLeft: insets.left, paddingRight: insets.right }}>
          <View className="flex flex-row px-5 items-center h-[65px]">
             <View className="h-[35px] w-[35px]">
                <Pressable onPress={() => navigation?.toggleDrawer()}>

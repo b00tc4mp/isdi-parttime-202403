@@ -3,11 +3,13 @@ import { View, TextInput, Text, Animated, Pressable, Keyboard, Image } from 'rea
 
 import { InputIcons } from '../../assets/images/icons';
 
-const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft, onIconLeftPress = () => {}, clearIcon = true }) => {
+const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft, onIconLeftPress, clearIcon = true, onClearPress = () => onChangeText(''), onCancelPress = () => Keyboard.dismiss(), onFocus = () => {}, ...props }) => {
+   const inputRef = useRef(null);
    const inputWidth = useRef(new Animated.Value(0)).current;
    const [viewWidth, setViewWidth] = useState(1);
 
    const handleFocus = () => {
+      onFocus();
       Animated.timing(inputWidth, {
          toValue: 1,
          duration: 300,
@@ -32,7 +34,7 @@ const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft
          }}
       >
          {iconLeft && (
-            <Pressable onPress={onIconLeftPress} className="absolute left-0 h-[100%] justify-center p-3 pl-0 z-30">
+            <Pressable onPress={onIconLeftPress ? onIconLeftPress : () => inputRef.current.focus()} className="absolute left-0 h-[100%] justify-center p-3 pl-0 z-30">
                {iconLeft}
             </Pressable>
          )}
@@ -47,6 +49,7 @@ const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft
             className="flex-row items-center rounded-full bg-palette-90 z-10"
          >
             <TextInput
+               ref={inputRef}
                className={`flex-1 px-4 py-1 h-[100%] font-poppins-medium border border-b-palette-60 border-x-transparent border-t-transparent placeholder:text-palette-60 text-palette-60 text-md ${iconLeft ? 'pl-7' : ''} ${clearIcon ? 'pr-7' : ''}`}
                placeholder={placeholder}
                onFocus={handleFocus}
@@ -59,16 +62,23 @@ const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft
                textInputMode="none"
                spellCheck={true}
                autoCorrect={false}
+               {...props}
             />
 
             {clearIcon && value && (
-               <Pressable onPress={() => onChangeText('')} className="absolute right-0 h-[100%] justify-center p-3 pr-0 z-30">
+               <Pressable onPress={onClearPress} className="absolute right-0 h-[100%] justify-center p-3 pr-0 z-30">
                   <Image source={InputIcons.clear} resizeMode="contain" className="w-7 h-6" />
                </Pressable>
             )}
          </Animated.View>
 
-         <Pressable className="absolute right-0 h-full justify-center px-3 bg-palette-80 rounded-full z-0" onPress={() => Keyboard.dismiss()}>
+         <Pressable
+            className="absolute right-0 h-full justify-center px-3 bg-palette-80 rounded-full z-0"
+            onPress={() => {
+               onCancelPress();
+               Keyboard.dismiss();
+            }}
+         >
             <Text className="text-palette-60 font-poppins-medium text-sm">Cancel</Text>
          </Pressable>
       </View>
