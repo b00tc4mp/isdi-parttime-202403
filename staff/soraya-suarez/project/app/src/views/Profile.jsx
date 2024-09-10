@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import logic from '../logic'
 
 import { MdOutlineEdit } from "react-icons/md";
+import { MdClose } from "react-icons/md";
 
 import Button from '../components/core/Button'
 import ModifyNameForm from './components/ModifyNameForm'
@@ -70,32 +71,37 @@ function Profile() {
             </div>
 
             <div className='flex justify-center border-b-2'>
-                <Button className='border-0 text-indigo-300' onClick={()=> handleModifyAvatarClick()}>Edit photo/avatar</Button>
+                {!modifyAvatarForm && <Button className='border-0 text-indigo-300' onClick={()=> handleModifyAvatarClick()}>Edit photo/avatar</Button>}
+                {modifyAvatarForm && <Button className='border-0 text-indigo-300' onClick={()=> handleProcessFinishAvatarClick()}>Cancel edit photo/avatar</Button>}
             </div>
         </div> }
 
         <div className='flex m-4 border-b-2 align-center'>
             <p className='font-bold pr-1'>Name:</p>
             <p>{user.name}</p>
-            <Button className='border-0 ml-auto' onClick={()=> handleModifyNameClick()}>{<MdOutlineEdit />}</Button>
+            {!modifyNameForm && <Button className='border-0 ml-auto' onClick={()=> handleModifyNameClick()}>{<MdOutlineEdit />}</Button>}
+            {modifyNameForm && <Button className='border-0 ml-auto' onClick={()=> handleProcessFinishNameClick()}>{<MdClose/>}</Button>}
        </div>
 
        <div className='flex m-4 border-b-2 align-center'>
             <p className='font-bold pr-1'>Surname:</p>
             <p>{user.surname}</p>
-            <Button className='border-0 ml-auto' onClick={()=> handleModifySurnameClick()}>{<MdOutlineEdit />}</Button>
+            {!modifySurnameForm && <Button className='border-0 ml-auto' onClick={()=> handleModifySurnameClick()}>{<MdOutlineEdit />}</Button>}
+            {modifySurnameForm && <Button className='border-0 ml-auto' onClick={()=> handleProcessFinishSurnameClick()}>{<MdClose/>}</Button>}
        </div>
 
        <div className='flex m-4 border-b-2 align-center'>
             <p className='font-bold pr-1'>Email:</p>
             <p>{user.email}</p>
-            <Button className='border-0 ml-auto' onClick={()=> handleModifyEmailClick()}>{<MdOutlineEdit />}</Button>
+            {!modifyEmailForm && <Button className='border-0 ml-auto' onClick={()=> handleModifyEmailClick()}>{<MdOutlineEdit />}</Button>}
+            {modifyEmailForm && <Button className='border-0 ml-auto' onClick={()=> handleProcessFinishEmailClick()}>{<MdClose />}</Button>}
        </div>
 
        {user.phone !== '' && <div className='flex m-4 border-b-2 align-center'>
             <p className='font-bold pr-1'>Phone:</p>
             <p>{user.phone}</p>
-            <Button className='border-0 ml-auto' onClick={()=> handleModifyPhoneClick()}>{<MdOutlineEdit />}</Button>
+            {!modifyPhoneForm && <Button className='border-0 ml-auto' onClick={()=> handleModifyPhoneClick()}>{<MdOutlineEdit />}</Button>}
+            {modifyPhoneForm && <Button className='border-0 ml-auto' onClick={()=> handleProcessFinishPhoneClick()}>{<MdClose />}</Button>}
        </div>}
 
        {user.phone === '' && <div className="flex m-4 justify-center">

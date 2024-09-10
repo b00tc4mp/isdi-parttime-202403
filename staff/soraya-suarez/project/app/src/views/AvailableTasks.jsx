@@ -35,6 +35,7 @@ function AvailableTasks() {
     const handleRefresh = () => loadTasks()
 
     return <div tag='section'>
+        <h1 className='text-center text-xl'>Available tasks</h1>
         {tasks.map(task => <Task key={task.id} task={task} onTaskRefreshed={handleRefresh}/>)}
     </div>
 }

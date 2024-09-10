@@ -1,6 +1,7 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
+import { MdClose } from "react-icons/md";
 
 import Button from '../../components/core/Button'
 import Text from '../../components/core/Text'
@@ -21,6 +22,7 @@ function User({ user, onUserRefreshed }) {
 
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false)
     const handleDeleteUser = () => setConfirmDeleteVisible(true)
+    const handleDeleteUserCanceled = () => setConfirmDeleteVisible(false)
 
     const handleDeleteUserAccepted = () => {
         try {
@@ -42,6 +44,7 @@ function User({ user, onUserRefreshed }) {
 
     const [confirmModifyVisible, setConfirmModifyVisible] = useState(false)
     const handleModifyUser = () => setConfirmModifyVisible(true)
+    const handleModifyUserCanceled = () => setConfirmModifyVisible(false)
 
     const handleModifyUserAccepted = () => {
         try {
@@ -68,11 +71,17 @@ function User({ user, onUserRefreshed }) {
         <div className='flex items-center justify-between py-2 px-2'>
             <Text>Name: {user.name}</Text>
             <div className='flex gap-2'>
-                {logic.getUserRole() === 'admin' && user.available === true && <Button className='border-none' onClick={handleModifyUser}>Unsubscribe</Button>}
-                {logic.getUserRole() === 'admin' && user.available === false && <Button className='border-none' onClick={handleModifyUser}>Subscribe</Button>}
+                {!confirmModifyVisible && logic.getUserRole() === 'admin' && user.available === true && <Button className='border-indigo-300' onClick={handleModifyUser}>Unsubscribe</Button>}
+                {confirmModifyVisible && logic.getUserRole() === 'admin' && user.available === true && <Button className='border-none' onClick={handleModifyUserCanceled}>{<MdClose />}</Button>}
+                
+                {!confirmModifyVisible && logic.getUserRole() === 'admin' && user.available === false && <Button className='border-indigo-300' onClick={handleModifyUser}>Subscribe</Button>}
+                {confirmModifyVisible && logic.getUserRole() === 'admin' && user.available === false && <Button className='border-none' onClick={handleModifyUserCanceled}>{<MdClose />}</Button>}
+                
                 {!viewUser && <Button className='border-none' onClick={handleViewUserClick}>{<FaEye />}</Button>}
                 {viewUser && <Button className='border-none' onClick={handleProcessFinishClick}>{<FaEyeSlash />}</Button>}
-                {logic.getUserRole() === 'admin' && <Button className='border-none' onClick={handleDeleteUser}>{<RiDeleteBin5Line/>}</Button>}
+                
+                {!confirmDeleteVisible && logic.getUserRole() === 'admin' && <Button className='border-none' onClick={handleDeleteUser}>{<RiDeleteBin5Line/>}</Button>}
+                {confirmDeleteVisible && logic.getUserRole() === 'admin' && <Button className='border-none' onClick={handleDeleteUserCanceled}>{<MdClose/>}</Button>}
             </div>
         </div>
 

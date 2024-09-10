@@ -1,7 +1,0 @@
-@tailwind components;
-
-@layer components {
-    .modifyStatusOrObservationsTaskForm {
-        @apply fixed bottom-[13rem] w-screen left-0 box-border bg-white;
-    }
-}

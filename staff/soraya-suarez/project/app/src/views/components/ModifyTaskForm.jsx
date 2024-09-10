@@ -190,7 +190,7 @@ function ModifyTaskForm({ task, onProcessFinished }) {
 
                 <View direction='row'>
                     <Button onClick={handleCancelModifyClick}>Cancel</Button>
-                    <SubmitButton className='border-0'>Modify Name</SubmitButton>
+                    <SubmitButton className='border-0'>Modify name</SubmitButton>
                 </View>
             </FormWithFeedback>
         </div>}
