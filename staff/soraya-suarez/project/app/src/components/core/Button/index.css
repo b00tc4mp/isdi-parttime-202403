@@ -10,6 +10,6 @@
     }
 
     .Button.ConfirmButton {
-        @apply bg-indigo-200 border-indigo-300;
+        @apply bg-indigo-200 border-indigo-300 ml-2;
     }
 }

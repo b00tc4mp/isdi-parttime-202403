@@ -51,13 +51,13 @@ function ReleaseTaskForm({ task, onProcessFinished }) {
         }
     }
 
-    return <View className="releaseTaskForm">
+    return <View className='releaseTaskForm'>
         <FormWithFeedback onSubmit={handleModifyTaskSubmit} message={message}>
-        <Field id="observations" value={inputObervations} onChange={onInputObservationsChange}>Observations</Field>
+        <Field id='observations' value={inputObervations} onChange={onInputObservationsChange}>Observations</Field>
 
             <View direction='row'>
-                <SubmitButton>Release Task</SubmitButton>
                 <Button onClick={handleCancelModifyTaskClick}>Cancel</Button>
+                <SubmitButton>Release Task</SubmitButton>
             </View>
         </FormWithFeedback>
     </View>

@@ -50,12 +50,12 @@ function FinishTaskForm({ task, onProcessFinished }) {
         }
     }
 
-    return <View className="finishTaskForm">
+    return <View className='finishTaskForm'>
         <FormWithFeedback onSubmit={handleFinishTaskSubmit} message={message}>
-            <label>Completion time in hours: <input type="number" id="completionTime" value={inputCompletionTime} onChange={onInputCompletionTimeChange} min="0" step="0.1" required></input></label>
+            <label>Completion time in hours: <input type='number' id='completionTime' value={inputCompletionTime} onChange={onInputCompletionTimeChange} min="0" step="0.1" required></input></label>
             <View direction='row'>
-                <SubmitButton>Finish task</SubmitButton>
                 <Button onClick={handleCancelFinishTaskClick}>Cancel</Button>
+                <SubmitButton>Finish task</SubmitButton>
             </View>
         </FormWithFeedback>
     </View>

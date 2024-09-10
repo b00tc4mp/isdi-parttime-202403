@@ -51,16 +51,16 @@ function ModifyEmailForm({ user, onProcessFinished }) {
         }
     }
 
-    return <View className="bg-white">
+    return <div className='bg-white'>
         <FormWithFeedback onSubmit={handleModifyEmailSubmit} message={message}>
-            <Field id="email" type="email" value={inputEmail} onChange={onInputEmailChange}>Email</Field>
+            <Field id='email' type='email' value={inputEmail} onChange={onInputEmailChange}>Email</Field>
 
             <View direction='row'>
-                <SubmitButton>Modify email</SubmitButton>
                 <Button onClick={handleCancelModifyEmailClick}>Cancel</Button>
+                <SubmitButton>Modify email</SubmitButton>
             </View>
         </FormWithFeedback>
-    </View>
+    </div>
 }
 
 export default ModifyEmailForm

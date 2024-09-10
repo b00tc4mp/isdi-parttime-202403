@@ -80,23 +80,23 @@ function Enroll({ onProcessFinished }) {
         }
     }
 
-    return <View tag="main" className="container-center min-h-screen" title="Enroll user">
+    return <View tag='main' className='container-center min-h-screen' title='Enroll user'>
         <FormWithFeedback onSubmit={handleEnrollSubmit} message={message}>
-            <Field id="name" placeholder="name" value={inputName} onChange={onInputNameChange}>Name</Field>
-            <Field id="surname" placeholder="surname" value={inputSurname} onChange={onInputSurnameChange}>Surname</Field>
-            <Field id="email" type="email" placeholder="name@example.com" value={inputEmail} onChange={onInputEmailChange}>E-mail</Field>
+            <Field id='name' placeholder='name' value={inputName} onChange={onInputNameChange}>Name</Field>
+            <Field id='surname' placeholder='surname' value={inputSurname} onChange={onInputSurnameChange}>Surname</Field>
+            <Field id='email' type="email" placeholder='name@example.com' value={inputEmail} onChange={onInputEmailChange}>E-mail</Field>
 
-            <select name="role" id="role" value={selectedOption} onChange={onSelectedOptionChange} required>
-                <option value="user">Type user</option>
-                <option value="admin">Type admin</option>
+            <select className='w-full' name='role' id='role' value={selectedOption} onChange={onSelectedOptionChange} required>
+                <option value='user'>Type user</option>
+                <option value='admin'>Type admin</option>
             </select>
 
-            <Field id="password" type="password" placeholder="password" value={inputPassword} onChange={onInputPasswordChange}>Password</Field>
-            <Field id="passwordRepeat" type="password" placeholder="password repeat" value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Password Repeat</Field>
+            <Field id='password' type='password' placeholder='password' value={inputPassword} onChange={onInputPasswordChange}>Password</Field>
+            <Field id='passwordRepeat' type='password' placeholder='password repeat' value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Password Repeat</Field>
 
             <View direction='row'>
-                <SubmitButton>Enroll</SubmitButton>
                 <Button onClick={handleCancelEnrollTaskClick}>Cancel</Button>
+                <SubmitButton>Enroll</SubmitButton>
             </View>
         </FormWithFeedback>
     </View>

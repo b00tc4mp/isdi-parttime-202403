@@ -63,15 +63,15 @@ function ModifyDefinitionTaskForm({ task, onProcessFinished }) {
         }
     }
 
-    return <View className="modifyDefinitionTaskForm">
+    return <View className='modifyDefinitionTaskForm'>
         <FormWithFeedback onSubmit={handleModifyTaskSubmit} message={message}>
-            <Field id="name" value={inputName} onChange={onInputNameChange}>Name</Field>
-            <Field id="description" value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>
+            <Field id='name' value={inputName} onChange={onInputNameChange}>Name</Field>
+            <Field id='description' value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>
             
-            <select name="priority" id="priority" value={selectedOption} onChange={onSelectedOptionChange} required>
-                <option value="low">Priority low</option>
-                <option value="medium">Priority medium</option>
-                <option value="high">Priority high</option>
+            <select name='priority' id='priority' value={selectedOption} onChange={onSelectedOptionChange} required>
+                <option value='low'>Priority low</option>
+                <option value='medium'>Priority medium</option>
+                <option value='high'>Priority high</option>
             </select>
 
             <View direction='row'>

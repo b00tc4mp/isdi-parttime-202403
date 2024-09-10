@@ -63,51 +63,51 @@ function Profile() {
     const handleModifyPasswordClick = () => setModifyPasswordForm(true)
     const handleProcessFinishPasswordClick = () => setModifyPasswordForm(false)
 
-    return <div className="content-center">
-        {user.avatar !== "" && <div>
-            <div className="flex justify-center">
-                <img className="inline w-12" src={user.avatar}/>
+    return <div className='content-center'>
+        {user.avatar !== '' && <div>
+            <div className='flex justify-center'>
+                <img className='inline w-12' src={user.avatar}/>
             </div>
 
-            <div className="flex justify-center border-b-2">
-                <Button className="border-0 text-indigo-300" onClick={()=> handleModifyAvatarClick()}>Edit photo/avatar</Button>
+            <div className='flex justify-center border-b-2'>
+                <Button className='border-0 text-indigo-300' onClick={()=> handleModifyAvatarClick()}>Edit photo/avatar</Button>
             </div>
         </div> }
 
-        <div className="flex m-4 border-b-2">
-            <p className="font-bold">Name: &nbsp;</p>
+        <div className='flex m-4 border-b-2 align-center'>
+            <p className='font-bold pr-1'>Name:</p>
             <p>{user.name}</p>
-            <Button className="border-0" onClick={()=> handleModifyNameClick()}>{<MdOutlineEdit />}</Button>
+            <Button className='border-0 ml-auto' onClick={()=> handleModifyNameClick()}>{<MdOutlineEdit />}</Button>
        </div>
 
-       <div className="flex m-4 border-b-2">
-            <p className="font-bold">Surname: &nbsp;</p>
+       <div className='flex m-4 border-b-2 align-center'>
+            <p className='font-bold pr-1'>Surname:</p>
             <p>{user.surname}</p>
-            <Button className="border-0" onClick={()=> handleModifySurnameClick()}>{<MdOutlineEdit />}</Button>
+            <Button className='border-0 ml-auto' onClick={()=> handleModifySurnameClick()}>{<MdOutlineEdit />}</Button>
        </div>
 
-       <div className="flex m-4 border-b-2">
-            <p className="font-bold">Email: &nbsp;</p>
+       <div className='flex m-4 border-b-2 align-center'>
+            <p className='font-bold pr-1'>Email:</p>
             <p>{user.email}</p>
-            <Button className="border-0" onClick={()=> handleModifyEmailClick()}>{<MdOutlineEdit />}</Button>
+            <Button className='border-0 ml-auto' onClick={()=> handleModifyEmailClick()}>{<MdOutlineEdit />}</Button>
        </div>
 
-       {user.phone !== "" && <div className="flex m-4 border-b-2">
-            <p className="font-bold">Phone: &nbsp;</p>
+       {user.phone !== '' && <div className='flex m-4 border-b-2 align-center'>
+            <p className='font-bold pr-1'>Phone:</p>
             <p>{user.phone}</p>
-            <Button className="border-0" onClick={()=> handleModifyPhoneClick()}>{<MdOutlineEdit />}</Button>
+            <Button className='border-0 ml-auto' onClick={()=> handleModifyPhoneClick()}>{<MdOutlineEdit />}</Button>
        </div>}
 
-       {user.phone === "" && <div className="flex m-4 justify-center">
-            <Button className="border-0 ConfirmButton" onClick={()=> handleModifyPhoneClick()}>Add phone</Button>
+       {user.phone === '' && <div className="flex m-4 justify-center">
+            <Button className='border-0 ConfirmButton' onClick={()=> handleModifyPhoneClick()}>Add phone</Button>
        </div>}
 
-       {user.avatar === "" && <div className="flex m-4 justify-center">
-            <Button className="border-0 ConfirmButton" onClick={()=> handleModifyAvatarClick()}>Add photo/avatar</Button>
+       {user.avatar === '' && <div className="flex m-4 justify-center">
+            <Button className='border-0 ConfirmButton' onClick={()=> handleModifyAvatarClick()}>Add photo/avatar</Button>
        </div>}
 
-       <div className="flex m-4 justify-center">
-            <Button className="border-0 ConfirmButton" onClick={()=> handleModifyPasswordClick()}>Change Password</Button>
+       <div className='flex m-4 justify-center'>
+            <Button className='border-0 ConfirmButton' onClick={()=> handleModifyPasswordClick()}>Change Password</Button>
        </div>
 
         {modifyNameForm && <ModifyNameForm  user={user} onProcessFinished={handleProcessFinishNameClick} />}

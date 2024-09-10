@@ -46,10 +46,10 @@ function Login({ onUserLoggedIn }) {
         }
     }
 
-    return <View tag="main" className="container-center min-h-screen" title="Daily Work">
+    return <View tag='main' className='container-center min-h-screen' title='Daily Work'>
         <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
-            <Field id="email" placeholder="email">Email</Field>
-            <Field id="password" type="password" placeholder="password">Password</Field>
+            <Field id='email' placeholder='email'>Email</Field>
+            <Field id='password' type='password' placeholder='password'>Password</Field>
 
             <SubmitButton>Login</SubmitButton>
         </FormWithFeedback>

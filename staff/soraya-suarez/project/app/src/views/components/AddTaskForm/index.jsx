@@ -86,23 +86,23 @@ function AddTaskForm({ onProcessFinished }) {
         }
     }
 
-    return <View className="addTaskForm bg-white">
+    return <View className='addTaskForm bg-white'>
         <FormWithFeedback onSubmit={handleAddTaskSubmit} message={message}>
-            <Field id="name" value={inputName} onChange={onInputNameChange}>Name</Field>
-            <Field id="description" value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>
+            <Field id='name' value={inputName} onChange={onInputNameChange}>Name</Field>
+            <Field id='description' value={inputDescription} onChange={onInputDescriptionChange}>Description</Field>
             
-            <select name="priority" id="priority" value={selectedOption} onChange={onSelectedOptionChange} required>
-                <option value="low">Priority low</option>
-                <option value="medium">Priority medium</option>
-                <option value="high">Priority high</option>
+            <select className='w-full' name='priority' id='priority' value={selectedOption} onChange={onSelectedOptionChange} required>
+                <option value='low'>Priority low</option>
+                <option value='medium'>Priority medium</option>
+                <option value='high'>Priority high</option>
             </select>
             
-            <Field id="visible" type="checkbox" checked={visibleChecked} onChange={onVisibleCheckedChange}>Private</Field>
-            <Field id="owner" type="checkbox" checked={ownerChecked} onChange={onOwnerCheckedChange}>Auto assign</Field>
+            <View direction='row'><Field id='visible' type='checkbox' checked={visibleChecked} onChange={onVisibleCheckedChange}>Private</Field></View>
+            <View direction='row'><Field id='owner' type='checkbox' checked={ownerChecked} onChange={onOwnerCheckedChange}>Auto assign</Field></View>
 
             <View direction='row'>
-                <SubmitButton>Add task</SubmitButton>
                 <Button onClick={handleCancelAddTaskClick}>Cancel</Button>
+                <SubmitButton>Add task</SubmitButton>
             </View>
         </FormWithFeedback>
     </View>

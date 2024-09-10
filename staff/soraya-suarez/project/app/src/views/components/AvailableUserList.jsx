@@ -34,7 +34,7 @@ function AvailableUserList() {
     
     const handleRefresh = () => loadUsers()
 
-    return <div tag="section">
+    return <div tag='section'>
         {users.map(user => <User key={user.id} user={user} onUserRefreshed={handleRefresh}/>)}
     </div>
 }

@@ -51,16 +51,16 @@ function ModifyPhoneForm({ user, onProcessFinished }) {
         }
     }
 
-    return <View className="bg-white">
+    return <div className='bg-white'>
         <FormWithFeedback onSubmit={handleModifyPhoneSubmit} message={message}>
-            <Field id="phone" value={inputPhone} onChange={onInputPhoneChange}>Phone</Field>
+            <Field id='phone' value={inputPhone} onChange={onInputPhoneChange}>Phone</Field>
 
             <View direction='row'>
-                <SubmitButton>Modify phone</SubmitButton>
                 <Button onClick={handleCancelModifyPhoneClick}>Cancel</Button>
+                <SubmitButton>Modify phone</SubmitButton>
             </View>
         </FormWithFeedback>
-    </View>
+    </div>
 }
 
 export default ModifyPhoneForm

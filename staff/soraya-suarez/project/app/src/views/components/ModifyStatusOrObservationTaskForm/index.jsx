@@ -57,13 +57,13 @@ function ModifyStatusOrObervationTaskForm({ task, onProcessFinished }) {
         }
     }
 
-    return <View className="modifyStatusOrObervationTaskForm">
+    return <View className='modifyStatusOrObervationTaskForm'>
         <FormWithFeedback onSubmit={handleModifyTaskSubmit} message={message}>
-            <Field id="observations" value={inputObervations} onChange={onInputObservationsChange}>Observations</Field>
+            <Field id='observations' value={inputObervations} onChange={onInputObservationsChange}>Observations</Field>
             
-            <select name="status" id="status" value={selectedOption} onChange={onSelectedOptionChange} required>
-                <option value="toDo">Status to do</option>
-                <option value="inProgress">Status in progress</option>
+            <select name='status' id='status' value={selectedOption} onChange={onSelectedOptionChange} required>
+                <option value='toDo'>Status to do</option>
+                <option value='inProgress'>Status in progress</option>
             </select>
 
             <View direction='row'>

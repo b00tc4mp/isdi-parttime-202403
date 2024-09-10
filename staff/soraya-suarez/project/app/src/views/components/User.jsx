@@ -65,21 +65,21 @@ function User({ user, onUserRefreshed }) {
     const handleModifyUserCancelled = () => setConfirmModifyVisible(false)
 
     return <div>
-        <div className="flex items-center justify-between py-2 px-2">
+        <div className='flex items-center justify-between py-2 px-2'>
             <Text>Name: {user.name}</Text>
-            <div className="flex gap-2">
-                {logic.getUserRole() === 'admin' && user.available === true && <Button className="border-none" onClick={handleModifyUser}>Unsubscribe</Button>}
-                {logic.getUserRole() === 'admin' && user.available === false && <Button className="border-none" onClick={handleModifyUser}>Subscribe</Button>}
-                {!viewUser && <Button className="border-none" onClick={handleViewUserClick}>{<FaEye />}</Button>}
-                {viewUser && <Button className="border-none" onClick={handleProcessFinishClick}>{<FaEyeSlash />}</Button>}
-                {logic.getUserRole() === 'admin' && <Button className="border-none" onClick={handleDeleteUser}>{<RiDeleteBin5Line/>}</Button>}
+            <div className='flex gap-2'>
+                {logic.getUserRole() === 'admin' && user.available === true && <Button className='border-none' onClick={handleModifyUser}>Unsubscribe</Button>}
+                {logic.getUserRole() === 'admin' && user.available === false && <Button className='border-none' onClick={handleModifyUser}>Subscribe</Button>}
+                {!viewUser && <Button className='border-none' onClick={handleViewUserClick}>{<FaEye />}</Button>}
+                {viewUser && <Button className='border-none' onClick={handleProcessFinishClick}>{<FaEyeSlash />}</Button>}
+                {logic.getUserRole() === 'admin' && <Button className='border-none' onClick={handleDeleteUser}>{<RiDeleteBin5Line/>}</Button>}
             </div>
         </div>
 
-        {confirmModifyVisible && user.available === true && <Confirm message="Unsubscribe user?" onAccept={handleModifyUserAccepted} onCancel={handleModifyUserCancelled} />}
-        {confirmModifyVisible && user.available === false && <Confirm message="Subscribe user?" onAccept={handleModifyUserAccepted} onCancel={handleModifyUserCancelled} />}
+        {confirmModifyVisible && user.available === true && <Confirm message='Unsubscribe user?' onAccept={handleModifyUserAccepted} onCancel={handleModifyUserCancelled} />}
+        {confirmModifyVisible && user.available === false && <Confirm message='Subscribe user?' onAccept={handleModifyUserAccepted} onCancel={handleModifyUserCancelled} />}
         {viewUser && <UserView user={user} onProcessFinished={handleProcessFinishClick} />}
-        {confirmDeleteVisible && <Confirm message="Delete user?" onAccept={handleDeleteUserAccepted} onCancel={handleDeleteUserCancelled} />}
+        {confirmDeleteVisible && <Confirm message='Delete user?' onAccept={handleDeleteUserAccepted} onCancel={handleDeleteUserCancelled} />}
     </div>
 }
 

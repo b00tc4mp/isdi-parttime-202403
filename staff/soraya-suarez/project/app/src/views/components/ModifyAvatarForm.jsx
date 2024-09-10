@@ -51,16 +51,16 @@ function ModifyAvatarForm({ user, onProcessFinished }) {
         }
     }
 
-    return <View className="bg-white">
+    return <div className='bg-white'>
         <FormWithFeedback onSubmit={handleModifyAvatarSubmit} message={message}>
-            <Field id="avatar" value={inputAvatar} onChange={onInputAvatarChange}>Photo/avatar</Field>
+            <Field id='avatar' value={inputAvatar} onChange={onInputAvatarChange}>Photo/avatar</Field>
 
             <View direction='row'>
-                <SubmitButton>Modify photo/avatar</SubmitButton>
                 <Button onClick={handleCancelModifyAvatarClick}>Cancel</Button>
+                <SubmitButton>Modify photo/avatar</SubmitButton>
             </View>
         </FormWithFeedback>
-    </View>
+    </div>
 }
 
 export default ModifyAvatarForm

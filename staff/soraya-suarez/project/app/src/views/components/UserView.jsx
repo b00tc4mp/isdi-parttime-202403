@@ -1,12 +1,10 @@
-import Text from '../../components/core/Text'
-
 function UserView({ user }) {
-    return <div className="bg-white w-full text-center">
+    return <div className='bg-white w-full text-center '>
         {user.avatar !== '' && <img className="inline w-12" src={user.avatar}/>}
-        <Text>Name: {user.name}</Text>
-        <Text>Surname: {user.surname}</Text>
-        { user.phone !== '' && <Text>Phone: {user.phone}</Text>}
-        <Text>Email: {user.email}</Text>
+        <div className='flex  justify-center'><p className='pr-2 font-extrabold'>Name:</p> <p className='italic'>{user.name}</p></div>
+        <div className='flex  justify-center'><p className='pr-2 font-extrabold'>Surname:</p> <p className='italic'>{user.surname}</p></div>
+        <div className='flex  justify-center'>{user.phone !== '' && <><p className='pr-2 font-extrabold'>Phone:</p><p className='italic'>{user.phone}</p></>}</div>
+        <div className='flex  justify-center'><p className='pr-2 font-extrabold'>Email:</p> <p className='italic'>{user.email}</p></div>
     </div>
 }
 

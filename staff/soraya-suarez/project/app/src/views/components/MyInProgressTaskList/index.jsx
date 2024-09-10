@@ -35,7 +35,7 @@ function MyInProgressTaskList() {
 
     const handleRefresh = () => loadTasks()
 
-    return <div tag="section">
+    return <div tag='section'>
         {tasks.map(task => <Task key={task.id} task={task} onTaskRefreshed={handleRefresh}/>)}
     </div>
 }

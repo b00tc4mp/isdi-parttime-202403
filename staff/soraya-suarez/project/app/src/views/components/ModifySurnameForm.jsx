@@ -51,16 +51,16 @@ function ModifySurnameForm({ user, onProcessFinished }) {
         }
     }
 
-    return <View className="bg-white">
+    return <div className='bg-white'>
         <FormWithFeedback onSubmit={handleModifySurnameSubmit} message={message}>
-            <Field id="surname" value={inputSurname} onChange={onInputSurnameChange}>Surname</Field>
+            <Field id='surname' value={inputSurname} onChange={onInputSurnameChange}>Surname</Field>
 
             <View direction='row'>
-                <SubmitButton>Modify surname</SubmitButton>
                 <Button onClick={handleCancelModifySurnameClick}>Cancel</Button>
+                <SubmitButton>Modify surname</SubmitButton>
             </View>
         </FormWithFeedback>
-    </View>
+    </div>
 }
 
 export default ModifySurnameForm

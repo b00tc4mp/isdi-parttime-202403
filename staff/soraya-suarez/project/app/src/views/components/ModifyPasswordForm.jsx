@@ -63,18 +63,18 @@ function ModifyPasswordForm({ user, onProcessFinished }) {
         }
     }
 
-    return <View className="bg-white">
+    return <div className='bg-white'>
         <FormWithFeedback onSubmit={handleModifyPasswordSubmit} message={message}>
-            <Field id="oldPassword" type="password" placeholder="password" value={inputOldPassword} onChange={onInputOldPasswordChange}>Actual password</Field>
-            <Field id="password" type="password" placeholder="password" value={inputPassword} onChange={onInputPasswordChange}>New password</Field>
-            <Field id="passwordRepeat" type="password" placeholder="password repeat" value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Repeat password</Field>
+            <Field id='oldPassword' type='password' placeholder='password' value={inputOldPassword} onChange={onInputOldPasswordChange}>Actual password</Field>
+            <Field id='password' type='password' placeholder='password' value={inputPassword} onChange={onInputPasswordChange}>New password</Field>
+            <Field id='passwordRepeat' type='password' placeholder='password repeat' value={inputRepeatPassword} onChange={onInputRepeatPasswordChange}>Repeat password</Field>
 
             <View direction='row'>
-                <SubmitButton>Modify password</SubmitButton>
                 <Button onClick={handleCancelModifyPasswordClick}>Cancel</Button>
+                <SubmitButton>Modify password</SubmitButton>
             </View>
         </FormWithFeedback>
-    </View>
+    </div>
 }
 
 export default ModifyPasswordForm

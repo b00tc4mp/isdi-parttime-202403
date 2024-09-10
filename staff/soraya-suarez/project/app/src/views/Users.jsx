@@ -17,10 +17,10 @@ function Users() {
     const handleEnrollUserClick = () => setEnrollUserForm(true)
     const handleProcessFinishClick = () => setEnrollUserForm(false)
     
-    return <div className="overflow-scroll my-4">
-        <nav className="flex justify-center text-xs w-screen">
-            <Button className="border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('all-users')}>All users</Button>
-            <Button className="border-gray-300 rounded-tl-none rounded-bl-none" onClick={()=> handleNavigateTo('available-users')}>Available users</Button>
+    return <div className='overflow-scroll my-4'>
+        <nav className='flex justify-center text-xs w-screen'>
+            <Button className='border-gray-300 rounded-tr-none rounded-br-none' onClick={()=> handleNavigateTo('all-users')}>All users</Button>
+            <Button className='border-gray-300 rounded-tl-none rounded-bl-none' onClick={()=> handleNavigateTo('available-users')}>Available users</Button>
         </nav>
 
         { (() => {
@@ -35,8 +35,8 @@ function Users() {
             {enrollUserForm && <Enroll onProcessFinished={handleProcessFinishClick} />}
         </div>
 
-        <div className="flex justify-center items-center mt-4">
-            {logic.getUserRole() === 'admin' && <Button onClick={()=> handleEnrollUserClick()}>Enroll user</Button>}
+        <div className='flex justify-center items-center mt-4'>
+            {logic.getUserRole() === 'admin' && <Button className='ConfirmButton' onClick={()=> handleEnrollUserClick()}>Enroll user</Button>}
         </div>
 
     </div>
