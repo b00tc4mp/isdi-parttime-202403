@@ -1,4 +1,3 @@
-import React from 'react'
 import './index.css'
 //components
 import SummaryWaste from './Summary'

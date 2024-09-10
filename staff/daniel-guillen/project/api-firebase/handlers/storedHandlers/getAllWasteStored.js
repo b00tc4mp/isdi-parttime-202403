@@ -3,7 +3,7 @@ import { db } from '../../firebase.js'
 // Handler para obtener todos los residuos
 const getAllWasteStored = async (req, res) => {
   try {
-    const querySnapshot = await db.collection('StoredWaste').get()
+    const querySnapshot = await db.collection('storedWaste').get()
     const stored = querySnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),

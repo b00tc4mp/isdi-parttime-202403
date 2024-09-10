@@ -1,4 +1,4 @@
-.ReferenceLoadDiv {
+.CodeDiv {
   display: flex;
   width: full;
   background: white;
@@ -8,16 +8,16 @@
   margin-bottom: 0px;
 }
 
-.ReferenceSelected {
+.CodeSelected {
   display: flex;
   align-items: center;
   text-align: center;
   font-size: 28px;
 }
-.ReferenceSelected:focus {
+.CodeSelected:focus {
   border: none;
 }
-.ReferenceSelected:active {
+.CodeSelected:active {
   border: none;
 }
 

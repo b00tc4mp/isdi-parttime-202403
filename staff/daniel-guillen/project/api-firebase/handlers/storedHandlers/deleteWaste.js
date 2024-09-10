@@ -5,7 +5,7 @@ const deleteWaste = async (req, res) => {
     const wasteId = req.params.id
   
     try {
-      const wasteRef = db.collection('StoredWaste').doc(wasteId)
+      const wasteRef = db.collection('storedWaste').doc(wasteId)
       const wasteDoc = await wasteRef.get()
   
        // Si no existe

@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react'
 import Select from 'react-select'
 import './index.css'
-import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 
 const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
-
-  const { week, year } = getWeekNumberYear()
-
-  // Variable de estado para almacenar los datos de las referencias
+  // Estado para almacenar las referencias
   const [data, setData] = useState([])
 
   // Función para obtener todas las referencias desde la API
-  const fetchLoads = async () => {
+  const fetchReferences = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllReference`, {
         method: 'GET',
@@ -21,14 +17,14 @@ const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
       })
 
       if (!response.ok) {
-        throw new Error('Error al obtener las cargas almacenadas')
+        throw new Error('Error al obtener las referencias')
       }
 
       const result = await response.json()
-      // Formatear los datos para que sean compatibles con react-select
+      // Formatear los datos para react-select
       const formattedData = result.map((reference) => ({
-        value: reference, // valor que enviamos a la API
-        label: `${reference}`, // texto que se muestra en el select
+        value: reference, // Valor que se enviará a la API
+        label: `${reference}`, // Texto que se muestra en el select
       }))
       setData(formattedData)
     } catch (error) {
@@ -36,13 +32,13 @@ const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
     }
   }
 
-  // useEffect para cargar los datos una vez que el componente se monta
+  // useEffect para cargar las referencias al montar el componente
   useEffect(() => {
-    fetchLoads()
-  }, []) // Solo se ejecuta una vez al montarse el componente
+    fetchReferences()
+  }, [])
 
   // Encontrar la opción seleccionada a partir del valor de selectedReference
-  const selectedOption = data.find(option => option.value === selectedReference.reference)
+  const selectedOption = data.find(option => option.value === selectedReference)
 
   return (
     <div className='ReferenceLoadDiv'>
@@ -50,15 +46,11 @@ const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
         className='ReferenceSelected'
         id='ReferenceSelect'
         placeholder="REFERENCIA"
-        options={data} // opciones para el select
-        value={selectedOption} // valor actual seleccionado
-        onChange={(selected) => handleReferenceChange(selected ? selected.value : null)} // manejar el cambio
+        options={data} // Opciones para el select
+        value={selectedOption} // Valor actualmente seleccionado
+        onChange={(selected) => handleReferenceChange(selected ? selected.value : null)} // Manejar el cambio
         isClearable
       />
-
-      <div className='WeekYearDiv'>
-        <p>{week} / {year}</p>
-      </div>
     </div>
   )
 }

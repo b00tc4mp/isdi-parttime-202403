@@ -10,10 +10,7 @@ const createLoad = async (req, res) => {
       console.log('Error: El campo "code" es requerido.')
       return res.status(400).json({ message: 'El campo "code" es requerido.' })
     }
-    // if (!container || typeof container !== 'string') {
-    //   console.log('Error: El campo "container" es requerido.')
-    //   return res.status(400).json({ message: 'El campo "container" es requerido.' })
-    // }
+
     if (!['PALET', 'GRG', 'BIGBAG', 'B200', 'B-200'].includes(container)) {
       console.log('Error: El campo "container" debe ser uno de los siguientes valores: PALET, GRG, BIGBAG, B200, B-200.')
       return res.status(400).json({ message: 'El campo "container" debe ser uno de los siguientes valores: PALET, GRG, BIGBAG, B200, B-200.' })

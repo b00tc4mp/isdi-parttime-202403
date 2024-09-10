@@ -42,8 +42,10 @@ const ReferenceLoad = ({ reference, handleReferenceChange }) => {
   }
 
   return (
-    <div className='ReferenceLoadDiv'>
-      
+    <div className='DeparturesTitle'>
+           
+      <h3 className='title'>Registrar carga para</h3>
+
       <input className='input-reference'
           type='text'
           value={inputValue}
@@ -66,6 +68,7 @@ const ReferenceLoad = ({ reference, handleReferenceChange }) => {
           <button className='button-reference' onClick={handleDelete}>🗑️</button>
         
       )}
+
     </div>
   )
 }

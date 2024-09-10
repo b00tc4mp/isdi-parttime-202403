@@ -1,6 +1,16 @@
+.DeparturesTitle {
+  display: flex;
+  flex-direction: row;
+  max-width: 513px;
+  align-items: center;
+  justify-content: center;
+  background: rgb(240, 240, 240);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
 .TruckLoadDiv {
   display: flex;
-  justify-content: center;
 }
 
 .TruckLoadListDiv {
@@ -17,59 +27,48 @@
 .TruckLoadForm {
   display: flex;
   justify-content: center;
-  max-width: 527px;
   flex-direction: column;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
   line-height: 0px;
 }
 
 .TruckLoadSelectWaste {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: rgb(240, 240, 240);
 }
 
 .WeightWeekButtton {
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: row;
+  max-width: 513;
+  background: rgb(240, 240, 240);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .WeightWeek {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  text-align: center;
   font-size: x-large;
   font-weight: bold;
-  height: 66px;
-  padding-right: 0.5rem;
-  border: darkgrey solid 2px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  border-bottom-right-radius: none;
-  border-top-right-radius: none;
-  background: white;
-  color: darkgrey;
+  background: rgb(240, 240, 240);
+  color: gray;
 }
 
-.SubmitButtonLoads {
-  color: white;
-  height: 70px;
-  background: greenyellow;
-  border: green solid 2px;
-  border-bottom-left-radius: none;
-  border-top-left-radius: none;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+.WeekYear {
+  display: flex;
+  background: rgb(240, 240, 240);
+  color: gray;
+  align-items: center;
+  font-size: xx-large;
+}
+
+.SubmitButtonLoad {
+  background: rgb(240, 240, 240);
+  border: 0;
   cursor: pointer;
-  margin-left: 0;
   text-decoration: none;
 }
 
-.SubmitButtonLoads:hover {
+.SubmitButtonLoad:hover {
+  border-radius: 50px;
   background: orangered;
-  border: red solid 2px;
 }

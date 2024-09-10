@@ -10,10 +10,7 @@ const createWaste = async (req, res) => {
       console.log('Error: El campo "code" es requerido.')
       return res.status(400).json({ message: 'El campo "code" es requerido.' })
     }
-    // if (!container || typeof container !== 'string') {
-    //   console.log('Error: El campo "container" es requerido.')
-    //   return res.status(400).json({ message: 'El campo "container" es requerido.' })
-    // }
+
     if (!['PALET', 'GRG', 'BIGBAG', 'B200', 'B-200'].includes(container)) {
       console.log('Error: El campo "container" debe ser uno de los siguientes valores: PALET, GRG, BIGBAG, B200, B-200.')
       return res.status(400).json({ message: 'El campo "container" debe ser uno de los siguientes valores: PALET, GRG, BIGBAG, B200, B-200.' })
@@ -31,10 +28,7 @@ const createWaste = async (req, res) => {
       console.log('Error: El campo "status" debe ser "CORRECTO" o "ESTANCADO".')
       return res.status(400).json({ message: 'El campo "status" debe ser "CORRECTO" o "ESTANCADO".' })
     }
-    // if (weight == null || typeof weight !== 'number' || weight < 5 || weight > 1500) {
-    //   console.log('Error: El campo "weight" es requerido y debe ser un número entre 5 y 1500.')
-    //   return res.status(400).json({ message: 'El campo "weight" es requerido y debe ser un número entre 5 y 1500.' })
-    // }
+
     if (weight == null || typeof weight !== 'string' || !/^\d{1,4}$/.test(weight) || Number(weight) < 5 || Number(weight) > 1500) {
       console.log('Error: El campo "weight" es requerido: de 1 a 4 dígitos y su valor debe estar entre 5 y 1500.');
       return res.status(400).json({ message: 'El campo "weight" es requerido: de 1 a 4 dígitos y su valor debe estar entre 5 y 1500.' });
@@ -61,8 +55,8 @@ const createWaste = async (req, res) => {
       year
     }
 
-    // Agregar el nuevo residuo a la colección 'StoredWaste'
-    const wasteRef = await db.collection('StoredWaste').add(newWaste)
+    // Agregar el nuevo residuo a la colección 'storedWaste'
+    const wasteRef = await db.collection('storedWaste').add(newWaste)
 
     console.log(`Residuo registrado: ${code} - ${description}`)
 

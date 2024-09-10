@@ -3,7 +3,6 @@ import { useState } from 'react'
 import WasteSelect from '../../components/WasteSelect'
 import WasteContainer from '../../components/WasteContainer'
 import WasteWeight from '../../components/WasteWeight'
-import michelangelo64 from '../../../../components/img/michelangelo64.png'
 import Button from '../../../../components/core/Button'
 import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 
@@ -111,16 +110,17 @@ const Register = () => {
 
         <div className='WeightWeekButtton'>
           <div className='WeightWeek'>
+
           <WasteWeight weight={weight} handleWeightChange={handleWeightChange} />
-          <div className='WeekYearDiv'>
-            <p>{week} / {year}</p>
-          </div>
-          </div>
-          <Button className='SubmitButtonLoads' type='submit'>
-            <img className='SubmitButtonImage' src={michelangelo64} alt='Submit' />
-          </Button>
-        </div>
           
+          <div className='WeekYear'>
+          <p>{week}/{year}</p>
+          </div>
+
+          </div>
+        <Button className='SubmitButtonLoad' type='submit'>💾</Button>
+        </div>
+        
       </form>
     </div>
   )

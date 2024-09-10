@@ -67,7 +67,7 @@ const GroupedByCode = () => {
     return acc
   }, [])
 
-  // Filtramos los residuos por semana, año actual y ordenamos por código
+  // ordenamos por código
   const filteredItems = groupedItemCode.sort((a, b) => a.code.localeCompare(b.code))
 
   // Renderizamos los elementos agrupados

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 // Components
-import michelangelo64 from '../../../../components/img/michelangelo64.png'
 import Button from '../../../../components/core/Button'
 import WasteSelect from '../../components/WasteSelect'
 import WasteContainer from '../../components/WasteContainer'
@@ -106,22 +105,21 @@ const Register = () => {
   return (
     <div className='StoreDiv'>
       <h1 className='RouteTitle'>INVENTARIO</h1>
-
+      
       <form className='StoreWasteForm' onSubmit={handleSubmit}>
         <div className='StoreSelectWaste'>
           <WasteSelect selectedWaste={selectedWaste} handleWasteChange={handleWasteChange} />
-          <Button className='SubmitButton' type='submit'>
-            <img className='SubmitButtonImage' src={michelangelo64} />
-          </Button>
+          <Button className='SubmitButtonWaste' type='submit'>💾</Button>
         </div>
         
         <div className='StoreSelectedContainer'>
           <WasteContainer optionsContainer={optionsContainer} handleOptionsContainer={handleOptionsContainer} />
         </div>
         
-        <div className='WeightStatus'>
+        <div className={`WeighStatusButtton ${statusOptions}`}>
           <WasteWeight weight={weight} handleWeightChange={handleWeightChange} />
           <WasteStatus statusOptions={statusOptions} handleStatusOptions={handleStatusOptions} />
+          
         </div>
       </form>
     </div>

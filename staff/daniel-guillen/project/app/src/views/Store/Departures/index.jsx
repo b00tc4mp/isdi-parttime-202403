@@ -11,10 +11,12 @@ const Departures = () => {
   return (
     <div className='container'>
       <h1 className='RouteTitle'>SALIDAS</h1>
-      <div className='LoadTitle'>
-      <h3 className='title'>Registrar carga para</h3><ReferenceLoad />
-      </div>
+
+      <div className='Departures'>
+      <ReferenceLoad />
       <Register />
+      </div>
+
       <SummaryLoad />
       <WasteLoad />
       <MenuLoads />

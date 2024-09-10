@@ -4,17 +4,15 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 3px;
+  line-height: 0px;
 }
 
 .WasteContainerStatus {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  padding-bottom: 0px;
-  background: white;
-  border-radius: 5px;
-  border: grey solid 2px;
+  padding-top: 5px;
+  padding-right: 8px;
+  background: rgb(240, 240, 240);
 }
 
 .ContainerOptions {
@@ -23,27 +21,22 @@
 
 .WasteContainerStatus.PALET {
   background: rgb(248, 214, 127);
-  border: orange solid 1px;
 }
 
 .WasteContainerStatus.GRG {
   background: rgb(247, 247, 149);
-  border: gold solid 1px;
 }
 
 .WasteContainerStatus.BIGBAG {
   background: lightgreen;
-  border: mediumseagreen solid 1px;
 }
 
 .WasteContainerStatus.B200 {
   background: rgb(116, 150, 251);
-  border: darkblue solid 1px;
 }
 
 .WasteContainerStatus.B-200 {
   background: rgb(171, 219, 249);
-  border: cornflowerblue solid 1px;
 }
 
 .Radio {

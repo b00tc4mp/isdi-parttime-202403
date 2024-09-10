@@ -1,6 +1,5 @@
 .WasteSelect {
-  min-width: 300px;
-  width: full;
+  max-width: 510;
   font-size: 30px;
   line-height: 30px;
   text-align: center;
