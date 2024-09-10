@@ -22,6 +22,11 @@ import getMyFinishedTasks from './getMyFinishedTasks.js'
 import selectTask from './selectTask.js'
 import modifyTaskAsOwner from './modifyTaskAsOwner.js'
 import modifyTaskAsCreator from './modifyTaskAsCreator.js'
+import modifyTaskName from './modifyTaskName.js'
+import modifyTaskDescription from './modifyTaskDescription.js'
+import modifyTaskPriority from './modifyTaskPriority.js'
+import modifyTaskStatus from './modifyTaskStatus.js'
+import modifyTaskObservations from './modifyTaskObservations.js'
 import releaseTask from './releaseTask.js'
 import finishTask from './finishTask.js'
 import deleteTask from './deleteTask.js'
@@ -51,6 +56,11 @@ const logic = {
     selectTask,
     modifyTaskAsOwner,
     modifyTaskAsCreator,
+    modifyTaskName,
+    modifyTaskDescription,
+    modifyTaskPriority,
+    modifyTaskStatus,
+    modifyTaskObservations,
     finishTask,
     releaseTask,
     deleteTask

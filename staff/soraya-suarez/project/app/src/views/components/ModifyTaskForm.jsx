@@ -51,7 +51,7 @@ function ModifyTaskForm({ task, onProcessFinished }) {
         const name = form.name.value
 
         try {
-            logic.modifyMyEmail(task.id, name)
+            logic.modifyTaskName(task.id, name)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
@@ -79,7 +79,7 @@ function ModifyTaskForm({ task, onProcessFinished }) {
         const description = form.description.value
 
         try {
-            logic.modifyMyEmail(task.id, description)
+            logic.modifyTaskDescription(task.id, description)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
@@ -107,7 +107,7 @@ function ModifyTaskForm({ task, onProcessFinished }) {
         const priority = form.priority.value
 
         try {
-            logic.modifyMyEmail(task.id, priority)
+            logic.modifyTaskPriority(task.id, priority)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
@@ -135,7 +135,7 @@ function ModifyTaskForm({ task, onProcessFinished }) {
         const observations = form.observations.value
 
         try {
-            logic.modifyMyEmail(task.id, observations)
+            logic.modifyTaskObservations(task.id, observations)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)
@@ -163,7 +163,7 @@ function ModifyTaskForm({ task, onProcessFinished }) {
         const status = form.status.value
 
         try {
-            logic.modifyMyEmail(task.id, status)
+            logic.modifyTaskStatus(task.id, status)
                 .then(() => onProcessFinished())
                 .catch(error => {
                     console.error(error)

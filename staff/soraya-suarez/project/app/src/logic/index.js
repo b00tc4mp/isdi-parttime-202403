@@ -26,6 +26,11 @@ import getMyInProgressTasks from './getMyInProgressTasks'
 import getMyFinishedTasks from './getMyFinishedTasks'
 import modifyTaskAsCreator from './modifyTaskAsCreator'
 import modifyTaskAsOwner from './modifyTaskAsOwner'
+import modifyTaskName from './modifyTaskName'
+import modifyTaskDescription from './modifyTaskDescription'
+import modifyTaskPriority from './modifyTaskPriority'
+import modifyTaskStatus from './modifyTaskStatus'
+import modifyTaskObservations from './modifyTaskObservations'
 import selectTask from './selectTask'
 import releaseTask from './releaseTask'
 import finishTask from './finishTask'
@@ -59,6 +64,11 @@ const logic = {
     getMyFinishedTasks,
     modifyTaskAsCreator,
     modifyTaskAsOwner,
+    modifyTaskName,
+    modifyTaskDescription,
+    modifyTaskPriority,
+    modifyTaskStatus,
+    modifyTaskObservations,
     selectTask,
     releaseTask,
     finishTask,

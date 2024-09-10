@@ -28,6 +28,11 @@ import {
     selectTaskHandler,
     modifyTaskAsOwnerHandler,
     modifyTaskAsCreatorHandler,
+    modifyTaskNameHandler,
+    modifyTaskDescriptionHandler,
+    modifyTaskPriorityHandler,
+    modifyTaskStatusHandler,
+    modifyTaskObservationsHandler,
     finishTaskHandler,
     releaseTaskHandler,
     deleteTaskHandler,
@@ -70,6 +75,11 @@ mongoose.connect(MONGODB_URL)
         api.patch('/tasks/:taskId', selectTaskHandler)
         api.patch('/tasks/:taskId/modify-as-owner', jsonBodyParser, modifyTaskAsOwnerHandler)
         api.patch('/tasks/:taskId/modify-as-creator', jsonBodyParser, modifyTaskAsCreatorHandler)
+        api.patch('/tasks/:taskId/modify-task-name', jsonBodyParser, modifyTaskNameHandler)
+        api.patch('/tasks/:taskId/modify-task-description', jsonBodyParser, modifyTaskDescriptionHandler)
+        api.patch('/tasks/:taskId/modify-task-priority', jsonBodyParser, modifyTaskPriorityHandler)
+        api.patch('/tasks/:taskId/modify-task-status', jsonBodyParser, modifyTaskStatusHandler)
+        api.patch('/tasks/:taskId/modify-task-observations', jsonBodyParser, modifyTaskObservationsHandler)
         api.patch('/tasks/:taskId/finish', jsonBodyParser, finishTaskHandler)
         api.patch('/tasks/:taskId/release', jsonBodyParser, releaseTaskHandler)
         api.delete('/tasks/:taskId', deleteTaskHandler)
