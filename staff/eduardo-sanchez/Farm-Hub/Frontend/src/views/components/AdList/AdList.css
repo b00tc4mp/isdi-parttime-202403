@@ -47,6 +47,6 @@
     }
 
     .AdListEmpty {
-        @apply mt-20 text-center text-black font-bold;
+        @apply mt-60 text-center text-lg text-black font-bold;
     }
 }
