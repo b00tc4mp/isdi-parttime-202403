@@ -46,7 +46,7 @@ const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft
                   outputRange: ['100%', `${((viewWidth - 67) / viewWidth) * 100}%`]
                })
             }}
-            className="flex-row items-center rounded-full bg-palette-90 z-10"
+            className="flex-row items-center rounded-full bg-palette-90 z-10 h-[100%]"
          >
             <TextInput
                ref={inputRef}
