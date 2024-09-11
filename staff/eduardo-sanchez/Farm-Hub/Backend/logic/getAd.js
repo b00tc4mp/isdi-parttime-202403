@@ -15,6 +15,17 @@ const getAd = (adId) => {
             }
 
             return ad
+
+            // // Transform the author field to be just the username
+            // ad.author = ad.author.username
+
+            // // Transform the adcomments.author fields to be just the username
+            // ad.adcomments = ad.adcomments.map(comment => ({
+            //     ...comment,
+            //     author: comment.author.username
+            // }))
+
+            // return ad
         })
 }
 
