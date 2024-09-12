@@ -16,6 +16,9 @@ const getAd = (adId) => {
 
             return ad
 
+            // Uncommented: Returns the ad object as- is, with author and adcomments.author as objects containing a username field. It preserves all information about the author that was populated.
+            //     Commented: Would transform the data, making author and adcomments.author simple strings containing just the username. it would reduce the author information to just the username string.
+
             // // Transform the author field to be just the username
             // ad.author = ad.author.username
 

@@ -126,13 +126,15 @@ describe('getAd', () => {
         })
           .then((ad) => getAd(ad.id))
           .then((ad) => {
+            console.log('ad', ad)
+
             expect(ad).to.be.an('object');
             expect(ad.title).to.equal('Fresh Oranges');
             expect(ad.description).to.equal('Juicy and fresh oranges.');
             expect(ad.price).to.equal('5 €/Kg');
             expect(ad.author).to.equal('linux');
             expect(ad.adcomments[0].author).to.equal('linux');
-            expect(ad.adcomments[0].comment).to.equal('Great price!'); // Changed to match creation
+            expect(ad.adcomments[0].comment).to.equal('Great price!');
             expect(ad.adcomments).to.be.an('array');
           })
       );

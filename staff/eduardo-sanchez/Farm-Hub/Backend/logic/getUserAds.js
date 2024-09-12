@@ -14,12 +14,12 @@ const getUserAds = (userId, tokenUserId) => {
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new NotFoundError('user not found')
+            if (!user) throw new NotFoundError('User not found')
 
             return Ad.find({ author: userId }).populate('author', 'username').populate('adcomments.author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(ads => {
-                    if (!ads || ads.length === 0) throw new NotFoundError('ads not found')
+                    if (!ads || ads.length === 0) throw new NotFoundError('Ads not found')
                     return ads
                 })
         })
