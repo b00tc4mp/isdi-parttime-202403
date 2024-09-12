@@ -19,6 +19,10 @@ const SearchScreen = () => {
    const [results, setResults] = useState({});
    const [shouldSearch, setShouldSearch] = useState(false);
 
+   const [page, setPage] = useState(1);
+   const [hasMore, setHasMore] = useState(true);
+   const [isFetchingMore, setIsFetchingMore] = useState(false);
+
    useEffect(() => {
       if (shouldSearch && query.trim()) {
          handleSearch();
@@ -26,30 +30,49 @@ const SearchScreen = () => {
       }
    }, [selectedPill, shouldSearch]);
 
-   const resetSearch = useCallback(resetQuery => {
+   const resetSearch = (resetQuery = false) => {
       if (resetQuery) setQuery('');
       setSelectedPill(DEFAULT_PILL);
       setResults({});
       setStatus({ loading: false, queryDone: false });
       setShouldSearch(false);
-   }, []);
 
-   const handleSearch = useCallback(async () => {
+      setPage(1);
+      setHasMore(true);
+   };
+
+   const handleSearch = async (pageNum = 1) => {
       if (!query.trim()) return;
 
-      setStatus({ loading: true, queryDone: false });
-      setResults({});
+      if (pageNum === 1) {
+         setStatus({ loading: true, queryDone: false });
+         setResults({});
+      }
 
       try {
-         const response = await services.search(query, selectedPill.queryType, selectedPill.limit);
-         console.log(response);
-         setResults(response);
+         const response = await services.search(query, selectedPill.queryType, selectedPill.limit, pageNum);
+         if (selectedPill.label !== 'All') {
+            setResults(oldResults => ({
+               ...oldResults,
+               [selectedPill.label.toLowerCase()]: [...(oldResults[selectedPill.label.toLowerCase()] || []), ...response[selectedPill.label.toLowerCase()]]
+            }));
+         } else {
+            setResults(response);
+         }
+
          setStatus({ loading: false, queryDone: true });
+         setPage(pageNum);
+
+         if (selectedPill.label !== 'All') {
+            if (response[selectedPill.label.toLowerCase()]?.length < selectedPill.limit) {
+               setHasMore(false);
+            }
+         }
       } catch {
          notify('Something went wrong. Try again ?', 'error');
          setStatus({ loading: false, queryDone: false });
       }
-   }, [query, selectedPill, notify]);
+   };
 
    const handlePillPress = pill => {
       if (selectedPill.label === pill.label) return;
@@ -58,11 +81,21 @@ const SearchScreen = () => {
       setSelectedPill(pill);
       setResults({});
       setShouldSearch(true);
+
+      setPage(1);
+      setHasMore(true);
    };
 
    const handleQueryChange = text => {
       setStatus(s => ({ ...s, queryDone: false }));
       setQuery(text);
+   };
+
+   const handleLoadMore = () => {
+      if (hasMore && !isFetchingMore && !status.loading) {
+         setIsFetchingMore(true);
+         handleSearch(page + 1).finally(() => setIsFetchingMore(false));
+      }
    };
 
    const renderResult = useCallback(
@@ -71,13 +104,13 @@ const SearchScreen = () => {
 
          switch (type) {
             case 'users':
-               return <UserItem item={item} />;
+               return <UserItem item={item} onAdd={() => {}} onGeneralPress={() => {}} />;
             case 'tracks':
-               return <TrackItem item={item} />;
+               return <TrackItem item={item} onMore={() => {}} onGeneralPress={() => {}} />;
             case 'playlists':
-               return <PlaylistItem item={item} />;
+               return <PlaylistItem item={item} onMore={() => {}} onGeneralPress={() => {}} />;
             case 'albums':
-               return <AlbumItem item={item} />;
+               return <AlbumItem item={item} onMore={() => {}} onGeneralPress={() => {}} />;
             default:
                return null;
          }
@@ -85,14 +118,77 @@ const SearchScreen = () => {
       [selectedPill]
    );
 
-   const renderEmptyResults = () => (
-      <View className="w-[90%] bg-palette-80 items-center mt-4 p-4 pt-3 rounded-lg">
-         <Text className="font-poppins-semibold text-palette-40 text-base">Woah... 😳</Text>
-         <Text className="font-poppins text-palette-40 text-sm">
-            Couldn't find anything for <Text className="font-poppins-bold">'{query.length > 20 ? query.slice(0, 20).concat('~') : query}'</Text>. Maybe try something else ?
-         </Text>
-      </View>
+   const renderEmptyResults = useCallback(() => {
+      return (
+         <View className="w-[90%] bg-palette-80 items-center mt-4 p-4 pt-3 rounded-lg">
+            <Text className="font-poppins-semibold text-palette-40 text-base">Woah... 😳</Text>
+            <Text className="font-poppins text-palette-40 text-sm">
+               Couldn't find anything for <Text className="font-poppins-bold">'{query.length > 20 ? query.slice(0, 20).concat('~') : query}'</Text>. Maybe try something else ?
+            </Text>
+         </View>
+      );
+   }, [query]);
+
+   const renderSectionHeader = useCallback(({ section }) => {
+      const pillMap = {
+         users: { label: 'Users', onPress: handlePillPress, queryType: ['user'], limit: constants.DEFAULT_LIMIT },
+         tracks: { label: 'Tracks', onPress: handlePillPress, queryType: ['track'], limit: constants.DEFAULT_LIMIT },
+         playlists: { label: 'Playlists', onPress: handlePillPress, queryType: ['playlist'], limit: constants.DEFAULT_LIMIT },
+         albums: { label: 'Albums', onPress: handlePillPress, queryType: ['album'], limit: constants.DEFAULT_LIMIT }
+      };
+
+      return section.data.length > 0 ? (
+         <View className="w-[100%] justify-between items-center mt-4 flex-row">
+            <Text className="font-poppins-semibold text-xl text-palette-40">{section.key.charAt(0).toUpperCase() + section.key.slice(1)}</Text>
+
+            <Text className="font-poppins text-extras-40 text-xs underline" onPress={() => handlePillPress(pillMap[section.key])}>
+               See all
+            </Text>
+         </View>
+      ) : null;
+   }, []);
+
+   const renderSectionList = () => (
+      <SectionList
+         sections={[
+            { key: 'users', data: results?.users ?? [] },
+            { key: 'tracks', data: results?.tracks ?? [] },
+            { key: 'playlists', data: results?.playlists ?? [] },
+            { key: 'albums', data: results?.albums ?? [] }
+         ]}
+         keyExtractor={item => item.id}
+         renderItem={renderResult}
+         renderSectionHeader={renderSectionHeader}
+         showsVerticalScrollIndicator={false}
+         stickySectionHeadersEnabled={false}
+         contentContainerStyle={{ paddingBottom: 160 }}
+         className="w-[90%]"
+      />
    );
+
+   const renderFlatList = () => (
+      <FlatList
+         data={results[selectedPill.label.toLowerCase()] || []}
+         keyExtractor={item => item.id}
+         renderItem={renderResult}
+         contentContainerStyle={{ paddingBottom: 160 }}
+         showsVerticalScrollIndicator={false}
+         className="w-[90%]"
+         onEndReached={handleLoadMore}
+         onEndReachedThreshold={0.5}
+         ListFooterComponent={isFetchingMore ? <ActivityIndicator size="small" color="#E36526" /> : null}
+      />
+   );
+
+   const renderResults = () => {
+      if (!status.loading && query && status.queryDone) {
+         if (selectedPill.label === 'All') {
+            return results.users.length === 0 && results.tracks.length === 0 && results.playlists.length === 0 && results.albums.length === 0 ? renderEmptyResults() : renderSectionList();
+         }
+         return results[selectedPill.label.toLowerCase()].length === 0 ? renderEmptyResults() : renderFlatList();
+      }
+      return null;
+   };
 
    return (
       <View className="flex-1 bg-palette-90">
@@ -103,63 +199,44 @@ const SearchScreen = () => {
                placeholder="Search"
                returnKeyType="search"
                iconLeft={<Image source={TabIcons.glassIconActive} resizeMode="contain" className="w-6 h-5" />}
-               onSubmitEditing={handleSearch}
+               onSubmitEditing={() => handleSearch()}
                onClearPress={() => resetSearch(true)}
-               onFocus={() => resetSearch(false)}
+               onFocus={resetSearch}
                onCancelPress={() => resetSearch(true)}
             />
 
             {status.queryDone && query && (
                <PillBar
                   pills={[
-                     { label: 'All', onPress: handlePillPress, queryType: [...constants.queryTypes], limit: constants.DEFAULT_LIMIT },
+                     { label: 'All', onPress: handlePillPress, queryType: [...constants.queryTypes], limit: 8 },
                      { label: 'Users', onPress: handlePillPress, queryType: ['user'], limit: constants.DEFAULT_LIMIT },
                      { label: 'Tracks', onPress: handlePillPress, queryType: ['track'], limit: constants.DEFAULT_LIMIT },
                      { label: 'Playlists', onPress: handlePillPress, queryType: ['playlist'], limit: constants.DEFAULT_LIMIT },
-                     { label: 'Album', onPress: handlePillPress, queryType: ['album'], limit: constants.DEFAULT_LIMIT }
+                     { label: 'Albums', onPress: handlePillPress, queryType: ['album'], limit: constants.DEFAULT_LIMIT }
                   ]}
                   selectedPill={selectedPill.label}
                   className="my-3"
                />
             )}
 
-            {!status.loading &&
-               query &&
-               status.queryDone &&
-               (selectedPill.label === 'All' ? (
-                  results.users.length === 0 && results.tracks.length === 0 && results.playlists.length === 0 && results.albums.length === 0 ? (
-                     renderEmptyResults()
-                  ) : (
-                     <SectionList
-                        sections={[
-                           { key: 'users', data: results?.users ?? [] },
-                           { key: 'tracks', data: results?.tracks ?? [] },
-                           { key: 'playlists', data: results?.playlists ?? [] },
-                           { key: 'albums', data: results?.albums ?? [] }
-                        ]}
-                        keyExtractor={item => item.id}
-                        renderItem={renderResult}
-                        renderSectionHeader={({ section }) =>
-                           section.data.length > 0 ? (
-                              <View className="w-[90%] items-start">
-                                 <Text className="font-poppins-semibold text-palette-40 mt-4">{section.key.charAt(0).toUpperCase() + section.key.slice(1)}</Text>
-                              </View>
-                           ) : null
-                        }
-                        showsVerticalScrollIndicator={false}
-                        stickySectionHeadersEnabled={false}
-                        contentContainerStyle={{ paddingBottom: 160 }}
-                        className="w-[90%]"
-                     />
-                  )
-               ) : results[selectedPill.label.toLowerCase()]?.length === 0 ? (
-                  renderEmptyResults()
-               ) : (
-                  <FlatList data={results[selectedPill.label.toLowerCase()] || []} keyExtractor={item => item.id} renderItem={renderResult} contentContainerStyle={{ paddingBottom: 160 }} showsVerticalScrollIndicator={false} className="w-[90%]" />
-               ))}
+            {renderResults()}
          </View>
 
-         {status.loading && <ActivityIndicator size="small" color="#E36526" className="m-auto" />}
+         {status.loading && (
+            <View className="flex-1 justify-center items-center">
+               <ActivityIndicator size="small" color="#E36526" />
+            </View>
+         )}
+
+         {!status.queryDone && !status.loading && (
+            <View className="flex-1 items-center">
+               {'何かを検索します。'.split('').map((char, index) => (
+                  <Text key={index} className="font-rounded-mplus-1c-medium text-palette-40 text-[20px] leading-[24px] top-44">
+                     {char}
+                  </Text>
+               ))}
+            </View>
+         )}
       </View>
    );
 };

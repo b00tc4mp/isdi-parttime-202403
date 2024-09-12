@@ -1,7 +1,7 @@
 import { View, Image, Text, Pressable } from 'react-native';
 
-const UserItem = ({ item }) => (
-   <View key={item.id} className="mt-4 flex-row items-start w-[100%]">
+const UserItem = ({ item, onAdd, onGeneralPress }) => (
+   <Pressable key={item.id} className="mt-3 flex-row items-start w-[100%]" onPress={() => onGeneralPress(item)}>
       <Image source={item.profileImage ? { uri: item.profileImage } : require('../../../assets/images/extras/unknown.png')} className="w-16 h-16 rounded-full mr-3" />
 
       <View className="flex-1 justify-start pt-3">
@@ -14,10 +14,16 @@ const UserItem = ({ item }) => (
          </Text>
       </View>
 
-      <Pressable className="self-center h-5 w-5 ml-2">
+      <Pressable
+         className="self-center h-5 w-5 ml-2"
+         onPress={event => {
+            event.stopPropagation();
+            onAdd(item);
+         }}
+      >
          <Image source={require('../../../assets/images/extras/add.png')} className="self-center h-4 w-4 my-auto" resizeMode="contain" />
       </Pressable>
-   </View>
+   </Pressable>
 );
 
 export default UserItem;
