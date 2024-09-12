@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { useState/*, useEffect*/ } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import { CiLogout } from "react-icons/ci";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoIosAdd } from "react-icons/io";
+import { IoMdAdd } from "react-icons/io";
 import { GoHomeFill } from "react-icons/go";
-import { FiUsers } from "react-icons/fi";
+import { GoHome } from "react-icons/go";
+import { HiOutlineUsers } from "react-icons/hi2";
+import { HiUsers } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
+import { IoSearchSharp } from "react-icons/io5";
+import { FaRegUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 import Button from '../components/core/Button'
 import AddTaskForm from './components/AddTaskForm'
@@ -24,6 +29,29 @@ import './Home.css'
 function Home({ onUserLoggedOut }) {
     const [page, setPage] = useState('home')
     const [addTaskForm, setAddTaskForm] = useState(false)
+
+    /*const [user, setUser] = useState([])
+
+    useEffect(() => {
+        loadUser()
+    })
+
+    const loadUser = () => {
+        try {
+            logic.getMyProfile()
+                .then(user => {
+                    setUser(user)
+                })
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }*/
     
     const navigate = useNavigate()
 
@@ -69,6 +97,7 @@ function Home({ onUserLoggedOut }) {
                 <Route path='/available-tasks' element={<AvailableTasks/>} />
                 <Route path='/users' element={<Users/>} />
                 <Route path='/profile' element={<Profile/>} />
+                {/*<Route path='/profile' element={<Profile user={user}/>} />*/}
             </Routes>
 
             {addTaskForm && <AddTaskForm onProcessFinished={handleProcessFinishClick} />}
@@ -76,11 +105,23 @@ function Home({ onUserLoggedOut }) {
        </div>
 
         <footer className='flex justify-around items-center shadow shadow-gray-400'>
-            <Button className='border-0' onClick={()=> handleGoToHome()}>{<GoHomeFill/>}</Button>
-            <Button className='border-0' onClick={()=> handleGoToSearchTasks()}>{<IoSearchOutline />}</Button>
-            <Button className='border-0' onClick={()=> handleAddTaskClick()}>{<IoIosAdd/>}</Button>
-            <Button className='border-0' onClick={handleGoToUsers}>{<FiUsers/>}</Button>
-            <Button className='border-0' onClick={()=> handleGoToProfile()}>{<CgProfile />}</Button>
+            {page === 'home' && <Button className='border-0' onClick={()=> handleGoToHome()}>{<GoHomeFill/>}</Button>}
+            {page !== 'home' && <Button className='border-0' onClick={()=> handleGoToHome()}>{<GoHome/>}</Button>}
+
+            {page === 'available-tasks' && <Button className='border-0' onClick={()=> handleGoToSearchTasks()}>{<IoSearchSharp />}</Button>}
+            {page !== 'available-tasks' && <Button className='border-0' onClick={()=> handleGoToSearchTasks()}>{<IoSearchOutline />}</Button>}
+            
+            {addTaskForm === true && <Button className='border-0' onClick={()=> handleAddTaskClick()}>{<IoMdAdd/>}</Button>}
+            {addTaskForm === false && <Button className='border-0' onClick={()=> handleAddTaskClick()}>{<IoIosAdd/>}</Button>}
+            
+            {page === 'users' && <Button className='border-0' onClick={handleGoToUsers}>{<HiUsers/>}</Button>}
+            {page !== 'users' && <Button className='border-0' onClick={handleGoToUsers}>{<HiOutlineUsers/>}</Button>}
+            
+            {page === 'profile' && <Button className='border-0' onClick={()=> handleGoToProfile()}>{<FaUserCircle/>}</Button>}
+            {page !== 'profile' && <Button className='border-0' onClick={()=> handleGoToProfile()}>{<FaRegUserCircle/>}</Button>}
+            
+            {/*((typeof user.name !== 'undefined') || (typeof user.surname !== 'undefined')) && <Button className='circle-button' onClick={()=> handleGoToProfile()}>{user.name.substr(0,1)}{user.surname.substr(0,1)}</Button>*/}
+            {/*((typeof user.name === 'undefined') || (typeof user.surname === 'undefined')) && <Button className='circle-button' onClick={()=> handleGoToProfile()}>{<CgProfile/>}</Button>*/}
         </footer>
     </div>
 }

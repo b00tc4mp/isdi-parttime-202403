@@ -15,10 +15,17 @@ function HomeScreen () {
 
     return <div>
             <nav className='flex justify-center text-xs w-screen'>
-                <Button className="btn-nav border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('my-tasks')}>My tasks</Button>
-                <Button className="btn-nav border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In progress</Button>
-                <Button className="btn-nav border-gray-300 rounded-none" onClick={()=> handleNavigateTo('private')}>Private</Button>
-                <Button className="btn-nav border-gray-300 rounded-tl-none rounded-bl-none" onClick={()=> handleNavigateTo('finished')}>Finished</Button>
+                {page === 'my-tasks' && <Button className="btn-nav border-indigo-300 rounded-tr-none rounded-br-none bg-indigo-200" onClick={()=> handleNavigateTo('my-tasks')}>My tasks</Button>}
+                {page !== 'my-tasks' && <Button className="btn-nav border-gray-300 rounded-tr-none rounded-br-none" onClick={()=> handleNavigateTo('my-tasks')}>My tasks</Button>}
+                
+                {page === 'in-progress' && <Button className="btn-nav border-indigo-300 rounded-none bg-indigo-200" onClick={()=> handleNavigateTo('in-progress')}>In progress</Button>}
+                {page !== 'in-progress' && <Button className="btn-nav border-gray-300 rounded-none" onClick={()=> handleNavigateTo('in-progress')}>In progress</Button>}
+                
+                {page === 'private' && <Button className="btn-nav border-indigo-300 rounded-none bg-indigo-200" onClick={()=> handleNavigateTo('private')}>Private</Button>}
+                {page !== 'private' && <Button className="btn-nav border-gray-300 rounded-none" onClick={()=> handleNavigateTo('private')}>Private</Button>}
+                
+                {page === 'finished' && <Button className="btn-nav border-indigo-300 rounded-tl-none rounded-bl-none bg-indigo-200" onClick={()=> handleNavigateTo('finished')}>Finished</Button>}
+                {page !== 'finished' && <Button className="btn-nav border-gray-300 rounded-tl-none rounded-bl-none" onClick={()=> handleNavigateTo('finished')}>Finished</Button>}
             </nav>
 
             { (() => {

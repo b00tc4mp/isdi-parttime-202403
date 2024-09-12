@@ -9,3 +9,14 @@
 .body-grid {
   height: calc(100vh - 104px);
 }
+
+.circle-button {
+  width:25px;
+  height:25px;
+  padding:5px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  font-size:10px;
+  text-transform: uppercase;
+}

@@ -3,15 +3,14 @@ import mongoose, { Types } from 'mongoose'
 import bcrypt from 'bcryptjs'
 import { expect } from 'chai'
 import { User, Task } from '../data/index.js'
-import releaseTask from './releaseTask.js'
-import { NotFoundError, MatchError, ContentError } from 'com/errors.js'
 import selectTask from './selectTask.js'
+import { NotFoundError, MatchError, ContentError } from 'com/errors.js'
 
 const { MONGODB_URL_TEST } = process.env
 
 const { ObjectId } = Types
 
-describe('releaseTask', () => {
+describe('selectTask', () => {
     before(() => mongoose.connect(MONGODB_URL_TEST).then(() => {
         return Promise.all([User.deleteMany(), Task.deleteMany()])
     }))
@@ -152,7 +151,7 @@ describe('releaseTask', () => {
         let errorThrown
         
         try {
-            releaseTask(new ObjectId().toString(), 1234)
+            selectTask(new ObjectId().toString(), 1234)
         } catch (error) {
             errorThrown = error
         } finally {

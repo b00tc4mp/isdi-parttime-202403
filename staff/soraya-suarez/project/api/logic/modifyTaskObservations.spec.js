@@ -45,7 +45,7 @@ describe('modifyTaskObservations', () => {
                 .then((task) => ({ user, task }))
             )
             .then(({ user, task }) => 
-                modifyTaskObservations(user.id, task.id, 'observando')
+                modifyTaskObservations(user.id, task.id, 'observo')
             )
             .then(() => Task.findOne())
             .then(task => {
@@ -56,7 +56,7 @@ describe('modifyTaskObservations', () => {
                 expect(task.status).to.equal('toDo')
                 expect(task.priority).to.equal('medium')
                 expect(task.visible).to.equal(true)
-                expect(task.observations).to.equal('observando')
+                expect(task.observations).to.equal('observo')
                 expect(task.completionTime).to.equal(0)
             })
     )
@@ -64,7 +64,7 @@ describe('modifyTaskObservations', () => {
     it('fails on non-existing user', () => {
         let errorThrown
 
-        return modifyTaskObservations(new ObjectId().toString(), new ObjectId().toString() 'observando')
+        return modifyTaskObservations(new ObjectId().toString(), new ObjectId().toString(), 'observo')
             .catch(error => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -87,7 +87,7 @@ describe('modifyTaskObservations', () => {
                 available: true,
                 password: hash 
           })
-          .then((user) => modifyTaskObservations(user.id, user.id, 'observando')))
+          .then((user) => modifyTaskObservations(user.id, user.id, 'observo')))
           .catch(error => errorThrown = error)
           .finally(() => {
             expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -125,7 +125,7 @@ describe('modifyTaskObservations', () => {
                 .then((task) => ({ user, task }))
             )
             .then(({ user, task }) => 
-                modifyTaskObservations(user.id, task.id, 'observando')
+                modifyTaskObservations(user.id, task.id, 'observo')
             )
             .catch(error => errorThrown = error)
             .finally(() => {
@@ -138,7 +138,7 @@ describe('modifyTaskObservations', () => {
         let errorThrown
         
         try {
-            modifyTaskObservations(1234, new ObjectId().toString(), 'observando')
+            modifyTaskObservations(1234, new ObjectId().toString(), 'observo')
         } catch (error) {
             errorThrown = error
         } finally {
@@ -151,7 +151,7 @@ describe('modifyTaskObservations', () => {
         let errorThrown
         
         try {
-            modifyTaskObservations(new ObjectId().toString(), 1234, 'observando')
+            modifyTaskObservations(new ObjectId().toString(), 1234, 'observo')
         } catch (error) {
             errorThrown = error
         } finally {

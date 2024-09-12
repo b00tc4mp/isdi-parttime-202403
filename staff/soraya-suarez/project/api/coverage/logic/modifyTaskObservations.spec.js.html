@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/selectTask.spec.js</title>
+    <title>Code coverage report for logic/modifyTaskObservations.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> selectTask.spec.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> modifyTaskObservations.spec.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>53/53</span>
+                <span class='fraction'>60/60</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>30/30</span>
+                <span class='fraction'>31/31</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>53/53</span>
+                <span class='fraction'>60/60</span>
             </div>
         
             
@@ -226,7 +226,20 @@
 <a name='L161'></a><a href='#L161'>161</a>
 <a name='L162'></a><a href='#L162'>162</a>
 <a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -356,6 +369,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -394,21 +420,21 @@ import mongoose, { Types } from 'mongoose'
 import bcrypt from 'bcryptjs'
 import { expect } from 'chai'
 import { User, Task } from '../data/index.js'
-import selectTask from './selectTask.js'
+import modifyTaskObservations from './modifyTaskObservations.js'
 import { NotFoundError, MatchError, ContentError } from 'com/errors.js'
 &nbsp;
 const { MONGODB_URL_TEST } = process.env
 &nbsp;
 const { ObjectId } = Types
 &nbsp;
-describe('selectTask', () =&gt; {
+describe('modifyTaskObservations', () =&gt; {
     before(() =&gt; mongoose.connect(MONGODB_URL_TEST).then(() =&gt; {
         return Promise.all([User.deleteMany(), Task.deleteMany()])
     }))
 &nbsp;
     beforeEach(() =&gt; Promise.all([User.deleteMany(), Task.deleteMany()]))
 &nbsp;
-    it('succeeds on select task', () =&gt;
+    it('succeeds on modify task observations', () =&gt;
         bcrypt.hash('123123123', 8)
             .then(hash =&gt; User.create({ 
                 name: 'Soraya', 
@@ -424,7 +450,7 @@ describe('selectTask', () =&gt; {
             .then(user =&gt;
                 Task.create({
                     creator: new ObjectId().toString(),
-                    owner: null,
+                    owner: user.id,
                     name: 'Nombre tarea',
                     description: 'describiendo',
                     status: 'toDo', 
@@ -436,7 +462,7 @@ describe('selectTask', () =&gt; {
                 .then((task) =&gt; ({ user, task }))
             )
             .then(({ user, task }) =&gt; 
-                selectTask(user.id, task.id)
+                modifyTaskObservations(user.id, task.id, 'observo')
             )
             .then(() =&gt; Task.findOne())
             .then(task =&gt; {
@@ -447,7 +473,7 @@ describe('selectTask', () =&gt; {
                 expect(task.status).to.equal('toDo')
                 expect(task.priority).to.equal('medium')
                 expect(task.visible).to.equal(true)
-                expect(task.observations).to.equal('')
+                expect(task.observations).to.equal('observo')
                 expect(task.completionTime).to.equal(0)
             })
     )
@@ -455,7 +481,7 @@ describe('selectTask', () =&gt; {
     it('fails on non-existing user', () =&gt; {
         let errorThrown
 &nbsp;
-        return selectTask(new ObjectId().toString(), new ObjectId().toString())
+        return modifyTaskObservations(new ObjectId().toString(), new ObjectId().toString(), 'observo')
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
                 expect(errorThrown).to.be.instanceOf(NotFoundError)
@@ -478,7 +504,7 @@ describe('selectTask', () =&gt; {
                 available: true,
                 password: hash 
           })
-          .then((user) =&gt; selectTask(user.id, new ObjectId().toString())))
+          .then((user) =&gt; modifyTaskObservations(user.id, user.id, 'observo')))
           .catch(error =&gt; errorThrown = error)
           .finally(() =&gt; {
             expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -486,7 +512,7 @@ describe('selectTask', () =&gt; {
           })
     })
 &nbsp;
-    it('fails on non-permitted select task whith owner', () =&gt; {
+    it('fails on non-match user and task owner', () =&gt; {
         let errorThrown
 &nbsp;
         return bcrypt.hash('123123123', 8)
@@ -503,7 +529,7 @@ describe('selectTask', () =&gt; {
             }))
             .then(user =&gt;
                 Task.create({
-                    creator: user.id,
+                    creator: new ObjectId().toString(),
                     owner: new ObjectId().toString(),
                     name: 'Nombre tarea',
                     description: 'describiendo',
@@ -516,12 +542,12 @@ describe('selectTask', () =&gt; {
                 .then((task) =&gt; ({ user, task }))
             )
             .then(({ user, task }) =&gt; 
-                selectTask(user.id, task.id)
+                modifyTaskObservations(user.id, task.id, 'observo')
             )
             .catch(error =&gt; errorThrown = error)
             .finally(() =&gt; {
-                expect(errorThrown).to.be.an.instanceOf(MatchError)
-                expect(errorThrown.message).to.equal('task already have a owner')
+            expect(errorThrown).to.be.an.instanceOf(MatchError)
+            expect(errorThrown.message).to.equal('you are not the owner')
             })
     })
 &nbsp;
@@ -529,7 +555,7 @@ describe('selectTask', () =&gt; {
         let errorThrown
         
         try {
-            selectTask(1234, new ObjectId().toString())
+            modifyTaskObservations(1234, new ObjectId().toString(), 'observo')
         } catch (error) {
             errorThrown = error
         } finally {
@@ -542,12 +568,25 @@ describe('selectTask', () =&gt; {
         let errorThrown
         
         try {
-            selectTask(new ObjectId().toString(), 1234)
+            modifyTaskObservations(new ObjectId().toString(), 1234, 'observo')
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
             expect(errorThrown.message).to.equal('id is not valid')
+        }
+    })
+&nbsp;
+    it('fails on invalid observations', () =&gt; {
+        let errorThrown
+        
+        try {
+            modifyTaskObservations(new ObjectId().toString(), new ObjectId().toString(), 1234)
+        } catch (error) {
+            errorThrown = error
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError)
+            expect(errorThrown.message).to.equal('observations are not valid')
         }
     })
 &nbsp;

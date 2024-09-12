@@ -19,8 +19,11 @@ function Users() {
     
     return <div className='overflow-scroll my-4'>
         <nav className='flex justify-center text-xs w-screen'>
-            <Button className='border-gray-300 rounded-tr-none rounded-br-none' onClick={()=> handleNavigateTo('all-users')}>All users</Button>
-            <Button className='border-gray-300 rounded-tl-none rounded-bl-none' onClick={()=> handleNavigateTo('available-users')}>Available users</Button>
+            {page === 'all-users' && <Button className='border-indigo-300 rounded-tr-none rounded-br-none bg-indigo-200' onClick={()=> handleNavigateTo('all-users')}>All users</Button>}
+            {page !== 'all-users' && <Button className='border-gray-300 rounded-tr-none rounded-br-none' onClick={()=> handleNavigateTo('all-users')}>All users</Button>}
+
+            {page === 'available-users' && <Button className='border-indigo-300 rounded-tl-none rounded-bl-none bg-indigo-200' onClick={()=> handleNavigateTo('available-users')}>Available users</Button>}
+            {page !== 'available-users' && <Button className='border-gray-300 rounded-tl-none rounded-bl-none' onClick={()=> handleNavigateTo('available-users')}>Available users</Button>}
         </nav>
 
         { (() => {

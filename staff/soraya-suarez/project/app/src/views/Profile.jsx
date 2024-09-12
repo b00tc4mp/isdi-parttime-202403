@@ -14,7 +14,7 @@ import ModifyPasswordForm from './components/ModifyPasswordForm'
 
 import useContext from '../useContext'
 
-function Profile() {
+function Profile(/*{ user }*/) {
     const { alert } = useContext()
 
     const [user, setUser] = useState([])
