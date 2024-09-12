@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shapes</title>
+    </head>
+
+    <body>
+
+    </body>
+
+    <script>
+
+        function createCircle() {
+            var circle = document.createElement('div')
+            circle.style.borderRadius = "50%"
+            circle.style.width = "100px"
+            circle.style.height = "100px"
+            circle.style.backgroundColor = "red"
+
+            return circle
+
+        }
+        var circle = createCircle()
+        document.body.appendChild(circle)
+
+
+        function createSquare() {
+            var square = document.createElement('div')
+            square.style.width = "100px"
+            square.style.height = "100px"
+            square.style.backgroundColor = "blue"
+            document.body.appendChild(square)
+
+            return square
+        }
+        var square = createSquare()
+        document.body.appendChild(square)
+
+
+        function createTriangle() {
+            var triangle = document.createElement('div')
+            triangle.style.borderLeft = "50px solid transparent "
+            triangle.style.borderRight = "50px solid transparent"
+            triangle.style.borderBottom = "100px solid gold"
+            triangle.style.display = "inline-block"
+
+            return triangle
+
+        }
+        var triangle = createTriangle()
+        document.body.appendChild(triangle)
+
+
+        var circle = createCircle()
+        document.body.appendChild(circle)
+
+        var square = createSquare()
+        document.body.appendChild(square)
+
+
+        var triangle = createTriangle()
+        document.body.appendChild(triangle)
+
+        var circle = createCircle()
+        document.body.appendChild(circle)
+
+        var square = createSquare()
+        document.body.appendChild(square)
+
+
+        var triangle = createTriangle()
+        document.body.appendChild(triangle)
+
+
+
+    </script>
+
+
+</html>

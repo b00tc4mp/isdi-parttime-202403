@@ -1,0 +1,33 @@
+.View {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.LoginForm {
+    padding: 1rem;
+}
+
+.LoginForm .Input,
+.Button {
+    background-color: transparent;
+    font-size: 1rem;
+    border: 1px solid var(--first-color);
+}
+
+/* body {
+
+    background-image: url("https://kurogami.com/img/paginas/KUROGAMI%20[gatico][saiyan]%20(1).png");
+
+background-position: 20px 30px;
+
+background-image: linear-gradient(rgb(218, 230, 227), white);
+
+background-attachment: scroll;
+
+background-position: right center;
+
+background-size: cover; 
+
+} */
