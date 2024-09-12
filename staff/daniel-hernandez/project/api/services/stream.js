@@ -9,7 +9,7 @@ import log from './log.js';
 
 const { TRACK_DIR } = process.env;
 
-const streamTrack = (userId, trackId, range) => {
+const stream = (userId, trackId, range) => {
    validate.inputs(userId, trackId);
    validate.objectId(userId);
    validate.objectId(trackId);
@@ -94,4 +94,4 @@ const streamTrack = (userId, trackId, range) => {
    })();
 };
 
-export default streamTrack;
+export default stream;
