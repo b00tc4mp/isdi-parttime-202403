@@ -4,15 +4,15 @@ import GroupedWasteItem from '../../components/GroupedWasteItem'
 
 const GroupedByCode = ({ selectedReference }) => {
   const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   // Función para obtener los datos agrupados basados en la referencia
-  const fetchGroupedLoads = async (reference) => {
+  const fetchGroupedLoads = async (selectedReference) => {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllLoads/${reference}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllLoads/${selectedReference}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,9 @@ const GroupedByCode = ({ selectedReference }) => {
       setError(error.message)
       console.error('Error al obtener los datos agrupados:', error)
     } finally {
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
     }
   }
 
@@ -44,7 +46,7 @@ const GroupedByCode = ({ selectedReference }) => {
 
   // Renderizar contenido basado en el estado
   if (loading) {
-    return <p style={{ color: 'green', textAlign: 'center' }}>Cargando datos resumidos de residuos cargados...</p>
+    return <p style={{ color: 'white', textAlign: 'center' }}>Solicitando datos de residuos cargados...</p>
   }
 
   if (error) {

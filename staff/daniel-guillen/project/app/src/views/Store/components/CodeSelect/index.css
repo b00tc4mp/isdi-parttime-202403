@@ -1,16 +1,17 @@
-.CodeDiv {
+.CodeSelectedDiv {
   display: flex;
-  width: full;
-  background: white;
+  justify-content: center;
   border-radius: 5px;
-  border: thistle solid 0.5px;
   margin-left: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .CodeSelected {
   display: flex;
   align-items: center;
+  justify-content: center;
+  max-width: 500px;
   text-align: center;
   font-size: 28px;
 }

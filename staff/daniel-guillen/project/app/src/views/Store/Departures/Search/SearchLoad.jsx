@@ -4,16 +4,17 @@ import { useState, useEffect } from 'react'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 
 const SearchLoad = ({ selectedReference }) => {
+
   const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   // Función para obtener las cargas basadas en la referencia
-  const fetchLoads = async (reference) => {
+  const fetchLoads = async (selectedReference) => {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllLoads/${reference}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllLoads/${selectedReference}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ const SearchLoad = ({ selectedReference }) => {
       })
 
       if (!response.ok) {
-        throw new Error('Error al obtener los datos de cargas')
+        throw new Error('Error al obtener los datos de cargados')
       }
 
       const result = await response.json()
@@ -30,7 +31,9 @@ const SearchLoad = ({ selectedReference }) => {
       setError(error.message)
       console.error('Error al obtener los datos de cargas:', error)
     } finally {
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
     }
   }
 
@@ -73,9 +76,9 @@ const SearchLoad = ({ selectedReference }) => {
     }
   }
 
-  // Renderizar contenido basado en el estado
+  // Se renderiza contenido basado en el estado
   if (loading) {
-    return <p style={{ color: 'green', textAlign: 'center' }}>Cargando datos de residuos cargados...</p>
+    return <p style={{ color: 'white', textAlign: 'center' }}>📦 📦 📦 📦 📦 📦 📦 📦 📦 📦</p>
   }
 
   if (error) {

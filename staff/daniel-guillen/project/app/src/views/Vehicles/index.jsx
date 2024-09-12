@@ -1,29 +1,26 @@
-import React from 'react'
+
+import { useState } from 'react'
+import VehiclesSelect from './components/VehicleSelect'
 import './index.css'
-//img
-import van1 from '../../components/img/van1.jpg'
-import van2 from '../../components/img/van2.jpg'
-import truck3 from '../../components/img/truck3.jpg'
-import truck4 from '../../components/img/truck4.jpg'
-import truck5 from '../../components/img/truck5.jpg'
-import truck6 from '../../components/img/truck6.jpg'
+import Inspection from './Inspection'
 
 const Vehicles = () => {
+
+  const [selectedVehicle, setSelectedVehicle] = useState("")
+
+  const handleVehicleChange = (selectedVehicle) => {
+    setSelectedVehicle(selectedVehicle)
+    console.log("Vehiculo seleccionado:", selectedVehicle)
+  }
+
+
   return (
 
     <div className='VehiclesOptions'>
-      
-      <a href="/Vehicles/van1"><img className='ImageVehicles' src={van1} /> </a>
-      
-      <a href="/Vehicles/van2"><img className='ImageVehicles' src={van2} /> </a>
-      
-      <a href="/Vehicles/truck3"><img className='ImageVehicles' src={truck3} /> </a>
+      <h1 className='RouteTitle'>INSPECCIÓN DE VEHÍCULOS</h1>
+      <VehiclesSelect selectedVehicle={selectedVehicle} handleVehicleChange={handleVehicleChange} />
+      <Inspection selectedVehicle={selectedVehicle} />
 
-      <a href="/Vehicles/truck4"><img className='ImageVehicles' src={truck4} /> </a>
-    
-      <a href="/Vehicles/truck5"><img className='ImageVehicles' src={truck5} /> </a>
-
-      <a href="/Vehicles/truck6"><img className='ImageVehicles' src={truck6} /> </a>
     </div>
   )
 }

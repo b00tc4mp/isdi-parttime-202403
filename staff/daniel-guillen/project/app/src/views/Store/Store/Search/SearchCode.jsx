@@ -1,76 +1,50 @@
 import { useState, useEffect } from 'react'
 import './index.css'
-// components
-import WasteSelect from '../../components/WasteSelect'
-import MenuStore from '../../components/MenuStore'
 // utils
 import sortWasteItems from '../../../../utils/sortWasteItems'
 
-const SearchWaste = () => {
+const SearchWaste = ( { selectedWaste }) => {
+
   const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const today = new Date()
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const year = String(today.getFullYear())
-
-  const [selectedWaste, setSelectedWaste] = useState({ code: "" })
-
-  const handleWasteChange = (selectedOption) => {
-    setSelectedWaste(selectedOption)
-    console.log("Residuos seleccionados:", selectedOption)
-  }
-
   // función para traer los residuos almacenados
-  const fetchStoredWaste = async () => {
-    setLoading(true)
-    setError(null)
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}stored/getWasteStored/${month}/${year}/${selectedWaste.code}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+const fetchStoredWaste = async (selectedWaste) => {
+  setLoading(true)
+  setError(null)
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}stored/getWasteStored/${month}/${year}/${selectedWaste}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
 
-      if (!response.ok) {
-        throw new Error('Error al obtener los datos de cargas')
-      }
-
-      const result = await response.json()
-      setData(result)
-    } catch (error) {
-      setError(error.message)
-      console.error('Error al obtener los datos de cargas:', error)
-    } finally {
-      setLoading(false)
+    if (!response.ok) {
+      throw new Error('Error al obtener los residuos almacenados')
     }
+
+    const result = await response.json()
+    setData(result)
+  } catch (error) {
+    setError(error.message)
+    console.error('Error al obtener lista de codigos:', error)
+  } finally {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
   }
+}
 
   useEffect(() => {
-    console.log('selectedWaste:', selectedWaste); // Verificar si hay un código seleccionado
-    if (selectedWaste.code) {
-      fetchStoredWaste();
+    if (selectedWaste) {
+      fetchStoredWaste(selectedWaste)
     } else {
-      setData([]); // Limpiar datos si no hay referencia seleccionada
+      setData([]) // Limpiar datos si no hay referencia seleccionada
     }
-  }, [selectedWaste.code]);
+  }, [selectedWaste])
 
-  // cargando...
-  if (loading) {
-    return <p style={{ color: 'orange', textAlign: 'center' }}>Cargando datos de residuos...</p>
-  }
-
-  // mensaje de error
-  if (error) {
-    return <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
-  }
-
-  // filtramos y ordenamos residuos
-  const sortedList = sortWasteItems(data)
-  console.log('data:', data);
-  console.log('sortedList:', sortedList);
 
   // eliminar residuo por ID
   const deleteWaste = async (id) => {
@@ -93,7 +67,7 @@ const SearchWaste = () => {
         alert('Residuo eliminado exitosamente 🎉')
 
         // Refrescar la lista después de eliminar un residuo
-        fetchStoredWaste() // Volver a llamar a la función para actualizar los datos
+        await fetchStoredWaste(selectedWaste)
       } catch (error) {
         console.error('Error eliminando el residuo:', error)
         setError('Error eliminando el residuo. Inténtalo de nuevo más tarde.')
@@ -104,15 +78,30 @@ const SearchWaste = () => {
     }
   }
 
+  // Se renderiza contenido basado en el estado
+  if (loading) {
+    return <p style={{ color: 'white', textAlign: 'center' }}>Cargando datos de residuos almacenados...</p>
+  }
+
+  // mensaje de error
+  if (error) {
+    return <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos {error}</p>
+  }
+
+  // traemos el mes y año actual para el titulo
+  const today = new Date()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const year = String(today.getFullYear())
+
+  // filtramos y ordenamos residuos
+  const sortedList = sortWasteItems(data)
+
   return (
     <div className='SearchWasteDiv'>
+      <h2 className="title">Residuos almacenados {month}/{year}</h2>
 
-      <h1 className='RouteTitle'>BUSCAR RESIDUO</h1>
-      
-      <WasteSelect selectedWaste={selectedWaste} handleWasteChange={handleWasteChange} />
-      
       {sortedList.length > 0 ? (
-        sortedList.map((item) => {
+        sortedList.map(item => {
           const shortDescription = item.description.length > 34
             ? item.description.substring(0, 34) + '...'
             : item.description
@@ -135,7 +124,7 @@ const SearchWaste = () => {
       ) : (
         <p style={{ color: 'white', textAlign: 'center' }}>No hay datos disponibles</p>
       )}
-      <MenuStore />
+
     </div>
   )
 }

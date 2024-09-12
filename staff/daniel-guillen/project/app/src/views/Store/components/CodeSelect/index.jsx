@@ -7,7 +7,7 @@ const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
   const [data, setData] = useState([])
 
   // Función para obtener todas las codigos desde la API
-  const fetchReferences = async () => {
+  const fetchCode = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}stored/getAllCodesStored`, {
         method: 'GET',
@@ -21,14 +21,10 @@ const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
       }
 
       const result = await response.json()
+
       // Formatear los datos para react-select
-      const formattedData = result.map((item) => ({
-        value: {
-          //value sera un objeto con code (item.code) y description (item.name) 
-          code: item.code,
-          description: item.description,
-        },
-        //label sera una cadena con item.code y item.description
+      const formattedData = result.map((item) => ({        
+        value: item.code,
         label: `${item.code} - ${item.description}`
       }))
       setData(formattedData)
@@ -39,7 +35,7 @@ const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
 
   // useEffect para cargar las codigos al montar el componente
   useEffect(() => {
-    fetchReferences()
+    fetchCode()
   }, [])
 
   // Encontrar la opción seleccionada a partir del valor de selectedCode
@@ -50,7 +46,7 @@ const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
       <Select
         className='CodeSelected'
         id='CodeSelect'
-        placeholder="CODE"
+        placeholder="CODIGO DE RESIDUO"
         options={data} // Opciones para el select
         value={selectedOption} // Valor actualmente seleccionado
         onChange={(selected) => handleCodeChange(selected ? selected.value : null)} // Manejar el cambio

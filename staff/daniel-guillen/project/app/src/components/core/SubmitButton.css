@@ -3,6 +3,7 @@
   background: tomato;
   border: grey solid 2px;
   cursor: pointer;
+  border-radius: 5px;
   text-decoration: none;
 }
 

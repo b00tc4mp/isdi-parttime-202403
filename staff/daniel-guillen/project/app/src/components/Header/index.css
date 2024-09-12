@@ -4,17 +4,37 @@
   margin: 0.5rem auto 0 auto;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   background: linear-gradient(white, transparent);
 }
 
+.logout {
+  position: fixed;
+  top: 3rem;
+  right: 3rem;
+  background: none;
+  border: none;
+  font-size: 2rem; /* Ajusta el tamaño del emoticono según sea necesario */
+  cursor: pointer;
+  z-index: 1000; /* Asegura que el botón esté encima de otros elementos */
+}
+
 .logo {
   display: flex;
-  margin: 1rem auto 0.5rem auto;
+  margin: 0.5rem auto 0 auto;
   justify-content: center;
   width: 100%;
 }
+
+.sessionStatus {
+  display: flex;
+  justify-content: center;
+  line-height: 0;
+  align-items: center;
+}
+
 .MenuButtons {
   display: flex;
   margin: 1rem auto 1rem auto;

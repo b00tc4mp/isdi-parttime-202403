@@ -32,7 +32,9 @@ const SummaryWaste = () => {
       } catch (err) {
         setError(err.message)
       } finally {
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1500)
       }
     }
 
@@ -43,12 +45,12 @@ const SummaryWaste = () => {
 
     // Cargando...
     if (loading) {
-      return <p style={{ color: 'green', textAlign: 'center' }}>Cargando datos resumindos de residuos cargados...</p>
+      return <p style={{ color: 'white', textAlign: 'center' }}>Cargando resumen de residuos almacenados...</p>
     }
   
     // Mensaje de error
     if (error) {
-      return <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
+      return <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos {error}</p>
     }
 
     // Agrupar, mostrar una sola iteración y sumar el peso total por código

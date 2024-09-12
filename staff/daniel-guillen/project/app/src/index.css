@@ -127,3 +127,89 @@ body {
 .ButtonImage {
   max-width: 30px;
 }
+
+.NewWasteDiv {
+  min-width: 380px;
+  margin: 0.2rem 0.5rem 0.2rem 0.5rem;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ShortDescription {
+  font-size: small;
+}
+
+.NewWasteDiv.PALET {
+  background: rgb(248, 214, 127);
+  border: orange solid 1px;
+  color: black;
+}
+
+.NewWasteDiv.PALET:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWasteDiv.GRG {
+  background: rgb(247, 247, 149);
+  border: gold solid 1px;
+  color: black;
+}
+
+.NewWasteDiv.GRG:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWasteDiv.BIGBAG {
+  background: lightgreen;
+  border: mediumseagreen solid 1px;
+  color: black;
+}
+
+.NewWasteDiv.BIGBAG:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWasteDiv.B200 {
+  background: rgb(116, 150, 251);
+  border: darkblue solid 1px;
+  color: black;
+}
+
+.NewWasteDiv.B200:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWasteDiv.B-200 {
+  background: rgb(171, 219, 249);
+  border: cornflowerblue solid 1px;
+  color: black;
+}
+
+.NewWasteDiv.B-200:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}
+
+.NewWasteDiv.ESTANCADO {
+  background: tomato;
+  border: red solid 1px;
+  color: white;
+}
+
+.NewWasteDiv.ESTANCADO:hover {
+  background: grey;
+  border: black solid 1px;
+  color: white;
+}

@@ -1,4 +1,3 @@
-// Search.js
 import MenuLoads from '../../components/MenuLoads'
 import ReferenceSelect from '../../components/ReferenceSelect'
 import { useState } from 'react'
@@ -16,7 +15,7 @@ const Search = () => {
 
   return (
     <div className='container'>
-      <h1 className='RouteTitle'>BUSCAR SALIDA POR</h1>
+      <h1 className='RouteTitle'>BUSCAR CARGA POR</h1>
       <ReferenceSelect
         selectedReference={selectedReference}
         handleReferenceChange={handleReferenceChange}

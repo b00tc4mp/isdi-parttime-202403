@@ -21,6 +21,7 @@ const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
       }
 
       const result = await response.json()
+      
       // Formatear los datos para react-select
       const formattedData = result.map((reference) => ({
         value: reference, // Valor que se enviará a la API

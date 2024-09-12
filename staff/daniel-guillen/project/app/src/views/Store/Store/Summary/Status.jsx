@@ -30,7 +30,9 @@ const SummaryStatus = () => {
     } catch (err) {
       setError(err.message)
     } finally {
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
     }
   }
 
@@ -53,7 +55,7 @@ const SummaryStatus = () => {
 
   // Renderizado condicional para carga, error, o lista de residuos estancados
   if (loading) {
-    return <p style={{ color: 'green', textAlign: 'center' }}>Cargando datos de residuos estancados...</p>
+    return <p style={{ color: 'white', textAlign: 'center' }}>Cargando residuos estancados en el almacén...</p>
   }
 
   if (error) {
