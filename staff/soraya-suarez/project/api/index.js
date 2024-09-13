@@ -34,6 +34,7 @@ import {
     modifyTaskPriorityHandler,
     modifyTaskStatusHandler,
     modifyTaskObservationsHandler,
+    modifyTaskVisibleHandler,
     finishTaskHandler,
     releaseTaskHandler,
     deleteTaskHandler,
@@ -82,6 +83,7 @@ mongoose.connect(MONGODB_URL)
         api.patch('/tasks/:taskId/modify-task-priority', jsonBodyParser, modifyTaskPriorityHandler)
         api.patch('/tasks/:taskId/modify-task-status', jsonBodyParser, modifyTaskStatusHandler)
         api.patch('/tasks/:taskId/modify-task-observations', jsonBodyParser, modifyTaskObservationsHandler)
+        api.patch('/tasks/:taskId/modify-task-visible', jsonBodyParser, modifyTaskVisibleHandler)
         api.patch('/tasks/:taskId/finish', jsonBodyParser, finishTaskHandler)
         api.patch('/tasks/:taskId/release', jsonBodyParser, releaseTaskHandler)
         api.delete('/tasks/:taskId', deleteTaskHandler)

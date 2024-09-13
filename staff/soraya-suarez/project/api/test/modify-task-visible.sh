@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:9010/tasks/66e311815e1fc237c2c1b0ae/modify-task-visible -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMxYjY0NWZlODQyYzliMjc2OWMwYzgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjYyNDY2MjQsImV4cCI6MTcyNjMzMzAyNH0.vqH8Cs1cnt3RuNxi-ZsU3h_XWE66neoEJtD44EYA3_k" -H "Content-Type: application/json" -d '{"visible":false}' -v

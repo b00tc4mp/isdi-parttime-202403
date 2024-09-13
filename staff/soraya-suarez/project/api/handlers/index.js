@@ -28,6 +28,7 @@ import modifyTaskDescriptionHandler from './modifyTaskDescriptionHandler.js'
 import modifyTaskPriorityHandler from './modifyTaskPriorityHandler.js'
 import modifyTaskStatusHandler from './modifyTaskStatusHandler.js'
 import modifyTaskObservationsHandler from './modifyTaskObservationsHandler.js'
+import modifyTaskVisibleHandler from './modifyTaskVisibleHandler.js'
 import finishTaskHandler from './finishTaskHandler.js'
 import releaseTaskHandler from './releaseTaskHandler.js'
 import deleteTaskHandler from './deleteTaskHandler.js'
@@ -66,6 +67,7 @@ export {
     modifyTaskPriorityHandler,
     modifyTaskStatusHandler,
     modifyTaskObservationsHandler,
+    modifyTaskVisibleHandler,
     finishTaskHandler,
     releaseTaskHandler,
     deleteTaskHandler,

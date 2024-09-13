@@ -110,6 +110,26 @@ function Task({ task, onTaskRefreshed }) {
         setViewOptions(false)
     }
 
+    const handleVisibleTask = () => {
+        try {
+            logic.modifyTaskVisible(task.id, !task.visible)
+                .then(() => {
+                    onTaskRefreshed()
+                    setConfirmSelectVisible(false)
+                    setViewOptions(false)
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
     return <div>
         <div className='flex items-center justify-between py-2 px-2'>
             <Text>{task.name}</Text>
@@ -123,8 +143,8 @@ function Task({ task, onTaskRefreshed }) {
                 {!confirmDeleteVisible && task.creator === logic.getUserId() && <Button className='border-none px-2' onClick={handleDeleteTask}>{<RiDeleteBin5Line/>}</Button>}
                 {confirmDeleteVisible && task.creator === logic.getUserId() && <Button className='border-none px-2' onClick={handleDeleteCanceledTask}>{<MdClose/>}</Button>}
 
-                {!viewOptions && ((task.owner === null) || (task.owner === logic.getUserId() && task.status != 'finished') || (task.owner === logic.getUserId() && task.status != 'finished')) && <Button className='border-none px-2' onClick={handleViewOptionsClick}>{<SlOptions />}</Button>}
-                {viewOptions && ((task.owner === null) || (task.owner === logic.getUserId() && task.status != 'finished') || (task.owner === logic.getUserId() && task.status != 'finished')) && <Button className='border-none px-2' onClick={handleProcessFinishOptionsClick}>{<MdClose />}</Button>}
+                {!viewOptions && ((task.owner === null) || (task.owner === logic.getUserId() && task.status !== 'finished') || (task.owner === logic.getUserId() && task.status !== 'finished') || (task.owner === logic.getUserId() && task.creator === logic.getUserId())) && <Button className='border-none px-2' onClick={handleViewOptionsClick}>{<SlOptions />}</Button>}
+                {viewOptions && ((task.owner === null) || (task.owner === logic.getUserId() && task.status !== 'finished') || (task.owner === logic.getUserId() && task.status !== 'finished') || (task.owner === logic.getUserId() && task.creator === logic.getUserId())) && <Button className='border-none px-2' onClick={handleProcessFinishOptionsClick}>{<MdClose />}</Button>}
             </div>
         </div>
 
@@ -137,8 +157,10 @@ function Task({ task, onTaskRefreshed }) {
         {viewOptions && <div className='flex justify-end pr-2 text-center'>
             <ul>
                 <li>{task.owner === null && <Button className='border-indigo-300 mb-2' onClick={handleSelectTask}>Assign</Button>}</li>
-                <li>{task.owner === logic.getUserId() && task.status != 'finished' && task.visible != false && <Button className='border-indigo-300 mb-2' onClick={handleReleaseTask}>Release</Button>}</li>
-                <li>{task.owner === logic.getUserId() && task.status != 'finished' && <Button className='border-indigo-300 mb-2' onClick={handleFinishTask}>Finish</Button>}</li>
+                <li>{task.owner === logic.getUserId() && task.status !== 'finished' && task.visible != false && <Button className='border-indigo-300 mb-2' onClick={handleReleaseTask}>Release</Button>}</li>
+                <li>{task.owner === logic.getUserId() && task.status !== 'finished' && <Button className='border-indigo-300 mb-2' onClick={handleFinishTask}>Finish</Button>}</li>
+                <li>{task.creator === logic.getUserId() && task.owner === logic.getUserId() && task.visible === true && <Button className='border-indigo-300 mb-2' onClick={handleVisibleTask}>Private</Button>}</li>
+                <li>{task.creator === logic.getUserId() && task.owner === logic.getUserId() && task.visible === false && <Button className='border-indigo-300 mb-2' onClick={handleVisibleTask}>Public</Button>}</li>
             </ul>
         </div>}
     </div>

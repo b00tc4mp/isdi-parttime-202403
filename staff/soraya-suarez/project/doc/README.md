@@ -13,6 +13,7 @@ User | Admin
   - Modify task
   - Delete task
   - Assign task
+  - Choose Task
 - View tasks
   - Available tasks
   - Private tasks
@@ -39,7 +40,6 @@ User | Admin
 - Request vacation
 - Request resignation
 - Recover password
-- Choose Task
 
 Admin
 

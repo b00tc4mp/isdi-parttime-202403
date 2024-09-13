@@ -32,6 +32,7 @@ import modifyTaskDescription from './modifyTaskDescription'
 import modifyTaskPriority from './modifyTaskPriority'
 import modifyTaskStatus from './modifyTaskStatus'
 import modifyTaskObservations from './modifyTaskObservations'
+import modifyTaskVisible from './modifyTaskVisible'
 import selectTask from './selectTask'
 import releaseTask from './releaseTask'
 import finishTask from './finishTask'
@@ -71,6 +72,7 @@ const logic = {
     modifyTaskPriority,
     modifyTaskStatus,
     modifyTaskObservations,
+    modifyTaskVisible,
     selectTask,
     releaseTask,
     finishTask,
