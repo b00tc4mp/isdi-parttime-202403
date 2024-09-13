@@ -10,6 +10,10 @@
   height: calc(100vh - 104px);
 }
 
+.div-circle-button{
+  width: 72px;
+}
+
 .circle-button {
   width:25px;
   height:25px;

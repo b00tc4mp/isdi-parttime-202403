@@ -3,6 +3,7 @@ import login from './login'
 import isUserLoggedIn from './isUserLoggedIn'
 import logout from './logout'
 import getUserId from './getUserId'
+import getMyName from './getMyName'
 import getMyProfile from './getMyProfile'
 import getUserRole from './getUserRole'
 import getAllUsers from './getAllUsers'
@@ -42,6 +43,7 @@ const logic = {
     isUserLoggedIn,
     logout,
     getUserId,
+    getMyName,
     getMyProfile,
     getUserRole,
     getAllUsers,

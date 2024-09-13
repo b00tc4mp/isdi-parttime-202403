@@ -1,5 +1,6 @@
 import enrollUser from './enrollUser.js'
 import authenticateUser from './authenticateUser.js'
+import getMyName from './getMyName.js'
 import getMyProfile from './getMyProfile.js'
 import getAllUsers from './getAllUsers.js'
 import getAvailableUsers from './getAvailableUsers.js'
@@ -34,6 +35,7 @@ import deleteTask from './deleteTask.js'
 const logic = {
     enrollUser,
     authenticateUser,
+    getMyName,
     getMyProfile,
     getAllUsers,
     getAvailableUsers,

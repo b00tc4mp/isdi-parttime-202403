@@ -1,5 +1,6 @@
 import enrollUserHandler from './enrollUserHandler.js'
 import authenticateUserHandler from './authenticateUserHandler.js'
+import getMyNameHandler from './getMyNameHandler.js'
 import getMyProfileHandler from './getMyProfileHandler.js'
 import getAllUsersHandler from './getAllUsersHandler.js'
 import getAvailableUsersHandler from './getAvailableUsersHandler.js'
@@ -37,6 +38,7 @@ import errorHandler from './errorHandler.js'
 export {
     enrollUserHandler,
     authenticateUserHandler,
+    getMyNameHandler,
     getMyProfileHandler,
     getAllUsersHandler,
     getAvailableUsersHandler,

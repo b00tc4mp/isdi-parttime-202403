@@ -1,4 +1,4 @@
-import { useState/*, useEffect*/ } from 'react'
+import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import { CiLogout } from "react-icons/ci";
@@ -29,18 +29,13 @@ import './Home.css'
 function Home({ onUserLoggedOut }) {
     const [page, setPage] = useState('home')
     const [addTaskForm, setAddTaskForm] = useState(false)
+    const [name, setName] = useState('')
 
-    /*const [user, setUser] = useState([])
-
-    useEffect(() => {
-        loadUser()
-    })
-
-    const loadUser = () => {
+    const loadName = () => {
         try {
-            logic.getMyProfile()
-                .then(user => {
-                    setUser(user)
+            logic.getMyName()
+                .then(name => {
+                    setName(name)
                 })
                 .catch(error => {
                     console.error(error)
@@ -51,7 +46,7 @@ function Home({ onUserLoggedOut }) {
 
             alert(error.message)
         }
-    }*/
+    }
     
     const navigate = useNavigate()
 
@@ -86,6 +81,8 @@ function Home({ onUserLoggedOut }) {
 
     const handleProcessFinishClick = () => setAddTaskForm(false)
 
+    loadName()
+
     return <div className='container grid'>
         <nav className='flex justify-between items-center px-4 shadow shadow-gray-300 w-screen'>
             <p>Daily Work</p>
@@ -97,7 +94,6 @@ function Home({ onUserLoggedOut }) {
                 <Route path='/available-tasks' element={<AvailableTasks/>} />
                 <Route path='/users' element={<Users/>} />
                 <Route path='/profile' element={<Profile/>} />
-                {/*<Route path='/profile' element={<Profile user={user}/>} />*/}
             </Routes>
 
             {addTaskForm && <AddTaskForm onProcessFinished={handleProcessFinishClick} />}
@@ -117,11 +113,12 @@ function Home({ onUserLoggedOut }) {
             {page === 'users' && <Button className='border-0' onClick={handleGoToUsers}>{<HiUsers/>}</Button>}
             {page !== 'users' && <Button className='border-0' onClick={handleGoToUsers}>{<HiOutlineUsers/>}</Button>}
             
-            {page === 'profile' && <Button className='border-0' onClick={()=> handleGoToProfile()}>{<FaUserCircle/>}</Button>}
-            {page !== 'profile' && <Button className='border-0' onClick={()=> handleGoToProfile()}>{<FaRegUserCircle/>}</Button>}
-            
-            {/*((typeof user.name !== 'undefined') || (typeof user.surname !== 'undefined')) && <Button className='circle-button' onClick={()=> handleGoToProfile()}>{user.name.substr(0,1)}{user.surname.substr(0,1)}</Button>*/}
-            {/*((typeof user.name === 'undefined') || (typeof user.surname === 'undefined')) && <Button className='circle-button' onClick={()=> handleGoToProfile()}>{<CgProfile/>}</Button>*/}
+            <div className='div-circle-button flex justify-center'>
+                { name !== '' && page === 'profile' && <Button className='circle-button border-indigo-300' onClick={()=> handleGoToProfile()}>{name.charAt(0)}</Button>}
+                { name !== '' && page !== 'profile' && <Button className='circle-button' onClick={()=> handleGoToProfile()}>{name.charAt(0)}</Button>}
+            </div>
+            { name === '' && page === 'profile' && <Button className='border-0' onClick={()=> handleGoToProfile()}>{<FaUserCircle/>}</Button>}
+            { name === '' && page !== 'profile' && <Button className='border-0' onClick={()=> handleGoToProfile()}>{<FaRegUserCircle/>}</Button>}
         </footer>
     </div>
 }
