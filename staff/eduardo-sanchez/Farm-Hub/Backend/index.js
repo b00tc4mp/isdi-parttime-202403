@@ -17,6 +17,7 @@ import {
     searchAdsHandler,
     updateAdHandler,
     getUserAdsHandler,
+    getUserCommentsHandler,
     errorHandler
 } from './handlers/index.js'
 
@@ -58,6 +59,8 @@ mongoose.connect(MONGODB_URL)
         api.patch('/updatead/:adId', jsonBodyParser, updateAdHandler)
 
         api.get('/users/:userId/userAds', getUserAdsHandler)
+
+        api.get('/users/:userId/userAdComments', getUserCommentsHandler)
 
         api.use(errorHandler)
 

@@ -15,6 +15,8 @@ import updateAdHandler from './updateAdHandler.js'
 
 import getUserAdsHandler from './getUserAdsHandler.js'
 
+import getUserCommentsHandler from './getUserCommentsHandler.js'
+
 export {
     errorHandler,
     registerUserHandler,
@@ -29,5 +31,6 @@ export {
     deleteAdCommentHandler,
     searchAdsHandler,
     updateAdHandler,
-    getUserAdsHandler
+    getUserAdsHandler,
+    getUserCommentsHandler
 }
