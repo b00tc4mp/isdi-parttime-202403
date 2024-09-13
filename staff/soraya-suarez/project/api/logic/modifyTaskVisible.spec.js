@@ -33,19 +33,19 @@ describe('modifyTaskVisible', () => {
             .then(user =>
                 Task.create({
                     creator: user.id,
-                    owner: null,
+                    owner: user.id,
                     name: 'Nombre tarea',
                     description: 'describiendo',
                     status: 'toDo', 
                     priority: 'medium', 
-                    visible: true,
+                    visible: false,
                     observations: '',
                     completionTime: 0
                 })
                 .then((task) => ({ user, task }))
             )
             .then(({ user, task }) => 
-                modifyTaskVisible(user.id, task.id, false)
+                modifyTaskVisible(user.id, task.id, true)
             )
             .then(() => Task.findOne())
             .then(task => {
@@ -55,7 +55,7 @@ describe('modifyTaskVisible', () => {
                 expect(task.description).to.equal('describiendo')
                 expect(task.status).to.equal('toDo')
                 expect(task.priority).to.equal('medium')
-                expect(task.visible).to.equal(false)
+                expect(task.visible).to.equal(true)
                 expect(task.observations).to.equal('')
                 expect(task.completionTime).to.equal(0)
             })
@@ -87,7 +87,7 @@ describe('modifyTaskVisible', () => {
                 available: true,
                 password: hash 
           })
-          .then((user) => modifyTaskVisible(user.id, new ObjectId().toString(), false)))
+          .then((user) => modifyTaskVisible(user.id, new ObjectId().toString(), true)))
           .catch(error => errorThrown = error)
           .finally(() => {
             expect(errorThrown).to.be.an.instanceOf(NotFoundError)
@@ -95,7 +95,7 @@ describe('modifyTaskVisible', () => {
           })
     })
 
-    it('fails on non-permitted modify task visible with creator', () => {
+    it('fails on non-match user and task creator', () => {
         let errorThrown
 
         return bcrypt.hash('123123123', 8)
@@ -125,16 +125,16 @@ describe('modifyTaskVisible', () => {
                 .then((task) => ({ user, task }))
             )
             .then(({ user, task }) => 
-                modifyTaskVisible(user.id, task.id, true)
+                modifyTaskVisible(user.id, task.id, false)
             )
             .catch(error => errorThrown = error)
             .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(MatchError)
-                expect(errorThrown.message).to.equal('you are not the creator')
+            expect(errorThrown).to.be.an.instanceOf(MatchError)
+            expect(errorThrown.message).to.equal('you are not the creator')
             })
     })
 
-    it('fails on non-permitted modify task visible with owner', () => {
+    it('fails on non-match user and task owner', () => {
         let errorThrown
 
         return bcrypt.hash('123123123', 8)
@@ -164,12 +164,12 @@ describe('modifyTaskVisible', () => {
                 .then((task) => ({ user, task }))
             )
             .then(({ user, task }) => 
-                modifyTaskVisible(user.id, task.id, true)
+                modifyTaskVisible(user.id, task.id, false)
             )
             .catch(error => errorThrown = error)
             .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(MatchError)
-                expect(errorThrown.message).to.equal('task already have a owner')
+            expect(errorThrown).to.be.an.instanceOf(MatchError)
+            expect(errorThrown.message).to.equal('you are not the owner')
             })
     })
 
@@ -177,7 +177,7 @@ describe('modifyTaskVisible', () => {
         let errorThrown
         
         try {
-            modifyTaskVisible(1234, new ObjectId().toString(), false)
+            modifyTaskVisible(1234, new ObjectId().toString(), true)
         } catch (error) {
             errorThrown = error
         } finally {
@@ -190,7 +190,7 @@ describe('modifyTaskVisible', () => {
         let errorThrown
         
         try {
-            modifyTaskVisible(new ObjectId().toString(), 1234, false)
+            modifyTaskVisible(new ObjectId().toString(), 1234, true)
         } catch (error) {
             errorThrown = error
         } finally {
@@ -203,12 +203,12 @@ describe('modifyTaskVisible', () => {
         let errorThrown
         
         try {
-            modifyTaskVisible(new ObjectId().toString(), new ObjectId().toString(), 'falsee')
+            modifyTaskVisible(new ObjectId().toString(), new ObjectId().toString(), 1234)
         } catch (error) {
             errorThrown = error
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError)
-            expect(errorThrown.message).to.equal('id is not valid')
+            expect(errorThrown.message).to.equal('is not boolean')
         }
     })
 
