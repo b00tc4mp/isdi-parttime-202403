@@ -78,15 +78,14 @@ describe('getUserAds', () => {
                 expect(errorThrown).to.be.an.instanceOf(CredentialsError)
                 expect(errorThrown.message).to.equal('User ID do not match the token User ID')
             })
-
     });
-
 
     it('fails when user does not exist', () => {
         let errorThrown;
         const nonExistentId = new ObjectId().toString();
-
+        console.log(nonExistentId)
         return getUserAds(nonExistentId, nonExistentId)
+
             .catch((error) => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError);
@@ -108,9 +107,19 @@ describe('getUserAds', () => {
                     password: hash,
                 })
             )
-            .then((user) =>
-                getUserAds(user.id, user.id))
-            .then((ads) => expect(ads).to.be.an('array').that.is.empty)
+            .then((user) => {
+                console.log('user: ', user)
+                // getUserAds(user.id, user.id)
+                let tokenId = user.id
+                return getUserAds(user.id, tokenId)
+            })
+            //getUserAds(user.id, user.id))
+            .then((ads) => {
+                console.log('ads: ', ads)
+                return expect(ads).to.be.an('array').that.is.empty
+            })
+
+            //expect(ads).to.be.an('array').that.is.not.empty)
             .catch((error) => errorThrown = error)
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError);
@@ -149,7 +158,6 @@ describe('getUserAds', () => {
             .then(() => User.deleteMany())
             .then(() => mongoose.disconnect())
     );
-
 
 })
 

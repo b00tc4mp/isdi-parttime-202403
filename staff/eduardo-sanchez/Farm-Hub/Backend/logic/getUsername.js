@@ -24,6 +24,7 @@ const getUsername = (userId, targetUserId) => {
                     }
 
                     return targetUser
+                    // return targetUser.username
 
                 })
         })

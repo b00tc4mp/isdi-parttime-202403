@@ -4,6 +4,7 @@ import validate from 'com/validate.js'
 
 
 const getUserAds = (userId, tokenUserId) => {
+
     validate.id(userId, 'userId')
     validate.id(tokenUserId, 'tokenUserId')
 
