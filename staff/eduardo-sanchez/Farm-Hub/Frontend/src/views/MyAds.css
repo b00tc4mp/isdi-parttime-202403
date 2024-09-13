@@ -20,6 +20,18 @@
     .UserAdListEmpty {
         @apply mt-20 text-center text-black font-bold;
     }
+
+    .AdCommentsContainer>h4 {
+        @apply flex flex-col text-orange-700 p-1;
+    }
+
+    .AdComment>p {
+        @apply p-1 text-black font-medium
+    }
+
+    .AdComment>small {
+        @apply p-1 font-black
+    }
 }
 
 /* Title {

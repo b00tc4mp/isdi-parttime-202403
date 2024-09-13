@@ -71,8 +71,20 @@ export const MyAds = () => {
                         </h2>
                         <p>Posted on:    {new Date(userAd.date).toLocaleDateString()}
                         </p>
+                        
+                        <div className="AdCommentsContainer">
+                            <h4>Comments ({userAd.adcomments.length}):</h4>
+                            <ul>
+                                {userAd.adcomments.map((comment, index) => (
+                                    <li key={index} className="AdComment">
+                                        <p><strong>{comment.author.username}:</strong> {comment.comment}</p>
+                                        <small>{new Date(comment.date).toLocaleString()}</small>
+                                    </li>
+                                 ))}
+                            </ul>
+                        </div>
                     </li>
-                ))}
+                 ))}
             </ul>
         </>
     )
