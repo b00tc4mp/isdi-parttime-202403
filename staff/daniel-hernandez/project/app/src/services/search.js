@@ -43,7 +43,7 @@ const search = (query, types = [], limit = constants.DEFAULT_LIMIT, page = 1) =>
       try {
          body = await res.json();
       } catch (error) {
-         throw new ParseError(`Error parse failed ${error.message}`);
+         throw new ParseError(`Error parse failed: ${error.message}`);
       }
 
       const { error, message } = body;
