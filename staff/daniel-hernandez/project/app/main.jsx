@@ -15,9 +15,6 @@ import App from './src/App';
       » npx react-native start --reset-cache => <C-c> => expo run:ios
       » npm run reset-cache => <C-c> => npm run ios
 
-   TODO:
-      @react-native-async-storage/async-storage
-
    WARN:
       @react-navigation/drawer throws a warning because
       findHostInstance_DEPRECATED is deprecated in StrictMode.
