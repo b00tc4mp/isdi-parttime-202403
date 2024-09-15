@@ -45,6 +45,6 @@
   }
 
   .HomeFooter {
-    @apply col-span-6 col-start-1 row-start-6 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-2xl;
+    @apply col-span-6 col-start-1 h-full w-full rounded-md border-2 border-solid bg-off-white bg-opacity-100 shadow-2xl;
   }
 }

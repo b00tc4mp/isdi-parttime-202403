@@ -3,7 +3,7 @@ import './Register.css'
 import { Link, useNavigate } from 'react-router-dom'
 // import { useState } from 'react'
 
-import UseContext from '../../UseContext'
+import UseContext from '../../contexts/UseContext'
 
 import logic from '../../logic/index'
 
@@ -62,7 +62,7 @@ function Register() {
 
                 <FormWithFeedback className='RegisterForm' onSubmit={handlerRegisterSubmit} >
 
-                    <Field id='name' type='text' placeholder='name'></Field>
+                    <Field id='name' type='text' placeholder='Name'></Field>
 
                     <Field id='surname' type='text' placeholder='Surname'></Field>
 

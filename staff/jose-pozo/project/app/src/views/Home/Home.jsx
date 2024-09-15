@@ -142,6 +142,7 @@ function Home() {
     const handleCancelAppointment = () => {
         setSelectedAppointment(null)
         setRefreshAppointments(!refreshAppointments)
+        setCurrentAppointment(null)
     }
 
     const handleConfirmCancelAppointment = () => {
@@ -206,7 +207,7 @@ function Home() {
             </ViewBox>
 
             <ViewBox tag={'section'} className={'HomeContent2'} >
-                <DailyStats />
+                <DailyStats selectedDate={selectedDate} />
             </ViewBox>
 
             <ViewBox tag={'footer'} className={'HomeFooter'} >FOOTER</ViewBox>

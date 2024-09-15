@@ -2,7 +2,7 @@ import './AddService.css'
 
 import { useState } from 'react'
 
-import UseContext from '../../../UseContext'
+import UseContext from '../../../contexts/UseContext'
 
 import logic from '../../../logic/index'
 
@@ -66,7 +66,7 @@ function AddService({ onClose }) {
 
             <hr className='AddServiceHr'></hr>
 
-            <FormWithFeedback className='AddServiceForm' onSubmit={handleAddServiceSubmit}>
+            <form className='AddServiceForm' onSubmit={handleAddServiceSubmit}>
                 <Input id='name' type='text' placeholder='Name'></Input>
                 <Input id='description' type='text' placeholder='Description' required={false}></Input>
                 <Input id='category' type='text' placeholder='Category' required={false}></Input>
@@ -85,7 +85,7 @@ function AddService({ onClose }) {
 
                 <Input id='price' type='text' placeholder='Price €' required={false}></Input>
                 <SubmitButton className={'AddServiceSubmitButton'}>Submit</SubmitButton>
-            </FormWithFeedback>
+            </form>
 
         </ViewBox >
 

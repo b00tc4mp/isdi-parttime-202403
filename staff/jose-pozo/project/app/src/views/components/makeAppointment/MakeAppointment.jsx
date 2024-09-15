@@ -2,7 +2,7 @@ import './MakeAppointment.css'
 
 import { useState, useEffect } from 'react'
 
-import UseContext from '../../../UseContext'
+import UseContext from '../../../contexts/UseContext'
 
 import logic from '../../../logic/index'
 
@@ -138,8 +138,8 @@ function MakeAppointment({ onClose, refreshAppointments }) {
 
                 <select id="status" value={selectedOption} onChange={handleSelectChange} className='MakeAppointmentSelect' >
                     <option value="">Status</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Pending">Pending</option>
                 </select>
 
                 <SubmitButton className={'MakeAppointmentSubmitButton'}>Submit</SubmitButton>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useAppointmentsContext } from '../../../contexts/AppointmentsProvider'
 
 import './Daily.css'
 
@@ -10,9 +11,10 @@ import Box from '../../../components/core/Text'
 import ViewBox from '../../../components/library/ViewBox'
 
 
+
 function Daily({ onRefreshAppointments, selectedDate, onSelectAppointment, setCurrentAppointment }) {
 
-    const [appointments, setAppointments] = useState([])
+    const { appointments, setAppointments } = useAppointmentsContext()
 
     useEffect(() => {
         try {
@@ -26,14 +28,12 @@ function Daily({ onRefreshAppointments, selectedDate, onSelectAppointment, setCu
         }
     }, [onRefreshAppointments, selectedDate])
 
-
     const todayDate = new Date().toISOString().slice(0, 10)
-
-    console.log(todayDate)
 
     const filteredAppointments = selectedDate
         ? appointments.filter(appointment => appointment.startDate.startsWith(selectedDate))
         : appointments.filter(appointment => appointment.startDate.startsWith(todayDate))
+
 
 
     useEffect(() => {
@@ -69,10 +69,9 @@ function Daily({ onRefreshAppointments, selectedDate, onSelectAppointment, setCu
                         const endDateLocal = new Date(appointment.endDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                         const dateFormatted = new Date(appointment.startDate).toLocaleDateString([], { day: '2-digit', month: '2-digit' })
 
-
-                        const now = new Date()
-                        const startDate = new Date(appointment.startDate)
-                        const endDate = new Date(appointment.endDate)
+                        const now = new Date().toISOString()
+                        const startDate = new Date(appointment.startDate).toISOString()
+                        const endDate = new Date(appointment.endDate).toISOString()
 
                         const appointmentClassName =
                             endDate < now ? 'AppointmentPast' :
@@ -80,7 +79,7 @@ function Daily({ onRefreshAppointments, selectedDate, onSelectAppointment, setCu
                                     'AppointmentFuture'
 
                         let statusClassName = ''
-                        appointment.status === 'confirmed' ? statusClassName = 'ConfirmedStatusBox' : appointment.status === 'pending' ? statusClassName = 'PendingStatusBox' : statusClassName = 'CancelledStatusBox'
+                        appointment.status === 'Confirmed' ? statusClassName = 'ConfirmedStatusBox' : appointment.status === 'Pending' ? statusClassName = 'PendingStatusBox' : statusClassName = 'CancelledStatusBox'
 
                         return (
                             <li key={appointment.id} className={appointmentClassName} onClick={() => onSelectAppointment(appointment)}>

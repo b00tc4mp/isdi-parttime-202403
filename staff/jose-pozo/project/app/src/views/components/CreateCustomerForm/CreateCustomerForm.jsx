@@ -2,7 +2,7 @@ import './CreateCustomerForm.css'
 
 // import { useState } from 'react'
 
-import UseContext from '../../../UseContext'
+import UseContext from '../../../contexts/UseContext'
 
 import logic from '../../../logic/index'
 

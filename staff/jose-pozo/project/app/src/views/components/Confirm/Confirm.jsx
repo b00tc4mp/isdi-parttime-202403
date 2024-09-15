@@ -1,6 +1,6 @@
 import './Confirm.css'
 
-export default ({ message, onCancel, handleDeleteAppointment }) => {
+export default ({ message, onCancel, handleDeleteAppointment, handleDeleteService, handleDeleteCustomer }) => {
     const handleDelete = () => {
         if (handleDeleteAppointment) {
             handleDeleteAppointment()

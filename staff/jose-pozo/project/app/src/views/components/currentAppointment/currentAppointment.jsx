@@ -30,10 +30,10 @@ function CurrentAppointment({ appointment, onCancelAppointment, onConfirmCancelA
             logic.deleteAppointment(appointment.id)
                 .then(() => {
                     setTimeout(() => {
-
                         onCancelAppointment()
 
-                    }, 2000)
+                        setConfirm(false)
+                    }, 1500)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {

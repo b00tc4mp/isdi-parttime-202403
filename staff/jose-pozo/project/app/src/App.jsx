@@ -1,8 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { UserProfileProvider } from './contexts/UserProfileProvider'
-
 import { useState } from 'react'
-import { Context } from './UseContext'
+import { AppWrapper } from './contexts/AppWrapper'
+import { Context } from './contexts/UseContext.jsx'
+import { UserProfileProvider } from './contexts/UserProfileProvider'
+import { AppointmentsProvider } from './contexts/AppointmentsProvider'
+
+
 
 import Alert from './views/components/Alert/Alert'
 
@@ -21,7 +24,9 @@ function App() {
 
   return (
     <>
-      <Context.Provider value={{ alert: handleMessage }}>
+
+      <AppWrapper handleMessage={handleMessage}>
+        {/* <Context.Provider value={{ alert: handleMessage }}> */}
 
         <Routes>
 
@@ -35,7 +40,9 @@ function App() {
 
         {message && <Alert message={message} onAccept={handleAlertAccepted} />}
 
-      </Context.Provider>
+        {/* </Context.Provider> */}
+      </AppWrapper>
+
     </>
   )
 
@@ -44,6 +51,6 @@ function App() {
 
 export default App
 
-const RenderHome = () => (logic.isUserLoggedIn() ? <UserProfileProvider><Home /></UserProfileProvider> : <Navigate to='/login' />)
+const RenderHome = () => (logic.isUserLoggedIn() ? <Home /> : <Navigate to='/login' />)
 const RenderLogin = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Login />)
 const RenderRegister = () => (logic.isUserLoggedIn() ? <Navigate to='/' /> : <Register />)
