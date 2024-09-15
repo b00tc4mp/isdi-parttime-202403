@@ -1,0 +1,27 @@
+@tailwind components;
+
+@layer components {
+  .CurrentAppointmentSection {
+    @apply z-10 col-span-2 col-start-5 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid p-4 text-fast-velvet shadow-2xl;
+  }
+
+  .CurrentAppointmentHr {
+    @apply border-fast-velvet;
+  }
+
+  .CurrentAppointmentDetails {
+    @apply my-1 rounded-md font-normal;
+  }
+
+  .DetailsBoxes {
+    @apply flex justify-between;
+  }
+
+  .DetailsBoxesButton {
+    @apply flex justify-end;
+  }
+
+  .CurrentAppointmentCancelButton {
+    @apply my-0 h-fit w-fit rounded bg-sandy-pink px-2 py-0 font-normal text-white-mist hover:scale-105 active:scale-95;
+  }
+}

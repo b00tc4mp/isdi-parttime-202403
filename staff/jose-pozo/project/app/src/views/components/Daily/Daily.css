@@ -1,0 +1,59 @@
+@tailwind components;
+
+@layer components {
+  .DailySection {
+    @apply z-10 col-span-2 col-start-5 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid p-4 text-fast-velvet shadow-2xl;
+  }
+
+  .DailyTextBox {
+    @apply flex justify-between;
+  }
+
+  .DailyHr {
+    @apply border-fast-velvet;
+  }
+
+  .DailyUl {
+    @apply relative mt-4 h-4/5 overflow-y-auto pr-4;
+  }
+
+  .AppointmentPast {
+    @apply mb-2 block h-[70px] w-full rounded border-solid border-black bg-soft-gray p-1 text-left text-input-inherit hover:cursor-pointer hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
+
+  .AppointmentNow {
+    @apply mb-2 block h-[70px] w-full rounded border-solid border-black bg-pale-sage p-1 text-left text-white-mist hover:cursor-pointer active:scale-95 active:bg-pale-sage;
+  }
+
+  .AppointmentFuture {
+    @apply mb-2 block h-[70px] w-full rounded border-solid border-black bg-light-pale-sage p-1 text-left text-fast-velvet hover:cursor-pointer hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
+
+  .DailyLiDateBox {
+    @apply m-1 flex justify-between;
+  }
+
+  .DateFormattedBox {
+    @apply mr-1 font-normal;
+  }
+
+  .DailyLiNameServiceBox {
+    @apply m-1 flex justify-between;
+  }
+
+  .ConfirmedStatusBox {
+    @apply bg-opal-green rounded px-1 font-normal;
+  }
+
+  .PendingStatusBox {
+    @apply bg-ivory-cream rounded px-1 font-normal;
+  }
+
+  .CancelledStatusBox {
+    @apply rounded bg-green-500 px-1;
+  }
+
+  .DailyText {
+    @apply font-normal;
+  }
+}

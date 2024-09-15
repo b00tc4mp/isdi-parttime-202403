@@ -1,0 +1,23 @@
+@tailwind components;
+
+@layer components {
+  .Confirm {
+    @apply fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center;
+  }
+
+  .ConfirmBox {
+    @apply flex h-1/4 w-1/2 flex-col items-center justify-evenly rounded-md bg-dark-shadow-blue text-white opacity-95 shadow-2xl;
+  }
+
+  .ConfirmButtonsBox {
+    @apply flex w-1/2 justify-between;
+  }
+
+  .ConfirmButtonConfirm {
+    @apply rounded-md border-2 border-solid px-4 hover:bg-off-white hover:text-dark-shadow-blue active:scale-95;
+  }
+
+  .ConfirmButtonCancel {
+    @apply rounded-md border-2 border-solid px-4 hover:bg-sandy-pink hover:text-white-mist active:scale-95;
+  }
+}
