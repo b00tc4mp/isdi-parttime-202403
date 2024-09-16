@@ -60,7 +60,7 @@ mongoose.connect(MONGODB_URL)
 
         api.get('/users/:userId/userAds', getUserAdsHandler)
 
-        api.get('/users/:userId/userAdComments', getUserCommentsHandler)
+        api.get('/users/:userId/userComments', getUserCommentsHandler)
 
         api.use(errorHandler)
 

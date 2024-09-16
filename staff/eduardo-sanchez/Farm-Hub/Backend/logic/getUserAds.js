@@ -3,14 +3,9 @@ import { SystemError, NotFoundError, CredentialsError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 
-const getUserAds = (userId, tokenUserId) => {
+const getUserAds = (userId) => {
 
     validate.id(userId, 'userId')
-    validate.id(tokenUserId, 'tokenUserId')
-
-    if (userId !== tokenUserId) {
-        throw new CredentialsError('User ID do not match the token User ID')
-    }
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })

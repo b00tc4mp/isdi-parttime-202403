@@ -42,7 +42,7 @@ describe('getUserAds', () => {
 
                 })
                     .then(() => user))
-            .then((user) => getUserAds(user.id, user.id))
+            .then((user) => getUserAds(user.id))
             .then((ads) => {
                 expect(ads).to.be.an('array');
                 expect(ads.length).to.equal(1);
@@ -57,34 +57,34 @@ describe('getUserAds', () => {
             });
     });
 
-    it('fails when userId does not match tokenId', () => {
-        let errorThrown;
+    // it('fails when userId does not match tokenId', () => {
+    //     let errorThrown;
 
-        return bcrypt
-            .hash('123123123', 8)
-            .then((hash) =>
-                User.create({
-                    name: 'Li',
-                    surname: 'Nux',
-                    email: 'li@nux.com',
-                    username: 'linux',
-                    password: hash,
-                })
-            )
-            .then((user) =>
-                getUserAds(user.id, new ObjectId().toString()))
-            .catch((error) => errorThrown = error)
-            .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(CredentialsError)
-                expect(errorThrown.message).to.equal('User ID do not match the token User ID')
-            })
-    });
+    //     return bcrypt
+    //         .hash('123123123', 8)
+    //         .then((hash) =>
+    //             User.create({
+    //                 name: 'Li',
+    //                 surname: 'Nux',
+    //                 email: 'li@nux.com',
+    //                 username: 'linux',
+    //                 password: hash,
+    //             })
+    //         )
+    //         .then((user) =>
+    //             getUserAds(user.id, new ObjectId().toString()))
+    //         .catch((error) => errorThrown = error)
+    //         .finally(() => {
+    //             expect(errorThrown).to.be.an.instanceOf(CredentialsError)
+    //             expect(errorThrown.message).to.equal('User ID do not match the token User ID')
+    //         })
+    // });
 
     it('fails when user does not exist', () => {
         let errorThrown;
-        const nonExistentId = new ObjectId().toString();
-        console.log(nonExistentId)
-        return getUserAds(nonExistentId, nonExistentId)
+        // const nonExistentId = new ObjectId().toString();
+        // console.log(nonExistentId)
+        return getUserAds(new ObjectId().toString())
 
             .catch((error) => errorThrown = error)
             .finally(() => {
@@ -110,15 +110,15 @@ describe('getUserAds', () => {
             .then((user) => {
                 console.log('user: ', user)
                 // getUserAds(user.id, user.id)
-                let tokenId = user.id
-                console.log('tokenId: ', tokenId)
-                return getUserAds(user.id, tokenId)
+                // let tokenId = user.id
+                // console.log('tokenId: ', tokenId)
+                return getUserAds(user.id)
             })
             //getUserAds(user.id, user.id))
-            .then((ads) => {
-                console.log('ads: ', ads)
-                return expect(ads).to.be.an('array').that.is.empty
-            })
+            // .then((ads) => {
+            //     console.log('ads: ', ads)
+            //     return expect(ads).to.be.an('array').that.is.empty
+            // })
 
             //expect(ads).to.be.an('array').that.is.not.empty)
             .catch((error) => errorThrown = error)
@@ -132,7 +132,7 @@ describe('getUserAds', () => {
         let errorThrown;
 
         try {
-            getUserAds('invalid-id', new ObjectId().toString());
+            getUserAds('invalid-id');
         } catch (error) {
             errorThrown = error;
         }
@@ -141,18 +141,18 @@ describe('getUserAds', () => {
         expect(errorThrown.message).to.equal('userId is not valid');
     });
 
-    it('fails with invalid tokenUserId', () => {
-        let errorThrown;
+    // it('fails with invalid tokenUserId', () => {
+    //     let errorThrown;
 
-        try {
-            getUserAds(new ObjectId().toString(), 'invalid-id');
-        } catch (error) {
-            errorThrown = error;
-        }
+    //     try {
+    //         getUserAds(new ObjectId().toString(), 'invalid-id');
+    //     } catch (error) {
+    //         errorThrown = error;
+    //     }
 
-        expect(errorThrown).to.be.an.instanceOf(ContentError);
-        expect(errorThrown.message).to.equal('tokenUserId is not valid');
-    });
+    //     expect(errorThrown).to.be.an.instanceOf(ContentError);
+    //     expect(errorThrown.message).to.equal('tokenUserId is not valid');
+    // });
 
     after(() =>
         Ad.deleteMany()

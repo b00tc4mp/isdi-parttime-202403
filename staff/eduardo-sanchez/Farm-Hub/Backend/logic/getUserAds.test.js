@@ -12,7 +12,7 @@ mongoose.connect(MONGODB_URL)
         // const tokenUserId = '66ae6370f11082ed7f0623dd'; // ID del usuario del token (debe coincidir para la prueba)  
 
         try {
-            getUserAds('66ae6370f11082ed7f0623dd', '66ae6370f11082ed7f0623dd')
+            getUserAds('66e4879730cb63f97bbc23e5')
                 .then(ads => console.log(JSON.stringify(ads, null, 2)))
                 .catch(error => console.error(error.message))
         } catch (error) {
