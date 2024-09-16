@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap');
+
+* {
+    font-family: Eagle Lake;
+}
+
+body {
+    background-color: rgb(242, 241, 247);
+}
