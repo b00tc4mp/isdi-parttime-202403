@@ -111,6 +111,7 @@ describe('getUserAds', () => {
                 console.log('user: ', user)
                 // getUserAds(user.id, user.id)
                 let tokenId = user.id
+                console.log('tokenId: ', tokenId)
                 return getUserAds(user.id, tokenId)
             })
             //getUserAds(user.id, user.id))
