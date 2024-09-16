@@ -13,12 +13,19 @@ const UserInfoMenu = () => {
         navigate(`/myads`); // este userId tiene q estar disponible 
     };
 
+    const handleMyCommentsClick = () => {
+        navigate(`/mycomments`); // este userId tiene q estar disponible 
+    };
+
     return (
         <div className="dropdown-menu">
             <ul>
                 <li onClick={handleMyAccountClick}>My Account</li>
                 <li onClick={handleMyAdsClick}>My Ads</li>
-                <li>Your Comments</li>
+                <li onClick={handleMyCommentsClick}>My Comments</li>
+                
+
+            
             </ul>
         </div>
     );

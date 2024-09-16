@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URL)
     .then(() => {
 
         try {
-            getUserComments('66ae6370f11082ed7f0623dd')
+            getUserComments('66e4879730cb63f97bbc23e5')
                 .then(ads => console.log(JSON.stringify(ads, null, 2)))
                 .catch(error => console.error(error))
         } catch (error) {

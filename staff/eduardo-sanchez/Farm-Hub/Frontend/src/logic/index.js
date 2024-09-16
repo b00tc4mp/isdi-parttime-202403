@@ -9,6 +9,7 @@ import getUserInfo from './getUserInfo'
 import getAllAds from './getAllAds'
 import getAd from './getAd'
 import getUserAds from './getUserAds'
+import getUserComments from './getUserComments'
 
 import createAd from './createAd'
 import deleteAd from './deleteAd'
@@ -28,6 +29,7 @@ const logic = {
     getAllAds,
     getAd,
     getUserAds,
+    getUserComments,
     createAd,
     deleteAd,
     updateAd,

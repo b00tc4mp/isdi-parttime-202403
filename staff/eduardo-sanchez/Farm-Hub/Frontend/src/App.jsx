@@ -15,6 +15,7 @@ import AdPage from './views/AdPage'
 import { UpdateAdForm } from './views/UpdateAdForm'
 import { MyAccount } from './views/MyAccount'
 import { MyAds } from './views/MyAds'
+import { MyComments } from './views/MyComments'
 
 function App() {
   console.log('App -> render')
@@ -42,6 +43,10 @@ function App() {
         <Route path="/myaccount" element={<MyAccount />}></Route>
 
         <Route path="/myads" element={<MyAds />}></Route>
+
+        <Route path="/mycomments" element={<MyComments />}></Route>
+
+
 
       </Routes>
     </>

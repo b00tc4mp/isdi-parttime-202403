@@ -16,17 +16,17 @@ const getUserComments = (userId) => {
                 .then(ads => {
                     if (!ads || ads.length === 0) throw new NotFoundError('No ads found with user comments')
 
-                    return ads
+                    // return ads
 
-                    // const adsWithUserComments = ads.map(ad => ({
-                    //     ...ad, adcomments: ad.adcomments.filter(comment => comment.author._id.toString() === userId)
+                    const adsWithUserComments = ads.map(ad => ({
+                        ...ad, adcomments: ad.adcomments.filter(comment => comment.author._id.toString() === userId)
 
-                    // })).filter(ad => ad.adcomments.length > 0)
+                    })).filter(ad => ad.adcomments.length > 0)
 
                     // if (adsWithUserComments.length === 0) throw new NotFoundError('No comments found for this user')
 
 
-                    // return adsWithUserComments
+                    return adsWithUserComments
                 })
         })
 }
