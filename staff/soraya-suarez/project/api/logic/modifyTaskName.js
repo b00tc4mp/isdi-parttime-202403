@@ -5,7 +5,7 @@ import validate from 'com/validate.js'
 const modifyTaskName = (userId, taskId, name) => {
     validate.id(userId)
     validate.id(taskId)
-    validate.name(name)
+    validate.text(name, 'name', 60)
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })

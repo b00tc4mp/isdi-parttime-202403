@@ -3,7 +3,7 @@ import validate from 'com/validate'
 
 const modifyTaskName= (taskId, name, description, priority) => {
     validate.id(taskId)
-    validate.name(name)
+    validate.text(name, 'name', 60)
 
     return fetch(`${import.meta.env.VITE_API_URL}/tasks/${taskId}/modify-task-name`, {
         method: 'PATCH',

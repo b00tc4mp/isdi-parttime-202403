@@ -47,12 +47,13 @@ Admin
 - View an employee's statistics
 - Manage vacations
 - Manage sick leave
+- Create task and assign to user
 
 ### UI Design
 
-[Figma prototype for Admin] https://www.figma.com/proto/ML5WwZsprS1luWh6XhCRPR/Daily-work?node-id=9-113&t=PTO82nbxySLVnhBm-1&scaling=min-zoom&content-scaling=fixed&page-id=9%3A100&starting-point-node-id=22%3A171
+[Figma prototype for Admin] https://www.figma.com/proto/5uOjSIpnFtSknK8ue2YEVZ/Daily-Work?node-id=10-2014&t=JavRykOG7aO5NesI-1
 
-[[Figma prototype for User]] https://www.figma.com/proto/ML5WwZsprS1luWh6XhCRPR/Daily-work?node-id=27-628&t=3tySBs1qxCV8deSr-1
+[[Figma prototype for User]] https://www.figma.com/proto/5uOjSIpnFtSknK8ue2YEVZ/Daily-Work?node-id=0-1&t=JavRykOG7aO5NesI-1
 
 ## Technical
 
