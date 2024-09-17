@@ -10,10 +10,14 @@ import Title from '../components/core/Title'
 
 import { SystemError } from 'com/errors'
 
+import useContext from '../useContext'
+
 import './Login.css'
 
 export const Login = () => {
     console.log('Login -> render')
+
+    const { alert } = useContext()
 
     const [message, setMessage] = useState('')
     const navigate = useNavigate()
@@ -23,6 +27,7 @@ export const Login = () => {
     // }
 
     const handleLoginSubmit = event => {
+        console.log('Login -> handleLoginSubmit')
         event.preventDefault()
 
         const form = event.target
