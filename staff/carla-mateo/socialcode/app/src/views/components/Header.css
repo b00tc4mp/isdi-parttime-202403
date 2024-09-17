@@ -11,3 +11,13 @@
     border-bottom: 5px solid var(--first-color);
     background-color: var(--second-color);
 }
+
+.Header .Username {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+
+}
+

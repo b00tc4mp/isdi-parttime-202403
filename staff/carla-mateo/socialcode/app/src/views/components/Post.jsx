@@ -10,6 +10,8 @@ import EditPostForm from './EditPostForm'
 
 import logic from '../../logic'
 
+import './Post.css'
+
 
 function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted, onPostEditted }) {
     console.log('Post -> render')
@@ -129,7 +131,8 @@ function Post({ post, onPostDeleted, onPostLikeToggled, onCommentPostSubmitted, 
 
         <View tag='section' className="comment">
             {post.comments.map((comment, index) => (
-                <p key={index}> {comment.author.username} : {comment.comment} <Time>{comment.date}</Time> </p>
+                <p key={index}> {comment.author.username} : {comment.comment}
+                    <Time>{comment.date}</Time> </p>
             ))}
         </View>
 

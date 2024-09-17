@@ -4,3 +4,7 @@
     font-size: 1rem;
     border: 2px solid black;
 }
+
+.Input::placeholder {
+    color: rgb(1, 49, 99);
+}
