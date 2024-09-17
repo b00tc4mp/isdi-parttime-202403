@@ -51,9 +51,9 @@ Admin
 
 ### UI Design
 
-[Figma prototype for Admin] https://www.figma.com/proto/5uOjSIpnFtSknK8ue2YEVZ/Daily-Work?node-id=10-2014&t=JavRykOG7aO5NesI-1
+[Figma prototype for Admin](https://www.figma.com/proto/5uOjSIpnFtSknK8ue2YEVZ/Daily-Work?node-id=10-2014&t=JavRykOG7aO5NesI-1)
 
-[[Figma prototype for User]] https://www.figma.com/proto/5uOjSIpnFtSknK8ue2YEVZ/Daily-Work?node-id=0-1&t=JavRykOG7aO5NesI-1
+[[Figma prototype for User]](https://www.figma.com/proto/5uOjSIpnFtSknK8ue2YEVZ/Daily-Work?node-id=0-1&t=JavRykOG7aO5NesI-1)
 
 ## Technical
 
@@ -93,4 +93,5 @@ Admin
 
 ### Code Coverage
 
-![alt text](coverage.png)
+![alt text](test-coverage-1.png)
+![alt text](test-coverage-2.png)

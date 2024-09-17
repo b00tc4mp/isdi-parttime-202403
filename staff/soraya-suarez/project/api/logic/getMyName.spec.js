@@ -32,9 +32,6 @@ describe('getMyName', () => {
                 .then(name => {
                     expect(name).to.equal('Soraya')
                 })
-                .then((match) => {
-                    expect(match).to.be.true
-                })
     )
 
     it('fails on non-existing user', () => {
