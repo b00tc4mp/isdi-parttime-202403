@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+  --first-color: rgb(3, 56, 96);
+  --second-color: rgba(98,204,226,1);
+}
+
+* {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: var(--first-color)
+}
+
+body {
+  background: rgb(50,111,159);
+background: linear-gradient(236deg, rgb(41, 102, 149) 10%, rgba(88,182,218,1) 67%, rgba(98,204,226,1) 100%);
+  background-attachment: fixed;
+  margin: 0;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+
+}
