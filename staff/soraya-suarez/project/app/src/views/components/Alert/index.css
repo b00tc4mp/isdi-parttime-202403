@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+    .Alert {
+        @apply fixed top-0 left-0 w-full h-full flex justify-center items-center;
+    }
+
+    .AlertBox {
+        @apply p-[2.4rem] bg-[var(--second-color)] text-[1rem] border-[1px] border-[var(--first-color)] w-[200px] h-[200px] text-center;
+    }
+
+    .AlertBox--warn {
+        @apply bg-yellow-300;
+    }
+
+    .AlertBox--error {
+        @apply bg-red-500;
+    }
+}

@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:9010/users/modify-my-surname -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMxYjY0NWZlODQyYzliMjc2OWMwYzgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU0NzI3NzMsImV4cCI6MTcyNTU1OTE3M30.fcYqQVbkrTXEAcLDV008zhAQ3_AkDN3V87sDm16TVB4" -H "Content-Type: application/json" -d '{"surname":"Suarez"}' -v

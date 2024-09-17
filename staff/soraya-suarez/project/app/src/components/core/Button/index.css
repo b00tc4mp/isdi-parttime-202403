@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    .Button {
+        @apply px-7 py-2 rounded-md bg-transparent border-[1px] border-[var(--first-color)];
+    }
+
+    .Button.SubmitButton {
+        @apply bg-indigo-200 border-indigo-300;
+    }
+
+    .Button.ConfirmButton {
+        @apply bg-indigo-200 border-indigo-300 ml-2;
+    }
+}

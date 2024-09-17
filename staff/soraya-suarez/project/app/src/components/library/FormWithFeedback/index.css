@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    .FormWithFeedback {
+        @apply p-[1rem];
+    }
+
+    .FormWithFeedback .Feedback.error {
+        @apply text-[red];
+    }
+
+    .FormWithFeedback .Feedback.success {
+         @apply text-[limegreen];
+    }
+}
