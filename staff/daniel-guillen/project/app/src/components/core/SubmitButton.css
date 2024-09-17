@@ -1,4 +1,6 @@
 .SubmitButton {
+  display: flex;
+  justify-content: center;
   color: white;
   background: tomato;
   border: grey solid 2px;

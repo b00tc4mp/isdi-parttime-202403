@@ -1,4 +1,3 @@
-import React from 'react'
 import CheckList from '../CheckList'
 
 const InspectionSections = ({ checkList, handleRadioChange }) => {

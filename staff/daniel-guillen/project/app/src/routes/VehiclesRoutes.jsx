@@ -1,6 +1,7 @@
 import { Route, Routes} from "react-router-dom"
 
 import Vehicles from '../views/Vehicles'
+import Historical from "../views/Vehicles/Historical"
 
 
 
@@ -11,7 +12,7 @@ const VehiclesRoutes = () => {
     <Routes>
 
       <Route path="/Vehicles" element={<Vehicles />} />
-      {/* <Route path="/Vehicles/Historical" element={<Vehicles />} /> */}
+      <Route path="/Vehicles/Historical" element={<Historical />} />
 
     </Routes>
 

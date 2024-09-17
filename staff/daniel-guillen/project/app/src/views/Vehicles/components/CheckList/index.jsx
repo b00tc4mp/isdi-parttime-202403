@@ -43,7 +43,7 @@ const CheckList = ({ title, items, handleRadioChange }) => (
                 checked={item.selectedValue === 'ARREGLAR'}
                 onChange={() => handleRadioChange(item.id, 'ARREGLAR')}
               />
-              👎
+              🔧
             </label>
     
           </div>

@@ -1,50 +1,51 @@
 import { useState, useEffect } from 'react'
 import Select from 'react-select'
 import './index.css'
+// Logic
+import getAllVehicles from '../../../../logic/getAllVehicles'
+// Images
+import VehicleSmall from '../../../../components/img/VehicleSmall.jpg'
+import VehicleMedium from '../../../../components/img/VehicleMedium.jpg'
+import VehicleBig from '../../../../components/img/VehicleBig.jpg'
 
 const VehiclesSelect = ({ selectedVehicle, handleVehicleChange }) => {
-  // Estado para almacenar las vehiculos
   const [data, setData] = useState([])
-
-  // Función para obtener todas las vehiculos desde la API
-  const fetchVehicles = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}vehicles/getAllVehicles`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error('Error al obtener lista de vehículos')
-      }
-
-      const result = await response.json()
-
-      // Formatear los datos para react-select
-      const formattedData = result.map((item) => ({        
-        value: {
-          //value sera un objeto con modelo, matricula y tamaño
-          id: item.id,
-          model: item.model,
-          size: item.size
-        },
-        label: `${item.model} - ${item.id}`
-      }))
-      setData(formattedData)
-    } catch (error) {
-      console.error('Error al obtener lista de vehículos', error)
-    }
-  }
 
   // useEffect para cargar las vehiculos al montar el componente
   useEffect(() => {
-    fetchVehicles()
+    const fetchVehiclesData = async () => {
+      try {
+        const vehiclesData = await getAllVehicles()
+        setData(vehiclesData)
+      } catch (error) {
+        console.error('Error al cargar los datos de vehículos', error)
+      }
+    }
+
+    fetchVehiclesData()
   }, [])
 
-  // se mantendra la opcion seleccionada
-  const selectedOption = data.find(option => option.value === selectedVehicle)
+  // Se mantendra la opcion seleccionada en el label
+  const selectedOption = data.find(option => option.value.id === selectedVehicle?.id)
+
+  // Extraer el tamaño del vehículo seleccionado
+  const size = selectedVehicle?.size
+
+  // Se mostrara la imagen de vehiculo segun la seleccion
+  const getImage = (size) => {
+    switch (size) {
+      case 'small':
+        return VehicleSmall
+      case 'medium':
+        return VehicleMedium
+      case 'big':
+        return VehicleBig
+      default:
+        return null
+    }
+  }
+
+  const vehicleImg = getImage(size)
 
   return (
     <div className='VehiclesSelectedDiv'>
@@ -52,13 +53,22 @@ const VehiclesSelect = ({ selectedVehicle, handleVehicleChange }) => {
         className='VehiclesSelected'
         id='VehiclesSelect'
         placeholder="LISTA DE VEHÍCULOS"
-        options={data} // Opciones para el select
-        value={selectedOption} // Valor actualmente seleccionado
-        onChange={(selected) => handleVehicleChange(selected ? selected.value : null)} // Manejar el cambio
+        options={data} 
+        value={selectedOption} 
+        onChange={(selected) => handleVehicleChange(selected ? selected.value : null)}
         isClearable
       />
+
+      {/* se mostrara cuando este seleccionado vehiculo */}
+      {selectedVehicle && (
+        <div className='vehicle'>
+          <h2 className="title">Vehículo seleccionado:</h2>
+          {vehicleImg && <img src={vehicleImg} alt={`Imagen de vehículo ${size}`} />}
+        </div>
+      )}
     </div>
   )
 }
 
 export default VehiclesSelect
+

@@ -10,15 +10,25 @@
   background: linear-gradient(white, transparent);
 }
 
-.logout {
-  position: fixed;
-  top: 3rem;
-  right: 3rem;
-  background: none;
-  border: none;
-  font-size: 2rem; /* Ajusta el tamaño del emoticono según sea necesario */
-  cursor: pointer;
-  z-index: 1000; /* Asegura que el botón esté encima de otros elementos */
+/* Estilos para el ícono de cerrar sesión */
+.logout-icon {
+  position: fixed; /* Fija el ícono en la pantalla */
+  top: 3rem; /* Distancia desde la parte superior */
+  right: 3rem; /* Distancia desde la parte derecha */
+  cursor: pointer; /* Cambia el cursor a puntero cuando pasa sobre el ícono */
+  z-index: 1000; /* Asegura que el ícono esté por encima de otros elementos */
+  transition: opacity 0.3s; /* Agrega una transición suave para la opacidad */
+}
+
+.logout-icon img {
+  width: 3rem; /* Ajusta el tamaño del ícono según sea necesario */
+  height: 3rem;
+}
+
+/* Ocultar el ícono de cerrar sesión cuando no se debe mostrar */
+.logout-icon.hide {
+  opacity: 0; /* Hace que el ícono sea transparente cuando se oculta */
+  pointer-events: none; /* Previene cualquier interacción con el ícono cuando está oculto */
 }
 
 .logo {

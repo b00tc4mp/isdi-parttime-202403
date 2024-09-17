@@ -8,7 +8,7 @@ import loginUser from "../../logic/loginUser"
 
 const Login = () => {
 
-  const navigate = useNavigate();  // Invoca el hook correctamente
+  const navigate = useNavigate()
   const [message, setMessage] = useState('')
 
   const handleLoginSubmit = async (event) => {

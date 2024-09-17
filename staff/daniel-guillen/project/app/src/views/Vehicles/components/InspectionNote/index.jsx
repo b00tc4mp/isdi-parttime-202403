@@ -1,7 +1,6 @@
-import React from 'react'
 import './index.css'
 
-const InspectionNote = ({ inspectionNote, setInspectionNote, workerName, setWorkerName }) => (
+const InspectionNote = ({ inspectionNote, setInspectionNote }) => (
     <div className='InspectionNote'>
     
     <div className='Note'>
@@ -12,20 +11,6 @@ const InspectionNote = ({ inspectionNote, setInspectionNote, workerName, setWork
         value={inspectionNote}
         onChange={(e) => setInspectionNote(e.target.value)}
         placeholder='Escribe una breve explicación de la inspección...'
-      />
-
-    </div>
-
-    <div className='WorkerInfo'>
-    
-      <h3>Realizada por:</h3>
-    
-      <input required
-        className='WorkerName'
-        type='text'
-        value={workerName}
-        onChange={(e) => setWorkerName(e.target.value)}
-        placeholder='Escriba su nombre...'
       />
 
     </div>
