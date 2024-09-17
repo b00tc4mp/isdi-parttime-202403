@@ -14,13 +14,13 @@ export default (req, res, next) => {
             .then(payload => {
                 const { sub: userId } = payload
 
-                const { title, description, price } = req.body
+                const { title, description, price, geoLocation } = req.body
 
                 try {
-                    logic.createAd(userId, title, description, price)
+                    logic.createAd(userId, title, description, price, geoLocation)
                         .then((data) => {
                             console.log(data)
-                            res.status(201).send({ title, description, price })
+                            res.status(201).send({ title, description, price, geoLocation })
                         })
 
 

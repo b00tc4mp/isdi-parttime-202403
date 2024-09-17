@@ -41,12 +41,18 @@ const ad = new Schema({
         required: true,
         default: Date.now
     },
-    // geo: {
-    //     type: String,
-    //     required: true
-    // },
+    adcomments: { type: [adcomment] },
 
-    adcomments: { type: [adcomment] }
+    geoLocation: {
+        lat: {
+            type: Number,
+            required: true
+        },
+        lng: {
+            type: Number,
+            required: true
+        },
+    },
 
 })
 

@@ -1,12 +1,16 @@
 import errors, { SystemError } from 'com/errors'
 import validate from 'com/validate'
 
-const createAd = (title, description, price) => {
+const createAd = (title, description, price, geoLocation) => {
+    console.log('xD', { title, description, price, geoLocation })
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
     validate.price(price, 'price')
+    validate.geoLocation(geoLocation, 'geoLocation')
 
     // throw new SystemError('not implemented')
+
+
 
     return fetch(`${import.meta.env.VITE_API_URL}/ads`, {
         method: 'POST',
@@ -14,7 +18,7 @@ const createAd = (title, description, price) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${sessionStorage.token}`
         },
-        body: JSON.stringify({ title, description, price })
+        body: JSON.stringify({ title, description, price, geoLocation })
     })
         .catch(() => { throw new SystemError('server connection error') })
         .then(res => {
@@ -25,6 +29,7 @@ const createAd = (title, description, price) => {
 
             return res.json()
                 .then(body => {
+                    console.log('body2: ', body)
                     const { error, message } = body
 
                     const constructor = errors[error]

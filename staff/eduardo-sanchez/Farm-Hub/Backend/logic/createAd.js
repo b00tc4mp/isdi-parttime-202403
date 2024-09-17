@@ -3,12 +3,15 @@ import { SystemError, NotFoundError } from 'com/errors.js'
 import validate from 'com/validate.js'
 
 
-const createAd = (userId, title, description, price) => {
-    console.log({ userId, title, description, price })
+const createAd = (userId, title, description, price, geoLocation) => {
+    console.log('test', { userId, title, description, price, geoLocation })
     validate.id(userId, 'userId')
     validate.text(title, 'title', 50)
     validate.text(description, 'description', 200)
     validate.price(price, 'price')
+    validate.geoLocation(geoLocation, 'geoLocation')
+
+    console.log('geoLocation', geoLocation)
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })
@@ -21,9 +24,15 @@ const createAd = (userId, title, description, price) => {
                 description,
                 price,
                 date: new Date,
-                adcomments: []
+                adcomments: [],
+                geoLocation: {
+                    lat: geoLocation.lat,
+                    lng: geoLocation.lng
+                }
 
             }
+
+            console.log('ad: ', ad)
 
             return Ad.create(ad)
                 .catch(error => { throw new SystemError(error.message) })
