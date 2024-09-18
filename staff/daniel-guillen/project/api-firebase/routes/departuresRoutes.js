@@ -5,7 +5,7 @@ import deleteLoad from '../handlers/departuresHandlers/deleteLoad.js'
 import createLoad from '../handlers/departuresHandlers/createLoad.js'
 import getLoadByReference from '../handlers/departuresHandlers/getLoadsByReference.js'
 import getLoadByWeekYear from '../handlers/departuresHandlers/getLoadsByWeek.js'
-import getLoadsbyWYR from '../handlers/departuresHandlers/getLoadsbyWYR.js'
+import getLoadsByWYR from '../handlers/departuresHandlers/getLoadsByWYR.js'
 
 const departuresRoutes = Router()
 
@@ -22,7 +22,7 @@ departuresRoutes.get('/getAllLoads/:reference', getLoadByReference)
 departuresRoutes.get('/getAllLoads/:week/:year', getLoadByWeekYear)
 
 // Ruta para obtener documentos por semana, año actual y referencia
-departuresRoutes.get('/getAllLoads/:week/:year/:reference', getLoadsbyWYR)
+departuresRoutes.get('/getAllLoads/:week/:year/:reference', getLoadsByWYR)
 
 // Ruta para crear un nuevo residuo
 departuresRoutes.post('/createLoad', createLoad)

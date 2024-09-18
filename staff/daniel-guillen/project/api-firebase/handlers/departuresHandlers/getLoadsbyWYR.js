@@ -4,7 +4,7 @@ import getWeekNumberYear from './getWeekNumberYear.js'
 const { week, year } = getWeekNumberYear()
 
 // Handler para obtener la carga filtrada por semana, año actual y referencia
-const getLoadsbyWYR = async (req, res) => {
+const getLoadsByWYR = async (req, res) => {
   try {
     const { week, year, reference } = req.params
 
@@ -51,4 +51,4 @@ const getLoadsbyWYR = async (req, res) => {
   }
 }
 
-export default getLoadsbyWYR
+export default getLoadsByWYR

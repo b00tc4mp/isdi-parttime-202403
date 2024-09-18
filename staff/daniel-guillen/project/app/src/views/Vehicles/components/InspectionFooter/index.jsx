@@ -3,7 +3,7 @@ import InspectionNote from '../InspectionNote'
 import ItemsToFix from '../ItemsToFix'
 import Button from '../../../../components/core/Button'
 
-const InspectionFooter = ({ checkList, inspectionNote, setInspectionNote, saveData, route }) => {
+const InspectionFooter = ({ checkList, inspectionNote, setInspectionNote, saveData }) => {
   return (
     <div className='FooterCheckList'>
 
@@ -11,18 +11,9 @@ const InspectionFooter = ({ checkList, inspectionNote, setInspectionNote, saveDa
         <ItemsToFix items={checkList.filter(item => item.selectedValue === 'ARREGLAR')} />
       )}
 
-      <InspectionNote
-        inspectionNote={inspectionNote}
-        setInspectionNote={setInspectionNote}
-      />
+      <InspectionNote inspectionNote={inspectionNote} setInspectionNote={setInspectionNote}/>        
+      <Button  className='SubmitButton' type='submit' onClick={saveData}>💾 GUARDAR 🔧</Button>
 
-
-
-
-        
-          <Button  className='SubmitButton' type='submit' onClick={saveData}>💾 GUARDAR 🔧</Button>
-
-        <a className='menu-link' href={route}>HISTORIAL DE INSPECCIONES</a>
     </div>
   )
 }

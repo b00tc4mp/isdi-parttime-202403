@@ -16,7 +16,7 @@ import './index.css'
 const Vehicles = () => {
   const navigate = useNavigate()
 
-  const [selectedVehicle, setSelectedVehicle] = useState(null) // Usa null en lugar de ""
+  const [selectedVehicle, setSelectedVehicle] = useState(null)
   const [checkList, setCheckList] = useState([]) 
   const [inspectionNote, setInspectionNote] = useState('') 
   const [workerName, setWorkerName] = useState('') 
@@ -146,10 +146,10 @@ const Vehicles = () => {
             inspectionNote={inspectionNote}
             setInspectionNote={setInspectionNote}
             saveData={saveData}
-            route='/Vehicles/historical'
           />
         </>
       )}
+      <a className='menu-link' href={'/Vehicles/historical'}>HISTORIAL DE INSPECCIONES</a>
     </div>
   )
 }
