@@ -5,7 +5,6 @@ import logic from '../logic';
 
 import Field from '../components/core/Field';
 import Button from '../components/core/Button';
-// import Link from '../components/core/Link'
 import Title from '../components/core/Title';
 
 import { SystemError } from 'com/errors';
@@ -19,12 +18,8 @@ export const Login = () => {
 
     const { alert } = useContext();
 
-    const [message, setMessage] = useState('');
+    // const [message, setMessage] = useState('');
     const navigate = useNavigate();
-
-    // const onLoginClick = ({ username, password }) => {
-    //     console.log("Welcome ", `${username} with password ${password}`)
-    // }
 
     const handleLoginSubmit = (event) => {
         console.log('Login -> handleLoginSubmit');
@@ -51,26 +46,12 @@ export const Login = () => {
 
                         return;
                     }
-                    alert(error.message);
-                    // setMessage(error.message)
+                    alert('Invalid credentials');
                 });
         } catch (error) {
             alert(error.message);
-            // setMessage(error.message)
-            // console.error(error)
         }
     };
-
-    // const handleResisterClick = (event) => {
-    //     event.preventDefault()
-
-    //     navigate("/register")
-    // }
-
-    // const onLoginClick = (username) => {
-    //     console.log("Welcome " + `${username}`)
-    //     navigate("/")
-    // }
 
     return (
         <div>
@@ -89,16 +70,10 @@ export const Login = () => {
 
                 <Button type="submit">Login</Button>
             </form>
-            {message && <p className="ErrorMessage">{message}</p>}
+            {/* {message && <p className="ErrorMessage">{message}</p>} */}
             <Link className="Link" to="/register">
                 Register
             </Link>
-
-            {/* <div className="Link">
-
-
-                <Link onClick={handleResisterClick}>Register</Link>
-            </div> */}
         </div>
     );
 };

@@ -1,31 +1,27 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const UserInfoMenu = () => {
-
     const navigate = useNavigate();
 
     const handleMyAccountClick = () => {
-        navigate(`/myaccount`); // este userId tiene q estar disponible 
+        navigate(`/myaccount`);
     };
 
     const handleMyAdsClick = () => {
-        navigate(`/myads`); // este userId tiene q estar disponible 
+        navigate(`/myads`);
     };
 
     const handleMyCommentsClick = () => {
-        navigate(`/mycomments`); // este userId tiene q estar disponible 
+        navigate(`/mycomments`);
     };
 
     return (
-        <div className="dropdown-menu">
+        <div className="absolute bg-gray-500 right-3 top-12 rounded-xl p-1 z-10">
             <ul>
                 <li onClick={handleMyAccountClick}>My Account</li>
                 <li onClick={handleMyAdsClick}>My Ads</li>
                 <li onClick={handleMyCommentsClick}>My Comments</li>
-                
-
-            
             </ul>
         </div>
     );

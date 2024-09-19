@@ -62,7 +62,7 @@ export const Ad = ({ ad, onAdDeleted }) => {
         <>
             <div className="AdActions">
                 <Button
-                    className="DeleteButton"
+                    className="DeleteAdButton"
                     type="button"
                     onClick={handleDeleteAd}
                 >
@@ -70,7 +70,7 @@ export const Ad = ({ ad, onAdDeleted }) => {
                 </Button>
 
                 <button
-                    className="DeleteButton"
+                    className="UpdateAdButton"
                     type="button"
                     onClick={handleUpdateAd}
                 >
