@@ -12,9 +12,9 @@ const getUserName = async (token) => {
   
       const data = await response.json()
       return data.username
-    } catch (err) {
-      console.error('Error al obtener el nombre de usuario:', err)
-      throw err
+    } catch (error) {
+      console.error('Error al obtener el nombre de usuario:', error)
+      throw error
     }
   }
   

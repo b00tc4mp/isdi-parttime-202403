@@ -1,7 +1,7 @@
 import './index.css'
 //components
-import SummaryWaste from './Summary'
-import SummaryStatus from './Status'
+import SummaryStored from './SummaryStored'
+import SummaryStatus from './SummaryStatus'
 import MenuStore from '../../components/MenuStore'
 
 const SummaryStore = () => {
@@ -12,7 +12,7 @@ const SummaryStore = () => {
     
     <h1 className='RouteTitle'>RESUMEN</h1>
 
-      <SummaryWaste />
+      <SummaryStored />
       <SummaryStatus />
       <MenuStore />
       
