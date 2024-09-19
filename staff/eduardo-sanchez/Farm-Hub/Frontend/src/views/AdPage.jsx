@@ -10,86 +10,108 @@ import DeleteAdComment from './components/DeleteAdComment/DeleteAdComment';
 import backArrow from '../icons/backArrow.png';
 
 import './AdPage.css';
+import { MapComponent } from './components/Map/Map';
 
 function AdPage() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     // const location = useLocation();
 
-    const [ad, setAd] = useState(null)
+    const [ad, setAd] = useState(null);
 
-    const { adId } = useParams()
+    const { adId } = useParams();
 
     useEffect(() => {
-
-        loadAd()
-    }, [])
+        loadAd();
+    }, []);
 
     const loadAd = () => {
-
         try {
-            logic.getAd(adId)
-                .then(ad => {
-                    setAd(ad)
-                    console.log(ad)
+            logic
+                .getAd(adId)
+                .then((ad) => {
+                    setAd(ad);
+                    console.log(ad);
                 })
 
-                .catch(error => {
-                    console.error(error.message)
+                .catch((error) => {
+                    console.error(error.message);
 
-                    alert(error.message)
-                })
+                    alert(error.message);
+                });
         } catch (error) {
-            console.error(error)
+            console.error(error);
 
-            alert(error.message)
+            alert(error.message);
         }
-
-    }
+    };
     if (ad === null) {
         return <h1 className="AdPageLoading">Loading...</h1>;
     }
 
-    const handleAdCommentSubmit = () => loadAd()
+    const handleAdCommentSubmit = () => loadAd();
 
     return (
         <div className="AdPageContainer">
-            <img src={backArrow} alt="Go back" onClick={() => navigate(-1)} className="AdPageBackButton" />
+            <img
+                src={backArrow}
+                alt="Go back"
+                onClick={() => navigate(-1)}
+                className="AdPageBackButton"
+            />
             <Title className="AdPageTitle">{ad.title}</Title>
             <div className="AdPageDetails">
                 <p className="AdPageAuthor">Posted by: {ad?.author.username}</p>
                 <p className="AdPageDescription">{ad?.description}</p>
                 <p className="AdPagePrice">Price: ${ad?.price}</p>
-                <p className="AdPageDate">Posted on: {new Date(ad?.date).toLocaleDateString()}</p>
+                <p className="AdPageDate">
+                    Posted on: {new Date(ad?.date).toLocaleDateString()}
+                </p>
             </div>
+
+            {ad.geoLocation && (
+                <>
+                    <div>
+                        <MapComponent
+                            geolocation={ad.geoLocation}
+                        ></MapComponent>
+                    </div>
+                </>
+            )}
 
             <div className="AdPageCommentsSection">
                 <h2 className="AdPageCommentsTitle">Comments</h2>
-                <CreateComment adId={adId} onAdCommentSubmitted={handleAdCommentSubmit} />
+                <CreateComment
+                    adId={adId}
+                    onAdCommentSubmitted={handleAdCommentSubmit}
+                />
 
                 <div className="AdPageCommentsList">
-                    {ad.adcomments.map(comment => (
+                    {ad.adcomments.map((comment) => (
                         <div key={comment._id} className="AdPageComment">
-                            <p className="AdPageCommentText">{comment.comment}</p>
+                            <p className="AdPageCommentText">
+                                {comment.comment}
+                            </p>
                             <div className="AdPageCommentFooter">
-                                <span className="AdPageCommentAuthor">{comment.author.username}</span>
-                                {comment.author._id === sessionStorage.userId &&
+                                <span className="AdPageCommentAuthor">
+                                    {comment.author.username}
+                                </span>
+                                {comment.author._id ===
+                                    sessionStorage.userId && (
                                     <DeleteAdComment
                                         adId={adId}
                                         commentId={comment._id}
                                         onCommentDeleted={handleAdCommentSubmit}
-                                    // onAdCommentSubmitted={handleAdCommentSubmit}
+                                        // onAdCommentSubmitted={handleAdCommentSubmit}
                                     />
-                                }
+                                )}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
-
         </div>
     );
-
 }
 
-export default AdPage
+export default AdPage;
