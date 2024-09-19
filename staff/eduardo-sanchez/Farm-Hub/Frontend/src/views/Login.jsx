@@ -1,62 +1,65 @@
-import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
-import logic from "../logic"
+import logic from '../logic';
 
-import Field from '../components/core/Field'
-import Button from '../components/core/Button'
+import Field from '../components/core/Field';
+import Button from '../components/core/Button';
 // import Link from '../components/core/Link'
-import Title from '../components/core/Title'
+import Title from '../components/core/Title';
 
-import { SystemError } from 'com/errors'
+import { SystemError } from 'com/errors';
 
-import useContext from '../useContext'
+import useContext from '../useContext';
 
-import './Login.css'
+import './Login.css';
 
 export const Login = () => {
-    console.log('Login -> render')
+    console.log('Login -> render');
 
-    const { alert } = useContext()
+    const { alert } = useContext();
 
-    const [message, setMessage] = useState('')
-    const navigate = useNavigate()
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     // const onLoginClick = ({ username, password }) => {
     //     console.log("Welcome ", `${username} with password ${password}`)
     // }
 
-    const handleLoginSubmit = event => {
-        console.log('Login -> handleLoginSubmit')
-        event.preventDefault()
+    const handleLoginSubmit = (event) => {
+        console.log('Login -> handleLoginSubmit');
+        event.preventDefault();
 
-        const form = event.target
+        const form = event.target;
 
-        const username = form.username.value
-        const password = form.password.value
+        const username = form.username.value;
+        const password = form.password.value;
 
         try {
-            logic.loginUser(username, password)
+            logic
+                .loginUser(username, password)
                 .then(() => {
-                    navigate("/")
-                    console.log('User Login -> success')
-                    alert("Welcome " + `${username}`)
+                    navigate('/');
+                    console.log('User Login -> success');
+                    alert('Welcome ' + `${username}`);
                 })
                 .catch((error) => {
-                    console.error(error)
+                    console.error(error);
 
                     if (error instanceof SystemError) {
-                        alert(error.message)
+                        alert(error.message);
 
-                        return
+                        return;
                     }
-                    setMessage(error.message)
-                })
+                    alert(error.message);
+                    // setMessage(error.message)
+                });
         } catch (error) {
-            setMessage(error.message)
-            console.error(error)
+            alert(error.message);
+            // setMessage(error.message)
+            // console.error(error)
         }
-    }
+    };
 
     // const handleResisterClick = (event) => {
     //     event.preventDefault()
@@ -76,15 +79,20 @@ export const Login = () => {
             <form className="LoginForm" onSubmit={handleLoginSubmit}>
                 <Title>Login</Title>
 
-                <Field id="username" type="text" placeholder="username">Username</Field>
+                <Field id="username" type="text" placeholder="username">
+                    Username
+                </Field>
 
-                <Field id="password" type="password" placeholder="password">Password</Field>
+                <Field id="password" type="password" placeholder="password">
+                    Password
+                </Field>
 
                 <Button type="submit">Login</Button>
-
             </form>
             {message && <p className="ErrorMessage">{message}</p>}
-            <Link className="Link" to="/register">Register</Link>
+            <Link className="Link" to="/register">
+                Register
+            </Link>
 
             {/* <div className="Link">
 
@@ -92,5 +100,5 @@ export const Login = () => {
                 <Link onClick={handleResisterClick}>Register</Link>
             </div> */}
         </div>
-    )
-}
+    );
+};

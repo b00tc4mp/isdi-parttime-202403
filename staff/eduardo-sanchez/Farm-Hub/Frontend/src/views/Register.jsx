@@ -9,7 +9,7 @@ import Title from '../components/core/Title'
 
 import { SystemError } from 'com/errors'
 
-// import useContext from "../useContext"
+import useContext from "../useContext"
 
 import './Register.css'
 
@@ -21,7 +21,7 @@ function Register() {
 
     const [message, setMessage] = useState('')
 
-    // const { alert } = useContext()
+    const { alert } = useContext()
 
     const handleRegisterSubmit = (event) => {
         event.preventDefault()
@@ -48,11 +48,12 @@ function Register() {
 
                         return
                     }
-                    setMessage(error.message)
+                    alert(error.message)
+                    // setMessage(error.message)
                 })
         } catch (error) {
-            setMessage(error.message)
-            console.error(error)
+            // setMessage(error.message)
+            alert(error.message)
         }
     }
 
