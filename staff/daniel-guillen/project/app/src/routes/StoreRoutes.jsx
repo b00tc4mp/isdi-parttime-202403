@@ -6,7 +6,7 @@ import Stored from '../views/Store/Store/Stored'
 import Summary from '../views/Store/Store/Summary'
 import Search from '../views/Store/Store/Search'
 
-import Departures from "../views/Store/Departures"
+import Departures from "../views/Store/Departures/Loads"
 import SearchLoad from "../views/Store/Departures/Search"
 
 const StoreRoutes = () => {

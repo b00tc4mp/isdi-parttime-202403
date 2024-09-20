@@ -1,4 +1,3 @@
-import React from 'react'
 import './index.css'
 // img
 import grg from '../../../../components/img/grg.png'
@@ -8,8 +7,6 @@ import b200 from '../../../../components/img/b200.png'
 import bm200 from '../../../../components/img/bm200.png'
 
 function WasteContainer({ optionsContainer, handleOptionsContainer }) {
-
-  console.log('Renderizado: Input de acondicionamiento de residuos.')
 
   return (
     <div className="WasteContainerDiv">

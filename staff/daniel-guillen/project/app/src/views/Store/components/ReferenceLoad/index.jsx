@@ -1,74 +1,63 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 
-const ReferenceLoad = ({ reference, handleReferenceChange }) => {
-
-  // Estado para el valor del input de referencia
+const ReferenceLoad = ({ reference, onReferenceChange }) => {
   const [inputValue, setInputValue] = useState('')
-  const [storedReference, setStoredReference] = useState('')
 
-  // Cargar valor de sessionStorage si existe
+  // cargar valor de sessionStorage si existe
   useEffect(() => {
-    const storedRef = sessionStorage.getItem('reference')
-    if (storedRef) {
-      setInputValue(storedRef)
-      setStoredReference(storedRef)
+    if (reference) {
+      setInputValue(reference)
     }
-  }, [])
+  }, [reference])
 
-  // Manejar cambios en el input
+  // manejar cambios en el input
   const handleInputChange = (event) => {
     setInputValue(event.target.value)
   }
 
-  // Guardar valor en sessionStorage
+  // guardar valor en sessionStorage
   const handleSave = () => {
     if (inputValue) {
       sessionStorage.setItem('reference', inputValue)
-      setStoredReference(inputValue)
-      alert('Referencia guardada en sessionStorage')
+      onReferenceChange(inputValue) // pasamos prop hacia el componente padre
+      alert('✍️ Referencia guardada en sessionStorage 💾')
     }
   }
 
-  // Eliminar valor del sessionStorage con confirmación
+  // eliminar valor del sessionStorage con alert
   const handleDelete = () => {
-    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar la referencia guardada?')
+    const confirmDelete = window.confirm('🗑️ ¿Estás seguro de que deseas eliminar la referencia guardada? 💾')
     if (confirmDelete) {
       sessionStorage.removeItem('reference')
+      onReferenceChange('') // pasamos prop hacia el componente padre
       setInputValue('')
-      setStoredReference('')
-      alert('Referencia eliminada de sessionStorage')
+      alert('🗑️ Referencia eliminada de sessionStorage 🎉')
     }
   }
 
   return (
     <div className='DeparturesTitle'>
-           
       <h3 className='title'>Registrar carga para</h3>
 
-      <input className='input-reference'
-          type='text'
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder='introduce referencia'
-          style={{
-            width: inputValue.length > 0 ? `${inputValue.length + 1}ch` : '18ch'
-          }}
-        />
-      
+      <input
+        className='input-reference'
+        type='text'
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder='introduce referencia'
+        style={{
+          width: inputValue.length > 0 ? `${inputValue.length + 1}ch` : '18ch'
+        }}
+      />
 
-      {inputValue !== storedReference && ( // mostramos el boton de guardar solo si el valor no esta
-        
-          <button className='button-reference' onClick={handleSave}>💾</button>
-        
+      {inputValue !== reference && ( // mostramos el boton de guardar solo si el valor ha cambiado
+        <button className='button-reference' onClick={handleSave}>💾</button>
       )}
 
-      {storedReference && ( // mostramos boton de eliminar solo si hay un valor almacenado
-        
-          <button className='button-reference' onClick={handleDelete}>🗑️</button>
-        
+      {reference && ( // mostramos boton de eliminar solo si hay un valor almacenado
+        <button className='button-reference' onClick={handleDelete}>🗑️</button>
       )}
-
     </div>
   )
 }

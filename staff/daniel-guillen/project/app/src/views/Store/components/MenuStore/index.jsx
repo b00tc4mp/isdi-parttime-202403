@@ -1,4 +1,3 @@
-import React from 'react'
 import michelangelo64 from '../../../../components/img/michelangelo64.png'
 
 const MenuStore = () => {

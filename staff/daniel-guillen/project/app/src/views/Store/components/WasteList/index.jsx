@@ -1,7 +1,8 @@
 import './index.css'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 
-const WasteList = ({ data, handleDeleteWaste }) => {
+const WasteList = ({ data = [], handleDeleteWaste }) => {
+
   const sortedData = sortWasteItems(data)
 
   return (

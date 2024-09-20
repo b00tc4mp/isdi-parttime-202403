@@ -38,8 +38,13 @@ const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
     fetchCode()
   }, [])
 
-  // Encontrar la opción seleccionada a partir del valor de selectedCode
-  const selectedOption = data.find(option => option.value === selectedWaste)
+  // ordenar opciones por codigo
+  const options = data.sort((a, b) => a.value.localeCompare(b.value))
+
+  //  opción seleccionada a partir del valor de selectedCode
+  const selectedOption = options.find(option => option.value === selectedWaste)
+
+
 
   return (
     <div className='CodeSelectedDiv'>
@@ -47,9 +52,9 @@ const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
         className='CodeSelected'
         id='CodeSelect'
         placeholder="CODIGO DE RESIDUO"
-        options={data} // Opciones para el select
-        value={selectedOption} // Valor actualmente seleccionado
-        onChange={(selected) => handleCodeChange(selected ? selected.value : null)} // Manejar el cambio
+        options={options} // opciones para el select
+        value={selectedOption} // valor actualmente seleccionado
+        onChange={(selected) => handleCodeChange(selected ? selected.value : null)}
         isClearable
       />
     </div>

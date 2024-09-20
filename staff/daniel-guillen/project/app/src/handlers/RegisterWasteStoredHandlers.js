@@ -29,7 +29,7 @@
       // Validaciones
       const { month, year } = validateWasteData(selectedWaste, weight, optionsContainer, statusOptions)
   
-      // Estructura de los datos para enviar
+      // estructura de los datos para enviar
       const dataWaste = {
         code: selectedWaste.code,
         description: selectedWaste.description,
@@ -41,7 +41,7 @@
       }
   
       // enviar datos al servidor
-      const result = await createWaste(dataWaste, token)
+      await createWaste(dataWaste, token)
   
       alert(`📦 Residuo Registrado ${selectedWaste.code} ${selectedWaste.description} 🎉`)
   
@@ -52,4 +52,3 @@
       alert('Error: ' + error.message)
     }
   }
-  

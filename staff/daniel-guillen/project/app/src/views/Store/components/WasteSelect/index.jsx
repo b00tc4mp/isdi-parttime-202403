@@ -22,7 +22,6 @@ const WasteSelect = ({ selectedWaste, handleWasteChange }) => {
       label: `${item.code} - ${item.name}`
     }))
     //listo para usar
-    console.log('Renderizado: Select lista de residuos.')
     setOptions(formattedData)
   }, [])
 

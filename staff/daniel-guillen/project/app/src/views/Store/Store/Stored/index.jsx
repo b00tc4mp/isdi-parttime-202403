@@ -10,11 +10,11 @@ import WasteList from '../../components/WasteList/index.jsx'
 import MenuStore from '../../components/MenuStore'
 // Logic
 import createWaste from '../../../../logic/createWaste'
-import deleteWasteById from '../../../../logic/deleteWaste'
 import fetchStoredWaste from '../../../../logic/getWasteStored.js'
 import validateWasteData from 'com/validate/validateWasteData'
 // Handlers
-import { handleWasteChange, handleWeightChange, handleOptionsContainer, handleStatusOptions, handleSubmit } from '../../../../handlers/RegisterWasteStoredHandlers.js'
+import { handleWasteChange, handleWeightChange, handleOptionsContainer, handleStatusOptions, handleSubmit } from '../../../../handlers/registerWasteStoredHandlers.js'
+import handleDeleteWaste from '../../../../handlers/deleteWasteStoredHandle.js'
 
 const Stored = () => {
   const [token] = useState(sessionStorage.getItem('token'))[0] // obtener el token de sessionStorage
@@ -33,26 +33,6 @@ const Stored = () => {
   // llamamos a fetchStoredWaste cuando se monta el componente
     fetchStoredWaste(token, setData, setLoading, setError)
   }, [token])
-
-  // eliminar residuo por ID
-  const handleDeleteWaste = async (id) => {
-    const isConfirmed = window.confirm('🗑️ ¿Deseas eliminar este residuo? 📦')
-
-    if (isConfirmed) {
-      try {
-        await deleteWasteById(id, token)  // pasamos el token al eliminar residuo
-        alert('📦 Residuo eliminado exitosamente 🎉')
-
-        // refrescar la lista después de eliminar un residuo
-        fetchStoredWaste(token, setData, setLoading, setError)
-      } catch (error) {
-        console.error('Error eliminando el residuo:', error)
-        alert(error.message)
-      }
-    } else {
-      alert('🗑️ Eliminación cancelada ❌')
-    }
-  }
 
   // onsumit restablecer los valores por defecto
   const resetForm = () => {
@@ -101,7 +81,7 @@ const Stored = () => {
           <div>
           <h2 className="title">Residuos almacenados</h2>
 
-          <WasteList data={data} handleDeleteWaste={handleDeleteWaste} />
+          <WasteList data={data} handleDeleteWaste={(id) => handleDeleteWaste(id, token, setData, setLoading, setError)} />
           </div>
         )}
       </div>

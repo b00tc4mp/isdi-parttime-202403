@@ -12,7 +12,7 @@ const storedRoutes = Router()
 // Ruta para obtener todos los residuos
 storedRoutes.get('/getAllWasteStored', getAllWasteStored)
 
-// Ruta para obtener todos los residuos
+// Ruta para obtener todos los residuos del mes
 storedRoutes.get('/getWasteStoredToday', getWasteStoredToday)
 
 // Ruta para buscar residuo por codigo

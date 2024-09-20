@@ -12,7 +12,7 @@ const deleteWasteById = async (id, token) => {
       throw new Error('Error al eliminar el residuo')
     }
 
-    return { message: 'Residuo eliminado exitosamente 🎉' }
+    return { message: 'Residuo eliminado exitosamente' }
   } catch (error) {
     throw new Error('Error eliminando el residuo. Inténtalo de nuevo más tarde.')
   }
