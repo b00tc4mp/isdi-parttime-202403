@@ -1,30 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
 
 :root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-justify: center;
-  display: flex center;
-  justify-content: center;
-  align-items: center;
-  --first-color: yellowgreen;
-  --second-color: white;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-justify: center;
+    display: flex center;
+    justify-content: center;
+    align-items: center;
+    --first-color: yellowgreen;
+    --second-color: white;
 }
 
 * {
-  font-family: Workbench;
-  color: var(--first-color);
-
+    font-family: Workbench;
+    color: var(--first-color);
 }
 
 body {
-  background-color: var(--second-color);
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-justify: center;
+    background-color: var(--second-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-justify: center;
 }
 
 /* button {
@@ -38,7 +37,6 @@ body {
   cursor: pointer;
   transition: border-color 0.25s;
 } */
-
 
 /*
 #root {
