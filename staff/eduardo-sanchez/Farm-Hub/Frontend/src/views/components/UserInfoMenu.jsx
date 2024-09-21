@@ -1,6 +1,8 @@
 // import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import './UserInfoMenu.css';
+
 const UserInfoMenu = () => {
     const navigate = useNavigate();
 
@@ -17,13 +19,20 @@ const UserInfoMenu = () => {
     };
 
     return (
-        <div className="absolute bg-gray-500 right-3 top-12 rounded-xl p-1 z-10">
-            <ul>
+        <div className="UserInfoMenuContainer">
+            <ul className="UserInfoMenuList">
                 <li onClick={handleMyAccountClick}>My Account</li>
                 <li onClick={handleMyAdsClick}>My Ads</li>
                 <li onClick={handleMyCommentsClick}>My Comments</li>
             </ul>
         </div>
+        // <div className="absolute bg-gray-500 right-3 top-12 rounded-xl p-1 z-10">
+        //     <ul>
+        //         <li onClick={handleMyAccountClick}>My Account</li>
+        //         <li onClick={handleMyAdsClick}>My Ads</li>
+        //         <li onClick={handleMyCommentsClick}>My Comments</li>
+        //     </ul>
+        // </div>
     );
 };
 
