@@ -12,8 +12,9 @@ api.use([express.json(), cors()]);
 
 api.use('/api/v1/auth', routes.authRouter);
 api.use('/api/v1/logs', verifyToken, routes.logRouter);
-api.use('/api/v1/tracks', verifyToken, routes.trackRouter);
 api.use('/api/v1/search', verifyToken, routes.queryRouter);
+api.use('/api/v1/stream', verifyToken, routes.streamRouter);
+api.use('/api/v1/player', verifyToken, routes.playerRouter);
 
 api.use(notFound);
 api.use(errorHandler);

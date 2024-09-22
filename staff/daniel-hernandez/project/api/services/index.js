@@ -4,6 +4,7 @@ import checkEmail from './auth/checkEmail.js';
 import log from './log.js';
 import stream from './stream.js';
 import query from './query.js';
+import player from './player.js';
 
 export default {
    login,
@@ -11,5 +12,6 @@ export default {
    checkEmail,
    log,
    stream,
-   query
+   query,
+   player
 };

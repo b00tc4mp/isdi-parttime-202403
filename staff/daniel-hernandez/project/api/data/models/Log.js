@@ -18,6 +18,7 @@ const LogSchema = new Schema(
             constants.REGISTERED,
             constants.LIKED_TRACK,
             constants.DISLIKED_TRACK,
+            constants.REQUESTED_TRACK,
             constants.SEARCHED,
             constants.CREATED_TRACK,
             constants.EDITED_TRACK,
@@ -67,6 +68,7 @@ const LogSchema = new Schema(
             return [
                constants.LIKED_TRACK,
                constants.DISLIKED_TRACK,
+               constants.REQUESTED_TRACK,
                constants.CREATED_TRACK,
                constants.EDITED_TRACK,
                constants.REMOVED_TRACK,
