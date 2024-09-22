@@ -8,6 +8,7 @@ const REGISTERED = 'registered';
 const SEARCHED = 'searched';
 const LIKED_TRACK = 'liked_track';
 const DISLIKED_TRACK = 'disliked_track';
+const REQUESTED_TRACK = 'requested_track';
 const CREATED_TRACK = 'created_track';
 const EDITED_TRACK = 'edited_track';
 const REMOVED_TRACK = 'removed_track';
@@ -52,6 +53,7 @@ export default {
    SEARCHED,
    LIKED_TRACK,
    DISLIKED_TRACK,
+   REQUESTED_TRACK,
    CREATED_TRACK,
    EDITED_TRACK,
    REMOVED_TRACK,

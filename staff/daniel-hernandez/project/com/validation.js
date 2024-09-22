@@ -46,6 +46,7 @@ function validateLogType(type) {
       constants.REGISTERED,
       constants.LIKED_TRACK,
       constants.DISLIKED_TRACK,
+      constants.REQUESTED_TRACK,
       constants.SEARCHED,
       constants.CREATED_TRACK,
       constants.EDITED_TRACK,
