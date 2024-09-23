@@ -17,6 +17,7 @@ const createLoad = async (dataLoad, token) => {
   
       return result
     } catch (error) {
+      console.error('Error al registrar el residuo:', error.message)
       throw new Error('Error al registrar el residuo: ' + error.message)
     }
   }

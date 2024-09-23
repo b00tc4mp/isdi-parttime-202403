@@ -1,4 +1,3 @@
-// Logic
 import deleteWasteById from '../logic/deleteWaste'
 import fetchStoredWaste from '../logic/getWasteStored'
 

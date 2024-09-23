@@ -1,4 +1,3 @@
-// logic
 import deleteLoadById from '../logic/deleteLoad.js'
 import fetchLoads from '../logic/getWasteLoadSearched.js'
 

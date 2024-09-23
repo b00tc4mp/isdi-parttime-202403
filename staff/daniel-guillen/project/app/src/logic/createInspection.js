@@ -17,10 +17,9 @@ const createInspection = async (newInspection, token) => {
   
       return result
     } catch (error) {
-      console.error('Error al registrar inspección', error.message)
-      throw error
+      console.error('Error al registrar inspección:', error.message)
+      throw new Error('Error al registrar inspección:' + error.message)
     }
   }
 
   export default createInspection
-  

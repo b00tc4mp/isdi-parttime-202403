@@ -1,120 +1,100 @@
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import '../index.css'
-// Components
-import VehiclesSelect from '../components/VehicleSelect'
+// Images
+import VehicleSmall from '../../../components/img/VehicleSmall.jpg'
+import VehicleMedium from '../../../components/img/VehicleMedium.jpg'
+import VehicleBig from '../../../components/img/VehicleBig.jpg'
+// Logic
+import fetchInspectionsById from '../../../logic/getInspectionsById'
+// Handlers
+import handleDeleteInspection from '../../../handlers/deleteInspectionHandle'
 
 const Historical = () => {
-  const [selectedVehicle, setSelectedVehicle] = useState(null)
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
+  const { vehicleId } = useParams() // esta info viene desde el registro
+
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [vehicleSize, setVehicleSize] = useState(null) // tamaño vehiculo
 
-  // Vehículo seleccionado
-  const handleVehicleChange = (selectedVehicle) => {
-    setSelectedVehicle(selectedVehicle)
-    console.log("Vehículo seleccionado:", selectedVehicle)
+  // seleccionar imagen segun el tamaño del vehículo
+  const getImage = (size) => {
+    switch (size) {
+      case 'small':
+        return VehicleSmall
+      case 'medium':
+        return VehicleMedium
+      case 'big':
+        return VehicleBig
+      default:
+        return null
+    }
   }
 
-  const { id } = selectedVehicle || {}
-
-  // Función para traer las inspecciones cargadas
-  const fetchInspections = async (id) => {
-    try {
-      setLoading(true)
-      
-      // Agregar referencia dinámica a la URL
-      const response = await fetch(`${import.meta.env.VITE_API_URL}vehicles/getInspectionById/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error('Error al obtener las inspecciones almacenadas')
-      }
-
-      const result = await response.json()
-      setData(result)
-    } catch (err) {
-      setError(err.message)
-    } finally {
+  // renderizar inspecciones y tamaño del vehiculo
+  useEffect(() => {
+    if (vehicleId) {
+      setError(null)
+        setLoading(true)
+      fetchInspectionsById(vehicleId, token)// solicitud a sercidor
+        .then((inspections) => {
+          //ordenamos por fecha
+          const sortedInspections = inspections.sort((a, b) => new Date(b.worker.date) - new Date(a.worker.date))
+          setData(sortedInspections)
+          setVehicleSize(sortedInspections[0].vehicle.size) // tamaño del vehículo
+        })
+        .catch((error) => setError(error.message))
+        .finally(() => setLoading(false))
+    } else {
+      setData([])
+      setError(null)
       setLoading(false)
     }
-  }
+  }, [vehicleId, token])
 
-  // Usar `useEffect` para traer las inspecciones cuando se seleccione un vehículo
-  useEffect(() => {
-    if (id) {  
-      fetchInspections(id)
-    }
-  }, [id])
-
-  // Cargando...
-  if (loading) {
-    return <p style={{ color: 'green', textAlign: 'center' }}>Cargando datos de inspecciones guardadas...</p>
-  }
-
-  // Mensaje de error
-  if (error) {
-    return <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
-  }
-
-  // Eliminar inspección por ID
-  const deleteInspection = async (inspectionId) => {
-    const isConfirmed = window.confirm('🗑️ ¿Deseas eliminar esta inspección? 🔧')
-
-    if (isConfirmed) {
-      try {
-        const apiResponse = await fetch(`${import.meta.env.VITE_API_URL}vehicles/deleteInspection/${inspectionId}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-
-        if (!apiResponse.ok) {
-          throw new Error('Error al eliminar la inspección')
-        }
-
-        // Mensaje de éxito
-        alert('Inspección eliminada exitosamente 🎉')
-
-        // Refrescar la lista después de eliminar una inspección
-        fetchInspections(id)
-      } catch (error) {
-        console.error('Error al eliminar inspección:', error)
-        setError('Error al eliminar inspección. Inténtalo de nuevo más tarde.')
-        alert('Error al eliminar inspección. Inténtalo de nuevo más tarde.')
-      }
-    } else {
-      alert('Eliminación cancelada ❌')
-    }
-  }
+  const vehicleImg = getImage(vehicleSize) // Obtener imagen basada en el tamaño del vehículo
 
   return (
     <div>
-      <VehiclesSelect selectedVehicle={selectedVehicle} handleVehicleChange={handleVehicleChange} />
-
-      {data.length > 0 ? (
-        data.map((item) => (
-          <div key={item.id} className='list'>
-            <button
-              className="deleteInspection"
-              onClick={() => deleteInspection(item.id)}
-            >
-              <div className='Inspection'>
-                <p>{item.worker.workerName} - {item.worker.date}</p>
-                <p>{item.vehicle.model} - {item.vehicle.id}</p>
-                <p className='itemFix'>{item.inspection.itemFix.map(fix => `${fix.Apartado}: ${fix.Elemento}`).join(', ')}</p>
-                <p className='notes'>{item.inspection.notes}</p>
-              </div>
-            </button>
-          </div>
-        ))
+      {loading ? (
+        <p style={{ color: 'orange', textAlign: 'center' }}>Cargando inspecciones guardadas...</p>
+      ) : error ? (
+        <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
+      ) : data.length === 0 ? (
+        <p style={{ color: 'white', textAlign: 'center' }}>No se encontraron inspecciones para este vehículo.</p>
       ) : (
-        <p style={{ color: 'white', textAlign: 'center' }}>No hay datos disponibles</p>
+        <>
+          <div className='vehicle'>
+            <h2 className="title">Vehículo {vehicleId}:</h2>
+            {vehicleImg && <img src={vehicleImg} alt={`Imagen de vehículo ${vehicleSize}`} />}
+          </div>
+
+          {data.map((item) => (
+            <div key={item.id} className='list'>
+             <button
+                className="deleteInspection"
+                onClick={() => handleDeleteInspection(item.id, token, vehicleId, setData, setLoading, setError)}
+              >
+                <div className='Inspection'>
+                  <p>{item.worker.workerName} - {item.worker.date}</p>
+                  <p>{item.vehicle.model} - {item.vehicle.id}</p>
+                  <ul className='itemFix'>
+                    {item.inspection.itemFix.map((fix, index) => (
+                      <li key={index}>
+                        {fix.Apartado}: {fix.Elemento}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className='notes'>{item.inspection.notes}</p>
+                </div>
+              </button>
+            </div>
+          ))}
+        </>
       )}
+      <a className='menu-link' href={'/Vehicles'}>VOLVER A REGISTRO</a>
     </div>
   )
 }

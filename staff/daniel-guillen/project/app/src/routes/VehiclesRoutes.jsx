@@ -12,7 +12,7 @@ const VehiclesRoutes = () => {
     <Routes>
 
       <Route path="/Vehicles" element={<Vehicles />} />
-      <Route path="/Vehicles/Historical" element={<Historical />} />
+      <Route path="/Vehicles/Historical/:vehicleId" element={<Historical />} />
 
     </Routes>
 
