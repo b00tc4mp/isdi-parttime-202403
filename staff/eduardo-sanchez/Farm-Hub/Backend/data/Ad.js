@@ -1,36 +1,36 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model, Types } from 'mongoose';
 
-const { ObjectId } = Types
+const { ObjectId } = Types;
 
 const adcomment = new Schema({
     author: {
         type: ObjectId,
         required: true,
-        ref: "User"
+        ref: 'User',
     },
     comment: {
         type: String,
-        required: true
+        required: true,
     },
     date: {
         type: Date,
-        default: Date.now
-    }
-})
+        default: Date.now,
+    },
+});
 
 const ad = new Schema({
     author: {
         type: ObjectId,
         required: true,
-        ref: 'User'
+        ref: 'User',
     },
     title: {
         type: String,
-        required: true
+        required: true,
     },
     description: {
         type: String,
-        required: true
+        required: true,
     },
     price: {
         type: String,
@@ -39,23 +39,28 @@ const ad = new Schema({
     date: {
         type: Date,
         required: true,
-        default: Date.now
+        default: Date.now,
     },
+
+    contactInfo: {
+        type: String,
+        // required: true
+    },
+
     adcomments: { type: [adcomment] },
 
     geoLocation: {
         lat: {
             type: Number,
-            required: true
+            required: true,
         },
         lng: {
             type: Number,
-            required: true
+            required: true,
         },
     },
+});
 
-})
+const Ad = model('Ad', ad);
 
-const Ad = model('Ad', ad)
-
-export default Ad
+export default Ad;

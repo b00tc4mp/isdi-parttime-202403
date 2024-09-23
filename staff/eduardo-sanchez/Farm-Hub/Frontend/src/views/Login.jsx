@@ -36,7 +36,7 @@ export const Login = () => {
                 .then(() => {
                     navigate('/');
                     console.log('User Login -> success');
-                    alert('Welcome ' + `${username}`);
+                    // alert('Welcome ' + `${username}`);
                 })
                 .catch((error) => {
                     console.error(error);

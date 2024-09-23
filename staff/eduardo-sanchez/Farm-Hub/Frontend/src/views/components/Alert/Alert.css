@@ -2,7 +2,7 @@
 
 @layer components {
     .Alert {
-        @apply absolute top-20 w-full flex justify-center;
+        @apply absolute top-40 w-full flex justify-center;
     }
 
     .AlertBox {
