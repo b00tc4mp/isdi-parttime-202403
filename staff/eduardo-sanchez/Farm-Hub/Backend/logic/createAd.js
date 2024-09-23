@@ -12,10 +12,6 @@ const createAd = (userId, title, description, price, geoLocation) => {
 
     console.log('geoLocation', geoLocation);
 
-    if (!geoLocation) {
-        throw new NotFoundError('geoLocation is not valid: missing lat or lng');
-    }
-
     return User.findById(userId)
         .lean()
         .catch((error) => {
@@ -58,3 +54,7 @@ export default createAd;
 //   ) {
 //     throw new NotFoundError(" geolocation is not valid");
 //   }
+
+// if (!geoLocation) {
+//     throw new NotFoundError('geoLocation is missing');
+// }

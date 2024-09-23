@@ -39,6 +39,10 @@ describe('deleteAd', () => {
                     price: '8.5 €/Kg',
                     date: new Date(),
                     adcomments: [],
+                    geoLocation: {
+                        lat: 0,
+                        lng: 0,
+                    },
                 }).then((ad) =>
                     deleteAd(user.id, ad.id)
                         .then(() => Ad.findById(ad.id))
@@ -57,6 +61,11 @@ describe('deleteAd', () => {
             description: 'Luneros',
             price: '8.5 €/Kg',
             date: new Date(),
+            adcomments: [],
+            geoLocation: {
+                lat: 0,
+                lng: 0,
+            },
         }).then((ad) =>
             deleteAd(new ObjectId().toString(), ad.id)
                 .catch((error) => (errorThrown = error))
@@ -137,6 +146,10 @@ describe('deleteAd', () => {
                     price: '10 €/Kg',
                     date: new Date(),
                     adcomments: [],
+                    geoLocation: {
+                        lat: 0,
+                        lng: 0,
+                    },
                 });
                 return Promise.all([user.save(), ad.save()])
                     .then(([savedUser, savedAd]) => {

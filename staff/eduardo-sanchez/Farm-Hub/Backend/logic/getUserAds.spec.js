@@ -39,14 +39,17 @@ describe('getUserAds', () => {
                     price: '8.5 €/Kg',
                     date: new Date(),
                     adcomments: [],
-
-                })
-                    .then(() => user))
+                    geoLocation: {
+                        lat: 58,
+                        lng: 98,
+                    },
+                }).then(() => user)
+            )
             .then((user) => getUserAds(user.id))
             .then((ads) => {
                 expect(ads).to.be.an('array');
                 expect(ads.length).to.equal(1);
-                expect(ads[0].author.username).to.equal('linux')
+                expect(ads[0].author.username).to.equal('linux');
                 expect(ads[0].author).to.be.an('object');
                 expect(ads[0]).to.have.property('title', 'Limones');
                 expect(ads[0]).to.have.property('description', 'Luneros');
@@ -85,8 +88,7 @@ describe('getUserAds', () => {
         // const nonExistentId = new ObjectId().toString();
         // console.log(nonExistentId)
         return getUserAds(new ObjectId().toString())
-
-            .catch((error) => errorThrown = error)
+            .catch((error) => (errorThrown = error))
             .finally(() => {
                 expect(errorThrown).to.be.an.instanceOf(NotFoundError);
                 expect(errorThrown.message).to.equal('User not found');
@@ -96,36 +98,38 @@ describe('getUserAds', () => {
     it('fails when user has no ads', () => {
         let errorThrown;
 
-        return bcrypt
-            .hash('123123123', 8)
-            .then((hash) =>
-                User.create({
-                    name: 'No',
-                    surname: 'Ads',
-                    email: 'no@ads.com',
-                    username: 'noads',
-                    password: hash,
+        return (
+            bcrypt
+                .hash('123123123', 8)
+                .then((hash) =>
+                    User.create({
+                        name: 'No',
+                        surname: 'Ads',
+                        email: 'no@ads.com',
+                        username: 'noads',
+                        password: hash,
+                    })
+                )
+                .then((user) => {
+                    console.log('user: ', user);
+                    // getUserAds(user.id, user.id)
+                    // let tokenId = user.id
+                    // console.log('tokenId: ', tokenId)
+                    return getUserAds(user.id);
                 })
-            )
-            .then((user) => {
-                console.log('user: ', user)
-                // getUserAds(user.id, user.id)
-                // let tokenId = user.id
-                // console.log('tokenId: ', tokenId)
-                return getUserAds(user.id)
-            })
-            //getUserAds(user.id, user.id))
-            // .then((ads) => {
-            //     console.log('ads: ', ads)
-            //     return expect(ads).to.be.an('array').that.is.empty
-            // })
+                //getUserAds(user.id, user.id))
+                // .then((ads) => {
+                //     console.log('ads: ', ads)
+                //     return expect(ads).to.be.an('array').that.is.empty
+                // })
 
-            //expect(ads).to.be.an('array').that.is.not.empty)
-            .catch((error) => errorThrown = error)
-            .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(NotFoundError);
-                expect(errorThrown.message).to.equal('Ads not found');
-            });
+                //expect(ads).to.be.an('array').that.is.not.empty)
+                .catch((error) => (errorThrown = error))
+                .finally(() => {
+                    expect(errorThrown).to.be.an.instanceOf(NotFoundError);
+                    expect(errorThrown.message).to.equal('Ads not found');
+                })
+        );
     });
 
     it('fails with invalid userId', () => {
@@ -159,8 +163,7 @@ describe('getUserAds', () => {
             .then(() => User.deleteMany())
             .then(() => mongoose.disconnect())
     );
-
-})
+});
 
 // it('fails on non-existing user', () => {
 //     let errorThrown;
@@ -187,11 +190,3 @@ describe('getUserAds', () => {
 //         })
 
 // });
-
-
-
-
-
-
-
-

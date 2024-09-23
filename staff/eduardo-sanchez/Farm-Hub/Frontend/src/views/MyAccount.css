@@ -78,7 +78,7 @@
     } */
 
     .MyAccountLabel {
-        @apply text-lg font-semibold text-gray-700 p-1;
+        @apply text-lg font-semibold text-orange-700 p-1;
     }
 
     .MyAccountValue {

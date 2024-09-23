@@ -34,8 +34,8 @@ describe('createAd', () => {
             )
             .then((user) =>
                 createAd(user.id, 'Limones', 'Luneros', '8.5 €/Kg', {
-                    lat: 0,
-                    lng: 0,
+                    lat: 54,
+                    lng: 98,
                 })
                     .then(() => Ad.findOne())
                     .then((ad) => {
@@ -58,7 +58,10 @@ describe('createAd', () => {
             'Ad Title',
             'Ad Description',
             '8.5 €/Kg',
-            { lat: 0, lng: 0 }
+            {
+                lat: 54,
+                lng: 98,
+            }
         )
             .catch((error) => (errorThrown = error))
             .finally(() => {
@@ -72,8 +75,8 @@ describe('createAd', () => {
 
         try {
             createAd('invalid-id', 'Ad Title', 'Ad Description', '8.5 €/Kg', {
-                lat: 0,
-                lng: 0,
+                lat: 54,
+                lng: 98,
             });
         } catch (error) {
             errorThrown = error;
@@ -93,8 +96,8 @@ describe('createAd', () => {
                 'Ad Description',
                 '8.5 €/Kg',
                 {
-                    lat: 0,
-                    lng: 0,
+                    lat: 54,
+                    lng: 98,
                 }
             );
         } catch (error) {
@@ -110,8 +113,8 @@ describe('createAd', () => {
 
         try {
             createAd(new ObjectId().toString(), 'Ad Title', '', '8.5 €/Kg', {
-                lat: 0,
-                lng: 0,
+                lat: 54,
+                lng: 98,
             });
         } catch (error) {
             errorThrown = error;
@@ -130,8 +133,8 @@ describe('createAd', () => {
                 'Ad Description',
                 '8.5',
                 {
-                    lat: 0,
-                    lng: 0,
+                    lat: 54,
+                    lng: 98,
                 }
             );
         } catch (error) {
@@ -142,7 +145,6 @@ describe('createAd', () => {
                 'price is not valid. It must be in the format "number €/Kg", e.g., "3.20 €/Kg".'
             );
         }
-        // });
     });
 
     it('fails on missing geoLocation', () => {
@@ -158,8 +160,26 @@ describe('createAd', () => {
             errorThrown = error;
         } finally {
             expect(errorThrown).to.be.instanceOf(ContentError);
+            expect(errorThrown.message).to.equal('geoLocation is missing');
+        }
+    });
+
+    it('fails on invalid geoLocation', () => {
+        let errorThrown;
+        try {
+            createAd(
+                new ObjectId().toString(),
+                'Ad Title',
+                'Ad Description',
+                '8.5 €/Kg',
+                { lat: 'aa', lng: 'bb' }
+            );
+        } catch (error) {
+            errorThrown = error;
+        } finally {
+            expect(errorThrown).to.be.instanceOf(ContentError);
             expect(errorThrown.message).to.equal(
-                'geoLocation is not valid: missing lat or lng'
+                'geoLocation is not valid: lat and lng must be numbers'
             );
         }
     });

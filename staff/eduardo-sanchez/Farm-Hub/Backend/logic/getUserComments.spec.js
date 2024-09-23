@@ -10,7 +10,6 @@ import { NotFoundError, ContentError, CredentialsError } from 'com/errors.js';
 const { MONGODB_URL_TEST } = process.env;
 const { ObjectId } = Types;
 
-
 describe('getUserComments', () => {
     before(() =>
         mongoose
@@ -39,14 +38,19 @@ describe('getUserComments', () => {
                     description: 'Luneros',
                     price: '8.5 €/Kg',
                     date: new Date(),
-                    adcomments: [{
-                        author: user.id.toString(),
-                        comment: 'Comentario de prueba',
-                        date: new Date()
-                    }],
-
-                })
-                    .then(() => user))
+                    adcomments: [
+                        {
+                            author: user.id.toString(),
+                            comment: 'Comentario de prueba',
+                            date: new Date(),
+                        },
+                    ],
+                    geoLocation: {
+                        lat: 58,
+                        lng: 98,
+                    },
+                }).then(() => user)
+            )
             .then((user) => getUserComments(user.id.toString()))
             .then((ads) => {
                 expect(ads).to.be.an('array');
@@ -61,11 +65,11 @@ describe('getUserComments', () => {
         let errorThrown;
 
         return getUserComments(new ObjectId().toString())
-            .catch((error) => errorThrown = error)
+            .catch((error) => (errorThrown = error))
             .finally(() => {
-                expect(errorThrown).to.be.an.instanceOf(NotFoundError)
-                expect(errorThrown.message).to.equal('user not found')
-            })
+                expect(errorThrown).to.be.an.instanceOf(NotFoundError);
+                expect(errorThrown.message).to.equal('user not found');
+            });
     });
 
     it('fails when there are no ads with user comments', () => {
@@ -82,17 +86,16 @@ describe('getUserComments', () => {
                     password: hash,
                 })
             )
-            .then((user) =>
-                getUserComments(user.id.toString()))
+            .then((user) => getUserComments(user.id.toString()))
             .catch((error) => {
-                errorThrown = error
+                errorThrown = error;
 
                 expect(errorThrown).to.be.an('error');
-                expect(errorThrown.message).to.equal('No ads found with user comments');
-            })
+                expect(errorThrown.message).to.equal(
+                    'No ads found with user comments'
+                );
+            });
     });
-
-
 
     // it('fails when no comments by user are found in ads', () => {
     //     let errorThrown;
@@ -135,5 +138,4 @@ describe('getUserComments', () => {
             .then(() => User.deleteMany())
             .then(() => mongoose.disconnect())
     );
-
-})
+});
