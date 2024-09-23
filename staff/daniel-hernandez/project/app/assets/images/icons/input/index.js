@@ -1,5 +1,5 @@
 import eyeIcon from './eye.png';
 import eyeIconActive from './eyeActive.png';
-import clear from './clear.png';
+import clearIcon from './clear.png';
 
-export { eyeIcon, eyeIconActive, clear };
+export { eyeIcon, eyeIconActive, clearIcon };
