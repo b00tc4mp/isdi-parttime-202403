@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import logic from '../logic';
-import Title from '../components/core/Title';
+import Title from '../components/core/Title/Title';
 
 import CreateComment from './components/CreateCommnet/CreateComment';
 import DeleteAdComment from './components/DeleteAdComment/DeleteAdComment';

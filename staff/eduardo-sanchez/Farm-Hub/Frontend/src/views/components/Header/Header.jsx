@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import logic from '../../../logic';
 
-import Title from '../../../components/core/Title';
+import Title from '../../../components/core/Title/Title';
 import './Header.css';
 
 import InfoIcon from '../../../icons/info.png';

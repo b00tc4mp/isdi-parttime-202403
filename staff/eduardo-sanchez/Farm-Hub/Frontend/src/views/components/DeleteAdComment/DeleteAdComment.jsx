@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import logic from '../../../logic';
-import Button from '../../../components/core/Button';
+import Button from '../../../components/core/Button/Button';
 import './DeleteAdComment.css';
 
 function DeleteAdComment({ adId, onCommentDeleted, commentId }) {
@@ -12,25 +12,30 @@ function DeleteAdComment({ adId, onCommentDeleted, commentId }) {
         // event.stopPropagation();
         if (confirm('Are you sure you want to delete this comment?')) {
             try {
-                logic.deleteAdComment(adId, commentId)
+                logic
+                    .deleteAdComment(adId, commentId)
                     .then(() => {
                         console.log('Comment deleted');
-                        onCommentDeleted(); // Call the callback to notify parent component  
+                        onCommentDeleted(); // Call the callback to notify parent component
                     })
                     .catch((error) => {
                         console.error(error);
-                        setMessage(error.message); // Set error message for display  
+                        setMessage(error.message); // Set error message for display
                     });
             } catch (error) {
                 console.error(error);
-                setMessage(error.message); // Set error message for display  
+                setMessage(error.message); // Set error message for display
             }
         }
     };
 
     return (
         <>
-            <Button className="DeleteAdCommentButton" onClick={handleDeleteAdComment} type="button">
+            <Button
+                className="DeleteAdCommentButton"
+                onClick={handleDeleteAdComment}
+                type="button"
+            >
                 Delete
             </Button>
             {message && <p className="ErrorMessage">{message}</p>}
@@ -41,7 +46,6 @@ function DeleteAdComment({ adId, onCommentDeleted, commentId }) {
 export default DeleteAdComment;
 
 ///////////////////
-
 
 // import { useState } from 'react';
 
@@ -79,8 +83,6 @@ export default DeleteAdComment;
 //         }
 //     }
 
-
-
 //     return (
 //         <>
 //             <Button className="DeleteAdCommentButton" onClick={handleDeleteAdComment} type="button">Delete</Button>
@@ -90,6 +92,5 @@ export default DeleteAdComment;
 //     )
 
 // }
-
 
 // export default DeleteAdComment

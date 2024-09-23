@@ -1,4 +1,4 @@
-import './index.css'
+import './Field.css';
 
 export default function Field({ id, type, placeholder, children }) {
     return (
@@ -6,9 +6,5 @@ export default function Field({ id, type, placeholder, children }) {
             <label htmlFor={id}>{children}</label>
             <input id={id} type={type} placeholder={placeholder} />
         </div>
-    )
+    );
 }
-
-
-
-

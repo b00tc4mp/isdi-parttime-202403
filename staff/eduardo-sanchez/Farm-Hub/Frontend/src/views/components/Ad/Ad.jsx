@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { useState } from 'react';
 
-import Button from '../../../components/core/Button';
+import Button from '../../../components/core/Button/Button';
 
 import logic from '../../../logic';
 

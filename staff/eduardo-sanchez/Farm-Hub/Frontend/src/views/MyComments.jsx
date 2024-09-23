@@ -30,7 +30,7 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Title from '../components/core/Title';
+import Title from '../components/core/Title/Title';
 
 import { SystemError } from 'com/errors';
 import logic from '../logic';

@@ -6,7 +6,7 @@ import logic from '../../../logic';
 
 import { SystemError } from 'com/errors';
 
-import Button from '../../../components/core/Button';
+import Button from '../../../components/core/Button/Button';
 
 export function CreateAdForm() {
     const [location, setLocation] = useState({ lat: 0, lng: 0 });
