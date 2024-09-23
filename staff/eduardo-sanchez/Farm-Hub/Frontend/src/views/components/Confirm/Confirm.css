@@ -1,17 +1,14 @@
 @tailwind components;
 
 @layer components {
-    
-
     .Confirm {
         /* @apply absolute top-36 flex w-56 flex-wrap justify-center rounded-2xl bg-gray-100 p-4 text-center; */
-        @apply absolute top-20 w-full flex justify-center;
+        @apply flex absolute top-40 w-full justify-center left-1;
     }
 
     .ConfirmBox {
         /* @apply w-full text-xl; */
         @apply p-[.4rem] bg-gray-100 text-[1rem] border-[1px] border-blue-500 w-[150px] h-[200px] rounded-xl shadow-md;
-        
     }
 
     .Confirm .Button {

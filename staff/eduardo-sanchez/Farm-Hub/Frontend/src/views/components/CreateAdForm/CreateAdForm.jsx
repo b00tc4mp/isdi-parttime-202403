@@ -20,6 +20,7 @@ export function CreateAdForm() {
         const title = form.title.value;
         const description = form.description.value;
         const price = form.price.value;
+        const contactInfo = form.contactInfo.value;
         console.log({ title, description, price });
 
         if (navigator.geolocation) {
@@ -39,7 +40,13 @@ export function CreateAdForm() {
                     console.log('location', location);
 
                     logic
-                        .createAd(title, description, price, geoLocation)
+                        .createAd(
+                            title,
+                            description,
+                            price,
+                            contactInfo,
+                            geoLocation
+                        )
                         .then(() => {
                             navigate('/');
                             console.log('Ad created');
@@ -71,6 +78,11 @@ export function CreateAdForm() {
                 <input id="title" type="text" placeholder="Title" />
                 <input id="description" type="text" placeholder="Description" />
                 <input id="price" type="text" placeholder="Price" />
+                <input
+                    id="contactInfo"
+                    type="text"
+                    placeholder="Contact Info"
+                />
                 <p></p>
                 <Button type="submit">Create</Button>
                 <p></p>

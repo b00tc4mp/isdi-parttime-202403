@@ -53,6 +53,11 @@ function validatePrice(price, explain = "price") {
     );
 }
 
+function validateContactInfo(contactInfo, explain = "contactInfo") {
+  if (typeof contactInfo !== "string" || !contactInfo.length)
+    throw new ContentError(`${explain} is not valid`);
+}
+
 function validateGeoLocation(geoLocation, explain = "geoLocation") {
   if (!geoLocation) {
     throw new ContentError(`${explain} is missing`);
@@ -92,6 +97,7 @@ const validate = {
   text: validateText,
   id: validateId,
   price: validatePrice,
+  contactInfo: validateContactInfo,
   geoLocation: validateGeoLocation,
 };
 

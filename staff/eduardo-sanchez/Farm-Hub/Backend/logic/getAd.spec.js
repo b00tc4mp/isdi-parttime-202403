@@ -34,6 +34,7 @@ describe('getAd', () => {
                     description: 'Juicy and fresh oranges.',
                     price: '5 €/Kg',
                     date: new Date(),
+                    contactInfo: '092-092-092',
                     adcomments: [
                         {
                             author: user._id.toString(),

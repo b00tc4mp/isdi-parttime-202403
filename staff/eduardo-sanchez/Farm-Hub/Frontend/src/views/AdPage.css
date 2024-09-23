@@ -15,7 +15,6 @@
 @tailwind components;
 
 @layer components {
-
     .AdPageLoading {
         @apply text-2xl font-bold text-green-600;
     }
@@ -46,6 +45,10 @@
 
     .AdPageDate {
         @apply text-sm text-gray-500 mt-1;
+    }
+
+    .AdPageContactInfo {
+        @apply text-sm text-orange-700 mt-2;
     }
 
     .AdPageCommentsSection {

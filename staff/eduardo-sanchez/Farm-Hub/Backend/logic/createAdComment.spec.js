@@ -38,6 +38,7 @@ describe('createAdComment', () => {
                     description: 'Luneros',
                     price: '8.5 €/Kg',
                     date: new Date(),
+                    contactInfo: '092-092-092',
                     adcomments: [],
                     geoLocation: { lat: 0, lng: 0 },
                 }).then((ad) =>
@@ -65,6 +66,7 @@ describe('createAdComment', () => {
             description: 'Luneros',
             price: '8.5 €/Kg',
             date: new Date(),
+            contactInfo: '092-092-092',
             adcomments: [],
             geoLocation: { lat: 0, lng: 0 },
         }).then((ad) =>

@@ -67,6 +67,9 @@ function AdPage() {
                 <p className="AdPageDate">
                     Posted on: {new Date(ad?.date).toLocaleDateString()}
                 </p>
+                <p className="AdPageContactInfo">
+                    Contact Info: {ad?.contactInfo}
+                </p>
             </div>
 
             {ad.geoLocation && (

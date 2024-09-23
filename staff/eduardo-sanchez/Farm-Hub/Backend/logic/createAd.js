@@ -2,12 +2,27 @@ import { User, Ad } from '../data/index.js';
 import { SystemError, NotFoundError } from 'com/errors.js';
 import validate from 'com/validate.js';
 
-const createAd = (userId, title, description, price, geoLocation) => {
-    console.log('test', { userId, title, description, price, geoLocation });
+const createAd = (
+    userId,
+    title,
+    description,
+    price,
+    contactInfo,
+    geoLocation
+) => {
+    console.log('test', {
+        userId,
+        title,
+        description,
+        price,
+        contactInfo,
+        geoLocation,
+    });
     validate.id(userId, 'userId');
     validate.text(title, 'title', 50);
     validate.text(description, 'description', 200);
     validate.price(price, 'price');
+    validate.contactInfo(contactInfo, 'contactInfo');
     validate.geoLocation(geoLocation, 'geoLocation');
 
     console.log('geoLocation', geoLocation);
@@ -28,6 +43,7 @@ const createAd = (userId, title, description, price, geoLocation) => {
                 description,
                 price,
                 date: new Date(),
+                contactInfo,
                 adcomments: [],
                 geoLocation: {
                     lat: geoLocation.lat,

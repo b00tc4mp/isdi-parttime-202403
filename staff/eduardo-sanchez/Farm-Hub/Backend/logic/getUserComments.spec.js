@@ -38,6 +38,7 @@ describe('getUserComments', () => {
                     description: 'Luneros',
                     price: '8.5 €/Kg',
                     date: new Date(),
+                    contactInfo: '092-092-092',
                     adcomments: [
                         {
                             author: user.id.toString(),

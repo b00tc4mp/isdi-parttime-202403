@@ -12,9 +12,10 @@ mongoose
             // createAd('66a939ddca799581a845711c', 'tomates', 'tomates de ensalada', '3.20 €/Kg')
             createAd(
                 '66ae6370f11082ed7f0623dd',
-                'manzanas',
-                'manzana golden',
+                'POMELO',
+                'amarillo',
                 '4.10 €/Kg',
+                '092-092-092',
                 { lat: 0, lng: 0 }
             )
                 .then(() => console.log('Ad created'))

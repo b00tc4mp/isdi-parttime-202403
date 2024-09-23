@@ -38,6 +38,7 @@ describe('deleteAd', () => {
                     description: 'Luneros',
                     price: '8.5 €/Kg',
                     date: new Date(),
+                    contactInfo: '092-092-092',
                     adcomments: [],
                     geoLocation: {
                         lat: 0,
@@ -61,6 +62,7 @@ describe('deleteAd', () => {
             description: 'Luneros',
             price: '8.5 €/Kg',
             date: new Date(),
+            contactInfo: '092-092-092',
             adcomments: [],
             geoLocation: {
                 lat: 0,
@@ -145,6 +147,7 @@ describe('deleteAd', () => {
                     description: 'Luneros',
                     price: '10 €/Kg',
                     date: new Date(),
+                    contactInfo: '092-092-092',
                     adcomments: [],
                     geoLocation: {
                         lat: 0,

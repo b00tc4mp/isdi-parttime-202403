@@ -33,10 +33,17 @@ describe('createAd', () => {
                 })
             )
             .then((user) =>
-                createAd(user.id, 'Limones', 'Luneros', '8.5 €/Kg', {
-                    lat: 54,
-                    lng: 98,
-                })
+                createAd(
+                    user.id,
+                    'Limones',
+                    'Luneros',
+                    '8.5 €/Kg',
+                    '092-092-092',
+                    {
+                        lat: 54,
+                        lng: 98,
+                    }
+                )
                     .then(() => Ad.findOne())
                     .then((ad) => {
                         expect(ad.author.toString()).to.equal(
@@ -58,6 +65,7 @@ describe('createAd', () => {
             'Ad Title',
             'Ad Description',
             '8.5 €/Kg',
+            '092-092-092',
             {
                 lat: 54,
                 lng: 98,
@@ -74,10 +82,17 @@ describe('createAd', () => {
         let errorThrown;
 
         try {
-            createAd('invalid-id', 'Ad Title', 'Ad Description', '8.5 €/Kg', {
-                lat: 54,
-                lng: 98,
-            });
+            createAd(
+                'invalid-id',
+                'Ad Title',
+                'Ad Description',
+                '8.5 €/Kg',
+                '092-092-092',
+                {
+                    lat: 54,
+                    lng: 98,
+                }
+            );
         } catch (error) {
             errorThrown = error;
         } finally {
@@ -95,6 +110,7 @@ describe('createAd', () => {
                 '',
                 'Ad Description',
                 '8.5 €/Kg',
+                '092-092-092',
                 {
                     lat: 54,
                     lng: 98,
@@ -112,10 +128,17 @@ describe('createAd', () => {
         let errorThrown;
 
         try {
-            createAd(new ObjectId().toString(), 'Ad Title', '', '8.5 €/Kg', {
-                lat: 54,
-                lng: 98,
-            });
+            createAd(
+                new ObjectId().toString(),
+                'Ad Title',
+                '',
+                '8.5 €/Kg',
+                '092-092-092',
+                {
+                    lat: 54,
+                    lng: 98,
+                }
+            );
         } catch (error) {
             errorThrown = error;
         } finally {
@@ -132,6 +155,7 @@ describe('createAd', () => {
                 'Ad Title',
                 'Ad Description',
                 '8.5',
+                '092-092-092',
                 {
                     lat: 54,
                     lng: 98,
@@ -154,7 +178,8 @@ describe('createAd', () => {
                 new ObjectId().toString(),
                 'Ad Title',
                 'Ad Description',
-                '8.5 €/Kg'
+                '8.5 €/Kg',
+                '092-092-092'
             );
         } catch (error) {
             errorThrown = error;
@@ -172,6 +197,7 @@ describe('createAd', () => {
                 'Ad Title',
                 'Ad Description',
                 '8.5 €/Kg',
+                '092-092-092',
                 { lat: 'aa', lng: 'bb' }
             );
         } catch (error) {
