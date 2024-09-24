@@ -67,7 +67,7 @@ const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft
 
             {clearIcon && value && (
                <Pressable onPress={onClearPress} className="absolute right-0 h-[100%] justify-center p-3 pr-0 z-30">
-                  <Image source={InputIcons.clear} resizeMode="contain" className="w-7 h-6" />
+                  <Image source={InputIcons.clearIcon} resizeMode="contain" className="w-7 h-6" />
                </Pressable>
             )}
          </Animated.View>
@@ -79,7 +79,9 @@ const SlidingTextInputWithCancel = ({ placeholder, value, onChangeText, iconLeft
                Keyboard.dismiss();
             }}
          >
-            <Text className="text-palette-60 font-poppins-medium text-sm">Cancel</Text>
+            <Text className="text-palette-60 font-poppins-medium text-sm" disabled>
+               Cancel
+            </Text>
          </Pressable>
       </View>
    );

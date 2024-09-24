@@ -1,7 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
-import { View, Image, Text, SectionList, FlatList, ActivityIndicator } from 'react-native';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { View, Image, Text, SectionList, FlatList } from 'react-native';
 import useContext from '../../hooks/useContext';
+import usePlayer from '../../hooks/usePlayer';
 import { UserItem, TrackItem, PlaylistItem, AlbumItem } from '../../components/items';
+import SpinningLoader from '../../components/loaders/SpinningLoader';
 import SlidingTextInputWithCancel from '../../components/SlidingTextInputWithCancel';
 import PillBar from '../../components/PillBar';
 import services from '../../services';
@@ -11,8 +13,10 @@ import { TabIcons } from '../../../assets/images/icons';
 
 const DEFAULT_PILL = { label: 'All', queryType: [...constants.queryTypes], limit: 8 };
 
+// TODO: refactor
 const SearchScreen = () => {
    const { notify } = useContext();
+   const { play } = usePlayer();
    const [query, setQuery] = useState('');
    const [status, setStatus] = useState({ loading: false, queryDone: false });
    const [selectedPill, setSelectedPill] = useState(DEFAULT_PILL);
@@ -98,6 +102,22 @@ const SearchScreen = () => {
       }
    };
 
+   const [currentTrackId, setCurrentTrackId] = useState(null);
+   const abortController = useRef(0);
+   const handleTrackPress = async track => {
+      if (currentTrackId !== track.id) setCurrentTrackId(track.id);
+      if (abortController.current) abortController.current.abort();
+
+      abortController.current = new AbortController();
+
+      try {
+         await play(track, null, { signal: abortController.current.signal });
+      } catch (e) {
+         if (e.message === 'AbortError') return;
+         notify('oopsie-daisy! something went wrong..', 'error');
+      }
+   };
+
    const renderResult = useCallback(
       ({ item, section }) => {
          const type = section?.key || selectedPill.label.toLowerCase();
@@ -106,7 +126,8 @@ const SearchScreen = () => {
             case 'users':
                return <UserItem item={item} onAdd={() => {}} onGeneralPress={() => {}} />;
             case 'tracks':
-               return <TrackItem item={item} onMore={() => {}} onGeneralPress={() => {}} />;
+               const isPlaying = currentTrackId === item.id;
+               return <TrackItem item={item} onMore={() => {}} onGeneralPress={handleTrackPress} isPlaying={isPlaying} />;
             case 'playlists':
                return <PlaylistItem item={item} onMore={() => {}} onGeneralPress={() => {}} />;
             case 'albums':
@@ -115,7 +136,7 @@ const SearchScreen = () => {
                return null;
          }
       },
-      [selectedPill]
+      [selectedPill, currentTrackId]
    );
 
    const renderEmptyResults = useCallback(() => {
@@ -138,7 +159,7 @@ const SearchScreen = () => {
       };
 
       return section.data.length > 0 ? (
-         <View className="w-[100%] justify-between items-center mt-4 flex-row">
+         <View className="w-[100%] justify-between items-center mt-3 flex-row px-5 mb-1.5">
             <Text className="font-poppins-semibold text-xl text-palette-40">{section.key.charAt(0).toUpperCase() + section.key.slice(1)}</Text>
 
             <Text className="font-poppins text-extras-40 text-xs underline" onPress={() => handlePillPress(pillMap[section.key])}>
@@ -161,8 +182,8 @@ const SearchScreen = () => {
          renderSectionHeader={renderSectionHeader}
          showsVerticalScrollIndicator={false}
          stickySectionHeadersEnabled={false}
-         contentContainerStyle={{ paddingBottom: 160 }}
-         className="w-[90%]"
+         contentContainerStyle={{ paddingBottom: currentTrackId ? 210 : 160 }}
+         className="w-[100%]"
       />
    );
 
@@ -171,12 +192,12 @@ const SearchScreen = () => {
          data={results[selectedPill.label.toLowerCase()] || []}
          keyExtractor={item => item.id}
          renderItem={renderResult}
-         contentContainerStyle={{ paddingBottom: 160 }}
+         contentContainerStyle={{ paddingBottom: currentTrackId ? 210 : 160 }}
          showsVerticalScrollIndicator={false}
-         className="w-[90%]"
+         className="w-[100%]"
          onEndReached={handleLoadMore}
          onEndReachedThreshold={0.5}
-         ListFooterComponent={isFetchingMore ? <ActivityIndicator size="small" color="#E36526" /> : null}
+         ListFooterComponent={isFetchingMore ? <SpinningLoader tintColor="#E36526" /> : null}
       />
    );
 
@@ -205,7 +226,7 @@ const SearchScreen = () => {
                onCancelPress={() => resetSearch(true)}
             />
 
-            {status.queryDone && query && (
+            {status.queryDone && query && !status.loading && (
                <PillBar
                   pills={[
                      { label: 'All', onPress: handlePillPress, queryType: [...constants.queryTypes], limit: 8 },
@@ -224,7 +245,7 @@ const SearchScreen = () => {
 
          {status.loading && (
             <View className="flex-1 justify-center items-center">
-               <ActivityIndicator size="small" color="#E36526" />
+               <SpinningLoader tintColor="#E36526" />
             </View>
          )}
 
