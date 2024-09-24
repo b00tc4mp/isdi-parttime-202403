@@ -1,16 +1,28 @@
+import Config from 'react-native-config';
 import { useEffect, useReducer, useMemo, useState, useRef } from 'react';
 import { StatusBar } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import StackNavigator from './navigation/StackNavigator';
+import usePlayer from './hooks/usePlayer';
 import { Context } from './hooks/useContext';
 import AuthContext from './context/AuthContext';
 import { RouteTitleProvider } from './context/RouteTitleContext';
 import ToastNotification from './components/ToastNotification';
-import services from './services';
+import services, { storage } from './services';
 import validate from 'com/validation';
 import { InvalidArgumentError } from 'com/errors';
 
+// TODO:
+//       check react-native-track-player to see if there is support for the new architecture (already on proper react-native and react versions)
+//       all packages are supported except react-native-track-player (to enable the new architecture react-native-track-player must support it)
+//
+//       when support is added for the new architecture and we enable it:
+//          upgrade mmkv to the latest version @3.x.x
+//          replace onLayout with useLayoutEffect to avoid visual jumping (already avoided but this would be a cleaner aproach)
+//
+
 const App = () => {
+   const { setup } = usePlayer();
    const [message, setMessage] = useState('');
    const [type, setType] = useState('wrong');
 
@@ -39,32 +51,16 @@ const App = () => {
       (prevState, action) => {
          switch (action.type) {
             case 'RESTORE_TOKEN':
-               return {
-                  ...prevState,
-                  userToken: action.token,
-                  isLoading: false
-               };
+               return { ...prevState, userToken: action.token, isLoading: false };
             case 'SIGN_IN':
-               return {
-                  ...prevState,
-                  isSignout: false,
-                  userToken: action.token
-               };
+               return { ...prevState, isSignout: false, userToken: action.token };
             case 'SIGN_OUT':
-               return {
-                  ...prevState,
-                  isSignout: true,
-                  userToken: null
-               };
+               return { ...prevState, isSignout: true, userToken: null };
             default:
                return prevState;
          }
       },
-      {
-         isLoading: true,
-         isSignout: false,
-         userToken: null
-      }
+      { isLoading: true, isSignout: false, userToken: null }
    );
 
    useEffect(() => {
@@ -72,9 +68,17 @@ const App = () => {
          let userToken;
 
          try {
-            userToken = await SecureStore.getItemAsync('userToken');
+            userToken = await SecureStore.getItemAsync(Config.USER_TOKEN_KEY);
          } catch {
             notify('Token restore failed', 'warning');
+            return;
+         }
+
+         try {
+            // Setup track player
+            await setup();
+         } catch {
+            notify('Player setup failed', 'warning');
             return;
          }
 
@@ -83,7 +87,8 @@ const App = () => {
                validate.token(userToken);
             } catch {
                try {
-                  await SecureStore.deleteItemAsync('userToken');
+                  await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
+                  storage.clearAll();
                } catch {
                   notify('Failed to clear token', 'error');
                   return;
@@ -92,11 +97,10 @@ const App = () => {
                return;
             }
 
-            //  TODO: api call to get user preferences / settings and username
-            // Store them in async storage and save for later use
+            // TODO: Fetch user preferences/settings & store them in mmkv storage
          }
 
-         notify('Token restore successful', 'info');
+         notify('Session restore successful', 'info');
          dispatch({ type: 'RESTORE_TOKEN', token: userToken });
       })();
    }, []);
@@ -120,7 +124,7 @@ const App = () => {
             }
 
             try {
-               await SecureStore.setItemAsync('userToken', token);
+               await SecureStore.setItemAsync(Config.USER_TOKEN_KEY, token);
             } catch {
                notify('Something went wrong signing in', 'error');
                return false;
@@ -133,7 +137,7 @@ const App = () => {
             let token;
 
             try {
-               token = await SecureStore.getItemAsync('userToken');
+               token = await SecureStore.getItemAsync(Config.USER_TOKEN_KEY);
             } catch {
                notify('Oops. Something went wrong', 'error');
                return;
@@ -144,7 +148,8 @@ const App = () => {
                   validate.token(token); // log validation ?
                } catch {
                   try {
-                     await SecureStore.deleteItemAsync('userToken');
+                     await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
+                     storage.clearAll();
                   } catch {
                      notify('Failed to clear token', 'error');
                      return;
@@ -165,11 +170,13 @@ const App = () => {
             }
 
             try {
-               await SecureStore.deleteItemAsync('userToken');
+               await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
+               storage.clearAll();
             } catch {
                notify("Oops. Couldn't sign you out");
                return;
             }
+
             dispatch({ type: 'SIGN_OUT' });
          },
          signUp: async data => {
@@ -195,7 +202,7 @@ const App = () => {
             }
 
             try {
-               await SecureStore.setItemAsync('userToken', token);
+               await SecureStore.setItemAsync(Config.USER_TOKEN_KEY, token);
             } catch {
                notify('Sign up failed; Try again later', 'error');
                return false;

@@ -6,6 +6,7 @@ import { registerRootComponent } from 'expo';
 import { verifyInstallation } from 'nativewind';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import usePlayer from './src/hooks/usePlayer';
 import App from './src/App';
 
 /* 
@@ -25,8 +26,11 @@ import App from './src/App';
 */
 
 const Root = () => {
+   const { register } = usePlayer();
+
    useEffect(() => {
       verifyInstallation();
+      register();
    }, []);
 
    return (
