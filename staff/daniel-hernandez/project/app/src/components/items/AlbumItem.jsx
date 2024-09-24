@@ -1,7 +1,8 @@
 import { View, Image, Text, Pressable } from 'react-native';
+import { ItemIcons } from '../../../assets/images/icons';
 
 const AlbumItem = ({ item, onMore, onGeneralPress }) => (
-   <Pressable key={item.id} className="mt-3 flex-row items-start w-[100%]" onPress={() => onGeneralPress(item)}>
+   <Pressable key={item.id} className="py-2 flex-row items-start w-[100%] px-5" onPress={() => onGeneralPress(item)}>
       <Image source={item.coverArt ? { uri: item.coverArt } : require('../../../assets/images/extras/unknown.png')} className="w-16 h-16 rounded-sm mr-3" />
 
       <View className="flex-1 justify-start mx-auto">
@@ -21,7 +22,7 @@ const AlbumItem = ({ item, onMore, onGeneralPress }) => (
             onMore(item);
          }}
       >
-         <Image source={require('../../../assets/images/extras/more.png')} className="self-center h-1 w-5 my-auto" resizeMode="contain" />
+         <Image source={ItemIcons.moreIcon} className="self-center h-1 w-5 my-auto" resizeMode="contain" />
       </Pressable>
    </Pressable>
 );

@@ -1,7 +1,9 @@
 import { View, Image, Text, Pressable } from 'react-native';
+import BouncingDotsLoader from '../loaders/BouncingDotsLoader';
+import { ItemIcons } from '../../../assets/images/icons';
 import formatSeconds from '../../utils/formatSeconds';
 
-const TrackItem = ({ item, onMore, onGeneralPress }) => {
+const TrackItem = ({ item, onMore, onGeneralPress, isPlaying }) => {
    const artistsDisplay =
       item.artists.length > 2
          ? `${item.artists
@@ -11,8 +13,13 @@ const TrackItem = ({ item, onMore, onGeneralPress }) => {
          : item.artists.map(artist => artist.username).join(', ');
 
    return (
-      <Pressable key={item.id} className="mt-3 flex-row items-start w-[100%]" onPress={() => onGeneralPress(item)}>
-         <Image source={item.coverArt ? { uri: item.coverArt } : require('../../../assets/images/extras/unknown.png')} className="w-16 h-16 rounded-sm mr-3" />
+      <Pressable key={item.id} className="py-2 flex-row items-start w-[100%] px-5 active:bg-palette-80 bg-palette-90" onPress={() => onGeneralPress(item)}>
+         <View className="w-16 h-16 rounded-sm mr-3 justify-center">
+            {isPlaying && <BouncingDotsLoader className="absolute" />}
+
+            <Image source={item.coverArt ? { uri: item.coverArt } : require('../../../assets/images/extras/unknown.png')} className="w-16 h-16 rounded-sm mr-3" />
+            {isPlaying && <View className="absolute top-0 left-0 w-full h-full bg-palette-100 opacity-50 rounded-sm" />}
+         </View>
 
          <View className="flex-1 justify-start mx-auto">
             <Text className="text-palette-40 font-spacemono-bold text-sm" numberOfLines={1} ellipsizeMode="tail">
@@ -32,7 +39,7 @@ const TrackItem = ({ item, onMore, onGeneralPress }) => {
                onMore(item);
             }}
          >
-            <Image source={require('../../../assets/images/extras/more.png')} className="self-center h-1 w-5 my-auto" resizeMode="contain" />
+            <Image source={ItemIcons.moreIcon} className="self-center h-1 w-5 my-auto" resizeMode="contain" />
          </Pressable>
       </Pressable>
    );
