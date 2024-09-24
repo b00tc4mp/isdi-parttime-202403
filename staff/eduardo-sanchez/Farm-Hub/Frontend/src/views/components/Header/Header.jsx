@@ -9,7 +9,7 @@ import './Header.css';
 import InfoIcon from '../../../icons/info.png';
 import LogoutIcon from '../../../icons/logout.png';
 
-import UserInfoMenu from '../UserInfoMenu';
+import UserInfoMenu from '../UserInfoMenu/UserInfoMenu';
 import SearchBox from '../SearchBox/SearchBox';
 // import Link from '../../../components/core/Link'
 

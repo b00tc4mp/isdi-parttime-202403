@@ -1,67 +1,3 @@
-/* @tailwind components;
-
-@layer components {
-    .MyAccountContainer {
-        @apply flex flex-col mx-auto p-6 bg-white rounded-lg shadow-md;
-    }
-
-    .MyAccountName {
-        @apply text-xl text-green-700 font-bold p-1;
-    }
-
-    .MyAccountSurname {
-        @apply text-xl text-green-600 font-bold p-1;
-    }
-
-    .MyAccountEmail {
-        @apply text-xl text-green-700 font-bold p-1;
-    }
-
-    .MyAccountUsername {
-        @apply text-xl text-green-600 font-bold p-1;
-    }
-} */
-
-/* //////////////////////// */
-
-/* @tailwind components;
-
-@layer components {
-    .MyAccountContainer {
-        @apply flex flex-col max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-8;
-    }
-
-    .MyAccountFields {
-        @apply flex flex-col mb-4 text-sm font-medium text-black;
-    }
-
-    /* .MyAccountLabel {
-        @apply text-sm font-medium text-gray-600 mb-1;
-    } */
-
-/* .MyAccountValue {
-        @apply text-lg font-semibold text-gray-800 p-2 bg-gray-100 rounded;
-    } */
-
-/*  .NameValue {
-        @apply text-green-700;
-    }
-
-    .MyAccountSurname .SurnameValue {
-        @apply text-green-600;
-    }
-
-    .MyAccountEmail .EmailValue {
-        @apply text-blue-600;
-    }
-
-    .MyAccountUsername .UsernameValue {
-        @apply text-purple-600;
-    }
-} */
-
-/* ///////////////////////// */
-
 @tailwind components;
 
 @layer components {
@@ -73,15 +9,11 @@
         @apply flex flex-col items-center py-3 border-b border-gray-200;
     }
 
-    /* .MyAccountField:last-child {
-        @apply border-b-0;
-    } */
-
     .MyAccountLabel {
-        @apply text-lg font-semibold text-orange-700 p-1;
+        @apply text-lg font-semibold text-green-700 p-1;
     }
 
     .MyAccountValue {
-        @apply text-lg text-green-600 p-1;
+        @apply text-lg text-orange-700 p-1 font-bold;
     }
 }
