@@ -1,18 +1,14 @@
 import Config from 'react-native-config';
 import * as SecureStore from 'expo-secure-store';
 import validate from 'com/validation';
-import constants from 'com/constants';
 import errors, { FetchError, ParseError, RetrievalError } from 'com/errors';
 
-const search = (query, types = [], limit = constants.DEFAULT_LIMIT, page = 1) => {
-   validate.inputs(query, types, limit, page);
-   validate.query(query);
-   validate.queryTypes(types);
-   validate.limit(limit);
-   validate.page(page);
+const player = (id, { signal } = {}) => {
+   validate.inputs(id);
+   validate.objectId(id);
 
    return (async () => {
-      let userToken, res, body, queryObj;
+      let res, userToken, info;
 
       try {
          userToken = await SecureStore.getItemAsync(Config.USER_TOKEN_KEY);
@@ -23,21 +19,25 @@ const search = (query, types = [], limit = constants.DEFAULT_LIMIT, page = 1) =>
       if (!userToken) throw new RetrievalError('No token found');
 
       try {
-         res = await fetch(`${Config.API_URL}/api/v1/search?${new URLSearchParams({ q: query, types: types.join(','), limit: limit.toString(), page: page.toString() }).toString()}`, {
-            headers: { Authorization: `Bearer ${userToken}` }
+         res = await fetch(`${Config.API_URL}/api/v1/player`, {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${userToken}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ track: id }),
+            ...(signal && { signal })
          });
       } catch (error) {
+         if (signal?.aborted) throw new Error('AbortError');
          throw new FetchError(`Fetch failed: ${error.message}`);
       }
 
       if (res.status === 200) {
          try {
-            queryObj = await res.json();
+            info = await res.json();
          } catch (error) {
-            throw new ParseError(`Query object parse failed: ${error.message}`);
+            throw new ParseError(`Failed to parse player info: ${error.message}`);
          }
 
-         return queryObj;
+         return { ...info, token: userToken };
       }
 
       try {
@@ -47,10 +47,10 @@ const search = (query, types = [], limit = constants.DEFAULT_LIMIT, page = 1) =>
       }
 
       const { error, message } = body;
-      const constructor = errors[error];
+      constructor = errors[error];
 
       throw new constructor(message);
    })();
 };
 
-export default search;
+export default player;

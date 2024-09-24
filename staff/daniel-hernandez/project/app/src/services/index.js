@@ -2,10 +2,14 @@ import signIn from './auth/signIn';
 import signUp from './auth/signUp';
 import signOut from './auth/signOut';
 import checkEmail from './auth/checkEmail';
-import search from './search';
-import stream from './stream';
 
-export { signIn, signUp, signOut, checkEmail, search, stream };
+import search from './search';
+import { storage } from './storage.js';
+
+import { playback } from './playback';
+import player from './player.js';
+
+export { signIn, signUp, signOut, checkEmail, search, storage, playback, player };
 
 export default {
    signIn,
@@ -13,5 +17,7 @@ export default {
    signOut,
    checkEmail,
    search,
-   stream
+   storage,
+   playback,
+   player
 };
