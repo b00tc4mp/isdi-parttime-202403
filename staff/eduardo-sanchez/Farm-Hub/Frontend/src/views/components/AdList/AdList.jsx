@@ -6,7 +6,7 @@ import logic from '../../../logic';
 import './AdList.css';
 
 function AdList({ searchText, userLocation }) {
-    const { lat, lng } = userLocation || {};
+    // const { lat, lng } = userLocation || {};
 
     const navigate = useNavigate();
 
@@ -15,21 +15,27 @@ function AdList({ searchText, userLocation }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log('Home -> useEffect');
+        console.log('Home -> AdList', searchText);
 
         setIsLoading(true);
         if (searchText) {
-            loadFilteredAds(searchText, { lat, lng });
+            loadFilteredAds(searchText);
         } else {
             loadAds();
         }
-    }, [searchText, lat, lng]);
+    }, [searchText, userLocation]);
 
-    const loadFilteredAds = (searchText, location) => {
-        console.log('search:', searchText, 'location:', location);
+    // useEffect(() => {
+    //     console.log('searchText changed:', searchText);
+
+    //     loadFilteredAds(searchText);
+    // }, [searchText]);
+
+    const loadFilteredAds = (searchText) => {
+        console.log('search:', searchText);
         try {
             logic
-                .searchAds(searchText, location)
+                .searchAds(searchText, userLocation)
                 .then((searchedAds) => {
                     setAds(searchedAds);
                     setIsLoading(false);
@@ -75,7 +81,7 @@ function AdList({ searchText, userLocation }) {
     if (!ads || ads.length === 0) {
         return (
             <p className="AdListEmpty">
-                There are no ads within your search parameters
+                There are no ads within your search parameters or proximity
             </p>
         );
     }

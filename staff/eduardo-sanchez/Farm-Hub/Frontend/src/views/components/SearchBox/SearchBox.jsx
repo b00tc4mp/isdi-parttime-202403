@@ -3,11 +3,13 @@ import backArrow from '../../../icons/backArrow.png';
 
 import logic from '../../../logic';
 
+import { getUserLocation } from '../../../utils/getUserLocation';
+
 import './SearchBox.css';
 
 function SearchBox({ onSearch, initialSearchText }) {
     const [searchText, setSearchText] = useState(initialSearchText || ''); // state for searching text
-    const [userLocation, setUserLocation] = useState(null); // state for user location
+    // const [userLocation, setUserLocation] = useState(null); // state for user location
 
     useEffect(() => {
         setSearchText(initialSearchText || '');
@@ -15,38 +17,37 @@ function SearchBox({ onSearch, initialSearchText }) {
 
     useEffect(() => {
         getUserLocation();
-    }, []);
-
-    const getUserLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setUserLocation({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    });
-                },
-                (error) => {
-                    console.error('Error getting user location:', error);
-                }
-            );
-        } else {
-            console.error('Geolocation is not supported by this browser.');
-        }
-    };
+    }, [searchText]);
+    // const getUserLocation = () => {
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(
+    //             (position) => {
+    //                 setUserLocation({
+    //                     lat: position.coords.latitude,
+    //                     lng: position.coords.longitude,
+    //                 });
+    //             },
+    //             (error) => {
+    //                 console.error('Error getting user location:', error);
+    //             }
+    //         );
+    //     } else {
+    //         console.error('Geolocation is not supported by this browser.');
+    //     }
+    // };
 
     const handleClearSearch = () => {
         setSearchText('');
-        onSearch('', userLocation);
+        onSearch('');
     };
 
     const handleSearchSubmit = (event) => {
         event.preventDefault();
-        onSearch(searchText, userLocation);
+        onSearch(searchText);
     };
 
     const handleSearchChange = (event) => {
-        console.log(event.target.value);
+        console.log('onchange: ', event.target.value);
         setSearchText(event.target.value);
     };
 
