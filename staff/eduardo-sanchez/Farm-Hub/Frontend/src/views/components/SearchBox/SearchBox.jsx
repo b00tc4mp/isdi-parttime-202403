@@ -7,7 +7,7 @@ import { getUserLocation } from '../../../utils/getUserLocation';
 
 import './SearchBox.css';
 
-function SearchBox({ onSearch, initialSearchText }) {
+function SearchBox({ onSearch, initialSearchText, onLocationUpdate }) {
     const [searchText, setSearchText] = useState(initialSearchText || ''); // state for searching text
     // const [userLocation, setUserLocation] = useState(null); // state for user location
 
@@ -16,25 +16,19 @@ function SearchBox({ onSearch, initialSearchText }) {
     }, [initialSearchText]);
 
     useEffect(() => {
-        getUserLocation();
-    }, [searchText]);
-    // const getUserLocation = () => {
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(
-    //             (position) => {
-    //                 setUserLocation({
-    //                     lat: position.coords.latitude,
-    //                     lng: position.coords.longitude,
-    //                 });
-    //             },
-    //             (error) => {
-    //                 console.error('Error getting user location:', error);
-    //             }
-    //         );
-    //     } else {
-    //         console.error('Geolocation is not supported by this browser.');
-    //     }
-    // };
+        fetchUserLocation();
+    }, []);
+
+    const fetchUserLocation = () => {
+        getUserLocation()
+            .then((location) => {
+                console.log('Home -> setUserLocation');
+                onLocationUpdate(location);
+            })
+            .catch((error) => {
+                console.error('Error getting user location:', error);
+            });
+    };
 
     const handleClearSearch = () => {
         setSearchText('');
@@ -79,3 +73,60 @@ function SearchBox({ onSearch, initialSearchText }) {
 }
 
 export default SearchBox;
+
+//////////////////////////////////////
+/*
+import { useEffect, useState } from 'react';
+import backArrow from '../../../icons/backArrow.png';
+import './SearchBox.css';
+
+function SearchBox({ onSearch, initialSearchText }) {
+    const [searchText, setSearchText] = useState(initialSearchText || '');
+
+    useEffect(() => {
+        setSearchText(initialSearchText || '');
+    }, [initialSearchText]);
+
+    const handleClearSearch = () => {
+        setSearchText('');
+        onSearch('');
+    };
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        onSearch(searchText);
+    };
+
+    const handleSearchChange = (event) => {
+        setSearchText(event.target.value);
+    };
+
+    return (
+        <form className="SearchBox" onSubmit={handleSearchSubmit}>
+            <div className="SearchBoxContainer">
+                {searchText && (
+                    <img
+                        src={backArrow}
+                        width={24}
+                        alt="Clear Search"
+                        className="ClearButton"
+                        onClick={handleClearSearch}
+                    />
+                )}
+                <input
+                    className="SearchBoxInput"
+                    type="text"
+                    value={searchText}
+                    onChange={handleSearchChange}
+                    placeholder="Search Product"
+                />
+                <button type="submit" className="SearchBoxButton">
+                    Search
+                </button>
+            </div>
+        </form>
+    );
+}
+
+export default SearchBox;
+*/
