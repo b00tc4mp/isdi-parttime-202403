@@ -11,7 +11,7 @@ const createAd = (title, description, price, contactInfo, geoLocation) => {
 
     // throw new SystemError('not implemented')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/ads`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/ads/createAd/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

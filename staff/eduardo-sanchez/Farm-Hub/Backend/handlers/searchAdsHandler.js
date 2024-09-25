@@ -16,7 +16,7 @@ export default (req, res, next) => {
 
                 const { searchText } = req.params;
 
-                const { lat, lng } = req.query;
+                const { lat, lng, maxDistance = 50 } = req.query;
 
                 const userLocation =
                     lat && lng
@@ -28,7 +28,7 @@ export default (req, res, next) => {
 
                 try {
                     logic
-                        .searchAds(searchText, userLocation)
+                        .searchAds(searchText, userLocation, maxDistance)
                         .then((ads) => res.json(ads))
                         .catch((error) => next(error));
                 } catch (error) {

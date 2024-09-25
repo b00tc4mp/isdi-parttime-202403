@@ -10,14 +10,14 @@ const createAd = (
     contactInfo,
     geoLocation
 ) => {
-    console.log('test', {
-        userId,
-        title,
-        description,
-        price,
-        contactInfo,
-        geoLocation,
-    });
+    // console.log('test', {
+    //     userId,
+    //     title,
+    //     description,
+    //     price,
+    //     contactInfo,
+    //     geoLocation,
+    // });
     validate.id(userId, 'userId');
     validate.text(title, 'title', 50);
     validate.text(description, 'description', 200);
@@ -25,7 +25,7 @@ const createAd = (
     validate.contactInfo(contactInfo, 'contactInfo');
     validate.geoLocation(geoLocation, 'geoLocation');
 
-    console.log('geoLocation', geoLocation);
+    // console.log('geoLocation', geoLocation);
 
     return User.findById(userId)
         .lean()
@@ -35,7 +35,7 @@ const createAd = (
         .then((user) => {
             if (!user) throw new NotFoundError('user not found');
 
-            console.log('user: ', user);
+            // console.log('user: ', user);
 
             const ad = {
                 author: userId,

@@ -41,7 +41,7 @@ mongoose
 
         api.post('/users/auth', jsonBodyParser, authenticateUserHandler);
 
-        api.post('/ads', jsonBodyParser, createAdHandler);
+        api.post('/ads/createAd', jsonBodyParser, createAdHandler);
 
         api.get('/ads', getAllAdsHandler);
 
