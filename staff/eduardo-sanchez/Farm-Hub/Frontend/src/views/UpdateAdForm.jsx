@@ -151,11 +151,19 @@ export function UpdateAdForm() {
                     />
                 </div>
 
-                <Button type={'submit'} onClick={handleUpdateAd}>
+                <Button
+                    type={'submit'}
+                    onClick={handleUpdateAd}
+                    className="UpdateAdFormButton"
+                >
                     Update
                 </Button>
                 <p></p>
-                <Button type={'button'} onClick={handleCancelUpdateAd}>
+                <Button
+                    type={'button'}
+                    onClick={handleCancelUpdateAd}
+                    className="UpdateAdFormButton"
+                >
                     Cancel
                 </Button>
             </form>

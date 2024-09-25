@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react';
 import { Ad } from '../Ad/Ad';
 import { Time } from '../../../components/core/Time/Time';
 import logic from '../../../logic';
+
+import useContext from '../../../useContext';
 import './AdList.css';
 
 function AdList({ searchText, userLocation }) {
     // const { lat, lng } = userLocation || {};
+
+    const { alert } = useContext();
 
     const navigate = useNavigate();
 

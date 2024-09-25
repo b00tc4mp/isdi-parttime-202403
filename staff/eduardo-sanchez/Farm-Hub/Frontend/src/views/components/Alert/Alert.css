@@ -2,7 +2,7 @@
 
 @layer components {
     .Alert {
-        @apply absolute top-40 w-full flex justify-center;
+        @apply absolute top-40 w-full flex justify-center text-red-800 font-bold;
     }
 
     .AlertBox {
@@ -10,6 +10,6 @@
     }
 
     .Alert .Button {
-        @apply px-[.6em] bg-white text-[1rem] border-[1px] border-blue-500 mt-6;
+        @apply px-[.6em] bg-white text-[1rem] border-[1px] border-blue-500 mt-6 text-black;
     }
 }

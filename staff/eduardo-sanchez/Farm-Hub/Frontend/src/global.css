@@ -5,47 +5,41 @@
 @tailwind utilities;
 
 @layer base {
+    #root {
+        @apply h-screen w-full;
+    }
 
-  #root {
-    @apply h-screen w-full;
-  }
+    :root {
+        @apply max-w-screen-xl mx-auto text-center flex justify-center items-center text-green-600 bg-white;
+    }
 
-  :root {
-    @apply max-w-screen-xl mx-auto text-center flex justify-center items-center text-green-600 bg-white;
-  }
+    * {
+        font-family: Workbench;
+        color: var(--first-color);
+    }
 
-  * {
-    font-family: Workbench;
-    color: var(--first-color);
+    body {
+        @apply flex h-screen w-full items-center justify-center align-middle;
 
-  }
+        /* @apply m-0 flex justify-center items-center; */
 
-  body {
-    @apply flex h-screen w-full items-center justify-center align-middle;
+        /* @apply flex h-screen w-full items-center justify-center */
+        /* bg-yellow-100 */
+        /* bg-green-50 */
+    }
 
-    /* @apply m-0 flex justify-center items-center; */
+    h1 {
+        @apply text-xl font-bold text-gray-700;
+    }
 
-    /* @apply flex h-screen w-full items-center justify-center */
-    /* bg-yellow-100 */
-    /* bg-green-50 */
-  }
+    .Link {
+        @apply text-black underline;
+    }
 
-  h1 {
-    @apply text-xl font-bold text-gray-700;
-
-  }
-
-  .Link {
-    @apply text-black underline;
-
-  }
-
-  .ErrorMessage {
-    @apply flex justify-center text-red-500;
-  }
-
+    .ErrorMessage {
+        @apply flex justify-center text-red-500;
+    }
 }
-
 
 /* :root {
     max-width: 1280px;
@@ -59,7 +53,6 @@
     --second-color: white;
   } */
 
-
 /* body {
     background-color: var(--second-color);
     margin: 0;
@@ -69,9 +62,7 @@
     text-justify: center;
   } */
 
-
 /*///////////////////////////////*/
-
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

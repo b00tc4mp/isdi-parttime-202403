@@ -11,9 +11,13 @@
         @apply p-[.4rem] bg-gray-100 text-[1rem] border-[1px] border-blue-500 w-[150px] h-[200px] rounded-xl shadow-md;
     }
 
+    .Confirm p {
+        @apply text-center text-green-700 font-bold;
+    }
+
     .Confirm .Button {
         /* @apply m-4 w-36; */
-        @apply px-[.6em] bg-white text-[1rem] border-[1px] border-blue-500 mt-3;
+        @apply px-[.6em] bg-white text-[1rem] border-[1px] border-blue-500 mt-3 text-black font-bold;
     }
 
     /* .Confirm {

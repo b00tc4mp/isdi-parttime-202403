@@ -17,9 +17,17 @@
         @apply text-lg text-orange-700 p-1 font-bold text-center box-border border-2 border-gray-200 rounded-lg w-fit;
     }
 
-    .UpdateAdFormMessage {
-        @apply text-red-500 text-center mt-2;
+    /* .Button.UpdateAdFormButton {
+        @apply mt-2 border-[1px] text-black px-4 py-2 border-blue-500 rounded hover:text-green-800 transition-colors;
+    } */
+
+    .UpdateAdFormButton {
+        @apply mt-4 px-4 border-[1px] text-black py-2 border-blue-500 rounded hover:text-green-800 transition-colors;
     }
+
+    /* .UpdateAdFormMessage {
+        @apply text-red-500 text-center mt-2;
+    } */
 }
 
 /* .UpdateAdFormButtons {
