@@ -1,0 +1,25 @@
+@tailwind components;
+
+@layer components {
+  .ReferenceDiv {
+    @apply bg-white flex flex-row justify-center w-full;
+  }
+  .InputDiv {
+    @apply flex flex-col items-center text-center;
+  }
+  .ButtonReferenceDiv {
+    @apply flex;
+  }
+  .ReferenceLabel {
+    @apply text-black font-bold text-xl text-center;
+  }
+  .InputReference {
+    @apply text-black text-xl bg-transparent text-center;
+  }
+  .ButtonReference {
+    @apply text-3xl;
+  }
+  .ButtonReference:hover {
+    @apply bg-gray-50;
+  }
+}

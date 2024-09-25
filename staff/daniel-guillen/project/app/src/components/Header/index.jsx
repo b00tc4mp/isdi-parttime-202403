@@ -7,71 +7,67 @@ import bienvenido from '../img/bienvenido.png'
 import logoutIcon from '../img/logoutIcon.png'
 // logic
 import logoutUser from '../../logic/logoutUser'
+import fetchUserName from '../../logic/getUserName'
 
 const Header = () => {
-
   const navigate = useNavigate()
-  const token = sessionStorage.getItem('token')
+  const token = sessionStorage.getItem('token') // obtener token
 
   const [username, setUsername] = useState('')
   const [error, setError] = useState('')
   const [showLogoutIcon, setShowLogoutIcon] = useState(true)
 
+  // boton logout
   const handleLogout = () => {
     logoutUser()  // eliminamos el token
+    alert('Hasta pronto!👋')
     navigate('/Login')  // redirecciona a /Login
   }
 
-  useEffect(() => {
-    if (!token) return; // si no hay token, no buscamos username
-
-    // Obtener username
-    const fetchUserName = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}users/getUserName`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`, // enviar token
-            'Content-Type': 'application/json'
-          }
-        })
-
-        if (!response.ok) {
-          throw new Error('Error al obtener username')
+    // Efecto 'magico' boton logout
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 0) {
+          setShowLogoutIcon(false)
+        } else {
+          setShowLogoutIcon(true)
         }
+      }
+  
+      window.addEventListener('scroll', handleScroll)
+  
+      return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
-        const data = await response.json()
-        setUsername(data.username)
+  // monitorizamos el token y redirigir si es necesario
+  useEffect(() => {
+    // Si no hay token, hacer logout y redirigir al login
+    if (!token) {
+      logoutUser()
+      navigate('/Login')
+    }
+  }, [token, navigate])
 
+  // obtener el username
+  useEffect(() => {
+    const getUserName = async () => {
+      try {
+        const username = await fetchUserName(token)
+        setUsername(username)
       } catch (err) {
-        console.error('Error al obtener el nombre de usuario:', err)
         setError('Error en la solicitud')
       }
     }
 
-    fetchUserName()
-  }, [token])
-
-  // efecto para logout
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setShowLogoutIcon(false)
-      } else {
-        setShowLogoutIcon(true)
-      }
+    if (token) {
+      getUserName()
     }
-
-    window.addEventListener('scroll', handleScroll)
-
-    // desaparece al hacer scrooll
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [token])
 
   return (
     <div>
       <nav className='Nav'>
-        {token ? ( // Si hay token: mostrar nombre de usuario y boton logout de cerrar sesion
+        {token ? ( // si hay token: mostrar nombre de usuario y boton logout
           <div>
             <div className='logo'>
               <a href="/"><img src={logo} alt="Logo" /></a>
@@ -81,10 +77,8 @@ const Header = () => {
               <h1 style={{ color: 'orange' }}>Bienvenido <strong>{username}</strong>!</h1>
             </div>
           </div>
-
-        ) : ( // Si no hay token: mostrar bienvenido y enlace a login
+        ) : ( // si no hay token: mostrar bienvenido redirigir a login
           <div>
-
             <div className='logo'>
               <a href="#" onClick={() => navigate('/Login')}><img src={bienvenido} alt="Logo" /></a>
             </div>
@@ -100,7 +94,7 @@ const Header = () => {
         )}
       </nav>
 
-      {/* icono de cerrar sesión */}
+      {/* icono logout */}
       {token && showLogoutIcon && (
         <div className="logout-icon" onClick={handleLogout}>
           <img src={logoutIcon} alt="Cerrar sesión" />

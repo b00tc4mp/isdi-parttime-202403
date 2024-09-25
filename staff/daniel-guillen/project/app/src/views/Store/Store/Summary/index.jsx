@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 //components
-import GroupedWasteItem from '../../components/GroupedWasteItem'
-import MenuStore from '../../components/MenuStore'
+import GroupedWasteItem from '../../../../components/store/GroupedWasteItem'
+import MenuStore from '../../../../components/store/MenuStore'
 // logic
 import fetchStoredWaste from '../../../../logic/getWasteStored.js'
 // utils
@@ -23,21 +23,21 @@ const SummaryStore = () => {
 
     // Cargando...
     if (loading) {
-      return <p style={{ color: 'white', textAlign: 'center' }}>Cargando resumen de residuos en el almacén...</p>
+      return <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>Cargando resumen de residuos en el almacén...</p>
     }
   
     // Mensaje de error
     if (error) {
-      return <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
+      return <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
     }
 
   // agrupar, mostrar una sola iteracion y sumar el peso total por residuo
   const groupedItemCode = groupItemsByCode(data)
   
-    // ordenamos por código
-    const filteredItems = groupedItemCode.sort((a, b) => a.code.localeCompare(b.code))
+  // ordenamos por código
+  const filteredItems = groupedItemCode.sort((a, b) => a.code.localeCompare(b.code))
 
-      // Filtrar residuos estancados (status = 'ESTANCADO') y ordenar por código
+  // filtrar residuos estancados (status = 'ESTANCADO') y ordenar por código
   const stagnantList = data
   .filter(item => item.status === 'ESTANCADO')
   .sort((a, b) => a.code.localeCompare(b.code))
@@ -48,15 +48,13 @@ const SummaryStore = () => {
     
     <h1 className='RouteTitle'>RESUMEN</h1>
 
-    <div className='SummaryDiv'>
-
-      <h2 className='title'>Datos resumidos de Residuos:</h2>
+      <h2 className='Title'>Datos resumidos de Residuos:</h2>
 
       {filteredItems.map(item => (
         <GroupedWasteItem key={item.id} item={item} />
       ))}
 
-      <h2 className='title'>Residuos estancados:</h2>
+      <h2 className='Title'>Residuos estancados:</h2>
 
       {stagnantList.length > 0 ? (
         stagnantList.map(item => {
@@ -74,13 +72,11 @@ const SummaryStore = () => {
         <p style={{ color: 'white' }}>No hay residuos estancados este mes.</p>
       )}
 
-    </div>
-
       <MenuStore />
-      
+    
     </div>
 
-  );
-};
+  )
+}
 
-export default SummaryStore;
+export default SummaryStore

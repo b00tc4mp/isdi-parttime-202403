@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .SummaryWasteDataDiv {
+    @apply flex flex-col bg-white w-full text-2xl mb-1;
+  }
+}

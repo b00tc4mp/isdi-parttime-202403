@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+// components
 import Field from '../../../components/core/Field'
-import SubmitButton from '../../../components/core/SubmitButton'
+import Button from '../../../components/core/Button'
 import Title from '../../../components/core/Title'
 import FormWithFeedback from '../../../components/core/FormWithFeedback'
-
+import AccessControl from '../../../components/users/AccessControl'
+// errors
 import { SystemError } from '../../../../../com/errors'
-
+// logic
 import registerUser from '../../../logic/registerUser'
-import AccessControl from '../components/AccessControl'
+
 
 const RegisterUser = () => {
     const [message, setMessage] = useState('')
@@ -53,7 +54,7 @@ const RegisterUser = () => {
                 <Field id="password" type="password" placeholder="Contraseña" />
                 <Field id="passwordRepeat" type="password" placeholder="Repetir contraseña" />
                 <AccessControl valueAccess={valueAccess} handleAccessChange={handleAccessChange}/>
-                <SubmitButton>GUARDAR 💾</SubmitButton>
+                <Button>GUARDAR 💾</Button>
             </FormWithFeedback>
 
             <a className='menu-link' href="/Admin">VOLVER</a>

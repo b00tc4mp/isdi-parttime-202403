@@ -1,0 +1,27 @@
+@tailwind components;
+
+@layer components {
+  .FooterCheckList {
+    @apply flex flex-col text-center;
+  }
+  .ItemsToFix {
+    @apply bg-red-500 text-white mt-2 text-center leading-tight;
+  }
+
+  .Total {
+    @apply text-white font-bold text-center;
+  }
+  .InspectionNote {
+    @apply bg-white text-black font-bold mt-2 text-center;
+  }
+
+  textarea {
+    @apply w-full h-40 border-0 text-xl;
+  }
+  .SubmitInspection {
+    @apply bg-white;
+  }
+  .SubmitInspection:hover {
+    @apply bg-gray-500;
+  }
+}

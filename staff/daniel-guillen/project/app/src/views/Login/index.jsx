@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+// components
 import FormWithFeedback from "../../components/core/FormWithFeedback"
 import Field from "../../components/core/Field"
-import SubmitButton from "../../components/core/SubmitButton"
-// import Title from "../../components/core/Title"
+import Button from "../../components/core/Button"
+// logic
 import loginUser from "../../logic/loginUser"
 
 const Login = () => {
@@ -22,22 +23,20 @@ const Login = () => {
     try {
       await loginUser(username, password)
       alert(`Bienvenido ${username}!👋`)
-      navigate('/')  // Navega a la ruta raíz
+      navigate('/')  // redirecciona a pagina home
     } catch (error) {
       console.error(error)
-      setMessage(error.message)  // Establece el mensaje de error en el estado
+      setMessage(error.message)
       alert(error.message)
     }
   }
 
   return (
     <div className="container">
-      {/* <div className="RouteTitle"><Title>Por favor, identifíquese...</Title></div> */}
-    
       <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
         <Field id="username" placeholder="username">Nombre de Usuario</Field>
         <Field id="password" type="password" placeholder="password">Contraseña</Field>
-        <SubmitButton className="SubmitLogin">Login</SubmitButton>
+        <Button className="SubmitLogin">Login</Button>
       </FormWithFeedback>
     </div>
   )

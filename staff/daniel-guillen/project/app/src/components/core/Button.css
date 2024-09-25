@@ -1,9 +1,7 @@
-.Button {
-  text-align: center;
-  align-items: center;
-  background-color: transparent;
-  font-size: 30px;
-  border: 0;
-  cursor: pointer;
-  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+@tailwind components;
+
+@layer components {
+  .Button {
+    @apply cursor-pointer text-3xl text-center items-center;
+  }
 }

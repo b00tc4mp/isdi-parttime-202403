@@ -1,0 +1,28 @@
+@tailwind components;
+
+@layer components {
+  .RenderSection {
+    @apply flex flex-col;
+  }
+  .CheckList {
+    @apply grid grid-cols-[auto_auto];
+  }
+  .RadioGroup {
+    @apply flex flex-row items-center;
+  }
+  .ElementTitle {
+    @apply text-lg;
+  }
+  .StatusValue {
+    @apply text-sm px-1;
+  }
+  .CheckElement {
+    @apply flex flex-col border-2 text-center items-center;
+  }
+  .CheckElement.CORRECTO {
+    @apply bg-green-500 border-green-800;
+  }
+  .CheckElement.ARREGLAR {
+    @apply bg-red-500 border-red-800 text-white;
+  }
+}

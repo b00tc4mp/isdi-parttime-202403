@@ -1,0 +1,10 @@
+@tailwind components;
+
+@layer components {
+  .WasteSelectDiv {
+    @apply bg-white flex flex-col;
+  }
+  .WasteSelect {
+    @apply flex flex-col text-center text-2xl leading-none;
+  }
+}

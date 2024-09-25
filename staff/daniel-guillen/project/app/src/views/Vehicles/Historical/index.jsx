@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 import '../index.css'
+// components
+import Button from '../../../components/core/Button'
 // Images
 import VehicleSmall from '../../../components/img/VehicleSmall.jpg'
 import VehicleMedium from '../../../components/img/VehicleMedium.jpg'
@@ -13,6 +17,7 @@ import handleDeleteInspection from '../../../handlers/deleteInspectionHandle'
 const Historical = () => {
   const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
   const { vehicleId } = useParams() // esta info viene desde el registro
+  const navigate = useNavigate()
 
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
@@ -59,27 +64,29 @@ const Historical = () => {
   return (
     <div>
       {loading ? (
-        <p style={{ color: 'orange', textAlign: 'center' }}>Cargando inspecciones guardadas...</p>
+        <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem' }}>Cargando inspecciones guardadas...</p>
       ) : error ? (
-        <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
+        <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
       ) : data.length === 0 ? (
-        <p style={{ color: 'white', textAlign: 'center' }}>No se encontraron inspecciones para este vehículo.</p>
+        <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No se encontraron inspecciones para este vehículo.</p>
       ) : (
         <>
-          <div className='vehicle'>
-            <h2 className="title">Vehículo {vehicleId}:</h2>
+          <div className='VehicleHistorical'>
+            <h2 className="VehicleId">Vehículo {vehicleId}:</h2>
             {vehicleImg && <img src={vehicleImg} alt={`Imagen de vehículo ${vehicleSize}`} />}
+            <Button className='HistoricalLink' onClick={() => navigate('/Vehicles')}>⬅️REGISTRO</Button>
           </div>
 
           {data.map((item) => (
-            <div key={item.id} className='list'>
+            <div key={item.id} className='HistoricalList'>
              <button
                 className="deleteInspection"
                 onClick={() => handleDeleteInspection(item.id, token, vehicleId, setData, setLoading, setError)}
               >
                 <div className='Inspection'>
-                  <p>{item.worker.workerName} - {item.worker.date}</p>
-                  <p>{item.vehicle.model} - {item.vehicle.id}</p>
+                  <p className='bold'>Realizado por: {item.worker.workerName} en día: {item.worker.date}</p>
+                  <div className='HistorialItemToFix'>
+                  <h3>Elementos marcados para arreglar:</h3>
                   <ul className='itemFix'>
                     {item.inspection.itemFix.map((fix, index) => (
                       <li key={index}>
@@ -87,6 +94,7 @@ const Historical = () => {
                       </li>
                     ))}
                   </ul>
+                  </div>
                   <p className='notes'>{item.inspection.notes}</p>
                 </div>
               </button>
@@ -94,7 +102,6 @@ const Historical = () => {
           ))}
         </>
       )}
-      <a className='menu-link' href={'/Vehicles'}>VOLVER A REGISTRO</a>
     </div>
   )
 }

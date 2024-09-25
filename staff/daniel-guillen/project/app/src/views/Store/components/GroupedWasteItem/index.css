@@ -1,9 +1,0 @@
-.SummaryWasteDataDiv {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background: white;
-  font-size: large;
-  min-width: 370px;
-  border-bottom: grey 1px solid;
-}

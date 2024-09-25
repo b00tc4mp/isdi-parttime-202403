@@ -1,53 +1,28 @@
-.StoreWasteForm {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* background-color: rgb(240, 240, 240);
-  border-radius: 5px; */
-}
+@tailwind components;
 
-.StoreSelectWaste {
-  background: rgb(240, 240, 240);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 513px;
-  max-width: 513px;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-}
-
-.WeighStatusButtton.CORRECTO {
-  display: flex;
-  justify-content: center;
-  background: greenyellow;
-  width: 513px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.WeighStatusButtton.ESTANCADO {
-  display: flex;
-  justify-content: center;
-  color: white;
-  background: tomato;
-  width: 513px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.SubmitButtonWaste {
-  background: rgb(240, 240, 240);
-  border: 0;
-  padding: 0;
-  margin: 0;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.SubmitButtonWaste:hover {
-  border-radius: 50px;
-  background: orangered;
+@layer components {
+  .Stored {
+    @apply flex flex-col;
+  }
+  .StoreWasteForm {
+    @apply flex flex-col mx-1 my-0;
+  }
+  .StoreSelectWaste {
+    @apply flex bg-white w-full;
+  }
+  .WeighStatus {
+    @apply flex flex-row justify-center;
+  }
+  .WeighStatus.CORRECTO {
+    @apply bg-lime-300 text-black;
+  }
+  .WeighStatus.ESTANCADO {
+    @apply bg-red-400 text-white;
+  }
+  .SubmitButtonWaste.CORRECTO:hover {
+    @apply bg-lime-600 py-2;
+  }
+  .SubmitButtonWaste.ESTANCADO:hover {
+    @apply bg-red-800 py-2;
+  }
 }

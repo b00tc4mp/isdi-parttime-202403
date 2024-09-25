@@ -1,14 +1,7 @@
-.SearchWasteDiv {
-  margin-bottom: 50px;
-}
+@tailwind components;
 
-.SearchWasteDiv {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-}
-
-.DataWasteTitle {
-  margin: 0.5rem;
+@layer components {
+  .SearchWasteDiv {
+    @apply flex flex-col text-center;
+  }
 }

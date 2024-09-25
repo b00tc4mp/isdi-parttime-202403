@@ -1,26 +1,28 @@
-.VehiclesOptions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 50px;
-}
+@tailwind components;
 
-.ImageVehicles {
-  width: 100%;
-  max-width: 409px;
-  border-radius: 5px;
-  filter: none;
-  margin-top: 8px;
-  border: grey 2px solid;
-}
-.ImageVehicles:hover {
-  filter: grayscale(80%);
-  border: green 2px solid;
-}
-
-.Historical {
-  color: white;
+@layer components {
+  .VehicleInspection {
+    @apply flex flex-col mx-2;
+  }
+  .HistoricalLink {
+    @apply bg-white;
+  }
+  .VehicleHistorical {
+    @apply flex flex-col items-center bg-white mt-3 mx-2;
+  }
+  .VehicleId {
+    @apply text-black text-3xl;
+  }
+  .HistoricalList {
+    @apply flex flex-col m-2;
+  }
+  .Inspection {
+    @apply bg-gray-300;
+  }
+  .HistorialItemToFix {
+    @apply bg-red-400 text-white;
+  }
+  .bold {
+    @apply font-bold;
+  }
 }

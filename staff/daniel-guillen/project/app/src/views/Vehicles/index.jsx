@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 // Components
-import VehiclesSelect from './components/VehicleSelect'
-import InspectionFooter from './components/InspectionFooter'
-import InspectionSections from './components/InspectionSections'
+import Button from '../../components/core/Button'
+import VehiclesSelect from '../../components/vehicles/VehicleSelect'
+import InspectionFooter from '../../components/vehicles/InspectionFooter'
+import InspectionSections from '../../components/vehicles/InspectionSections'
 // Logic
 import getUserName from '../../logic/getUserName'
 import createInspection from '../../logic/createInspection'
@@ -115,7 +116,7 @@ const Vehicles = () => {
   }
 
   return (
-    <div className='VehiclesOptions'>
+    <div className='VehicleInspection'>
       <h1 className='RouteTitle'>INSPECCIÓN DE VEHÍCULOS</h1>
       
       <VehiclesSelect selectedVehicle={selectedVehicle} handleVehicleChange={handleVehicleChange} />
@@ -125,8 +126,11 @@ const Vehicles = () => {
         <h2 style={{ color: 'green' }}>Seleccione un vehículo...</h2>
       ) : (
         <>
-        <a className='menu-link' href={`/Vehicles/historical/${id}`}>HISTORIAL DE INSPECCIONES</a>
+          
+          <Button className='HistoricalLink' onClick={() => navigate(`/Vehicles/historical/${id}`)}>HISTORIAL📅</Button>
+
           <InspectionSections checkList={checkList} handleRadioChange={handleRadioChange} />
+          
           <InspectionFooter
             checkList={checkList}
             inspectionNote={inspectionNote}

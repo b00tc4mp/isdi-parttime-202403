@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 // Components
-import CodeSelect from '../../components/CodeSelect'
-import GroupedWasteItem from '../../components/GroupedWasteItem'
-import WasteList from '../../components/WasteList'
-import MenuStore from '../../components/MenuStore'
+import CodeSelect from '../../../../components/store/CodeSelect'
+import GroupedWasteItem from '../../../../components/store/GroupedWasteItem'
+import WasteList from '../../../../components/store/WasteList'
+import MenuStore from '../../../../components/store/MenuStore'
 // Utils
 import sortWasteItems from '../../../../utils/sortWasteItems'
 import calculateTotalWeight from '../../../../utils/calculateTotalWeight'
@@ -48,31 +48,31 @@ const Search = () => {
   const wasteTotalWeight = calculateTotalWeight(data)
 
   return (
-    <div className='container'>
+    <div className='SearchWasteDiv'>
       <h1 className='RouteTitle'>BUSCAR RESIDUO POR</h1>
       <CodeSelect selectedWaste={selectedWaste} handleCodeChange={handleCodeChange}/>
 
       {/* lista de residuos almacenados */}
       <div>
       {loading ? (
-            <p style={{ color: 'orange', textAlign: 'center' }}>Cargando datos de residuos...</p>
+            <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem'}}>Cargando datos de residuos...</p>
           ) : error ? (
-            <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
+            <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
           ) : data.length === 0 ? (
-            <p style={{ color: 'white', textAlign: 'center' }}>No hay residuos almacenados este mes.</p>
+            <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No hay residuos almacenados este mes.</p>
           ) : (
           <div>
-          <h2 className="title">Residuos almacenados {month}/{year}</h2>
+          <h2 className="Title">Peso total {month}/{year}</h2>
             {/* mostrar el residuo agrupado y su peso total */}
             <GroupedWasteItem item={wasteTotalWeight} />
-
+            <h2 className="Title">Lista al detalle {month}/{year}</h2>
             {/* mostrar la lista completa de residuos */}
             <WasteList data={sortedList} handleDeleteWaste={(id) => handleDeleteWaste(id, token, setData, setLoading, setError)} />
           </div>
         )}
       </div>
     
-      <MenuStore />
+      <MenuStore/>
     </div>
   )
 }

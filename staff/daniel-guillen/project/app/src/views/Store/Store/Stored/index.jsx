@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import './index.css'
 // Components
 import Button from '../../../../components/core/Button'
-import WasteSelect from '../../components/WasteSelect'
-import WasteContainer from '../../components/WasteContainer'
-import WasteStatus from '../../components/WasteStatus'
-import WasteWeight from '../../components/WasteWeight'
-import WasteList from '../../components/WasteList/index.jsx'
-import MenuStore from '../../components/MenuStore'
+import WasteSelect from '../../../../components/store/WasteSelect'
+import WasteContainer from '../../../../components/store/WasteContainer'
+import WasteStatus from '../../../../components/store/WasteStatus'
+import WasteWeight from '../../../../components/store/WasteWeight'
+import WasteList from '../../../../components/store/WasteList/index.jsx'
+import MenuStore from '../../../../components/store/MenuStore'
 // Logic
 import createWaste from '../../../../logic/createWaste'
 import fetchStoredWaste from '../../../../logic/getWasteStored.js'
@@ -42,7 +42,7 @@ const Stored = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='Stored'>
       <h1 className='RouteTitle'>INVENTARIO</h1>
 
         {/* Registro de residuos */}
@@ -53,18 +53,14 @@ const Stored = () => {
           })
         }>
         
-        <div className='StoreSelectWaste'>  
           <WasteSelect selectedWaste={selectedWaste} handleWasteChange={(selectedOption) => handleWasteChange(selectedOption, setSelectedWaste)} />
-          <Button className='SubmitButtonWaste' type='submit'>💾</Button>
-        </div>
-
-        <div className='StoreSelectedContainer'>
+        
           <WasteContainer optionsContainer={optionsContainer} handleOptionsContainer={(event) => handleOptionsContainer(event, setOptionsContainer)} />
-        </div>
 
-        <div className={`WeighStatusButtton ${statusOptions}`}>
+        <div className={`WeighStatus ${statusOptions}`}>
           <WasteWeight weight={weight} handleWeightChange={(event) => handleWeightChange(event, setWeight)} />
           <WasteStatus statusOptions={statusOptions} handleStatusOptions={(event) => handleStatusOptions(event, setStatusOptions)} />
+          <Button className={`SubmitButtonWaste ${statusOptions}`} type='submit'>💾</Button>
         </div>
       </form>
 
@@ -72,14 +68,14 @@ const Stored = () => {
       <div>
         
         {loading ? (
-          <p style={{ color: 'orange', textAlign: 'center' }}>Cargando datos de residuos...</p>
+          <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem' }}>Cargando datos de residuos...</p>
         ) : error ? (
-          <p style={{ color: 'red', textAlign: 'center' }}>Error al cargar los datos: {error}</p>
+          <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
         ) : data.length === 0 ? (
-          <p style={{ color: 'white', textAlign: 'center' }}>No hay residuos estancados este mes.</p>
+          <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No hay residuos estancados este mes.</p>
         ) : (
           <div>
-          <h2 className="title">Residuos almacenados</h2>
+          <h2 className="Title">Residuos almacenados</h2>
 
           <WasteList data={data} handleDeleteWaste={(id) => handleDeleteWaste(id, token, setData, setLoading, setError)} />
           </div>

@@ -1,9 +1,6 @@
 const logoutUser = () => {
-    
-    sessionStorage.removeItem('token') // Elimina el token del sessionStorage
-    sessionStorage.removeItem('reference') // Eliminar reference de sessionStorage
-    alert('Hasta pronto!👋')  // Muestra el mensaje
+    sessionStorage.removeItem('token') // elimina el token del sessionStorage
+    sessionStorage.removeItem('reference') // elimina referencia
+  }
 
-}
-
-export default logoutUser
+  export default logoutUser

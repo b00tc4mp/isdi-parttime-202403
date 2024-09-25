@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+  .VehiclesSelectedDiv {
+    @apply bg-white flex flex-col text-center;
+  }
+  .VehiclesSelected {
+    @apply flex flex-col text-center text-3xl leading-none;
+  }
+  .vehicle {
+    @apply flex flex-col text-2xl text-black items-center;
+  }
+}

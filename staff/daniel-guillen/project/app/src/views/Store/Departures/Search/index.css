@@ -1,74 +1,7 @@
-.DeparturesTitle {
-  display: flex;
-  flex-direction: row;
-  max-width: 513px;
-  align-items: center;
-  justify-content: center;
-  background: rgb(240, 240, 240);
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-}
+@tailwind components;
 
-.TruckLoadDiv {
-  display: flex;
-}
-
-.TruckLoadListDiv {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-}
-
-.DataTitle {
-  margin: 0px;
-}
-
-.TruckLoadForm {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  line-height: 0px;
-}
-
-.TruckLoadSelectWaste {
-  background: rgb(240, 240, 240);
-}
-
-.WeightWeekButtton {
-  display: flex;
-  justify-content: center;
-  max-width: 513;
-  background: rgb(240, 240, 240);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.WeightWeek {
-  display: flex;
-  flex-direction: row;
-  font-size: x-large;
-  font-weight: bold;
-  background: rgb(240, 240, 240);
-  color: gray;
-}
-
-.WeekYear {
-  display: flex;
-  background: rgb(240, 240, 240);
-  color: gray;
-  align-items: center;
-  font-size: xx-large;
-}
-
-.SubmitButtonLoad {
-  background: rgb(240, 240, 240);
-  border: 0;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.SubmitButtonLoad:hover {
-  border-radius: 50px;
-  background: orangered;
+@layer components {
+  .LoadSearch {
+    @apply flex flex-col text-center;
+  }
 }
