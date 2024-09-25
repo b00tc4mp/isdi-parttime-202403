@@ -17,7 +17,7 @@ function SearchBox({ onSearch, initialSearchText, onLocationUpdate }) {
 
     useEffect(() => {
         fetchUserLocation();
-    }, []);
+    }, [location]);
 
     const fetchUserLocation = () => {
         getUserLocation()
