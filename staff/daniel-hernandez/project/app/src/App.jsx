@@ -6,7 +6,6 @@ import StackNavigator from './navigation/StackNavigator';
 import usePlayer from './hooks/usePlayer';
 import { Context } from './hooks/useContext';
 import AuthContext from './context/AuthContext';
-import { RouteTitleProvider } from './context/RouteTitleContext';
 import ToastNotification from './components/ToastNotification';
 import services, { storage } from './services';
 import validate from 'com/validation';
@@ -233,11 +232,9 @@ const App = () => {
    return (
       <Context.Provider value={{ notify }}>
          <AuthContext.Provider value={authContext}>
-            <RouteTitleProvider>
-               {message !== '' && <ToastNotification message={message} type={type} />}
-               <StackNavigator state={state} />
-               <StatusBar barStyle="light-content" backgroundColor="#1B1A1A" />
-            </RouteTitleProvider>
+            {message !== '' && <ToastNotification message={message} type={type} />}
+            <StackNavigator state={state} />
+            <StatusBar barStyle="light-content" backgroundColor="#1B1A1A" />
          </AuthContext.Provider>
       </Context.Provider>
    );

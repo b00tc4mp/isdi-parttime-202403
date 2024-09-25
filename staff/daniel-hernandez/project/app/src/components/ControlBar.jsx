@@ -114,6 +114,7 @@ const ControlBar = () => {
    };
 
    const handleToggleLoop = async () => {
+      trigger('impactLight');
       const newMode = isLooping ? RepeatMode.Off : RepeatMode.Track;
 
       try {
@@ -125,6 +126,7 @@ const ControlBar = () => {
    };
 
    const handleSkipNext = async () => {
+      trigger('impactLight');
       try {
          await skipToNext();
       } catch {
@@ -133,6 +135,7 @@ const ControlBar = () => {
    };
 
    const handleSkipPrevious = async () => {
+      trigger('impactLight');
       try {
          await skipToPrevious();
       } catch {
