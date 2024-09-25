@@ -5,6 +5,8 @@ import Title from '../components/core/Title/Title';
 import { SystemError } from 'com/errors';
 import logic from '../logic';
 
+import useContext from '../useContext';
+
 import backArrow from '../icons/backArrow.png';
 
 import './MyAds.css';
@@ -13,6 +15,8 @@ export const MyAds = () => {
     const [userAds, setUserAds] = useState([]);
 
     const navigate = useNavigate();
+
+    const { alert } = useContext();
 
     useEffect(() => {
         console.log('MyAds -> useEffect');

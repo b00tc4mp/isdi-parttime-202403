@@ -9,8 +9,11 @@ import DeleteAdComment from './components/DeleteAdComment/DeleteAdComment';
 
 import backArrow from '../icons/backArrow.png';
 
-import './AdPage.css';
+import useContext from '../useContext';
+
 import { MapComponent } from './components/Map/Map';
+
+import './AdPage.css';
 
 function AdPage() {
     const navigate = useNavigate();
@@ -20,6 +23,8 @@ function AdPage() {
     const [ad, setAd] = useState(null);
 
     const { adId } = useParams();
+
+    const { alert } = useContext();
 
     useEffect(() => {
         loadAd();

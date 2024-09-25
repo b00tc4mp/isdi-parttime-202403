@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { SystemError } from 'com/errors';
 import Title from '../components/core/Title/Title';
 import logic from '../logic';
+import useContext from '../useContext';
+
 import backArrow from '../icons/backArrow.png';
 import './MyAccount.css';
 
 export const MyAccount = () => {
     const [userInfo, setUserInfo] = useState(null);
     const navigate = useNavigate();
+
+    const { alert } = useContext();
 
     useEffect(() => {
         console.log('MyAccount -> useEffect');

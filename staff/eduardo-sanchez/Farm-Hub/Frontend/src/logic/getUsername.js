@@ -12,7 +12,7 @@ const getUsername = () => {
         },
     })
         .catch(() => {
-            throw new SystemError('server error');
+            throw new SystemError('server connection error');
         })
         .then((response) => {
             if (response.status === 200)
@@ -20,14 +20,14 @@ const getUsername = () => {
                     .json()
 
                     .catch(() => {
-                        throw new SystemError('server error');
+                        throw new SystemError('server connection error');
                     })
                     .then((user) => user);
 
             return response
                 .json()
                 .catch(() => {
-                    throw new SystemError('server error');
+                    throw new SystemError('server connection error');
                 })
                 .then((body) => {
                     const { error, message } = body;
