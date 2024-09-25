@@ -22,7 +22,7 @@
     } */
 
     .UpdateAdFormButton {
-        @apply mt-4 px-4 border-[1px] text-black py-2 border-blue-500 rounded hover:text-green-800 transition-colors;
+        @apply mt-4 px-4 border-[1px] text-black py-2 border-blue-500 rounded-lg hover:text-green-800 transition-colors;
     }
 
     /* .UpdateAdFormMessage {

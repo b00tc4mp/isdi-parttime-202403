@@ -9,23 +9,26 @@ An app for putting in contact sellers & buyers of farming products.
 ### Use Cases
 
 User
-- create ad of product/s to sell
-- update previously created ad
-- delete previously created ad
-- search products by name/geo, etc
-- see ads about products around you
+
+-   create ad of product/s to sell
+-   update previously created ad
+-   delete previously created ad
+-   search products by name/geo, etc
+-   see ads about products around you
 
 #### Version 0.1
 
 User
-- create comment in ad
-- delete comment created in ad
 
-Admin
-- list latest comments(from Users)
-- view a comment
-- reply to a comment
-- deactivate a users 
+-   create comment in ad
+-   delete comment created in ad
+
+(V-0.2)Admin
+
+-   list latest comments(from Users)
+-   view a comment
+-   reply to a comment
+-   deactivate a users
 
 ### UI Design
 
@@ -35,45 +38,46 @@ Admin
 
 ### Blocks
 
-- App
-- API
-- DB
+-   App
+-   API
+-   DB
 
 ### Modules
 
-- app
-- api
-- com
-- doc
+-   app
+-   api
+-   com
+-   doc
 
 ### Data Model
 
 User
-- id (auto)
-- name (string)
-- surname (string)
-- email (string)
-- password (string)
-- phone (string)
-- address (string)
-- location (Point)
+
+-   id (auto)
+-   name (string)
+-   surname (string)
+-   email (string)
+-   password (string)
+-   phone (string)
+-   address (string)
+-   location (Point)
 
 Point
-- id(auto)
-- type(string, enum ['Point'], required)
-- coordinates ([Number], required)
 
+-   id(auto)
+-   type(string, enum ['Point'], required)
+-   coordinates ([Number], required)
 
 Ad
-- id (auto)
-- author (User.id)
-- title (string)
-- description (string)
-- date (date)
+
+-   id (auto)
+-   author (User.id)
+-   title (string)
+-   description (string)
+-   date (date)
 
 ##### Version 0.1
 
 User
-- role (admin, string)
 
-
+-   role (admin, string)

@@ -2,7 +2,7 @@ import { Ad } from '../data/index.js';
 
 import { SystemError, NotFoundError } from 'com/errors.js';
 
-import { calculateDistance } from '../../Frontend/src/utils/calculateDistance.js';
+import { calculateDistance } from '../util/calculateDistance.js';
 
 const searchAds = (searchText, userLocation, maxDistance = 50) => {
     const regexp = new RegExp(searchText, 'i');
