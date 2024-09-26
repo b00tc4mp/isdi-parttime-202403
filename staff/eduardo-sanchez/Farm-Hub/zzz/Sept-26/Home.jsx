@@ -1,14 +1,3 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import logic from '../logic';
-import AdList from './components/AdList/AdList';
-import SearchBox from './components/SearchBox/SearchBox';
-import { CreateAdButton } from './components/CreateAdButton/CreateAdButton';
-import Header from './components/Header/Header';
-import useContext from '../useContext';
-
-import './Home.css';
-
 function Home() {
     const [user, setUser] = useState('');
     const [currentSearchText, setCurrentSearchText] = useState('');
@@ -18,30 +7,24 @@ function Home() {
     const navigate = useNavigate();
     const { search } = useLocation();
 
-    const searchParams = new URLSearchParams(search);
-    const q = searchParams.get('q');
-
     useEffect(() => {
         fetchUsername();
     }, []);
 
     useEffect(() => {
+        const searchParams = new URLSearchParams(search);
+        const q = searchParams.get('q');
         setCurrentSearchText(q || '');
     }, [search]);
 
     const fetchUsername = () => {
-        try {
-            logic
-                .getUsername()
-                .then((user) => {
-                    setUser(user);
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
-        } catch (error) {
-            alert(error.message);
-        }
+        logic
+            .getUsername()
+            .then(setUser)
+            .catch((error) => {
+                console.error(error);
+                alert(error.message);
+            });
     };
 
     const handleSearch = (text) => {

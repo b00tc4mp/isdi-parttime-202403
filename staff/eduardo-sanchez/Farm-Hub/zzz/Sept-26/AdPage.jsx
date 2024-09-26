@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import logic from '../logic';
 import Title from '../components/core/Title/Title';
 
@@ -17,6 +17,8 @@ import './AdPage.css';
 
 function AdPage() {
     const navigate = useNavigate();
+
+    const location = useLocation();
 
     const [ad, setAd] = useState(null);
 
@@ -54,12 +56,28 @@ function AdPage() {
 
     const handleAdCommentSubmit = () => loadAd();
 
+    // const [userLocation, setUserLocation] = useState(
+    //     location.state?.userLocation || null
+    // );
+
+    // const handleGoBack = (text, userLocation) => {
+    //     // Navega hacia atrás pasando userLocation como parte del estado
+    //     // navigate(-1, { state: { userLocation } });
+
+    //     navigate(`/?q=${text || ''}`, { state: { userLocation } });
+
+    //     // navigate('/previous-route', { state: { userLocation } }); // Replace '/previous-route' with the actual route path
+    // };
+
     return (
         <div className="AdPageContainer">
             <img
                 src={backArrow}
                 alt="Go back"
+                // onClick={() => navigate(`/q?= ${currentSearchText}`)}
                 onClick={() => navigate(-1)}
+                // onClick={() => navigate(`/?q=${text}`)}
+                // onClick={() => handleGoBack(text, userLocation)}
                 className="AdPageBackButton"
             />
             <Title className="AdPageTitle">{ad.title}</Title>
@@ -108,6 +126,7 @@ function AdPage() {
                                         adId={adId}
                                         commentId={comment._id}
                                         onCommentDeleted={handleAdCommentSubmit}
+                                        // onAdCommentSubmitted={handleAdCommentSubmit}
                                     />
                                 )}
                             </div>

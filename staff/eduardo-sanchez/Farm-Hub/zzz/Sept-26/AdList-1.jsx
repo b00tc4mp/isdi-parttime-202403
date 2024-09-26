@@ -1,28 +1,42 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Ad } from '../Ad/Ad';
 import { Time } from '../../../components/core/Time/Time';
 import logic from '../../../logic';
+
 import useContext from '../../../useContext';
 import './AdList.css';
 
 function AdList({ searchText, userLocation }) {
+    // const { lat, lng } = userLocation || {};
+
     const { alert } = useContext();
+
     const navigate = useNavigate();
+
     const [ads, setAds] = useState([]);
+
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true);
+        console.log('Home -> AdList', searchText);
 
-        if (searchText && userLocation) {
-            loadFilteredAds(searchText, userLocation);
-        } else if (!searchText) {
+        setIsLoading(true);
+        if (searchText) {
+            loadFilteredAds(searchText);
+        } else {
             loadAds();
         }
     }, [searchText, userLocation]);
 
-    const loadFilteredAds = (searchText, userLocation) => {
+    // useEffect(() => {
+    //     console.log('searchText changed:', searchText);
+
+    //     loadFilteredAds(searchText);
+    // }, [searchText]);
+
+    const loadFilteredAds = (searchText) => {
+        console.log('search:', searchText);
         try {
             logic
                 .searchAds(searchText, userLocation)
@@ -31,28 +45,34 @@ function AdList({ searchText, userLocation }) {
                     setIsLoading(false);
                 })
                 .catch((error) => {
+                    console.error(error);
                     alert(error.message);
                     setIsLoading(false);
                 });
         } catch (error) {
+            console.error(error);
             alert(error.message);
             setIsLoading(false);
         }
     };
 
     const loadAds = () => {
+        console.log('I got here');
         try {
             logic
                 .getAllAds()
                 .then((fetchedAds) => {
+                    console.log(fetchedAds);
                     setAds(fetchedAds);
                     setIsLoading(false);
                 })
                 .catch((error) => {
+                    console.error(error);
                     alert(error.message);
                     setIsLoading(false);
                 });
         } catch (error) {
+            console.error(error);
             alert(error.message);
             setIsLoading(false);
         }
@@ -65,7 +85,7 @@ function AdList({ searchText, userLocation }) {
     if (!ads || ads.length === 0) {
         return (
             <p className="AdListEmpty">
-                No ads found within your search parameters or proximity
+                There are no ads within your search parameters or proximity
             </p>
         );
     }

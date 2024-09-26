@@ -11,9 +11,12 @@ function AdList({ searchText, userLocation }) {
     const navigate = useNavigate();
     const [ads, setAds] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        console.log('AdList -> useEffect', searchText, userLocation);
         setIsLoading(true);
+        setError(null);
 
         if (searchText && userLocation) {
             loadFilteredAds(searchText, userLocation);
@@ -23,43 +26,43 @@ function AdList({ searchText, userLocation }) {
     }, [searchText, userLocation]);
 
     const loadFilteredAds = (searchText, userLocation) => {
-        try {
-            logic
-                .searchAds(searchText, userLocation)
-                .then((searchedAds) => {
-                    setAds(searchedAds);
-                    setIsLoading(false);
-                })
-                .catch((error) => {
-                    alert(error.message);
-                    setIsLoading(false);
-                });
-        } catch (error) {
-            alert(error.message);
-            setIsLoading(false);
-        }
+        console.log('search:', searchText, 'location:', userLocation);
+        logic
+            .searchAds(searchText, userLocation)
+            .then((searchedAds) => {
+                setAds(searchedAds);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+                setError(error.message);
+                setIsLoading(false);
+                alert(error.message);
+            });
     };
 
     const loadAds = () => {
-        try {
-            logic
-                .getAllAds()
-                .then((fetchedAds) => {
-                    setAds(fetchedAds);
-                    setIsLoading(false);
-                })
-                .catch((error) => {
-                    alert(error.message);
-                    setIsLoading(false);
-                });
-        } catch (error) {
-            alert(error.message);
-            setIsLoading(false);
-        }
+        console.log('Loading all ads');
+        logic
+            .getAllAds()
+            .then((fetchedAds) => {
+                setAds(fetchedAds);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+                setError(error.message);
+                setIsLoading(false);
+                alert(error.message);
+            });
     };
 
     if (isLoading) {
         return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p className="AdListError">Error: {error}</p>;
     }
 
     if (!ads || ads.length === 0) {
