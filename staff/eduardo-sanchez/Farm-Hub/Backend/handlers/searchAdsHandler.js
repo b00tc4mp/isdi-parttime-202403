@@ -26,11 +26,11 @@ export default (req, res, next) => {
                           }
                         : null;
 
-                // const maxDistanceNumber = parseFloat(maxDistance); // o parseFloat(maxDistance)
+                const maxDistanceNumber = parseInt(maxDistance); // or parseFloat(maxDistance)
 
                 try {
                     logic
-                        .searchAds(searchText, userLocation, maxDistance)
+                        .searchAds(searchText, userLocation, maxDistanceNumber)
                         .then((ads) => res.json(ads))
                         .catch((error) => next(error));
                 } catch (error) {

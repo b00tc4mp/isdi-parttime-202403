@@ -88,7 +88,7 @@ function validateMaxDistance(maxDistance, explain = 'maxDistance') {
         maxDistance > 50
     ) {
         throw new ContentError(
-            `${explain} es no válido: debe ser un número entre 0 y 50`
+            `${explain} is not valid: must be a number between 0 and 50`
         );
     }
 }
