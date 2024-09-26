@@ -16,7 +16,7 @@ export default (req, res, next) => {
 
                 const { searchText } = req.params;
 
-                const { lat, lng, maxDistance = 50 } = req.query;
+                const { lat, lng, maxDistance } = req.query;
 
                 const userLocation =
                     lat && lng
@@ -25,6 +25,8 @@ export default (req, res, next) => {
                               lng: parseFloat(lng),
                           }
                         : null;
+
+                // const maxDistanceNumber = parseFloat(maxDistance); // o parseFloat(maxDistance)
 
                 try {
                     logic

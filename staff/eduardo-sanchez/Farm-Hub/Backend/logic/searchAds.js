@@ -2,10 +2,17 @@ import { Ad } from '../data/index.js';
 
 import { SystemError, NotFoundError } from 'com/errors.js';
 
+import validate from 'com/validate.js';
+
 import { calculateDistance } from '../util/calculateDistance.js';
 
 const searchAds = (searchText, userLocation, maxDistance = 50) => {
     const regexp = new RegExp(searchText, 'i');
+    validate.text(searchText, 'searchText', 10);
+    validate.geoLocation(userLocation, 'userLocation');
+    // validate.maxDistance(maxDistance, 'maxDistance');
+
+    console.log('Search params:', { searchText, userLocation, maxDistance });
 
     return Ad.find({ title: { $regex: regexp } })
         .populate('author', 'username')

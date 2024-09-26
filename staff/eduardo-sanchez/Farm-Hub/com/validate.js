@@ -79,14 +79,19 @@ function validateGeoLocation(geoLocation, explain = 'geoLocation') {
             `${explain} is not valid: lat and lng must be numbers`
         );
     }
-
-    // !LOCATION_REGEX.test(location.lat) ||
-    // !LOCATION_REGEX.test(location.lng)
-
-    // throw new ContentError(
-    //   `${explain} is not valid: lat must be between -90 and 90, and lng must be between -180 and 180`
-    // );
 }
+
+// function validateMaxDistance(maxDistance, explain = 'maxDistance') {
+//     if (
+//         typeof maxDistance !== 'number' ||
+//         maxDistance < 0 ||
+//         maxDistance > 50
+//     ) {
+//         throw new ContentError(
+//             `${explain} es no válido: debe ser un número entre 0 y 50`
+//         );
+//     }
+// }
 
 const validate = {
     name: validateName,
@@ -99,9 +104,29 @@ const validate = {
     price: validatePrice,
     contactInfo: validateContactInfo,
     geoLocation: validateGeoLocation,
+    // maxDistance: validateMaxDistance,
 };
 
 export default validate;
+
+///////////////////////////////////
+
+// if (
+//     typeof maxDistance !== 'number' ||
+//     maxDistance <= 0 ||
+//     maxDistance > 1000
+// ) {
+//     throw new ContentError(
+//         `${explain} must be a positive number not exceeding 1000 km`
+//     );
+// }
+
+// !LOCATION_REGEX.test(location.lat) ||
+// !LOCATION_REGEX.test(location.lng)
+
+// throw new ContentError(
+//   `${explain} is not valid: lat must be between -90 and 90, and lng must be between -180 and 180`
+// );
 
 // if (!location || typeof location !== 'object' || !('lat' in location) || !('lng' in location)) {
 //     throw new ContentError(`${explain} is not valid: missing lat or lng`)
