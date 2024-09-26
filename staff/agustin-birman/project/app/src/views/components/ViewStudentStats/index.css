@@ -1,0 +1,14 @@
+.UserStatsText{
+    @apply m-[5%]
+}
+    
+.UserStatsButton{
+    @apply m-[8%]
+}
+.UserStatsTitle{
+    @apply mt-[25%]
+}
+
+.UserStatsContainer{
+    @apply flex flex-col items-center my-[5%] w-[90%] shadow-custom rounded-[20px] p-[15px] 
+}

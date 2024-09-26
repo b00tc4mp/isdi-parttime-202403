@@ -1,0 +1,15 @@
+.CreateActivity {
+    @apply mt-[20%] mb-[5%] w-full p-0 ;
+  
+}
+.CreateActivity .Input {
+    @apply m-[1.2rem]
+}
+
+.CreateActivity .Button {
+    @apply p-[0.5rem]
+}
+
+.CreateActivityTitle{
+    @apply mt-[10%]
+}

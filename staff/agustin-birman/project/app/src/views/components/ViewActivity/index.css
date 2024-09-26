@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components{
+    .ActivityHeading{
+    @apply mb-[8%];
+    }
+    
+    .ActivityTitle{
+         @apply border-b border-black mb-[3%];
+    }
+
+    .ActivityText{
+        @apply mb-[4%];
+    }
+
+    .ActivityView{
+        @apply m-[10px] 
+    }
+}

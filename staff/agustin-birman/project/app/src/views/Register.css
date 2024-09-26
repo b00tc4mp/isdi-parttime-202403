@@ -1,0 +1,28 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.RegisterForm {
+    padding: 1rem;
+    width: auto;
+    height: auto;
+    
+}
+
+.RegisterForm .Input {
+    background-color: transparent;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid black;
+    padding-left: 10px;
+    margin: 15px;
+}
+
+.RegisterForm .Button {
+    font-size: 1.25rem; 
+    width: 80px;
+    padding: 0.3rem;
+    border: 1px solid black;
+    margin-top: 5%;
+}

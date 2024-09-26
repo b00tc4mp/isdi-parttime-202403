@@ -1,0 +1,19 @@
+.exerciseCorrect{
+    @apply bg-[lightgreen]
+}
+
+.exerciseWrong{
+    @apply bg-[salmon]
+}
+
+.ResultTitle{
+    @apply m-[20px]
+}
+
+.ResultTable td {
+    @apply w-[50%]
+}
+
+.ResultTable {
+    @apply shadow-custom w-[94%] rounded-[10px] mb-[16px]
+}

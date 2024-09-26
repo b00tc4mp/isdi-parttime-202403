@@ -1,0 +1,7 @@
+.ExerciseListContainer {
+    @apply w-[95%] shadow-custom rounded-[10px] my-[10%] overflow-x-auto;
+}
+
+.ExerciseListTitle{
+    @apply mt-[10%]
+}

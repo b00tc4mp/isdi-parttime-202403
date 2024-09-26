@@ -1,0 +1,21 @@
+.ActivityView {
+    @apply w-full
+}
+
+.IconsContainer {
+    @apply flex justify-end mb-[1rem] mr-[5%]
+   
+}
+
+.IconsContainer i {
+    @apply text-[1.5rem] ml-[1rem]
+  
+}
+
+.ActivityTeacherTable{
+    @apply h-auto shadow-custom rounded-[20px] my-[10%] w-[94%] overflow-x-auto;
+}
+
+.TextAreaActivity{
+    @apply w-[90%]
+}

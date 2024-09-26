@@ -1,0 +1,58 @@
+.DoActOrderSentenceTitle{
+    @apply mt-[40%]
+}
+.DoActOrderSentenceContainer{
+    @apply flex flex-col items-center m-[7%] shadow-custom rounded-[20px] w-[95%] overflow-x-auto
+}
+.DoActOrderSentence{
+    @apply m-[5%]
+}
+
+.SelectedWordsContainer, .MixedWordsContainer {
+    @apply min-h-[50px] flex flex-wrap gap-[10px] w-full ;
+}
+
+.SelectedWordsContainer {
+    @apply mb-[20px]
+}
+
+.DoActOrderSentenceButton{
+    @apply m-[5%]
+}
+
+.btnOrderSentence {
+    @apply py-[10px] px-[20px] border-none rounded-[4px] cursor-pointer;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Animaciones para mover botones */
+.move-to-selected {
+    animation: moveToSelected 0.3s forwards;
+}
+
+.move-to-mixed {
+    animation: moveToMixed 0.3s forwards;
+}
+
+/* Ajustar animación */
+@keyframes moveToSelected {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToMixed {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,4 @@
+
+.AlertBox{
+    @apply border border-black rounded-[20px] top-[30%] left-[10%] w-[80%] h-[30%] gap-[16px] fixed flex flex-col items-center justify-center z-10  bg-[rgb(175,222,238)];
+}

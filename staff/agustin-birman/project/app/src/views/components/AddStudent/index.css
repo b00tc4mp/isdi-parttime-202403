@@ -1,0 +1,11 @@
+.AddStudentTitle{
+@apply mt-[30%]
+}
+
+.AddStudentText{
+    @apply m-[5%]
+}
+
+.AddStudentContainer{
+    @apply flex flex-col items-center  m-[5%] w-[90%] shadow-custom rounded-[20px] p-[15px];
+}

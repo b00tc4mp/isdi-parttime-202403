@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components{
+    .ActitvitiesListTitle{
+        @apply mt-[5%]
+    }
+
+    .ActivitiesListContainer {
+        @apply shadow-custom rounded-[10px] my-[10%] w-[95%] overflow-x-auto;
+    }
+}

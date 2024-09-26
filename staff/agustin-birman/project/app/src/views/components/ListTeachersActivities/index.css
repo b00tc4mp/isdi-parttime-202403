@@ -1,0 +1,10 @@
+.ActivitiesListTitle{
+    @apply mt-[5%]
+}
+
+.ActivitiesTeachersList {
+    @apply w-[95%] shadow-custom rounded-[10px] my-[10%] overflow-x-auto
+}
+
+
+

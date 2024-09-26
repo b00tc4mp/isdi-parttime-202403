@@ -1,0 +1,3 @@
+.View {
+    @apply flex flex-col items-center;
+}

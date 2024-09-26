@@ -1,0 +1,11 @@
+.ActivityStudentTable{
+    @apply h-auto shadow-custom rounded-[20px] my-[10%] w-[94%] overflow-x-auto;
+}
+
+.CompleteResult{
+    @apply mb-[4%] text-green-500;
+}
+
+.IncompleteResult{
+    @apply mb-[4%] text-red-600;
+}

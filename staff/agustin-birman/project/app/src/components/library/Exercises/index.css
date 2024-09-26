@@ -1,0 +1,10 @@
+.ListExerciseTitle{
+    @apply m-[10px];
+  
+
+}
+
+.ListExercisesTable{
+    @apply h-auto shadow-custom rounded-[20px] w-[95%] my-[10%] overflow-x-auto;
+   
+}

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        font-family: catamaran;
+        color: var(--first-color);
+    }
+
+    h1{
+        @apply text-5xl
+    }
+    h2{
+        @apply text-3xl
+    }
+    h3{
+        @apply text-2xl
+    }
+    h4{
+        @apply text-xl
+    }
+    p{
+        @apply text-lg
+    }
+    .View {
+        width: 100%;
+        height: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse; /* Combina bordes adyacentes para un aspecto más limpio */
+    }
+    
+    th, td {
+        border: 1px solid #ddd; /* Bordes ligeros para celdas */
+        padding: 8px; /* Espaciado dentro de las celdas */
+        text-align: center; /* Alineación del texto a la izquierda */
+    }
+    
+    th {
+        background-color: #f4f4f4; /* Fondo gris claro para encabezados */
+        font-weight: bold; /* Negrita para encabezados */
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9f9f9; /* Fondo alternado para filas */
+    }
+    
+    tr:hover {
+        background-color: #e0e0e0; /* Fondo ligeramente más oscuro al pasar el ratón */
+    }
+}
+
+
+

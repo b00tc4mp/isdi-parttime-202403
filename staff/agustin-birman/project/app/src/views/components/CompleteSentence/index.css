@@ -1,0 +1,16 @@
+.CreateCompleteSentence .Button {
+    @apply text-lg  p-2 border border-black rounded-[10px] my-0 mx-[5px];
+   
+}
+
+.CreateCompleteSentence{
+    @apply text-center
+}
+
+.divButton {
+    @apply gap-[10px]; 
+}
+
+.CreateCompleteSentence .Text{
+    @apply m-[10px]
+}

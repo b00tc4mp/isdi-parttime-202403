@@ -1,0 +1,4 @@
+.Input {
+    @apply p-[0.4rem] border-0 border-b border-b-black pl-[0.8rem] m-4;
+}
+

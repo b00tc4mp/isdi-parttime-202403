@@ -1,0 +1,4 @@
+.Header {
+    @apply flex gap-[1rem] w-full justify-end items-center fixed p-[0.5rem] shadow-custom z-[1000] bg-white;
+} 
+

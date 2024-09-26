@@ -1,0 +1,7 @@
+ .DoActVocabularyTitle{
+    @apply mt-[30%]
+ }
+
+.DoActivityVocabulary{
+    @apply flex flex-col items-center m-[7%] p-[2rem] shadow-custom rounded-[20px] w-[92%] overflow-x-auto;
+}

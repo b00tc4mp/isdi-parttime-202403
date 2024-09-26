@@ -1,0 +1,11 @@
+.QRContainer {
+    @apply mt-[25%] flex  flex-col items-center
+}
+
+.QR {
+    @apply mb-[16px]
+}
+
+.QRButton{
+    @apply m-[5%]
+}
