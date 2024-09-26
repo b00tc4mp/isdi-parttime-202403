@@ -81,17 +81,17 @@ function validateGeoLocation(geoLocation, explain = 'geoLocation') {
     }
 }
 
-// function validateMaxDistance(maxDistance, explain = 'maxDistance') {
-//     if (
-//         typeof maxDistance !== 'number' ||
-//         maxDistance < 0 ||
-//         maxDistance > 50
-//     ) {
-//         throw new ContentError(
-//             `${explain} es no válido: debe ser un número entre 0 y 50`
-//         );
-//     }
-// }
+function validateMaxDistance(maxDistance, explain = 'maxDistance') {
+    if (
+        typeof maxDistance !== 'number' ||
+        maxDistance < 0 ||
+        maxDistance > 50
+    ) {
+        throw new ContentError(
+            `${explain} es no válido: debe ser un número entre 0 y 50`
+        );
+    }
+}
 
 const validate = {
     name: validateName,
@@ -104,7 +104,7 @@ const validate = {
     price: validatePrice,
     contactInfo: validateContactInfo,
     geoLocation: validateGeoLocation,
-    // maxDistance: validateMaxDistance,
+    maxDistance: validateMaxDistance,
 };
 
 export default validate;

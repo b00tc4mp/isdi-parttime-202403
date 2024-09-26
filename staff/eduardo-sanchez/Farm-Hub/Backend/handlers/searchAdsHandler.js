@@ -16,7 +16,7 @@ export default (req, res, next) => {
 
                 const { searchText } = req.params;
 
-                const { lat, lng, maxDistance } = req.query;
+                const { lat, lng, maxDistance = 50 } = req.query;
 
                 const userLocation =
                     lat && lng

@@ -10,7 +10,7 @@ const searchAds = (searchText, userLocation, maxDistance = 50) => {
     const regexp = new RegExp(searchText, 'i');
     validate.text(searchText, 'searchText', 10);
     validate.geoLocation(userLocation, 'userLocation');
-    // validate.maxDistance(maxDistance, 'maxDistance');
+    validate.maxDistance(maxDistance, 'maxDistance');
 
     console.log('Search params:', { searchText, userLocation, maxDistance });
 
