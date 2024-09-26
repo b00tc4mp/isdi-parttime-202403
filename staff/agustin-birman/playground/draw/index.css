@@ -1,0 +1,493 @@
+body{
+    display: flex;;
+    justify-content: center;
+    text-align: center;
+    background-image: url();
+h1, h2{
+    text-align: center;
+    justify-content: center;
+    padding: auto;
+    color: greenyellow;
+}
+
+
+.draw1 {
+    margin: 40px;
+width: 300px;
+height: 300px;
+border: 1px solid black;
+}
+
+.pig-head {
+    position: relative;
+    top: 50px;
+    left:55px;
+    width:205px;
+    height: 180px;
+    background-color: pink;
+    border:1px solid #000;
+    border-radius: 85%;
+    background-image: radial-gradient(circle at center, pink, rgb(255, 127, 148));   
+}
+
+.pig-head-shadow{
+    position: absolute;
+    border-radius: 85%;
+    box-shadow: -5px 5px 10px 5px rgba(0, 0, 0, 70%) ;
+    width:205px;
+    height: 180px;
+    z-index: -2;
+}
+
+.pig-ears{
+    display: flex;
+    justify-content: space-between ;
+    position: relative;
+}
+
+.pig-ear-left{
+    position: relative;
+    background-color: pink;
+    border: 1px solid black;
+    width: 60px;
+    height: 50px;
+    border-radius: 60%;
+    transform: rotate(30deg);
+    z-index: -1;
+    background-image: radial-gradient(circle at center , pink, rgb(255, 127, 148));
+    box-shadow: -5px 5px 10px 5px rgba(0, 0, 0, 70%) ;
+}
+
+.pig-ear-right{
+    position: relative;
+    background-color: pink;
+    border: 1px solid black;
+    width: 60px;
+    height: 50px;
+    border-radius: 60%;
+    transform: rotate(-30deg);
+    z-index: -1;
+    background-image: radial-gradient(circle at center , pink, rgb(255, 127, 148));
+    box-shadow: -5px 5px 10px 5px rgba(0, 0, 0, 70%) ;
+}
+
+
+.pig-ear-inner-left {
+    position: absolute;
+    top:12px;
+    left:10px;
+    background-color: pink;
+    width: 30px;
+    height: 25px;
+    border-radius: 60%;
+    background-image: radial-gradient(circle at center, rgb(253, 152, 169), rgb(255, 61, 93));
+}
+
+.pig-ear-inner-right {
+    position: absolute;
+    top:12px;
+    left:17px;
+    background-color: pink;
+    width: 30px;
+    height: 25px;
+    border-radius: 60%;
+    background-image: radial-gradient(circle at center, rgb(253, 152, 169), rgb(255, 61, 93));
+}
+
+.pig-eyes {
+    display: flex;
+    justify-content: center;
+    gap:5px;
+}
+
+.pig-eye {
+    width: 30px;
+    height: 40px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(circle at center, rgb(0, 0, 0), rgb(58, 58, 58));
+}
+
+.pig-eye-inner {
+    width: 15px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    align-content: flex-start;
+    position: absolute;
+    top: 55px;
+}
+
+.pig-nose {
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 75, 105);
+    border-radius: 40%;
+    position: relative;
+    left:85px;
+    gap: 2px;
+    background-image: radial-gradient(circle at center, rgb(255, 164, 180), rgb(255, 75, 105));   
+
+}
+
+.pig-nose-hole {
+    width: 5px;
+    height: 15px;
+    background-color: #000;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    align-content: center;
+    top:5px;
+    border-radius: 90%;
+}
+
+.pig-mouth {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 70px;
+    bottom: 40px;
+    border-radius: 40%;
+    border: 4px solid black;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+}
+
+.draw2 {
+    margin: 40px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    background-color: lightblue;
+    z-index: 2;
+}
+
+.cloud {
+    top:15px;
+    left:15px;
+    width: 80px; 
+    height: 60px;
+    background: #BFF;
+    border-radius: 100px;
+    position: relative;
+}
+
+.cloud1 {
+    top:-20px;
+    left:20px;
+    width: 60px; 
+    height: 60px;
+    background: #BFF;
+    border-radius: 80px;
+    position: relative;
+}
+
+.cloud2 {
+    top:-90px;
+    left:35px;
+    width: 80px; 
+    height: 60px;
+    background: #BFF;
+    border-radius: 100px;
+    position: relative;
+}
+
+.cloud3 {
+    top:-125px;
+    left:35px;
+    width: 80px; 
+    height: 60px;
+    background: #BFF;
+    border-radius: 100px;
+    position: relative;
+}
+
+.tree{
+    width: 75px;
+    height: 175px;
+    position: absolute;
+}
+
+.log {
+    justify-content: center;
+    position: relative;
+    bottom: 75px;
+    left: 150px;
+    width: 40px;
+    height: 135px;
+    z-index: 1;
+    background-image: url(https://img.freepik.com/vector-gratis/textura-madera-estilo-cartoon_1110-882.jpg);
+}
+
+.branch1 {
+    width: 120px;
+    height: 160px;
+    position: relative;
+    bottom: 300px;
+    left: 105px;
+    z-index: 2;
+    border: 2px solid black;
+    border-radius: 80%;
+    background-image: url(https://www.jardineriaon.com/wp-content/uploads/2018/07/Textura-de-las-hojas.jpg);
+}
+
+.branch2 {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    bottom: 450px;
+    left: 100px;
+    border: 2px solid black;
+    border-bottom: transparent;
+    border-right: transparent;
+    z-index: 2;
+    border-radius: 90%;
+    background-image: url(https://www.jardineriaon.com/wp-content/uploads/2018/07/Textura-de-las-hojas.jpg);
+}
+
+.branch3 {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    bottom: 540px;
+    left: 165px;
+    border: 2px solid black;
+    border-bottom: transparent;
+    border-left: transparent;
+    z-index: 2;
+    border-radius: 80%;
+    background-image: url(https://www.jardineriaon.com/wp-content/uploads/2018/07/Textura-de-las-hojas.jpg);
+}
+
+.branch4 {
+    width: 80px;
+    height: 100px;
+    position: relative;
+    bottom: 550px;
+    left: 110px;
+    border: 2px solid black;
+    border-top: transparent;
+    border-right: transparent;
+    z-index: 2;
+    border-radius: 80%;
+    background-image: url(https://www.jardineriaon.com/wp-content/uploads/2018/07/Textura-de-las-hojas.jpg);
+}
+
+.grass {
+    position: relative;
+    width: 300px;
+    height: 20px;
+    bottom:95px;
+    z-index: 0;
+    background-image: url(https://img.freepik.com/vector-gratis/textura-transparente-vector-hierba-verde-naturaleza-cesped-planta-prado-ilustracion-al-aire-libre-natural-campo_1284-47056.jpg?size=626&ext=jpg);
+}
+
+.draw3 {
+    margin: 40px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    background-color: black;
+}
+
+.moon {
+    position: static;
+    top:30px;
+    left: 15px;
+    height: 50px;
+    width: 50px;
+    border-radius: 90%;
+    background-image: url(https://c8.alamy.com/compes/ftbk1c/superficie-de-textura-fluida-de-la-luna-ftbk1c.jpg);
+}
+.building {
+    width: 160px;
+    height: 200px;
+    background-image: url(https://as2.ftcdn.net/v2/jpg/03/16/98/93/1000_F_316989304_mDZgyCwc9p5MMuctdbzcKek068GQvGEY.jpg);
+    position: relative;
+    justify-content: center;
+    align-items: end;
+    top: 50px;
+    left: 70px;
+}
+
+
+.window{
+    position: relative;
+    display: inline-block;
+    top: 10px;
+        height: 20px;
+    width: 20px;
+    border:3px solid black;
+    background-color: aquamarine;
+
+}
+
+.window1{
+    position: relative;
+    display: inline-block;
+    top: 30px;
+    height: 20px;
+    width: 20px;
+    border:3px solid black;
+    background-color: aquamarine;
+}
+
+.window2{
+    position: relative;
+    display: inline-block;
+    top: 50px;
+    height: 20px;
+    width: 20px;
+    border:3px solid black;
+    background-color: aquamarine;
+}
+
+.door {
+    position: relative;
+    justify-content: center;
+    left: 65px;
+    top: 79px;
+    height: 30px;
+    width: 20px;
+    background-color: darkgray;
+    border:3px solid black;
+    border-bottom: transparent;
+}
+
+.draw4 {
+    margin: 40px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    /* background-color: white; */
+}
+
+.nintendo {
+    position: relative;
+    top: 50px;
+    left: 70px;
+    height: 200px;
+    width: 150px;
+    border: 1px solid black;
+    background-color: lightgray;
+    border-radius: 10% 10% 25% 10%;
+}
+
+.screen {
+    position: relative;
+    top: 6px;
+    left: 4px;
+    height: 90px;
+    width: 140px;
+    border: 1px solid black;
+    background-color: darkgray;
+    border-radius: 10% 10% 25% 10%;
+}
+
+.color-screen {
+    position: relative;
+    height: 80px;
+    width: 80px;
+    background-color: rgb(159, 227, 57);
+    left: 30px;
+    top: 5px;
+    overflow: hidden;
+}
+
+
+
+.botton1 {
+    position: relative;
+    left: 15px;
+    top:35px;
+    height: 10px;
+    width: 30px;
+    background-color: #000;
+    border-radius: 20%;
+}
+
+.botton2 {
+    position: relative;
+    left: 15px;
+    top:25px;
+    height: 10px;
+    width: 30px;
+    background-color: #000;
+    border-radius: 20%;
+    transform: rotate(90deg);
+}
+
+.botton3 {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    top: 15px;
+    left: 80px;
+    background-color: gray;
+    border-radius: 180%;   
+    transform: rotate(-40deg);
+    border: 1px solid black;
+}
+
+.botton4 {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    bottom: 15px;
+    left: 110px;
+    background-color: gray;
+    border-radius: 180%;   
+    transform: rotate(-40deg);
+    border: 1px solid black;
+}
+
+.botton5 {
+    position: relative;
+    height: 5px;
+    width: 25px;
+    bottom: -17px;
+    left: 75px;
+    background-color: rgb(158, 158, 158);
+    border-radius: 360%;   
+    border: 1px solid black;
+    transform: rotate(-40deg);
+    font-size: x-small;
+    
+
+}
+
+.botton6 {
+    position: relative;
+    height: 5px;
+    width: 25px;
+    bottom: -10px;
+    left: 45px;
+    background-color: rgb(158, 158, 158);
+    border-radius: 360%;   
+    border: 1px solid black;
+    transform: rotate(-40deg);
+    font-size: x-small;
+}
+
+.lines {
+    display: flex;
+}
+
+.line {
+    height: 2px;
+    width: 16px;
+    background-color: #000;
+    position: relative;
+    transform: rotate(40deg);
+    margin-right: -9px;
+    top: 10px;
+    left: 110px;
+}
+

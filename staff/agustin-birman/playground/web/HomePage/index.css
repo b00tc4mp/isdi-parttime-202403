@@ -1,0 +1,14 @@
+.View {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button[type="button"] {
+    width: 200px;
+    height: 150px;
+    margin-bottom: 20px;
+    border-color: var(--first-color);
+    background-color: var(--second-color);
+    font-size: 50px;
+}

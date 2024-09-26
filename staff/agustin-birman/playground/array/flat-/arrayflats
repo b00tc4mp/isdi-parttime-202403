@@ -1,0 +1,28 @@
+debugger
+
+function flat (array) {
+
+    var flatteredArray = []
+
+    function flattered (arr) {
+
+    for(var index= 0; index < array.length; index++) {
+
+        var element = array[index]
+
+        if(Array.isArray(element)) {
+            flattered(element)
+        } else {
+            flatteredArray[index] = element
+            }
+        }
+
+    }
+    flattered(array)
+
+    return flatteredArray
+}
+
+var arrayNumbers = [1, 2, , [3 , 4]]
+
+flat(arrayNumbers)
