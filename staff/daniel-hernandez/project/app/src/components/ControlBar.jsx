@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { View, Text, Pressable, Image, Animated, Easing } from 'react-native';
+import { View, Text, Pressable, Image, Animated, Easing, Dimensions, PanResponder } from 'react-native';
 import { usePlaybackState, useProgress, State, RepeatMode } from 'react-native-track-player';
 import { ControlIcons } from '../../assets/images/icons';
 import { BlurView } from 'expo-blur';
@@ -8,6 +8,7 @@ import SpinningLoader from './loaders/SpinningLoader';
 import usePlayer from '../hooks/usePlayer';
 import useContext from '../hooks/useContext';
 import formatSeconds from '../utils/formatSeconds';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const ControlBar = () => {
    const { notify } = useContext();
@@ -17,11 +18,51 @@ const ControlBar = () => {
    const [track, setTrack] = useState({});
    const [render, setRender] = useState(false);
 
-   const [menuVisible, setMenuVisible] = useState(false);
-   const menuTranslateY = useRef(new Animated.Value(0)).current;
-   const isMenuAnimating = useRef(false);
+   const [controlMenuVisible, setControlMenuVisible] = useState(false);
+   const controlMenuTranslateY = useRef(new Animated.Value(0)).current;
+   const isControlMenuAnimating = useRef(false);
    const autoCloseTimer = useRef(null);
    const [isLooping, setIsLooping] = useState(false);
+
+   const insets = useSafeAreaInsets();
+   const [controllerVisible, setControllerVisible] = useState(false);
+   const controllerTranslateY = useRef(new Animated.Value(Dimensions.get('window').height)).current;
+   const controllerPanResponder = useRef(
+      PanResponder.create({
+         onMoveShouldSetPanResponder: (_, gestureState) => {
+            // Allow gesture to start only if it's a downward swipe
+            return Math.abs(gestureState.dy) > 1;
+         },
+         onPanResponderMove: (_, gestureState) => {
+            // Update the translateY value based on the gesture movement
+            controllerTranslateY.setValue(Math.max(0, gestureState.dy));
+         },
+         onPanResponderRelease: (_, gestureState) => {
+            const { height } = Dimensions.get('window');
+
+            // If the swipe is greater that 100, hide the controller
+            if (gestureState.dy > 100) {
+               Animated.timing(controllerTranslateY, {
+                  toValue: height,
+                  duration: 300,
+                  easing: Easing.in(Easing.ease),
+                  useNativeDriver: true
+               }).start(() => {
+                  setControllerVisible(false);
+                  controllerTranslateY.setValue(height);
+               });
+            } else {
+               // If the swipe is not significant, move it back up to visible position
+               Animated.timing(controllerTranslateY, {
+                  toValue: 0,
+                  duration: 300,
+                  easing: Easing.in(Easing.ease),
+                  useNativeDriver: true
+               }).start();
+            }
+         }
+      })
+   );
 
    useEffect(() => {
       (async () => {
@@ -41,14 +82,14 @@ const ControlBar = () => {
    }, [playback]);
 
    useEffect(() => {
-      if (menuVisible) {
+      if (controlMenuVisible) {
          autoCloseTimer.current = setTimeout(() => {
             handleCloseMenu();
          }, 4000);
       }
 
       return () => clearTimeout(autoCloseTimer.current);
-   }, [menuVisible]);
+   }, [controlMenuVisible]);
 
    const handlePlayPause = async () => {
       trigger('impactLight');
@@ -76,19 +117,19 @@ const ControlBar = () => {
    };
 
    const handleLongPress = () => {
-      if (isMenuAnimating.current || menuVisible) return;
+      if (isControlMenuAnimating.current || controlMenuVisible) return;
 
       trigger('impactMedium');
-      setMenuVisible(true);
-      isMenuAnimating.current = true;
+      setControlMenuVisible(true);
+      isControlMenuAnimating.current = true;
 
-      Animated.timing(menuTranslateY, {
+      Animated.timing(controlMenuTranslateY, {
          toValue: -50,
          duration: 300,
          easing: Easing.in(Easing.ease),
          useNativeDriver: true
       }).start(() => {
-         isMenuAnimating.current = false;
+         isControlMenuAnimating.current = false;
       });
 
       clearTimeout(autoCloseTimer.current);
@@ -98,18 +139,18 @@ const ControlBar = () => {
    };
 
    const handleCloseMenu = () => {
-      if (isMenuAnimating.current || !menuVisible) return;
+      if (isControlMenuAnimating.current || !controlMenuVisible) return;
 
-      isMenuAnimating.current = true;
+      isControlMenuAnimating.current = true;
 
-      Animated.timing(menuTranslateY, {
+      Animated.timing(controlMenuTranslateY, {
          toValue: 0,
          duration: 300,
          easing: Easing.in(Easing.ease),
          useNativeDriver: true
       }).start(() => {
-         setMenuVisible(false);
-         isMenuAnimating.current = false;
+         setControlMenuVisible(false);
+         isControlMenuAnimating.current = false;
       });
    };
 
@@ -143,6 +184,20 @@ const ControlBar = () => {
       }
    };
 
+   const handleSinglePress = async () => {
+      if (controllerVisible) return;
+
+      trigger('impactLight');
+      setControllerVisible(true);
+
+      Animated.timing(controllerTranslateY, {
+         toValue: 0,
+         duration: 250,
+         easing: Easing.in(Easing.ease),
+         useNativeDriver: true
+      }).start();
+   };
+
    if (!render) return null;
 
    const percentage = duration > 0 ? (parseInt(position) / parseInt(duration)) * 100 : 0;
@@ -150,7 +205,7 @@ const ControlBar = () => {
 
    return (
       <>
-         <Pressable className={`${menuVisible ? 'bg-palette-90' : 'bg-transparent'} w-[90%] z-50 absolute bottom-[85px] self-center rounded-[17px] overflow-hidden`} onLongPress={handleLongPress}>
+         <Pressable className={`${controlMenuVisible ? 'bg-palette-90' : 'bg-transparent'} w-[90%] z-50 absolute bottom-[85px] self-center rounded-[17px] overflow-hidden`} onLongPress={handleLongPress} onPress={handleSinglePress}>
             <BlurView tint="systemMaterialDark" intensity={50}>
                <View className="flex flex-col items-center w-full pb-0.5">
                   <View className="w-full px-6 my-0.5">
@@ -203,8 +258,8 @@ const ControlBar = () => {
             </BlurView>
          </Pressable>
 
-         {menuVisible && (
-            <Animated.View style={{ transform: [{ translateY: menuTranslateY }] }} className="absolute z-40 h-[32px] w-[40%] bottom-[85px] self-center rounded-[17px] overflow-hidden bg-palette-80">
+         {controlMenuVisible && (
+            <Animated.View style={{ transform: [{ translateY: controlMenuTranslateY }] }} className="absolute z-40 h-[32px] w-[40%] bottom-[85px] self-center rounded-[17px] overflow-hidden bg-palette-80">
                <View className="flex-row items-center justify-center w-full h-full">
                   <Pressable onPress={handleSkipPrevious} className="items-center justify-center p-2.5">
                      <Image source={ControlIcons.previousIcon} resizeMode="contain" className="h-4 w-4" />
@@ -219,6 +274,19 @@ const ControlBar = () => {
                   </Pressable>
                </View>
             </Animated.View>
+         )}
+
+         {controllerVisible && (
+            <>
+               <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'transparent', zIndex: 59 }} />
+               <Animated.View
+                  style={{ transform: [{ translateY: controllerTranslateY }], paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}
+                  className="absolute z-[60] bg-palette-40 self-center w-full bottom-0 h-[100%] rounded-t-2xl"
+                  {...controllerPanResponder.current.panHandlers}
+               >
+                  <Text className="border border-red-600 text-center">[ controller ]</Text>
+               </Animated.View>
+            </>
          )}
       </>
    );
