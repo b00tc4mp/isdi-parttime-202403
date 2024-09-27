@@ -1,0 +1,85 @@
+@tailwind components;
+
+@layer components {
+    .UpdateAdFormContainer {
+        @apply mx-auto p-1 bg-white mt-8;
+    }
+
+    .UpdateAdFormField {
+        @apply flex flex-col items-center py-3 border-b border-gray-200 text-orange-700;
+    }
+
+    .UpdateAdFormLabel {
+        @apply text-lg font-semibold text-green-700 p-1;
+    }
+
+    .UpdateAdFormInput {
+        @apply text-lg text-orange-700 p-1 font-bold text-center box-border border-2 border-gray-200 rounded-lg w-fit;
+    }
+
+    .UpdateAdFormButton {
+        @apply mt-4 px-4 border-[1px] text-black py-2 border-blue-500 rounded-lg hover:text-green-800 transition-colors;
+    }
+}
+
+/* .UpdateAdFormButtons {
+        @apply flex justify-center gap-4 mt-4;
+    } */
+
+/* .updateAdFormTitle {
+        @apply text-black p-1;
+    }
+
+    .updateAdFormDescription {
+        @apply text-black p-1;
+    }
+
+    .updateAdFormPrice {
+        @apply text-black p-1;
+    }
+
+    .updateAdFormContactInfo {
+        @apply text-black p-1;
+    }
+
+    .UpdateAdFormMessage {
+        @apply text-red-500;
+    } */
+
+/* ////////////////////////////// */
+
+/* @tailwind components;
+
+@layer components {
+    .UpdateAdFormContainer {
+        @apply flex flex-col w-full mx-auto p-1 bg-white mt-8;
+    }
+
+    .UpdateAdFormField {
+        @apply flex flex-col items-center py-3 border-b border-gray-200;
+    }
+
+    .UpdateAdFormLabel {
+        @apply text-lg font-semibold text-green-700 p-1;
+    }
+
+    .UpdateAdFormInput {
+        @apply text-lg text-orange-700 p-1 font-bold w-full text-center;
+    }
+
+    .UpdateAdFormMessage {
+        @apply text-red-500 text-center mt-2;
+    }
+
+    .UpdateAdFormButtons {
+        @apply flex justify-center gap-4 mt-4;
+    }
+} */
+
+/* .Button.UpdateAdFormButton {
+        @apply mt-2 border-[1px] text-black px-4 py-2 border-blue-500 rounded hover:text-green-800 transition-colors;
+    } */
+
+/* .UpdateAdFormMessage {
+        @apply text-red-500 text-center mt-2;
+    } */

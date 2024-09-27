@@ -1,0 +1,51 @@
+@tailwind components;
+
+@layer components {
+    .AdListContainer {
+        @apply max-w-4xl mx-auto p-4 mt-[60px];
+    }
+
+    .AdList {
+        @apply space-y-4;
+    }
+
+    .AdListItem {
+        @apply bg-white rounded-lg shadow-md p-4 cursor-pointer transition-all hover:shadow-lg;
+    }
+
+    .AdListItemContent {
+        @apply space-y-2;
+    }
+
+    .AdListItemTitle {
+        @apply text-xl font-semibold text-green-700;
+    }
+
+    .AdListItemHeader {
+        @apply flex justify-between items-center mb-2;
+    }
+
+    .AdListItemAuthor {
+        @apply text-sm text-gray-700 underline font-bold;
+    }
+
+    .AdListItemDate {
+        @apply text-sm text-gray-500;
+    }
+
+    .AdListItemDescription {
+        @apply text-gray-700;
+    }
+
+    .AdListItemPrice {
+        @apply text-lg font-bold text-green-600;
+    }
+
+    .AdListItemActions {
+        @apply mt-2 flex justify-end;
+    }
+
+    .AdListEmpty {
+        @apply mt-60 text-center text-lg text-black font-bold;
+    }
+}
