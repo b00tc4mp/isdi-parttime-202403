@@ -8,11 +8,11 @@ import { calculateDistance } from '../util/calculateDistance.js';
 
 const searchAds = (searchText, userLocation, maxDistance = 50) => {
     const regexp = new RegExp(searchText, 'i');
-    validate.text(searchText, 'searchText', 10);
+    validate.text(searchText, 'searchText', 20);
     validate.geoLocation(userLocation, 'userLocation');
     validate.maxDistance(maxDistance, 'maxDistance');
 
-    console.log('Search params:', { searchText, userLocation, maxDistance });
+    // console.log('Search params:', { searchText, userLocation, maxDistance });
 
     return Ad.find({ title: { $regex: regexp } })
         .populate('author', 'username')
@@ -23,7 +23,7 @@ const searchAds = (searchText, userLocation, maxDistance = 50) => {
             throw new SystemError(error.message);
         })
         .then((ads) => {
-            if (!ads) throw new NotFoundError('ads not found');
+            if (!ads || !ads.length) throw new NotFoundError('ads not found');
 
             if (userLocation && userLocation.lat && userLocation.lng) {
                 return ads.filter((ad) => {
