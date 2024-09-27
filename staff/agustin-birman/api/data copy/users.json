@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Agustin",
+        "surname": "Pan",
+        "email": "peter@pan.com",
+        "username": "Agustin",
+        "password": "$2a$08$q1adisSasSZCNJFg7htPJeqZhn2Jf5ZtCMpVOvwwzmV.Ar4P2IxxS"
+    },
+    {
+        "name": "pepe",
+        "surname": "pepa",
+        "email": "pepe@pepe.com",
+        "username": "pepe",
+        "password": "$2a$08$q1adisSasSZCNJFg7htPJeqZhn2Jf5ZtCMpVOvwwzmV.Ar4P2IxxS"
+    },
+    {
+        "name": "Agustin",
+        "surname": "Birman",
+        "email": "agusbir123man@gmail.com",
+        "username": "123123",
+        "password": "$2a$08$q1adisSasSZCNJFg7htPJeqZhn2Jf5ZtCMpVOvwwzmV.Ar4P2IxxS"
+    },
+    {
+        "name": "Agustin",
+        "surname": "Birman",
+        "email": "pereyrahasdasd056@gmail.com",
+        "username": "111111",
+        "password": "$2a$08$j3WRnsGLU/J.hdW2rwo6eeqm73J074oryk3dMaTELHMN6HGAWOx7."
+    }
+]

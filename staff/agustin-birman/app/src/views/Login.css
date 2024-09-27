@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    main {
+        @apply mt-[90px] mb-[60px]
+    }
+
+    h1 {
+        @apply text-[26px] font-bold
+    }
+
+    .LoginForm {
+        @apply p-[1rem] mb-[10px] w-[300px] h-auto rounded-[20px] p-[1rem] border border-black rounded-br-[30%];
+        background-color: rgba(175, 222, 238, 0.603);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .LoginForm .Input {
+        @apply bg-transparent border-t-0 border-l-0 border-r-0 border-b-black border-b-[1px] rounded-[20px] pl-[10px] m-[15px];
+    }
+
+    .LoginForm .Button {
+        @apply bg-transparent text-lg rounded-tl-[20px] rounded-br-none rounded-tr-none rounded-br-[20px] w-[60px] p-[5px] border border-black;
+    }
+}

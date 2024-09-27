@@ -1,0 +1,20 @@
+/* .Button {
+    background-color: transparent;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: auto;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.25s;
+
+}
+
+.Button:hover {
+    background-color: rgb(75, 153, 177);
+}
+
+.Button:active {
+    background-color: lightblue;
+} */

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        --first-color: black;
+        --second-color: rgb(105, 228, 228);
+        background: linear-gradient(to bottom right, rgba(0, 0, 255, 0.63), rgba(42, 42, 255, 0.788), rgba(0, 255, 255, 0.788), rgba(105, 228, 228, 0.76)) no-repeat;
+        background-size: cover;
+    }
+    
+    * {
+        font-family: catamaran;
+        color: var(--first-color);
+    }
+    
+    html,
+    body {
+        min-height: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@layer components {
+    .Button {
+        @apply bg-transparent border border-black cursor-pointer rounded-[8px] text-[1rem] font-bold transition-colors duration-200;
+        padding: 0.8rem 0.5rem;
+    }
+
+    .Button:hover {
+        @apply bg-customBlue;
+    }
+
+    .Button:active {
+        @apply bg-customLightBlue;
+    }
+
+    .SubmitButton {
+        @apply my-[0.4rem];
+    }
+
+    .ConfirmDelete {
+        @apply p-[0.4rem] text-base fixed top-[40%] left-[25%] w-[350px] h-[160px] border border-black rounded-[20px] z-[10] bg-customBlue flex flex-col;
+    }
+
+    .Field {
+        @apply flex flex-col my-[0.25rem];
+    }
+
+    .Form {
+        @apply flex flex-col items-center
+    }
+
+    .Image {
+        @apply w-[100%];
+    }
+
+    .Input {
+        @apply p-[.4rem] bg-transparent rounded-[20px] border border-[var(--first-color)] placeholder-gray-500;
+    }
+
+    .TextArea {
+        @apply h-[90px] w-[300px] bg-transparent border border-black rounded-[20px] p-[12px] m-[15px];
+    }
+
+    .Footer {
+        @apply w-[100%] h-[6%] flex justify-center fixed bottom-[0px] py-[0.5rem] items-center;
+        background-color: rgba(175, 222, 238, 0.603);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .Header {
+        @apply flex gap-[1rem] w-full justify-end fixed top-[0] p-[0.5rem] box-border z-[1000] items-center;
+        background-color: rgba(175, 222, 238, 0.603);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .FormWithFeedback {
+        @apply p-[1rem]
+    }
+
+    .FormWithFeedback .Feedback {
+        @apply text-[tomato]
+    }
+
+    .FormWithFeedback .Feedback.success {
+        @apply text-[greenyellow]
+    }
+
+
+
+}
