@@ -1,0 +1,61 @@
+.pig-head {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: pink;
+  border: 1px solid black;
+}
+
+.pig-eyes {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.pig-eye {
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+}
+
+.pig-pupil {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: black;
+  align-items: first baseline;
+}
+
+.pig-nose {
+  height: 25px;
+  width: 40px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin: 6px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pig-nostril {
+  background-color: black;
+  height: 7px;
+  width: 7px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin: 1px;
+}
+
+.pig-mouth {
+  height: 60px;
+  width: 40px;
+  margin: auto;
+  border-top: 1px solid black;
+}
