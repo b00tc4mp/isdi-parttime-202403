@@ -302,3 +302,107 @@ it('succeeds on updating an existing ad', () => {
             expect(updated.contactInfo).to.equal('777-777-777');
         });
 });
+
+it('fails when update operation fails', () => {
+    let errorThrown;
+
+    return bcrypt
+        .hash('123123123', 8)
+        .then((hash) =>
+            User.create({
+                name: 'Li',
+                surname: 'Nux',
+                email: 'li@nux.com',
+                username: 'linux',
+                password: hash,
+            })
+        )
+        .then((user) =>
+            Ad.create({
+                author: user.id,
+                title: 'beans',
+                description: 'green',
+                price: '3.5 €/Kg',
+                date: new Date(),
+                contactInfo: '777-777-777',
+                adcomments: [],
+                geoLocation: { lat: 39.466945, lng: -6.3758094 },
+            })
+
+                .then((ad) =>
+                    updateAd(
+                        user.id.toString(),
+                        ad.id.toString(),
+                        'BEANS',
+                        'RED',
+                        '4.5 €/Kg',
+                        '777-777-8888'
+                    )
+                )
+
+                .then(() => {
+                    throw new Error('Should have thrown a SystemError');
+                })
+                // .then((ad) => {
+
+                .catch((error) => {
+                    errorThrown = error;
+                })
+                .finally(() => {
+                    expect(errorThrown).to.be.instanceOf(SystemError);
+                    expect(errorThrown.message).to.equal(
+                        'Failed to update the ad'
+                    );
+                })
+        );
+});
+
+//it('fails when user cannot update an ad because it wasn not //its author', () => {
+//    let errorThrown;
+
+//    bcrypt
+//        .hash('123123123', 8)
+//        .then((hash) =>
+//            User.create({
+//                name: 'Li',
+//                surname: 'Nux',
+//                email: 'li@nux.com',
+//                username: 'linux',
+//                password: hash,
+//            })
+//        )
+//        .then((user) =>
+//            Ad.create({
+//                author: user.id,
+//                title: 'Carrots',
+//                description: 'orange',
+//                price: '1.5 €/Kg',
+//                date: new Date(),
+//                contactInfo: '555-555-5555',
+//                adcomments: [],
+//                geoLocation: { lat: 39.466945, lng: -6.//3758094 },
+//            })
+//        )
+
+//        .then((ad) => {
+//            return updateAd(
+//                new ObjectId().toString(),
+//                ad.id,
+//                'BEANS',
+//                'RED',
+//                '4.5 €/Kg',
+//                '777-777-8888'
+//            );
+//        })
+
+//        .then(() => Ad.findById(ad._id))
+//        .then((updatedAd) => updatedAd))
+//        .catch((error) => {
+//            errorThrown = error;
+//        })
+//        .finally(() => {
+//            expect(errorThrown).to.be.instanceOf(MatchError);
+//            expect(errorThrown.message).to.equal(
+//                'You did not create this ad, so you cannot //update it'
+//            );
+//        });

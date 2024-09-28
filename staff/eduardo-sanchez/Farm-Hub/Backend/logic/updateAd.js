@@ -41,16 +41,31 @@ const updateAd = (userId, adId, title, description, price, contactInfo) => {
                         { new: true }
                     )
                         .lean()
+
                         .catch((error) => {
                             throw new SystemError(error.message);
                         })
+
                         .then((updateAd) => updateAd);
-                    // .then(() => {});
-                    // .then((updateAd) => {
-                    //     updateAd;
-                    // })
                 });
         });
 };
 
 export default updateAd;
+
+// .then(() => {});
+// .then((updateAd) => {
+//     updateAd;
+// })
+
+/////////////
+
+// .then((updateAd) => {
+//     if (!updateAd) {
+//         throw new SystemError(
+//             'Failed to update the ad'
+//         );
+//     }
+
+//     return updateAd;
+// });
