@@ -68,7 +68,7 @@
     }
 
     .AdPageCommentText {
-        @apply text-gray-800;
+        @apply text-gray-800 break-words;
     }
 
     .AdPageCommentFooter {
