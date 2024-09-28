@@ -10,10 +10,11 @@ import useContext from '../hooks/useContext';
 import formatSeconds from '../utils/formatSeconds';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+// TODO: refactor
 const ControlBar = () => {
    const { notify } = useContext();
    const playback = usePlaybackState();
-   const { restart, pause, resume, setLoopMode, skipToNext, skipToPrevious, getCurrentState } = usePlayer();
+   const { restart, pause, resume, setLoopMode, skipToNext, skipToPrevious, getCurrentState, seekTo } = usePlayer();
    const { position, duration } = useProgress(10);
    const [track, setTrack] = useState({});
    const [render, setRender] = useState(false);
@@ -39,7 +40,6 @@ const ControlBar = () => {
          },
          onPanResponderRelease: (_, gestureState) => {
             const { height } = Dimensions.get('window');
-
             // If the swipe is greater that 100, hide the controller
             if (gestureState.dy > 100) {
                Animated.timing(controllerTranslateY, {
@@ -62,7 +62,9 @@ const ControlBar = () => {
             }
          }
       })
-   );
+   ).current;
+
+   // TODO: add seek functionality to the controller progress bar
 
    useEffect(() => {
       (async () => {
@@ -281,10 +283,65 @@ const ControlBar = () => {
                <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'transparent', zIndex: 59 }} />
                <Animated.View
                   style={{ transform: [{ translateY: controllerTranslateY }], paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}
-                  className="absolute z-[60] bg-palette-40 self-center w-full bottom-0 h-[100%] rounded-t-2xl"
-                  {...controllerPanResponder.current.panHandlers}
+                  className="absolute z-[60] bg-palette-80 self-center w-full bottom-0 h-[100%] rounded-t-2xl overflow-hidden"
+                  {...controllerPanResponder.panHandlers}
                >
-                  <Text className="border border-red-600 text-center">[ controller ]</Text>
+                  <View className="items-center">
+                     <Image source={ControlIcons.handleIcon} resizeMode="contain" className="h-4 w-9" />
+                  </View>
+
+                  <View className="items-center my-20">
+                     <Image source={track.artwork ? { uri: track.artwork } : require('../../assets/images/extras/unknown.png')} className="w-96 h-96 rounded-xl" />
+                  </View>
+
+                  <View className="flex-row mb-5">
+                     <View className="overflow-hidden flex-col px-5">
+                        <Text className="text-palette-40 font-spacemono-bold text-sm px-2 w-full leading-tight" numberOfLines={1} ellipsizeMode="tail">
+                           {isStoppedOrLoading ? ':3' : track.title}
+                        </Text>
+                        <Text className="text-palette-40 font-spacemono text-sm px-2 w-full leading-tight" numberOfLines={1} ellipsizeMode="tail">
+                           {isStoppedOrLoading ? 'loading...' : track.artist}
+                        </Text>
+                     </View>
+
+                     <Pressable onPress={handleToggleLoop} className="items-center justify-center p-2 self-center">
+                        <Image source={isLooping ? ControlIcons.loopIconActive : ControlIcons.loopIcon} resizeMode="contain" className="h-5 w-5" />
+                     </Pressable>
+                  </View>
+
+                  <View className="w-full px-7 mb-10">
+                     <View className="w-full bg-palette-60 h-1 rounded-full overflow-hidden mb-2">
+                        <View style={{ width: `${percentage}%` }} className="bg-palette-30 h-full" />
+                     </View>
+
+                     {isStoppedOrLoading ? (
+                        <Text className="text-palette-40 font-spacemono text-xs w-full leading-tight text-start" numberOfLines={1} ellipsizeMode="tail">
+                           <Text className="font-spacemono-bold">[</Text>
+                           stats
+                           <Text className="font-spacemono-bold">]</Text>
+                        </Text>
+                     ) : (
+                        <Text className="text-palette-40 font-spacemono text-xs w-full leading-tight text-start" numberOfLines={1} ellipsizeMode="tail">
+                           {`${formatSeconds(parseInt(position))}`}
+                           <Text className="font-spacemono-bold">{` / `}</Text>
+                           {`${formatSeconds(parseInt(duration))}`}
+                        </Text>
+                     )}
+                  </View>
+
+                  <View className="flex-row items-center justify-evenly">
+                     <Pressable onPress={handleSkipPrevious} className="items-center justify-center p-2">
+                        <Image source={ControlIcons.previousIcon} resizeMode="contain" className="h-10 w-10" />
+                     </Pressable>
+
+                     <Pressable onPress={handlePlayPause} className="items-center justify-center p-2">
+                        <Image source={playback.state === State.Playing ? ControlIcons.pauseIcon : ControlIcons.playIcon} resizeMode="contain" className="w-9 h-9" />
+                     </Pressable>
+
+                     <Pressable onPress={handleSkipNext} className="items-center justify-center p-2">
+                        <Image source={ControlIcons.nextIcon} resizeMode="contain" className="h-10 w-10" />
+                     </Pressable>
+                  </View>
                </Animated.View>
             </>
          )}
