@@ -294,7 +294,7 @@ const ControlBar = () => {
                      <Image source={track.artwork ? { uri: track.artwork } : require('../../assets/images/extras/unknown.png')} className="w-96 h-96 rounded-xl" />
                   </View>
 
-                  <View className="flex-row mb-5">
+                  <View className="flex-row mb-5 justify-between pr-6">
                      <View className="overflow-hidden flex-col px-5">
                         <Text className="text-palette-40 font-spacemono-bold text-sm px-2 w-full leading-tight" numberOfLines={1} ellipsizeMode="tail">
                            {isStoppedOrLoading ? ':3' : track.title}
