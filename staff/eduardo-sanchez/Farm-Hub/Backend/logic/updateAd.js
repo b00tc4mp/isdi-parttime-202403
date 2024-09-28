@@ -27,7 +27,7 @@ const updateAd = (userId, adId, title, description, price, contactInfo) => {
                 })
                 .then((ad) => {
                     if (!ad) {
-                        throw new NotFoundError(' Ad not found');
+                        throw new NotFoundError('Ad not found');
                     }
                     if (ad.author.toString() !== userId) {
                         throw new MatchError(
@@ -35,22 +35,20 @@ const updateAd = (userId, adId, title, description, price, contactInfo) => {
                         );
                     }
 
-                    return (
-                        Ad.findByIdAndUpdate(
-                            adId,
-                            { title, description, price, contactInfo },
-                            { new: true }
-                        )
-                            .lean()
-                            .catch((error) => {
-                                throw new SystemError(error.message);
-                            })
-                            // .then((updateAd) => updateAd)
-                            // .then(() => { })
-                            .then((updateAd) => {
-                                updateAd;
-                            })
-                    );
+                    return Ad.findByIdAndUpdate(
+                        adId,
+                        { title, description, price, contactInfo },
+                        { new: true }
+                    )
+                        .lean()
+                        .catch((error) => {
+                            throw new SystemError(error.message);
+                        })
+                        .then((updateAd) => updateAd);
+                    // .then(() => {});
+                    // .then((updateAd) => {
+                    //     updateAd;
+                    // })
                 });
         });
 };
