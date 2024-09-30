@@ -1,3 +1,5 @@
+import { SystemError } from 'com/errors';
+
 export const getUserLocation = () => {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -6,61 +8,42 @@ export const getUserLocation = () => {
                     const { latitude, longitude } = position.coords;
                     resolve({ lat: latitude, lng: longitude });
                 },
-                (error) => {
-                    alert('Error getting user location:' + error.message);
-                    reject(error);
+                () => {
+                    reject(new SystemError('Error getting user location'));
                 }
             );
         } else {
-            alert(
-                'Geolocation is not supported by this browser. ${error.message}'
+            reject(
+                new SystemError('Geolocation not supported by this browser')
             );
-            reject(new Error('Geolocation not supported'));
         }
     });
 };
 
-// import { useContext } from 'react';
-// import YourContext from '../YourContext'; // Import your actual context
+// import errors, { SystemError } from 'com/errors';
 
-// export const useGetUserLocation = () => {
-//     const { alert } = useContext(YourContext);
-
-//     return () =>
-//         new Promise((resolve, reject) => {
-//             if (navigator.geolocation) {
-//                 navigator.geolocation.getCurrentPosition(
-//                     (position) => {
-//                         const { latitude, longitude } = position.coords;
-//                         resolve({ lat: latitude, lng: longitude });
-//                     },
-//                     (error) => {
-//                         alert(`Error getting user location: ${error.message}`);
-//                         reject(error);
-//                     }
-//                 );
-//             } else {
-//                 const errorMessage =
-//                     'Geolocation is not supported by this browser.';
-//                 alert(errorMessage);
-//                 reject(new Error(errorMessage));
-//             }
-//         });
-// };
-
-// import { useGetUserLocation } from './path-to-hook';
-
-// function YourComponent() {
-//     const getUserLocation = useGetUserLocation();
-
-//     const handleGetLocation = async () => {
-//         try {
-//             const location = await getUserLocation();
-//             console.log('User location:', location);
-//         } catch (error) {
-//             console.error('Failed to get location:', error);
+// const getUserLocation = () => {
+//     return new Promise((resolve, reject) => {
+//         if (!navigator.geolocation) {
+//             reject(
+//                 new SystemError('Geolocation is not supported by this browser.')
+//             );
+//             return;
 //         }
-//     };
 
-//     return <button onClick={handleGetLocation}>Get My Location</button>;
-// }
+//         navigator.geolocation.getCurrentPosition(
+//             (position) => {
+//                 const { latitude, longitude } = position.coords;
+//                 resolve({ lat: latitude, lng: longitude });
+//             },
+//             () => {
+//                 reject(new SystemError('Failed to get user location'));
+//             }
+//         );
+//     })
+//         .catch(() => {
+//             throw new SystemError('Failed to get location from browser');
+//         })
+//         .then((location) => location);
+// };
+// export default getUserLocation;
