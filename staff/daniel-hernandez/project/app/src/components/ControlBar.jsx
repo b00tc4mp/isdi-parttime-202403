@@ -12,7 +12,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // TODO: refactor
 const ControlBar = () => {
-   const { notify } = useContext();
+   const { notify, notificationTypes } = useContext();
    const playback = usePlaybackState();
    const { restart, pause, resume, setLoopMode, skipToNext, skipToPrevious, getCurrentState, seekTo } = usePlayer();
    const { position, duration } = useProgress(10);
@@ -73,7 +73,7 @@ const ControlBar = () => {
          try {
             state = await getCurrentState();
          } catch {
-            notify('sorry, something unexpected happened..', 'error');
+            notify('sorry, something unexpected happened..', notificationTypes.error);
          }
 
          if (state.currentTrack) {
@@ -99,21 +99,21 @@ const ControlBar = () => {
          try {
             await pause();
          } catch {
-            notify('wow.. pausing the track failed...', 'error');
+            notify('wow.. pausing the track failed...', notificationTypes.error);
          }
       } else if (playback.state === State.Paused || playback.state === State.Ready) {
          if (playback.state === State.Ended || parseInt(position) >= parseInt(duration) || (parseInt(position) / parseInt(duration)) * 100 === 100) {
             try {
                await restart();
             } catch {
-               notify("couldn't restart the track.. 😅", 'error');
+               notify("couldn't restart the track.. 😅", notificationTypes.error);
             }
          }
 
          try {
             await resume();
          } catch {
-            notify("oof, couldn't resume the track..", 'error');
+            notify("oof, couldn't resume the track..", notificationTypes.error);
          }
       }
    };
@@ -164,7 +164,7 @@ const ControlBar = () => {
          await setLoopMode(newMode);
          setIsLooping(!isLooping);
       } catch {
-         notify("Couldn't toogle loop mode sorry..", 'error');
+         notify("Couldn't toogle loop mode sorry..", notificationTypes.error);
       }
    };
 
@@ -173,7 +173,7 @@ const ControlBar = () => {
       try {
          await skipToNext();
       } catch {
-         notify('failed to skip, sorry..', 'error');
+         notify('failed to skip, sorry..', notificationTypes.error);
       }
    };
 
@@ -182,7 +182,7 @@ const ControlBar = () => {
       try {
          await skipToPrevious();
       } catch {
-         notify('failed to skip to previous, mb !', 'error');
+         notify('failed to skip to previous, mb !', notificationTypes.error);
       }
    };
 

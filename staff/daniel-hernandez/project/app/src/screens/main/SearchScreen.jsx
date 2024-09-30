@@ -15,7 +15,7 @@ const DEFAULT_PILL = { label: 'All', queryType: [...constants.queryTypes], limit
 
 // TODO: refactor
 const SearchScreen = () => {
-   const { notify } = useContext();
+   const { notify, notificationTypes } = useContext();
    const { play } = usePlayer();
    const [query, setQuery] = useState('');
    const [status, setStatus] = useState({ loading: false, queryDone: false });
@@ -73,7 +73,7 @@ const SearchScreen = () => {
             }
          }
       } catch {
-         notify('Something went wrong. Try again ?', 'error');
+         notify('Something went wrong. Try again ?', notificationTypes.error);
          setStatus({ loading: false, queryDone: false });
       }
    };
@@ -114,7 +114,7 @@ const SearchScreen = () => {
          await play(track, null, { signal: abortController.current.signal });
       } catch (e) {
          if (e.message === 'AbortError') return;
-         notify('oopsie-daisy! something went wrong..', 'error');
+         notify('oopsie-daisy! something went wrong..', notificationTypes.error);
       }
    };
 

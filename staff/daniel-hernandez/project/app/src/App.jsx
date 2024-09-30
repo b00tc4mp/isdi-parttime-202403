@@ -1,5 +1,5 @@
 import Config from 'react-native-config';
-import { useEffect, useReducer, useMemo, useState, useRef } from 'react';
+import { useEffect, useReducer, useMemo } from 'react';
 import { StatusBar } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import StackNavigator from './navigation/StackNavigator';
@@ -9,7 +9,7 @@ import AuthContext from './context/AuthContext';
 import ToastNotification from './components/ToastNotification';
 import services, { storage } from './services';
 import validate from 'com/validation';
-import { InvalidArgumentError } from 'com/errors';
+import useNotification from './hooks/useNotification';
 
 // TODO:
 //       check react-native-track-player to see if there is support for the new architecture (already on proper react-native and react versions)
@@ -22,29 +22,7 @@ import { InvalidArgumentError } from 'com/errors';
 
 const App = () => {
    const { setup } = usePlayer();
-   const [message, setMessage] = useState('');
-   const [type, setType] = useState('wrong');
-
-   const notificationTimeoutRef = useRef(null);
-   const isNotificationActive = useRef(false);
-
-   // TODO: Make duration customizable ? (depending on errors)
-   const notify = (m, t) => {
-      if (isNotificationActive.current) return;
-      setMessage('');
-
-      const validTypes = ['info', 'success', 'warning', 'error', 'default'];
-      if (!validTypes.includes(t)) throw new InvalidArgumentError('Invalid ToastNotification type');
-
-      setType(t);
-      setMessage(m);
-
-      isNotificationActive.current = true;
-      notificationTimeoutRef.current = setTimeout(() => {
-         isNotificationActive.current = false;
-         setMessage('');
-      }, 3600);
-   };
+   const { type, message, notify, notificationTypes } = useNotification();
 
    const [state, dispatch] = useReducer(
       (prevState, action) => {
@@ -69,7 +47,7 @@ const App = () => {
          try {
             userToken = await SecureStore.getItemAsync(Config.USER_TOKEN_KEY);
          } catch {
-            notify('Token restore failed', 'warning');
+            notify('Token restore failed', notificationTypes.error);
             return;
          }
 
@@ -77,7 +55,7 @@ const App = () => {
             // Setup track player
             await setup();
          } catch {
-            notify('Player setup failed', 'warning');
+            notify('Player setup failed', notificationTypes.error);
             return;
          }
 
@@ -89,7 +67,7 @@ const App = () => {
                   await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
                   storage.clearAll();
                } catch {
-                  notify('Failed to clear token', 'error');
+                  notify('Failed to clear token', notificationTypes.error);
                   return;
                }
                dispatch({ type: 'SIGN_OUT' });
@@ -99,7 +77,7 @@ const App = () => {
             // TODO: Fetch user preferences/settings & store them in mmkv storage
          }
 
-         notify('Session restore successful', 'info');
+         notify('Session restore successful', notificationTypes.info);
          dispatch({ type: 'RESTORE_TOKEN', token: userToken });
       })();
    }, []);
@@ -114,9 +92,9 @@ const App = () => {
                token = await services.signIn(data.email, data.password);
             } catch (e) {
                if (e.message === 'Wrong password') {
-                  notify('Wrong password', 'warning');
+                  notify('Wrong password', notificationTypes.warning);
                } else {
-                  notify('Something went wrong signing in', 'error');
+                  notify('Something went wrong signing in', notificationTypes.error);
                }
 
                return false;
@@ -125,7 +103,7 @@ const App = () => {
             try {
                await SecureStore.setItemAsync(Config.USER_TOKEN_KEY, token);
             } catch {
-               notify('Something went wrong signing in', 'error');
+               notify('Something went wrong signing in', notificationTypes.error);
                return false;
             }
 
@@ -138,7 +116,7 @@ const App = () => {
             try {
                token = await SecureStore.getItemAsync(Config.USER_TOKEN_KEY);
             } catch {
-               notify('Oops. Something went wrong', 'error');
+               notify('Oops. Something went wrong', notificationTypes.error);
                return;
             }
 
@@ -150,7 +128,7 @@ const App = () => {
                      await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
                      storage.clearAll();
                   } catch {
-                     notify('Failed to clear token', 'error');
+                     notify('Failed to clear token', notificationTypes.error);
                      return;
                   }
                   dispatch({ type: 'SIGN_OUT' });
@@ -162,7 +140,7 @@ const App = () => {
                } catch (e) {
                   // TODO: Improve error handling here.
                   if (e.message !== "User doesn't exist") {
-                     notify('Oops. Something went wrong signing out', 'error');
+                     notify('Oops. Something went wrong signing out', notificationTypes.error);
                      return;
                   }
                }
@@ -172,7 +150,7 @@ const App = () => {
                await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
                storage.clearAll();
             } catch {
-               notify("Oops. Couldn't sign you out");
+               notify("Oops. Couldn't sign you out", notificationTypes.error);
                return;
             }
 
@@ -185,9 +163,9 @@ const App = () => {
                await services.signUp(data.email, data.password, data.username);
             } catch (e) {
                if (e.message === 'User already exists') {
-                  notify('Username already exists', 'warning');
+                  notify('Username already exists', notificationTypes.warning);
                } else {
-                  notify('Sign up failed; Try again later', 'error');
+                  notify('Sign up failed; Try again later', notificationTypes.error);
                }
 
                return false;
@@ -196,14 +174,14 @@ const App = () => {
             try {
                token = await services.signIn(data.email, data.password);
             } catch {
-               notify("Couldn't sign you in; Try again later", 'error');
+               notify("Couldn't sign you in; Try again later", notificationTypes.error);
                return false;
             }
 
             try {
                await SecureStore.setItemAsync(Config.USER_TOKEN_KEY, token);
             } catch {
-               notify('Sign up failed; Try again later', 'error');
+               notify('Sign up failed; Try again later', notificationTypes.error);
                return false;
             }
 
@@ -216,7 +194,7 @@ const App = () => {
             try {
                bool = await services.checkEmail(data.email);
             } catch {
-               notify('Something went wrong. Try again later', 'error');
+               notify('Something went wrong. Try again later', notificationTypes.error);
                return null;
             }
 
@@ -230,7 +208,7 @@ const App = () => {
    // Maybe with a error boundary or error logging system ?
 
    return (
-      <Context.Provider value={{ notify }}>
+      <Context.Provider value={{ notify, notificationTypes }}>
          <AuthContext.Provider value={authContext}>
             {message !== '' && <ToastNotification message={message} type={type} />}
             <StackNavigator state={state} />
