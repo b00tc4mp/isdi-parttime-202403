@@ -3,10 +3,14 @@ import backArrow from '../../../icons/backArrow.png';
 
 import { getUserLocation } from '../../../utils/getUserLocation';
 
+import useContext from '../../../useContext';
+
 import './SearchBox.css';
 
 function SearchBox({ onSearch, initialSearchText, onLocationUpdate }) {
     const [searchText, setSearchText] = useState(initialSearchText || '');
+
+    const { alert } = useContext();
 
     useEffect(() => {
         setSearchText(initialSearchText || '');
@@ -17,13 +21,20 @@ function SearchBox({ onSearch, initialSearchText, onLocationUpdate }) {
     }, []);
 
     const fetchUserLocation = () => {
-        getUserLocation()
-            .then((location) => {
-                onLocationUpdate(location);
-            })
-            .catch((error) => {
-                console.error('Error getting user location:', error);
-            });
+        try {
+            getUserLocation()
+                .then((location) => {
+                    onLocationUpdate(location);
+                })
+                .catch((error) => {
+                    alert('Error getting user location:', error.message);
+                });
+        } catch (error) {
+            alert(
+                'Geolocation may not be enabled or is not supported by your browser:',
+                error.message
+            );
+        }
     };
 
     const handleClearSearch = () => {
