@@ -2,12 +2,16 @@ import { useState } from 'react';
 
 import logic from '../../../logic';
 
+import useContext from '../../../useContext';
+
 import Button from '../../../components/core/Button/Button';
 
 import './CreateComment.css';
 
 function CreateComment({ adId, onAdCommentSubmitted }) {
     const [message, setMessage] = useState('');
+
+    const { alert } = useContext();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,19 +23,14 @@ function CreateComment({ adId, onAdCommentSubmitted }) {
             logic
                 .createAdComment(adId, comment)
                 .then(() => {
-                    console.log('Comment created');
                     onAdCommentSubmitted();
                     form.reset();
                 })
                 .catch((error) => {
-                    console.error(error);
                     alert(error.message);
-                    setMessage(error.message);
                 });
         } catch (error) {
-            console.error(error);
             alert(error.message);
-            setMessage(error.message);
         }
     };
 
@@ -48,7 +47,6 @@ function CreateComment({ adId, onAdCommentSubmitted }) {
                 <Button className="CreateCommentButton" type="submit">
                     Comment
                 </Button>
-                {/* <Link className="CancelCommentLink" to={'/'}>Cancel</Link> */}
             </div>
             {message && <p className="ErrorMessage">{message}</p>}
         </form>

@@ -1,13 +1,7 @@
 @tailwind components;
 
 @layer components {
-
     .RegisterForm {
         @apply flex flex-col justify-center items-center gap-1 p-1;
     }
-
-    /* .ErrorMessage {
-        @apply text-red-500;
-    } */
-
 }

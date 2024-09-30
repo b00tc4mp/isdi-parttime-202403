@@ -1,17 +1,3 @@
-/* @tailwind components;
-
-@layer components {
-
-    .AdPageContainer {
-        @apply flex flex-col max-w-2xl mx-auto p-6 bg-orange-100 rounded-lg shadow-md;
-    }
-
-    .AdPageContainer>p {
-        @apply font-bold p-1;
-    }
-
-} */
-
 @tailwind components;
 
 @layer components {
@@ -82,8 +68,4 @@
     .AdPageBackButton {
         @apply absolute left-3 top-2.5 w-12 bg-transparent border-none cursor-pointer text-black font-bold;
     }
-
-    /* .AdPageBackButton {
-        @apply inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors;
-    } */
 }

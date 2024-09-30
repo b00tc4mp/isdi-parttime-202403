@@ -3,14 +3,9 @@
 @layer components {
     .UserInfoMenuContainer {
         @apply fixed bg-green-700 right-3 top-16 rounded-xl p-1 text-black shadow-2xl;
-        /* @apply fixed bg-gray-300 right-3 top-16 rounded-xl p-1; */
-        /* border-2 border-green-700 */
     }
 
     .UserInfoMenuList {
         @apply cursor-pointer p-3 hover:bg-gray-700 bg-white;
     }
 }
-
-/* <div className= "fixed bg-gray-500 right-3 top-16 rounded-xl p-1">
-            <ul className="cursor-pointer p-2 hover:bg-gray-600 text-white"> */

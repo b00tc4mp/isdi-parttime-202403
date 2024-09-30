@@ -10,15 +10,11 @@ import InfoIcon from '../../../icons/info.png';
 import LogoutIcon from '../../../icons/logout.png';
 
 import UserInfoMenu from '../UserInfoMenu/UserInfoMenu';
-import SearchBox from '../SearchBox/SearchBox';
-// import Link from '../../../components/core/Link'
 
 function Header({ user }) {
     console.log('Header -> render');
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const navigate = useNavigate();
-
-    // const user = ''
 
     const handleUserInfoMenu = () => {
         setIsMenuOpened(!isMenuOpened);
@@ -29,14 +25,6 @@ function Header({ user }) {
         navigate('/login');
     };
 
-    // const handleSearch = () => {
-
-    // }
-
-    // const currentSearchText = () => {
-
-    // }
-
     return (
         <>
             <header>
@@ -46,8 +34,6 @@ function Header({ user }) {
                     </h1>
                     <Title>Farm-Hub</Title>
                     <div className="ButtonsContainer">
-                        {/* <button className='LogoutButton' onClick={handleLogout}>Logout</button> */}
-
                         <img
                             src={InfoIcon}
                             width={24}
@@ -63,10 +49,6 @@ function Header({ user }) {
                     </div>
                     {isMenuOpened && <UserInfoMenu />}
                 </div>
-                {/* <div >
-          <SearchBox onSearch={handleSearch} initialSearchText={currentSearchText}
-          />
-        </div> */}
             </header>
         </>
     );
