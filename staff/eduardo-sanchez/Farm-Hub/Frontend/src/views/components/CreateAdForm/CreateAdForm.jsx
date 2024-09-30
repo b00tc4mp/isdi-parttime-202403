@@ -25,12 +25,9 @@ export function CreateAdForm() {
         const description = form.description.value;
         const price = form.price.value;
         const contactInfo = form.contactInfo.value;
-        console.log({ title, description, price });
 
         if (navigator.geolocation) {
-            console.log('navigator geolocation', navigator.geolocation);
             navigator.geolocation.getCurrentPosition((position) => {
-                console.log('position xD', position);
                 const geoLocation = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
@@ -41,8 +38,6 @@ export function CreateAdForm() {
                 });
 
                 try {
-                    console.log('location', location);
-
                     logic
                         .createAd(
                             title,
@@ -53,17 +48,13 @@ export function CreateAdForm() {
                         )
                         .then(() => {
                             navigate('/');
-                            console.log('Ad created');
                         })
                         .catch((error) => {
                             if (error instanceof SystemError) {
-                                console.error(error);
                                 alert(error.message);
                             }
                         });
                 } catch (error) {
-                    console.error(error.message);
-
                     alert(error.message);
                 }
             });

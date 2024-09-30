@@ -1,5 +1,4 @@
 import { useNavigate, Link } from 'react-router-dom';
-
 import { useState } from 'react';
 
 import Button from '../../../components/core/Button/Button';
@@ -7,14 +6,11 @@ import Button from '../../../components/core/Button/Button';
 import logic from '../../../logic';
 
 import useContext from '../../../useContext';
-
 import Confirm from '../Confirm/Confirm';
 
 import './Ad.css';
 
 export const Ad = ({ ad, onAdDeleted }) => {
-    console.log('Ad -> render');
-
     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
 
     const { alert } = useContext();
@@ -25,7 +21,6 @@ export const Ad = ({ ad, onAdDeleted }) => {
         event.stopPropagation();
         setConfirmDeleteVisible(true);
     };
-    // if (confirm('Are you sure you want to delete this ad?')) {
     const handleConfirmDelete = (event) => {
         event.stopPropagation();
         setConfirmDeleteVisible(false);
@@ -33,17 +28,12 @@ export const Ad = ({ ad, onAdDeleted }) => {
             logic
                 .deleteAd(ad._id)
                 .then(() => {
-                    console.log(`Ad ${ad._id} deleted`);
                     onAdDeleted();
                 })
                 .catch((error) => {
-                    console.error('Could not delete ad:', error);
-
                     alert(error.message);
                 });
         } catch (error) {
-            console.error('Failed to delete ad:', error);
-
             alert(error.message);
         }
     };
