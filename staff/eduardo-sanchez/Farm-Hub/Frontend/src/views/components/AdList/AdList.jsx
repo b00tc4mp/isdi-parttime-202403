@@ -59,7 +59,11 @@ function AdList({ searchText, userLocation }) {
     };
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return (
+            <p className="flex flex-cols relative mt-24 text-xl font-semibold justify-center items-center">
+                Loading...
+            </p>
+        );
     }
 
     if (!ads || ads.length === 0) {
