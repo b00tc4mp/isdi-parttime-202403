@@ -14,7 +14,6 @@ import './UpdateAdForm.css';
 
 export function UpdateAdForm() {
     const { alert } = useContext();
-    // const [message, setMessage] = useState('');
 
     const [ad, setAd] = useState({
         _id: '',
@@ -29,7 +28,6 @@ export function UpdateAdForm() {
     const { adId } = useParams();
 
     useEffect(() => {
-        console.log('UpdateAdForm -> useEffect');
         chooseAdtoUpdate();
     }, [setAd]);
 
@@ -43,27 +41,19 @@ export function UpdateAdForm() {
         const price = ad.price;
         const contactInfo = ad.contactInfo;
 
-        console.log({ title, description, price, contactInfo });
-
         try {
             logic
                 .updateAd(adId, title, description, price, contactInfo)
                 .then(() => {
                     navigate('/');
-                    console.log('Ad updated');
                 })
                 .catch((error) => {
-                    console.error(error);
                     alert(error.message);
 
-                    // setMessage(error.message);
                     return;
                 });
         } catch (error) {
-            console.error(error.message);
             alert(error.message);
-
-            // setMessage(error.message);
         }
     };
 
@@ -71,9 +61,7 @@ export function UpdateAdForm() {
         logic
             .getAd(adId)
             .then(({ adId, title, description, price, contactInfo }) => {
-                // console.log(ad)
                 setAd({ _id: adId, title, description, price, contactInfo });
-                console.log({ title, description, price, contactInfo });
             });
     };
 
@@ -92,8 +80,6 @@ export function UpdateAdForm() {
             </Title>
 
             <form onSubmit={handleUpdateAd} className="UpdateAdFormContainer">
-                {/* <p className="UpdateAdFormMessage">{message}</p> */}
-
                 <div className="UpdateAdFormField">
                     <label htmlFor="title" className="UpdateAdFormLabel">
                         Title

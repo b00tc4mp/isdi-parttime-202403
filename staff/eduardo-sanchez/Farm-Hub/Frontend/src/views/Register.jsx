@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import logic from '../logic';
 
 import Field from '../components/core/Field/Field';
-// import Link from '../components/core/Link'
 import Title from '../components/core/Title/Title';
 
 import { SystemError } from 'com/errors';
@@ -15,8 +14,6 @@ import './Register.css';
 
 function Register() {
     const navigate = useNavigate();
-
-    console.log('Register -> render');
 
     const [message, setMessage] = useState('');
 
@@ -46,29 +43,19 @@ function Register() {
                 )
                 .then(() => {
                     navigate('/login');
-                    console.log('User Register -> success');
                 })
                 .catch((error) => {
                     if (error instanceof SystemError) {
-                        console.error(error);
                         alert(error.message);
 
                         return;
                     }
                     alert(error.message);
-                    // setMessage(error.message)
                 });
         } catch (error) {
-            // setMessage(error.message)
             alert(error.message);
         }
     };
-
-    // const handleLoginClick = event => {
-    //     event.preventDefault()
-
-    //     navigate('/login')
-    // }
 
     return (
         <div>

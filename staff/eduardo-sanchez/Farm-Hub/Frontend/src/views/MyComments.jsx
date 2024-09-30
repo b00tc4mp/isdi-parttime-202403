@@ -19,7 +19,6 @@ export const MyComments = () => {
     const { alert } = useContext();
 
     useEffect(() => {
-        console.log('MyComments -> useEffect');
         loadUserComments();
     }, []);
 
@@ -29,16 +28,13 @@ export const MyComments = () => {
                 .getUserComments()
                 .then((comments) => {
                     setUserComments(comments);
-                    console.log(comments);
                 })
                 .catch((error) => {
                     if (error instanceof SystemError) {
-                        console.log(error.message);
                         alert(error.message);
                     }
                 });
         } catch (error) {
-            console.error(error.message);
             alert(error.message);
         }
     };

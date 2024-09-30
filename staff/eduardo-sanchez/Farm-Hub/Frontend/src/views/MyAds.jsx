@@ -19,7 +19,6 @@ export const MyAds = () => {
     const { alert } = useContext();
 
     useEffect(() => {
-        console.log('MyAds -> useEffect');
         loadUserAds();
     }, []);
 
@@ -29,23 +28,16 @@ export const MyAds = () => {
                 .getUserAds()
                 .then((userAds) => {
                     setUserAds(userAds);
-                    console.log(userAds);
                 })
                 .catch((error) => {
                     if (error instanceof SystemError) {
-                        console.log(error.message);
                         alert(error.message);
                     }
                 });
         } catch (error) {
-            console.error(error.message);
             alert(error.message);
         }
     };
-
-    // const handleLoadUserAds = () => {
-    //     loadUserAds();
-    // }
 
     const handleGoToAd = (adId) => {
         navigate(`/adpage/${adId}`);
@@ -109,8 +101,3 @@ export const MyAds = () => {
         </>
     );
 };
-
-/*
-En backend un nuevo endpoint que recupere los anuncios del usuario logeado de mongo
-desde front crear la logica del servicio para hacer fetch a back y manejar errores
-*/

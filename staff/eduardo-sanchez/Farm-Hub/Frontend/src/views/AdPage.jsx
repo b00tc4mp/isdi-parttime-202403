@@ -34,17 +34,12 @@ function AdPage() {
                 .getAd(adId)
                 .then((ad) => {
                     setAd(ad);
-                    console.log(ad);
                 })
 
                 .catch((error) => {
-                    console.error(error.message);
-
                     alert(error.message);
                 });
         } catch (error) {
-            console.error(error);
-
             alert(error.message);
         }
     };

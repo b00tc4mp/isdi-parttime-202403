@@ -15,7 +15,6 @@ export const MyAccount = () => {
     const { alert } = useContext();
 
     useEffect(() => {
-        console.log('MyAccount -> useEffect');
         loadUserInfo();
     }, []);
 
@@ -26,12 +25,10 @@ export const MyAccount = () => {
                 .then(setUserInfo)
                 .catch((error) => {
                     if (error instanceof SystemError) {
-                        console.log(error.message);
                         alert(error.message);
                     }
                 });
         } catch (error) {
-            console.error(error.message);
             alert(error.message);
         }
     };

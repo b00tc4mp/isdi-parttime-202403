@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import logic from '../logic';
@@ -14,15 +13,11 @@ import useContext from '../useContext';
 import './Login.css';
 
 export const Login = () => {
-    console.log('Login -> render');
-
     const { alert } = useContext();
 
-    // const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
     const handleLoginSubmit = (event) => {
-        console.log('Login -> handleLoginSubmit');
         event.preventDefault();
 
         const form = event.target;
@@ -35,12 +30,8 @@ export const Login = () => {
                 .loginUser(username, password)
                 .then(() => {
                     navigate('/');
-                    console.log('User Login -> success');
-                    // alert('Welcome ' + `${username}`);
                 })
                 .catch((error) => {
-                    console.error(error);
-
                     if (error instanceof SystemError) {
                         alert(error.message);
 
@@ -70,7 +61,6 @@ export const Login = () => {
 
                 <Button type="submit">Login</Button>
             </form>
-            {/* {message && <p className="ErrorMessage">{message}</p>} */}
             <Link className="Link" to="/register">
                 Register
             </Link>
