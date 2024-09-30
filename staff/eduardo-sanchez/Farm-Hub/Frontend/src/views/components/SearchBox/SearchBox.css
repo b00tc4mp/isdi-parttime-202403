@@ -5,10 +5,6 @@
         @apply fixed w-full max-w-[400px] mx-auto p-1 bg-white rounded-full mt-[6px] mb-[6px] z-20;
     }
 
-    /* .SearchBox {
-        @apply w-full max-w-[400px] mx-auto p-1 bg-white rounded-full mt-[5px] mb-[5px] z-20;
-    } */
-
     .SearchBoxContainer {
         @apply relative flex items-center;
     }

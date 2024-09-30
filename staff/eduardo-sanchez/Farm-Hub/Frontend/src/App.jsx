@@ -14,7 +14,7 @@ import Home from './views/Home';
 import { Notfound } from './views/Notfound';
 import { Login } from './views/Login';
 
-import { CreateAdForm } from './views/components/CreateAdForm/CreateAdForm';
+import { CreateAdForm } from './views/CreateAdForm';
 import AdPage from './views/AdPage';
 import { UpdateAdForm } from './views/UpdateAdForm';
 import { MyAccount } from './views/MyAccount';

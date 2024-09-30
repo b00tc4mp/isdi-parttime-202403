@@ -2,13 +2,13 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import logic from '../../../logic';
+import logic from '../logic';
 
 import { SystemError } from 'com/errors';
 
-import Title from '../../../components/core/Title/Title';
+import Title from '../components/core/Title/Title';
 
-import Button from '../../../components/core/Button/Button';
+import Button from '../components/core/Button/Button';
 
 import './CreateAdForm.css';
 

@@ -1,29 +1,39 @@
 import { useState } from 'react';
 import logic from '../../../logic';
 import Button from '../../../components/core/Button/Button';
+import Confirm from '../Confirm/Confirm';
 import useContext from '../../../useContext';
 import './DeleteAdComment.css';
 
 function DeleteAdComment({ adId, onCommentDeleted, commentId }) {
-    const [message, setMessage] = useState('');
-
+    const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
     const { alert } = useContext();
 
     const handleDeleteAdComment = (event) => {
-        if (confirm('Are you sure you want to delete this comment?')) {
-            try {
-                logic
-                    .deleteAdComment(adId, commentId)
-                    .then(() => {
-                        onCommentDeleted();
-                    })
-                    .catch((error) => {
-                        alert(error.message);
-                    });
-            } catch (error) {
-                alert(error.message);
-            }
+        event.stopPropagation();
+        setConfirmDeleteVisible(true);
+    };
+
+    const handleConfirmDeleteAdComment = (event) => {
+        event.stopPropagation();
+        setConfirmDeleteVisible(false);
+        try {
+            logic
+                .deleteAdComment(adId, commentId)
+                .then(() => {
+                    onCommentDeleted();
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        } catch (error) {
+            alert(error.message);
         }
+    };
+
+    const handleCancelDeleteAdComment = (event) => {
+        event.stopPropagation();
+        setConfirmDeleteVisible(false);
     };
 
     return (
@@ -35,9 +45,55 @@ function DeleteAdComment({ adId, onCommentDeleted, commentId }) {
             >
                 Delete
             </Button>
-            {message && <p className="ErrorMessage">{message}</p>}
+            {confirmDeleteVisible && (
+                <Confirm
+                    message="Are you sure you want to delete this comment?"
+                    onAccept={handleConfirmDeleteAdComment}
+                    onCancel={handleCancelDeleteAdComment}
+                />
+            )}
         </>
     );
 }
 
 export default DeleteAdComment;
+
+// function DeleteAdComment({ adId, onCommentDeleted, commentId, onCancel }) {
+//     const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(true);
+//     const { alert } = useContext();
+
+//     const handleConfirmDeleteAdComment = (event) => {
+//         event.stopPropagation();
+//         setConfirmDeleteVisible(false);
+//         try {
+//             logic
+//                 .deleteAdComment(adId, commentId)
+//                 .then(() => {
+//                     onCommentDeleted();
+//                 })
+//                 .catch((error) => {
+//                     alert(error.message);
+//                 });
+//         } catch (error) {
+//             alert(error.message);
+//         }
+//     };
+
+//     const handleCancelDeleteAdComment = (event) => {
+//         event.stopPropagation();
+//         setConfirmDeleteVisible(false);
+//         onCancel();
+//     };
+
+//     return (
+//         confirmDeleteVisible && (
+//             <Confirm
+//                 message="Are you sure you want to delete this comment?"
+//                 onAccept={handleConfirmDeleteAdComment}
+//                 onCancel={handleCancelDeleteAdComment}
+//             />
+//         )
+//     );
+// }
+
+// export default DeleteAdComment;
