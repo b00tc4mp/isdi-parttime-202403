@@ -1,7 +1,6 @@
 import errors, { SystemError } from 'com/errors';
 
 const getAllAds = () => {
-    console.log('Token:', sessionStorage.token);
     return fetch(`${import.meta.env.VITE_API_URL}/ads`, {
         method: 'GET',
 

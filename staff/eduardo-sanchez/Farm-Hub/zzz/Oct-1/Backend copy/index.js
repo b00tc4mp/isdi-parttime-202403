@@ -32,6 +32,15 @@ mongoose
 
         // api.get('/', (_, res) => res.send('Hello, Farmfan!'));
 
+        // api.get('/', (req, res) => {
+        //     // http://localhost:8080
+        //     try {
+        //         res.send('Hello, Farmfan!');
+        //     } catch (error) {
+        //         errorHandler(error, req, res);
+        //     }
+        // });
+
         const jsonBodyParser = express.json({
             strict: true,
             type: 'application/json',
