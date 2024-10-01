@@ -1,31 +1,36 @@
-import jwt from '../util/jsonwebtoken-promised.js'
+import jwt from '../util/jsonwebtoken-promised.js';
 
-import logic from '../logic/index.js'
+import logic from '../logic/index.js';
 
-import { CredentialsError } from 'com/errors.js'
+import { CredentialsError } from 'com/errors.js';
 
-const { JWT_SECRET } = process.env
+const { JWT_SECRET } = process.env;
 
 export default (req, res, next) => {
     try {
-        const token = req.headers.authorization.slice(7)
+        const token = req.headers.authorization.slice(7);
 
         jwt.verify(token, JWT_SECRET)
-            .then(payload => {
-                const { sub: userId } = payload
+            .then((payload) => {
+                const { sub: userId } = payload;
 
-                const { adId, commentId } = req.params
+                const { adId, commentId } = req.params;
 
                 try {
-                    logic.deleteAdComment(userId, adId, commentId)
-                        .then(() => res.status(204).send())
-                        .catch(error => next(error))
+                    logic
+                        .deleteAdComment(userId, adId, commentId)
+                        .then(() => {
+                            console.log('deleted ad comment', adId, commentId);
+                            res.status(204).send();
+                        })
+
+                        .catch((error) => next(error));
                 } catch (error) {
-                    next(error)
+                    next(error);
                 }
             })
-            .catch(error => next(new CredentialsError(error.message)))
+            .catch((error) => next(new CredentialsError(error.message)));
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
