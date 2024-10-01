@@ -3,7 +3,7 @@ import logic from './logic';
 
 import './global.css';
 
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Context } from './useContext';
 
@@ -26,46 +26,18 @@ function App() {
 
     const [message, setMessage] = useState(null);
 
-    const handleAlertAccept = () => setMessage(null);
-
     const handleMessage = (message) => setMessage(message);
 
-    const navigate = useNavigate();
+    const handleAlertAccept = () => setMessage(null);
 
     return (
         <>
             <Context.Provider value={{ alert: handleMessage }}>
                 <Routes>
-                    <Route
-                        path="/register"
-                        element={
-                            logic.isUserLoggedIn() ? (
-                                <Navigate to="/" />
-                            ) : (
-                                <Register />
-                            )
-                        }
-                    />
-                    <Route
-                        path="/login"
-                        element={
-                            logic.isUserLoggedIn() ? (
-                                <Navigate to="/" />
-                            ) : (
-                                <Login />
-                            )
-                        }
-                    />
-                    <Route
-                        path="/"
-                        element={
-                            logic.isUserLoggedIn() ? (
-                                <Home />
-                            ) : (
-                                <Navigate to="/login" />
-                            )
-                        }
-                    />
+                    <Route path="/" element={<RenderHome />} />
+                    <Route path="/login" element={<RenderLogin />} />
+                    <Route path="/register" element={<RenderRegister />} />
+
                     <Route path="/*" element={<Notfound />} />
 
                     <Route path="/createad" element={<CreateAdForm />}></Route>
@@ -81,6 +53,7 @@ function App() {
 
                     <Route path="/mycomments" element={<MyComments />}></Route>
                 </Routes>
+
                 {message && (
                     <Alert message={message} onAccept={handleAlertAccept} />
                 )}
@@ -90,3 +63,10 @@ function App() {
 }
 
 export default App;
+
+const RenderHome = () =>
+    logic.isUserLoggedIn() ? <Home /> : <Navigate to="/login" />;
+const RenderLogin = () =>
+    logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login />;
+const RenderRegister = () =>
+    logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register />;
