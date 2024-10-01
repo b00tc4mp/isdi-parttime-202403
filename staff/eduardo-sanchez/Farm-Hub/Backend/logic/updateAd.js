@@ -44,9 +44,9 @@ const updateAd = (userId, adId, title, description, price, contactInfo) => {
 
                         .catch((error) => {
                             throw new SystemError(error.message);
-                        })
+                        });
 
-                        .then((updateAd) => updateAd);
+                    // .then((updateAd) => updateAd);
                 });
         });
 };

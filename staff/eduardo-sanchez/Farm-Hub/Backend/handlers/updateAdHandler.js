@@ -32,14 +32,14 @@ export default (req, res, next) => {
                         .then(() => {
                             console.log('ad updated');
 
-                            // res.status(200).send()
+                            res.status(200).send();
 
-                            res.status(200).send({
-                                title,
-                                description,
-                                price,
-                                contactInfo,
-                            });
+                            // res.status(200).send({
+                            //     title,
+                            //     description,
+                            //     price,
+                            //     contactInfo,
+                            // });
 
                             // res.status(200).json(updateAd)
                         })

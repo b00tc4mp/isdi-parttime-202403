@@ -34,7 +34,7 @@ describe('updateAd', () => {
             )
             .then((user) =>
                 Ad.create({
-                    author: user.id,
+                    author: user._id,
                     title: 'beans',
                     description: 'green',
                     price: '3.5 €/Kg',
@@ -47,8 +47,8 @@ describe('updateAd', () => {
 
             .then((ad) => {
                 return updateAd(
-                    user.id,
-                    ad.id,
+                    user._id,
+                    ad._id,
                     'BEANS',
                     'RED',
                     '4.5 €/Kg',
