@@ -30,7 +30,6 @@ const registerUser = (
         })
         .then((res) => {
             if (res.status === 201) {
-                console.log(`User ${username} registered`);
                 return;
             }
 

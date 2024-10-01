@@ -16,7 +16,6 @@ function deleteAd(adId) {
         })
         .then((res) => {
             if (res.status === 204) return;
-            console.log(`Ad ${adId} deleted successfully`);
 
             return res
                 .json()

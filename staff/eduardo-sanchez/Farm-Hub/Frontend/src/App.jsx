@@ -22,8 +22,6 @@ import { MyAds } from './views/MyAds';
 import { MyComments } from './views/MyComments';
 
 function App() {
-    console.log('App -> render');
-
     const [message, setMessage] = useState(null);
 
     const handleMessage = (message) => setMessage(message);

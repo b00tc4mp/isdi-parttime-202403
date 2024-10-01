@@ -12,7 +12,6 @@ import LogoutIcon from '../../../icons/logout.png';
 import UserInfoMenu from '../UserInfoMenu/UserInfoMenu';
 
 function Header({ user }) {
-    console.log('Header -> render');
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const navigate = useNavigate();
 

@@ -8,8 +8,6 @@ const searchAds = (searchText, userLocation) => {
         url += `?lat=${userLocation.lat}&lng=${userLocation.lng}`;
     }
 
-    console.log('I arrived here?', searchText);
-
     return fetch(url, {
         method: 'GET',
 
@@ -22,7 +20,6 @@ const searchAds = (searchText, userLocation) => {
         })
         .then((response) => {
             if (response.status === 200) {
-                console.log('Llego aqui?');
                 return response
                     .json()
                     .catch(() => {
@@ -47,50 +44,3 @@ const searchAds = (searchText, userLocation) => {
 };
 
 export default searchAds;
-
-// import errors, { SystemError } from 'com/errors';
-// import { getUserLocation } from '../utils/getUserLocation';
-
-// const searchAds = (searchText, isUserLocationEnabled) => {
-//     let url = `${import.meta.env.VITE_API_URL}/searchads/${searchText}`;
-
-//     return new Promise((resolve, reject) => {
-//         const fetchAds = (url) => {
-//             fetch(url, {
-//                 method: 'GET',
-//                 headers: {
-//                     Authorization: `Bearer ${sessionStorage.token}`,
-//                 },
-//             })
-//                 .then((response) => {
-//                     if (response.status === 200) {
-//                         return response.json();
-//                     }
-//                     throw new SystemError('server connection problem');
-//                 })
-//                 .then((ads) => resolve(ads))
-//                 .catch((error) => reject(error));
-//         };
-
-//         if (isUserLocationEnabled) {
-//             getUserLocation()
-//                 .then((userLocation) => {
-//                     url += `?lat=${userLocation.lat}&lng=${userLocation.lng}`;
-//                     fetchAds(url);
-//                 })
-//                 .catch((error) => {
-//                     console.error('Error getting user location:', error);
-//                     fetchAds(url); // Fetch ads without location if there's an error
-//                 });
-//         } else {
-//             fetchAds(url);
-//         }
-//     });
-// };
-
-//////////////////
-
-// if (`${userLocation.lat}` !== '0' && `${userLocation.lng}` !== '0') {
-//     // getUserLocation();
-//     url += `?lat=${userLocation.lat}&lng=${userLocation.lng}`;
-// }
