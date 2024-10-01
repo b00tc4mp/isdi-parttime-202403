@@ -1,0 +1,2 @@
+curl -X PATCH http://localhost:8080/updatead/66fab7d397be259c43e63c75 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmU0ODc5NzMwY2I2M2Y5N2JiYzIzZTUiLCJpYXQiOjE3Mjc3MDcwMTIsImV4cCI6MTczMDI5OTAxMn0.HivghnqiJyTd9H1KSN0NSSLdQ1fdT1KZEP1epvkzGFE" -H "Content-Type: application/json" -d '{"title":"Berengena","description":"MoRADA FiNa", "price":"3.50 €/Kg", "contactInfo":"081-234-5678"}' -v
+

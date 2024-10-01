@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+    .UserInfoMenuContainer {
+        @apply fixed bg-green-700 right-3 top-16 rounded-xl p-1 text-black shadow-2xl;
+    }
+
+    .UserInfoMenuList {
+        @apply cursor-pointer p-3 hover:bg-gray-700 bg-white;
+    }
+}

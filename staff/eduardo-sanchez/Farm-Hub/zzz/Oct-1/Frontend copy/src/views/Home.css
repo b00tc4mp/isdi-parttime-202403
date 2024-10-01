@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+    .HomeContainer {
+        @apply flex flex-col mt-16 min-h-screen;
+    }
+
+    .Home {
+        @apply flex-grow overflow-y-auto pb-10;
+    }
+}
