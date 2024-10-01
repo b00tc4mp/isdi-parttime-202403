@@ -3,7 +3,7 @@ import logic from './logic';
 
 import './global.css';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 import { Context } from './useContext';
 
@@ -29,6 +29,8 @@ function App() {
     const handleAlertAccept = () => setMessage(null);
 
     const handleMessage = (message) => setMessage(message);
+
+    const navigate = useNavigate();
 
     return (
         <>
