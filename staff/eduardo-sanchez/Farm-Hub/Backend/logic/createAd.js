@@ -43,7 +43,7 @@ const createAd = (
                 .catch((error) => {
                     throw new SystemError(error.message);
                 })
-                .then(() => {});
+                .then((createAd) => createAd);
         });
 };
 

@@ -30,6 +30,10 @@ mongoose
 
         api.use(cors());
 
+        api.get('/', (req, res) => {
+            res.send('Hello, Farmfan!');
+        });
+
         const jsonBodyParser = express.json({
             strict: true,
             type: 'application/json',
@@ -71,7 +75,7 @@ mongoose
 
         api.listen(PORT, () => console.log(`API running on PORT ${PORT}`));
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 mongoose.connection.on('error', (error) => {
     console.error('MongoDB connection error:', error);

@@ -2,7 +2,7 @@
 
 @layer components {
     .Confirm {
-        @apply flex fixed top-96 w-full items-center justify-center left-1;
+        @apply flex fixed top-64 w-full items-center justify-center left-1;
     }
 
     .ConfirmBox {

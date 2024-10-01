@@ -18,7 +18,7 @@
     }
 
     .UserCommentText {
-        @apply p-1 text-black font-medium;
+        @apply p-1 text-black font-medium break-words;
     }
 
     .UserCommentsListEmpty {

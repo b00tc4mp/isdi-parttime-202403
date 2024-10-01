@@ -31,10 +31,12 @@ function AdList({ searchText, userLocation }) {
                     setIsLoading(false);
                 })
                 .catch((error) => {
+                    setAds([]);
                     alert(error.message);
                     setIsLoading(false);
                 });
         } catch (error) {
+            setAds([]);
             alert(error.message);
             setIsLoading(false);
         }
