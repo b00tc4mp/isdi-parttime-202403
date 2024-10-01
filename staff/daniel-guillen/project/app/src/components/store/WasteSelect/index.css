@@ -2,7 +2,7 @@
 
 @layer components {
   .WasteSelectDiv {
-    @apply bg-white flex flex-col;
+    @apply bg-white flex flex-col rounded-t-sm;
   }
   .WasteSelect {
     @apply flex flex-col text-center text-2xl leading-none;

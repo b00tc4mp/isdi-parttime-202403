@@ -2,10 +2,10 @@
 
 @layer components {
   .WasteList {
-    @apply flex flex-col mx-1 mb-12;
+    @apply flex flex-col mb-12;
   }
   .NewWasteDiv {
-    @apply mb-1 text-3xl font-bold leading-tight w-full;
+    @apply mb-1 text-3xl font-bold leading-tight w-full rounded-sm;
   }
   .ShortDescription {
     @apply text-base;

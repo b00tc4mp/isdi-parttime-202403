@@ -2,6 +2,6 @@
 
 @layer components {
   .SearchWasteDiv {
-    @apply flex flex-col text-center;
+    @apply flex flex-col text-center mx-4;
   }
 }

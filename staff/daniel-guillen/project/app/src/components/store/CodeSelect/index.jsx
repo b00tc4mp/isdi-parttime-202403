@@ -1,59 +1,36 @@
 import { useState, useEffect } from 'react'
-import Select from 'react-select'
 import './index.css'
+// components
+import Select from 'react-select'
+// logic
+import fetchCodesWasteStored from '../../../logic/getCodesWasteStored'
 
 const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
-  // Estado para almacenar las codigos
-  const [data, setData] = useState([])
+  
+  const [data, setData] = useState([]) // almacenar las códigos
 
-  // Función para obtener todas las codigos desde la API
-  const fetchCode = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}stored/getAllCodesStored`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error('Error al obtener lista de codigos')
-      }
-
-      const result = await response.json()
-
-      // Formatear los datos para react-select
-      const formattedData = result.map((item) => ({        
-        value: item.code,
-        label: `${item.code} - ${item.description}`
-      }))
-      setData(formattedData)
-    } catch (error) {
-      console.error('Error al obtener lista de codigos', error)
-    }
-  }
-
-  // useEffect para cargar las codigos al montar el componente
   useEffect(() => {
-    fetchCode()
+    const loadCodes = async () => {
+      const fetchedData = await fetchCodesWasteStored() // buscamos todos los codigos registrados en inventario
+      setData(fetchedData)
+    }
+    loadCodes()
   }, [])
 
-  // ordenar opciones por codigo
+  // Ordenar opciones
   const options = data.sort((a, b) => a.value.localeCompare(b.value))
 
-  //  opción seleccionada a partir del valor de selectedCode
+  // Opción seleccionada a partir del valor de selectedWaste
   const selectedOption = options.find(option => option.value === selectedWaste)
-
-
 
   return (
     <div className='CodeSelectedDiv'>
-      <Select
+      <Select required
         className='CodeSelected'
         id='CodeSelect'
         placeholder="CODIGO DE RESIDUO"
-        options={options} // opciones para el select
-        value={selectedOption} // valor actualmente seleccionado
+        options={options} // Opciones para el select
+        value={selectedOption} // Valor actualmente seleccionado
         onChange={(selected) => handleCodeChange(selected ? selected.value : null)}
         isClearable
       />

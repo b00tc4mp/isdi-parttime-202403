@@ -2,13 +2,13 @@
 
 @layer components {
   .Departures {
-    @apply flex flex-col text-center mb-12;
+    @apply flex flex-col text-center mb-12 mx-4;
   }
   .TruckLoadForm {
     @apply bg-white flex flex-col text-center;
   }
   .WeightWeekButtton {
-    @apply flex flex-row justify-center items-center;
+    @apply flex flex-row justify-center items-center rounded-b-sm;
   }
   .WeekYear {
     @apply text-black text-2xl font-bold px-1;

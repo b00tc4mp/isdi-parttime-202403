@@ -11,7 +11,7 @@ import VehicleBig from '../../img/VehicleBig.jpg'
 const VehiclesSelect = ({ selectedVehicle, handleVehicleChange }) => {
   const [data, setData] = useState([])
 
-  // useEffect para cargar las vehiculos al montar el componente
+  // useEffect para cargar las vehiculos
   useEffect(() => {
     const fetchVehiclesData = async () => {
       try {

@@ -4,4 +4,16 @@
   .Button {
     @apply cursor-pointer text-3xl text-center items-center;
   }
+  .SubmitButton {
+    @apply bg-green-700 my-2 mx-10 rounded-sm;
+  }
+  .SubmitButton:hover {
+    @apply bg-green-500 my-2 mx-10 rounded-sm;
+  }
+  .return {
+    @apply flex flex-col w-36 text-2xl text-center items-center ml-8 p-1 rounded-sm bg-green-700 text-white;
+  }
+  .return:hover {
+    @apply flex flex-col w-36 text-2xl text-center items-center ml-8 p-1 rounded-sm bg-green-500 text-white;
+  }
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 // components
 import FormWithFeedback from "../../components/core/FormWithFeedback"
 import Field from "../../components/core/Field"
@@ -7,27 +7,33 @@ import Button from "../../components/core/Button"
 // logic
 import loginUser from "../../logic/loginUser"
 
-const Login = () => {
-
-  const navigate = useNavigate()
+const Login = ({ setIsAuthenticated }) => {
+  // const navigate = useNavigate()
   const [message, setMessage] = useState('')
 
   const handleLoginSubmit = async (event) => {
-
     event.preventDefault()
 
     const form = event.target
-    const username = form.username.value
-    const password = form.password.value
+    const username = form.username.value.trim()
+    const password = form.password.value.trim()
+
+    // validaciones primer paso 
+    if (!username || !password) {
+      setMessage('Debe proporcionar nombre de usuario y contraseña.')
+      return
+    }
 
     try {
+      // llamada a la API para iniciar sesión
       await loginUser(username, password)
+      setIsAuthenticated(true) // Actualiza el estado de autenticación
+      // navigate('/')  // Redirecciona a página home
       alert(`Bienvenido ${username}!👋`)
-      navigate('/')  // redirecciona a pagina home
     } catch (error) {
       console.error(error)
-      setMessage(error.message)
-      alert(error.message)
+      setMessage(error.message) // mostrar mensaje de error en la UI
+      alert(error.message) // mostrar alerta con el mensaje de error
     }
   }
 
@@ -36,7 +42,7 @@ const Login = () => {
       <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
         <Field id="username" placeholder="username">Nombre de Usuario</Field>
         <Field id="password" type="password" placeholder="password">Contraseña</Field>
-        <Button className="SubmitLogin">Login</Button>
+        <Button className="SubmitButton">Login</Button>
       </FormWithFeedback>
     </div>
   )

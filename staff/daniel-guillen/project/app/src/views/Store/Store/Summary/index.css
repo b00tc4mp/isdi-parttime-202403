@@ -2,9 +2,9 @@
 
 @layer components {
   .SummaryStoreDiv {
-    @apply flex flex-col text-center;
+    @apply flex flex-col text-center mx-4;
   }
   .StagnantWasteDiv {
-    @apply bg-red-500 text-white text-2xl mb-1;
+    @apply bg-red-500 text-white text-2xl mb-1 rounded-sm;
   }
 }

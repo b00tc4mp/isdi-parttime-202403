@@ -33,10 +33,10 @@ body {
     @apply cursor-pointer;
   }
   .image {
-    @apply w-full mt-2 border-white border-4;
+    @apply w-full mt-2 border-white border-4 rounded-sm;
   }
   .image:hover {
-    @apply grayscale-0 border-green-600 border-4;
+    @apply grayscale-0 border-green-600 border-4 rounded-sm;
   }
   .menuFooterDiv {
     @apply fixed bottom-0 left-0;
@@ -61,5 +61,8 @@ body {
   }
   .menuFooter-end:hover {
     background: lightgreen;
+  }
+  .centered {
+    @apply text-center font-bold;
   }
 }

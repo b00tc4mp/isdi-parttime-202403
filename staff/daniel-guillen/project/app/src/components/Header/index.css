@@ -1,89 +1,22 @@
-.Nav {
-  display: flex;
-  max-width: 800px;
-  margin: 0.5rem auto 0 auto;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  background: linear-gradient(white, transparent);
-}
+@tailwind components;
 
-/* Estilos para el ícono de cerrar sesión */
-.logout-icon {
-  position: fixed; /* Fija el ícono en la pantalla */
-  top: 3rem; /* Distancia desde la parte superior */
-  right: 3rem; /* Distancia desde la parte derecha */
-  cursor: pointer; /* Cambia el cursor a puntero cuando pasa sobre el ícono */
-  z-index: 1000; /* Asegura que el ícono esté por encima de otros elementos */
-  transition: opacity 0.3s; /* Agrega una transición suave para la opacidad */
-}
-
-.logout-icon img {
-  width: 3rem;
-  height: 3rem;
-}
-
-/* Ocultar el ícono de cerrar sesión cuando no se debe mostrar */
-.logout-icon.hide {
-  opacity: 0; /* Hace que el ícono sea transparente cuando se oculta */
-  pointer-events: none; /* Previene cualquier interacción con el ícono cuando está oculto */
-}
-
-.logo {
-  display: flex;
-  margin: 0.5rem auto 0 auto;
-  justify-content: center;
-  width: 100%;
-}
-
-.sessionStatus {
-  display: flex;
-  justify-content: center;
-  line-height: 0;
-  align-items: center;
-}
-
-.MenuButtons {
-  display: flex;
-  margin: 1rem auto 1rem auto;
-  justify-content: center;
-  padding-left: 0px;
-  padding-right: 0px;
-  font-size: small;
-  list-style-type: none;
-}
-.menu-link-center {
-  padding: 0.5rem;
-  background: green;
-  border: darkgreen 1px solid;
-  text-decoration: none;
-  color: white;
-}
-.menu-link-start {
-  padding: 0.5rem;
-  background: green;
-  border: darkgreen 1px solid;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  text-decoration: none;
-  color: white;
-}
-.menu-link-end {
-  padding: 0.5rem;
-  background: green;
-  border: darkgreen 1px solid;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  text-decoration: none;
-  color: white;
-}
-
-.menu-link-start:hover,
-.menu-link-center:hover,
-.menu-link-end:hover {
-  background: lightgreen;
-  border: greenyellow 1px solid;
-  color: black;
+@layer components {
+  .Header {
+    @apply flex flex-col mt-2 bg-gradient-to-b from-white to-transparent text-center rounded-t-sm;
+  }
+  .logo {
+    @apply flex justify-center w-full mt-2 mb-0;
+  }
+  .sessionStatus {
+    @apply flex justify-center text-orange-500 items-center leading-none;
+  }
+  .logout-icon {
+    @apply fixed top-2 right-0 cursor-pointer z-[1000] transition-opacity duration-300;
+  }
+  .logout-icon img {
+    @apply w-10 h-10;
+  }
+  .logout-icon.hide {
+    @apply opacity-0 pointer-events-none;
+  }
 }

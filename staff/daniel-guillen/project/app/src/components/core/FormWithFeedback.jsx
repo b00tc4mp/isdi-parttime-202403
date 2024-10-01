@@ -5,7 +5,7 @@ import './FormWithFeedback.css'
 function FormWithFeedback({ onSubmit, children, message, level = 'error' }) {
     return <Form className="FormWithFeedback" onSubmit={onSubmit}>
         {children}
-        {message && <Text className={`Feedback ${level}`}>{message}</Text>}
+        {message && <Text className={`Feedback ${level} centered`}>{message}</Text>}
     </Form>
 }
 

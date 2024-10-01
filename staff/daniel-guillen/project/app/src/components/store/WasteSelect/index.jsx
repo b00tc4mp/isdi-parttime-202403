@@ -7,19 +7,15 @@ import data from './wasteList.json'
 
 const WasteSelect = ({ selectedWaste, handleWasteChange }) => {
   
-  //variable de estado empieza vacia y corresponde al selectedWaste
-  const [options, setOptions] = useState([])
+  const [options, setOptions] = useState([]) //variable de estado empieza vacia y corresponde al selectedWaste
 
   useEffect(() => {
-    //nueva fuente de datos con objetos value por cada item que tengamos en WasteList
     const formattedData = data.map((item) => ({
       value: {
-        //value sera un objeto con code (item.code) y description (item.name) 
-        code: item.code,
+        code: item.code, //value sera un objeto con code (item.code) y description (item.name) 
         description: item.name,
       },
-      //label sera una cadena con item.code y item.namereerererererer
-      label: `${item.code} - ${item.name}`
+      label: `${item.code} - ${item.name}` //label sera una cadena con item.code y item.name
     }))
     //listo para usar
     setOptions(formattedData)

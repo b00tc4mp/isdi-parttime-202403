@@ -2,7 +2,7 @@
 
 @layer components {
   .VehiclesSelectedDiv {
-    @apply bg-white flex flex-col text-center;
+    @apply bg-white flex flex-col text-center rounded-t-sm;
   }
   .VehiclesSelected {
     @apply flex flex-col text-center text-3xl leading-none;

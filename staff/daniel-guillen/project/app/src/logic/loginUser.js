@@ -8,17 +8,25 @@ const loginUser = async (username, password) => {
             body: JSON.stringify({ username, password })
         })
 
-        if (response.status === 200) {
-            const data = await response.json()
-            sessionStorage.setItem('token', data.token)
-            return data
-        } else {
-            const errorData = await response.json()
+        if (!response.ok) { // si no hay exito en la autenticacion
+            let errorData
+            try {
+                errorData = await response.json() // al obtener el string
+            } catch (error) {
+                errorData = { message: 'Error desconocido' } // error generico
+            }
+            // lanza el error con el mensaje del servidor(como usuario no existe o contraseña no valida) o uno por defecto
             throw new Error(errorData.message || 'Error al iniciar sesión')
         }
+
+        // autenticacion exitosa
+        const data = await response.json()
+        sessionStorage.setItem('token', data.token)
+        return data
+
     } catch (error) {
-        console.error('Error en el servidor :(', error)
-        throw new Error('Error en el servidor :(')
+        console.error('Error en el servidor:', error.message) // Muestra el mensaje específico
+        throw new Error(error.message || 'Error en el servidor.')
     }
 }
 

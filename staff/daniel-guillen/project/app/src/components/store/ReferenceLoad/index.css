@@ -2,10 +2,10 @@
 
 @layer components {
   .ReferenceDiv {
-    @apply bg-white flex flex-row justify-center w-full;
+    @apply bg-white flex flex-row justify-center w-full rounded-t-sm;
   }
   .InputDiv {
-    @apply flex flex-col items-center text-center;
+    @apply flex items-center text-center;
   }
   .ButtonReferenceDiv {
     @apply flex;

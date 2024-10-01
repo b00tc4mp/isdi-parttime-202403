@@ -1,11 +1,15 @@
-.FormWithFeedback {
-  padding: 2rem;
-}
+@tailwind components;
 
-.FormWithFeedback .Feedback.error {
-  color: tomato;
-}
+@layer components {
+  .FormWithFeedback {
+    @apply p-2;
+  }
 
-.FormWithFeedback .Feedback.success {
-  color: limegreen;
+  .FormWithFeedback .Feedback.error {
+    @apply text-red-500;
+  }
+
+  .FormWithFeedback .Feedback.success {
+    @apply text-lime-500;
+  }
 }

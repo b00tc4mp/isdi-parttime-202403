@@ -14,8 +14,7 @@ import fetchStoredWaste from '../../../../logic/getWasteStoredByCode'
 import handleDeleteWaste from '../../../../handlers/deleteWasteStoredHandle'
 
 const Search = () => {
-  const [token, setToken] = useState(sessionStorage.getItem('token')) // obtener el token
-
+  const [token] = useState(sessionStorage.getItem('token')) // obtener el token de sessionStorage
   const [data, setData] = useState([])  // almacenar la lista de residuos
   const [loading, setLoading] = useState(false) // mostrar el estado de carga
   const [error, setError] = useState(null) // manejar errores
@@ -34,10 +33,9 @@ const Search = () => {
   useEffect(() => {
     if (selectedWaste) {
       setLoading(true)
-      fetchStoredWaste(selectedWaste, token, setData, setLoading, setError, month, year)
-    } else {
-      setData([])
-      setLoading(false)
+      setTimeout(() => {
+        fetchStoredWaste(selectedWaste, token, setData, setLoading, setError, month, year)
+      }, 1500)
     }
   }, [selectedWaste, token, month, year])
 
@@ -50,29 +48,34 @@ const Search = () => {
   return (
     <div className='SearchWasteDiv'>
       <h1 className='RouteTitle'>BUSCAR RESIDUO POR</h1>
-      <CodeSelect selectedWaste={selectedWaste} handleCodeChange={handleCodeChange}/>
+      <CodeSelect selectedWaste={selectedWaste} handleCodeChange={handleCodeChange} />
 
       {/* lista de residuos almacenados */}
       <div>
-      {loading ? (
-            <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem'}}>Cargando datos de residuos...</p>
-          ) : error ? (
-            <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
-          ) : data.length === 0 ? (
-            <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No hay residuos almacenados este mes.</p>
-          ) : (
+        {!selectedWaste ? (
+          <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>Seleccione un código de residuo.</p>
+        ) : loading ? (
+          <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem' }}>Cargando datos de residuos...</p>
+        ) : error ? (
+          <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
+        ) : data.length === 0 ? (
+          <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No hay residuos almacenados este mes.</p>
+        ) : (
           <div>
-          <h2 className="Title">Peso total {month}/{year}</h2>
+            <h2 className="Title">Peso total {month}/{year}</h2>
             {/* mostrar el residuo agrupado y su peso total */}
             <GroupedWasteItem item={wasteTotalWeight} />
             <h2 className="Title">Lista al detalle {month}/{year}</h2>
             {/* mostrar la lista completa de residuos */}
-            <WasteList data={sortedList} handleDeleteWaste={(id) => handleDeleteWaste(id, token, setData, setLoading, setError)} />
+            <WasteList 
+              data={sortedList} 
+              handleDeleteWaste={(id) => handleDeleteWaste(id, token, setData, setLoading, setError)} 
+            />
           </div>
         )}
       </div>
-    
-      <MenuStore/>
+
+      <MenuStore />
     </div>
   )
 }

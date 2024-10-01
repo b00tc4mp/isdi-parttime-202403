@@ -72,7 +72,7 @@ const Stored = () => {
         ) : error ? (
           <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
         ) : data.length === 0 ? (
-          <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No hay residuos estancados este mes.</p>
+          <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No hay residuos almacenados este mes.</p>
         ) : (
           <div>
           <h2 className="Title">Residuos almacenados</h2>

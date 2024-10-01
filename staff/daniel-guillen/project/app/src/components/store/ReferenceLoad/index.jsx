@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './index.css'
 // components
 import Button from '../../core/Button'
+import Text from '../../core/Text'
 
 const ReferenceLoad = ({ reference, onReferenceChange }) => {
   const [inputValue, setInputValue] = useState('')
@@ -41,7 +42,7 @@ const ReferenceLoad = ({ reference, onReferenceChange }) => {
   return (
     <div className='ReferenceDiv'>
       <div className='InputDiv'>
-      <h3 className='ReferenceLabel'>Registrar carga para</h3>
+      <Text className='ReferenceLabel'>Registrar carga para</Text>
 
       <input
         className='InputReference'
@@ -49,11 +50,9 @@ const ReferenceLoad = ({ reference, onReferenceChange }) => {
         value={inputValue}
         onChange={handleInputChange}
         placeholder='introduce referencia'
-        // style={{
-        //   width: inputValue.length > 0 ? `${inputValue.length + 1}ch` : '18ch'
-        // }}
       />
-      </div>
+      </div >
+
       <div className='ButtonReferenceDiv'>
       {inputValue !== reference && ( // mostramos el boton de guardar solo si el valor ha cambiado
         <Button className='ButtonReference' onClick={handleSave}>💾</Button>

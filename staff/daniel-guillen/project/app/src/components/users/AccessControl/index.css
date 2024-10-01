@@ -1,26 +1,14 @@
-.AccessOptionsDiv {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  line-height: 0;
-}
+@tailwind components;
 
-.Access {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  background: white;
-  height: full;
-  border: grey 2px solid;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
-}
+@layer components {
+  .AccessOptionsDiv {
+    @apply flex flex-col text-center;
+  }
 
-.AccessOption {
-  padding-left: 0.5rem;
-  font-size: 1rem;
-  text-align: center;
-  background: white;
-  border: 0;
+  .Access {
+    @apply bg-white border-gray-500 rounded-sm border-2 text-2xl p-1;
+  }
+  .AccessOption {
+    @apply bg-white border-0 pl-1;
+  }
 }

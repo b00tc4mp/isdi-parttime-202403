@@ -62,7 +62,7 @@ const Historical = () => {
   const vehicleImg = getImage(vehicleSize) // Obtener imagen basada en el tamaño del vehículo
 
   return (
-    <div>
+    <div className='Historical'>
       {loading ? (
         <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem' }}>Cargando inspecciones guardadas...</p>
       ) : error ? (
@@ -84,9 +84,9 @@ const Historical = () => {
                 onClick={() => handleDeleteInspection(item.id, token, vehicleId, setData, setLoading, setError)}
               >
                 <div className='Inspection'>
-                  <p className='bold'>Realizado por: {item.worker.workerName} en día: {item.worker.date}</p>
+                  <div className='HistoricalInfo'><h3>Realizado por: {item.worker.workerName} en día: {item.worker.date}</h3></div>
                   <div className='HistorialItemToFix'>
-                  <h3>Elementos marcados para arreglar:</h3>
+                  <h3 className='bold'>Elementos marcados para arreglar:</h3>
                   <ul className='itemFix'>
                     {item.inspection.itemFix.map((fix, index) => (
                       <li key={index}>
@@ -95,7 +95,7 @@ const Historical = () => {
                     ))}
                   </ul>
                   </div>
-                  <p className='notes'>{item.inspection.notes}</p>
+                  <p className='HistoricalNote'>{item.inspection.notes}</p>
                 </div>
               </button>
             </div>

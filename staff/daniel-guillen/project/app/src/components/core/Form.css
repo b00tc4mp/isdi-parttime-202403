@@ -1,7 +1,7 @@
-.Form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 5px;
-  background: linear-gradient(white, transparent);
+@tailwind components;
+
+@layer components {
+  .Form {
+    @apply flex flex-col text-left mt-5 mx-5 bg-gradient-to-b from-white to-transparent rounded-sm;
+  }
 }

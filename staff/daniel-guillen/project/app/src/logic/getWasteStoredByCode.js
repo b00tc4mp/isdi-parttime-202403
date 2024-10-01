@@ -19,12 +19,13 @@ const fetchStoredWaste = async (selectedWaste, token, setData, setLoading, setEr
       }
   
       const result = await response.json()
-      setData(result) 
+      setData(result)
+      console.log('Datos recibidos del servidor:', result)
     } catch (error) {
       setError(error.message)
       console.error('Error al obtener los residuos almacenados:', error)
     } finally {
-           setLoading(false)    
+      setLoading(false)    
     }
   }
   

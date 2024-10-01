@@ -1,6 +1,7 @@
-.Input {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 2px solid var(--third-color);
-  border-radius: 5px;
+@tailwind components;
+
+@layer components {
+  .Input {
+    @apply p-2 text-xl border-gray-500 rounded-sm border-2;
+  }
 }

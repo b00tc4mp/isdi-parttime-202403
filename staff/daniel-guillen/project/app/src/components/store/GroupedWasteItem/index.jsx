@@ -1,4 +1,5 @@
 import'./index.css'
+import Text from '../../core/Text'
 
  const GroupedWasteItem = ({ item }) => {
   const shortDescription = item.description.length > 34
@@ -7,8 +8,8 @@ import'./index.css'
 
   return (
     <div className='SummaryWasteDataDiv' key={item.id}>
-      <p>{item.code} - Total: {item.totalWeight}kg</p>
-      <p className='ShortDescription'>{shortDescription}</p>      
+      <Text>{item.code} - Total: {item.totalWeight}kg</Text>
+      <Text className='ShortDescription'>{shortDescription}</Text>      
     </div>
   )
 }

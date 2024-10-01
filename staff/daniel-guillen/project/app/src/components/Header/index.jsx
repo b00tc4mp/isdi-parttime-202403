@@ -9,7 +9,7 @@ import logoutIcon from '../img/logoutIcon.png'
 import logoutUser from '../../logic/logoutUser'
 import fetchUserName from '../../logic/getUserName'
 
-const Header = () => {
+const Header = ({ setIsAuthenticated }) => {
   const navigate = useNavigate()
   const token = sessionStorage.getItem('token') // obtener token
 
@@ -17,38 +17,30 @@ const Header = () => {
   const [error, setError] = useState('')
   const [showLogoutIcon, setShowLogoutIcon] = useState(true)
 
-  // boton logout
+  // Botón logout
   const handleLogout = () => {
     logoutUser()  // eliminamos el token
-    alert('Hasta pronto!👋')
-    navigate('/Login')  // redirecciona a /Login
+    setIsAuthenticated(false) // Actualizamos el estado de autenticación a falso
+    navigate('/Login')  // Redirecciona a /Login
+    alert('Hasta pronto 👋')
   }
 
-    // Efecto 'magico' boton logout
-    useEffect(() => {
-      const handleScroll = () => {
-        if (window.scrollY > 0) {
-          setShowLogoutIcon(false)
-        } else {
-          setShowLogoutIcon(true)
-        }
-      }
-  
-      window.addEventListener('scroll', handleScroll)
-  
-      return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
-
-  // monitorizamos el token y redirigir si es necesario
+  // Efecto 'mágico' para mostrar/ocultar el botón logout
   useEffect(() => {
-    // Si no hay token, hacer logout y redirigir al login
-    if (!token) {
-      logoutUser()
-      navigate('/Login')
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setShowLogoutIcon(false)
+      } else {
+        setShowLogoutIcon(true)
+      }
     }
-  }, [token, navigate])
 
-  // obtener el username
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Obtener el nombre del usuario
   useEffect(() => {
     const getUserName = async () => {
       try {
@@ -66,8 +58,8 @@ const Header = () => {
 
   return (
     <div>
-      <nav className='Nav'>
-        {token ? ( // si hay token: mostrar nombre de usuario y boton logout
+      <nav className='Header'>
+        {token ? ( // si hay token: mostrar nombre de usuario y botón logout
           <div>
             <div className='logo'>
               <a href="/"><img src={logo} alt="Logo" /></a>
@@ -77,7 +69,7 @@ const Header = () => {
               <h1 style={{ color: 'orange' }}>Bienvenido <strong>{username}</strong>!</h1>
             </div>
           </div>
-        ) : ( // si no hay token: mostrar bienvenido redirigir a login
+        ) : ( // si no hay token: mostrar mensaje y redirigir a login
           <div>
             <div className='logo'>
               <a href="#" onClick={() => navigate('/Login')}><img src={bienvenido} alt="Logo" /></a>
@@ -85,7 +77,7 @@ const Header = () => {
 
             <div className='sessionStatus'>
               <h1 style={{ color: 'orange' }}>
-                <a href="#" onClick={() => navigate('/Login')} style={{ color: 'orange', textDecoration: 'none' }}>
+                <a href="#" onClick={() => navigate('/Login')}>
                   {error || 'Por favor, identifíquese...'}
                 </a>
               </h1>
@@ -94,7 +86,7 @@ const Header = () => {
         )}
       </nav>
 
-      {/* icono logout */}
+      {/* Icono logout */}
       {token && showLogoutIcon && (
         <div className="logout-icon" onClick={handleLogout}>
           <img src={logoutIcon} alt="Cerrar sesión" />

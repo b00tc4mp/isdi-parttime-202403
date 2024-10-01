@@ -1,4 +1,7 @@
-.Label {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+@tailwind components;
+
+@layer components {
+  .Label {
+    @apply mt-1 mb-1 text-green-600;
+  }
 }
