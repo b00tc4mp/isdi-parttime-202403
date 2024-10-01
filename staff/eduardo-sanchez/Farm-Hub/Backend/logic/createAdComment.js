@@ -40,8 +40,6 @@ const createAdComment = (userId, adId, text) => {
                             throw new SystemError(error.message);
                         })
                         .then((ad) => {
-                            // if (!ad) throw new NotFoundError('ad not found')
-
                             return ad;
                         });
                 });
@@ -49,19 +47,3 @@ const createAdComment = (userId, adId, text) => {
 };
 
 export default createAdComment;
-
-//             const adcomment = {
-//                 author: userId,
-//                 comment: text,
-//                 date: new Date()
-//             }
-
-//             if (!ad.adcomments) ad.adcomments = []
-//             ad.adcomments.push(adcomment)
-//             return ad.save()
-
-//                 .catch(error => { throw new SystemError(error.message) })
-//                 .then(() => adcomment)
-//         })
-// })
-//}

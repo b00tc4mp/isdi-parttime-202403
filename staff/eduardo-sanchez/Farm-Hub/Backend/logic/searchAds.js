@@ -12,8 +12,6 @@ const searchAds = (searchText, userLocation, maxDistance = 50) => {
     validate.geoLocation(userLocation, 'userLocation');
     validate.maxDistance(maxDistance, 'maxDistance');
 
-    // console.log('Search params:', { searchText, userLocation, maxDistance });
-
     return Ad.find({ title: { $regex: regexp } })
         .populate('author', 'username')
         .select('-__v')
@@ -32,7 +30,7 @@ const searchAds = (searchText, userLocation, maxDistance = 50) => {
                         !ad.geoLocation.lat ||
                         !ad.geoLocation.lng
                     ) {
-                        return false; // Excluir anuncios sin ubicación
+                        return false;
                     }
                     const distance = calculateDistance(
                         userLocation.lat,
@@ -49,25 +47,3 @@ const searchAds = (searchText, userLocation, maxDistance = 50) => {
 };
 
 export default searchAds;
-
-/*
-const searchAds = (searchText, userLocation, maxDistance = 50) => {
-  return Ad.find({
-    title: { $regex: searchText, $options: 'i' }
-  })
-  .then(ads => {
-    const filteredAds = ads.filter(ad => {
-      const distance = calculateDistance(
-        userLocation.lat, userLocation.lng,
-        ad.geoLocation.lat, ad.geoLocation.lng
-      );
-      return distance <= maxDistance;
-    });
-    return filteredAds;
-  })
-  .catch(error => {
-    console.error("Error searching ads:", error);
-    throw error;
-  });
-};
-*/

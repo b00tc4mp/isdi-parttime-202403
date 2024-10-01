@@ -21,7 +21,6 @@ export default (req, res, next) => {
                         .getAd(adId)
                         .then((ad) => {
                             res.json(ad);
-                            // res.status(200).send(user)
                         })
                         .catch((error) => next(error));
                 } catch (error) {
@@ -33,16 +32,3 @@ export default (req, res, next) => {
         next(error);
     }
 };
-
-// const { adId } = req.params
-
-// try {
-//     logic.getAd(adId)
-//         .then(ad => {
-//             res.json(ad)
-//             // res.status(200).send(user)
-//         })
-//         .catch(error => next(error))
-// } catch (error) {
-//     next(error)
-// }

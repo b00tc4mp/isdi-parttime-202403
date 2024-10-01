@@ -113,35 +113,3 @@ describe('getAllAds', () => {
             .then(() => mongoose.disconnect())
     );
 });
-
-/*
-it('fails on invalid userId', () => {
-    let errorThrown;
-
-    try {
-        // This will throw synchronously
-        getAllAds('invalid-id');
-    } catch (error) {
-        errorThrown = error;
-    }
-
-    // If the error wasn't thrown synchronously, it might be asynchronous
-    if (!errorThrown) {
-        return getAllAds('invalid-id')
-            .then(() => {
-                throw new Error('Should not reach here');
-            })
-            .catch(error => {
-                errorThrown = error;
-            });
-    }
-
-    // This will run immediately for synchronous errors, 
-    // or after the Promise resolves for asynchronous errors
-    return Promise.resolve().then(() => {
-        expect(errorThrown).to.be.instanceOf(ContentError);
-        expect(errorThrown.message).to.equal('userId is not valid');
-    });
-});
-
-*/

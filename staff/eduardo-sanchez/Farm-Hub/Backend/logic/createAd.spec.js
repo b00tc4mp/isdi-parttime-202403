@@ -53,7 +53,9 @@ describe('createAd', () => {
                         expect(ad.description).to.equal('Luneros');
                         expect(ad.price).to.equal('8.5 €/Kg');
                         expect(ad.date).to.be.a('date');
-                        expect(ad.adcomments).to.be.an('array'); //.that.is.empty
+                        expect(ad.adcomments).to.be.an('array');
+                        expect(ad.geoLocation.lat).to.equal(54);
+                        expect(ad.geoLocation.lng).to.equal(98);
                     })
             ));
 
@@ -216,21 +218,3 @@ describe('createAd', () => {
         )
     );
 });
-
-//   it("fails on invalid geoLocation", () => {
-//     let errorThrown;
-//     try {
-//       createAd(
-//         new ObjectId().toString(),
-//         "Ad Title",
-//         "Ad Description",
-//         "8.5 €/Kg",
-//         "invalid"
-//       );
-//     } catch (error) {
-//       errorThrown = error;
-//     } finally {
-//       expect(errorThrown).to.be.instanceOf(ContentError);
-//       expect(errorThrown.message).to.equal("geoLocation is not valid");
-//     }
-//   });

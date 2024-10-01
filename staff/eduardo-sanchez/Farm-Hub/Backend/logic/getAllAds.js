@@ -32,31 +32,3 @@ const getAllAds = (userId) => {
 };
 
 export default getAllAds;
-
-// const formattedAds = ads.forEach((ad) => {
-//     ad.id = ad._id.toString();
-//     delete ad._id;
-
-//     if (ad.author._id) {
-//         ad.author.id = ad.author._id.toString();
-//         delete ad.author._id;
-//     }
-
-////////////////////
-
-// const formattedAds = ads.map((ad) => {
-//     const { _id, author, ...rest } = ad; // Desestructura el anuncio
-//     return {
-//         id: _id.toString(), // Convierto _id a string
-//         author: author && {
-//             id: author._id.toString(),
-//             username: author.username,
-//         }, // Si el autor existe, lo convierto
-//         ...rest,
-//     };
-// });
-
-// console.log(
-//     'Formatted Ads:',
-//     JSON.stringify(formattedAds, null, 2)
-// );

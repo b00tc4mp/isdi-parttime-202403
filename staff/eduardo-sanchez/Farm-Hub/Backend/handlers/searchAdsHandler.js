@@ -26,7 +26,7 @@ export default (req, res, next) => {
                           }
                         : null;
 
-                const maxDistanceNumber = parseInt(maxDistance); // or parseFloat(maxDistance)
+                const maxDistanceNumber = parseInt(maxDistance);
 
                 try {
                     logic

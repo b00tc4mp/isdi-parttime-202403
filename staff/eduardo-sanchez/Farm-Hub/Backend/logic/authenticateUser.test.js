@@ -1,21 +1,19 @@
-import 'dotenv/config'
-import mongoose from 'mongoose'
+import 'dotenv/config';
+import mongoose from 'mongoose';
 
-import authenticateUser from './authenticateUser.js'
+import authenticateUser from './authenticateUser.js';
 
-const { MONGODB_URL } = process.env
+const { MONGODB_URL } = process.env;
 
-mongoose.connect(MONGODB_URL)
+mongoose
+    .connect(MONGODB_URL)
     .then(() => {
-
         try {
-            // authenticateUser('ramonin', 'Hola1234')
             authenticateUser('lolobolo', '123123123')
-                .then(userId => console.log('user authenticated', userId))
-                .catch(error => console.error(error))
-
+                .then((userId) => console.log('user authenticated', userId))
+                .catch((error) => console.error(error));
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     })
-    .catch(error => console.error(error))
+    .catch((error) => console.error(error));
