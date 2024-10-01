@@ -6,7 +6,7 @@
     }
 
     .AdPageContainer {
-        @apply max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md;
+        @apply max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md relative z-0;
     }
 
     .AdPageTitle {

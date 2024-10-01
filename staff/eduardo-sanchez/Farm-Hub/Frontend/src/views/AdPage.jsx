@@ -72,7 +72,7 @@ function AdPage() {
 
             {ad.geoLocation && (
                 <>
-                    <div>
+                    <div className="relative -z-10">
                         <MapComponent
                             geolocation={ad.geoLocation}
                         ></MapComponent>

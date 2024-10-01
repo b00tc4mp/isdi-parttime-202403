@@ -6,7 +6,7 @@
     }
 
     .ConfirmBox {
-        @apply p-[.4rem] bg-gray-100 text-[1rem] border-[1px] border-blue-500 w-[150px] h-[200px] rounded-xl shadow-md;
+        @apply p-[.4rem] bg-gray-100 text-[1rem] border-[1px] border-blue-500 w-[150px] h-[200px] rounded-xl shadow-md z-10 relative;
     }
 
     .Confirm p {
