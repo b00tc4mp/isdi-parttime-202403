@@ -23,4 +23,3 @@ userRoutes.delete('/deleteUser/:id', deleteUser)
 userRoutes.post('/login', loginUser)
 
 export default userRoutes
-

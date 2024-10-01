@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import getAllWasteStored from '../handlers/storedHandlers/getAllWasteStored.js'
 import getWasteStoredToday from '../handlers/storedHandlers/getWasteStoredToday.js'
-import getWasteStored from '../handlers/storedHandlers/getWasteStored.js'
+import getWasteStoredByCode from '../handlers/storedHandlers/getWasteStoredByCode.js'
 import getAllCodesStored from '../handlers/storedHandlers/getAllCodesStored.js'
 import deleteWaste from '../handlers/storedHandlers/deleteWaste.js'
 import createWaste from '../handlers/storedHandlers/createWaste.js'
@@ -16,7 +16,7 @@ storedRoutes.get('/getAllWasteStored', getAllWasteStored)
 storedRoutes.get('/getWasteStoredToday', getWasteStoredToday)
 
 // Ruta para buscar residuo por codigo
-storedRoutes.get('/getWasteStored/:month/:year/:code', getWasteStored)
+storedRoutes.get('/getWasteStored/:month/:year/:code', getWasteStoredByCode)
 
 // Ruta para buscar lista de codigos de residuos guardados
 storedRoutes.get('/getAllCodesStored/', getAllCodesStored)

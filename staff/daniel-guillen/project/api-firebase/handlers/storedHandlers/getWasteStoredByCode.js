@@ -1,7 +1,7 @@
 import { db } from '../../firebase.js'
 
 // Handler para obtener los residuos de un codigo especifico de mes y año actual
-const getWasteStored = async (req, res) => {
+const getWasteStoredByCode = async (req, res) => {
   try {
     const { month, year, code } = req.params
 
@@ -32,9 +32,9 @@ const getWasteStored = async (req, res) => {
 
     if (querySnapshot.empty) {
       console.log(`No se encontraron documentos con el mes: ${month}, año ${year} y referencia ${code}.`)
-      return res.status(404).json({ message: `No se encontraron documentos con el mes: ${month}, año ${year} y referencia ${code}.` })
+      // return res.status(404).json({ message: `No se encontraron documentos con el mes: ${month}, año ${year} y referencia ${code}.` })
+      return res.status(200).json([])
     }
-
     // Mapear los documentos obtenidos
     const storedLoads = querySnapshot.docs.map(doc => ({
       id: doc.id,
@@ -49,4 +49,4 @@ const getWasteStored = async (req, res) => {
   }
 }
 
-export default getWasteStored
+export default getWasteStoredByCode

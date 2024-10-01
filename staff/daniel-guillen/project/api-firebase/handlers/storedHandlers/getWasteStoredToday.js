@@ -16,7 +16,8 @@ const getWasteStoredToday = async (req, res) => {
 
     if (querySnapshot.empty) {
       console.log(`No se encontraron documentos con el mes: ${month}, año ${year}.`)
-      return res.status(404).json({ message: `No se encontraron documentos con el mes: ${month}, año ${year}.` })
+      // return res.status(200).json({ message: `No se encontraron documentos con el mes: ${month}, año ${year}.` })
+      return res.status(200).json([])
     }
 
     // Mapear los documentos obtenidos

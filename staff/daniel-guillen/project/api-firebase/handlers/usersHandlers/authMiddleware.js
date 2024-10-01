@@ -17,8 +17,3 @@ const authMiddleware = (req, res, next) => {
 }
 
 export default authMiddleware
-
-
-// router.get('/protected-route', authMiddleware, (req, res) => {
-//     res.json({ message: 'Ruta protegida', user: req.user })
-// })

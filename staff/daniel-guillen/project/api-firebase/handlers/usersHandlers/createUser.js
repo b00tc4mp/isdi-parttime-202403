@@ -11,8 +11,13 @@ const createUser = async (req, res) => {
         console.error('Nombre de usuario no válido o demasiado corto')
         return res.status(400).json({ message: 'Nombre de usuario no válido o demasiado corto' })
       }
+
+      if (!['admin', 'almacen', 'vehiculos'].includes(access)) {
+        console.log('Error: El campo "access" debe ser uno de los siguientes valores: admin, almacen, vehiculos.')
+        return res.status(400).json({ message: 'El campo "access" debe ser "admin", "almacen", o "vehiculos".' });
+      }
   
-      if (typeof password !== 'string' || password.length < 3) {
+      if (typeof password !== 'string' || password.length < 6) {
         console.error('Contraseña no válida o demasiado corta')
         return res.status(400).json({ message: 'Contraseña no válida o demasiado corta (mínimo 6 caracteres)' })
       }
