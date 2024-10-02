@@ -13,7 +13,7 @@ mongoose
                 .then((ads) =>
                     console.log(
                         'ads with search query & proximity location retrieved',
-                        ads
+                        JSON.stringify(ads, null, 2)
                     )
                 )
                 .catch((error) => console.error(error));

@@ -12,12 +12,14 @@ mongoose
             updateAd(
                 '66c0e163c89ecaf42d52a2f9',
                 '66f3c71782dce74d60a63d4b',
-                'melocotones',
+                'MElocotonESSSS',
                 'CALANDRA',
                 '6.40 €/Kg',
                 '911-911-911'
             )
-                .then(() => console.log('ad updated'))
+                .then((updateAd) =>
+                    console.log('ad updated', JSON.stringify(updateAd, null, 2))
+                )
                 .catch((error) => console.error(error));
         } catch (error) {
             console.error(error);

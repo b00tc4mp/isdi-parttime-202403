@@ -10,7 +10,9 @@ mongoose
     .then(() => {
         try {
             getAd('66fd66b0a8afff3e24aedb27')
-                .then((ad) => console.log(JSON.stringify(ad, null, 2)))
+                .then((ad) =>
+                    console.log('ad retrieved', JSON.stringify(ad, null, 2))
+                )
                 .catch((error) => console.error(error.message));
         } catch (error) {
             console.error(error);
