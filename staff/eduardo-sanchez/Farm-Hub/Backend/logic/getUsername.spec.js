@@ -45,7 +45,6 @@ describe('logic - getUsername', () => {
 
             .then(([user, targetUser]) => getUsername(user.id, targetUser.id))
             .then((targetUser) => {
-                console.log(targetUser);
                 expect(targetUser).to.be.an('object');
                 expect(targetUser.name).to.equal('Soy');
                 expect(targetUser.surname).to.equal('Untest');

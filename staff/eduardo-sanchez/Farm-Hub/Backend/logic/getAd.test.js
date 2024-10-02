@@ -9,7 +9,7 @@ mongoose
     .connect(MONGODB_URL)
     .then(() => {
         try {
-            getAd('66f1635fecf052928861ff59')
+            getAd('66fd66b0a8afff3e24aedb27')
                 .then((ad) => console.log(JSON.stringify(ad, null, 2)))
                 .catch((error) => console.error(error.message));
         } catch (error) {

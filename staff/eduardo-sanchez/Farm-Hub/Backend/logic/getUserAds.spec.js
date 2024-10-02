@@ -86,7 +86,6 @@ describe('getUserAds', () => {
                 })
             )
             .then((user) => {
-                console.log('user: ', user);
                 return getUserAds(user.id);
             })
             .catch((error) => (errorThrown = error))

@@ -49,7 +49,6 @@ describe('getAd', () => {
                 })
                     .then((ad) => getAd(ad.id.toString()))
                     .then((ad) => {
-                        console.log('ad', JSON.stringify(ad, null, 2));
                         expect(ad).to.be.an('object');
                         expect(ad.title).to.equal('Fresh Oranges');
                         expect(ad.description).to.equal(

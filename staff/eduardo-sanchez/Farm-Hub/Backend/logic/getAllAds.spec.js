@@ -48,7 +48,6 @@ describe('getAllAds', () => {
             )
             .then((user) => getAllAds(user.id))
             .then((ads) => {
-                console.log(ads);
                 expect(ads).to.be.an('array');
                 expect(ads.length).to.equal(1);
                 expect(ads[0].author.username).to.equal('linux');
