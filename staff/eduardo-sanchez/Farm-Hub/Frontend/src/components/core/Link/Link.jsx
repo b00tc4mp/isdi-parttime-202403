@@ -7,7 +7,3 @@ export default function Link({ onClick, children, to = '', className = '' }) {
         </a>
     );
 }
-
-// import './index.css'
-
-// export default ({ onClick, children, to = "" }) => <a href={to} onClick={onClick}>{children}</a>

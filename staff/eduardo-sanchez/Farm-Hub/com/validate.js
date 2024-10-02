@@ -7,9 +7,6 @@ const EMAIL_REGEX =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const ID_REGEX = /^[0-9a-z]+$/;
 const PRICE_REGEX = /^\d+(\.\d{1,2})? €\/Kg$/;
-const LOCATION_REGEX = /^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}$/;
-
-//  /^\s* [-+] ? ([1 - 8] ?\d(\.\d +) ?| 90(\.0 +) ?), \s * [-+] ? ((1[0 - 7]\d(\.\d +) ?| 180(\.0 +) ?)| ([1 - 9] ?\d(\.\d +) ?)) \s * $/;
 
 function validateName(name, explain = 'name') {
     if (typeof name !== 'string' || !NAME_REGEX.test(name))
@@ -108,41 +105,3 @@ const validate = {
 };
 
 export default validate;
-
-///////////////////////////////////
-
-// if (
-//     typeof maxDistance !== 'number' ||
-//     maxDistance <= 0 ||
-//     maxDistance > 1000
-// ) {
-//     throw new ContentError(
-//         `${explain} must be a positive number not exceeding 1000 km`
-//     );
-// }
-
-// !LOCATION_REGEX.test(location.lat) ||
-// !LOCATION_REGEX.test(location.lng)
-
-// throw new ContentError(
-//   `${explain} is not valid: lat must be between -90 and 90, and lng must be between -180 and 180`
-// );
-
-// if (!location || typeof location !== 'object' || !('lat' in location) || !('lng' in location)) {
-//     throw new ContentError(`${explain} is not valid: missing lat or lng`)
-// }
-// if (typeof location.lat !== 'number' || typeof location.lng !== 'number') {
-//     throw new ContentError(`${explain} is not valid: lat and lng must be numbers`)
-// }
-
-///////////////////////////////////
-
-// if (!LOCATION_REGEX.test(location.lat) || !LOCATION_REGEX.test(location.lng) ||
-//     typeof location.lat !== 'object' || typeof location.lng !== 'object')
-//     throw new ContentError(`${explain} is not valid`)
-
-// function validatePrice(price, explain = 'price') {
-//     if (typeof price !== 'string' || !/^\d+(\.\d{1,2})? €\/Kg$/.test(price)) {
-//         throw new ContentError(`${explain} is not valid. It must be in the format "number €/Kg", e.g., "3.20 €/Kg".`);
-//     }
-// }
