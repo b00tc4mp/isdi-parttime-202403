@@ -14,7 +14,7 @@ const Header = ({ setIsAuthenticated }) => {
   const token = sessionStorage.getItem('token') // obtener token
 
   const [username, setUsername] = useState('')
-  const [error, setError] = useState('')
+  // const [error, setError] = useState('')
   const [showLogoutIcon, setShowLogoutIcon] = useState(true)
 
   // Botón logout
@@ -46,8 +46,9 @@ const Header = ({ setIsAuthenticated }) => {
       try {
         const username = await fetchUserName(token)
         setUsername(username)
-      } catch (err) {
-        setError('Error en la solicitud')
+      } catch (error) {
+        console.log('Error en la solicitud, getUserName')
+        // setError('Error en la solicitud')
       }
     }
 
@@ -76,10 +77,10 @@ const Header = ({ setIsAuthenticated }) => {
             </div>
 
             <div className='sessionStatus'>
-              <h1 style={{ color: 'orange' }}>
-                <a href="#" onClick={() => navigate('/Login')}>
+              <h1 style={{ color: 'orange' }}>Por favor, identifíquese...
+                {/* <a href="#" onClick={() => navigate('/Login')}>
                   {error || 'Por favor, identifíquese...'}
-                </a>
+                </a> */}
               </h1>
             </div>
           </div>

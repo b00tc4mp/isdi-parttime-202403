@@ -8,7 +8,7 @@ const AccessControl = ({ valueAccess, handleAccessChange }) => {
 
       <div className='Access'>
         Acceso a
-        <select required
+        <select //required
           className="AccessOption"
           value={valueAccess} 
           onChange={(e) => handleAccessChange(e.target.value)}
