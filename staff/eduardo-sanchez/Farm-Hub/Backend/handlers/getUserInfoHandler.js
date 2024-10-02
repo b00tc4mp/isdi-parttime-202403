@@ -17,10 +17,7 @@ export default (req, res, next) => {
                 try {
                     logic
                         .getUserInfo(userId)
-                        .then((userInfo) => {
-                            console.log(userInfo);
-                            res.status(200).send(userInfo);
-                        })
+                        .then((userInfo) => res.status(200).send(userInfo))
                         .catch((error) => {
                             if (error instanceof jwt.JsonWebTokenError) {
                                 throw new CredentialsError(error.message);

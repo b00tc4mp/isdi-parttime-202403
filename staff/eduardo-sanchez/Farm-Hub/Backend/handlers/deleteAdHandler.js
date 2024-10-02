@@ -19,10 +19,7 @@ export default (req, res, next) => {
                 try {
                     logic
                         .deleteAd(userId, adId)
-                        .then(() => {
-                            console.log('deleted ad', adId);
-                            res.status(204).send();
-                        })
+                        .then(() => res.status(204).send())
                         .catch((error) => next(error));
                 } catch (error) {
                     next(error);

@@ -19,10 +19,7 @@ export default (req, res, next) => {
                 try {
                     logic
                         .deleteAdComment(userId, adId, commentId)
-                        .then(() => {
-                            console.log('deleted ad comment', adId, commentId);
-                            res.status(204).send();
-                        })
+                        .then(() => res.status(204).send())
 
                         .catch((error) => next(error));
                 } catch (error) {

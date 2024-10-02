@@ -21,10 +21,7 @@ export default (req, res, next) => {
                 try {
                     logic
                         .createAdComment(userId, adId, text)
-                        .then(() => {
-                            console.log('created ad comment', adId, text);
-                            res.status(201).send();
-                        })
+                        .then(() => res.status(201).send())
                         .catch((error) => {
                             next(error);
                         });

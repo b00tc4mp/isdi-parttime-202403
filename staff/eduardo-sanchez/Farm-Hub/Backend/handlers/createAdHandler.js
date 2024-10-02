@@ -27,16 +27,15 @@ export default (req, res, next) => {
                             contactInfo,
                             geoLocation
                         )
-                        .then((data) => {
-                            console.log(data);
+                        .then(() =>
                             res.status(201).send({
                                 title,
                                 description,
                                 price,
                                 contactInfo,
                                 geoLocation,
-                            });
-                        })
+                            })
+                        )
 
                         .catch((error) => next(error));
                 } catch (error) {
