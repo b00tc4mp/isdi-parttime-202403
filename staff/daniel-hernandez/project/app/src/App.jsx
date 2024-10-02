@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import { useNotificationStore } from './store/notification';
 import useApp from './hooks/useApp';
 import StackNavigator from './navigation/StackNavigator';
 import ToastNotification from './components/ToastNotification';
@@ -15,7 +14,6 @@ import ToastNotification from './components/ToastNotification';
 //
 
 const App = () => {
-   const { type, message } = useNotificationStore();
    const { initialize } = useApp();
 
    useEffect(() => {
@@ -27,7 +25,7 @@ const App = () => {
 
    return (
       <>
-         {message !== '' && <ToastNotification message={message} type={type} />}
+         <ToastNotification />
          <StackNavigator />
          <StatusBar barStyle="light-content" backgroundColor="#1B1A1A" />
       </>
