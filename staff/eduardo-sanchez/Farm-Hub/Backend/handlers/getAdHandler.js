@@ -20,6 +20,10 @@ export default (req, res, next) => {
                     logic
                         .getAd(adId)
                         .then((ad) => {
+                            console.log(
+                                'ad found',
+                                JSON.stringify(ad, null, 2)
+                            );
                             res.json(ad);
                         })
                         .catch((error) => next(error));

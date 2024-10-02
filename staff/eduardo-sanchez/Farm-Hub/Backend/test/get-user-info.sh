@@ -1,1 +1,1 @@
-curl http://localhost:8080/users/66a939ddca799581a845711c/userInfo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmFlNjM3MGYxMTA4MmVkN2YwNjIzZGQiLCJpYXQiOjE3MjM3MDM5OTgsImV4cCI6MTcyNjI5NTk5OH0.h0YM7mDvb5D8IN-TfezeNyeGN2H2Ht10Xxd0OVEbOS0" -v
+curl http://localhost:8080/users/66e4879730cb63f97bbc23e5/userInfo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmU0ODc5NzMwY2I2M2Y5N2JiYzIzZTUiLCJpYXQiOjE3Mjc4OTg4MzcsImV4cCI6MTczMDQ5MDgzN30.ovTEizdo9Y3RUSEr8_u2AcpGbKRsfY8o0bKL9AqBq8w" -v
