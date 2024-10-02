@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 import { SafeAreaView, View, Text } from 'react-native';
 import FloatingLabelTextInput from '../../components/FloatingLabelTextInput';
 import ContinueButton from '../../components/buttons/ContinueButton';
-import AuthContext from '../../context/AuthContext';
 import validate from 'com/validation';
 
 // TODO: Add loading state
@@ -10,7 +10,7 @@ import validate from 'com/validation';
 // TODO: More cohesive visual experience (connection error)
 const UsernameInputScreen = ({ route }) => {
    const { email, password } = route.params;
-   const { signUp } = useContext(AuthContext);
+   const { signUp } = useAuth();
 
    const [username, setUsername] = useState('');
    const [signUpError, setSignUpError] = useState(false);
@@ -36,7 +36,7 @@ const UsernameInputScreen = ({ route }) => {
       }
 
       try {
-         const success = await signUp({ email, password, username });
+         const success = await signUp(email, password, username);
          if (success) {
             setSignUpError(false);
          } else {

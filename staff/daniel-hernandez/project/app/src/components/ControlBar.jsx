@@ -1,18 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import { View, Text, Pressable, Image, Animated, Easing, Dimensions, PanResponder } from 'react-native';
 import { usePlaybackState, useProgress, State, RepeatMode } from 'react-native-track-player';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import useNotification from '../hooks/useNotification';
 import { ControlIcons } from '../../assets/images/icons';
 import { BlurView } from 'expo-blur';
-import { trigger } from 'react-native-haptic-feedback';
 import SpinningLoader from './loaders/SpinningLoader';
+import { trigger } from 'react-native-haptic-feedback';
 import usePlayer from '../hooks/usePlayer';
-import useContext from '../hooks/useContext';
 import formatSeconds from '../utils/formatSeconds';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-// TODO: refactor
+// TODO: refactor and componentize
 const ControlBar = () => {
-   const { notify, notificationTypes } = useContext();
+   const { notify, notificationTypes } = useNotification();
    const playback = usePlaybackState();
    const { restart, pause, resume, setLoopMode, skipToNext, skipToPrevious, getCurrentState, seekTo } = usePlayer();
    const { position, duration } = useProgress(10);

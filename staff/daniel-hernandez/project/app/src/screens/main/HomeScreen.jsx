@@ -1,9 +1,8 @@
-import { useContext } from 'react';
 import { View, Text, Button } from 'react-native';
-import AuthContext from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 
 const HomeScreen = () => {
-   const { signOut } = useContext(AuthContext);
+   const { signOut } = useAuth();
 
    return (
       <View className="flex-1 items-center justify-center bg-palette-90">

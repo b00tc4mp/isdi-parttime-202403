@@ -1,16 +1,16 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 import { Text, View, SafeAreaView, Image } from 'react-native';
 import { InputIcons } from '../../../assets/images/icons';
 import FloatingLabelTextInput from '../../components/FloatingLabelTextInput';
 import ContinueButton from '../../components/buttons/ContinueButton';
-import AuthContext from '../../context/AuthContext';
 import validate from 'com/validation';
 
 // TODO: Add loading state
 // TODO: More cohesive visual experience (connection error)
 const PasswordInputScreen = ({ route, navigation }) => {
    const { email, emailExists } = route.params;
-   const { signIn } = useContext(AuthContext);
+   const { signIn } = useAuth();
 
    const [password, setPassword] = useState('');
    const [feedback, setFeedback] = useState({
@@ -52,7 +52,7 @@ const PasswordInputScreen = ({ route, navigation }) => {
 
       if (emailExists) {
          try {
-            const success = await signIn({ email, password });
+            const success = await signIn(email, password);
             if (success) {
                setSignInError(false);
             } else {

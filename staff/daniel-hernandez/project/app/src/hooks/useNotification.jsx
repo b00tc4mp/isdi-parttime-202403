@@ -1,32 +1,29 @@
-import { useRef, useState } from 'react';
+import { useNotificationStore } from '../store/notification';
 
-const notificationTypes = { info: 'info', success: 'success', warning: 'warning', error: 'error', default: 'default' };
+export const notificationTypes = { info: 'info', success: 'success', warning: 'warning', error: 'error', default: 'default' };
 
 const useNotification = (timeoutDuration = 3600) => {
-   const [message, setMessage] = useState('');
-   const [type, setType] = useState('default');
+   const { notificationTimeoutRef, isNotificationActive, setNotification, resetNotification, setNotificationTimeoutRef } = useNotificationStore();
 
-   const isNotificationActive = useRef(false);
-   const notificationTimeoutRef = useRef(null);
+   const notify = (message, type) => {
+      if (!message || isNotificationActive || !Object.values(notificationTypes).includes(type)) return;
 
-   const notify = (m, t) => {
-      if (!m || isNotificationActive.current || !Object.values(notificationTypes).includes(t)) return;
-
-      if (notificationTimeoutRef.current) {
-         clearTimeout(notificationTimeoutRef.current);
+      if (notificationTimeoutRef) {
+         clearTimeout(notificationTimeoutRef);
       }
 
-      setType(t);
-      setMessage(m);
-
-      isNotificationActive.current = true;
-      notificationTimeoutRef.current = setTimeout(() => {
-         isNotificationActive.current = false;
-         setMessage('');
-      }, timeoutDuration);
+      setNotification(message, type);
+      setNotificationTimeoutRef(
+         setTimeout(() => {
+            resetNotification();
+         }, timeoutDuration)
+      );
    };
 
-   return { notify, message, type, notificationTypes };
+   return {
+      notify,
+      notificationTypes
+   };
 };
 
 export default useNotification;

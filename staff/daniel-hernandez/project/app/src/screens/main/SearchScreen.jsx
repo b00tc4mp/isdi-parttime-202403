@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { View, Image, Text, SectionList, FlatList } from 'react-native';
-import useContext from '../../hooks/useContext';
+import useNotification from '../../hooks/useNotification';
 import usePlayer from '../../hooks/usePlayer';
 import { UserItem, TrackItem, PlaylistItem, AlbumItem } from '../../components/items';
 import SpinningLoader from '../../components/loaders/SpinningLoader';
@@ -13,9 +13,9 @@ import { TabIcons } from '../../../assets/images/icons';
 
 const DEFAULT_PILL = { label: 'All', queryType: [...constants.queryTypes], limit: 8 };
 
-// TODO: refactor
+// TODO: refactor and componentize
 const SearchScreen = () => {
-   const { notify, notificationTypes } = useContext();
+   const { notify, notificationTypes } = useNotification();
    const { play } = usePlayer();
    const [query, setQuery] = useState('');
    const [status, setStatus] = useState({ loading: false, queryDone: false });

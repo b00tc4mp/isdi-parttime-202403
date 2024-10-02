@@ -1,13 +1,13 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 import { Text, View, SafeAreaView } from 'react-native';
 import FloatingLabelTextInput from '../../components/FloatingLabelTextInput';
 import ContinueButton from '../../components/buttons/ContinueButton';
-import AuthContext from '../../context/AuthContext';
 import validate from 'com/validation';
 
 // TODO: Add loading state
 const EmailInputScreen = ({ navigation }) => {
-   const { checkEmail } = useContext(AuthContext);
+   const { checkEmail } = useAuth();
    const [email, setEmail] = useState('');
    const [feedback, setFeedback] = useState('');
 
@@ -27,7 +27,7 @@ const EmailInputScreen = ({ navigation }) => {
       }
 
       try {
-         emailExists = await checkEmail({ email });
+         emailExists = await checkEmail(email);
          validate.inputs(emailExists);
       } catch {
          setFeedback('Something went wrong. Please try again later');

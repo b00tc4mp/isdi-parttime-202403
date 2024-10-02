@@ -1,15 +1,9 @@
-import Config from 'react-native-config';
-import { useEffect, useReducer, useMemo } from 'react';
+import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import * as SecureStore from 'expo-secure-store';
+import { useNotificationStore } from './store/notification';
+import useApp from './hooks/useApp';
 import StackNavigator from './navigation/StackNavigator';
-import usePlayer from './hooks/usePlayer';
-import { Context } from './hooks/useContext';
-import AuthContext from './context/AuthContext';
 import ToastNotification from './components/ToastNotification';
-import services, { storage } from './services';
-import validate from 'com/validation';
-import useNotification from './hooks/useNotification';
 
 // TODO:
 //       check react-native-track-player to see if there is support for the new architecture (already on proper react-native and react versions)
@@ -21,200 +15,22 @@ import useNotification from './hooks/useNotification';
 //
 
 const App = () => {
-   const { setup } = usePlayer();
-   const { type, message, notify, notificationTypes } = useNotification();
-
-   const [state, dispatch] = useReducer(
-      (prevState, action) => {
-         switch (action.type) {
-            case 'RESTORE_TOKEN':
-               return { ...prevState, userToken: action.token, isLoading: false };
-            case 'SIGN_IN':
-               return { ...prevState, isSignout: false, userToken: action.token };
-            case 'SIGN_OUT':
-               return { ...prevState, isSignout: true, userToken: null };
-            default:
-               return prevState;
-         }
-      },
-      { isLoading: true, isSignout: false, userToken: null }
-   );
+   const { type, message } = useNotificationStore();
+   const { initialize } = useApp();
 
    useEffect(() => {
-      (async () => {
-         let userToken;
-
-         try {
-            userToken = await SecureStore.getItemAsync(Config.USER_TOKEN_KEY);
-         } catch {
-            notify('Token restore failed', notificationTypes.error);
-            return;
-         }
-
-         try {
-            // Setup track player
-            await setup();
-         } catch {
-            notify('Player setup failed', notificationTypes.error);
-            return;
-         }
-
-         if (userToken) {
-            try {
-               validate.token(userToken);
-            } catch {
-               try {
-                  await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
-                  storage.clearAll();
-               } catch {
-                  notify('Failed to clear token', notificationTypes.error);
-                  return;
-               }
-               dispatch({ type: 'SIGN_OUT' });
-               return;
-            }
-
-            // TODO: Fetch user preferences/settings & store them in mmkv storage
-         }
-
-         notify('Session restore successful', notificationTypes.info);
-         dispatch({ type: 'RESTORE_TOKEN', token: userToken });
-      })();
+      initialize();
    }, []);
-
-   // TODO: Make context more managable with utility functions
-   const authContext = useMemo(
-      () => ({
-         signIn: async data => {
-            let token;
-
-            try {
-               token = await services.signIn(data.email, data.password);
-            } catch (e) {
-               if (e.message === 'Wrong password') {
-                  notify('Wrong password', notificationTypes.warning);
-               } else {
-                  notify('Something went wrong signing in', notificationTypes.error);
-               }
-
-               return false;
-            }
-
-            try {
-               await SecureStore.setItemAsync(Config.USER_TOKEN_KEY, token);
-            } catch {
-               notify('Something went wrong signing in', notificationTypes.error);
-               return false;
-            }
-
-            dispatch({ type: 'SIGN_IN', token });
-            return true;
-         },
-         signOut: async () => {
-            let token;
-
-            try {
-               token = await SecureStore.getItemAsync(Config.USER_TOKEN_KEY);
-            } catch {
-               notify('Oops. Something went wrong', notificationTypes.error);
-               return;
-            }
-
-            if (token) {
-               try {
-                  validate.token(token); // log validation ?
-               } catch {
-                  try {
-                     await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
-                     storage.clearAll();
-                  } catch {
-                     notify('Failed to clear token', notificationTypes.error);
-                     return;
-                  }
-                  dispatch({ type: 'SIGN_OUT' });
-                  return;
-               }
-
-               try {
-                  await services.signOut(token);
-               } catch (e) {
-                  // TODO: Improve error handling here.
-                  if (e.message !== "User doesn't exist") {
-                     notify('Oops. Something went wrong signing out', notificationTypes.error);
-                     return;
-                  }
-               }
-            }
-
-            try {
-               await SecureStore.deleteItemAsync(Config.USER_TOKEN_KEY);
-               storage.clearAll();
-            } catch {
-               notify("Oops. Couldn't sign you out", notificationTypes.error);
-               return;
-            }
-
-            dispatch({ type: 'SIGN_OUT' });
-         },
-         signUp: async data => {
-            let token;
-
-            try {
-               await services.signUp(data.email, data.password, data.username);
-            } catch (e) {
-               if (e.message === 'User already exists') {
-                  notify('Username already exists', notificationTypes.warning);
-               } else {
-                  notify('Sign up failed; Try again later', notificationTypes.error);
-               }
-
-               return false;
-            }
-
-            try {
-               token = await services.signIn(data.email, data.password);
-            } catch {
-               notify("Couldn't sign you in; Try again later", notificationTypes.error);
-               return false;
-            }
-
-            try {
-               await SecureStore.setItemAsync(Config.USER_TOKEN_KEY, token);
-            } catch {
-               notify('Sign up failed; Try again later', notificationTypes.error);
-               return false;
-            }
-
-            dispatch({ type: 'SIGN_IN', token });
-            return true;
-         },
-         checkEmail: async data => {
-            let bool;
-
-            try {
-               bool = await services.checkEmail(data.email);
-            } catch {
-               notify('Something went wrong. Try again later', notificationTypes.error);
-               return null;
-            }
-
-            return bool;
-         }
-      }),
-      []
-   );
 
    // TODO: Make error handling more centralized ?
    // Maybe with a error boundary or error logging system ?
 
    return (
-      <Context.Provider value={{ notify, notificationTypes }}>
-         <AuthContext.Provider value={authContext}>
-            {message !== '' && <ToastNotification message={message} type={type} />}
-            <StackNavigator state={state} />
-            <StatusBar barStyle="light-content" backgroundColor="#1B1A1A" />
-         </AuthContext.Provider>
-      </Context.Provider>
+      <>
+         {message !== '' && <ToastNotification message={message} type={type} />}
+         <StackNavigator />
+         <StatusBar barStyle="light-content" backgroundColor="#1B1A1A" />
+      </>
    );
 };
 
