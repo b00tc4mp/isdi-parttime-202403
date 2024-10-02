@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import logic from '../logic';
 
-import useContext from '../useContext';
-
 import { SystemError } from 'com/errors';
 
 import Title from '../components/core/Title/Title';
@@ -16,7 +14,30 @@ import './CreateAdForm.css';
 
 export function CreateAdForm() {
     const navigate = useNavigate();
-    const { alert } = useContext();
+
+    const getNavigatorLocation = () => {
+        console.log('entro en navigator geolocation');
+        if (navigator.geolocation) {
+            console.log('entro mas');
+
+            navigator.geolocation.getCurrentPosition((position) => {
+                return {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+            });
+        } else {
+            return {
+                lat: 0,
+                lng: 0,
+            };
+        }
+    };
+    const [location, setLocation] = useState(() => {
+        // const a = getNavigatorLocation();
+        // console.log('tararararaera', a);
+        return getNavigatorLocation();
+    });
 
     const handleCreateAd = (event) => {
         event.preventDefault();
@@ -28,34 +49,28 @@ export function CreateAdForm() {
         const price = form.price.value;
         const contactInfo = form.contactInfo.value;
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const geoLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
+        if (true) {
+            // navigator.geolocation.getCurrentPosition((position) => {
+            //     const geoLocation = {
+            //         lat: position.coords.latitude,
+            //         lng: position.coords.longitude,
+            //     };
+            //     setLocation(geoLocation);
 
-                try {
-                    logic
-                        .createAd(
-                            title,
-                            description,
-                            price,
-                            contactInfo,
-                            geoLocation
-                        )
-                        .then(() => {
-                            navigate('/');
-                        })
-                        .catch((error) => {
-                            if (error instanceof SystemError) {
-                                alert(error.message);
-                            }
-                        });
-                } catch (error) {
-                    alert(error.message);
-                }
-            });
+            try {
+                logic
+                    .createAd(title, description, price, contactInfo, location)
+                    .then(() => {
+                        navigate('/');
+                    })
+                    .catch((error) => {
+                        if (error instanceof SystemError) {
+                            alert(error.message);
+                        }
+                    });
+            } catch (error) {
+                alert(error.message);
+            }
         }
     };
 

@@ -31,7 +31,7 @@ mongoose
         api.use(cors());
 
         api.get('/', (req, res) => {
-            res.send('Hello, Farmfan!');
+            res.send('Hello, Farm Geek!');
         });
 
         const jsonBodyParser = express.json({
