@@ -5,107 +5,46 @@ import './index.css'
 import Button from "../../../components/core/Button"
 import Title from '../../../components/core/Title'
 import Text from '../../../components/core/Text'
-// utils
+// utils y api
 import sortUsers from '../../../utils/sortUsers'
+import useAuthRedirect from '../../../utils/noTokenRedirect'
+import fetchAllUsers from '../../../logic/getAllUsers'
+import handleDeleteUser from '../../../handlers/deleteUserHandle'
 
 const UsersList = () => {
   const [data, setData] = useState([])  // almacenar la lista de usuarios
   const [loading, setLoading] = useState(true) // mostrar el estado de carga
   const [error, setError] = useState(null) // manejar errores
 
-  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
+  // const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
+  const token = useAuthRedirect() // si no hay token redirigir a login
   const navigate = useNavigate()
 
-  const fetchAllUsers = async () => {
-    try {
-      setLoading(true)
-      const response = await fetch(`${import.meta.env.VITE_API_URL}users/getAllUsers`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error('Error al obtener lista de Usuarios')
-      }
-
-      const result = await response.json()
-      setData(result)
-      console.log('Usuarios recibidos del servidor:', result)
-    } catch (error) {
-      setError(error.message)
-      console.error('Error al obtener lista de Usuarios:', error)
-    } finally {
-      setLoading(false)
-    }
+  const getUsers = async () => {
+    await fetchAllUsers(token, setData, setLoading, setError)
   }
 
-  // obtener la lista de usuarios cuando se monta el componente
-  useEffect(() => {
-    fetchAllUsers()
+    useEffect(() => { // Obtener la lista de usuarios
+      getUsers()
   }, [token])
 
-  const deleteUserById = async (id) => {
-    try {
-      const apiResponse = await fetch(`${import.meta.env.VITE_API_URL}users/deleteUser/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      })
-  
-      if (!apiResponse.ok) {
-        throw new Error('Error al eliminar Usuario')
-      }
-  
-      return { message: 'Usuario eliminado exitosamente' }
-    } catch (error) {
-      throw new Error('Error al eliminar Usuario. Inténtalo de nuevo más tarde.')
-    }
-  }
+  const sortedUsers = sortUsers(data) //ordenamos lista de usuarios
 
-  // Función para eliminar usuario por ID
-  const handleDeleteUser = async (id) => {
-    const isConfirmed = window.confirm('🗑️ ¿Deseas eliminar este Usuario? 👷‍♂️')
-
-    if (isConfirmed) {
-      try {
-        await deleteUserById(id)  // ya no pasamos el token, se maneja directamente en deleteUserById
-        alert('👷‍♂️ Usuario eliminado exitosamente 🎉')
-
-        // refrescar la lista después de eliminar un usuario
-        fetchAllUsers()  // No necesitamos pasar setData, setLoading, etc.
-      } catch (error) {
-        console.error('Error al eliminar Usuario:', error)
-        alert(error.message)
-      }
-    } else {
-      alert('🗑️ Eliminación cancelada ❌')
-    }
-  }
-  //ordenamos lista de usuarios
-  const sortedUsers = sortUsers(data)
   return (
     <div className='UsersList'>
       <div className="RouteTitle">
         <Title>LISTA DE USUARIOS</Title>
       </div>
 
-      {/* Mostrar el estado de carga */}
-      {loading && <p>Cargando usuarios...</p>}
-
-      {/* Mostrar el mensaje de error si ocurre */}
-      {error && <p>Error: {error}</p>}
-
-      {/* Mapeamos la lista de usuarios */}
-      {!loading && !error && (
+      {loading ? (
+          <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem' }}>Cargando lista de usuarios...</p>
+        ) : error ? (
+          <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar lista de usuarios: {error}</p>
+        ) : (
         <ul>
           {sortedUsers.map((item) => (
             <li key={item.id}>
-              <Button className={`UserDiv ${item.access}`} onClick={() => handleDeleteUser(item.id)}>
+              <Button className={`UserDiv ${item.access}`} onClick={() => handleDeleteUser(item.id, token, setData, setLoading, setError)}>
                 <Text className="UserInfo">Nombre de Usuario:</Text>{item.username}<br/>
                 <Text className="UserInfo">Acceso:</Text>{item.access}
               </Button>

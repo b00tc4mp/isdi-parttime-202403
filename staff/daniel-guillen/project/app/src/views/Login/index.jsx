@@ -10,6 +10,7 @@ import loginUser from "../../logic/loginUser"
 const Login = ({ setIsAuthenticated }) => {
   // const navigate = useNavigate()
   const [message, setMessage] = useState('')
+  const [level, setLevel] = useState('error') // por defecto los message del formfeedback son rojos
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault()
@@ -25,11 +26,12 @@ const Login = ({ setIsAuthenticated }) => {
     }
 
     try {
-      // llamada a la API para iniciar sesión
-      await loginUser(username, password)
-      setIsAuthenticated(true) // Actualiza el estado de autenticación
-      // navigate('/')  // Redirecciona a página home
-      alert(`Bienvenido ${username}!👋`)
+      await loginUser(username, password) // llamada a la API para iniciar sesión
+      setTimeout(() => {
+        setIsAuthenticated(true) // actualiza el estado de autenticación 
+      }, 2000)   
+      setMessage(`👋 Bienvenido ${username}!🎉`)
+      setLevel('success') // 'success' aplicamos el estilo verde
     } catch (error) {
       console.error(error)
       setMessage(error.message) // mostrar mensaje de error en la UI
@@ -39,7 +41,7 @@ const Login = ({ setIsAuthenticated }) => {
 
   return (
     <div className="container">
-      <FormWithFeedback onSubmit={handleLoginSubmit} message={message}>
+      <FormWithFeedback onSubmit={handleLoginSubmit} message={message} level={level}>
         <Field id="username" placeholder="username">Nombre de Usuario</Field>
         <Field id="password" type="password" placeholder="password">Contraseña</Field>
         <Button className="SubmitButton">Login</Button>
