@@ -1,0 +1,13 @@
+node_modules
+.env
+
+# Population folders
+data/populate/spId
+data/populate/output
+data/tracks
+
+# Testing
+data/test-tracks
+
+# Coverage
+coverage
