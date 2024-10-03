@@ -129,7 +129,7 @@ User
 
 The application's backend is tested with over 95% coverage using Mocha and Chai. This ensures that most features have been rigorously tested, minimizing the possibility of errors in production and guaranteeing a high level of code quality.
 
-https://github.com/user-attachments/assets/d0366acd-f984-49b3-8702-84621c4a6ab0
+https://github.com/user-attachments/assets/e7a21cf4-6048-4999-9d8f-9467e424a424
 
 ![Test Coverage](doc/image.png)
 
