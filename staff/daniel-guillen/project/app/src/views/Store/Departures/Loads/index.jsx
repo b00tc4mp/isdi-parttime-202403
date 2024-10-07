@@ -13,16 +13,16 @@ import MenuLoads from '../../../../components/store/MenuLoads'
 import { handleReferenceChange, handleWasteChange, handleWeightChange, handleOptionsContainer, handleSubmit } from '../../../../handlers/registerWasteLoadHandlers.js'
 import handleDeleteWaste from '../../../../handlers/deleteWasteLoadHandle.js'
 // utils
+import useAuthRedirect from '../../../../utils/noTokenRedirect.js'
 import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 import groupItemsByCode from '../../../../utils/groupedByCode.js'
-// validation
-import validateLoadData from '../../../../../../com/validate/validateLoadData.js'
 // logic
 import fetchLoadWaste from '../../../../logic/getWasteLoad.js'
 
 const Departures = () => {
-  const [token] = useState(sessionStorage.getItem('token'))[0] // obtener el token de sessionStorage
+  // const [token] = useState(sessionStorage.getItem('token'))[0] // obtener el token de sessionStorage
+  const token = useAuthRedirect() // si no hay token redirigir a login
   const { week, year } = getWeekNumberYear()
   
   const [reference, setReference] = useState(sessionStorage.getItem('reference'))
@@ -68,7 +68,7 @@ const Departures = () => {
       ) : (
         <>
           <form className='TruckLoadForm' onSubmit={(e) =>
-            handleSubmit(e, selectedWaste, weight, optionsContainer, week, year, reference, token, validateLoadData, () => {
+            handleSubmit(e, selectedWaste, weight, optionsContainer, week, year, reference, token, () => {
               fetchLoadWaste(week, year, reference, token, setData, setLoading, setError)
               resetForm()  // restablecer los valores acondicionamiento y peso
             })

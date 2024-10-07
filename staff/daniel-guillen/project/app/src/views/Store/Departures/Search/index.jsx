@@ -6,16 +6,18 @@ import GroupedWasteItem from '../../../../components/store/GroupedWasteItem'
 import WasteList from '../../../../components/store/WasteList'
 import MenuLoads from '../../../../components/store/MenuLoads'
 // utils
+import useAuthRedirect from '../../../../utils/noTokenRedirect'
 import sortWasteItems from '../../../../utils/sortWasteItems'
-import groupItemsByCode from '../../../../utils/groupedByCode' // Asegúrate de importar esta función correctamente
+import groupItemsByCode from '../../../../utils/groupedByCode'
 // handlers
 import handleDeleteWaste from '../../../../handlers/deleteLoadSearchedHandle'
 // logic
 import fetchLoads from '../../../../logic/getWasteLoadSearched'
 
 const Search = () => {
-  const [token] = useState(sessionStorage.getItem('token'))[0] // obtener el token de sessionStorage
-
+  // const [token] = useState(sessionStorage.getItem('token'))[0] // obtener el token de sessionStorage
+  const token = useAuthRedirect() // si no hay token redirigir a login
+  
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
