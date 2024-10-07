@@ -6,12 +6,10 @@ import MenuStore from '../../../../components/store/MenuStore'
 // logic
 import fetchStoredWaste from '../../../../logic/getWasteStored.js'
 // utils
-import useAuthRedirect from '../../../../utils/noTokenRedirect.js'
 import groupItemsByCode from '../../../../utils/groupedByCode.js'
 
 const SummaryStore = () => {
-  // const [token] = useState(sessionStorage.getItem('token'))[0] // obtener el token de sessionStorage
-  const token = useAuthRedirect() // si no hay token redirigir a login
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
 
   const [data, setData] = useState([])  // almacenar la lista de residuos
   const [loading, setLoading] = useState(true) // mostrar el estado de carga

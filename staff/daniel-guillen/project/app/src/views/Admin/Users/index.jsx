@@ -7,7 +7,6 @@ import Title from '../../../components/core/Title'
 import Text from '../../../components/core/Text'
 // utils y api
 import sortUsers from '../../../utils/sortUsers'
-import useAuthRedirect from '../../../utils/noTokenRedirect'
 import fetchAllUsers from '../../../logic/getAllUsers'
 import handleDeleteUser from '../../../handlers/deleteUserHandle'
 
@@ -16,8 +15,7 @@ const UsersList = () => {
   const [loading, setLoading] = useState(true) // mostrar el estado de carga
   const [error, setError] = useState(null) // manejar errores
 
-  // const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
-  const token = useAuthRedirect() // si no hay token redirigir a login
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
   const navigate = useNavigate()
 
   const getUsers = async () => {

@@ -13,7 +13,6 @@ import MenuLoads from '../../../../components/store/MenuLoads'
 import { handleReferenceChange, handleWasteChange, handleWeightChange, handleOptionsContainer, handleSubmit } from '../../../../handlers/registerWasteLoadHandlers.js'
 import handleDeleteWaste from '../../../../handlers/deleteWasteLoadHandle.js'
 // utils
-import useAuthRedirect from '../../../../utils/noTokenRedirect.js'
 import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 import groupItemsByCode from '../../../../utils/groupedByCode.js'
@@ -21,8 +20,8 @@ import groupItemsByCode from '../../../../utils/groupedByCode.js'
 import fetchLoadWaste from '../../../../logic/getWasteLoad.js'
 
 const Departures = () => {
-  // const [token] = useState(sessionStorage.getItem('token'))[0] // obtener el token de sessionStorage
-  const token = useAuthRedirect() // si no hay token redirigir a login
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
+
   const { week, year } = getWeekNumberYear()
   
   const [reference, setReference] = useState(sessionStorage.getItem('reference'))

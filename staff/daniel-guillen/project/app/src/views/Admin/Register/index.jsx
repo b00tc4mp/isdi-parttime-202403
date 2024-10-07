@@ -7,7 +7,6 @@ import Title from '../../../components/core/Title'
 import FormWithFeedback from '../../../components/core/FormWithFeedback'
 import AccessControl from '../../../components/users/AccessControl'
 // utils, api and validation
-import useAuthRedirect from '../../../utils/noTokenRedirect'
 import createNewUser from '../../../logic/createNewUser'
 import { validateUser } from '../../../../../com/validate/validateCreateUser'
 
@@ -18,7 +17,7 @@ const RegisterUser = () => {
     const [level, setLevel] = useState('error') // por defecto los message del formfeedback son rojos
     const [valueAccess, setValueAccess] = useState('')
 
-    const token = useAuthRedirect() // si no hay token redirigir a login
+    const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
 
     const handleAccessChange = (newAccessLevel) => {
         setValueAccess(newAccessLevel)

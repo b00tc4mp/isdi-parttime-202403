@@ -13,11 +13,9 @@ import fetchStoredWaste from '../../../../logic/getWasteStored.js'
 // Handlers
 import { handleWasteChange, handleWeightChange, handleOptionsContainer, handleStatusOptions, handleSubmit } from '../../../../handlers/registerWasteStoredHandlers.js'
 import handleDeleteWaste from '../../../../handlers/deleteWasteStoredHandle.js'
-// Utils
-import useAuthRedirect from '../../../../utils/noTokenRedirect.js'
 
 const Stored = () => {
-  const token = useAuthRedirect() // si no hay token redirigir a login
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
 
   const [data, setData] = useState([]) // almacenar la lista de residuos
   const [loading, setLoading] = useState(true) // mostrar el estado de carga
@@ -46,8 +44,7 @@ const Stored = () => {
 
       {/* Registro de residuos */}
       <form
-        className='StoreWasteForm'
-        onSubmit={(e) =>
+        className='StoreWasteForm' onSubmit={(e) =>
           handleSubmit(e, selectedWaste, weight, optionsContainer, statusOptions, token, () => {
             fetchStoredWaste(token, setData, setLoading, setError)
             resetForm() // restablecer los valores de acondicionamiento, peso y estado

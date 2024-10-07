@@ -11,17 +11,16 @@ import fetchUserName from '../../logic/getUserName'
 
 const Header = ({ setIsAuthenticated }) => {
   const navigate = useNavigate()
-  const token = sessionStorage.getItem('token') // obtener token
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
 
   const [username, setUsername] = useState('')
-  // const [error, setError] = useState('')
   const [showLogoutIcon, setShowLogoutIcon] = useState(true)
 
   // Botón logout
   const handleLogout = () => {
-    logoutUser()  // eliminamos el token
-    setIsAuthenticated(false) // Actualizamos el estado de autenticación a falso
-    navigate('/Login')  // Redirecciona a /Login
+    logoutUser() // Eliminamos sessionStorage
+    setIsAuthenticated(false)
+    navigate('/Login') // Redirecciona a /Login
     alert('Hasta pronto 👋')
   }
 
@@ -40,27 +39,34 @@ const Header = ({ setIsAuthenticated }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Obtener el nombre del usuario
-  useEffect(() => {
-    const getUserName = async () => {
-      try {
-        const username = await fetchUserName(token)
-        setUsername(username)
-      } catch (error) {
-        console.log('Error en la solicitud, getUserName')
-        // setError('Error en la solicitud')
-      }
+// Obtener el nombre del usuario
+useEffect(() => {
+  const getUserName = async () => {
+    try {
+      const username = await fetchUserName(token) // Llamar a fetchUserName con token
+      setUsername(username)
+    } catch (error) {
+      console.log('Error en la solicitud, getUserName')
+      
+      // Ejecutar la redirección con un retraso de 2 segundos
+      setTimeout(() => {
+        setIsAuthenticated(false) // Actualizar estado de autenticación
+        logoutUser()
+        navigate('/Login') // Redirecciona a /Login
+        alert('Hasta pronto 👋')
+      }, 2000)
     }
+  }
 
-    if (token) {
-      getUserName()
-    }
-  }, [token])
+  if (token) {
+    getUserName()
+  }
+}, [token, navigate, setIsAuthenticated])
 
   return (
     <div>
       <nav className='Header'>
-        {token ? ( // si hay token: mostrar nombre de usuario y botón logout
+        {token ? ( // Si hay token: mostrar nombre de usuario y botón logout
           <div>
             <div className='logo'>
               <a href="/"><img src={logo} alt="Logo" /></a>
@@ -70,18 +76,14 @@ const Header = ({ setIsAuthenticated }) => {
               <h1 style={{ color: 'orange' }}>Bienvenido <strong>{username}</strong>!</h1>
             </div>
           </div>
-        ) : ( // si no hay token: mostrar mensaje y redirigir a login
+        ) : ( // Si no hay token: mostrar mensaje y redirigir a login
           <div>
             <div className='logo'>
               <a href="#" onClick={() => navigate('/Login')}><img src={bienvenido} alt="Logo" /></a>
             </div>
 
             <div className='sessionStatus'>
-              <h1 style={{ color: 'orange' }}>Por favor, identifíquese...
-                {/* <a href="#" onClick={() => navigate('/Login')}>
-                  {error || 'Por favor, identifíquese...'}
-                </a> */}
-              </h1>
+              <h1 style={{ color: 'orange' }}>Por favor, identifíquese...</h1>
             </div>
           </div>
         )}

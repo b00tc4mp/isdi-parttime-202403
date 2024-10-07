@@ -6,7 +6,6 @@ import GroupedWasteItem from '../../../../components/store/GroupedWasteItem'
 import WasteList from '../../../../components/store/WasteList'
 import MenuStore from '../../../../components/store/MenuStore'
 // Utils
-import useAuthRedirect from '../../../../utils/noTokenRedirect'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 import calculateTotalWeight from '../../../../utils/calculateTotalWeight'
 // Logic
@@ -15,8 +14,7 @@ import fetchStoredWaste from '../../../../logic/getWasteStoredByCode'
 import handleDeleteWaste from '../../../../handlers/deleteWasteStoredHandle'
 
 const Search = () => {
-  // const [token] = useState(sessionStorage.getItem('token')) // obtener el token de sessionStorage
-  const token = useAuthRedirect() // si no hay token redirigir a login
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
 
   const [data, setData] = useState([])  // almacenar la lista de residuos
   const [loading, setLoading] = useState(false) // mostrar el estado de carga
