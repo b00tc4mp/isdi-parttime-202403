@@ -1,38 +1,43 @@
-export const validateInspectionData = (workerName, selectedVehicle, checkList, inspectionNote) => {
-    if (!workerName) {
-      alert('Error: El nombre del trabajador no está disponible.')
-      return false
-    }
-  
-    const { id, model, size } = selectedVehicle || {}
-  
-    if (!id || !model || !size) {
-      alert('Error: Los campos "id", "model" y "size" son obligatorios.')
-      return false
-    }
-  
-    if (!Array.isArray(checkList) || checkList.length === 0) {
-      alert('Error: El campo "itemFix" es requerido.')
-      return false
-    }
-  
-    if (!inspectionNote) {
-      alert('Error: El campo "notes" es requerido.')
-      return false
-    }
-  
-    return true
+const validateInspectionData = (inspectionData) => {
+  const { workerName, selectedVehicle, checkList, inspectionNote } = inspectionData
+  const errors = []
+
+  // Validar workerName
+  if (!workerName || typeof workerName !== 'string') {
+    errors.push('El nombre del trabajador es requerido y debe ser una cadena.')
   }
-  // filtrar solo elementos que han sido marcados como "ARREGLAR"
-  export const filterItemsToFix = (checkList) => {
-    const itemFix = checkList
-      .filter(item => item.selectedValue === 'ARREGLAR')
-      .map(item => ({ Apartado: item.apartado, Elemento: item.elemento }))
-  
-    if (itemFix.length === 0) {
-      alert('No hay elementos marcados como "ARREGLAR".')
-      return null
+
+  // Validar selectedVehicle
+  if (!selectedVehicle || typeof selectedVehicle !== 'object') {
+    errors.push('El vehículo seleccionado es requerido.')
+  } else {
+    const { id, model, size } = selectedVehicle
+    if (!id || typeof id !== 'string') {
+      errors.push('El ID del vehículo es requerido.')
     }
-  
-    return itemFix
-  }  
+    if (!model || typeof model !== 'string') {
+      errors.push('El modelo del vehículo es requerido.')
+    }
+    if (!['small', 'medium', 'big'].includes(size)) {
+      errors.push('El tamaño del vehículo debe ser "small", "medium" o "big".')
+    }
+  }
+
+  // Validar checkList
+  if (!Array.isArray(checkList) || checkList.length === 0) {
+    errors.push('La lista de verificación (itemFix) es requerida y debe contener al menos un elemento.')
+  }
+
+  // Validar inspectionNote
+  if (!inspectionNote || typeof inspectionNote !== 'string') {
+    errors.push('Las notas de la inspección son requeridas.')
+  }
+
+  if (errors.length > 0) { // Si hay errores
+    return { isValid: false, errors }
+  }
+
+  return { isValid: true, inspectionData }
+}
+
+export default validateInspectionData

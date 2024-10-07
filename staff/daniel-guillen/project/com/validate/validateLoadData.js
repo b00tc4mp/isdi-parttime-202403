@@ -31,7 +31,7 @@ const validateLoadData = (loadData) => {
   }
 
   if (errors.length > 0) {
-    return { isValid: false, errors } // Si hay errores, devolverlos de lo contrario, devolver los datos validados
+    return { isValid: false, errors } // si hay errores: campos no validos, de lo contrario retorna los datos como validados.
   }
 
   return { isValid: true, loadData: { code, container, description, reference, weight, week, year } }

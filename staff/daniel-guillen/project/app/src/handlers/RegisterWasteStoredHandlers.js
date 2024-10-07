@@ -74,6 +74,6 @@ export const handleSubmit = async ( e, selectedWaste, weight, optionsContainer, 
     getStoredWaste()
   } catch (error) {
     console.error('Error registrando el residuo:', error.message)
-    alert('Error: ' + error.message)
+    alert('Error registrando el residuo: ' + error.message)
   }
 }

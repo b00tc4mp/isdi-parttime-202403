@@ -8,7 +8,7 @@ const createWaste = async (req, res) => { // Handler para crear un residuo almac
     const { isValid, errors } = validateWasteData({ code, container, description, status, weight, month, year })
 
     if (!isValid) {
-      console.log('Error de validación:', errors)
+      console.log('Errores de validación:', errors)
       return res.status(400).json({ message: errors.join(', ') })
     }1
 

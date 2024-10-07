@@ -66,6 +66,6 @@ export const handleSubmit = async (e, selectedWaste, weight, optionsContainer, w
     getLoadWaste()
   } catch (error) {
     console.error('Error registrando carga:', error.message)
-    alert('Error: ' + error.message)
+    alert('Error registrando carga:' + error.message)
   }
 }

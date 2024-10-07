@@ -12,12 +12,10 @@ import VehicleBig from '../../../components/img/VehicleBig.jpg'
 import fetchInspectionsById from '../../../logic/getInspectionsById'
 // Handlers
 import handleDeleteInspection from '../../../handlers/deleteInspectionHandle'
-// Utils
-import useAuthRedirect from '../../../utils/noTokenRedirect'
 
 const Historical = () => {
-  // const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
-  const token = useAuthRedirect() // si no hay token redirigir a login
+  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
+  
   const { vehicleId } = useParams() // esta info viene desde el registro
   const navigate = useNavigate()
 

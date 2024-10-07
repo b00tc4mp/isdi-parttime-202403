@@ -30,7 +30,7 @@ const validateWasteData = (wasteData) => {
       errors.push('El campo "year" es requerido y debe ser una cadena de 4 dígitos (Ejemplo: "2024").')
   }
 
-  if (errors.length > 0) { // si hay errores campos no validos, de lo contrario retorna los datos como validados.
+  if (errors.length > 0) { // si hay errores: campos no validos, de lo contrario retorna los datos como validados.
       return { isValid: false, errors }
   }
 
