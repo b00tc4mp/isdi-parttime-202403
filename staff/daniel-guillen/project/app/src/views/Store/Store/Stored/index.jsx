@@ -9,7 +9,6 @@ import WasteWeight from '../../../../components/store/WasteWeight'
 import WasteList from '../../../../components/store/WasteList/index.jsx'
 import MenuStore from '../../../../components/store/MenuStore'
 // Logic
-import createWaste from '../../../../logic/createWaste'
 import fetchStoredWaste from '../../../../logic/getWasteStored.js'
 // Handlers
 import { handleWasteChange, handleWeightChange, handleOptionsContainer, handleStatusOptions, handleSubmit } from '../../../../handlers/registerWasteStoredHandlers.js'
@@ -49,7 +48,7 @@ const Stored = () => {
       <form
         className='StoreWasteForm'
         onSubmit={(e) =>
-          handleSubmit(e, selectedWaste, weight, optionsContainer, statusOptions, createWaste, token, () => {
+          handleSubmit(e, selectedWaste, weight, optionsContainer, statusOptions, token, () => {
             fetchStoredWaste(token, setData, setLoading, setError)
             resetForm() // restablecer los valores de acondicionamiento, peso y estado
           })

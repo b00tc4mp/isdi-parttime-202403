@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-
 import '../index.css'
 // components
 import Button from '../../../components/core/Button'
@@ -13,9 +12,12 @@ import VehicleBig from '../../../components/img/VehicleBig.jpg'
 import fetchInspectionsById from '../../../logic/getInspectionsById'
 // Handlers
 import handleDeleteInspection from '../../../handlers/deleteInspectionHandle'
+// Utils
+import useAuthRedirect from '../../../utils/noTokenRedirect'
 
 const Historical = () => {
-  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
+  // const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
+  const token = useAuthRedirect() // si no hay token redirigir a login
   const { vehicleId } = useParams() // esta info viene desde el registro
   const navigate = useNavigate()
 

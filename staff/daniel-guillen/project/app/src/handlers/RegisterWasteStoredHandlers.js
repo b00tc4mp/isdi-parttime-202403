@@ -1,4 +1,5 @@
 import validateWasteData from 'com/validate/validateWasteData'
+import createWaste from '../logic/createWaste'
 
 // seleccion del residuo
 export const handleWasteChange = (selectedOption, setSelectedWaste) => {
@@ -28,16 +29,7 @@ export const handleStatusOptions = (event, setStatusOptions) => {
 }
 
 // enviar registro de residuo
-export const handleSubmit = async (
-  e,
-  selectedWaste,
-  weight,
-  optionsContainer,
-  statusOptions,
-  createWaste,
-  token,
-  getStoredWaste
-) => {
+export const handleSubmit = async ( e, selectedWaste, weight, optionsContainer, statusOptions, token, getStoredWaste ) => {
   e.preventDefault()
 
   try {
@@ -78,7 +70,6 @@ export const handleSubmit = async (
     await createWaste(dataWaste, token)
 
     alert(`📦 Residuo Registrado ${selectedWaste.code} ${selectedWaste.description} 🎉`)
-
     // Refrescar la lista después de registrar un nuevo residuo
     getStoredWaste()
   } catch (error) {

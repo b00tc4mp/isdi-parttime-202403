@@ -14,11 +14,14 @@ import medium from './inspectionData/checkListMedium.json'
 import big from './inspectionData/checkListBig.json'
 // Validation
 import { validateInspectionData, filterItemsToFix } from 'com/validate/validateInspectionData'
+// Utils
+import useAuthRedirect from '../../utils/noTokenRedirect'
 import './index.css'
 
 const Vehicles = () => {
   const navigate = useNavigate()
-  const [token] = useState(sessionStorage.getItem('token'))
+  // const [token] = useState(sessionStorage.getItem('token'))
+  const token = useAuthRedirect() // si no hay token redirigir a login
 
   const [selectedVehicle, setSelectedVehicle] = useState(null)
   const [checkList, setCheckList] = useState([])

@@ -5,8 +5,11 @@ import Button from '../../components/core/Button'
 import store from '../../components/img/store.jpg'
 import vehicles from '../../components/img/vehicles.jpg'
 import admin from '../../components/img/admin.jpg'
+// utils
+import useAuthRedirect from '../../utils/noTokenRedirect'
 
 const Home = () => {
+  useAuthRedirect() // si no hay token redirigir a login
   const navigate = useNavigate() 
 
   return (
