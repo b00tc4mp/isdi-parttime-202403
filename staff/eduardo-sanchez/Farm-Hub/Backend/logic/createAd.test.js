@@ -26,12 +26,12 @@ mongoose
             //     { lat: 40.668486, lng: -3.477177 }
             // )
             createAd(
-                '66a93c173f30af0ad9398dad',
-                'miel',
-                'autoctona',
+                '66fe95ece385847ca64baf7a',
+                'ajo',
+                'NEGRO',
                 '10.10 €/Kg',
                 '094-094-094',
-                { lat: 37.603494, lng: -6.027376 }
+                { lat: 41.600965, lng: 1.976329 }
             )
                 // createAd(
                 //     '66ae6370f11082ed7f0623dd',
