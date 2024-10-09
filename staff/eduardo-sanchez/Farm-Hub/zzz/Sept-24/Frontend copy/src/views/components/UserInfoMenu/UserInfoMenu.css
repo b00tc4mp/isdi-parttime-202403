@@ -1,0 +1,14 @@
+@tailwind components;
+
+@layer components {
+    .UserInfoMenuContainer {
+        @apply fixed bg-gray-300 right-3 top-16 rounded-xl p-1;
+    }
+
+    .UserInfoMenuList {
+        @apply cursor-pointer p-2 hover:bg-gray-700 bg-white;
+    }
+}
+
+/* <div className= "fixed bg-gray-500 right-3 top-16 rounded-xl p-1">
+            <ul className="cursor-pointer p-2 hover:bg-gray-600 text-white"> */

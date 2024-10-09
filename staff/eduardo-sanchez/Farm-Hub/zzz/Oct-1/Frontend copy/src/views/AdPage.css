@@ -1,0 +1,71 @@
+@tailwind components;
+
+@layer components {
+    .AdPageLoading {
+        @apply text-2xl font-bold text-green-600;
+    }
+
+    .AdPageContainer {
+        @apply max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md relative z-0;
+    }
+
+    .AdPageTitle {
+        @apply text-3xl font-bold text-green-700 mb-4;
+    }
+
+    .AdPageDetails {
+        @apply mb-6;
+    }
+
+    .AdPageAuthor {
+        @apply text-lg font-semibold text-gray-700;
+    }
+
+    .AdPageDescription {
+        @apply text-gray-500 font-semibold mt-2 mb-2;
+    }
+
+    .AdPagePrice {
+        @apply text-xl font-bold text-green-600 mt-2;
+    }
+
+    .AdPageDate {
+        @apply text-sm text-gray-500 mt-1;
+    }
+
+    .AdPageContactInfo {
+        @apply text-sm text-orange-700 mt-2;
+    }
+
+    .AdPageCommentsSection {
+        @apply mb-8;
+    }
+
+    .AdPageCommentsTitle {
+        @apply text-2xl font-semibold text-green-700 mb-4;
+    }
+
+    .AdPageCommentsList {
+        @apply space-y-4 mt-4;
+    }
+
+    .AdPageComment {
+        @apply bg-gray-100 p-4 rounded-lg;
+    }
+
+    .AdPageCommentText {
+        @apply text-gray-800 break-words;
+    }
+
+    .AdPageCommentFooter {
+        @apply flex justify-between items-center mt-2;
+    }
+
+    .AdPageCommentAuthor {
+        @apply text-sm font-bold text-green-600;
+    }
+
+    .AdPageBackButton {
+        @apply absolute left-3 top-2.5 w-12 bg-transparent border-none cursor-pointer text-black font-bold;
+    }
+}

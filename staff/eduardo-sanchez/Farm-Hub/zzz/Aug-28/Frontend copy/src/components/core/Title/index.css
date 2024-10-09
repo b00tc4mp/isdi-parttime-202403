@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .Title {
+        @apply text-2xl w-1/3 font-bold mb-1 text-orange-700 text-center;
+    }
+}

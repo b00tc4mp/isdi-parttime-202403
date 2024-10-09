@@ -1,0 +1,1 @@
+curl -X GET http://localhost:8080/users/66a939ddca799581a845711c/userAdComments -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmU0ODc5NzMwY2I2M2Y5N2JiYzIzZTUiLCJpYXQiOjE3MjYyNTMwNTMsImV4cCI6MTcyODg0NTA1M30.6HLXvw1zXiAUqewiRI6WP7qZe6T9QQVWvLjHaysRiGs" -v

@@ -1,0 +1,35 @@
+@tailwind components;
+
+@layer components {
+    .Header {
+        @apply flex w-full fixed justify-between items-center p-3 box-border border-b-[1px] border-b-green-700 bg-white z-50;
+    }
+
+    .UsernameTitle {
+        @apply flex w-1/3 items-start justify-start gap-[0rem] font-bold;
+    }
+
+    /* .Title {
+        @apply w-1/3 text-center text-green-700;
+    } */
+
+    .ButtonsContainer {
+        @apply flex w-1/3 items-end justify-end gap-2;
+    }
+
+    /* .LogoutButton {
+        @apply p-[0.4rem] bg-white border-[1px] border-blue-500 rounded-md;
+    } */
+}
+
+/* .Header {
+        @apply flex justify-between items-center p-4 bg-green-600 text-white relative z-50;
+    }
+
+    .UsernameTitle {
+        @apply text-sm font-bold;
+    }
+
+    .LogoutButtonContainer {
+        @apply flex gap-2;
+    } */
