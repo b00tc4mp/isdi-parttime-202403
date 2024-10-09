@@ -3,7 +3,7 @@ import './index.css'
 // components
 import Select from 'react-select'
 // logic
-import fetchCodesWasteStored from '../../../logic/getCodesWasteStored'
+import fetchCodesWasteStored from '../../../logic/stored/getCodesWasteStored'
 
 const CodeSelect = ({ selectedWaste, handleCodeChange }) => {
   

@@ -11,7 +11,7 @@ import groupItemsByCode from '../../../../utils/groupedByCode'
 // handlers
 import handleDeleteWaste from '../../../../handlers/deleteLoadSearchedHandle'
 // logic
-import fetchLoads from '../../../../logic/getWasteLoadSearched'
+import fetchLoads from '../../../../logic/departures/getWasteLoadSearched'
 
 const Search = () => {
   const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
@@ -61,7 +61,7 @@ const Search = () => {
             {filteredItems.map(item => (
               <GroupedWasteItem key={item.code} item={item} />
             ))}
-            <h2 className="Title">Residuos cargados</h2>
+            {/* <h2 className="Title">Residuos cargados</h2> */}
 
             {/* Mostrar la lista completa de residuos */}
             <h2 className="Title">Lista al detalle de residuos</h2>

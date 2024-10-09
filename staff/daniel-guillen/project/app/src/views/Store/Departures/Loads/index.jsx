@@ -17,7 +17,7 @@ import getWeekNumberYear from '../../../../utils/getWeekNumberYear'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 import groupItemsByCode from '../../../../utils/groupedByCode.js'
 // logic
-import fetchLoadWaste from '../../../../logic/getWasteLoad.js'
+import fetchLoadWaste from '../../../../logic/departures/getWasteLoad.js'
 
 const Departures = () => {
   const token = sessionStorage.getItem('token') // obtener el token de sessionStorage

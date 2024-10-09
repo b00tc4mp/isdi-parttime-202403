@@ -8,11 +8,6 @@ const createNewUser = async (username, password, access, token) => {
         },
         body: JSON.stringify({ username, access, password }),
     })
-
-    // const text = await response.text()
-    // console.log('Raw Response:', text)
-
-    // const result = JSON.parse(text)
     
     const result = await response.json()
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Select from 'react-select'
 import './index.css'
 // Logic
-import getAllVehicles from '../../../logic/getAllVehicles'
+import getAllVehicles from '../../../logic/vehicles/getAllVehicles'
 // Images
 import VehicleSmall from '../../img/VehicleSmall.jpg'
 import VehicleMedium from '../../img/VehicleMedium.jpg'

@@ -1,5 +1,5 @@
 import validateWasteData from 'com/validate/validateWasteData'
-import createWaste from '../logic/createWaste'
+import createWaste from '../logic/stored/createWaste'
 
 // seleccion del residuo
 export const handleWasteChange = (selectedOption, setSelectedWaste) => {

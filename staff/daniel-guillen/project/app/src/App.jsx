@@ -3,7 +3,7 @@ import './index.css'
 import Header from './components/Header'
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
 // Logic
-import isUserLoggedIn from './logic/isUserLoggedIn'
+import isUserLoggedIn from './logic/users/isUserLoggedIn'
 // UserRoutes
 import Login from './views/Login'
 import Home from './views/Home'
@@ -40,22 +40,6 @@ function App() {
 
           {/* Rutas privadas (protegidas por autenticación) */}{
             isAuthenticated ? < > 
-            {/* <Route path='/' element={isAuthenticated ? <Home /> : <Navigate to='/Login' />} />
-            <Route path='/Admin' element={isAuthenticated ? <Admin /> : <Navigate to='/Login' />} />
-            <Route path='/Admin/Register' element={isAuthenticated ? <Register /> : <Navigate to='/Login' />} />
-            <Route path='/Admin/Users' element={isAuthenticated ? <Users /> : <Navigate to='/Login' />} />
-  
-            <Route path='/Store' element={isAuthenticated ? <Store /> : <Navigate to='/Login' />} />
-            <Route path='/Store/Stored' element={isAuthenticated ? <Stored /> : <Navigate to='/Login' />} />
-            <Route path='/Store/Summary' element={isAuthenticated ? <Summary /> : <Navigate to='/Login' />} />
-            <Route path='/Store/Search' element={isAuthenticated ? <Search /> : <Navigate to='/Login' />} />
-  
-            <Route path='/Departures' element={isAuthenticated ? <Departures /> : <Navigate to='/Login' />} />
-            <Route path='/Departures/Search' element={isAuthenticated ? <SearchLoad /> : <Navigate to='/Login' />} />
-  
-            <Route path='/Vehicles' element={isAuthenticated ? <Vehicles /> : <Navigate to='/Login' />} />
-            <Route path='/Vehicles/Historical/:vehicleId' element={isAuthenticated ? <Historical /> : <Navigate to='/Login' />} /> */}
-
             <Route path='/' element={ <Home /> } />
             <Route path='/Admin' element={ <Admin /> } />
             <Route path='/Admin/Register' element={ <Register /> } />
@@ -72,9 +56,7 @@ function App() {
             <Route path='/Vehicles' element={ <Vehicles /> } />
             <Route path='/Vehicles/Historical/:vehicleId' element={ <Historical /> } />
             
-            </> : <Route path='/*' element={ <Login setIsAuthenticated={setIsAuthenticated} />} />
-
-          
+            </> : <Route path='/*' element={ <Login setIsAuthenticated={setIsAuthenticated} />} /> 
         }
         </Routes>
       </BrowserRouter>

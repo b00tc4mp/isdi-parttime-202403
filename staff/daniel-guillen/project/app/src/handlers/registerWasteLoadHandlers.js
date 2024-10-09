@@ -1,5 +1,5 @@
 import validateLoadData from 'com/validate/validateLoadData'
-import createLoad from '../logic/createLoad'
+import createLoad from '../logic/departures/createLoad'
 
 // monitoreamos reference
 export const handleReferenceChange = (setReference) => (newReference) => {

@@ -9,7 +9,7 @@ import WasteWeight from '../../../../components/store/WasteWeight'
 import WasteList from '../../../../components/store/WasteList/index.jsx'
 import MenuStore from '../../../../components/store/MenuStore'
 // Logic
-import fetchStoredWaste from '../../../../logic/getWasteStored.js'
+import fetchStoredWaste from '../../../../logic/stored/getWasteStored.js'
 // Handlers
 import { handleWasteChange, handleWeightChange, handleOptionsContainer, handleStatusOptions, handleSubmit } from '../../../../handlers/registerWasteStoredHandlers.js'
 import handleDeleteWaste from '../../../../handlers/deleteWasteStoredHandle.js'

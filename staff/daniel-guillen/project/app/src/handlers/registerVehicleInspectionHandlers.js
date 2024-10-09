@@ -1,6 +1,6 @@
 import validateInspectionData from "com/validate/validateInspectionData"
-import createInspection from "../logic/createInspection"
-import fetchUserName from "../logic/getUserName"
+import createInspection from "../logic/vehicles/createInspection"
+import fetchUserName from "../logic/users/getUserName"
 
 // handle vehicle selection
 export const handleVehicleChange = (selectedVehicle, setSelectedVehicle) => {

@@ -9,7 +9,7 @@ import MenuStore from '../../../../components/store/MenuStore'
 import sortWasteItems from '../../../../utils/sortWasteItems'
 import calculateTotalWeight from '../../../../utils/calculateTotalWeight'
 // Logic
-import fetchStoredWaste from '../../../../logic/getWasteStoredByCode'
+import fetchStoredWaste from '../../../../logic/stored/getWasteStoredByCode'
 // Handlers
 import handleDeleteWaste from '../../../../handlers/deleteWasteStoredHandle'
 

@@ -4,7 +4,7 @@ import './index.css'
 import GroupedWasteItem from '../../../../components/store/GroupedWasteItem'
 import MenuStore from '../../../../components/store/MenuStore'
 // logic
-import fetchStoredWaste from '../../../../logic/getWasteStored.js'
+import fetchStoredWaste from '../../../../logic/stored/getWasteStored.js'
 // utils
 import groupItemsByCode from '../../../../utils/groupedByCode.js'
 

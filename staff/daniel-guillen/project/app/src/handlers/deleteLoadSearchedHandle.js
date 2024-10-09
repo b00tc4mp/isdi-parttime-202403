@@ -1,5 +1,5 @@
-import deleteLoadById from '../logic/deleteLoad.js'
-import fetchLoads from '../logic/getWasteLoadSearched.js'
+import deleteLoadById from '../logic/departures/deleteLoad.js'
+import fetchLoads from '../logic/departures/getWasteLoadSearched.js'
 
 const handleDeleteWaste = async (id, token, selectedReference, setData, setLoading, setError) => {
   const isConfirmed = window.confirm('🗑️ ¿Deseas eliminar carga seleccionada? 📦')

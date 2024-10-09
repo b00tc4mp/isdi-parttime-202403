@@ -9,7 +9,7 @@ import VehicleSmall from '../../../components/img/VehicleSmall.jpg'
 import VehicleMedium from '../../../components/img/VehicleMedium.jpg'
 import VehicleBig from '../../../components/img/VehicleBig.jpg'
 // Logic
-import fetchInspectionsById from '../../../logic/getInspectionsById'
+import fetchInspectionsById from '../../../logic/vehicles/getInspectionsById'
 // Handlers
 import handleDeleteInspection from '../../../handlers/deleteInspectionHandle'
 

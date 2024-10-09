@@ -1,5 +1,5 @@
-import deleteInspectionById from '../logic/deleteInspection'
-import fetchInspectionsById from '../logic/getInspectionsById'
+import deleteInspectionById from '../logic/vehicles/deleteInspection'
+import fetchInspectionsById from '../logic/vehicles/getInspectionsById'
 
 // funcion para eliminar residuo por ID
 const handleDeleteInspection = async (id, token, vehicleId, setData, setLoading, setError) => {

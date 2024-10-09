@@ -6,8 +6,8 @@ import logo from '../img/logo.png'
 import bienvenido from '../img/bienvenido.png'
 import logoutIcon from '../img/logoutIcon.png'
 // logic
-import logoutUser from '../../logic/logoutUser'
-import fetchUserName from '../../logic/getUserName'
+import logoutUser from '../../logic/users/logoutUser'
+import fetchUserName from '../../logic/users/getUserName'
 
 const Header = ({ setIsAuthenticated }) => {
   const navigate = useNavigate()

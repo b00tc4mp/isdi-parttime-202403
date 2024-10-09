@@ -1,5 +1,5 @@
-import deleteWasteById from '../logic/deleteWaste'
-import fetchStoredWaste from '../logic/getWasteStored'
+import deleteWasteById from '../logic/stored/deleteWaste'
+import fetchStoredWaste from '../logic/stored/getWasteStored'
 
 // Función para eliminar residuo por ID
 const handleDeleteWaste = async (id, token, setData, setLoading, setError) => {

@@ -3,7 +3,7 @@ import './index.css'
 // components
 import Select from 'react-select'
 // Logic
-import fetchReferencesLoad from '../../../logic/getReferencesLoad'
+import fetchReferencesLoad from '../../../logic/departures/getReferencesLoad'
 
 const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
   
