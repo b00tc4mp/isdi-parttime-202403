@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0px auto;
+  max-width: 720px;
+  background-color: rgb(52, 52, 54);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .container {
+    @apply flex flex-col text-center mb-12;
+  }
+  .Home {
+    @apply flex flex-col text-center p-4;
+  }
+  .Admin {
+    @apply flex flex-col text-center p-4;
+  }
+  .RouteTitle {
+    @apply text-white mt-3 mb-1 text-3xl text-center;
+  }
+  .Title {
+    @apply text-white my-2 text-2xl text-center;
+  }
+  .radio {
+    @apply cursor-pointer;
+  }
+  .image {
+    @apply w-full mt-2 border-white border-4 rounded-sm;
+  }
+  .image:hover {
+    @apply grayscale-0 border-green-600 border-4 rounded-sm;
+  }
+  .menuFooterDiv {
+    @apply fixed bottom-0 left-0;
+  }
+  .menuFooter {
+    @apply flex justify-center text-2xl list-none;
+  }
+  .menuFooter-start {
+    @apply bg-green-800 py-1;
+  }
+  .menuFooter-start:hover {
+    background: lightgreen;
+  }
+  .menuFooter-center {
+    @apply bg-green-800 py-1;
+  }
+  .menuFooter-center:hover {
+    background: lightgreen;
+  }
+  .menuFooter-end {
+    @apply bg-green-800 py-1 rounded-tr;
+  }
+  .menuFooter-end:hover {
+    background: lightgreen;
+  }
+  .centered {
+    @apply text-center font-bold;
+  }
+}

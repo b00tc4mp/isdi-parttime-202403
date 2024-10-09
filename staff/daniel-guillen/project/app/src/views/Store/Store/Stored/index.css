@@ -1,0 +1,25 @@
+@tailwind components;
+
+@layer components {
+  .Stored {
+    @apply flex flex-col mx-4;
+  }
+  .StoreWasteForm {
+    @apply flex flex-col mx-1 my-0;
+  }
+  .WeighStatus {
+    @apply flex flex-row justify-center;
+  }
+  .WeighStatus.CORRECTO {
+    @apply bg-lime-300 text-black rounded-b-sm;
+  }
+  .WeighStatus.ESTANCADO {
+    @apply bg-red-400 text-white rounded-b-sm;
+  }
+  .SubmitButtonWaste.CORRECTO:hover {
+    @apply bg-lime-600 py-2;
+  }
+  .SubmitButtonWaste.ESTANCADO:hover {
+    @apply bg-red-800 py-2;
+  }
+}

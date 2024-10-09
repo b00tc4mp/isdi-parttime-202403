@@ -1,0 +1,34 @@
+@tailwind components;
+
+@layer components {
+  .VehicleInspection {
+    @apply flex flex-col text-center mx-4 mb-4;
+  }
+  .HistoricalLink {
+    @apply bg-white rounded-b-sm;
+  }
+  .Historical {
+    @apply flex flex-col text-center mx-4 mb-6;
+  }
+  .VehicleHistorical {
+    @apply flex flex-col items-center bg-white rounded-sm mt-3 mb-2;
+  }
+  .VehicleId {
+    @apply text-black text-3xl;
+  }
+  .HistoricalList {
+    @apply flex flex-col my-2;
+  }
+  .HistoricalInfo {
+    @apply flex flex-row bg-orange-800 text-xl text-white rounded-t-sm;
+  }
+  .HistorialItemToFix {
+    @apply bg-red-200 text-red-700;
+  }
+  .HistoricalNote {
+    @apply flex flex-row pl-3 bg-white rounded-b-sm mt-0;
+  }
+  .bold {
+    @apply font-bold;
+  }
+}

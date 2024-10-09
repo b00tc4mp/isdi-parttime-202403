@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .Form {
+    @apply flex flex-col text-left mt-5 mx-5 bg-gradient-to-b from-white to-transparent rounded-sm;
+  }
+}

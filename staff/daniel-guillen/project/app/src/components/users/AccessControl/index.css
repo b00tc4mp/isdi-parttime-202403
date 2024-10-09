@@ -1,0 +1,14 @@
+@tailwind components;
+
+@layer components {
+  .AccessOptionsDiv {
+    @apply flex flex-col text-center;
+  }
+
+  .Access {
+    @apply bg-white border-gray-500 rounded-sm border-2 text-2xl p-1;
+  }
+  .AccessOption {
+    @apply bg-white border-0 pl-1;
+  }
+}

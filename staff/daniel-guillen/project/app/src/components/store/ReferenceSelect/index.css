@@ -1,0 +1,10 @@
+@tailwind components;
+
+@layer components {
+  .ReferenceLoadDiv {
+    @apply flex flex-col;
+  }
+  .ReferenceSelected {
+    @apply flex flex-col text-center text-xl leading-none;
+  }
+}

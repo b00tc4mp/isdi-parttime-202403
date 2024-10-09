@@ -1,0 +1,22 @@
+@tailwind components;
+
+@layer components {
+  .Header {
+    @apply flex flex-col mt-2 bg-gradient-to-b from-white to-transparent text-center rounded-t-sm;
+  }
+  .logo {
+    @apply flex justify-center w-full mt-2 mb-0;
+  }
+  .sessionStatus {
+    @apply flex justify-center text-orange-500 items-center leading-none;
+  }
+  .logout-icon {
+    @apply fixed top-2 right-0 cursor-pointer z-[1000] transition-opacity duration-300;
+  }
+  .logout-icon img {
+    @apply w-10 h-10;
+  }
+  .logout-icon.hide {
+    @apply opacity-0 pointer-events-none;
+  }
+}

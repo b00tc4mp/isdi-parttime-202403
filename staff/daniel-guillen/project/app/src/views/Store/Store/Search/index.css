@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .SearchWasteDiv {
+    @apply flex flex-col text-center mx-4;
+  }
+}

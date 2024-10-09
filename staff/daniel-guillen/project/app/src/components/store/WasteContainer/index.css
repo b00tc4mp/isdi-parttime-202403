@@ -1,0 +1,31 @@
+@tailwind components;
+
+@layer components {
+  .WasteContainerDiv {
+    @apply flex flex-col text-center items-center w-full bg-white leading-tight;
+  }
+  .WasteContainerStatus {
+    @apply flex flex-col items-center pt-1 pr-1 w-full;
+  }
+  .WasteContainerStatus.PALET {
+    @apply bg-orange-200;
+  }
+  .WasteContainerStatus.GRG {
+    @apply bg-yellow-200;
+  }
+  .WasteContainerStatus.BIGBAG {
+    @apply bg-lime-200;
+  }
+  .WasteContainerStatus.B200 {
+    @apply bg-indigo-200;
+  }
+  .WasteContainerStatus.B-200 {
+    @apply bg-cyan-200;
+  }
+  .ContainerOptions {
+    @apply flex flex-row;
+  }
+  .ImgOptions {
+    @apply cursor-pointer w-full rounded;
+  }
+}
