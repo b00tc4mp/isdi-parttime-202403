@@ -7,7 +7,7 @@ import Title from '../../../components/core/Title'
 import Text from '../../../components/core/Text'
 // utils y api
 import sortUsers from '../../../utils/sortUsers'
-import fetchAllUsers from '../../../logic/getAllUsers'
+import fetchAllUsers from '../../../logic/users/getAllUsers'
 import handleDeleteUser from '../../../handlers/deleteUserHandle'
 
 const UsersList = () => {

@@ -19,4 +19,4 @@ api.use('/stored/', storedRoutes)
 api.use('/departures/', departuresRoutes)
 api.use('/vehicles/', vehiclesRoutes)
 
-api.listen(PORT, () => console.log(`API running on PORT ${PORT}`))
+api.listen(PORT, () => console.log(`Cowabunga! PORT ${PORT}`))

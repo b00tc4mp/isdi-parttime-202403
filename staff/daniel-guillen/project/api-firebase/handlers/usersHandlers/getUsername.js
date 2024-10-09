@@ -1,31 +1,26 @@
 import { db } from '../../firebase.js'
 import jwt from 'jsonwebtoken'
 
-// Handler para obtener el nombre y el nivel de acceso
-const getUserName = async (req, res) => {
+const getUserName = async (req, res) => { // Handler para obtener el nombre y el nivel de acceso
     const token = req.headers.authorization?.split(' ')[1]
 
     if (!token) {
         return res.status(403).json({ message: 'Token no proporcionado' })
     }
 
-    try {
-        // verificamos el token
-        const decoded = jwt.verify(token, process.env.SECRET_JWT)
+    try {        
+        const decoded = jwt.verify(token, process.env.SECRET_JWT) // verificamos el token
         const userId = decoded.userId
 
-        // buscamos el usuario en la base de datos
-        const userDoc = await db.collection('users').doc(userId).get()
+        const userDoc = await db.collection('users').doc(userId).get() // buscamos el usuario en la base de datos
 
-        // usuario exite
-        if (!userDoc.exists) {
+        if (!userDoc.exists) { // usuario no exite
             return res.status(404).json({ message: 'Usuario no encontrado' })
         }
 
         const user = userDoc.data()
 
-        // devolvemos el username y access
-        return res.status(200).json({ username: user.username, access: user.access })
+        return res.status(200).json({ username: user.username, access: user.access }) // devolvemos el username y access
 
     } catch (error) {
         console.error('Error al obtener datos del usuario', error)

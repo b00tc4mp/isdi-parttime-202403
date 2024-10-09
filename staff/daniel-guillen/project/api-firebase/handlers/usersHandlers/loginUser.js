@@ -2,17 +2,17 @@ import 'dotenv/config'
 import { db } from '../../firebase.js'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+// validation
+import { validateUsernameAndPassword } from 'com/validate/validateCreateUser.js'
 
 // Handler para la autenticacion de usuario
 const loginUser = async (req, res) => {
     const { username, password } = req.body
     
-    // que esten completados los campos
-    if (!username || !password) {
-        return res.status(400).json({ message: 'Debe proporcionar nombre de usuario y contraseña' })
-    }
-
     try {
+        // Validación de los inputs
+        validateUsernameAndPassword(username, password)
+
         const userQuery = await db.collection('users').where('username', '==', username).get()
 
         // verificar si el usuario existe
@@ -36,13 +36,10 @@ const loginUser = async (req, res) => {
             { userId: userDoc.id, username: user.username, access: user.access },
             process.env.SECRET_JWT,
             { expiresIn: '1h' }
-
         )
-        console.log('Token:', token)
 
         console.log(`Usuario autenticado: Bienvenido ${username}!`)
         return res.status(200).json({ message: 'Inicio de sesión exitoso', token })
-
     } catch (error) {
         console.error('Error en el inicio de sesión', error)
         return res.status(500).json({ message: `Error en el inicio de sesión: ${error.message}` })

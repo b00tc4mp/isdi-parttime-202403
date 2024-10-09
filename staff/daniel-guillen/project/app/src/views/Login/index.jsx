@@ -1,14 +1,14 @@
 import { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
 // components
 import FormWithFeedback from "../../components/core/FormWithFeedback"
 import Field from "../../components/core/Field"
 import Button from "../../components/core/Button"
 // logic
-import loginUser from "../../logic/loginUser"
+import loginUser from "../../logic/users/loginUser"
+// validation
+import { validateUsernameAndPassword } from 'com/validate/validateCreateUser'
 
 const Login = ({ setIsAuthenticated }) => {
-  // const navigate = useNavigate()
   const [message, setMessage] = useState('')
   const [level, setLevel] = useState('error') // por defecto los message del formfeedback son rojos
 
@@ -19,23 +19,20 @@ const Login = ({ setIsAuthenticated }) => {
     const username = form.username.value.trim()
     const password = form.password.value.trim()
 
-    // validaciones primer paso 
-    if (!username || !password) {
-      setMessage('Debe proporcionar nombre de usuario y contraseña.')
-      return
-    }
-
     try {
+      // validar inputs
+      validateUsernameAndPassword(username, password)
+      
       await loginUser(username, password) // llamada a la API para iniciar sesión
+      setMessage(`👋 Bienvenido ${username}!🎉`)
+      setLevel('success')
+
       setTimeout(() => {
         setIsAuthenticated(true) // actualiza el estado de autenticación 
-      }, 2000)   
-      setMessage(`👋 Bienvenido ${username}!🎉`)
-      setLevel('success') // 'success' aplicamos el estilo verde
+      }, 2000)
     } catch (error) {
       console.error(error)
-      setMessage(error.message) // mostrar mensaje de error en la UI
-      alert(error.message) // mostrar alerta con el mensaje de error
+      setMessage(error.message) // mostrar mensaje de error en el FormWithFeedback
     }
   }
 
