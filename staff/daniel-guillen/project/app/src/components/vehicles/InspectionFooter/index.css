@@ -5,7 +5,7 @@
     @apply flex flex-col text-center;
   }
   .ItemsToFix {
-    @apply bg-red-500 text-white mt-2 text-center leading-tight rounded-md;
+    @apply bg-red-500 text-white mt-2 text-center leading-tight rounded-sm;
   }
   .InspectionNote {
     @apply bg-white text-black font-bold mt-2 text-center rounded-t-sm;
@@ -14,9 +14,9 @@
     @apply w-full px-3 h-40 border-0 text-xl;
   }
   .SubmitInspection {
-    @apply bg-gray-200 rounded-b-sm;
+    @apply bg-gray-500 rounded-b-sm;
   }
   .SubmitInspection:hover {
-    @apply bg-gray-500;
+    @apply bg-gray-700;
   }
 }

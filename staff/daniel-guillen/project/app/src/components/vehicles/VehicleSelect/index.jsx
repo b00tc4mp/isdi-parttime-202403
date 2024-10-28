@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react'
-import Select from 'react-select'
 import './index.css'
-// Logic
-import getAllVehicles from '../../../logic/vehicles/getAllVehicles'
-// Images
+import Select from 'react-select'
+import { Text } from '../../core'
+import { useState, useEffect } from '../../../utils/hooks'
 import { vehicleSmall, vehicleMedium, vehicleBig } from '../../img'
+import getAllVehicles from '../../../logic/vehicles/getAllVehicles'
+
 
 const VehiclesSelect = ({ selectedVehicle, handleVehicleChange }) => {
   const [data, setData] = useState([])
+  const selectedOption = data.find(option => option.value.id === selectedVehicle?.id)
+  const size = selectedVehicle?.size
 
-  // useEffect para cargar las vehiculos
   useEffect(() => {
     const fetchVehiclesData = async () => {
       try {
@@ -23,13 +24,6 @@ const VehiclesSelect = ({ selectedVehicle, handleVehicleChange }) => {
     fetchVehiclesData()
   }, [])
 
-  // Se mantendra la opcion seleccionada en el label
-  const selectedOption = data.find(option => option.value.id === selectedVehicle?.id)
-
-  // Extraer el tamaño del vehículo seleccionado
-  const size = selectedVehicle?.size
-
-  // Se mostrara la imagen de vehiculo segun la seleccion
   const getImage = (size) => {
     switch (size) {
       case 'small':
@@ -60,7 +54,7 @@ const VehiclesSelect = ({ selectedVehicle, handleVehicleChange }) => {
       {/* se mostrara cuando este seleccionado vehiculo */}
       {selectedVehicle && (
         <div className='vehicle'>
-          <h2>Vehículo seleccionado:</h2>
+          <Text>Vehículo seleccionado:</Text>
           {vehicleImg && <img src={vehicleImg} alt={`Imagen de vehículo ${size}`} />}
         </div>
       )}

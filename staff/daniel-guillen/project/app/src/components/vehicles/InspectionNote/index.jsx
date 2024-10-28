@@ -1,7 +1,9 @@
+import { Text } from "../../core"
+
 const InspectionNote = ({ inspectionNote, setInspectionNote }) => (
     <div className='InspectionNote'>
 
-      <h3>Explicación de la Inspección:</h3>
+      <Text className="bold">Explicación de la Inspección:</Text>
       
       <textarea
         value={inspectionNote}

@@ -1,9 +1,8 @@
-// traemos dia, mes y año actual
 const getTodayMonthYear = () => {
-  const today = new Date() // dia actual
-  const date = today.toISOString() // fecha actual
-  const month = String(today.getMonth() + 1).padStart(2, '0') // Mes actual con dos numeros
-  const year = String(today.getFullYear()) // Año actual
+  const today = new Date() 
+  const date = today.toISOString()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const year = String(today.getFullYear())
   
   return { today, date, month, year }
 }

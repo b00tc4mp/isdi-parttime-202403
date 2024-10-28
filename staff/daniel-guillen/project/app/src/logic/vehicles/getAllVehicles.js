@@ -15,18 +15,17 @@ const getAllVehicles = async () => {
   
       const result = await apiResponse.json()
   
-      return result.map((item) => ({ // Formatear los datos para select vehicle
-        value: { // valor que se enviará
+      return result.map((item) => ({
+        value: {
           id: item.id,
           model: item.model,
           size: item.size
         },
-        label: `${item.model} - ${item.id}` // texto que se muestra en el select
+        label: `${item.model} - ${item.id}`
       }))
     } catch (error) {
       console.error('No hay vehiculos')
-      // throw new SystemError(error.message || 'Error al obtener lista de vehículos')
-      return [] // devolvemos un array vacío en caso de error
+      return []
     }
   }
 

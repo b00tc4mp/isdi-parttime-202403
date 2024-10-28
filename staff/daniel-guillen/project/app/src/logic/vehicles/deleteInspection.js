@@ -10,7 +10,6 @@ const deleteInspectionById = async (inspectionId, token) => {
       },
     })
 
-    // Primero si la respuesta no fue exitosa con servidor
     if (!apiResponse.ok) {
       const errorResponse = await apiResponse.json()
       throw new SystemError(errorResponse.message || 'Error al eliminar inspección')
@@ -18,7 +17,6 @@ const deleteInspectionById = async (inspectionId, token) => {
 
     return { message: 'Inspección eliminada exitosamente' }
   } catch (err) {
-    // Lanzar el error completo y no solo el mensaje
     throw new SystemError(err.message || 'Error inesperado en el servidor')
   }
 }

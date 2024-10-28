@@ -1,8 +1,6 @@
 import './index.css'
-// components
-import InspectionNote from '../InspectionNote'
-import ItemsToFix from '../ItemsToFix'
-import Button from '../../core/Button'
+import { InspectionNote, ItemsToFix }  from '../index.js'
+import { Button } from '../../core'
 
 const InspectionFooter = ({ checkList, inspectionNote, setInspectionNote, saveData }) => {
   return (

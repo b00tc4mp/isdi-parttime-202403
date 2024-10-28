@@ -1,4 +1,6 @@
-function Text({ children, className }) {
+import './text.css'
+
+function Text({ className, children }) {
     return <p className={`Text ${className}`}>{children}</p>
 }
 

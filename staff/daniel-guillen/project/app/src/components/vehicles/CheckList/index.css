@@ -7,14 +7,17 @@
   .CheckList {
     @apply grid grid-cols-[auto_auto];
   }
+  .RadioGroup input[type="radio"] {
+    @apply hidden;
+  }
   .RadioGroup {
     @apply flex flex-row items-center;
   }
   .ElementTitle {
-    @apply text-lg;
+    @apply text-sm font-bold;
   }
   .StatusValue {
-    @apply text-sm px-1;
+    @apply text-xs;
   }
   .CheckElement {
     @apply flex flex-col border-2 text-center items-center;

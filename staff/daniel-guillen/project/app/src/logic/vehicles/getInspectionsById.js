@@ -1,6 +1,6 @@
 import { SystemError } from "../../../../com/errors"
 
-const fetchInspectionsById = async (id, token) => { // id es matricula de vehiculo
+const fetchInspectionsById = async (id, token) => {
   try {
     const apiResponse = await fetch(`${import.meta.env.VITE_API_URL}vehicles/getInspectionById/${id}`, {
       method: 'GET',
@@ -12,13 +12,12 @@ const fetchInspectionsById = async (id, token) => { // id es matricula de vehicu
 
     const result = await apiResponse.json()
 
-    if (!apiResponse.ok) { // Primero si la respuesta no fue exitosa con servidor
+    if (!apiResponse.ok) {
       throw new SystemError(result.message || 'Error al obtener inspecciones almacenadas')
     }
 
-    return result // datos si la solicitud fue exitosa
+    return result
   } catch (err) {
-    // Lanzar el error completo y no solo el mensaje
     throw new SystemError(err.message || 'Error inesperado al obtener inspecciones almacenadas')
 }
 }

@@ -1,0 +1,16 @@
+@tailwind components;
+
+@layer components {
+  .bold {
+    @apply font-bold;
+  }
+  .Loading {
+    @apply text-orange-400 mt-1;
+  }
+  .Error {
+    @apply text-red-600 mt-1;
+  }
+  .Empty {
+    @apply text-white mt-1;
+  }
+}

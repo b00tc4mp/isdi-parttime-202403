@@ -1,8 +1,32 @@
 import CheckList from '../CheckList'
+import { small, medium, big } from './inspectiondata'
+import { useEffect } from 'react'
 
-const InspectionSections = ({ checkList, handleRadioChange }) => {
+const InspectionSections = ({ size, handleRadioChange, checkList, setCheckList }) => {
+
+  const getData = (size) => {
+    switch (size) {
+      case 'small':
+        return { data: small }
+      case 'medium':
+        return { data: medium }
+      case 'big':
+        return { data: big }
+      default:
+        return { data: [] }
+    }
+  }
+
+  const { data } = getData(size)
+
+  useEffect(() => {
+    if (data.length > 0) {
+      const initializedData = data.map(item => ({ ...item, selectedValue: 'CORRECTO' }))
+      setCheckList(initializedData)
+    }
+  }, [data, setCheckList])
+
   const sections = [
-    //manejamos y renderizamos los apartados con sus element
     { title: 'LUCES', items: checkList.filter(item => item.apartado === 'LUCES') },
     { title: 'CHASIS / CARROCERÍA', items: checkList.filter(item => item.apartado === 'CHASIS' || item.apartado === 'CARROCERÍA') },
     { title: 'MOTOR', items: checkList.filter(item => item.apartado === 'MOTOR') },

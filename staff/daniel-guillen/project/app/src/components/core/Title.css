@@ -1,7 +1,10 @@
 @tailwind components;
 
 @layer components {
-  Title {
-    @apply text-white my-1 text-2xl text-center;
+  .Title {
+    @apply text-white mt-3 mb-1 text-2xl text-center;
+  }
+  .SubTitle {
+    @apply text-white my-1 text-xl text-center;
   }
 }

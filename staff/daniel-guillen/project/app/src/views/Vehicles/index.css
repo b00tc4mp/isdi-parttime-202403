@@ -16,22 +16,4 @@
   .VehicleId {
     @apply text-black text-3xl;
   }
-  .HistoricalList {
-    @apply flex flex-col text-center mx-6 my-2;
-  }
-  .HistoricalInfo {
-    @apply flex flex-col bg-orange-800 text-xl pl-2 text-white rounded-t-md;
-  }
-  .HistorialItemToFix {
-    @apply bg-red-200 text-red-700;
-  }
-  .TitlelInfo {
-    @apply flex flex-col text-center bg-orange-800 text-lg pl-2 text-white;
-  }
-  .HistoricalNote {
-    @apply flex flex-row px-4 text-justify bg-white rounded-b-md mt-0;
-  }
-  .bold {
-    @apply font-bold;
-  }
 }

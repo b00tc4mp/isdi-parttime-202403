@@ -1,28 +1,16 @@
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { useCustomContext } from '../../../context/useContext.js'
 import '../index.css'
-// components
-import { Button}  from '../../../components/core'
-// Images
-import { vehicleSmall, vehicleMedium, vehicleBig}  from '../../../components/img/index.js'
-// Logic Utils Handle
-import fetchInspectionsById from '../../../logic/vehicles/getInspectionsById'
-import getMonthName from '../../../utils/getMonthName.js'
-import handleDeleteInspection from '../../../handlers/vehicles/deleteInspectionHandle.js'
+import { useParams, useNavigate } from '../../../utils/hooks.js'
+import { useState } from 'react'
+import { Button } from '../../../components/core'
+import { InspectionList } from '../../../components/vehicles'
+import { vehicleSmall, vehicleMedium, vehicleBig } from '../../../components/img'
 
 const VehicleHistory = () => {
-  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
-  const { vehicleId } = useParams() // props viene desde el registro
   const navigate = useNavigate()
-  const { alert, confirm } = useCustomContext()
-  
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [vehicleSize, setVehicleSize] = useState(null) // tamaño vehiculo
+  const { vehicleId } = useParams()
+  const [vehicleSize, setVehicleSize] = useState(null)
 
-  const getImage = (size) => {   // seleccionar imagen segun el tamaño del vehículo
+  const getImage = (size) => {
     switch (size) {
       case 'small':
         return vehicleSmall
@@ -35,74 +23,18 @@ const VehicleHistory = () => {
     }
   }
 
-  useEffect(() => { // renderizar inspecciones y tamaño del vehiculo
-    if (vehicleId) {
-      setError(null)
-        setLoading(true)
-      fetchInspectionsById(vehicleId, token) // solicitud a sercidor
-        .then((inspections) => { //ordenamos por fecha
-          const sortedInspections = inspections.sort((a, b) => new Date(b.worker.date) - new Date(a.worker.date))
-          setData(sortedInspections)
-          setVehicleSize(sortedInspections[0].vehicle.size) // tamaño del vehículo
-        })
-        .catch((error) => setError(error.message))
-        .finally(() => setLoading(false))
-    } else {
-      setData([])
-      setError(null)
-      setLoading(false)
-    }
-  }, [vehicleId, token])
-
-  const vehicleImg = getImage(vehicleSize) // Obtener imagen basada en el tamaño del vehículo
-
-  const handleDelete = (id) => { 
-    confirm({// confirm personalizado
-      message: '🗑️ ¿Deseas eliminar esta Inspección? 🔧',
-      onAccept: () => handleDeleteInspection(id, token, vehicleId, setData, setLoading, setError, alert),
-      onCancel: () => alert('🗑️ Eliminación cancelada ❌'),
-    })
-  }
+  const vehicleImg = getImage(vehicleSize)
 
   return (
     <div className='Historical'>
-      {loading ? (
-        <p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem' }}>Cargando inspecciones guardadas...</p>
-      ) : error ? (
-        <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
-      ) : data.length === 0 ? (
-        <p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No se encontraron inspecciones para este vehículo.</p>
-      ) : (
-        <>
-          <div className='VehicleHistorical'>
-            <h2 className="VehicleId">Vehículo {vehicleId}:</h2>
-            {vehicleImg && <img src={vehicleImg} alt={`Imagen de vehículo ${vehicleSize}`} />}
-            <Button className='HistoricalLink' onClick={() => navigate('/vehicles/inspection')}>⬅️Volver a registro</Button>
-          </div>
+      <div className='VehicleHistorical'>
+        <h2 className="VehicleId">Vehículo {vehicleId}:</h2>
+        {vehicleImg && <img src={vehicleImg} alt={`Imagen de vehículo ${vehicleSize}`} />}
+        <Button className='HistoricalLink' onClick={() => navigate('/vehicles/inspection')}>⬅️Volver a registro</Button>
+      </div>
 
-          {data.map((item) => (
-            <div key={item.id} className='HistoricalList'>
-                <button className="deleteInspection" onClick={() => handleDelete(item.id)}>
-                <div className='Inspection'>
-                  <div className='HistoricalInfo'><p><strong>Realizado por:</strong>&nbsp;{item.worker.workerName}</p><p><strong>Mes de inspección:</strong>&nbsp;{getMonthName(item.worker.month)}</p></div>
-                  <div className='HistorialItemToFix'>
-                  <h3 className='bold'>Elementos marcados para arreglar:</h3>
-                  <ul className='itemFix'>
-                    {item.inspection.itemFix.map((fix, index) => (
-                      <li key={index}>
-                        {fix.Apartado}: {fix.Elemento}
-                      </li>
-                    ))}
-                  </ul>
-                  </div>
-                  <p className='TitlelInfo'><strong>Explicación de la Inspección:</strong></p>
-                  <p className='HistoricalNote'>{item.inspection.notes}</p>
-                </div>
-              </button>
-            </div>
-          ))}
-        </>
-      )}
+      {/* Renderiza el componente con vehicleId */}
+      <InspectionList vehicleId={vehicleId} setVehicleSize={setVehicleSize} />
     </div>
   )
 }
