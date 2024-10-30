@@ -1,28 +1,21 @@
-import { useState, useEffect } from 'react'
 import './index.css'
-// components
 import Select from 'react-select'
-// Logic
+import { useState, useEffect } from 'react'
 import fetchReferencesLoad from '../../../logic/departures/getReferencesLoad'
 
 const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
+  const token = sessionStorage.getItem('token') 
+  const [options, setOptions] = useState([])
+  const [selectedOption, setSelectedOption] = useState(null)
   
-  const [data, setData] = useState([]) // Estado para almacenar las referencias
-
-  // useEffect para cargar las referencias
   useEffect(() => {
     const loadReferences = async () => {
-      const fetchedData = await fetchReferencesLoad() // obtener todas las referencias guardadas
-      setData(fetchedData)
+      const { options, selectedOption } = await fetchReferencesLoad(selectedReference, token)
+      setOptions(options)
+      setSelectedOption(selectedOption)
     }
     loadReferences()
-  }, [])
-
-  // Ordenar opciones
-  const options = data.sort((b, a) => a.value.localeCompare(b.value))
-
-  // opción seleccionada a partir del valor de selectedReference
-  const selectedOption = options.find(option => option.value === selectedReference)
+  }, [selectedReference, token])
 
   return (
     <div className='ReferenceLoadDiv'>
@@ -30,8 +23,8 @@ const ReferenceSelect = ({ selectedReference, handleReferenceChange }) => {
         className='ReferenceSelected'
         id='ReferenceSelect'
         placeholder="REFERENCIA"
-        options={options} // opciones para el select
-        value={selectedOption} // valor actualmente seleccionado
+        options={options}
+        value={selectedOption}
         onChange={(selected) => handleReferenceChange(selected ? selected.value : null)}
         isClearable
       />

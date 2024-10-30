@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-// components
 import { Button } from '../../core'
 
 const MenuLoads = () => {
@@ -9,28 +8,13 @@ const MenuLoads = () => {
     <div className='menuFooterDiv'>
       <ul className='menuFooter'>
         <li>
-          <Button 
-            className='menuFooter-start' 
-            onClick={() => navigate('/Store')}
-          >
-            🔙
-          </Button>
+          <Button className='menuFooter-start' onClick={() => navigate('/Store')} > 🔙 </Button>
         </li>
         <li>
-          <Button 
-            className='menuFooter-center' 
-            onClick={() => navigate('/Departures/registerload')}
-          >
-            📦
-          </Button>
+          <Button className='menuFooter-center' onClick={() => navigate('/Departures/registerload')} > 📦 </Button>
         </li>
         <li>
-          <Button 
-            className='menuFooter-end' 
-            onClick={() => navigate('/Departures/searchdepartures')}
-          >
-            🔎
-          </Button>
+          <Button className='menuFooter-end' onClick={() => navigate('/Departures/searchdepartures')} > 🔎 </Button>
         </li>
       </ul>
     </div>

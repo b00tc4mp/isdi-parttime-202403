@@ -14,13 +14,12 @@ const fetchLoadWaste = async (week, year, reference, token, setData, setLoading,
 
       const result = await apiResponse.json()
 
-      if (!apiResponse.ok) { // Primero si la respuesta no fue exitosa con servidor
+      if (!apiResponse.ok) {
         throw new SystemError(result.message || 'Error al obtener las cargas almacenadas')
       }
 
-    setData(result) // datos si la solicitud fue exitosa
+    setData(result)
     } catch (err) {
-    // Lanzar el error completo y no solo el mensaje
     setError(err.message || 'Error inesperado al obtener las cargas almacenadas')
     } finally {
     setLoading(false)

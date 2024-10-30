@@ -1,5 +1,4 @@
 import './index.css'
-// img
 import { palet, grg, bigbag, b200, bm200 } from '../../img'
 
 function WasteContainer({ optionsContainer, handleOptionsContainer }) {

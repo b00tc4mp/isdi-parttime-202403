@@ -14,13 +14,12 @@ const fetchStoredWaste = async (month, year, token, setData, setLoading, setErro
 
     const result = await apiResponse.json()
 
-    if (!apiResponse.ok) { // Primero si la respuesta no fue exitosa con servidor
+    if (!apiResponse.ok) {
       throw new SystemError(result.message || 'Error al obtener los residuos almacenados')
     }
 
-    setData(result) // datos si la solicitud fue exitosa
+    setData(result)
   } catch (err) {
-    // Lanzar el error completo y no solo el mensaje
     setError(err.message || 'Error inesperado al obtener los residuos almacenados')
   } finally {
     setLoading(false)

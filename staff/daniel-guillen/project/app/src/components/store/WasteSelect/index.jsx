@@ -1,27 +1,24 @@
-import { useState, useEffect } from 'react'
-import Select from 'react-select'
 import './index.css'
-//data
+import Select from 'react-select'
 import data from './wasteList.json'
+import { useState, useEffect } from 'react'
 
 
 const WasteSelect = ({ selectedWaste, handleWasteChange }) => {
   
-  const [options, setOptions] = useState([]) //variable de estado empieza vacia y corresponde al selectedWaste
+  const [options, setOptions] = useState([])
 
   useEffect(() => {
     const formattedData = data.map((item) => ({
       value: {
-        code: item.code, //value sera un objeto con code (item.code) y description (item.name) 
+        code: item.code,
         description: item.name,
       },
-      label: `${item.code} - ${item.name}` //label sera una cadena con item.code y item.name
+      label: `${item.code} - ${item.name}`
     }))
-    //listo para usar
     setOptions(formattedData)
   }, [])
 
-  // selectedWaste es mismo objeto que la options seleccionada de selecedOption
   const selectedOption = options.find(option => option.value.code === selectedWaste.code)
   return (
 

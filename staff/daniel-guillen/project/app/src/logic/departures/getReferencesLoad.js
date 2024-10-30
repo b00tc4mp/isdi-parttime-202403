@@ -1,30 +1,41 @@
 import { SystemError } from "../../../../com/errors"
+import sortReferences from "../../utils/sortReference"
 
-const fetchReferencesLoad = async () => {
-    try {
-      const apiResponse = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllReference`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-  
-      if (!apiResponse.ok) {
-        throw new SystemError(result.message || 'Error al obtener las referencias')
-      }
-  
-      const result = await apiResponse.json()
-  
-      return result.map((reference) => ({ // Formatear los datos para select reference
-        value: reference, // valor que se enviará
-        label: `${reference}`, // texto que se muestra en el select
-      }))
-    } catch (error) {
-      console.error('No hay referencias')
-      // throw new SystemError(error.message || 'Error al obtener lista de referencias')
-      return [] // devolvemos un array vacío en caso de error
+const fetchReferencesLoad = async (selectedReference, token) => {
+  try {
+    const apiResponse = await fetch(`${import.meta.env.VITE_API_URL}departures/getAllReference`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+
+    if (!apiResponse.ok) {
+      throw new SystemError('Error al obtener las referencias')
     }
+
+    const result = await apiResponse.json()
+    const mappedData = result.map((data) => ({
+      value: { reference: data.reference, week: data.week, year: data.year },
+      label: `${data.week}/${data.year} - ${data.reference}`,
+    }))
+
+    const options = sortReferences(mappedData)
+
+    const selectedOption = options.find(option =>
+      option.value.reference === selectedReference?.reference &&
+      option.value.week === selectedReference?.week &&
+      option.value.year === selectedReference?.year
+    )
+
+    return { options, selectedOption }
+  } catch (error) {
+    console.error('No hay referencias')
+    return { options: [], selectedOption: null }
   }
-  
-  export default fetchReferencesLoad
+}
+
+export default fetchReferencesLoad
+
   

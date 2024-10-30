@@ -1,65 +1,60 @@
-import { useState, useEffect } from 'react'
-import { useCustomContext } from '../../../../context/useContext'
 import './index.css'
-// components
+import { useState, useEffect, useCustomContext } from '../../../../utils/hooks'
+import { Title, SubTitle, Text } from '../../../../components/core'
 import { ReferenceSelect, GroupedWasteItem, WasteList, MenuLoads } from '../../../../components/store'
-// handlers
-import handleDeleteWaste from '../../../../handlers/departures/deleteLoadSearchedHandle'
-// logic
-import fetchLoads from '../../../../logic/departures/getWasteLoadSearched'
+import handleDeleteWaste from '../../../../handlers/departures/deleteWasteLoadHandle'
+import fetchLoadWaste from '../../../../logic/departures/getWasteLoad'
 
 const SearchDepartures = () => {
-  const token = sessionStorage.getItem('token') // obtener el token de sessionStorage
-  const { alert, confirm } = useCustomContext() // Usar alert y confirm personalizados
-  
-  const [data, setData] = useState([]) // almacenar la lista de residuos
-  const [loading, setLoading] = useState(false) // mostrar el estado de carga
-  const [error, setError] = useState(null) // manejar errores
-  
-  const [selectedReference, setSelectedReference] = useState("")
+  const token = sessionStorage.getItem('token') 
+  const { alert, confirm } = useCustomContext() 
+  const [data, setData] = useState([]) 
+  const [loading, setLoading] = useState(false) 
+  const [error, setError] = useState(null) 
+  const [selectedReference, setSelectedReference] = useState(null)
 
-  const handleReferenceChange = (selectedReference) => {
-    setSelectedReference(selectedReference)
+  const handleReferenceChange = (referenceObj) => {
+    setSelectedReference(referenceObj)
   }
 
-  useEffect(() => { // obtener la lista de residuos solo si hay referencia
+  useEffect(() => {
     if (selectedReference) {
+      const { week, year, reference } = selectedReference
       setLoading(true)
-      fetchLoads(selectedReference, token, setData, setLoading, setError)
+      fetchLoadWaste(week, year, reference, token, setData, setLoading, setError)
     } else {
-      setData([]) // Limpiar los datos si no hay referencia seleccionada
+      setData([])
     }
   }, [token, selectedReference])
 
-  const handleDelete = (id) => { // manejamos el custom confirm para eliminar residuo cargados
+  const handleDelete = (id) => {
+    const { week, year, reference } = selectedReference
     confirm({
       message: '🗑️ ¿Deseas eliminar esta Carga? 📦',
-      onAccept: () => handleDeleteWaste(id, token, selectedReference, setData, setLoading, setError, alert),
+      onAccept: () => handleDeleteWaste(id, token, week, year, reference, setData, setLoading, setError, alert),
       onCancel: () => alert('🗑️ Eliminación cancelada ❌'),
     })
   }
 
   return (
     <div className='LoadSearch'>
-      <h1 className='RouteTitle'>BUSCAR CARGA POR</h1>
-      <ReferenceSelect
-        selectedReference={selectedReference}
-        handleReferenceChange={handleReferenceChange}
-      />
+      <Title>BUSCAR CARGA POR</Title>
+      <ReferenceSelect selectedReference={selectedReference} handleReferenceChange={handleReferenceChange} />
       <div> {/* Lista de residuos cargados */}
-          {!selectedReference || data.length === 0 ? (<p style={{ color: 'white', textAlign: 'center', marginTop: '1rem' }}>No hay residuos cargados, selecciona una referencia.</p>
-          ) : loading ? (<p style={{ color: 'orange', textAlign: 'center', marginTop: '1rem' }}>Cargando datos de residuos...</p>
-          ) : error ? (<p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error al cargar los datos: {error}</p>
+          {!selectedReference ? (
+            <Text className="Empty">Seleccione una referencia.</Text>
+          ) : loading ? (
+            <Text className="Loading">Cargando datos de residuos...</Text>
+          ) : error ? (
+            <Text className="Error">Error al cargar los datos: {error}</Text>
+          ) : data.length === 0 ? (
+            <Text className="Empty">No hay residuos almacenados esta referencia</Text>
           ) : (
           <div>
-            <h2 className="Title">Resumen residuos cargados</h2>
-            
+            <SubTitle>Resumen residuos cargados</SubTitle>    
             <GroupedWasteItem data={data} />
-
-            <h2 className="Title">Lista al detalle de residuos</h2>
-
+            <SubTitle>Lista al detalle de residuos</SubTitle>
             <WasteList data={data} onClick={(itemId) => handleDelete(itemId)} />
-
           </div>
         )}
       </div>

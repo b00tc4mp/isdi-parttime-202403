@@ -1,8 +1,6 @@
 import './index.css'
-// utils
-import sortWasteItems from '../../../utils/sortWasteItems'
-// components
 import { Text, Button }  from '../../core'
+import sortWasteItems from '../../../utils/sortWasteItems'
 
 const WasteList = ({ data, onClick }) => {
 

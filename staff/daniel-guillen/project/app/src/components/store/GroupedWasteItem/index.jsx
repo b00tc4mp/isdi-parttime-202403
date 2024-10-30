@@ -1,14 +1,9 @@
 import './index.css'
-// components
 import { Text } from '../../core'
-// utils
 import groupItemsByCode from '../../../utils/groupedByCode'
 
 const GroupedWasteItem = ({ data = [] }) => {
-  // Agrupar items por código
   const groupedItemCode = groupItemsByCode(data)
-
-  // Ordenar por código los items agrupados
   const filteredItems = groupedItemCode.sort((a, b) => a.code.localeCompare(b.code))
 
   return (

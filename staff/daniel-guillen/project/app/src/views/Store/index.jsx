@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom'
-import { Button } from '../../components/core'
+import { Button, Title } from '../../components/core'
 
 const Store = () => {
   const navigate = useNavigate()
 
   return (
     <div className='home'>
-      <h1 className='RouteTitle'>ALMACÉN Y SALIDAS</h1>
+      <Title>ALMACÉN Y SALIDAS</Title>
 
       <Button className="MenuButton" onClick={() => navigate('/StoreWaste/storedwaste')}>
         📦 INVENTARIO DE ALMACÉN

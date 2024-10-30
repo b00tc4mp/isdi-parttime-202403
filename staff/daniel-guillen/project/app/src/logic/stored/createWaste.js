@@ -13,13 +13,11 @@ const createWaste = async (dataWaste, token) => {
   
       const result = await apiResponse.json()
   
-    // Primero si la respuesta no fue exitosa con servidor
     if (!apiResponse.ok) {
       throw new SystemError(result.message || 'Error al crear residuo')
     }
     return result
   } catch (err) {
-    // Lanzar el error completo y no solo el mensaje
     throw new SystemError(err.message || 'Error inesperado en el servidor')
   }
 }

@@ -1,32 +1,24 @@
-// logic
 import createWaste from '../../logic/stored/createWaste'
-// validations errors
 import validate from 'com/validate/validateStored'
 import { ValidationError, SystemError } from '../../../../com/errors'
 
-// Selección del residuo
 export const handleWasteChange = (selectedOption, setSelectedWaste) => {
     setSelectedWaste(selectedOption) 
 }
-// Peso del residuo
 export const handleWeightChange = (event, setWeight) => {
     const { value } = event.target
     setWeight(value) 
 }
-// acondicionamiento del residuo
 export const handleOptionsContainer = (event, setOptionsContainer) => {
     const { value } = event.target
     setOptionsContainer(value)
 }
-// Estado del residuo (correcto o estancado)
 export const handleStatusOptions = (event, setStatusOptions) => {
     const { value } = event.target
     setStatusOptions(value)
 }
-// Enviar registro de residuo
 export const handleSubmit = async (e, selectedWaste, weight, optionsContainer, statusOptions, month, year, token, alert, getStoredWaste) => {
     e.preventDefault()
-            // Realizar las validaciones
     try { 
             validate.code(selectedWaste.code)
             validate.container(optionsContainer)
@@ -35,7 +27,7 @@ export const handleSubmit = async (e, selectedWaste, weight, optionsContainer, s
             validate.weight(weight)
             validate.month(month)
             validate.year(year)
-        // Crear el objeto si las validaciones son exitosas
+
         const newDataWaste = {
             code: selectedWaste.code,
             description: selectedWaste.description,
@@ -45,18 +37,17 @@ export const handleSubmit = async (e, selectedWaste, weight, optionsContainer, s
             month: month,
             year: year
         }
-        // Enviar datos al servidor
+
         await createWaste(newDataWaste, token)
-        // Mostrar mensaje de éxito
         alert(`📦 Residuo Registrado ${selectedWaste.code} ${selectedWaste.description} 🎉`)
-        getStoredWaste() // Para refrescar la lista de residuos
+        getStoredWaste()
     } catch (error) {
         if (error instanceof ValidationError) {
-            alert('Error de validación: ' + error.message) // Manejar errores de validación
+            alert('Error de validación: ' + error.message) 
         } else if (error instanceof SystemError) {
-            alert('Error del sistema: ' + error.message) // Manejar errores del sistema
+            alert('Error del sistema: ' + error.message) 
         } else {
-            alert('Error inesperado: ' + error.message) // Manejar errores inesperados
+            alert('Error inesperado: ' + error.message) 
         }
     }
 }

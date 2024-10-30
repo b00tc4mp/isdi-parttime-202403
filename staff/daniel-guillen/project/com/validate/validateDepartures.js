@@ -1,5 +1,6 @@
 import { ContentError } from "../errors.js"
 
+const REFERENCE_REGEX = /^[a-zA-Z0-9]+(?:[ -][a-zA-Z0-9]+)*$/
 const CONTAINER_OPTIONS = ['PALET', 'GRG', 'BIGBAG', 'B200', 'B-200']
 
 export function validateCode(code) {
@@ -21,8 +22,8 @@ export function validateDescription(description) {
 }
 
 export function validateReference(reference) {
-  if (!reference || typeof reference !== 'string') {
-    errors.push(new ContentError('El campo "reference" es requerido y debe ser una cadena.'))
+  if (typeof reference !== 'string' || !REFERENCE_REGEX.test(reference)) {
+    throw new ContentError('La referencia solo puede contener letras, números y el símbolo "-".')
   }
 }
 
@@ -34,7 +35,7 @@ export function validateWeight(weight) {
 
 export function validateWeek(week) {
   if (!week || !/^(0[1-9]|[1-4][0-9]|5[0-3])$/.test(week)) {
-    errors.push(new ContentError('El campo "week" es requerido con un valor entre "01" y "53".'))
+      throw new(new ContentError('El campo "week" es requerido con un valor entre "01" y "53".'))
   }
 }
 
