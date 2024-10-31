@@ -1,0 +1,32 @@
+@tailwind components;
+
+@layer components {
+  .Calendar {
+    @apply h-full w-full text-center;
+  }
+
+  .CalendarHeader {
+    @apply flex items-center justify-between text-fast-velvet;
+  }
+
+  .CalendarGrid {
+    @apply grid grid-cols-7 gap-1;
+  }
+
+  .CalendarDay {
+    @apply rounded border-2 border-solid border-ligth-shadow-grey p-2 text-fast-velvet hover:cursor-pointer hover:bg-light-pale-sage active:scale-95;
+  }
+
+  .CalendarDay.Today {
+    @apply bg-light-pale-sage font-bold;
+  }
+
+  .CalendarDay.PrevMonthDay,
+  .CalendarDay.NextMonthDay {
+    @apply bg-soft-gray text-dark-shadow-grey;
+  }
+
+  .Button {
+    @apply p-1;
+  }
+}

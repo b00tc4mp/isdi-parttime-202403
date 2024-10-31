@@ -1,0 +1,42 @@
+@tailwind base;
+
+@layer base {
+  * {
+    @apply font-montserrat min-w-0;
+  }
+
+  *,
+  ::before,
+  ::after {
+    @apply box-border;
+  }
+
+  img,
+  video,
+  svg {
+    @apply block h-auto max-w-full;
+  }
+
+  body {
+    @apply m-0 min-h-dvh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-balance;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+}
+
+/*
+:root {
+  /* color-scheme: light dark; */
+/* color: rgba(255, 255, 255, 0.87); */
+/* background-color: #f5f5f5; */

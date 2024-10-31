@@ -1,0 +1,27 @@
+@tailwind components;
+
+@layer components {
+  .AddServiceSection {
+    @apply z-10 col-span-2 col-start-5 row-span-3 row-start-2 h-full w-full rounded-md border-2 border-solid bg-light-pale-sage p-4 text-fast-velvet shadow-2xl;
+  }
+
+  .AddServiceForm {
+    @apply w-full;
+  }
+
+  .AddServiceInput {
+    @apply w-full border-2 border-solid border-black;
+  }
+
+  .AddServiceHr {
+    @apply border-fast-velvet;
+  }
+
+  .AddServiceSubmitButton {
+    @apply mb-8 mt-4 w-full rounded bg-soft-gray p-1 text-fast-velvet hover:bg-pale-sage hover:text-white-mist active:scale-95 active:bg-pale-sage;
+  }
+
+  .AddServiceSelect {
+    @apply my-1 h-10 w-full rounded bg-off-white py-2 text-dark-shadow-grey outline-none;
+  }
+}

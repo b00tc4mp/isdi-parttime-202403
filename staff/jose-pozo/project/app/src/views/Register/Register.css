@@ -1,0 +1,39 @@
+@tailwind components;
+
+@layer components {
+  .RegisterView {
+    @apply flex h-screen bg-[url('../../../public/janbg.webp')] bg-cover;
+  }
+
+  .RegisterViewBox {
+    @apply flex w-full flex-col items-center justify-stretch self-center;
+  }
+
+  .RegisterTitle {
+    @apply max-w-80 -rotate-[6deg] transform rounded-xl border-4 border-solid border-light-pale-sage bg-off-white px-6 py-4 text-5xl font-semibold text-fast-velvet shadow-xl;
+  }
+
+  .SloganText {
+    @apply max-w-80 rotate-[4deg] rounded-xl border-4 border-solid border-light-pale-sage bg-off-white px-6 py-4 text-xl font-semibold text-pale-sage shadow-xl;
+  }
+
+  .RegisterForm {
+    @apply flex max-w-96 flex-col items-center justify-center rounded-2xl border-4 border-solid border-light-pale-sage bg-off-white pb-4 pt-8 shadow-2xl;
+  }
+
+  .RegisterButton {
+    @apply mt-8 w-3/4 rounded-md bg-pale-sage px-4 py-2 text-white-mist hover:bg-fast-velvet active:scale-95;
+  }
+
+  .LinkLogin {
+    @apply my-6 ml-2 text-fast-velvet;
+  }
+
+  .TextLinkLogin {
+    @apply mr-2 text-pale-sage;
+  }
+
+  .LoginLinkBox {
+    @apply flex items-center justify-between;
+  }
+}
