@@ -1,0 +1,1 @@
+curl http://localhost:9010/users/pepitogrillo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXRlcnBhbiIsImlhdCI6MTcxOTg0NzQ1MiwiZXhwIjoxNzE5ODUxMDUyfQ.SBQgYgYxDMV5QQ9u6luGbLtlwDJBvhnmo-h-jbZHHNY" -v

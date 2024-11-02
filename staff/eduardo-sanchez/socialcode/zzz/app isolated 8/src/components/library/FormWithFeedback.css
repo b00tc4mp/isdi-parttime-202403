@@ -1,0 +1,11 @@
+.FormWithFeedback {
+    padding: 1rem;
+}
+
+.FormWithFeedback .Feedback {
+    color: tomato;
+}
+
+.FormWithFeedback .Feedback.success {
+    color: green;
+}

@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepitogrillo",
+        "password": "123123123"
+    },
+    {
+        "name": "Peter",
+        "surname": "Pan",
+        "email": "peter@pan.com",
+        "username": "peterpan",
+        "password": "123123123"
+    },
+    {
+        "name": "Wendy",
+        "surname": "Darling",
+        "email": "wendy@darling.com",
+        "username": "WendyD",
+        "password": "Hola1234"
+    },
+    {
+        "name": "manolo",
+        "surname": "cabezabolo",
+        "email": "manolo@cabezabolo.com",
+        "username": "ManoloC",
+        "password": "Hola1234"
+    },
+    {
+        "name": "Pablo",
+        "surname": "Picasso",
+        "email": "pablo@mpicasso.com",
+        "username": "PabloP",
+        "password": "Hola1234"
+    },
+    {
+        "name": "Man",
+        "surname": "Zana",
+        "email": "man@zana.com",
+        "username": "manzana",
+        "password": "123123123"
+    }
+]

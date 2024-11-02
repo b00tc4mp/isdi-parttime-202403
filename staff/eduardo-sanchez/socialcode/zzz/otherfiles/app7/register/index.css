@@ -1,0 +1,6 @@
+.View {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(rgb(206, 230, 222), rgb(179, 158, 230));
+}

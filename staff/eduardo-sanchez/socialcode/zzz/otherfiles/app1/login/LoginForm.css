@@ -1,0 +1,12 @@
+.LoginForm {
+    padding: 1rem;
+    box-shadow: 5px 5px 15px grey;
+}
+
+.LoginForm .Feedback {
+    color: tomato;
+}
+
+.LoginForm .Feedback.success {
+    color: green;
+}

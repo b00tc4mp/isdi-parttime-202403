@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepitogrillo",
+        "password": "$2a$08$RJcBUUN.niT1SIbu4tygGOW/gkUcCh9fm8kR0op26IE.AUv/II8Z2"
+    },
+    {
+        "name": "manolo",
+        "surname": "cabezabolo",
+        "email": "manolo@cabezabolo.com",
+        "username": "ManoloC",
+        "password": "$2a$08$UFSFpsfswc.jmgZtLVTLI.PXz0eNMrQW6DI/y/jNIdif2q8C2b4Te"
+    },
+    {
+        "name": "Man",
+        "surname": "Zana",
+        "email": "man@zana.com",
+        "username": "manzana",
+        "password": "$2a$08$RJcBUUN.niT1SIbu4tygGOW/gkUcCh9fm8kR0op26IE.AUv/II8Z2"
+    },
+    {
+        "name": "Da",
+        "surname": "Na",
+        "email": "da@na.com",
+        "username": "dana",
+        "password": "$2a$08$UFSFpsfswc.jmgZtLVTLI.PXz0eNMrQW6DI/y/jNIdif2q8C2b4Te"
+    },
+    {
+        "name": "Ba",
+        "surname": "Nana",
+        "email": "ba@nana.com",
+        "username": "banana",
+        "password": "$2a$08$rOaceeB8Dk6WFfe8ZDr.cOp.yPPPp3G37u28W.bEccATk49gOYtRS"
+    },
+    {
+        "name": "Peter",
+        "surname": "Pan",
+        "email": "peter@pan.com",
+        "username": "peterpan",
+        "password": "$2a$08$RJcBUUN.niT1SIbu4tygGOW/gkUcCh9fm8kR0op26IE.AUv/II8Z2"
+    },
+    {
+        "name": "Wendy",
+        "surname": "Darling",
+        "email": "wendy@darling.com",
+        "username": "wendydarling",
+        "password": "$2a$08$rOaceeB8Dk6WFfe8ZDr.cOp.yPPPp3G37u28W.bEccATk49gOYtRS"
+    },
+    {
+        "name": "Pablo",
+        "surname": "Picasso",
+        "email": "pablo@picasso.com",
+        "username": "PabloP",
+        "password": "$2a$08$UFSFpsfswc.jmgZtLVTLI.PXz0eNMrQW6DI/y/jNIdif2q8C2b4Te"
+    }
+]

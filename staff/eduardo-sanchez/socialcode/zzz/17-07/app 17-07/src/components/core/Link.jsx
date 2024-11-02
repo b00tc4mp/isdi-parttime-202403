@@ -1,0 +1,1 @@
+export default ({ onClick, children }) => <a href="" onClick={onClick}>{children}</a>
