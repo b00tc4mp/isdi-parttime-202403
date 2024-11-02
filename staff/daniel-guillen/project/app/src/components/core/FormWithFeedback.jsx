@@ -1,0 +1,14 @@
+import Form from '../core/Form'
+import Text from '../core/Text'
+import './FormWithFeedback.css'
+
+function FormWithFeedback({ onSubmit, children, message, level = 'error' }) {
+    return (
+        <Form className="FormWithFeedback" onSubmit={onSubmit}>
+            {children}
+            {message && <Text className={`Feedback ${level} centered`}>{message}</Text>}
+        </Form>
+    )
+}
+
+export default FormWithFeedback

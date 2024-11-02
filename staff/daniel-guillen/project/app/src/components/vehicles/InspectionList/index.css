@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .HistoricalList {
+    @apply flex flex-col text-center my-2;
+  }
+  .HistoricalInfo {
+    @apply flex flex-col bg-gray-300 text-xl py-1 pl-2 rounded-t-sm;
+  }
+  .HistorialItemToFix {
+    @apply bg-red-100 text-red-700 text-lg py-1;
+  }
+  .TitlelInfo {
+    @apply flex flex-col text-center bg-gray-300 text-lg py-1 pl-2;
+  }
+  .HistoricalNote {
+    @apply flex flex-row py-1 px-5 text-lg text-justify bg-white rounded-b-sm mt-0;
+  }
+}

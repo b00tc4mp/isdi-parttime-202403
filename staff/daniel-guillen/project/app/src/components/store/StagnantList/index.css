@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .StagnantWasteDiv {
+    @apply bg-red-500 text-white text-2xl mb-1 rounded-md;
+  }
+}

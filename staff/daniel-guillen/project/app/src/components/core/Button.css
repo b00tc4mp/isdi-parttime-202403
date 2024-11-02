@@ -1,0 +1,25 @@
+@tailwind components;
+
+@layer components {
+  .Button {
+    @apply cursor-pointer text-3xl text-center items-center;
+  }
+  .MenuButton {
+    @apply bg-green-700 text-white text-xl p-1 my-2 mx-10 rounded-md;
+  }
+  .MenuButton:hover {
+    @apply bg-green-300 text-black;
+  }
+  .SubmitButton {
+    @apply bg-green-700 my-2 mx-10 rounded-md;
+  }
+  .SubmitButton:hover {
+    @apply bg-green-500;
+  }
+  .return {
+    @apply bg-green-700 text-white flex flex-col w-36 text-2xl text-center items-center ml-8 p-1 rounded-md;
+  }
+  .return:hover {
+    @apply bg-green-500;
+  }
+}

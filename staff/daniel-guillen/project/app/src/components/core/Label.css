@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .Label {
+    @apply mt-1 mb-1 text-green-600;
+  }
+}

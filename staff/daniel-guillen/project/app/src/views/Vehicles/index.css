@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .VehicleInspection {
+    @apply flex flex-col text-center mx-4 mb-4;
+  }
+  .HistoricalLink {
+    @apply bg-white rounded-b-sm;
+  }
+  .Historical {
+    @apply flex flex-col text-center mx-4 mb-6;
+  }
+  .VehicleHistorical {
+    @apply flex flex-col items-center bg-white rounded-sm mt-3 mb-2;
+  }
+  .VehicleId {
+    @apply text-black text-3xl;
+  }
+}

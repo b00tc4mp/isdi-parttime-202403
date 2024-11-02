@@ -1,0 +1,367 @@
+[
+    {
+        "id": "001",
+        "apartado": "LUCES",
+        "elemento": "POSICIÓN ROJA"
+    },
+    {
+        "id": "002",
+        "apartado": "LUCES",
+        "elemento": "POSICIÓN BLANCA"
+    },
+    {
+        "id": "003",
+        "apartado": "LUCES",
+        "elemento": "CRUCE O CORTAS"
+    },
+    {
+        "id": "004",
+        "apartado": "LUCES",
+        "elemento": "CARRETERA LARGAS"
+    },
+    {
+        "id": "005",
+        "apartado": "LUCES",
+        "elemento": "FRENO"
+    },
+    {
+        "id": "006",
+        "apartado": "LUCES",
+        "elemento": "MARCHA ATRÁS"
+    },
+    {
+        "id": "007",
+        "apartado": "LUCES",
+        "elemento": "INTERMITENTES"
+    },
+    {
+        "id": "008",
+        "apartado": "LUCES",
+        "elemento": "ANTINIEBLA"
+    },
+    {
+        "id": "009",
+        "apartado": "LUCES",
+        "elemento": "MATRICULAS"
+    },
+    {
+        "id": "010",
+        "apartado": "LUCES",
+        "elemento": "JUEGO DE RECAMBIO"
+    },
+    {
+        "id": "011",
+        "apartado": "CHASIS",
+        "elemento": "FIJACIONES"
+    },
+    {
+        "id": "012",
+        "apartado": "CHASIS",
+        "elemento": "AMORTIGUADORES"
+    },
+    {
+        "id": "013",
+        "apartado": "CHASIS",
+        "elemento": "RUIDOS ANORMALES"
+    },
+    {
+        "id": "014",
+        "apartado": "CARROCERÍA",
+        "elemento": "PUERTAS TRASERAS"
+    },
+    {
+        "id": "015",
+        "apartado": "CARROCERÍA",
+        "elemento": "PUERTA IZQ."
+    },
+    {
+        "id": "016",
+        "apartado": "CARROCERÍA",
+        "elemento": "PUERTA DCH."
+    },
+    {
+        "id": "017",
+        "apartado": "CARROCERÍA",
+        "elemento": "RETROVISORES"
+    },
+    {
+        "id": "018",
+        "apartado": "CARROCERÍA",
+        "elemento": "LUNA DELANTERA"
+    },
+    {
+        "id": "019",
+        "apartado": "CARROCERÍA",
+        "elemento": "ITV"
+    },
+    {
+        "id": "020",
+        "apartado": "CARROCERÍA",
+        "elemento": "ADHESIVO ITV"
+    },
+    {
+        "id": "021",
+        "apartado": "CARROCERÍA",
+        "elemento": "ADH. JUNTA RESIDUOS"
+    },
+    {
+        "id": "022",
+        "apartado": "MOTOR",
+        "elemento": "ARRANQUE"
+    },
+    {
+        "id": "023",
+        "apartado": "MOTOR",
+        "elemento": "BATERÍA"
+    },
+    {
+        "id": "024",
+        "apartado": "MOTOR",
+        "elemento": "BORNES"
+    },
+    {
+        "id": "025",
+        "apartado": "MOTOR",
+        "elemento": "CORTA CORRIENTE"
+    },
+    {
+        "id": "026",
+        "apartado": "MOTOR",
+        "elemento": "LÍQUIDO DE ACEITE"
+    },
+    {
+        "id": "027",
+        "apartado": "MOTOR",
+        "elemento": "LÍQ. REFRIGERANTE"
+    },
+    {
+        "id": "028",
+        "apartado": "MOTOR",
+        "elemento": "FUGAS DE LÍQUIDOS"
+    },
+    {
+        "id": "029",
+        "apartado": "MOTOR",
+        "elemento": "RUIDOS ANORMALES"
+    },
+    {
+        "id": "030",
+        "apartado": "NEUMÁTICOS",
+        "elemento": "RUEDAS DELANTERAS"
+    },
+    {
+        "id": "031",
+        "apartado": "NEUMÁTICOS",
+        "elemento": "RUEDAS TRASERAS"
+    },
+    {
+        "id": "032",
+        "apartado": "NEUMÁTICOS",
+        "elemento": "RUEDA DE REPUESTO"
+    },
+    {
+        "id": "033",
+        "apartado": "NEUMÁTICOS",
+        "elemento": "GATO Y ACCESORIOS"
+    },
+    {
+        "id": "034",
+        "apartado": "NEUMÁTICOS",
+        "elemento": "LLANTAS"
+    },
+    {
+        "id": "035",
+        "apartado": "NEUMÁTICOS",
+        "elemento": "PRESIÓN"
+    },
+    {
+        "id": "036",
+        "apartado": "DIRECCIÓN",
+        "elemento": "DIRECCIÓN ASISTIDA"
+    },
+    {
+        "id": "037",
+        "apartado": "DIRECCIÓN",
+        "elemento": "RUIDOS ANORMALES"
+    },
+    {
+        "id": "038",
+        "apartado": "FRENOS",
+        "elemento": "LÍQUIDO DE FRENOS"
+    },
+    {
+        "id": "039",
+        "apartado": "FRENOS",
+        "elemento": "FUGAS DE LÍQUIDOS"
+    },
+    {
+        "id": "040",
+        "apartado": "FRENOS",
+        "elemento": "PASTILLAS"
+    },
+    {
+        "id": "041",
+        "apartado": "FRENOS",
+        "elemento": "DISCOS"
+    },
+    {
+        "id": "042",
+        "apartado": "FRENOS",
+        "elemento": "FRENO DE MANO"
+    },
+    {
+        "id": "043",
+        "apartado": "ACCESORIOS",
+        "elemento": "TACÓMETRO"
+    },
+    {
+        "id": "044",
+        "apartado": "ACCESORIOS",
+        "elemento": "BOCINA"
+    },
+    {
+        "id": "045",
+        "apartado": "ACCESORIOS",
+        "elemento": "ASIENTOS"
+    },
+    {
+        "id": "046",
+        "apartado": "ACCESORIOS",
+        "elemento": "CALEFACCIÓN"
+    },
+    {
+        "id": "047",
+        "apartado": "ACCESORIOS",
+        "elemento": "A. ACONDICIONADO"
+    },
+    {
+        "id": "048",
+        "apartado": "ACCESORIOS",
+        "elemento": "RADIO"
+    },
+    {
+        "id": "049",
+        "apartado": "ACCESORIOS",
+        "elemento": "ESCOBILLAS"
+    },
+    {
+        "id": "050",
+        "apartado": "ACCESORIOS",
+        "elemento": "LIQ. LIMPIAPARABRISAS"
+    },
+    {
+        "id": "051",
+        "apartado": "MATERIAL",
+        "elemento": "BOT. EMERGENCIA"
+    },
+    {
+        "id": "052",
+        "apartado": "MATERIAL",
+        "elemento": "CAJA HERRAMIENTAS"
+    },
+    {
+        "id": "053",
+        "apartado": "MATERIAL",
+        "elemento": "TRIANGULO/LUZ V16"
+    },
+    {
+        "id": "054",
+        "apartado": "MATERIAL",
+        "elemento": "CINTAS DE AMARRE"
+    },
+    {
+        "id": "055",
+        "apartado": "MATERIAL",
+        "elemento": "CALZO DE RUEDA"
+    },
+    {
+        "id": "056",
+        "apartado": "MATERIAL",
+        "elemento": "CARRETILLA"
+    },
+    {
+        "id": "057",
+        "apartado": "ADR",
+        "elemento": "PLACAS ADR"
+    },
+    {
+        "id": "058",
+        "apartado": "ADR",
+        "elemento": "BIDÓN SEPIOLITA"
+    },
+    {
+        "id": "059",
+        "apartado": "ADR",
+        "elemento": "SACO SEPIOLITA"
+    },
+    {
+        "id": "060",
+        "apartado": "ADR",
+        "elemento": "PALA"
+    },
+    {
+        "id": "061",
+        "apartado": "ADR",
+        "elemento": "OBT. ANTIDERRAME"
+    },
+    {
+        "id": "062",
+        "apartado": "ADR",
+        "elemento": "LINTERNA A. CHISPA"
+    },
+    {
+        "id": "063",
+        "apartado": "ADR",
+        "elemento": "REVISIÓN EXTINTOR"
+    },
+    {
+        "id": "064",
+        "apartado": "ADR",
+        "elemento": "PRESIÓN EXTINTOR"
+    },
+    {
+        "id": "065",
+        "apartado": "EPIS",
+        "elemento": "UNIFORME"
+    },
+    {
+        "id": "066",
+        "apartado": "EPIS",
+        "elemento": "GAFAS PROT."
+    },
+    {
+        "id": "067",
+        "apartado": "EPIS",
+        "elemento": "MASCARILLAS"
+    },
+    {
+        "id": "068",
+        "apartado": "EPIS",
+        "elemento": "GUANTES"
+    },
+    {
+        "id": "069",
+        "apartado": "EPIS",
+        "elemento": "CASCO"
+    },
+    {
+        "id": "070",
+        "apartado": "EPIS",
+        "elemento": "CHALECO REFL."
+    },
+    {
+        "id": "071",
+        "apartado": "EPIS",
+        "elemento": "BOTAS DE GOMA"
+    },
+    {
+        "id": "072",
+        "apartado": "EPIS",
+        "elemento": "LAVAOJOS"
+    },
+    {
+        "id": "073",
+        "apartado": "EPIS",
+        "elemento": "PROT. CORPORAL"
+    }
+]

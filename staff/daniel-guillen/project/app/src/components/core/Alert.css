@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+  .Alert {
+    @apply flex justify-center text-center backdrop-blur-sm fixed top-0 left-0 w-full h-full items-center z-[999];
+  }
+  .AlertBox {
+    @apply flex flex-col text-xl justify-center text-center p-8 rounded-md bg-gradient-to-b from-white to-transparent;
+  }
+  .AcceptButtons {
+    @apply bg-green-600 px-4 py-2 text-center items-center rounded-md hover:bg-green-400;
+  }
+}

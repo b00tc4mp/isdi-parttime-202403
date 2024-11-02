@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .InputWeightDiv {
+    @apply flex flex-row text-black text-center items-center;
+  }
+  .InputWeight {
+    @apply bg-transparent text-black text-2xl text-right items-center cursor-cell;
+  }
+  .UnitWeight {
+    @apply text-black text-xl px-2;
+  }
+  .UnitWeight:active {
+    @apply border-0;
+  }
+  .UnitWeight:focus {
+    @apply border-0;
+  }
+}
