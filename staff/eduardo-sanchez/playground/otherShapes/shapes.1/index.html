@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>shapes</title>
+    </head>
+
+    <body>
+        <script>
+            function Shape() {
+                this.container = document.createElement('div')
+
+                this.container.style.position = 'absolute'
+
+                this.move(0, 0, 0)
+            }
+
+            Shape.prototype.setHeight = function (value) {
+                this.container.style.height = value + 'px'
+            }
+
+            Shape.prototype.setWidth = function (value) {
+                this.container.style.width = value + 'px'
+            }
+
+            Shape.prototype.setRadius = function (value) {
+                this.container.style.borderRadius = value + '%'
+            }
+
+            Shape.prototype.setColor = function (value) {
+                this.container.style.backgroundColor = value
+            }
+
+            Shape.prototype.moveX = function (x) {
+                this.x = x
+                this.container.style.left = x + 'px'
+            }
+
+            Shape.prototype.moveY = function (y) {
+                this.y = y
+                this.container.style.top = y + 'px'
+            }
+
+            Shape.prototype.moveZ = function (z) {
+                this.z = z
+                this.container.style.transform = 'scale(' + (z + 100) / 100 + ')'
+            }
+
+            Shape.prototype.move = function (x, y, z) {
+                this.moveX(x)
+                this.moveY(y)
+                this.moveZ(z)
+            }
+
+            Shape.prototype.moveRelativeX = function (dx) {
+                this.x += dx
+                this.container.style.left = this.x + 'px'
+            }
+
+            Shape.prototype.moveRelativeY = function (dy) {
+                this.y += dy
+                this.container.style.top = this.y + 'px'
+            }
+
+            Shape.prototype.moveRelativeZ = function (dz) {
+                this.z += dz
+                this.container.style.transform = 'scale(' + (this.z + 100) / 100 + ')'
+            }
+
+            Shape.prototype.moveRelative = function (dx, dy, dz) {
+                this.moveRelativeX(dx)
+                this.moveRelativeY(dy)
+                this.moveRelativeZ(dz)
+            }
+
+            Shape.prototype.add = function (child) {
+                this.container.appendChild(child.container)
+            }
+
+            Shape.prototype.config = function (keyUp, keyDown, keyLeft, keyRight) {
+                this.keyUp = keyUp
+                this.keyDown = keyDown
+                this.keyLeft = keyLeft
+                this.keyRight = keyRight
+            }
+
+            function Pig() {
+                Shape.call(this)
+
+                this.setColor('pink')
+                this.setHeight(100)
+                this.setWidth(100)
+                this.moveX(50)
+                this.moveY(170)
+
+                var eyeL = new Shape()
+                eyeL.setHeight(50)
+                eyeL.setWidth(50)
+                eyeL.setRadius(50)
+                eyeL.setColor('black')
+                eyeL.moveX(30)
+                eyeL.moveY(30)
+
+                var eyeR = new Shape()
+                eyeR.setHeight(50)
+                eyeR.setWidth(50)
+                eyeR.setRadius(50)
+                eyeR.setColor('white')
+                eyeR.moveX(90)
+                eyeR.moveY(30)
+
+                var face = new Shape()
+                face.setColor('pink')
+                face.setHeight(200)
+                face.setWidth(200)
+                face.setRadius(50)
+                face.moveY(-170)
+                face.moveX(-60)
+
+                face.add(eyeL)
+                face.add(eyeR)
+
+                this.add(face)
+
+                var footL = new Shape()
+                footL.setColor('pink')
+                footL.setHeight(100)
+                footL.setWidth(50)
+                footL.moveX(-20)
+                footL.moveY(100)
+
+                this.add(footL)
+
+                var footR = new Shape()
+                footR.setColor('pink')
+                footR.setHeight(100)
+                footR.setWidth(50)
+                footR.moveX(80)
+                footR.moveY(100)
+
+                this.add(footR)
+            }
+
+            Pig.prototype = Object.create(Shape.prototype)
+            Pig.prototype.constructor = Pig
+
+            var pig = new Pig()
+            pig.config('ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight')
+            pig.move(100, 100, 0)
+
+            var pig2 = new Pig()
+            pig2.config('w', 's', 'a', 'd')
+            pig2.move(300, 300, 0)
+
+            var pig3 = new Pig()
+            pig3.config('i', 'k', 'j', 'l')
+            pig3.move(600, 600, 0)
+
+            var step = 10
+
+            var applyOnY = true
+
+            var shapes = [pig, pig2, pig3]
+
+            document.onkeydown = function (event) {
+                var key = event.key.toLowerCase()
+
+                console.log(key)
+
+                shapes.forEach(function (shape) {
+                    if (key === shape.keyLeft.toLowerCase())
+                        shape.moveRelativeX(-step)
+                    else if (key === shape.keyRight.toLowerCase())
+                        shape.moveRelativeX(step)
+                    else if (key === shape.keyUp.toLowerCase()) {
+                        if (applyOnY)
+                            shape.moveRelativeY(-step)
+                        else
+                            shape.moveRelativeZ(-step)
+                    } else if (key === shape.keyDown.toLowerCase()) {
+                        if (applyOnY)
+                            shape.moveRelativeY(step)
+                        else
+                            shape.moveRelativeZ(step)
+                    }
+                })
+
+                if (event.key === 'Shift')
+                    applyOnY = false
+            }
+
+            document.onkeyup = function (event) {
+                console.log(event.key)
+
+                if (event.key === 'Shift')
+                    applyOnY = true
+
+            }
+
+            shapes.forEach(function (shape) {
+                document.body.appendChild(shape.container)
+            })
+
+        </script>
+    </body>
+
+</html>

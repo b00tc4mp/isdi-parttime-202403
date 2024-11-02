@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body style="display: flex; flex-direction: column;">
+        <a href="https://www.google.com">Go to Google</a>
+
+        <script>
+            var link = document.querySelector('a')
+
+            link.onclick = function (event) {
+                event.preventDefault()
+
+                console.log('hola click')
+
+                console.log('you are to navigate to google in 3 seconds...')
+
+                setTimeout(function () {
+                    console.log('go to google now...')
+
+                    window.location.href = link.href
+                }, 3000)
+            }
+
+            link.addEventListener('click', function (event) {
+                console.warn('hola click')
+            })
+
+            link.addEventListener('click', function (event) {
+                console.error('hola click')
+
+                block(10000)
+            })
+
+            function block(millis) {
+                console.log('block start', new Date().toISOString())
+
+                var before = Date.now()
+
+                while (Date.now() - before < millis);
+
+                console.log('block end', new Date().toISOString())
+            }
+        </script>
+    </body>
+
+</html>

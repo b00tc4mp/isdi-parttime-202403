@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shapes</title>
+    </head>
+
+    <body>
+
+    </body>
+
+    <script>
+
+        function createCircle(diameter, color) {
+            var circle = document.createElement('div')
+            circle.style.borderRadius = "50%"
+            circle.style.width = diameter + "px"
+            circle.style.height = diameter + "px"
+            circle.style.backgroundColor = color
+
+            return circle
+        }
+
+        function createSquare() {
+            var square = document.createElement('div')
+            square.style.width = "100px"
+            square.style.height = "100px"
+            square.style.backgroundColor = "blue"
+
+            return square
+        }
+
+        function createTriangle() {
+            var triangle = document.createElement('div')
+            triangle.style.borderLeft = "50px solid transparent "
+            triangle.style.borderRight = "50px solid transparent"
+            triangle.style.borderBottom = "100px solid gold"
+            triangle.style.display = "inline-block"
+
+            return triangle
+        }
+
+        var eyeL = createCircle(50, "black")
+        eyeL.style.position = "absolute"
+        eyeL.style.left = "40px"
+        eyeL.style.top = "30px"
+
+        var eyeR = createCircle(50, "white")
+        eyeR.style.position = "absolute"
+        eyeR.style.left = "120px"
+        eyeR.style.top = "30px"
+
+
+        var face = createCircle(200, "red")
+        face.appendChild(eyeL)
+        face.appendChild(eyeR)
+        document.body.appendChild(face)
+
+        var body = createSquare()
+        body.style.position = "absolute"
+        body.style.left = "50px"
+        body.style.top = "170px"
+        document.body.appendChild(body)
+
+
+        var foot = createTriangle()
+        foot.style.position = "absolute"
+        foot.style.left = "50px"
+        foot.style.top = "250px"
+        document.body.appendChild(foot)
+
+
+    </script>
+
+</html>

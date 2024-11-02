@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arkanoid</title>
+    </head>
+
+    <body>
+
+    </body>
+
+    <script>
+
+        function Arkanoid() {
+            this.container = document.createElement("div")
+            this.container.style.position = "absolute"
+        }
+
+        Arkanoid.prototype.setColor = function (value) {
+            this.container.style.backgroundColor = value
+        }
+
+        Arkanoid.prototype.setWidth = function (value) {
+            this.container.style.width = value + "px"
+        }
+
+        Arkanoid.prototype.setHeight = function (value) {
+            this.container.style.height = value + "px"
+        }
+
+        Arkanoid.prototype.setRadius = function (value) {
+            this.container.style.borderRadius = value + "%"
+        }
+
+        Arkanoid.prototype.add = function (child) {
+            this.container.appendChild(child.container)
+        }
+
+        Arkanoid.prototype.setX = function (value) {
+            this.container.style.left = value + "px"
+        }
+
+        Arkanoid.prototype.setY = function (value) {
+            this.container.style.top = value + "px"
+        }
+
+
+        var canvas = new Arkanoid()
+
+        canvas.setColor("lavender")
+        canvas.setWidth(680)
+        canvas.setHeight(420)
+        // canvas.setRadius(50)
+
+        var ball = new Arkanoid()
+
+        ball.setColor("red")
+        ball.setWidth(150)
+        ball.setHeight(150)
+        ball.setRadius(100)
+
+        ball.setX(50)
+        ball.setY(50)
+
+        canvas.add(ball)
+
+        var y = 100
+        var x = 100
+
+        canvas.setX(x)
+        canvas.setY(y)
+
+        document.onkeydown = function (event) {
+            if (event.key === "ArrowLeft") {
+                x -= 10
+            } else if (event.key === "ArrowRight") {
+                x += 10
+            } else if (event.key === "ArrowUp") {
+                y -= 10
+            } else if (event.key === "ArrowDown") {
+                y += 10
+            }
+
+            ball.setX(x)
+            ball.setY(y)
+        }
+
+
+        setInterval(() => ball.setX(x + Math.random() * 70), 1000)
+
+        document.body.appendChild(canvas.container)
+
+
+    </script>
+
+</html>
