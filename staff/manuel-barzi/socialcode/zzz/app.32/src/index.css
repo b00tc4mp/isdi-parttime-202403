@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --first-color: yellowgreen;
+    --second-color: black;
+    font-family: Workbench;
+  }
+
+  * {
+    color: var(--first-color);
+  }
+
+  body {
+    background-color: var(--second-color);
+    margin: 0;
+  }
+}
+
+@layer components {
+
+  /* core */
+
+  .Form {
+    @apply flex flex-col items-center;
+  }
+
+  .Button {
+    @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
+  }
+
+  .Field {
+    @apply flex flex-col m-[.25rem_0];
+  }
+
+  .Label {
+    @apply mb-[.5rem];
+  }
+
+  .Input {
+    @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
+  }
+
+  .Image {
+    @apply w-full;
+  }
+
+  .SubmitButton {
+    @apply m-[.5rem_0];
+  }
+
+  .Text {
+    @apply text-[tomato];
+  }
+
+  .Time {
+    @apply text-[dodgerblue];
+  }
+
+  /* library */
+
+  .FormWithFeedback {
+    @apply p-[1rem];
+  }
+
+  .FormWithFeedback .Feedback.error {
+    @apply text-[tomato];
+  }
+
+  .FormWithFeedback .Feedback.success {
+    @apply text-[greenyellow];
+  }
+
+  .View {
+    @apply flex;
+  }
+
+  .View.column {
+    @apply flex-col;
+  }
+
+  .View.row {
+    @apply flex-row gap-[1rem];
+  }
+
+  .View.center {
+    @apply items-center;
+  }
+
+  /* components */
+
+  .CreatePostForm {
+    @apply fixed bottom-[3rem] w-full left-0 box-border bg-[var(--second-color)];
+  }
+
+  .Footer {
+    @apply w-full flex justify-center fixed bottom-0 p-[.5rem_0] border-t-[1px] border-t-[var(--first-color)] bg-[var(--second-color)];
+  }
+
+  .Header {
+    @apply flex gap-[1rem] w-full justify-end fixed top-0 p-[.5rem] box-border border-b-[1px] border-b-[var(--first-color)] bg-[var(--second-color)] items-center;
+  }
+
+  .PostList {
+    @apply m-[60px_10px];
+  }
+}

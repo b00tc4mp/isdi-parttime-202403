@@ -1,0 +1,11 @@
+.RegisterForm {
+    padding: 1rem;
+}
+
+.RegisterForm .Feedback {
+    color: tomato;
+}
+
+.RegisterForm .Feedback.success {
+    color: greenyellow;
+}
