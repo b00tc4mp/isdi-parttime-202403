@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    .Alert {
+        @apply absolute top-64 w-full flex justify-center text-red-800 font-bold;
+    }
+
+    .AlertBox {
+        @apply p-[.4rem] bg-gray-100 text-[1rem] border-[1px] border-blue-500 w-auto h-auto rounded-xl shadow-md;
+    }
+
+    .Alert .Button {
+        @apply px-[.6em] bg-white text-[1rem] border-[1px] border-blue-500 mt-6 text-black;
+    }
+}

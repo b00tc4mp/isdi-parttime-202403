@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .DeleteAdCommentButton {
+        @apply mt-3 border-[1px] text-green-600 px-4 py-2 border-blue-500 rounded hover:text-green-800 transition-colors;
+    }
+}

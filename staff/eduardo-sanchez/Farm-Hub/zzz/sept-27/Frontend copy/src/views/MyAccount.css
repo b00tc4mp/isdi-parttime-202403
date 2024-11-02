@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+    .MyAccountContainer {
+        @apply flex flex-col w-full mx-auto p-1 bg-white mt-8;
+    }
+
+    .MyAccountField {
+        @apply flex flex-col items-center py-3 border-b border-gray-200;
+    }
+
+    .MyAccountLabel {
+        @apply text-lg font-semibold text-green-700 p-1;
+    }
+
+    .MyAccountValue {
+        @apply text-lg text-orange-700 p-1 font-bold;
+    }
+}

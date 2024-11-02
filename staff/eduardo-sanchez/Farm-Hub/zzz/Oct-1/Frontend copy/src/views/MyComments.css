@@ -1,0 +1,27 @@
+@tailwind components;
+
+@layer components {
+    .UserCommentsContainer {
+        @apply flex flex-col max-w-2xl mx-auto p-3 rounded-lg shadow-md;
+    }
+
+    .UserCommentsList {
+        @apply mt-3;
+    }
+
+    .UserCommentsTitle {
+        @apply text-2xl text-green-700 font-bold p-1;
+    }
+
+    .UserCommentsContent {
+        @apply text-green-600 font-bold p-1;
+    }
+
+    .UserCommentText {
+        @apply p-1 text-black font-medium;
+    }
+
+    .UserCommentsListEmpty {
+        @apply mt-20 text-center text-black font-bold;
+    }
+}

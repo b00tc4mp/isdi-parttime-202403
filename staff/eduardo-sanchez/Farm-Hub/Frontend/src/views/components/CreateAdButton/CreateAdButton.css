@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+    .CreateAdButtonFooter {
+        @apply fixed bottom-0 left-0 right-0 bg-white border-t border-b-orange-700 p-1 flex justify-center;
+    }
+
+    .CreateAdButton {
+        @apply flex items-center justify-center bg-white text-black font-extrabold rounded-full px-6 py-3 border border-blue-500 hover:bg-blue-600 transition-colors;
+    }
+}

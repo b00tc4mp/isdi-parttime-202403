@@ -1,0 +1,39 @@
+@tailwind components;
+
+@layer components {
+    .Confirm {
+        @apply flex fixed top-96 w-full items-center justify-center left-1;
+    }
+
+    .ConfirmBox {
+        @apply p-[.4rem] bg-gray-100 text-[1rem] border-[1px] border-blue-500 w-[150px] h-[200px] rounded-xl shadow-md z-10 relative;
+    }
+
+    .Confirm p {
+        @apply text-center text-green-700 font-bold;
+    }
+
+    .Confirm .Button {
+        @apply px-[.6em] bg-white text-[1rem] border-[1px] border-blue-500 mt-3 text-black font-bold;
+    }
+}
+
+/* @tailwind components;
+
+@layer components {
+    .Confirm {
+        @apply flex fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-50;
+    }
+
+    .ConfirmBox {
+        @apply p-4 bg-white text-base border border-blue-500 w-64 rounded-xl shadow-lg;
+    }
+
+    .Confirm p {
+        @apply text-center text-green-700 font-bold mb-4;
+    }
+
+    .Confirm .Button {
+        @apply px-4 py-2 bg-white text-base border border-blue-500 mt-3 text-black font-bold rounded hover:bg-blue-100 transition-colors;
+    }
+} */
