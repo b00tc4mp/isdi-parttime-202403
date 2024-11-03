@@ -1,0 +1,12 @@
+.Button {
+    padding: .4rem;
+    margin-left: .4rem;
+    background-color: transparent;
+    font-size: 150%;  
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(rgb(238, 234, 234), rgb(199, 198, 198));
+    margin: auto;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,25 @@
+.Header {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height: 80px;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    padding: .5rem;
+    box-sizing: border-box;
+    background-color: var(--second-color);
+    background: linear-gradient(white,transparent);
+}
+
+.Home {
+    font-size: 120%;
+}
+
+.UserName {
+    font-size: 150%;
+}
+
+.Logout {
+    padding-top: 20px;
+}

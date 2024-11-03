@@ -1,0 +1,8 @@
+.Image {
+    max-width: 100%;
+    width: 1920px;
+    height: auto;
+    border-radius: 30px;
+    border: grey 5px solid;
+    border-radius: 30px;
+}

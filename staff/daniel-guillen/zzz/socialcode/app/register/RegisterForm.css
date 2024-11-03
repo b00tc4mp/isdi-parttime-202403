@@ -1,0 +1,10 @@
+.RegisterForm {
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(22, 22, 22, 0.22) 0px 15px 12px;
+    border-radius: 15px;
+    padding: 6px;
+    width: 18rem;
+    height: 30rem;
+    background: linear-gradient(#e66465, #373737);
+    letter-spacing: 2px;
+  }
