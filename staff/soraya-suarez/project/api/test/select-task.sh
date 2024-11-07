@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:9010/tasks/66bbc258186bac28f093a600 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmI0YzAzMmQ1NDQ5N2VhZTcxOTVmMjIiLCJyb2xlIjoidXNlciIsImlhdCI6MTcyMzkyMjY5NiwiZXhwIjoxNzI0MDA5MDk2fQ.olEDkHTeejRzWpvZjj3dW-UCB0PJmlKnuLKeNgCH_tU" -v

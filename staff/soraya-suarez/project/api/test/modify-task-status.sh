@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:9010/tasks/66e085752254d5f71520ba3a/modify-task-status -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMxYjY0NWZlODQyYzliMjc2OWMwYzgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjYwMDI4NzgsImV4cCI6MTcyNjA4OTI3OH0.nVCaYZZOFlxBl2AvHPLKxHYUt77G5dj0jaVYCX2vUQg" -H "Content-Type: application/json" -d '{"status":"toDo"}' -v

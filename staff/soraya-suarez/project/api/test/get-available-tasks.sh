@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmI0YmRjYzY0YWI2ZTBjNGNjMTY2Y2UiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjM5MzMwNzUsImV4cCI6MTcyNDAxOTQ3NX0.2tub6Bfpm3lelfa1bZX-EYBYSZWsZXOOUKAMrAua6rs" http://localhost:9010/tasks/my-available-tasks -v

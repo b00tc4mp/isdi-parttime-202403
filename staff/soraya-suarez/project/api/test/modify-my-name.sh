@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:9010/users/modify-my-name -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmMxYjY0NWZlODQyYzliMjc2OWMwYzgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjUzNjcxOTksImV4cCI6MTcyNTQ1MzU5OX0.6iQcMMkh1AxRIujaIPdt_ZltpZkXII6a5-fu_rDKVF8" -H "Content-Type: application/json" -d '{"name":"Soraya"}' -v

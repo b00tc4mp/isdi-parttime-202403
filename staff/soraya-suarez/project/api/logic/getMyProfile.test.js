@@ -1,0 +1,24 @@
+import 'dotenv/config'
+import mongoose from 'mongoose'
+
+import getMyProfile from './getMyProfile.js'
+
+const { MONGODB_URL } = process.env
+
+mongoose.connect(MONGODB_URL)
+    .then(() => {
+        try {
+            getMyProfile('66c1b645fe842c9b2769c0c8', (error, user) => {
+                if (error) {
+                    console.error(error)
+
+                    return
+                }
+
+                console.log('user profile retrieved', user)
+            })
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))

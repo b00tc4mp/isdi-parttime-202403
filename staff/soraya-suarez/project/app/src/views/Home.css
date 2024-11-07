@@ -1,0 +1,26 @@
+@tailwind components;
+
+  @layer components {
+    .grid {
+      @apply grid-rows-[44px_1fr_60px] min-h-screen;
+    }
+}
+
+.body-grid {
+  height: calc(100vh - 104px);
+}
+
+.div-circle-button{
+  width: 72px;
+}
+
+.circle-button {
+  width:25px;
+  height:25px;
+  padding:5px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  font-size:10px;
+  text-transform: uppercase;
+}
