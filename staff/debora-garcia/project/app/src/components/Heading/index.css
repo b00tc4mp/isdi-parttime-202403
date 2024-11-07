@@ -1,0 +1,10 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .Heading {
+    @apply text-[30px] text-[#38383b];
+  }
+}
+ */

@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+
+@layer base {
+  :root {
+    --first-color: rgb(0, 0, 0);
+    --second-color: rgb(240, 237, 237);
+    --third-color: rgb(136, 128, 136);
+    --fourth-color: rgb(223, 53, 79);
+    --fourth-clor: rgb(193, 65, 97);
+  }
+
+  * {
+    font-family: "Courier New", Courier, monospace;
+    color: var(--first-color);
+  }
+
+  body {
+    @apply flex min-h-screen w-full flex-col bg-[--second-color] justify-center;
+  }
+  main {
+    @apply flex flex-col justify-center items-center;
+  }
+  h1 {
+    @apply text-6xl;
+  }
+  h2 {
+    @apply text-5xl;
+  }
+  h3 {
+    @apply text-4xl;
+  }
+  h4 {
+    @apply text-3xl;
+  }
+  h5 {
+    @apply text-2xl;
+  }
+  h6 {
+    @apply text-lg font-bold;
+  }
+}
+
+@layer components {
+  .registerForm {
+    @apply flex flex-col items-center gap-2;
+  }
+  .loginForm {
+    @apply flex flex-col items-center gap-2;
+  }
+
+  .account-prompt {
+    @apply w-[300px] flex justify-end items-center gap-3;
+  }
+  .account-prompt p {
+    @apply text-[#2d2a2a63];
+  }
+
+  .sign-up-link {
+    @apply font-bold;
+  }
+
+  .app-title {
+    @apply text-[--third-color] font-semibold;
+  }
+
+  .registerForm .link-button {
+    @apply bg-[white] w-[100px] border-[--third-color] text-[--third-color] text-center border rounded-md px-4 py-2 transition-colors duration-300 ease-in-out;
+  }
+
+  .registerForm Button {
+    @apply  bg-[--third-color] text-white rounded-md px-4 py-2 transition-colors duration-300 ease-in-out;
+  }
+  .loginForm Button {
+    @apply  bg-[--third-color] text-white rounded-md px-4 py-2 transition-colors duration-300 ease-in-out;
+  }
+}

@@ -1,0 +1,33 @@
+@tailwind components;
+
+@layer components {
+  .ResultsList {
+    @apply flex flex-col w-[350px]  ;
+  }
+
+  .ResultsList-container {
+    @apply pt-[120px] pb-[90px] 
+  }
+  .ResultsList article {
+    @apply flex flex-col w-full h-[60px] bg-white items-center pt-1 mb-5 border border-gray-200 p-2 
+  }
+
+  .ResultsList .result-header {
+    @apply flex gap-[1rem] w-full justify-between p-[0_1rem] items-center m-0 ;
+  }
+
+  .ResultsList .result-details-container{
+    @apply flex flex-row w-full justify-between p-[0_1rem] ;
+  }
+  .result-details{
+    @apply flex flex-row flex-nowrap  self-end  w-full   ;
+  }
+  .ResultsList .edit-resultButton{
+    @apply flex flex-row w-full  justify-end ;
+  }
+
+  .ResultsList .action-button{
+    @apply flex flex-row w-full  justify-end ;
+
+  }
+}

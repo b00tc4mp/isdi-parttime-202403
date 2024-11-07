@@ -1,0 +1,32 @@
+@tailwind components;
+
+@layer components {
+  .PostList {
+    @apply flex flex-col w-[350px];
+  }
+
+  .PostList-container {
+    @apply pt-[90px] pb-[90px];
+  }
+  .PostList article {
+    @apply flex flex-col bg-white items-center p-[10px_0] mb-5 rounded-[8px];
+  }
+
+  .PostList .post-header {
+    @apply flex gap-[1rem] w-full justify-between p-[1rem]   items-center;
+  }
+  .post-image {
+    @apply flex max-h-[20rem] max-w-[20rem];
+  }
+  .post-body {
+    @apply flex flex-col min-w-[20rem];
+  }
+  .post-movements {
+    @apply flex flex-col w-full justify-start pt-[0.5rem];
+  }
+  .PostList .result-details {
+    @apply flex  w-full justify-start p-[0.3rem_1rem] font-bold;
+  }
+
+  
+}

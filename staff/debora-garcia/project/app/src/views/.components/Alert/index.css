@@ -1,0 +1,21 @@
+@tailwind components;
+
+@layer components {
+  
+}
+
+.ContainerAlert {
+  @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-40
+}
+
+.AlertBox {
+  @apply bg-white  rounded-md p-6 shadow-lg flex flex-col items-center
+}
+
+.AlertBox p {
+  @apply mb-4 text-center text-lg
+}
+
+.ContainerAlert Button {
+  @apply bg-[--third-color] text-white rounded-md px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300
+}
