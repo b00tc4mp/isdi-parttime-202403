@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Shapes - Jugando con formas</title>
+</head>
+<body>
+</pr>
+<h1>Shapes - Jugando con formas</h1>
+<h2>Funcion para crear un Terrorifico Creeper</h2>
+<pr>
+<button onclick="createCreeper()">Crear un 'terrorifico' Creeper</button>
+</pr>
+<hr></hr>
+    <script>
+var titleCreeper = document.createElement('h1')
+titleCreeper.textContent = "Terrorifico Creeper "
+document.body.appendChild(titleCreeper)
+
+function createCreeper() {
+    var bodyCreeper = document.createElement('div')
+    bodyCreeper.style.position = 'absolute'
+    bodyCreeper.style.backgroundColor = 'green'
+    bodyCreeper.style.border = '5px solid darkgreen'
+    bodyCreeper.style.width = '100px'
+    bodyCreeper.style.height = '300px'
+
+    var eyeCreeperLeft = document.createElement('div')
+    eyeCreeperLeft.style.position = 'absolute'
+    eyeCreeperLeft.style.left = '15px'
+    eyeCreeperLeft.style.top = '10px'
+    eyeCreeperLeft.style.border = '3px solid darkgreen'
+    eyeCreeperLeft.style.backgroundColor = 'black'
+    eyeCreeperLeft.style.width = '20px'
+    eyeCreeperLeft.style.height = '60px'
+
+    var eyeCreeperRight = document.createElement('div')
+    eyeCreeperRight.style.position = 'absolute'
+    eyeCreeperRight.style.left = '50px'
+    eyeCreeperRight.style.top = '10px'
+    eyeCreeperRight.style.border = '3px solid darkgreen'
+    eyeCreeperRight.style.backgroundColor = 'black'
+    eyeCreeperRight.style.width = '20px'
+    eyeCreeperRight.style.height = '40px'
+
+    var mouthCreeper = document.createElement('div')
+    mouthCreeper.style.position = 'absolute'
+    mouthCreeper.style.left = '18px'
+    mouthCreeper.style.top = '90px'
+    mouthCreeper.style.border = '3px solid darkgreen'
+    mouthCreeper.style.backgroundColor = 'black'
+    mouthCreeper.style.width = '60px'
+    mouthCreeper.style.height = '15px'
+
+    var footCreeperLeft = document.createElement('div')
+    footCreeperLeft.style.position = 'absolute'
+    footCreeperLeft.style.left = '-15px'
+    footCreeperLeft.style.top = '280px'
+    footCreeperLeft.style.border = '3px solid darkgreen'
+    footCreeperLeft.style.backgroundColor = 'green'
+    footCreeperLeft.style.width = '90px'
+    footCreeperLeft.style.height = '70px'
+
+    var footCreeperRight = document.createElement('div')
+    footCreeperRight.style.position = 'absolute'
+    footCreeperRight.style.left = '50px'
+    footCreeperRight.style.top = '290px'
+    footCreeperRight.style.border = '3px solid darkgreen'
+    footCreeperRight.style.backgroundColor = 'green'
+    footCreeperRight.style.width = '90px'
+    footCreeperRight.style.height = '70px'
+
+    bodyCreeper.appendChild(eyeCreeperLeft)
+    bodyCreeper.appendChild(eyeCreeperRight)
+    bodyCreeper.appendChild(mouthCreeper)
+    bodyCreeper.appendChild(footCreeperLeft)
+    bodyCreeper.appendChild(footCreeperRight)
+
+    var titleCreeper = document.createElement('h1')
+    titleCreeper.textContent = "Boooooooo!"
+    document.body.appendChild(titleCreeper)
+
+    // Append the creeper body to the document body
+    document.body.appendChild(bodyCreeper)
+}
+
+
+</script>
+</body>
+</html>

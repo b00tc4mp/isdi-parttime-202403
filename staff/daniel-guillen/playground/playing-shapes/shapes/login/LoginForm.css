@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+.LoginForm {
+    background-color: darkslategrey;
+    padding: 2rem;
+    font-size: x-large;
+}
+.LoginForm {
+    background-color: darkslategrey;
+    font-size: 1rem;
+    border: 1px solid var(--first-color);
+}
+.LoginForm .Feedback {
+    color: tomato;
+}
+
+.LoginForm .Feedback.success {
+    color: yellowgreen;
+}
