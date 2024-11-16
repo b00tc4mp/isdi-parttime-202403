@@ -1,0 +1,40 @@
+.SubmitButton {
+  z-index: 1;
+  position: relative;
+  font-size: 1.2rem;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsla(0, 0%, 0%, 0.486);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.SubmitButton::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: greenyellow;
+  transform-origin: center;
+  transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+  transition: transform 0.45s ease-in-out;
+}
+
+.SubmitButton:hover {
+  cursor: pointer;
+  color: #272727;
+}
+
+.SubmitButton:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+}

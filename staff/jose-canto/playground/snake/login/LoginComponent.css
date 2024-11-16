@@ -1,0 +1,11 @@
+.LoginForm {
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(22, 22, 22, 0.22) 0px 15px 12px;
+  margin-top: 5px;
+  border-radius: 15px;
+  padding: 10px;
+  width: 300px;
+  height: 180px;
+  background-image: linear-gradient(to right top, #3CB371, #56B68B, #77C89C, #99D9AD, #BBEBBE, #C6F0CB, #D2F4D9, #DDF8E6, #E9FCE4, #d4d6c8, #b1b0b0, #a7a7a7, #999999, #7D7D7D, #616161, #454545, #2E2E2E, #1A1A1A);
+  letter-spacing: 2px;
+}

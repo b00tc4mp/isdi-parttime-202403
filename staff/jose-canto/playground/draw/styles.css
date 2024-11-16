@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-draw {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 100%;
+  gap: 10px;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* PIG */
+.pig {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blanchedalmond;
+  z-index: -1;
+}
+
+.pig-head {
+  width: 130px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: rgb(255, 160, 176);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.75) -10px 20px 20px 0px;
+}
+
+.pig-ear {
+  position: absolute;
+  border: 7px solid #f7949a;
+  background-color: #ffb7bc;
+  width: 60px;
+  height: 60px;
+  top: -5px;
+  z-index: -1;
+}
+
+.ear-left {
+  border-radius: 15px 0 0 0;
+  left: 10px;
+  transform: rotate(-12deg) skewY(27deg);
+}
+
+.ear-right {
+  border-radius: 0 15px 0 0;
+  right: 10px;
+  transform: rotate(12deg) skewY(-27deg);
+}
+
+.pig-eyes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+  top: 8px;
+}
+
+.pig-eye {
+  width: 30px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pig-eye-dot {
+  border: 3px solid black;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.pig-noise {
+  width: 50px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(252, 210, 216);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.pig-noise-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(194, 120, 132);
+  position: relative;
+  bottom: 5px;
+}
+
+.pig-smooth {
+  border: 2px solid rgb(221, 73, 35);
+  width: 20px;
+  height: 15px;
+  border-radius: 25px;
+  background-color: rgb(252, 210, 216);
+
+}
+
+/*Tree */
+.tree {
+  background-color: rgb(191, 201, 235);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.tree-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
+}
+
+
+.tree-branches {
+  position: relative;
+  height: 0;
+  border-left: 6vw solid transparent;
+  border-right: 7vw solid transparent;
+  border-bottom: 16vw solid green;
+  position: absolute;
+  bottom: 1.5vw;
+}
+
+.tree-branch {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 1vw solid transparent;
+  border-bottom: 5vw solid green;
+  top: 12vw;
+  left: 5.4vw;
+  transform: rotate(101deg);
+}
+
+.tree-branch-right-1 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 6vw;
+  left: 0vw;
+  transform: rotate(-1deg);
+}
+
+.tree-branch-right-2 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 3vw solid transparent;
+  border-bottom: 5vw solid green;
+  top: -0.5vw;
+  left: -1.9vw;
+  transform: rotate(122deg);
+}
+
+.tree-branch-rigth-3 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 2vw;
+  left: -2vw;
+  transform: rotate(0deg);
+}
+
+.tree-branch-left-1 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 1vw solid transparent;
+  border-bottom: 5vw solid green;
+  top: 13.03vw;
+  left: -7.8vw;
+  transform: rotate(239deg);
+}
+
+.tree-branch-left-2 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 8vw;
+  left: -7vw;
+  transform: rotate(130deg);
+}
+
+.tree-branch-left-3 {
+  position: absolute;
+  height: 0;
+  border-left: 3vw solid transparent;
+  border-right: 5vw solid transparent;
+  border-bottom: 6vw solid green;
+  top: 4vw;
+  left: -5vw;
+  transform: rotate(130deg);
+}
+
+.tree-trunk {
+  border: 2px solid black;
+  width: 4vw;
+  height: 3vw;
+  background-color: saddlebrown;
+  border-bottom: none;
+}
+
+.tree-ground {
+  border: 1px solid black;
+  width: 100%;
+  height: 50px;
+  background-color: rgb(25, 95, 22);
+}
+
+/* Building */
+.building {
+  border: 1px solid black;
+  background-color: #c1e0ec;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.container-building {
+  margin-bottom: 20px;
+  height: 20vw;
+  width: 8vw;
+}
+
+.building-part-front {
+  background-color: #7e5d3c;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -20px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 5px 5px 0 0;
+}
+
+.building-windows {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+
+.window {
+  background-image: linear-gradient(to right top, #f9feff, #f3fdff, #eefdff, #e8fcff, #e2fcff, #ddfcff, #d8fbff, #d3fbff, #cdfbff, #c7faff, #c1faff, #bbf9ff);
+  border: 2px solid burlywood;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+}
+
+.window.shadow {
+  box-shadow: 5px -1px 12px 6px rgba(0, 0, 0, 0.75) inset;
+
+}
+
+#flower {
+  display: flex;
+  position: absolute;
+  width: 1.5vw;
+}
+
+#dog {
+  display: flex;
+  position: absolute;
+  width: 1.5vw;
+}
+
+.building-entrance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.window-entrance {
+  border: 1px solid gray;
+  position: relative;
+  bottom: 1vw;
+  height: 1.9vw;
+  width: 1.5vw;
+
+  background-image: linear-gradient(to right top, #f9feff, #f3fdff, #eefdff, #e8fcff, #e2fcff, #ddfcff, #d8fbff, #d3fbff, #cdfbff, #c7faff, #c1faff, #bbf9ff);
+}
+
+#cortina {
+  position: absolute;
+  width: 100%;
+  height: 1.9vw;
+}
+
+.building-door {
+  width: 3vw;
+  height: 4.7vw;
+  background-color: #e9d9ca;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 18px 0px 3px 0px rgba(0, 0, 0, 0.75) inset;
+}
+
+
+/* GameBoy */
+.gameboy {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+}
+
+.container-gameboy {
+  border: 1px solid #D7D1D8;
+  width: 15vw;
+  height: 20vw;
+  border-radius: 10px 10px 30px 10px;
+  background-color: #F0F0F0;
+  box-shadow: -13px 7px 20px 5px black;
+}
+
+.gameboy-top {
+  border: 3px solid #E6E6E6;
+  width: auto;
+  height: 1.3vw;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.gameboy-corners {
+  border: 3px solid #E6E6E6;
+  height: 100%;
+  width: 1.4vw;
+  border-bottom: 0;
+}
+
+.gameboy-corners.left {
+  border-left: 0;
+  border-top: 0;
+}
+
+.gameboy-corners.rigth {
+  border-right: 0;
+  border-top: 0;
+}
+
+
+.container-gameboy-screen {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gameboy-screen {
+  margin: 10px;
+  border: 1px solid black;
+  width: 80%;
+  height: 40%;
+  border-radius: 10px 10px 25px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #828282;
+  position: relative;
+}
+
+.dot-battery {
+  width: 0.5vw;
+  height: 0.5vw;
+  border-radius: 50%;
+  background-color: rgb(207, 101, 101);
+  position: absolute;
+  right: 10.6vw;
+}
+
+.text-battery {
+  position: absolute;
+  right: 10.6vw;
+  bottom: 2.4vw;
+  font-size: 0.4vw;
+  left: 0.3vw;
+  color: white;
+}
+
+.gameboy-text {
+  position: absolute;
+  top: 8.3vw;
+  font-size: 0.5vw;
+  left: 0.3vw;
+  color: rgb(50, 50, 255);
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -1px;
+}
+
+.gameboy-text span {
+  font-size: 0.4vw;
+}
+
+
+
+
+.gameboy-display {
+  border: 1px solid black;
+  width: 70%;
+  height: 80%;
+  background-color: #C5B863;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px 0px 0.3vw 0px rgb(0, 0, 0);
+
+}
+
+
+.gameboy-buttons {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  bottom: 12.5vw;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.gameboy-buttons-left {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameboy-button-arrow-vertical {
+  width: 1vw;
+  height: 3vw;
+  background-color: black;
+  position: absolute;
+  border-radius: 5px;
+
+}
+
+.gameboy-button-arrow-horizontal {
+  width: 3vw;
+  height: 1vw;
+  background-color: black;
+  border-radius: 5px;
+}
+
+
+.gameboy-buttons-right {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+  transform: rotate(-20deg);
+}
+
+.gameboy-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+}
+
+.gameboy-button-a {
+  width: 2vw;
+  height: 2vw;
+  background-color: #6F0219;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 1.5vw;
+  transform: rotate(20deg);
+
+}
+
+.gameboy-button-b {
+  width: 2vw;
+  height: 2vw;
+  background-color: #6F0219;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 1.5vw;
+  transform: rotate(20deg);
+
+}
+
+.gameboy-select-container {
+  width: auto;
+  height: 2vw;
+  position: relative;
+  bottom: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+  transform: rotate(-25deg);
+
+}
+
+.select {
+  border: 3px solid gray;
+  width: 1.5vw;
+  border-radius: 5px;
+  position: relative;
+  right: 1vw;
+  box-shadow: 0 0 0.1vw black;
+}
+
+.gameboy-select-container p {
+  font-size: 0.3vw;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  color: #3D3259;
+}
+
+.text-select {
+  position: relative;
+  right: 1vw;
+}
+
+.text-start {
+  position: relative;
+  left: 1vw;
+}
+
+.start {
+  border: 3px solid gray;
+  width: 1.5vw;
+  border-radius: 5px;
+  position: relative;
+  left: 1vw;
+  box-shadow: 0 0 0.1vw black;
+}
+
+
+.gameboy-speakers {
+  width: 10vw;
+  height: 5vw;
+  position: relative;
+  bottom: 18vw;
+  left: 8.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+  transform: rotate(-25deg);
+}
+
+.speaker {
+  border: 1px solid gray;
+  height: 2vw;
+  border-radius: 5px;
+  position: relative;
+  right: 1vw;
+  box-shadow: 0 0 0.2vw black;
+}
+
+.puppy {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f550c;
+}
+
+.puppy-head {
+  border: 1px solid transparent;
+  width: 20vw;
+  height: 22vw;
+  border-radius: 40% 40% 55% 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFEAC8;
+  box-shadow: -16px 8px 4vw 0px black
+}
+
+.puppy-ear {
+  border: 1px solid black;
+  background-color: #865B51;
+  min-width: 5vw;
+  min-height: 15vw;
+  position: relative;
+  transform: rotate(-15deg);
+  padding: 2px;
+}
+
+.puppy-ear-rigth {
+  left: 4.5vw;
+  bottom: 4.5vw;
+  transform: rotate(-15deg);
+  border-radius: 15px 125px 60px 60px;
+}
+
+.puppy-ear-left {
+  right: -0.5vw;
+  bottom: 4.5vw;
+  transform: rotate(15deg);
+  border-radius: 125px 15px 60px 60px;
+}
+
+.puppy-eyes {
+  display: flex;
+  gap: 3vw;
+  position: relative;
+  top: 3vw;
+  left: 2vw;
+}
+
+.puppy-eye {
+  background-color: #2F2F2F;
+  width: 3vw;
+  height: 6vw;
+  border-radius: 45%;
+  position: relative;
+  bottom: 7vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.puppy-eye-left {
+  border: 3px solid #D27856;
+}
+
+.puppy-eye-rigth {
+  border: 2px solid #D27856;
+}
+
+.container-noise {
+  width: 100%;
+}
+
+.puppy-noise {
+  border: 1px solid #2F2F2F;
+  background-color: #2F2F2F;
+  border-radius: 20% 20% 50% 50%;
+  position: relative;
+  width: 5vw;
+  height: 5vw;
+  right: 10vw;
+  top: 4vw;
+  position: relative;
+}
+
+.puppy-mouth {
+  position: relative;
+  background-color: #6F0219;
+  width: 5vw;
+  height: 3vw;
+  top: 5vw;
+  right: 10vw;
+  border-radius: 10% 10% 50% 50%;
+}
+
+.car {
+  border: 1px solid transparent;
+}

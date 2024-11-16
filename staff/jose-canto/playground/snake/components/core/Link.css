@@ -1,0 +1,11 @@
+.Link {
+  color: rgb(0, 0, 0);
+  margin-top: 10px;
+  letter-spacing: 2px;
+  font-size: 2rem;
+}
+
+.Link:hover {
+  color: var(--first-color);
+
+}

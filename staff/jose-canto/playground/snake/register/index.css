@@ -1,0 +1,10 @@
+.View {
+  background-image: linear-gradient(to right top, #3CB371, #56B68B, #77C89C, #99D9AD, #BBEBBE, #C6F0CB, #D2F4D9, #DDF8E6, #E9FCE4, #EEF1DC, #D1D1D1, #B5B5B5, #999999, #7D7D7D, #616161, #454545, #2E2E2E, #1A1A1A);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+}
