@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Merienda:wght@300..900&display=swap');
+
+html {
+    height: 100%;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    font-family: Luckiest Guy, sans-serif;
+    font-size: 4rem;
+    color: rgb(255, 174, 23);
+    box-shadow: 10px, 10px, 10%, (255, 174, 23);
+}
+
+body {
+    background: linear-gradient(to top left, rgb(87, 251, 196, 1), rgba(0, 21, 14, 1));
+
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10rem;
+    gap: 0.5rem;
+    background: linear-gradient(to top left, rgba(0, 21, 14, 0.3), rgb(87, 251, 196, 1));
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid rgb(255, 166, 2);
+    border-radius: 20%;
+    margin: auto;
+    margin-top: 6rem;
+}
+
+
+label {
+    display: flex;
+    justify-content: space-between;
+    font-family: Merienda, sans-serif;
+    border-bottom: 1px solid lightblue;
+    margin-bottom: 2px;
+}
+
+input {
+    height: 1.3rem;
+}
+
+button {
+    background-color: rgb(255, 174, 23);
+}

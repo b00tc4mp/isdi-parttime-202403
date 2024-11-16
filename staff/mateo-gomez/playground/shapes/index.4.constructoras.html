@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <applyOnY charset="UTF-8">
+    <applyOnY name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shapes</title>
+</head>
+<body>
+    <script>
+        function Shape(){
+            this.container = document.createElement('div');
+            this.container.style.position = 'absolute';
+        }
+        
+        Shape.prototype.setHeight = function(value) {
+            this.container.style.height = value + 'px';
+        }; 
+
+        Shape.prototype.setWidth = function(value) {
+            this.container.style.width = value + 'px';
+        }; 
+
+        Shape.prototype.setRadius = function(value) {
+            this.container.style.borderRadius = value + '%';
+        };
+
+        Shape.prototype.setColor = function(value) {
+            this.container.style.backgroundColor = value;
+        };
+
+        Shape.prototype.setX = function(value) {
+            this.container.style.transformationProperty = 'left';
+            this.container.style.transitionDuration = '0.1s'
+            this.container.style.left = value + 'px';
+        };
+
+        Shape.prototype.setY = function(value) {
+            this.container.style.transformationProperty = 'top';
+            this.container.style.transitionDuration = '0.1s'
+            this.container.style.top = value + 'px';
+        };
+
+        Shape.prototype.setZ = function(value) {
+            this.container.style.transformationProperty = 'transform';
+            this.container.style.transitionDuration = '0.1s'
+            this.container.style.transform = 'scale(' + (value + 100) / 100 + ')'
+        };
+
+        Shape.prototype.add = function(child) {
+            this.container.appendChild(child.container);
+        };
+
+        Shape.prototype.setBoxShadow = function(value) {
+            this.container.style.boxShadow = '20px -20px ' + value +'px rgba(0, 0, 0, 0.99)';
+        }
+
+
+        function Penguin() {
+            Shape.call(this)
+
+            //face
+            this.setColor('purple');
+            this.setRadius(50);
+            this.setHeight(200);
+            this.setWidth(200);
+            this.setBoxShadow(10);
+
+
+            var eye = new Shape();
+            eye.setColor('white');
+            eye.setHeight(50);
+            eye.setWidth(50);
+            eye.setRadius(50);
+            eye.setX(30);
+            eye.setY(50);
+
+
+            var pupil = new Shape();
+            pupil.setColor('black');
+            pupil.setHeight(10);
+            pupil.setWidth(10);
+            pupil.setRadius(50);
+            pupil.setX(20);
+            pupil.setY(15);
+
+            var mouth = new Shape();
+            mouth.setColor('red');
+            mouth.setWidth(70);
+            mouth.setHeight(70);
+            mouth.setRadius(50);
+            mouth.setX(65);
+            mouth.setY(100);
+
+            var eyeR = new Shape();
+            eyeR.setColor('white');
+            eyeR.setHeight(50);
+            eyeR.setWidth(50);
+            eyeR.setRadius(50);
+            eyeR.setX(130);
+            eyeR.setY(50);
+
+            var pupilR = new Shape();
+            pupilR.setColor('black');
+            pupilR.setHeight(10);
+            pupilR.setWidth(10);
+            pupilR.setRadius(50);
+            pupilR.setX(20);
+            pupilR.setY(15);
+
+           
+            this.add(eye);
+            this.add(eyeR);
+            eye.add(pupil);
+            eyeR.add(pupilR);
+            this.add(mouth);
+
+        }
+
+        Penguin.prototype = Object.create(Shape.prototype)
+        Penguin.prototype.constructor = Penguin
+
+
+        var penguin = new Penguin()
+        var penguin2 = new Penguin()
+
+    
+
+        penguin.setX(x)
+        penguin.setY(y)
+
+        penguin2.setX(x2)
+        penguin2.setY(y2)
+
+
+        var y = 300
+        var x = 200
+        var z = 100
+
+        var y2 = 400
+        var x2 = 100
+        var z2 = 100
+
+        var applyOnY = true
+        var step = 20
+        document.onkeydown = function(event) {
+            if(event.key === 'ArrowLeft')
+                x -= step
+            else if (event.key === 'ArrowRight')
+                x += step
+            
+
+            else if(event.key === 'ArrowUp'){
+                if (applyOnY)
+                    y -= step
+                else 
+                    z -= step
+            }else if (event.key === 'ArrowDown') {
+                if (applyOnY)
+                    y += step
+                else 
+                    z += step
+
+            }else if (event.key === 'h') 
+                applyOnY = false
+
+
+             if (event.key === 'a')
+                x2 -= step
+            else if (event.key === 'd')
+                x2 += step
+            
+
+            else if(event.key === 'w'){
+                if (applyOnY)
+                    y2 -= step
+                else 
+                    z2 -= step
+            }else if (event.key === 's') {
+                if (applyOnY)
+                    y2 += step
+                else 
+                    z2 += step
+            
+            }else if (event.key === 'h') 
+            applyOnY = false
+            
+            penguin.setY(y)
+            penguin.setX(x)
+            penguin.setZ(z)
+
+            
+            penguin.setY(y2)
+            penguin.setX(x2)
+            penguin.setZ(z2)
+         }
+
+       // setInterval(function()  {this.setY(y + Math.PI() * 50) , 1000})
+       // setInterval(function() {this.setX(x + Math.PI() * 50) , 100})
+        
+
+        document.body.appendChild(penguin.container);
+        document.body.appendChild(penguin2.container)
+    </script>
+</body>
+</html>
