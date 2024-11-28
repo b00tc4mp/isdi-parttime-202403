@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .Input {
+        @apply p-[.4rem] bg-transparent font-[1rem] border-[1px] border-[var(--first-color)];
+    }
+}

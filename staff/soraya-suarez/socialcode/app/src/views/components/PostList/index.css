@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .PostList {
+        @apply m-[60px_10px];
+    }
+}
