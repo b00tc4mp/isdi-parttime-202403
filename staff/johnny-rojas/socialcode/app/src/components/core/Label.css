@@ -1,0 +1,8 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .Label{
+    @apply mb-1
+  }
+}

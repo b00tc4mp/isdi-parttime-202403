@@ -1,0 +1,20 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .Confirm{
+    @apply flex flex-col justify-center text-center 
+  }
+  .opcions{
+    @apply space-x-0
+  }
+
+  .ButtonCancel {
+    @apply w-32 rounded-3xl bg-[var(--third-color)] text-white
+  }
+
+  .ButtonConfirm{
+    @apply w-32 justify-center rounded-3xl border border-black
+  }
+}
+

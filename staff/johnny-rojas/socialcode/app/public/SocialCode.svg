@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128pt" height="128pt" viewBox="0 0 128 128" version="1.1">
+<defs>
+<g>
+<symbol overflow="visible" id="glyph0-0">
+<path style="stroke:none;" d=""/>
+</symbol>
+<symbol overflow="visible" id="glyph0-1">
+<path style="stroke:none;" d=""/>
+</symbol>
+</g>
+<filter id="alpha" filterUnits="objectBoundingBox" x="0%" y="0%" width="100%" height="100%">
+  <feColorMatrix type="matrix" in="SourceGraphic" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+</filter>
+<clipPath id="clip1">
+  <rect width="128" height="128"/>
+</clipPath>
+<g id="surface11" clip-path="url(#clip1)">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 0 20 C 0 8.953125 8.953125 0 20 0 L 108 0 C 119.046875 0 128 8.953125 128 20 L 128 108 C 128 119.046875 119.046875 128 108 128 L 20 128 C 8.953125 128 0 119.046875 0 108 Z M 0 20 "/>
+</g>
+<mask id="mask0">
+  <g filter="url(#alpha)">
+<use xlink:href="#surface11"/>
+  </g>
+</mask>
+<clipPath id="clip2">
+  <rect width="128" height="128"/>
+</clipPath>
+<g id="surface5" clip-path="url(#clip2)">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(26.637268%,31.112671%,71.382141%);fill-opacity:1;" d="M 0 20 C 0 8.953125 8.953125 0 20 0 L 108 0 C 119.046875 0 128 8.953125 128 20 L 128 108 C 128 119.046875 119.046875 128 108 128 L 20 128 C 8.953125 128 0 119.046875 0 108 Z M 0 20 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(85.096741%,85.096741%,85.096741%);fill-opacity:1;" d="M 104.414063 64 C 104.414063 86.320313 86.320313 104.414063 64 104.414063 C 41.679688 104.414063 23.585938 86.320313 23.585938 64 C 23.585938 41.679688 41.679688 23.585938 64 23.585938 C 86.320313 23.585938 104.414063 41.679688 104.414063 64 Z M 104.414063 64 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 43.695313 73.585938 Z M 81.496094 68.617188 L 46.496094 58.675781 L 46.496094 46.566406 L 81.496094 36.558594 L 81.496094 44.152344 L 51.816406 52.585938 L 81.496094 61.058594 Z M 81.496094 68.617188 "/>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-0" x="43.697266" y="73.587341"/>
+</g>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 43.695313 96.085938 Z M 46.496094 90.835938 L 46.496094 83.277344 L 76.175781 75.085938 L 46.496094 66.933594 L 46.496094 59.335938 L 81.496094 69.066406 L 81.496094 81.175781 Z M 46.496094 90.835938 "/>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-1" x="43.697266" y="96.087341"/>
+</g>
+</g>
+</defs>
+<g id="surface1">
+<use xlink:href="#surface5" mask="url(#mask0)"/>
+</g>
+</svg>

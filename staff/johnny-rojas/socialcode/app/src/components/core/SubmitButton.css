@@ -1,0 +1,8 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .SubmitButton{
+    @apply mt-2 mb-0 w-44 rounded-full text-white bg-[var(--third-color)]
+  }
+}

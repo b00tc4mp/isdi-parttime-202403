@@ -1,0 +1,9 @@
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .Input{
+    @apply p-1 bg-transparent text-lg border border-slate-900
+  }
+}

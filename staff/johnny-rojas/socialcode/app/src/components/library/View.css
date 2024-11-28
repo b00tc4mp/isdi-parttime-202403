@@ -1,0 +1,12 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .View{
+    @apply flex flex-col items-center
+  }
+
+  .Logo{
+    @apply w-full
+  }
+}
