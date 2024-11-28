@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .CreatePostForm {
+        @apply block fixed top-1/2 left-1/2 w-[85%] h-auto border border-black rounded-[20px] translate-x-[-50%] translate-y-[-50%] z-[1000];
+        background-color: rgba(175, 222, 238, 0.959);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .CreatePostForm .Input {
+        @apply bg-transparent border-t-0 border-l-0 border-r-0 border-b border-black border-b-[1px] rounded-[20px] pl-[10px] m-[15px];
+    }
+
+    .CreatePostForm .FieldWithTextArea {
+        @apply flex justify-center
+    }
+
+    .CreatePostForm textarea {
+        @apply mt-[30px]
+    }
+
+    .divButton {
+        @apply flex flex-wrap items-center flex-col
+    }
+}
