@@ -1,0 +1,26 @@
+.RegisterForm {
+    padding: 1rem;
+    background-color: rgb(206, 161, 12);
+    border-radius: 30px;
+}
+
+.RegisterForm .Input,
+.Button {
+    background-color: transparent;
+    font-size: 1rem;
+    border: 1px solid var(--first-color);
+}
+
+.RegisterForm .Feedback {
+    display: flex;
+    text-align: center;
+    color: rgb(52, 26, 4);
+    max-width: 10rem;
+
+
+
+}
+
+.RegisterForm .Feedback.success {
+    color: rgb(85, 41, 5);
+}

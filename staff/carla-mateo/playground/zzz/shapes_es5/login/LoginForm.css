@@ -1,0 +1,13 @@
+.LoginForm {
+    padding: 1rem;
+    background-color: rgb(206, 161, 12);
+    border-radius: 30px;
+}
+
+.LoginForm .Input,
+.Button {
+    background-color: transparent;
+    font-size: 1rem;
+    border: 1px solid var(--first-color);
+
+}

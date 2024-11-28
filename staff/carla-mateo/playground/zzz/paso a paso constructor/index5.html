@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shapes</title>
+</head>
+
+<body>
+    <script>
+        function createCircle(diameter, color) {
+            var circle = document.createElement('div')
+
+            circle.style.backgroundColor = color
+            circle.style.borderRadius = '50%'
+            circle.style.width = diameter + 'px'
+            circle.style.height = diameter + 'px'
+
+            return circle
+        }
+        function createSquare() {
+            var square = document.createElement('div')
+
+            square.style.backgroundColor = 'blue'
+            square.style.width = '100px'
+            square.style.height = '100px'
+
+            return square
+
+        }
+        function createTriangle() {
+            var triangle = document.createElement('div')
+
+            triangle.style.borderLeft = '50px solid transparent'
+            triangle.style.borderRight = '50px solid transparent'
+            triangle.style.borderBottom = '100px solid gold'
+            triangle.style.display = 'inline-block'
+
+            return triangle
+        }
+
+        // var eyeL = createCircle(50, 'black')
+        // eyeL.style.position = 'absolute'
+        // eyeL.style.left = '50px'
+        // eyeL.style.top = '30px'
+
+        var eyeL = new shape()
+        eyeL.setHeight(50)
+        eyeL.setWidth(50)
+        eyeL.setColor('black')
+        eyeL.sertX(30)
+        eyeL.setY(30)
+
+        // var eyeR = createCircle(50, 'white')
+        // eyeR.style.position = 'absolute'
+        // eyeR.style.left = '100px'
+        // eyeR.style.top = '30px'
+
+        var eyeR = new shape()
+        eyeR.setHeight(50)
+        eyeR.setWidth(50)
+        eyeR.setColor('white')
+        eyeR.sertX(90)
+        eyeRL.setY(30)
+
+        // var face = createCircle(200, 'red')
+        // face.appendChild(eyeL)
+        // face.appendChild(eyeR)
+
+        var face = new shape()
+        face.setHeight(200)
+        face.setWidth(200)
+        eyeL.setRadius(50)
+
+        face.add(eyeL)
+        face.add(eyeR)
+
+        document.body.appendChild(face)
+
+        // var body = createSquare()
+        // body.style.position = 'absolute'
+        // body.style.left = '60px'
+        // body.style.top = '200px'
+
+        document.body.appendChild(body)
+
+        var body = new shape()
+        body.setColor('blue')
+        body.setHeight(100)
+        body.setWidth(100)
+        body.setX(60)
+        body.setY(200)
+
+        // var foot = createTriangle()
+        // foot.style.position = 'absolute'
+        // foot.style.left = '30px'
+        // foot.style.top = '300px'
+        // document.body.appendChild(foot)
+
+        // var foot = createTriangle()
+        // foot.style.position = 'absolute'
+        // foot.style.left = '90px'
+        // foot.style.top = '300px'
+        // document.body.appendChild(foot)
+
+        var foot = new shape()
+        foot.setColor('gold')
+        foot.setHeight(100)
+        foot.setWidth(100)
+        foot.setX(30)
+        foot.setY(300)
+
+        var foot = new shape()
+        foot.setColor('gold')
+        foot.setHeight(100)
+        foot.setWidth(100)
+        foot.setX(90)
+        foot.setY(300)
+
+        document.body.appendChild(foot)
+
+    </script>
+</body>
+
+</html>
