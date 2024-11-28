@@ -1,0 +1,26 @@
+.LoginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 250px;
+    margin: 15px;
+    padding: 10px;
+    box-shadow: 0 0 10px black;
+    background: linear-gradient(to bottom, #1e6091, #3f9bd8);
+}
+    
+.LoginForm .Feedback {
+    color: tomato;
+    font-size: 12px
+}
+
+.LoginForm i{
+    position: relative;
+    right: -60px; 
+    top: -20px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 11px;
+}
