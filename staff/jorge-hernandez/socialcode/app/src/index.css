@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(120deg, #2980b9, #a2cfec, #2980b9);
+  background-size: 400% 400%;
+  animation: gradient 20s ease infinite;
+  margin: 0;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  overflow: scroll;
+}
+
+h1 {
+  font-size: 3em;
+  animation: floating 3s ease-in-out infinite;
+}
+@layer components {
+  .Header {
+    @apply flex justify-end items-center bg-gradient-to-b from-[#07273b91] to-[#214c5b99] w-full fixed top-0 p-0.5 border-b border-blue-500;
+  }
+
+  .Footer {
+    @apply w-full h-16 flex items-center bg-gradient-to-b from-[#07273bb5] to-[#214c5bd5] fixed bottom-0 border-t border-blue-500 justify-center;
+  }
+
+  .Footer button {
+    @apply text-xl px-4 py-2 absolute;
+  }
+
+  .Footer time {
+    @apply text-base text-[#edf2f6] absolute right-[5rem];
+  }
+
+  .Post {
+    @apply flex relative flex-col border border-white rounded-[30px] m-2 p-6 pb-1 w-[100%] shadow-[0_0_10px_black] bg-gradient-to-b from-[#1e6091] to-[#3f9bd8];
+  }
+
+  .header-post {
+    @apply flex flex-row justify-between;
+  }
+
+  .Button.delete {
+    @apply bg-[rgba(255,0,0,0.51)] w-8 h-8 text-xs rounded-full m-0;
+  }
+
+  .likes-Button {
+    @apply border-none bg-transparent text-2xl w-auto m-0.5;
+  }
+
+  .likes-Button:hover {
+    @apply bg-transparent border-transparent;
+  }
+
+  .likes-Button:active {
+    @apply bg-transparent border-transparent;
+  }
+
+  .likes-Button:focus {
+    @apply outline-none shadow-none;
+  }
+
+  .likes-people {
+    @apply border-none bg-transparent text-xs w-[50%] p-0 m-0;
+  }
+
+  .likes-people:hover {
+    @apply bg-transparent border-transparent;
+  }
+
+  .likes-people:active {
+    @apply bg-transparent border-transparent;
+  }
+
+  .likes-people:focus {
+    @apply outline-none shadow-none;
+  }
+
+  .Time {
+    @apply text-xs relative left-2;
+  }
+
+  .button-container {
+    @apply flex items-center justify-end;
+  }
+
+  .custom-hr {
+    @apply border-blue-500 mt-6;
+  }
+
+  ul {
+    @apply list-none p-2.5 m-0.5;
+  }
+
+  ul li {
+    @apply mb-2.5;
+  }
+
+  .PostList {
+    @apply flex flex-col items-center m-[100px];
+  }
+
+  .CreatePostForm {
+    @apply flex fixed bottom-12 flex-col items-center border border-black rounded-[10px] w-[500px] m-[30px] p-5 shadow-[0_0_10px_black] bg-gradient-to-b from-[#1e6091] to-[#3f9bd8];
+  }
+
+  .CreatePostForm .Feedback {
+    @apply text-[12px] text-[#FF6347]; /* Color tomato */
+  }
+
+  .CreatePostForm .div-Buttons {
+    @apply flex w-[22vw] justify-between m-[15px];
+  }
+
+  .CreatePostForm .createButton {
+    @apply self-auto;
+  }
+
+  img {
+    @apply w-[80%];
+  }
+
+  h2 {
+    @apply text-[2vh];
+  }
+}
