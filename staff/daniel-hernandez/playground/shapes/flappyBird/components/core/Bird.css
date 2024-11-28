@@ -1,0 +1,6 @@
+.bird {
+    position: relative;
+    left: 47%;
+    right: 0;
+    z-index: 1000;
+}

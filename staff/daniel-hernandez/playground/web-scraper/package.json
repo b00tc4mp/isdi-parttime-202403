@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "node ./google.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^22.8.2"
+  }
+}

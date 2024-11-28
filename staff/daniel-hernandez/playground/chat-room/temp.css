@@ -1,0 +1,112 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* padding: 0; */
+  /* margin: 0; */
+}
+
+#root {
+  font-family: Arial, sans-serif;
+}
+
+/* title */
+h3 {
+  font-size: 24px;
+  color: black;
+}
+
+/* counter */
+.counter {
+  margin-bottom: 20px;
+}
+
+.counter p {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.counter button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.counter button:hover {
+  background-color: lightskyblue;
+}
+
+/* message list */
+.MessageList {
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.MessageList .title {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.MessageList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.MessageList li {
+  margin-bottom: 15px;
+}
+
+.MessageList h3 {
+  font-size: 18px;
+  color: dodgerblue;
+  margin-bottom: 5px;
+}
+
+.MessageList p {
+  font-size: 16px;
+  color: black;
+  margin: 0;
+}
+
+.MessageList time {
+  font-size: 14px;
+  color: gray;
+}
+
+/* form */
+form {
+  margin-top: 20px;
+}
+
+form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid ghostwhite;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: lightskyblue;
+}

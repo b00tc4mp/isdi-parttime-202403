@@ -1,0 +1,56 @@
+body { 
+    background-color: black;
+    color: white;
+    overflow: hidden;
+}
+
+body, .frame-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0; 
+    padding: 0;
+}
+
+.frame-container{
+    background-color: rgb(247, 247, 247);
+    height: 600px;
+    width: 450px;
+}
+
+.bird {
+    position: relative;
+    left: 48%;
+    height: 30px;
+}
+
+.collision-block, #collisionBlock {
+    background-color: blue;
+    height: 10px;
+    width: 450px;
+    position: relative;
+    top: 305px;
+    right: 15px;
+    opacity: 0;
+}
+
+.pipe-container {
+    position: absolute;
+    border: none;
+    height: 600px;
+    width: 50px;
+    right: 0%;
+}
+
+.bottomImg{
+    transform: scaleX(-1);
+    height: 100%;
+    width: 50px;
+}
+
+.topImg {
+    transform: scaleX(-1) rotateX(180deg);
+    height: 100%;
+    width: 50px;
+}

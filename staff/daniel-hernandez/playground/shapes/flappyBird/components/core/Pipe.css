@@ -1,0 +1,16 @@
+.pipe {
+    position: absolute;
+    background-color: transparent;
+}
+
+.topPipe {
+    background-color: var(--primary);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.bottomPipe {
+    background-color: var(--primary);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}

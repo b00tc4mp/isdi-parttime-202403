@@ -1,0 +1,13 @@
+.pipe {
+    position: absolute;
+    background-color: yellow;
+    right: 0;
+}
+
+.topPipe {
+    background-color: red;
+}
+
+.bottomPipe {
+    background-color: blueviolet;
+}
