@@ -1,0 +1,1 @@
+curl -X DELETE http://localhost:8080/posts/667dae665bb5be68f909b256 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkb25jaWMiLCJpYXQiOjE3MTk4NjEwNzUsImV4cCI6MTcxOTg2NDY3NX0.ZUW8JesM_kST-aRnUvKzOX2lsrFJFubtK3EWvNeSkOE" -v

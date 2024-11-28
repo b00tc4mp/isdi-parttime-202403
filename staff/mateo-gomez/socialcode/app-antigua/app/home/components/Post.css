@@ -1,0 +1,49 @@
+.Post {
+    width: 50rem;
+    height: auto;
+    background-color: aliceblue;
+    border: 1px solid orange;
+    margin: 2rem;
+    border-radius: 4%;
+}
+
+.PostTitle {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    margin-top: 0%;
+}
+
+.PostImage {
+    width: 46rem;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.AuthorTitle {
+    margin: 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 10%;
+    border: 1px outset orange;
+    right: 0;
+    width: 5rem;
+    margin-left: auto;
+
+}
+
+.PostDescription {
+    margin: 2rem;
+    border: 1px dotted orange;
+    margin-top: 3px;
+}
+
+.DescriptionTitle {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 3px;
+    border-bottom: 1px solid orange;
+}

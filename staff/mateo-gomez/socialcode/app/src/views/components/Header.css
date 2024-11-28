@@ -1,0 +1,29 @@
+.Header {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height: 4rem;
+    justify-content: space-between;
+    position: fixed;
+    background-color: rgb(232, 206, 59);
+    top: 0;
+    padding: .5rem;
+    box-sizing: content-box;
+    border-bottom: 1px solid var(--first-color);
+    padding-right: 3rem;
+    z-index: 100;
+}
+
+.SocialCodeTitle {
+    margin-left: 2rem;
+    font-family: 'Pacifico', sans-serif;
+    font-size: xx-large;
+    margin-block: auto;
+}
+
+
+.HeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

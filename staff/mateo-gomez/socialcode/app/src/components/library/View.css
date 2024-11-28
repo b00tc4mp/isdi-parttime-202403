@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Micro+5+Charted&family=Pacifico&display=swap');
+
+.View {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.main {
+    height: 100vh;
+}
+
+
+
+
+.View.column {
+    flex-direction: column;
+
+}
+
+.View.row {
+    flex-direction: row;
+
+}
+
+
+.View .FormWithFeedback {
+    margin-top: 15rem;
+}

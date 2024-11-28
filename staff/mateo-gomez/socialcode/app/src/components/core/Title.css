@@ -1,0 +1,9 @@
+.MainTitle {
+    font-family: 'Pacifico', sans-serif;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    margin-top: 8rem;
+    -webkit-text-stroke: 0.01rem rgb(111, 59, 7);
+    text-shadow: 10px 7px 6px rgba(54, 29, 3, 0.64);
+}

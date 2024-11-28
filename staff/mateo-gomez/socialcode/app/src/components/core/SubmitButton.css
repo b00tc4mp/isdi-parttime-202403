@@ -1,0 +1,18 @@
+.SubmitButton {
+    margin: .5rem 0;
+    background-color: rgb(244, 169, 31);
+    border-radius: 10%;
+    border: 2px solid black;
+}
+
+.SubmitButton,
+.CreateButton {
+    border: 2px solid green;
+    background-color: rgba(0, 128, 0, 0.2);
+    border-radius: 5%;
+}
+
+.SubmitButton,
+.LoginButton {
+    border: 2px solid rgb(135, 56, 4);
+}

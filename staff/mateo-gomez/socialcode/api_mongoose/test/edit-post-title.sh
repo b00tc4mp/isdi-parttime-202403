@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:8080/posts/6692a974dd2e34266ab008b0/edit -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjhhODkyMzI3YjM5ZDdiMTliNGUyNTQiLCJpYXQiOjE3MjExMjY3NjcsImV4cCI6MTcyMTEzMDM2N30.cXc0iFNG2zw9oV_GEUR9W3k59g5fRIcdRwRTYGPlVRk" -H "Content-Type: application/json" -d '{"title":"OUUUUUUUUUUUHHHHH"}' -v
