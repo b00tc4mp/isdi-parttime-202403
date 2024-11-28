@@ -1,0 +1,35 @@
+@tailwind components;
+
+@layer components {
+   .AlertOverlay {
+      @apply fixed top-0 left-0 w-full h-full bg-overlay flex justify-center items-center z-[1001] flex-col;
+   }
+
+   .AlertBox {
+      @apply bg-dark p-5 rounded-lg border border-secondary shadow-custom-light flex flex-col w-64 select-none;
+   }
+
+   .AlertText-text {
+      @apply text-primary3 text-[20px] my-[10px] border border-primary2 p-2.5 text-center rounded-lg font-bold select-none;
+   }
+
+   .AlertText-warn {
+      @apply text-[#d7d756] text-[20px] my-[10px] border border-[#b3b33e] p-2.5 text-center rounded-lg font-bold select-none;
+   }
+
+   .AlertText-error {
+      @apply text-[#d75656] text-[20px] my-[10px] border border-[#c34d4d] p-2.5 text-center rounded-lg font-bold select-none;
+   }
+
+   .AlertButton {
+      @apply border border-[#56d77d] text-[#81e39d] w-full bg-secondary p-2.5 rounded-md cursor-pointer text-lg font-ubuntu mt-2.5 transition-colors duration-500;
+   }
+
+   .AlertButton:hover {
+      @apply border-dark text-primary3 bg-[#56d77d];
+   }
+
+   .AlertButton:active {
+      @apply text-[#56d77d] bg-[#81e39d];
+   }
+}

@@ -1,0 +1,27 @@
+@tailwind components;
+
+@layer components {
+   .postList {
+      @apply flex flex-col gap-[20px] p-[20px];
+   }
+
+   .pagination {
+      @apply flex justify-center items-center select-none;
+   }
+
+   .button {
+      @apply m-0 mr-[10px] ml-[10px] py-[5px] px-[8px] border-none bg-secondary text-primary3 font-ubuntu text-[16px] cursor-pointer rounded-[7px] transition-colors duration-[300ms];
+   }
+
+   .button:hover {
+      @apply bg-primary2;
+   }
+
+   .button:disabled {
+      @apply cursor-default bg-dark text-primary;
+   }
+
+   .text {
+      @apply m-0 p-0 text-[15px];
+   }
+}

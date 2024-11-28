@@ -1,0 +1,17 @@
+@tailwind components;
+
+@layer components {
+   .footer {
+      @apply w-full fixed bottom-0 left-0 bg-dark text-primary3 font-ubuntu font-[400] z-[998] flex justify-evenly items-center py-[10px] px-[20px] box-border select-none;
+   }
+
+   .createPostButton,
+   .scrollUpButton {
+      @apply py-[10px] px-[13px] border-none bg-secondary text-primary3 font-ubuntu text-[16px] cursor-pointer rounded-[7px] transition-colors duration-[300ms];
+   }
+
+   .createPostButton:hover,
+   .scrollUpButton:hover {
+      @apply bg-primary2;
+   }
+}

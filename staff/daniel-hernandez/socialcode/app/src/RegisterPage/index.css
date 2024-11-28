@@ -1,0 +1,59 @@
+@tailwind components;
+
+@layer components {
+   .registerContainer {
+      @apply block w-[290px] bg-dark p-[20px] rounded-[8px] shadow-custom-light;
+   }
+
+   .registerTitle {
+      @apply text-center mb-[20px] text-primary3 font-bold text-[29px] select-none;
+   }
+
+   .registerForm {
+      @apply flex flex-col;
+   }
+
+   .registerField {
+      @apply mb-[15px];
+   }
+
+   .registerField label {
+      @apply block font-bold mb-[5px] text-primary3 text-[18px] select-none;
+   }
+
+   .registerInput {
+      @apply w-full p-[8px] border-none rounded-[4px] bg-secondary font-ubuntu text-primary3 outline-none text-[14px];
+   }
+
+   .registerSubmitButton {
+      @apply w-full p-[10px] bg-secondary text-primary3 border-none rounded-[4px] cursor-pointer text-[16px] font-ubuntu transition-colors duration-[500ms] select-none;
+   }
+
+   .registerSubmitButton:hover {
+      @apply bg-primary2;
+   }
+
+   .registerLink {
+      @apply block text-center mt-[15px] text-primary3 no-underline cursor-pointer select-none;
+   }
+
+   .registerLink:hover {
+      @apply underline;
+   }
+
+   .registerWarn {
+      @apply mt-[10px] ml-[3px] text-center text-[#d75656] select-none;
+   }
+
+   .registerSuccess {
+      @apply mt-[10px] ml-[3px] text-center text-[#56d77d] select-none;
+   }
+
+   .registerSubmitButton.registerShake {
+      @apply bg-[#d75656];
+   }
+
+   .registerShake {
+      @apply bg-[#d75656] w-full p-[10px] text-primary3 border-none rounded-[4px] cursor-pointer text-[16px] transition-colors duration-[500ms] animate-shake;
+   }
+}
