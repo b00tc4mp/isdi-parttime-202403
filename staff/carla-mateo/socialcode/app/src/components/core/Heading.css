@@ -1,0 +1,17 @@
+.Username {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+.ContainerTitle {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.SocialTitle {
+    font-size: 2rem;
+}

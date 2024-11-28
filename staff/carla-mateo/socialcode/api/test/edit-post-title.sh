@@ -1,0 +1,1 @@
+curl -X PATCH http://localhost:9090/posts/6696331a7fa4ac5f0af3c4cd/edit -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjkxNTc0YzhlZDlmMDY3OTU5YzhmMjEiLCJpYXQiOjE3MjExMjQwMDYsImV4cCI6MTcyMTk4ODAwNn0.UIVCLRq4RX-4IjCyPVr8vbBbrtPxjvtelWfTGtpLV-o" -H "Content-Type: application/json" -d '{"title":"New title curl"}' -v
