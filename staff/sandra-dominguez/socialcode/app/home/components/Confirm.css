@@ -1,0 +1,11 @@
+.Confirm {
+    padding: 2px;
+    background-color: rgb(192, 174, 209);
+    font-size: 1rem;
+    border: 1px solid rgb(131, 142, 198);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100px;
+}
