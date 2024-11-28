@@ -1,0 +1,8 @@
+*{
+    display: flex;
+    gap:2px;
+    background-color: rgb(196, 139, 53);
+    border: 3px solid black;
+    width: 100%;
+    height: 100%;
+}

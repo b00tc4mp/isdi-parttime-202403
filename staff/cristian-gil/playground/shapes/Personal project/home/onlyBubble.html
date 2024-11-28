@@ -1,0 +1,190 @@
+        //SOLO LA BURBUJA REBOTANDO - SIN HEREDAR PROPIEDADES
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shapes</title>
+</head>
+<body>
+    <script>
+        
+        function Shape() {
+            this.container = document.createElement('div')
+            this.container.style.position='absolute'
+        }
+        //WIDTH
+        Shape.prototype.setWidth = function (value) {
+            this.container.style.width = value + 'px'
+        }
+
+        //HEIGHT
+        Shape.prototype.setHeight = function (value) {
+            this.container.style.height = value + 'px'
+        }
+        
+        //BORDER
+        Shape.prototype.setBorder = function (value, style, color) {
+            this.container.style.border = value + 'px ' + style + ' ' + color
+        }
+        
+        //BORDER-RADIUS
+        Shape.prototype.setBorderRadius = function (value) {
+            this.container.style.borderRadius = value+'%'
+        }
+     
+        //DISPLAY
+        Shape.prototype.setDisplay = function (value) {
+            this.container.style.display = value
+        }
+
+        //MARGIN-TOP
+        Shape.prototype.setMarginTop = function (value) {
+            this.container.style.marginTop = value +'px'
+        }
+
+        //MARGIN-LEFT
+        Shape.prototype.setMarginLeft = function (value) {
+            this.container.style.marginLeft = value+'px'
+        }
+
+        //MARGIN-BOTTOM
+        Shape.prototype.setMarginBottom = function (value) {
+            this.container.style.marginBottom = value+'px'
+        }
+
+        //TOP
+        Shape.prototype.setY = function (value) {
+            this.container.style.top = value +'px'
+        }
+
+        //LEFT
+        Shape.prototype.setX = function (value) {
+            this.container.style.left = value+'px'
+        }
+        //BACKGROUND
+        Shape.prototype.setBackground = function (value, color1, perc1, color2, perc2, color3, perc3, color4, perc4, color5, perc5, color6, perc6, color7, perc7) {
+            this.container.style.background = 'linear-gradient(' + value + 'deg, ' + color1 + ' ' + perc1 + '%, ' + color2 + ' ' + perc2 + '%, ' + color3 + ' ' + perc3 + '%, ' + color4 + ' ' + perc4 + '%, ' + color5 + ' ' + perc5 + '%, ' + color6 + ' ' + perc6 + '%, ' + color7 + ' ' + perc7 + '%)';
+        }
+
+        //BACKGROUND-COLOR
+        Shape.prototype.setBackgroundColor = function (value) {
+            this.container.style.backgroundColor = value;
+}
+
+        //OPACIDAD
+        Shape.prototype.setOpacity = function (value) {
+            this.container.style.opacity = value
+        }
+        
+        //BOX-SHADOW
+        Shape.prototype.setBoxShadow = function (offsetX, offsetY, radius, spreadRadius, color) {
+            this.container.style.boxShadow = offsetX +' '+ offsetY +' '+ radius+'px '+ spreadRadius +' '+ color  
+        }
+
+        //ALIGN-ITEMS
+        Shape.prototype.setAlignItems = function (value) {
+            this.container.style.alignItems = value
+        }
+
+        //JUSTIFY-ITEMS
+        Shape.prototype.setJustifyItems = function (value) {
+            this.container.style.justifyItems = value
+        }
+
+        //POSITION
+        Shape.prototype.setPosition = function (value) {
+            this.container.style.position = value
+        }
+
+        //TRANSFORM
+        Shape.prototype.setTransform = function (value1, value2, value3) {
+            this.container.style.transform = value1 +'(' + value2 + 'deg,' + value3 + 'deg)'
+            //'skew(-45deg,0deg)'
+        }
+
+        Shape.prototype.add = function (child) {
+            this.container.appendChild(child.container)
+        }
+
+
+        var x = Math.random()*900
+        var y = Math.random()*100
+        var difx=1
+        var dify=1
+        
+
+
+        var PlayingArea = new Shape()
+        PlayingArea.setWidth(1000)
+        PlayingArea.setHeight(700)
+        PlayingArea.setDisplay('flex')
+        PlayingArea.setBorder(30, 'solid', 'cyan')
+        PlayingArea.setMarginTop(30)
+        PlayingArea.setMarginLeft(30)
+        PlayingArea.setBackground(180, 'rgb(0,0,35.5)','14','rgb(0,0,71)','28','rgb(0,0,106.5)','42','rgb(0,0,142)','56','rgb(0,0,177.5)','70','rgb(0,0,213)','84','rgb(0,0,255)','98')
+
+        var bubble = new Shape()
+        bubble.setWidth(100)
+        bubble.setHeight(100)
+        bubble.setBackground(45, 'silver', '5', 'lightblue', '20', 'skyblue', '30', 'white', '60', 'skyblue', '85', 'lightblue', '97', 'blue', '99')
+        bubble.setBorder(1, 'transparent', 'blue')
+        bubble.setBorderRadius(50)
+        bubble.setDisplay('flex')
+        bubble.setBoxShadow(0, 0, 20, 0, 'rgba(0,0,255,0.3)')
+        bubble.setAlignItems('center')
+        bubble.setJustifyItems('center')
+
+        PlayingArea.add(bubble)
+        
+
+        var LightUp = new Shape()
+        LightUp.setWidth(5)
+       LightUp.setHeight(15)
+        LightUp.setBorder(1, 'solid', 'white')
+        LightUp.setOpacity(0.8)
+        LightUp.setBackgroundColor('snow')
+        LightUp.setBorderRadius(35)
+        LightUp.setPosition('absolute')
+        LightUp.setMarginLeft(25)
+        LightUp.setMarginBottom(65)
+        LightUp.setTransform('skew','-45', '0')
+
+        bubble.add(LightUp)
+        
+
+        var LightDown = new Shape()
+        LightDown.setWidth(5)
+        LightDown.setHeight(10)
+        LightDown.setBorder(1, 'solid', 'snow')
+        LightDown.setOpacity(0.5)
+        LightDown.setBackgroundColor('snow')
+        LightDown.setBorderRadius(35)
+        LightDown.setPosition('absolute')
+        LightDown.setMarginLeft(70)
+        LightDown.setMarginBottom(-60)
+        LightDown.setTransform('skew','-45','0')
+
+        bubble.add(LightDown)
+
+        document.body.appendChild(PlayingArea.container)
+
+        function movementBubble(){
+            if(x <= 0){difx=1}
+            if(x >= 900){difx=(-1)}
+            if(y <= 0){dify=1}
+            if(y >= 600){dify=(-1)}
+            bubble.setY(y)
+            bubble.setX(x)
+            x=x+difx
+            y=y+dify
+        }
+        
+        setInterval(movementBubble,3)
+
+
+    </script>
+</body>
+</html>
