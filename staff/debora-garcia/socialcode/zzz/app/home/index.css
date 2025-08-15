@@ -1,0 +1,39 @@
+.View {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-top:4rem; */
+  margin: 4rem 2rem;
+}
+
+
+.Header {
+  background-color: rgb(160, 135, 184);
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: right;
+  position: fixed;
+  top: 0;
+  padding: 0.25rem;
+  /* al poner padding se desborda por fuera del contenido de la caja, por lo que al fijar border-box
+  se ajusta al tamaño real de lo que ocupa contando el padding y no solo por el contenido, valor predefinido
+  es content-box */
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--first-color);
+}
+
+.Footer {
+  background-color: rgb(160, 135, 184);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /*   con positio fixed no te permite hacer scroll
+ */
+  position: fixed;
+  bottom: 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--first-color);
+
+}
+

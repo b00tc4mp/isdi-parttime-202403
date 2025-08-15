@@ -1,0 +1,35 @@
+.FormWithFeedback {
+    background-color: rgba(222, 202, 169, 0.8);
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.3)
+  }
+  
+  
+  .FormWithFeedback .Feedback {
+    display: flex;
+    text-align: center;
+    max-width: 15rem;
+    position:relative;
+    color: tomato;
+  }
+  
+  .FormWithFeedback .Feedback.success  { /* tiene mas especificidad por lo que antepondra al codigo anterior */
+    color: green;
+  }
+  
+  a {
+    position: relative;
+    top: 30px;
+    padding: 0.4rem 0.9rem 0.4rem .9rem;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 900;
+    font-style: normal;
+  }
+  h1{
+    font-family: "Abril Fatface";
+    font-style: normal;
+  }
+  
